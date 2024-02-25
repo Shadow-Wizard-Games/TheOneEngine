@@ -3,7 +3,7 @@
 #include "..\TheOneAudio\AudioCore.h"
 #include "GameObject.h"
 #include "Transform.h"
-#include <string>
+
 #include <memory>
 
 class GameObject;
