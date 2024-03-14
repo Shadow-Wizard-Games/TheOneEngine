@@ -43,6 +43,9 @@
     <Filter Include="Render">
       <UniqueIdentifier>{954d7850-b1f2-45be-b0ff-9ffe77288d41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{be809aa8-c7ec-4113-9315-ede90d9f1993}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -61,9 +64,6 @@
       <Filter>GameObject\Components</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>GameObject\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
     <ClInclude Include="MeshLoader.h">
@@ -126,6 +126,1302 @@
     <ClInclude Include="Framebuffer.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesImageImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesModelImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArray.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Uniform.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\AkPlatforms.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\AkWwiseSDKVersion.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Comm\AkCommunication.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\DSP\AkApplyGain.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\DSP\AkDelayLineMemory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\DSP\AkDelayLineMemoryStream.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\DSP\AkModulatorProcess.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\DSP\AkVolAutomation.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\DSP\Generic\AkDelayLineMemory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\DSP\Generic\AkDelayLineMemoryStream.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\IBytes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\MusicEngine\Common\AkMusicEngine.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\Ak3DAudioBedMixerFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkAudioInputPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkAudioInputSourceFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkCompressorFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkDelayFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkExpanderFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkFlangerFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkGainFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkGuitarDistortionFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkHarmonizerFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkMatrixReverbFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkMeterFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkOpusDecoderFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkParametricEQFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkPeakLimiterFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkPitchShifterFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkRecorderFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkReflectFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkReflectGameData.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkRoomVerbFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkSilenceSourceFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkSineSourceFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkSinkFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkSoundSeedWindSourceFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkSoundSeedWooshSourceFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkStereoDelayFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkSynthOneSourceFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkTimeStretchFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkToneSourceFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkTremoloFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AkVorbisDecoderFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AllPluginsFactories.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AllPluginsRegistrationHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\AuroHeadphoneFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\iZHybridReverbFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\iZTrashBoxModelerFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\iZTrashDelayFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\iZTrashDistortionFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\iZTrashDynamicsFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\iZTrashFiltersFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\iZTrashMultibandDistortionFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\McDSPFutzBoxFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\McDSPLimiterFXFactory.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\PluginServices\AkFXDurationHandler.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\PluginServices\AkFXParameterChangeHandler.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\PluginServices\AkFXTailHandler.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\PluginServices\AkMixerInputMap.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\PluginServices\AkValueRamp.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Plugin\PluginServices\AkVectorValueRamp.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkAtomic.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkAudioMarker.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkBytesCount.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkBytesMem.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkCallback.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkCommonDefs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkDynamicDialogue.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkDynamicSequence.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkErrorMessageTranslator.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkFPUtilities.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkHashTableFuncs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkHashTableTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkMemoryMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkMemoryMgrFuncs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkMidiTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkMidiWwiseCmds.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkMixerTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkModule.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkNumeralTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkQueryParameters.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkSimd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkSimdMath.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkSimdTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkSoundEngine.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkSoundEngineExport.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkSpeakerConfig.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkSpeakerVolumes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkStreamMgrModule.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkVirtualAcoustics.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkWavDefs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkWwiseErrorHandler.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\AkXMLErrorMessageTranslator.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\IAkPlatformContext.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\IAkPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\IAkPluginHashTable.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\IAkPluginMemAlloc.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\IAkProcessorFeatures.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\IAkRTPCSubscriber.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Common\IAkStreamMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\arm_neon\AkSimd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\arm_neon\AkSimdShuffle.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\arm_neon\AkSimdTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Generic\AkSimd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Generic\AkSpeakerVolumes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Linux\AkAtomic.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\POSIX\AkMemoryMgrFuncs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\POSIX\AkTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\SSE\AkSimd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\SSE\AkSimdAvx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\SSE\AkSimdAvx2.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\SSE\AkSimdTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Windows\AkAtomic.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Windows\AkMemoryMgrFuncs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Windows\AkPlatformContext.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Windows\AkSimd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Windows\AkTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SoundEngine\Platforms\Windows\AkWinSoundEngine.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SpatialAudio\Common\AkReverbEstimation.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SpatialAudio\Common\AkSpatialAudio.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\SpatialAudio\Common\AkSpatialAudioTypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkAllocator.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkArray.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkAssert.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkAutoLock.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkBankReadHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkDynaBlkPool.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkFifoQueue.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkFNVHash.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkHashList.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkHeap.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkInstrument.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkKeyArray.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkKeyDef.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkListBare.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkListBareLight.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkLock.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkMonitorError.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkMonitorErrorImpl.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkMurMurHash.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkObject.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkObjectPool.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkPlatformFuncs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkProfilingID.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkRingBuffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkRng.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkSet.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkSmartPtr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkString.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkSyncCaller.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkTls.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Common\AkVectors.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\POSIX\AkLock.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\POSIX\AkPlatformFuncs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Win32\AkCOMScope.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Win32\AkLock.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Win32\AkMMDevice.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Tools\Win32\AkPlatformFuncs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\AudioPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\IXmlTextReader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\IXmlTextWriter.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\PlatformID.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\AudioPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\CustomData.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\FirstTimeCreationMessage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\GUIWindows.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\Host.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\HostDataWriter.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\HostObjectMedia.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\HostObjectStore.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\HostPropertySet.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\HostUndoManager.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\HostXml.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\License.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\MediaConverter.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\Notifications.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginBaseInterface.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginContainer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginDef.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginInfo.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginInfoGenerator.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginInterfaceArrayItem.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginLinks.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PluginMFCWindows.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\PropertyDisplayName.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\SinkDevices.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\Source.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin\V1\Host.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Plugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\SourceControl\ISourceControl.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\SourceControl\ISourceControlDialogBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\SourceControl\ISourceControlProgress.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\SourceControl\ISourceControlUtilities.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\SourceControl\SourceControlContainers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\TargetVer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Undo.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\Wwise\Utilities.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\AkJson.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\AkVariant.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\AkWAAPIErrorMessageTranslator.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\autobahn.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\civetweb.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\Client.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\FutureUtils.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\IWebSocketClientHandler.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\JsonProvider.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\Logger.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkAutobahn\WebSocketClient.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkGuid.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkJsonBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\AkVariantBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\AK\WwiseAuthoringAPI\waapi.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkDefaultLowLevelIODispatcher.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkFileHelpersBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkFileLocationBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkFilePackage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkFilePackageLowLevelIO.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkFilePackageLowLevelIODeferred.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkFilePackageLUT.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkGeneratedSoundBanksResolver.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkJobWorkerMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkMultipleFileLocation.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Common\AkPlatformProfilerHooks.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\POSIX\AkDefaultIOHookDeferred.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\POSIX\AkFileHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\POSIX\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Win32\AkDefaultIOHookDeferred.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Win32\AkFileHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\include\Win32\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\DSP\AkSineOsc.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\DynamicLibraries\AkSoundEngineDLL\AkSoundEngineDLL.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\DynamicLibraries\AkSoundEngineDLL\AkSoundEngineExports.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\DynamicLibraries\DLLDemo\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\DynamicLibraries\DLLDemo\Windows\PlatformDefinitions.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\DemoOptionsUtil.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\Drawing.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\Helpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\IAkInputMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\IntegrationDemo.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\PlatformHooks.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\Render.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\SoundInputBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\SoundInputMgrBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\SpatialAudioHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Common\UniversalInput.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\BaseMenuPage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\Demo3dAudio.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\Demo3dBus.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoAutobanks.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoBankLoadingMenu.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoBGM.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoDialogueMenu.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoDynamicDialogue.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoExternalSources.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoFootstepsManyVariables.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoInteractiveMusic.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoLocalization.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMarkers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMicrophone.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMIDIMetronome.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMotion.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMusicCallbacks.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMusicMIDIMenu.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoOptions.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoPositioning.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoPositioningMenu.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoPrepare.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoRTPCCarEngine.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudio.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioGeometry.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioMenu.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioPortalReflect.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioReflect.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioReverbZones.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\MenuPages.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\FreetypeRenderer\Assets\GentiumPlusAm-R_ttf.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\FreetypeRenderer\FreetypeGraphicRenderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\FreetypeRenderer\stb_truetype.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\ButtonControl.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\Control.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\LabelControl.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\Menu.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\MenuControls.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\MessagePage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\MovableChip.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\MultiplayerPage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\NumericControl.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\Page.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\ToggleControl.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\SDL\SDLInputMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\SDL\SDLWindow.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\CommandQueue.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\d3dx12.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\DynamicTexture2D.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\LineGraphicsPipeline.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\RenderDevice.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\TextureGraphicsPipeline.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\Utilities.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\InputMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\InputMgrScePadHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\Platform.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\SoundInput.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\SoundInputMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\WinGC\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\IntegrationDemo\WwiseProject\GeneratedSoundBanks\Wwise_IDs.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\AudioEngineFX\AkFXSrcAudioInput.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\AudioEngineFX\AkFXSrcAudioInputParams.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\AudioInputPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\Help\TopicAlias.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\resource.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\AudioEngineFX\AkDelayFX.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\AudioEngineFX\AkDelayFXDSP.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\AudioEngineFX\AkDelayFXParams.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\DelayPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\Help\TopicAlias.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\resource.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\AudioEngineFX\AkFXSrcSine.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\AudioEngineFX\AkFXSrcSineParams.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\Help\TopicAlias.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\resource.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\SinePlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSink\Sources\WwisePlugin\Help\TopicAlias.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSink\Sources\WwisePlugin\SinkPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkSink\Sources\WwisePlugin\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkLpFilter.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkToneGen.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkToneGenParams.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkWaveTables.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\Help\TopicAlias.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\resource.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\ToneGenPlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkDefaultLowLevelIODispatcher.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFileHelpersBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFileLocationBase.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFilePackage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFilePackageLowLevelIO.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFilePackageLowLevelIODeferred.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFilePackageLUT.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkGeneratedSoundBanksResolver.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkJobWorkerMgr.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkMultipleFileLocation.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\Common\AkPlatformProfilerHooks.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\POSIX\AkDefaultIOHookDeferred.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\POSIX\AkFileHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SoundEngine\POSIX\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Common\OperationResults.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Common\SourceControlHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgPerforceConfig.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgPerforceDescription.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgPerforceOnNewFiles.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgRename.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\Perforce.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\PerforcePlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\resource.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Perforce\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\DlgConfiguration.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\resource.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\SamplePlugin.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\SourceControlSample.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgCommitMessage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgConfiguration.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgLockMessage.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgOnCreateModify.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgRename.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\resource.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\stdafx.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\Subversion.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\SubversionPool.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\SourceControl\Subversion\SubversionSourceControl.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\JSONHelpers.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\RapidJsonUtils.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\StressTest.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\StressTestConnections.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\TestClient.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\TestErrors.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\TestMonitoring.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\IncludeRapidJson.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\allocators.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\cursorstreamwrapper.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\document.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\encodedstream.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\encodings.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\error\en.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\error\error.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\filereadstream.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\filewritestream.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\fwd.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\biginteger.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\clzll.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\diyfp.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\dtoa.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\ieee754.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\itoa.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\meta.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\pow10.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\regex.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\stack.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\strfunc.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\strtod.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\internal\swap.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\istreamwrapper.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\memorybuffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\memorystream.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\msinttypes\inttypes.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\msinttypes\stdint.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\ostreamwrapper.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\pointer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\prettywriter.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\rapidjson.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\reader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\schema.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\stream.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\stringbuffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\uri.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\subprojects\rapidjson\include\rapidjson\writer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wwise\Shader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -141,9 +1437,6 @@
       <Filter>GameObject\Components</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>GameObject\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
     <ClCompile Include="MeshLoader.cpp">
@@ -200,5 +1493,686 @@
     <ClCompile Include="Framebuffer.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourcesImpl.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArray.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Uniform.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkDefaultLowLevelIODispatcher.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkFileLocationBase.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkFilePackage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkFilePackageLUT.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkGeneratedSoundBanksResolver.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkJobWorkerMgr.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkMultipleFileLocation.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Common\AkPlatformProfilerHookStubs.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\POSIX\AkDefaultIOHookDeferred.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\POSIX\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Win32\AkDefaultIOHookDeferred.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Win32\AkPlatformProfilerHooks.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\include\Win32\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DSP\AkSineOsc.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\Ak3DAudioBedMixer\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkAudioInput\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkCompressor\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkConvolutionReverb\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkDelay\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkExpander\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkFlanger\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkGain\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkGuitarDistortion\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkHarmonizer\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkImpacter\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkMatrixReverb\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkParametricEQ\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkPeakLimiter\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkPitchShifter\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkRecorder\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkReflect\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkRoomVerb\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkSilenceGenerator\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkSineTone\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkSoundEngineDLL\AkSoundEngineDLL.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkSoundSeedAir\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkSoundSeedGrain\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkStereoDelay\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkSynthOne\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkTimeStretch\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkToneGen\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\AkTremolo\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\Auro\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\DLLDemo\Main.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\DLLDemo\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\iZotope\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\MasteringSuite\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\DynamicLibraries\McDSP\InitPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\Drawing.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\Helpers.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\IntegrationDemo.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\IntegrationDemoPlugins.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\PlatformHooks.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\SoundInputBase.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\SoundInputMgrBase.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\SpatialAudioHelpers.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Common\UniversalInput.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\BaseMenuPage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\Demo3dAudio.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\Demo3dBus.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoAutobanks.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoBankLoadingMenu.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoBGM.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoDialogueMenu.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoDynamicDialogue.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoExternalSources.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoFootstepsManyVariables.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoInteractiveMusic.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoLocalization.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMarkers.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMicrophone.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMIDIMetronome.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMotion.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMusicCallbacks.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoMusicMIDIMenu.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoOptions.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoPositioning.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoPositioningMenu.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoPrepare.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoRTPCCarEngine.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudio.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioGeometry.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioMenu.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioPortalReflect.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioReflect.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\DemoPages\DemoSpatialAudioReverbZones.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\FreetypeRenderer\FreetypeGraphicRenderer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\ButtonControl.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\Control.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\LabelControl.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\Menu.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\MessagePage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\MovableChip.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\MultiplayerPage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\NumericControl.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\Page.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\MenuSystem\ToggleControl.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\SDL\RenderSDL.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\SDL\SDLInputMgr.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\SDL\SDLWindow.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\CommandQueue.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\DynamicTexture2D.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\LineGraphicsPipeline.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\RenderDevice.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\D3D12\TextureGraphicsPipeline.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\DemoOptionsUtil.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\InputMgr.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\Main.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\Platform.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\Render_D3D11.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\Render_D3D12.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\SoundInput.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\SoundInputMgr.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\Windows\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\IntegrationDemo\WinGC\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\AudioEngineFX\AkFXSrcAudioInput.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\AudioEngineFX\AkFXSrcAudioInputParams.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\AudioInputPlugin.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\AudioEngineFX\AkDelayFX.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\AudioEngineFX\AkDelayFXDSP.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\AudioEngineFX\AkDelayFXParams.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\DelayPlugin.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\AudioEngineFX\AkFXSrcSine.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\AudioEngineFX\AkFXSrcSineParams.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\SinePlugin.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkSink\Sources\WwisePlugin\SinkPlugin.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkSink\Sources\WwisePlugin\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkLpFilter.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkToneGen.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkToneGenDSP.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\AudioEngineFX\AkToneGenParams.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\ToneGenPlugin.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkDefaultLowLevelIODispatcher.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFileLocationBase.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFilePackage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFilePackageLUT.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkGeneratedSoundBanksResolver.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkJobWorkerMgr.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkMultipleFileLocation.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\Common\AkPlatformProfilerHookStubs.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\POSIX\AkDefaultIOHookDeferred.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SoundEngine\POSIX\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Common\OperationResults.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Common\SourceControlHelpers.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgPerforceConfig.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgPerforceDescription.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgPerforceOnNewFiles.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\DlgRename.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\DllInterface.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\PerforceClientUser.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\PerforcePlugin.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\PerforceSourceControl.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\PerforceUtility.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\DlgConfiguration.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\DllInterface.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\SamplePlugin.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\SourceControlSample.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgCommitMessage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgConfiguration.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgLockMessage.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgOnCreateModify.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\DlgRename.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\DllInterface.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\stdafx.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\Subversion.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\SubversionPool.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\SubversionSourceControl.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\AkWAAPIErrorMessageTranslator.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\autobahn.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\civetweb.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\Client.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\FutureUtils.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\JsonProvider.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\Logger.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\WebSocketClient.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\SampleClient.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\StressTest.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\StressTestConnections.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\TestClient.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\TestErrors.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\SampleClient\TestMonitoring.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wwise\Shader.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Wwise\SDK\include\Common\AkFilePackageLowLevelIO.inl">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\AudioInput.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\AkDelay.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\Sine.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\Plugins\AkSink\Sources\WwisePlugin\Sink.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\ToneGen.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\SoundEngine\Common\AkFilePackageLowLevelIO.inl">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\SourceControl\Perforce\Perforce.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\SourceControl\Perforce\res\Perforce.rc2">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\res\SourceControlSample.rc2">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\SourceControlSample.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\SourceControl\Subversion\res\Subversion.rc2">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\SourceControl\Subversion\Subversion.def">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\file_ops.inl">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\handle_form.inl">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\md5.inl">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\cpp\SampleClient\AkAutobahn\sha1.inl">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\js\hello-wwise-web-http\index.html">
+      <Filter>Render</Filter>
+    </None>
+    <None Include="..\Wwise\SDK\samples\WwiseAuthoringAPI\js\hello-wwise-web-wamp\index.html">
+      <Filter>Render</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\Wwise\SDK\samples\Common\AkWwiseSDKVersion.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\Wwise\SDK\samples\Plugins\AkAudioInput\Sources\WwisePlugin\AudioInput.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\Wwise\SDK\samples\Plugins\AkDelay\Sources\WwisePlugin\AkDelay.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\Wwise\SDK\samples\Plugins\AkSineTone\Sources\WwisePlugin\Sine.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\Wwise\SDK\samples\Plugins\AkToneGenerator\Sources\WwisePlugin\ToneGenPlugin.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\Wwise\SDK\samples\SourceControl\Perforce\Perforce.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\Wwise\SDK\samples\SourceControl\SourceControlSample\SourceControlSample.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\Wwise\SDK\samples\SourceControl\Subversion\Subversion.rc">
+      <Filter>Render</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Wwise\SDK\samples\Tools\FilePackager\FilePackager\Properties\Resources.resx">
+      <Filter>Render</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Wwise\SDK\samples\Tools\FilePackager\FilePackager.App\Properties\Resources.resx">
+      <Filter>Render</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Wwise\SDK\samples\Tools\FilePackager\FilePackager.Console\Properties\Resources.resx">
+      <Filter>Render</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
