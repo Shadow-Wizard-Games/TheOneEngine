@@ -250,42 +250,42 @@ bool PanelInspector::Draw()
 
 
             /*Texture Component*/
-            Texture* texture = selectedGO->GetComponent<Texture>();
+            //Texture* texture = selectedGO->GetComponent<Texture>();
 
-            if (texture != nullptr && ImGui::CollapsingHeader("Texture", treeNodeFlags))
-            {
-                ImGui::SetItemTooltip("Displays and sets texture data");
-                ImGui::Checkbox("Active Texture", &texture->active);
-                ImGui::Text("Name: ");
-                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, (texture->GetName()).c_str());
-                ImGui::Separator();
-                ImGui::Text("Size: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(texture->width).c_str());
-                ImGui::Text("Height: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(texture->height).c_str());
+            //if (texture != nullptr && ImGui::CollapsingHeader("Texture", treeNodeFlags))
+            //{
+            //    ImGui::SetItemTooltip("Displays and sets texture data");
+            //    ImGui::Checkbox("Active Texture", &texture->active);
+            //    ImGui::Text("Name: ");
+            //    ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, (texture->GetName()).c_str());
+            //    ImGui::Separator();
+            //    ImGui::Text("Size: ");
+            //    ImGui::SameLine();  ImGui::Text(std::to_string(texture->width).c_str());
+            //    ImGui::Text("Height: ");
+            //    ImGui::SameLine();  ImGui::Text(std::to_string(texture->height).c_str());
 
-                //ImGui::Text("Tex coords: ");
-                //ImGui::SameLine();  ImGui::Text(std::to_string(mesh->mesh.getNumTexCoords()).c_str());
+            //    //ImGui::Text("Tex coords: ");
+            //    //ImGui::SameLine();  ImGui::Text(std::to_string(mesh->mesh.getNumTexCoords()).c_str());
 
-                //if (ImGui::Checkbox("Use Texture", /*&mesh->usingTexture*/true))
-                //{
-                //    //(mesh->usingTexture) ? mesh->texture = gameObjSelected->GetComponent<Texture2D>() : mesh->texture = nullptr;
-                //}
+            //    //if (ImGui::Checkbox("Use Texture", /*&mesh->usingTexture*/true))
+            //    //{
+            //    //    //(mesh->usingTexture) ? mesh->texture = gameObjSelected->GetComponent<Texture2D>() : mesh->texture = nullptr;
+            //    //}
 
-                //ImGui::TextColored(ImVec4(1, 1, 0, 1), "%dpx x %dpx", s->getTexture()->width, s->getTexture()->height);
+            //    //ImGui::TextColored(ImVec4(1, 1, 0, 1), "%dpx x %dpx", s->getTexture()->width, s->getTexture()->height);
 
-                // JULS: To show the image of the texture, but need to look at it more.
-                //ImTextureID my_tex_id;
-                //glGenTextures(GL_TEXTURE_2D, 1, my_tex_id);
-                //glTextureParameteri(my_tex_id, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-                //glTextureParameteri(textureID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-                //glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-                //glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-                //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, [width of your texture], [height of your texture], false, GL_RGBA, GL_FLOAT, [pointer to first element in array of texture pixel values]);
-                //ImGui::Image()
+            //    // JULS: To show the image of the texture, but need to look at it more.
+            //    //ImTextureID my_tex_id;
+            //    //glGenTextures(GL_TEXTURE_2D, 1, my_tex_id);
+            //    //glTextureParameteri(my_tex_id, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            //    //glTextureParameteri(textureID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            //    //glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+            //    //glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+            //    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, [width of your texture], [height of your texture], false, GL_RGBA, GL_FLOAT, [pointer to first element in array of texture pixel values]);
+            //    //ImGui::Image()
 
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
-            }
+            //    ImGui::Dummy(ImVec2(0.0f, 10.0f));
+            //}
 
 
             /*Camera Component*/

@@ -121,8 +121,8 @@ void Material::UnBind(int id)
 	{
 		if (uniforms[i].getType() == UniformType::Sampler2D)
 		{
-			glActiveTexture(texureId));
-			glBindTexture(GL_TEXTURE_2D, 0));
+			glActiveTexture(texureId);
+			glBindTexture(GL_TEXTURE_2D, 0);
 			texureId++;
 		}
 	}
