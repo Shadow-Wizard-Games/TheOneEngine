@@ -154,17 +154,17 @@ void Resources::_import_image_impl(const char* origin, const char* destination)
 	unsigned char* image = stbi_load(origin, &w, &h, &ch, STBI_rgb_alpha);
 	if (w != h)
 	{
-		SMOL_ERROR("Image at {0} needs to be square in order to be imported", origin);
+		LOG(LogType::LOG_ERROR, "Image at %s needs to be square in order to be imported", origin);
 		return;
 	}
-	Texture2D::raw_to_dds_file(destination, image, w, h, 32);
+	Texture::raw_to_dds_file(destination, image, w, h, 32);
 
 	stbi_image_free(image);
 }
 
-void Resources::_import_model_impl(const char* origin, const char* destination, ModelSettings* settings)
+void Resources::_import_model_impl(const char* origin, const char* destination)
 {
-	Model* model = Model::GetModelFromFile(origin, settings);
+	Model* model = Model::GetModelFromFile(origin);
 
 	Model::SaveModel(model, destination);
 

@@ -3,7 +3,7 @@
 
 //--SPECIALIZATION FOR MODEL
 template<>
-inline void Resources::LoadMeta<Model>(const char* file, ModelSettings* settings)
+inline void Resources::LoadMeta<Model>(const char* file)
 {
 	std::filesystem::path filePath = file;
 	filePath += ".meta";
@@ -15,7 +15,7 @@ inline void Resources::LoadMeta<Model>(const char* file, ModelSettings* settings
 	settings->preTranslatedVertices = doc["modelImportSettings"]["pre_translated_vertices"].get<bool>();
 }
 template<>
-inline void Resources::CreateMeta<Model>(const char* file, ModelSettings* settings)
+inline void Resources::CreateMeta<Model>(const char* file)
 {
 	std::filesystem::path filePath = file;
 	filePath += ".meta";
