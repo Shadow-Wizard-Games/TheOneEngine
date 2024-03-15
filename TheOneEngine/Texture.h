@@ -15,12 +15,12 @@ private:
 	glm::ivec2 imageSize;
 	int textureChannels;
 
+	bool Init(const std::string& path);
+	bool InitDDS(const std::string& path);
+
 public:
 	Texture(const std::string& path, bool isDDS);
 	~Texture();
-
-	bool Init(const std::string& path);
-	bool InitDDS(const std::string& path);
 
 	bool CreateCheckerTexture();
 

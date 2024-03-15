@@ -153,6 +153,9 @@
     <ClInclude Include="Shader.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -243,6 +246,9 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
       <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
