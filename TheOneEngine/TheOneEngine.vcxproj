@@ -34,9 +34,12 @@
     <ClInclude Include="MonoRegisterer.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="N_SceneManager.h" />
+    <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesImageImpl.h" />
     <ClInclude Include="ResourcesImpl.h" />
+    <ClInclude Include="ResourcesMaterialImpl.h" />
     <ClInclude Include="ResourcesModelImpl.h" />
+    <ClInclude Include="ResourcesShaderImpl.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="EngineCore.h" />
     <ClInclude Include="Shader.h" />

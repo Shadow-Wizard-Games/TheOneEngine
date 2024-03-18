@@ -156,6 +156,15 @@
     <ClInclude Include="Model.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="ResourcesMaterialImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesShaderImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">

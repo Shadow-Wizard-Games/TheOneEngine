@@ -27,6 +27,8 @@ public:
 	enum ResourceType {
 		RES_IMAGE,
 		RES_MODEL,
+		RES_SHADER,
+		RES_MATERIAL,
 		RES_LAST
 	};
 

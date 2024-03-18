@@ -55,9 +55,7 @@ public:
 
     static void LoadMeshes(const std::string& path);
 
-    static const std::vector<std::shared_ptr<Model>> GetMeshes() { return meshes; }
-
-private:
+    static const std::vector<std::shared_ptr<Model>> GetMeshes() { return meshes; meshes.clear(); }
 
 private:
     static std::vector<std::shared_ptr<Model>> meshes;
