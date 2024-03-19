@@ -3,7 +3,7 @@
 
 //--SPECIALIZATION FOR MODEL
 template<>
-inline ResourceId Resources::LoadNative<Model>(const char* file)
+inline ResourceId Resources::LoadNative<Model>(const std::string& file)
 {
 	ResourceId position = getResourcePosition(RES_MODEL, file);
 	size_t size = m_Resources[RES_MODEL].size();
@@ -24,7 +24,7 @@ inline ResourceId Resources::LoadNative<Model>(const char* file)
 	return resourceId;
 }
 template<>
-inline ResourceId Resources::Load<Model>(const char* file)
+inline ResourceId Resources::Load<Model>(const std::string& file)
 {
 	std::filesystem::path file_path = _assetToLibPath(file);
 	file_path.replace_extension(".toemodel");
@@ -60,19 +60,19 @@ inline Model* Resources::GetResourceById<Model>(ResourceId id)
 	return model;
 }
 template<>
-inline void Resources::Import<Model>(const char* file)
+inline void Resources::Import<Model>(const std::string& file)
 {
 	std::filesystem::path import_path = file;
 	import_path = _import_path_impl(import_path, ".toemodel");
 
 
-	_import_model_impl(file, import_path.string().c_str());
+	_import_model_impl(file.c_str(), import_path.string().c_str());
 	LOG(LogType::LOG_INFO, "Model at %s imported succesfully!", import_path.string().c_str());
 }
 template<>
-inline bool Resources::CheckImport<Model>(const char* file)
+inline bool Resources::CheckImport<Model>(const std::string& file)
 {
-	return _check_import_impl(file, ".toemodel");
+	return _check_import_impl(file.c_str(), ".toemodel");
 }
 
 template<>

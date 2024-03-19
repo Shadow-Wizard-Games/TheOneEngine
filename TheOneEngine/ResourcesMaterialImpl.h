@@ -3,7 +3,7 @@
 
 //--SPECIALIZATION FOR MATERIAL
 template<>
-inline ResourceId Resources::Load<Material>(const char* file)
+inline ResourceId Resources::Load<Material>(const std::string& file)
 {
 	if (!std::filesystem::exists(file))
 	{
@@ -45,7 +45,7 @@ inline Material* Resources::GetResourceById<Material>(ResourceId id)
 	return material;
 }
 template<>
-inline void Resources::Import<Material>(const char* file)
+inline void Resources::Import<Material>(const std::string& file)
 {
 	std::filesystem::path import_file = file;
 	std::filesystem::path export_file = _assetToLibPath(file);
@@ -66,9 +66,9 @@ inline void Resources::Import<Material>(const char* file)
 	LOG(LogType::LOG_INFO, "Material at %s imported succesfully!", import_file.string().c_str());
 }
 template<>
-inline bool Resources::CheckImport<Material>(const char* file)
+inline bool Resources::CheckImport<Material>(const std::string& file)
 {
-	return _check_import_impl(file, ".toematerial");
+	return _check_import_impl(file.c_str(), ".toematerial");
 }
 template<>
 inline const char* Resources::getResourcePathById<Material>(size_t id)

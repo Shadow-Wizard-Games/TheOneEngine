@@ -3,7 +3,7 @@
 
 // SPECIALIZATION FOR SHADER
 template<>
-inline ResourceId Resources::LoadNative<Shader>(const char* file) {
+inline ResourceId Resources::LoadNative<Shader>(const std::string& file) {
 	ResourceId position = getResourcePosition(RES_SHADER, file);
 	size_t size = m_Resources[RES_SHADER].size();
 
@@ -24,7 +24,7 @@ inline ResourceId Resources::LoadNative<Shader>(const char* file) {
 	return resourceId;
 }
 template<>
-inline ResourceId Resources::Load<Shader>(const char* file) {
+inline ResourceId Resources::Load<Shader>(const std::string& file) {
 
 	std::filesystem::path library_file = _assetToLibPath(file);
 	std::string file_path = library_file.string();
@@ -64,7 +64,7 @@ inline Shader* Resources::GetResourceById<Shader>(ResourceId id) {
 	return resource;
 }
 template<>
-inline void Resources::Import<Shader>(const char* file, Shader* shader)
+inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
 {
 	JSONDocument document;
 	std::string filePath = file;
@@ -109,9 +109,9 @@ inline void Resources::Import<Shader>(const char* file, Shader* shader)
 	LOG(LogType::LOG_INFO, "Shader at %s imported succesfully!", import_file.string().c_str());
 }
 template<>
-inline bool Resources::CheckImport<Shader>(const char* file)
+inline bool Resources::CheckImport<Shader>(const std::string& file)
 {
-	return _check_import_impl(file, ".toeshader");
+	return _check_import_impl(file.c_str(), ".toeshader");
 }
 template<>
 inline const char* Resources::getResourcePathById<Shader>(size_t id)

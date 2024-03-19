@@ -24,16 +24,15 @@ public:
 	void Save(const std::string& path);
 
 	void Refresh();
-	inline Shader* getShader() const { return shader; }
+
+
 	void setShader(Shader* shader, const char* path);
+	template<class T> void SetUniformData(const std::string& name, const T& value);
+
+	inline Shader* getShader() const { return shader; }
 	inline const char* getShaderPath() { return shaderPath.c_str(); }
-	template<class T>
-	void SetUniformData(const char* name, const T& value);
-	Uniform* getUniform(const char* name);
-	inline std::vector<Uniform>& getUniforms()
-	{
-		return uniforms;
-	}
+	Uniform* getUniform(const std::string& name);
+	inline std::vector<Uniform>& getUniforms() { return uniforms; }
 	inline size_t getUniformIndex(const char* name)
 	{
 		for (size_t i = 0; i < uniforms.size(); i++)
@@ -60,7 +59,7 @@ private:
 };
 
 template<class T>
-void Material::SetUniformData(const char* name, const T& value)
+void Material::SetUniformData(const std::string& name, const T& value)
 {
 	Uniform* uniform = getUniform(name);
 	if (!uniform)

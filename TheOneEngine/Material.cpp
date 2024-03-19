@@ -67,19 +67,19 @@ void Material::Refresh()
 	}
 }
 
-void Material::setShader(Shader* shader, const char* path)
+void Material::setShader(Shader* sh, const char* path)
 {
 	uniforms.clear();
 	if (shader)
 		shader->DeleteRef(this);
 
-	shader = shader;
+	shader = sh;
 	shader->AddRef(this);
 	shaderPath = path;
 	Refresh();
 }
 
-Uniform* Material::getUniform(const char* name)
+Uniform* Material::getUniform(const std::string& name)
 {
 	for (size_t i = 0; i < uniforms.size(); i++)
 	{
@@ -138,6 +138,96 @@ void Material::UnBind(int id)
 
 void Material::Load(const std::string& path)
 {
+	json matJSON = Resources::OpenJSON(path);
+
+	if (matJSON.contains("shader"))
+		shaderPath = matJSON["shader"];
+
+	size_t shaderId = Resources::Load<Shader>(shaderPath.c_str());
+	Shader* shader = Resources::GetResourceById<Shader>(shaderId);
+
+
+	setShader(shader, shaderPath.c_str());
+
+	if (matJSON.contains("uniforms"))
+	{
+		json uniformsJSON = matJSON["uniforms"];
+		for (const auto& u : uniformsJSON)
+		{
+			if (u.contains("Name"))
+				return;
+
+			Uniform* uniform = getUniform(u["Name"]);
+
+			if (!uniform)
+				return;
+
+			const char* name = uniform->name.c_str();
+			switch (uniform->getType())
+			{
+			case UniformType::Bool:
+				uniform->setData((bool)u["Value"], uniform->getType());
+				break;
+			case UniformType::Int:
+				uniform->setData((int)u["Value"], uniform->getType());
+				break;
+			case UniformType::Uint:
+				uniform->setData((unsigned int)u["Value"], uniform->getType());
+				break;
+			case UniformType::Float:
+				uniform->setData((float)u["Value"], uniform->getType());
+				break;
+			case UniformType::fVec2:
+			{
+				json Vec2;
+				if (u.contains("Vec2"))
+					Vec2 = u["Vec2"];
+
+				glm::vec2 data;
+				data.x = (float)Vec2["x"];
+				data.y = (float)Vec2["y"];
+				uniform->setData(data, uniform->getType());
+			}break;
+			case UniformType::fVec3:
+			{
+				json Vec3;
+				if (u.contains("Vec3"))
+					Vec3 = u["Vec3"];
+
+				glm::vec3 data;
+				data.x = (float)Vec3["x"];
+				data.y = (float)Vec3["y"];
+				data.z = (float)Vec3["z"];
+				uniform->setData(data, uniform->getType());
+			}break;
+			case UniformType::fVec4:
+			{
+				json Vec4;
+				if (u.contains("Vec4"))
+					Vec4 = u["Vec4"];
+
+				glm::vec4 data;
+				data.x = (float)Vec4["x"];
+				data.y = (float)Vec4["y"];
+				data.z = (float)Vec4["z"];
+				data.w = (float)Vec4["w"];
+				uniform->setData(data, uniform->getType());
+			}break;
+			case UniformType::Sampler2D:
+			{
+				std::string texPath = u["Value"];
+				Resources::Import<Texture>(texPath);
+				size_t id = Resources::Load<Texture>(texPath);
+				Texture* img = Resources::GetResourceById<Texture>(id);
+				uniform->setData(img->GetTextureId(), uniform->getType());
+			}break;
+			default:
+				break;
+			}
+		}
+	}
+
+	materialPath = path;
 }
 
 void Material::Save(const std::string& path)

@@ -16,6 +16,8 @@
 #include <sstream>
 #include <time.h>
 
+namespace fs = std::filesystem;
+
 #define RES_NOT_LOADED -1
 
 typedef size_t ResourceId;
@@ -108,16 +110,15 @@ public:
 	// Not found: there's no meta file for the reference
 	static MetaResult CheckMeta(const char* filename);
 	static void UpdateMeta(const char* filename);
+	static json OpenJSON(const std::string& filename);
 
 	template<class T> static const char* getResourcePathById(size_t id);
 
-	template<class T> static ResourceId Load(const char* file);
-	template<class T> static ResourceId LoadNative(const char* file);
+	template<class T> static ResourceId Load(const std::string& file);
+	template<class T> static ResourceId LoadNative(const std::string& file);
 	template<class T> static T* GetResourceById(ResourceId id);
-	template<class T> static bool CheckImport(const char* file);
-	template<class T, class... T2> static void Import(const char* file, T2... settings);
-	template<class T, class... T2> static void CreateMeta(const char* file, T2... settings);
-	template<class T, class... T2> static void LoadMeta(const char* file, T2... settings);
+	template<class T> static bool CheckImport(const std::string& file);
+	template<class T, class... T2> static void Import(const std::string& file, T2... settings);
 
 	static void SetAssetPath(std::string& path);
 	inline static std::string* getFileData(const char* file)

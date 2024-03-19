@@ -18,12 +18,12 @@ Shader::Shader(const std::string& path)
 
 Shader::~Shader() {}
 
-void Shader::Init(const char* filename)
+void Shader::Init(const std::string& filename)
 {
 	Compile(filename);
 }
 
-void Shader::Compile(const char* filename)
+void Shader::Compile(const std::string& filename)
 {
 	std::string vertexFile = filename;
 	vertexFile += ".vs";

@@ -2,7 +2,7 @@
 #include "ResourcesImpl.h"
 
 template<>
-inline ResourceId Resources::Load<Texture>(const char* file)
+inline ResourceId Resources::Load<Texture>(const std::string& file)
 {
 	std::filesystem::path file_path = _assetToLibPath(file);
 	file_path.replace_extension(".dds");
@@ -25,7 +25,7 @@ inline ResourceId Resources::Load<Texture>(const char* file)
 	return resourceId;
 }
 template<>
-inline ResourceId Resources::LoadNative<Texture>(const char* file)
+inline ResourceId Resources::LoadNative<Texture>(const std::string& file)
 {
 	std::string path = file;
 	standarizePath(path);
@@ -59,17 +59,17 @@ inline Texture* Resources::GetResourceById<Texture>(ResourceId id)
 }
 
 template<>
-inline void Resources::Import<Texture>(const char* file)
+inline void Resources::Import<Texture>(const std::string& file)
 {
 	std::filesystem::path import_path = _import_path_impl(file, ".dds");
-	_import_image_impl(file, import_path.string().c_str());
+	_import_image_impl(file.c_str(), import_path.string().c_str());
 
 	LOG(LogType::LOG_INFO, "Image at %s imported succesfully!", import_path.string().c_str());
 }
 template<>
-inline bool Resources::CheckImport<Texture>(const char* file)
+inline bool Resources::CheckImport<Texture>(const std::string& file)
 {
-	return _check_import_impl(file, ".dds");
+	return _check_import_impl(file.c_str(), ".dds");
 }
 template<>
 inline const char* Resources::getResourcePathById<Texture>(size_t id)

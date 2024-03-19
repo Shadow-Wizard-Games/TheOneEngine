@@ -27,8 +27,8 @@ public:
 
 	~Shader();
 
-	void Init(const char* filename);
-	void Compile(const char* filename);
+	void Init(const std::string& filename);
+	void Compile(const std::string& filename);
 	void CompileFiles(const char* vertexShaderSource, const char* fragmentShaderSource, bool hasGS, std::string* geometryShaderSourceStr, bool& retflag);
 
 	void Bind();

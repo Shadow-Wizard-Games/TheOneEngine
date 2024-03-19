@@ -146,6 +146,38 @@ void Resources::UpdateMeta(const char* filename)
 	}
 }
 
+json Resources::OpenJSON(const std::string& filename)
+{
+	if (!fs::exists(filename))
+	{
+		LOG(LogType::LOG_ERROR, "JSON file does not exist: {}", filename.data());
+		return;
+	}
+
+	// Read the scene JSON from the file
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open JSON file: {}", filename.data());
+		return;
+	}
+
+	json tempJSON;
+	try
+	{
+		file >> tempJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+	return tempJSON;
+}
+
 void Resources::_import_image_impl(const char* origin, const char* destination)
 {
 	int w, h, ch;
