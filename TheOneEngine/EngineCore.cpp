@@ -44,10 +44,9 @@ bool EngineCore::PreUpdate()
 
 void EngineCore::Update(double dt)
 {
-    
-    collisionSolver->Update(dt);
     audioManager->Update(dt);
-
+    collisionSolver->Update(dt);
+  
     this->dt = dt;
 }
 

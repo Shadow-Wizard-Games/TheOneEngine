@@ -17,12 +17,10 @@ public:
 	void PauseAudio(Source* source, AkUniqueID event);
 	void ResumeAudio(Source* source, AkUniqueID event);
 
-	//static AudioManager* GetAudioManager() { return &this; }
-
 	AudioCore* audio = nullptr;
 
-	//AudioCore* GetAudioCore() { return audio; }
-	void AddAudioObject(std::shared_ptr<AudioComponent> audioGO); // Change parameter to shared_ptr};
+	void AddAudioObject(std::shared_ptr<AudioComponent> audioGO);
+	void DeleteAudioComponents();
 
 private:
 	std::vector<std::shared_ptr<AudioComponent>> audioComponents;

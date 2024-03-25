@@ -20,8 +20,8 @@ public:
 	json SaveComponent();
 	void LoadComponent(const json& sourceJSON);
 
-	string path;
-	int volume;
+	//string path;
+	//int volume;
 	//AkUniqueID event;
 private:
 

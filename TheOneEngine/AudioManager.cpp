@@ -23,12 +23,14 @@ bool AudioManager::Update(double dt)
 
 bool AudioManager::CleanUp()
 {
+	DeleteAudioComponents();
+
 	audio->CleanUp();
 	delete audio;
+
 	return true;
 }
 
-// JULS: Not sure tho if they should be added like this
 void AudioManager::PlayAudio(Source* source, AkUniqueID event)
 {
 	audio->PlayEvent(event, source->goID);
@@ -55,3 +57,7 @@ void AudioManager::AddAudioObject(std::shared_ptr<AudioComponent> audioGO)
 	audioComponents.push_back(audioGO);
 }
 
+void AudioManager::DeleteAudioComponents()
+{
+	audioComponents.clear();
+}

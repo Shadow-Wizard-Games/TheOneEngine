@@ -88,9 +88,10 @@ bool N_SceneManager::PostUpdate()
 bool N_SceneManager::CleanUp()
 {
 	//delete currentScene->currentCamera;
-
+	currentScene = nullptr;
 	delete currentScene;
 
+	meshLoader = nullptr;
 	delete meshLoader;
 
 	return true;
@@ -173,6 +174,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	try
 	{
 		file >> sceneJSON;
+		audioManager->DeleteAudioComponents();
 	}
 	catch (const json::parse_error& e)
 	{

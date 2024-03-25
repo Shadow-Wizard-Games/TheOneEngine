@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour
 
     public override void Start()
     {
+        // JULS: it does not seem to enter and do the start
         attachedGameObject.source.PlayAudio(AudioManager.EventIDs.MAINMENU);
     }
     public override void Update()
@@ -74,14 +75,14 @@ public class MainMenuManager : MonoBehaviour
         if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
         {
             SceneManager.LoadScene("Level1");
-            attachedGameObject.source.StopAudio(AudioManager.EventIDs.MAINMENU);
-            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+            //attachedGameObject.source.StopAudio(AudioManager.EventIDs.MAINMENU);
+            //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
         }
 
         if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
         {
             InternalCalls.ExitApplication();
-            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+            //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
         }
     }
 }

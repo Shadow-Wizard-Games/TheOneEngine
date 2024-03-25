@@ -4,7 +4,7 @@
 
 #include "..\TheOneEditor\App.h"
 
-Source::Source(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Source), path(""), volume(0.5)
+Source::Source(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Source) /*, path(""), volume(0.5)*/
 {	
 	this->GO = containerGO;
 	SetTransform(containerGO);
@@ -12,7 +12,7 @@ Source::Source(std::shared_ptr<GameObject> containerGO) : Component(containerGO,
 	//am->AddAudioObject(std::shared_ptr<AudioComponent>(this));
 }
 
-Source::Source(std::shared_ptr<GameObject> containerGO, Source* ref) : Component(containerGO, ComponentType::Source), path(ref->path), volume(ref->volume)
+Source::Source(std::shared_ptr<GameObject> containerGO, Source* ref) : Component(containerGO, ComponentType::Source) /*, path(ref->path), volume(ref->volume)*/
 {
 }
 
