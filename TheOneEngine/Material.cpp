@@ -140,8 +140,13 @@ void Material::Load(const std::string& path)
 {
 	json matJSON = Resources::OpenJSON(path);
 
-	if (matJSON.contains("shader"))
-		shaderPath = matJSON["shader"];
+	if (!matJSON.contains("shader"))
+	{
+		LOG(LogType::LOG_ERROR, "Shader path from material unexistent");
+		return;
+	}
+
+	shaderPath = matJSON["shader"];
 
 	size_t shaderId = Resources::Load<Shader>(shaderPath.c_str());
 	Shader* shader = Resources::GetResourceById<Shader>(shaderId);
@@ -154,7 +159,7 @@ void Material::Load(const std::string& path)
 		json uniformsJSON = matJSON["uniforms"];
 		for (const auto& u : uniformsJSON)
 		{
-			if (u.contains("Name"))
+			if (!u.contains("Name"))
 				return;
 
 			Uniform* uniform = getUniform(u["Name"]);
@@ -213,6 +218,36 @@ void Material::Load(const std::string& path)
 				data.w = (float)Vec4["w"];
 				uniform->setData(data, uniform->getType());
 			}break;
+			case UniformType::Mat2:
+				glm::mat2 temp;
+				int it = 0;
+				for (int i = 0; i < 2; i++) {
+					for (int j = 0; j < 2; j++) {
+						temp[i][j] = u["Mat2"][it];
+						it++;
+					}
+				}
+				break;
+			case UniformType::Mat3:
+				glm::mat3 temp;
+				int it = 0;
+				for (int i = 0; i < 3; i++) {
+					for (int j = 0; j < 3; j++) {
+						temp[i][j] = u["Mat3"][it];
+						it++;
+					}
+				}
+				break;
+			case UniformType::Mat4:
+				glm::mat4 temp;
+				int it = 0;
+				for (int i = 0; i < 4; i++) {
+					for (int j = 0; j < 4; j++) {
+						temp[i][j] = u["Mat4"][it];
+						it++;
+					}
+				}
+				break;
 			case UniformType::Sampler2D:
 			{
 				std::string texPath = u["Value"];
@@ -232,108 +267,86 @@ void Material::Load(const std::string& path)
 
 void Material::Save(const std::string& path)
 {
-	std::string file = path;
+	materialPath = path;
+	//std::string fileNameExt = matName + ".toematerial";
 
-	json doc;
+	//fs::path filename = fs::path(ASSETS_PATH) / "Scenes" / fileNameExt;
+	////string filename = "Assets/Scenes/";
+	//fs::path folderName = fs::path(ASSETS_PATH) / "Scenes";
+	//fs::create_directories(folderName);
+
+	json matJSON;
 	Resources::standarizePath(shaderPath);
-	doc.AddMember("shader", shaderPath.c_str());
-	Wiwa::JSONValue uniformsDoc = doc.AddMemberObject("uniforms");
+	matJSON["shader"] = shaderPath.c_str();
+
+
+	json uniformsJSON;
 	for (Uniform uniform : uniforms)
 	{
+		json uniformJSON;
 		const char* name = uniform.name.c_str();
+		uniformJSON["Name"] = name;
 		switch (uniform.getType())
 		{
 		case UniformType::Bool:
-			uniforms.AddMember(name, uniform.getData<bool>());
+			uniformJSON["Value"] = uniform.getData<bool>();
 			break;
 		case UniformType::Int:
-			uniforms.AddMember(name, uniform.getData<int>());
+			uniformJSON["Value"] = uniform.getData<int>();
 			break;
 		case UniformType::Uint:
-			uniforms.AddMember(name, uniform.getData<unsigned int>());
+			uniformJSON["Value"] = uniform.getData<unsigned int>();
 			break;
 		case UniformType::Float:
-			uniforms.AddMember(name, uniform.getData<float>());
+			uniformJSON["Value"] = uniform.getData<float>();
 			break;
 		case UniformType::fVec2:
 		{
-			Wiwa::JSONValue vec = uniforms.AddMemberObject(name);
-			vec.AddMember("x", uniform.getData<glm::vec2>().x);
-			vec.AddMember("y", uniform.getData<glm::vec2>().y);
+			json vecJSON;
+			vecJSON["x"] = uniform.getData<glm::vec2>().x;
+			vecJSON["y"] = uniform.getData<glm::vec2>().y;
+			uniformJSON["Vec2"] = vecJSON;
 		}break;
 		case UniformType::fVec3:
 		{
-			Wiwa::JSONValue vec = uniforms.AddMemberObject(name);
-			vec.AddMember("x", uniform.getData<glm::vec3>().x);
-			vec.AddMember("y", uniform.getData<glm::vec3>().y);
-			vec.AddMember("z", uniform.getData<glm::vec3>().z);
+			json vecJSON;
+			vecJSON["x"] = uniform.getData<glm::vec3>().x;
+			vecJSON["y"] = uniform.getData<glm::vec3>().y;
+			vecJSON["z"] = uniform.getData<glm::vec3>().z;
+			uniformJSON["Vec3"] = vecJSON;
 		}break;
 		case UniformType::fVec4:
 		{
-			Wiwa::JSONValue vec = uniforms.AddMemberObject(name);
-			vec.AddMember("r", uniform.getData<glm::vec4>().r);
-			vec.AddMember("g", uniform.getData<glm::vec4>().g);
-			vec.AddMember("b", uniform.getData<glm::vec4>().b);
-			vec.AddMember("a", uniform.getData<glm::vec4>().a);
+			json vecJSON;
+			vecJSON["x"] = uniform.getData<glm::vec4>().x;
+			vecJSON["y"] = uniform.getData<glm::vec4>().y;
+			vecJSON["z"] = uniform.getData<glm::vec4>().z;
+			vecJSON["w"] = uniform.getData<glm::vec4>().w;
+			uniformJSON["Vec4"] = vecJSON;
 		}break;
 		case UniformType::Mat2:
 		{
-			Wiwa::JSONValue mat = uniforms.AddMemberObject(name);
+			glm::mat2 Mat2 = uniform.getData<glm::mat2>();
 
-			Wiwa::JSONValue vec1 = mat.AddMemberObject("vec1");
-			vec1.AddMember("x", uniform.getData<glm::mat2>()[0].x);
-			vec1.AddMember("y", uniform.getData<glm::mat2>()[0].y);
-
-			Wiwa::JSONValue vec2 = mat.AddMemberObject("vec2");
-			vec2.AddMember("x", uniform.getData<glm::mat2>()[1].x);
-			vec2.AddMember("y", uniform.getData<glm::mat2>()[1].y);
+			uniformJSON["Mat2"] = { Mat2[0][0], Mat2[0][1],
+									Mat2[1][0], Mat2[1][1] };
 		}break;
 		case UniformType::Mat3:
 		{
-			Wiwa::JSONValue mat = uniforms.AddMemberObject(name);
+			glm::mat3 Mat3 = uniform.getData<glm::mat3>();
 
-			Wiwa::JSONValue vec1 = mat.AddMemberObject("vec1");
-			vec1.AddMember("x", uniform.getData<glm::mat3>()[0].x);
-			vec1.AddMember("y", uniform.getData<glm::mat3>()[0].y);
-			vec1.AddMember("z", uniform.getData<glm::mat3>()[0].z);
-
-			Wiwa::JSONValue vec2 = mat.AddMemberObject("vec2");
-			vec2.AddMember("x", uniform.getData<glm::mat3>()[1].x);
-			vec2.AddMember("y", uniform.getData<glm::mat3>()[1].y);
-			vec2.AddMember("z", uniform.getData<glm::mat3>()[1].z);
-
-			Wiwa::JSONValue vec3 = mat.AddMemberObject("vec3");
-			vec3.AddMember("x", uniform.getData<glm::mat3>()[2].x);
-			vec3.AddMember("y", uniform.getData<glm::mat3>()[2].y);
-			vec3.AddMember("z", uniform.getData<glm::mat3>()[2].z);
+			uniformJSON["Mat3"] = { Mat3[0][0], Mat3[0][1], Mat3[0][2],
+									Mat3[1][0], Mat3[1][1], Mat3[1][2],
+									Mat3[2][0], Mat3[2][1], Mat3[2][2]};
 		}break;
 		case UniformType::Mat4:
 		{
-			Wiwa::JSONValue mat = uniforms.AddMemberObject(name);
+			glm::mat4 Mat4 = uniform.getData<glm::mat4>();
 
-			Wiwa::JSONValue vec1 = mat.AddMemberObject("vec1");
-			vec1.AddMember("x", uniform.getData<glm::mat4>()[0].x);
-			vec1.AddMember("y", uniform.getData<glm::mat4>()[0].y);
-			vec1.AddMember("z", uniform.getData<glm::mat4>()[0].z);
-			vec1.AddMember("w", uniform.getData<glm::mat4>()[0].w);
-
-			Wiwa::JSONValue vec2 = mat.AddMemberObject("vec2");
-			vec2.AddMember("x", uniform.getData<glm::mat4>()[1].x);
-			vec2.AddMember("y", uniform.getData<glm::mat4>()[1].y);
-			vec2.AddMember("z", uniform.getData<glm::mat4>()[1].z);
-			vec2.AddMember("w", uniform.getData<glm::mat4>()[1].w);
-
-			Wiwa::JSONValue vec3 = mat.AddMemberObject("vec3");
-			vec3.AddMember("x", uniform.getData<glm::mat4>()[2].x);
-			vec3.AddMember("y", uniform.getData<glm::mat4>()[2].y);
-			vec3.AddMember("z", uniform.getData<glm::mat4>()[2].z);
-			vec3.AddMember("w", uniform.getData<glm::mat4>()[2].w);
-
-			Wiwa::JSONValue vec4 = mat.AddMemberObject("vec4");
-			vec4.AddMember("x", uniform.getData<glm::mat4>()[2].x);
-			vec4.AddMember("y", uniform.getData<glm::mat4>()[2].y);
-			vec4.AddMember("z", uniform.getData<glm::mat4>()[2].z);
-			vec4.AddMember("w", uniform.getData<glm::mat4>()[2].w);
+			uniformJSON["Mat4"] = { Mat4[0][0], Mat4[0][1], Mat4[0][2], Mat4[0][3],
+									Mat4[1][0], Mat4[1][1], Mat4[1][2], Mat4[1][3],
+									Mat4[2][0], Mat4[2][1], Mat4[2][2], Mat4[2][3],
+									Mat4[3][0], Mat4[3][1], Mat4[3][2], Mat4[3][3] };
 		}break;
 		case UniformType::Sampler2D:
 		{
@@ -341,12 +354,16 @@ void Material::Save(const std::string& path)
 
 			std::string string = sdata->tex_path;
 			Resources::standarizePath(string);
-			uniforms.AddMember(name, string.c_str());
+			uniformsJSON["Value"] = string.c_str();
 		}break;
 		default:
 			break;
 		}
+
+		uniformsJSON.push_back(uniformJSON);
 	}
-	doc.save_file(file.c_str());
-	materialPath = file;
+	matJSON["uniforms"] = uniformsJSON;
+
+
+	std::ofstream(materialPath) << matJSON.dump(2);
 }

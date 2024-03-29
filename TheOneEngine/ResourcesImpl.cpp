@@ -42,16 +42,16 @@ ResourceId Resources::getResourcePosition(ResourceType rt, const char* file)
 std::string Resources::_assetToLibPath(std::string path)
 {
 	standarizePath(path);
-	size_t a_ind = path.find("assets");
+	size_t a_ind = path.find("Assets");
 
 	if (a_ind != path.npos) {
-		path.replace(a_ind, 6, "library");
+		path.replace(a_ind, 6, "Library");
 	}
 	else //resources path impl
 	{
-		if (path.find("library") != path.npos)
+		if (path.find("Library") != path.npos)
 			return path;
-		std::string res_path = "library/";
+		std::string res_path = "Library/";
 		res_path += path;
 		path = res_path;
 	}
