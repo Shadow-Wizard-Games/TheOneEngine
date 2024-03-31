@@ -12,18 +12,23 @@ struct MeshVertex
 
 class Model
 {
+public:
     friend class ModelScene;
 
-    Model();
-    ~Model();
+    Model(){}
+    Model(const std::string& path);
+    ~Model(){}
+
+    static std::vector<Model*> LoadMeshes(const std::string& path);
+    static void SaveMesh(Model* mesh, const std::string& path);
 
     std::string meshName;
 
-    uint numFaces;
+    uint numFaces = 0;
     BufferLayout format;
 
     std::string texturePath;
-    uint materialIndex;
+    uint materialIndex = 0;
 
     std::shared_ptr<VertexArray> meshVAO;
     std::shared_ptr<VertexBuffer> meshVBO;
@@ -37,26 +42,9 @@ class Model
     std::vector<vec3f> meshFaceCenters;
     std::vector<vec3f> meshFaceNorms;
 
-    void LoadExistingMesh(const std::string& path);
-
     void serializeMeshData(const std::string& filename);
     void deserializeMeshData(const std::string& filename);
 
 private:
     void GenBufferData();
-};
-
-class ModelScene
-{
-public:
-
-    ModelScene() {}
-    ~ModelScene() {}
-
-    static void LoadMeshes(const std::string& path);
-
-    static const std::vector<std::shared_ptr<Model>> GetMeshes() { return meshes; meshes.clear(); }
-
-private:
-    static std::vector<std::shared_ptr<Model>> meshes;
 };

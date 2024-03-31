@@ -3,17 +3,22 @@
 
 //--SPECIALIZATION FOR MODEL
 template<>
-inline ResourceId Resources::LoadNative<Model>(const std::string& file)
+inline ResourceId Resources::Load<Model>(const std::string& file)
 {
-	ResourceId position = getResourcePosition(RES_MODEL, file);
+	ResourceId position = getResourcePosition(RES_MODEL, file.c_str());
 	size_t size = m_Resources[RES_MODEL].size();
 
 	ResourceId resourceId;
 
 	if (position == size) {
-		Model* model = new Model(file);
+		std::vector<Model*> meshes = Model::LoadMeshes(file);
 
-		PushResource(RES_MODEL, file, model, true);
+		for (auto& mesh : meshes)
+		{
+			if (!CheckImport<Model>(file))
+				Import<Model>(AssetToLibPath(file), mesh);
+			PushResource(RES_MODEL, file.c_str(), mesh);
+		}
 
 		resourceId = size;
 	}
@@ -24,21 +29,19 @@ inline ResourceId Resources::LoadNative<Model>(const std::string& file)
 	return resourceId;
 }
 template<>
-inline ResourceId Resources::Load<Model>(const std::string& file)
+inline ResourceId Resources::LoadFromLibrary<Model>(const std::string& file)
 {
-	std::filesystem::path file_path = _assetToLibPath(file);
-	file_path.replace_extension(".toemodel");
+	std::filesystem::path file_path = AssetToLibPath(file);
+	file_path.replace_extension(".mesh");
 	ResourceId position = getResourcePosition(RES_MODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_MODEL].size();
 
 	ResourceId resourceId;
 
 	if (position == size) {
-		Model* model = new Model(NULL);
+		Model* model = new Model(file_path.string());
 
-		model->LoadTOEMesh(file_path.string().c_str());
-
-		PushResource(RES_MODEL, file_path.string().c_str(), model);
+		PushResource(RES_MODEL, file_path.string().c_str(), model, true);
 
 		resourceId = size;
 	}
@@ -60,19 +63,21 @@ inline Model* Resources::GetResourceById<Model>(ResourceId id)
 	return model;
 }
 template<>
-inline void Resources::Import<Model>(const std::string& file)
+inline void Resources::Import<Model>(const std::string& file, Model* model)
 {
 	std::filesystem::path import_path = file;
-	import_path = _import_path_impl(import_path, ".toemodel");
+	import_path = ImportPathImpl(import_path, ".mesh");
 
+	Model::SaveMesh(model, import_path.string().c_str());
 
-	_import_model_impl(file.c_str(), import_path.string().c_str());
+	delete model;
+
 	LOG(LogType::LOG_INFO, "Model at %s imported succesfully!", import_path.string().c_str());
 }
 template<>
 inline bool Resources::CheckImport<Model>(const std::string& file)
 {
-	return _check_import_impl(file.c_str(), ".toemodel");
+	return CheckImport(file.c_str(), ".mesh");
 }
 
 template<>

@@ -1,9 +1,27 @@
 #pragma once
 #include "ResourcesImpl.h"
 
+
+inline static std::string* getFileData(const char* file)
+{
+	std::fstream shaderFile;
+
+	shaderFile.open(file, std::ios::in);
+
+	if (!shaderFile.is_open()) return NULL;
+
+	std::stringstream buffer;
+
+	buffer << shaderFile.rdbuf();
+
+	shaderFile.close();
+
+	return new std::string(buffer.str());
+}
+
 // SPECIALIZATION FOR SHADER
 template<>
-inline ResourceId Resources::LoadNative<Shader>(const std::string& file) {
+inline ResourceId Resources::Load<Shader>(const std::string& file) {
 	ResourceId position = getResourcePosition(RES_SHADER, file);
 	size_t size = m_Resources[RES_SHADER].size();
 
@@ -24,11 +42,11 @@ inline ResourceId Resources::LoadNative<Shader>(const std::string& file) {
 	return resourceId;
 }
 template<>
-inline ResourceId Resources::Load<Shader>(const std::string& file) {
+inline ResourceId Resources::LoadFromLibrary<Shader>(const std::string& file) {
 
-	std::filesystem::path library_file = _assetToLibPath(file);
+	std::filesystem::path library_file = AssetToLibPath(file);
 	std::string file_path = library_file.string();
-	standarizePath(file_path);
+	StandarizePath(file_path);
 
 	ResourceId position = getResourcePosition(RES_SHADER, file_path.c_str());
 	size_t size = m_Resources[RES_SHADER].size();
@@ -41,7 +59,7 @@ inline ResourceId Resources::Load<Shader>(const std::string& file) {
 		shader->LoadFromTOEasset(file_path.c_str());
 
 		//shader->Compile(file);
-		PushResource(RES_SHADER, file_path.c_str(), shader);
+		PushResource(RES_SHADER, file_path.c_str(), shader, true);
 
 		resourceId = size;
 	}
@@ -66,7 +84,7 @@ inline Shader* Resources::GetResourceById<Shader>(ResourceId id) {
 template<>
 inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
 {
-	JSONDocument document;
+	json document;
 	std::string filePath = file;
 	filePath += ".vs";
 	std::string* vertexShader = getFileData(filePath.c_str());
@@ -80,18 +98,19 @@ inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
 	std::string* geometryShader = getFileData(filePath.c_str());
 
 	if (vertexShader)
-		document.AddMember("vertex", vertexShader->c_str());
+		document["vertex"] = vertexShader->c_str();
 	if (fragmentShader)
-		document.AddMember("fragment", fragmentShader->c_str());
+		document["fragment"] = fragmentShader->c_str();
 	if (geometryShader)
-		document.AddMember("geometry", geometryShader->c_str());
-	JSONValue uniformObj = document.AddMemberObject("uniforms");
+		document["geometry"] = geometryShader->c_str();
+	json uniformsJSON;
 	if (!shader->getUniforms().empty())
 	{
 		std::vector<UniformField>& uniforms = shader->getUniforms();
 		for (UniformField& uniform : uniforms)
 		{
-			uniformObj.AddMember(uniform.name.c_str(), (int)uniform.type);
+			uniformsJSON["Name"] = uniform.name.c_str();
+			uniformsJSON["Type"] = (int)uniform.type;
 		}
 	}
 
@@ -99,19 +118,16 @@ inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
 	delete fragmentShader;
 	delete geometryShader;
 
-	std::filesystem::path import_file = _import_path_impl(file, ".toeshader");
-	std::filesystem::path assets_file = file;
-	assets_file.replace_extension(".toeshader");
+	std::filesystem::path import_file = ImportPathImpl(file, ".toeshader");
 
 	document.save_file(import_file.string().c_str());
-	document.save_file(assets_file.string().c_str());
 
 	LOG(LogType::LOG_INFO, "Shader at %s imported succesfully!", import_file.string().c_str());
 }
 template<>
 inline bool Resources::CheckImport<Shader>(const std::string& file)
 {
-	return _check_import_impl(file.c_str(), ".toeshader");
+	return CheckImport(file.c_str(), ".toeshader");
 }
 template<>
 inline const char* Resources::getResourcePathById<Shader>(size_t id)

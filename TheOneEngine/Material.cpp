@@ -20,6 +20,7 @@ Material::Material(Shader* shader)
 
 Material::Material(const std::string& file)
 {
+	Load(file);
 }
 
 Material::~Material()
@@ -148,7 +149,7 @@ void Material::Load(const std::string& path)
 
 	shaderPath = matJSON["shader"];
 
-	size_t shaderId = Resources::Load<Shader>(shaderPath.c_str());
+	size_t shaderId = Resources::LoadFromLibrary<Shader>(shaderPath.c_str());
 	Shader* shader = Resources::GetResourceById<Shader>(shaderId);
 
 
@@ -252,7 +253,7 @@ void Material::Load(const std::string& path)
 			{
 				std::string texPath = u["Value"];
 				Resources::Import<Texture>(texPath);
-				size_t id = Resources::Load<Texture>(texPath);
+				size_t id = Resources::LoadFromLibrary<Texture>(texPath);
 				Texture* img = Resources::GetResourceById<Texture>(id);
 				uniform->setData(img->GetTextureId(), uniform->getType());
 			}break;
@@ -276,7 +277,7 @@ void Material::Save(const std::string& path)
 	//fs::create_directories(folderName);
 
 	json matJSON;
-	Resources::standarizePath(shaderPath);
+	Resources::StandarizePath(shaderPath);
 	matJSON["shader"] = shaderPath.c_str();
 
 
@@ -353,7 +354,7 @@ void Material::Save(const std::string& path)
 			Uniform::SamplerData* sdata = uniform.getPtrData<Uniform::SamplerData>();
 
 			std::string string = sdata->tex_path;
-			Resources::standarizePath(string);
+			Resources::StandarizePath(string);
 			uniformsJSON["Value"] = string.c_str();
 		}break;
 		default:
@@ -364,6 +365,5 @@ void Material::Save(const std::string& path)
 	}
 	matJSON["uniforms"] = uniformsJSON;
 
-
-	std::ofstream(materialPath) << matJSON.dump(2);
+	Resources::SaveJSON(materialPath, matJSON);
 }

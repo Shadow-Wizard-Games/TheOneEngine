@@ -31,6 +31,8 @@ public:
 	void Compile(const std::string& filename);
 	void CompileFiles(const char* vertexShaderSource, const char* fragmentShaderSource, bool hasGS, std::string* geometryShaderSourceStr, bool& retflag);
 
+	bool LoadFromTOEasset(const char* filename);
+
 	void Bind();
 	void UnBind();
 	void Delete();
@@ -48,7 +50,7 @@ public:
 
 
 	// Dynamic shader functions
-	void addUniform(const char* name, const UniformType type);
+	void addUniform(const std::string& name, const UniformType type);
 	void deleteUniform(const char* name);
 	void setUniformType(const char* name, const UniformType type);
 	void setUniformName(const char* oldName, const char* newName);

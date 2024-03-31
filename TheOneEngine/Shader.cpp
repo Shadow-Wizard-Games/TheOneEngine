@@ -3,7 +3,8 @@
 #include <sstream>
 #include <GL/glew.h>
 #include <glm/gtc/type_ptr.hpp>
-#include "Log.h"
+#include "Defs.h"
+#include "Resources.h"
 
 Shader::Shader()
 {
@@ -166,6 +167,47 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 	projectionMatrixID = glGetUniformLocation(ProgramID, "projection");
 	viewMatrixID = glGetUniformLocation(ProgramID, "view");
 }
+
+bool Shader::LoadFromTOEasset(const char* filename)
+{
+	std::string file_name = filename;
+	file_name += ".toeshader";
+	json shaderJSON = Resources::OpenJSON(file_name);
+
+	if (!shaderJSON)
+		LOG(LogType::LOG_ERROR, "Shader JSON not found");
+
+	std::string vertexShader;
+	std::string fragmentShader;
+	std::string geometryShader;
+
+	bool hasGeometry = false;
+
+	if (shaderJSON.contains("vertex"))
+		vertexShader = shaderJSON["vertex"];
+	if (shaderJSON.contains("fragment"))
+		fragmentShader = shaderJSON["fragment"];
+	if (shaderJSON.contains("geometry"))
+		geometryShader = shaderJSON["geometry"];
+
+	if (!geometryShader.empty())
+		hasGeometry = true;
+
+	bool ret = false;
+	CompileFiles(vertexShader.c_str(), fragmentShader.c_str(), hasGeometry, &geometryShader, ret);
+
+	if (shaderJSON.contains("uniforms"))
+	{
+		json uniforms = shaderJSON["uniforms"];
+		for (const auto& uniform : uniforms)
+		{
+			addUniform(uniform["Name"], (UniformType)uniform["Type"]);
+		}
+	}
+
+	return true;
+}
+
 void Shader::Bind()
 {
 	if (compileState != State::Compiled)
@@ -241,9 +283,9 @@ void Shader::SetMat4(const std::string& name, const glm::mat4& value)
 	glUniformMatrix4fv(getUniformLocation(name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
 }
 
-void Shader::addUniform(const char* name, const UniformType type)
+void Shader::addUniform(const std::string& name, const UniformType type)
 {
-	UniformField* uniform = getUniform(name);
+	UniformField* uniform = getUniform(name.c_str());
 	//Checking if we are
 	if (uniform)
 	{
@@ -251,13 +293,13 @@ void Shader::addUniform(const char* name, const UniformType type)
 			return;
 
 		uniform->type = type;
-		uniform->location = glGetUniformLocation(ProgramID, name);
+		uniform->location = glGetUniformLocation(ProgramID, name.c_str());
 		return;
 	}
 	UniformField field;
 	field.name = name;
 	field.type = type;
-	field.location = glGetUniformLocation(ProgramID, name);
+	field.location = glGetUniformLocation(ProgramID, name.c_str());
 
 
 	uniforms.emplace_back(field);

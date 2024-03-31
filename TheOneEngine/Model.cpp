@@ -7,6 +7,15 @@
 #include <filesystem>
 #include <fstream>
 
+Model::Model(const std::string& path)
+{
+    if (path.ends_with(".mesh"))
+    {
+        deserializeMeshData(path);
+        GenBufferData();
+    }
+}
+
 void Model::GenBufferData()
 {
     meshVAO = std::make_shared<VertexArray>();
@@ -169,8 +178,10 @@ void Model::deserializeMeshData(const std::string& filename)
 }
 
 
-void ModelScene::LoadMeshes(const std::string& path)
+std::vector<Model*> Model::LoadMeshes(const std::string& path)
 {
+    std::vector<Model*> meshes;
+
     const aiScene* scene = aiImportFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals);
 
     std::string fileName = scene->GetShortFilename(path.c_str());
@@ -185,7 +196,7 @@ void ModelScene::LoadMeshes(const std::string& path)
 
         for (size_t m = 0; m < scene->mNumMeshes; ++m)
         {
-            std::shared_ptr<Model> model = std::make_shared<Model>();
+            Model* model = new Model();
             auto mesh = scene->mMeshes[m];
             auto faces = mesh->mFaces;
             vec3f* verts = (vec3f*)mesh->mVertices;
@@ -259,7 +270,8 @@ void ModelScene::LoadMeshes(const std::string& path)
                 model->meshFaceCenters.push_back(faceCenter);
             }
 
-            model->serializeMeshData(folderName + model->meshName + ".mesh");
+            //TODO: suposed to do it on Import<Model>
+            //model->serializeMeshData(folderName + model->meshName + ".mesh");
 
             meshes.push_back(model);
         }
@@ -269,4 +281,11 @@ void ModelScene::LoadMeshes(const std::string& path)
     {
         LOG(LogType::LOG_ERROR, "Failed to load mesh from: %s", path.data());
     }
+    
+    return meshes;
+}
+
+void Model::SaveMesh(Model* mesh, const std::string& path)
+{
+    mesh->serializeMeshData(path + "Meshes/" + mesh->meshName + ".mesh");
 }
