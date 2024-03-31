@@ -220,35 +220,41 @@ void Material::Load(const std::string& path)
 				uniform->setData(data, uniform->getType());
 			}break;
 			case UniformType::Mat2:
-				glm::mat2 temp;
+			{
+				glm::mat2 data;
 				int it = 0;
 				for (int i = 0; i < 2; i++) {
 					for (int j = 0; j < 2; j++) {
-						temp[i][j] = u["Mat2"][it];
+						data[i][j] = u["Mat2"][it];
 						it++;
 					}
 				}
-				break;
+				uniform->setData(data, uniform->getType());
+			}break;
 			case UniformType::Mat3:
-				glm::mat3 temp;
+			{
+				glm::mat3 data;
 				int it = 0;
 				for (int i = 0; i < 3; i++) {
 					for (int j = 0; j < 3; j++) {
-						temp[i][j] = u["Mat3"][it];
+						data[i][j] = u["Mat3"][it];
 						it++;
 					}
 				}
-				break;
+				uniform->setData(data, uniform->getType());
+			}break;
 			case UniformType::Mat4:
-				glm::mat4 temp;
+			{
+				glm::mat4 data;
 				int it = 0;
 				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 4; j++) {
-						temp[i][j] = u["Mat4"][it];
+						data[i][j] = u["Mat4"][it];
 						it++;
 					}
 				}
-				break;
+				uniform->setData(data, uniform->getType());
+			}break;
 			case UniformType::Sampler2D:
 			{
 				std::string texPath = u["Value"];

@@ -42,7 +42,7 @@ bool Texture::Init(const std::string& path)
     if (ilLoadImage((const wchar_t*)fixedPath.c_str()) == IL_FALSE)
     {
         ilDeleteImage(img);
-        return;
+        return false;
     }
 
     w = ilGetInteger(IL_IMAGE_WIDTH);

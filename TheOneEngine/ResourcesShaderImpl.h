@@ -22,7 +22,7 @@ inline static std::string* getFileData(const char* file)
 // SPECIALIZATION FOR SHADER
 template<>
 inline ResourceId Resources::Load<Shader>(const std::string& file) {
-	ResourceId position = getResourcePosition(RES_SHADER, file);
+	ResourceId position = getResourcePosition(RES_SHADER, file.c_str());
 	size_t size = m_Resources[RES_SHADER].size();
 
 	ResourceId resourceId;
@@ -31,7 +31,7 @@ inline ResourceId Resources::Load<Shader>(const std::string& file) {
 		Shader* shader = new Shader();
 
 		shader->Init(file);
-		PushResource(RES_SHADER, file, shader);
+		PushResource(RES_SHADER, file.c_str(), shader);
 
 		resourceId = size;
 	}
@@ -109,10 +109,15 @@ inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
 		std::vector<UniformField>& uniforms = shader->getUniforms();
 		for (UniformField& uniform : uniforms)
 		{
-			uniformsJSON["Name"] = uniform.name.c_str();
-			uniformsJSON["Type"] = (int)uniform.type;
+			json uJSON;
+			uJSON["Name"] = uniform.name.c_str();
+			uJSON["Type"] = (int)uniform.type;
+
+			uniformsJSON.push_back(uJSON);
 		}
 	}
+
+	document["uniforms"] = uniformsJSON;
 
 	delete vertexShader;
 	delete fragmentShader;
@@ -120,7 +125,7 @@ inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
 
 	std::filesystem::path import_file = ImportPathImpl(file, ".toeshader");
 
-	document.save_file(import_file.string().c_str());
+	SaveJSON(import_file.string(), document);
 
 	LOG(LogType::LOG_INFO, "Shader at %s imported succesfully!", import_file.string().c_str());
 }

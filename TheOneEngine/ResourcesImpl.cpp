@@ -92,7 +92,7 @@ json Resources::OpenJSON(const std::string& filename)
 	if (!fs::exists(filename))
 	{
 		LOG(LogType::LOG_ERROR, "JSON file does not exist: {}", filename.data());
-		return;
+		return NULL;
 	}
 
 	// Read the scene JSON from the file
@@ -100,7 +100,7 @@ json Resources::OpenJSON(const std::string& filename)
 	if (!file.is_open())
 	{
 		LOG(LogType::LOG_ERROR, "Failed to open JSON file: {}", filename.data());
-		return;
+		return NULL;
 	}
 
 	json tempJSON;
@@ -111,7 +111,7 @@ json Resources::OpenJSON(const std::string& filename)
 	catch (const json::parse_error& e)
 	{
 		LOG(LogType::LOG_ERROR, "Failed to parse JSON: {}", e.what());
-		return;
+		return NULL;
 	}
 
 	// Close the file

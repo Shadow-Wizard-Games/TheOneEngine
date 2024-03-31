@@ -3,6 +3,21 @@
 
 //--SPECIALIZATION FOR MODEL
 template<>
+inline void Resources::Import<Model>(const std::string& file, Model* model)
+{
+	std::filesystem::path import_path = file;
+	import_path = ImportPathImpl(import_path, ".mesh");
+
+	Model::SaveMesh(model, import_path.string().c_str());
+
+	LOG(LogType::LOG_INFO, "Model at %s imported succesfully!", import_path.string().c_str());
+}
+template<>
+inline bool Resources::CheckImport<Model>(const std::string& file)
+{
+	return CheckImport(file.c_str(), ".mesh");
+}
+template<>
 inline ResourceId Resources::Load<Model>(const std::string& file)
 {
 	ResourceId position = getResourcePosition(RES_MODEL, file.c_str());
@@ -61,23 +76,6 @@ inline Model* Resources::GetResourceById<Model>(ResourceId id)
 	}
 
 	return model;
-}
-template<>
-inline void Resources::Import<Model>(const std::string& file, Model* model)
-{
-	std::filesystem::path import_path = file;
-	import_path = ImportPathImpl(import_path, ".mesh");
-
-	Model::SaveMesh(model, import_path.string().c_str());
-
-	delete model;
-
-	LOG(LogType::LOG_INFO, "Model at %s imported succesfully!", import_path.string().c_str());
-}
-template<>
-inline bool Resources::CheckImport<Model>(const std::string& file)
-{
-	return CheckImport(file.c_str(), ".mesh");
 }
 
 template<>
