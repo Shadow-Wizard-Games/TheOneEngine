@@ -49,4 +49,11 @@ public struct Vector2
 
         return new Vector2(x, y) / Magnitude();
     }
+
+    public static float Distance(Vector2 a, Vector2 b)
+    {
+        Vector2 resultVector = a - b;
+
+        return resultVector.Magnitude();
+    }
 }

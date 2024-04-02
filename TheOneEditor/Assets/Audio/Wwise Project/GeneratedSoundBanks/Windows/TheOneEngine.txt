@@ -1,16 +1,28 @@
 Event	ID	Name			Wwise Object Path	Notes
-	621108255	STEP			\Default Work Unit\STEP	
-	1287408361	GUNSHOT			\Default Work Unit\GUNSHOT	
-	1730564816	MUSIC2			\Default Work Unit\MUSIC2	
-	1730564819	MUSIC1			\Default Work Unit\MUSIC1	
-	2134552412	SPATIAL1			\Default Work Unit\SPATIAL1	
-	2134552415	SPATIAL2			\Default Work Unit\SPATIAL2	
+	579523862	EXPLORE			\Default Work Unit\Ambience\EXPLORE	
+	621108255	STEP			\Default Work Unit\Player\STEP	
+	1287408361	GUNSHOT			\Default Work Unit\Player\GUNSHOT	
+	1584507803	CLICK			\Default Work Unit\UI\CLICK	
+	1730564816	MUSIC2			\Default Work Unit\Debug\MUSIC2	
+	1730564819	MUSIC1			\Default Work Unit\Debug\MUSIC1	
+	2134552412	SPATIAL1			\Default Work Unit\Debug\SPATIAL1	
+	2134552415	SPATIAL2			\Default Work Unit\Debug\SPATIAL2	
+	2144693767	ENEMYATTACK			\Default Work Unit\Enemies\ENEMYATTACK	
+	2764240573	COMBAT			\Default Work Unit\Ambience\COMBAT	
+	3604647259	MAINMENU			\Default Work Unit\UI\MAINMENU	
+	3753593413	HOVER			\Default Work Unit\UI\HOVER	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	67773700	gunshot	D:\repos\Github\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\gunshot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\gunshot		108384
-	102266085	spatial2	D:\repos\Github\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Bass160Fight_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\spatial2		1058496
-	466064314	spatial1	D:\repos\Github\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\waves_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\spatial1		1288036
-	635286070	music2	D:\repos\Github\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Guitar_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\music2		6336096
-	657823762	music1	D:\repos\Github\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\seagull1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\music1		668922
-	1066871374	steps	D:\repos\Github\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\steps_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\steps		48480
+	67773700	gunshot	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\gunshot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\gunshot		108384
+	102266085	spatial2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Bass160Fight_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\spatial2		1058496
+	118825284	click	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\click_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\click		374632
+	298685231	combat	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Combat_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\combat		1843648
+	342155423	explore	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\levelAmbient_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\explore		17249432
+	396795933	mainmenu	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\menu_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\mainmenu		4517676
+	466064314	spatial1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\waves_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\spatial1		1288036
+	502874630	enemy_attack	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Hit_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\enemy_attack		99452
+	579890625	hover	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\uiHover_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\hover		164388
+	635286070	music2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Guitar_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\music2		6336096
+	657823762	music1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\seagull1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\music1		668922
+	1066871374	steps	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\steps_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\steps		48480
 

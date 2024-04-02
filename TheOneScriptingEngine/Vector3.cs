@@ -29,6 +29,11 @@ public struct Vector3
         return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
     }
 
+    public static Vector3 operator *(Vector3 a, Vector3 b)
+    {
+        return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
+    }
+
     public static Vector3 operator *(Vector3 a, float b)
     {
         return new Vector3(a.x * b, a.y * b, a.z * b);
@@ -37,6 +42,16 @@ public struct Vector3
     public static Vector3 operator /(Vector3 a, float b)
     {
         return new Vector3(a.x / b, a.y / b, a.z / b);
+    }
+
+    public static bool operator ==(Vector3 a, Vector3 b)
+    {
+        return a.x == b.x && a.y == b.y && a.z == b.z;
+    }
+
+    public static bool operator !=(Vector3 a, Vector3 b)
+    {
+        return a.x != b.x || a.y != b.y || a.z != b.z;
     }
 
     float Magnitude()
@@ -51,5 +66,12 @@ public struct Vector3
         if (mag == 0) { return Vector3.zero; }
 
         return new Vector3(x, y, z) / Magnitude();
+    }
+
+    public static float Distance(Vector3 a, Vector3 b)
+    {
+        Vector3 resultVector = a - b;
+
+        return resultVector.Magnitude();
     }
 }

@@ -36,18 +36,20 @@ public:
 
 	void CleanUp();
 
-	//set default listener
+	// Set default listener
 	void SetDefaultListener(AkGameObjectID goID);
 
-	//register a wwise game object and return its id or return -1 if failed
+	// Register a Wwise game object and return its id or return -1 if failed
 	AkGameObjectID RegisterGameObject(std::string name);
-	//function to play an event
+	// Unregister a Wwise game object
+	void UnregisterGameObject(AkGameObjectID goID, std::string name);
+	// Function to play an event
 	void PlayEvent(AkUniqueID event, AkGameObjectID goID);
-	//function to stop event
+	// Function to stop event
 	void StopEvent(AkUniqueID event, AkGameObjectID goID);
-	//function to pause event
+	// Function to pause event
 	void PauseEvent(AkUniqueID event, AkGameObjectID goID);
-	//function to resume the event if it has been paused
+	// Function to resume the event if it has been paused
 	void ResumeEvent(AkUniqueID event, AkGameObjectID goID);
 
 	//audio engine functions
@@ -57,13 +59,7 @@ public:
 
 	//volume functions
 	//percentage, from 0 (mute) to 100 (max)
-	void SetGlobalSound(float volume);
-
-	//transform the game object that events are attached to
-	void SetAudioGameObjectTransform(AkGameObjectID goID, float posx, float posy, float posz, float ofx, float ofy, float ofz, float otx, float oty, float otz);
-
-	//transform the position and reset the orientation to the game object that events are attached to
-	void SetAudioGameObjectPosition(AkGameObjectID goID, float posx, float posy, float posz);
+	void SetGlobalVolume(float volume);
 
 	EngineState state = EngineState::STOPPED;
 

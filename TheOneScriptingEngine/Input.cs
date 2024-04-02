@@ -11,11 +11,15 @@ public class Input
 		S = 22,
 		W = 26,
 		E = 8,
+		K = 14,
 		RIGHT = 79,
 		LEFT = 80,
 		DOWN = 81,
 		UP = 82,
 		SPACEBAR = 44,
+		ESCAPE = 41,
+		RETURN = 40,
+		LSHIFT = 225,
 	}
 
 	public enum MouseButtonCode

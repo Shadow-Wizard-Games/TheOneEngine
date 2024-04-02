@@ -35,9 +35,7 @@ bool Renderer3D::Start()
 
 bool Renderer3D::PreUpdate()
 {
-    engine->PreUpdate();
-
-	return true;
+    return engine->PreUpdate();
 }
 
 bool Renderer3D::Update(double dt)
@@ -52,7 +50,6 @@ bool Renderer3D::Update(double dt)
 
 bool Renderer3D::PostUpdate()
 {
-
 	return true;
 }
 
@@ -68,9 +65,9 @@ void Renderer3D::CameraInput(GameObject* cam)
 	Camera* camera = cam->GetComponent<Camera>();
 	Transform* transform = cam->GetComponent<Transform>();
 
-	double speed = 20 * dtTemp;
+	double speed = 60 * dtTemp;
 	if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-		speed = 35 * dtTemp;
+		speed = 90 * dtTemp;
 
     double mouseSensitivity = 36.0 * dtTemp;
 

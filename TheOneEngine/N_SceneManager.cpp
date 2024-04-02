@@ -8,7 +8,10 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "Collider2D.h"
+#include "Listener.h"
+#include "Source.h"
 #include "Canvas.h"
+#include "ParticleSystem.h"
 #include "../TheOneAudio/AudioCore.h"
 #include "EngineCore.h"
 
@@ -36,8 +39,6 @@ bool N_SceneManager::Awake()
 bool N_SceneManager::Start()
 {
 	FindCameraInScene();
-	currentScene->listenerAudioGOID = engine->audio->RegisterGameObject(currentScene->currentCamera->GetName().c_str());
-	engine->audio->SetDefaultListener(currentScene->listenerAudioGOID);
 
 	return true;
 }
@@ -45,19 +46,6 @@ bool N_SceneManager::Start()
 bool N_SceneManager::PreUpdate()
 {
 	// Do nothing
-
-	//move into audio engine, the real current camera transform
-	engine->audio->SetAudioGameObjectTransform(currentScene->listenerAudioGOID, 
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetPosition().x,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetPosition().y,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetPosition().z,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetForward().x,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetForward().y,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetForward().z,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetUp().x,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetUp().y,
-		currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>()->GetUp().z);
-
 
 	return true;
 }
@@ -71,10 +59,22 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	
 	sceneIsPlaying = isPlaying;
 
+	if (previousFrameIsPlaying != isPlaying && isPlaying == true)
+	{
+		for (const auto gameObject : currentScene->GetRootSceneGO()->children)
+		{
+			// Kiko disabled this
+			if(!gameObject.get()->GetComponent<Canvas>())
+				gameObject->Enable();
+		}
+	}
+
 	if (isPlaying)
 	{
 		currentScene->UpdateGOs(dt);
 	}
+
+	previousFrameIsPlaying = isPlaying;
 
 	return true;
 }
@@ -265,12 +265,18 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 			break;
 		case ComponentType::Script:
 			duplicatedGO.get()->AddCopiedComponent<Script>((Script*)item);
-			break;		
+			break;	
 		case ComponentType::Collider2D:
 			duplicatedGO.get()->AddCopiedComponent<Collider2D>((Collider2D*)item);
 			break;
 		case ComponentType::Canvas:
 			duplicatedGO.get()->AddCopiedComponent<Canvas>((Canvas*)item);
+			break;
+		case ComponentType::Listener:
+			duplicatedGO.get()->AddCopiedComponent<Listener>((Listener*)item);
+			break;
+		case ComponentType::Source:
+			duplicatedGO.get()->AddCopiedComponent<Source>((Source*)item);
 			break;
 		case ComponentType::Unknown:
 			break;
@@ -363,9 +369,8 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	std::shared_ptr<GameObject> canvasGO = std::make_shared<GameObject>(name);
 	canvasGO.get()->AddComponent<Transform>();
 	canvasGO.get()->AddComponent<Canvas>();
-	canvasGO.get()->AddComponent<Camera>();
-	canvasGO.get()->GetComponent<Camera>()->UpdateCamera();
-	//Alex: This is just for debug
+	
+	// Debug Img
 	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
 
 	canvasGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
@@ -387,7 +392,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateMeshGO(std::string path)
 		// Take name before editing for meshData lookUp
 		std::string folderName = "Library/Meshes/" + name + "/";
 
-		name = GenerateUniqueName(name);
+ 		name = GenerateUniqueName(name);
 
 		// Create emptyGO parent if meshes > 1
 		bool isSingleMesh = meshes.size() > 1 ? false : true;
@@ -432,6 +437,8 @@ std::shared_ptr<GameObject> N_SceneManager::CreateMeshGO(std::string path)
 					meshGO.get()->GetComponent<Mesh>()->meshData = mData;
 					meshGO.get()->GetComponent<Mesh>()->meshData.texturePath = textures[mesh.materialIndex]->path;
 					meshGO.get()->GetComponent<Mesh>()->path = file;
+
+					meshGO.get()->GetComponent<Transform>()->SetTransform(mData.meshTransform);
 				}
 			}
 
@@ -484,7 +491,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string pat
 	else
 	{
 		std::string name = fbxName;
-		name = GenerateUniqueName(name);
+ 		name = GenerateUniqueName(name);
 
 		// Create emptyGO parent if meshes >1
 		bool isSingleMesh = fileCount > 1 ? false : true;
@@ -499,6 +506,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string pat
 
 			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mData.meshName);
 			meshGO.get()->AddComponent<Transform>();
+			meshGO.get()->GetComponent<Transform>()->SetTransform(mData.meshTransform);
 			meshGO.get()->AddComponent<Mesh>();
 			//meshGO.get()->AddComponent<Texture>(); // hekbas: must implement
 
@@ -574,12 +582,10 @@ void N_SceneManager::AddPendingGOs()
 
 void N_SceneManager::DeletePendingGOs()
 {
-	for (auto it = objectsToDelete.begin(); it != objectsToDelete.end(); ++it) {
-		(*it)->Delete();
-	}
+	for (auto object : objectsToDelete)
+		object->Delete();
 
-	objectsToDelete.clear();
-	
+	objectsToDelete.clear();	
 }
 
 uint N_SceneManager::GetNumberGO() const
@@ -618,17 +624,21 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 {
 	for (const auto& gameCam : rootSceneGO->children)
 	{
+		if (gameCam->GetComponent<Camera>() == nullptr) continue;
+
 		if (gameCam.get() != newPrimaryCam && gameCam->GetComponent<Camera>()->primaryCam)
 			gameCam->GetComponent<Camera>()->primaryCam = false;
 	}
 	newPrimaryCam->GetComponent<Camera>()->primaryCam = true;
+
+	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
 void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO)
 {
 	for (const auto gameObject : parentGO.get()->children)
 	{
-		gameObject.get()->Draw();
+		gameObject.get()->Draw(currentCamera);
 		RecurseSceneDraw(gameObject);
 	}
 }
@@ -647,10 +657,9 @@ void Scene::UpdateGOs(double dt)
 
 void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 {
-
 	for (const auto gameObject : parentGO.get()->children)
 	{
-		gameObject.get()->DrawUI(mode);
+		gameObject.get()->DrawUI(currentCamera, mode);
 		RecurseUIDraw(gameObject, mode);
 	}
 }

@@ -62,6 +62,7 @@ public:
 	// Get/Set
 	uint GetNumberGO() const;
 	std::vector<std::shared_ptr<GameObject>>GetGameObjects();
+	const bool GetSceneIsPlaying() { return sceneIsPlaying; }
 
 	// SelectedGo (Editor Only???)
 	std::shared_ptr<GameObject> GetSelectedGO() const;
@@ -82,6 +83,7 @@ private:
 	std::shared_ptr<GameObject> selectedGameObject = nullptr;
 	MeshLoader* meshLoader = nullptr;
 	bool sceneIsPlaying = false;
+	bool previousFrameIsPlaying = false;
 };
 
 class Scene
@@ -139,7 +141,7 @@ private:
 
 public:
 	Camera* currentCamera = nullptr;
-	int listenerAudioGOID = -1;
+	//int listenerAudioGOID = -1;
 };
 
 #endif // !__N_SCENE_MANAGER_H__

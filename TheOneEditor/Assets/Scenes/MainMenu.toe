@@ -1,0 +1,306 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            5.0,
+            -12.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 997210521
+        },
+        {
+          "Aspect": 1.9381003379821777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": true,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 1772291288,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        },
+        {
+          "AudioID": 0,
+          "Name": "Listener",
+          "Type": 7
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 114469569
+        },
+        {
+          "DebugDraw": true,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 2563017083,
+          "UiElements": [
+            {
+              "ID": 2653792806,
+              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImageSection": [
+                0.007194244768470526,
+                0.012500000186264515,
+                0.981500506401062,
+                0.13625000417232513
+              ],
+              "Interactuable": false,
+              "Name": "GameTitle_img",
+              "Rect": [
+                0.07000000029802322,
+                -0.5199999809265137,
+                0.5,
+                0.10000000149011612
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 3226093247,
+              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImageSection": [
+                0.7327852249145508,
+                0.39125001430511475,
+                0.2343268245458603,
+                0.17249999940395355
+              ],
+              "Interactuable": false,
+              "Name": "Version&Studio_img",
+              "Rect": [
+                0.8199999928474426,
+                0.8299999833106995,
+                0.11999999731779099,
+                0.11999999731779099
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2797854607,
+              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImageSectionHovered": [
+                0.0051387459971010685,
+                0.17000000178813934,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionIdle": [
+                0.0051387459971010685,
+                0.6937500238418579,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionSelected": [
+                0.0051387459971010685,
+                0.17000000178813934,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "Interactuable": false,
+              "Name": "StartButton",
+              "Rect": [
+                -0.6499999761581421,
+                0.30000001192092896,
+                0.30000001192092896,
+                0.07000000029802322
+              ],
+              "State": 1,
+              "Type": 1
+            },
+            {
+              "ID": 347713686,
+              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImageSectionHovered": [
+                0.0,
+                0.2824999988079071,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionIdle": [
+                0.0,
+                0.7762500047683716,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionSelected": [
+                0.0,
+                0.2824999988079071,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "Interactuable": false,
+              "Name": "LoadGameButton",
+              "Rect": [
+                -0.6499999761581421,
+                0.44999998807907104,
+                0.30000001192092896,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 1
+            },
+            {
+              "ID": 2588875562,
+              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImageSectionHovered": [
+                0.0,
+                0.38499999046325684,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionIdle": [
+                0.0,
+                0.8450000286102295,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionSelected": [
+                0.0,
+                0.38499999046325684,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "Interactuable": false,
+              "Name": "SettingsButton",
+              "Rect": [
+                -0.6499999761581421,
+                0.6000000238418579,
+                0.30000001192092896,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 1
+            },
+            {
+              "ID": 58222174,
+              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImageSectionHovered": [
+                0.0,
+                0.4937500059604645,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionIdle": [
+                0.0,
+                0.9212499856948853,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "ImageSectionSelected": [
+                0.0,
+                0.4937500059604645,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "Interactuable": false,
+              "Name": "QuitButton",
+              "Rect": [
+                -0.6499999761581421,
+                0.75,
+                0.30000001192092896,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 1
+            },
+            {
+              "ID": 653564428,
+              "ImagePath": "Assets/Textures/Hud/MainMenuBackDrop.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "BackgroudMenu_img",
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ]
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "MainMenuManager",
+          "Type": 4,
+          "UID": 1923971447
+        },
+        {
+          "AudioID": 1,
+          "Name": "Source",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "MainMenuCanvas",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\MainMenu.toe",
+  "sceneName": "MainMenu"
+}

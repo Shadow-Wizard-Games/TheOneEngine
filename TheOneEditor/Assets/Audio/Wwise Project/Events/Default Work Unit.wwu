@@ -3,72 +3,158 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="MUSIC1" ID="{E1459194-2B01-4DA1-BA66-E88C76BFAB36}">
+				<Folder Name="UI" ID="{0DE75828-CEDC-49B1-B208-8A0E2142E5A6}" ShortID="939245316">
 					<ChildrenList>
-						<Action Name="" ID="{77599999-B1AF-4D94-8DE2-65FB0030DFDE}" ShortID="63387086">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="music1" ID="{0D72C30A-A5A2-4EA0-9D17-72CC7D0BD2E4}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
+						<Event Name="CLICK" ID="{453369D3-952A-423E-8B87-ADB325B7975D}">
+							<ChildrenList>
+								<Action Name="" ID="{80133848-36A7-468F-81DD-DC4D060CB976}" ShortID="875593167">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="click" ID="{4B3F404A-DC72-447D-8289-9161B6F8ECD0}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="HOVER" ID="{690C1AE1-93D0-41A5-A32B-49FF11734810}">
+							<ChildrenList>
+								<Action Name="" ID="{675009B8-3292-446D-A832-C8318F573980}" ShortID="471024753">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="hover" ID="{586222A7-4515-4956-A653-56E8210E3519}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="MAINMENU" ID="{D471954F-3633-4A77-920F-C166B1FC9DE0}">
+							<ChildrenList>
+								<Action Name="" ID="{D527E901-413E-4AFD-95AA-F6FF872EDE52}" ShortID="306516120">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="mainmenu" ID="{BE9DF162-2899-4FEA-96EE-B7167D11F9D1}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
-				</Event>
-				<Event Name="MUSIC2" ID="{5E3855E1-9DB8-4F6D-AE43-664B8F5DC32C}">
+				</Folder>
+				<Folder Name="Ambience" ID="{80F3A7DD-31FA-45C5-9310-9A5CA720D656}" ShortID="804417063">
 					<ChildrenList>
-						<Action Name="" ID="{BA3DCE91-AB8C-469E-B462-8D8371C7769D}" ShortID="250486552">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="music2" ID="{D8743D59-D83A-4E09-A87C-5A925851BEB5}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
+						<Event Name="EXPLORE" ID="{ECFD59B3-4C22-4B8B-9525-C5B687B0E48D}">
+							<ChildrenList>
+								<Action Name="" ID="{85E0C6F6-B497-4F67-ABA6-1A7AC37C97D6}" ShortID="600372153">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="explore" ID="{842D17EE-2463-4D06-A7DA-5511CCE74CEE}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="COMBAT" ID="{64FBB048-6C5F-41C1-8692-63C100023D31}">
+							<ChildrenList>
+								<Action Name="" ID="{214AF19B-3F0D-4A84-823A-57FA5DC6F220}" ShortID="687963915">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="combat" ID="{D13CB725-2D80-49B6-8345-E75F98BFDFB1}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
-				</Event>
-				<Event Name="SPATIAL1" ID="{49C94F2E-D0B5-4710-AD58-88C460A64873}">
+				</Folder>
+				<Folder Name="Enemies" ID="{EEE8962D-F55C-423F-88F7-3371F7F8CD29}" ShortID="14045902">
 					<ChildrenList>
-						<Action Name="" ID="{215B7366-8ED0-4299-AB99-EF988F17F3D8}" ShortID="844693401">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="spatial1" ID="{4C91F70B-67EE-4CC2-B577-5D5D32423235}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
+						<Event Name="ENEMYATTACK" ID="{BCCC0A2F-F69E-410B-8279-B1C1E62074DE}">
+							<ChildrenList>
+								<Action Name="" ID="{EFCA8179-C00E-4643-B3C0-F40A9CE3B549}" ShortID="314725425">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="enemy_attack" ID="{1BD2DB01-6780-482B-9D0D-A5C7CE99CC28}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
-				</Event>
-				<Event Name="SPATIAL2" ID="{5428EDC0-571B-4AF3-8E8D-E19118A5B12E}">
+				</Folder>
+				<Folder Name="Player" ID="{BFE87B1B-252B-4DD2-AC0A-94D51660A82C}" ShortID="310226414">
 					<ChildrenList>
-						<Action Name="" ID="{62F8B771-A868-49BD-B298-BA052F3D898C}" ShortID="536092067">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="spatial2" ID="{2E212A22-9F7C-4340-97B0-353428D0E633}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
+						<Event Name="STEP" ID="{CD9049B1-DDDD-4474-B59F-D57CB5E9DB71}">
+							<ChildrenList>
+								<Action Name="" ID="{21821258-0891-4900-862A-03D8858C73C2}" ShortID="898885473">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="steps" ID="{28A5EA78-4BAE-41BE-B610-75A3EFCD74AB}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="GUNSHOT" ID="{7244ED71-843C-4ADE-AEDA-C285475CD819}">
+							<ChildrenList>
+								<Action Name="" ID="{73294234-DBC1-473E-A0E3-E7E528466C40}" ShortID="308882739">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gunshot" ID="{80489D55-02BE-4CA9-87D3-FC426BB58ACE}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
-				</Event>
-				<Event Name="GUNSHOT" ID="{7244ED71-843C-4ADE-AEDA-C285475CD819}">
+				</Folder>
+				<Folder Name="Debug" ID="{736C9B0C-3192-4369-A37E-8C1FC5201507}" ShortID="293566644">
 					<ChildrenList>
-						<Action Name="" ID="{73294234-DBC1-473E-A0E3-E7E528466C40}" ShortID="308882739">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="gunshot" ID="{80489D55-02BE-4CA9-87D3-FC426BB58ACE}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
+						<Event Name="SPATIAL2" ID="{5428EDC0-571B-4AF3-8E8D-E19118A5B12E}">
+							<ChildrenList>
+								<Action Name="" ID="{62F8B771-A868-49BD-B298-BA052F3D898C}" ShortID="536092067">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="spatial2" ID="{2E212A22-9F7C-4340-97B0-353428D0E633}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="MUSIC2" ID="{5E3855E1-9DB8-4F6D-AE43-664B8F5DC32C}">
+							<ChildrenList>
+								<Action Name="" ID="{BA3DCE91-AB8C-469E-B462-8D8371C7769D}" ShortID="250486552">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="music2" ID="{D8743D59-D83A-4E09-A87C-5A925851BEB5}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="MUSIC1" ID="{E1459194-2B01-4DA1-BA66-E88C76BFAB36}">
+							<ChildrenList>
+								<Action Name="" ID="{77599999-B1AF-4D94-8DE2-65FB0030DFDE}" ShortID="63387086">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="music1" ID="{0D72C30A-A5A2-4EA0-9D17-72CC7D0BD2E4}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="SPATIAL1" ID="{49C94F2E-D0B5-4710-AD58-88C460A64873}">
+							<ChildrenList>
+								<Action Name="" ID="{215B7366-8ED0-4299-AB99-EF988F17F3D8}" ShortID="844693401">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="spatial1" ID="{4C91F70B-67EE-4CC2-B577-5D5D32423235}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
-				</Event>
-				<Event Name="STEP" ID="{CD9049B1-DDDD-4474-B59F-D57CB5E9DB71}">
-					<ChildrenList>
-						<Action Name="" ID="{21821258-0891-4900-862A-03D8858C73C2}" ShortID="898885473">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="steps" ID="{28A5EA78-4BAE-41BE-B610-75A3EFCD74AB}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

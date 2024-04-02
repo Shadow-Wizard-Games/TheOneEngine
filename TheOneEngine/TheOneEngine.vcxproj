@@ -11,6 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioComponent.h" />
+    <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="Billboard.h" />
+    <ClInclude Include="ButtonImageUI.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider2D.h" />
@@ -19,12 +23,16 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeImmediateMode.h" />
+    <ClInclude Include="DebugShape.h" />
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Framebuffer.h" />
+    <ClInclude Include="Emmiter.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GamepadInput.h" />
+    <ClInclude Include="InitializeEmmiterModule.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="Listener.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
@@ -32,8 +40,11 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="MonoManager.h" />
     <ClInclude Include="MonoRegisterer.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="N_SceneManager.h" />
+    <ClInclude Include="RenderEmmiterModule.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesImageImpl.h" />
     <ClInclude Include="ResourcesImpl.h" />
@@ -41,6 +52,10 @@
     <ClInclude Include="ResourcesModelImpl.h" />
     <ClInclude Include="ResourcesShaderImpl.h" />
     <ClInclude Include="Script.h" />
+    <ClInclude Include="SingleOrRandom.h" />
+    <ClInclude Include="SpawnEmmiterModule.h" />
+    <ClInclude Include="Source.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="EngineCore.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
@@ -48,10 +63,15 @@
     <ClInclude Include="UIDGen.h" />
     <ClInclude Include="ImageUI.h" />
     <ClInclude Include="ItemUI.h" />
+    <ClInclude Include="UpdateEmmiterModule.h" />
     <ClInclude Include="Uniform.h" />
     <ClInclude Include="VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AudioComponent.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Billboard.cpp" />
+    <ClCompile Include="ButtonImageUI.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider2D.cpp" />
@@ -61,8 +81,11 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeImmediateMode.cpp" />
     <ClCompile Include="Framebuffer.cpp" />
+    <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
+    <ClCompile Include="InitializeEmmiterModule.cpp" />
+    <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -71,10 +94,16 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="MonoManager.cpp" />
     <ClCompile Include="MonoRegisterer.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="N_SceneManager.cpp" />
+    <ClCompile Include="RenderEmmiterModule.cpp" />
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
+    <ClCompile Include="SingleOrRandom.cpp" />
+    <ClCompile Include="SpawnEmmiterModule.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -83,6 +112,7 @@
     <ClCompile Include="ItemUI.cpp" />
     <ClCompile Include="Uniform.cpp" />
     <ClCompile Include="VertexArray.cpp" />
+    <ClCompile Include="UpdateEmmiterModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheOneAudio\TheOneAudio.vcxproj">

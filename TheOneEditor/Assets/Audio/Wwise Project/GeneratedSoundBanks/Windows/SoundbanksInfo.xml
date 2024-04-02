@@ -162,7 +162,7 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{D19C02E8-37B5-074D-8172-873296FC6241}">
+		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{179384C0-3974-1EC9-E5A8-0E7264B0E17E}">
 			<ShortName>TheOneEngine</ShortName>
 			<Path>TheOneEngine.bnk</Path>
 			<Media>
@@ -174,9 +174,33 @@
 					<ShortName>Bass160Fight.wav</ShortName>
 					<CachePath>SFX/Bass160Fight_818F3B66.wem</CachePath>
 				</File>
+				<File Id="118825284" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>click.wav</ShortName>
+					<CachePath>SFX/click_818F3B66.wem</CachePath>
+				</File>
+				<File Id="298685231" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Combat.wav</ShortName>
+					<CachePath>SFX/Combat_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="342155423" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>levelAmbient.wav</ShortName>
+					<CachePath>SFX/levelAmbient_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="396795933" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>menu.wav</ShortName>
+					<CachePath>SFX/menu_FBC78EF0.wem</CachePath>
+				</File>
 				<File Id="466064314" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>waves.wav</ShortName>
 					<CachePath>SFX/waves_818F3B66.wem</CachePath>
+				</File>
+				<File Id="502874630" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Hit.wav</ShortName>
+					<CachePath>SFX/Hit_818F3B66.wem</CachePath>
+				</File>
+				<File Id="579890625" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>uiHover.wav</ShortName>
+					<CachePath>SFX/uiHover_818F3B66.wem</CachePath>
 				</File>
 				<File Id="635286070" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Guitar.wav</ShortName>
@@ -188,13 +212,43 @@
 				</File>
 				<File Id="1066871374" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>steps.wav</ShortName>
-					<CachePath>SFX/steps_818F3B66.wem</CachePath>
+					<CachePath>SFX/steps_FBC78EF0.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
+				<Event Id="1584507803" Name="CLICK">
+					<MediaRefs>
+						<MediaRef Id="118825284"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2764240573" Name="COMBAT">
+					<MediaRefs>
+						<MediaRef Id="298685231"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2144693767" Name="ENEMYATTACK">
+					<MediaRefs>
+						<MediaRef Id="502874630"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="579523862" Name="EXPLORE">
+					<MediaRefs>
+						<MediaRef Id="342155423"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1287408361" Name="GUNSHOT">
 					<MediaRefs>
 						<MediaRef Id="67773700"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3753593413" Name="HOVER">
+					<MediaRefs>
+						<MediaRef Id="579890625"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3604647259" Name="MAINMENU">
+					<MediaRefs>
+						<MediaRef Id="396795933"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="1730564819" Name="MUSIC1">
@@ -225,5 +279,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{DDFD7409-A034-80E8-BFB7-6AE18E547836}</FileHash>
+	<FileHash>{5C9663E6-BA50-9D2B-C886-5D4D08083D99}</FileHash>
 </SoundBanksInfo>

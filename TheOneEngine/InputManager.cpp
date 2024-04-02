@@ -78,6 +78,8 @@ bool InputManager::PreUpdate()
 
 	UpdateGamepadsInput();
 
+	if (shutDownEngine) ret = false;
+
 	return ret;
 }
 

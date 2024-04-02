@@ -2,9 +2,11 @@
 #define __BUILDER_APP_H__
 #pragma once
 
-#include "Timer.h"
 #include "../TheOneEngine/EngineCore.h"
 #include "../TheOneEngine/Log.h"
+
+#include "Timer.h"
+
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -16,7 +18,6 @@
 // Forward declaration
 class BuilderModule;
 class BuilderWindow;
-class BuilderInput;
 class BuilderRenderer3D;
 class BuilderSceneManager;
 
@@ -79,7 +80,6 @@ public:
 
 	// Modules
 	BuilderWindow* window = nullptr;
-	BuilderInput* input = nullptr;
 	BuilderRenderer3D* renderer3D = nullptr;
 	BuilderSceneManager* sceneManager = nullptr;
 

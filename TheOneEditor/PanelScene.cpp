@@ -163,7 +163,7 @@ bool PanelScene::Draw()
 				ImGui::SliderFloat("Aspect", &aspect, 0.1, 10.0);
 				ImGui::Text("Clipping Plane");
 				ImGui::SliderFloat("Near", &zNear, 0.01, 10.0);
-				ImGui::SliderFloat("Far ", &zFar, 1.0, 1500.0);
+				ImGui::SliderFloat("Far ", &zFar, 1.0, 20000.0);
 
 				camera->fov = fov;
 				camera->aspect = aspect;

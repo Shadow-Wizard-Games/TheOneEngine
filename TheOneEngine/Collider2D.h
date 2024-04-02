@@ -19,7 +19,8 @@ enum class CollisionType
 {
     Player,
     Enemy,
-    Wall
+    Wall,
+    Bullet,
 };
 
 class Collider2D : public Component
@@ -31,7 +32,6 @@ public:
     Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType colliderType);
     ~Collider2D();
 
-
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
@@ -41,5 +41,6 @@ public:
     CollisionType collisionType;
     double radius;
     double w, h;
+    vec3 offset;
 };
 #endif // !__COLLIDER_2D_H__

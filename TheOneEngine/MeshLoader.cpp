@@ -223,17 +223,11 @@ std::vector<MeshBufferedData> MeshLoader::LoadMesh(const std::string& path)
 
         for (size_t m = 0; m < scene->mNumMeshes; ++m)
         {
+            // Mesh
             auto mesh = scene->mMeshes[m];
             auto faces = mesh->mFaces;
             vec3f* verts = (vec3f*)mesh->mVertices;
             vec3f* texCoords = (vec3f*)mesh->mTextureCoords[0];
-
-            // Apply global transformation to vertices
-            for (size_t i = 0; i < mesh->mNumVertices; ++i)
-            {
-                aiVector3D transformedVertex = globalTransform * mesh->mVertices[i];
-                verts[i] = vec3f(transformedVertex.x, transformedVertex.y, transformedVertex.z);
-            }
 
             std::vector<V3T2> vertex_data;
             std::vector<unsigned int> index_data;
@@ -262,17 +256,46 @@ std::vector<MeshBufferedData> MeshLoader::LoadMesh(const std::string& path)
                 index_data.push_back(faces[f].mIndices[2]);
             }
 
+
+            // Transform
+            aiMatrix4x4 transform;
+            glm::mat4 meshTransform;
+
+            if (mesh->mName != (aiString)"Scene")
+            {
+                transform = scene->mRootNode->FindNode(mesh->mName)->mTransformation;
+                meshTransform = glm::transpose(glm::make_mat4(&transform.a1));
+            }
+            else
+            {
+                meshTransform = glm::mat4(1);
+            }
+            
+ 
+            // Texture Path
+            aiString aiPath;
+            scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &aiPath);
+            fs::path texPath = fs::path(path).parent_path() / fs::path(aiPath.C_Str()).filename();
+
+            if (meshTransform != glm::mat4(1))
+            {
+                meshTransform = meshTransform;
+            }
+
+            if (!transform.IsIdentity())
+            {
+                meshTransform = meshTransform;
+            }
+
             meshData =
             {
                 mesh->mName.C_Str(),
                 Formats::F_V3T2,
                 vertex_data,
-                index_data
-            };
-            aiString aiPath;
-            scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &aiPath);
-            fs::path texPath = fs::path(path).parent_path() / fs::path(aiPath.C_Str()).filename();
-            meshData.texturePath = texPath.string();
+                index_data,
+                meshTransform,
+                texPath.string()
+            };           
 
             BufferData(meshData);
             meshBuffData.meshName = mesh->mName.C_Str();
@@ -398,6 +421,9 @@ void MeshLoader::serializeMeshData(const MeshData& data, const std::string& file
         outFile.write(data.texturePath.c_str(), texPathSize);
     }
 
+    // Write transform
+    outFile.write(reinterpret_cast<const char*>(&data.meshTransform), sizeof(glm::mat4));
+
     LOG(LogType::LOG_OK, "-%s created", filename.data());
 
     outFile.close();
@@ -475,6 +501,9 @@ MeshData MeshLoader::deserializeMeshData(const std::string& filename)
         data.texturePath.resize(texPathSize);
         inFile.read(&data.texturePath[0], texPathSize);
     }
+
+    // Write transform
+    inFile.read(reinterpret_cast<char*>(&data.meshTransform[0]), sizeof(glm::mat4));
 
     LOG(LogType::LOG_INFO, "-%s loaded", filename.data());
     inFile.close();

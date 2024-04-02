@@ -8,6 +8,7 @@
 #include <memory>
 
 class GameObject;
+class Camera;
 
 enum class ComponentType
 {
@@ -18,6 +19,9 @@ enum class ComponentType
     Script,
     Collider2D,
     Canvas,
+    Listener,
+    Source,
+    ParticleSystem,
 	Unknown
 };
 
@@ -34,6 +38,7 @@ public:
     virtual void Update() {};
 
     std::string GetName();
+    std::string* GetNameToEdit();
     void CreateNameFromType(ComponentType type);
 
     ComponentType GetType() const;
@@ -43,7 +48,7 @@ public:
 
     //virtual void CreateInspectorNode() = 0;
     //virtual void CreateInspectorNode();
-    virtual void DrawComponent() {};
+    virtual void DrawComponent(Camera* camera) {};
 
     void CreateUID() { UID = UIDGen::GenerateUID(); }
     uint32 GetUID() { return UID; }

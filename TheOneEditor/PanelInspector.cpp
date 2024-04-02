@@ -11,17 +11,31 @@
 #include "..\TheOneEngine\Camera.h"
 #include "..\TheOneEngine\Script.h"
 #include "..\TheOneEngine\Collider2D.h"
+#include "..\TheOneEngine\Listener.h"
+#include "..\TheOneEngine\Source.h"
 #include "..\TheOneEngine\MonoManager.h"
+#include "..\TheOneEngine\ParticleSystem.h"
+#include "..\TheOneEngine\Canvas.h"
+#include "..\TheOneEngine\ItemUI.h"
+#include "..\TheOneEngine\ImageUI.h"
+#include "..\TheOneEngine\ButtonImageUI.h"
+
+#include "InspectorParticleSystems.h"
 
 #include "../TheOneAudio/AudioCore.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
 
+#include <fstream>
+
+namespace fs = std::filesystem;
+
 PanelInspector::PanelInspector(PanelType type, std::string name) : Panel(type, name)
 {
     matrixDirty = false;
     chooseScriptNameWindow = false;
+    chooseParticlesToImportWindow = false;
     view_pos = { 0, 0, 0 };
     view_rot_rad = { 0, 0, 0 };
     view_rot_deg = { 0, 0, 0 };
@@ -69,7 +83,8 @@ bool PanelInspector::Draw()
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             //add change name imgui
-            static char newNameBuffer[256]; // Buffer para el nuevo nombre
+            static char newNameBuffer[32]; // Buffer para el nuevo nombre
+            strcpy(newNameBuffer, selectedGO->GetName().c_str());
             if (ImGui::InputText("New Name", newNameBuffer, sizeof(newNameBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
                 std::string newName(newNameBuffer);
                 LOG(LogType::LOG_INFO, "GameObject %s has been renamed to %s", selectedGO->GetName().c_str(), newName.c_str());
@@ -406,6 +421,30 @@ bool PanelInspector::Draw()
                     collider2D->colliderType = (ColliderType)colliderType;
                 }
 
+                // Offset of collider
+                float offsetX = (float)collider2D->offset.x;
+                float offsetY = (float)collider2D->offset.y;
+                float offsetZ = (float)collider2D->offset.z;
+                ImGui::Text("Offset");
+                ImGui::Text("X");
+                ImGui::SameLine();
+                if (ImGui::InputFloat("##OffsetX", &offsetX))
+                {
+                    collider2D->offset.x = offsetX;
+                }
+                ImGui::Text("Y");
+                ImGui::SameLine();
+                if (ImGui::InputFloat("##OffsetY", &offsetY))
+                {
+                    collider2D->offset.y = offsetY;
+                }
+                ImGui::Text("Z");
+                ImGui::SameLine();
+                if (ImGui::InputFloat("##OffsetZ", &offsetZ))
+                {
+                    collider2D->offset.z = offsetZ;
+                }
+
                 if (collider2D->colliderType == ColliderType::Rect)
                 {
                     // Rectangle collider
@@ -444,11 +483,411 @@ bool PanelInspector::Draw()
                 }
             }
 
+            /*Particle System Component*/
+            ParticleSystem* particleSystem = selectedGO->GetComponent<ParticleSystem>();
+
+            if (particleSystem != nullptr && ImGui::CollapsingHeader("Particle System", treeNodeFlags))
+            {
+                /*if (ImGui::Button("Load")) {
+                    particleSystem->Load("");
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Save")) {
+                    particleSystem->Save();
+                }*/
+
+                if (ImGui::Button("Play")) {
+                    particleSystem->Play();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Stop")) {
+                    particleSystem->Stop();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Replay")) {
+                    particleSystem->Replay();
+                }
+
+                if (ImGui::Button("Export")) {
+                    particleSystem->ExportParticles();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Import")) {
+                    chooseParticlesToImportWindow = true;
+                }
+
+                // change name
+                particleSystem->GetNameToEdit()->resize(20);
+                ImGui::InputText("Name", (char*)particleSystem->GetNameToEdit()->c_str(), 20);
+
+                int emmiterID = 0;
+                for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter) {
+                    ImGui::PushID(emmiterID);
+                    ImGui::Text("Emmiter %d", emmiterID);
+                    // delete emmiter
+                    UIEmmiterWriteNode((*emmiter).get());
+                    emmiterID++;
+                }
+                
+                // add emmiter
+                if (ImGui::Button("Add Emmiter")) {
+                    particleSystem->AddEmmiter();
+                }
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                if (ImGui::Button("Remove Particle System"))
+                {
+                    selectedGO->RemoveComponent(ComponentType::ParticleSystem);
+                }
+            }
+
+            // Canvas Component
+            Canvas* tempCanvas = selectedGO->GetComponent<Canvas>();
+
+            if (tempCanvas != nullptr && ImGui::CollapsingHeader("Canvas", treeNodeFlags))
+            {
+                bool componentState = tempCanvas->IsEnabled();
+                if(ImGui::Checkbox("Enable/Disable Component", &(componentState)))
+                {
+                    if (componentState && !tempCanvas->IsEnabled())
+                        tempCanvas->Enable();
+                    else if (!componentState && tempCanvas->IsEnabled())
+                        tempCanvas->Disable();
+                }
+
+                ImGui::Checkbox("Toggle debug draw", &(tempCanvas->debugDraw));
+
+                //ui elements show
+                int counter = 0;
+                for (auto& item : tempCanvas->GetUiElements())
+                {
+                    std::string tstring = "  " + item->GetName() + " [id: " + std::to_string(item->GetID()) + "]";
+                    if (item != nullptr && ImGui::CollapsingHeader(tstring.c_str(), treeNodeFlags))
+                    {
+                        unsigned int id = item->GetID();
+
+                        //add change name imgui
+                        static char changeUIName[32]; // Buffer para el nuevo nombre
+                        strcpy(changeUIName, item->GetName().c_str());
+                        if (ImGui::InputText("Set Name", changeUIName, sizeof(changeUIName), ImGuiInputTextFlags_EnterReturnsTrue)) {
+                            std::string newName(changeUIName);
+                            LOG(LogType::LOG_INFO, "ItemUI %s has been renamed to %s", item->GetName().c_str(), newName.c_str());
+                            item->SetName(newName);
+                            changeUIName[0] = '\0';
+                        }
+                        //move up/down in hierarchy
+                        if (ImGui::ArrowButton("Move Up in uiElements vector", 2) && counter > 0)
+                        {
+                            std::swap(tempCanvas->GetUiElementsPtr()[counter], tempCanvas->GetUiElementsPtr()[counter - 1]);
+                            break;
+                        }
+                        ImGui::SameLine();
+                        ImGui::Text("  Move Up");
+                        if (ImGui::ArrowButton("Move Down in uiElements vector", 3) && counter < tempCanvas->GetUiElements().size() - 1)
+                        {
+                            std::swap(tempCanvas->GetUiElementsPtr()[counter], tempCanvas->GetUiElementsPtr()[counter + 1]);
+                            break;
+                        }
+                        ImGui::SameLine();
+                        ImGui::Text("  Move Down");
+
+                        std::string idstring = "Current ItemID is: " + std::to_string(item->GetID());
+                        ImGui::Text(idstring.c_str());
+                        ImGui::Text("Rect section info:");
+                        float tempX, tempY, tempW, tempH;
+                        tempX = item->GetRect().x;
+                        tempY = item->GetRect().y;
+                        tempW = item->GetRect().w;
+                        tempH = item->GetRect().h;
+                        ImGui::Text("   X:");
+                        ImGui::SameLine();
+                        ImGui::DragFloat(" ", &tempX, 0.01f, -2.0f, 2.0f);
+                        ImGui::Text("   Y:");
+                        ImGui::SameLine();
+                        ImGui::DragFloat("  ", &tempY, 0.01f, -2.0f, 2.0f);
+                        ImGui::Text("   W:");
+                        ImGui::SameLine();
+                        ImGui::DragFloat("   ", &tempW, 0.05f, 0.0f, 10.0f);
+                        ImGui::Text("   H:");
+                        ImGui::SameLine();
+                        ImGui::DragFloat("    ", &tempH, 0.05f, 0.0f, 10.0f);
+                        ImGui::Dummy(ImVec2(0.0f, 5.0f));
+
+                        item->SetRect(tempX, tempY, tempW, tempH);
+
+                        if (item->GetType() == UiType::IMAGE)
+                        {
+                            ImageUI* tempImageUI = tempCanvas->GetItemUI<ImageUI>(id);
+                            ImGui::Text("UiType: IMAGE");
+                            ImGui::Text("Image Path: %s", tempImageUI->GetPath().c_str());
+                            ImGui::Text("Image section info:");
+
+                            float tempX2, tempY2, tempW2, tempH2;
+                            tempX2 = tempImageUI->GetSect().x;
+                            tempY2 = tempImageUI->GetSect().y;
+                            tempW2 = tempImageUI->GetSect().w;
+                            tempH2 = tempImageUI->GetSect().h;
+                            ImGui::Text("   X:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("     ", &tempX2, 1.0f);
+                            ImGui::Text("   Y:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("      ", &tempY2, 1.0f);
+                            ImGui::Text("   W:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("       ", &tempW2, 1.0f);
+                            ImGui::Text("   H:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("        ", &tempH2, 1.0f);
+
+                            tempImageUI->SetSectSize(tempX2, tempY2, tempW2, tempH2);
+                        }
+                        else if (item->GetType() == UiType::BUTTONIMAGE)
+                        {
+                            ButtonImageUI* tempButtonImageUI = tempCanvas->GetItemUI<ButtonImageUI>(id);
+                            ImGui::Text("UiType: BUTTONIMAGE");
+                            ImGui::Text("Image Path: %s", tempButtonImageUI->GetPath().c_str());
+                            if (ImGui::CollapsingHeader("Image section IDLE info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as idle"))
+                                {
+                                    tempButtonImageUI->SetState(UiState::IDLE);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempButtonImageUI->GetSectIdle().x;
+                                tempY2 = tempButtonImageUI->GetSectIdle().y;
+                                tempW2 = tempButtonImageUI->GetSectIdle().w;
+                                tempH2 = tempButtonImageUI->GetSectIdle().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("     ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("      ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("       ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("        ", &tempH2, 1.0f);
+
+                                if (tempButtonImageUI->GetState() == UiState::IDLE)
+                                {
+                                    tempButtonImageUI->SetSectSizeIdle(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                            if (ImGui::CollapsingHeader("Image section HOVERED info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as hovered"))
+                                {
+                                    tempButtonImageUI->SetState(UiState::HOVERED);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempButtonImageUI->GetSectHovered().x;
+                                tempY2 = tempButtonImageUI->GetSectHovered().y;
+                                tempW2 = tempButtonImageUI->GetSectHovered().w;
+                                tempH2 = tempButtonImageUI->GetSectHovered().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("         ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("          ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("           ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("            ", &tempH2, 1.0f);
+
+                                if (tempButtonImageUI->GetState() == UiState::HOVERED)
+                                {
+                                    tempButtonImageUI->SetSectSizeHovered(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                            if (ImGui::CollapsingHeader("Image section SELECTED info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as selected"))
+                                {
+                                    tempButtonImageUI->SetState(UiState::SELECTED);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempButtonImageUI->GetSectSelected().x;
+                                tempY2 = tempButtonImageUI->GetSectSelected().y;
+                                tempW2 = tempButtonImageUI->GetSectSelected().w;
+                                tempH2 = tempButtonImageUI->GetSectSelected().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("             ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("              ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("               ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("                ", &tempH2, 1.0f);
+
+                                if (tempButtonImageUI->GetState() == UiState::SELECTED)
+                                {
+                                    tempButtonImageUI->SetSectSizeSelected(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                        }
+                        //else if (item->GetType() == UiType::FONT)
+                        //{
+
+                        //}
+                        else if (item->GetType() == UiType::UNKNOWN)
+                        {
+                            ImGui::Text("UiType: UNKNOWN TYPE");
+                        }
+
+                        ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                        if (ImGui::Button("Remove ItemUI"))
+                        {
+                            tempCanvas->RemoveItemUI(id);
+                        }
+                    }
+                    counter++;
+                }
+
+                //adders and removers of itemui
+                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                if (ImGui::TreeNode("Add ItemUI"))
+                {
+                    if (ImGui::TreeNode("ImageUI"))
+                    {
+                        static char nameRecipient[64];
+
+                        ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+
+                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        {
+                            tempCanvas->AddItemUI<ImageUI>(nameRecipient);
+                            nameRecipient[0] = '\0';
+                        }
+                        ImGui::TreePop();
+                    }
+                    if (ImGui::TreeNode("ButtonImageUI"))
+                    {
+                        static char nameRecipient[64];
+
+                        ImGui::InputText("File Name ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+
+                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        {
+                            tempCanvas->AddItemUI<ButtonImageUI>(nameRecipient);
+                            nameRecipient[0] = '\0';
+                        }
+                        ImGui::TreePop();
+                    }
+                    if (ImGui::MenuItem("FontUI"))
+                    {
+                        //to implement
+
+                        //static char nameRecipient[32];
+
+                        //ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+
+                        //if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
+                        //{
+                        //    //std::string className = "ActualScriptTest2";
+                        //    if (MonoManager::IsClassInMainAssembly(nameRecipient))
+                        //    {
+                        //        tempCanvas->AddItemUI<FontUI>(nameRecipient);
+                        //    }
+                        //    else
+                        //    {
+                        //        LOG(LogType::LOG_WARNING, "Could not find image '%s'", nameRecipient);
+                        //    }
+                        //}
+                        //ImGui::TreePop();
+                    }
+                    ImGui::TreePop();
+                }
+
+
+                //remover of canvas
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                if (ImGui::Button("Remove Canvas"))
+                {
+                    selectedGO->RemoveComponent(ComponentType::Canvas);
+                }
+            }
+
+            /*Listener Component*/
+            Listener* listener = selectedGO->GetComponent<Listener>();
+
+            if (listener != nullptr && ImGui::CollapsingHeader("Listener", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
+                // No properties
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+            }
+
+            /*Source Component*/
+            Source* source = selectedGO->GetComponent<Source>();
+
+            if (source != nullptr && ImGui::CollapsingHeader("Audio Source", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
+                // JULS: Volume not applied yet
+                //if (ImGui::SliderFloat("Volume", &zNear, 0.01, 10.0))
+                //{
+                //}
+
+                //ImGui::SeparatorText("Components");
+                //if (ImGui::Selectable("Footsteps")) {
+                //    source->event = AK::EVENTS::STEP;
+                //}if (ImGui::Selectable("Gunshot")) {
+                //    source->event = AK::EVENTS::GUNSHOT;
+                //}
+                //
+                //if (source->event != NULL) {
+                //    if (ImGui::Button("Play"))
+                //        audioManager->PlayAudio(source);
+                //    if (ImGui::Button("Stop"))
+                //        audioManager->StopAudio(source);
+                //    if (ImGui::Button("Pause"))
+                //        audioManager->PauseAudio(source);
+                //    if (ImGui::Button("Resume"))
+                //        audioManager->ResumeAudio(source);
+                //}
+                //else {
+                //    ImGui::Text("No audio event selected");
+                //}
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+            }
+
             /*Add Component*/
             if (ImGui::BeginMenu("Add Component"))
             {
                 if (ImGui::MenuItem("New Script"))
                     chooseScriptNameWindow = true;
+
+                if (ImGui::MenuItem("Particle System"))
+                {
+                    selectedGO->AddComponent<ParticleSystem>();
+                }
+
+                
+                if (ImGui::MenuItem("Listener"))
+                {
+                    selectedGO->AddComponent<Listener>();
+                    selectedGO->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
+                    audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<Listener>());
+                    audioManager->audio->SetDefaultListener(selectedGO->GetComponent<Listener>()->goID);
+
+                }
+                if (ImGui::MenuItem("Source"))
+                {
+                    selectedGO->AddComponent<Source>();
+                    selectedGO->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
+                    audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<Source>());
+                }
 
                 if (ImGui::TreeNode("Collider2D"))
                 {
@@ -506,6 +945,14 @@ bool PanelInspector::Draw()
                     ImGui::TreePop();
                 }
 
+                if (ImGui::MenuItem("New Canvas"))
+                {
+                    selectedGO->AddComponent<Canvas>();
+                }
+
+
+
+
                 /*ImGuiTextFilter filter;
                 filter.Draw();*/
                 /*if (ImGui::Selectable("Script"))
@@ -536,6 +983,7 @@ bool PanelInspector::Draw()
             //}
         }
         if(chooseScriptNameWindow) ChooseScriptNameWindow();
+        else if (chooseParticlesToImportWindow) ChooseParticlesToImportWindow();
 
         ImGui::End();
 	}	
@@ -567,6 +1015,63 @@ void PanelInspector::ChooseScriptNameWindow()
         }
 
         chooseScriptNameWindow = false;
+    }
+
+    ImGui::End();
+}
+
+void PanelInspector::ChooseParticlesToImportWindow()
+{
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
+    ImGui::Begin("Particles name", &chooseParticlesToImportWindow);
+
+    static char nameRecipient[32];
+
+    ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+
+    std::string nameFile = nameRecipient;
+
+    nameFile = nameFile + ".particles";
+
+    fs::path assetsDir = fs::path(ASSETS_PATH) / "Particles" / nameFile;
+
+    if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
+    {
+        //std::string className = "ActualScriptTest2";
+        if (std::filesystem::exists(assetsDir))
+        {
+            // Read the scene JSON from the file
+            std::ifstream file(assetsDir);
+            if (!file.is_open())
+            {
+                LOG(LogType::LOG_ERROR, "Failed to open scene file: {}", assetsDir);
+                return;
+            }
+
+            json particlesJSON;
+
+            try
+            {
+                file >> particlesJSON;
+            }
+            catch (const json::parse_error& e)
+            {
+                LOG(LogType::LOG_ERROR, "Failed to parse scene JSON: {}", e.what());
+                return;
+            }
+
+            // Close the file
+            file.close();
+
+            selectedGO->GetComponent<ParticleSystem>()->LoadComponent(particlesJSON);
+            ImGui::CloseCurrentPopup();
+        }
+        else
+        {
+            LOG(LogType::LOG_WARNING, "Could not find file '%s'", nameFile);
+        }
+
+        chooseParticlesToImportWindow = false;
     }
 
     ImGui::End();

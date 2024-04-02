@@ -13,6 +13,9 @@ public:
 	CollisionSolver();
 	~CollisionSolver();
 
+	bool PreUpdate();
+	bool Update(double dt);
+
 	bool CheckCollision(GameObject* objA, GameObject* objB);
 
 

@@ -29,6 +29,7 @@ public:
 	virtual void Start() {}
 
 	virtual bool Draw() = 0;
+	virtual bool CleanUp() { return true; }
 
 	virtual PanelType GetType();
 	virtual std::string GetName();

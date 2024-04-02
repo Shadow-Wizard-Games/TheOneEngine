@@ -164,6 +164,7 @@ json Camera::SaveComponent()
     cameraJSON["Pitch"] = pitch;
     cameraJSON["Size"] = size;
     cameraJSON["CameraType"] = cameraType;
+    cameraJSON["PrimaryCamera"] = primaryCam;
 
     return cameraJSON;
 }
@@ -190,6 +191,8 @@ void Camera::LoadComponent(const json& cameraJSON)
         else if (cameraJSON["CameraType"] == 1)
             cameraType = CameraType::ORTHOGONAL;
     }
+
+    if (cameraJSON.contains("PrimaryCamera")) primaryCam = cameraJSON["PrimaryCamera"];
 
     // Optional: Recalculate view and projection matrices based on loaded data
     UpdateCamera();

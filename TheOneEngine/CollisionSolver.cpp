@@ -2,6 +2,9 @@
 #include "Defs.h"
 #include "Collider2D.h"
 #include "Transform.h"
+#include "EngineCore.h"
+#include "N_SceneManager.h"
+#include "MonoManager.h"
 
 #include "SDL2/SDL.h"
 #include "GL/gl.h"
@@ -13,6 +16,139 @@ CollisionSolver::CollisionSolver()
 }
 
 CollisionSolver::~CollisionSolver() {}
+
+bool CollisionSolver::PreUpdate()
+{
+    bool ret = true;
+
+    //first, lets see the collider component still exists
+    for (auto it = goWithCollision.begin(); it != goWithCollision.end(); )
+    {
+        bool remItem = true;
+        for (auto& item2 : (*it)->GetAllComponents())
+        {
+            if (item2->GetType() == ComponentType::Collider2D) remItem = false;
+        }
+        if (remItem)
+        {
+            it = goWithCollision.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    return ret;
+}
+
+bool CollisionSolver::Update(double dt)
+{
+    bool ret = true;
+
+    //now lets check and solve collisions
+    for (auto& item : goWithCollision)
+    {
+        // Collision solving
+        switch (item->GetComponent<Collider2D>()->collisionType)
+        {
+        case CollisionType::Player:
+            for (auto& item2 : goWithCollision)
+            {
+                if (item != item2)
+                {
+                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                    {
+                    case CollisionType::Player:
+                        //there is no player-player collision since we only have 1 player
+                        break;
+                    case CollisionType::Enemy:
+                        //implement any low life to player
+                        break;
+                    case CollisionType::Wall:
+                        //if they collide
+                        if (CheckCollision(item, item2))
+                        {
+                            //we push player out of wall
+                            SolveCollision(item, item2);
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+            break;
+        case CollisionType::Enemy:
+            for (auto& item2 : goWithCollision)
+            {
+                if (item != item2)
+                {
+                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                    {
+                    case CollisionType::Player:
+                        //implement any low life to player
+                        break;
+                    case CollisionType::Enemy:
+                        //if they collide
+                        if (CheckCollision(item, item2))
+                        {
+                            //we push player out of other enemy
+                            SolveCollision(item, item2);
+                        }
+                        break;
+                    case CollisionType::Wall:
+                        //if they collide
+                        if (CheckCollision(item, item2))
+                        {
+                            //we push enemy out of wall
+                            SolveCollision(item, item2);
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+            break;
+        case CollisionType::Wall:
+            // do nothing at all
+            break;
+        case CollisionType::Bullet:
+            for (auto& item2 : goWithCollision)
+            {
+                if (item != item2)
+                {
+                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                    {
+                    case CollisionType::Player:
+                        if (CheckCollision(item, item2))
+                        {
+                            LOG(LogType::LOG_WARNING, "Player Hit");
+                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        }
+                        break;
+                    case CollisionType::Enemy:
+                        //if they collide
+                        if (CheckCollision(item, item2))
+                        {
+                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
+                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
+    return ret;
+}
 
 vec2 CollisionSolver::Clamp(vec2 origin, vec2 min, vec2 max)
 {
@@ -55,11 +191,18 @@ void CollisionSolver::DrawCollisions()
             continue;
         }
 
-        // Translate según la posición del objeto
-        glTranslatef(transform->GetPosition().x, 1, transform->GetPosition().z);
+        auto collider = collision->GetComponent<Collider2D>();
+
+        //Calculate position of collider
+        float x_, y_, z_ = 0;
+        x_ = transform->GetPosition().x + collider->offset.x;
+        y_ = 1 + collider->offset.y;
+        z_ = transform->GetPosition().z + collider->offset.z;
+
+        glTranslatef(x_, y_, z_);
 
         // Dibujar la colisión según su tipo y configuración
-        switch (collision->GetComponent<Collider2D>()->collisionType) {
+        switch (collider->collisionType) {
         case CollisionType::Player:
             glColor3f(0.0f, 1.0f, 0.0f); // Verde para jugador
             break;
@@ -69,6 +212,9 @@ void CollisionSolver::DrawCollisions()
         case CollisionType::Wall:
             glColor3f(0.0f, 0.0f, 1.0f); // Azul para muro
             break;
+        case CollisionType::Bullet:
+            glColor3f(1.0f, 0.7f, 0.0f); // Naranja para bala
+            break;
         default:
             glColor3f(1.0f, 1.0f, 1.0f); // Blanco para otros tipos
             break;
@@ -77,12 +223,40 @@ void CollisionSolver::DrawCollisions()
         glBegin(GL_LINE_LOOP);
         if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Rect) {
             // Dibujar rectángulo
-            float halfW = collision->GetComponent<Collider2D>()->w / 2.0f;
-            float halfH = collision->GetComponent<Collider2D>()->h / 2.0f;
-            glVertex3f(-halfW, 0.0f, -halfH);
-            glVertex3f(halfW, 0.0f, -halfH);
-            glVertex3f(halfW, 0.0f, halfH);
-            glVertex3f(-halfW, 0.0f, halfH);
+            if (collider->collisionType == CollisionType::Wall)
+            {
+                // Modular kit
+                float width_ = collision->GetComponent<Collider2D>()->w;
+                float height_ = collision->GetComponent<Collider2D>()->h;
+                float angle = transform->GetRotationEuler().y;
+
+                // Calculate vertex values when it rotates
+                float cosAngle = cosf(angle);
+                float sinAngle = sinf(angle);
+
+                float rotatedX1 = -width_ * cosAngle;
+                float rotatedZ1 = width_ * sinAngle;
+                float rotatedX2 = -width_ * cosAngle + height_ * sinAngle;
+                float rotatedZ2 = width_ * sinAngle + height_ * cosAngle;
+                float rotatedX3 = height_ * sinAngle;
+                float rotatedZ3 = height_ * cosAngle;            
+
+                // Draw rectangle
+                glVertex3f(rotatedX1, 0.0f, rotatedZ1); 
+                glVertex3f(rotatedX2, 0.0f, rotatedZ2); 
+                glVertex3f(rotatedX3, 0.0f, rotatedZ3); 
+                glVertex3f(0.0f, 0.0f, 0.0f); 
+            }
+            else
+            {
+                // Pivot middle
+                float halfW = collision->GetComponent<Collider2D>()->w / 2.0f;
+                float halfH = collision->GetComponent<Collider2D>()->h / 2.0f;
+                glVertex3f(-halfW, 0.0f, -halfH);
+                glVertex3f(halfW, 0.0f, -halfH);
+                glVertex3f(halfW, 0.0f, halfH);
+                glVertex3f(-halfW, 0.0f, halfH);
+            }          
         }
         else if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Circle) {
             // Dibujar círculo
@@ -100,8 +274,6 @@ void CollisionSolver::DrawCollisions()
     }
 }
 
-
-
 double DistanceXZ(const vec3 posA, const vec3 posB)
 {
     vec2 posA_XZ = vec2(posA.x, posA.z);
@@ -109,7 +281,6 @@ double DistanceXZ(const vec3 posA, const vec3 posB)
 
     return glm::distance(posA_XZ, posB_XZ);
 }
-
 
 bool CollisionSolver::CheckCollision(GameObject* objA, GameObject* objB)
 {

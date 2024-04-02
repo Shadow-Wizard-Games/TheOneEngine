@@ -146,35 +146,39 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 	}
 	if (ImGui::BeginDragDropTarget())
 	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str()))
+		if (engine->N_sceneManager->GetSelectedGO().get())
 		{
-			GameObject* dragging = *(GameObject**)payload->Data;
-
-			GameObject* currentParent = childGO.get();
-			while (currentParent)
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str()))
 			{
-				if (currentParent == dragging)
+				GameObject* dragging = *(GameObject**)payload->Data;
+
+				GameObject* currentParent = childGO.get();
+				while (currentParent)
 				{
-					return false;
+					if (currentParent == dragging)
+					{
+						return false;
+					}
+					currentParent = currentParent->parent.lock().get();
 				}
-				currentParent = currentParent->parent.lock().get();
+
+				GameObject* oldParent = dragging->parent.lock().get();
+
+				dragging->parent = childGO.get()->weak_from_this();
+
+				std::shared_ptr<GameObject> newChild = dragging->weak_from_this().lock();
+
+				if (oldParent != nullptr)
+				{
+					std::vector<std::shared_ptr<GameObject>>::iterator position = std::find(oldParent->children.begin(), oldParent->children.end(), newChild);
+					oldParent->children.erase(position);
+				}
+
+				childGO.get()->children.emplace_back(newChild);
+				reparent = true;
 			}
-
-			GameObject* oldParent = dragging->parent.lock().get();
-
-			dragging->parent = childGO.get()->weak_from_this();
-
-			std::shared_ptr<GameObject> newChild = dragging->weak_from_this().lock();
-
-			if (oldParent != nullptr)
-			{
-				std::vector<std::shared_ptr<GameObject>>::iterator position = std::find(oldParent->children.begin(), oldParent->children.end(), newChild);
-				oldParent->children.erase(position);
-			}
-
-			childGO.get()->children.emplace_back(newChild);
-			reparent = true;
 		}
+		
 		ImGui::EndDragDropTarget();
 	}
 	return reparent;

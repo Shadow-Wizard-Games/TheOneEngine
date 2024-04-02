@@ -13,6 +13,8 @@
 #include <list>
 #include <memory>
 
+class Camera;
+
 enum class DrawMode
 {
     GAME,
@@ -27,8 +29,8 @@ public:
     ~GameObject();
 
     void Update(double dt);
-    void Draw();
-    void DrawUI(const DrawMode mode);
+    void Draw(Camera* camera);
+    void DrawUI(Camera* camera, const DrawMode mode);
 
 
     // Components
@@ -125,8 +127,9 @@ public:
     void Enable();
     void Disable();
 
+    // Remove go from parent's children vector
     void Delete();
-    void Delete(std::vector<GameObject*>& objectsToDelete);
+    void AddToDelete(std::vector<GameObject*>& objectsToDelete);
 
     std::string GetName() const;
     void SetName(const std::string& name);
@@ -138,8 +141,17 @@ public:
     void CreateUID();
     uint32 GetUID() { return UID; }
 
+    AABBox GetAABBox() { return aabb; }
+
     json SaveGameObject();
     void LoadGameObject(const json& gameObjectJSON);
+
+    //Prefab
+    void SetPrefab(const uint32_t& pId);
+    void UnpackPrefab();
+    void LockPrefab(bool lock); //To make it editable or not?
+    const uint GetPrefabID() const { return prefabID; }
+    bool IsPrefab() const { return prefabID != 0; }
 
 public:
     std::weak_ptr<GameObject> parent;
@@ -152,6 +164,11 @@ private:
     uint32_t UID;
     bool enabled;
     AABBox aabb;
+
+    //Prefab Vars
+    uint32_t prefabID = 0; //Intit at 0 for GO that are not ina Prefab
+    bool lockedPrefab = true;
+    bool isPrefabDirty = false;
 };
 
 #endif // !__GAME_OBJECT_H__

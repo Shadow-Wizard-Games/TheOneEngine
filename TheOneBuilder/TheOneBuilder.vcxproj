@@ -148,6 +148,7 @@ xcopy "$(SolutionDir)TheOneEditor\Library" "$(ProjectDir)Library" /E /Y
 
 mkdir "$(OutDir)Assets"
 mkdir "$(OutDir)Library"
+mkdir "$(OutDir)mono"
 xcopy "$(SolutionDir)TheOneEditor\Assets" "$(OutDir)Assets" /E /Y
 xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y</Command>
     </PostBuildEvent>
@@ -189,7 +190,9 @@ mkdir "$(OutDir)Library"
 xcopy "$(SolutionDir)TheOneEditor\Assets" "$(OutDir)Assets" /E /Y
 xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y
 
-del "$(OutDir)*.pdb"</Command>
+del "$(OutDir)*.pdb"
+
+rename "$(OutDir)TheOneBuilder.exe" "Game.exe"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>call $(SolutionDir)vcpkg\bootstrap-vcpkg.bat
@@ -199,7 +202,6 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BuilderApp.cpp" />
-    <ClCompile Include="BuilderInput.cpp" />
     <ClCompile Include="BuilderRenderer3D.cpp" />
     <ClCompile Include="BuilderSceneManager.cpp" />
     <ClCompile Include="BuilderWindow.cpp" />
@@ -209,7 +211,6 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
   <ItemGroup>
     <ClInclude Include="BuilderApp.h" />
     <ClInclude Include="BuilderDefs.h" />
-    <ClInclude Include="BuilderInput.h" />
     <ClInclude Include="BuilderModule.h" />
     <ClInclude Include="BuilderRenderer3D.h" />
     <ClInclude Include="BuilderSceneManager.h" />

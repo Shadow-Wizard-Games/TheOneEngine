@@ -181,7 +181,7 @@ bool Input::processSDLEvents()
 
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
-			case SDLK_ESCAPE: return false;
+			//case SDLK_ESCAPE: //return false;
 			}
 			break;
 

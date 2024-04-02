@@ -13,8 +13,13 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO) : Component(cont
 {
     colliderType = ColliderType::Circle;
     this->collisionType = CollisionType::Player;
-    h = 0;
-    w = 0;
+
+    w = containerGO.get()->GetAABBox().sizes().x;
+    h = containerGO.get()->GetAABBox().sizes().z;
+    offset.x = 0;
+    offset.y = 0;
+    offset.z = 0;
+
     //TODO: CHANGE INTO REAL CALCULATED RADIUS
     radius = 0.5;
     //push the game object that has colliders into the collidergo list
@@ -60,6 +65,9 @@ json Collider2D::SaveComponent()
     colliderJSON["Width"] = w;
     colliderJSON["Height"] = h;
     colliderJSON["Radius"] = radius;
+    colliderJSON["OffsetX"] = offset.x;
+    colliderJSON["OffsetY"] = offset.y;
+    colliderJSON["OffsetZ"] = offset.z;
 
     if (auto pGO = containerGO.lock())
         colliderJSON["ParentUID"] = pGO.get()->GetUID();
@@ -79,6 +87,9 @@ void Collider2D::LoadComponent(const json& colliderJSON)
     if (colliderJSON.contains("Width")) w = colliderJSON["Width"];
     if (colliderJSON.contains("Height")) h = colliderJSON["Height"];
     if (colliderJSON.contains("Radius")) radius = colliderJSON["Radius"];
+    if (colliderJSON.contains("OffsetX")) offset.x = colliderJSON["OffsetX"];
+    if (colliderJSON.contains("OffsetY")) offset.y = colliderJSON["OffsetY"];
+    if (colliderJSON.contains("OffsetZ")) offset.z = colliderJSON["OffsetZ"];
 
     if (colliderJSON.contains("UID")) UID = colliderJSON["UID"];
 

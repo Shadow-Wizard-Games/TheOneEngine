@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class Bullet : MonoBehaviour
 {
-    float bulletSpeed = 120.0f;
+    float bulletSpeed = 300.0f;
     float lifeTime = 0.5f;
     float currentTime = 0.0f;
 

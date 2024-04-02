@@ -19,9 +19,10 @@ public:
     Script(std::shared_ptr<GameObject> containerGO, Script* ref);
     virtual ~Script();
 
+    void Enable() override;
     void Update() override;
 
-    void DrawComponent();
+    void DrawComponent(Camera* camera);
 
     json SaveComponent();
     void LoadComponent(const json& scriptJSON);

@@ -16,7 +16,7 @@
 
 #include "MonoManager.h"
 #include "InputManager.h"
-#include "../TheOneAudio/AudioCore.h"
+#include "AudioManager.h"
 
 #include <chrono>
 #include <memory>
@@ -33,7 +33,7 @@ public:
 	void Awake();
 	void Start();
 
-	void PreUpdate();
+	bool PreUpdate();
 	void Update(double dt);
 
 	void Render(Camera* camera);
@@ -61,7 +61,6 @@ public:
 	double dt = 0;
 
 	bool vsync = false;
-	AudioCore* audio = nullptr;
 
 	CollisionSolver* collisionSolver = nullptr;
 
@@ -79,5 +78,5 @@ private:
 };
 
 extern EngineCore* engine;
-
+extern AudioManager* audioManager;
 #endif // !__ENGINE_CORE_H__

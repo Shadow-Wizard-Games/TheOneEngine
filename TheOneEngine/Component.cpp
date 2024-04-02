@@ -49,6 +49,11 @@ std::string Component::GetName()
 	return name;
 }
 
+std::string* Component::GetNameToEdit()
+{
+	return &name;
+}
+
 void Component::CreateNameFromType(ComponentType type)
 {
 	switch (type)
@@ -58,7 +63,10 @@ void Component::CreateNameFromType(ComponentType type)
 		case ComponentType::Mesh: name = "Mesh"; break;
 		case ComponentType::Texture: name = "Texture"; break;
 		case ComponentType::Script: name = "Script"; break;
+		case ComponentType::Listener: name = "Listener"; break;
+		case ComponentType::Source: name = "Source"; break;
 		case ComponentType::Canvas: name = "Canvas"; break;
+		case ComponentType::ParticleSystem: name = "ParticleSystem"; break;
 		case ComponentType::Unknown: name = "Unknown"; break;
 		default: name = "Specified Type was not found"; break;
 	}

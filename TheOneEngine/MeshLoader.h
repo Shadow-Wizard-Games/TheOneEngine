@@ -23,18 +23,17 @@ struct MeshData
 {
 	std::string meshName;
 
-	//std::string texturePath;
-
 	Formats format;
 	std::vector<V3T2> vertex_data;
 	std::vector<unsigned int> index_data;
+
+	glm::mat4 meshTransform;
+	std::string texturePath;
 
 	std::vector<vec3f> meshVerts;
 	std::vector<vec3f> meshNorms;
 	std::vector<vec3f> meshFaceCenters;
 	std::vector<vec3f> meshFaceNorms;
-
-	std::string texturePath;
 
 };
 

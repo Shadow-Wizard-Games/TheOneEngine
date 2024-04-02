@@ -187,7 +187,7 @@ void AudioCore::Awake()
         audioEvents.push_back(new AudioEvent);
     }
 
-    SetGlobalSound(globalVolume);
+    SetGlobalVolume(globalVolume);
 
 }
 
@@ -247,7 +247,7 @@ AkGameObjectID AudioCore::RegisterGameObject(std::string name)
 {
     if (AK::SoundEngine::RegisterGameObj((AkGameObjectID)gameObjectIDs.size(), name.c_str()) == AK_Success)
     {
-        LOG(LogType::LOG_AUDIO, "Game Object %s with ID %d SUCCES on Register", name.c_str(), gameObjectIDs.size());
+        LOG(LogType::LOG_AUDIO, "Game Object %s with ID %d SUCCESS on Register", name.c_str(), gameObjectIDs.size());
         gameObjectIDs.push_back((AkGameObjectID)gameObjectIDs.size());
         return gameObjectIDs.size() - 1;
     }
@@ -255,6 +255,21 @@ AkGameObjectID AudioCore::RegisterGameObject(std::string name)
     {
         LOG(LogType::LOG_AUDIO, "Game Object %s ERROR on Register", name.c_str());
         return -1;
+    }
+}
+
+void AudioCore::UnregisterGameObject(AkGameObjectID goID, std::string name)
+{
+    if (AK::SoundEngine::UnregisterGameObj(goID) == AK_Success)
+    {
+        LOG(LogType::LOG_AUDIO, "Game Object %s with ID %d SUCCESS on Unregister", name.c_str(), gameObjectIDs.size());
+        gameObjectIDs.erase(gameObjectIDs.begin() + goID);
+        //return gameObjectIDs.size() - 1;
+    }
+    else
+    {
+        LOG(LogType::LOG_AUDIO, "Game Object %s ERROR on Unregister", name.c_str());
+        //return -1;
     }
 }
 
@@ -289,6 +304,8 @@ void AudioCore::ResumeEvent(AkUniqueID event, AkGameObjectID goID)
     AK::SoundEngine::ExecuteActionOnEvent(event, AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Resume, gameObjectIDs[goID]);
 }
 
+// JULS: Probably not necessary actually
+/*
 void AudioCore::PlayEngine()
 {
     if (state == EngineState::PAUSED)
@@ -335,8 +352,9 @@ void AudioCore::StopEngine()
         AK::SoundEngine::StopAll(gameObjectIDs[i]);
     }
 }
+*/
 
-void AudioCore::SetGlobalSound(float volume)
+void AudioCore::SetGlobalVolume(float volume)
 {
     if (volume < 0.0f)
     {
@@ -349,39 +367,6 @@ void AudioCore::SetGlobalSound(float volume)
     globalVolume = volume;
     AK::SoundEngine::SetOutputVolume(AK::SoundEngine::GetOutputID(AK_INVALID_UNIQUE_ID, 0.0f), (AkReal32)(volume * 0.01f));
 }
-
-void AudioCore::SetAudioGameObjectTransform(AkGameObjectID goID, float posx, float posy, float posz, float ofx, float ofy, float ofz, float otx, float oty, float otz)
-{
-    //SINCE OPENGL AND WWISE USE DIFFERENT POSITIVE X AND Z POSITIONS HERE WILL BE CHANGED HERE
-    AkSoundPosition tTransform;
-    tTransform.SetPosition({ -posx, posy, -posz });
-    tTransform.SetOrientation({ ofx, ofy, ofz }, { otx, oty, otz });
-    if (AK::SoundEngine::SetPosition(goID, tTransform) != AK_Success)
-    {
-        LOG(LogType::LOG_AUDIO, "ERROR setting transform to %d audiogameobject", goID);
-    }
-    else
-    {
-        //LOG(LogType::LOG_AUDIO, "SUCCES setting transform to %d audiogameobject", goID);
-    }
-}
-
-void AudioCore::SetAudioGameObjectPosition(AkGameObjectID goID, float posx, float posy, float posz)
-{
-    //SINCE OPENGL AND WWISE USE DIFFERENT POSITIVE X AND Z POSITIONS HERE WILL BE CHANGED HERE
-    AkSoundPosition tTransform;
-    tTransform.SetPosition({ -posx, posy, -posz });
-    tTransform.SetOrientation({ 0.0f, 0.0f, -1.0f }, { 0.0f, 1.0f, 0.0f });
-    if (AK::SoundEngine::SetPosition(goID, tTransform) != AK_Success)
-    {
-        LOG(LogType::LOG_AUDIO, "ERROR setting position to %d audiogameobject", goID);
-    }
-    else
-    {
-        LOG(LogType::LOG_AUDIO, "SUCCES setting position to %d audiogameobject: x: %f, y: %f, z: %f", goID, posx, posy, posz);
-    }
-}
-
 
 void AudioCore::EventCallBack(AkCallbackType in_eType, AkCallbackInfo* in_pCallbackInfo)
 {

@@ -348,7 +348,11 @@ bool Gui::CleanUp()
 	ImGui::DestroyContext();
 	ImPlot::DestroyContext();
 
-	// hekbas check cleanup
+	for (const auto& panel : panels)
+	{
+		if (panel->GetState())
+			panel->CleanUp();
+	}
 
 	return ret;
 }

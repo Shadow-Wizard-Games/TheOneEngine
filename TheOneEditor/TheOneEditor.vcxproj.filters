@@ -67,6 +67,12 @@
     <ClCompile Include="PanelBuild.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
+    <ClCompile Include="InspectorParticleSystems.cpp">
+      <Filter>Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefab.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Panel.h">
@@ -129,6 +135,12 @@
     <ClInclude Include="PanelBuild.h">
       <Filter>Panels</Filter>
     </ClInclude>
+    <ClInclude Include="InspectorParticleSystems.h">
+      <Filter>Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefab.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Panels">
@@ -148,6 +160,9 @@
     </Filter>
     <Filter Include="Timer">
       <UniqueIdentifier>{b74f5a04-4e4d-412c-a6db-646ebed46523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prefabs">
+      <UniqueIdentifier>{1a9d3e06-e270-46e4-a017-06bc447348e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

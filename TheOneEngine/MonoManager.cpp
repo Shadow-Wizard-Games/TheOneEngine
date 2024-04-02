@@ -140,7 +140,12 @@ void MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::str
 
     if (method == nullptr)
     {
-        LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall);
+        for (auto checkFunction : functionsToIgnore)
+        {
+            if (functionToCall == checkFunction) return;
+        }
+
+        LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall.c_str());
         return;
     }
 
@@ -190,6 +195,31 @@ bool MonoManager::IsClassInMainAssembly(const char* className)
     if (cSharpClass != nullptr) { return true; }
 
     return false;
+}
+
+void MonoManager::RenderShapesQueue()
+{
+    for (auto shape : debugShapesQueue)
+    {
+        glPushMatrix();
+
+        glTranslatef(shape.center.x, shape.center.y, shape.center.z);
+
+        glColor3f(shape.color.r, shape.color.g, shape.color.b);
+
+        glBegin(GL_LINE_LOOP);
+
+        for (auto point : shape.points)
+        {
+            glVertex3f(point.x, point.y, point.z);
+        }
+
+        glEnd();
+
+        glPopMatrix();
+    }
+
+    debugShapesQueue.clear();
 }
 
 char* MonoManager::ReadBytes(const std::string& filepath, uint32_t* outSize)

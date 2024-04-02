@@ -13,7 +13,13 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CLICK = 1584507803U;
+        static const AkUniqueID COMBAT = 2764240573U;
+        static const AkUniqueID ENEMYATTACK = 2144693767U;
+        static const AkUniqueID EXPLORE = 579523862U;
         static const AkUniqueID GUNSHOT = 1287408361U;
+        static const AkUniqueID HOVER = 3753593413U;
+        static const AkUniqueID MAINMENU = 3604647259U;
         static const AkUniqueID MUSIC1 = 1730564819U;
         static const AkUniqueID MUSIC2 = 1730564816U;
         static const AkUniqueID SPATIAL1 = 2134552412U;

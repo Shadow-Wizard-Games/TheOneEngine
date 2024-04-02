@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "Camera.h"
 
 #include "Log.h"
 
@@ -54,7 +55,7 @@ Mesh::~Mesh()
 
 
 // Draw
-void Mesh::DrawComponent()
+void Mesh::DrawComponent(Camera* camera)
 {
     glLineWidth(1);
     glColor4ub(255, 255, 255, 255); 
