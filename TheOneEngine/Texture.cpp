@@ -9,9 +9,9 @@
 #define CHECKERS_HEIGHT 32
 #define CHECKERS_WIDTH 32
 
-Texture::Texture(const std::string& newPath, bool isDDS)
+Texture::Texture(const std::string& newPath)
 {
-    if (isDDS)
+    if (newPath.ends_with(".dds") || newPath.ends_with(".DDS"))
         InitDDS(newPath);
     else
         Init(newPath);
@@ -22,6 +22,11 @@ Texture::~Texture()
     if (textureID != uint32_t(-1)) {
         glDeleteTextures(1, &textureID);
     }
+}
+
+void Texture::Bind()
+{
+    glBindTexture(GL_TEXTURE_2D, textureID);
 }
 
 bool Texture::Init(const std::string& path)
@@ -352,9 +357,13 @@ void Texture::raw_to_dds_file(const char* filename, const unsigned char* pData, 
     /*if ((width % 4) || (height % 4))
         return;*/
 
-    FILE* f = fopen(filename, "wb");
-    if (!f)
+    FILE* f; 
+    errno_t err;
+    if((err = fopen_s(&f, filename, "wb")) != 0) 
+    {
+        LOG(LogType::LOG_ERROR, "Cannot open file '%s': %s", filename, strerror(err));
         return;
+    }
 
     char filecode[5] = "DDS ";
     fwrite(filecode, 4, 1, f);

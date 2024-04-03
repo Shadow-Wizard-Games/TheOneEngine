@@ -21,8 +21,6 @@
     <ClInclude Include="CollisionSolver.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="Cube.h" />
-    <ClInclude Include="CubeImmediateMode.h" />
     <ClInclude Include="DebugShape.h" />
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Framebuffer.h" />
@@ -77,8 +75,6 @@
     <ClCompile Include="CollisionSolver.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="CubeImmediateMode.cpp" />
     <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="GameObject.cpp" />

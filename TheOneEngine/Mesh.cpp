@@ -124,7 +124,7 @@ void Mesh::ConfigureVertexFormat()
 
     case Formats::F_V3T2:
         glEnable(GL_TEXTURE_2D);
-        if (mesh.texture.get() && !drawChecker) mesh.texture->bind();
+        if (mesh.texture.get() && !drawChecker) mesh.texture->Bind();
         //else mesh.checkboard.get()->bind();
 
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);

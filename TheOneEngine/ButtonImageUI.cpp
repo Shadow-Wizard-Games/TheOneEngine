@@ -71,7 +71,7 @@ void ButtonImageUI::Draw2D()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	image.get()->bind();
+	image.get()->Bind();
 
 	glBegin(GL_QUADS);
 
@@ -177,58 +177,58 @@ void ButtonImageUI::LoadUIElement(const json& UIElementJSON)
 Rect2D ButtonImageUI::GetSectIdle() const
 {
 	Rect2D imageSect;
-	imageSect.x = imageIdleSection.x * image.get()->width;
-	imageSect.y = imageIdleSection.y * image.get()->height;
-	imageSect.w = (imageIdleSection.w * image.get()->width);
-	imageSect.h = (imageIdleSection.h * image.get()->height);
+	imageSect.x = imageIdleSection.x * image.get()->GetSize().x;
+	imageSect.y = imageIdleSection.y * image.get()->GetSize().y;
+	imageSect.w = (imageIdleSection.w * image.get()->GetSize().x);
+	imageSect.h = (imageIdleSection.h * image.get()->GetSize().y);
 
 	return imageSect;
 }
 
 void ButtonImageUI::SetSectSizeIdle(float x, float y, float width, float height)
 {
-	imageIdleSection.x = x / image.get()->width;
-	imageIdleSection.y = y / image.get()->height;
-	imageIdleSection.w = (width) / image.get()->width;
-	imageIdleSection.h = (height) / image.get()->height;
+	imageIdleSection.x = x / image.get()->GetSize().x;
+	imageIdleSection.y = y / image.get()->GetSize().y;
+	imageIdleSection.w = (width) / image.get()->GetSize().x;
+	imageIdleSection.h = (height) / image.get()->GetSize().y;
 }
 
 Rect2D ButtonImageUI::GetSectHovered() const
 {
 	Rect2D imageSect;
-	imageSect.x = imageHoveredSection.x * image.get()->width;
-	imageSect.y = imageHoveredSection.y * image.get()->height;
-	imageSect.w = (imageHoveredSection.w * image.get()->width);
-	imageSect.h = (imageHoveredSection.h * image.get()->height);
+	imageSect.x = imageHoveredSection.x * image.get()->GetSize().x;
+	imageSect.y = imageHoveredSection.y * image.get()->GetSize().y;
+	imageSect.w = (imageHoveredSection.w * image.get()->GetSize().x);
+	imageSect.h = (imageHoveredSection.h * image.get()->GetSize().y);
 
 	return imageSect;
 }
 
 void ButtonImageUI::SetSectSizeHovered(float x, float y, float width, float height)
 {
-	imageHoveredSection.x = x / image.get()->width;
-	imageHoveredSection.y = y / image.get()->height;
-	imageHoveredSection.w = (width) / image.get()->width;
-	imageHoveredSection.h = (height) / image.get()->height;
+	imageHoveredSection.x = x / image.get()->GetSize().x;
+	imageHoveredSection.y = y / image.get()->GetSize().y;
+	imageHoveredSection.w = (width) / image.get()->GetSize().x;
+	imageHoveredSection.h = (height) / image.get()->GetSize().y;
 }
 
 Rect2D ButtonImageUI::GetSectSelected() const
 {
 	Rect2D imageSect;
-	imageSect.x = imageSelectedSection.x * image.get()->width;
-	imageSect.y = imageSelectedSection.y * image.get()->height;
-	imageSect.w = (imageSelectedSection.w * image.get()->width);
-	imageSect.h = (imageSelectedSection.h * image.get()->height);
+	imageSect.x = imageSelectedSection.x * image.get()->GetSize().x;
+	imageSect.y = imageSelectedSection.y * image.get()->GetSize().y;
+	imageSect.w = (imageSelectedSection.w * image.get()->GetSize().x);
+	imageSect.h = (imageSelectedSection.h * image.get()->GetSize().y);
 
 	return imageSect;
 }
 
 void ButtonImageUI::SetSectSizeSelected(float x, float y, float width, float height)
 {
-	imageSelectedSection.x = x / image.get()->width;
-	imageSelectedSection.y = y / image.get()->height;
-	imageSelectedSection.w = (width) / image.get()->width;
-	imageSelectedSection.h = (height) / image.get()->height;
+	imageSelectedSection.x = x / image.get()->GetSize().x;
+	imageSelectedSection.y = y / image.get()->GetSize().y;
+	imageSelectedSection.w = (width) / image.get()->GetSize().x;
+	imageSelectedSection.h = (height) / image.get()->GetSize().y;
 }
 
 void ButtonImageUI::UpdateState()

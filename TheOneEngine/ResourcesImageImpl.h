@@ -15,7 +15,7 @@ inline ResourceId Resources::LoadFromLibrary<Texture>(const std::string& file)
 	ResourceId resourceId;
 
 	if (position == size) {
-		Texture* image = new Texture(file_path.string().c_str(), true);
+		Texture* image = new Texture(file_path.string().c_str());
 
 		PushResource(RES_IMAGE, file_path.string().c_str(), image, true);
 
@@ -37,7 +37,7 @@ inline ResourceId Resources::Load<Texture>(const std::string& file)
 	ResourceId resourceId;
 
 	if (position == size) {
-		Texture* image = new Texture(path.c_str(), false);
+		Texture* image = new Texture(path.c_str());
 
 		PushResource(RES_IMAGE, path.c_str(), image);
 

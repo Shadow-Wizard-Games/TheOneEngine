@@ -19,8 +19,10 @@ private:
 	bool InitDDS(const std::string& path);
 
 public:
-	Texture(const std::string& path, bool isDDS);
+	Texture(const std::string& path);
 	~Texture();
+
+	void Bind();
 
 	bool CreateCheckerTexture();
 

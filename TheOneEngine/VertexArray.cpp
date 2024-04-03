@@ -101,7 +101,6 @@ void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuf
 			}
 			break;
 		}
-		default:
 		}
 	}
 

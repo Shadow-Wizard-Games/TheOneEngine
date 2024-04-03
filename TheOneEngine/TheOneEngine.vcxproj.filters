@@ -105,12 +105,6 @@
     <ClInclude Include="Graphic.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="CubeImmediateMode.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Ray.h">
       <Filter>Math</Filter>
     </ClInclude>
@@ -259,12 +253,6 @@
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>GameObject\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeImmediateMode.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Ray.cpp">
       <Filter>Math</Filter>
