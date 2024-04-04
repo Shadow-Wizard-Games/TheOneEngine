@@ -1,0 +1,54 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2185337342
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 6619218,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 1241128633,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 4294967295,
+      "Static": false,
+      "UID": 6619218
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\NewUntitledScene.toe",
+  "sceneName": "NewUntitledScene"
+}

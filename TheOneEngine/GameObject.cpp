@@ -427,7 +427,12 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			{
 				this->AddComponent<Listener>();
 				this->GetComponent<Listener>()->LoadComponent(componentJSON);
-				this->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+
+				// Check if the gameobject has an Audio Source
+				if (this->GetComponent<Source>() == nullptr)
+					this->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+				else
+					this->GetComponent<Listener>()->goID = this->GetComponent<Source>()->goID;
 				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Listener>());
 				audioManager->audio->SetDefaultListener(this->GetComponent<Listener>()->goID);
 			}
@@ -435,7 +440,13 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			{
 				this->AddComponent<Source>();
 				this->GetComponent<Source>()->LoadComponent(componentJSON);
-				this->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+
+				// Check if the gameobject has a Listener
+				if (this->GetComponent<Listener>() == nullptr)
+					this->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+				else
+					this->GetComponent<Source>()->goID = this->GetComponent<Listener>()->goID;
+
 				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Source>());
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Collider2D)
