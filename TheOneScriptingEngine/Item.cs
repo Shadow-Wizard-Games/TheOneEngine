@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-public class Item
+public abstract class Item
 {
     public enum ItemType
     {
+        UNKNOWN = 0,
         CONSUMABLE,
-        ABILITY,
-        JUNK,
-        // maybe add/remove things...?
+        SHIELD,
+        GREN_LAUNCHER,
+        AD_RUSH,
+        FLAMETHROWER,
+        QUEST_ITEM
     }
 
     public string name { get; }
     public string description { get; }
+    public int price { get; }
     public ItemType type { get; }
+    public string texturePath { get; }
 
-    // maybe a reference to the item icon texture?
-
-    Item(string name, string description, ItemType type)
-    {
-        this.name = name;
-        this.description = description;
-        this.type = type;
-    }
-
-    
-
-
+    public abstract void ApplyEffect(IGameObject player);
 }
