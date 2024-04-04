@@ -1,6 +1,6 @@
 #pragma once
 #include "AudioComponent.h"
-#include "Source.h"
+#include "AudioSource.h"
 
 #include "..\TheOneAudio\AudioCore.h"
 
@@ -12,16 +12,18 @@ public:
 	bool Update(double dt);
 	bool CleanUp();
 
-	void PlayAudio(Source* source, AkUniqueID event);
-	void StopAudio(Source* source, AkUniqueID event);
-	void PauseAudio(Source* source, AkUniqueID event);
-	void ResumeAudio(Source* source, AkUniqueID event);
+public:
+	void PlayAudio(AudioSource* source, AkUniqueID event);
+	void StopAudio(AudioSource* source, AkUniqueID event);
+	void PauseAudio(AudioSource* source, AkUniqueID event);
+	void ResumeAudio(AudioSource* source, AkUniqueID event);
 
-	AudioCore* audio = nullptr;
+	void FadeAudio(AudioSource* source, AkUniqueID event1, AkUniqueID event2);
 
 	void AddAudioObject(std::shared_ptr<AudioComponent> audioGO);
 	void DeleteAudioComponents();
 
+	AudioCore* audio = nullptr;
 private:
 	std::vector<std::shared_ptr<AudioComponent>> audioComponents;
 };

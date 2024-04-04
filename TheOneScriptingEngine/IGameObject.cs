@@ -9,7 +9,7 @@ public class IGameObject
     public string name;
     public bool isActive;
     public ITransform transform;
-    public ISource source;
+    public IAudioSource source;
 
     public IGameObject()
     {
@@ -17,7 +17,7 @@ public class IGameObject
 
         transform = new ITransform(containerGOptr);
 
-        source = new ISource(containerGOptr);
+        source = new IAudioSource(containerGOptr);
     }
 
     public void Destroy()

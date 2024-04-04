@@ -2,9 +2,9 @@
 using System.Runtime.CompilerServices;
 using static AudioManager;
 
-public class ISource : IComponent
+public class IAudioSource : IComponent
 {
-    public ISource(IntPtr GOptr) : base(GOptr) { }
+    public IAudioSource(IntPtr GOptr) : base(GOptr) { }
 
     public void PlayAudio(EventIDs audio)
     {

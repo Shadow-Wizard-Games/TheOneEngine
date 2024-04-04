@@ -1,10 +1,10 @@
-#include "Source.h"
+#include "AudioSource.h"
 #include "EngineCore.h"
 #include "AudioManager.h"
 
 #include "..\TheOneEditor\App.h"
 
-Source::Source(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Source) /*, path(""), volume(0.5)*/
+AudioSource::AudioSource(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::AudioSource) /*, path(""), volume(0.5)*/
 {	
 	this->GO = containerGO;
 	SetTransform(containerGO);
@@ -12,15 +12,15 @@ Source::Source(std::shared_ptr<GameObject> containerGO) : Component(containerGO,
 	//am->AddAudioObject(std::shared_ptr<AudioComponent>(this));
 }
 
-Source::Source(std::shared_ptr<GameObject> containerGO, Source* ref) : Component(containerGO, ComponentType::Source) /*, path(ref->path), volume(ref->volume)*/
+AudioSource::AudioSource(std::shared_ptr<GameObject> containerGO, AudioSource* ref) : Component(containerGO, ComponentType::AudioSource) /*, path(ref->path), volume(ref->volume)*/
 {
 }
 
-Source::~Source()
+AudioSource::~AudioSource()
 {
 }
 
-void Source::SetTransform(std::shared_ptr<GameObject> containerGO)
+void AudioSource::SetTransform(std::shared_ptr<GameObject> containerGO)
 {
 	AkSoundPosition tTransform;
 	AkVector pos;
@@ -44,13 +44,13 @@ void Source::SetTransform(std::shared_ptr<GameObject> containerGO)
 
 	if (AK::SoundEngine::SetPosition(goID, tTransform) != AK_Success)
 	{
-		// I should put this function and rotation in virtual to change logs in Listener and Source
+		// I should put this function and rotation in virtual to change logs in Listener and AudioSource
 		LOG(LogType::LOG_AUDIO, "ERROR setting transform to AudioSource: %s", containerGO->GetName());
 	}
 }
 
 // JULS: TODO -> SaveComponent and LoadComponent AudioSource
-json Source::SaveComponent()
+json AudioSource::SaveComponent()
 {
 	json sourceJSON;
 
@@ -63,7 +63,7 @@ json Source::SaveComponent()
 	return sourceJSON;
 }
 
-void Source::LoadComponent(const json& sourceJSON)
+void AudioSource::LoadComponent(const json& sourceJSON)
 {
 	if (sourceJSON.contains("Name"))
 	{

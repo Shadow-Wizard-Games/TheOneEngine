@@ -5,7 +5,7 @@
 #include "Texture.h"
 #include "Collider2D.h"
 #include "Listener.h"
-#include "Source.h"
+#include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "UIDGen.h"
@@ -429,25 +429,25 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 				this->GetComponent<Listener>()->LoadComponent(componentJSON);
 
 				// Check if the gameobject has an Audio Source
-				if (this->GetComponent<Source>() == nullptr)
+				if (this->GetComponent<AudioSource>() == nullptr)
 					this->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
 				else
-					this->GetComponent<Listener>()->goID = this->GetComponent<Source>()->goID;
+					this->GetComponent<Listener>()->goID = this->GetComponent<AudioSource>()->goID;
 				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Listener>());
 				audioManager->audio->SetDefaultListener(this->GetComponent<Listener>()->goID);
 			}
-			else if (componentJSON["Type"] == (int)ComponentType::Source)
+			else if (componentJSON["Type"] == (int)ComponentType::AudioSource)
 			{
-				this->AddComponent<Source>();
-				this->GetComponent<Source>()->LoadComponent(componentJSON);
+				this->AddComponent<AudioSource>();
+				this->GetComponent<AudioSource>()->LoadComponent(componentJSON);
 
 				// Check if the gameobject has a Listener
 				if (this->GetComponent<Listener>() == nullptr)
-					this->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+					this->GetComponent<AudioSource>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
 				else
-					this->GetComponent<Source>()->goID = this->GetComponent<Listener>()->goID;
+					this->GetComponent<AudioSource>()->goID = this->GetComponent<Listener>()->goID;
 
-				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Source>());
+				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<AudioSource>());
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Collider2D)
 			{

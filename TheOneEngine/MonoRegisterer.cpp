@@ -303,14 +303,14 @@ static void ReplayPS(GameObject* GOptr)
 static void StopSource(GameObject* GOptr, uint audio) {
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
-	audioManager->StopAudio(GOptr->GetComponent<Source>(), audio);
+	audioManager->StopAudio(GOptr->GetComponent<AudioSource>(), audio);
 }
 
 // Audio
 static void PlaySource(GameObject* GOptr, uint audio) {
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
-	audioManager->PlayAudio(GOptr->GetComponent<Source>(), audio);
+	audioManager->PlayAudio(GOptr->GetComponent<AudioSource>(), audio);
 }
 
 void MonoRegisterer::RegisterFunctions()
