@@ -57,6 +57,9 @@
     <Compile Include="IParticleSystem.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
+    <Compile Include="Item_GrenadeLauncher.cs" />
+    <Compile Include="Item_Healing.cs" />
+    <Compile Include="Item_Shield.cs" />
     <Compile Include="PauseMenuManager.cs" />
     <Compile Include="SceneManager.cs" />
     <Compile Include="ITransform.cs" />

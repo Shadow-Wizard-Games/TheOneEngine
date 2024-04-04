@@ -11,7 +11,7 @@ public abstract class Item
         GREN_LAUNCHER,
         AD_RUSH,
         FLAMETHROWER,
-        QUEST_ITEM
+        QUEST_ITEM,
     }
 
     public string name { get; }
