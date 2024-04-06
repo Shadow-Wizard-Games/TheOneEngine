@@ -14,6 +14,7 @@ public abstract class Item
         QUEST_ITEM,
     }
 
+    public int id { get; }
     public string name { get; }
     public string description { get; }
     public int price { get; }

@@ -5,15 +5,15 @@ using static Item;
 
 public class ItemManager : MonoBehaviour
 {
-    Dictionary<uint, Item> itemData; // id, Item
-    Dictionary<uint, uint> inventory; // id, quantity
-    Dictionary<uint, Item> equipped; // slot (1 ~ 4), Item
-    IGameObject player;
+    private Dictionary<uint, Item> itemData; // id, Item
+    public Dictionary<uint, uint> inventory; // id, quantity
+    public Dictionary<uint, Item> equipped; // slot (1 ~ 6), Item
+    private IGameObject player;
 
     public override void Start()
     {
         player = IGameObject.Find("Player");
-        InitData();
+        LoadData();
     }
 
     public override void Update()
@@ -21,90 +21,98 @@ public class ItemManager : MonoBehaviour
 
     }
 
-    void InitData()
+    public void AddItem(uint id, uint quantity)
     {
-
-        // Specify the path to the CSV file
-        string filePath = @"C:\path\to\your\file.csv";
-
-        try
+        if (CheckItemInItemData(id))
         {
-            // Check if the file exists
-            if (File.Exists(filePath))
+            if (CheckItemInInventory(id))
             {
-                // Read all lines from the CSV file
-                string[] lines = File.ReadAllLines(filePath);
-
-                // Process each line
-                foreach (string line in lines)
-                {
-                    // Split the line by comma
-                    string[] values = line.Split(',');
-
-                    // Output the values
-                    foreach (string value in values)
-                    {
-                        Console.Write(value + "\t"); // Use \t for tab separation
-                    }
-                    Console.WriteLine(); // Move to the next line
-                }
+                inventory[id] += quantity;
             }
             else
             {
-                Console.WriteLine("File not found: " + filePath);
+                inventory.Add(id, quantity);
             }
         }
-        catch (Exception e)
+        else
         {
-            Console.WriteLine("An error occurred: " + e.Message);
+            Debug.Log("Item id: '" + id + "' has not been found in Item Data.");
         }
     }
 
-    public void AddItemToInventory(uint id, uint quantity)
+    public void EquipItem(uint id)
     {
+        if (CheckItemInInventory(id))
+        {
+            if (equipped.ContainsValue(itemData[id]))
+            {
+                Debug.Log("Item id: '" + id + "' is already equipped.");
+                return;
+            }
 
+            for (uint slot = 1; slot <= 6; slot++)
+            {
+                if (!equipped.ContainsKey(slot))
+                {
+                    equipped.Add(slot, itemData[id]);
+                    Debug.Log("Item id: '" + id + "' equipped to slot " + slot + ".");
+                    return;
+                }
+            }
+
+            Debug.Log("No available slots to equip item id: '" + id + "'.");
+        }
+        else
+        {
+            Debug.Log("Item id: '" + id + "' has not been found in Inventory.");
+        }
     }
 
-    public void UseItem(uint id)
+    public void UnequipItem(uint id)
     {
-
-
-    }
-
-    public void EquipItem(uint id, uint slot)
-    {
-
-    }
-
-    public void ThrowItem(uint id)
-    {
-
+        if (CheckItemInEquipped(id))
+        {
+            foreach (var kvp in equipped)
+            {
+                if (kvp.Value.id == id)
+                {
+                    equipped.Remove(kvp.Key);
+                    Debug.Log("Item id: '" + id + "' unequipped from slot " + kvp.Key + ".");
+               
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Item id: '" + id + "' not found in Equipped.");
+        }
     }
 
     // Private functions, to check certain things in the ItemManager
-    private bool CheckItemAvailability(uint id)
+    private bool CheckItemInInventory(uint id)
     {
         return inventory.ContainsKey(id) && inventory[id] > 0;
     }
 
-    private Item CheckItemInItemData(uint id)
+    private bool CheckItemInEquipped(uint id)
     {
-        Item item;
-        if (itemData.TryGetValue(id, out item)) return item;
-
-        return null;
+        foreach (var item in equipped.Values)
+        {
+            if (item.id == id)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void AddToEquipment(uint slot, Dictionary<uint, Item> equipmentSet, Item itemToEquip)
+    private bool CheckItemInItemData(uint id)
     {
-        if (equipmentSet.ContainsKey(slot))
-        {
-            equipmentSet[slot] = itemToEquip;
-        }
-        else
-        {
-            equipmentSet.Add(slot, itemToEquip);
-        }
+        Item item;
+        if (itemData.TryGetValue(id, out item)) return true;
+
+        return false;
     }
 
     private void SaveData()
@@ -112,6 +120,8 @@ public class ItemManager : MonoBehaviour
 
     }
 
-    private void LoadData() { }
+    private void LoadData()
+    {
 
+    }
 }
