@@ -5,14 +5,16 @@ using static Item;
 
 public class ItemManager : MonoBehaviour
 {
-    private Dictionary<uint, Item> itemData; // id, Item
-    public Dictionary<uint, uint> inventory; // id, quantity
-    public Dictionary<uint, Item> equipped; // slot (1 ~ 6), Item
+    private Dictionary<uint, Item> itemData = new Dictionary<uint, Item>(); // id, Item
+    public Dictionary<uint, uint> inventory = new Dictionary<uint, uint>(); // id, quantity
+    public Dictionary<uint, Item> equipped = new Dictionary<uint, Item>(); // slot (1 ~ 6), Item
+    public bool hasInitial = false;
 
     public override void Start()
     {
         //LoadData();
-        itemData.Add(1, new Item_Healing(false));
+        itemData.Add(1, new Item_M4A1());
+        itemData.Add(2, new Item_Healing(false));
     }
 
     private void SaveData()
@@ -27,7 +29,15 @@ public class ItemManager : MonoBehaviour
 
     public override void Update()
     {
-
+        if (!hasInitial)
+        {
+            Debug.Log("No tiene arma xd");
+            if (CheckItemInInventory(1))
+            {
+                Debug.Log("Ahora zí jeje");
+                hasInitial = true;
+            }
+        }
     }
 
     public void AddItem(uint id, uint quantity)
