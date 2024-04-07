@@ -5,9 +5,9 @@ using static Item;
 
 public class ItemManager : MonoBehaviour
 {
-    private Dictionary<uint, Item> itemData; // id, Item
-    public Dictionary<uint, uint> inventory; // id, quantity
-    public Dictionary<uint, Item> equipped; // slot (1 ~ 6), Item
+    private Dictionary<uint, Item> itemData = new Dictionary<uint, Item>(); // id, Item
+    public Dictionary<uint, uint> inventory = new Dictionary<uint, uint>(); // id, quantity
+    public Dictionary<uint, Item> equipped = new Dictionary<uint, Item>(); // slot (1 ~ 6), Item
 
     public override void Start()
     {
