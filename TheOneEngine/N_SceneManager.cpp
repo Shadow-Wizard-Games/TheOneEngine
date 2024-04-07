@@ -53,6 +53,7 @@ bool N_SceneManager::PreUpdate()
 	if (sceneChange)
 	{
 		// Kiko - Here add the transition managing
+		engine->collisionSolver->goWithCollision.clear();
 
 		LoadSceneFromJSON(currentScene->GetPath());
 
