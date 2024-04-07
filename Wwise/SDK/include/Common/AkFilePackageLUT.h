@@ -105,7 +105,7 @@ public:
 
     // Return the id of an external file (by hashing its name in 64 bits)
 	AkUInt64 GetExternalID( 
-		const AkOSChar*			in_pszExternalName		// External Source name.
+		const AkOSChar*			in_pszExternalName		// External AudioSource name.
 		);	
 
 protected:

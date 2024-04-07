@@ -37,5 +37,7 @@ bool PanelBuild::Draw()
 		}
 	}
 
+	ImGui::PopStyleVar(1);
+
 	return true;
 }
