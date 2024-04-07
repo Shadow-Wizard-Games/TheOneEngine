@@ -18,7 +18,7 @@ public abstract class Item
     public string name { get; }
     public string description { get; }
     public int price { get; }
-    public ItemType type { get; }
+    public ItemType type { get; protected set; }
     public string texturePath { get; }
 
     public abstract void ApplyEffect(IGameObject player);

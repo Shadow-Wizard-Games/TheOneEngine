@@ -10,32 +10,32 @@
             0.0,
             0.0,
             0.0,
-            1.0,
+            0.8858041167259216,
+            0.4640595018863678,
             0.0,
             0.0,
+            -0.4640595018863678,
+            0.8858041167259216,
             0.0,
             0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            17.940906524658203,
+            -39.25346374511719,
             1.0
           ],
           "Type": 0,
-          "UID": 1294650998
+          "UID": 3627278088
         },
         {
-          "Aspect": 1.777,
+          "Aspect": 1.7926828861236572,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
           "ParentUID": 3452816845,
           "Pitch": 0.0,
-          "PrimaryCamera": false,
+          "PrimaryCamera": true,
           "Size": 5.0,
           "Type": 1,
-          "UID": 2521277258,
+          "UID": 985343678,
           "Yaw": 0.0,
           "zFar": 1000.0,
           "zNear": 0.1
@@ -52,25 +52,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            25.0,
+            1.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            25.0,
+            1.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            25.0,
+            1.0,
             0.0,
-            85.59581756591797,
-            12.5,
-            18.05144691467285,
+            0.0,
+            15.916743278503418,
+            -5.652884483337402,
             1.0
           ],
           "Type": 0,
-          "UID": 1316852607
+          "UID": 833789532
         },
         {
           "Active": true,
@@ -84,38 +84,18 @@
           "ParentUID": 3452816845,
           "Path": "Library/Meshes/SM_Cube/pCube1.mesh",
           "Type": 2,
-          "UID": 645692015
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 0,
-          "CornerPivot": true,
-          "Height": 1.0,
-          "Name": "Specified Type was not found",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 20.0,
-          "Type": 5,
-          "UID": 2931993319,
-          "Width": 1.0
-        },
-        {
-          "AudioID": 0,
-          "Name": "Source",
-          "Type": 8
+          "UID": 3604157566
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
-          "ScriptName": "PlayerScript",
+          "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 1350667336
+          "UID": 170030395
         }
       ],
       "Enabled": true,
-      "Name": "player",
+      "Name": "Manager",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -125,25 +105,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            10.0,
+            -0.9999999999999958,
+            8.742278000372439e-08,
+            7.642742463579653e-15,
+            0.0,
+            8.742278000372473e-08,
+            0.9999999999999923,
+            8.742278000372439e-08,
+            0.0,
+            0.0,
+            8.742278000372473e-08,
+            -0.9999999999999958,
             0.0,
             0.0,
             0.0,
-            0.0,
-            10.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            10.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            13.135908126831055,
             1.0
           ],
           "Type": 0,
-          "UID": 1445859622
+          "UID": 3131409220
         },
         {
           "Active": true,
@@ -155,28 +135,20 @@
           "DrawWireframe": false,
           "Name": "Mesh",
           "ParentUID": 3452816845,
-          "Path": "Library/Meshes/Cube_Corner_Pivot/pCube1.mesh",
+          "Path": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
           "Type": 2,
-          "UID": 3563105917
+          "UID": 208732001
         },
         {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Specified Type was not found",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
+          "Name": "Script",
           "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1000216998,
-          "Width": 50.0
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 4224174755
         }
       ],
       "Enabled": true,
-      "Name": "pCube1",
+      "Name": "Player",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845

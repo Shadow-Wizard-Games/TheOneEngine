@@ -1,11 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
 	float speed = 40.0f;	
 	bool lastFrameToMove = false;
+	bool hasWeapon = false;
+	ItemManager itemManager;
+	IGameObject iManagerGO;
 
-	public override void Update()
+    public override void Start()
+    {
+		iManagerGO = IGameObject.Find("Manager");
+		itemManager = iManagerGO.GetComponent<ItemManager>();
+    }
+
+    public override void Update()
 	{
 		bool toMove = false;
 		Vector3 movement = Vector3.zero;
@@ -13,7 +23,11 @@ public class PlayerScript : MonoBehaviour
 		//Keyboard
 
 		if (Input.GetKeyboardButton(Input.KeyboardCode.K)) {
-			SceneManager.LoadScene("Scene");
+			if (itemManager != null)
+			{
+				itemManager.AddItem(1,1);
+			}
+			
 		}
 
 		if (Input.GetKeyboardButton(Input.KeyboardCode.W))

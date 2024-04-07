@@ -8,12 +8,21 @@ public class ItemManager : MonoBehaviour
     private Dictionary<uint, Item> itemData; // id, Item
     public Dictionary<uint, uint> inventory; // id, quantity
     public Dictionary<uint, Item> equipped; // slot (1 ~ 6), Item
-    private IGameObject player;
 
     public override void Start()
     {
-        player = IGameObject.Find("Player");
-        LoadData();
+        //LoadData();
+        itemData.Add(1, new Item_Healing(false));
+    }
+
+    private void SaveData()
+    {
+
+    }
+
+    private void LoadData()
+    {
+
     }
 
     public override void Update()
@@ -113,15 +122,5 @@ public class ItemManager : MonoBehaviour
         if (itemData.TryGetValue(id, out item)) return true;
 
         return false;
-    }
-
-    private void SaveData()
-    {
-
-    }
-
-    private void LoadData()
-    {
-
     }
 }
