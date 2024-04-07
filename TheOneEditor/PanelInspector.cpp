@@ -27,10 +27,15 @@
 #include "imgui.h"
 #include "imgui_internal.h"
 
+#include <fstream>
+
+namespace fs = std::filesystem;
+
 PanelInspector::PanelInspector(PanelType type, std::string name) : Panel(type, name)
 {
     matrixDirty = false;
     chooseScriptNameWindow = false;
+    chooseParticlesToImportWindow = false;
     view_pos = { 0, 0, 0 };
     view_rot_rad = { 0, 0, 0 };
     view_rot_deg = { 0, 0, 0 };
@@ -503,10 +508,31 @@ bool PanelInspector::Draw()
                     particleSystem->Replay();
                 }
 
-                for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter) {
-                    UIEmmiterWriteNode((*emmiter).get());
+                if (ImGui::Button("Export")) {
+                    particleSystem->ExportParticles();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Import")) {
+                    chooseParticlesToImportWindow = true;
                 }
 
+                // change name
+                particleSystem->GetNameToEdit()->resize(20);
+                ImGui::InputText("Name", (char*)particleSystem->GetNameToEdit()->c_str(), 20);
+
+                int emmiterID = 0;
+                for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter) {
+                    ImGui::PushID(emmiterID);
+                    ImGui::Text("Emmiter %d", emmiterID);
+                    // delete emmiter
+                    UIEmmiterWriteNode((*emmiter).get());
+                    emmiterID++;
+                }
+                
+                // add emmiter
+                if (ImGui::Button("Add Emmiter")) {
+                    particleSystem->AddEmmiter();
+                }
 
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
                 if (ImGui::Button("Remove Particle System"))
@@ -957,6 +983,7 @@ bool PanelInspector::Draw()
             //}
         }
         if(chooseScriptNameWindow) ChooseScriptNameWindow();
+        else if (chooseParticlesToImportWindow) ChooseParticlesToImportWindow();
 
         ImGui::End();
 	}	
@@ -988,6 +1015,63 @@ void PanelInspector::ChooseScriptNameWindow()
         }
 
         chooseScriptNameWindow = false;
+    }
+
+    ImGui::End();
+}
+
+void PanelInspector::ChooseParticlesToImportWindow()
+{
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
+    ImGui::Begin("Particles name", &chooseParticlesToImportWindow);
+
+    static char nameRecipient[32];
+
+    ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+
+    std::string nameFile = nameRecipient;
+
+    nameFile = nameFile + ".particles";
+
+    fs::path assetsDir = fs::path(ASSETS_PATH) / "Particles" / nameFile;
+
+    if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
+    {
+        //std::string className = "ActualScriptTest2";
+        if (std::filesystem::exists(assetsDir))
+        {
+            // Read the scene JSON from the file
+            std::ifstream file(assetsDir);
+            if (!file.is_open())
+            {
+                LOG(LogType::LOG_ERROR, "Failed to open scene file: {}", assetsDir);
+                return;
+            }
+
+            json particlesJSON;
+
+            try
+            {
+                file >> particlesJSON;
+            }
+            catch (const json::parse_error& e)
+            {
+                LOG(LogType::LOG_ERROR, "Failed to parse scene JSON: {}", e.what());
+                return;
+            }
+
+            // Close the file
+            file.close();
+
+            selectedGO->GetComponent<ParticleSystem>()->LoadComponent(particlesJSON);
+            ImGui::CloseCurrentPopup();
+        }
+        else
+        {
+            LOG(LogType::LOG_WARNING, "Could not find file '%s'", nameFile);
+        }
+
+        chooseParticlesToImportWindow = false;
     }
 
     ImGui::End();

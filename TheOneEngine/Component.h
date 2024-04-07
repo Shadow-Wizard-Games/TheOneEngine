@@ -38,6 +38,7 @@ public:
     virtual void Update() {};
 
     std::string GetName();
+    std::string* GetNameToEdit();
     void CreateNameFromType(ComponentType type);
 
     ComponentType GetType() const;

@@ -19,7 +19,7 @@ Emmiter::Emmiter(ParticleSystem* owner)
 
 	renderModule = std::make_unique<BillboardRender>(this);
 
-	auto setSpeed = std::make_unique<SetSpeed>();
+	auto setSpeed = std::make_unique<SetSpeed>(this);
 	setSpeed->speed.usingSingleValue = false;
 	setSpeed->speed.rangeValue.lowerLimit = vec3{ -0.5, 1, -0.5 };
 	setSpeed->speed.rangeValue.upperLimit = vec3{ 0.5, 2, 0.5 };
@@ -46,7 +46,7 @@ Emmiter::Emmiter(ParticleSystem* owner, Emmiter* ref)
 
 	renderModule = std::make_unique<BillboardRender>(this);
 
-	auto setSpeed = std::make_unique<SetSpeed>();
+	auto setSpeed = std::make_unique<SetSpeed>(this);
 	setSpeed->speed.usingSingleValue = false;
 	setSpeed->speed.rangeValue.lowerLimit = vec3{ -0.5, 1, -0.5 };
 	setSpeed->speed.rangeValue.upperLimit = vec3{ 0.5, 2, 0.5 };
@@ -220,11 +220,15 @@ InitializeEmmiterModule* Emmiter::AddModule(InitializeEmmiterModule::InitializeE
 	switch (type)
 	{
 	case InitializeEmmiterModule::SET_SPEED:
-		initializeModules.push_back(std::move(std::make_unique<SetSpeed>()));
+		initializeModules.push_back(std::move(std::make_unique<SetSpeed>(this)));
 		newModule = initializeModules[initializeModules.size() - 1].get();
 		break;
 	case InitializeEmmiterModule::SET_COLOR:
-		initializeModules.push_back(std::move(std::make_unique<SetColor>()));
+		initializeModules.push_back(std::move(std::make_unique<SetColor>(this)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
+	case InitializeEmmiterModule::SET_SCALE:
+		initializeModules.push_back(std::move(std::make_unique<SetScale>(this)));
 		newModule = initializeModules[initializeModules.size() - 1].get();
 		break;
 	default:
@@ -238,7 +242,9 @@ UpdateEmmiterModule* Emmiter::AddModule(UpdateEmmiterModule::UpdateEmmiterModule
 	UpdateEmmiterModule* newModule = nullptr;
 	switch (type)
 	{
-	case UpdateEmmiterModule::CHANGE_COLOR:
+	case UpdateEmmiterModule::ACCELERATION:
+		updateModules.push_back(std::move(std::make_unique<AccelerationUpdate>(this)));
+		newModule = updateModules[updateModules.size() - 1].get();
 		break;
 	default:
 		break;

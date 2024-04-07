@@ -29,6 +29,8 @@ public:
 	json SaveComponent();
 	void LoadComponent(const json& transformJSON);
 
+	void ExportParticles();
+
 	bool IsON();
 
 	Transform* GetTransform();

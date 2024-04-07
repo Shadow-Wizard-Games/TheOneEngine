@@ -17,11 +17,26 @@ public:
 	virtual void LoadModule(const json& moduleJSON) { };
 
 	enum UpdateEmmiterModuleType {
-		CHANGE_COLOR
+		ACCELERATION
 	};
 
 	UpdateEmmiterModuleType type;
 
 protected:
 	Emmiter* owner;
+};
+
+// modules
+class AccelerationUpdate : public UpdateEmmiterModule {
+public:
+	AccelerationUpdate(Emmiter* owner);
+
+	vec3 acceleration;
+
+	void Update(double dt, Particle* particle) override;
+
+	json SaveModule();
+
+	void LoadModule(const json& moduleJSON);
+
 };

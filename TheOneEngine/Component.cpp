@@ -49,6 +49,11 @@ std::string Component::GetName()
 	return name;
 }
 
+std::string* Component::GetNameToEdit()
+{
+	return &name;
+}
+
 void Component::CreateNameFromType(ComponentType type)
 {
 	switch (type)

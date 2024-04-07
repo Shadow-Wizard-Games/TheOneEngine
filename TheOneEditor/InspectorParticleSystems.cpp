@@ -70,6 +70,9 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 		if (ImGui::MenuItem("Set Color"))
 			emmiter->AddModule(InitializeEmmiterModule::SET_COLOR);
 
+		if (ImGui::MenuItem("Set Scale"))
+			emmiter->AddModule(InitializeEmmiterModule::SET_SCALE);
+
 		ImGui::EndMenu();
 	}
 	ImGui::PopID();
@@ -98,6 +101,10 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 			UIInspectorEmmiterInitializeModule((SetColor*)(*m).get());
 			break;
 
+		case InitializeEmmiterModule::SET_SCALE:
+			UIInspectorEmmiterInitializeModule((SetScale*)(*m).get());
+			break;
+
 		default:
 			break;
 		}
@@ -116,6 +123,8 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 	ImGui::PushID("add_update_emmiter_window");
 	if (ImGui::BeginMenu("+"))
 	{
+		if (ImGui::MenuItem("Acceleration"))
+			emmiter->AddModule(UpdateEmmiterModule::ACCELERATION);
 
 		ImGui::EndMenu();
 	}
@@ -137,7 +146,8 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 		}
 
 		switch ((*m)->type) {
-		case UpdateEmmiterModule::CHANGE_COLOR:
+		case UpdateEmmiterModule::ACCELERATION:
+			UIInspectorEmmiterUpdateModule((AccelerationUpdate*)(*m).get());
 			break;
 
 		default:
@@ -280,9 +290,63 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 
 }
 
+void UIInspectorEmmiterInitializeModule(SetScale* initModule)
+{
+	ImGui::Text("Set Initial Scale: ");
+
+	ImGui::Checkbox("Single Value", &initModule->scale.usingSingleValue);
+
+	ImGui::PushItemWidth(60);
+
+	if (initModule->scale.usingSingleValue) {
+		ImGui::PushID("set_scale_single_PS");
+		ImGui::InputDouble("R", &initModule->scale.singleValue.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("G", &initModule->scale.singleValue.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("B", &initModule->scale.singleValue.z, 0, 0, "%.2f");
+		ImGui::PopID();
+	}
+	else {
+		ImGui::PushID("set_scale_min_PS");
+		ImGui::InputDouble("R", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("G", &initModule->scale.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("B", &initModule->scale.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+		ImGui::PopID();
+
+		ImGui::PushID("set_scale_max_PS");
+		ImGui::InputDouble("R", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("G", &initModule->scale.rangeValue.upperLimit.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("B", &initModule->scale.rangeValue.upperLimit.z, 0, 0, "%.2f");
+		ImGui::PopID();
+	}
+
+	ImGui::PopItemWidth();
+}
+
 
 // update modules --------------------------------------------------------------------------------------------------------------
-// void UIInspectorEmmiterUpdateModule(SetColor* updateModule) {}
+void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule)
+{
+	ImGui::Text("Acceleration: ");
+
+	ImGui::PushItemWidth(60);
+
+	ImGui::PushID("set_color_max_PS");
+	ImGui::InputDouble("R", &updateModule->acceleration.x, 0, 0, "%.2f");
+	ImGui::SameLine();
+	ImGui::InputDouble("G", &updateModule->acceleration.y, 0, 0, "%.2f");
+	ImGui::SameLine();
+	ImGui::InputDouble("B", &updateModule->acceleration.z, 0, 0, "%.2f");
+	ImGui::PopID();
+
+	ImGui::PopItemWidth();
+
+}
 
 
 

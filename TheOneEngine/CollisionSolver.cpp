@@ -9,8 +9,7 @@
 #include "SDL2/SDL.h"
 #include "GL/gl.h"
 
-
-CollisionSolver::CollisionSolver() 
+CollisionSolver::CollisionSolver()
 {
     drawCollisions = true;
 }
@@ -21,6 +20,12 @@ bool CollisionSolver::PreUpdate()
 {
     bool ret = true;
 
+    return ret;
+}
+
+bool CollisionSolver::Update(double dt)
+{
+    bool ret = true;
     //first, lets see the collider component still exists
     for (auto it = goWithCollision.begin(); it != goWithCollision.end(); )
     {
@@ -38,13 +43,6 @@ bool CollisionSolver::PreUpdate()
             ++it;
         }
     }
-
-    return ret;
-}
-
-bool CollisionSolver::Update(double dt)
-{
-    bool ret = true;
 
     //now lets check and solve collisions
     for (auto& item : goWithCollision)
@@ -239,13 +237,13 @@ void CollisionSolver::DrawCollisions()
                 float rotatedX2 = -width_ * cosAngle + height_ * sinAngle;
                 float rotatedZ2 = width_ * sinAngle + height_ * cosAngle;
                 float rotatedX3 = height_ * sinAngle;
-                float rotatedZ3 = height_ * cosAngle;            
+                float rotatedZ3 = height_ * cosAngle;
 
                 // Draw rectangle
-                glVertex3f(rotatedX1, 0.0f, rotatedZ1); 
-                glVertex3f(rotatedX2, 0.0f, rotatedZ2); 
-                glVertex3f(rotatedX3, 0.0f, rotatedZ3); 
-                glVertex3f(0.0f, 0.0f, 0.0f); 
+                glVertex3f(rotatedX1, 0.0f, rotatedZ1);
+                glVertex3f(rotatedX2, 0.0f, rotatedZ2);
+                glVertex3f(rotatedX3, 0.0f, rotatedZ3);
+                glVertex3f(0.0f, 0.0f, 0.0f);
             }
             else
             {
@@ -256,7 +254,7 @@ void CollisionSolver::DrawCollisions()
                 glVertex3f(halfW, 0.0f, -halfH);
                 glVertex3f(halfW, 0.0f, halfH);
                 glVertex3f(-halfW, 0.0f, halfH);
-            }          
+            }
         }
         else if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Circle) {
             // Dibujar círculo
@@ -415,8 +413,6 @@ void CollisionSolver::CirCirCollision(GameObject* objA, GameObject* objB)
     }
 }
 
-
-
 void CollisionSolver::CirRectCollision(GameObject* objA, GameObject* objB)
 {
     Transform* transformA = objA->GetComponent<Transform>();
@@ -424,7 +420,7 @@ void CollisionSolver::CirRectCollision(GameObject* objA, GameObject* objB)
 
     Transform* transformB = objB->GetComponent<Transform>();
     Collider2D* colliderB = objB->GetComponent<Collider2D>();
-    
+
     // Closest point on the rectangle to the circle center
     vec2 topLeft = { transformB->GetPosition().x - colliderB->w / 2, transformB->GetPosition().z - colliderB->h / 2 };
     vec2 botRight = { transformB->GetPosition().x + colliderB->w / 2, transformB->GetPosition().z + colliderB->h / 2 };
@@ -450,4 +446,3 @@ void CollisionSolver::CirRectCollision(GameObject* objA, GameObject* objB)
         transformA->SetPosition({ transformA->GetPosition().x + mtv.x, transformA->GetPosition().y, transformA->GetPosition().z + mtv.y });
     }
 }
-

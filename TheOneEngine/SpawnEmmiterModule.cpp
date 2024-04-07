@@ -34,6 +34,8 @@ json ConstantSpawnRate::SaveModule()
 
 	moduleJSON["Type"] = type;
 
+	moduleJSON["Duration"] = duration;
+
 	moduleJSON["SpawnRate"] = spawnRate;
 
 	return moduleJSON;
@@ -44,6 +46,11 @@ void ConstantSpawnRate::LoadModule(const json& moduleJSON)
 	if (moduleJSON.contains("Type"))
 	{
 		type = moduleJSON["Type"];
+	}
+
+	if (moduleJSON.contains("Duration"))
+	{
+		duration = moduleJSON["Duration"];
 	}
 
 	if (moduleJSON.contains("SpawnRate"))
@@ -80,6 +87,8 @@ json SingleBurstSpawn::SaveModule()
 
 	moduleJSON["Type"] = type;
 
+	moduleJSON["Duration"] = duration;
+
 	moduleJSON["Amount"] = amount;
 
 	return moduleJSON;
@@ -90,6 +99,11 @@ void SingleBurstSpawn::LoadModule(const json& moduleJSON)
 	if (moduleJSON.contains("Type"))
 	{
 		type = moduleJSON["Type"];
+	}
+
+	if (moduleJSON.contains("Duration"))
+	{
+		duration = moduleJSON["Duration"];
 	}
 
 	if (moduleJSON.contains("Amount"))
@@ -132,6 +146,8 @@ json ConstantBurstSpawn::SaveModule()
 
 	moduleJSON["Type"] = type;
 
+	moduleJSON["Duration"] = duration;
+
 	moduleJSON["SpawnRate"] = spawnRate;
 	moduleJSON["Amount"] = amount;
 
@@ -143,6 +159,11 @@ void ConstantBurstSpawn::LoadModule(const json& moduleJSON)
 	if (moduleJSON.contains("Type"))
 	{
 		type = moduleJSON["Type"];
+	}
+
+	if (moduleJSON.contains("Duration"))
+	{
+		duration = moduleJSON["Duration"];
 	}
 
 	if (moduleJSON.contains("SpawnRate"))

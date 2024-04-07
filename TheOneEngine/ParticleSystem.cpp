@@ -5,6 +5,9 @@
 #include <ostream>
 #include <istream>
 #include <fstream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 ParticleSystem::ParticleSystem(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::ParticleSystem)
 {
@@ -153,10 +156,40 @@ void ParticleSystem::LoadComponent(const json& transformJSON)
 		for (const auto& emmiterJSON : emmitersJSON)
 		{
 			auto e = AddEmmiter();
+			e->ClearModules();
 			e->LoadEmmiter(emmiterJSON);
 		}
 	}
 
+}
+
+void ParticleSystem::ExportParticles()
+{
+	//Change to save the Scene Class
+	name.shrink_to_fit();
+	std::string fileNameExt = name;
+
+	std::string finalName;
+
+	for (int i = 0; fileNameExt.at(i) != '\0'; ++i) {
+		finalName += fileNameExt.at(i);
+	}
+
+	name = finalName;
+
+	finalName.append(".particles");
+
+	fs::path filename = fs::path(ASSETS_PATH) / "Particles" / finalName;
+	//string filename = "Assets/Scenes/";
+	fs::path folderName = fs::path(ASSETS_PATH) / "Particles";
+	fs::create_directories(folderName);
+
+	json particlesJSON;
+
+	particlesJSON = SaveComponent();
+
+	std::ofstream(filename) << particlesJSON.dump(2);
+	LOG(LogType::LOG_OK, "SAVE SUCCESFUL");
 }
 
 bool ParticleSystem::IsON()

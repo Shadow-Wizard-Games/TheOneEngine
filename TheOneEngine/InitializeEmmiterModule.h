@@ -12,15 +12,14 @@ public:
 
 	virtual void Initialize(Particle* particle) {};
 
-	virtual const SingleOrRandom<vec3> getVector() { return SingleOrRandom<vec3>(); };
-
 	virtual json SaveModule() { return json(); };
 
 	virtual void LoadModule(const json& moduleJSON) { };
 
 	enum InitializeEmmiterModuleType {
 		SET_SPEED,
-		SET_COLOR
+		SET_COLOR,
+		SET_SCALE
 	};
 
 	InitializeEmmiterModuleType type;
@@ -32,11 +31,7 @@ protected:
 
 class SetSpeed : public InitializeEmmiterModule {
 public:
-	SetSpeed();
-
-	const SingleOrRandom<vec3> getVector() {
-		return speed;
-	};
+	SetSpeed(Emmiter* owner);
 
 	void Initialize(Particle* particle);
 
@@ -49,11 +44,7 @@ public:
 
 class SetColor : public InitializeEmmiterModule {
 public:
-	SetColor();
-
-	const SingleOrRandom<vec3> getVector() {
-		return color;
-	};
+	SetColor(Emmiter* owner);
 
 	void Initialize(Particle* particle);
 
@@ -62,4 +53,17 @@ public:
 	void LoadModule(const json& moduleJSON);
 
 	SingleOrRandom<vec3> color;
+};
+
+class SetScale : public InitializeEmmiterModule {
+public:
+	SetScale(Emmiter* owner);
+
+	void Initialize(Particle* particle);
+
+	json SaveModule();
+
+	void LoadModule(const json& moduleJSON);
+
+	SingleOrRandom<vec3> scale;
 };

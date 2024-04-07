@@ -17,6 +17,7 @@ public:
 	bool Draw();
 
 	void ChooseScriptNameWindow();
+	void ChooseParticlesToImportWindow();
 
 private:
 	GameObject* selectedGO = nullptr;
@@ -28,6 +29,7 @@ private:
 
 	bool matrixDirty;
 	bool chooseScriptNameWindow;
+	bool chooseParticlesToImportWindow;
 
 	const char* colliders[2] =
 	{
