@@ -27,6 +27,15 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		//bool isOpen = false;
 		//if (!childGO.get()->GetName().empty())
 		//{
+		if (childGO.get()->IsPrefab() && childGO.get()->IsEditablePrefab())
+		{
+			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(.2f, .8f, 1.f, 1.f));
+		}
+		else if (childGO.get()->IsPrefab() && !childGO.get()->IsEditablePrefab())
+		{
+			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, .3f, .2f, 1.f));
+		}
+
 		bool isOpen = ImGui::TreeNodeEx(childGO.get()->GetName().data(), treeFlags);
 		//}
 
@@ -61,6 +70,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 
 			ImGui::TreePop();
 		}
+		ImGui::PopStyleColor(3);
 	}
 
 	if (remove)
@@ -103,7 +113,7 @@ void PanelHierarchy::ContextMenu(std::shared_ptr<GameObject> go)
 {
 	if (ImGui::BeginPopupContextItem())
 	{
-		if (ImGui::MenuItem("Create Empty"))
+		if (go.get()->IsEditablePrefab() && ImGui::MenuItem("Create Empty"))
 		{
 			createEmpty = true;
 			engine->N_sceneManager->ReparentGO(go, engine->N_sceneManager->CreateEmptyGO("Parent of " + go.get()->GetName(), false));
@@ -128,6 +138,16 @@ void PanelHierarchy::ContextMenu(std::shared_ptr<GameObject> go)
 			//go.get()->Delete();
 			//go.get()->Disable();
 		}
+		
+		if ((go.get()->IsPrefab() && go.get()->IsEditablePrefab()) && ImGui::MenuItem("Lock"))
+		{
+			go.get()->SetEditablePrefab(false);
+		}
+
+		if ((go.get()->IsPrefab() && !go.get()->IsEditablePrefab()) && ImGui::MenuItem("Unlock"))
+		{
+			go.get()->SetEditablePrefab(true);
+		}
 
 		ImGui::EndPopup();
 	}
@@ -139,7 +159,10 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 	{
 		if (childGO != engine->N_sceneManager->currentScene->GetRootSceneGO())
 		{
-			ImGui::SetDragDropPayload(engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str(), &childGO, sizeof(GameObject));
+			if (childGO.get()->IsEditablePrefab())
+			{
+				ImGui::SetDragDropPayload(engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str(), &childGO, sizeof(GameObject));
+			}
 		}
 
 		ImGui::EndDragDropSource();
@@ -153,32 +176,40 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 				GameObject* dragging = *(GameObject**)payload->Data;
 
 				GameObject* currentParent = childGO.get();
-				while (currentParent)
+
+				if (childGO.get()->IsEditablePrefab())
 				{
-					if (currentParent == dragging)
+					while (currentParent)
 					{
-						return false;
+						if (currentParent == dragging)
+						{
+							return false;
+						}
+						currentParent = currentParent->parent.lock().get();
 					}
-					currentParent = currentParent->parent.lock().get();
+
+					GameObject* oldParent = dragging->parent.lock().get();
+
+					dragging->parent = childGO.get()->weak_from_this();
+
+					std::shared_ptr<GameObject> newChild = dragging->weak_from_this().lock();
+
+					if (oldParent != nullptr)
+					{
+						std::vector<std::shared_ptr<GameObject>>::iterator position = std::find(oldParent->children.begin(), oldParent->children.end(), newChild);
+						oldParent->children.erase(position);
+					}
+
+					if (dragging->parent.lock().get()->IsPrefab())
+					{
+						dragging->SetPrefab(dragging->parent.lock().get()->GetPrefabID());
+					}
+
+					childGO.get()->children.emplace_back(newChild);
+					reparent = true;
 				}
-
-				GameObject* oldParent = dragging->parent.lock().get();
-
-				dragging->parent = childGO.get()->weak_from_this();
-
-				std::shared_ptr<GameObject> newChild = dragging->weak_from_this().lock();
-
-				if (oldParent != nullptr)
-				{
-					std::vector<std::shared_ptr<GameObject>>::iterator position = std::find(oldParent->children.begin(), oldParent->children.end(), newChild);
-					oldParent->children.erase(position);
-				}
-
-				childGO.get()->children.emplace_back(newChild);
-				reparent = true;
 			}
 		}
-		
 		ImGui::EndDragDropTarget();
 	}
 	return reparent;

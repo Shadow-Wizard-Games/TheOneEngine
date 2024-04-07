@@ -3,6 +3,7 @@
 #include "Defs.h"
 
 #include "EngineCore.h"
+#include "Component.h"
 #include "Transform.h"
 #include "Canvas.h"
 #include "Collider2D.h"
@@ -111,6 +112,11 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	return go;
 }
 
+static MonoString* GetGameObjectName(GameObject* GOptr)
+{
+	return mono_string_new(MonoManager::GetAppDomain(), GOptr->GetName().c_str());
+}
+
 static void DestroyGameObject(GameObject* objectToDestroy)
 {
 	objectToDestroy->AddToDelete(engine->N_sceneManager->objectsToDelete);
@@ -128,6 +134,56 @@ static GameObject* FindGameObject(MonoString* monoString)
 		}
 	}
 	return nullptr;
+}
+
+static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* scriptName = nullptr)
+{
+	ComponentType type = (ComponentType)componentType;
+
+	if (type != ComponentType::Script)
+	{
+		for (auto comp : GOptr->GetAllComponents())
+		{
+			if (comp->GetType() == type)
+			{
+				return &comp->enabled;
+			}
+		}
+	}
+	else if (scriptName != nullptr)
+	{
+		std::string scriptToFind = MonoRegisterer::MonoStringToUTF8(scriptName);
+		
+		for (auto comp: GOptr->GetAllComponents())
+		{
+			if (comp->GetType() == ComponentType::Script)
+			{
+				Script* scriptToAccess = (Script*)comp;
+				if (scriptToAccess->scriptName == scriptToFind)
+				{
+					return scriptToAccess;
+				}
+			}
+		}
+	}
+	return nullptr;
+}
+
+static void* GetScript(GameObject* GOptr, MonoString* scriptName)
+{
+	std::string scriptToFind = MonoRegisterer::MonoStringToUTF8(scriptName);
+
+	for (auto comp : GOptr->GetAllComponents())
+	{
+		if (comp->GetType() == ComponentType::Script)
+		{
+			Script* scriptToAccess = (Script*)comp;
+			if (scriptToAccess->scriptName == scriptToFind)
+			{
+				return MonoManager::CallScriptFunction(scriptToAccess->monoBehaviourInstance, "GetClassInstance");
+			}
+		}
+	}
 }
 
 //Scene Management
@@ -332,8 +388,11 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetTransformRight", GetTransformRight);
 
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
+	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
+	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
+	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
 

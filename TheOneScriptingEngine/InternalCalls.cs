@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static AudioManager;
 
@@ -48,12 +49,25 @@ class InternalCalls
     //GameObjects
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetGameObjectName(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DestroyGameObject(IntPtr GOtoDestroy);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr FindGameObject(string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IntPtr ComponentCheck(IntPtr gameObject, int componentType, string scriptName = null);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static TComponent GetScript<TComponent>(IntPtr gameObject, string scriptName);
+
+    //Component
+    [MethodImpl(MethodImplOptions.InternalCall)]
+    internal extern TComponent GetComponent<TComponent>() where TComponent : IComponent;
 
     //Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]

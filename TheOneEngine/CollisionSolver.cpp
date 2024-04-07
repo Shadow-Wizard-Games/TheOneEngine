@@ -194,8 +194,8 @@ void CollisionSolver::DrawCollisions()
         //Calculate position of collider
         float x_, y_, z_ = 0;
         x_ = transform->GetPosition().x + collider->offset.x;
-        y_ = 1 + collider->offset.y;
-        z_ = transform->GetPosition().z + collider->offset.z;
+        y_ = 1;
+        z_ = transform->GetPosition().z + collider->offset.y;
 
         glTranslatef(x_, y_, z_);
 
@@ -221,39 +221,49 @@ void CollisionSolver::DrawCollisions()
         glBegin(GL_LINE_LOOP);
         if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Rect) {
             // Dibujar rectángulo
-            if (collider->collisionType == CollisionType::Wall)
+            if (!collision->GetComponent<Collider2D>()->cornerPivot)
             {
-                // Modular kit
-                float width_ = collision->GetComponent<Collider2D>()->w;
-                float height_ = collision->GetComponent<Collider2D>()->h;
-                float angle = transform->GetRotationEuler().y;
-
-                // Calculate vertex values when it rotates
-                float cosAngle = cosf(angle);
-                float sinAngle = sinf(angle);
-
-                float rotatedX1 = -width_ * cosAngle;
-                float rotatedZ1 = width_ * sinAngle;
-                float rotatedX2 = -width_ * cosAngle + height_ * sinAngle;
-                float rotatedZ2 = width_ * sinAngle + height_ * cosAngle;
-                float rotatedX3 = height_ * sinAngle;
-                float rotatedZ3 = height_ * cosAngle;
-
-                // Draw rectangle
-                glVertex3f(rotatedX1, 0.0f, rotatedZ1);
-                glVertex3f(rotatedX2, 0.0f, rotatedZ2);
-                glVertex3f(rotatedX3, 0.0f, rotatedZ3);
-                glVertex3f(0.0f, 0.0f, 0.0f);
-            }
-            else
-            {
-                // Pivot middle
                 float halfW = collision->GetComponent<Collider2D>()->w / 2.0f;
                 float halfH = collision->GetComponent<Collider2D>()->h / 2.0f;
                 glVertex3f(-halfW, 0.0f, -halfH);
                 glVertex3f(halfW, 0.0f, -halfH);
                 glVertex3f(halfW, 0.0f, halfH);
                 glVertex3f(-halfW, 0.0f, halfH);
+            }
+            else
+            {
+                float w = collision->GetComponent<Collider2D>()->w;
+                float h = collision->GetComponent<Collider2D>()->h;
+
+                switch (collision->GetComponent<Collider2D>()->objectOrientation)
+                {
+                case ObjectOrientation::Front:
+                    glVertex3f(0.0f, 0.0f, h);
+                    glVertex3f(w, 0.0f, h);
+                    glVertex3f(w, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    break;
+                case ObjectOrientation::Right:
+                    glVertex3f(0.0f, 0.0f, h);
+                    glVertex3f(-w, 0.0f, h);
+                    glVertex3f(-w, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    break;
+                case ObjectOrientation::Back:
+                    glVertex3f(0.0f, 0.0f, -h);
+                    glVertex3f(-w, 0.0f, -h);
+                    glVertex3f(-w, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    break;
+                case ObjectOrientation::Left:
+                    glVertex3f(0.0f, 0.0f, -h);
+                    glVertex3f(w, 0.0f, -h);
+                    glVertex3f(w, 0.0f, 0.0f);
+                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    break;
+                default:
+                    break;
+                }
             }
         }
         else if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Circle) {
@@ -291,18 +301,40 @@ bool CollisionSolver::CheckCollision(GameObject* objA, GameObject* objB)
     if (colliderA->colliderType == ColliderType::Circle && colliderB->colliderType == ColliderType::Circle)
     {
         // Check collision between two circles
-        double distance = DistanceXZ(transformA->GetPosition(), transformB->GetPosition());
+        double distance = DistanceXZ(transformA->GetPosition() + vec3(colliderA->offset.x, 0, colliderA->offset.y), transformB->GetPosition() + vec3(colliderB->offset.x, 0, colliderB->offset.y));
         double radiusSum = colliderA->radius + colliderB->radius;
         return (distance <= radiusSum);
     }
     else if (colliderA->colliderType == ColliderType::Rect && colliderB->colliderType == ColliderType::Rect)
     {
-        // Check collision between two rectangles
-        double xDist = abs(transformA->GetPosition().x - transformB->GetPosition().x);
-        double yDist = abs(transformA->GetPosition().y - transformB->GetPosition().y);
-        double xOverlap = (colliderA->w + colliderB->w) / 2 - xDist;
-        double yOverlap = (colliderA->h + colliderB->h) / 2 - yDist;
-        return (xOverlap > 0 && yOverlap > 0);
+        //right now there is no usage of a rect to rect collision
+        
+
+        //if (colliderA->cornerPivot)
+        //{
+        //    switch (colliderA->objectOrientation)
+        //    {
+        //    case ObjectOrientation::Front:
+        //        break;
+        //    case ObjectOrientation::Right:
+        //        break;
+        //    case ObjectOrientation::Back:
+        //        break;
+        //    case ObjectOrientation::Left:
+        //        break;
+        //    default:
+        //        break;
+        //    }
+        //}
+        //else
+        //{
+        //    // Check collision between two rectangles
+        //    double xDist = abs(transformA->GetPosition().x + colliderA->offset.x - transformB->GetPosition().x + colliderB->offset.x);
+        //    double yDist = abs(transformA->GetPosition().z + colliderA->offset.y - transformB->GetPosition().z + colliderA->offset.y);
+        //    double xOverlap = (colliderA->w + colliderB->w) / 2 - xDist;
+        //    double yOverlap = (colliderA->h + colliderB->h) / 2 - yDist;
+        //    return (xOverlap > 0 && yOverlap > 0);
+        //}
     }
     else
     {
@@ -317,28 +349,113 @@ bool CollisionSolver::CheckCollision(GameObject* objA, GameObject* objB)
             circle = objB;
             rectangle = objA;
         }
-
+        
         const Transform* circleT = circle->GetComponent<Transform>();
         const Collider2D* circleC = circle->GetComponent<Collider2D>();
 
         const Transform* rectangleT = rectangle->GetComponent<Transform>();
         const Collider2D* rectangleC = rectangle->GetComponent<Collider2D>();
 
-        // Calculate distance between circle center and rectangle center
-        double circleDistanceX = std::abs(circleT->GetPosition().x - rectangleT->GetPosition().x);
-        double circleDistanceY = std::abs(circleT->GetPosition().z - rectangleT->GetPosition().z);
+        if (rectangleC->cornerPivot)
+        {
+            double circleDistanceX;
+            double circleDistanceY;
+            double cornerDistanceSq;
+            bool ret;
+            switch (rectangleC->objectOrientation)
+            {
+            case ObjectOrientation::Front:
+                // Calculate distance between circle center and rectangle center
+                circleDistanceX = std::abs(circleT->GetPosition().x + circleC->offset.x - (rectangleT->GetPosition().x + rectangleC->w / 2 + rectangleC->offset.x));
+                circleDistanceY = std::abs(circleT->GetPosition().z + circleC->offset.y - (rectangleT->GetPosition().z + rectangleC->h / 2 + rectangleC->offset.y));
 
-        // Check if circle is too far away from rectangle to collide
-        if (circleDistanceX > (rectangleC->w / 2.0 + circleC->radius)) { return false; }
-        if (circleDistanceY > (rectangleC->h / 2.0 + circleC->radius)) { return false; }
+                // Check if circle is too far away from rectangle to collide
+                if (circleDistanceX > (rectangleC->w / 2.0 + circleC->radius)) { return false; }
+                if (circleDistanceY > (rectangleC->h / 2.0 + circleC->radius)) { return false; }
 
-        // Check if circle is close enough to collide with rectangle
-        if (circleDistanceX <= (rectangleC->w / 2.0)) { return true; }
-        if (circleDistanceY <= (rectangleC->h / 2.0)) { return true; }
+                // Check if circle is close enough to collide with rectangle
+                if (circleDistanceX <= (rectangleC->w / 2.0)) { return true; }
+                if (circleDistanceY <= (rectangleC->h / 2.0)) { return true; }
 
-        // Check if circle collides with corner of rectangle
-        double cornerDistanceSq = pow(circleDistanceX - rectangleC->w / 2.0, 2) + pow(circleDistanceY - rectangleC->h / 2.0, 2);
-        return (cornerDistanceSq <= pow(circleC->radius, 2));
+                // Check if circle collides with corner of rectangle
+                cornerDistanceSq = pow(circleDistanceX - rectangleC->w / 2.0, 2) + pow(circleDistanceY - rectangleC->h / 2.0, 2);
+                ret = (cornerDistanceSq <= pow(circleC->radius, 2));
+                return ret;
+                break;
+            case ObjectOrientation::Right:
+                circleDistanceX = std::abs(circleT->GetPosition().x + circleC->offset.x - (rectangleT->GetPosition().x - rectangleC->w / 2 + rectangleC->offset.x));
+                circleDistanceY = std::abs(circleT->GetPosition().z + circleC->offset.y - (rectangleT->GetPosition().z + rectangleC->h / 2 + rectangleC->offset.y));
+
+                // Check if circle is too far away from rectangle to collide
+                if (circleDistanceX > (rectangleC->w / 2.0 + circleC->radius)) { return false; }
+                if (circleDistanceY > (rectangleC->h / 2.0 + circleC->radius)) { return false; }
+
+                // Check if circle is close enough to collide with rectangle
+                if (circleDistanceX <= (rectangleC->w / 2.0)) { return true; }
+                if (circleDistanceY <= (rectangleC->h / 2.0)) { return true; }
+
+                // Check if circle collides with corner of rectangle
+                cornerDistanceSq = pow(circleDistanceX - rectangleC->w / 2.0, 2) + pow(circleDistanceY - rectangleC->h / 2.0, 2);
+                ret = (cornerDistanceSq <= pow(circleC->radius, 2));
+                return ret;
+                break;
+            case ObjectOrientation::Back:
+                circleDistanceX = std::abs(circleT->GetPosition().x + circleC->offset.x - (rectangleT->GetPosition().x - rectangleC->w / 2 + rectangleC->offset.x));
+                circleDistanceY = std::abs(circleT->GetPosition().z + circleC->offset.y - (rectangleT->GetPosition().z - rectangleC->h / 2 + rectangleC->offset.y));
+
+                // Check if circle is too far away from rectangle to collide
+                if (circleDistanceX > (rectangleC->w / 2.0 + circleC->radius)) { return false; }
+                if (circleDistanceY > (rectangleC->h / 2.0 + circleC->radius)) { return false; }
+
+                // Check if circle is close enough to collide with rectangle
+                if (circleDistanceX <= (rectangleC->w / 2.0)) { return true; }
+                if (circleDistanceY <= (rectangleC->h / 2.0)) { return true; }
+
+                // Check if circle collides with corner of rectangle
+                cornerDistanceSq = pow(circleDistanceX - rectangleC->w / 2.0, 2) + pow(circleDistanceY - rectangleC->h / 2.0, 2);
+                ret = (cornerDistanceSq <= pow(circleC->radius, 2));
+                return ret;
+                break;
+            case ObjectOrientation::Left:
+                circleDistanceX = std::abs(circleT->GetPosition().x + circleC->offset.x - (rectangleT->GetPosition().x + rectangleC->w / 2 + rectangleC->offset.x));
+                circleDistanceY = std::abs(circleT->GetPosition().z + circleC->offset.y - (rectangleT->GetPosition().z - rectangleC->h / 2 + rectangleC->offset.y));
+
+                // Check if circle is too far away from rectangle to collide
+                if (circleDistanceX > (rectangleC->w / 2.0 + circleC->radius)) { return false; }
+                if (circleDistanceY > (rectangleC->h / 2.0 + circleC->radius)) { return false; }
+
+                // Check if circle is close enough to collide with rectangle
+                if (circleDistanceX <= (rectangleC->w / 2.0)) { return true; }
+                if (circleDistanceY <= (rectangleC->h / 2.0)) { return true; }
+
+                // Check if circle collides with corner of rectangle
+                cornerDistanceSq = pow(circleDistanceX - rectangleC->w / 2.0, 2) + pow(circleDistanceY - rectangleC->h / 2.0, 2);
+                ret = (cornerDistanceSq <= pow(circleC->radius, 2));
+                return ret;
+                break;
+            default:
+                break;
+            }
+        }
+        else
+        {
+            // Calculate distance between circle center and rectangle center
+            double circleDistanceX = std::abs(circleT->GetPosition().x + circleC->offset.x - (rectangleT->GetPosition().x + rectangleC->offset.x));
+            double circleDistanceY = std::abs(circleT->GetPosition().z + circleC->offset.y - (rectangleT->GetPosition().z + rectangleC->offset.y));
+
+            // Check if circle is too far away from rectangle to collide
+            if (circleDistanceX > (rectangleC->w / 2.0 + circleC->radius)) { return false; }
+            if (circleDistanceY > (rectangleC->h / 2.0 + circleC->radius)) { return false; }
+
+            // Check if circle is close enough to collide with rectangle
+            if (circleDistanceX <= (rectangleC->w / 2.0)) { return true; }
+            if (circleDistanceY <= (rectangleC->h / 2.0)) { return true; }
+
+            // Check if circle collides with corner of rectangle
+            double cornerDistanceSq = pow(circleDistanceX - rectangleC->w / 2.0, 2) + pow(circleDistanceY - rectangleC->h / 2.0, 2);
+            bool ret = (cornerDistanceSq <= pow(circleC->radius, 2));
+            return ret;
+        }
     }
 }
 
@@ -392,11 +509,14 @@ void CollisionSolver::CirCirCollision(GameObject* objA, GameObject* objB)
 
 
     // Vector from player circle center to NPC circle center
-    vec2 collisionVector = { transformA->GetPosition().x - transformB->GetPosition().x, transformA->GetPosition().z - transformB->GetPosition().z };
+    vec2 collisionVector = { 
+        transformA->GetPosition().x + colliderA->offset.x - transformB->GetPosition().x + colliderB->offset.x, 
+        transformA->GetPosition().z + colliderA->offset.y - transformB->GetPosition().z + colliderB->offset.y 
+    };
 
     // Distance between the centers of the two circles
-    vec2 pos2dA = { transformA->GetPosition().x, transformA->GetPosition().z };
-    vec2 pos2dB = { transformB->GetPosition().x, transformB->GetPosition().z };
+    vec2 pos2dA = { transformA->GetPosition().x + colliderA->offset.x, transformA->GetPosition().z + colliderA->offset.y };
+    vec2 pos2dB = { transformB->GetPosition().x + colliderB->offset.x, transformB->GetPosition().z + colliderB->offset.y };
     double distance = glm::distance(pos2dA, pos2dB);
 
     // Sum of the radii of the two circles
@@ -422,9 +542,59 @@ void CollisionSolver::CirRectCollision(GameObject* objA, GameObject* objB)
     Collider2D* colliderB = objB->GetComponent<Collider2D>();
 
     // Closest point on the rectangle to the circle center
-    vec2 topLeft = { transformB->GetPosition().x - colliderB->w / 2, transformB->GetPosition().z - colliderB->h / 2 };
-    vec2 botRight = { transformB->GetPosition().x + colliderB->w / 2, transformB->GetPosition().z + colliderB->h / 2 };
-    vec2 temp = { transformA->GetPosition().x, transformA->GetPosition().z };
+    vec2 topLeft = { transformB->GetPosition().x - colliderB->w / 2 + colliderB->offset.x, transformB->GetPosition().z - colliderB->h / 2 + colliderB->offset.y };
+    vec2 botRight = { transformB->GetPosition().x + colliderB->w / 2 + colliderB->offset.x, transformB->GetPosition().z + colliderB->h / 2 + colliderB->offset.y };
+
+    if (colliderB->cornerPivot)
+    {
+        switch (colliderB->objectOrientation)
+        {
+        case ObjectOrientation::Front:
+            topLeft = { 
+                transformB->GetPosition().x - colliderB->w / 2 + colliderB->offset.x + colliderB->w / 2,
+                transformB->GetPosition().z - colliderB->h / 2 + colliderB->offset.y + colliderB->h / 2
+            };
+            botRight = { 
+                transformB->GetPosition().x + colliderB->w / 2 + colliderB->offset.x + colliderB->w / 2,
+                transformB->GetPosition().z + colliderB->h / 2 + colliderB->offset.y + colliderB->h / 2
+            };
+            break;
+        case ObjectOrientation::Right:
+            topLeft = {
+                transformB->GetPosition().x - colliderB->w / 2 + colliderB->offset.x - colliderB->w / 2,
+                transformB->GetPosition().z - colliderB->h / 2 + colliderB->offset.y + colliderB->h / 2
+            };
+            botRight = {
+                transformB->GetPosition().x + colliderB->w / 2 + colliderB->offset.x - colliderB->w / 2,
+                transformB->GetPosition().z + colliderB->h / 2 + colliderB->offset.y + colliderB->h / 2
+            };
+            break;
+        case ObjectOrientation::Back:
+            topLeft = {
+                transformB->GetPosition().x - colliderB->w / 2 + colliderB->offset.x - colliderB->w / 2,
+                transformB->GetPosition().z - colliderB->h / 2 + colliderB->offset.y - colliderB->h / 2
+            };
+            botRight = {
+                transformB->GetPosition().x + colliderB->w / 2 + colliderB->offset.x - colliderB->w / 2,
+                transformB->GetPosition().z + colliderB->h / 2 + colliderB->offset.y - colliderB->h / 2
+            };
+            break;
+        case ObjectOrientation::Left:
+            topLeft = {
+                transformB->GetPosition().x - colliderB->w / 2 + colliderB->offset.x + colliderB->w / 2,
+                transformB->GetPosition().z - colliderB->h / 2 + colliderB->offset.y - colliderB->h / 2
+            };
+            botRight = {
+                transformB->GetPosition().x + colliderB->w / 2 + colliderB->offset.x + colliderB->w / 2,
+                transformB->GetPosition().z + colliderB->h / 2 + colliderB->offset.y - colliderB->h / 2
+            };
+            break;
+        default:
+            break;
+        }
+    }
+
+    vec2 temp = { transformA->GetPosition().x + colliderA->offset.x, transformA->GetPosition().z + colliderA->offset.y };
     vec2 closestPoint = Clamp(temp, topLeft, botRight);
 
     // Vector from the closest point on the rectangle to the circle center

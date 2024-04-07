@@ -2,7 +2,8 @@
 
 public class ICanvas : IComponent
 {
-    public ICanvas(IntPtr GOptr) : base(GOptr) { }
+    public ICanvas() : base() { }
+    public ICanvas(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
     public void ToggleEnable() 
     {

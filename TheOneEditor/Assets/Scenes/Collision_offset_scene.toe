@@ -52,6 +52,66 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
+            50.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            50.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            50.0,
+            0.0,
+            0.0,
+            25.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3308673294
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Path": "Library/Meshes/SM_Cube/pCube1.mesh",
+          "Type": 2,
+          "UID": 717467137
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "Height": 60.0,
+          "Name": "Specified Type was not found",
+          "OffsetX": 30.0,
+          "OffsetY": 0.0,
+          "OffsetZ": -30.0,
+          "ParentUID": 3452816845,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 2824252320,
+          "Width": 60.0
+        }
+      ],
+      "Enabled": true,
+      "Name": "wall",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
             25.0,
             0.0,
             0.0,
@@ -89,12 +149,11 @@
         {
           "ColliderType": 0,
           "CollisionType": 0,
-          "CornerPivot": true,
           "Height": 1.0,
           "Name": "Specified Type was not found",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
+          "OffsetX": -20.0,
           "OffsetY": 0.0,
+          "OffsetZ": 0.0,
           "ParentUID": 3452816845,
           "Radius": 20.0,
           "Type": 5,
@@ -116,67 +175,6 @@
       ],
       "Enabled": true,
       "Name": "player",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            10.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            10.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            10.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1445859622
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Path": "Library/Meshes/Cube_Corner_Pivot/pCube1.mesh",
-          "Type": 2,
-          "UID": 3563105917
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Specified Type was not found",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1000216998,
-          "Width": 50.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "pCube1",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
