@@ -379,6 +379,7 @@ void Gui::PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags
 
 		ImPlot::EndPlot();
 	}
+	ImGui::PopStyleVar();
 }
 
 void Gui::MainWindowDockspace()

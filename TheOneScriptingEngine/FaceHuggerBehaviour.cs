@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-internal class FaceHuggerBehaviour : MonoBehaviour
+public class FaceHuggerBehaviour : MonoBehaviour
 {
     enum States
     {
@@ -16,7 +15,7 @@ internal class FaceHuggerBehaviour : MonoBehaviour
     Vector3 directorVector;
     float playerDistance;
 
-    float life = 40;
+    float life = 200;
 
     float movementSpeed = 35.0f * 3;
 
@@ -33,6 +32,8 @@ internal class FaceHuggerBehaviour : MonoBehaviour
     float attackCooldown = 2.0f;
 
     bool isExploring = true;
+    AudioManager.EventIDs currentID = 0;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
@@ -93,24 +94,24 @@ internal class FaceHuggerBehaviour : MonoBehaviour
             }
         }
 
-        //if (isExploring)
-        //{
-        //    if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
-        //    {
-        //        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
-        //        attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
-        //        currentID = AudioManager.EventIDs.A_AMBIENT_1;
-        //    }
-        //}
-        //else
-        //{
-        //    if (currentID != AudioManager.EventIDs.A_COMBAT_1)
-        //    {
-        //        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
-        //        attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
-        //        currentID = AudioManager.EventIDs.A_COMBAT_1;
-        //    }
-        //}
+        if (isExploring)
+        {
+            if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                currentID = AudioManager.EventIDs.A_AMBIENT_1;
+            }
+        }
+        else
+        {
+            if (currentID != AudioManager.EventIDs.A_COMBAT_1)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                currentID = AudioManager.EventIDs.A_COMBAT_1;
+            }
+        }
     }
 
     void DoStateBehaviour()
