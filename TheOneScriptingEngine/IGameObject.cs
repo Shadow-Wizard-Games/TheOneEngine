@@ -22,7 +22,7 @@ public class IGameObject : IObject
         name = InternalCalls.GetGameObjectName(containerGOptr);
         transform = new ITransform(GOref);
 
-        source = new ISource(GOref);
+        source = new IAudioSource(GOref);
     }
 
     public void Destroy()
@@ -88,8 +88,8 @@ public class IGameObject : IObject
                     //    componentToReturn = new IListener(containerGOptr) as TComponent;
                     //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
                     //    break;
-                    case IComponent.ComponentType.ISource:
-                        componentToReturn = new ISource(containerGOptr) as TComponent;
+                    case IComponent.ComponentType.IAudioSource:
+                        componentToReturn = new IAudioSource(containerGOptr) as TComponent;
                         break;
                     case IComponent.ComponentType.IParticleSystem:
                         componentToReturn = new IParticleSystem(containerGOptr) as TComponent;

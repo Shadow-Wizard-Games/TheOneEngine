@@ -16,7 +16,7 @@ public class IComponent : IObject
         ICollider2D,
         ICanvas,
         IListener,
-        ISource,
+        IAudioSource,
         IParticleSystem,
         Unknown
     }
