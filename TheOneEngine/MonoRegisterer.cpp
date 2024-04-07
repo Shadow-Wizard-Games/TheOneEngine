@@ -300,17 +300,17 @@ static void ReplayPS(GameObject* GOptr)
 	GOptr->GetComponent<ParticleSystem>()->Replay();
 }
 
-static void StopSource(GameObject* GOptr, uint audio) {
-	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
-
-	audioManager->StopAudio(GOptr->GetComponent<AudioSource>(), audio);
-}
-
-// Audio
-static void PlaySource(GameObject* GOptr, uint audio) {
+// Audio Manager
+static void PlayAudioSource(GameObject* GOptr, uint audio) {
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
 	audioManager->PlayAudio(GOptr->GetComponent<AudioSource>(), audio);
+}
+
+static void StopAudioSource(GameObject* GOptr, uint audio) {
+	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
+
+	audioManager->StopAudio(GOptr->GetComponent<AudioSource>(), audio);
 }
 
 void MonoRegisterer::RegisterFunctions()
@@ -352,8 +352,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::StopPS", StopPS);
 	mono_add_internal_call("InternalCalls::ReplayPS", ReplayPS);
 
-	mono_add_internal_call("InternalCalls::PlaySource", PlaySource);
-	mono_add_internal_call("InternalCalls::StopSource", StopSource);
+	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);
+	mono_add_internal_call("InternalCalls::StopSource", StopAudioSource);
 }
 
 bool MonoRegisterer::CheckMonoError(MonoError& error)

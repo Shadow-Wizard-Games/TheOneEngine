@@ -13,7 +13,7 @@ internal class QueenBehaviour : MonoBehaviour
 
     }
 
-    void SpawnChesyBusters()
+    void SpawnChestBusters()
     {
 
     }

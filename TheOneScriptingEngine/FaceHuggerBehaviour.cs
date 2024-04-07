@@ -25,7 +25,8 @@ public class FaceHuggerBehaviour : MonoBehaviour
     float enemyDetectedRange = 35.0f * 3;
     float maxAttackRange = 90.0f;
     float maxChasingRange = 180.0f;
-
+    float maxHeight = 20.0f;
+    
     bool shooting = false;
     bool hasShot = false;
     float currentTimer = 0.0f;
@@ -55,6 +56,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             {
                 Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
                 Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+
             }
 
             //Set the director vector and distance to the player
@@ -127,7 +129,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
                     currentTimer += Time.deltaTime;
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
-                        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
+                        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 30.5f, attachedGameObject.transform.rotation);
                         attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_X_ADULT_SPIT);
                         hasShot = true;
                     }
