@@ -122,18 +122,26 @@ static void DestroyGameObject(GameObject* objectToDestroy)
 	objectToDestroy->AddToDelete(engine->N_sceneManager->objectsToDelete);
 }
 
+static GameObject* RecursiveFindGO(std::string _name, GameObject* refGO)
+{
+	GameObject* returnedGO = nullptr;
+
+	for (auto go : refGO->children)
+	{
+		if (go->GetName() == _name)
+		{
+			return go.get();
+		}
+		returnedGO = RecursiveFindGO(_name, go.get());
+	}
+	return returnedGO;
+}
+
 static GameObject* FindGameObject(MonoString* monoString)
 {
 	std::string name = MonoRegisterer::MonoStringToUTF8(monoString);
 
-	for (auto go : engine->N_sceneManager->currentScene->GetRootSceneGO()->children)
-	{
-		if (go->GetName() == name)
-		{
-			return go.get();
-		}
-	}
-	return nullptr;
+	return RecursiveFindGO(name, engine->N_sceneManager->currentScene->GetRootSceneGO().get());
 }
 
 static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* scriptName = nullptr)
