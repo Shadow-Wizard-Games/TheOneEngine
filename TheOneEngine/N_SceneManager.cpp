@@ -185,7 +185,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	try
 	{
 		file >> sceneJSON;
-		audioManager->DeleteAudioComponents();
+		//audioManager->DeleteAudioComponents();
 	}
 	catch (const json::parse_error& e)
 	{
