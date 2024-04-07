@@ -94,15 +94,15 @@ void EngineCore::Render(Camera* camera)
         camera->lookAt.x, camera->lookAt.y, camera->lookAt.z,
 		cameraTransform->GetUp().x, cameraTransform->GetUp().y, cameraTransform->GetUp().z);
 
-    //DrawGrid(1000, 50);
-    //DrawAxis();
+    DrawGrid(1000, 50);
+    DrawAxis();
 
-    //if (collisionSolver->drawCollisions) collisionSolver->DrawCollisions();
+    if (collisionSolver->drawCollisions) collisionSolver->DrawCollisions();
 
-    /*if (!monoManager->debugShapesQueue.empty())
+    if (!monoManager->debugShapesQueue.empty())
     {
         monoManager->RenderShapesQueue();
-    }*/
+    }
 
     glColor3f(1.0f, 1.0f, 1.0f);
     //DrawFrustum(camera->viewMatrix);

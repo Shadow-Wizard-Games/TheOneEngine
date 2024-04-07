@@ -96,20 +96,20 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
         if (isExploring)
         {
-            if (currentID != AudioManager.EventIDs.EXPLORE)
+            if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.EXPLORE);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.COMBAT);
-                currentID = AudioManager.EventIDs.EXPLORE;
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                currentID = AudioManager.EventIDs.A_AMBIENT_1;
             }
         }
         else
         {
-            if (currentID != AudioManager.EventIDs.COMBAT)
+            if (currentID != AudioManager.EventIDs.A_COMBAT_1)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.COMBAT);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.EXPLORE);
-                currentID = AudioManager.EventIDs.COMBAT;
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                currentID = AudioManager.EventIDs.A_COMBAT_1;
             }
         }
     }
@@ -128,7 +128,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
                         InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.ENEMYATTACK);
+                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_X_ADULT_SPIT);
                         hasShot = true;
                     }
                     break;

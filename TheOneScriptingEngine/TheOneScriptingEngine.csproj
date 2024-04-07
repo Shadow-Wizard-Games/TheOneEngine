@@ -42,12 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdultXenomorphBehaviour.cs" />
+    <Compile Include="AnarchistBehaviour.cs" />
     <Compile Include="AudioManager.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="CamControlTest.cs" />
     <Compile Include="CameraMovement.cs" />
+    <Compile Include="ChestBusterBehaviour.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="ExampleScript.cs" />
+    <Compile Include="FaceHuggerBehaviour.cs" />
     <Compile Include="ICanvas.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="IGameObject.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="IAudioSource.cs" />
     <Compile Include="IParticleSystem.cs" />
     <Compile Include="PauseMenuManager.cs" />
+    <Compile Include="QueenBehaviour.cs" />
     <Compile Include="SceneManager.cs" />
     <Compile Include="ITransform.cs" />
     <Compile Include="MonoBehaviour.cs" />

@@ -59,7 +59,7 @@ public class PlayerScript : MonoBehaviour
             Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
             InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.GUNSHOT);
+            //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.GUNSHOT);
             // call particleSystem.Replay()
         }
       
@@ -96,7 +96,7 @@ public class PlayerScript : MonoBehaviour
             Vector3 height = new Vector3( 0.0f, 30.0f, 0.0f );
 
             InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.GUNSHOT);
+            //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.GUNSHOT); //there is no gunshot
             // call particleSystem.Replay()
         }
 
@@ -105,11 +105,11 @@ public class PlayerScript : MonoBehaviour
         {
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.STEP);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.P_STEP);
             }
             else
             {
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.STEP);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.P_STEP);
             }
             lastFrameToMove = toMove;
         }

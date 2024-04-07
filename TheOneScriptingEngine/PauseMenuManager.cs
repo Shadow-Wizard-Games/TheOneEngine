@@ -32,7 +32,7 @@ public class PauseMenuManager : MonoBehaviour
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 canvas.ToggleEnable();
                 pauseEnabled = true;
                 onCooldown = true;
@@ -73,7 +73,7 @@ public class PauseMenuManager : MonoBehaviour
             // Select Button
             if (toMove && !onCooldown)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.HOVER);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
                 onCooldown = true;
                 canvas.MoveSelection(direction);
             }
@@ -81,20 +81,20 @@ public class PauseMenuManager : MonoBehaviour
             // Selection Executters
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 canvas.ToggleEnable();
                 pauseEnabled = false;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 SceneManager.LoadScene("MainMenu");
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 InternalCalls.ExitApplication();
             }
         }

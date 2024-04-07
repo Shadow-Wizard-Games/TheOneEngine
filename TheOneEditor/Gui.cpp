@@ -526,6 +526,10 @@ void Gui::MainMenuGameObject()
 		if (ImGui::MenuItem("Less than 12?")) { engine->N_sceneManager->CreateMF(); }
 		if (ImGui::MenuItem("Main Character")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_MainCharacter.fbx"); }
 		if (ImGui::MenuItem("Box Low Poly")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Box_LowPoly.fbx"); }
+		if (ImGui::MenuItem("FaceHugger (Arnau)")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Facehugger_arnau.fbx"); }
+		if (ImGui::MenuItem("Queen")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Queen_corrected.fbx"); }
+		if (ImGui::MenuItem("Anarchist")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Anarchist_corrected.fbx"); }
+		//if (ImGui::MenuItem("FaceHugger")) { engine->N_sceneManager->CreateMF(); }
 
 		ImGui::EndMenu();
 	}

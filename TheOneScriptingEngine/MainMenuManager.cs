@@ -14,7 +14,7 @@ public class MainMenuManager : MonoBehaviour
     public override void Start()
     {
         // JULS: it does not seem to enter and do the start
-        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.MAINMENU);
+        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_A_MENU);
     }
     public override void Update()
     {
@@ -67,7 +67,7 @@ public class MainMenuManager : MonoBehaviour
         {
             onCooldown = true;
             canvas.MoveSelection(direction);
-            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.HOVER);
+            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
         }
 
 

@@ -55,7 +55,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24349,7 +24349,7 @@
         }
       ],
       "Name": "MK_Ship_Level1_final",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24384,6 +24384,34 @@
               "Delay": 0.0,
               "Duration": 10.0,
               "InitializeModules": [
+                {
+                  "MaxSpeed": [
+                    0.5,
+                    2.0,
+                    0.5
+                  ],
+                  "MinSpeed": [
+                    -0.5,
+                    1.0,
+                    -0.5
+                  ],
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxSpeed": [
+                    0.5,
+                    2.0,
+                    0.5
+                  ],
+                  "MinSpeed": [
+                    -0.5,
+                    1.0,
+                    -0.5
+                  ],
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
                 {
                   "MaxSpeed": [
                     0.5,
@@ -24566,79 +24594,7 @@
       ],
       "Enabled": true,
       "Name": "Sparks",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            4.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            4.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            4.0,
-            0.0,
-            66.37759399414063,
-            0.0,
-            25.413219451904297,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1114269627
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Path": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
-          "Type": 2,
-          "UID": 589185576
-        },
-        {
-          "AudioID": 1,
-          "Name": "Source",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 0,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Specified Type was not found",
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "OffsetZ": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 1494357710,
-          "Width": -1.7976931348623157e+308
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "PlayerScript",
-          "Type": 4,
-          "UID": 837925732
-        }
-      ],
-      "Enabled": true,
-      "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24698,7 +24654,7 @@
       ],
       "Enabled": true,
       "Name": "SM_Box_LowPoly1",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24758,7 +24714,7 @@
       ],
       "Enabled": true,
       "Name": "SM_Box_LowPoly2",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24818,7 +24774,7 @@
       ],
       "Enabled": true,
       "Name": "SM_Box_LowPoly3",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24878,7 +24834,7 @@
       ],
       "Enabled": true,
       "Name": "SM_Box_LowPoly4",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24938,7 +24894,7 @@
       ],
       "Enabled": true,
       "Name": "SM_Box_LowPoly5",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -24998,7 +24954,7 @@
       ],
       "Enabled": true,
       "Name": "Copy of SM_Box_LowPoly1",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -25058,7 +25014,7 @@
       ],
       "Enabled": true,
       "Name": "Copy of SM_Box_LowPoly5",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -25118,79 +25074,7 @@
       ],
       "Enabled": true,
       "Name": "Copy of Copy of SM_Box_LowPoly5",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            0.0015800976848426573,
-            0.0,
-            -0.24999500653274329,
-            0.0,
-            0.0,
-            0.25,
-            0.0,
-            0.0,
-            0.24999500653274329,
-            0.0,
-            0.0015800976848426573,
-            0.0,
-            1.0,
-            0.0,
-            25.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 374557993
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Path": "Library/Meshes/SM_Xenomorph/Xenomorph.mesh",
-          "Type": 2,
-          "UID": 1290896346
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "Height": 297.6038398742676,
-          "Name": "Specified Type was not found",
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "OffsetZ": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 2730547111,
-          "Width": 210.19146728515625
-        },
-        {
-          "AudioID": 2,
-          "Name": "Source",
-          "Type": 8
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AdultXenomorphBehaviour",
-          "Type": 4,
-          "UID": 4200894854
-        }
-      ],
-      "Enabled": true,
-      "Name": "Xenomorph",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -25258,7 +25142,7 @@
       ],
       "Enabled": true,
       "Name": "HUD Canvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
     },
@@ -25452,7 +25336,7 @@
           ]
         },
         {
-          "AudioID": 2,
+          "AudioID": 1,
           "Name": "Source",
           "Type": 8
         },
@@ -25466,9 +25350,225 @@
       ],
       "Enabled": true,
       "Name": "Pause Menu Canvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 3145776,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            66.37799835205078,
+            0.0,
+            25.413000106811523,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1636145909
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 0,
+          "Path": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
+          "Type": 2,
+          "UID": 1739704293
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 0,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 3672222703
+        },
+        {
+          "AudioID": 2,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "Height": 13.615304946899414,
+          "Name": "Specified Type was not found",
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "OffsetZ": 0.0,
+          "ParentUID": 0,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 129544605,
+          "Width": 47.91374969482422
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_MainCharacter",
+      "ParentUID": 3145776,
+      "Static": false,
+      "UID": 0
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            25.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2669716605
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 6619240,
+          "Path": "Library/Meshes/SK_Xenomorph/SK_Xenomorph.mesh",
+          "Type": 2,
+          "UID": 3420129130
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "AdultXenomorphBehaviour",
+          "Type": 4,
+          "UID": 3366734263
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "Height": 74.40095233917236,
+          "Name": "Specified Type was not found",
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "OffsetZ": 0.0,
+          "ParentUID": 6619240,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3616795965,
+          "Width": 52.54787063598633
+        },
+        {
+          "AudioID": 3,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_Xenomorph",
+      "ParentUID": 3145776,
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            580.3682861328125,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1525300440
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 6619240,
+          "Path": "Library/Meshes/SK_Facehugger/SK_Facehugger.mesh",
+          "Type": 2,
+          "UID": 1938917591
+        },
+        {
+          "AudioID": 4,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 3785853607
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "Height": 57.10001754760742,
+          "Name": "Specified Type was not found",
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "OffsetZ": 0.0,
+          "ParentUID": 6619240,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 10340039,
+          "Width": 32.976036071777344
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_Facehugger",
+      "ParentUID": 3145776,
+      "Static": false,
+      "UID": 6619240
     }
   ],
   "index": 0,
