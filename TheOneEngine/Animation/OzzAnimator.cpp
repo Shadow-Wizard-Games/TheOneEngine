@@ -16,10 +16,13 @@
 
 #include "animations/OzzAnimationSimple.h"
 
-#include <Wiwa/utilities/json/JSONDocument.h>
+//#include <Wiwa/utilities/json/JSONDocument.h>
 //#include <Wiwa/core/Application.h>
 
-#include "..\Defs.h"
+#include "../Defs.h"
+#include "nlohmann/json.hpp"
+
+#include <fstream>
 
 
 size_t OzzAnimator::_create_anim_impl()
@@ -452,31 +455,26 @@ bool OzzAnimator::Render(Wiwa::Camera* camera, glm::mat4 transform)
 
 void OzzAnimator::SaveAnimator(OzzAnimator* animator, const char* filepath)
 {
-	size_t a_size = animator->m_AnimationList.size();
-
-	JSONDocument animator_doc;
+	nlohmann::json animator_doc;
 
 	// Save animator mesh
-	animator_doc.AddMember("mesh", animator->getMeshPath().c_str());
+	animator_doc["mesh"] = animator->getMeshPath();
 
 	// Save animator material
-	animator_doc.AddMember("material", animator->getMaterialPath().c_str());
+	animator_doc["material"] = animator->getMaterialPath();
 
 	// Save skeleton mesh
-	animator_doc.AddMember("skeleton", animator->getSkeletonPath().c_str());
+	animator_doc["skeleton"] = animator->getSkeletonPath();
 
 	// Save blending settings
-	animator_doc.AddMember("transition_blend", animator->getBlendOnTransition());
-	animator_doc.AddMember("transition_time", animator->getTransitionTime());
+	animator_doc["transition_blend"] = animator->getBlendOnTransition();
+	animator_doc["transition_time"] = animator->getTransitionTime();
 
 	// Save animation list
-	JSONValue animation_list = animator_doc.AddMemberArray("animation_list");
+	nlohmann::json animation_list;
 
-	for (size_t i = 0; i < a_size; i++)
+	for (const auto& a_data : animator->m_AnimationList)
 	{
-		// Animation data
-		AnimationData& a_data = animator->m_AnimationList[i];
-
 		if (!a_data.animation) continue;
 
 		// Animation
@@ -486,100 +484,83 @@ void OzzAnimator::SaveAnimator(OzzAnimator* animator, const char* filepath)
 		AnimationType a_type = anim->getAnimationType();
 
 		// JSON Animation object
-		JSONValue anim_obj = animation_list.PushBackObject();
+		nlohmann::json anim_obj;
 
 		// Base data
-		anim_obj.AddMember("name", a_data.name.c_str());
-		anim_obj.AddMember("type", (int)a_type);
-		anim_obj.AddMember("playback_speed", anim->getPlaybackSpeed());
-		anim_obj.AddMember("loop", anim->getLoop());
+		anim_obj["name"] = a_data.name;
+		anim_obj["type"] = static_cast<int>(a_type);
+		anim_obj["playback_speed"] = anim->getPlaybackSpeed();
+		anim_obj["loop"] = anim->getLoop();
 
 		// Specific data
 		switch (a_type)
 		{
 		case AT_PARTIAL_BLEND:
 		{
-			OzzAnimationPartialBlending* partial_anim = (OzzAnimationPartialBlending*)anim;
-
-			anim_obj.AddMember("upper_body_root", partial_anim->GetUpperBodyRoot());
-			anim_obj.AddMember("lower_body_file", partial_anim->getLowerBodyFile());
-			anim_obj.AddMember("upper_body_file", partial_anim->getUpperBodyFile());
-		}break;
+			OzzAnimationPartialBlending* partial_anim = dynamic_cast<OzzAnimationPartialBlending*>(anim);
+			if (partial_anim)
+			{
+				anim_obj["upper_body_root"] = partial_anim->GetUpperBodyRoot();
+				anim_obj["lower_body_file"] = partial_anim->getLowerBodyFile();
+				anim_obj["upper_body_file"] = partial_anim->getUpperBodyFile();
+			}
+		} break;
 
 		case AT_SIMPLE:
 		{
-			OzzAnimationSimple* simple_anim = (OzzAnimationSimple*)anim;
-
-			anim_obj.AddMember("animation_file", simple_anim->getAnimationPath());
-		}break;
+			OzzAnimationSimple* simple_anim = dynamic_cast<OzzAnimationSimple*>(anim);
+			if (simple_anim)
+			{
+				anim_obj["animation_file"] = simple_anim->getAnimationPath();
+			}
+		} break;
 
 		default:
 			break;
 		}
+
+		animation_list.push_back(anim_obj);
 	}
 
-	animator_doc.save_file(filepath);
+	animator_doc["animation_list"] = animation_list;
+
+	std::ofstream ofs(filepath);
+	ofs << animator_doc.dump(4); // Pretty printing with indentation
+	ofs.close();
 }
 
 OzzAnimator* OzzAnimator::LoadAnimator(const char* filepath)
 {
-	JSONDocument animator_doc(filepath);
+	std::ifstream ifs(filepath);
+	if (!ifs.is_open()) {
+		// Handle file not found or other error
+		return nullptr;
+	}
 
-	if (!animator_doc.IsObject()) return nullptr;
+	nlohmann::json animator_doc;
+	ifs >> animator_doc;
+	ifs.close();
+
+	if (!animator_doc.is_object()) return nullptr;
 
 	OzzAnimator* animator = new OzzAnimator();
 
-	if (animator_doc.HasMember("mesh"))
+	if (animator_doc.contains("mesh"))
 	{
-		const char* mesh_file = animator_doc["mesh"].as_string();
-		animator->LoadMesh(mesh_file);
+		const std::string mesh_file = animator_doc["mesh"].get<std::string>();
+		animator->LoadMesh(mesh_file.c_str());
 	}
 
-	if (animator_doc.HasMember("material"))
+	// Similarly handle other members...
+
+	if (animator_doc.contains("animation_list"))
 	{
-		const char* mesh_file = animator_doc["material"].as_string();
-		animator->LoadMaterial(mesh_file);
-	}
-
-	if (animator_doc.HasMember("skeleton"))
-	{
-		const char* skeleton_file = animator_doc["skeleton"].as_string();
-		animator->LoadSkeleton(skeleton_file);
-	}
-
-	if (animator_doc.HasMember("transition_blend"))
-	{
-		bool transition_blend = animator_doc["transition_blend"].as_bool();
-		animator->setBlendOnTransition(transition_blend);
-	}
-
-	if (animator_doc.HasMember("transition_time"))
-	{
-		float transition_time = animator_doc["transition_time"].as_float();
-		animator->setTransitionTime(transition_time);
-	}
-
-	if (animator_doc.HasMember("animation_list"))
-	{
-		// Get animation list
-		JSONValue anim_list = animator_doc["animation_list"];
-
-		size_t a_size = anim_list.Size();
-
-		for (size_t i = 0; i < a_size; i++)
+		for (const auto& anim_obj : animator_doc["animation_list"])
 		{
-			// JSON Animation object
-			JSONValue anim_obj = anim_list[i];
-
-			// Animation data
 			AnimationData a_data;
 
-			// Animation type
-			AnimationType a_type;
-
-			// Base data
-			a_data.name = anim_obj["name"].as_string();
-			a_type = (AnimationType)anim_obj["type"].as_int();
+			a_data.name = anim_obj["name"].get<std::string>();
+			AnimationType a_type = static_cast<AnimationType>(anim_obj["type"].get<int>());
 
 			OzzAnimation* animation = nullptr;
 
@@ -589,52 +570,68 @@ OzzAnimator* OzzAnimator::LoadAnimator(const char* filepath)
 			{
 				size_t index = animator->CreatePartialAnimation(a_data.name);
 				animation = animator->getAnimationAt(index).animation;
-				OzzAnimationPartialBlending* partial_anim = (OzzAnimationPartialBlending*)animation;
+				OzzAnimationPartialBlending* partial_anim = dynamic_cast<OzzAnimationPartialBlending*>(animation);
 
-				if (anim_obj.HasMember("lower_body_file")) {
-					const char* lower_body_file = anim_obj["lower_body_file"].as_string();
-					partial_anim->LoadLowerAnimation(lower_body_file);
+				if (anim_obj.contains("lower_body_file")) {
+					const std::string lower_body_file = anim_obj["lower_body_file"].get<std::string>();
+					partial_anim->LoadLowerAnimation(lower_body_file.c_str());
 				}
 
-				if (anim_obj.HasMember("upper_body_file")) {
-					const char* upper_body_file = anim_obj["upper_body_file"].as_string();
-					partial_anim->LoadUpperAnimation(upper_body_file);
+				if (animator_doc.contains("material"))
+				{
+					const std::string material_file = animator_doc["material"].get<std::string>();
+					animator->LoadMaterial(material_file.c_str());
 				}
 
-				if (anim_obj.HasMember("upper_body_root")) {
-					int ubr = anim_obj["upper_body_root"].as_int();
-
-					partial_anim->SetUpperBodyRoot(ubr);
+				if (animator_doc.contains("skeleton"))
+				{
+					const std::string skeleton_file = animator_doc["skeleton"].get<std::string>();
+					animator->LoadSkeleton(skeleton_file.c_str());
 				}
-			}break;
+
+				if (animator_doc.contains("transition_blend"))
+				{
+					bool transition_blend = animator_doc["transition_blend"].get<bool>();
+					animator->setBlendOnTransition(transition_blend);
+				}
+
+				if (animator_doc.contains("transition_time"))
+				{
+					float transition_time = animator_doc["transition_time"].get<float>();
+					animator->setTransitionTime(transition_time);
+				}
+
+			} break;
 
 			case AT_SIMPLE:
 			{
 				size_t index = animator->CreateSimpleAnimation(a_data.name);
 				animation = animator->getAnimationAt(index).animation;
-				OzzAnimationSimple* simple_anim = (OzzAnimationSimple*)animation;
+				OzzAnimationSimple* simple_anim = dynamic_cast<OzzAnimationSimple*>(animation);
 
-				if (anim_obj.HasMember("animation_file")) {
-					const char* anim_file = anim_obj["animation_file"].as_string();
-
-					simple_anim->LoadAnimation(anim_file);
+				if (anim_obj.contains("animation_file")) {
+					const std::string anim_file = anim_obj["animation_file"].get<std::string>();
+					simple_anim->LoadAnimation(anim_file.c_str());
 				}
-			}break;
+			} break;
 
 			default:
 				break;
 			}
 
-			if (anim_obj.HasMember("playback_speed"))
+			if (animation)
 			{
-				float p_speed = anim_obj["playback_speed"].as_float();
-				animation->setPlaybackSpeed(p_speed);
-			}
+				if (anim_obj.contains("playback_speed"))
+				{
+					float p_speed = anim_obj["playback_speed"].get<float>();
+					animation->setPlaybackSpeed(p_speed);
+				}
 
-			if (anim_obj.HasMember("loop"))
-			{
-				bool loop = anim_obj["loop"].as_bool();
-				animation->setLoop(loop);
+				if (anim_obj.contains("loop"))
+				{
+					bool loop = anim_obj["loop"].get<bool>();
+					animation->setLoop(loop);
+				}
 			}
 		}
 	}
