@@ -27,6 +27,8 @@
 #endif
 #define NULL  0
 
+// Invalid Index
+#define INVALID_INDEX static_cast<unsigned long long>(-1)
 
 // PREDEFINED & GENERAL VARIABLES ------------------------------------------------
 /// Keep a value between 0.0f and 1.0f

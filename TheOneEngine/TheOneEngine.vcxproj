@@ -11,6 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="Animation\animations\OzzAnimationPartialBlending.h" />
+    <ClInclude Include="Animation\animations\OzzAnimationSimple.h" />
+    <ClInclude Include="Animation\OzzAnimation.h" />
+    <ClInclude Include="Animation\OzzAnimator.h" />
+    <ClInclude Include="Animation\samples\mesh.h" />
+    <ClInclude Include="Animation\samples\shader.h" />
+    <ClInclude Include="Animation\samples\utils.h" />
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Billboard.h" />
@@ -55,6 +63,13 @@
     <ClInclude Include="UpdateEmmiterModule.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation\animations\OzzAnimationPartialBlending.cpp" />
+    <ClCompile Include="Animation\animations\OzzAnimationSimple.cpp" />
+    <ClCompile Include="Animation\OzzAnimation.cpp" />
+    <ClCompile Include="Animation\OzzAnimator.cpp" />
+    <ClCompile Include="Animation\samples\mesh.cpp" />
+    <ClCompile Include="Animation\samples\shader.cpp" />
+    <ClCompile Include="Animation\samples\utils.cpp" />
     <ClCompile Include="AudioComponent.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Billboard.cpp" />
@@ -141,7 +156,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)external\ozz\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -155,10 +170,10 @@
 $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew glm assimp pcg simdjson nlohmann-json devil[libjpeg,libpng] --recurse --overlay-triplets=$(SolutionDir)custom-triplets</Command>
     </PreBuildEvent>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;ILU.lib;ILUT.lib;mono-2.0-sgen.lib</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;ILU.lib;ILUT.lib;mono-2.0-sgen.lib;ozz.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)vcpkg\installed\x64-windows\lib\;$(SolutionDir)mono\lib\Debug\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)vcpkg\installed\x64-windows\lib\;$(SolutionDir)mono\lib\Debug\;$(SolutionDir)external\ozz\lib\</AdditionalLibraryDirectories>
     </Lib>
     <PostBuildEvent>
       <Command>copy "..\mono\bin\" "..\x64\Debug\"</Command>
