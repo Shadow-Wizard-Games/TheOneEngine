@@ -8,11 +8,16 @@
         this.upgraded = upgraded;
         if (upgraded)
         {
-            amountHealing = 100;
+            amountHealing = 80;
+            this.description = "A healing syringe. Upon use, you recover 80% of your Health.";
+            this.price = 200;
+
         }
         else
         {
             amountHealing = 60;
+            this.description = "A healing bandage. Upon use, you recover 60% of your Health.";
+            this.price = 100;
         }
         type = ItemType.CONSUMABLE;
     }

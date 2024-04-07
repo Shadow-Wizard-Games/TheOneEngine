@@ -8,7 +8,7 @@ public abstract class Item
         UNKNOWN = 0,
         CONSUMABLE,
         SHIELD,
-        MP7,
+        M4A1,
         GREN_LAUNCHER,
         AD_RUSH,
         FLAMETHROWER,

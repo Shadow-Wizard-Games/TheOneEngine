@@ -13,7 +13,7 @@ public class ItemManager : MonoBehaviour
     public override void Start()
     {
         //LoadData();
-        itemData.Add(1, new Item_MP7());
+        itemData.Add(1, new Item_M4A1());
         itemData.Add(2, new Item_Healing(false));
     }
 
