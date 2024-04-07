@@ -111,9 +111,23 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ReplayPS(IntPtr GOptr);
     
+    //Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void PlaySource(IntPtr GOptr, EventIDs audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopSource(IntPtr GOptr, EventIDs audio);
+
+    //Collider2D
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetColliderRadius(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetColliderRadius(IntPtr GOptr, ref float radiusToSet);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static Vector2 GetColliderBoxSize(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetColliderBoxSize(IntPtr GOptr, ref Vector2 sizeToSet);
 }

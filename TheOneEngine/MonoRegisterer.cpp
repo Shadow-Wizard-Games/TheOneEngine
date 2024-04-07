@@ -369,6 +369,25 @@ static void StopAudioSource(GameObject* GOptr, uint audio) {
 	audioManager->StopAudio(GOptr->GetComponent<AudioSource>(), audio);
 }
 
+// Collider2D
+static float GetColliderRadius(GameObject* GOptr)
+{
+	return (float)GOptr->GetComponent<Collider2D>()->radius;
+}
+static void SetColliderRadius(GameObject* GOptr, float radiusToSet)
+{
+	GOptr->GetComponent<Collider2D>()->radius = (double)radiusToSet;
+}
+static vec2f GetColliderBoxSize(GameObject* GOptr)
+{
+	return vec2f((float)GOptr->GetComponent<Collider2D>()->w, (float)GOptr->GetComponent<Collider2D>()->h);
+}
+static void SetColliderBoxSize(GameObject* GOptr, vec2f sizeToSet)
+{
+	GOptr->GetComponent<Collider2D>()->w = (double)sizeToSet.x;
+	GOptr->GetComponent<Collider2D>()->h = (double)sizeToSet.y;
+}
+
 void MonoRegisterer::RegisterFunctions()
 {
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
@@ -413,6 +432,11 @@ void MonoRegisterer::RegisterFunctions()
 
 	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);
 	mono_add_internal_call("InternalCalls::StopSource", StopAudioSource);
+
+	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);
+	mono_add_internal_call("InternalCalls::SetColliderRadius", SetColliderRadius);
+	mono_add_internal_call("InternalCalls::GetColliderBoxSize", GetColliderBoxSize);
+	mono_add_internal_call("InternalCalls::SetColliderBoxSize", SetColliderBoxSize);
 }
 
 bool MonoRegisterer::CheckMonoError(MonoError& error)

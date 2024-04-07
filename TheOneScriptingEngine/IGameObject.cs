@@ -77,10 +77,10 @@ public class IGameObject : IObject
                     //    componentToReturn = new ITexture(containerGOptr) as TComponent;
                     //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
                     //    break;
-                    //case IComponent.ComponentType.ICollider2D:
-                    //    componentToReturn = new ICollider2D(containerGOptr) as TComponent;
-                    //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
-                    //    break;
+                    case IComponent.ComponentType.ICollider2D:
+                        componentToReturn = new ICollider2D(containerGOptr) as TComponent;
+                        Debug.LogCheck("The GetType of the class is: " + type.ToString());
+                        break;
                     case IComponent.ComponentType.ICanvas:
                         componentToReturn = new ICanvas(containerGOptr) as TComponent;
                         break;
