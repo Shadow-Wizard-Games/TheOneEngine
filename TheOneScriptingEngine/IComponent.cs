@@ -4,12 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class IComponent
+public class IComponent : IObject
 {
-    protected IntPtr containerGOptr;
-
-    public IComponent(IntPtr gameObjectPtr)
+    public enum ComponentType
     {
-        containerGOptr = gameObjectPtr;
+        ITransform,
+        ICamera,
+        IMesh,
+        ITexture,
+        MonoBehaviour,
+        ICollider2D,
+        ICanvas,
+        IListener,
+        ISource,
+        IParticleSystem,
+        Unknown
     }
+
+   public IComponent() : base() { }
+   public IComponent(IntPtr gameObjectRef) : base(gameObjectRef) { }
 }

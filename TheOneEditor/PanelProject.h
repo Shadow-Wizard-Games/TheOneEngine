@@ -9,7 +9,7 @@
 #include <filesystem>
 #include <unordered_map>
 
-enum class FileDropType {
+enum class FileType {
 	MODEL3D,
 	TEXTURE,
 	FOLDER,
@@ -24,10 +24,10 @@ enum class FileDropType {
 
 struct FileInfo {
 	std::string name;
-	FileDropType fileType = FileDropType::UNKNOWN;
+	FileType fileType = FileType::UNKNOWN;
 	bool isDirectory = false;
 	bool isSelected = false;
-	std::string path;
+	std::filesystem::path path;
 };
 
 class PanelProject : public Panel
@@ -42,28 +42,34 @@ public:
 	std::pair<bool, uint32_t> DirectoryTreeViewRecursive(const std::filesystem::path& path, uint32_t* count, int* selection_mask);
 
 	//Function to move files through the folders and some to the scene
-	bool DragAndDrop(FileInfo& info);
+	bool DragAndDrop(const FileInfo& info);
 
-	void ContextMenu(FileInfo& info);
+	void ContextMenu();
 
 	//Serializes a GameObject into a Prefab file
-	void SaveGameObjectAsPrefab(GameObject* gameObject);
+	void SaveGameObjectAsPrefab(GameObject& gameObject, const FileInfo& info);
 
 	//Function that shows the files of a selected folder (take into account selected Directory in DirectoryTreeViewRecursive)
-	void InspectorDraw();
+	void FileExplorerDraw();
 
 	// Function to list files in a directory
 	std::vector<FileInfo> ListFiles(const std::string& path);
-	FileDropType FindFileType(const std::string& fileExtension);
+	FileType FindFileType(const std::string& fileExtension);
 
-	GLuint LoadTexture(const std::string& filename);
+	GLuint LoadTexture(const std::string& path);
 	void LoadIcons();
 
+	//Loading and Unloading functions for the previews of texture files
+	void LoadImagePreviews(const FileInfo& info);
+	void UnloadImagePreviews();
+
 	void SaveWarning();
+	
+	void FileDropping(const FileInfo& info);
 
 private:
 
-	void DoubleClickFile(FileInfo& info);
+	void DoubleClickFile();
 
 public:
 	std::string directoryPath;
@@ -72,9 +78,10 @@ private:
 	float fontSize;
 	bool refresh = true;
 	std::vector<FileInfo> files;
-	FileInfo fileSelected;
+	FileInfo* fileSelected;
 
-	std::unordered_map<FileDropType, GLuint> iconTextures;
+	std::unordered_map<FileType, GLuint> iconTextures;
+	std::unordered_map<std::string, GLuint> imagePreviews;
 
 	bool warningScene = false;
 };

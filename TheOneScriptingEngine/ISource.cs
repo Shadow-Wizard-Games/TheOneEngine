@@ -4,7 +4,8 @@ using static AudioManager;
 
 public class ISource : IComponent
 {
-    public ISource(IntPtr GOptr) : base(GOptr) { }
+    public ISource() : base() { }
+    public ISource(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
     public void PlayAudio(EventIDs audio)
     {

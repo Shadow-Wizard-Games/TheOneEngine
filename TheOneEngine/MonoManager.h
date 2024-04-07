@@ -35,10 +35,11 @@ public:
     void ShutDownMono();
 
     static GameObject* GetCurrentGameObjectPtr() { return monoData.currentGameObjectPtr; }
+    static MonoDomain* GetAppDomain() { return monoData.monoAppDomain; }
     static MonoObject* InstantiateClass(const char* className, GameObject* containerGOptr);
 
-    static void CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall);
-    static void CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall, void** params, int parameterCount);
+    static void* CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall);
+    static void* CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall, void** params, int parameterCount);
 
     static bool IsClassInMainAssembly(const char* className);
 

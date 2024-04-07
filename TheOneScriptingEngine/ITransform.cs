@@ -42,7 +42,8 @@ public class ITransform : IComponent
         }
     }
 
-    public ITransform(IntPtr GOptr) : base(GOptr) { }
+    public ITransform() : base() { }
+    public ITransform(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
     public bool ComponentCheck()
     {

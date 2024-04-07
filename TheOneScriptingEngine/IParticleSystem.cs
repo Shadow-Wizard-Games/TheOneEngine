@@ -2,7 +2,8 @@
 
 public class IParticleSystem : IComponent
 {
-    public IParticleSystem(IntPtr GOptr) : base(GOptr) { }
+    public IParticleSystem() : base() { }
+    public IParticleSystem(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
     public void Play()
     {

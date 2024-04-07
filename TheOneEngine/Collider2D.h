@@ -23,6 +23,14 @@ enum class CollisionType
     Bullet,
 };
 
+enum class ObjectOrientation
+{
+    Front = 0,
+    Right,
+    Back,
+    Left
+};
+
 class Collider2D : public Component
 {
 public:
@@ -41,6 +49,10 @@ public:
     CollisionType collisionType;
     double radius;
     double w, h;
-    vec3 offset;
+    vec2 offset;
+    //true:   collision will be build with pivot as corner
+    //false:  collision will be build with pivot as center
+    bool cornerPivot;
+    ObjectOrientation objectOrientation = ObjectOrientation::Front;
 };
 #endif // !__COLLIDER_2D_H__

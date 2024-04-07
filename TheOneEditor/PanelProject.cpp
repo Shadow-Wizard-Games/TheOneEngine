@@ -75,21 +75,25 @@ bool PanelProject::Draw()
 			// Inspector ----------------------------
 			ImGui::TableNextColumn();
 
-			ImGui::Text("%s", fileSelected.path.c_str());
+			//Historn: NEED TO CREATE CHILD WINDOW FOR DRAG AND DROP
+			//if(ImGui::BeginChild("FileExplorer"))
+			if (fileSelected)
+			{
+				ImGui::Text("%s", fileSelected->path.string().c_str());
+			}
 
 			ImGui::Separator();
 
-			InspectorDraw();
+			FileExplorerDraw();
 
 			ImGui::EndTable();
 		}
 
 		SaveWarning();
-
-		ImGui::PopStyleVar(2);
-		ImGui::End();
 	}
 
+	ImGui::PopStyleVar();
+	ImGui::End();
 	return true;
 }
 
@@ -100,6 +104,8 @@ bool PanelProject::CleanUp()
 		glDeleteTextures(1, &pair.second);
 	}
 	iconTextures.clear();
+
+	UnloadImagePreviews();
 
 	ilShutDown();
 	return true;
@@ -169,16 +175,18 @@ std::pair<bool, uint32_t> PanelProject::DirectoryTreeViewRecursive(const fs::pat
 	return { any_node_clicked, node_clicked };
 }
 
-void PanelProject::InspectorDraw()
+void PanelProject::FileExplorerDraw()
 {
 	if (refresh)
 	{
+		fileSelected = nullptr;
 		files.clear();
 		files = ListFiles(directoryPath);
 		refresh = false;
 	}
 
 	float contentWidth = ImGui::GetWindowContentRegionWidth();
+	GLuint textureID = 0;
 
 	for (auto& file : files) 
 	{
@@ -189,7 +197,16 @@ void PanelProject::InspectorDraw()
 
 		ImGui::BeginGroup();
 
-		GLuint iconTexture = iconTextures[file.fileType];
+		GLuint iconTexture = 0;
+
+		if (file.fileType == FileType::TEXTURE)
+		{
+			iconTexture = imagePreviews[file.name];
+		}
+		else
+		{
+			iconTexture = iconTextures[file.fileType];
+		}
 
 		ImGui::Indent();
 		ImVec2 textPos(ImGui::GetCursorPos().x + (fontSize - ImGui::CalcTextSize(displayName.c_str()).x) * 0.5f, ImGui::GetCursorPos().y + fontSize + 10);
@@ -197,14 +214,20 @@ void PanelProject::InspectorDraw()
 		
 		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.f, 0.f, 0.f, 0.f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
+
 		ImGui::ImageButton((void*)(intptr_t)iconTexture, ImVec2(fontSize, fontSize), ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f), -1, ImVec4(.30f, .30f, .30f, 0.00f));
 
-		if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(0))
+		if (ImGui::IsItemHovered() && (ImGui::IsMouseClicked(0) || ImGui::IsMouseClicked(1)))
 		{
-			fileSelected = file;
+			fileSelected = &file;
 		}
 
-		DoubleClickFile(file);
+		if (DragAndDrop(file))
+			break;
+
+		DoubleClickFile();
+
+		ContextMenu();
 
 		ImGui::SetCursorPos(textPos);
 
@@ -214,33 +237,30 @@ void PanelProject::InspectorDraw()
 
 		ImGui::SameLine(0, ImGui::GetStyle().ItemSpacing.y + fontSize);
 		
-		ContextMenu(file);
-
-		if (DragAndDrop(file))
-			break;
-
 		ImGui::PopStyleVar(5);
 	}
 }
 
 std::vector<FileInfo> PanelProject::ListFiles(const std::string& path)
 {
+	UnloadImagePreviews();
 	std::vector<FileInfo> files;
 	for (const auto& entry : fs::directory_iterator(path)) {
 		FileInfo fileInfo;
 
-		fileInfo.path = entry.path().string();
+		fileInfo.path = entry.path();
 		fileInfo.name = entry.path().stem().string();
 		fileInfo.isDirectory = entry.is_directory();
 
 		if (fileInfo.isDirectory)
 		{
-			fileInfo.fileType = FileDropType::FOLDER;
+			fileInfo.fileType = FileType::FOLDER;
 		}
 		else
 		{
 			std::string extension = entry.path().extension().string();
 			fileInfo.fileType = FindFileType(extension);
+			LoadImagePreviews(fileInfo);
 		}
 
 		files.push_back(fileInfo);
@@ -248,7 +268,7 @@ std::vector<FileInfo> PanelProject::ListFiles(const std::string& path)
 	return files;
 }
 
-FileDropType PanelProject::FindFileType(const std::string& fileExtension)
+FileType PanelProject::FindFileType(const std::string& fileExtension)
 {
 	// Convert fileExtension to lowercase
 	std::string lowercaseExtension = fileExtension;
@@ -257,37 +277,37 @@ FileDropType PanelProject::FindFileType(const std::string& fileExtension)
 
 	if (lowercaseExtension == ".fbx")
 	{
-		return FileDropType::MODEL3D;
+		return FileType::MODEL3D;
 	}
 	else if (lowercaseExtension == ".png" || lowercaseExtension == ".dds")
 	{
-		return FileDropType::TEXTURE;
+		return FileType::TEXTURE;
 	}
 	else if (lowercaseExtension == ".cs")
 	{
-		return FileDropType::SCRIPT;
+		return FileType::SCRIPT;
 	}
 	else if (lowercaseExtension == ".toe")
 	{
-		return FileDropType::SCENE;
+		return FileType::SCENE;
 	}
 	else if (lowercaseExtension == ".prefab")
 	{
-		return FileDropType::PREFAB;
+		return FileType::PREFAB;
 	}
 	else if (lowercaseExtension == ".txt")
 	{
-		return FileDropType::TXT;
+		return FileType::TXT;
 	}
 	else if (lowercaseExtension == ".particles")
 	{
-		return FileDropType::PARTICLES;
+		return FileType::PARTICLES;
 	}
 
-	return FileDropType::UNKNOWN;
+	return FileType::UNKNOWN;
 }
 
-GLuint PanelProject::LoadTexture(const std::string& filename)
+GLuint PanelProject::LoadTexture(const std::string& path)
 {
 	// Generate a new texture ID
 	GLuint textureID;
@@ -299,8 +319,8 @@ GLuint PanelProject::LoadTexture(const std::string& filename)
 	ilGenImages(1, &ilImage);
 	ilBindImage(ilImage);
 
-	if (!ilLoadImage((const wchar_t*)filename.c_str())) {
-		LOG(LogType::LOG_ERROR, "Error loading texture: %s", filename.c_str());
+	if (!ilLoadImage((const wchar_t*)path.c_str())) {
+		LOG(LogType::LOG_ERROR, "Error loading texture: %s", path.c_str());
 		return 0;
 	}
 
@@ -325,15 +345,32 @@ void PanelProject::LoadIcons()
 	ilInit();
 
 	// Load and store icon textures
-	iconTextures[FileDropType::FOLDER] = LoadTexture("Config\\Icons/PanelProject/folder.png");
-	iconTextures[FileDropType::MODEL3D] = LoadTexture("Config\\Icons/PanelProject/fbx.png");
-	iconTextures[FileDropType::PREFAB] = LoadTexture("Config\\Icons/PanelProject/prefab.png");
-	iconTextures[FileDropType::SCENE] = LoadTexture("Config\\Icons/PanelProject/scene.png");
-	iconTextures[FileDropType::SCRIPT] = LoadTexture("Config\\Icons/PanelProject/script.png");
-	iconTextures[FileDropType::TEXTURE] = LoadTexture("Config\\Icons/PanelProject/texture.png");
-	iconTextures[FileDropType::TXT] = LoadTexture("Config\\Icons/PanelProject/txt.png");
-	iconTextures[FileDropType::PARTICLES] = LoadTexture("Config\\Icons/PanelProject/particles.png");
-	iconTextures[FileDropType::UNKNOWN] = LoadTexture("Config\\Icons/PanelProject/unknown.png");
+	iconTextures[FileType::FOLDER] = LoadTexture("Config\\Icons/PanelProject/folder.png");
+	iconTextures[FileType::MODEL3D] = LoadTexture("Config\\Icons/PanelProject/fbx.png");
+	iconTextures[FileType::PREFAB] = LoadTexture("Config\\Icons/PanelProject/prefab.png");
+	iconTextures[FileType::SCENE] = LoadTexture("Config\\Icons/PanelProject/scene.png");
+	iconTextures[FileType::SCRIPT] = LoadTexture("Config\\Icons/PanelProject/script.png");
+	iconTextures[FileType::TEXTURE] = LoadTexture("Config\\Icons/PanelProject/texture.png");
+	iconTextures[FileType::TXT] = LoadTexture("Config\\Icons/PanelProject/txt.png");
+	iconTextures[FileType::PARTICLES] = LoadTexture("Config\\Icons/PanelProject/particles.png");
+	iconTextures[FileType::UNKNOWN] = LoadTexture("Config\\Icons/PanelProject/unknown.png");
+}
+
+void PanelProject::LoadImagePreviews(const FileInfo& info)
+{
+	if (info.fileType == FileType::TEXTURE)
+	{
+		imagePreviews[info.name] = LoadTexture(info.path.string());
+	}
+}
+
+void PanelProject::UnloadImagePreviews()
+{
+	// Clean up icon textures
+	for (auto& pair : imagePreviews) {
+		glDeleteTextures(1, &pair.second);
+	}
+	imagePreviews.clear();
 }
 
 void PanelProject::SaveWarning()
@@ -356,7 +393,7 @@ void PanelProject::SaveWarning()
 
 		ImGui::SetCursorPosX((ImGui::GetContentRegionAvail().x - 100 * 2.0f - ImGui::GetStyle().ItemSpacing.x) / 2.0f);
 		if (ImGui::Button("Yes", { 100, 20 })) {
-			engine->N_sceneManager->LoadScene(fileSelected.name);
+			engine->N_sceneManager->LoadScene(fileSelected->name);
 			ImGui::CloseCurrentPopup();
 		}
 		ImGui::SameLine();
@@ -367,34 +404,34 @@ void PanelProject::SaveWarning()
 	}
 }
 
-void PanelProject::DoubleClickFile(FileInfo& info)
+void PanelProject::DoubleClickFile()
 {
 	if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
 	{
-		switch (info.fileType)
+		switch (fileSelected->fileType)
 		{
-		case FileDropType::FOLDER:
-			directoryPath = info.path;
+		case FileType::FOLDER:
+			directoryPath = fileSelected->path.string();
 			refresh = true;
 			break;
-		case FileDropType::SCENE:
+		case FileType::SCENE:
 			if (engine->N_sceneManager->currentScene->IsDirty())
 			{
 				warningScene = true;
 			}
 			else
 			{
-				engine->N_sceneManager->LoadScene(info.name);
+				engine->N_sceneManager->LoadScene(fileSelected->name);
 			}
 			break;
-		case FileDropType::PREFAB:
+		case FileType::PREFAB:
 			if (engine->N_sceneManager->currentScene->IsDirty())
 			{
 				warningScene = true;
 			}
 			else
 			{
-				engine->N_sceneManager->LoadScene(info.name);
+				engine->N_sceneManager->LoadScene(fileSelected->name);
 			}
 			break;
 		default:
@@ -404,7 +441,7 @@ void PanelProject::DoubleClickFile(FileInfo& info)
 	
 }
 
-bool PanelProject::DragAndDrop(FileInfo& info)
+bool PanelProject::DragAndDrop(const FileInfo& info)
 {
 	// Check if the window is being hovered over while dragging
 	if (ImGui::IsWindowHovered() && ImGui::IsMouseDragging(0)) 
@@ -414,7 +451,7 @@ bool PanelProject::DragAndDrop(FileInfo& info)
 
 	if (ImGui::BeginDragDropSource())
 	{
-		ImGui::SetDragDropPayload(info.name.c_str(), &info, sizeof(FileInfo));
+		ImGui::SetDragDropPayload(fileSelected->name.c_str(), &info, sizeof(FileInfo));
 
 		ImGui::EndDragDropSource();
 	}
@@ -428,24 +465,26 @@ bool PanelProject::DragAndDrop(FileInfo& info)
 				if (gameObject)
 				{
 					// Save the GameObject as a prefab
-					SaveGameObjectAsPrefab(gameObject);
+					SaveGameObjectAsPrefab(*gameObject, info);
 				}
-				ImGui::EndDragDropTarget();
 			}
 		}
-		else if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(info.name.c_str()))
+		else if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(fileSelected->name.c_str()))
 		{
 			FileInfo* fileInfo = (FileInfo*)payload->Data;
-			if (fileInfo) {
+			if (fileInfo) 
+			{
 				if (ImGui::IsItemHovered())
 				{
-					LOG(LogType::LOG_INFO, "Path Hovered File: %s", info.path);
+					//LOG(LogType::LOG_INFO, "Path Hovered File: %s", info.path.string().c_str());
 					// Perform the file move operation
-					fs::rename(fileInfo->path, info.path);
+					//FileDropping(info);
+					fs::rename(fileSelected->path, info.path / fileSelected->path.filename());
+					fileSelected = nullptr;
+					refresh = true;
 				}
 			}
-			ImGui::EndDragDropTarget();
-			refresh = true;
+			
 		}
 		ImGui::EndDragDropTarget();
 	}
@@ -453,33 +492,55 @@ bool PanelProject::DragAndDrop(FileInfo& info)
 	return refresh;
 }
 
-void PanelProject::ContextMenu(FileInfo& info)
+void PanelProject::FileDropping(const FileInfo& info)
+{
+	if (fileSelected->fileType != FileType::FOLDER && info.fileType == FileType::FOLDER)
+	{
+		fs::rename(fileSelected->path, info.path / fileSelected->path.filename());
+	}
+	else if (fileSelected->fileType == FileType::FOLDER && info.fileType == FileType::FOLDER)
+	{
+		fs::rename(fileSelected->path, info.path / fileSelected->path.filename());
+	}
+
+	fileSelected = nullptr;
+	refresh = true;
+}
+
+void PanelProject::ContextMenu()
 {
 	if (ImGui::BeginPopupContextItem())
 	{
 		
-		/*if (ImGui::MenuItem("Delete"))
+		if (ImGui::MenuItem("Delete"))
 		{
-			fs::remove(info.name);
+			fs::remove(fileSelected->path);
+			fileSelected = nullptr;
 			refresh = true;
-		}*/
+		}
 
 		ImGui::EndPopup();
 	}
 }
 
-void PanelProject::SaveGameObjectAsPrefab(GameObject* gameObject) {
-	if (gameObject) {
-		
-		gameObject->SetPrefab(UIDGen::GenerateUID());
+void PanelProject::SaveGameObjectAsPrefab(GameObject& gameObject, const FileInfo& info) {
+	gameObject.SetPrefab(UIDGen::GenerateUID());
 
-		std::string prefabName = gameObject->GetName() + ".prefab";
+	std::string prefabName = gameObject.GetName() + ".prefab";
 
-		// Serialize the GameObject and save it as a prefab file
-		json gameObjectJSON = gameObject->SaveGameObject();
-		std::ofstream(directoryPath + prefabName) << gameObjectJSON.dump(2);
-		LOG(LogType::LOG_OK, "PREFAB CREATED SUCCESSFULLY");
-		refresh = true;
-		engine->N_sceneManager->currentScene->SetIsDirty(true);
-	} 
+	// Serialize the GameObject and save it as a prefab file
+	json gameObjectJSON = gameObject.SaveGameObject();
+	if (info.isDirectory)
+	{
+		fs::path filename = info.path / prefabName;
+		std::ofstream(filename) << gameObjectJSON.dump(2);
+	}
+	else
+	{
+		fs::path filename = directoryPath + prefabName;
+		std::ofstream(filename) << gameObjectJSON.dump(2);
+	}
+	LOG(LogType::LOG_OK, "PREFAB CREATED SUCCESSFULLY");
+	refresh = true;
+	engine->N_sceneManager->currentScene->SetIsDirty(true);
 }

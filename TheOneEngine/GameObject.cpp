@@ -11,6 +11,7 @@
 #include "UIDGen.h"
 #include "BBox.hpp"
 #include "Camera.h"
+#include "N_SceneManager.h"
 
 #include "Math.h"
 #include "EngineCore.h"
@@ -345,6 +346,14 @@ json GameObject::SaveGameObject()
 	gameObjectJSON["Name"] = name;
 	gameObjectJSON["Static"] = isStatic;
 	gameObjectJSON["Enabled"] = enabled;
+	
+	//Save prefab variables
+	if (prefabID != 0)
+	{
+		gameObjectJSON["PrefabID"] = prefabID;
+		gameObjectJSON["EditablePrefab"] = editablePrefab;
+		gameObjectJSON["PrefabDirty"] = isPrefabDirty;
+	}
 
 	if (!components.empty())
 	{
@@ -392,6 +401,20 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 	if (gameObjectJSON.contains("Enabled"))
 	{
 		enabled = gameObjectJSON["Enabled"];
+	}
+	
+	if (gameObjectJSON.contains("PrefabID"))
+	{
+		prefabID = gameObjectJSON["PrefabID"];
+
+		if (gameObjectJSON.contains("EditablePrefab"))
+		{
+			editablePrefab = gameObjectJSON["EditablePrefab"];
+		}
+		if (gameObjectJSON.contains("PrefabDirty"))
+		{
+			isPrefabDirty = gameObjectJSON["PrefabDirty"];
+		}
 	}
 
 	// Load components
@@ -491,17 +514,39 @@ void GameObject::SetPrefab(const uint32_t& pID)
 void GameObject::UnpackPrefab()
 {
 	if (IsPrefab())
+	{
 		SetPrefab(0);
+		editablePrefab = true; 
+		isPrefabDirty = false;
+	}
+		
 }
 
-void GameObject::LockPrefab(bool lock)
+void GameObject::SetEditablePrefab(bool editable)
 {
 	if (IsPrefab())
 	{
-		lockedPrefab = lock;
+		editablePrefab = editable;
 		for (auto item = children.begin(); item != children.end(); ++item) {
 			if (*item != nullptr) {
-				(*item).get()->LockPrefab(lock);
+				(*item).get()->SetEditablePrefab(editable);
+			}
+		}
+	}
+}
+
+void GameObject::SetPrefabDirty(bool changed)
+{
+	if (IsPrefab())
+	{
+		isPrefabDirty = changed;
+		if (parent.lock() != engine->N_sceneManager->currentScene->GetRootSceneGO() && parent.lock().get()->GetPrefabID() == this->prefabID)
+		{
+			parent.lock().get()->SetPrefabDirty(changed);
+		}
+		for (auto item = children.begin(); item != children.end(); ++item) {
+			if (*item != nullptr) {
+				(*item).get()->SetPrefabDirty(changed);
 			}
 		}
 	}

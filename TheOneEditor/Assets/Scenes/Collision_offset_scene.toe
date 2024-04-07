@@ -1,0 +1,186 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1294650998
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 2521277258,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            50.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            50.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            50.0,
+            0.0,
+            0.0,
+            25.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3308673294
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Path": "Library/Meshes/SM_Cube/pCube1.mesh",
+          "Type": 2,
+          "UID": 717467137
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "Height": 60.0,
+          "Name": "Specified Type was not found",
+          "OffsetX": 30.0,
+          "OffsetY": 0.0,
+          "OffsetZ": -30.0,
+          "ParentUID": 3452816845,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 2824252320,
+          "Width": 60.0
+        }
+      ],
+      "Enabled": true,
+      "Name": "wall",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            25.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            25.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            25.0,
+            0.0,
+            85.59581756591797,
+            12.5,
+            18.05144691467285,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1316852607
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Path": "Library/Meshes/SM_Cube/pCube1.mesh",
+          "Type": 2,
+          "UID": 645692015
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "Height": 1.0,
+          "Name": "Specified Type was not found",
+          "OffsetX": -20.0,
+          "OffsetY": 0.0,
+          "OffsetZ": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 20.0,
+          "Type": 5,
+          "UID": 2931993319,
+          "Width": 1.0
+        },
+        {
+          "AudioID": 0,
+          "Name": "Source",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 1350667336
+        }
+      ],
+      "Enabled": true,
+      "Name": "player",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\NewUntitledScene.toe",
+  "sceneName": "NewUntitledScene"
+}
