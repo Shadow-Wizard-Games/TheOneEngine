@@ -29,7 +29,7 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     float life = 1500;
 
-    float movementSpeed = 150.0f;
+    float dashSpeed = 150.0f;
 
     States currentState = States.Idle;
     AlienAttack currentAttack = AlienAttack.None;
@@ -64,6 +64,11 @@ public class AlienQueenBehaviour : MonoBehaviour
     private float spinTime = 2.0f;
     bool isSpinning = false;
 
+    // Giant Jump Far/Close
+    float maxHeight = 550.0f;
+    float currentHeight = 0.0f;
+    bool up = true;
+    float jumpSpeed = 35.0f * 5;
 
     public override void Start()
     {
@@ -138,7 +143,7 @@ public class AlienQueenBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 ChooseAttack();
-                //currentAttack = AlienAttack.Tail_Sweep;
+
                 switch (currentAttack)
                 {
                     case AlienAttack.Tail_Sweep:
@@ -160,10 +165,10 @@ public class AlienQueenBehaviour : MonoBehaviour
                         XenoSpawn();
                         break;
                     case AlienAttack.Giant_Jump_Far:
-                        GiantJumpFar();
+                        GiantJump(true);
                         break;
                     case AlienAttack.Giant_Jump_Close:
-                        GiantJumpClose();
+                        GiantJump(false);
                         break;
                     default:
                         break;
@@ -238,7 +243,7 @@ public class AlienQueenBehaviour : MonoBehaviour
         if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
 
         Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
-        attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
+        attachedGameObject.transform.Translate(dirVector * dashSpeed * Time.deltaTime);
 
         return false;
     }
@@ -296,7 +301,12 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     private void XenoSpawn()
     {
-        // pending to implement
+
+        Vector3 scale = new Vector3(1,1,1);
+        
+        InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+                                           attachedGameObject.transform.rotation,
+                                           scale);
         ResetState();
     }
 
@@ -307,17 +317,49 @@ public class AlienQueenBehaviour : MonoBehaviour
         ResetState();
     }
 
-    private void GiantJumpFar()
+    private void GiantJump(bool isJumpingForward)
     {
-        ResetState();
+        float directionMultiplier = isJumpingForward ? -1.0f : 1.0f;
+        attachedGameObject.transform.Translate(attachedGameObject.transform.forward * directionMultiplier * jumpSpeed * Time.deltaTime);
+
+        if (up)
+        {
+            if (maxHeight >= currentHeight)
+            {
+                attachedGameObject.transform.Translate(Vector3.up * currentHeight * Time.deltaTime);
+                currentHeight += 10.0f;
+            }
+            else
+            {
+                up = false;
+            }
+        }
+        else
+        {
+            if (currentHeight <= 0)
+            {
+                currentHeight = 0.0f;
+            }
+            else
+            {
+                attachedGameObject.transform.Translate(Vector3.up * -currentHeight * Time.deltaTime);
+                currentHeight -= 10.0f;
+            }
+        }
+
+        if (currentHeight <= 0.0f)
+        {
+            ResetState();
+
+            attachedGameObject.transform.position = new Vector3(attachedGameObject.transform.position.x,
+                                                                0.0f,
+                                                                attachedGameObject.transform.position.z);
+            currentHeight = 0.0f;
+            up = true;
+        }
     }
 
-    private void GiantJumpClose()
-    {
-        ResetState();
-    }
-    
-    private void ResetState() 
+    private void ResetState()
     {
         attackTimer = 0.0f;
         currentAttack = AlienAttack.None;
