@@ -27,7 +27,7 @@ Material::~Material()
 {
 	if (shader)
 		shader->DeleteRef(this);
-	uniforms.clear();
+	//uniforms.clear();
 }
 
 void Material::Refresh()

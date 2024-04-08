@@ -65,7 +65,7 @@ std::string Resources::AssetToLibPath(std::string path)
 
 std::string Resources::SetAssetPath(std::string path)
 {
-	StandarizePath(path);
+	//StandarizePath(path);
 
 	size_t a_ind = path.find("library");
 

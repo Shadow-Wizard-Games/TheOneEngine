@@ -41,7 +41,7 @@ public:
 	}
 	~Uniform()
 	{
-		if (data)
+		if (data != nullptr)
 		{
 			delete[] data;
 			data = nullptr;
@@ -89,7 +89,7 @@ private:
 
 	UniformType type;
 	//Using unsigned char as a byte
-	unsigned char* data;
+	unsigned char* data = nullptr;
 	size_t dataSize = 0;
 	uint16_t uniformID;
 

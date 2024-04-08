@@ -16,7 +16,8 @@ template<>
 inline bool Resources::Import<Model>(const std::string& file, Model* model)
 {
 	std::filesystem::path import_path = file;
-	import_path = ImportPathImpl(import_path, ".mesh");
+	PreparePath(import_path.parent_path().string());
+	import_path.replace_extension(".mesh");
 
 	Model::SaveMesh(model, import_path.string().c_str());
 
