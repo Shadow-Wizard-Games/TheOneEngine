@@ -18,6 +18,10 @@ public:
 
 	bool CheckCollision(GameObject* objA, GameObject* objB);
 
+	void LoadCollisions(std::shared_ptr<GameObject> go);
+	void ClearCollisions();
+
+	std::vector<GameObject*> SceneRootToCollisionVector(std::shared_ptr<GameObject> go);
 
 	void SolveCollision(GameObject* objA, GameObject* objB);
 
