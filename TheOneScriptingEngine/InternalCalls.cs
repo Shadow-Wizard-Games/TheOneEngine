@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static AudioManager;
+using static ICamera;
 
 class InternalCalls
 {
@@ -65,10 +66,6 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static TComponent GetScript<TComponent>(IntPtr gameObject, string scriptName);
 
-    //Component
-    [MethodImpl(MethodImplOptions.InternalCall)]
-    internal extern TComponent GetComponent<TComponent>() where TComponent : IComponent;
-
     //Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void LoadScene(string sceneName);
@@ -130,4 +127,41 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetColliderBoxSize(IntPtr GOptr, ref Vector2 sizeToSet);
+
+    //Camera
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static double GetFov(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetFov(IntPtr GOptr, ref double fov);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static double GetAspect(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetAspect(IntPtr GOptr, ref double aspect);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetYaw(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetYaw(IntPtr GOptr, ref float yaw);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetPitch(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetPitch(IntPtr GOptr, ref float pitch);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static CameraType GetCameraType(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetCameraType(IntPtr GOptr, ref CameraType cameraType);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetPrimaryCam(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetPrimaryCam(IntPtr GOptr, ref bool cameraType);
 }
