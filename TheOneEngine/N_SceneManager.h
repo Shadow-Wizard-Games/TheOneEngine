@@ -48,13 +48,13 @@ public:
 	std::shared_ptr<GameObject> CreateCanvasGO(std::string name);
 
 	// Try to mix this two (CreateExistingMeshGO should be erased and CreateMeshGO has to do)
-	std::shared_ptr<GameObject> CreateMeshGO(std::string path);
-	std::shared_ptr<GameObject> CreateExistingMeshGO(std::string fbxName);
+	void CreateMeshGO(std::string path);
+	void CreateExistingMeshGO(std::string fbxName);
 
 	std::shared_ptr<GameObject> CreateCube();
 	std::shared_ptr<GameObject> CreateSphere();
-	std::shared_ptr<GameObject> CreateMF();
-	std::shared_ptr<GameObject> CreateTeapot();
+	void CreateMF();
+	void CreateTeapot();
 
 	void AddPendingGOs();
 	void DeletePendingGOs();

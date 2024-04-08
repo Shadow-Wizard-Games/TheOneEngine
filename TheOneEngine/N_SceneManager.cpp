@@ -371,12 +371,12 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	return canvasGO;
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateMeshGO(std::string path)
+void N_SceneManager::CreateMeshGO(std::string path)
 {
 	std::vector<ResourceId> meshesID = Resources::LoadMultiple<Model>(path);
 
 	if (meshesID.empty())
-		return nullptr;
+		return;
 
 	std::string name = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
 
@@ -430,10 +430,9 @@ std::shared_ptr<GameObject> N_SceneManager::CreateMeshGO(std::string path)
 	}
 
 	if (!sceneIsPlaying) AddPendingGOs();
-	return nullptr;
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string path)
+void N_SceneManager::CreateExistingMeshGO(std::string path)
 {
 	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
 	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
@@ -479,7 +478,6 @@ std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string pat
 			}
 		}
 	}
-	return nullptr;
 }
 
 std::shared_ptr<GameObject> N_SceneManager::CreateCube()
@@ -508,14 +506,14 @@ std::shared_ptr<GameObject> N_SceneManager::CreateSphere()
 	return nullptr;
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateMF()
+void N_SceneManager::CreateMF()
 {
-	return CreateMeshGO("Assets/Meshes/mf.fbx");
+	CreateMeshGO("Assets/Meshes/mf.fbx");
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateTeapot()
+void N_SceneManager::CreateTeapot()
 {
-	return CreateMeshGO("Assets/Meshes/teapot.fbx");
+	CreateMeshGO("Assets/Meshes/teapot.fbx");
 }
 
 void N_SceneManager::AddPendingGOs()
