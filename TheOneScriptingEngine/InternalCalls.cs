@@ -37,6 +37,12 @@ class InternalCalls
     internal extern static void SetRotation(IntPtr GOptr, ref Vector3 rotation);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static Vector3 GetScale(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetScale(IntPtr GOptr, ref Vector3 scale);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void Translate(IntPtr GOptr, ref Vector3 increment);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -50,7 +56,10 @@ class InternalCalls
     //GameObjects
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
-    
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetGameObjectName(IntPtr GOptr);
 
