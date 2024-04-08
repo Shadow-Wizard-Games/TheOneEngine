@@ -143,7 +143,7 @@ public class AlienQueenBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 ChooseAttack();
-                currentAttack = AlienAttack.Giant_Jump_Close;
+
                 switch (currentAttack)
                 {
                     case AlienAttack.Tail_Sweep:
