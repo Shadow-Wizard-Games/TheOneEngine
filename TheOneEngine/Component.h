@@ -22,6 +22,7 @@ enum class ComponentType
     Listener,
     Source,
     ParticleSystem,
+    Animator,
 	Unknown
 };
 

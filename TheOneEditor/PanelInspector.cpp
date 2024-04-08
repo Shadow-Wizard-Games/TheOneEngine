@@ -13,6 +13,8 @@
 #include "..\TheOneEngine\Collider2D.h"
 #include "..\TheOneEngine\Listener.h"
 #include "..\TheOneEngine\Source.h"
+#include "..\TheOneEngine\Animator.h"
+
 #include "..\TheOneEngine\MonoManager.h"
 #include "..\TheOneEngine\ParticleSystem.h"
 #include "..\TheOneEngine\Canvas.h"
@@ -85,7 +87,8 @@ bool PanelInspector::Draw()
             //add change name imgui
             static char newNameBuffer[32]; // Buffer para el nuevo nombre
             strcpy(newNameBuffer, selectedGO->GetName().c_str());
-            if (ImGui::InputText("New Name", newNameBuffer, sizeof(newNameBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
+            if (ImGui::InputText("New Name", newNameBuffer, sizeof(newNameBuffer), ImGuiInputTextFlags_EnterReturnsTrue))
+            {
                 std::string newName(newNameBuffer);
                 LOG(LogType::LOG_INFO, "GameObject %s has been renamed to %s", selectedGO->GetName().c_str(), newName.c_str());
                 selectedGO->SetName(newName); // Establece el nuevo nombre del GameObject
@@ -492,6 +495,7 @@ bool PanelInspector::Draw()
                 }
             }
 
+
             /*Particle System Component*/
             ParticleSystem* particleSystem = selectedGO->GetComponent<ParticleSystem>();
 
@@ -549,6 +553,7 @@ bool PanelInspector::Draw()
                     selectedGO->RemoveComponent(ComponentType::ParticleSystem);
                 }
             }
+
 
             // Canvas Component
             Canvas* tempCanvas = selectedGO->GetComponent<Canvas>();
@@ -829,19 +834,23 @@ bool PanelInspector::Draw()
                 }
             }
 
+
             /*Listener Component*/
             Listener* listener = selectedGO->GetComponent<Listener>();
 
-            if (listener != nullptr && ImGui::CollapsingHeader("Listener", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
+            if (listener != nullptr && ImGui::CollapsingHeader("Listener", treeNodeFlags))
+            {
                 // No properties
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             }
 
+
             /*Source Component*/
             Source* source = selectedGO->GetComponent<Source>();
 
-            if (source != nullptr && ImGui::CollapsingHeader("Audio Source", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
+            if (source != nullptr && ImGui::CollapsingHeader("Audio Source", treeNodeFlags))
+            {
                 // JULS: Volume not applied yet
                 //if (ImGui::SliderFloat("Volume", &zNear, 0.01, 10.0))
                 //{
@@ -871,6 +880,16 @@ bool PanelInspector::Draw()
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
 
+
+            /*Animator Component*/
+            Animator* animator = selectedGO->GetComponent<Animator>();
+
+            if (animator != nullptr && ImGui::CollapsingHeader("Animator", treeNodeFlags))
+            {
+
+            }
+
+
             /*Add Component*/
             if (ImGui::BeginMenu("Add Component"))
             {
@@ -881,7 +900,6 @@ bool PanelInspector::Draw()
                 {
                     selectedGO->AddComponent<ParticleSystem>();
                 }
-
                 
                 if (ImGui::MenuItem("Listener"))
                 {
@@ -891,6 +909,7 @@ bool PanelInspector::Draw()
                     audioManager->audio->SetDefaultListener(selectedGO->GetComponent<Listener>()->goID);
 
                 }
+
                 if (ImGui::MenuItem("Source"))
                 {
                     selectedGO->AddComponent<Source>();
@@ -959,7 +978,10 @@ bool PanelInspector::Draw()
                     selectedGO->AddComponent<Canvas>();
                 }
 
-
+                if (ImGui::MenuItem("Animator"))
+                {
+                    selectedGO->AddComponent<Animator>();
+                }
 
 
                 /*ImGuiTextFilter filter;
@@ -991,6 +1013,7 @@ bool PanelInspector::Draw()
             //    ImGui::EndPopup();*/
             //}
         }
+
         if(chooseScriptNameWindow) ChooseScriptNameWindow();
         else if (chooseParticlesToImportWindow) ChooseParticlesToImportWindow();
 

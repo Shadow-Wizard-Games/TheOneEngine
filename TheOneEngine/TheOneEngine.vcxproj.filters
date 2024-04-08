@@ -380,5 +380,8 @@
     <ClCompile Include="Animation\manager\OzzAnimationManager.cpp">
       <Filter>Animation\manager</Filter>
     </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
