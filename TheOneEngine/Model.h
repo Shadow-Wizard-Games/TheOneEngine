@@ -25,6 +25,8 @@ public:
 
     void Render();
 
+    std::string GetMaterialPath() { return materials[materialIndex]; }
+
     std::string meshName;
     std::vector<float> vertexData;
     std::vector<unsigned int> indexData;
@@ -33,24 +35,22 @@ public:
 
     BufferLayout format;
 
-    uint materialIndex = 0;
-
     std::shared_ptr<VertexArray> meshVAO;
     std::shared_ptr<VertexBuffer> meshVBO;
     std::shared_ptr<IndexBuffer> meshIBO;
-
-
 
     std::vector<vec3f> meshVerts;
     std::vector<vec3f> meshNorms;
     std::vector<vec3f> meshFaceCenters;
     std::vector<vec3f> meshFaceNorms;
 
-    std::vector<std::string> materials;
 
     void serializeMeshData(const std::string& filename);
     void deserializeMeshData(const std::string& filename);
 
 private:
     void GenBufferData();
+
+    std::vector<std::string> materials;
+    uint materialIndex = 0;
 };

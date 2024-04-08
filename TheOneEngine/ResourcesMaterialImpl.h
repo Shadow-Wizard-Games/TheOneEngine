@@ -14,8 +14,9 @@ inline std::string Resources::PathToLibrary<Material>(const std::string& folderN
 template<>
 inline bool Resources::Import<Material>(const std::string& file, Material* mat)
 {
-	std::filesystem::path importPath = AssetToLibPath(file);
-	importPath.replace_extension(".toematerial");
+	/*std::filesystem::path importPath = AssetToLibPath(file);
+	importPath.replace_extension(".toematerial");*/
+	std::filesystem::path importPath = file;
 
 	if (!PreparePath(importPath.parent_path().string())) return false;
 

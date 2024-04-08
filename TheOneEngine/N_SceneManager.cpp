@@ -402,7 +402,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateMeshGO(std::string path)
 		meshGO.get()->AddComponent<Mesh>();
 
 		meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
-		//TODO: meshGO.get()->GetComponent<Mesh>()->materialID = something?
+		meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
 
 		//Load MeshData from custom files
 		for (const auto& file : fileNames)
@@ -463,7 +463,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string pat
 			meshGO.get()->AddComponent<Mesh>();
 
 			meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
-			//TODO: meshGO.get()->GetComponent<Mesh>()->materialID = something?
+			meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
 
 			meshGO.get()->GenerateAABBFromMesh();
 

@@ -63,7 +63,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                     float shininess = 0.1f;
                     aiGetMaterialFloat(mat, AI_MATKEY_SHININESS, &shininess);
 
-                    std::filesystem::path matPath = path;
+                    std::filesystem::path matPath = Resources::PathToLibrary<Material>(sceneName);
                     matPath += name.C_Str();
                     matPath += ".toematerial";
 
@@ -304,6 +304,22 @@ void Model::serializeMeshData(const std::string& filename)
     outFile.write(reinterpret_cast<const char*>(&numMeshFaceNorms), sizeof(uint));
     outFile.write(reinterpret_cast<const char*>(&meshFaceNorms[0]), numMeshFaceNorms * sizeof(vec3f));
 
+    // Write Materials path
+    uint matSize = materials.size();
+    outFile.write(reinterpret_cast<const char*>(&matSize), sizeof(uint));
+    for (uint i = 0; i < matSize; i++)
+    {
+        uint pathSize = materials[i].size();
+
+        outFile.write(reinterpret_cast<const char*>(&pathSize), sizeof(uint));
+        outFile.write(materials[i].c_str(), pathSize);
+    }
+
+    // Write Material index
+    uint matID = materialIndex;
+    outFile.write(reinterpret_cast<const char*>(&matID), sizeof(uint));
+
+
     LOG(LogType::LOG_OK, "-%s created", filename.data());
 
     outFile.close();
@@ -371,6 +387,23 @@ void Model::deserializeMeshData(const std::string& filename)
 
     // Read meshFaceNorms
     inFile.read(reinterpret_cast<char*>(&meshFaceNorms[0]), numMeshFaceNorms * sizeof(vec3f));
+
+    // Read Materials path
+    uint mat_size;
+    inFile.read(reinterpret_cast<char*>(&mat_size), sizeof(uint));
+    materials.resize(mat_size);
+    for (uint i = 0; i < mat_size; i++) {
+        uint name_size;
+
+        inFile.read(reinterpret_cast<char*>(&name_size), sizeof(uint));
+        materials[i].resize(name_size);
+
+        inFile.read(&materials[i][0], name_size);
+    }
+
+    // Read material index
+    inFile.read(reinterpret_cast<char*>(&materialIndex), sizeof(uint));
+
 
     LOG(LogType::LOG_INFO, "-%s loaded", filename.data());
     inFile.close();
