@@ -30,187 +30,186 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
-        aiMatrix4x4 globalTransform = scene->mRootNode->mTransformation;
-
-        for (size_t m = 0; m < scene->mNumMeshes; ++m)
-        {
-            Model* model = new Model();
-            auto mesh = scene->mMeshes[m];
-            auto faces = mesh->mFaces;
-            vec3f* verts = (vec3f*)mesh->mVertices;
-            vec3f* texCoords = (vec3f*)mesh->mTextureCoords[0];
-
-
-            // Process materials
-            if (scene->HasMaterials()) 
-            {
-                for (unsigned int i = 0; i < scene->mNumMaterials; i++)
-                {
-                    aiMaterial* mat = scene->mMaterials[i];
-
-                    aiString name;
-                    aiGetMaterialString(mat, AI_MATKEY_NAME, &name);
-
-                    aiString texture_diffuse;
-                    aiGetMaterialString(mat, AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), &texture_diffuse);
-
-                    aiColor4D diffuse(1.0f, 1.0f, 1.0f, 1.0f);
-                    aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &diffuse);
-
-                    aiColor4D specular(1.0f, 1.0f, 1.0f, 1.0f);
-                    aiGetMaterialColor(mat, AI_MATKEY_COLOR_SPECULAR, &specular);
-
-                    float shininess = 0.1f;
-                    aiGetMaterialFloat(mat, AI_MATKEY_SHININESS, &shininess);
-
-                    std::filesystem::path matPath = Resources::PathToLibrary<Material>(sceneName);
-                    matPath += name.C_Str();
-                    matPath += ".toematerial";
-
-                    ResourceId matID = Resources::LoadFromLibrary<Material>(matPath.string().c_str());
-
-                    model->materials.push_back(matPath.string());
-
-                    if (matID != -1)
-                        continue;
-
-                    // Import material
-                    Material material;
-                    size_t id;
-
-                    if (texture_diffuse.length > 0)
-                    {
-
-                        std::filesystem::current_path(path);
-
-                        std::filesystem::path texPath = texture_diffuse.C_Str();
-                        texPath = std::filesystem::absolute(texPath);
-
-                        std::filesystem::current_path(currPath);
-
-                        texPath = std::filesystem::relative(texPath);
-
-                        const char* defaultShader = "Assetd/Shaders/MeshTexture";
-
-                        id = Resources::Load<Shader>(defaultShader);
-                        material.setShader(Resources::GetResourceById<Shader>(id), defaultShader);
-                        bool imported = Resources::Import<Texture>(texPath.string());
-
-                        if (imported) {
-                            ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
-                            Texture* img = Resources::GetResourceById<Texture>(imgId);
-                            Uniform::SamplerData data;
-                            data.tex_id = img->GetTextureId();
-                            data.resource_id = imgId;
-                            memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
-                            material.SetUniformData("tex", data);
-                        }
-                    }
-                    else
-                    {
-                        id = Resources::Load<Shader>("Assetd/Shaders/MeshTextureColor");
-                        material.setShader(Resources::GetResourceById<Shader>(id), "Assetd/Shaders/MeshTextureColor");
-
-                        material.SetUniformData("color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
-                    }
-
-
-                    Resources::Import<Material>(matPath.string().c_str(), &material);
-                }
-            }
-
-            // Basic Data
-            model->meshName = mesh->mName.C_Str();
-            model->format = BufferLayout({
-            { ShaderDataType::Float3, "aPos"           },
-            { ShaderDataType::Float2, "aTex"           } });
-            model->materialIndex = mesh->mMaterialIndex;
-
-            // Vertex & Index Data
-            std::vector<float> vertex_data;
-            std::vector<unsigned int> index_data;
-            for (size_t i = 0; i < mesh->mNumVertices; ++i)
-            {
-                // Vertices
-                vertex_data.push_back(mesh->mVertices[i].x);
-                vertex_data.push_back(mesh->mVertices[i].y);
-                vertex_data.push_back(mesh->mVertices[i].z);
-                // Texture coordinates
-                if (mesh->mTextureCoords[0])
-                {
-                    vertex_data.push_back(mesh->mTextureCoords[0][i].x);
-                    vertex_data.push_back(mesh->mTextureCoords[0][i].y);
-                }
-                else {
-                    vertex_data.push_back(0.0f);
-                    vertex_data.push_back(0.0f);
-                }
-            }
-            model->vertexData = vertex_data;
-
-            for (size_t f = 0; f < mesh->mNumFaces; ++f)
-            {
-                index_data.push_back(faces[f].mIndices[0]);
-                index_data.push_back(faces[f].mIndices[1]);
-                index_data.push_back(faces[f].mIndices[2]);
-            }
-            model->indexData = index_data;
-
-            // Transform
-            aiMatrix4x4 transform;
-            glm::mat4 mTransform;
-            if (mesh->mName != (aiString)"Scene")
-            {
-                transform = scene->mRootNode->FindNode(mesh->mName)->mTransformation;
-                mTransform = glm::transpose(glm::make_mat4(&transform.a1));
-            }
-            else
-            {
-                mTransform = glm::mat4(1);
-            }
-            model->meshTransform = mTransform;
-
-
-            // Extra data
-            for (size_t i = 0; i < mesh->mNumVertices; i++) {
-                aiVector3D normal = mesh->mNormals[i];
-                vec3f glmNormal(normal.x, normal.y, normal.z);
-                model->meshNorms.push_back(glmNormal);
-            }
-            for (size_t i = 0; i < mesh->mNumVertices; i++) {
-                aiVector3D vert = mesh->mVertices[i];
-                vec3f glmNormal(vert.x, vert.y, vert.z);
-                model->meshVerts.push_back(glmNormal);
-            }
-            for (size_t f = 0; f < mesh->mNumFaces; ++f)
-            {
-                aiFace face = mesh->mFaces[f];
-
-                vec3f v0(mesh->mVertices[face.mIndices[0]].x, mesh->mVertices[face.mIndices[0]].y, mesh->mVertices[face.mIndices[0]].z);
-                vec3f v1(mesh->mVertices[face.mIndices[1]].x, mesh->mVertices[face.mIndices[1]].y, mesh->mVertices[face.mIndices[1]].z);
-                vec3f v2(mesh->mVertices[face.mIndices[2]].x, mesh->mVertices[face.mIndices[2]].y, mesh->mVertices[face.mIndices[2]].z);
-
-                vec3f faceNormal = glm::cross(v1 - v0, v2 - v0);
-                faceNormal = glm::normalize(faceNormal);
-                model->meshFaceNorms.push_back(faceNormal);
-
-                vec3f faceCenter = (v0 + v1 + v2) / 3.0f;
-                model->meshFaceCenters.push_back(faceCenter);
-            }
-
-
-
-            Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
-
-            model->GenBufferData();
-            meshes.push_back(model);
-        }
-        aiReleaseImport(scene);
-    }
-    else
-    {
         LOG(LogType::LOG_ERROR, "Failed to load mesh from: %s", path.data());
+        return meshes;
     }
+
+    aiMatrix4x4 globalTransform = scene->mRootNode->mTransformation;
+
+    for (size_t m = 0; m < scene->mNumMeshes; ++m)
+    {
+        Model* model = new Model();
+        auto mesh = scene->mMeshes[m];
+        auto faces = mesh->mFaces;
+        vec3f* verts = (vec3f*)mesh->mVertices;
+        vec3f* texCoords = (vec3f*)mesh->mTextureCoords[0];
+
+
+        // Process materials
+        if (scene->HasMaterials())
+        {
+            for (unsigned int i = 0; i < scene->mNumMaterials; i++)
+            {
+                aiMaterial* mat = scene->mMaterials[i];
+
+                aiString name;
+                aiGetMaterialString(mat, AI_MATKEY_NAME, &name);
+
+                aiString texture_diffuse;
+                aiGetMaterialString(mat, AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), &texture_diffuse);
+
+                aiColor4D diffuse(1.0f, 1.0f, 1.0f, 1.0f);
+                aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &diffuse);
+
+                aiColor4D specular(1.0f, 1.0f, 1.0f, 1.0f);
+                aiGetMaterialColor(mat, AI_MATKEY_COLOR_SPECULAR, &specular);
+
+                float shininess = 0.1f;
+                aiGetMaterialFloat(mat, AI_MATKEY_SHININESS, &shininess);
+
+                std::filesystem::path matPath = Resources::PathToLibrary<Material>(sceneName);
+                matPath += name.C_Str();
+                matPath += ".toematerial";
+
+                ResourceId matID = Resources::LoadFromLibrary<Material>(matPath.string().c_str());
+
+                model->materials.push_back(matPath.string());
+
+                if (matID != -1)
+                    continue;
+
+                // Import material
+                Material material;
+                size_t id;
+
+                if (texture_diffuse.length > 0)
+                {
+
+                    std::filesystem::current_path(path);
+
+                    std::filesystem::path texPath = texture_diffuse.C_Str();
+                    texPath = std::filesystem::absolute(texPath);
+
+                    std::filesystem::current_path(currPath);
+
+                    texPath = std::filesystem::relative(texPath);
+
+                    const char* defaultShader = "Assetd/Shaders/MeshTexture";
+
+                    id = Resources::Load<Shader>(defaultShader);
+                    material.setShader(Resources::GetResourceById<Shader>(id), defaultShader);
+                    bool imported = Resources::Import<Texture>(texPath.string());
+
+                    if (imported) {
+                        ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
+                        Texture* img = Resources::GetResourceById<Texture>(imgId);
+                        Uniform::SamplerData data;
+                        data.tex_id = img->GetTextureId();
+                        data.resource_id = imgId;
+                        memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
+                        material.SetUniformData("tex", data);
+                    }
+                }
+                else
+                {
+                    id = Resources::Load<Shader>("Assetd/Shaders/MeshTextureColor");
+                    material.setShader(Resources::GetResourceById<Shader>(id), "Assetd/Shaders/MeshTextureColor");
+
+                    material.SetUniformData("color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
+                }
+
+
+                Resources::Import<Material>(matPath.string().c_str(), &material);
+            }
+        }
+
+        // Basic Data
+        model->meshName = mesh->mName.C_Str();
+        model->format = BufferLayout({
+        { ShaderDataType::Float3, "aPos"           },
+        { ShaderDataType::Float2, "aTex"           } });
+        model->materialIndex = mesh->mMaterialIndex;
+
+        // Vertex & Index Data
+        std::vector<float> vertex_data;
+        std::vector<unsigned int> index_data;
+        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        {
+            // Vertices
+            vertex_data.push_back(mesh->mVertices[i].x);
+            vertex_data.push_back(mesh->mVertices[i].y);
+            vertex_data.push_back(mesh->mVertices[i].z);
+            // Texture coordinates
+            if (mesh->mTextureCoords[0])
+            {
+                vertex_data.push_back(mesh->mTextureCoords[0][i].x);
+                vertex_data.push_back(mesh->mTextureCoords[0][i].y);
+            }
+            else {
+                vertex_data.push_back(0.0f);
+                vertex_data.push_back(0.0f);
+            }
+        }
+        model->vertexData = vertex_data;
+
+        for (size_t f = 0; f < mesh->mNumFaces; ++f)
+        {
+            index_data.push_back(faces[f].mIndices[0]);
+            index_data.push_back(faces[f].mIndices[1]);
+            index_data.push_back(faces[f].mIndices[2]);
+        }
+        model->indexData = index_data;
+
+        // Transform
+        aiMatrix4x4 transform;
+        glm::mat4 mTransform;
+        if (mesh->mName != (aiString)"Scene")
+        {
+            transform = scene->mRootNode->FindNode(mesh->mName)->mTransformation;
+            mTransform = glm::transpose(glm::make_mat4(&transform.a1));
+        }
+        else
+        {
+            mTransform = glm::mat4(1);
+        }
+        model->meshTransform = mTransform;
+
+
+        // Extra data
+        for (size_t i = 0; i < mesh->mNumVertices; i++) {
+            aiVector3D normal = mesh->mNormals[i];
+            vec3f glmNormal(normal.x, normal.y, normal.z);
+            model->meshNorms.push_back(glmNormal);
+        }
+        for (size_t i = 0; i < mesh->mNumVertices; i++) {
+            aiVector3D vert = mesh->mVertices[i];
+            vec3f glmNormal(vert.x, vert.y, vert.z);
+            model->meshVerts.push_back(glmNormal);
+        }
+        for (size_t f = 0; f < mesh->mNumFaces; ++f)
+        {
+            aiFace face = mesh->mFaces[f];
+
+            vec3f v0(mesh->mVertices[face.mIndices[0]].x, mesh->mVertices[face.mIndices[0]].y, mesh->mVertices[face.mIndices[0]].z);
+            vec3f v1(mesh->mVertices[face.mIndices[1]].x, mesh->mVertices[face.mIndices[1]].y, mesh->mVertices[face.mIndices[1]].z);
+            vec3f v2(mesh->mVertices[face.mIndices[2]].x, mesh->mVertices[face.mIndices[2]].y, mesh->mVertices[face.mIndices[2]].z);
+
+            vec3f faceNormal = glm::cross(v1 - v0, v2 - v0);
+            faceNormal = glm::normalize(faceNormal);
+            model->meshFaceNorms.push_back(faceNormal);
+
+            vec3f faceCenter = (v0 + v1 + v2) / 3.0f;
+            model->meshFaceCenters.push_back(faceCenter);
+        }
+
+
+
+        Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
+
+        model->GenBufferData();
+        meshes.push_back(model);
+    }
+    aiReleaseImport(scene);
 
     return meshes;
 }
