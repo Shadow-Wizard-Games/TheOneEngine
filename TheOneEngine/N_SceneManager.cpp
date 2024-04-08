@@ -316,6 +316,13 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		duplicatedGO.get()->children.push_back(temp);
 	}
 
+	if (originalGO.get()->IsPrefab())
+	{
+		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID());
+		duplicatedGO.get()->SetEditablePrefab(originalGO.get()->IsEditablePrefab());
+		duplicatedGO.get()->SetPrefabDirty(originalGO.get()->IsPrefabDirty());
+	}
+
 	return duplicatedGO;
 }
 

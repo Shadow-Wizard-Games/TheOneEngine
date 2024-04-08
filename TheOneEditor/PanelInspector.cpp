@@ -70,6 +70,14 @@ bool PanelInspector::Draw()
             //ImGui::Checkbox("Active", &gameObjSelected->isActive);
             ImGui::SameLine(); ImGui::Text("GameObject:");
             ImGui::SameLine(); ImGui::TextColored({ 0.144f, 0.422f, 0.720f, 1.0f }, selectedGO->GetName().c_str());
+            if (selectedGO->IsPrefab() && selectedGO->IsPrefabDirty())
+            {
+                ImGui::SameLine(0.0f, -1.0f);
+                if (ImGui::Button("Overrides", { 75.0f, 20.0f }))
+                {
+                    ImGui::OpenPopup("ChangesWarning");
+                }
+            }
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             /*Tag + Layer*/
