@@ -1,98 +1,47 @@
 #pragma once
 
-#include <functional>
-
-
-/**
- * @brief A placeholder class for callable objects.
- */
 class Callable {};
 
-/**
- * @brief Represents an action that can be executed.
- * @tparam _params Parameter types for the action.
- */
-template<class... _params>
+template<class... Params>
 class Action
 {
 private:
-    using MemberFunctionPtr = void (Callable::*)(_params...);
-
-    MemberFunctionPtr ActionPtr;    ///< Pointer to a member function.
-    Callable* ObjectPtr;            ///< Pointer to the object associated with the member function.
-    std::function<void(_params...)> FreeFunction; ///< Function pointer for free functions.
+    using ActionPtr = void (Callable::*)(Params...);
+    ActionPtr action;
+    Callable* obj;
+    void* func;
 
 public:
-    /**
-     * @brief Default constructor.
-     */
-    Action() : ObjectPtr(nullptr), FreeFunction(nullptr) {}
+    Action() : obj(nullptr), func(nullptr) {}
 
-    /**
-     * @brief Constructor for initializing with a free function.
-     * @param func Pointer to the free function.
-     */
-    Action(void* func) : FreeFunction(reinterpret_cast<void(*)(_params...)>(func)) {}
+    Action(void* _func) : obj(nullptr), func(_func) {}
 
-    /**
-     * @brief Constructor for initializing with a member function and object.
-     * @tparam T Type of the object.
-     * @param action Pointer to the member function.
-     * @param obj Pointer to the object.
-     */
     template<class T>
-    Action(void (T::* action)(_params...), void* obj)
+    Action(void (T::* _action)(Params...), void* _obj)
     {
-        ActionPtr = reinterpret_cast<MemberFunctionPtr>(action);
-        ObjectPtr = static_cast<Callable*>(obj);
+        action = reinterpret_cast<ActionPtr>(_action);
+        obj = static_cast<Callable*>(_obj);
     }
 
-    /**
-     * @brief Executes the action.
-     * @param params Parameters for the action.
-     */
-    void Execute(_params... params)
+    void Execute(Params... params)
     {
-        if (ObjectPtr && ActionPtr) {
-            (ObjectPtr->*ActionPtr)(params...);
+        if (obj) {
+            (obj->*action)(params...);
         }
-        else if (FreeFunction) {
-            FreeFunction(params...);
+        else {
+            auto f = reinterpret_cast<void(*)(Params...)>(func);
+            f(params...);
         }
     }
 
-    /**
-     * @brief Overloaded function call operator to execute the action.
-     * @param params Parameters for the action.
-     */
-    void operator()(_params... params) {
+    void operator()(Params... params) {
         Execute(params...);
     }
 
-    /**
-     * @brief Checks if this action is equal to another action.
-     * @param other Another action to compare.
-     * @return True if equal, false otherwise.
-     */
-    bool operator==(const Action<_params...>& other) const {
-        return ObjectPtr == other.ObjectPtr && GetActionPtr() == other.GetActionPtr();
+    bool operator==(const Action<>& other) {
+        return obj == other.obj && GetActionPtr() == other.GetActionPtr();
     }
 
-    /**
-     * @brief Gets the object pointer associated with this action.
-     * @return Pointer to the object.
-     */
-    Callable* GetObjectPtr() const { return ObjectPtr; }
-
-    /**
-     * @brief Gets the function pointer associated with this action.
-     * @return Function pointer.
-     */
-    std::function<void(_params...)> GetActionPtr() const
-    {
-        if (ObjectPtr && ActionPtr)
-            return std::bind(ActionPtr, ObjectPtr, std::placeholders::_1);
-
-        return FreeFunction;
-    }
+    void* GetObj() const { return obj; }
+    void* GetActionPtr() const { return obj ? (void*&)action : func; }
 };

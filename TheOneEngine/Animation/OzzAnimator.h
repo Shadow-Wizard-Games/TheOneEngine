@@ -1,12 +1,14 @@
 #pragma once
 
 //#include <Wiwa/core/Core.h>
+//#include <Wiwa/core/Renderer3D.h>
+
+#include "animations/OzzAnimationPartialBlending.h"
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
-#include "animations/OzzAnimationPartialBlending.h"
-//#include <Wiwa/core/Renderer3D.h>
 
 class OzzAnimator
 {
@@ -126,7 +128,7 @@ public:
 	bool Update(float _dt);
 
 	// Render
-	bool Render(Wiwa::Camera* camera, glm::mat4 transform);
+	//bool Render(Wiwa::Camera* camera, glm::mat4 transform);
 
 	// Static save function
 	static void SaveAnimator(OzzAnimator* animator, const char* filepath);
@@ -135,7 +137,7 @@ public:
 	static OzzAnimator* LoadAnimator(const char* filepath);
 
 	// Get animator material
-	ResourceId GetMaterial();
+	//ResourceId GetMaterial();
 
 private:
 	size_t _create_anim_impl();
@@ -159,7 +161,7 @@ private:
 	bool m_LoadedSkeleton;
 
 	std::string m_MaterialPath;
-	ResourceId m_MaterialId;
+	//ResourceId m_MaterialId;
 	bool m_LoadedMaterial;
 
 	std::string m_ActiveAnimationName;

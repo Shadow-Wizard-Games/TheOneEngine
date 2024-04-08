@@ -14,11 +14,13 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="Animation\animations\OzzAnimationPartialBlending.h" />
     <ClInclude Include="Animation\animations\OzzAnimationSimple.h" />
+    <ClInclude Include="Animation\manager\OzzAnimationManager.h" />
     <ClInclude Include="Animation\OzzAnimation.h" />
     <ClInclude Include="Animation\OzzAnimator.h" />
     <ClInclude Include="Animation\samples\mesh.h" />
     <ClInclude Include="Animation\samples\shader.h" />
     <ClInclude Include="Animation\samples\utils.h" />
+    <ClInclude Include="Animator.h" />
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Billboard.h" />
@@ -65,6 +67,7 @@
   <ItemGroup>
     <ClCompile Include="Animation\animations\OzzAnimationPartialBlending.cpp" />
     <ClCompile Include="Animation\animations\OzzAnimationSimple.cpp" />
+    <ClCompile Include="Animation\manager\OzzAnimationManager.cpp" />
     <ClCompile Include="Animation\OzzAnimation.cpp" />
     <ClCompile Include="Animation\OzzAnimator.cpp" />
     <ClCompile Include="Animation\samples\mesh.cpp" />

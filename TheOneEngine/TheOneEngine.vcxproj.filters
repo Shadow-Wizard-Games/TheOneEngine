@@ -79,6 +79,9 @@
     <Filter Include="Animation\samples">
       <UniqueIdentifier>{8cf49445-e000-41c9-802d-b997416b646a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation\manager">
+      <UniqueIdentifier>{b983d0c9-1576-4895-8d0b-be6ec3ebf6af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -231,6 +234,12 @@
     <ClInclude Include="Action.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Animation\manager\OzzAnimationManager.h">
+      <Filter>Animation\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -367,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="Animation\samples\utils.cpp">
       <Filter>Animation\samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\manager\OzzAnimationManager.cpp">
+      <Filter>Animation\manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

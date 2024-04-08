@@ -139,7 +139,7 @@ OzzAnimator::OzzAnimator() :
 	m_LoadedMesh(false),
 	m_LoadedSkeleton(false),
 	m_LoadedMaterial(false),
-	m_MaterialId(INVALID_INDEX),
+	//m_MaterialId(INVALID_INDEX),
 	m_BlendOnTransition(true),
 	m_BlendThreshold(ozz::animation::BlendingJob().threshold),
 	m_TransitionTime(1.0f),
@@ -207,17 +207,18 @@ bool OzzAnimator::LoadSkeleton(const std::string& path)
 	return m_LoadedSkeleton;
 }
 
-bool OzzAnimator::LoadMaterial(const std::string& path)
-{
-	m_MaterialId = Resources::Load<Material>(path.c_str());
-
-	if (m_MaterialId == INVALID_INDEX) return false;
-
-	m_MaterialPath = path;
-	m_LoadedMaterial = true;
-
-	return true;
-}
+// hekbas: TODO
+//bool OzzAnimator::LoadMaterial(const std::string& path)
+//{
+//	m_MaterialId = Resources::Load<Material>(path.c_str());
+//
+//	if (m_MaterialId == INVALID_INDEX) return false;
+//
+//	m_MaterialPath = path;
+//	m_LoadedMaterial = true;
+//
+//	return true;
+//}
 
 size_t OzzAnimator::CreateSimpleAnimation(const std::string& name)
 {
@@ -430,28 +431,29 @@ bool OzzAnimator::Update(float _dt)
 	return true;
 }
 
-bool OzzAnimator::Render(Wiwa::Camera* camera, glm::mat4 transform)
-{
-	if (!m_LoadedMesh || !m_LoadedSkeleton || !m_LoadedMaterial) return false;
-
-	bool success = true;
-
-	Wiwa::Renderer3D& r3d = Wiwa::Application::Get().GetRenderer3D();
-
-	ozz::math::Float4x4 ozz_transform = ozz::math::Float4x4::identity();
-
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-			ozz_transform.cols[i].m128_f32[j] = transform[i][j];
-	}
-
-	Material* mat = Wiwa::Resources::GetResourceById<Material>(m_MaterialId);
-
-	success &= r3d.RenderOzzSkinnedMesh(camera, m_Mesh, mat, make_span(skinning_matrices_), ozz_transform);
-
-	return success;
-}
+// hekbas: TODO
+//bool OzzAnimator::Render(Wiwa::Camera* camera, glm::mat4 transform)
+//{
+//	if (!m_LoadedMesh || !m_LoadedSkeleton || !m_LoadedMaterial) return false;
+//
+//	bool success = true;
+//
+//	Wiwa::Renderer3D& r3d = Wiwa::Application::Get().GetRenderer3D();
+//
+//	ozz::math::Float4x4 ozz_transform = ozz::math::Float4x4::identity();
+//
+//	for (int i = 0; i < 4; i++)
+//	{
+//		for (int j = 0; j < 4; j++)
+//			ozz_transform.cols[i].m128_f32[j] = transform[i][j];
+//	}
+//
+//	Material* mat = Wiwa::Resources::GetResourceById<Material>(m_MaterialId);
+//
+//	success &= r3d.RenderOzzSkinnedMesh(camera, m_Mesh, mat, make_span(skinning_matrices_), ozz_transform);
+//
+//	return success;
+//}
 
 void OzzAnimator::SaveAnimator(OzzAnimator* animator, const char* filepath)
 {
@@ -639,7 +641,8 @@ OzzAnimator* OzzAnimator::LoadAnimator(const char* filepath)
 	return animator;
 }
 
-ResourceId OzzAnimator::GetMaterial()
-{
-	return m_MaterialId;
-}
+// hekbas: TODO
+//ResourceId OzzAnimator::GetMaterial()
+//{
+//	return m_MaterialId;
+//}
