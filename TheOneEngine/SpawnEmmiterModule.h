@@ -40,6 +40,7 @@ protected:
 class ConstantSpawnRate : public SpawnEmmiterModule {
 public:
 	ConstantSpawnRate(Emmiter* owner);
+	ConstantSpawnRate(Emmiter* owner, ConstantSpawnRate* ref);
 
 	float spawnRate;
 	float timeFromLastSpawn;
@@ -59,6 +60,7 @@ public:
 class SingleBurstSpawn : public SpawnEmmiterModule {
 public:
 	SingleBurstSpawn(Emmiter* owner);
+	SingleBurstSpawn(Emmiter* owner, SingleBurstSpawn* ref);
 
 	float amount;
 
@@ -81,6 +83,7 @@ public:
 class ConstantBurstSpawn : public SpawnEmmiterModule {
 public:
 	ConstantBurstSpawn(Emmiter* owner);
+	ConstantBurstSpawn(Emmiter* owner, ConstantBurstSpawn* ref);
 
 	float spawnRate;
 	float timeFromLastSpawn;

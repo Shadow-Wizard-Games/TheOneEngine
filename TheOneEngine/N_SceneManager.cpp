@@ -293,6 +293,9 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::AudioSource:
 			duplicatedGO.get()->AddCopiedComponent<AudioSource>((AudioSource*)item);
 			break;
+		case ComponentType::ParticleSystem:
+			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
+			break;
 		case ComponentType::Unknown:
 			break;
 		default:

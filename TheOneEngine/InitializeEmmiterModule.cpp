@@ -11,6 +11,14 @@ SetSpeed::SetSpeed(Emmiter* owner)
 	speed.rangeValue.upperLimit = vec3(0.5, 2, 0.5);
 }
 
+SetSpeed::SetSpeed(Emmiter* owner, SetSpeed* ref)
+{
+	type = SET_SPEED;
+	this->owner = owner;
+
+	speed = ref->speed;
+}
+
 void SetSpeed::Initialize(Particle* particle)
 {
 	if (speed.usingSingleValue) {
@@ -78,6 +86,14 @@ SetColor::SetColor(Emmiter* owner)
 	color.rangeValue.upperLimit = vec3(255, 255, 255);
 }
 
+SetColor::SetColor(Emmiter* owner, SetColor* ref)
+{
+	type = SET_COLOR;
+	this->owner = owner;
+
+	color = ref->color;
+}
+
 void SetColor::Initialize(Particle* particle)
 {
 	if (color.usingSingleValue) {
@@ -143,6 +159,14 @@ SetScale::SetScale(Emmiter* owner)
 	scale.usingSingleValue = true;
 	scale.rangeValue.lowerLimit = vec3(1, 1, 1);
 	scale.rangeValue.upperLimit = vec3(2, 2, 2);
+}
+
+SetScale::SetScale(Emmiter* owner, SetScale* ref)
+{
+	type = SET_SCALE;
+	this->owner = owner;
+
+	scale = ref->scale;
 }
 
 void SetScale::Initialize(Particle* particle)
