@@ -42,17 +42,17 @@ Emmiter::Emmiter(ParticleSystem* owner, Emmiter* ref)
 	isON = ref->isON;
 
 	// TO-DO
-	spawnModule = std::make_unique<ConstantSpawnRate>(this);
+	AddModule(ref->spawnModule.get());
 
-	renderModule = std::make_unique<BillboardRender>(this);
+	for (const auto& initRef : ref->initializeModules) {
+		AddModule(initRef.get());
+	}
 
-	auto setSpeed = std::make_unique<SetSpeed>(this);
-	setSpeed->speed.usingSingleValue = false;
-	setSpeed->speed.rangeValue.lowerLimit = vec3{ -0.5, 1, -0.5 };
-	setSpeed->speed.rangeValue.upperLimit = vec3{ 0.5, 2, 0.5 };
+	for (const auto& updateRef : ref->updateModules) {
+		AddModule(updateRef.get());
+	}
 
-
-	initializeModules.push_back(std::move(setSpeed));
+	AddModule(ref->renderModule.get());
 
 	RestartParticlePool();
 }
@@ -259,6 +259,82 @@ RenderEmmiterModule* Emmiter::AddModule(RenderEmmiterModule::RenderEmmiterModule
 	{
 	case RenderEmmiterModule::BILLBOARD:
 		renderModule = std::make_unique<BillboardRender>(this);
+		newModule = renderModule.get();
+		break;
+	default:
+		break;
+	}
+	return newModule;
+}
+
+SpawnEmmiterModule* Emmiter::AddModule(SpawnEmmiterModule* ref)
+{
+	SpawnEmmiterModule* newModule = nullptr;
+	switch (ref->type)
+	{
+	case SpawnEmmiterModule::CONSTANT:
+		spawnModule = std::make_unique<ConstantSpawnRate>(this, (ConstantSpawnRate*)ref);
+		newModule = spawnModule.get();
+		break;
+	case SpawnEmmiterModule::SINGLE_BURST:
+		spawnModule = std::make_unique<SingleBurstSpawn>(this, (SingleBurstSpawn*)ref);
+		newModule = spawnModule.get();
+		break;
+	case SpawnEmmiterModule::CONSTANT_BURST:
+		spawnModule = std::make_unique<ConstantBurstSpawn>(this, (ConstantBurstSpawn*)ref);
+		newModule = spawnModule.get();
+		break;
+	default:
+		break;
+	}
+	return newModule;
+}
+
+InitializeEmmiterModule* Emmiter::AddModule(InitializeEmmiterModule* ref)
+{
+	InitializeEmmiterModule* newModule = nullptr;
+	switch (ref->type)
+	{
+	case InitializeEmmiterModule::SET_SPEED:
+		initializeModules.push_back(std::move(std::make_unique<SetSpeed>(this, (SetSpeed*)ref)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
+	case InitializeEmmiterModule::SET_COLOR:
+		initializeModules.push_back(std::move(std::make_unique<SetColor>(this, (SetColor*)ref)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
+	case InitializeEmmiterModule::SET_SCALE:
+		initializeModules.push_back(std::move(std::make_unique<SetScale>(this, (SetScale*)ref)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
+	default:
+		break;
+	}
+	return newModule;
+}
+
+UpdateEmmiterModule* Emmiter::AddModule(UpdateEmmiterModule* ref)
+{
+	UpdateEmmiterModule* newModule = nullptr;
+	switch (ref->type)
+	{
+	case UpdateEmmiterModule::ACCELERATION:
+		updateModules.push_back(std::move(std::make_unique<AccelerationUpdate>(this, (AccelerationUpdate*)ref)));
+		newModule = updateModules[updateModules.size() - 1].get();
+		break;
+	default:
+		break;
+	}
+	return newModule;
+}
+
+RenderEmmiterModule* Emmiter::AddModule(RenderEmmiterModule* ref)
+{
+	RenderEmmiterModule* newModule = nullptr;
+	switch (ref->type)
+	{
+	case RenderEmmiterModule::BILLBOARD:
+		renderModule = std::make_unique<BillboardRender>(this, (BillboardRender*)ref);
 		newModule = renderModule.get();
 		break;
 	default:

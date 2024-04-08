@@ -7,8 +7,18 @@
 
 BillboardRender::BillboardRender(Emmiter* owner)
 {
-    this->owner = owner;
     type = BILLBOARD;
+    this->owner = owner;
+
+    billboardType = SCREEN_ALIGNED;
+}
+
+BillboardRender::BillboardRender(Emmiter* owner, BillboardRender* ref)
+{
+    type = BILLBOARD;
+    this->owner = owner;
+
+    billboardType = ref->billboardType;
 }
 
 void BillboardRender::Update(Particle* particle, Camera* camera)
