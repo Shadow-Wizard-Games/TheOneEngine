@@ -17,16 +17,16 @@
             -0.8660254183549015,
             0.499999974763217,
             0.0,
-            1203.5836181640625,
+            88.7894287109375,
             120.0,
-            -428.6666564941406,
+            -65.54358673095703,
             1.0
           ],
           "Type": 0,
           "UID": 1600152069
         },
         {
-          "Aspect": 1.814814805984497,
+          "Aspect": 1.6599634885787964,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -24596,7 +24596,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 878.0067138671875,
+              "Lifetime": 884.1583862304688,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -25224,9 +25224,9 @@
             0.0,
             1.0,
             0.0,
-            56.04792022705078,
+            88.7894287109375,
             0.0,
-            0.0,
+            -5.543587684631348,
             1.0
           ],
           "Type": 0,
@@ -25276,79 +25276,6 @@
       ],
       "Enabled": true,
       "Name": "SK_MainCharacter",
-      "ParentUID": 0,
-      "Static": false,
-      "UID": 6619240
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            161.43821716308594,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3586282605
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "Name": "Mesh",
-          "ParentUID": 6619240,
-          "Path": "Library/Meshes/SK_Xenomorph/SK_Xenomorph.mesh",
-          "Type": 2,
-          "UID": 3514764472
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 6619240,
-          "ScriptName": "AdultXenomorphBehaviour",
-          "Type": 4,
-          "UID": 2258912363
-        },
-        {
-          "AudioID": 3,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": 74.40095233917236,
-          "Name": "Specified Type was not found",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 6619240,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 4276134439,
-          "Width": 52.54787063598633
-        }
-      ],
-      "Enabled": true,
-      "Name": "SK_Xenomorph",
       "ParentUID": 0,
       "Static": false,
       "UID": 6619240
