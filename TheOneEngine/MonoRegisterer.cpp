@@ -186,6 +186,11 @@ static void* GetScript(GameObject* GOptr, MonoString* scriptName)
 	}
 }
 
+static void Disable(GameObject* GOtoDisable)
+{
+	GOtoDisable->Disable();
+}
+
 //Scene Management
 static void LoadScene(MonoString* sceneName)
 {
@@ -393,6 +398,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
 	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
+	mono_add_internal_call("InternalCalls::Disable", Disable);
 
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
 

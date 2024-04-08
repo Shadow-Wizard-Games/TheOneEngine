@@ -65,6 +65,9 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static TComponent GetScript<TComponent>(IntPtr gameObject, string scriptName);
 
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void Disable(IntPtr GOtoDisable);
+
     //Component
     [MethodImpl(MethodImplOptions.InternalCall)]
     internal extern TComponent GetComponent<TComponent>() where TComponent : IComponent;

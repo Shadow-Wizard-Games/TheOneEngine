@@ -32,6 +32,7 @@ public class EventCollectible : Event
     
     public override void Update()
     {
+
         if (CheckEventIsPossible())
         {
             if (DoEvent()) //Execute Event
@@ -52,18 +53,20 @@ public class EventCollectible : Event
     {
         //Set the distance to the player
         playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        Debug.Log($"{playerDistance}");
+        if(!inRange) { Debug.Log("FALSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"); }
 
         if (playerDistance < collectibleRange)
         {
             inRange = true;
-            Debug.Log($"pepe ");
+            Debug.Log("inRange");
         }
         else
         {
             inRange = false;
+            Debug.Log("outRange");
         }
-        Debug.Log($"mamaguevo {collectibleRange} {inRange}");
-
+        Debug.LogCheck($"{itemManager.inventory.Count()}");
         return inRange;
     }
 
@@ -73,7 +76,11 @@ public class EventCollectible : Event
         if(itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
-            attachedGameObject.isActive = false; //disable GO, dont know if it works
+            attachedGameObject.Disable();
+
+            //Degug
+            Debug.LogWarning("LOOTED");
+            Debug.LogCheck($"{itemManager.inventory.Count()}");
         }
 
         return false;
@@ -84,12 +91,12 @@ public class EventCollectible : Event
         if (!inRange)
         {
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, collectibleRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
-            Debug.Log("OUTrange");
+            //Debug.Log("OUTrange");
         }
         else
         {
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, collectibleRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-            Debug.Log("INrange");
+            //Debug.Log("INrange");
         }
     }
 }
