@@ -126,14 +126,18 @@ void EngineCore::LogGL(string id)
 void EngineCore::CleanUp()
 {
     audioManager->CleanUp();
+    audioManager = nullptr;
     delete audioManager;
     
     monoManager->ShutDownMono();
+    monoManager = nullptr;
     delete monoManager;
 
     inputManager->CleanUp();
+    inputManager = nullptr;
     delete inputManager;
 
+    collisionSolver = nullptr;
     delete collisionSolver;
 }
 

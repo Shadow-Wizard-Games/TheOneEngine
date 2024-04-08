@@ -17,8 +17,8 @@ public class PlayerScript : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("Manager");
-        itemManager = iManagerGO.GetComponent<ItemManager>();
+        //iManagerGO = IGameObject.Find("Manager");
+        //itemManager = iManagerGO.GetComponent<ItemManager>();
     }
 
     public override void Update()
@@ -115,58 +115,59 @@ public class PlayerScript : MonoBehaviour
                     attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
                     // call particleSystem.Replay()
                 }
-
-                if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) { speed = 80.0f; }
-                else { speed = 40.0f; }
-
-                if (toMove)
-                {
-                    attachedGameObject.transform.Translate(movement.Normalize() * speed * Time.deltaTime);
-                }
-
-                //Controller
-                Vector2 movementVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
-
-                if (movementVector.x != 0.0f || movementVector.y != 0.0f)
-                {
-                    movement = new Vector3(-movementVector.x, 0.0f, -movementVector.y);
-
-                    attachedGameObject.transform.Translate(movement * speed * Time.deltaTime);
-
-                    toMove = true;
-                }
-
-                Vector2 lookVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
-
-                if (lookVector.x != 0.0f || lookVector.y != 0.0f)
-                {
-                    float characterRotation = (float)Math.Atan2(-lookVector.x, -lookVector.y);
-                    attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
-                }
-
-                if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
-                {
-                    Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-
-                    InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
-                    // call particleSystem.Replay()
-                }
-
-                // Play steps
-                if (lastFrameToMove != toMove)
-                {
-                    if (toMove)
-                    {
-                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.P_STEP);
-                    }
-                    else
-                    {
-                        attachedGameObject.source.StopAudio(AudioManager.EventIDs.P_STEP);
-                    }
-                    lastFrameToMove = toMove;
-                }
             }
         }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) { speed = 80.0f; }
+        else { speed = 40.0f; }
+
+        if (toMove)
+        {
+            attachedGameObject.transform.Translate(movement.Normalize() * speed * Time.deltaTime);
+        }
+
+        //Controller
+        Vector2 movementVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
+
+        if (movementVector.x != 0.0f || movementVector.y != 0.0f)
+        {
+            movement = new Vector3(-movementVector.x, 0.0f, -movementVector.y);
+
+            attachedGameObject.transform.Translate(movement * speed * Time.deltaTime);
+
+            toMove = true;
+        }
+
+        Vector2 lookVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
+
+        if (lookVector.x != 0.0f || lookVector.y != 0.0f)
+        {
+            float characterRotation = (float)Math.Atan2(-lookVector.x, -lookVector.y);
+            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+        }
+
+        if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
+        {
+            Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+
+            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+            // call particleSystem.Replay()
+        }
+
+        // Play steps
+        if (lastFrameToMove != toMove)
+        {
+            if (toMove)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.P_STEP);
+            }
+            else
+            {
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.P_STEP);
+            }
+            lastFrameToMove = toMove;
+        }
+
     }
 }
