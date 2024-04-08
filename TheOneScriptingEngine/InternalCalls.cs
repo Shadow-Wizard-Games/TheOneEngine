@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static AudioManager;
+using static ICamera;
 
 class InternalCalls
 {
@@ -36,6 +37,12 @@ class InternalCalls
     internal extern static void SetRotation(IntPtr GOptr, ref Vector3 rotation);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static Vector3 GetScale(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetScale(IntPtr GOptr, ref Vector3 scale);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void Translate(IntPtr GOptr, ref Vector3 increment);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -49,7 +56,10 @@ class InternalCalls
     //GameObjects
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
-    
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetGameObjectName(IntPtr GOptr);
 
@@ -117,9 +127,60 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ReplayPS(IntPtr GOptr);
     
+    //Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void PlaySource(IntPtr GOptr, EventIDs audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopSource(IntPtr GOptr, EventIDs audio);
+
+    //Collider2D
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetColliderRadius(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetColliderRadius(IntPtr GOptr, ref float radiusToSet);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static Vector2 GetColliderBoxSize(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetColliderBoxSize(IntPtr GOptr, ref Vector2 sizeToSet);
+
+    //Camera
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static double GetFov(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetFov(IntPtr GOptr, ref double fov);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static double GetAspect(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetAspect(IntPtr GOptr, ref double aspect);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetYaw(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetYaw(IntPtr GOptr, ref float yaw);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetPitch(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetPitch(IntPtr GOptr, ref float pitch);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static CameraType GetCameraType(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetCameraType(IntPtr GOptr, ref CameraType cameraType);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetPrimaryCam(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetPrimaryCam(IntPtr GOptr, ref bool cameraType);
 }

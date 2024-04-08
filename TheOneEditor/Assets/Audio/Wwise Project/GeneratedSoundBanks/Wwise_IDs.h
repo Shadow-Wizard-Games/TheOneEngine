@@ -13,18 +13,30 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID CLICK = 1584507803U;
-        static const AkUniqueID COMBAT = 2764240573U;
-        static const AkUniqueID ENEMYATTACK = 2144693767U;
-        static const AkUniqueID EXPLORE = 579523862U;
-        static const AkUniqueID GUNSHOT = 1287408361U;
-        static const AkUniqueID HOVER = 3753593413U;
-        static const AkUniqueID MAINMENU = 3604647259U;
-        static const AkUniqueID MUSIC1 = 1730564819U;
-        static const AkUniqueID MUSIC2 = 1730564816U;
-        static const AkUniqueID SPATIAL1 = 2134552412U;
-        static const AkUniqueID SPATIAL2 = 2134552415U;
-        static const AkUniqueID STEP = 621108255U;
+        static const AkUniqueID A_AMBIENT_1 = 1547765315U;
+        static const AkUniqueID A_COMBAT_1 = 3486252281U;
+        static const AkUniqueID DEBUG_MUSIC1 = 830312575U;
+        static const AkUniqueID DEBUG_MUSIC2 = 830312572U;
+        static const AkUniqueID DEBUG_SPATIAL1 = 3632435752U;
+        static const AkUniqueID DEBUG_SPATIAL2 = 3632435755U;
+        static const AkUniqueID E_EGG_CRACK = 3286329979U;
+        static const AkUniqueID E_FH_CRAWL = 3938483819U;
+        static const AkUniqueID E_FH_DEATH = 4203716004U;
+        static const AkUniqueID E_FH_JUMP = 2711568226U;
+        static const AkUniqueID E_REBEL_DEATH = 4009974304U;
+        static const AkUniqueID E_REBEL_SHOOT = 319492235U;
+        static const AkUniqueID E_REBEL_STEP = 2489932272U;
+        static const AkUniqueID E_X_ADULT_DEATH = 3828971157U;
+        static const AkUniqueID E_X_ADULT_MELEE = 3271687631U;
+        static const AkUniqueID E_X_ADULT_SPIT = 2247807735U;
+        static const AkUniqueID E_X_ADULT_STEP = 1644504899U;
+        static const AkUniqueID P_DEATH = 947529532U;
+        static const AkUniqueID P_HIT = 1073763149U;
+        static const AkUniqueID P_PICK = 1941667005U;
+        static const AkUniqueID P_STEP = 3875642140U;
+        static const AkUniqueID UI_A_MENU = 464895987U;
+        static const AkUniqueID UI_CLICK = 2249769530U;
+        static const AkUniqueID UI_HOVER = 2118900976U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

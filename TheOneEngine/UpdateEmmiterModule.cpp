@@ -4,7 +4,16 @@ AccelerationUpdate::AccelerationUpdate(Emmiter* owner)
 {
 	type = ACCELERATION;
 	this->owner = owner;
+
 	acceleration = vec3(0, -1, 0);
+}
+
+AccelerationUpdate::AccelerationUpdate(Emmiter* owner, AccelerationUpdate* ref)
+{
+	type = ACCELERATION;
+	this->owner = owner;
+
+	acceleration = ref->acceleration;
 }
 
 void AccelerationUpdate::Update(double dt, Particle* particle)

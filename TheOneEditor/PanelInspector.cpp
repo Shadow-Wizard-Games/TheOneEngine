@@ -12,7 +12,7 @@
 #include "..\TheOneEngine\Script.h"
 #include "..\TheOneEngine\Collider2D.h"
 #include "..\TheOneEngine\Listener.h"
-#include "..\TheOneEngine\Source.h"
+#include "..\TheOneEngine\AudioSource.h"
 #include "..\TheOneEngine\MonoManager.h"
 #include "..\TheOneEngine\ParticleSystem.h"
 #include "..\TheOneEngine\Canvas.h"
@@ -70,6 +70,14 @@ bool PanelInspector::Draw()
             //ImGui::Checkbox("Active", &gameObjSelected->isActive);
             ImGui::SameLine(); ImGui::Text("GameObject:");
             ImGui::SameLine(); ImGui::TextColored({ 0.144f, 0.422f, 0.720f, 1.0f }, selectedGO->GetName().c_str());
+            if (selectedGO->IsPrefab() && selectedGO->IsPrefabDirty())
+            {
+                ImGui::SameLine(0.0f, -1.0f);
+                if (ImGui::Button("Overrides", { 75.0f, 20.0f }))
+                {
+                    ImGui::OpenPopup("ChangesWarning");
+                }
+            }
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             /*Tag + Layer*/
@@ -838,10 +846,10 @@ bool PanelInspector::Draw()
 
             }
 
-            /*Source Component*/
-            Source* source = selectedGO->GetComponent<Source>();
+            /*AudioSource Component*/
+            AudioSource* audioSource = selectedGO->GetComponent<AudioSource>();
 
-            if (source != nullptr && ImGui::CollapsingHeader("Audio Source", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
+            if (audioSource != nullptr && ImGui::CollapsingHeader("Audio Source", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
                 // JULS: Volume not applied yet
                 //if (ImGui::SliderFloat("Volume", &zNear, 0.01, 10.0))
                 //{
@@ -891,11 +899,11 @@ bool PanelInspector::Draw()
                     audioManager->audio->SetDefaultListener(selectedGO->GetComponent<Listener>()->goID);
 
                 }
-                if (ImGui::MenuItem("Source"))
+                if (ImGui::MenuItem("AudioSource"))
                 {
-                    selectedGO->AddComponent<Source>();
-                    selectedGO->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
-                    audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<Source>());
+                    selectedGO->AddComponent<AudioSource>();
+                    selectedGO->GetComponent<AudioSource>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
+                    audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<AudioSource>());
                 }
 
                 if (ImGui::TreeNode("Collider2D"))

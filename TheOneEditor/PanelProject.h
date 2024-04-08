@@ -56,7 +56,7 @@ public:
 	std::vector<FileInfo> ListFiles(const std::string& path);
 	FileType FindFileType(const std::string& fileExtension);
 
-	GLuint LoadTexture(const std::string& path);
+	GLuint LoadTexture(const std::string& path, bool thumbnail = false);
 	void LoadIcons();
 
 	//Loading and Unloading functions for the previews of texture files

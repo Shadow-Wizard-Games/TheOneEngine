@@ -42,24 +42,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdultXenomorphBehaviour.cs" />
+    <Compile Include="AlienQueenBehaviour.cs" />
+    <Compile Include="AnarchistBehaviour.cs" />
     <Compile Include="AudioManager.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="CamControlTest.cs" />
     <Compile Include="CameraMovement.cs" />
+    <Compile Include="ChestBusterBehaviour.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventChangeScene.cs" />
     <Compile Include="EventCollectible.cs" />
     <Compile Include="ExampleScript.cs" />
     <Compile Include="GetComponentTestScript2.cs" />
+    <Compile Include="FaceHuggerBehaviour.cs" />
+    <Compile Include="ICamera.cs" />
     <Compile Include="ICanvas.cs" />
+    <Compile Include="ICollider2D.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="IGameObject.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="InternalCalls.cs" />
     <Compile Include="InventoryMenuManager.cs" />
+    <Compile Include="IAudioSource.cs" />
     <Compile Include="IObject.cs" />
-    <Compile Include="ISource.cs" />
     <Compile Include="IParticleSystem.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
@@ -68,6 +74,7 @@
     <Compile Include="Item_M4A1.cs" />
     <Compile Include="Item_Shield.cs" />
     <Compile Include="PauseMenuManager.cs" />
+    <Compile Include="QueenBehaviour.cs" />
     <Compile Include="SceneManager.cs" />
     <Compile Include="ITransform.cs" />
     <Compile Include="MonoBehaviour.cs" />

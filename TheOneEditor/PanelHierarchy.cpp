@@ -27,13 +27,17 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		//bool isOpen = false;
 		//if (!childGO.get()->GetName().empty())
 		//{
-		if (childGO.get()->IsPrefab() && childGO.get()->IsEditablePrefab())
+		if (childGO.get()->IsPrefab() && childGO.get()->IsEditablePrefab() && !childGO.get()->IsPrefabDirty())
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(.2f, .8f, 1.f, 1.f));
 		}
 		else if (childGO.get()->IsPrefab() && !childGO.get()->IsEditablePrefab())
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, .3f, .2f, 1.f));
+		}
+		else if (childGO.get()->IsPrefab() && childGO.get()->IsEditablePrefab() && childGO.get()->IsPrefabDirty())
+		{
+			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, .50f, 1.0f, 1.f));
 		}
 
 		bool isOpen = ImGui::TreeNodeEx(childGO.get()->GetName().data(), treeFlags);
@@ -70,7 +74,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 
 			ImGui::TreePop();
 		}
-		ImGui::PopStyleColor(3);
+		ImGui::PopStyleColor(10);
 	}
 
 	if (remove)
@@ -203,6 +207,7 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 					if (dragging->parent.lock().get()->IsPrefab())
 					{
 						dragging->SetPrefab(dragging->parent.lock().get()->GetPrefabID());
+						dragging->parent.lock().get()->SetPrefabDirty(true);
 					}
 
 					childGO.get()->children.emplace_back(newChild);

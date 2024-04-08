@@ -7,6 +7,7 @@
 #include "..\TheOneEngine\UIDGen.h"
 
 #include <IL/il.h>
+#include <IL/ilu.h>
 
 #include <fstream>
 #include <filesystem>
@@ -307,7 +308,7 @@ FileType PanelProject::FindFileType(const std::string& fileExtension)
 	return FileType::UNKNOWN;
 }
 
-GLuint PanelProject::LoadTexture(const std::string& path)
+GLuint PanelProject::LoadTexture(const std::string& path, bool thumbnail)
 {
 	// Generate a new texture ID
 	GLuint textureID;
@@ -327,6 +328,11 @@ GLuint PanelProject::LoadTexture(const std::string& path)
 	// Convert image to RGBA format
 	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 
+	if (thumbnail)
+	{
+		iluScale(32, 32, 1);
+	}
+
 	// Set texture parameters
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT),
 		0, GL_RGBA, GL_UNSIGNED_BYTE, ilGetData());
@@ -343,6 +349,7 @@ void PanelProject::LoadIcons()
 {
 	// Initialize DevIL
 	ilInit();
+	iluInit(); // Initialize DevIL utilities
 
 	// Load and store icon textures
 	iconTextures[FileType::FOLDER] = LoadTexture("Config\\Icons/PanelProject/folder.png");
@@ -360,7 +367,7 @@ void PanelProject::LoadImagePreviews(const FileInfo& info)
 {
 	if (info.fileType == FileType::TEXTURE)
 	{
-		imagePreviews[info.name] = LoadTexture(info.path.string());
+		imagePreviews[info.name] = LoadTexture(info.path.string(), true);
 	}
 }
 

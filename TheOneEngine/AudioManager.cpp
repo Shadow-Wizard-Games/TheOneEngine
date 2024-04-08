@@ -1,5 +1,5 @@
 #include "AudioManager.h"
-#include "Source.h"
+#include "AudioSource.h"
 
 AudioManager::AudioManager()
 {
@@ -23,35 +23,40 @@ bool AudioManager::Update(double dt)
 
 bool AudioManager::CleanUp()
 {
+	DeleteAudioComponents();
+
 	audio->CleanUp();
 	delete audio;
+
 	return true;
 }
 
-// JULS: Not sure tho if they should be added like this
-void AudioManager::PlayAudio(Source* source, AkUniqueID event)
+void AudioManager::PlayAudio(AudioSource* source, AkUniqueID event)
 {
 	audio->PlayEvent(event, source->goID);
 }
 
-void AudioManager::StopAudio(Source* source, AkUniqueID event)
+void AudioManager::StopAudio(AudioSource* source, AkUniqueID event)
 {
 	audio->StopEvent(event, source->goID);
 }
 
-void AudioManager::PauseAudio(Source* source, AkUniqueID event)
+void AudioManager::PauseAudio(AudioSource* source, AkUniqueID event)
 {
 	audio->PauseEvent(event, source->goID);
 }
 
-void AudioManager::ResumeAudio(Source* source, AkUniqueID event)
+void AudioManager::ResumeAudio(AudioSource* source, AkUniqueID event)
 {
 	audio->ResumeEvent(event, source->goID);
 }
 
-// Implementation of AddAudioObject
 void AudioManager::AddAudioObject(std::shared_ptr<AudioComponent> audioGO)
 {
 	audioComponents.push_back(audioGO);
 }
 
+void AudioManager::DeleteAudioComponents()
+{
+	audioComponents.clear();
+}

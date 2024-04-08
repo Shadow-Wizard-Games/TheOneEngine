@@ -99,7 +99,7 @@ AKRESULT CAkFileLocationBase::GetFullFilePath(
 
 		// Externally supplied source (see External Sources in SDK doc)
 		// In this sample, we will assume that the external source file name in_pszFileName
-		// must be used as is (e.g. "myExternalSourceFile.wem").  If you use the External Source feature
+		// must be used as is (e.g. "myExternalSourceFile.wem").  If you use the External AudioSource feature
 		// you should modify this section to handle your FileIDs properly.
 		/*if (in_pFlags->uCompanyID == AKCOMPANYID_AUDIOKINETIC_EXTERNAL)
 		{

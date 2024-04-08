@@ -213,7 +213,7 @@ AkFileID CAkFilePackageLUT::GetSoundBankID(
 }
 
 AkUInt64 CAkFilePackageLUT::GetExternalID( 
-	const AkOSChar*			in_pszExternalName		// External Source name.
+	const AkOSChar*			in_pszExternalName		// External AudioSource name.
 	)
 {
 	char* szString; 
