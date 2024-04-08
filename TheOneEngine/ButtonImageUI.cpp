@@ -5,7 +5,7 @@ ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rec
 {
 	this->name = "ButtonImage";
 	imagePath = "Assets/Meshes/HUD.png";
-	image = std::make_unique<Texture>(imagePath, containerGO);
+	image = std::make_unique<Texture>(imagePath);
 	switch (this->state)
 	{
 	case UiState::IDLE:

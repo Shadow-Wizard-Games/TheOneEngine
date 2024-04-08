@@ -14,7 +14,7 @@ inline std::string Resources::PathToLibrary<Texture>(const std::string& folderNa
 }
 
 template<>
-inline bool Resources::Import<Texture>(const std::string& file)
+inline bool Resources::Import<Texture>(const std::string& file, unsigned char* image)
 {
 	if (std::filesystem::is_directory(file)) return false;
 	if (!std::filesystem::exists(file)) return false;
@@ -24,7 +24,7 @@ inline bool Resources::Import<Texture>(const std::string& file)
 	int w, h, ch;
 
 	// STBI_rgb_alpha loads image as 32 bpp (4 channels), ch = image origin channels
-	unsigned char* image = stbi_load(file.c_str(), &w, &h, &ch, STBI_rgb_alpha);
+	image = stbi_load(file.c_str(), &w, &h, &ch, STBI_rgb_alpha);
 	if (w != h)
 	{
 		LOG(LogType::LOG_ERROR, "Image at %s needs to be square in order to be imported", file.c_str());

@@ -260,9 +260,6 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::Mesh:
 			duplicatedGO.get()->AddCopiedComponent<Mesh>((Mesh*)item);
 			break;
-		case ComponentType::Texture:
-			duplicatedGO.get()->AddCopiedComponent<Texture>((Texture*)item);
-			break;
 		case ComponentType::Script:
 			duplicatedGO.get()->AddCopiedComponent<Script>((Script*)item);
 			break;	
@@ -512,7 +509,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string pat
 
 			meshGO.get()->GetComponent<Mesh>()->meshData = mData;
 			meshGO.get()->GetComponent<Mesh>()->mesh = meshLoader->GetBufferData();
-			meshGO.get()->GetComponent<Mesh>()->mesh.texture = std::make_shared<Texture>(mData.texturePath);
+			//meshGO.get()->GetComponent<Mesh>()->mesh.texture = std::make_shared<Texture>(mData.texturePath);
 			meshGO.get()->GetComponent<Mesh>()->path = file;
 			//meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex]; //Implement texture deserialization
 			// hekbas: need to set Transform?

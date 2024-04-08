@@ -35,7 +35,7 @@ public:
     std::shared_ptr<VertexBuffer> meshVBO;
     std::shared_ptr<IndexBuffer> meshIBO;
 
-    std::vector<MeshVertex> vertexData;
+    std::vector<float> vertexData;
     std::vector<unsigned int> indexData;
 
     std::vector<vec3f> meshVerts;

@@ -15,7 +15,6 @@ enum class ComponentType
 	Transform,
 	Camera,
 	Mesh,
-    Texture,
     Script,
     Collider2D,
     Canvas,

@@ -185,12 +185,6 @@ void Resources::Clear()
 	}
 }
 
-template<class T, class ...T2>
-inline bool Resources::Import(const std::string& file, T2 ...settings)
-{
-	return false;
-}
-
 template<class T>
 inline std::string Resources::PathToLibrary(const std::string& folderName)
 {

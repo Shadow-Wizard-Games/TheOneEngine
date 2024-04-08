@@ -5,7 +5,7 @@ ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemUI(
 {
 	this->name = "Image";
 	imagePath = "Assets/Meshes/HUD.png";
-	image = std::make_unique<Texture>(imagePath, containerGO);
+	image = std::make_unique<Texture>(imagePath);
 }
 
 ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::IMAGE, name, false, rect), imagePath(path)

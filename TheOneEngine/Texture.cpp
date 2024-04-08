@@ -361,7 +361,7 @@ void Texture::raw_to_dds_file(const char* filename, const unsigned char* pData, 
     errno_t err;
     if((err = fopen_s(&f, filename, "wb")) != 0) 
     {
-        LOG(LogType::LOG_ERROR, "Cannot open file '%s': %s", filename, strerror(err));
+        LOG(LogType::LOG_ERROR, "Cannot open file '%s'", filename);
         return;
     }
 

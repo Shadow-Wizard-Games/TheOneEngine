@@ -19,6 +19,7 @@ inline bool Resources::Import<Model>(const std::string& file, Model* model)
 	Model::SaveMesh(model, import_path.string().c_str());
 
 	LOG(LogType::LOG_INFO, "Model at %s imported succesfully!", import_path.string().c_str());
+	return true;
 }
 template<>
 inline bool Resources::CheckImport<Model>(const std::string& file)

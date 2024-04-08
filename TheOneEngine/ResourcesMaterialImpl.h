@@ -32,7 +32,7 @@ inline bool Resources::Import<Material>(const std::string& file, Material* mat)
 
 			std::string texpath = sdata->tex_path;
 
-			if (!Resources::Import<Texture>(SetAssetPath(texpath)))
+			if (!Resources::Import<Texture>(SetAssetPath(texpath), nullptr))
 				return false;
 
 			std::filesystem::path p = ImportPathImpl(sdata->tex_path, ".dds");

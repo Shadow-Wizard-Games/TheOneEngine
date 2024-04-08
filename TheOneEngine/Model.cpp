@@ -90,11 +90,11 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
 
                         texPath = std::filesystem::relative(texPath);
 
-                        const char* defaultShader = "resources/shaders/light/toon_textured";
+                        const char* defaultShader = "Assetd/Shaders/MeshTexture";
 
                         id = Resources::Load<Shader>(defaultShader);
                         material.setShader(Resources::GetResourceById<Shader>(id), defaultShader);
-                        bool imported = Resources::Import<Texture>(texPath.string().c_str());
+                        bool imported = Resources::Import<Texture>(texPath.string().c_str(), nullptr);
 
                         if (imported) {
                             ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
@@ -108,11 +108,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                     }
                     else
                     {
-                        id = Resources::Load<Shader>("resources/shaders/light/toon_color");
-                        material.setShader(Resources::GetResourceById<Shader>(id), "resources/shaders/light/toon_color");
+                        id = Resources::Load<Shader>("Assetd/Shaders/MeshTextureColor");
+                        material.setShader(Resources::GetResourceById<Shader>(id), "Assetd/Shaders/MeshTextureColor");
 
-                        material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
-                        material.SetUniformData("u_ToonLevels", 4);
+                        material.SetUniformData("color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
                     }
 
 
@@ -120,32 +119,32 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 }
             }
 
-            // Apply global transformation to vertices
+            std::vector<float> vertex_data;
+            std::vector<unsigned int> index_data;
+
+            // Apply global transformation to vertices and load vertices
             for (size_t i = 0; i < mesh->mNumVertices; ++i)
             {
                 aiVector3D transformedVertex = globalTransform * mesh->mVertices[i];
                 verts[i] = vec3f(transformedVertex.x, transformedVertex.y, transformedVertex.z);
-            }
 
-            std::vector<MeshVertex> vertex_data;
-            std::vector<unsigned int> index_data;
 
-            if (texCoords != nullptr)
-            {
-                for (size_t i = 0; i < mesh->mNumVertices; ++i)
+                // Vertices
+                vertex_data.push_back(mesh->mVertices[i].x);
+                vertex_data.push_back(mesh->mVertices[i].y);
+                vertex_data.push_back(mesh->mVertices[i].z);
+                // Texture coordinates
+                if (mesh->mTextureCoords[0])
                 {
-                    MeshVertex v = { verts[i], vec2f(texCoords[i].x, texCoords[i].y) };
-                    vertex_data.push_back(v);
+                    vertex_data.push_back(mesh->mTextureCoords[0][i].x);
+                    vertex_data.push_back(mesh->mTextureCoords[0][i].y);
+                }
+                else {
+                    vertex_data.push_back(0.0f);
+                    vertex_data.push_back(0.0f);
                 }
             }
-            else
-            {
-                for (size_t i = 0; i < mesh->mNumVertices; ++i)
-                {
-                    MeshVertex v = { verts[i], vec2f(0, 0) };
-                    vertex_data.push_back(v);
-                }
-            }
+
             model->vertexData = vertex_data;
 
             for (size_t f = 0; f < mesh->mNumFaces; ++f)
@@ -265,7 +264,7 @@ void Model::serializeMeshData(const std::string& filename)
     // Write vertex_data size and data
     uint numVerts = static_cast<uint>(vertexData.size());
     outFile.write(reinterpret_cast<const char*>(&numVerts), sizeof(uint));
-    outFile.write(reinterpret_cast<const char*>(&vertexData[0]), numVerts * sizeof(MeshVertex));
+    outFile.write(reinterpret_cast<const char*>(&vertexData[0]), numVerts * sizeof(float));
 
     // Write index_data size and data
     uint numIndexs = static_cast<uint>(indexData.size());
@@ -318,7 +317,7 @@ void Model::deserializeMeshData(const std::string& filename)
     vertexData.resize(numVerts);
 
     // Read vertex_data
-    inFile.read(reinterpret_cast<char*>(&vertexData[0]), numVerts * sizeof(MeshVertex));
+    inFile.read(reinterpret_cast<char*>(&vertexData[0]), numVerts * sizeof(float));
 
     // Read index_data size and allocate memory
     uint numIndexs;

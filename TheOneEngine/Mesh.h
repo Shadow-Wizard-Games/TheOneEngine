@@ -3,10 +3,9 @@
 #pragma once
 
 #include "Defs.h"
-#include "MeshLoader.h"
+
 #include "Component.h"
-#include "Texture.h"
-#include "Graphic.h"
+#include "Resources.h"
 
 #include <vector>
 #include <memory>
@@ -36,9 +35,8 @@ private:
     //void DrawWireframe();
 
 public:
-
-    MeshBufferedData mesh;
-    MeshData meshData;
+    ResourceId meshID;
+    ResourceId materialID;
 
     bool active;
     bool drawWireframe;
