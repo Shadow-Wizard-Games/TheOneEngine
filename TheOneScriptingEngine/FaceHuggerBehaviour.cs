@@ -25,15 +25,14 @@ public class FaceHuggerBehaviour : MonoBehaviour
     float maxAttackRange = 90.0f;
     float maxChasingRange = 180.0f;
 
-    float currentTimer = 0.0f;
-    float attackCooldown = 2.0f;
+    bool isJumping = false;
 
-    bool isExploring = true;
-    AudioManager.EventIDs currentID = 0;
+    PlayerScript player;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     public override void Update()
@@ -60,6 +59,12 @@ public class FaceHuggerBehaviour : MonoBehaviour
             UpdateFSMStates();
             DoStateBehaviour();
         }
+
+        if (isJumping)
+        {
+            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_JUMP);
+            isJumping = false;
+        }
     }
 
     void UpdateFSMStates()
@@ -67,7 +72,6 @@ public class FaceHuggerBehaviour : MonoBehaviour
         if (life <= 0) { currentState = States.Dead; return; }
 
         if (!detected && playerDistance < enemyDetectedRange) detected = true;
-
         
         if (detected)
         {
@@ -76,6 +80,8 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
                 {
                     currentState = States.Dead;
+                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_DEATH);
+                    detected = false;
                 }
             }
             else
@@ -83,17 +89,16 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 if (playerDistance < maxAttackRange)
                 {
                     currentState = States.Jump;
+                    isJumping = true;
                 }
                 else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
                 {
                     currentState = States.Attack;
-                    //isExploring = false;
                 }
                 else if (playerDistance > maxChasingRange)
                 {
                     detected = false;
                     currentState = States.Idle;
-                    //isExploring = true;
                 }
             }
         }
@@ -109,12 +114,14 @@ public class FaceHuggerBehaviour : MonoBehaviour
             case States.Idle:
                 return;
             case States.Attack:
+                player.isFighting = true;
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Jump:
+                player.isFighting = true;
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * 3.0f * Time.deltaTime);
-                if (up == true)
+                if (up)
                 {
                     if (maxHeight > height)
                     {
@@ -141,6 +148,8 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 break;
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
+                attachedGameObject.transform.Translate(Vector3.up * -1.0f * Time.deltaTime);
+                
                 break;
             default:
                 break;

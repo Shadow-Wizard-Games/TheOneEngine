@@ -7,10 +7,21 @@ public class PauseMenuManager : MonoBehaviour
     bool onCooldown = false;
     bool pauseEnabled = false;
 
+    IGameObject playerGO;
+    PlayerScript player;
+
     public PauseMenuManager()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
     }
+
+    public override void Start()
+    {
+        // Error here 
+        playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
+    }
+
     public override void Update()
     {
         float dt = InternalCalls.GetAppDeltaTime();
@@ -89,7 +100,17 @@ public class PauseMenuManager : MonoBehaviour
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
+                {
+                    playerGO.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                }
+                if (player.currentID == AudioManager.EventIDs.A_AMBIENT_1)
+                {
+                    playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                }
+
                 SceneManager.LoadScene("MainMenu");
+
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)

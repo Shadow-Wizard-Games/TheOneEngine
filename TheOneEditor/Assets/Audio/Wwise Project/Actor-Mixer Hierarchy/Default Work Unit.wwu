@@ -371,6 +371,28 @@
 								<ActiveSource Name="waves" ID="{151A8030-DBDB-4585-BC43-960EB3935AEB}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="gunshot" ID="{A08E53D9-F5C3-4422-AEEA-79A70D2C98C0}" ShortID="949121146">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gunshot" ID="{24E26A4A-807E-4948-832E-8031B40B8B0F}">
+									<Language>SFX</Language>
+									<AudioFile>gunshot.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="715356811"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="gunshot" ID="{24E26A4A-807E-4948-832E-8031B40B8B0F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Game" ID="{5D493867-C305-455B-9B35-2E7146FFC139}" ShortID="1030518029">
@@ -480,6 +502,9 @@
 													</ActiveSourceList>
 												</Sound>
 												<Sound Name="SFX_Facehugger_Crawl_E" ID="{A0F0E49B-366B-4044-8DB5-2B7D03F126FA}" ShortID="406541603">
+													<PropertyList>
+														<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>

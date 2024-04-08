@@ -162,7 +162,7 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{50E909C0-177B-FE3D-C66B-1F3D0E612FD0}">
+		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{1F115F02-A1B0-9DD7-5F8D-EF4F18260B8D}">
 			<ShortName>TheOneEngine</ShortName>
 			<Path>TheOneEngine.bnk</Path>
 			<Media>
@@ -192,7 +192,7 @@
 				</File>
 				<File Id="358062072" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Facehugger_Crawl_E.wav</ShortName>
-					<CachePath>SFX/SFX_Facehugger_Crawl_E_818F3B66.wem</CachePath>
+					<CachePath>SFX/SFX_Facehugger_Crawl_E_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="365237862" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Xenomorph_Melee_E.wav</ShortName>
@@ -242,6 +242,10 @@
 					<ShortName>SFX_Player_Step_CH.wav</ShortName>
 					<CachePath>SFX/SFX_Player_Step_CH_FBC78EF0.wem</CachePath>
 				</File>
+				<File Id="715356811" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>gunshot.wav</ShortName>
+					<CachePath>SFX/gunshot_818F3B66.wem</CachePath>
+				</File>
 				<File Id="852480059" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>UI_Menu_Hover_SFX.wav</ShortName>
 					<CachePath>SFX/UI_Menu_Hover_SFX_818F3B66.wem</CachePath>
@@ -272,6 +276,11 @@
 				<Event Id="3486252281" Name="A_COMBAT_1">
 					<MediaRefs>
 						<MediaRef Id="303888556"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1535709413" Name="DEBUG_GUNSHOT">
+					<MediaRefs>
+						<MediaRef Id="715356811"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="830312575" Name="DEBUG_MUSIC1">
@@ -387,5 +396,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{73B4227E-1577-892D-55C5-5CACDA3FB953}</FileHash>
+	<FileHash>{58F012DD-8CA1-FC4C-A6DE-B9E5D5498EEA}</FileHash>
 </SoundBanksInfo>

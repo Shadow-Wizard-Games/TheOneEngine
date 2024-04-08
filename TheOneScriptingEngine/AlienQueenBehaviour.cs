@@ -70,9 +70,12 @@ public class AlienQueenBehaviour : MonoBehaviour
     bool up = true;
     float jumpSpeed = 35.0f * 5;
 
+    PlayerScript player;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     public override void Update()
@@ -142,6 +145,7 @@ public class AlienQueenBehaviour : MonoBehaviour
                 }
                 return;
             case States.Attack:
+                player.isFighting = true;
                 ChooseAttack();
 
                 switch (currentAttack)

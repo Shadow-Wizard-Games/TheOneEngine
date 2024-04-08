@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID A_AMBIENT_1 = 1547765315U;
         static const AkUniqueID A_COMBAT_1 = 3486252281U;
+        static const AkUniqueID DEBUG_GUNSHOT = 1535709413U;
         static const AkUniqueID DEBUG_MUSIC1 = 830312575U;
         static const AkUniqueID DEBUG_MUSIC2 = 830312572U;
         static const AkUniqueID DEBUG_SPATIAL1 = 3632435752U;

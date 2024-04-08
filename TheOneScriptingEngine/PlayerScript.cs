@@ -5,14 +5,50 @@ public class PlayerScript : MonoBehaviour
 	float speed = 40.0f;	
 	bool lastFrameToMove = false;
 
-	public override void Update()
+	public bool isFighting = false;
+
+	// Bckg music
+    public AudioManager.EventIDs currentID = 0;
+	float enemyTimer = 0;
+	float combatThreshold = 5.0f;
+
+    public override void Update()
 	{
 		bool toMove = false;
 		Vector3 movement = Vector3.zero;
 
-		//Keyboard
+        // Background music
+        if (!isFighting)
+        {
+            if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                currentID = AudioManager.EventIDs.A_AMBIENT_1;
+            }
+        }
+        else
+        {
+            if (currentID != AudioManager.EventIDs.A_COMBAT_1)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                currentID = AudioManager.EventIDs.A_COMBAT_1;
+            }
+        }
 
-		if (Input.GetKeyboardButton(Input.KeyboardCode.K)) {
+        if (isFighting)
+        {
+            enemyTimer += Time.deltaTime;
+            if (enemyTimer >= combatThreshold)
+            {
+                enemyTimer = 0;
+                isFighting = false;
+            }
+        }
+
+        //Keyboard
+        if (Input.GetKeyboardButton(Input.KeyboardCode.K)) {
 			SceneManager.LoadScene("Scene");
 		}
 
@@ -59,7 +95,7 @@ public class PlayerScript : MonoBehaviour
             Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
             InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-            //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.GUNSHOT);
+            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
             // call particleSystem.Replay()
         }
       

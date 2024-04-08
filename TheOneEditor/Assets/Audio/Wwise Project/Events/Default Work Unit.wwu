@@ -90,6 +90,17 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="DEBUG_GUNSHOT" ID="{5345FCFD-4930-42D3-B49A-DD98954B029D}">
+							<ChildrenList>
+								<Action Name="" ID="{E28FBCF5-0407-4C61-8957-42CA9697064F}" ShortID="693472342">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gunshot" ID="{A08E53D9-F5C3-4422-AEEA-79A70D2C98C0}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Game" ID="{03BB3583-65AE-4F09-892E-C0EE61CE8026}" ShortID="887955071">
@@ -134,7 +145,7 @@
 											<ChildrenList>
 												<Event Name="E_FH_CRAWL" ID="{914C0D2A-48EE-487B-8EA3-83FFF7150CB7}">
 													<ChildrenList>
-														<Action Name="" ID="{CD500381-9CC1-4BF4-A4D6-D4C93EFD25EB}" ShortID="873305366">
+														<Action Name="" ID="{5EC2AB5F-7A42-45E1-92CF-D57BD605B412}" ShortID="150345736">
 															<ReferenceList>
 																<Reference Name="Target">
 																	<ObjectRef Name="SFX_Facehugger_Crawl_E" ID="{A0F0E49B-366B-4044-8DB5-2B7D03F126FA}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
