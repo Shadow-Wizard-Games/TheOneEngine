@@ -32,6 +32,7 @@ protected:
 class SetSpeed : public InitializeEmmiterModule {
 public:
 	SetSpeed(Emmiter* owner);
+	SetSpeed(Emmiter* owner, SetSpeed* ref);
 
 	void Initialize(Particle* particle);
 
@@ -45,6 +46,7 @@ public:
 class SetColor : public InitializeEmmiterModule {
 public:
 	SetColor(Emmiter* owner);
+	SetColor(Emmiter* owner, SetColor* ref);
 
 	void Initialize(Particle* particle);
 
@@ -58,6 +60,7 @@ public:
 class SetScale : public InitializeEmmiterModule {
 public:
 	SetScale(Emmiter* owner);
+	SetScale(Emmiter* owner, SetScale* ref);
 
 	void Initialize(Particle* particle);
 

@@ -33,11 +33,10 @@ isON(ref->isON)
 	}
 
 	for (const auto& emmiter : ref->emmiters) {
-
+		AddEmmiter(emmiter.get());
 	}
 
 	isON = true;
-	AddEmmiter();
 }
 
 ParticleSystem::~ParticleSystem()
