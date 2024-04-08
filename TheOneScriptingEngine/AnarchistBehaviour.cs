@@ -22,7 +22,7 @@ class AnarchistBehaviour : MonoBehaviour
     States currentState = States.Patrol;
     Vector3 initialPos;
 
-    float life = 200;
+    float life = 100;
     ICollider2D collider;
 
     public override void Start()
@@ -67,7 +67,7 @@ class AnarchistBehaviour : MonoBehaviour
                 AttackState();
                 break;
             case States.Dead:
-                attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
+                attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
                 break;
             default:
                 break;
@@ -216,5 +216,10 @@ class AnarchistBehaviour : MonoBehaviour
         }
 
         Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, loseRange, Vector3.right);
+    }
+
+    public void ReduceLife() //temporary function for the hardcoding of collisions
+    {
+        life -= 10.0f;
     }
 }
