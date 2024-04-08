@@ -301,7 +301,12 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     private void XenoSpawn()
     {
-        // pending to implement
+
+        Vector3 scale = new Vector3(1,1,1);
+        
+        InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+                                           attachedGameObject.transform.rotation,
+                                           scale);
         ResetState();
     }
 

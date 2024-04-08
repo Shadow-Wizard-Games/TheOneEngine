@@ -75,6 +75,15 @@ static void SetRotation(GameObject* GOptr, vec3f* rotation)
 	GOptr->GetComponent<Transform>()->SetRotation((vec3)*rotation);
 }
 
+static vec3f GetScale(GameObject* GOptr)
+{
+	return (vec3f)GOptr->GetComponent<Transform>()->GetScale();
+}
+static void SetScale(GameObject* GOptr, vec3f* scale)
+{
+	GOptr->GetComponent<Transform>()->SetScale((vec3)*scale);
+}
+
 static void Translate(GameObject* GOptr, vec3f* finalPos)
 {
 	//This implementation is temporary, engine Transform.Translate is not working properly.
@@ -109,6 +118,22 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
 	go->GetComponent<Collider2D>()->radius = 0.4f;
+	return go;
+}
+
+static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction, vec3f* scale)
+{
+	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx");
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+
+	SetPosition(go, initialPosition);
+	SetRotation(go, direction);
+	SetScale(go, scale);
+
+	go->AddComponent<Collider2D>();
+	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	go->GetComponent<Collider2D>()->collisionType = CollisionType::Enemy;
+	go->GetComponent<Collider2D>()->radius = 0.5f;
 	return go;
 }
 
@@ -462,6 +487,7 @@ void MonoRegisterer::RegisterFunctions()
 	//GameObject
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
+	mono_add_internal_call("InternalCalls::InstantiateXenomorph", InstantiateXenomorph);
 	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
@@ -479,6 +505,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::SetPosition", SetPosition);
 	mono_add_internal_call("InternalCalls::GetRotation", GetRotation);
 	mono_add_internal_call("InternalCalls::SetRotation", SetRotation);
+	mono_add_internal_call("InternalCalls::GetScale", GetScale);
+	mono_add_internal_call("InternalCalls::SetScale", SetScale);
 	mono_add_internal_call("InternalCalls::Translate", Translate);
 	mono_add_internal_call("InternalCalls::Rotate", Rotate);
 	mono_add_internal_call("InternalCalls::GetTransformForward", GetTransformForward);
