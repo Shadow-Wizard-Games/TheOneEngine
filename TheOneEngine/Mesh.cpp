@@ -42,6 +42,7 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO, Mesh* ref) : Component(conta
 
     normalLineWidth = ref->normalLineWidth;
     normalLineLength = ref->normalLineLength;
+    path = ref->path;
     meshLoader = new MeshLoader();
     //GenerateAABB();
 }
