@@ -122,18 +122,26 @@ static void DestroyGameObject(GameObject* objectToDestroy)
 	objectToDestroy->AddToDelete(engine->N_sceneManager->objectsToDelete);
 }
 
+static GameObject* RecursiveFindGO(std::string _name, GameObject* refGO)
+{
+	GameObject* returnedGO = nullptr;
+
+	for (auto go : refGO->children)
+	{
+		if (go->GetName() == _name)
+		{
+			return go.get();
+		}
+		returnedGO = RecursiveFindGO(_name, go.get());
+	}
+	return returnedGO;
+}
+
 static GameObject* FindGameObject(MonoString* monoString)
 {
 	std::string name = MonoRegisterer::MonoStringToUTF8(monoString);
 
-	for (auto go : engine->N_sceneManager->currentScene->GetRootSceneGO()->children)
-	{
-		if (go->GetName() == name)
-		{
-			return go.get();
-		}
-	}
-	return nullptr;
+	return RecursiveFindGO(name, engine->N_sceneManager->currentScene->GetRootSceneGO().get());
 }
 
 static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* scriptName = nullptr)
@@ -388,14 +396,84 @@ static void SetColliderBoxSize(GameObject* GOptr, vec2f sizeToSet)
 	GOptr->GetComponent<Collider2D>()->h = (double)sizeToSet.y;
 }
 
+//Camera
+static double GetFov(GameObject* GOptr)
+{
+	return (double)GOptr->GetComponent<Camera>()->fov;
+}
+
+static void SetFov(GameObject* GOptr, double* fov)
+{
+	GOptr->GetComponent<Camera>()->fov = (double)*fov;
+}
+
+static double GetAspect(GameObject* GOptr)
+{
+	return (double)GOptr->GetComponent<Camera>()->aspect;
+}
+
+static void SetAspect(GameObject* GOptr, double* aspect)
+{
+	GOptr->GetComponent<Camera>()->aspect = (double)*aspect;
+}
+
+static float GetYaw(GameObject* GOptr)
+{
+	return (float)GOptr->GetComponent<Camera>()->yaw;
+}
+
+static void SetYaw(GameObject* GOptr, float* yaw)
+{
+	GOptr->GetComponent<Camera>()->yaw = (float)*yaw;
+}
+
+static float GetPitch(GameObject* GOptr)
+{
+	return (float)GOptr->GetComponent<Camera>()->pitch;
+}
+
+static void SetPitch(GameObject* GOptr, float* pitch)
+{
+	GOptr->GetComponent<Camera>()->pitch = (float)*pitch;
+}
+
+static uint GetCameraType(GameObject* GOptr)
+{
+	return static_cast<uint>(GOptr->GetComponent<Camera>()->cameraType);
+}
+
+static void SetCameraType(GameObject* GOptr, uint* cameraType)
+{
+	GOptr->GetComponent<Camera>()->cameraType = static_cast<CameraType>((uint)*cameraType);
+}
+
+static bool GetPrimaryCam(GameObject* GOptr)
+{
+	return (bool)GOptr->GetComponent<Camera>()->primaryCam;
+}
+
+static void SetPrimaryCam(GameObject* GOptr, bool* primaryCam)
+{
+	GOptr->GetComponent<Camera>()->primaryCam = (bool)*primaryCam;
+}
+
 void MonoRegisterer::RegisterFunctions()
 {
+	//GameObject
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
+	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
+	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
+	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
+	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
+	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
+	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 
+	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
 	mono_add_internal_call("InternalCalls::GetControllerButton", GetControllerButton);
 	mono_add_internal_call("InternalCalls::GetControllerJoystick", GetControllerJoystick);
 
+	//Transform
 	mono_add_internal_call("InternalCalls::TransformCheck", TransformCheck);
 	mono_add_internal_call("InternalCalls::GetPosition", GetPosition);
 	mono_add_internal_call("InternalCalls::SetPosition", SetPosition);
@@ -406,37 +484,51 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetTransformForward", GetTransformForward);
 	mono_add_internal_call("InternalCalls::GetTransformRight", GetTransformRight);
 
-	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
-	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
-	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
-	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
-	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
-	mono_add_internal_call("InternalCalls::GetScript", GetScript);
-
+	//Scene Manager
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
 
+	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);
 	mono_add_internal_call("InternalCalls::GetSelectiedButton", GetSelectiedButton);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
 
+	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);
 	mono_add_internal_call("InternalCalls::ExitApplication", ExitApplication);
 
+	//Debug
 	mono_add_internal_call("InternalCalls::ScriptingLog", ScriptingLog);
 	mono_add_internal_call("InternalCalls::DrawWireCircle", DrawWireCircle);
 	mono_add_internal_call("InternalCalls::DrawWireSphere", DrawWireSphere);
 
+	//Particle Systems
 	mono_add_internal_call("InternalCalls::PlayPS", PlayPS);
 	mono_add_internal_call("InternalCalls::StopPS", StopPS);
 	mono_add_internal_call("InternalCalls::ReplayPS", ReplayPS);
 
+	//Audio
 	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);
 	mono_add_internal_call("InternalCalls::StopSource", StopAudioSource);
 
+	//Collider2D
 	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);
 	mono_add_internal_call("InternalCalls::SetColliderRadius", SetColliderRadius);
 	mono_add_internal_call("InternalCalls::GetColliderBoxSize", GetColliderBoxSize);
 	mono_add_internal_call("InternalCalls::SetColliderBoxSize", SetColliderBoxSize);
+
+	//Camera
+	mono_add_internal_call("InternalCalls::GetFov", GetFov);
+	mono_add_internal_call("InternalCalls::SetFov", SetFov);
+	mono_add_internal_call("InternalCalls::GetAspect", GetAspect);
+	mono_add_internal_call("InternalCalls::SetAspect", SetAspect);
+	mono_add_internal_call("InternalCalls::GetYaw", GetYaw);
+	mono_add_internal_call("InternalCalls::SetYaw", SetYaw);
+	mono_add_internal_call("InternalCalls::GetPitch", GetPitch);
+	mono_add_internal_call("InternalCalls::SetPitch", SetPitch);
+	mono_add_internal_call("InternalCalls::GetCameraType", GetCameraType);
+	mono_add_internal_call("InternalCalls::SetCameraType", SetCameraType);
+	mono_add_internal_call("InternalCalls::GetPrimaryCam", GetPrimaryCam);
+	mono_add_internal_call("InternalCalls::SetPrimaryCam", SetPrimaryCam);
 }
 
 bool MonoRegisterer::CheckMonoError(MonoError& error)

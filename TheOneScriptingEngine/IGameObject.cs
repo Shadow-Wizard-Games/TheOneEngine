@@ -65,10 +65,10 @@ public class IGameObject : IObject
                     case IComponent.ComponentType.ITransform:
                         componentToReturn = new ITransform(containerGOptr) as TComponent;
                         break;
-                    //case IComponent.ComponentType.ICamera:
-                    //    componentToReturn = new ICamera(containerGOptr) as TComponent;
-                    //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
-                    //    break;
+                    case IComponent.ComponentType.ICamera:
+                        componentToReturn = new ICamera(containerGOptr) as TComponent;
+                        Debug.LogCheck("The GetType of the class is: " + type.ToString());
+                        break;
                     //case IComponent.ComponentType.IMesh:
                     //    componentToReturn = new IMesh(containerGOptr) as TComponent;
                     //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
