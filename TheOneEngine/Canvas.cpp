@@ -162,7 +162,9 @@ json Canvas::SaveComponent()
 		json uiTexturesJSON;
 		for (auto& item : uiTextures)
 		{
-			uiTexturesJSON.push_back(uiTexturesJSON["Path"] = item->path.c_str());
+			json uiTextures2JSON;
+			uiTextures2JSON["Path"] = item->path.c_str();
+			uiTexturesJSON.push_back(uiTextures2JSON);
 		}
 		canvasJSON["UiTextures"] = uiTexturesJSON;
 	}
