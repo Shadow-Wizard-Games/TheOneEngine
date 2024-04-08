@@ -234,7 +234,6 @@ void AudioCore::CleanUp()
     }
 
     AK::MemoryMgr::Term();
-
 }
 
 void AudioCore::SetDefaultListener(AkGameObjectID goID)
@@ -292,16 +291,19 @@ void AudioCore::PlayEvent(AkUniqueID event, AkGameObjectID goID)
 void AudioCore::StopEvent(AkUniqueID event, AkGameObjectID goID)
 {
     AK::SoundEngine::ExecuteActionOnEvent(event, AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Stop, gameObjectIDs[goID]);
+    LOG(LogType::LOG_AUDIO, "Stopping event from %d audiogameobject", goID);
 }
 
 void AudioCore::PauseEvent(AkUniqueID event, AkGameObjectID goID)
 {
     AK::SoundEngine::ExecuteActionOnEvent(event, AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Pause, gameObjectIDs[goID]);
+    LOG(LogType::LOG_AUDIO, "Pausing event from %d audiogameobject", goID);
 }
 
 void AudioCore::ResumeEvent(AkUniqueID event, AkGameObjectID goID)
 {
     AK::SoundEngine::ExecuteActionOnEvent(event, AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Resume, gameObjectIDs[goID]);
+    LOG(LogType::LOG_AUDIO, "Resuming event from %d audiogameobject", goID);
 }
 
 // JULS: Probably not necessary actually

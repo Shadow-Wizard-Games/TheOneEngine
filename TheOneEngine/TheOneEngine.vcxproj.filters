@@ -195,7 +195,7 @@
     <ClInclude Include="Listener.h">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Source.h">
+    <ClInclude Include="AudioSource.h">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClInclude>
   </ItemGroup>
@@ -311,7 +311,7 @@
     <ClCompile Include="Listener.cpp">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="AudioSource.cpp">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClCompile>
   </ItemGroup>

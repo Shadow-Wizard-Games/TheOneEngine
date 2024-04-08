@@ -44,10 +44,9 @@ bool EngineCore::PreUpdate()
 
 void EngineCore::Update(double dt)
 {
-    
-    collisionSolver->Update(dt);
     audioManager->Update(dt);
-
+    collisionSolver->Update(dt);
+  
     this->dt = dt;
 }
 
@@ -100,10 +99,10 @@ void EngineCore::Render(Camera* camera)
 
     if (collisionSolver->drawCollisions) collisionSolver->DrawCollisions();
 
-    /*if (!monoManager->debugShapesQueue.empty())
+    if (!monoManager->debugShapesQueue.empty())
     {
         monoManager->RenderShapesQueue();
-    }*/
+    }
 
     glColor3f(1.0f, 1.0f, 1.0f);
     //DrawFrustum(camera->viewMatrix);

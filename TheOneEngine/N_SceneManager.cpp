@@ -9,7 +9,7 @@
 #include "Texture.h"
 #include "Collider2D.h"
 #include "Listener.h"
-#include "Source.h"
+#include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "../TheOneAudio/AudioCore.h"
@@ -102,9 +102,10 @@ bool N_SceneManager::PostUpdate()
 bool N_SceneManager::CleanUp()
 {
 	//delete currentScene->currentCamera;
-
+	currentScene = nullptr;
 	delete currentScene;
 
+	meshLoader = nullptr;
 	delete meshLoader;
 
 	return true;
@@ -184,6 +185,9 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	try
 	{
 		file >> sceneJSON;
+		
+		// JULS: Audio Manager should delete this, but for now leave this commented
+		//audioManager->DeleteAudioComponents();
 	}
 	catch (const json::parse_error& e)
 	{
@@ -286,8 +290,8 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::Listener:
 			duplicatedGO.get()->AddCopiedComponent<Listener>((Listener*)item);
 			break;
-		case ComponentType::Source:
-			duplicatedGO.get()->AddCopiedComponent<Source>((Source*)item);
+		case ComponentType::AudioSource:
+			duplicatedGO.get()->AddCopiedComponent<AudioSource>((AudioSource*)item);
 			break;
 		case ComponentType::Unknown:
 			break;
