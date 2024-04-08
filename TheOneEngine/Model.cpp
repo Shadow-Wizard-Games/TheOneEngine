@@ -84,17 +84,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
 
                 if (texture_diffuse.length > 0)
                 {
+                    // TODO: this only loads texture paths if they are in the same folder as the fbx
+                    fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
 
-                    std::filesystem::current_path(path);
-
-                    std::filesystem::path texPath = texture_diffuse.C_Str();
-                    texPath = std::filesystem::absolute(texPath);
-
-                    std::filesystem::current_path(currPath);
-
-                    texPath = std::filesystem::relative(texPath);
-
-                    const char* defaultShader = "Assetd/Shaders/MeshTexture";
+                    const char* defaultShader = "Assets/Shaders/MeshTexture";
 
                     id = Resources::Load<Shader>(defaultShader);
                     material.setShader(Resources::GetResourceById<Shader>(id), defaultShader);
@@ -112,8 +105,8 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 }
                 else
                 {
-                    id = Resources::Load<Shader>("Assetd/Shaders/MeshTextureColor");
-                    material.setShader(Resources::GetResourceById<Shader>(id), "Assetd/Shaders/MeshTextureColor");
+                    id = Resources::Load<Shader>("Assets/Shaders/MeshColor");
+                    material.setShader(Resources::GetResourceById<Shader>(id), "Assets/Shaders/MeshColor");
 
                     material.SetUniformData("color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
                 }
