@@ -302,6 +302,9 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::AudioSource:
 			duplicatedGO.get()->AddCopiedComponent<AudioSource>((AudioSource*)item);
 			break;
+		case ComponentType::ParticleSystem:
+			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
+			break;
 		case ComponentType::Unknown:
 			break;
 		default:
@@ -323,6 +326,13 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		std::shared_ptr<GameObject> temp = DuplicateGO(child, true);
 		temp.get()->parent = duplicatedGO;
 		duplicatedGO.get()->children.push_back(temp);
+	}
+
+	if (originalGO.get()->IsPrefab())
+	{
+		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID());
+		duplicatedGO.get()->SetEditablePrefab(originalGO.get()->IsEditablePrefab());
+		duplicatedGO.get()->SetPrefabDirty(originalGO.get()->IsPrefabDirty());
 	}
 
 	return duplicatedGO;

@@ -33,6 +33,7 @@ protected:
 class BillboardRender : public RenderEmmiterModule {
 public:
 	BillboardRender(Emmiter* owner);
+	BillboardRender(Emmiter* owner, BillboardRender* ref);
 
 	BillboardType billboardType;
 
