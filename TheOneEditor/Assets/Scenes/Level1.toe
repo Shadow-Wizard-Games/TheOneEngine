@@ -24391,7 +24391,7 @@
               "DrawWireframe": false,
               "Name": "Mesh",
               "ParentUID": 3452816845,
-              "Path": "",
+              "Path": "Library/Meshes/MK_Ship_Level1_final/MK_Ship_Floor_Short9.mesh",
               "Type": 2,
               "UID": 4035176671
             }
@@ -24653,7 +24653,7 @@
         },
         {
           "DebugDraw": true,
-          "Enabled": true,
+          "Enabled": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -24919,7 +24919,7 @@
             0.0,
             1.0,
             0.0,
-            56.04792022705078,
+            131.62408447265625,
             0.0,
             0.0,
             1.0
@@ -24974,6 +24974,2238 @@
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2371365418
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                422.23150634765625,
+                0.0,
+                101.94804382324219,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 429945681
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 1060060073
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3794375565,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                427.15045166015625,
+                0.0,
+                60.844078063964844,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3910653024
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 2968306249
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3641869888,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box1",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                458.060302734375,
+                0.0,
+                79.71449279785156,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3989920804
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 1498919023
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1090298617,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box2",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.9999999999999958,
+                8.742278000372439e-08,
+                7.642742463579653e-15,
+                0.0,
+                8.742277479292099e-08,
+                0.9999999403953476,
+                8.742277479292065e-08,
+                0.0,
+                0.0,
+                8.742278000372473e-08,
+                -0.9999999999999958,
+                0.0,
+                498.55218505859375,
+                0.0,
+                80.80357360839844,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3877521985
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Pipes/SM_Pipes.mesh",
+              "Type": 2,
+              "UID": 1139300092
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Pipes0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                581.9794311523438,
+                0.0,
+                87.08135223388672,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3413853880
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 3596126444
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1733177712,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box3",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                622.7949829101563,
+                0.0,
+                87.27348327636719,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2335509572
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Type": 2,
+              "UID": 3850440065
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 38.30810546875,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4081525620,
+              "Width": 37.352294921875
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_OilDrums0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -4.371139006309477e-08,
+                0.0,
+                0.999999999999999,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.999999999999999,
+                0.0,
+                -4.371139006309477e-08,
+                0.0,
+                641.7055053710938,
+                -3.6239539440430235e-06,
+                -75.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3404889255
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_ComputerDesk/SM_ComputerDesk.mesh",
+              "Type": 2,
+              "UID": 96293116
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 45.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3067638262,
+              "Width": 20.5
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_ComputerDesk0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092856,
+                -8.757681846770254e-08,
+                -7.656222946144435e-15,
+                0.0,
+                8.757680280774928e-08,
+                0.9999999403953476,
+                8.742293478749134e-08,
+                0.0,
+                0.0,
+                -8.742295041993153e-08,
+                1.0000001192092858,
+                0.0,
+                450.0,
+                5.1092400099150836e-05,
+                -150.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3979121213
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Pipes/SM_Pipes.mesh",
+              "Type": 2,
+              "UID": 1793727145
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Pipes1",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                676.830810546875,
+                0.0,
+                -201.60797119140625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3720392104
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Type": 2,
+              "UID": 3769743879
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 38.30810546875,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1492947089,
+              "Width": 37.352294921875
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_OilDrums1",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                335.0,
+                0.0,
+                -314.8663330078125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2338526741
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 475838553
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3069873058,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                387.7171325683594,
+                0.0,
+                -314.8663330078125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 294709572
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 1444698471
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4008329967,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer1",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                438.99420166015625,
+                0.0,
+                -314.8663330078125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1806560715
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 3581757405
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 239710197,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer2",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                382.86431884765625,
+                0.0,
+                -264.87237548828125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1807732911
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_CorpseHuman/SM_ShopKeeper3.mesh",
+              "Type": 2,
+              "UID": 3992720949
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 45.0814208984375,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1537870936,
+              "Width": 17.5313720703125
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_HumanCorpse0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                376.3487548828125,
+                0.0,
+                -469.18524169921875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2021329787
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 3229433984
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1167714875,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box4",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                329.1707458496094,
+                0.0,
+                -474.95745849609375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2505281851
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 2265888982
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2616964439,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box5",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                277.0915222167969,
+                0.0,
+                -466.069580078125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 105823605
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 3361631246
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3343782634,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box6",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                329.1707458496094,
+                0.0,
+                -503.6677551269531,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1067611945
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 220435464
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3379077987,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box7",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                399.8111572265625,
+                0.0,
+                -498.48529052734375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1250829037
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 1349401821
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3548811995,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box8",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                354.6726379394531,
+                0.0,
+                -530.638671875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 17880299
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 995940713
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3057038638,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box9",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0000001192092896,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                260.8913879394531,
+                0.0,
+                -495.386474609375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4140075002
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Type": 2,
+              "UID": 3161926394
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 26.051528930664063,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 35974960,
+              "Width": 26.051525115966797
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Box10",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -4.371138828673793e-08,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0000001192092896,
+                0.0,
+                -4.3711395392165286e-08,
+                0.0,
+                208.07733154296875,
+                0.0,
+                -532.8519287109375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1049547360
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_ComputerDesk/SM_ComputerDesk.mesh",
+              "Type": 2,
+              "UID": 1334066685
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 45.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3543815287,
+              "Width": 20.5
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_SavePoint0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.1924880638503055e-08,
+                0.0,
+                0.9999999999999998,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9999999999999998,
+                0.0,
+                1.1924880638503055e-08,
+                0.0,
+                679.2025146484375,
+                0.0,
+                -448.49761962890625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1690603354
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Type": 2,
+              "UID": 3913482773
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 38.30810546875,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2206430957,
+              "Width": 37.352294921875
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_OilDrums2",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.2439591884613037,
+                1.0614669321284964e-07,
+                -0.9697855710983276,
+                0.0,
+                8.757680092230657e-08,
+                0.9999999403953552,
+                8.742293289287772e-08,
+                0.0,
+                0.9697855710983276,
+                -6.360314586117966e-08,
+                -0.2439591884613037,
+                0.0,
+                500.57232666015625,
+                9.987772500608116e-05,
+                -532.0020751953125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2893303660
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Pipes/SM_Pipes.mesh",
+              "Type": 2,
+              "UID": 353552616
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Pipes2",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.6007755398750305,
+                1.7273421804020472e-08,
+                -0.7994178533554077,
+                0.0,
+                8.757680092230657e-08,
+                0.9999999403953552,
+                8.742293289287772e-08,
+                0.0,
+                0.7994178533554077,
+                -1.2253212844370864e-07,
+                0.6007755398750305,
+                0.0,
+                373.2239990234375,
+                0.00015151395928114653,
+                -643.4703369140625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2570071120
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Pipes/SM_Pipes.mesh",
+              "Type": 2,
+              "UID": 3007077156
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Pipes3",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -4.371138828673793e-08,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -4.371138828673793e-08,
+                0.0,
+                299.0820617675781,
+                0.0,
+                -750.7610473632813,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1796435541
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Type": 2,
+              "UID": 2796776832
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 38.30810546875,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 546300484,
+              "Width": 37.352294921875
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_OilDrums3",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.9995021820068359,
+                9.029172787222706e-08,
+                -0.031552642583847046,
+                0.0,
+                8.757680092230657e-08,
+                0.9999999403953552,
+                8.742293289287772e-08,
+                0.0,
+                0.031552642583847046,
+                8.461620382149704e-08,
+                -0.9995021820068359,
+                0.0,
+                716.736328125,
+                0.0001214068615809083,
+                -591.7787475585938,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1071644171
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Pipes/SM_Pipes.mesh",
+              "Type": 2,
+              "UID": 2955578764
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Pipes4",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                449.8968811035156,
+                0.0,
+                -765.0879516601563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1340200090
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 1469831623
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3272716269,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer4",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                499.7579040527344,
+                0.0,
+                -765.0879516601563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2180379754
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 3669383358
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3453827077,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer5",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                548.8212890625,
+                0.0,
+                -765.0879516601563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1051391698
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 3683909294
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3020309948,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer6",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                599.35595703125,
+                0.0,
+                -765.0879516601563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2146972700
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 1489645472
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1387260854,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer7",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                649.4749145507813,
+                0.0,
+                -765.0879516601563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3507122354
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 2338329168
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 158144552,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer8",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                701.1196899414063,
+                0.0,
+                -765.0879516601563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1798759192
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_BigServerComputer/SM_BigServerComputer.mesh",
+              "Type": 2,
+              "UID": 3134236421
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3515885276,
+              "Width": 31.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_BigServerComputer9",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                777.1502685546875,
+                0.0,
+                -750.7610473632813,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1500054450
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Type": 2,
+              "UID": 4064577393
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 38.30810546875,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3095447801,
+              "Width": 37.352294921875
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_OilDrums4",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -4.371139006309477e-08,
+                0.0,
+                -0.999999999999999,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.999999999999999,
+                0.0,
+                -4.371139006309477e-08,
+                0.0,
+                1054.873779296875,
+                0.0,
+                -728.6597290039063,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 315553899
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Type": 2,
+              "UID": 1549822762
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 38.30810546875,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4110913037,
+              "Width": 37.352294921875
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_OilDrums5",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -1.0000002384185749,
+                -8.742280084693938e-08,
+                7.642744285751452e-15,
+                0.0,
+                -8.742278000372473e-08,
+                0.9999999999999923,
+                -8.742278000372439e-08,
+                0.0,
+                0.0,
+                -8.742280084693972e-08,
+                -1.0000002384185749,
+                0.0,
+                1095.59521484375,
+                0.0,
+                -420.4811096191406,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2885510305
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Type": 2,
+              "UID": 3059529176
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 38.30810546875,
+              "Name": "Specified Type was not found",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2361618474,
+              "Width": 37.352294921875
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_OilDrums6",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9986227750778198,
+                -9.204304518561912e-08,
+                0.05246565490961075,
+                0.0,
+                8.757680092230657e-08,
+                0.9999999403953552,
+                8.742293289287772e-08,
+                0.0,
+                -0.05246565490961075,
+                -8.270786366892935e-08,
+                0.9986227750778198,
+                0.0,
+                1154.760009765625,
+                6.171862332848832e-05,
+                -385.2137756347656,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2885199558
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Pipes/SM_Pipes.mesh",
+              "Type": 2,
+              "UID": 3742615712
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Pipes5",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.8456836938858032,
+                -1.207187523277753e-07,
+                0.5336846709251404,
+                0.0,
+                8.757680092230657e-08,
+                0.9999999403953552,
+                8.742293289287772e-08,
+                0.0,
+                -0.5336846709251404,
+                -2.7193767238031796e-08,
+                0.8456836938858032,
+                0.0,
+                1356.5528564453125,
+                6.157621101010591e-05,
+                -247.8685760498047,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3278430375
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Pipes/SM_Pipes.mesh",
+              "Type": 2,
+              "UID": 1114423627
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Pipes6",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.00026162067618962226,
+                0.0,
+                -0.9999999657773103,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.9999999657773103,
+                0.0,
+                0.00026162067618962226,
+                0.0,
+                125.0,
+                0.0,
+                -700.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2009451309
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Path": "Library/Meshes/SM_Ship_Elevator/SM_Ship_Elevator.mesh",
+              "Type": 2,
+              "UID": 3721259411
+            }
+          ],
+          "Enabled": true,
+          "Name": "SM_Ship_Elevator0",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "Name": "Empty GameObject",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "index": 0,
