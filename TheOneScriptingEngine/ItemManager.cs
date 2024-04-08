@@ -31,10 +31,8 @@ public class ItemManager : MonoBehaviour
     {
         if (!hasInitial)
         {
-            Debug.Log("No tiene arma xd");
             if (CheckItemInInventory(1))
             {
-                Debug.Log("Ahora zí jeje");
                 hasInitial = true;
             }
         }

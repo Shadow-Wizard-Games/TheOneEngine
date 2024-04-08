@@ -11,11 +11,16 @@ public class ICanvas : IComponent
     }
     public int GetSelection()
     {
-        return InternalCalls.GetSelectiedButton(containerGOptr);
+        return InternalCalls.GetSelectedButton(containerGOptr);
     }
 
     public void MoveSelection(int direction)
     {
         InternalCalls.MoveSelectedButton(containerGOptr, direction);
+    }
+
+    public void ChangeSectImg(string name, int x, int y, int w, int h)
+    {
+        InternalCalls.ChangeSectImg(containerGOptr, name, x, y, w, h);
     }
 }

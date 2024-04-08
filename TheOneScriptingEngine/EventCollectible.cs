@@ -35,16 +35,7 @@ public class EventCollectible : Event
 
         if (CheckEventIsPossible())
         {
-            if (DoEvent()) //Execute Event
-            {
-                //Log success
-                //Debug.Log($"Executing event: {eventType}");
-            }
-            else
-            {
-                //Log error
-                //Debug.Log($"Event {eventType} cannot be executed.");
-            }
+            DoEvent();
         }
         DrawEventDebug();       
     }
@@ -53,20 +44,15 @@ public class EventCollectible : Event
     {
         //Set the distance to the player
         playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
-        Debug.Log($"{playerDistance}");
-        if(!inRange) { Debug.Log("FALSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"); }
-
+        
         if (playerDistance < collectibleRange)
         {
             inRange = true;
-            Debug.Log("inRange");
         }
         else
         {
             inRange = false;
-            Debug.Log("outRange");
         }
-        Debug.LogCheck($"{itemManager.inventory.Count()}");
         return inRange;
     }
 
@@ -80,7 +66,6 @@ public class EventCollectible : Event
 
             //Degug
             Debug.LogWarning("LOOTED");
-            Debug.LogCheck($"{itemManager.inventory.Count()}");
         }
 
         return false;
