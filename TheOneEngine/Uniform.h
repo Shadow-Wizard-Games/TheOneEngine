@@ -19,6 +19,7 @@ enum class UniformType
 	Invalid
 };
 
+typedef unsigned char Byte;
 class Uniform
 {
 public:
@@ -41,11 +42,8 @@ public:
 	}
 	~Uniform()
 	{
-		if (data != nullptr)
-		{
-			delete[] data;
-			data = nullptr;
-		}
+		//delete[] data;
+		data = nullptr;
 	}
 
 	void sendToShader(const uint16_t shaderProgram, int& textureId);
@@ -56,12 +54,11 @@ public:
 		setType(type);
 
 		//If it's already a value we need to free the data
-		if (data)
-			delete[](data);
+		delete[] data;
 
 		//Reserving memory and copy the value
 		dataSize = sizeof(T);
-		data = new unsigned char[dataSize];
+		data = new Byte[dataSize];
 		memcpy(data, &value, sizeof(T));
 	}
 
@@ -88,8 +85,7 @@ public:
 private:
 
 	UniformType type;
-	//Using unsigned char as a byte
-	unsigned char* data = nullptr;
+	Byte* data = nullptr;
 	size_t dataSize = 0;
 	uint16_t uniformID;
 

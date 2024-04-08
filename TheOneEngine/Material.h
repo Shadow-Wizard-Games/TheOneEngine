@@ -26,7 +26,7 @@ public:
 	void Refresh();
 
 
-	void setShader(Shader* shader, const char* path);
+	void setShader(Shader* shader, const std::string& path);
 	template<class T> void SetUniformData(const std::string& name, const T& value);
 
 	inline Shader* getShader() const { return shader; }

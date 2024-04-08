@@ -12,7 +12,10 @@ Material::Material() {}
 Material::Material(Shader* shader)
 {
 	if (!shader)
-		LoadBasicShader();
+	{
+		size_t id = Resources::Load<Shader>("Assets/Shaders/MeshColor");
+		setShader(Resources::GetResourceById<Shader>(id), "Assets/Shaders/MeshColor");
+	}
 	else
 		setShader(shader, shader->getPath());
 
@@ -25,9 +28,7 @@ Material::Material(const std::string& file)
 
 Material::~Material()
 {
-	if (shader)
-		shader->DeleteRef(this);
-	//uniforms.clear();
+	uniforms.clear();
 }
 
 void Material::Refresh()
@@ -68,14 +69,11 @@ void Material::Refresh()
 	}
 }
 
-void Material::setShader(Shader* sh, const char* path)
+void Material::setShader(Shader* sh, const std::string& path)
 {
 	uniforms.clear();
-	if (shader)
-		shader->DeleteRef(this);
 
 	shader = sh;
-	shader->AddRef(this);
 	shaderPath = path;
 	Refresh();
 }
@@ -95,13 +93,10 @@ Uniform* Material::getUniform(const std::string& name)
 void Material::LoadBasicShader()
 {
 	uniforms.clear();
-	if (shader)
-		shader->DeleteRef(this);
 
 	shader = new Shader("Assets/Shaders/basicShader");
 	shader->addUniform("tex", UniformType::Sampler2D);
 
-	shader->AddRef(this);
 	shaderPath = "Assets/Shaders/basicShader";
 
 	Refresh();
@@ -275,12 +270,6 @@ void Material::Load(const std::string& path)
 void Material::Save(const std::string& path)
 {
 	materialPath = path;
-	//std::string fileNameExt = matName + ".toematerial";
-
-	//fs::path filename = fs::path(ASSETS_PATH) / "Scenes" / fileNameExt;
-	////string filename = "Assets/Scenes/";
-	//fs::path folderName = fs::path(ASSETS_PATH) / "Scenes";
-	//fs::create_directories(folderName);
 
 	json matJSON;
 	Resources::StandarizePath(shaderPath);

@@ -90,9 +90,13 @@ std::string Resources::FindFileInAssets(const std::string& name)
 	if (name.find("Assets") && fs::exists(name))
 		return name;
 
-	for (const auto& p : fs::recursive_directory_iterator("Assets")) {
-		if (p.path().filename() == name)
-			return p.path().string();
+	for (const auto& p : fs::recursive_directory_iterator("Assets")) 
+	{
+		std::string relPath = p.path().string();
+		std::string fileName = p.path().filename().replace_extension("").string();
+		StandarizePath(relPath);
+		if (fileName == name || relPath == name)
+			return relPath;
 	}
 
 	LOG(LogType::LOG_ERROR, "Wrong Path");
@@ -104,9 +108,13 @@ std::string Resources::FindFileInLibrary(const std::string& name)
 	if (name.find("Library") && fs::exists(name))
 		return name;
 
-	for (const auto& p : fs::recursive_directory_iterator("Library")) {
-		if (p.path().filename() == name)
-			return p.path().string();
+	for (const auto& p : fs::recursive_directory_iterator("Library"))
+	{
+		std::string relPath = p.path().string();
+		std::string fileName = p.path().filename().replace_extension("").string();
+		StandarizePath(relPath);
+		if (fileName == name || relPath == name)
+			return relPath;
 	}
 
 	LOG(LogType::LOG_ERROR, "Wrong Path");

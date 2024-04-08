@@ -31,7 +31,7 @@ public:
 	void Compile(const std::string& filename);
 	void CompileFiles(const char* vertexShaderSource, const char* fragmentShaderSource, bool hasGS, std::string* geometryShaderSourceStr, bool& retflag);
 
-	bool LoadFromTOEasset(const char* filename);
+	bool LoadFromTOEasset(const std::string& filename);
 
 	void Bind();
 	void UnBind();
@@ -61,35 +61,17 @@ public:
 	unsigned int getUniformLocation(const char* uniform_name);
 	UniformField* getUniform(const char* name);
 	std::string* getFileData(const char* file);
-	inline std::vector<Material*>& getRefs() { return matRefs; }
 	inline std::vector<UniformField>& getUniforms() { return uniforms; }
 	inline const char* getPath() { return path.c_str(); }
 	inline uint32_t getID() { return ProgramID; }
 	inline State getState() const { return compileState; }
 	inline void setPath(const char* path) { path = path; }
 
-	inline void AddRef(Material* ref)
-	{
-		matRefs.emplace_back(ref);
-	}
-	void DeleteRef(Material* ref)
-	{
-		for (size_t i = 0; i < matRefs.size(); i++)
-		{
-			if (matRefs[i] == ref)
-			{
-				matRefs.erase(matRefs.begin() + i);
-				break;
-			}
-		}
-	}
 
 protected:
 	uint32_t ProgramID;
 	State compileState;
 	std::vector<UniformField> uniforms;
-
-	std::vector<Material*> matRefs;
 
 	std::string path;
 

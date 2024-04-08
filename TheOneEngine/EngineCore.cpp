@@ -38,13 +38,13 @@ void EngineCore::Start()
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
     textShader->Compile("Assets/Shaders/MeshTexture");
     textShader->addUniform("tex", UniformType::Sampler2D);
-    Resources::Import<Shader>("Assets/Shaders/MeshTexture", textShader);
+    Resources::Import<Shader>("MeshTexture", textShader);
 
     ResourceId colorShaderId = Resources::Load<Shader>("Assets/Shaders/MeshColor");
     Shader* colorShader = Resources::GetResourceById<Shader>(colorShaderId);
     colorShader->Compile("Assets/Shaders/MeshColor");
     colorShader->addUniform("color", UniformType::fVec4);
-    Resources::Import<Shader>("Assets/Shaders/MeshColor", colorShader);
+    Resources::Import<Shader>("MeshColor", colorShader);
 }
 
 bool EngineCore::PreUpdate()

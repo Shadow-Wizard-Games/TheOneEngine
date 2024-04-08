@@ -33,20 +33,19 @@ inline bool Resources::Import<Shader>(const std::string& file, Shader* shader)
 {
 	json document;
 
-	std::string filePath = FindFileInAssets(file);
+	std::filesystem::path mainPath = FindFileInAssets(file);
+	std::string filePath = mainPath.replace_extension("").string();
 	if (filePath.empty())
 		return false;
 
-	filePath += ".vs";
-	std::string* vertexShader = getFileData(filePath.c_str());
+	std::string vertexPath = filePath + ".vs";
+	std::string* vertexShader = getFileData(vertexPath.c_str());
 
-	filePath = file;
-	filePath += ".fs";
-	std::string* fragmentShader = getFileData(filePath.c_str());
+	std::string fragmentPath = filePath + ".fs";
+	std::string* fragmentShader = getFileData(fragmentPath.c_str());
 
-	filePath = file;
-	filePath += ".gs";
-	std::string* geometryShader = getFileData(filePath.c_str());
+	std::string geometryPath = filePath + ".gs";
+	std::string* geometryShader = getFileData(geometryPath.c_str());
 
 	if (vertexShader)
 		document["vertex"] = vertexShader->c_str();
@@ -74,11 +73,13 @@ inline bool Resources::Import<Shader>(const std::string& file, Shader* shader)
 	delete fragmentShader;
 	delete geometryShader;
 
-	std::filesystem::path import_file = ImportPathImpl(filePath, ".toeshader");
+	std::string importName = mainPath.filename().replace_extension("").string();
+	std::filesystem::path import_file = PathToLibrary<Shader>() + importName + ".toeshader";
+	PreparePath(import_file.parent_path().string());
 
 	SaveJSON(import_file.string(), document);
 
-	LOG(LogType::LOG_INFO, "Shader at %s imported succesfully!", import_file.string().c_str());
+	LOG(LogType::LOG_INFO, "Shader at %s imported succesfully!", import_file.c_str());
 
 	return true;
 }

@@ -168,13 +168,11 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 	viewMatrixID = glGetUniformLocation(ProgramID, "view");
 }
 
-bool Shader::LoadFromTOEasset(const char* filename)
+bool Shader::LoadFromTOEasset(const std::string& filename)
 {
-	std::string file_name = filename;
-	file_name += ".toeshader";
-	json shaderJSON = Resources::OpenJSON(file_name);
+	json shaderJSON = Resources::OpenJSON(filename);
 
-	if (!shaderJSON)
+	if (shaderJSON.empty())
 		LOG(LogType::LOG_ERROR, "Shader JSON not found");
 
 	std::string vertexShader;
