@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-typedef unsigned char byte;
-
 enum class UniformType
 {
 	Bool = 0,
@@ -63,7 +61,7 @@ public:
 
 		//Reserving memory and copy the value
 		dataSize = sizeof(T);
-		data = new byte[dataSize];
+		data = new unsigned char[dataSize];
 		memcpy(data, &value, sizeof(T));
 	}
 
@@ -90,7 +88,8 @@ public:
 private:
 
 	UniformType type;
-	byte* data;
+	//Using unsigned char as a byte
+	unsigned char* data;
 	size_t dataSize = 0;
 	uint16_t uniformID;
 

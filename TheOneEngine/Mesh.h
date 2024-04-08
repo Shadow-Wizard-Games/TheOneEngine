@@ -28,10 +28,8 @@ public:
     void LoadComponent(const json& meshJSON);
 
 private:
-
-    void ConfigureVertexFormat();
-    void DrawVertexNormals();
-    void DrawFaceNormals();
+    //void DrawVertexNormals();
+    //void DrawFaceNormals();
     //void DrawWireframe();
 
 public:
@@ -48,12 +46,6 @@ public:
    
     int normalLineWidth;
     float normalLineLength;
-
-    std::string path;
-
-private:
-
-    MeshLoader* meshLoader;
 };
 
 #endif // !__MESH_H__

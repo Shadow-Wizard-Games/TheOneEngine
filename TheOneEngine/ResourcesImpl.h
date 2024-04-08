@@ -64,6 +64,8 @@ private:
 
 	static bool CheckImport(const char* file, const char* extension);
 
+
+	static void _import_image_impl(const char* origin, const char* destination);
 public:
 	// Checks if path exists and if not creates folders
 	static bool PreparePath(std::string path); 
@@ -72,6 +74,7 @@ public:
 	static std::filesystem::path ImportPathImpl(const std::filesystem::path& path, const char* extension);
 	static std::string FindFileInAssets(const std::string& name);
 	static std::string FindFileInLibrary(const std::string& name);
+	static std::vector<std::string> GetAllFilesFromFolder(const std::string& path);
 	
 	static inline void StandarizePath(std::string& file_path)
 	{
@@ -95,6 +98,7 @@ public:
 
 	// Load from fbx, png....
 	template<class T> static ResourceId Load(const std::string& file);
+	template<class T> static std::vector<ResourceId> LoadMultiple(const std::string& file);
 	// Load from already imported resources
 	template<class T> static ResourceId LoadFromLibrary(const std::string& file);
 	template<class T> static T* GetResourceById(ResourceId id);

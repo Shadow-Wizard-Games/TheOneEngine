@@ -1,6 +1,8 @@
 #pragma once
 #include "ResourcesImpl.h"
 
+static unsigned int lastModelSize = 0;
+
 //--SPECIALIZATION FOR MODEL
 template<>
 inline std::string Resources::PathToLibrary<Model>(const std::string& folderName)
@@ -27,30 +29,41 @@ inline bool Resources::CheckImport<Model>(const std::string& file)
 	return CheckImport(file.c_str(), ".mesh");
 }
 template<>
-inline ResourceId Resources::Load<Model>(const std::string& file)
+inline std::vector<ResourceId> Resources::LoadMultiple<Model>(const std::string& file)
 {
-	ResourceId position = getResourcePosition(RES_MODEL, file.c_str());
+	ResourceId initialPosition = getResourcePosition(RES_MODEL, file.c_str());
 	size_t size = m_Resources[RES_MODEL].size();
 
-	ResourceId resourceId;
+	std::vector<ResourceId> resourcesId;
 
-	if (position == size) 
+	if (initialPosition + lastModelSize == size) 
 	{
 		std::vector<Model*> meshes = Model::LoadMeshes(file);
 
+		unsigned int i = 0;
 		for (auto& mesh : meshes)
 		{
 			PushResource(RES_MODEL, file.c_str(), mesh);
+			resourcesId.push_back(i + initialPosition);
+			i++;
 		}
-
-		resourceId = size;
 	}
 	else 
 	{
-		resourceId = position;
+		unsigned int i = 0;
+		for (const auto& resource : m_Resources[RES_MODEL])
+		{
+			if (resource->filePath == file)
+			{
+				resourcesId.push_back(i + initialPosition);
+				i++;
+			}
+		}
 	}
 
-	return resourceId;
+	lastModelSize = resourcesId.size();
+
+	return resourcesId;
 }
 template<>
 inline ResourceId Resources::LoadFromLibrary<Model>(const std::string& file)

@@ -258,7 +258,7 @@ void Material::Load(const std::string& path)
 			case UniformType::Sampler2D:
 			{
 				std::string texPath = u["Value"];
-				Resources::Import<Texture>(texPath, nullptr);
+				Resources::Import<Texture>(texPath);
 				size_t id = Resources::LoadFromLibrary<Texture>(texPath);
 				Texture* img = Resources::GetResourceById<Texture>(id);
 				uniform->setData(img->GetTextureId(), uniform->getType());

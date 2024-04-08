@@ -67,7 +67,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                     matPath += name.C_Str();
                     matPath += ".toematerial";
 
-                    ResourceId matID = Resources::Load<Material>(matPath.string().c_str());
+                    ResourceId matID = Resources::LoadFromLibrary<Material>(matPath.string().c_str());
 
                     model->materials.push_back(matPath.string());
 
@@ -94,7 +94,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
 
                         id = Resources::Load<Shader>(defaultShader);
                         material.setShader(Resources::GetResourceById<Shader>(id), defaultShader);
-                        bool imported = Resources::Import<Texture>(texPath.string().c_str(), nullptr);
+                        bool imported = Resources::Import<Texture>(texPath.string());
 
                         if (imported) {
                             ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
@@ -119,16 +119,18 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 }
             }
 
+            // Basic Data
+            model->meshName = mesh->mName.C_Str();
+            model->format = BufferLayout({
+            { ShaderDataType::Float3, "aPos"           },
+            { ShaderDataType::Float2, "aTex"           } });
+            model->materialIndex = mesh->mMaterialIndex;
+
+            // Vertex & Index Data
             std::vector<float> vertex_data;
             std::vector<unsigned int> index_data;
-
-            // Apply global transformation to vertices and load vertices
             for (size_t i = 0; i < mesh->mNumVertices; ++i)
             {
-                aiVector3D transformedVertex = globalTransform * mesh->mVertices[i];
-                verts[i] = vec3f(transformedVertex.x, transformedVertex.y, transformedVertex.z);
-
-
                 // Vertices
                 vertex_data.push_back(mesh->mVertices[i].x);
                 vertex_data.push_back(mesh->mVertices[i].y);
@@ -144,7 +146,6 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                     vertex_data.push_back(0.0f);
                 }
             }
-
             model->vertexData = vertex_data;
 
             for (size_t f = 0; f < mesh->mNumFaces; ++f)
@@ -155,12 +156,22 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             }
             model->indexData = index_data;
 
-            model->meshName = mesh->mName.C_Str();
-            model->format = BufferLayout({
-            { ShaderDataType::Float3, "aPos"           },
-            { ShaderDataType::Float2, "aTex"           } });
-            model->materialIndex = mesh->mMaterialIndex;
+            // Transform
+            aiMatrix4x4 transform;
+            glm::mat4 mTransform;
+            if (mesh->mName != (aiString)"Scene")
+            {
+                transform = scene->mRootNode->FindNode(mesh->mName)->mTransformation;
+                mTransform = glm::transpose(glm::make_mat4(&transform.a1));
+            }
+            else
+            {
+                mTransform = glm::mat4(1);
+            }
+            model->meshTransform = mTransform;
 
+
+            // Extra data
             for (size_t i = 0; i < mesh->mNumVertices; i++) {
                 aiVector3D normal = mesh->mNormals[i];
                 vec3f glmNormal(normal.x, normal.y, normal.z);
@@ -188,8 +199,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             }
 
 
+
             Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
 
+            model->GenBufferData();
             meshes.push_back(model);
         }
         aiReleaseImport(scene);
@@ -367,4 +380,11 @@ void Model::deserializeMeshData(const std::string& filename)
 void Model::SaveMesh(Model* mesh, const std::string& path)
 {
     mesh->serializeMeshData(path);
+}
+
+void Model::Render()
+{
+    meshVAO->Bind();
+    glDrawElements(GL_TRIANGLES, (GLsizei)indexData.size(), GL_UNSIGNED_INT, 0);
+    meshVAO->Bind();
 }

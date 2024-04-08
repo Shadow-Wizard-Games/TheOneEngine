@@ -1,4 +1,11 @@
 #include "ResourcesImpl.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+#include "ResourcesImageImpl.h"
+#include "ResourcesMaterialImpl.h"
+#include "ResourcesModelImpl.h"
+#include "ResourcesShaderImpl.h"
 
 std::vector<Resources::Resource*> Resources::m_Resources[Resources::RES_LAST];
 
@@ -106,6 +113,23 @@ std::string Resources::FindFileInLibrary(const std::string& name)
 	return std::string();
 }
 
+std::vector<std::string> Resources::GetAllFilesFromFolder(const std::string& path)
+{
+	std::vector<std::string> fileNames;
+
+	if (fs::is_directory(path))
+	{
+		for (const auto& entry : fs::directory_iterator(path)) {
+			if (fs::is_regular_file(entry)) {
+				std::string path = entry.path().filename().string();
+				LOG(LogType::LOG_WARNING, "- %s is in", path.data());
+				fileNames.push_back(entry.path().string());
+			}
+		}
+	}
+	return fileNames;
+}
+
 bool Resources::PreparePath(std::string path)
 {
 	if (!std::filesystem::exists(path)) {
@@ -170,6 +194,23 @@ bool Resources::CheckImport(const char* file, const char* extension)
 	std::filesystem::path fileFS = FindFileInLibrary(file);
 	fileFS.replace_extension(extension);
 	return std::filesystem::exists(fileFS);
+}
+
+void Resources::_import_image_impl(const char* origin, const char* destination)
+{
+	int w, h, ch;
+
+	// STBI_rgb_alpha loads image as 32 bpp (4 channels), ch = image origin channels
+	unsigned char* image = stbi_load(origin, &w, &h, &ch, STBI_rgb_alpha);
+	if (w != h)
+	{
+		LOG(LogType::LOG_ERROR, "Image at %s needs to be square in order to be imported", origin);
+		return;
+	}
+
+	Texture::raw_to_dds_file(destination, image, w, h, 32);
+
+	stbi_image_free(image);
 }
 
 void Resources::Clear()

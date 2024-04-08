@@ -1,5 +1,6 @@
 #pragma once
 #include "ResourcesImpl.h"
+#include "ResourcesImageImpl.h"
 
 //--SPECIALIZATION FOR MATERIAL
 template<>
@@ -32,7 +33,7 @@ inline bool Resources::Import<Material>(const std::string& file, Material* mat)
 
 			std::string texpath = sdata->tex_path;
 
-			if (!Resources::Import<Texture>(SetAssetPath(texpath), nullptr))
+			if (!Resources::Import<Texture>(SetAssetPath(texpath)))
 				return false;
 
 			std::filesystem::path p = ImportPathImpl(sdata->tex_path, ".dds");
