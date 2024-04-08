@@ -25297,13 +25297,13 @@
             0.0,
             1.0,
             0.0,
-            580.1726684570313,
+            533.40478515625,
             0.0,
             0.0,
             1.0
           ],
           "Type": 0,
-          "UID": 709156638
+          "UID": 3315303168
         },
         {
           "Active": true,
@@ -25315,22 +25315,27 @@
           "DrawWireframe": false,
           "Name": "Mesh",
           "ParentUID": 6619240,
-          "Path": "Library/Meshes/SK_Facehugger/SK_Facehugger.mesh",
+          "Path": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
           "Type": 2,
-          "UID": 1404222681
+          "UID": 2903845720
+        },
+        {
+          "AudioID": 3,
+          "Name": "AudioSource",
+          "Type": 8
         },
         {
           "Name": "Script",
           "ParentUID": 6619240,
           "ScriptName": "FaceHuggerBehaviour",
           "Type": 4,
-          "UID": 277523022
+          "UID": 3605535500
         },
         {
           "ColliderType": 0,
           "CollisionType": 1,
           "CornerPivot": true,
-          "Height": 57.10001754760742,
+          "Height": 45.68001937866211,
           "Name": "Specified Type was not found",
           "ObjectOrientation": 0,
           "OffsetX": 0.0,
@@ -25338,17 +25343,12 @@
           "ParentUID": 6619240,
           "Radius": 30.0,
           "Type": 5,
-          "UID": 817113215,
-          "Width": 32.976036071777344
-        },
-        {
-          "AudioID": 4,
-          "Name": "AudioSource",
-          "Type": 8
+          "UID": 2978277490,
+          "Width": 26.380828857421875
         }
       ],
       "Enabled": true,
-      "Name": "SK_Facehugger",
+      "Name": "Facehugger1",
       "ParentUID": 0,
       "Static": false,
       "UID": 6619240

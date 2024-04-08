@@ -24,7 +24,6 @@ public class FaceHuggerBehaviour : MonoBehaviour
     float enemyDetectedRange = 180.0f;
     float maxAttackRange = 90.0f;
     float maxChasingRange = 180.0f;
-    float maxHeight = 20.0f;
 
     float currentTimer = 0.0f;
     float attackCooldown = 2.0f;
@@ -69,26 +68,40 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
         if (!detected && playerDistance < enemyDetectedRange) detected = true;
 
+        
         if (detected)
         {
-            if (playerDistance < maxAttackRange)
+            if (currentState == States.Jump)
             {
-                currentState = States.Jump;
+                if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
+                {
+                    currentState = States.Dead;
+                }
             }
-            else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
+            else
             {
-                currentState = States.Attack;
-                //isExploring = false;
-            }
-            else if (playerDistance > maxChasingRange)
-            {
-                detected = false;
-                currentState = States.Idle;
-                //isExploring = true;
+                if (playerDistance < maxAttackRange)
+                {
+                    currentState = States.Jump;
+                }
+                else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
+                {
+                    currentState = States.Attack;
+                    //isExploring = false;
+                }
+                else if (playerDistance > maxChasingRange)
+                {
+                    detected = false;
+                    currentState = States.Idle;
+                    //isExploring = true;
+                }
             }
         }
     }
 
+    float maxHeight = 275.0f;
+    float height = 0.0f;
+    bool up = true;
     void DoStateBehaviour()
     {
         switch (currentState)
@@ -98,10 +111,33 @@ public class FaceHuggerBehaviour : MonoBehaviour
             case States.Attack:
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
-                currentTimer = 0.0f;
                 break;
             case States.Jump:
-
+                attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * 3.0f * Time.deltaTime);
+                if (up == true)
+                {
+                    if (maxHeight > height)
+                    {
+                        attachedGameObject.transform.Translate(Vector3.up * height * Time.deltaTime);
+                        height = height + 10.0f;
+                    }
+                    else if (maxHeight <= height)
+                    {
+                        up = false;
+                    }
+                }
+                else
+                {
+                    if (height <= 0)
+                    {
+                        height = 0.0f;
+                        
+                    }
+                    else {
+                        attachedGameObject.transform.Translate(Vector3.up * -height * Time.deltaTime);
+                        height = height - 20.0f;
+                    }
+                }
                 break;
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
