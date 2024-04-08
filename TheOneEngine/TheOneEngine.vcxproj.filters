@@ -16,9 +16,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Loaders">
-      <UniqueIdentifier>{ef205215-f4dd-4daf-80aa-0d87803bc3cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{cb5e54cb-4331-4568-a233-96dbbf6a216a}</UniqueIdentifier>
     </Filter>
@@ -92,9 +89,6 @@
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>GameObject\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshLoader.h">
-      <Filter>Loaders</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>GameObject\Components</Filter>
@@ -247,9 +241,6 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>GameObject\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshLoader.cpp">
-      <Filter>Loaders</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>GameObject\Components</Filter>

@@ -21,71 +21,22 @@ inline static std::string* getFileData(const char* file)
 
 // SPECIALIZATION FOR SHADER
 template<>
-inline ResourceId Resources::Load<Shader>(const std::string& file) {
-	ResourceId position = getResourcePosition(RES_SHADER, file.c_str());
-	size_t size = m_Resources[RES_SHADER].size();
-
-	ResourceId resourceId;
-
-	if (position == size) {
-		Shader* shader = new Shader();
-
-		shader->Init(file);
-		PushResource(RES_SHADER, file.c_str(), shader);
-
-		resourceId = size;
-	}
-	else {
-		resourceId = position;
-	}
-
-	return resourceId;
+inline std::string Resources::PathToLibrary<Shader>(const std::string& folderName)
+{
+	if (!folderName.empty())
+		return "Library/Shaders/" + folderName + "/";
+	else
+		return "Library/Shaders/";
 }
 template<>
-inline ResourceId Resources::LoadFromLibrary<Shader>(const std::string& file) {
-
-	std::filesystem::path library_file = AssetToLibPath(file);
-	std::string file_path = library_file.string();
-	StandarizePath(file_path);
-
-	ResourceId position = getResourcePosition(RES_SHADER, file_path.c_str());
-	size_t size = m_Resources[RES_SHADER].size();
-
-	ResourceId resourceId;
-
-	if (position == size) {
-		Shader* shader = new Shader();
-
-		shader->LoadFromTOEasset(file_path.c_str());
-
-		//shader->Compile(file);
-		PushResource(RES_SHADER, file_path.c_str(), shader, true);
-
-		resourceId = size;
-	}
-	else {
-		resourceId = position;
-	}
-
-	return resourceId;
-}
-
-
-template<>
-inline Shader* Resources::GetResourceById<Shader>(ResourceId id) {
-	Shader* resource = NULL;
-
-	if (id >= 0 && id < m_Resources[RES_SHADER].size()) {
-		resource = static_cast<Shader*>(m_Resources[RES_SHADER][id]->resource);
-	}
-
-	return resource;
-}
-template<>
-inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
+inline bool Resources::Import<Shader>(const std::string& file, Shader* shader)
 {
 	json document;
-	std::string filePath = file;
+
+	std::string filePath = FindFileInAssets(file);
+	if (filePath.empty())
+		return false;
+
 	filePath += ".vs";
 	std::string* vertexShader = getFileData(filePath.c_str());
 
@@ -123,11 +74,78 @@ inline void Resources::Import<Shader>(const std::string& file, Shader* shader)
 	delete fragmentShader;
 	delete geometryShader;
 
-	std::filesystem::path import_file = ImportPathImpl(file, ".toeshader");
+	std::filesystem::path import_file = ImportPathImpl(filePath, ".toeshader");
 
 	SaveJSON(import_file.string(), document);
 
 	LOG(LogType::LOG_INFO, "Shader at %s imported succesfully!", import_file.string().c_str());
+
+	return true;
+}
+template<>
+inline ResourceId Resources::Load<Shader>(const std::string& file) {
+	ResourceId position = getResourcePosition(RES_SHADER, file.c_str());
+	size_t size = m_Resources[RES_SHADER].size();
+
+	ResourceId resourceId;
+
+	if (position == size) {
+		Shader* shader = new Shader();
+
+		shader->Init(file);
+
+		PushResource(RES_SHADER, file.c_str(), shader);
+
+		resourceId = size;
+	}
+	else {
+		resourceId = position;
+	}
+
+	return resourceId;
+}
+template<>
+inline ResourceId Resources::LoadFromLibrary<Shader>(const std::string& file) {
+
+	std::filesystem::path library_file = FindFileInLibrary(file);
+
+	if (library_file.empty())
+		return -1;
+
+	std::string file_path = library_file.string();
+	StandarizePath(file_path);
+
+	ResourceId position = getResourcePosition(RES_SHADER, file_path.c_str());
+	size_t size = m_Resources[RES_SHADER].size();
+
+	ResourceId resourceId;
+
+	if (position == size) {
+		Shader* shader = new Shader();
+
+		shader->LoadFromTOEasset(file_path.c_str());
+
+		PushResource(RES_SHADER, file_path.c_str(), shader, true);
+
+		resourceId = size;
+	}
+	else {
+		resourceId = position;
+	}
+
+	return resourceId;
+}
+
+
+template<>
+inline Shader* Resources::GetResourceById<Shader>(ResourceId id) {
+	Shader* resource = NULL;
+
+	if (id >= 0 && id < m_Resources[RES_SHADER].size()) {
+		resource = static_cast<Shader*>(m_Resources[RES_SHADER][id]->resource);
+	}
+
+	return resource;
 }
 template<>
 inline bool Resources::CheckImport<Shader>(const std::string& file)

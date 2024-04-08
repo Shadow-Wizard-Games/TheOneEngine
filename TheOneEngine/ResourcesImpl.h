@@ -66,10 +66,12 @@ private:
 
 public:
 	// Checks if path exists and if not creates folders
-	static bool PreparePath(std::string path);
-	// Change path from Asset folder to Library folder
+	static bool PreparePath(std::string path); 
 	static std::string AssetToLibPath(std::string path);
+	static std::string SetAssetPath(std::string path);
 	static std::filesystem::path ImportPathImpl(const std::filesystem::path& path, const char* extension);
+	static std::string FindFileInAssets(const std::string& name);
+	static std::string FindFileInLibrary(const std::string& name);
 	
 	static inline void StandarizePath(std::string& file_path)
 	{
@@ -97,7 +99,8 @@ public:
 	template<class T> static ResourceId LoadFromLibrary(const std::string& file);
 	template<class T> static T* GetResourceById(ResourceId id);
 	template<class T> static bool CheckImport(const std::string& file);
-	template<class T, class... T2> static void Import(const std::string& file, T2... settings);
+	template<class T, class... T2> static bool Import(const std::string& file, T2... settings);
+	template<class T> static std::string PathToLibrary(const std::string& folderName = std::string());
 
 	static void Clear();
 

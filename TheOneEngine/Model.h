@@ -3,6 +3,7 @@
 
 
 class Texture;
+struct aiMesh;
 
 struct MeshVertex
 {
@@ -41,6 +42,8 @@ public:
     std::vector<vec3f> meshNorms;
     std::vector<vec3f> meshFaceCenters;
     std::vector<vec3f> meshFaceNorms;
+
+    std::vector<std::string> materials;
 
     void serializeMeshData(const std::string& filename);
     void deserializeMeshData(const std::string& filename);

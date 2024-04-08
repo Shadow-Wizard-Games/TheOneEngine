@@ -34,7 +34,6 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MonoManager.h" />
     <ClInclude Include="MonoRegisterer.h" />
@@ -85,7 +84,6 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="MeshLoader.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="MonoManager.cpp" />
     <ClCompile Include="MonoRegisterer.cpp" />

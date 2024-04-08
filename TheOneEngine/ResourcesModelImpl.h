@@ -3,7 +3,15 @@
 
 //--SPECIALIZATION FOR MODEL
 template<>
-inline void Resources::Import<Model>(const std::string& file, Model* model)
+inline std::string Resources::PathToLibrary<Model>(const std::string& folderName)
+{
+	if (!folderName.empty())
+		return "Library/Meshes/" + folderName + "/";
+	else
+		return "Library/Meshes/";
+}
+template<>
+inline bool Resources::Import<Model>(const std::string& file, Model* model)
 {
 	std::filesystem::path import_path = file;
 	import_path = ImportPathImpl(import_path, ".mesh");
@@ -25,19 +33,19 @@ inline ResourceId Resources::Load<Model>(const std::string& file)
 
 	ResourceId resourceId;
 
-	if (position == size) {
+	if (position == size) 
+	{
 		std::vector<Model*> meshes = Model::LoadMeshes(file);
 
 		for (auto& mesh : meshes)
 		{
-			if (!CheckImport<Model>(file))
-				Import<Model>(AssetToLibPath(file), mesh);
 			PushResource(RES_MODEL, file.c_str(), mesh);
 		}
 
 		resourceId = size;
 	}
-	else {
+	else 
+	{
 		resourceId = position;
 	}
 
@@ -46,7 +54,11 @@ inline ResourceId Resources::Load<Model>(const std::string& file)
 template<>
 inline ResourceId Resources::LoadFromLibrary<Model>(const std::string& file)
 {
-	std::filesystem::path file_path = AssetToLibPath(file);
+	std::filesystem::path file_path = FindFileInLibrary(file);
+
+	if (file_path.empty())
+		return -1;
+
 	file_path.replace_extension(".mesh");
 	ResourceId position = getResourcePosition(RES_MODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_MODEL].size();

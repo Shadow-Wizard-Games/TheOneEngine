@@ -56,13 +56,54 @@ std::string Resources::AssetToLibPath(std::string path)
 	return path;
 }
 
+std::string Resources::SetAssetPath(std::string path)
+{
+	StandarizePath(path);
+
+	size_t a_ind = path.find("library");
+
+	if (a_ind != path.npos) {
+		path.replace(a_ind, 7, "assets");
+	}
+
+	return path;
+}
+
 std::filesystem::path Resources::ImportPathImpl(const std::filesystem::path& path, const char* extension)
 {
-	std::string pathFile = AssetToLibPath(path.string().c_str());
+	std::string pathFile = AssetToLibPath(path.string());
 	std::filesystem::path importPath = pathFile;
 	PreparePath(importPath.parent_path().string());
 	importPath.replace_extension(extension);
 	return importPath;
+}
+
+std::string Resources::FindFileInAssets(const std::string& name)
+{
+	if (name.find("Assets") && fs::exists(name))
+		return name;
+
+	for (const auto& p : fs::recursive_directory_iterator("Assets")) {
+		if (p.path().filename() == name)
+			return p.path().string();
+	}
+
+	LOG(LogType::LOG_ERROR, "Wrong Path");
+	return std::string();
+}
+
+std::string Resources::FindFileInLibrary(const std::string& name)
+{
+	if (name.find("Library") && fs::exists(name))
+		return name;
+
+	for (const auto& p : fs::recursive_directory_iterator("Library")) {
+		if (p.path().filename() == name)
+			return p.path().string();
+	}
+
+	LOG(LogType::LOG_ERROR, "Wrong Path");
+	return std::string();
 }
 
 bool Resources::PreparePath(std::string path)
@@ -126,8 +167,7 @@ void Resources::SaveJSON(const std::string& path, json toSave)
 
 bool Resources::CheckImport(const char* file, const char* extension)
 {
-	std::string fileStr = AssetToLibPath(file);
-	std::filesystem::path fileFS = fileStr;
+	std::filesystem::path fileFS = FindFileInLibrary(file);
 	fileFS.replace_extension(extension);
 	return std::filesystem::exists(fileFS);
 }
@@ -143,4 +183,16 @@ void Resources::Clear()
 			j--;
 		}
 	}
+}
+
+template<class T, class ...T2>
+inline bool Resources::Import(const std::string& file, T2 ...settings)
+{
+	return false;
+}
+
+template<class T>
+inline std::string Resources::PathToLibrary(const std::string& folderName)
+{
+	return std::string();
 }

@@ -3,13 +3,56 @@
 
 //--SPECIALIZATION FOR MATERIAL
 template<>
+inline std::string Resources::PathToLibrary<Material>(const std::string& folderName)
+{
+	if (!folderName.empty())
+		return "Library/Materials/" + folderName + "/";
+	else
+		return "Library/Materials/";
+}
+template<>
+inline bool Resources::Import<Material>(const std::string& file, Material* mat)
+{
+	std::filesystem::path importPath = AssetToLibPath(file);
+	importPath.replace_extension(".toematerial");
+
+	if (!PreparePath(importPath.parent_path().string())) return false;
+
+	std::vector<Uniform>& uniforms = mat->getUniforms();
+	size_t size = uniforms.size();
+
+	for (size_t i = 0; i < size; i++)
+	{
+		if (uniforms[i].getType() == UniformType::Sampler2D)
+		{
+			Uniform::SamplerData* sdata = uniforms[i].getPtrData<Uniform::SamplerData>();
+
+			if (sdata->tex_path[0] == '\0')
+				continue;
+
+			std::string texpath = sdata->tex_path;
+
+			if (!Resources::Import<Texture>(SetAssetPath(texpath)))
+				return false;
+
+			std::filesystem::path p = ImportPathImpl(sdata->tex_path, ".dds");
+
+			memcpy(sdata->tex_path, &p.string()[0], p.string().size() + 1);
+		}
+	}
+
+	mat->Save(importPath.string());
+
+	LOG(LogType::LOG_INFO, "Material %s imported succesfully!", file.c_str());
+	return true;
+}
+template<>
 inline ResourceId Resources::LoadFromLibrary<Material>(const std::string& file)
 {
-	if (!std::filesystem::exists(file))
-	{
+	std::filesystem::path library_file = FindFileInLibrary(file);
+
+	if (library_file.empty())
 		return -1;
-	}
-	std::filesystem::path library_file = AssetToLibPath(file);
 
 	std::string file_path = library_file.string();
 	StandarizePath(file_path);
@@ -43,27 +86,6 @@ inline Material* Resources::GetResourceById<Material>(ResourceId id)
 	}
 
 	return material;
-}
-template<>
-inline void Resources::Import<Material>(const std::string& file)
-{
-	std::filesystem::path import_file = file;
-	std::filesystem::path export_file = AssetToLibPath(file);
-	export_file.replace_extension(".toematerial");
-
-	std::filesystem::path export_path = export_file.parent_path();
-
-	if (PreparePath(export_path.string())) {
-		std::ifstream source(file, std::ios::binary);
-		std::ofstream dest(export_file.c_str(), std::ios::binary);
-
-		dest << source.rdbuf();
-
-		source.close();
-		dest.close();
-	}
-
-	LOG(LogType::LOG_INFO, "Material at %s imported succesfully!", import_file.string().c_str());
 }
 template<>
 inline bool Resources::CheckImport<Material>(const std::string& file)
