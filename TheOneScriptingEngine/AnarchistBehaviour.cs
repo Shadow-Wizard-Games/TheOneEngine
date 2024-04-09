@@ -12,7 +12,6 @@ class AnarchistBehaviour : MonoBehaviour
 
     IGameObject playerGO;
     float playerDistance;
-    bool playerDetected = false;
 
     float rangeToInspect = 200;
     float inspectDetectionRadius = 100;
@@ -74,22 +73,35 @@ class AnarchistBehaviour : MonoBehaviour
         }
     }
 
+
     float patrolRange = 100;
     float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
+    bool goingToRoundPos = false;
     void PatrolState()
     {
         if (currentState != lastState)
         {
             lastState = currentState;
+            goingToRoundPos = true;
         }
 
         roundProgress += Time.deltaTime * patrolSpeed;
         if (roundProgress > 360.0f) roundProgress -= 360.0f;
 
-        attachedGameObject.transform.position = initialPos +
-                                                Vector3.right * (float)Math.Cos(roundProgress * Math.PI / 180.0f) * patrolRange +
-                                                Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
+        Vector3 roundPos = initialPos +
+                           Vector3.right * (float)Math.Cos(roundProgress * Math.PI / 180.0f) * patrolRange +
+                           Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
+
+        attachedGameObject.transform.LookAt(roundPos);
+        if (!goingToRoundPos)
+        {
+            attachedGameObject.transform.position = roundPos;
+        }
+        else
+        {
+            goingToRoundPos = !MoveTo(roundPos);
+        }
 
         Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up);
     }
@@ -158,17 +170,6 @@ class AnarchistBehaviour : MonoBehaviour
         }
     }
 
-    float movementSpeed = 50.0f;
-    bool MoveTo(Vector3 targetPosition)
-    {
-        //Return true if arrived at destination
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
-
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
-        attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
-
-        return false;
-    }
 
     bool shooting = false;
     float timerBetweenBursts = 0.0f; //Do not modify
@@ -216,6 +217,19 @@ class AnarchistBehaviour : MonoBehaviour
         }
 
         Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, loseRange, Vector3.right);
+    }
+
+
+    float movementSpeed = 50.0f;
+    bool MoveTo(Vector3 targetPosition)
+    {
+        //Return true if arrived at destination
+        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
+
+        return false;
     }
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
