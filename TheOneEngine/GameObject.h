@@ -148,7 +148,7 @@ public:
 
     //Prefab State Methods
     void SetPrefab(const uint32_t& pId);
-    const uint GetPrefabID() const { return prefabID; }
+    const uint32_t GetPrefabID() const { return prefabID; }
     void UnpackPrefab();
     bool IsPrefab() const { return prefabID != 0; }
     void SetEditablePrefab(bool editable);

@@ -6,6 +6,7 @@
 #include "Component.h"
 #include "Transform.h"
 #include "Canvas.h"
+#include "ImageUI.h"
 #include "Collider2D.h"
 #include "ParticleSystem.h"
 #include "N_SceneManager.h"
@@ -219,6 +220,11 @@ static void* GetScript(GameObject* GOptr, MonoString* scriptName)
 	}
 }
 
+static void Disable(GameObject* GOtoDisable)
+{
+	GOtoDisable->Disable();
+}
+
 //Scene Management
 static void LoadScene(MonoString* sceneName)
 {
@@ -240,7 +246,7 @@ static void CanvasEnableToggle(GameObject* containerGO)
 	}
 }
 
-static int GetSelectiedButton(GameObject* containerGO)
+static int GetSelectedButton(GameObject* containerGO)
 {
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
 	int ret = -1;
@@ -279,6 +285,20 @@ static void MoveSelectedButton(GameObject* containerGO, int direction)
 				}
 			}
 			break;
+		}
+	}
+}
+
+static void ChangeSectImg(GameObject* containerGO, MonoString* name, int x, int y, int w, int h)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::IMAGE && uiElements[i]->GetName() == itemName)
+		{
+			ImageUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<ImageUI>(uiElements[i]->GetID());
+			ui->SetSectSize(x, y, w, h);
 		}
 	}
 }
@@ -493,6 +513,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
 	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
+	mono_add_internal_call("InternalCalls::Disable", Disable);
 
 	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
@@ -517,8 +538,9 @@ void MonoRegisterer::RegisterFunctions()
 
 	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);
-	mono_add_internal_call("InternalCalls::GetSelectiedButton", GetSelectiedButton);
+	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
+	mono_add_internal_call("InternalCalls::ChangeSectImg", ChangeSectImg);
 
 	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);

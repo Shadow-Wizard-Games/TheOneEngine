@@ -119,4 +119,8 @@ public class IGameObject : IObject
             return new IComponent() as TComponent;
         }
     }
+    public void Disable()
+    {
+        InternalCalls.Disable(containerGOptr);
+    }
 }

@@ -53,6 +53,7 @@ bool N_SceneManager::PreUpdate()
 	if (sceneChange)
 	{
 		// Kiko - Here add the transition managing
+		engine->collisionSolver->ClearCollisions();
 
 		LoadSceneFromJSON(currentScene->GetPath());
 
@@ -73,19 +74,27 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	
 	if(!sceneChange)
 		sceneIsPlaying = isPlaying;
-
-	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying == true)
+	//this will be called when we click play
+	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying)
 	{
 		for (const auto gameObject : currentScene->GetRootSceneGO()->children)
 		{
 			if(gameObject.get()->GetComponent<Script>())
 				gameObject.get()->GetComponent<Script>()->Start();
 		}
+		//add game objects to collision solver vector
+		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
 	}
 
 	if (isPlaying)
 	{
 		currentScene->UpdateGOs(dt);
+	}
+	//this will be called when we click pause
+	else if (previousFrameIsPlaying && !sceneIsPlaying)
+	{
+		//function to clear collision solver vector
+		engine->collisionSolver->ClearCollisions();
 	}
 
 	previousFrameIsPlaying = sceneIsPlaying;
@@ -293,6 +302,9 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::AudioSource:
 			duplicatedGO.get()->AddCopiedComponent<AudioSource>((AudioSource*)item);
 			break;
+		case ComponentType::ParticleSystem:
+			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
+			break;
 		case ComponentType::Unknown:
 			break;
 		default:
@@ -314,6 +326,13 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		std::shared_ptr<GameObject> temp = DuplicateGO(child, true);
 		temp.get()->parent = duplicatedGO;
 		duplicatedGO.get()->children.push_back(temp);
+	}
+
+	if (originalGO.get()->IsPrefab())
+	{
+		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID());
+		duplicatedGO.get()->SetEditablePrefab(originalGO.get()->IsEditablePrefab());
+		duplicatedGO.get()->SetPrefabDirty(originalGO.get()->IsPrefabDirty());
 	}
 
 	return duplicatedGO;
