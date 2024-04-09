@@ -402,6 +402,9 @@
 								<Folder Name="Level 1" ID="{64E694DA-785B-4BEA-8FC7-5CFA692A616D}" ShortID="328805960">
 									<ChildrenList>
 										<Sound Name="AM_Ambient_Level_1" ID="{0CA1BD96-D237-4E9D-98B1-0AF7AE97E2B5}" ShortID="656586623">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -424,6 +427,9 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="AM_Combat_Level_1" ID="{3774962A-AA90-43C8-A6A2-4FDA8FCD6939}" ShortID="617878997">
+											<PropertyList>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>

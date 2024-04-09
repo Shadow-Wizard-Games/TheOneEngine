@@ -14,16 +14,16 @@ public class ChestBusterBehaviour : MonoBehaviour
     Vector3 directorVector;
     float playerDistance;
 
-    float life = 200;
+    float life = 50.0f;
 
     float movementSpeed = 35.0f * 2;
 
     States currentState = States.Idle;
     bool detected = false;
 
-    float enemyDetectedRange = 120.0f;
+    float enemyDetectedRange = 35.0f * 3;
     float maxAttackRange = 90.0f;
-    float maxChasingRange = 120.0f;
+    float maxChasingRange = 180.0f;
 
     bool shooting = false;
     bool hasShot = false;
@@ -105,7 +105,6 @@ public class ChestBusterBehaviour : MonoBehaviour
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
                         InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_X_ADULT_SPIT);
                         hasShot = true;
                     }
                     break;

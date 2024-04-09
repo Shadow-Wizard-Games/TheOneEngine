@@ -145,7 +145,7 @@ public class AlienQueenBehaviour : MonoBehaviour
                 }
                 return;
             case States.Attack:
-                player.isFighting = true;
+                //player.isFighting = true;
                 ChooseAttack();
 
                 switch (currentAttack)

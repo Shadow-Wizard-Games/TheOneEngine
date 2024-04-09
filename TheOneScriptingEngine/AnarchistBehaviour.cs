@@ -31,18 +31,22 @@ internal class AnarchistBehaviour : MonoBehaviour
     float currentTimer = 0.0f;
     float attackCooldown = 2.0f;
 
-    bool isExploring = true;
-    AudioManager.EventIDs currentID = 0;
+    bool lastFrameToMove = false;
+    bool toMove = false;
+
+    PlayerScript player;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
-        isExploring = true;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     public override void Update()
     {
         if (currentState == States.Dead) return;
+
+        toMove = false;
 
         if (attachedGameObject.transform.ComponentCheck())
         {
@@ -64,6 +68,20 @@ internal class AnarchistBehaviour : MonoBehaviour
             UpdateFSMStates();
             DoStateBehaviour();
         }
+
+        // Play steps
+        if (lastFrameToMove != toMove)
+        {
+            if (toMove)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.P_STEP);
+            }
+            else
+            {
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.P_STEP);
+            }
+            lastFrameToMove = toMove;
+        }
     }
 
     void UpdateFSMStates()
@@ -78,38 +96,15 @@ internal class AnarchistBehaviour : MonoBehaviour
             {
                 shooting = true;
                 currentState = States.Attack;
-                //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.ENEMYATTACK);
-                isExploring = false;
             }
             else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
             {
                 currentState = States.Chase;
-                isExploring = false;
             }
             else if (playerDistance > maxChasingRange)
             {
                 detected = false;
                 currentState = States.Idle;
-                isExploring = true;
-            }
-        }
-
-        if (isExploring)
-        {
-            if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
-                currentID = AudioManager.EventIDs.A_AMBIENT_1;
-            }
-        }
-        else
-        {
-            if (currentID != AudioManager.EventIDs.A_COMBAT_1)
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
-                currentID = AudioManager.EventIDs.A_COMBAT_1;
             }
         }
     }
@@ -121,6 +116,7 @@ internal class AnarchistBehaviour : MonoBehaviour
             case States.Idle:
                 return;
             case States.Attack:
+                player.isFighting = true;
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
                 if (currentTimer < attackCooldown)
                 {
@@ -128,7 +124,7 @@ internal class AnarchistBehaviour : MonoBehaviour
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
                         InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_X_ADULT_SPIT);
+                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_REBEL_SHOOT);
                         hasShot = true;
                     }
                     break;
@@ -138,8 +134,10 @@ internal class AnarchistBehaviour : MonoBehaviour
                 shooting = false;
                 break;
             case States.Chase:
+                player.isFighting = true;
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
+                toMove = true;
                 break;
             case States.Patrol:
                 break;

@@ -71,40 +71,40 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.W))
         {
-            movement = movement + Vector3.forward;
+            movement = movement - Vector3.forward;
             toMove = true;
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.D))
         {
-            movement = movement - Vector3.right;
+            movement = movement + Vector3.right;
             toMove = true;
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.S))
         {
-            movement = movement - Vector3.forward;
+            movement = movement + Vector3.forward;
             toMove = true;
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.A))
         {
-            movement = movement + Vector3.right;
+            movement = movement - Vector3.right;
             toMove = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
-            attachedGameObject.transform.rotation = Vector3.zero;
+            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0); 
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 1.57f, 0);
+            attachedGameObject.transform.rotation = new Vector3(0, 4.71f, 0);
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 4.71f, 0);
+            attachedGameObject.transform.rotation = new Vector3(0, 1.57f, 0);
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0);
+            attachedGameObject.transform.rotation = Vector3.zero;
         }
 
         if (itemManager != null)
