@@ -80,6 +80,10 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
                 {
                     currentState = States.Dead;
+                    attachedGameObject.transform.position = new Vector3(attachedGameObject.transform.position.x,
+                                                                        0.0f,
+                                                                        attachedGameObject.transform.position.z);
+
                     attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_DEATH);
                     detected = false;
                 }
