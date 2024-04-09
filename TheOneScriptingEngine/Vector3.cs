@@ -74,4 +74,9 @@ public struct Vector3
 
         return resultVector.Magnitude();
     }
+
+    public static float Dot(Vector3 a, Vector3 b)
+    {
+        return  -(a.x * b.x + a.y * b.y + a.z * b.z);
+    }
 }
