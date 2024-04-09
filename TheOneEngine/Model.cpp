@@ -410,5 +410,5 @@ void Model::Render()
 {
     meshVAO->Bind();
     glDrawElements(GL_TRIANGLES, (GLsizei)indexData.size(), GL_UNSIGNED_INT, 0);
-    meshVAO->Bind();
+    meshVAO->Unbind();
 }
