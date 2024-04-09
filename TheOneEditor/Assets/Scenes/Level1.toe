@@ -5,28 +5,28 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -1.0,
+            -1.0738747846517072e-07,
+            4.371138473402425e-08,
             0.0,
+            -9.154890534546212e-08,
+            0.4999999701976776,
+            -0.866025447845459,
             0.0,
+            7.114459776857984e-08,
+            -0.866025447845459,
+            -0.4999999701976776,
             0.0,
-            0.0,
-            0.499999974763217,
-            0.8660254183549015,
-            0.0,
-            0.0,
-            -0.8660254183549015,
-            0.499999974763217,
-            0.0,
-            1203.5836181640625,
+            -103.59950256347656,
             120.0,
-            -428.6666564941406,
+            54.73274230957031,
             1.0
           ],
           "Type": 0,
           "UID": 1600152069
         },
         {
-          "Aspect": 1.819867491722107,
+          "Aspect": 1.7025691270828247,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -55,7 +55,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -24404,7 +24404,7 @@
         }
       ],
       "Name": "MK_Ship_Level1_final",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -24596,7 +24596,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 878.0067138671875,
+              "Lifetime": 899.4251708984375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -24622,7 +24622,7 @@
       ],
       "Enabled": true,
       "Name": "Sparks",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -24698,7 +24698,7 @@
       ],
       "Enabled": true,
       "Name": "HUD Canvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -24914,7 +24914,7 @@
       ],
       "Enabled": true,
       "Name": "Pause Menu Canvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -24935,9 +24935,9 @@
             0.0,
             1.0,
             0.0,
+            -103.59950256347656,
             0.0,
-            0.0,
-            0.0,
+            -5.267255783081055,
             1.0
           ],
           "Type": 0,
@@ -24987,7 +24987,7 @@
       ],
       "Enabled": true,
       "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -27219,7 +27219,7 @@
         }
       ],
       "Name": "Room_1",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -27258,7 +27258,7 @@
       ],
       "Enabled": true,
       "Name": "Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -27364,7 +27364,7 @@
       ],
       "Enabled": true,
       "Name": "Inventory",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
     },
@@ -27432,9 +27432,223 @@
       ],
       "Enabled": true,
       "Name": "Collectable_Box",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            172.13796997070313,
+            0.0,
+            10.099597930908203,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3391352433
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 4282524032,
+          "Path": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Type": 2,
+          "UID": 2817772349
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": 45.68001937866211,
+          "Name": "Specified Type was not found",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 4282524032,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 378550286,
+          "Width": 26.380828857421875
+        },
+        {
+          "AudioID": 3,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 4282524032,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 3334498747
+        }
+      ],
+      "Enabled": true,
+      "Name": "Facehugger1",
+      "ParentUID": 0,
+      "Static": false,
+      "UID": 4282524032
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.06963687844034139,
+            0.0,
+            0.9975724059741655,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9975724059741655,
+            0.0,
+            0.06963687844034139,
+            0.0,
+            1391.415283203125,
+            0.0,
+            -109.62873077392578,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1621696741
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 6619240,
+          "Path": "Library/Meshes/SK_Queen/SK_Queen.mesh",
+          "Type": 2,
+          "UID": 3588840787
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": 195.95668029785156,
+          "Name": "Specified Type was not found",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 6619240,
+          "Radius": 40.0,
+          "Type": 5,
+          "UID": 2019878396,
+          "Width": 117.09169006347656
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "AlienQueenBehaviour",
+          "Type": 4,
+          "UID": 3387242555
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_Queen",
+      "ParentUID": 0,
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            471.0586242675781,
+            0.0,
+            -455.5389709472656,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2585052106
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 6619240,
+          "Path": "Library/Meshes/SK_Anarchist/SK_Anarchist.mesh",
+          "Type": 2,
+          "UID": 4271079166
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 3760042482
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": 9.40987777709961,
+          "Name": "Specified Type was not found",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 6619240,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 996159718,
+          "Width": 41.961402893066406
+        },
+        {
+          "AudioID": 4,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_Anarchist",
+      "ParentUID": 0,
+      "Static": false,
+      "UID": 6619240
     }
   ],
   "index": 0,

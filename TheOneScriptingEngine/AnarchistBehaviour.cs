@@ -23,10 +23,12 @@ class AnarchistBehaviour : MonoBehaviour
 
     float life = 100;
     ICollider2D collider;
+    PlayerScript player;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
         initialPos = attachedGameObject.transform.position;
 
         collider = attachedGameObject.GetComponent<ICollider2D>();
@@ -63,6 +65,7 @@ class AnarchistBehaviour : MonoBehaviour
                 InspectState();
                 break;
             case States.Attack:
+                player.isFighting = true;
                 AttackState();
                 break;
             case States.Dead:
@@ -102,7 +105,7 @@ class AnarchistBehaviour : MonoBehaviour
         {
             goingToRoundPos = !MoveTo(roundPos);
         }
-
+        //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
         Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up);
     }
 
@@ -137,6 +140,7 @@ class AnarchistBehaviour : MonoBehaviour
                 Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.3f);
                 break;
             case InspctStates.Inspecting:
+                //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime > maxInspectTime)
                 {
@@ -181,6 +185,7 @@ class AnarchistBehaviour : MonoBehaviour
     void AttackState()
     {
         attachedGameObject.transform.LookAt(playerGO.transform.position);
+        //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
 
         if (playerDistance > loseRange)
         {
@@ -207,6 +212,7 @@ class AnarchistBehaviour : MonoBehaviour
                                                 attachedGameObject.transform.rotation);
                 timerBetweenBullets = 0.0f;
                 bulletCounter++;
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_REBEL_SHOOT);
             }
 
             if (bulletCounter >= burstBulletCount)
@@ -228,7 +234,7 @@ class AnarchistBehaviour : MonoBehaviour
 
         Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
         attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
-
+        //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_REBEL_STEP);
         return false;
     }
 

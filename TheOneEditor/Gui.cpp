@@ -525,13 +525,15 @@ void Gui::MainMenuGameObject()
 		if (ImGui::MenuItem("Cube")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx"); }
 		if (ImGui::MenuItem("Sphere", 0, false, false)) {}
 		if (ImGui::MenuItem("Less than 12?")) { engine->N_sceneManager->CreateMF(); }
-		if (ImGui::MenuItem("Main Character")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_MainCharacter.fbx"); }
 		if (ImGui::MenuItem("Box Low Poly")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Box_LowPoly.fbx"); }
-		if (ImGui::MenuItem("FaceHugger (Arnau)")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Facehugger_arnau.fbx"); }
-		if (ImGui::MenuItem("Queen")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Queen_corrected.fbx"); }
-		if (ImGui::MenuItem("Anarchist")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Anarchist_corrected.fbx"); }
-		//if (ImGui::MenuItem("FaceHugger")) { engine->N_sceneManager->CreateMF(); }
-
+		if (ImGui::BeginMenu("Characters", "Ctrl+Shift+N")) {
+			if (ImGui::MenuItem("Main Character")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_MainCharacter.fbx"); }
+			if (ImGui::MenuItem("FaceHugger (Arnau)")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx"); }
+			if (ImGui::MenuItem("Queen")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Queen.fbx"); }
+			if (ImGui::MenuItem("Anarchist")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Anarchist.fbx"); }
+			if (ImGui::MenuItem("ChestbuRster")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Chestburster.fbx"); }
+			ImGui::EndMenu();
+		}
 		ImGui::EndMenu();
 	}
 	if (ImGui::MenuItem("Camera")) { engine->N_sceneManager->CreateCameraGO("newCamera"); }

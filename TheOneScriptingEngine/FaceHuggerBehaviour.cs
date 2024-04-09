@@ -6,8 +6,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
     {
         Idle,
         Attack,
-        Chase,
-        Patrol,
+        Jump,
         Dead
     }
 
@@ -15,30 +14,25 @@ public class FaceHuggerBehaviour : MonoBehaviour
     Vector3 directorVector;
     float playerDistance;
 
-    float life = 200;
+    float life = 50;
 
-    float movementSpeed = 35.0f * 3;
+    float movementSpeed = 35.0f * 2;
 
     States currentState = States.Idle;
     bool detected = false;
 
-    float enemyDetectedRange = 35.0f * 3;
+    float enemyDetectedRange = 180.0f;
     float maxAttackRange = 90.0f;
     float maxChasingRange = 180.0f;
-    float maxHeight = 20.0f;
-    
-    bool shooting = false;
-    bool hasShot = false;
-    float currentTimer = 0.0f;
-    float attackCooldown = 2.0f;
 
-    bool isExploring = true;
-    AudioManager.EventIDs currentID = 0;
+    bool isJumping = false;
+
+    PlayerScript player;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
-        isExploring = true;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     public override void Update()
@@ -56,7 +50,6 @@ public class FaceHuggerBehaviour : MonoBehaviour
             {
                 Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
                 Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
-
             }
 
             //Set the director vector and distance to the player
@@ -66,6 +59,12 @@ public class FaceHuggerBehaviour : MonoBehaviour
             UpdateFSMStates();
             DoStateBehaviour();
         }
+
+        if (isJumping)
+        {
+            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_JUMP);
+            isJumping = false;
+        }
     }
 
     void UpdateFSMStates()
@@ -73,49 +72,41 @@ public class FaceHuggerBehaviour : MonoBehaviour
         if (life <= 0) { currentState = States.Dead; return; }
 
         if (!detected && playerDistance < enemyDetectedRange) detected = true;
-
-        if (detected && !shooting)
+        
+        if (detected)
         {
-            if (playerDistance < maxAttackRange)
+            if (currentState == States.Jump)
             {
-                shooting = true;
-                currentState = States.Attack;
-                //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.ENEMYATTACK);
-                isExploring = false;
+                if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
+                {
+                    currentState = States.Dead;
+                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_DEATH);
+                    detected = false;
+                }
             }
-            else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
+            else
             {
-                currentState = States.Chase;
-                isExploring = false;
-            }
-            else if (playerDistance > maxChasingRange)
-            {
-                detected = false;
-                currentState = States.Idle;
-                isExploring = true;
-            }
-        }
-
-        if (isExploring)
-        {
-            if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
-                currentID = AudioManager.EventIDs.A_AMBIENT_1;
-            }
-        }
-        else
-        {
-            if (currentID != AudioManager.EventIDs.A_COMBAT_1)
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
-                currentID = AudioManager.EventIDs.A_COMBAT_1;
+                if (playerDistance < maxAttackRange)
+                {
+                    currentState = States.Jump;
+                    isJumping = true;
+                }
+                else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
+                {
+                    currentState = States.Attack;
+                }
+                else if (playerDistance > maxChasingRange)
+                {
+                    detected = false;
+                    currentState = States.Idle;
+                }
             }
         }
     }
 
+    float maxHeight = 275.0f;
+    float height = 0.0f;
+    bool up = true;
     void DoStateBehaviour()
     {
         switch (currentState)
@@ -123,30 +114,42 @@ public class FaceHuggerBehaviour : MonoBehaviour
             case States.Idle:
                 return;
             case States.Attack:
-                attachedGameObject.transform.LookAt(playerGO.transform.position);
-                if (currentTimer < attackCooldown)
-                {
-                    currentTimer += Time.deltaTime;
-                    if (!hasShot && currentTimer > attackCooldown / 2)
-                    {
-                        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 30.5f, attachedGameObject.transform.rotation);
-                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_X_ADULT_SPIT);
-                        hasShot = true;
-                    }
-                    break;
-                }
-                currentTimer = 0.0f;
-                hasShot = false;
-                shooting = false;
-                break;
-            case States.Chase:
+                player.isFighting = true;
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 break;
-            case States.Patrol:
+            case States.Jump:
+                player.isFighting = true;
+                attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * 3.0f * Time.deltaTime);
+                if (up)
+                {
+                    if (maxHeight > height)
+                    {
+                        attachedGameObject.transform.Translate(Vector3.up * height * Time.deltaTime);
+                        height = height + 10.0f;
+                    }
+                    else if (maxHeight <= height)
+                    {
+                        up = false;
+                    }
+                }
+                else
+                {
+                    if (height <= 0)
+                    {
+                        height = 0.0f;
+                        
+                    }
+                    else {
+                        attachedGameObject.transform.Translate(Vector3.up * -height * Time.deltaTime);
+                        height = height - 20.0f;
+                    }
+                }
                 break;
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
+                attachedGameObject.transform.Translate(Vector3.up * -1.0f * Time.deltaTime);
+                
                 break;
             default:
                 break;

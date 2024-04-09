@@ -23,9 +23,11 @@ bool AudioManager::Update(double dt)
 
 bool AudioManager::CleanUp()
 {
-	DeleteAudioComponents();
+	//DeleteAudioComponents();
 
 	audio->CleanUp();
+
+	audio = nullptr;
 	delete audio;
 
 	return true;

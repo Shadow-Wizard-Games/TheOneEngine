@@ -162,7 +162,7 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{50E909C0-177B-FE3D-C66B-1F3D0E612FD0}">
+		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{EAE5A8CB-0A75-A566-9823-B36DBFA901F7}">
 			<ShortName>TheOneEngine</ShortName>
 			<Path>TheOneEngine.bnk</Path>
 			<Media>
@@ -188,11 +188,11 @@
 				</File>
 				<File Id="303888556" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>AM_Combat_Level_1.wav</ShortName>
-					<CachePath>SFX/AM_Combat_Level_1_818F3B66.wem</CachePath>
+					<CachePath>SFX/AM_Combat_Level_1_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="358062072" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Facehugger_Crawl_E.wav</ShortName>
-					<CachePath>SFX/SFX_Facehugger_Crawl_E_818F3B66.wem</CachePath>
+					<CachePath>SFX/SFX_Facehugger_Crawl_E_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="365237862" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Xenomorph_Melee_E.wav</ShortName>
@@ -242,6 +242,10 @@
 					<ShortName>SFX_Player_Step_CH.wav</ShortName>
 					<CachePath>SFX/SFX_Player_Step_CH_FBC78EF0.wem</CachePath>
 				</File>
+				<File Id="715356811" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>gunshot.wav</ShortName>
+					<CachePath>SFX/gunshot_818F3B66.wem</CachePath>
+				</File>
 				<File Id="852480059" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>UI_Menu_Hover_SFX.wav</ShortName>
 					<CachePath>SFX/UI_Menu_Hover_SFX_818F3B66.wem</CachePath>
@@ -256,7 +260,7 @@
 				</File>
 				<File Id="994093999" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>AM_Ambient_Level_1.wav</ShortName>
-					<CachePath>SFX/AM_Ambient_Level_1_818F3B66.wem</CachePath>
+					<CachePath>SFX/AM_Ambient_Level_1_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="1013643951" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Facehugger_Death_E.wav</ShortName>
@@ -272,6 +276,11 @@
 				<Event Id="3486252281" Name="A_COMBAT_1">
 					<MediaRefs>
 						<MediaRef Id="303888556"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1535709413" Name="DEBUG_GUNSHOT">
+					<MediaRefs>
+						<MediaRef Id="715356811"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="830312575" Name="DEBUG_MUSIC1">
@@ -387,5 +396,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{73B4227E-1577-892D-55C5-5CACDA3FB953}</FileHash>
+	<FileHash>{56D0E616-8E78-6736-32B5-47B580D71A7D}</FileHash>
 </SoundBanksInfo>

@@ -8,6 +8,17 @@ public class PlayerScript : MonoBehaviour
     ItemManager itemManager;
     IGameObject iManagerGO;
 
+    public bool isFighting = false;
+
+    // Bckg music
+    public AudioManager.EventIDs currentID = 0;
+    float enemyTimer = 0;
+    float combatThreshold = 5.0f;
+
+    bool hasShot = false;
+    float currentTimer = 0.0f;
+    float attackCooldown = .10f;
+
     public override void Start()
     {
         iManagerGO = IGameObject.Find("Manager");
@@ -19,7 +30,35 @@ public class PlayerScript : MonoBehaviour
         bool toMove = false;
         Vector3 movement = Vector3.zero;
 
-        //Keyboard
+        // Background music
+        if (!isFighting)
+        {
+            if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                currentID = AudioManager.EventIDs.A_AMBIENT_1;
+            }
+        }
+        else
+        {
+            if (currentID != AudioManager.EventIDs.A_COMBAT_1)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                currentID = AudioManager.EventIDs.A_COMBAT_1;
+            }
+        }
+
+        if (isFighting)
+        {
+            enemyTimer += Time.deltaTime;
+            if (enemyTimer >= combatThreshold)
+            {
+                enemyTimer = 0;
+                isFighting = false;
+            }
+        }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.K))
         {
@@ -32,40 +71,40 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.W))
         {
-            movement = movement + Vector3.forward;
+            movement = movement - Vector3.forward;
             toMove = true;
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.D))
         {
-            movement = movement - Vector3.right;
+            movement = movement + Vector3.right;
             toMove = true;
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.S))
         {
-            movement = movement - Vector3.forward;
+            movement = movement + Vector3.forward;
             toMove = true;
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.A))
         {
-            movement = movement + Vector3.right;
+            movement = movement - Vector3.right;
             toMove = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
-            attachedGameObject.transform.rotation = Vector3.zero;
+            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0); 
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 1.57f, 0);
+            attachedGameObject.transform.rotation = new Vector3(0, 4.71f, 0);
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 4.71f, 0);
+            attachedGameObject.transform.rotation = new Vector3(0, 1.57f, 0);
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0);
+            attachedGameObject.transform.rotation = Vector3.zero;
         }
 
         if (itemManager != null)
@@ -75,9 +114,21 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
                 {
                     Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-
-                    InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                    //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.GUNSHOT);
+                    if (currentTimer < attackCooldown)
+                    {
+                        currentTimer += Time.deltaTime;
+                        if (!hasShot && currentTimer > attackCooldown / 2)
+                        {
+                            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+                            hasShot = true;
+                        }
+                    }
+                    else
+                    {
+                        currentTimer = 0.0f;
+                        hasShot = false;
+                    }
                     // call particleSystem.Replay()
                 }
             }
@@ -115,8 +166,21 @@ public class PlayerScript : MonoBehaviour
         {
             Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
-            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-            //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.GUNSHOT); //there is no gunshot
+            if (currentTimer < attackCooldown)
+            {
+                currentTimer += Time.deltaTime;
+                if (!hasShot && currentTimer > attackCooldown / 2)
+                {
+                    InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+                    hasShot = true;
+                }
+            }
+            else
+            {
+                currentTimer = 0.0f;
+                hasShot = false;
+            }
             // call particleSystem.Replay()
         }
 
@@ -133,5 +197,6 @@ public class PlayerScript : MonoBehaviour
             }
             lastFrameToMove = toMove;
         }
+
     }
 }

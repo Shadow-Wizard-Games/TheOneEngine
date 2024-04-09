@@ -105,13 +105,13 @@ public class MainMenuManager : MonoBehaviour
             {
                 SceneManager.LoadScene("Level1");
                 attachedGameObject.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
-                //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
                 InternalCalls.ExitApplication();
-                //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
             }
         }
     }

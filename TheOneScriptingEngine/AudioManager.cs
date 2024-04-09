@@ -7,6 +7,7 @@ public class AudioManager
     {
         A_AMBIENT_1 = 1547765315U,
         A_COMBAT_1 = 3486252281U,
+        DEBUG_GUNSHOT = 1535709413U,
         DEBUG_MUSIC1 = 830312575U,
         DEBUG_MUSIC2 = 830312572U,
         DEBUG_SPATIAL1 = 3632435752U,
