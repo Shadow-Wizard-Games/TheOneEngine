@@ -45,6 +45,9 @@ void EngineCore::Start()
     colorShader->Compile("Assets/Shaders/MeshColor");
     colorShader->addUniform("color", UniformType::fVec4);
     Resources::Import<Shader>("MeshColor", colorShader);
+
+
+    CameraUniformBuffer = std::make_shared<UniformBuffer>(sizeof(glm::mat4), 0);
 }
 
 bool EngineCore::PreUpdate()
@@ -59,6 +62,8 @@ void EngineCore::Update(double dt)
     
     collisionSolver->Update(dt);
     audioManager->Update(dt);
+
+    CameraUniformBuffer->SetData(&N_sceneManager->currentScene->currentCamera->viewProjectionMatrix, sizeof(glm::mat4));
 
     this->dt = dt;
 }

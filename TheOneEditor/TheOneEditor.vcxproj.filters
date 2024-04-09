@@ -34,9 +34,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="AssetManager.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Gui.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -104,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="App.h">
       <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManager.h">
-      <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Gui.h">
       <Filter>Modules</Filter>

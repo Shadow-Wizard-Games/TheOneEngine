@@ -11,18 +11,17 @@ out vec3 color;
 // Outputs the texture coordinates to the fragment shader
 out vec2 texCoord;
 
-
-//Necesary to render the model DON'T touch
 uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
 
-
+layout(std140, binding = 0) uniform Camera
+{
+	mat4 u_ViewProjection;
+};
 
 
 void main()
 {
-	gl_Position = projection * view * model * vec4(pos, 1.0);
+	gl_Position = u_ViewProjection * model * vec4(pos, 1.0);
 
 	// Assigns the texture coordinates from the Vertex Data to "texCoord"
 	texCoord = texCoords;

@@ -225,6 +225,9 @@
     <ClInclude Include="Resources.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="UniformBuffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -351,6 +354,9 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="UniformBuffer.cpp">
       <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>

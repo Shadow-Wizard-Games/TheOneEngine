@@ -13,7 +13,6 @@
 
 class Scene;
 class Transform;
-class MeshLoader;
 
 class N_SceneManager
 {
@@ -81,7 +80,6 @@ public:
 
 private:
 	std::shared_ptr<GameObject> selectedGameObject = nullptr;
-	MeshLoader* meshLoader = nullptr;
 	bool sceneIsPlaying = false;
 	bool previousFrameIsPlaying = false;
 };

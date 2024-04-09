@@ -13,6 +13,7 @@
 #include "Ray.h"
 #include "Log.h"
 #include "CollisionSolver.h"
+#include "UniformBuffer.h"
 
 #include "MonoManager.h"
 #include "InputManager.h"
@@ -74,6 +75,7 @@ private:
 	LogInfo logInfo;
 	std::vector<LogInfo> logs;
 	Camera* editorCamReference;
+	std::shared_ptr<UniformBuffer> CameraUniformBuffer;
 
 };
 

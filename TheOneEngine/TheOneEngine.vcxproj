@@ -59,6 +59,7 @@
     <ClInclude Include="UIDGen.h" />
     <ClInclude Include="ImageUI.h" />
     <ClInclude Include="ItemUI.h" />
+    <ClInclude Include="UniformBuffer.h" />
     <ClInclude Include="UpdateEmmiterModule.h" />
     <ClInclude Include="Uniform.h" />
     <ClInclude Include="VertexArray.h" />
@@ -104,6 +105,7 @@
     <ClCompile Include="ImageUI.cpp" />
     <ClCompile Include="ItemUI.cpp" />
     <ClCompile Include="Uniform.cpp" />
+    <ClCompile Include="UniformBuffer.cpp" />
     <ClCompile Include="VertexArray.cpp" />
     <ClCompile Include="UpdateEmmiterModule.cpp" />
   </ItemGroup>

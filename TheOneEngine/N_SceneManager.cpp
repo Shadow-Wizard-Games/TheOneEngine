@@ -85,8 +85,6 @@ bool N_SceneManager::CleanUp()
 
 	delete currentScene;
 
-	delete meshLoader;
-
 	return true;
 }
 
