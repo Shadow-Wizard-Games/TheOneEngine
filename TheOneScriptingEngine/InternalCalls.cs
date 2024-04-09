@@ -75,6 +75,13 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static TComponent GetScript<TComponent>(IntPtr gameObject, string scriptName);
 
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void Disable(IntPtr GOtoDisable);
+
+    //Component
+    [MethodImpl(MethodImplOptions.InternalCall)]
+    internal extern TComponent GetComponent<TComponent>() where TComponent : IComponent;
+
     //Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void LoadScene(string sceneName);
@@ -87,7 +94,10 @@ class InternalCalls
     internal extern static void MoveSelectedButton(IntPtr GOptr, int direction);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static int GetSelectiedButton(IntPtr GOptr);
+    internal extern static int GetSelectedButton(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void ChangeSectImg(IntPtr GOptr, string name, int x, int y, int w, int h);
 
 
     //Helpers

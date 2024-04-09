@@ -160,26 +160,10 @@ vec2 CollisionSolver::Clamp(vec2 origin, vec2 min, vec2 max)
 
 void CollisionSolver::DrawCollisions()
 {
-    //just in case lets make sure all items in the list have collision component
-    for (auto it = goWithCollision.begin(); it != goWithCollision.end(); )
-    {
-        bool remItem = true;
-        for (auto& item2 : (*it)->GetAllComponents())
-        {
-            if (item2->GetType() == ComponentType::Collider2D) remItem = false;
-        }
-        if (remItem)
-        {
-            it = goWithCollision.erase(it);
-        }
-        else
-        {
-            ++it;
-        }
-    }
+    std::vector<GameObject*> temp = SceneRootToCollisionVector(engine->N_sceneManager->currentScene->GetRootSceneGO());
 
     // Iterar sobre las colisiones y dibujarlas
-    for (const auto& collision : goWithCollision) {
+    for (const auto& collision : temp) {
         glPushMatrix();
 
         // Obtener la posición del objeto con colisión
@@ -457,6 +441,54 @@ bool CollisionSolver::CheckCollision(GameObject* objA, GameObject* objB)
             return ret;
         }
     }
+}
+
+void CollisionSolver::LoadCollisions(std::shared_ptr<GameObject> go)
+{
+    for (auto& item : go->children)
+    {
+        if (item->IsEnabled())
+        {
+            if (item->GetComponent<Collider2D>())
+            {
+                goWithCollision.push_back(item.get());
+            }
+            if (!item->children.empty())
+            {
+                LoadCollisions(item);
+            }
+        }
+    }
+}
+
+void CollisionSolver::ClearCollisions()
+{
+    goWithCollision.clear();
+}
+
+std::vector<GameObject*> CollisionSolver::SceneRootToCollisionVector(std::shared_ptr<GameObject> go)
+{
+    std::vector<GameObject*> ret;
+    for (auto& item : go->children)
+    {
+        std::vector<GameObject*> it;
+        if (item->IsEnabled())
+        {
+            if (item->GetComponent<Collider2D>())
+            {
+                ret.push_back(item.get());
+            }
+            if (!item->children.empty())
+            {
+                it = SceneRootToCollisionVector(item);
+                for (auto& item2 : it)
+                {
+                    ret.push_back(item2);
+                }
+            }
+        }
+    }
+    return ret;
 }
 
 void CollisionSolver::SolveCollision(GameObject* objA, GameObject* objB)

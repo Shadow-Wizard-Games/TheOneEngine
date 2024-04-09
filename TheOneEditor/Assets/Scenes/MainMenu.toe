@@ -79,6 +79,7 @@
         },
         {
           "DebugDraw": true,
+          "Enabled": true,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -278,6 +279,17 @@
               "State": 0,
               "Type": 0
             }
+          ],
+          "UiTextures": [
+            {
+              "Path": "Assets/Meshes/HUD.png"
+            },
+            {
+              "Path": "Assets/Textures/Hud/menu.png"
+            },
+            {
+              "Path": "Assets/Textures/Hud/MainMenuBackDrop.png"
+            }
           ]
         },
         {
@@ -295,6 +307,158 @@
       ],
       "Enabled": true,
       "Name": "MainMenuCanvas",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1291082957
+        },
+        {
+          "DebugDraw": true,
+          "Enabled": true,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 1000191061,
+          "UiElements": [
+            {
+              "ID": 1921981072,
+              "ImagePath": "Assets/Textures/Hud/TitleScreen.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "Image",
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ],
+          "UiTextures": [
+            {
+              "Path": "Assets/Meshes/HUD.png"
+            },
+            {
+              "Path": "Assets/Textures/Hud/TitleScreen.png"
+            }
+          ]
+        }
+      ],
+      "Enabled": true,
+      "Name": "TitleCanvas",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3714145942
+        },
+        {
+          "DebugDraw": true,
+          "Enabled": true,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 3580248558,
+          "UiElements": [
+            {
+              "ID": 3617156861,
+              "ImagePath": "Assets/Textures/Hud/ShadowWizardGames_LogoScreen.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "Image",
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ],
+          "UiTextures": [
+            {
+              "Path": "Assets/Meshes/HUD.png"
+            },
+            {
+              "Path": "Assets/Textures/Hud/ShadowWizardGames_LogoScreen.png"
+            }
+          ]
+        }
+      ],
+      "Enabled": true,
+      "Name": "LogoCanvas",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
