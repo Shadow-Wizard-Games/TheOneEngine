@@ -15,10 +15,14 @@ public class PlayerScript : MonoBehaviour
     float enemyTimer = 0;
     float combatThreshold = 5.0f;
 
+    bool hasShot = false;
+    float currentTimer = 0.0f;
+    float attackCooldown = .10f;
+
     public override void Start()
     {
-        //iManagerGO = IGameObject.Find("Manager");
-        //itemManager = iManagerGO.GetComponent<ItemManager>();
+        iManagerGO = IGameObject.Find("Manager");
+        itemManager = iManagerGO.GetComponent<ItemManager>();
     }
 
     public override void Update()
@@ -110,9 +114,21 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
                 {
                     Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-
-                    InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+                    if (currentTimer < attackCooldown)
+                    {
+                        currentTimer += Time.deltaTime;
+                        if (!hasShot && currentTimer > attackCooldown / 2)
+                        {
+                            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+                            hasShot = true;
+                        }
+                    }
+                    else
+                    {
+                        currentTimer = 0.0f;
+                        hasShot = false;
+                    }
                     // call particleSystem.Replay()
                 }
             }
@@ -150,8 +166,21 @@ public class PlayerScript : MonoBehaviour
         {
             Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
-            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+            if (currentTimer < attackCooldown)
+            {
+                currentTimer += Time.deltaTime;
+                if (!hasShot && currentTimer > attackCooldown / 2)
+                {
+                    InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+                    hasShot = true;
+                }
+            }
+            else
+            {
+                currentTimer = 0.0f;
+                hasShot = false;
+            }
             // call particleSystem.Replay()
         }
 
