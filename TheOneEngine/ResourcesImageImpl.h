@@ -16,10 +16,16 @@ inline bool Resources::Import<Texture>(const std::string& file)
 	if (std::filesystem::is_directory(file)) return false;
 	if (!std::filesystem::exists(file)) return false;
 
-	std::filesystem::path import_path = ImportPathImpl(file, ".dds");
+	std::filesystem::path origin_path = FindFileInAssets(file);
+	if (origin_path.string().empty())
+	{
+		origin_path = file;
+	}
+	std::filesystem::path import_path = PathToLibrary<Texture>() + origin_path.filename().replace_extension(".dds").string();
+	PreparePath(import_path.parent_path().string());
 	if (!file.ends_with(".dds"))
 	{
-		_import_image_impl(file.c_str(), import_path.string().c_str());
+		_import_image_impl(origin_path.string().c_str(), import_path.string().c_str());
 	}
 
 	LOG(LogType::LOG_INFO, "Image at %s imported succesfully!", import_path.string().c_str());

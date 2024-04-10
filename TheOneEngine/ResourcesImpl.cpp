@@ -87,7 +87,7 @@ std::filesystem::path Resources::ImportPathImpl(const std::filesystem::path& pat
 
 std::string Resources::FindFileInAssets(const std::string& name)
 {
-	if (name.find("Assets") && fs::exists(name))
+	if (name.find("Assets") && std::filesystem::exists(name))
 		return name;
 
 	for (const auto& p : fs::recursive_directory_iterator("Assets")) 
@@ -105,7 +105,7 @@ std::string Resources::FindFileInAssets(const std::string& name)
 
 std::string Resources::FindFileInLibrary(const std::string& name)
 {
-	if (name.find("Library") && fs::exists(name))
+	if (name.find("Library") && std::filesystem::exists(name))
 		return name;
 
 	for (const auto& p : fs::recursive_directory_iterator("Library"))

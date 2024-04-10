@@ -32,14 +32,14 @@ inline bool Resources::Import<Material>(const std::string& file, Material* mat)
 			if (sdata->tex_path[0] == '\0')
 				continue;
 
-			std::string texpath = sdata->tex_path;
 
-			if (!Resources::Import<Texture>(SetAssetPath(texpath)))
+			if (!Resources::Import<Texture>(sdata->tex_path))
 				return false;
 
-			std::filesystem::path p = ImportPathImpl(sdata->tex_path, ".dds");
+			std::filesystem::path p = sdata->tex_path;
+			std::filesystem::path import_path = PathToLibrary<Texture>() + p.filename().replace_extension(".dds").string();
 
-			memcpy(sdata->tex_path, &p.string()[0], p.string().size() + 1);
+			memcpy(sdata->tex_path, &import_path.string()[0], import_path.string().size() + 1);
 		}
 	}
 

@@ -214,7 +214,7 @@ void Model::GenBufferData()
     {
         LOG(LogType::LOG_ERROR, "Check error %s", glewGetErrorString(glGetError()));
     }
-    meshVBO = std::make_shared<VertexBuffer>(vertexData.data(), vertexData.size() * sizeof(MeshVertex));
+    meshVBO = std::make_shared<VertexBuffer>(vertexData.data(), vertexData.size() * sizeof(float));
 
     if (glGetError() != 0)
     {

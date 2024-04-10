@@ -232,10 +232,10 @@ bool PanelInspector::Draw()
 
             /*Mesh Component*/
             Mesh* mesh = selectedGO->GetComponent<Mesh>();
-            Model* model = Resources::GetResourceById<Model>(mesh->meshID);
 
             if (mesh != nullptr && ImGui::CollapsingHeader("Mesh", treeNodeFlags))
             {
+                Model* model = Resources::GetResourceById<Model>(mesh->meshID);
                 ImGui::SetItemTooltip("Displays and sets mesh data");
                 //ImGui::Checkbox("Active", &mesh->isActive);
                 //ImGui::SameLine();  
