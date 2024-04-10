@@ -11,13 +11,12 @@ out vec3 color;
 // Outputs the texture coordinates to the fragment shader
 out vec2 texCoord;
 
-uniform mat4 model;
-
 layout(std140, binding = 0) uniform Camera
 {
 	mat4 u_ViewProjection;
 };
 
+uniform mat4 model;
 
 void main()
 {

@@ -164,8 +164,8 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 	compileState = State::Compiled;
 
 	modelMatrixID = glGetUniformLocation(ProgramID, "model");
-	projectionMatrixID = glGetUniformLocation(ProgramID, "projection");
-	viewMatrixID = glGetUniformLocation(ProgramID, "view");
+	//projectionMatrixID = glGetUniformLocation(ProgramID, "projection");
+	//viewMatrixID = glGetUniformLocation(ProgramID, "view");
 }
 
 bool Shader::LoadFromTOEasset(const std::string& filename)

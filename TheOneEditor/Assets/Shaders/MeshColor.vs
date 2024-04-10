@@ -7,9 +7,9 @@ layout(std140, binding = 0) uniform Camera
 	mat4 u_ViewProjection;
 };
 
-uniform mat4 u_Model;
+uniform mat4 model;
 
 void main()
 {
-    gl_Position = u_ViewProjection * u_Model * vec4(v_pos, 1.0);
+    gl_Position = u_ViewProjection * model * vec4(v_pos, 1.0);
 }
