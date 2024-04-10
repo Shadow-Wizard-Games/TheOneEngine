@@ -350,7 +350,7 @@ void Material::Save(const std::string& path)
 
 			std::string string = sdata->tex_path;
 			Resources::StandarizePath(string);
-			uniformsJSON["Value"] = string.c_str();
+			uniformJSON["Value"] = string.c_str();
 		}break;
 		default:
 			break;

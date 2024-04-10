@@ -154,15 +154,15 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
 
         // Transform
         aiMatrix4x4 transform;
-        glm::mat4 mTransform;
+        glm::mat4 mTransform(1);
         if (mesh->mName != (aiString)"Scene")
         {
-            transform = scene->mRootNode->FindNode(mesh->mName)->mTransformation;
-            mTransform = glm::transpose(glm::make_mat4(&transform.a1));
-        }
-        else
-        {
-            mTransform = glm::mat4(1);
+            aiNode* meshNode = scene->mRootNode->FindNode(mesh->mName);
+            if (meshNode)
+            {
+                transform = meshNode->mTransformation;
+                mTransform = glm::transpose(glm::make_mat4(&transform.a1));
+            }
         }
         model->meshTransform = mTransform;
 

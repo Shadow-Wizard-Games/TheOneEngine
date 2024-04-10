@@ -17,7 +17,10 @@ inline bool Resources::Import<Texture>(const std::string& file)
 	if (!std::filesystem::exists(file)) return false;
 
 	std::filesystem::path import_path = ImportPathImpl(file, ".dds");
-	_import_image_impl(file.c_str(), import_path.string().c_str());
+	if (!file.ends_with(".dds"))
+	{
+		_import_image_impl(file.c_str(), import_path.string().c_str());
+	}
 
 	LOG(LogType::LOG_INFO, "Image at %s imported succesfully!", import_path.string().c_str());
 
