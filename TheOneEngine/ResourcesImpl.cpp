@@ -138,6 +138,18 @@ std::vector<std::string> Resources::GetAllFilesFromFolder(const std::string& pat
 	return fileNames;
 }
 
+inline void Resources::StandarizePath(std::string& file_path, bool toLower)
+{
+	size_t index = 0;
+
+	while ((index = file_path.find('\\', index)) != std::string::npos) {
+		file_path.replace(index, 1, "/");
+		index++;
+	}
+	if (toLower)
+		ToLowerCase(file_path);
+}
+
 bool Resources::PreparePath(std::string path)
 {
 	if (!std::filesystem::exists(path)) {

@@ -76,17 +76,7 @@ public:
 	static std::string FindFileInLibrary(const std::string& name);
 	static std::vector<std::string> GetAllFilesFromFolder(const std::string& path);
 	
-	static inline void StandarizePath(std::string& file_path, bool toLower = false)
-	{
-		size_t index = 0;
-
-		while ((index = file_path.find('\\', index)) != std::string::npos) {
-			file_path.replace(index, 1, "/");
-			index++;
-		}
-		if(toLower)
-			ToLowerCase(file_path);
-	}
+	static inline void StandarizePath(std::string& file_path, bool toLower = false);
 
 
 	static void ToLowerCase(std::string& path);

@@ -116,7 +116,14 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
         }
 
         // Basic Data
-        model->meshName = mesh->mName.C_Str();
+
+        std::string standarizedName = mesh->mName.C_Str();
+        size_t index = 0;
+        while ((index = standarizedName.find('.', index)) != std::string::npos) {
+            standarizedName.replace(index, 1, "_");
+            index++;
+        }
+        model->meshName = standarizedName;
         model->format = BufferLayout({
         { ShaderDataType::Float3, "aPos"           },
         { ShaderDataType::Float2, "aTex"           } });
@@ -194,8 +201,6 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             model->meshFaceCenters.push_back(faceCenter);
         }
 
-
-
         Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
 
         model->GenBufferData();
@@ -263,7 +268,7 @@ void Model::serializeMeshData(const std::string& filename)
     outFile.write(meshName.c_str(), meshNameSize);
 
     // Write format
-    outFile.write(reinterpret_cast<const char*>(&format), format.GetSize());
+    //outFile.write(reinterpret_cast<const char*>(&format), format.GetSize());
 
     // Write vertex_data size and data
     uint numVerts = static_cast<uint>(vertexData.size());
@@ -310,6 +315,9 @@ void Model::serializeMeshData(const std::string& filename)
     uint matID = materialIndex;
     outFile.write(reinterpret_cast<const char*>(&matID), sizeof(uint));
 
+    // Write transform
+    outFile.write(reinterpret_cast<const char*>(&meshTransform), sizeof(glm::mat4));
+
 
     LOG(LogType::LOG_OK, "-%s created", filename.data());
 
@@ -329,7 +337,7 @@ void Model::deserializeMeshData(const std::string& filename)
     inFile.read(&meshName[0], meshNameSize);
 
     // Read format
-    inFile.read(reinterpret_cast<char*>(&format), sizeof(BufferLayout));
+    //inFile.read(reinterpret_cast<char*>(&format), sizeof(BufferLayout));
 
     // Read vertex_data size and allocate memory
     uint numVerts;
@@ -394,6 +402,9 @@ void Model::deserializeMeshData(const std::string& filename)
 
     // Read material index
     inFile.read(reinterpret_cast<char*>(&materialIndex), sizeof(uint));
+
+    // Read transform
+    inFile.read(reinterpret_cast<char*>(&meshTransform[0]), sizeof(glm::mat4));
 
 
     LOG(LogType::LOG_INFO, "-%s loaded", filename.data());
