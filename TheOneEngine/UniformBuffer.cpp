@@ -4,18 +4,18 @@
 
 UniformBuffer::UniformBuffer(uint size, uint binding)
 {
-	glCreateBuffers(1, &m_RendererID);
-	glNamedBufferData(m_RendererID, size, nullptr, GL_DYNAMIC_DRAW);
-	glBindBufferBase(GL_UNIFORM_BUFFER, binding, m_RendererID);
+	GLCALL(glCreateBuffers(1, &m_RendererID));
+	GLCALL(glNamedBufferData(m_RendererID, size, nullptr, GL_DYNAMIC_DRAW));
+	GLCALL(glBindBufferBase(GL_UNIFORM_BUFFER, binding, m_RendererID));
 }
 
 UniformBuffer::~UniformBuffer()
 {
-	glDeleteBuffers(1, &m_RendererID);
+	GLCALL(glDeleteBuffers(1, &m_RendererID));
 }
 
 
 void UniformBuffer::SetData(const void* data, uint size, uint offset)
 {
-	glNamedBufferSubData(m_RendererID, offset, size, data);
+	GLCALL(glNamedBufferSubData(m_RendererID, offset, size, data));
 }

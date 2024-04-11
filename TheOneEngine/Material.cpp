@@ -123,8 +123,8 @@ void Material::UnBind(int id)
 	{
 		if (uniforms[i].getType() == UniformType::Sampler2D)
 		{
-			glActiveTexture(texureId);
-			glBindTexture(GL_TEXTURE_2D, 0);
+			GLCALL(glActiveTexture(texureId));
+			GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 			texureId++;
 		}
 	}
@@ -252,11 +252,25 @@ void Material::Load(const std::string& path)
 			}break;
 			case UniformType::Sampler2D:
 			{
+				Uniform::SamplerData sdata;
 				std::string texPath = u["Value"];
+				memcpy(sdata.tex_path, &texPath[0], texPath.size() + 1);
 				Resources::Import<Texture>(texPath);
-				size_t id = Resources::LoadFromLibrary<Texture>(texPath);
-				Texture* img = Resources::GetResourceById<Texture>(id);
-				uniform->setData(img->GetTextureId(), uniform->getType());
+				if (sdata.tex_path != "") {
+					sdata.resource_id = Resources::LoadFromLibrary<Texture>(sdata.tex_path);
+
+					Texture* img = Resources::GetResourceById<Texture>(sdata.resource_id);
+					sdata.tex_id = img->GetTextureId();
+
+					uniform->setData(sdata, uniform->getType());
+
+				}
+				else
+				{
+					sdata.tex_id = -1;
+					sdata.resource_id = -1;
+					uniform->setData(sdata, uniform->getType());
+				}
 			}break;
 			default:
 				break;

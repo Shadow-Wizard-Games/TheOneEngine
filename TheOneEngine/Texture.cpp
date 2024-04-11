@@ -20,13 +20,13 @@ Texture::Texture(const std::string& newPath)
 Texture::~Texture() 
 {
     if (textureID != uint32_t(-1)) {
-        glDeleteTextures(1, &textureID);
+        GLCALL(glDeleteTextures(1, &textureID));
     }
 }
 
 void Texture::Bind()
 {
-    glBindTexture(GL_TEXTURE_2D, textureID);
+    GLCALL(glBindTexture(GL_TEXTURE_2D, textureID));
 }
 
 bool Texture::Init(const std::string& path)
@@ -57,7 +57,7 @@ bool Texture::Init(const std::string& path)
 
     // Ajusta la alineación de pixel si es necesario (importante para imágenes RGB)
     if (ch == 3) {
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+        GLCALL(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
     }
 
 
@@ -76,15 +76,15 @@ bool Texture::Init(const std::string& path)
     }
 
     //load image as a texture in VRAM
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-    glTexImage2D(GL_TEXTURE_2D, 0, ch, w, h, 0, format, GL_UNSIGNED_BYTE, data);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, 0);
+    GLCALL(glGenTextures(1, &textureID));
+    GLCALL(glBindTexture(GL_TEXTURE_2D, textureID));
+    GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, ch, w, h, 0, format, GL_UNSIGNED_BYTE, data));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    GLCALL(glGenerateMipmap(GL_TEXTURE_2D));
+    GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 
     //now we can delete image from RAM
     ilDeleteImage(img);
@@ -115,21 +115,21 @@ bool Texture::InitDDS(const std::string& path)
         return false;
     }
 
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
+    GLCALL(glGenTextures(1, &textureID));
+    GLCALL(glBindTexture(GL_TEXTURE_2D, textureID));
 
-    //glTexImage2D(GL_TEXTURE_2D, 0, PicType, w, h, 0, PicType, GL_UNSIGNED_BYTE, texture.data());
+    //GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, PicType, w, h, 0, PicType, GL_UNSIGNED_BYTE, texture.data());
     gli::gl gli(gli::gl::PROFILE_GL33);
     gli::gl::format const Format = gli.translate(texture.format(), texture.swizzles());
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, &Format.Swizzles[0]);
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    GLCALL(glTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_RGBA, &Format.Swizzles[0]));
 
-   glCompressedTexImage2D(GL_TEXTURE_2D, 0, Format.Internal, w, h, 0, (GLsizei)texture.size(), texture.data());
-   glGenerateMipmap(GL_TEXTURE_2D);
+   GLCALL(glCompressedTexImage2D(GL_TEXTURE_2D, 0, Format.Internal, w, h, 0, (GLsizei)texture.size(), texture.data()));
+   GLCALL(glGenerateMipmap(GL_TEXTURE_2D));
 
     imageSize.x = w;
     imageSize.y = h;
@@ -151,15 +151,15 @@ bool Texture::CreateCheckerTexture()
         }
     }
 
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB_ALPHA, CHECKERS_WIDTH, CHECKERS_HEIGHT,
-        0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
+    GLCALL(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
+    GLCALL(glGenTextures(1, &textureID));
+    GLCALL(glBindTexture(GL_TEXTURE_2D, textureID));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+    GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB_ALPHA, CHECKERS_WIDTH, CHECKERS_HEIGHT,
+        0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage));
 
     return true;
 }

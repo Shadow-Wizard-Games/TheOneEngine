@@ -24,28 +24,28 @@ static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
 
 VertexArray::VertexArray()
 {
-	glCreateVertexArrays(1, &m_RendererID);
+	GLCALL(glCreateVertexArrays(1, &m_RendererID));
 }
 
 VertexArray::~VertexArray()
 {
-	glDeleteVertexArrays(1, &m_RendererID);
+	GLCALL(glDeleteVertexArrays(1, &m_RendererID));
 }
 
 void VertexArray::Bind() const
 {
-	glBindVertexArray(m_RendererID);
+	GLCALL(glBindVertexArray(m_RendererID));
 }
 
 void VertexArray::Unbind() const
 {
-	glBindVertexArray(0);
+	GLCALL(glBindVertexArray(0));
 }
 
 void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
 {
 
-	glBindVertexArray(m_RendererID);
+	GLCALL(glBindVertexArray(m_RendererID));
 	vertexBuffer->Bind();
 
 	const auto& layout = vertexBuffer->GetLayout();
@@ -58,13 +58,13 @@ void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuf
 		case ShaderDataType::Float3:
 		case ShaderDataType::Float4:
 		{
-			glEnableVertexAttribArray(m_VertexBufferIndex);
-			glVertexAttribPointer(m_VertexBufferIndex,
+			GLCALL(glEnableVertexAttribArray(m_VertexBufferIndex));
+			GLCALL(glVertexAttribPointer(m_VertexBufferIndex,
 				element.GetComponentCount(),
 				ShaderDataTypeToOpenGLBaseType(element.Type),
 				element.Normalized ? GL_TRUE : GL_FALSE,
 				layout.GetStride(),
-				(const void*)element.Offset);
+				(const void*)element.Offset));
 			m_VertexBufferIndex++;
 			break;
 		}
@@ -74,12 +74,12 @@ void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuf
 		case ShaderDataType::Int4:
 		case ShaderDataType::Bool:
 		{
-			glEnableVertexAttribArray(m_VertexBufferIndex);
-			glVertexAttribIPointer(m_VertexBufferIndex,
+			GLCALL(glEnableVertexAttribArray(m_VertexBufferIndex));
+			GLCALL(glVertexAttribIPointer(m_VertexBufferIndex,
 				element.GetComponentCount(),
 				ShaderDataTypeToOpenGLBaseType(element.Type),
 				layout.GetStride(),
-				(const void*)element.Offset);
+				(const void*)element.Offset));
 			m_VertexBufferIndex++;
 			break;
 		}
@@ -89,14 +89,14 @@ void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuf
 			uint8_t count = element.GetComponentCount();
 			for (uint8_t i = 0; i < count; i++)
 			{
-				glEnableVertexAttribArray(m_VertexBufferIndex);
-				glVertexAttribPointer(m_VertexBufferIndex,
+				GLCALL(glEnableVertexAttribArray(m_VertexBufferIndex));
+				GLCALL(glVertexAttribPointer(m_VertexBufferIndex,
 					count,
 					ShaderDataTypeToOpenGLBaseType(element.Type),
 					element.Normalized ? GL_TRUE : GL_FALSE,
 					layout.GetStride(),
-					(const void*)(element.Offset + sizeof(float) * count * i));
-				glVertexAttribDivisor(m_VertexBufferIndex, 1);
+					(const void*)(element.Offset + sizeof(float) * count * i)));
+				GLCALL(glVertexAttribDivisor(m_VertexBufferIndex, 1));
 				m_VertexBufferIndex++;
 			}
 			break;
@@ -109,7 +109,7 @@ void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuf
 
 void VertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
 {
-	glBindVertexArray(m_RendererID);
+	GLCALL(glBindVertexArray(m_RendererID));
 	indexBuffer->Bind();
 
 	m_IndexBuffer = indexBuffer;

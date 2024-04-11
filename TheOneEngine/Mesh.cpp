@@ -54,21 +54,25 @@ void Mesh::DrawComponent(Camera* camera)
     matShader->Bind();
     matShader->SetModel(containerGO.get()->GetComponent<Transform>()->GetTransform());
 
+    mat->Bind();
+
     if (!active)
         return;
 
     if (drawWireframe)
     {
-        glDisable(GL_TEXTURE_2D);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        GLCALL(glDisable(GL_TEXTURE_2D));
+        GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
     }
     else
     {
-        glEnable(GL_TEXTURE_2D);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        GLCALL(glEnable(GL_TEXTURE_2D));
+        GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
     }
 
     mesh->Render();
+
+    mat->UnBind();
 
     /*if (drawNormalsVerts) DrawVertexNormals();
     if (drawNormalsFaces) DrawFaceNormals();*/
@@ -78,39 +82,39 @@ void Mesh::DrawComponent(Camera* camera)
 //{
 //    if (meshData.meshVerts.empty() || meshData.meshNorms.empty()) return;
 //
-//    glLineWidth(normalLineWidth);
-//    glColor3f(1.0f, 1.0f, 0.0f);
-//    glBegin(GL_LINES);
+//    GLCALL(glLineWidth(normalLineWidth);
+//    GLCALL(glColor3f(1.0f, 1.0f, 0.0f);
+//    GLCALL(glBegin(GL_LINES);
 //
 //    for (int i = 0; i < meshData.meshVerts.size(); i++)
 //    {
-//        glVertex3f(meshData.meshVerts[i].x, meshData.meshVerts[i].y, meshData.meshVerts[i].z);
-//        glVertex3f(meshData.meshVerts[i].x + meshData.meshNorms[i].x * normalLineLength,
+//        GLCALL(glVertex3f(meshData.meshVerts[i].x, meshData.meshVerts[i].y, meshData.meshVerts[i].z);
+//        GLCALL(glVertex3f(meshData.meshVerts[i].x + meshData.meshNorms[i].x * normalLineLength,
 //            meshData.meshVerts[i].y + meshData.meshNorms[i].y * normalLineLength,
 //            meshData.meshVerts[i].z + meshData.meshNorms[i].z * normalLineLength);
 //    }
 //
-//    glColor3f(1.0f, 1.0f, 0.0f);
-//    glEnd();
+//    GLCALL(glColor3f(1.0f, 1.0f, 0.0f);
+//    GLCALL(glEnd();
 //}
 
 //void Mesh::DrawFaceNormals() 
 //{
 //    if (meshData.meshFaceCenters.empty() || meshData.meshFaceNorms.empty()) return;
 //
-//    glLineWidth(normalLineWidth);
-//    glColor3f(1.0f, 0.0f, 1.0f);
-//    glBegin(GL_LINES);
+//    GLCALL(glLineWidth(normalLineWidth);
+//    GLCALL(glColor3f(1.0f, 0.0f, 1.0f);
+//    GLCALL(glBegin(GL_LINES);
 //
 //    for (int i = 0; i < meshData.meshFaceCenters.size(); i++)
 //    {
 //        glm::vec3 endPoint = meshData.meshFaceCenters[i] + normalLineLength * meshData.meshFaceNorms[i];
-//        glVertex3f(meshData.meshFaceCenters[i].x, meshData.meshFaceCenters[i].y, meshData.meshFaceCenters[i].z);
-//        glVertex3f(endPoint.x, endPoint.y, endPoint.z);
+//        GLCALL(glVertex3f(meshData.meshFaceCenters[i].x, meshData.meshFaceCenters[i].y, meshData.meshFaceCenters[i].z);
+//        GLCALL(glVertex3f(endPoint.x, endPoint.y, endPoint.z);
 //    }
 //
-//    glColor3f(0.0f, 1.0f, 1.0f);
-//    glEnd();
+//    GLCALL(glColor3f(0.0f, 1.0f, 1.0f);
+//    GLCALL(glEnd();
 //}
 
 

@@ -76,18 +76,19 @@ void Shader::Compile(const std::string& filename)
 
 void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentShaderSource, bool hasGS, std::string* geometryShaderSourceStr, bool& retflag)
 {
+	GLERR;
 	retflag = true;
-	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
+	unsigned int vertexShader = GLCALL(glCreateShader(GL_VERTEX_SHADER));
+	GLCALL(glShaderSource(vertexShader, 1, &vertexShaderSource, NULL));
+	GLCALL(glCompileShader(vertexShader));
 
 	int success;
 	char infoLog[512];
 
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+	GLCALL(glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success));
 
 	if (!success) {
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+		GLCALL(glGetShaderInfoLog(vertexShader, 512, NULL, infoLog));
 
 		std::string msg = "Vertex shader compile error: ";
 		msg += infoLog;
@@ -97,14 +98,14 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 		return;
 	}
 
-	unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+	unsigned int fragmentShader = GLCALL(glCreateShader(GL_FRAGMENT_SHADER));
+	GLCALL(glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL));
+	GLCALL(glCompileShader(fragmentShader));
 
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+	GLCALL(glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success));
 
 	if (!success) {
-		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+		GLCALL(glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog));
 		std::string msg = "Fragment shader compile error: ";
 		msg += infoLog;
 
@@ -113,23 +114,23 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 		return;
 	}
 
-	ProgramID = glCreateProgram();
-	glAttachShader(ProgramID, vertexShader);
-	glAttachShader(ProgramID, fragmentShader);
+	ProgramID = GLCALL(glCreateProgram());
+	GLCALL(glAttachShader(ProgramID, vertexShader));
+	GLCALL(glAttachShader(ProgramID, fragmentShader));
 
 
 	unsigned int geometryShader;
 	if (hasGS)
 	{
 		const char* geometryShaderSource = geometryShaderSourceStr->c_str();
-		geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
-		glShaderSource(geometryShader, 1, &geometryShaderSource, NULL);
-		glCompileShader(geometryShader);
+		geometryShader = GLCALL(glCreateShader(GL_GEOMETRY_SHADER));
+		GLCALL(glShaderSource(geometryShader, 1, &geometryShaderSource, NULL));
+		GLCALL(glCompileShader(geometryShader));
 
-		glGetShaderiv(geometryShader, GL_COMPILE_STATUS, &success);
+		GLCALL(glGetShaderiv(geometryShader, GL_COMPILE_STATUS, &success));
 
 		if (!success) {
-			glGetShaderInfoLog(geometryShader, 512, NULL, infoLog);
+			GLCALL(glGetShaderInfoLog(geometryShader, 512, NULL, infoLog));
 			std::string msg = "Geometry shader compile error: ";
 			msg += infoLog;
 
@@ -137,16 +138,16 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 			compileState = State::Error;
 			return;
 		}
-		glAttachShader(ProgramID, geometryShader);
+		GLCALL(glAttachShader(ProgramID, geometryShader));
 	}
 
-	glLinkProgram(ProgramID);
+	GLCALL(glLinkProgram(ProgramID));
 
-	glGetShaderiv(ProgramID, GL_COMPILE_STATUS, &success);
+	GLCALL(glGetProgramiv(ProgramID, GL_LINK_STATUS, &success));
 
 	if (!success) {
-		glGetShaderInfoLog(ProgramID, 512, NULL, infoLog);
-		std::string msg = "Shader program compile error: ";
+		GLCALL(glGetProgramInfoLog(ProgramID, 512, NULL, infoLog));
+		std::string msg = "Shader program link error: ";
 		msg += infoLog;
 
 		LOG(LogType::LOG_ERROR, msg.c_str());
@@ -154,18 +155,18 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 		return;
 	}
 
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
+	GLCALL(glDeleteShader(vertexShader));
+	GLCALL(glDeleteShader(fragmentShader));
 	if (hasGS)
-		glDeleteShader(geometryShader);
+		GLCALL(glDeleteShader(geometryShader));
 
 	retflag = false;
 
 	compileState = State::Compiled;
 
-	modelMatrixID = glGetUniformLocation(ProgramID, "model");
-	//projectionMatrixID = glGetUniformLocation(ProgramID, "projection");
-	//viewMatrixID = glGetUniformLocation(ProgramID, "view");
+	modelMatrixID = GLCALL(glGetUniformLocation(ProgramID, "model"));
+	//projectionMatrixID = GLCALL(glGetUniformLocation(ProgramID, "projection");
+	//viewMatrixID = GLCALL(glGetUniformLocation(ProgramID, "view");
 }
 
 bool Shader::LoadFromTOEasset(const std::string& filename)
@@ -210,17 +211,17 @@ void Shader::Bind()
 {
 	if (compileState != State::Compiled)
 		return;
-	glUseProgram(ProgramID);
+	GLCALL(glUseProgram(ProgramID));
 }
 
 void Shader::UnBind()
 {
-	glUseProgram(0);
+	GLCALL(glUseProgram(0));
 }
 
 void Shader::Delete()
 {
-	glDeleteProgram(ProgramID);
+	GLCALL(glDeleteProgram(ProgramID));
 }
 
 std::string* Shader::getFileData(const char* file)
@@ -243,42 +244,42 @@ std::string* Shader::getFileData(const char* file)
 
 unsigned int Shader::getUniformLocation(const char* uniform_name)
 {
-	return glGetUniformLocation(ProgramID, uniform_name);
+	return GLCALL(glGetUniformLocation(ProgramID, uniform_name));
 }
 
 void Shader::SetInt(const std::string& name, int value)
 {
-	glUniform1i(getUniformLocation(name.c_str()), value);
+	GLCALL(glUniform1i(getUniformLocation(name.c_str()), value));
 }
 
 void Shader::SetUInt(const std::string& name, unsigned int value)
 {
-	glUniform1i(getUniformLocation(name.c_str()), value);
+	GLCALL(glUniform1i(getUniformLocation(name.c_str()), value));
 }
 
 void Shader::SetFloat(const std::string& name, float value)
 {
-	glUniform1f(getUniformLocation(name.c_str()), value);
+	GLCALL(glUniform1f(getUniformLocation(name.c_str()), value));
 }
 
 void Shader::SetFloat2(const std::string& name, const glm::vec2& value)
 {
-	glUniform2f(getUniformLocation(name.c_str()), value.x, value.y);
+	GLCALL(glUniform2f(getUniformLocation(name.c_str()), value.x, value.y));
 }
 
 void Shader::SetFloat3(const std::string& name, const glm::vec3& value)
 {
-	glUniform3f(getUniformLocation(name.c_str()), value.x, value.y, value.z);
+	GLCALL(glUniform3f(getUniformLocation(name.c_str()), value.x, value.y, value.z));
 }
 
 void Shader::SetFloat4(const std::string& name, const glm::vec4& value)
 {
-	glUniform4f(getUniformLocation(name.c_str()), value.x, value.y, value.z, value.w);
+	GLCALL(glUniform4f(getUniformLocation(name.c_str()), value.x, value.y, value.z, value.w));
 }
 
 void Shader::SetMat4(const std::string& name, const glm::mat4& value)
 {
-	glUniformMatrix4fv(getUniformLocation(name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
+	GLCALL(glUniformMatrix4fv(getUniformLocation(name.c_str()), 1, GL_FALSE, glm::value_ptr(value)));
 }
 
 void Shader::addUniform(const std::string& name, const UniformType type)
@@ -291,13 +292,13 @@ void Shader::addUniform(const std::string& name, const UniformType type)
 			return;
 
 		uniform->type = type;
-		uniform->location = glGetUniformLocation(ProgramID, name.c_str());
+		uniform->location = GLCALL(glGetUniformLocation(ProgramID, name.c_str()));
 		return;
 	}
 	UniformField field;
 	field.name = name;
 	field.type = type;
-	field.location = glGetUniformLocation(ProgramID, name.c_str());
+	field.location = GLCALL(glGetUniformLocation(ProgramID, name.c_str()));
 
 
 	uniforms.emplace_back(field);
@@ -339,20 +340,20 @@ void Shader::setUniformName(const char* oldName, const char* newName)
 
 void Shader::SetMVP(const glm::mat4& model, const glm::mat4& view, const glm::mat4& proj)
 {
-	glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, glm::value_ptr(model));
-	glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, glm::value_ptr(view));
-	glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, glm::value_ptr(proj));
+	GLCALL(glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, glm::value_ptr(model)));
+	GLCALL(glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, glm::value_ptr(view)));
+	GLCALL(glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, glm::value_ptr(proj)));
 }
 
 void Shader::SetViewProj(const glm::mat4& view, const glm::mat4& proj)
 {
-	glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, glm::value_ptr(view));
-	glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, glm::value_ptr(proj));
+	GLCALL(glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, glm::value_ptr(view)));
+	GLCALL(glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, glm::value_ptr(proj)));
 }
 
 void Shader::SetModel(const glm::mat4& model)
 {
-	glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, glm::value_ptr(model));
+	GLCALL(glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, glm::value_ptr(model)));
 }
 
 UniformField* Shader::getUniform(const char* name)
@@ -373,46 +374,46 @@ UniformField* Shader::getUniform(const char* name)
 template<>
 inline void Shader::setUniform<int>(unsigned int uniform_id, int value) 
 {
-	glUseProgram(ProgramID);
-	glUniform1i(uniform_id, value);
+	GLCALL(glUseProgram(ProgramID));
+	GLCALL(glUniform1i(uniform_id, value));
 }
 template<>
 inline void Shader::setUniform<unsigned int>(unsigned int uniform_id, unsigned int value) 
 {
-	glUseProgram(ProgramID);
-	glUniform1ui(uniform_id, value);
+	GLCALL(glUseProgram(ProgramID));
+	GLCALL(glUniform1ui(uniform_id, value));
 }
 template<>
 inline void Shader::setUniform<glm::mat4>(unsigned int uniform_id, glm::mat4 value) 
 {
-	glUseProgram(ProgramID);
-	glUniformMatrix4fv(uniform_id, 1, GL_FALSE, glm::value_ptr(value));
+	GLCALL(glUseProgram(ProgramID));
+	GLCALL(glUniformMatrix4fv(uniform_id, 1, GL_FALSE, glm::value_ptr(value)));
 }
 
 template<>
 inline void Shader::setUniform<float>(unsigned int uniform_id, float value) 
 {
-	glUseProgram(ProgramID);
-	glUniform1f(uniform_id, value);
+	GLCALL(glUseProgram(ProgramID));
+	GLCALL(glUniform1f(uniform_id, value));
 }
 template<>
 inline void Shader::setUniform<glm::vec2>(unsigned int uniform_id, glm::vec2 value)
 {
-	glUseProgram(ProgramID);
-	glUniform2f(uniform_id, value.x, value.y);
+	GLCALL(glUseProgram(ProgramID));
+	GLCALL(glUniform2f(uniform_id, value.x, value.y));
 }
 template<>
 inline void Shader::setUniform<glm::vec3>(unsigned int uniform_id, glm::vec3 value) 
 {
-	glUseProgram(ProgramID);
-	glUniform3f(uniform_id, value.x, value.y, value.z);
+	GLCALL(glUseProgram(ProgramID));
+	GLCALL(glUniform3f(uniform_id, value.x, value.y, value.z));
 }
 
 template<>
 inline void Shader::setUniform<glm::vec4>(unsigned int uniform_id, glm::vec4 value)
 {
-	glUseProgram(ProgramID);
-	glUniform4f(uniform_id, value.r, value.g, value.b, value.a);
+	GLCALL(glUseProgram(ProgramID));
+	GLCALL(glUniform4f(uniform_id, value.r, value.g, value.b, value.a));
 }
 
 template<class T>

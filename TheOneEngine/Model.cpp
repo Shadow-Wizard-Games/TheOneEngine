@@ -244,8 +244,8 @@ void Model::GenBufferData()
     }
 
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+    GLCALL(glBindVertexArray(0));
 
     if (glGetError() != 0)
     {
@@ -409,6 +409,6 @@ void Model::SaveMesh(Model* mesh, const std::string& path)
 void Model::Render()
 {
     meshVAO->Bind();
-    glDrawElements(GL_TRIANGLES, (GLsizei)indexData.size(), GL_UNSIGNED_INT, 0);
+    GLCALL(glDrawElements(GL_TRIANGLES, (GLsizei)indexData.size(), GL_UNSIGNED_INT, 0));
     meshVAO->Unbind();
 }
