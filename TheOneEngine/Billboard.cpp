@@ -46,7 +46,7 @@ void Billboard::BeginSphericalBillboard(vec3 objectPosition, vec3 cameraPosition
 {
 	// from http://www.lighthouse3d.com/opengl/billboarding/billboardingtut.pdf
 
-	glTranslated(objectPosition.x, objectPosition.y, objectPosition.z);
+	glTranslatef(objectPosition.x, objectPosition.y, objectPosition.z);
 
 	vec3 lookAt, objToCamProj, upAux;
 	float angleCosine;
@@ -77,7 +77,7 @@ void Billboard::BeginSphericalBillboard(vec3 objectPosition, vec3 cameraPosition
 		// if the lookAt and objToCamProj vectors are too close together then
 		// |angleCosine| could be bigger than 1 due to lack of precision
 	if ((angleCosine < 0.99999) && (angleCosine > -0.99999))
-		glRotated(acos(angleCosine) * 180 / 3.14, upAux[0], upAux[1], upAux[2]);
+		glRotatef(acos(angleCosine) * 180 / 3.14, upAux[0], upAux[1], upAux[2]);
 
 	// so far it is just like the cylindrical billboard. The code for the
 	// second rotation comes now
@@ -98,9 +98,9 @@ void Billboard::BeginSphericalBillboard(vec3 objectPosition, vec3 cameraPosition
 	// angle between them
 	if ((angleCosine < 0.99999) && (angleCosine > -0.99999))
 		if (objToCam[1] < 0)
-			glRotated(acos(angleCosine) * 180 / 3.14, 1, 0, 0);
+			glRotatef(acos(angleCosine) * 180 / 3.14, 1, 0, 0);
 		else
-			glRotated(acos(angleCosine) * 180 / 3.14, -1, 0, 0);
+			glRotatef(acos(angleCosine) * 180 / 3.14, -1, 0, 0);
 }
 
 void Billboard::EndBillboard()
