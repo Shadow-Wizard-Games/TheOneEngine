@@ -201,7 +201,7 @@ void Mesh::LoadComponent(const json& meshJSON)
         if (Resources::FindFileInLibrary(meshPath).empty())
         {
             std::filesystem::path libraryToAssets = meshPath;
-            std::string assetsMesh = Resources::FindFileInLibrary(libraryToAssets.parent_path().filename().string() + ".fbx");
+            std::string assetsMesh = Resources::FindFileInAssets(libraryToAssets.parent_path().filename().string() + ".fbx");
             Resources::LoadMultiple<Model>(assetsMesh);
         }
         else
