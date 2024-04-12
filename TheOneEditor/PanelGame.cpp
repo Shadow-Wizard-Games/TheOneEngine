@@ -97,6 +97,7 @@ bool PanelGame::Draw()
 			frameBuffer->ClearBuffer(-1);
 			// Draw
 			engine->Render(primaryCamera);
+			engine->SetUniformBufferCamera(primaryCamera);
 
 			// Game cameras Frustum
 			for (const auto& cam : gameCameras)

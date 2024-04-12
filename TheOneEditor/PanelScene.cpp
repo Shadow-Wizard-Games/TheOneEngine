@@ -263,6 +263,7 @@ bool PanelScene::Draw()
 
             // Draw
             engine->Render(sceneCamera->GetComponent<Camera>());
+            engine->SetUniformBufferCamera(sceneCamera->GetComponent<Camera>());
 
             // Game cameras Frustum
             for (const auto GO : engine->N_sceneManager->GetGameObjects())

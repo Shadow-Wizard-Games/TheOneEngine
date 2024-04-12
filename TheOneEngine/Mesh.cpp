@@ -52,7 +52,7 @@ void Mesh::DrawComponent(Camera* camera)
 
     Shader* matShader = mat->getShader();
     matShader->Bind();
-    matShader->SetModel(containerGO.get()->GetComponent<Transform>()->GetTransform());
+    matShader->SetModel(containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform());
 
     mat->Bind();
 

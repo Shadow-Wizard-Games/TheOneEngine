@@ -56,6 +56,7 @@ public:
 	void CleanLogs();
 
 	void SetEditorCamera(Camera* cam);
+	void SetUniformBufferCamera(Camera* cam);
 
 public:
 	

@@ -63,8 +63,6 @@ void EngineCore::Update(double dt)
     collisionSolver->Update(dt);
     audioManager->Update(dt);
 
-    CameraUniformBuffer->SetData(&N_sceneManager->currentScene->currentCamera->viewProjectionMatrix, sizeof(glm::mat4));
-
     this->dt = dt;
 }
 
@@ -409,4 +407,10 @@ void EngineCore::SetEditorCamera(Camera* cam)
 {
     if(cam)
         editorCamReference = cam;
+}
+
+void EngineCore::SetUniformBufferCamera(Camera* cam)
+{
+    if(cam)
+        CameraUniformBuffer->SetData(&cam->viewProjectionMatrix, sizeof(glm::mat4));
 }
