@@ -77,11 +77,7 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	//this will be called when we click play
 	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying)
 	{
-		for (const auto gameObject : currentScene->GetRootSceneGO()->children)
-		{
-			if(gameObject.get()->GetComponent<Script>())
-				gameObject.get()->GetComponent<Script>()->Start();
-		}
+		RecursiveScriptUpdate(currentScene->GetRootSceneGO());
 		//add game objects to collision solver vector
 		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
 	}
@@ -242,6 +238,17 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	else
 	{
 		LOG(LogType::LOG_ERROR, "Scene file does not contain GameObjects information");
+	}
+}
+
+void N_SceneManager::RecursiveScriptUpdate(std::shared_ptr<GameObject> go)
+{
+	for (const auto gameObject : go.get()->children)
+	{
+		if (gameObject.get()->GetComponent<Script>())
+			gameObject.get()->GetComponent<Script>()->Start();
+
+		RecursiveScriptUpdate(gameObject);
 	}
 }
 

@@ -75,6 +75,10 @@ public:
 	void SaveScene();
 	void LoadSceneFromJSON(const std::string& filename);
 
+private:
+
+	void RecursiveScriptUpdate(std::shared_ptr<GameObject> go);
+
 public:
 	Scene* currentScene = nullptr; //Convert to smart ptr
 	std::vector<std::shared_ptr<GameObject>> objectsToAdd;
