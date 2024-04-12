@@ -578,12 +578,23 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO)
+void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
-	for (const auto gameObject : parentGO.get()->children)
-	{
-		gameObject.get()->Draw(currentCamera);
-		RecurseSceneDraw(gameObject);
+	if (cam != nullptr) {
+		for (const auto gameObject : parentGO.get()->children)
+		{
+			gameObject.get()->Draw(cam);
+			RecurseSceneDraw(gameObject);
+		}
+
+	}
+	else {
+		for (const auto gameObject : parentGO.get()->children)
+		{
+			gameObject.get()->Draw(currentCamera);
+			RecurseSceneDraw(gameObject);
+		}
+
 	}
 }
 
@@ -608,8 +619,8 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
-void Scene::Draw(DrawMode mode)
+void Scene::Draw(DrawMode mode, Camera* cam)
 {
-	RecurseSceneDraw(rootSceneGO);
+	RecurseSceneDraw(rootSceneGO, cam);
 	RecurseUIDraw(rootSceneGO, mode);
 }

@@ -117,14 +117,14 @@ public:
 
 	inline void UpdateGOs(double dt);
 	
-	void Draw(DrawMode mode = DrawMode::GAME);
+	void Draw(DrawMode mode = DrawMode::GAME, Camera* cam = nullptr);
 
 	void FindCameraInScene();
 
 	void ChangePrimaryCamera(GameObject* newPrimaryCam);
 
 private:
-	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO);
+	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
 
 private:

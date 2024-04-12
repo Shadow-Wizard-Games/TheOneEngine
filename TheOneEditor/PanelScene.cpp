@@ -283,7 +283,7 @@ bool PanelScene::Draw()
                 }
             }
 
-            current->Draw(DrawMode::EDITOR);
+            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
 
             frameBuffer->Unbind();
