@@ -413,4 +413,6 @@ void EngineCore::SetUniformBufferCamera(Camera* cam)
 {
     if(cam)
         CameraUniformBuffer->SetData(&cam->viewProjectionMatrix, sizeof(glm::mat4));
+    else
+        CameraUniformBuffer->SetData(&N_sceneManager->currentScene->currentCamera->viewProjectionMatrix, sizeof(glm::mat4));
 }
