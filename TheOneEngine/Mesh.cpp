@@ -197,7 +197,15 @@ void Mesh::LoadComponent(const json& meshJSON)
 
     if (meshJSON.contains("MeshPath"))
     {
-        meshID = Resources::LoadFromLibrary<Model>(meshJSON["MeshPath"]);
+        std::string meshPath = meshJSON["MeshPath"];
+        if (Resources::FindFileInLibrary(meshPath).empty())
+        {
+            std::filesystem::path libraryToAssets = meshPath;
+            std::string assetsMesh = Resources::FindFileInLibrary(libraryToAssets.parent_path().filename().string() + ".fbx");
+            Resources::LoadMultiple<Model>(assetsMesh);
+        }
+        else
+            meshID = Resources::LoadFromLibrary<Model>(meshJSON["MeshPath"]);
     }
 
     if (meshJSON.contains("MaterialPath"))
