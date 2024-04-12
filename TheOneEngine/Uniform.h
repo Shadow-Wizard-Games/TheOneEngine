@@ -36,7 +36,7 @@ public:
 
 
 	Uniform(std::string name, UniformType type)
-		: type(type), data(nullptr), name(name), uniformID(NULL)
+		: type(type), data(nullptr), name(name), uniformID(-1)
 	{
 		setEmptyData();
 	}
@@ -87,7 +87,7 @@ private:
 	UniformType type;
 	Byte* data = nullptr;
 	size_t dataSize = 0;
-	uint16_t uniformID;
+	int uniformID = -1;
 
 public:
 

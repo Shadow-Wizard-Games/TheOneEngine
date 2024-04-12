@@ -93,7 +93,7 @@ void FrameBuffer::Reset(bool depth)
 
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 
-	GLenum status = GLCALL(glCheckFramebufferStatus(GL_FRAMEBUFFER));
+	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	assert(status == GL_FRAMEBUFFER_COMPLETE); //36053
 }
 

@@ -11,7 +11,7 @@ void Uniform::sendToShader(uint16_t shaderProgram, int& textureId)
 		return;
 
 	if (uniformID == -1)
-		uniformID = GLCALL(glGetUniformLocation(shaderProgram, name.c_str()));
+		uniformID = glGetUniformLocation(shaderProgram, name.c_str());
 
 	if (uniformID == -1)
 		return;

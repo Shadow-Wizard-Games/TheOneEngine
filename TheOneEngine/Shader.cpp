@@ -78,7 +78,7 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 {
 	GLERR;
 	retflag = true;
-	unsigned int vertexShader = GLCALL(glCreateShader(GL_VERTEX_SHADER));
+	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	GLCALL(glShaderSource(vertexShader, 1, &vertexShaderSource, NULL));
 	GLCALL(glCompileShader(vertexShader));
 
@@ -98,7 +98,7 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 		return;
 	}
 
-	unsigned int fragmentShader = GLCALL(glCreateShader(GL_FRAGMENT_SHADER));
+	unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	GLCALL(glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL));
 	GLCALL(glCompileShader(fragmentShader));
 
@@ -114,7 +114,7 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 		return;
 	}
 
-	ProgramID = GLCALL(glCreateProgram());
+	ProgramID = glCreateProgram();
 	GLCALL(glAttachShader(ProgramID, vertexShader));
 	GLCALL(glAttachShader(ProgramID, fragmentShader));
 
@@ -123,7 +123,7 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 	if (hasGS)
 	{
 		const char* geometryShaderSource = geometryShaderSourceStr->c_str();
-		geometryShader = GLCALL(glCreateShader(GL_GEOMETRY_SHADER));
+		geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
 		GLCALL(glShaderSource(geometryShader, 1, &geometryShaderSource, NULL));
 		GLCALL(glCompileShader(geometryShader));
 
@@ -164,7 +164,7 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 
 	compileState = State::Compiled;
 
-	modelMatrixID = GLCALL(glGetUniformLocation(ProgramID, "model"));
+	modelMatrixID = glGetUniformLocation(ProgramID, "model");
 	//projectionMatrixID = GLCALL(glGetUniformLocation(ProgramID, "projection");
 	//viewMatrixID = GLCALL(glGetUniformLocation(ProgramID, "view");
 }
@@ -203,6 +203,8 @@ bool Shader::LoadFromTOEasset(const std::string& filename)
 			addUniform(uniform["Name"], (UniformType)uniform["Type"]);
 		}
 	}
+
+	path = filename;
 
 	return true;
 }
@@ -244,7 +246,7 @@ std::string* Shader::getFileData(const char* file)
 
 unsigned int Shader::getUniformLocation(const char* uniform_name)
 {
-	return GLCALL(glGetUniformLocation(ProgramID, uniform_name));
+	return glGetUniformLocation(ProgramID, uniform_name);
 }
 
 void Shader::SetInt(const std::string& name, int value)
@@ -292,13 +294,13 @@ void Shader::addUniform(const std::string& name, const UniformType type)
 			return;
 
 		uniform->type = type;
-		uniform->location = GLCALL(glGetUniformLocation(ProgramID, name.c_str()));
+		uniform->location = glGetUniformLocation(ProgramID, name.c_str());
 		return;
 	}
 	UniformField field;
 	field.name = name;
 	field.type = type;
-	field.location = GLCALL(glGetUniformLocation(ProgramID, name.c_str()));
+	field.location = glGetUniformLocation(ProgramID, name.c_str());
 
 
 	uniforms.emplace_back(field);
