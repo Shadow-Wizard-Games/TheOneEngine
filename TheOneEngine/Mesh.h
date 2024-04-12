@@ -33,8 +33,8 @@ private:
     //void DrawWireframe();
 
 public:
-    ResourceId meshID;
-    ResourceId materialID;
+    ResourceId meshID = -1;
+    ResourceId materialID = -1;
 
     bool active;
     bool drawWireframe;

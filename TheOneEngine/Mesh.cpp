@@ -195,17 +195,33 @@ void Mesh::LoadComponent(const json& meshJSON)
         drawNormalsFaces = meshJSON["DrawNormalsFaces"];
     }
 
+    if (meshJSON.contains("Path"))
+    {
+        std::filesystem::path legacyPath = meshJSON["Path"];
+        if (!legacyPath.string().empty())
+        {
+            std::string assetsMesh = Resources::FindFileInAssets(legacyPath.parent_path().filename().string());
+            Resources::LoadMultiple<Model>(assetsMesh);
+            meshID = Resources::LoadFromLibrary<Model>(legacyPath.string());
+            Model* model = Resources::GetResourceById<Model>(meshID);
+            materialID = Resources::LoadFromLibrary<Material>(model->GetMaterialPath());
+        }
+    }
+
     if (meshJSON.contains("MeshPath"))
     {
         std::string meshPath = meshJSON["MeshPath"];
         if (Resources::FindFileInLibrary(meshPath).empty())
         {
             std::filesystem::path libraryToAssets = meshPath;
-            std::string assetsMesh = Resources::FindFileInAssets(libraryToAssets.parent_path().filename().string() + ".fbx");
+            std::string assetsMesh = Resources::FindFileInAssets(libraryToAssets.parent_path().filename().string());
             Resources::LoadMultiple<Model>(assetsMesh);
+            meshID = Resources::LoadFromLibrary<Model>(meshPath);
         }
         else
-            meshID = Resources::LoadFromLibrary<Model>(meshJSON["MeshPath"]);
+        {
+            meshID = Resources::LoadFromLibrary<Model>(meshPath);
+        }
     }
 
     if (meshJSON.contains("MaterialPath"))

@@ -20,7 +20,7 @@ namespace fs = std::filesystem;
 
 #define RES_NOT_LOADED -1
 
-typedef size_t ResourceId;
+typedef int ResourceId;
 
 class Resources
 {
@@ -93,6 +93,7 @@ public:
 	// Load from already imported resources
 	template<class T> static ResourceId LoadFromLibrary(const std::string& file);
 	template<class T> static T* GetResourceById(ResourceId id);
+	template<class T> static T* GetResourceByPath(std::string filename);
 	template<class T> static bool CheckImport(const std::string& file);
 	template<class T, class... T2> static bool Import(const std::string& file, T2... settings);
 	template<class T> static std::string PathToLibrary(const std::string& folderName = std::string());
