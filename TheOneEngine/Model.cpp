@@ -8,11 +8,13 @@
 #include <fstream>
 #include "Resources.h"
 
-Model::Model(const std::string& path)
+Model::Model(const std::string& filename)
 {
-    if (path.ends_with(".mesh"))
+    // This constructor only loads .mesh
+    if (filename.ends_with(".mesh"))
     {
-        deserializeMeshData(path);
+        path = filename;
+        deserializeMeshData(filename);
         GenBufferData();
     }
 }

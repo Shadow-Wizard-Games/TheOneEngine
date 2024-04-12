@@ -31,6 +31,7 @@ public:
 
 	inline Shader* getShader() const { return shader; }
 	inline const char* getShaderPath() { return shaderPath.c_str(); }
+	inline const char* getPath() { return materialPath.c_str(); }
 	Uniform* getUniform(const std::string& name);
 	inline std::vector<Uniform>& getUniforms() { return uniforms; }
 	inline size_t getUniformIndex(const char* name)

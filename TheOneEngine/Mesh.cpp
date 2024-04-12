@@ -137,7 +137,11 @@ json Mesh::SaveComponent()
     meshJSON["DrawChecker"] = drawChecker;
     meshJSON["DrawNormalsVerts"] = drawNormalsVerts;
     meshJSON["DrawNormalsFaces"] = drawNormalsFaces;
-    meshJSON["MeshID"] = meshID;
+
+    Model* mesh = Resources::GetResourceById<Model>(meshID);
+    meshJSON["MeshPath"] = mesh->path;
+    Material* mat = Resources::GetResourceById<Material>(materialID);
+    meshJSON["MaterialPath"] = mat->getPath();
 
     return meshJSON;
 }
@@ -191,8 +195,13 @@ void Mesh::LoadComponent(const json& meshJSON)
         drawNormalsFaces = meshJSON["DrawNormalsFaces"];
     }
 
-    if (meshJSON.contains("Path"))
+    if (meshJSON.contains("MeshPath"))
     {
-        meshID = meshJSON["MeshID"];
+        meshID = Resources::LoadFromLibrary<Model>(meshJSON["MeshPath"]);
+    }
+
+    if (meshJSON.contains("MaterialPath"))
+    {
+        materialID = Resources::LoadFromLibrary<Material>(meshJSON["MaterialPath"]);
     }
 }

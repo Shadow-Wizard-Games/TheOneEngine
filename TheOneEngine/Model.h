@@ -44,6 +44,7 @@ public:
     std::vector<vec3f> meshFaceCenters;
     std::vector<vec3f> meshFaceNorms;
 
+    std::string path;
 
     void serializeMeshData(const std::string& filename);
     void deserializeMeshData(const std::string& filename);
