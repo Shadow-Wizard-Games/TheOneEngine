@@ -19,6 +19,8 @@ public:
     Script(std::shared_ptr<GameObject> containerGO, Script* ref);
     virtual ~Script();
 
+    void Start();
+
     void Enable() override;
     void Update() override;
 

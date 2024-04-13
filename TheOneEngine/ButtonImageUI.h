@@ -38,7 +38,7 @@ public:
 
 private:
 	std::string imagePath;
-	std::unique_ptr<Texture> image;
+	//std::unique_ptr<Texture> image;
 
 	Rect2D* currentSection;
 	Rect2D imageIdleSection;

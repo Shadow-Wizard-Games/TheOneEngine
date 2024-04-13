@@ -63,9 +63,10 @@ void Component::CreateNameFromType(ComponentType type)
 		case ComponentType::Mesh: name = "Mesh"; break;
 		case ComponentType::Script: name = "Script"; break;
 		case ComponentType::Listener: name = "Listener"; break;
-		case ComponentType::Source: name = "Source"; break;
+		case ComponentType::AudioSource: name = "AudioSource"; break;
 		case ComponentType::Canvas: name = "Canvas"; break;
 		case ComponentType::ParticleSystem: name = "ParticleSystem"; break;
+		case ComponentType::Collider2D: name = "Collider2D"; break;
 		case ComponentType::Unknown: name = "Unknown"; break;
 		default: name = "Specified Type was not found"; break;
 	}

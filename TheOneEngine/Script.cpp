@@ -24,12 +24,14 @@ Script::~Script()
 	monoBehaviourInstance = nullptr;
 }
 
+void Script::Start()
+{
+	MonoManager::CallScriptFunction(monoBehaviourInstance, "Start");
+}
+
 void Script::Enable()
 {
-	if (engine->N_sceneManager->GetSceneIsPlaying())
-	{
-		MonoManager::CallScriptFunction(monoBehaviourInstance, "Start");
-	}
+	
 }
 
 void Script::Update()

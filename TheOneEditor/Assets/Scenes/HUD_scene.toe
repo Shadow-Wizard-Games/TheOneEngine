@@ -1,0 +1,621 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            18.0,
+            -63.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 472327911
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": true,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 251324433,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 75598670
+        },
+        {
+          "DebugDraw": true,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 1658136721,
+          "UiElements": [
+            {
+              "ID": 2298871737,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.6845238208770752,
+                0.6170634627342224,
+                0.02326839789748192,
+                0.0376984141767025
+              ],
+              "Interactuable": false,
+              "Name": "KillsIconImage",
+              "Rect": [
+                -0.75,
+                0.8100000023841858,
+                0.03999999910593033,
+                0.05000000074505806
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2963569560,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.7142857313156128,
+                0.6170634627342224,
+                0.02326839789748192,
+                0.0376984141767025
+              ],
+              "Interactuable": false,
+              "Name": "MoneyIconImage",
+              "Rect": [
+                -0.6899999976158142,
+                0.699999988079071,
+                0.03999999910593033,
+                0.04500000178813934
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 657235730,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.6677489280700684,
+                0.4107142984867096,
+                0.030844155699014664,
+                0.0535714291036129
+              ],
+              "Interactuable": false,
+              "Name": "StimShotIconImage",
+              "Rect": [
+                0.20000000298023224,
+                0.6800000071525574,
+                0.05000000074505806,
+                0.07500000298023224
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2420393059,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.7045454382896423,
+                0.4107142984867096,
+                0.04978355020284653,
+                0.0496031753718853
+              ],
+              "Interactuable": false,
+              "Name": "RocketIconImage",
+              "Rect": [
+                0.4099999964237213,
+                0.6700000166893005,
+                0.07999999821186066,
+                0.07999999821186066
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2745080610,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.7586579918861389,
+                0.4107142984867096,
+                0.0416666679084301,
+                0.0496031753718853
+              ],
+              "Interactuable": false,
+              "Name": "TommyGunIconImage",
+              "Rect": [
+                -0.20999999344348907,
+                0.6800000071525574,
+                0.05000000074505806,
+                0.05000000074505806
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 3648127897,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.8051947951316833,
+                0.4117063581943512,
+                0.03517315909266472,
+                0.052579365670681
+              ],
+              "Interactuable": false,
+              "Name": "FlamethrowerIconImages",
+              "Rect": [
+                -0.4000000059604645,
+                0.6899999976158142,
+                0.07000000029802322,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 3693130429,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.8668830990791321,
+                0.420634925365448,
+                0.021645022556185722,
+                0.0347222238779068
+              ],
+              "Interactuable": false,
+              "Name": "BandageIconImage",
+              "Rect": [
+                -0.1899999976158142,
+                0.5099999904632568,
+                0.05000000074505806,
+                0.05000000074505806
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 1393352728,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.8961039185523987,
+                0.420634925365448,
+                0.021645022556185722,
+                0.0347222238779068
+              ],
+              "Interactuable": false,
+              "Name": "CycleIconImage",
+              "Rect": [
+                -0.33000001311302185,
+                0.5099999904632568,
+                0.05000000074505806,
+                0.05000000074505806
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2613755513,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.9264069199562073,
+                0.420634925365448,
+                0.021645022556185722,
+                0.0347222238779068
+              ],
+              "Interactuable": false,
+              "Name": "BlackHoleIconImage",
+              "Rect": [
+                -0.4699999988079071,
+                0.5099999904632568,
+                0.05000000074505806,
+                0.05000000074505806
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2637438984,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.9556276798248291,
+                0.420634925365448,
+                0.021645022556185722,
+                0.0347222238779068
+              ],
+              "Interactuable": false,
+              "Name": "HealIconImage",
+              "Rect": [
+                -0.6100000143051147,
+                0.5099999904632568,
+                0.05000000074505806,
+                0.05000000074505806
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 1358360192,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.4047619104385376,
+                0.6160714030265808,
+                0.12608225643634796,
+                0.1626984179019928
+              ],
+              "Interactuable": false,
+              "Name": "LeftPanel_killsCoinsImage",
+              "Rect": [
+                -0.6800000071525574,
+                0.7799999713897705,
+                0.20000000298023224,
+                0.20000000298023224
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 3659260112,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.5308441519737244,
+                0.6160714030265808,
+                0.12391775101423264,
+                0.1607142835855484
+              ],
+              "Interactuable": false,
+              "Name": "RightPanel_gunAmmoImage",
+              "Rect": [
+                0.6800000071525574,
+                0.7799999713897705,
+                0.20000000298023224,
+                0.20000000298023224
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2078779395,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.016233766451478004,
+                0.6150793433189392,
+                0.38852813839912415,
+                0.0833333358168602
+              ],
+              "Interactuable": false,
+              "Name": "BarPanelImage",
+              "Rect": [
+                0.0,
+                0.8700000047683716,
+                0.6499999761581421,
+                0.10000000149011612
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2505268316,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.6845238208770752,
+                0.5277777910232544,
+                0.1818181872367859,
+                0.0694444477558136
+              ],
+              "Interactuable": false,
+              "Name": "ShieldBarPanelImage",
+              "Rect": [
+                0.4000000059604645,
+                0.5,
+                0.30000001192092896,
+                0.10000000149011612
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2066092138,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.0059523810632526875,
+                0.082341268658638,
+                0.07413420081138611,
+                0.0734127014875412
+              ],
+              "Interactuable": false,
+              "Name": "LargeAbilityPanelRightImage",
+              "Rect": [
+                0.20999999344348907,
+                0.6800000071525574,
+                0.10999999940395355,
+                0.10000000149011612
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 691572272,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.0059523810632526875,
+                0.082341268658638,
+                0.07413420081138611,
+                0.0734127014875412
+              ],
+              "Interactuable": false,
+              "Name": "LargeAbilityPanelLeftImage",
+              "Rect": [
+                -0.20999999344348907,
+                0.6800000071525574,
+                0.10999999940395355,
+                0.10000000149011612
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 882402322,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.0059523810632526875,
+                0.2390872985124588,
+                0.07792207598686218,
+                0.085317462682724
+              ],
+              "Interactuable": false,
+              "Name": "LargeAbilityPanelRightInvImage",
+              "Rect": [
+                0.4000000059604645,
+                0.6800000071525574,
+                0.11999999731779099,
+                0.10999999940395355
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 4255291896,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.0059523810632526875,
+                0.2390872985124588,
+                0.07792207598686218,
+                0.085317462682724
+              ],
+              "Interactuable": false,
+              "Name": "LargeAbilityPanelLeftInvImage",
+              "Rect": [
+                -0.4099999964237213,
+                0.6800000071525574,
+                0.11999999731779099,
+                0.10999999940395355
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 3426564605,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.5595238208770752,
+                0.8234127163887024,
+                0.09469696879386902,
+                0.1587301641702652
+              ],
+              "Interactuable": false,
+              "Name": "ProfilePanelImage",
+              "Rect": [
+                0.0,
+                0.5899999737739563,
+                0.15000000596046448,
+                0.20000000298023224
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 2639089074,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.020021645352244377,
+                0.403769850730896,
+                0.0476190485060215,
+                0.0505952388048172
+              ],
+              "Interactuable": false,
+              "Name": "SmallAbilityPanel1Image",
+              "Rect": [
+                -0.6100000143051147,
+                0.5099999904632568,
+                0.08500000089406967,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 848448960,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.020021645352244377,
+                0.403769850730896,
+                0.0476190485060215,
+                0.0505952388048172
+              ],
+              "Interactuable": false,
+              "Name": "SmallAbilityPanel2Image",
+              "Rect": [
+                -0.4699999988079071,
+                0.5099999904632568,
+                0.08500000089406967,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 1585730099,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.020021645352244377,
+                0.403769850730896,
+                0.0476190485060215,
+                0.0505952388048172
+              ],
+              "Interactuable": false,
+              "Name": "SmallAbilityPanel3Image",
+              "Rect": [
+                -0.33000001311302185,
+                0.5099999904632568,
+                0.08500000089406967,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 298657616,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.020021645352244377,
+                0.403769850730896,
+                0.0476190485060215,
+                0.0505952388048172
+              ],
+              "Interactuable": false,
+              "Name": "SmallAbilityPanel4Image",
+              "Rect": [
+                -0.1899999976158142,
+                0.5099999904632568,
+                0.08500000089406967,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 429965271,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.011904762126505375,
+                0.7857142686843872,
+                0.24891774356365204,
+                0.210317462682724
+              ],
+              "Interactuable": false,
+              "Name": "LeftSideTopBarImage",
+              "Rect": [
+                -0.47999998927116394,
+                0.6000000238418579,
+                0.4000000059604645,
+                0.25
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 4041761030,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.29004329442977905,
+                0.7857142686843872,
+                0.24945887923240662,
+                0.2123015820980072
+              ],
+              "Interactuable": false,
+              "Name": "RightSideTopBarImage",
+              "Rect": [
+                0.47999998927116394,
+                0.6000000238418579,
+                0.4000000059604645,
+                0.25
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "ID": 1108959449,
+              "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+              "ImageSection": [
+                0.26298701763153076,
+                0.7876983880996704,
+                0.024350648745894432,
+                0.0317460335791111
+              ],
+              "Interactuable": false,
+              "Name": "MiddleTopBarImage",
+              "Rect": [
+                0.0,
+                0.3700000047683716,
+                0.05000000074505806,
+                0.05000000074505806
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ]
+        }
+      ],
+      "Enabled": true,
+      "Name": "HudCanvas",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\HUD_scene.toe",
+  "sceneName": "HUD_scene"
+}

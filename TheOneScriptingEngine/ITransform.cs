@@ -42,7 +42,8 @@ public class ITransform : IComponent
         }
     }
 
-    public ITransform(IntPtr GOptr) : base(GOptr) { }
+    public ITransform() : base() { }
+    public ITransform(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
     public bool ComponentCheck()
     {
@@ -54,6 +55,11 @@ public class ITransform : IComponent
 
         Vector3 finalPos = position + increment;
         InternalCalls.Translate(containerGOptr, ref finalPos);
+    }
+
+    public void SetPosition(Vector3 setPos)
+    {
+        position = setPos;
     }
 
     public void Rotate(Vector3 increment)

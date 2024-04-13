@@ -213,7 +213,7 @@
     <ClInclude Include="Listener.h">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Source.h">
+    <ClInclude Include="AudioSource.h">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClInclude>
     <ClInclude Include="ResourcesMaterialImpl.h">
@@ -335,7 +335,7 @@
     <ClCompile Include="Listener.cpp">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="AudioSource.cpp">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">

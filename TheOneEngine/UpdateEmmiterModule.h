@@ -30,6 +30,7 @@ protected:
 class AccelerationUpdate : public UpdateEmmiterModule {
 public:
 	AccelerationUpdate(Emmiter* owner);
+	AccelerationUpdate(Emmiter* owner, AccelerationUpdate* ref);
 
 	vec3 acceleration;
 

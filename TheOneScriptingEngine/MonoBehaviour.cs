@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-public class MonoBehaviour
+public class MonoBehaviour : IComponent
 {
     public IGameObject attachedGameObject;
+    public MonoBehaviour() : base() { attachedGameObject = new IGameObject(containerGOptr); }
 
-    public MonoBehaviour()
+    public object GetClassInstance()
     {
-        attachedGameObject = new IGameObject();
+        return this;
     }
 
     public virtual void Start() { }

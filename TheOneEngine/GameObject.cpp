@@ -5,12 +5,13 @@
 #include "Texture.h"
 #include "Collider2D.h"
 #include "Listener.h"
-#include "Source.h"
+#include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "UIDGen.h"
 #include "BBox.hpp"
 #include "Camera.h"
+#include "N_SceneManager.h"
 
 #include "Math.h"
 #include "EngineCore.h"
@@ -334,6 +335,14 @@ json GameObject::SaveGameObject()
 	gameObjectJSON["Name"] = name;
 	gameObjectJSON["Static"] = isStatic;
 	gameObjectJSON["Enabled"] = enabled;
+	
+	//Save prefab variables
+	if (prefabID != 0)
+	{
+		gameObjectJSON["PrefabID"] = prefabID;
+		gameObjectJSON["EditablePrefab"] = editablePrefab;
+		gameObjectJSON["PrefabDirty"] = isPrefabDirty;
+	}
 
 	if (!components.empty())
 	{
@@ -382,6 +391,20 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 	{
 		enabled = gameObjectJSON["Enabled"];
 	}
+	
+	if (gameObjectJSON.contains("PrefabID"))
+	{
+		prefabID = gameObjectJSON["PrefabID"];
+
+		if (gameObjectJSON.contains("EditablePrefab"))
+		{
+			editablePrefab = gameObjectJSON["EditablePrefab"];
+		}
+		if (gameObjectJSON.contains("PrefabDirty"))
+		{
+			isPrefabDirty = gameObjectJSON["PrefabDirty"];
+		}
+	}
 
 	// Load components
 	if (gameObjectJSON.contains("Components"))
@@ -416,16 +439,27 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			{
 				this->AddComponent<Listener>();
 				this->GetComponent<Listener>()->LoadComponent(componentJSON);
-				this->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+
+				// Check if the gameobject has an Audio Source
+				if (this->GetComponent<AudioSource>() == nullptr)
+					this->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+				else
+					this->GetComponent<Listener>()->goID = this->GetComponent<AudioSource>()->goID;
 				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Listener>());
 				audioManager->audio->SetDefaultListener(this->GetComponent<Listener>()->goID);
 			}
-			else if (componentJSON["Type"] == (int)ComponentType::Source)
+			else if (componentJSON["Type"] == (int)ComponentType::AudioSource)
 			{
-				this->AddComponent<Source>();
-				this->GetComponent<Source>()->LoadComponent(componentJSON);
-				this->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
-				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Source>());
+				this->AddComponent<AudioSource>();
+				this->GetComponent<AudioSource>()->LoadComponent(componentJSON);
+
+				// Check if the gameobject has a Listener
+				if (this->GetComponent<Listener>() == nullptr)
+					this->GetComponent<AudioSource>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+				else
+					this->GetComponent<AudioSource>()->goID = this->GetComponent<Listener>()->goID;
+
+				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<AudioSource>());
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Collider2D)
 			{
@@ -480,17 +514,39 @@ void GameObject::SetPrefab(const uint32_t& pID)
 void GameObject::UnpackPrefab()
 {
 	if (IsPrefab())
+	{
 		SetPrefab(0);
+		editablePrefab = true; 
+		isPrefabDirty = false;
+	}
+		
 }
 
-void GameObject::LockPrefab(bool lock)
+void GameObject::SetEditablePrefab(bool editable)
 {
 	if (IsPrefab())
 	{
-		lockedPrefab = lock;
+		editablePrefab = editable;
 		for (auto item = children.begin(); item != children.end(); ++item) {
 			if (*item != nullptr) {
-				(*item).get()->LockPrefab(lock);
+				(*item).get()->SetEditablePrefab(editable);
+			}
+		}
+	}
+}
+
+void GameObject::SetPrefabDirty(bool changed)
+{
+	if (IsPrefab())
+	{
+		isPrefabDirty = changed;
+		if (parent.lock() != engine->N_sceneManager->currentScene->GetRootSceneGO() && parent.lock().get()->GetPrefabID() == this->prefabID)
+		{
+			parent.lock().get()->SetPrefabDirty(changed);
+		}
+		for (auto item = children.begin(); item != children.end(); ++item) {
+			if (*item != nullptr) {
+				(*item).get()->SetPrefabDirty(changed);
 			}
 		}
 	}

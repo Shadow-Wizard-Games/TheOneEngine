@@ -59,10 +59,9 @@ bool EngineCore::PreUpdate()
 
 void EngineCore::Update(double dt)
 {
-    
-    collisionSolver->Update(dt);
     audioManager->Update(dt);
-
+    collisionSolver->Update(dt);
+  
     this->dt = dt;
 }
 
@@ -110,15 +109,15 @@ void EngineCore::Render(Camera* camera)
         camera->lookAt.x, camera->lookAt.y, camera->lookAt.z,
 		cameraTransform->GetUp().x, cameraTransform->GetUp().y, cameraTransform->GetUp().z);
 
-    //DrawGrid(1000, 50);
-    //DrawAxis();
+    DrawGrid(1000, 50);
+    DrawAxis();
 
-    //if (collisionSolver->drawCollisions) collisionSolver->DrawCollisions();
+    if (collisionSolver->drawCollisions) collisionSolver->DrawCollisions();
 
-    /*if (!monoManager->debugShapesQueue.empty())
+    if (!monoManager->debugShapesQueue.empty())
     {
         monoManager->RenderShapesQueue();
-    }*/
+    }
 
     GLCALL(glColor3f(1.0f, 1.0f, 1.0f));
     //DrawFrustum(camera->viewMatrix);
@@ -142,14 +141,18 @@ void EngineCore::LogGL(string id)
 void EngineCore::CleanUp()
 {
     audioManager->CleanUp();
+    audioManager = nullptr;
     delete audioManager;
     
     monoManager->ShutDownMono();
+    monoManager = nullptr;
     delete monoManager;
 
     inputManager->CleanUp();
+    inputManager = nullptr;
     delete inputManager;
 
+    collisionSolver = nullptr;
     delete collisionSolver;
 }
 

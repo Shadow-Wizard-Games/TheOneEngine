@@ -5,12 +5,12 @@ ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemUI(
 {
 	this->name = "Image";
 	imagePath = "Assets/Meshes/HUD.png";
-	image = std::make_unique<Texture>(imagePath);
+	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
 }
 
 ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::IMAGE, name, false, rect), imagePath(path)
 {
-	image = std::make_unique<Texture>(imagePath);
+	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
 }
 
 ImageUI::~ImageUI(){}
@@ -18,6 +18,8 @@ ImageUI::~ImageUI(){}
 void ImageUI::Draw2D()
 {
 	auto canvas = containerGO.get()->GetComponent<Canvas>();
+
+	if (canvas->GetTexture(this->imagePath) == nullptr) return;
 
 	float posX = canvas->GetRect().x + GetRect().x;
 	float posY = canvas->GetRect().y + GetRect().y;
@@ -34,7 +36,9 @@ void ImageUI::Draw2D()
 
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	image.get()->Bind();
+	canvas->GetTexture(this->imagePath)->bind();
+
+	//image.get()->bind();
 
 	glBegin(GL_QUADS);
 
@@ -102,24 +106,30 @@ void ImageUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
-	image = std::make_unique<Texture>(imagePath);
+	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
 }
 
 Rect2D ImageUI::GetSect() const
 {
-	Rect2D imageSect;
-	imageSect.x = textureSection.x * image.get()->GetSize().x;
-	imageSect.y = textureSection.y * image.get()->GetSize().y;
-	imageSect.w = (textureSection.w * image.get()->GetSize().x);
-	imageSect.h = (textureSection.h * image.get()->GetSize().y);
+	Rect2D imageSect = { 0, 0, 0, 0 };
+	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
+	{
+		imageSect.x = textureSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
+		imageSect.y = textureSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
+		imageSect.w = (textureSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width);
+		imageSect.h = (textureSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height);
+	}
 
 	return imageSect;
 }
 
 void ImageUI::SetSectSize(float x, float y, float width, float height)
 {
-	textureSection.x = x / image.get()->GetSize().x;
-	textureSection.y = y / image.get()->GetSize().y;
-	textureSection.w = (width) / image.get()->GetSize().x;
-	textureSection.h = (height) / image.get()->GetSize().y;
+	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
+	{
+		textureSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
+		textureSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
+		textureSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
+		textureSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
+	}
 }

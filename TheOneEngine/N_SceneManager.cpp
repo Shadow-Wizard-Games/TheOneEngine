@@ -8,7 +8,7 @@
 #include "Texture.h"
 #include "Collider2D.h"
 #include "Listener.h"
-#include "Source.h"
+#include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "../TheOneAudio/AudioCore.h"
@@ -34,12 +34,27 @@ bool N_SceneManager::Start()
 {
 	FindCameraInScene();
 
+	loadingScreen = std::make_shared<GameObject>("loadingScreen");
+	loadingScreen.get()->AddComponent<Transform>();
+	loadingScreen.get()->AddComponent<Canvas>();
+	loadingScreen.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>("Assets/Textures/Hud/LoadingTxt.png");
+
 	return true;
 }
 
 bool N_SceneManager::PreUpdate()
 {
-	// Do nothing
+	if (sceneChange)
+	{
+		// Kiko - Here add the transition managing
+		engine->collisionSolver->ClearCollisions();
+
+		LoadSceneFromJSON(currentScene->GetPath());
+
+		FindCameraInScene();
+		currentScene->SetIsDirty(true);
+		sceneChange = false;
+	}
 
 	return true;
 }
@@ -51,24 +66,32 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	// Save Scene by checking if isDirty and pressing CTRL+S
 	//if (currentScene->IsDirty()) SaveScene();
 	
-	sceneIsPlaying = isPlaying;
-
-	if (previousFrameIsPlaying != isPlaying && isPlaying == true)
+	if(!sceneChange)
+		sceneIsPlaying = isPlaying;
+	//this will be called when we click play
+	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying)
 	{
 		for (const auto gameObject : currentScene->GetRootSceneGO()->children)
 		{
-			// Kiko disabled this
-			if(!gameObject.get()->GetComponent<Canvas>())
-				gameObject->Enable();
+			if(gameObject.get()->GetComponent<Script>())
+				gameObject.get()->GetComponent<Script>()->Start();
 		}
+		//add game objects to collision solver vector
+		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
 	}
 
 	if (isPlaying)
 	{
 		currentScene->UpdateGOs(dt);
 	}
+	//this will be called when we click pause
+	else if (previousFrameIsPlaying && !sceneIsPlaying)
+	{
+		//function to clear collision solver vector
+		engine->collisionSolver->ClearCollisions();
+	}
 
-	previousFrameIsPlaying = isPlaying;
+	previousFrameIsPlaying = sceneIsPlaying;
 
 	return true;
 }
@@ -82,7 +105,7 @@ bool N_SceneManager::PostUpdate()
 bool N_SceneManager::CleanUp()
 {
 	//delete currentScene->currentCamera;
-
+	currentScene = nullptr;
 	delete currentScene;
 
 	return true;
@@ -102,12 +125,9 @@ void N_SceneManager::LoadScene(uint index)
 
 void N_SceneManager::LoadScene(std::string sceneName)
 {
-	std::string fileName = "Assets/Scenes/" + sceneName + ".toe";
-
-	LoadSceneFromJSON(fileName);
-
-	FindCameraInScene();
-	currentScene->SetIsDirty(true);
+	this->currentScene->SetPath("Assets/Scenes/" + sceneName + ".toe");
+	this->sceneChange = true;
+	sceneIsPlaying = false;
 }
 
 void N_SceneManager::SaveScene()
@@ -165,6 +185,9 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	try
 	{
 		file >> sceneJSON;
+		
+		// JULS: Audio Manager should delete this, but for now leave this commented
+		//audioManager->DeleteAudioComponents();
 	}
 	catch (const json::parse_error& e)
 	{
@@ -264,8 +287,11 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::Listener:
 			duplicatedGO.get()->AddCopiedComponent<Listener>((Listener*)item);
 			break;
-		case ComponentType::Source:
-			duplicatedGO.get()->AddCopiedComponent<Source>((Source*)item);
+		case ComponentType::AudioSource:
+			duplicatedGO.get()->AddCopiedComponent<AudioSource>((AudioSource*)item);
+			break;
+		case ComponentType::ParticleSystem:
+			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
 			break;
 		case ComponentType::Unknown:
 			break;
@@ -288,6 +314,13 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		std::shared_ptr<GameObject> temp = DuplicateGO(child, true);
 		temp.get()->parent = duplicatedGO;
 		duplicatedGO.get()->children.push_back(temp);
+	}
+
+	if (originalGO.get()->IsPrefab())
+	{
+		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID());
+		duplicatedGO.get()->SetEditablePrefab(originalGO.get()->IsEditablePrefab());
+		duplicatedGO.get()->SetPrefabDirty(originalGO.get()->IsPrefabDirty());
 	}
 
 	return duplicatedGO;

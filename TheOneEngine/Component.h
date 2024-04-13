@@ -19,7 +19,7 @@ enum class ComponentType
     Collider2D,
     Canvas,
     Listener,
-    Source,
+    AudioSource,
     ParticleSystem,
 	Unknown
 };

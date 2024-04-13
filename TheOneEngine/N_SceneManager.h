@@ -62,6 +62,7 @@ public:
 	uint GetNumberGO() const;
 	std::vector<std::shared_ptr<GameObject>>GetGameObjects();
 	const bool GetSceneIsPlaying() { return sceneIsPlaying; }
+	const bool GetSceneIsChanging() { return sceneChange; }
 
 	// SelectedGo (Editor Only???)
 	std::shared_ptr<GameObject> GetSelectedGO() const;
@@ -77,11 +78,14 @@ public:
 	Scene* currentScene = nullptr; //Convert to smart ptr
 	std::vector<std::shared_ptr<GameObject>> objectsToAdd;
 	std::vector<GameObject*> objectsToDelete;
+	std::shared_ptr<GameObject> loadingScreen;
 
 private:
 	std::shared_ptr<GameObject> selectedGameObject = nullptr;
 	bool sceneIsPlaying = false;
 	bool previousFrameIsPlaying = false;
+	//Kikofp02: This will check if the engine has to change scene
+	bool sceneChange = false;
 };
 
 class Scene

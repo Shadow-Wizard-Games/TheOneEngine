@@ -31,16 +31,15 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     float currentTimer = 0.0f;
     float attackCooldown = 2.0f;
 
-    bool isExploring = true;
-    AudioManager.EventIDs currentID = 0;
+    PlayerScript player;
 
     public override void Start()
 	{
 		playerGO = IGameObject.Find("SK_MainCharacter");
-        isExploring = true;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
-	public override void Update()
+    public override void Update()
 	{
         if (currentState == States.Dead) return;
 
@@ -79,37 +78,15 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 shooting = true;
                 currentState = States.Attack;
                 //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.ENEMYATTACK);
-                isExploring = false;
             }
             else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
             {
                 currentState = States.Chase;
-                isExploring = false;
             }
             else if (playerDistance > maxChasingRange)
             {
                 detected = false;
                 currentState = States.Idle;
-                isExploring = true;
-            }
-        }
-
-        if (isExploring)
-        {
-            if (currentID != AudioManager.EventIDs.EXPLORE)
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.EXPLORE);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.COMBAT);
-                currentID = AudioManager.EventIDs.EXPLORE;
-            }
-        }
-        else
-        {
-            if (currentID != AudioManager.EventIDs.COMBAT)
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.COMBAT);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.EXPLORE);
-                currentID = AudioManager.EventIDs.COMBAT;
             }
         }
     }
@@ -121,6 +98,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             case States.Idle:
                 return;
             case States.Attack:
+                player.isFighting = true;
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
                 if (currentTimer < attackCooldown)
                 {
@@ -128,7 +106,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
                         InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.ENEMYATTACK);
+                        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_X_ADULT_SPIT);
                         hasShot = true;
                     }
                     break;
@@ -138,6 +116,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 shooting = false;
                 break;
             case States.Chase:
+                player.isFighting = true;
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 break;

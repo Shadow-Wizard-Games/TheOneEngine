@@ -18,24 +18,23 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO) : Component(cont
     h = containerGO.get()->GetAABBox().sizes().z;
     offset.x = 0;
     offset.y = 0;
-    offset.z = 0;
-
+    cornerPivot = true;
+    objectOrientation = ObjectOrientation::Front;
     //TODO: CHANGE INTO REAL CALCULATED RADIUS
     radius = 0.5;
-    //push the game object that has colliders into the collidergo list
-    engine->collisionSolver->goWithCollision.push_back(containerGO.get());
 }
 
-Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, Collider2D* ref) : Component(containerGO, ComponentType::Collider2D)
+Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, Collider2D* ref) : Component(containerGO, ref,ComponentType::Collider2D)
 {
     this->colliderType = ref->colliderType;
     this->collisionType = ref->collisionType;
     this->h = ref->h;
     this->w = ref->w;
+    this->offset = ref->offset;
+    cornerPivot = true;
+    objectOrientation = ObjectOrientation::Front;
     //TODO: CHANGE INTO REAL CALCULATED RADIUS
     this->radius = ref->radius;
-    //push the game object that has colliders into the collidergo list
-    engine->collisionSolver->goWithCollision.push_back(containerGO.get());
 }
 
 Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType colliderType) :
@@ -47,8 +46,25 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType col
     //TODO: CHANGE INTO REAL CALCULATED SIZES
     h = 1;
     w = 1;
-    //push the game object that has colliders into the collidergo list
-    engine->collisionSolver->goWithCollision.push_back(containerGO.get());
+    cornerPivot = true;
+    objectOrientation = ObjectOrientation::Front;
+    offset.x = 0;
+    offset.y = 0;
+}
+
+Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType colliderType, Collider2D* ref) :
+    Component(containerGO, ref, ComponentType::Collider2D),
+    colliderType(colliderType)
+{
+    this->collisionType = CollisionType::Player;
+    radius = 0.0;
+    //TODO: CHANGE INTO REAL CALCULATED SIZES
+    h = 1;
+    w = 1;
+    cornerPivot = true;
+    objectOrientation = ObjectOrientation::Front;
+    offset.x = 0;
+    offset.y = 0;
 }
 
 Collider2D::~Collider2D() {}
@@ -67,7 +83,8 @@ json Collider2D::SaveComponent()
     colliderJSON["Radius"] = radius;
     colliderJSON["OffsetX"] = offset.x;
     colliderJSON["OffsetY"] = offset.y;
-    colliderJSON["OffsetZ"] = offset.z;
+    colliderJSON["CornerPivot"] = cornerPivot;
+    colliderJSON["ObjectOrientation"] = (int)objectOrientation;
 
     if (auto pGO = containerGO.lock())
         colliderJSON["ParentUID"] = pGO.get()->GetUID();
@@ -89,7 +106,8 @@ void Collider2D::LoadComponent(const json& colliderJSON)
     if (colliderJSON.contains("Radius")) radius = colliderJSON["Radius"];
     if (colliderJSON.contains("OffsetX")) offset.x = colliderJSON["OffsetX"];
     if (colliderJSON.contains("OffsetY")) offset.y = colliderJSON["OffsetY"];
-    if (colliderJSON.contains("OffsetZ")) offset.z = colliderJSON["OffsetZ"];
+    if (colliderJSON.contains("CornerPivot")) cornerPivot = colliderJSON["CornerPivot"];
+    if (colliderJSON.contains("ObjectOrientation")) objectOrientation = (ObjectOrientation)colliderJSON["ObjectOrientation"];
 
     if (colliderJSON.contains("UID")) UID = colliderJSON["UID"];
 

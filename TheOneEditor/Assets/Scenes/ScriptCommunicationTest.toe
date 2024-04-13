@@ -1,0 +1,199 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 713657178
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 1614118153,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.5,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 797009687
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Path": "Library/Meshes/SM_Cube/pCube1.mesh",
+          "Type": 2,
+          "UID": 2182937179
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "GetComponentTestScript",
+          "Type": 4,
+          "UID": 3449374568
+        }
+      ],
+      "Enabled": true,
+      "Name": "pCube1",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3941164502
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Path": "Library/Meshes/SM_Box_Lowpoly/SM_Box_LowPoly.mesh",
+          "Type": 2,
+          "UID": 4115183174
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "GetComponentTestScript2",
+          "Type": 4,
+          "UID": 3043235519
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Box_LowPoly",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 461968656
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "GetComponentTestScript2",
+          "Type": 4,
+          "UID": 2599432835
+        }
+      ],
+      "Enabled": true,
+      "Name": "Empty GameObject",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\ScriptCommunicationTest.toe",
+  "sceneName": "ScriptCommunicationTest"
+}
