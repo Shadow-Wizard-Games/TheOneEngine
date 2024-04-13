@@ -6,11 +6,12 @@ using static ICamera;
 
 class InternalCalls
 {
-    //Constructors
+    #region Constructors
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr GetGameObjectPtr();
+    #endregion
 
-    //Input
+    #region Input
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetKeyboardButton(int id);
 
@@ -19,8 +20,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void GetControllerJoystick(int joystick, ref Vector2 joyResult, int gamePad);
+    #endregion
 
-    //Transform
+    #region Transform
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool TransformCheck(IntPtr GOptr);
 
@@ -52,8 +54,9 @@ class InternalCalls
     internal extern static Vector3 GetTransformForward(IntPtr GOptr);
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static Vector3 GetTransformRight(IntPtr GOptr);
+    #endregion
 
-    //GameObjects
+    #region GameObject
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
 
@@ -77,16 +80,19 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void Disable(IntPtr GOtoDisable);
+    #endregion
 
-    //Component
+    #region Component
     [MethodImpl(MethodImplOptions.InternalCall)]
     internal extern TComponent GetComponent<TComponent>() where TComponent : IComponent;
+    #endregion
 
-    //Scene Manager
+    #region Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void LoadScene(string sceneName);
+    #endregion
 
-    //User Interfaces
+    #region User Interfaces
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void CanvasEnableToggle(IntPtr GOptr);
 
@@ -98,16 +104,17 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ChangeSectImg(IntPtr GOptr, string name, int x, int y, int w, int h);
+    #endregion
 
-
-    //Helpers
+    #region Helpers
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetAppDeltaTime();
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ExitApplication();
+    #endregion
 
-    //Debug
+    #region Debug
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ScriptingLog(string message, int logType);
     
@@ -116,8 +123,9 @@ class InternalCalls
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DrawWireSphere(Vector3 position, float radius, Vector3 color);
+    #endregion
 
-    //Particle Systems
+    #region Particle System
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void PlayPS(IntPtr GOptr);
 
@@ -126,15 +134,17 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ReplayPS(IntPtr GOptr);
-    
-    //Audio
+    #endregion
+
+    #region Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void PlaySource(IntPtr GOptr, EventIDs audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopSource(IntPtr GOptr, EventIDs audio);
+    #endregion
 
-    //Collider2D
+    #region Collider2D
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetColliderRadius(IntPtr GOptr);
 
@@ -146,8 +156,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetColliderBoxSize(IntPtr GOptr, ref Vector2 sizeToSet);
+    #endregion
 
-    //Camera
+    #region Camera
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static double GetFov(IntPtr GOptr);
 
@@ -183,4 +194,5 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetPrimaryCam(IntPtr GOptr, ref bool cameraType);
+    #endregion
 }
