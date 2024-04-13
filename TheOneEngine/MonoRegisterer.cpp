@@ -139,7 +139,6 @@ static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction
 	go->AddComponent<AudioSource>();
 	
 	go->AddScript("FaceHuggerBehaviour");
-	go->GetComponent<Script>()->Start();
 
 	return go;
 }

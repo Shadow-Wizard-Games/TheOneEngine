@@ -35,11 +35,11 @@ void Script::Start()
 
 void Script::Enable()
 {
-	if (!enabled)
+	if (!enabled && engine->N_sceneManager->GetSceneIsPlaying())
 	{
 		Start();
-		enabled = true;
 	}
+	enabled = true;
 }
 
 void Script::Update()
