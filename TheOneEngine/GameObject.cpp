@@ -95,7 +95,9 @@ void GameObject::RemoveComponent(ComponentType type)
 // AABB -------------------------------------
 void GameObject::GenerateAABBFromMesh()
 {
-	Mesh* mesh = GetComponent<Mesh>();
+	//TODO: this comment is temporal, it needs to be changed to retained mode
+
+	/*Mesh* mesh = GetComponent<Mesh>();
 
 	glGenBuffers(1, &mesh->mesh.vertex_buffer_id);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh->mesh.vertex_buffer_id);
@@ -125,20 +127,7 @@ void GameObject::GenerateAABBFromMesh()
 			aabb.max = (glm::max)(aabb.max, vec3(v.v));
 		}
 		break;
-	}
-
-	//GLenum error = glGetError();
-	//if (error != GL_NO_ERROR) {
-	//    // Print the raw error code
-	//    fprintf(stderr, "OpenGL error code: %d\n", error);
-	//
-	//    // Print the corresponding error string
-	//    const char* errorString = reinterpret_cast<const char*>(gluErrorString(error));
-	//    fprintf(stderr, "OpenGL error: %s\n", errorString ? errorString : "Unknown");
-	//
-	//    assert(false); // Trigger an assertion failure for debugging
-	//}
-
+	}*/
 }
 
 AABBox GameObject::CalculateAABB()

@@ -61,7 +61,6 @@ void Component::CreateNameFromType(ComponentType type)
 		case ComponentType::Transform: name = "Transform"; break;
 		case ComponentType::Camera: name = "Camera"; break;
 		case ComponentType::Mesh: name = "Mesh"; break;
-		case ComponentType::Texture: name = "Texture"; break;
 		case ComponentType::Script: name = "Script"; break;
 		case ComponentType::Listener: name = "Listener"; break;
 		case ComponentType::AudioSource: name = "AudioSource"; break;

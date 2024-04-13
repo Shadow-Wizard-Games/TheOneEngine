@@ -25,11 +25,11 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
 {
     glDisable(GL_CULL_FACE);
 
-    const double* viewProjectionMatrix = (double*)glm::value_ptr(camera->viewProjectionMatrix);
+    const float* viewProjectionMatrix = glm::value_ptr(camera->viewProjectionMatrix);
 
     glPushMatrix();
     //glLoadIdentity();
-    glLoadMatrixd(viewProjectionMatrix);
+    glLoadMatrixf(viewProjectionMatrix);
 
     vec3 cameraPosition;
     cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
@@ -42,13 +42,13 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     glBegin(GL_TRIANGLES);
     glColor3ub(particle->color.r, particle->color.g, particle->color.b);
 
-    glVertex3d(- (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-    glVertex3d(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3d(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-
-    glVertex3d(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3d(+ (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3d(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
+    glVertex3f(- (1 * particle->scale.x), + (1 * particle->scale.y), 0);
+    glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
+    glVertex3f(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
+             
+    glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
+    glVertex3f(+ (1 * particle->scale.x), - (1 * particle->scale.y), 0);
+    glVertex3f(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
 
     glEnd();
 

@@ -3,10 +3,9 @@
 #pragma once
 
 #include "Defs.h"
-#include "MeshLoader.h"
+
 #include "Component.h"
-#include "Texture.h"
-#include "Graphic.h"
+#include "Resources.h"
 
 #include <vector>
 #include <memory>
@@ -29,16 +28,13 @@ public:
     void LoadComponent(const json& meshJSON);
 
 private:
-
-    void ConfigureVertexFormat();
-    void DrawVertexNormals();
-    void DrawFaceNormals();
+    //void DrawVertexNormals();
+    //void DrawFaceNormals();
     //void DrawWireframe();
 
 public:
-
-    MeshBufferedData mesh;
-    MeshData meshData;
+    ResourceId meshID = -1;
+    ResourceId materialID = -1;
 
     bool active;
     bool drawWireframe;
@@ -50,12 +46,6 @@ public:
    
     int normalLineWidth;
     float normalLineLength;
-
-    std::string path;
-
-private:
-
-    MeshLoader* meshLoader;
 };
 
 #endif // !__MESH_H__
