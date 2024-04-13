@@ -38,6 +38,7 @@ public:
     Collider2D(std::shared_ptr<GameObject> containerGO);
     Collider2D(std::shared_ptr<GameObject> containerGO, Collider2D* ref);
     Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType colliderType);
+    Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType colliderType, Collider2D* ref);
     ~Collider2D();
 
     json SaveComponent();
