@@ -141,7 +141,7 @@ public:
     Frustum frustum;
     mat4 viewMatrix;
     mat4 projectionMatrix;
-    mat4 viewProjectionMatrix;
+    glm::mat4 viewProjectionMatrix;
 
     CameraType cameraType;
 

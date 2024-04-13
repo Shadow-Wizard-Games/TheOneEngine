@@ -5,9 +5,20 @@ ConstantSpawnRate::ConstantSpawnRate(Emmiter* owner)
 {
 	type = CONSTANT;
 	this->owner = owner;
+
 	duration = 10;
 	spawnRate = 0.5f;
 	timeFromLastSpawn = 0;
+}
+
+ConstantSpawnRate::ConstantSpawnRate(Emmiter* owner, ConstantSpawnRate* ref)
+{
+	type = CONSTANT;
+	this->owner = owner;
+
+	duration = ref->duration;
+	spawnRate = ref->spawnRate;
+	timeFromLastSpawn = ref->timeFromLastSpawn;
 }
 
 void ConstantSpawnRate::Update(double dt)
@@ -63,9 +74,20 @@ SingleBurstSpawn::SingleBurstSpawn(Emmiter* owner)
 {
 	type = SINGLE_BURST;
 	this->owner = owner;
+
 	duration = 10;
 	amount = 10;
 	activated = false;
+}
+
+SingleBurstSpawn::SingleBurstSpawn(Emmiter* owner, SingleBurstSpawn* ref)
+{
+	type = SINGLE_BURST;
+	this->owner = owner;
+
+	duration = ref->duration;
+	amount = ref->amount;
+	activated = ref->activated;
 }
 
 void SingleBurstSpawn::Reset()
@@ -116,10 +138,22 @@ ConstantBurstSpawn::ConstantBurstSpawn(Emmiter* owner)
 {
 	type = CONSTANT_BURST;
 	this->owner = owner;
+
 	duration = 10;
 	spawnRate = 0.5f;
-	timeFromLastSpawn = 0;
 	amount = 10;
+	timeFromLastSpawn = 0;
+}
+
+ConstantBurstSpawn::ConstantBurstSpawn(Emmiter* owner, ConstantBurstSpawn* ref)
+{
+	type = CONSTANT_BURST;
+	this->owner = owner;
+
+	duration = ref->duration;
+	spawnRate = ref->spawnRate;
+	amount = ref->amount;
+	timeFromLastSpawn = ref->timeFromLastSpawn;
 }
 
 void ConstantBurstSpawn::Update(double dt)

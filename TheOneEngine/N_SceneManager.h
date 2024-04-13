@@ -13,7 +13,6 @@
 
 class Scene;
 class Transform;
-class MeshLoader;
 
 class N_SceneManager
 {
@@ -48,13 +47,13 @@ public:
 	std::shared_ptr<GameObject> CreateCanvasGO(std::string name);
 
 	// Try to mix this two (CreateExistingMeshGO should be erased and CreateMeshGO has to do)
-	std::shared_ptr<GameObject> CreateMeshGO(std::string path);
-	std::shared_ptr<GameObject> CreateExistingMeshGO(std::string fbxName);
+	void CreateMeshGO(std::string path);
+	void CreateExistingMeshGO(std::string fbxName);
 
 	std::shared_ptr<GameObject> CreateCube();
 	std::shared_ptr<GameObject> CreateSphere();
-	std::shared_ptr<GameObject> CreateMF();
-	std::shared_ptr<GameObject> CreateTeapot();
+	void CreateMF();
+	void CreateTeapot();
 
 	void AddPendingGOs();
 	void DeletePendingGOs();
@@ -75,6 +74,10 @@ public:
 	void SaveScene();
 	void LoadSceneFromJSON(const std::string& filename);
 
+private:
+
+	void RecursiveScriptInit(std::shared_ptr<GameObject> go);
+
 public:
 	Scene* currentScene = nullptr; //Convert to smart ptr
 	std::vector<std::shared_ptr<GameObject>> objectsToAdd;
@@ -83,7 +86,6 @@ public:
 
 private:
 	std::shared_ptr<GameObject> selectedGameObject = nullptr;
-	MeshLoader* meshLoader = nullptr;
 	bool sceneIsPlaying = false;
 	bool previousFrameIsPlaying = false;
 	//Kikofp02: This will check if the engine has to change scene
@@ -123,14 +125,14 @@ public:
 
 	inline void UpdateGOs(double dt);
 	
-	void Draw(DrawMode mode = DrawMode::GAME);
+	void Draw(DrawMode mode = DrawMode::GAME, Camera* cam = nullptr);
 
 	void FindCameraInScene();
 
 	void ChangePrimaryCamera(GameObject* newPrimaryCam);
 
 private:
-	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO);
+	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
 
 private:

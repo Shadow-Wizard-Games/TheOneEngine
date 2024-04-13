@@ -39,6 +39,12 @@ public:
 	UpdateEmmiterModule* AddModule(UpdateEmmiterModule::UpdateEmmiterModuleType type);
 	RenderEmmiterModule* AddModule(RenderEmmiterModule::RenderEmmiterModuleType type);
 
+	// for duplicate
+	SpawnEmmiterModule* AddModule(SpawnEmmiterModule* ref);
+	InitializeEmmiterModule* AddModule(InitializeEmmiterModule* ref);
+	UpdateEmmiterModule* AddModule(UpdateEmmiterModule* ref);
+	RenderEmmiterModule* AddModule(RenderEmmiterModule* ref);
+
 	json SaveEmmiter();
 	void LoadEmmiter(const json& emmiterJSON);
 

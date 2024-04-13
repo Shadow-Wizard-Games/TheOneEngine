@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 public class IGameObject : IObject
 {
     public ITransform transform;
-    public ISource source;
+    public IAudioSource source;
 
     public IGameObject() : base()
     {
@@ -14,7 +14,7 @@ public class IGameObject : IObject
 
         transform = new ITransform();
 
-        source = new ISource();
+        source = new IAudioSource();
     }
     public IGameObject(IntPtr GOref) : base(GOref)
     {
@@ -22,7 +22,7 @@ public class IGameObject : IObject
         name = InternalCalls.GetGameObjectName(containerGOptr);
         transform = new ITransform(GOref);
 
-        source = new ISource(GOref);
+        source = new IAudioSource(GOref);
     }
 
     public void Destroy()
@@ -65,10 +65,10 @@ public class IGameObject : IObject
                     case IComponent.ComponentType.ITransform:
                         componentToReturn = new ITransform(containerGOptr) as TComponent;
                         break;
-                    //case IComponent.ComponentType.ICamera:
-                    //    componentToReturn = new ICamera(containerGOptr) as TComponent;
-                    //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
-                    //    break;
+                    case IComponent.ComponentType.ICamera:
+                        componentToReturn = new ICamera(containerGOptr) as TComponent;
+                        Debug.LogCheck("The GetType of the class is: " + type.ToString());
+                        break;
                     //case IComponent.ComponentType.IMesh:
                     //    componentToReturn = new IMesh(containerGOptr) as TComponent;
                     //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
@@ -77,10 +77,10 @@ public class IGameObject : IObject
                     //    componentToReturn = new ITexture(containerGOptr) as TComponent;
                     //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
                     //    break;
-                    //case IComponent.ComponentType.ICollider2D:
-                    //    componentToReturn = new ICollider2D(containerGOptr) as TComponent;
-                    //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
-                    //    break;
+                    case IComponent.ComponentType.ICollider2D:
+                        componentToReturn = new ICollider2D(containerGOptr) as TComponent;
+                        Debug.LogCheck("The GetType of the class is: " + type.ToString());
+                        break;
                     case IComponent.ComponentType.ICanvas:
                         componentToReturn = new ICanvas(containerGOptr) as TComponent;
                         break;
@@ -88,8 +88,8 @@ public class IGameObject : IObject
                     //    componentToReturn = new IListener(containerGOptr) as TComponent;
                     //    Debug.LogCheck("The GetType of the class is: " + type.ToString());
                     //    break;
-                    case IComponent.ComponentType.ISource:
-                        componentToReturn = new ISource(containerGOptr) as TComponent;
+                    case IComponent.ComponentType.IAudioSource:
+                        componentToReturn = new IAudioSource(containerGOptr) as TComponent;
                         break;
                     case IComponent.ComponentType.IParticleSystem:
                         componentToReturn = new IParticleSystem(containerGOptr) as TComponent;
@@ -118,5 +118,9 @@ public class IGameObject : IObject
         {
             return new IComponent() as TComponent;
         }
+    }
+    public void Disable()
+    {
+        InternalCalls.Disable(containerGOptr);
     }
 }

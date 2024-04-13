@@ -263,6 +263,7 @@ bool PanelScene::Draw()
 
             // Draw
             engine->Render(sceneCamera->GetComponent<Camera>());
+            engine->SetUniformBufferCamera(sceneCamera->GetComponent<Camera>());
 
             // Game cameras Frustum
             for (const auto GO : engine->N_sceneManager->GetGameObjects())
@@ -282,7 +283,7 @@ bool PanelScene::Draw()
                 }
             }
 
-            current->Draw(DrawMode::EDITOR);
+            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
             if (engine->N_sceneManager->GetSceneIsChanging())
                 engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
 

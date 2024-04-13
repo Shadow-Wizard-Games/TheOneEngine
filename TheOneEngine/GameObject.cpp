@@ -5,7 +5,7 @@
 #include "Texture.h"
 #include "Collider2D.h"
 #include "Listener.h"
-#include "Source.h"
+#include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "UIDGen.h"
@@ -95,7 +95,9 @@ void GameObject::RemoveComponent(ComponentType type)
 // AABB -------------------------------------
 void GameObject::GenerateAABBFromMesh()
 {
-	Mesh* mesh = GetComponent<Mesh>();
+	//TODO: this comment is temporal, it needs to be changed to retained mode
+
+	/*Mesh* mesh = GetComponent<Mesh>();
 
 	glGenBuffers(1, &mesh->mesh.vertex_buffer_id);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh->mesh.vertex_buffer_id);
@@ -125,20 +127,7 @@ void GameObject::GenerateAABBFromMesh()
 			aabb.max = (glm::max)(aabb.max, vec3(v.v));
 		}
 		break;
-	}
-
-	//GLenum error = glGetError();
-	//if (error != GL_NO_ERROR) {
-	//    // Print the raw error code
-	//    fprintf(stderr, "OpenGL error code: %d\n", error);
-	//
-	//    // Print the corresponding error string
-	//    const char* errorString = reinterpret_cast<const char*>(gluErrorString(error));
-	//    fprintf(stderr, "OpenGL error: %s\n", errorString ? errorString : "Unknown");
-	//
-	//    assert(false); // Trigger an assertion failure for debugging
-	//}
-
+	}*/
 }
 
 AABBox GameObject::CalculateAABB()
@@ -450,16 +439,27 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			{
 				this->AddComponent<Listener>();
 				this->GetComponent<Listener>()->LoadComponent(componentJSON);
-				this->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+
+				// Check if the gameobject has an Audio Source
+				if (this->GetComponent<AudioSource>() == nullptr)
+					this->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+				else
+					this->GetComponent<Listener>()->goID = this->GetComponent<AudioSource>()->goID;
 				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Listener>());
 				audioManager->audio->SetDefaultListener(this->GetComponent<Listener>()->goID);
 			}
-			else if (componentJSON["Type"] == (int)ComponentType::Source)
+			else if (componentJSON["Type"] == (int)ComponentType::AudioSource)
 			{
-				this->AddComponent<Source>();
-				this->GetComponent<Source>()->LoadComponent(componentJSON);
-				this->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
-				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<Source>());
+				this->AddComponent<AudioSource>();
+				this->GetComponent<AudioSource>()->LoadComponent(componentJSON);
+
+				// Check if the gameobject has a Listener
+				if (this->GetComponent<Listener>() == nullptr)
+					this->GetComponent<AudioSource>()->goID = audioManager->audio->RegisterGameObject(this->GetName());
+				else
+					this->GetComponent<AudioSource>()->goID = this->GetComponent<Listener>()->goID;
+
+				audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)this->GetComponent<AudioSource>());
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Collider2D)
 			{

@@ -33,7 +33,7 @@ aspect(ref->aspect), fov(ref->fov),
 zNear(ref->zNear), zFar(ref->zFar),
 yaw(ref->yaw), pitch(ref->pitch),
 viewMatrix(ref->viewMatrix),
-lookAt(ref->lookAt),
+lookAt(ref->lookAt), size(ref->size),
 drawFrustum(ref->drawFrustum),
 cameraType(ref->cameraType),
 primaryCam(ref->primaryCam)

@@ -1,0 +1,165 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.8858041167259216,
+            0.4640595018863678,
+            0.0,
+            0.0,
+            -0.4640595018863678,
+            0.8858041167259216,
+            0.0,
+            0.0,
+            17.940906524658203,
+            -39.25346374511719,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3627278088
+        },
+        {
+          "Aspect": 1.7926828861236572,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": true,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 985343678,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            15.916743278503418,
+            -5.652884483337402,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 833789532
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Path": "Library/Meshes/SM_Cube/pCube1.mesh",
+          "Type": 2,
+          "UID": 3604157566
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 170030395
+        }
+      ],
+      "Enabled": true,
+      "Name": "Manager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999999999958,
+            8.742278000372439e-08,
+            7.642742463579653e-15,
+            0.0,
+            8.742278000372473e-08,
+            0.9999999999999923,
+            8.742278000372439e-08,
+            0.0,
+            0.0,
+            8.742278000372473e-08,
+            -0.9999999999999958,
+            0.0,
+            0.0,
+            0.0,
+            13.135908126831055,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3131409220
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Path": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
+          "Type": 2,
+          "UID": 208732001
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 4224174755
+        },
+        {
+          "AudioID": 0,
+          "Name": "Source",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "Player",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\NewUntitledScene.toe",
+  "sceneName": "NewUntitledScene"
+}

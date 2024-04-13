@@ -12,7 +12,7 @@
 #include "..\TheOneEngine\Script.h"
 #include "..\TheOneEngine\Collider2D.h"
 #include "..\TheOneEngine\Listener.h"
-#include "..\TheOneEngine\Source.h"
+#include "..\TheOneEngine\AudioSource.h"
 #include "..\TheOneEngine\Animator.h"
 
 #include "..\TheOneEngine\MonoManager.h"
@@ -72,6 +72,14 @@ bool PanelInspector::Draw()
             //ImGui::Checkbox("Active", &gameObjSelected->isActive);
             ImGui::SameLine(); ImGui::Text("GameObject:");
             ImGui::SameLine(); ImGui::TextColored({ 0.144f, 0.422f, 0.720f, 1.0f }, selectedGO->GetName().c_str());
+            if (selectedGO->IsPrefab() && selectedGO->IsPrefabDirty())
+            {
+                ImGui::SameLine(0.0f, -1.0f);
+                if (ImGui::Button("Overrides", { 75.0f, 20.0f }))
+                {
+                    ImGui::OpenPopup("ChangesWarning");
+                }
+            }
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             /*Tag + Layer*/
@@ -238,18 +246,17 @@ bool PanelInspector::Draw()
 
             if (mesh != nullptr && ImGui::CollapsingHeader("Mesh", treeNodeFlags))
             {
+                Model* model = Resources::GetResourceById<Model>(mesh->meshID);
                 ImGui::SetItemTooltip("Displays and sets mesh data");
                 //ImGui::Checkbox("Active", &mesh->isActive);
                 //ImGui::SameLine();  
                 ImGui::Text("Name: ");
-                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, mesh->mesh.meshName.c_str());
+                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->meshName.c_str());
                 ImGui::Separator();
                 ImGui::Text("Indexes: ");
-                ImGui::SameLine();  ImGui::Text((std::to_string(mesh->mesh.indexs_buffer_id)).c_str());
-                ImGui::Text("Vertexs: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(mesh->mesh.numVerts).c_str());
-                ImGui::Text("Faces: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(mesh->mesh.numFaces).c_str());
+                ImGui::SameLine();  ImGui::Text((std::to_string(model->indexData.size())).c_str());
+                ImGui::Text("Vertices: ");
+                ImGui::SameLine();  ImGui::Text(std::to_string(model->vertexData.size() / sizeof(MeshVertex)).c_str());
 
                 ImGui::Checkbox("Mesh", &mesh->active);
                 ImGui::Checkbox("Vertex normals", &mesh->drawNormalsVerts);
@@ -268,42 +275,42 @@ bool PanelInspector::Draw()
 
 
             /*Texture Component*/
-            Texture* texture = selectedGO->GetComponent<Texture>();
+            //Texture* texture = selectedGO->GetComponent<Texture>();
 
-            if (texture != nullptr && ImGui::CollapsingHeader("Texture", treeNodeFlags))
-            {
-                ImGui::SetItemTooltip("Displays and sets texture data");
-                ImGui::Checkbox("Active Texture", &texture->active);
-                ImGui::Text("Name: ");
-                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, (texture->GetName()).c_str());
-                ImGui::Separator();
-                ImGui::Text("Size: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(texture->width).c_str());
-                ImGui::Text("Height: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(texture->height).c_str());
+            //if (texture != nullptr && ImGui::CollapsingHeader("Texture", treeNodeFlags))
+            //{
+            //    ImGui::SetItemTooltip("Displays and sets texture data");
+            //    ImGui::Checkbox("Active Texture", &texture->active);
+            //    ImGui::Text("Name: ");
+            //    ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, (texture->GetName()).c_str());
+            //    ImGui::Separator();
+            //    ImGui::Text("Size: ");
+            //    ImGui::SameLine();  ImGui::Text(std::to_string(texture->width).c_str());
+            //    ImGui::Text("Height: ");
+            //    ImGui::SameLine();  ImGui::Text(std::to_string(texture->height).c_str());
 
-                //ImGui::Text("Tex coords: ");
-                //ImGui::SameLine();  ImGui::Text(std::to_string(mesh->mesh.getNumTexCoords()).c_str());
+            //    //ImGui::Text("Tex coords: ");
+            //    //ImGui::SameLine();  ImGui::Text(std::to_string(mesh->mesh.getNumTexCoords()).c_str());
 
-                //if (ImGui::Checkbox("Use Texture", /*&mesh->usingTexture*/true))
-                //{
-                //    //(mesh->usingTexture) ? mesh->texture = gameObjSelected->GetComponent<Texture2D>() : mesh->texture = nullptr;
-                //}
+            //    //if (ImGui::Checkbox("Use Texture", /*&mesh->usingTexture*/true))
+            //    //{
+            //    //    //(mesh->usingTexture) ? mesh->texture = gameObjSelected->GetComponent<Texture2D>() : mesh->texture = nullptr;
+            //    //}
 
-                //ImGui::TextColored(ImVec4(1, 1, 0, 1), "%dpx x %dpx", s->getTexture()->width, s->getTexture()->height);
+            //    //ImGui::TextColored(ImVec4(1, 1, 0, 1), "%dpx x %dpx", s->getTexture()->width, s->getTexture()->height);
 
-                // JULS: To show the image of the texture, but need to look at it more.
-                //ImTextureID my_tex_id;
-                //glGenTextures(GL_TEXTURE_2D, 1, my_tex_id);
-                //glTextureParameteri(my_tex_id, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-                //glTextureParameteri(textureID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-                //glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-                //glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-                //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, [width of your texture], [height of your texture], false, GL_RGBA, GL_FLOAT, [pointer to first element in array of texture pixel values]);
-                //ImGui::Image()
+            //    // JULS: To show the image of the texture, but need to look at it more.
+            //    //ImTextureID my_tex_id;
+            //    //glGenTextures(GL_TEXTURE_2D, 1, my_tex_id);
+            //    //glTextureParameteri(my_tex_id, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            //    //glTextureParameteri(textureID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            //    //glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+            //    //glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+            //    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, [width of your texture], [height of your texture], false, GL_RGBA, GL_FLOAT, [pointer to first element in array of texture pixel values]);
+            //    //ImGui::Image()
 
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
-            }
+            //    ImGui::Dummy(ImVec2(0.0f, 10.0f));
+            //}
 
 
             /*Camera Component*/
@@ -845,12 +852,10 @@ bool PanelInspector::Draw()
 
             }
 
+            /*AudioSource Component*/
+            AudioSource* audioSource = selectedGO->GetComponent<AudioSource>();
 
-            /*Source Component*/
-            Source* source = selectedGO->GetComponent<Source>();
-
-            if (source != nullptr && ImGui::CollapsingHeader("Audio Source", treeNodeFlags))
-            {
+            if (audioSource != nullptr && ImGui::CollapsingHeader("Audio Source", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
                 // JULS: Volume not applied yet
                 //if (ImGui::SliderFloat("Volume", &zNear, 0.01, 10.0))
                 //{
@@ -909,12 +914,11 @@ bool PanelInspector::Draw()
                     audioManager->audio->SetDefaultListener(selectedGO->GetComponent<Listener>()->goID);
 
                 }
-
-                if (ImGui::MenuItem("Source"))
+                if (ImGui::MenuItem("AudioSource"))
                 {
-                    selectedGO->AddComponent<Source>();
-                    selectedGO->GetComponent<Source>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
-                    audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<Source>());
+                    selectedGO->AddComponent<AudioSource>();
+                    selectedGO->GetComponent<AudioSource>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
+                    audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<AudioSource>());
                 }
 
                 if (ImGui::TreeNode("Collider2D"))

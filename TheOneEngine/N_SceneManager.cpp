@@ -1,7 +1,6 @@
 #include "N_SceneManager.h"
 #include "EngineCore.h"
 #include "GameObject.h"
-#include "MeshLoader.h"
 #include "Component.h"
 #include "Transform.h"
 #include "Camera.h"
@@ -9,7 +8,7 @@
 #include "Texture.h"
 #include "Collider2D.h"
 #include "Listener.h"
-#include "Source.h"
+#include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "../TheOneAudio/AudioCore.h"
@@ -21,14 +20,9 @@
 
 namespace fs = std::filesystem;
 
-N_SceneManager::N_SceneManager()
-{
-	meshLoader = new MeshLoader();
-}
+N_SceneManager::N_SceneManager() {}
 
-N_SceneManager::~N_SceneManager()
-{
-}
+N_SceneManager::~N_SceneManager() {}
 
 bool N_SceneManager::Awake()
 {
@@ -53,6 +47,7 @@ bool N_SceneManager::PreUpdate()
 	if (sceneChange)
 	{
 		// Kiko - Here add the transition managing
+		engine->collisionSolver->ClearCollisions();
 
 		LoadSceneFromJSON(currentScene->GetPath());
 
@@ -73,19 +68,23 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	
 	if(!sceneChange)
 		sceneIsPlaying = isPlaying;
-
-	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying == true)
+	//this will be called when we click play
+	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying)
 	{
-		for (const auto gameObject : currentScene->GetRootSceneGO()->children)
-		{
-			if(gameObject.get()->GetComponent<Script>())
-				gameObject.get()->GetComponent<Script>()->Start();
-		}
+		RecursiveScriptInit(currentScene->GetRootSceneGO());
+		//add game objects to collision solver vector
+		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
 	}
 
 	if (isPlaying)
 	{
 		currentScene->UpdateGOs(dt);
+	}
+	//this will be called when we click pause
+	else if (previousFrameIsPlaying && !sceneIsPlaying)
+	{
+		//function to clear collision solver vector
+		engine->collisionSolver->ClearCollisions();
 	}
 
 	previousFrameIsPlaying = sceneIsPlaying;
@@ -102,10 +101,8 @@ bool N_SceneManager::PostUpdate()
 bool N_SceneManager::CleanUp()
 {
 	//delete currentScene->currentCamera;
-
+	currentScene = nullptr;
 	delete currentScene;
-
-	delete meshLoader;
 
 	return true;
 }
@@ -184,6 +181,9 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	try
 	{
 		file >> sceneJSON;
+		
+		// JULS: Audio Manager should delete this, but for now leave this commented
+		//audioManager->DeleteAudioComponents();
 	}
 	catch (const json::parse_error& e)
 	{
@@ -232,6 +232,17 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	}
 }
 
+void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go)
+{
+	for (const auto gameObject : go.get()->children)
+	{
+		if (gameObject.get()->GetComponent<Script>())
+			gameObject.get()->GetComponent<Script>()->Start();
+
+		RecursiveScriptInit(gameObject);
+	}
+}
+
 std::string N_SceneManager::GenerateUniqueName(const std::string& baseName)
 {
 	std::string uniqueName = baseName;
@@ -271,9 +282,6 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::Mesh:
 			duplicatedGO.get()->AddCopiedComponent<Mesh>((Mesh*)item);
 			break;
-		case ComponentType::Texture:
-			duplicatedGO.get()->AddCopiedComponent<Texture>((Texture*)item);
-			break;
 		case ComponentType::Script:
 			duplicatedGO.get()->AddCopiedComponent<Script>((Script*)item);
 			break;	
@@ -286,8 +294,11 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::Listener:
 			duplicatedGO.get()->AddCopiedComponent<Listener>((Listener*)item);
 			break;
-		case ComponentType::Source:
-			duplicatedGO.get()->AddCopiedComponent<Source>((Source*)item);
+		case ComponentType::AudioSource:
+			duplicatedGO.get()->AddCopiedComponent<AudioSource>((AudioSource*)item);
+			break;
+		case ComponentType::ParticleSystem:
+			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
 			break;
 		case ComponentType::Unknown:
 			break;
@@ -310,6 +321,13 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		std::shared_ptr<GameObject> temp = DuplicateGO(child, true);
 		temp.get()->parent = duplicatedGO;
 		duplicatedGO.get()->children.push_back(temp);
+	}
+
+	if (originalGO.get()->IsPrefab())
+	{
+		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID());
+		duplicatedGO.get()->SetEditablePrefab(originalGO.get()->IsEditablePrefab());
+		duplicatedGO.get()->SetPrefabDirty(originalGO.get()->IsPrefabDirty());
 	}
 
 	return duplicatedGO;
@@ -391,142 +409,98 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	return canvasGO;
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateMeshGO(std::string path)
+void N_SceneManager::CreateMeshGO(std::string path)
 {
-	std::vector<MeshBufferedData> meshes = meshLoader->LoadMesh(path);
-	std::vector<std::shared_ptr<Texture>> textures = meshLoader->LoadTexture(path);
+	std::vector<ResourceId> meshesID = Resources::LoadMultiple<Model>(path);
 
-	if (!meshes.empty())
+	if (meshesID.empty())
+		return;
+
+	std::string name = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
+
+	name = GenerateUniqueName(name);
+
+	// Create emptyGO parent if meshes > 1
+	bool isSingleMesh = meshesID.size() > 1 ? false : true;
+	std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
+	if (!isSingleMesh) emptyParent.get()->SetName(name);
+
+	std::vector<std::string> fileNames;
+
+	for (auto& meshID : meshesID)
 	{
-		std::string name = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
+		Model* mesh = Resources::GetResourceById<Model>(meshID);
 
-		// Take name before editing for meshData lookUp
-		std::string folderName = "Library/Meshes/" + name + "/";
+		std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->meshName);
 
- 		name = GenerateUniqueName(name);
+		// Transform ---------------------------------
+		meshGO.get()->AddComponent<Transform>();
 
-		// Create emptyGO parent if meshes > 1
-		bool isSingleMesh = meshes.size() > 1 ? false : true;
-		std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
-		if (!isSingleMesh) emptyParent.get()->SetName(name);
+		// Mesh  --------------------------------------
+		meshGO.get()->AddComponent<Mesh>();
 
-		std::vector<std::string> fileNames;
+		meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+		meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
 
-		uint fileCount = 0;
-
-		for (const auto& entry : fs::directory_iterator(folderName))
+		//Load MeshData from custom files
+		for (const auto& file : fileNames)
 		{
-			if (fs::is_regular_file(entry))
+			std::string fileName = file.substr(file.find_last_of("\\/") + 1, file.find_last_of('.') - file.find_last_of("\\/") - 1);
+			if (fileName == mesh->meshName)
 			{
-				std::string path = entry.path().filename().string();
-				fileNames.push_back(entry.path().string());
-				fileCount++;
+				meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->meshTransform);
 			}
 		}
 
-		for (auto& mesh : meshes)
+		// AABB
+		meshGO.get()->GenerateAABBFromMesh();
+
+		if (isSingleMesh)
 		{
-			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh.meshName);
-
-			// Transform ---------------------------------
-			meshGO.get()->AddComponent<Transform>();
-
-			// Mesh  --------------------------------------
-			meshGO.get()->AddComponent<Mesh>();
-
-			meshGO.get()->GetComponent<Mesh>()->mesh = mesh;
-			meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex];
-
-			//Load MeshData from custom files
-			for (const auto& file : fileNames)
-			{
-				std::string fileName = file.substr(file.find_last_of("\\/") + 1, file.find_last_of('.') - file.find_last_of("\\/") - 1);
-				if (fileName == mesh.meshName)
-				{
-					MeshData mData = meshLoader->deserializeMeshData(file);
-
-					meshGO.get()->GetComponent<Mesh>()->meshData = mData;
-					meshGO.get()->GetComponent<Mesh>()->meshData.texturePath = textures[mesh.materialIndex]->path;
-					meshGO.get()->GetComponent<Mesh>()->path = file;
-
-					meshGO.get()->GetComponent<Transform>()->SetTransform(mData.meshTransform);
-				}
-			}
-
-			// AABB
-			meshGO.get()->GenerateAABBFromMesh();
-
-			if (isSingleMesh)
-			{
-				meshGO.get()->parent = currentScene->GetRootSceneGO();
-				engine->N_sceneManager->objectsToAdd.push_back(meshGO);
-			}
-			else
-			{
-				meshGO.get()->parent = emptyParent;
-				emptyParent.get()->children.push_back(meshGO);
-			}
+			meshGO.get()->parent = currentScene->GetRootSceneGO();
+			engine->N_sceneManager->objectsToAdd.push_back(meshGO);
+		}
+		else
+		{
+			meshGO.get()->parent = emptyParent;
+			emptyParent.get()->children.push_back(meshGO);
 		}
 	}
 
 	if (!sceneIsPlaying) AddPendingGOs();
-	return nullptr;
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string path)
+void N_SceneManager::CreateExistingMeshGO(std::string path)
 {
 	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
+	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
 
-	std::string folderName = "Library/Meshes/" + fbxName + "/";
+	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName);
 
-	std::vector<std::string> fileNames;
-
-	uint fileCount = 0;
-
-	if (fs::is_directory(folderName))
-	{
-		for (const auto& entry : fs::directory_iterator(folderName)) {
-			if (fs::is_regular_file(entry)) {
-				std::string path = entry.path().filename().string();
-				LOG(LogType::LOG_WARNING, "- %s is in", path.data());
-				fileNames.push_back(entry.path().string());
-				fileCount++;
-			}
-		}
-	}
-
-	if (fileCount < 1)
-	{
+	if (fileNames.empty())
 		CreateMeshGO(path);
-	}
 	else
 	{
 		std::string name = fbxName;
  		name = GenerateUniqueName(name);
 
 		// Create emptyGO parent if meshes >1
-		bool isSingleMesh = fileCount > 1 ? false : true;
+		bool isSingleMesh = fileNames.size() > 1 ? false : true;
 		std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
 		if (!isSingleMesh) emptyParent.get()->SetName(name);
 
 		for (const auto& file : fileNames)
 		{
-			MeshData mData = meshLoader->deserializeMeshData(file);
+			ResourceId meshID = Resources::LoadFromLibrary<Model>(file);
+			Model* mesh = Resources::GetResourceById<Model>(meshID);
 
-			meshLoader->BufferData(mData);
-
-			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mData.meshName);
+			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->meshName);
 			meshGO.get()->AddComponent<Transform>();
-			meshGO.get()->GetComponent<Transform>()->SetTransform(mData.meshTransform);
+			meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->meshTransform);
 			meshGO.get()->AddComponent<Mesh>();
-			//meshGO.get()->AddComponent<Texture>(); // hekbas: must implement
 
-			meshGO.get()->GetComponent<Mesh>()->meshData = mData;
-			meshGO.get()->GetComponent<Mesh>()->mesh = meshLoader->GetBufferData();
-			meshGO.get()->GetComponent<Mesh>()->mesh.texture = std::make_shared<Texture>(mData.texturePath);
-			meshGO.get()->GetComponent<Mesh>()->path = file;
-			//meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex]; //Implement texture deserialization
-			// hekbas: need to set Transform?
+			meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+			meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
 
 			meshGO.get()->GenerateAABBFromMesh();
 
@@ -542,7 +516,6 @@ std::shared_ptr<GameObject> N_SceneManager::CreateExistingMeshGO(std::string pat
 			}
 		}
 	}
-	return nullptr;
 }
 
 std::shared_ptr<GameObject> N_SceneManager::CreateCube()
@@ -571,14 +544,14 @@ std::shared_ptr<GameObject> N_SceneManager::CreateSphere()
 	return nullptr;
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateMF()
+void N_SceneManager::CreateMF()
 {
-	return CreateMeshGO("Assets/Meshes/mf.fbx");
+	CreateMeshGO("Assets/Meshes/mf.fbx");
 }
 
-std::shared_ptr<GameObject> N_SceneManager::CreateTeapot()
+void N_SceneManager::CreateTeapot()
 {
-	return CreateMeshGO("Assets/Meshes/teapot.fbx");
+	CreateMeshGO("Assets/Meshes/teapot.fbx");
 }
 
 void N_SceneManager::AddPendingGOs()
@@ -645,12 +618,23 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO)
+void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
-	for (const auto gameObject : parentGO.get()->children)
-	{
-		gameObject.get()->Draw(currentCamera);
-		RecurseSceneDraw(gameObject);
+	if (cam != nullptr) {
+		for (const auto gameObject : parentGO.get()->children)
+		{
+			gameObject.get()->Draw(cam);
+			RecurseSceneDraw(gameObject);
+		}
+
+	}
+	else {
+		for (const auto gameObject : parentGO.get()->children)
+		{
+			gameObject.get()->Draw(currentCamera);
+			RecurseSceneDraw(gameObject);
+		}
+
 	}
 }
 
@@ -675,8 +659,8 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
-void Scene::Draw(DrawMode mode)
+void Scene::Draw(DrawMode mode, Camera* cam)
 {
-	RecurseSceneDraw(rootSceneGO);
+	RecurseSceneDraw(rootSceneGO, cam);
 	RecurseUIDraw(rootSceneGO, mode);
 }

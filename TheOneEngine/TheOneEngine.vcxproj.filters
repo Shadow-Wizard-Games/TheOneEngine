@@ -16,9 +16,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Loaders">
-      <UniqueIdentifier>{ef205215-f4dd-4daf-80aa-0d87803bc3cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{cb5e54cb-4331-4568-a233-96dbbf6a216a}</UniqueIdentifier>
     </Filter>
@@ -40,8 +37,11 @@
     <Filter Include="CollisionSolver">
       <UniqueIdentifier>{b4bff3d6-89e0-43fe-b513-b1d9b31c27bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{be809aa8-c7ec-4113-9315-ede90d9f1993}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Render">
-      <UniqueIdentifier>{954d7850-b1f2-45be-b0ff-9ffe77288d41}</UniqueIdentifier>
+      <UniqueIdentifier>{84076c63-4fb0-4684-b477-fcd095a0c2d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Components\Particles">
       <UniqueIdentifier>{1b4d8a7c-3d67-4add-8d30-7eea933e5c6e}</UniqueIdentifier>
@@ -102,12 +102,6 @@
     <ClInclude Include="Transform.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>GameObject\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshLoader.h">
-      <Filter>Loaders</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
@@ -116,12 +110,6 @@
     </ClInclude>
     <ClInclude Include="Graphic.h">
       <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeImmediateMode.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Ray.h">
       <Filter>Math</Filter>
@@ -162,7 +150,37 @@
     <ClInclude Include="GamepadInput.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="ResourcesImageImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesModelImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
     <ClInclude Include="Framebuffer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArray.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Uniform.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="Billboard.h">
@@ -207,8 +225,20 @@
     <ClInclude Include="Listener.h">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Source.h">
+    <ClInclude Include="AudioSource.h">
       <Filter>GameObject\Components\Audio\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesMaterialImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesShaderImpl.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformBuffer.h">
+      <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="Animation\OzzAnimation.h">
       <Filter>Animation</Filter>
@@ -257,20 +287,8 @@
     <ClCompile Include="Transform.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>GameObject\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MeshLoader.cpp">
-      <Filter>Loaders</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>GameObject\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeImmediateMode.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Ray.cpp">
       <Filter>Math</Filter>
@@ -310,6 +328,12 @@
     </ClCompile>
     <ClCompile Include="GamepadInput.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourcesImpl.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Framebuffer.cpp">
       <Filter>Render</Filter>
@@ -353,7 +377,7 @@
     <ClCompile Include="Listener.cpp">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="AudioSource.cpp">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClCompile>
     <ClCompile Include="Animation\OzzAnimation.cpp">
@@ -382,6 +406,27 @@
     </ClCompile>
     <ClCompile Include="Animator.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArray.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Uniform.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="UniformBuffer.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

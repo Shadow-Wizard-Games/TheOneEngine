@@ -10,20 +10,22 @@
 class GameObject;
 class Camera;
 
+// Add new components after already existing ones!
 enum class ComponentType
 {
-	Transform,
-	Camera,
-	Mesh,
-    Texture,
-    Script,
-    Collider2D,
-    Canvas,
-    Listener,
-    Source,
-    ParticleSystem,
-    Animator,
-	Unknown
+	Transform       = 0,
+	Camera          = 1,
+	Mesh            = 2,
+    Texture         = 3,    // Legacy, not used
+    Script          = 4,
+    Collider2D      = 5,
+    Canvas          = 6,
+    Listener        = 7,
+    AudioSource     = 8,
+    ParticleSystem  = 9,
+    Animator        = 10,
+
+	Unknown // Last
 };
 
 class Component
