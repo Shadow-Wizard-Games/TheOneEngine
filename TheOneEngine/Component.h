@@ -12,16 +12,17 @@ class Camera;
 
 enum class ComponentType
 {
-	Transform,
-	Camera,
-	Mesh,
-    Script,
-    Collider2D,
-    Canvas,
-    Listener,
-    AudioSource,
-    ParticleSystem,
-	Unknown
+	Transform       = 0,
+	Camera          = 1,
+	Mesh            = 2,
+    Script          = 4,
+    Collider2D      = 5,
+    Canvas          = 6,
+    Listener        = 7,
+    AudioSource     = 8,
+    ParticleSystem  = 9,
+
+	Unknown //Last
 };
 
 class Component
