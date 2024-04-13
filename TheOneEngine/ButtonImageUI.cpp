@@ -71,9 +71,9 @@ void ButtonImageUI::Draw2D()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	canvas->GetTexture(this->imagePath)->bind();
+	canvas->GetTexture(this->imagePath)->Bind();
 
-	//image.get()->bind();
+	//image.get()->Bind();
 
 	glBegin(GL_QUADS);
 
@@ -181,10 +181,10 @@ Rect2D ButtonImageUI::GetSectIdle() const
 	Rect2D imageSect = { 0, 0, 0, 0 };
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		imageSect.x = imageIdleSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageSect.y = imageIdleSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		imageSect.w = (imageIdleSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width);
-		imageSect.h = (imageIdleSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height);
+		imageSect.x = imageIdleSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageSect.y = imageIdleSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		imageSect.w = (imageIdleSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x);
+		imageSect.h = (imageIdleSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y);
 	}
 	return imageSect;
 }
@@ -193,10 +193,10 @@ void ButtonImageUI::SetSectSizeIdle(float x, float y, float width, float height)
 {
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		imageIdleSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageIdleSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		imageIdleSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageIdleSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
+		imageIdleSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageIdleSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		imageIdleSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageIdleSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 	}
 }
 
@@ -205,10 +205,10 @@ Rect2D ButtonImageUI::GetSectHovered() const
 	Rect2D imageSect = { 0, 0, 0, 0 };
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		imageSect.x = imageHoveredSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageSect.y = imageHoveredSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		imageSect.w = (imageHoveredSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width);
-		imageSect.h = (imageHoveredSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height);
+		imageSect.x = imageHoveredSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageSect.y = imageHoveredSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		imageSect.w = (imageHoveredSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x);
+		imageSect.h = (imageHoveredSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y);
 	}
 	return imageSect;
 }
@@ -217,10 +217,10 @@ void ButtonImageUI::SetSectSizeHovered(float x, float y, float width, float heig
 {
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		imageHoveredSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageHoveredSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		imageHoveredSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageHoveredSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
+		imageHoveredSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageHoveredSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		imageHoveredSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageHoveredSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 	}
 }
 
@@ -229,10 +229,10 @@ Rect2D ButtonImageUI::GetSectSelected() const
 	Rect2D imageSect = { 0, 0, 0, 0 };
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		imageSect.x = imageSelectedSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageSect.y = imageSelectedSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		imageSect.w = (imageSelectedSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width);
-		imageSect.h = (imageSelectedSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height);
+		imageSect.x = imageSelectedSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageSect.y = imageSelectedSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		imageSect.w = (imageSelectedSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x);
+		imageSect.h = (imageSelectedSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y);
 	}
 	return imageSect;
 }
@@ -241,10 +241,10 @@ void ButtonImageUI::SetSectSizeSelected(float x, float y, float width, float hei
 {
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		imageSelectedSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageSelectedSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		imageSelectedSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageSelectedSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
+		imageSelectedSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageSelectedSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		imageSelectedSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageSelectedSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 	}
 }
 

@@ -36,9 +36,9 @@ void ImageUI::Draw2D()
 
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	canvas->GetTexture(this->imagePath)->bind();
+	canvas->GetTexture(this->imagePath)->Bind();
 
-	//image.get()->bind();
+	//image.get()->Bind();
 
 	glBegin(GL_QUADS);
 
@@ -114,10 +114,10 @@ Rect2D ImageUI::GetSect() const
 	Rect2D imageSect = { 0, 0, 0, 0 };
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		imageSect.x = textureSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		imageSect.y = textureSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		imageSect.w = (textureSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width);
-		imageSect.h = (textureSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height);
+		imageSect.x = textureSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		imageSect.y = textureSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		imageSect.w = (textureSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x);
+		imageSect.h = (textureSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y);
 	}
 
 	return imageSect;
@@ -127,9 +127,9 @@ void ImageUI::SetSectSize(float x, float y, float width, float height)
 {
 	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
 	{
-		textureSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		textureSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
-		textureSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->width;
-		textureSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->height;
+		textureSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		textureSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+		textureSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+		textureSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 	}
 }

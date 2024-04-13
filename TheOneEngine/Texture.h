@@ -33,6 +33,8 @@ public:
 	int GetHeight() { return imageSize.y; }
 	glm::ivec2 GetSize() { return imageSize; }
 
+	std::string path;
+
 	// Image utils
 	static void raw_to_dds_file(const char* filename, const unsigned char* pData, int width, int height, int bpp);
 	static unsigned char* raw_to_dds_mem(const unsigned char* data, int width, int height, int bpp, size_t* outSize);

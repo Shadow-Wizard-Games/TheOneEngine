@@ -11,6 +11,7 @@
 
 Texture::Texture(const std::string& newPath)
 {
+    path = newPath;
     if (newPath.ends_with(".dds") || newPath.ends_with(".DDS"))
         InitDDS(newPath);
     else

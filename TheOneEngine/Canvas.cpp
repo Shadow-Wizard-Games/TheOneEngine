@@ -109,7 +109,7 @@ void Canvas::AddTexture(const std::string path)
 {
 	if (GetTexture(path) == nullptr)
 	{
-		std::shared_ptr<Texture> tex = std::make_shared<Texture>(path, containerGO.lock());
+		std::shared_ptr<Texture> tex = std::make_shared<Texture>(path);
 		uiTextures.push_back(tex);
 	}
 }

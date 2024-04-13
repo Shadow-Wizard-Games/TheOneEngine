@@ -173,12 +173,12 @@ void EngineCore::DrawAxis()
         0, 0, 255  // blue
     };
 
-    // Create and bind vertex array object (VAO)
+    // Create and Bind vertex array object (VAO)
     GLuint axisVAO;
     GLCALL(glGenVertexArrays(1, &axisVAO));
     GLCALL(glBindVertexArray(axisVAO));
 
-    // Create and bind vertex buffer object (VBO) for vertices
+    // Create and Bind vertex buffer object (VBO) for vertices
     GLuint vertexVBO;
     GLCALL(glGenBuffers(1, &vertexVBO));
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vertexVBO));
@@ -186,7 +186,7 @@ void EngineCore::DrawAxis()
     GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr));
     GLCALL(glEnableVertexAttribArray(0));
 
-    // Create and bind vertex buffer object (VBO) for colors
+    // Create and Bind vertex buffer object (VBO) for colors
     GLuint colorVBO;
     GLCALL(glGenBuffers(1, &colorVBO));
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, colorVBO));
@@ -251,12 +251,12 @@ void EngineCore::DrawGrid(int grid_size, int grid_step)
         }
     }
 
-    // Create and bind vertex array object (VAO)
+    // Create and Bind vertex array object (VAO)
     GLuint gridVAO;
     GLCALL(glGenVertexArrays(1, &gridVAO));
     GLCALL(glBindVertexArray(gridVAO));
 
-    // Create and bind vertex buffer object (VBO) for vertices
+    // Create and Bind vertex buffer object (VBO) for vertices
     GLuint gridVBO;
     GLCALL(glGenBuffers(1, &gridVBO));
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, gridVBO));
@@ -264,7 +264,7 @@ void EngineCore::DrawGrid(int grid_size, int grid_step)
     GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr));
     GLCALL(glEnableVertexAttribArray(0));
 
-    // Create and bind vertex buffer object (VBO) for colors
+    // Create and Bind vertex buffer object (VBO) for colors
     GLuint colorVBO;
     GLCALL(glGenBuffers(1, &colorVBO));
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, colorVBO));
@@ -298,12 +298,12 @@ void EngineCore::DrawFrustum(const Frustum& frustum)
         0, 4, 1, 5, 2, 6, 3, 7  // connecting lines
     };
 
-    // Create and bind vertex array object (VAO)
+    // Create and Bind vertex array object (VAO)
     GLuint frustumVAO;
     GLCALL(glGenVertexArrays(1, &frustumVAO));
     GLCALL(glBindVertexArray(frustumVAO));
 
-    // Create and bind vertex buffer object (VBO) for vertices
+    // Create and Bind vertex buffer object (VBO) for vertices
     GLuint frustumVBO;
     GLCALL(glGenBuffers(1, &frustumVBO));
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, frustumVBO));
@@ -311,7 +311,7 @@ void EngineCore::DrawFrustum(const Frustum& frustum)
     GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr));
     GLCALL(glEnableVertexAttribArray(0));
 
-    // Create and bind element buffer object (EBO) for indices
+    // Create and Bind element buffer object (EBO) for indices
     GLuint frustumEBO;
     GLCALL(glGenBuffers(1, &frustumEBO));
     GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, frustumEBO));
@@ -336,12 +336,12 @@ void EngineCore::DrawRay(const Ray& ray)
         ray.Origin.z + ray.Direction.z * 1000
     };
 
-    // Create and bind vertex array object (VAO)
+    // Create and Bind vertex array object (VAO)
     GLuint rayVAO;
     GLCALL(glGenVertexArrays(1, &rayVAO));
     GLCALL(glBindVertexArray(rayVAO));
 
-    // Create and bind vertex buffer object (VBO) for vertices
+    // Create and Bind vertex buffer object (VBO) for vertices
     GLuint rayVBO;
     GLCALL(glGenBuffers(1, &rayVBO));
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, rayVBO));

@@ -203,8 +203,8 @@ void Mesh::LoadComponent(const json& meshJSON)
         std::filesystem::path legacyPath = meshJSON["Path"];
         if (!legacyPath.string().empty())
         {
-            std::string assetsMesh = Resources::FindFileInAssets(legacyPath.parent_path().filename().string());
-            Resources::LoadMultiple<Model>(assetsMesh);
+            std::filesystem::path assetsMesh = Resources::FindFileInAssets(legacyPath.parent_path().filename().string());
+            Resources::LoadMultiple<Model>(assetsMesh.replace_extension(".fbx").string());
             meshID = Resources::LoadFromLibrary<Model>(legacyPath.string());
             Model* model = Resources::GetResourceById<Model>(meshID);
             materialID = Resources::LoadFromLibrary<Material>(model->GetMaterialPath());
