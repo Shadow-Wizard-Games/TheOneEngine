@@ -47,6 +47,9 @@ void Mesh::DrawComponent(Camera* camera)
 {
     std::shared_ptr<GameObject> containerGO = GetContainerGO();
 
+    if (meshID == -1 || materialID == -1)
+        return;
+
     Model* mesh = Resources::GetResourceById<Model>(meshID);
     Material* mat = Resources::GetResourceById<Material>(materialID);
 

@@ -25,8 +25,8 @@ class Uniform
 public:
 
 	struct SamplerData {
-		size_t tex_id = -1;
-		size_t resource_id = -1;
+		size_t tex_id = 0;
+		int resource_id = -1;
 		char tex_path[256] = "";
 	};
 
