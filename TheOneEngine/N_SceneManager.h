@@ -77,7 +77,7 @@ public:
 
 private:
 
-	void RecursiveScriptUpdate(std::shared_ptr<GameObject> go);
+	void RecursiveScriptInit(std::shared_ptr<GameObject> go);
 
 public:
 	Scene* currentScene = nullptr; //Convert to smart ptr
