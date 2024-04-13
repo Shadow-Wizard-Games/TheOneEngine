@@ -34,13 +34,13 @@ public:
 
 	bool Update(float _dt) override;
 
-	void setTimeRatio(float time_ratio) override;
-	float getTimeRatio() override;
+	void SetTimeRatio(float time_ratio) override;
+	float GetTimeRatio() override;
 
 	bool HasFinished() override;
 
-	void addKeyAction(Action<> action, float time) override;
-	void removeKeyAction(Action<> action) override;
+	void AddKeyAction(Action<> action, float time) override;
+	void RemoveKeyAction(Action<> action) override;
 
 	void Play() override;
 	void Stop() override;

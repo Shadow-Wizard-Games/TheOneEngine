@@ -357,6 +357,7 @@ bool Gui::CleanUp()
 	return ret;
 }
 
+
 void Gui::HandleInput(SDL_Event* event)
 {
 	ImGui_ImplSDL2_ProcessEvent(event);
@@ -364,7 +365,6 @@ void Gui::HandleInput(SDL_Event* event)
 
 void Gui::OpenURL(const char* url) const
 {
-	// hekbas need shellapi
 	ShellExecuteA(0, 0, url, 0, 0, SW_SHOW);
 }
 
@@ -382,9 +382,15 @@ void Gui::PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags
 	ImGui::PopStyleVar();
 }
 
+void Gui::AssetContainer(const char* label)
+{
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 20.0f);
+	ImGui::InputText("##label", (char*)label, 64, ImGuiInputTextFlags_ReadOnly);
+	ImGui::PopStyleVar();
+}
+
 void Gui::MainWindowDockspace()
 {
-
 	// Flags
 	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
@@ -450,6 +456,7 @@ void Gui::MainWindowDockspace()
 	style.WindowMinSize.x = minWinSizeX;
 	ImGui::End();
 }
+
 
 // Main Menu Bar ----------------------------------------------
 

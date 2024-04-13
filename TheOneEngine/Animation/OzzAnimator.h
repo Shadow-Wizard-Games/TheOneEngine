@@ -9,6 +9,7 @@
 #include <vector>
 #include <unordered_map>
 
+typedef int ResourceId;
 
 class OzzAnimator
 {
@@ -116,10 +117,10 @@ public:
 	std::string getActiveAnimationName() { return m_ActiveAnimationName; }
 
 	// Set upper animation playback speed
-	void setUpperPlaybackSpeed(size_t anim_id, float playback_speed);
+	void SetUpperPlaybackSpeed(size_t anim_id, float playback_speed);
 
 	// Set lower animation playback speed
-	void setLowerPlaybackSpeed(size_t anim_id, float playback_speed);
+	void SetLowerPlaybackSpeed(size_t anim_id, float playback_speed);
 
 	// Initialize
 	void Init();
@@ -128,7 +129,7 @@ public:
 	bool Update(float _dt);
 
 	// Render
-	//bool Render(Wiwa::Camera* camera, glm::mat4 transform);
+	bool Render(Camera* camera, mat4 transform);
 
 	// Static save function
 	static void SaveAnimator(OzzAnimator* animator, const char* filepath);
@@ -137,7 +138,7 @@ public:
 	static OzzAnimator* LoadAnimator(const char* filepath);
 
 	// Get animator material
-	//ResourceId GetMaterial();
+	ResourceId GetMaterial();
 
 private:
 	size_t _create_anim_impl();
@@ -161,7 +162,7 @@ private:
 	bool m_LoadedSkeleton;
 
 	std::string m_MaterialPath;
-	//ResourceId m_MaterialId;
+	ResourceId m_MaterialId;
 	bool m_LoadedMaterial;
 
 	std::string m_ActiveAnimationName;

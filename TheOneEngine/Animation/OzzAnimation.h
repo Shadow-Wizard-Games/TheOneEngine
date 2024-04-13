@@ -50,8 +50,8 @@ public:
 
     virtual void OnSkeletonSet() = 0;
 
-    virtual void setTimeRatio(float time_ratio) = 0;
-    virtual float getTimeRatio() = 0;
+    virtual void SetTimeRatio(float time_ratio) = 0;
+    virtual float GetTimeRatio() = 0;
 
     virtual void OnPlaybackSpeedChange() = 0;
     virtual void OnLoopChange() = 0;
@@ -61,8 +61,8 @@ public:
     virtual void Play() = 0;
     virtual void Stop() = 0;
 
-    virtual void addKeyAction(Action<> action, float time) = 0;
-    virtual void removeKeyAction(Action<> action) = 0;
+    virtual void AddKeyAction(Action<> action, float time) = 0;
+    virtual void RemoveKeyAction(Action<> action) = 0;
 
     void setLoop(bool loop) { m_Loop = loop; OnLoopChange(); }
     bool getLoop() { return m_Loop; }

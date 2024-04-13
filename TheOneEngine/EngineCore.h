@@ -19,11 +19,40 @@
 #include "InputManager.h"
 #include "AudioManager.h"
 
+#include "../external/ozz/include/base/memory/allocator.h"
+
 #include <chrono>
 #include <memory>
 #include <string>
 
 class N_SceneManager;
+
+
+// Volatile memory buffer that can be used within function scope.
+// Minimum alignment is 16 bytes.
+class ScratchBuffer
+{
+public:
+	ScratchBuffer() : buffer_(nullptr), size_(0) {}
+
+	~ScratchBuffer() {
+		ozz::memory::default_allocator()->Deallocate(buffer_);
+	}
+
+	void* Resize(size_t _size) {
+		if (_size > size_) {
+			size_ = _size;
+			ozz::memory::default_allocator()->Deallocate(buffer_);
+			buffer_ = ozz::memory::default_allocator()->Allocate(_size, 16);
+		}
+		return buffer_;
+	}
+
+private:
+	void* buffer_;
+	size_t size_;
+};
+
 
 class EngineCore
 {
@@ -69,6 +98,8 @@ public:
 	MonoManager* monoManager = nullptr;
 	InputManager* inputManager = nullptr;
 	N_SceneManager* N_sceneManager = nullptr;
+
+	ScratchBuffer scratch_buffer_;
 
 private:
 

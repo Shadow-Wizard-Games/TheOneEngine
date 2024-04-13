@@ -6,42 +6,6 @@
 #include "..\..\Log.h"
 
 
-void OzzAnimationPartialBlending::SetupPerJointWeights()
-{
-    // Setup partial animation mask. This mask is defined by a weight_setting
-    // assigned to each joint of the hierarchy. Joint to disable are set to a
-    // weight_setting of 0.f, and enabled joints are set to 1.f.
-    // Per-joint weights of lower and upper body layers have opposed values
-    // (weight_setting and 1 - weight_setting) in order for a layer to select
-    // joints that are rejected by the other layer.
-    Sampler& lower_body_sampler = samplers_[kLowerBody];
-    Sampler& upper_body_sampler = samplers_[kUpperBody];
-
-    // Disables all joints: set all weights to 0.
-    for (int i = 0; i < skeleton_->num_soa_joints(); ++i)
-    {
-        lower_body_sampler.joint_weights[i] = ozz::math::simd_float4::one();
-        upper_body_sampler.joint_weights[i] = ozz::math::simd_float4::zero();
-    }
-
-    // Sets the weight_setting of all the joints children of the lower and upper
-    // body weights. Note that they are stored in SoA format.
-    WeightSetupIterator lower_it(&lower_body_sampler.joint_weights,
-        lower_body_sampler.joint_weight_setting);
-    ozz::animation::IterateJointsDF(*skeleton_, lower_it, upper_body_root_);
-
-    WeightSetupIterator upper_it(&upper_body_sampler.joint_weights,
-        upper_body_sampler.joint_weight_setting);
-    ozz::animation::IterateJointsDF(*skeleton_, upper_it, upper_body_root_);
-}
-
-bool OzzAnimationPartialBlending::UpdateAnimation(float _dt)
-{
-    if (!SampleLocals(_dt)) return false;
-
-    return true;
-}
-
 OzzAnimationPartialBlending::OzzAnimationPartialBlending() :
     upper_body_root_(0),
     threshold_(ozz::animation::BlendingJob().threshold),
@@ -53,17 +17,6 @@ OzzAnimationPartialBlending::OzzAnimationPartialBlending() :
 
 OzzAnimationPartialBlending::~OzzAnimationPartialBlending()
 {}
-
-void OzzAnimationPartialBlending::SetUpperBodyRoot(int ubr)
-{
-    if (ubr < skeleton_->num_joints()) {
-        upper_body_root_ = ubr;
-    }
-
-    if (m_Status == INVALID) return;
-
-    SetupPerJointWeights();
-}
 
 bool OzzAnimationPartialBlending::LoadLowerAnimation(const char* lower)
 {
@@ -234,40 +187,6 @@ void OzzAnimationPartialBlending::OnSkeletonSet()
     SetupPerJointWeights();
 }
 
-void OzzAnimationPartialBlending::setUpperPlaybackSpeed(float playback_speed)
-{
-    samplers_[kUpperBody].controller.set_playback_speed(playback_speed);
-}
-
-float OzzAnimationPartialBlending::getUpperPlaybackSpeed()
-{
-    return samplers_[kUpperBody].controller.playback_speed();
-}
-
-void OzzAnimationPartialBlending::setLowerPlaybackSpeed(float playback_speed)
-{
-    samplers_[kLowerBody].controller.set_playback_speed(playback_speed);
-
-    m_PlaybackSpeed = playback_speed;
-}
-
-float OzzAnimationPartialBlending::getLowerPlaybackSpeed()
-{
-    return samplers_[kLowerBody].controller.playback_speed();
-}
-
-void OzzAnimationPartialBlending::setTimeRatio(float time_ratio)
-{
-    for (int i = 0; i < kNumLayers; ++i) {
-        samplers_[i].controller.set_time_ratio(time_ratio);
-    }
-}
-
-float OzzAnimationPartialBlending::getTimeRatio()
-{
-    return samplers_[kLowerBody].controller.time_ratio();
-}
-
 bool OzzAnimationPartialBlending::HasFinished()
 {
     if (m_Loop) return false;
@@ -289,24 +208,113 @@ void OzzAnimationPartialBlending::OnLoopChange()
     }
 }
 
-void OzzAnimationPartialBlending::addKeyAction(Action<> action, float time)
+void OzzAnimationPartialBlending::AddKeyAction(Action<> action, float time)
 {
     samplers_[kLowerBody].controller.add_key_event(action, time);
 }
 
-void OzzAnimationPartialBlending::removeKeyAction(Action<> action)
+void OzzAnimationPartialBlending::RemoveKeyAction(Action<> action)
 {
     samplers_[kLowerBody].controller.remove_key_event(action);
 }
+
 void OzzAnimationPartialBlending::Play()
 {
     for (int i = 0; i < kNumLayers; ++i) {
         samplers_[i].controller.play();
     }
 }
+
 void OzzAnimationPartialBlending::Stop()
 {
     for (int i = 0; i < kNumLayers; ++i) {
         samplers_[i].controller.stop();
     }
+}
+
+
+// Get/Set ---------------------------------------------------------------
+
+void OzzAnimationPartialBlending::SetUpperBodyRoot(int ubr)
+{
+    if (ubr < skeleton_->num_joints()) {
+        upper_body_root_ = ubr;
+    }
+
+    if (m_Status == INVALID) return;
+
+    SetupPerJointWeights();
+}
+
+void OzzAnimationPartialBlending::SetUpperPlaybackSpeed(float playback_speed)
+{
+    samplers_[kUpperBody].controller.set_playback_speed(playback_speed);
+}
+
+float OzzAnimationPartialBlending::GetUpperPlaybackSpeed()
+{
+    return samplers_[kUpperBody].controller.playback_speed();
+}
+
+void OzzAnimationPartialBlending::SetLowerPlaybackSpeed(float playback_speed)
+{
+    samplers_[kLowerBody].controller.set_playback_speed(playback_speed);
+
+    m_PlaybackSpeed = playback_speed;
+}
+
+float OzzAnimationPartialBlending::GetLowerPlaybackSpeed()
+{
+    return samplers_[kLowerBody].controller.playback_speed();
+}
+
+void OzzAnimationPartialBlending::SetTimeRatio(float time_ratio)
+{
+    for (int i = 0; i < kNumLayers; ++i) {
+        samplers_[i].controller.set_time_ratio(time_ratio);
+    }
+}
+
+float OzzAnimationPartialBlending::GetTimeRatio()
+{
+    return samplers_[kLowerBody].controller.time_ratio();
+}
+
+
+// private ------------------
+
+void OzzAnimationPartialBlending::SetupPerJointWeights()
+{
+    // Setup partial animation mask. This mask is defined by a weight_setting
+    // assigned to each joint of the hierarchy. Joint to disable are set to a
+    // weight_setting of 0.f, and enabled joints are set to 1.f.
+    // Per-joint weights of lower and upper body layers have opposed values
+    // (weight_setting and 1 - weight_setting) in order for a layer to select
+    // joints that are rejected by the other layer.
+    Sampler& lower_body_sampler = samplers_[kLowerBody];
+    Sampler& upper_body_sampler = samplers_[kUpperBody];
+
+    // Disables all joints: set all weights to 0.
+    for (int i = 0; i < skeleton_->num_soa_joints(); ++i)
+    {
+        lower_body_sampler.joint_weights[i] = ozz::math::simd_float4::one();
+        upper_body_sampler.joint_weights[i] = ozz::math::simd_float4::zero();
+    }
+
+    // Sets the weight_setting of all the joints children of the lower and upper
+    // body weights. Note that they are stored in SoA format.
+    WeightSetupIterator lower_it(&lower_body_sampler.joint_weights,
+        lower_body_sampler.joint_weight_setting);
+    ozz::animation::IterateJointsDF(*skeleton_, lower_it, upper_body_root_);
+
+    WeightSetupIterator upper_it(&upper_body_sampler.joint_weights,
+        upper_body_sampler.joint_weight_setting);
+    ozz::animation::IterateJointsDF(*skeleton_, upper_it, upper_body_root_);
+}
+
+bool OzzAnimationPartialBlending::UpdateAnimation(float _dt)
+{
+    if (!SampleLocals(_dt)) return false;
+
+    return true;
 }

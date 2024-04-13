@@ -80,11 +80,11 @@ bool OzzAnimationSimple::Update(float _dt)
 	return true;
 }
 
-void OzzAnimationSimple::setTimeRatio(float time_ratio)
+void OzzAnimationSimple::SetTimeRatio(float time_ratio)
 {
 	controller_.set_time_ratio(time_ratio);
 }
-float OzzAnimationSimple::getTimeRatio()
+float OzzAnimationSimple::GetTimeRatio()
 {
 	return controller_.time_ratio();
 }
@@ -96,12 +96,12 @@ bool OzzAnimationSimple::HasFinished()
 	return controller_.finished();
 }
 
-void OzzAnimationSimple::addKeyAction(Action<> action, float time)
+void OzzAnimationSimple::AddKeyAction(Action<> action, float time)
 {
 	controller_.add_key_event(action, time);
 }
 
-void OzzAnimationSimple::removeKeyAction(Action<> action)
+void OzzAnimationSimple::RemoveKeyAction(Action<> action)
 {
 	controller_.remove_key_event(action);
 }

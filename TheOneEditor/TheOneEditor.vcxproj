@@ -117,6 +117,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InspectorParticleSystems.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PanelAnimation.cpp" />
     <ClCompile Include="PanelBuild.cpp" />
     <ClCompile Include="PanelConsole.cpp" />
     <ClCompile Include="PanelGame.cpp" />
@@ -150,6 +151,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClInclude Include="Input.h" />
     <ClInclude Include="InspectorParticleSystems.h" />
     <ClInclude Include="Module.h" />
+    <ClInclude Include="PanelAnimation.h" />
     <ClInclude Include="PanelBuild.h" />
     <ClInclude Include="PanelConsole.h" />
     <ClInclude Include="PanelGame.h" />

@@ -20,6 +20,7 @@
 //#include <Wiwa/core/Application.h>
 
 #include "../Defs.h"
+#include "../Resources.h"
 #include "nlohmann/json.hpp"
 
 #include <fstream>
@@ -207,18 +208,18 @@ bool OzzAnimator::LoadSkeleton(const std::string& path)
 	return m_LoadedSkeleton;
 }
 
-// hekbas: TODO
-//bool OzzAnimator::LoadMaterial(const std::string& path)
-//{
-//	m_MaterialId = Resources::Load<Material>(path.c_str());
-//
-//	if (m_MaterialId == INVALID_INDEX) return false;
-//
-//	m_MaterialPath = path;
-//	m_LoadedMaterial = true;
-//
-//	return true;
-//}
+// hekbas: TODO OZZ
+bool OzzAnimator::LoadMaterial(const std::string& path)
+{
+	m_MaterialId = Resources::Load<Material>(path.c_str());
+
+	if (m_MaterialId == INVALID_INDEX) return false;
+
+	m_MaterialPath = path;
+	m_LoadedMaterial = true;
+
+	return true;
+}
 
 size_t OzzAnimator::CreateSimpleAnimation(const std::string& name)
 {
@@ -310,7 +311,7 @@ OzzAnimator::AnimationData* OzzAnimator::PlayAnimation(size_t anim_id, float tim
 				return &a_data;
 		}
 
-		a_data.animation->setTimeRatio(time_ratio);
+		a_data.animation->SetTimeRatio(time_ratio);
 
 		if (a_data.animation->getStatus() == OzzAnimation::Status::VALID)
 		{
@@ -381,7 +382,7 @@ OzzAnimation* OzzAnimator::getActiveAnimation()
 	return anim;
 }
 
-void OzzAnimator::setUpperPlaybackSpeed(size_t anim_id, float playback_speed)
+void OzzAnimator::SetUpperPlaybackSpeed(size_t anim_id, float playback_speed)
 {
 	if (anim_id < 0 || anim_id >= m_AnimationList.size()) return;
 
@@ -392,11 +393,11 @@ void OzzAnimator::setUpperPlaybackSpeed(size_t anim_id, float playback_speed)
 	if (a_data.animation->getAnimationType() == AnimationType::AT_PARTIAL_BLEND)
 	{
 		OzzAnimationPartialBlending* a_partial = (OzzAnimationPartialBlending*)a_data.animation;
-		a_partial->setUpperPlaybackSpeed(playback_speed);
+		a_partial->SetUpperPlaybackSpeed(playback_speed);
 	}
 }
 
-void OzzAnimator::setLowerPlaybackSpeed(size_t anim_id, float playback_speed)
+void OzzAnimator::SetLowerPlaybackSpeed(size_t anim_id, float playback_speed)
 {
 	if (anim_id < 0 || anim_id >= m_AnimationList.size()) return;
 
@@ -407,7 +408,7 @@ void OzzAnimator::setLowerPlaybackSpeed(size_t anim_id, float playback_speed)
 	if (a_data.animation->getAnimationType() == AnimationType::AT_PARTIAL_BLEND)
 	{
 		OzzAnimationPartialBlending* a_partial = (OzzAnimationPartialBlending*)a_data.animation;
-		a_partial->setLowerPlaybackSpeed(playback_speed);
+		a_partial->SetLowerPlaybackSpeed(playback_speed);
 	}
 }
 
@@ -431,29 +432,29 @@ bool OzzAnimator::Update(float _dt)
 	return true;
 }
 
-// hekbas: TODO
-//bool OzzAnimator::Render(Wiwa::Camera* camera, glm::mat4 transform)
-//{
-//	if (!m_LoadedMesh || !m_LoadedSkeleton || !m_LoadedMaterial) return false;
-//
-//	bool success = true;
-//
-//	Wiwa::Renderer3D& r3d = Wiwa::Application::Get().GetRenderer3D();
-//
-//	ozz::math::Float4x4 ozz_transform = ozz::math::Float4x4::identity();
-//
-//	for (int i = 0; i < 4; i++)
-//	{
-//		for (int j = 0; j < 4; j++)
-//			ozz_transform.cols[i].m128_f32[j] = transform[i][j];
-//	}
-//
-//	Material* mat = Wiwa::Resources::GetResourceById<Material>(m_MaterialId);
-//
-//	success &= r3d.RenderOzzSkinnedMesh(camera, m_Mesh, mat, make_span(skinning_matrices_), ozz_transform);
-//
-//	return success;
-//}
+// hekbas: TODO OZZ
+bool OzzAnimator::Render(Camera* camera, mat4 transform)
+{
+	if (!m_LoadedMesh || !m_LoadedSkeleton || !m_LoadedMaterial) return false;
+
+	bool success = true;
+
+	Wiwa::Renderer3D& r3d = Wiwa::Application::Get().GetRenderer3D();
+
+	ozz::math::Float4x4 ozz_transform = ozz::math::Float4x4::identity();
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+			ozz_transform.cols[i].m128_f32[j] = transform[i][j];
+	}
+
+	Material* mat = Resources::GetResourceById<Material>(m_MaterialId);
+
+	success &= r3d.RenderOzzSkinnedMesh(camera, m_Mesh, mat, make_span(skinning_matrices_), ozz_transform);
+
+	return success;
+}
 
 void OzzAnimator::SaveAnimator(OzzAnimator* animator, const char* filepath)
 {
@@ -503,8 +504,8 @@ void OzzAnimator::SaveAnimator(OzzAnimator* animator, const char* filepath)
 			if (partial_anim)
 			{
 				anim_obj["upper_body_root"] = partial_anim->GetUpperBodyRoot();
-				anim_obj["lower_body_file"] = partial_anim->getLowerBodyFile();
-				anim_obj["upper_body_file"] = partial_anim->getUpperBodyFile();
+				anim_obj["lower_body_file"] = partial_anim->GetLowerBodyFile();
+				anim_obj["upper_body_file"] = partial_anim->GetUpperBodyFile();
 			}
 		} break;
 
@@ -641,8 +642,8 @@ OzzAnimator* OzzAnimator::LoadAnimator(const char* filepath)
 	return animator;
 }
 
-// hekbas: TODO
-//ResourceId OzzAnimator::GetMaterial()
-//{
-//	return m_MaterialId;
-//}
+// hekbas: TODO OZZ
+ResourceId OzzAnimator::GetMaterial()
+{
+	return m_MaterialId;
+}

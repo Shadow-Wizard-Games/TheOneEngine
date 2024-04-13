@@ -43,11 +43,13 @@ public:
 	bool isInitialized(Panel* panel);
 
 	void CalculateSizeAspectRatio(int maxWidth, int maxHeight, int& width, int& height);
+	void AssetContainer(const char* label);
 
 private:
 
 	// Main Dockspace
-	void MainWindowDockspace(); 
+	void MainWindowDockspace();
+
 	bool MainMenuFile();
 	void MainMenuEdit();
 	void MainMenuAssets();

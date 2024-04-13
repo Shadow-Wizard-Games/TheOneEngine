@@ -16,9 +16,6 @@
     <ClCompile Include="PanelHierarchy.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
-    <ClCompile Include="PanelInspector.cpp">
-      <Filter>Panels</Filter>
-    </ClCompile>
     <ClCompile Include="PanelProject.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
@@ -64,11 +61,17 @@
     <ClCompile Include="PanelBuild.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
-    <ClCompile Include="InspectorParticleSystems.cpp">
-      <Filter>Panels</Filter>
-    </ClCompile>
     <ClCompile Include="Prefab.cpp">
       <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelInspector.cpp">
+      <Filter>Panels\Inspector</Filter>
+    </ClCompile>
+    <ClCompile Include="InspectorParticleSystems.cpp">
+      <Filter>Panels\Inspector</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelAnimation.cpp">
+      <Filter>Panels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,9 +88,6 @@
       <Filter>Panels</Filter>
     </ClInclude>
     <ClInclude Include="PanelHierarchy.h">
-      <Filter>Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="PanelInspector.h">
       <Filter>Panels</Filter>
     </ClInclude>
     <ClInclude Include="PanelProject.h">
@@ -129,11 +129,17 @@
     <ClInclude Include="PanelBuild.h">
       <Filter>Panels</Filter>
     </ClInclude>
-    <ClInclude Include="InspectorParticleSystems.h">
-      <Filter>Panels</Filter>
-    </ClInclude>
     <ClInclude Include="Prefab.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelInspector.h">
+      <Filter>Panels\Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="InspectorParticleSystems.h">
+      <Filter>Panels\Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelAnimation.h">
+      <Filter>Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +163,9 @@
     </Filter>
     <Filter Include="Prefabs">
       <UniqueIdentifier>{1a9d3e06-e270-46e4-a017-06bc447348e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Panels\Inspector">
+      <UniqueIdentifier>{3f293774-551c-49ee-aaf7-385b2fefbaaf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
