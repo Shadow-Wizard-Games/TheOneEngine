@@ -135,6 +135,7 @@
     <ClInclude Include="Prefab.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Panels">
@@ -158,5 +159,11 @@
     <Filter Include="Prefabs">
       <UniqueIdentifier>{1a9d3e06-e270-46e4-a017-06bc447348e7}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TheOneEditor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="TheOneIcon.ico" />
   </ItemGroup>
 </Project>
