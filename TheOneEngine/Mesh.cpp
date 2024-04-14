@@ -343,86 +343,80 @@ bool Mesh::RenderOzzSkinnedMesh(Camera* camera, const ozz::sample::Mesh& _mesh, 
 
 	//LightManager& lman = Wiwa::SceneManager::getActiveScene()->GetLightManager();
 
-	// After processing everything, render
-	GL(Viewport(0, 0, scene->frameBuffer->getWidth(), camera->frameBuffer->getHeight()));
-
-	camera->frameBuffer->Bind(false);
 	anim_shader->Bind();
-	GL(BindVertexArray(dynamic_vao_));
+	GLCALL(glBindVertexArray(dynamic_vao_));
 	// Updates dynamic vertex buffer with skinned data.
-	GL(BindBuffer(GL_ARRAY_BUFFER, dynamic_array_bo_));
-	GL(BufferData(GL_ARRAY_BUFFER, vbo_size, nullptr, GL_STREAM_DRAW));
-	GL(BufferSubData(GL_ARRAY_BUFFER, 0, vbo_size, vbo_map));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, dynamic_array_bo_));
+	GLCALL(glBufferData(GL_ARRAY_BUFFER, vbo_size, nullptr, GL_STREAM_DRAW));
+	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vbo_size, vbo_map));
 
 
 
-	SetUpLight(anim_shader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
-	camera->shadowBuffer->BindTexture();
+	/*SetUpLight(anim_shader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
+	camera->shadowBuffer->BindTexture();*/
 
 	material->Bind(GL_TEXTURE1);
 
-	GL(EnableVertexAttribArray(0));
-	GL(VertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, uvs_stride,
+	GLCALL(glEnableVertexAttribArray(0));
+	GLCALL(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, uvs_stride,
 		GL_PTR_OFFSET(uvs_offset)));
 
-	GL(EnableVertexAttribArray(1));
-	GL(VertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, positions_stride,
+	GLCALL(glEnableVertexAttribArray(1));
+	GLCALL(glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, positions_stride,
 		GL_PTR_OFFSET(positions_offset)));
 
-	GL(EnableVertexAttribArray(2));
-	GL(VertexAttribPointer(2, 3, GL_FLOAT, GL_TRUE, normals_stride,
+	GLCALL(glEnableVertexAttribArray(2));
+	GLCALL(glVertexAttribPointer(2, 3, GL_FLOAT, GL_TRUE, normals_stride,
 		GL_PTR_OFFSET(normals_offset)));
 
-	GL(EnableVertexAttribArray(3));
-	GL(VertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE,
+	GLCALL(glEnableVertexAttribArray(3));
+	GLCALL(glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE,
 		colors_stride, GL_PTR_OFFSET(colors_offset)));
 
 	// Binds mw uniform
 	float values[16];
-	const GLint mw_uniform = GL(GetUniformLocation(anim_shader->getID(), "u_mw"));//uniform(0);
+	const GLint mw_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mw"));//uniform(0);
 	ozz::math::StorePtrU(_transform.cols[0], values + 0);
 	ozz::math::StorePtrU(_transform.cols[1], values + 4);
 	ozz::math::StorePtrU(_transform.cols[2], values + 8);
 	ozz::math::StorePtrU(_transform.cols[3], values + 12);
-	GL(UniformMatrix4fv(mw_uniform, 1, false, values));
+	GLCALL(glUniformMatrix4fv(mw_uniform, 1, false, values));
 
 	// Binds mvp uniform
-	const GLint mvp_uniform = GL(GetUniformLocation(anim_shader->getID(), "u_mvp"));//uniform(1);
+	const GLint mvp_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mvp"));//uniform(1);
 	ozz::math::StorePtrU(ozz_mvp.cols[0], values + 0);
 	ozz::math::StorePtrU(ozz_mvp.cols[1], values + 4);
 	ozz::math::StorePtrU(ozz_mvp.cols[2], values + 8);
 	ozz::math::StorePtrU(ozz_mvp.cols[3], values + 12);
-	GL(UniformMatrix4fv(mvp_uniform, 1, false, values));
+	GLCALL(glUniformMatrix4fv(mvp_uniform, 1, false, values));
 
 	// Maps the index dynamic buffer and update it.
-	GL(BindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamic_index_bo_));
+	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamic_index_bo_));
 	const ozz::sample::Mesh::TriangleIndices& indices = _mesh.triangle_indices;
-	GL(BufferData(GL_ELEMENT_ARRAY_BUFFER,
+	GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER,
 		indices.size() * sizeof(ozz::sample::Mesh::TriangleIndices::value_type),
 		array_begin(indices), GL_STREAM_DRAW));
 
 	// Draws the mesh.
 	static_assert(sizeof(ozz::sample::Mesh::TriangleIndices::value_type) == 2,
 		"Expects 2 bytes indices.");
-	GL(DrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()),
+	GLCALL(glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()),
 		GL_UNSIGNED_SHORT, 0));
 
 	// Unbinds.
-	GL(BindBuffer(GL_ARRAY_BUFFER, 0));
-	GL(BindTexture(GL_TEXTURE_2D, 0));
-	GL(BindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
+	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 
-	GL(DisableVertexAttribArray(0));
-	GL(DisableVertexAttribArray(1));
-	GL(DisableVertexAttribArray(2));
-	GL(DisableVertexAttribArray(3));
+	GLCALL(glDisableVertexAttribArray(0));
+	GLCALL(glDisableVertexAttribArray(1));
+	GLCALL(glDisableVertexAttribArray(2));
+	GLCALL(glDisableVertexAttribArray(3));
 
-	GL(BindVertexArray(0));
+	GLCALL(glBindVertexArray(0));
 
-	camera->shadowBuffer->UnbindTexture();
+	//camera->shadowBuffer->UnbindTexture();
 	material->UnBind(GL_TEXTURE1);
-
-	camera->frameBuffer->Unbind();
 
 	return true;
 }
