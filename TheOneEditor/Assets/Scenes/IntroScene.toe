@@ -1,0 +1,134 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4132926587
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 213738418,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 987700871
+        },
+        {
+          "DebugDraw": true,
+          "Enabled": true,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 1310615624,
+          "UiElements": [
+            {
+              "ID": 644823920,
+              "ImagePath": "Assets/Textures/Hud/Placeholder.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "Image",
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ],
+          "UiTextures": [
+            {
+              "Path": "Assets/Textures/Hud/Placeholder.png"
+            }
+          ]
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "IntroScene",
+          "Type": 4,
+          "UID": 1823036633
+        }
+      ],
+      "Enabled": true,
+      "Name": "IntroScene",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\NewUntitledScene.toe",
+  "sceneName": "NewUntitledScene"
+}
