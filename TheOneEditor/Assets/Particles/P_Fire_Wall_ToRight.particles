@@ -1,0 +1,149 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 0.5,
+      "InitializeModules": [
+        {
+          "MaxColor": [
+            250.0,
+            80.0,
+            0.0
+          ],
+          "MinColor": [
+            200.0,
+            0.0,
+            0.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        },
+        {
+          "MaxSpeed": [
+            0.0,
+            8.0,
+            4.0
+          ],
+          "MinSpeed": [
+            -8.0,
+            5.0,
+            -4.0
+          ],
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxScale": [
+            1.5,
+            1.5,
+            1.5
+          ],
+          "MinScale": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        }
+      ],
+      "IsLooping": true,
+      "IsON": true,
+      "Lifetime": 5292.56005859375,
+      "MaxParticles": 60,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 5.0,
+          "Duration": 1.25,
+          "SpawnRate": 10.0,
+          "Type": 2
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            8.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    },
+    {
+      "Delay": 0.0,
+      "Duration": 10.0,
+      "InitializeModules": [
+        {
+          "MaxSpeed": [
+            0.0,
+            9.0,
+            0.5
+          ],
+          "MinSpeed": [
+            -1.5,
+            7.0,
+            -0.5
+          ],
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxScale": [
+            2.5,
+            2.5,
+            2.5
+          ],
+          "MinScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        },
+        {
+          "MaxColor": [
+            45.0,
+            45.0,
+            45.0
+          ],
+          "MinColor": [
+            40.0,
+            40.0,
+            40.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        }
+      ],
+      "IsLooping": true,
+      "IsON": true,
+      "Lifetime": 5292.56005859375,
+      "MaxParticles": 50,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 3.0,
+          "SpawnRate": 2.0,
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "IsON": true,
+  "Name": "P_Fire_Wall_ToRight",
+  "Type": 9,
+  "UID": 704292522
+}
