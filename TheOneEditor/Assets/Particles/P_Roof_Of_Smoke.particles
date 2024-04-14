@@ -1,0 +1,84 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 10.0,
+      "InitializeModules": [
+        {
+          "MaxSpeed": [
+            4.0,
+            0.0,
+            4.0
+          ],
+          "MinSpeed": [
+            -4.0,
+            -0.5,
+            -4.0
+          ],
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            255.0,
+            255.0,
+            255.0
+          ],
+          "MinColor": [
+            40.0,
+            40.0,
+            40.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        }
+      ],
+      "IsLooping": true,
+      "IsON": true,
+      "Lifetime": 147.04025268554688,
+      "MaxParticles": 500,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 15.0,
+          "Duration": 5.0,
+          "SpawnRate": 2.0,
+          "Type": 2
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            -0.1,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "IsON": true,
+  "Name": "P_Roof_Of_Smoke",
+  "Type": 9,
+  "UID": 627001985
+}
