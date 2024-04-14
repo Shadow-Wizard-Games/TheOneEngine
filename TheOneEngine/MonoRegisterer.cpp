@@ -119,6 +119,7 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
 	go->GetComponent<Collider2D>()->radius = 0.4f;
+	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
 	return go;
 }
 

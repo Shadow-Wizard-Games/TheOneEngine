@@ -19,14 +19,20 @@ public class PlayerScript : MonoBehaviour
     float currentTimer = 0.0f;
     float attackCooldown = .10f;
 
+    bool isDead = false;
+    float life = 100;
+
     public override void Start()
     {
         iManagerGO = IGameObject.Find("Manager");
         itemManager = iManagerGO.GetComponent<ItemManager>();
+        itemManager.AddItem(1, 1);
     }
 
     public override void Update()
     {
+        if (isDead) return;
+
         bool toMove = false;
         Vector3 movement = Vector3.zero;
 
@@ -198,5 +204,19 @@ public class PlayerScript : MonoBehaviour
             lastFrameToMove = toMove;
         }
 
+    }
+
+    public void ReduceLife() //temporary function for the hardcoding of collisions
+    {
+        if (isDead) { return; }
+
+        life -= 10.0f;
+        Debug.Log("Player took damage! Current life is: " + life.ToString());
+
+        if (life <= 0.0f) 
+        { 
+            isDead = true;
+            attachedGameObject.transform.Rotate(Vector3.right * 90f);
+        }
     }
 }
