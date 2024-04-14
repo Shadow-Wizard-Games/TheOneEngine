@@ -270,6 +270,9 @@
     <ClInclude Include="Animator.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
+    <ClInclude Include="FileDialog.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -427,6 +430,9 @@
     </ClCompile>
     <ClCompile Include="UniformBuffer.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDialog.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

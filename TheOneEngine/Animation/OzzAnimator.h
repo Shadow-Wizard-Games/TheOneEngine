@@ -3,6 +3,7 @@
 //#include <Wiwa/core/Core.h>
 //#include <Wiwa/core/Renderer3D.h>
 
+#include "../Defs.h"
 #include "animations/OzzAnimationPartialBlending.h"
 
 #include <string>
@@ -10,6 +11,8 @@
 #include <unordered_map>
 
 typedef int ResourceId;
+class Camera;
+
 
 class OzzAnimator
 {

@@ -435,7 +435,7 @@ bool OzzAnimator::Update(float _dt)
 // hekbas: TODO OZZ
 bool OzzAnimator::Render(Camera* camera, mat4 transform)
 {
-	if (!m_LoadedMesh || !m_LoadedSkeleton || !m_LoadedMaterial) return false;
+	/*if (!m_LoadedMesh || !m_LoadedSkeleton || !m_LoadedMaterial) return false;
 
 	bool success = true;
 
@@ -453,7 +453,9 @@ bool OzzAnimator::Render(Camera* camera, mat4 transform)
 
 	success &= r3d.RenderOzzSkinnedMesh(camera, m_Mesh, mat, make_span(skinning_matrices_), ozz_transform);
 
-	return success;
+	return success;*/
+
+	return true; //DELETE THIS WHEN FIX
 }
 
 void OzzAnimator::SaveAnimator(OzzAnimator* animator, const char* filepath)

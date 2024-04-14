@@ -3,6 +3,7 @@
 #include "App.h"
 #include "Gui.h"
 
+#include "../TheOneEngine/FileDialog.h"
 #include "../TheOneEngine/Camera.h"
 #include "../TheOneEngine/Animation/OzzAnimator.h"
 #include "../TheOneEngine/Animation/animations/OzzAnimationSimple.h"
@@ -12,11 +13,12 @@
 #include "imgui_stdlib.h"
 
 
+// hekbas: TODO OZZ
 PanelAnimation::PanelAnimation(PanelType type, std::string name) : Panel(type, name),
 m_ActiveAnimator(nullptr),
 m_Camera(nullptr)
 {
-	m_Camera = new Camera();
+	/*m_Camera = new Camera();
 
 	Wiwa::Size2i& size = Wiwa::Application::Get().GetTargetResolution();
 	float aratio = size.w / (float)size.h;
@@ -28,7 +30,7 @@ m_Camera(nullptr)
 
 	m_Transform = glm::mat4(1.0f);
 
-	m_Transform = glm::scale(m_Transform, glm::vec3(100.0f, 100.0f, 100.0f));
+	m_Transform = glm::scale(m_Transform, glm::vec3(100.0f, 100.0f, 100.0f));*/
 }
 
 PanelAnimation::~PanelAnimation()
@@ -38,12 +40,15 @@ PanelAnimation::~PanelAnimation()
 
 bool PanelAnimation::Draw()
 {
-	ImGui::Begin("Ozz Animator", &active, ImGuiWindowFlags_MenuBar);
+	if (ImGui::Begin("Ozz Animator", &enabled, ImGuiWindowFlags_MenuBar))
+	{
+		DrawTopbar();
+		DrawBody();
 
-	DrawTopbar();
-	DrawBody();
+		ImGui::End();
+	}
 
-	ImGui::End();
+	return true;
 }
 
 void PanelAnimation::DrawTopbar()
@@ -62,14 +67,14 @@ void PanelAnimation::DrawTopbar()
 				m_ActiveAnimatorPath = "";
 			}
 
-			if (ImGui::MenuItem("Open animator"))
+			if (ImGui::MenuItem("Open Animator"))
 			{
-				std::string filePath = FileDialogs::OpenFile("Wiwa Ozz Animator (*.wiozzanimator)\0*.wiozzanimator\0");
+				std::string filePath = FileDialog::OpenFile("TOE Animator (*.toeanimator)\0*.toeanimator\0");
 				if (!filePath.empty())
 				{
-					if (filePath.find(".wiozzanimator") == filePath.npos)
+					if (filePath.find(".toeanimator") == filePath.npos)
 					{
-						filePath += ".wiozzanimator";
+						filePath += ".toeanimator";
 					}
 
 					if (m_ActiveAnimator) {
@@ -81,7 +86,7 @@ void PanelAnimation::DrawTopbar()
 				}
 			}
 
-			if (ImGui::MenuItem("Save animator"))
+			if (ImGui::MenuItem("Save Animator"))
 			{
 				if (m_ActiveAnimator)
 				{
@@ -90,12 +95,12 @@ void PanelAnimation::DrawTopbar()
 					}
 					else
 					{
-						std::string filePath = FileDialogs::SaveFile("Wiwa Ozz Animator (*.wiozzanimator)\0*.wiozzanimator\0");
+						std::string filePath = FileDialog::SaveFile("TOE Animator (*.toeanimator)\0*.toeanimator\0");
 
 						if (!filePath.empty()) {
-							if (filePath.find(".wiozzanimator") == filePath.npos)
+							if (filePath.find(".toeanimator") == filePath.npos)
 							{
-								filePath += ".wiozzanimator";
+								filePath += ".toeanimator";
 							}
 
 							m_ActiveAnimatorPath = filePath;
@@ -106,17 +111,17 @@ void PanelAnimation::DrawTopbar()
 				}
 			}
 
-			if (ImGui::MenuItem("Save animator as..."))
+			if (ImGui::MenuItem("Save Animator as..."))
 			{
 				if (m_ActiveAnimator)
 				{
-					std::string filePath = FileDialogs::SaveFile("Wiwa Ozz Animator (*.wiozzanimator)\0*.wiozzanimator\0");
+					std::string filePath = FileDialog::SaveFile("TOE Animator (*.toeanimator)\0*.toeanimator\0");
 
 					if (!filePath.empty())
 					{
-						if (filePath.find(".wiozzanimator") == filePath.npos)
+						if (filePath.find(".toeanimator") == filePath.npos)
 						{
-							filePath += ".wiozzanimator";
+							filePath += ".toeanimator";
 						}
 
 						m_ActiveAnimatorPath = filePath;
@@ -187,27 +192,28 @@ void PanelAnimation::DrawBody()
 	}
 }
 
+// hekbas: TODO OZZ
 void PanelAnimation::DrawAnimationViewer()
 {
-	m_Camera->frameBuffer->Clear({ 0.1f, 0.1f, 0.1f, 1.0f });
+	//m_Camera->frameBuffer->Clear({ 0.1f, 0.1f, 0.1f, 1.0f });
 
-	// Render animation
-	m_ActiveAnimator->Update(app->GetDT());
-	m_ActiveAnimator->Render(m_Camera, m_Transform);
+	//// Render animation
+	//m_ActiveAnimator->Update(app->GetDT());
+	//m_ActiveAnimator->Render(m_Camera, m_Transform);
 
-	// ImGui draw
-	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+	//// ImGui draw
+	//ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 
-	Wiwa::Size2i resolution = Wiwa::Application::Get().GetTargetResolution();
-	float ar = resolution.w / (float)resolution.h;
-	Wiwa::Size2f scales = { viewportPanelSize.x / (float)resolution.w, viewportPanelSize.y / (float)resolution.h };
+	//Wiwa::Size2i resolution = Wiwa::Application::Get().GetTargetResolution();
+	//float ar = resolution.w / (float)resolution.h;
+	//Wiwa::Size2f scales = { viewportPanelSize.x / (float)resolution.w, viewportPanelSize.y / (float)resolution.h };
 
-	float scale = scales.x < scales.y ? scales.x : scales.y;
+	//float scale = scales.x < scales.y ? scales.x : scales.y;
 
-	ImVec2 isize = { resolution.w * scale, resolution.h * scale };
+	//ImVec2 isize = { resolution.w * scale, resolution.h * scale };
 
-	ImTextureID tex = (ImTextureID)(intptr_t)m_Camera->frameBuffer->getColorBufferTexture();
-	ImGui::Image(tex, isize, ImVec2(0, 1), ImVec2(1, 0));
+	//ImTextureID tex = (ImTextureID)(intptr_t)m_Camera->frameBuffer->getColorBufferTexture();
+	//ImGui::Image(tex, isize, ImVec2(0, 1), ImVec2(1, 0));
 }
 
 void PanelAnimation::DrawMeshContainer()
@@ -311,7 +317,7 @@ void PanelAnimation::DrawMaterialContainer()
 			std::wstring ws(path);
 			std::string pathS(ws.begin(), ws.end());
 			std::filesystem::path p = pathS.c_str();
-			if (p.extension() == ".wimaterial")
+			if (p.extension() == ".toematerial")
 			{
 				std::string libpath = Resources::AssetToLibPath(p.string());
 				bool loaded = m_ActiveAnimator->LoadMaterial(libpath);
@@ -589,7 +595,7 @@ void PanelAnimation::DrawSimpleAnimation(OzzAnimationSimple* simple_animation)
 
 	ImGui::Text("Animation file");
 	ImGui::PushID("animation_file");
-	AssetContainer(anim_file);
+	app->gui->AssetContainer(anim_file);
 	if (ImGui::BeginDragDropTarget())
 	{
 		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
@@ -600,7 +606,7 @@ void PanelAnimation::DrawSimpleAnimation(OzzAnimationSimple* simple_animation)
 			std::filesystem::path p = pathS.c_str();
 			if (p.extension() == ".anim")
 			{
-				std::string libpath = Resources::_assetToLibPath(p.string());
+				std::string libpath = Resources::AssetToLibPath(p.string());
 				simple_animation->LoadAnimation(libpath.c_str());
 			}
 		}

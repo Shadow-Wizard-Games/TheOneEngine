@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Panel.h"
+#include "../TheOneEngine/Defs.h"
 
 //#include <Wiwa/animation/OzzAnimator.h>
 //#include <Wiwa/animation/animations/OzzAnimationSimple.h>
@@ -39,7 +40,7 @@ private:
 	std::string m_ActiveAnimatorPath;
 	OzzAnimator* m_ActiveAnimator;
 
-	glm::mat4 m_Transform;
+	mat4 m_Transform;
 
 	Camera* m_Camera;
 };

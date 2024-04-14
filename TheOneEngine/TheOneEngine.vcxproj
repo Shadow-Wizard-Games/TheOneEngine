@@ -33,6 +33,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="DebugShape.h" />
     <ClInclude Include="Defs.h" />
+    <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Framebuffer.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="GameObject.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="CollisionSolver.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="FileDialog.cpp" />
     <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -175,9 +177,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)external\ozz\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)external\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>

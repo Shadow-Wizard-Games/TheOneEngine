@@ -80,10 +80,10 @@ public:
 	float GetTimeRatio() override;
 	void SetTimeRatio(float time_ratio) override;
 
-	ozz::vector<ozz::math::SoaTransform>& getLocals() override { return blended_locals_; }
-
 	const char* GetLowerBodyFile() { return m_LowerBodyFile.c_str(); }
 	const char* GetUpperBodyFile() { return m_UpperBodyFile.c_str(); }
+
+	ozz::vector<ozz::math::SoaTransform>& getLocals() override { return blended_locals_; }
 
 private:
 	bool UpdateAnimation(float _dt);
