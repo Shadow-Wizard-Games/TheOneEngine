@@ -33,8 +33,8 @@ typedef unsigned int GLuint;
 
 typedef GLint GLsizei;
 
-#include "base/memory/unique_ptr.h"
-#include "base/containers/vector.h"
+#include "ozz/base/memory/unique_ptr.h"
+#include "ozz/base/containers/vector.h"
 
 namespace ozz {
 namespace math {

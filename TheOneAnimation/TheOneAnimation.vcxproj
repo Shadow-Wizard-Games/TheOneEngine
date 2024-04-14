@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\animation\runtime\animation.cc" />
+    <ClCompile Include="src\animation\runtime\animation_utils.cc" />
+    <ClCompile Include="src\animation\runtime\blending_job.cc" />
+    <ClCompile Include="src\animation\runtime\ik_aim_job.cc" />
+    <ClCompile Include="src\animation\runtime\ik_two_bone_job.cc" />
+    <ClCompile Include="src\animation\runtime\local_to_model_job.cc" />
+    <ClCompile Include="src\animation\runtime\sampling_job.cc" />
+    <ClCompile Include="src\animation\runtime\skeleton.cc" />
+    <ClCompile Include="src\animation\runtime\skeleton_utils.cc" />
+    <ClCompile Include="src\animation\runtime\track.cc" />
+    <ClCompile Include="src\animation\runtime\track_sampling_job.cc" />
+    <ClCompile Include="src\animation\runtime\track_triggering_job.cc" />
+    <ClCompile Include="src\base\containers\string_archive.cc" />
+    <ClCompile Include="src\base\io\archive.cc" />
+    <ClCompile Include="src\base\io\stream.cc" />
+    <ClCompile Include="src\base\maths\box.cc" />
+    <ClCompile Include="src\base\maths\math_archive.cc" />
+    <ClCompile Include="src\base\maths\simd_math.cc" />
+    <ClCompile Include="src\base\maths\simd_math_archive.cc" />
+    <ClCompile Include="src\base\maths\soa_math_archive.cc" />
+    <ClCompile Include="src\base\memory\allocator.cc" />
+    <ClCompile Include="src\geometry\runtime\skinning_job.cc" />
+    <ClCompile Include="src\options\options.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ozz\animation\runtime\animation.h" />
+    <ClInclude Include="include\ozz\animation\runtime\animation_utils.h" />
+    <ClInclude Include="include\ozz\animation\runtime\blending_job.h" />
+    <ClInclude Include="include\ozz\animation\runtime\export.h" />
+    <ClInclude Include="include\ozz\animation\runtime\ik_aim_job.h" />
+    <ClInclude Include="include\ozz\animation\runtime\ik_two_bone_job.h" />
+    <ClInclude Include="include\ozz\animation\runtime\local_to_model_job.h" />
+    <ClInclude Include="include\ozz\animation\runtime\sampling_job.h" />
+    <ClInclude Include="include\ozz\animation\runtime\skeleton.h" />
+    <ClInclude Include="include\ozz\animation\runtime\skeleton_utils.h" />
+    <ClInclude Include="include\ozz\animation\runtime\track.h" />
+    <ClInclude Include="include\ozz\animation\runtime\track_sampling_job.h" />
+    <ClInclude Include="include\ozz\animation\runtime\track_triggering_job.h" />
+    <ClInclude Include="include\ozz\animation\runtime\track_triggering_job_trait.h" />
+    <ClInclude Include="include\ozz\base\containers\array.h" />
+    <ClInclude Include="include\ozz\base\containers\array_archive.h" />
+    <ClInclude Include="include\ozz\base\containers\deque.h" />
+    <ClInclude Include="include\ozz\base\containers\intrusive_list.h" />
+    <ClInclude Include="include\ozz\base\containers\list.h" />
+    <ClInclude Include="include\ozz\base\containers\map.h" />
+    <ClInclude Include="include\ozz\base\containers\queue.h" />
+    <ClInclude Include="include\ozz\base\containers\set.h" />
+    <ClInclude Include="include\ozz\base\containers\stack.h" />
+    <ClInclude Include="include\ozz\base\containers\std_allocator.h" />
+    <ClInclude Include="include\ozz\base\containers\string.h" />
+    <ClInclude Include="include\ozz\base\containers\string_archive.h" />
+    <ClInclude Include="include\ozz\base\containers\unordered_map.h" />
+    <ClInclude Include="include\ozz\base\containers\unordered_set.h" />
+    <ClInclude Include="include\ozz\base\containers\vector.h" />
+    <ClInclude Include="include\ozz\base\containers\vector_archive.h" />
+    <ClInclude Include="include\ozz\base\io\archive.h" />
+    <ClInclude Include="include\ozz\base\io\archive_traits.h" />
+    <ClInclude Include="include\ozz\base\io\stream.h" />
+    <ClInclude Include="include\ozz\base\maths\box.h" />
+    <ClInclude Include="include\ozz\base\maths\gtest_math_helper.h" />
+    <ClInclude Include="include\ozz\base\maths\internal\simd_math_config.h" />
+    <ClInclude Include="include\ozz\base\maths\internal\simd_math_ref-inl.h" />
+    <ClInclude Include="include\ozz\base\maths\internal\simd_math_sse-inl.h" />
+    <ClInclude Include="include\ozz\base\maths\math_archive.h" />
+    <ClInclude Include="include\ozz\base\maths\math_constant.h" />
+    <ClInclude Include="include\ozz\base\maths\math_ex.h" />
+    <ClInclude Include="include\ozz\base\maths\quaternion.h" />
+    <ClInclude Include="include\ozz\base\maths\rect.h" />
+    <ClInclude Include="include\ozz\base\maths\simd_math.h" />
+    <ClInclude Include="include\ozz\base\maths\simd_math_archive.h" />
+    <ClInclude Include="include\ozz\base\maths\simd_quaternion.h" />
+    <ClInclude Include="include\ozz\base\maths\soa_float.h" />
+    <ClInclude Include="include\ozz\base\maths\soa_float4x4.h" />
+    <ClInclude Include="include\ozz\base\maths\soa_math_archive.h" />
+    <ClInclude Include="include\ozz\base\maths\soa_quaternion.h" />
+    <ClInclude Include="include\ozz\base\maths\soa_transform.h" />
+    <ClInclude Include="include\ozz\base\maths\transform.h" />
+    <ClInclude Include="include\ozz\base\maths\vec_float.h" />
+    <ClInclude Include="include\ozz\base\memory\allocator.h" />
+    <ClInclude Include="include\ozz\base\memory\unique_ptr.h" />
+    <ClInclude Include="include\ozz\geometry\runtime\export.h" />
+    <ClInclude Include="include\ozz\geometry\runtime\skinning_job.h" />
+    <ClInclude Include="include\ozz\options\export.h" />
+    <ClInclude Include="include\ozz\options\options.h" />
+    <ClInclude Include="src\animation\runtime\animation_keyframe.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{6ceb38e1-d500-4b35-92d4-9d7051489f29}</ProjectGuid>
+    <RootNamespace>TheOneAnimation</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)TheOneAnimation\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

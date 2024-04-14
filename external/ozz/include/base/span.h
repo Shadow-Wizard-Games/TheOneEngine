@@ -28,7 +28,7 @@
 #ifndef OZZ_OZZ_BASE_SPAN_H_
 #define OZZ_OZZ_BASE_SPAN_H_
 
-#include "base/platform.h"
+#include "ozz/base/platform.h"
 
 namespace ozz {
 

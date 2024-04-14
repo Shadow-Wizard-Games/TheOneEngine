@@ -36,8 +36,8 @@
 #include <cstdio>
 #include <limits>
 
-#include "base/log.h"
-#include "base/maths/simd_math.h"
+#include "ozz/base/log.h"
+#include "ozz/base/maths/simd_math.h"
 
 #define GL_PTR_OFFSET(i) reinterpret_cast<void*>(static_cast<intptr_t>(i))
 #define GL(_f) gl##_f

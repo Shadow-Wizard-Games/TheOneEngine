@@ -28,13 +28,13 @@
 //#include <wipch.h>
 #include "mesh.h"
 
-#include "base/containers/vector_archive.h"
-#include "base/memory/allocator.h"
+#include "ozz/base/containers/vector_archive.h"
+#include "ozz/base/memory/allocator.h"
 
-#include "base/io/archive.h"
+#include "ozz/base/io/archive.h"
 
-#include "base/maths/math_archive.h"
-#include "base/maths/simd_math_archive.h"
+#include "ozz/base/maths/math_archive.h"
+#include "ozz/base/maths/simd_math_archive.h"
 
 namespace ozz {
 namespace io {

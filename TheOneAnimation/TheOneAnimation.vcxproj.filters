@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Sauce">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Sauce\animation">
+      <UniqueIdentifier>{84a06533-fa55-494a-9da4-959d6956cf19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\animation\runtime">
+      <UniqueIdentifier>{b7fe14b0-b670-48ec-94e2-e431e68b6553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\base">
+      <UniqueIdentifier>{d962b22f-c38a-4a20-98d0-f80df73d0dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\base\containers">
+      <UniqueIdentifier>{aeea6418-5e92-4864-a1b0-4d347d2452c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\base\io">
+      <UniqueIdentifier>{9a5d1a31-5c3e-4f85-96e1-22786fdfb760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\base\maths">
+      <UniqueIdentifier>{240e7f78-6887-4a19-a72a-1b287f83777f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\base\memory">
+      <UniqueIdentifier>{cfefea0d-f7b2-408b-9f32-dfee389b8c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\geometry">
+      <UniqueIdentifier>{73630ad7-3939-44ab-a7a1-7fc457222940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\geometry\runtime">
+      <UniqueIdentifier>{e70557b5-9810-46f4-a780-310edf2a0def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\options">
+      <UniqueIdentifier>{a23e9d09-5514-4c27-b456-75cd18df5650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz">
+      <UniqueIdentifier>{db4d1602-7363-4be8-81fb-4982419366db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\animation">
+      <UniqueIdentifier>{2717eb99-d796-47f1-aef6-4d7b1911c4d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\base">
+      <UniqueIdentifier>{f3ae6ff4-5279-472b-a0e7-4395257e71fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\geometry">
+      <UniqueIdentifier>{a244b62a-c183-4202-b5b3-c7267d5990b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\options">
+      <UniqueIdentifier>{ed17da23-65c0-4901-8d60-5e70d4968af8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\animation\runtime">
+      <UniqueIdentifier>{38657b24-4123-438d-80f1-2a258b861df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\base\containers">
+      <UniqueIdentifier>{d065061f-241a-427b-95c8-6b4b0674a02f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\base\io">
+      <UniqueIdentifier>{d1fc5666-531d-4127-9e1c-8c3bbf7164b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\base\maths">
+      <UniqueIdentifier>{bde3f023-f7a5-4951-a466-3b671299fc76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\base\memory">
+      <UniqueIdentifier>{075e6150-fc55-4f0c-9876-6423346d1e90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\base\maths\internal">
+      <UniqueIdentifier>{04d10e1c-fe7b-49fa-af87-34169c220cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\ozz\geometry\runtime">
+      <UniqueIdentifier>{f7b61424-d62e-450f-8200-9e6e7601aa74}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\animation\runtime\animation.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\animation_utils.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\blending_job.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\ik_aim_job.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\ik_two_bone_job.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\local_to_model_job.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\sampling_job.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\skeleton.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\skeleton_utils.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\track.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\track_sampling_job.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\runtime\track_triggering_job.cc">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\containers\string_archive.cc">
+      <Filter>Sauce\base\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\io\archive.cc">
+      <Filter>Sauce\base\io</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\io\stream.cc">
+      <Filter>Sauce\base\io</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\maths\box.cc">
+      <Filter>Sauce\base\maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\maths\math_archive.cc">
+      <Filter>Sauce\base\maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\maths\simd_math.cc">
+      <Filter>Sauce\base\maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\maths\simd_math_archive.cc">
+      <Filter>Sauce\base\maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\maths\soa_math_archive.cc">
+      <Filter>Sauce\base\maths</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\memory\allocator.cc">
+      <Filter>Sauce\base\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\geometry\runtime\skinning_job.cc">
+      <Filter>Sauce\geometry\runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="src\options\options.cc">
+      <Filter>Sauce\options</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ozz\animation\runtime\animation.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\animation_utils.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\blending_job.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\export.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\ik_aim_job.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\ik_two_bone_job.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\local_to_model_job.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\sampling_job.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\skeleton.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\skeleton_utils.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\track.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\track_sampling_job.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\track_triggering_job.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\animation\runtime\track_triggering_job_trait.h">
+      <Filter>Include\ozz\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\array.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\array_archive.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\deque.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\intrusive_list.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\list.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\map.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\queue.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\set.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\stack.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\std_allocator.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\string.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\string_archive.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\unordered_map.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\unordered_set.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\vector.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\containers\vector_archive.h">
+      <Filter>Include\ozz\base\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\io\archive.h">
+      <Filter>Include\ozz\base\io</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\io\archive_traits.h">
+      <Filter>Include\ozz\base\io</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\io\stream.h">
+      <Filter>Include\ozz\base\io</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\box.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\gtest_math_helper.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\math_archive.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\math_constant.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\math_ex.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\quaternion.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\rect.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\simd_math.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\simd_math_archive.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\simd_quaternion.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\soa_float.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\soa_float4x4.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\soa_math_archive.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\soa_quaternion.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\soa_transform.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\transform.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\vec_float.h">
+      <Filter>Include\ozz\base\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\internal\simd_math_config.h">
+      <Filter>Include\ozz\base\maths\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\internal\simd_math_ref-inl.h">
+      <Filter>Include\ozz\base\maths\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\maths\internal\simd_math_sse-inl.h">
+      <Filter>Include\ozz\base\maths\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\memory\allocator.h">
+      <Filter>Include\ozz\base\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\memory\unique_ptr.h">
+      <Filter>Include\ozz\base\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\geometry\runtime\export.h">
+      <Filter>Include\ozz\geometry\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\geometry\runtime\skinning_job.h">
+      <Filter>Include\ozz\geometry\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\options\export.h">
+      <Filter>Include\ozz\options</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\options\options.h">
+      <Filter>Include\ozz\options</Filter>
+    </ClInclude>
+    <ClInclude Include="src\animation\runtime\animation_keyframe.h">
+      <Filter>Sauce\animation\runtime</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

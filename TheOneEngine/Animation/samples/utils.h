@@ -30,9 +30,9 @@
 
 #include "../../Action.h"
 
-#include "base/containers/vector.h"
-#include "base/platform.h"
-#include "base/span.h"
+#include "ozz/base/containers/vector.h"
+#include "ozz/base/platform.h"
+#include "ozz/base/span.h"
 
 namespace ozz {
 // Forward declarations.

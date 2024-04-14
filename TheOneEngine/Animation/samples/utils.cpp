@@ -31,19 +31,19 @@
 #include <limits>
 
 #include "mesh.h"
-#include "animation/runtime/animation.h"
-#include "animation/runtime/local_to_model_job.h"
-#include "animation/runtime/skeleton.h"
-#include "animation/runtime/track.h"
-#include "base/io/archive.h"
-#include "base/io/stream.h"
-#include "base/log.h"
-#include "base/maths/box.h"
-#include "base/maths/simd_math.h"
-#include "base/maths/simd_quaternion.h"
-#include "base/maths/soa_transform.h"
-#include "base/memory/allocator.h"
-#include "geometry/runtime/skinning_job.h"
+#include "ozz/animation/runtime/animation.h"
+#include "ozz/animation/runtime/local_to_model_job.h"
+#include "ozz/animation/runtime/skeleton.h"
+#include "ozz/animation/runtime/track.h"
+#include "ozz/base/io/archive.h"
+#include "ozz/base/io/stream.h"
+#include "ozz/base/log.h"
+#include "ozz/base/maths/box.h"
+#include "ozz/base/maths/simd_math.h"
+#include "ozz/base/maths/simd_quaternion.h"
+#include "ozz/base/maths/soa_transform.h"
+#include "ozz/base/memory/allocator.h"
+#include "ozz/geometry/runtime/skinning_job.h"
 
 namespace ozz {
 namespace sample {
