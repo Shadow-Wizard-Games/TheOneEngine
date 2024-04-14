@@ -99,7 +99,7 @@ class AnarchistBehaviour : MonoBehaviour
         attachedGameObject.transform.LookAt(roundPos);
         if (!goingToRoundPos)
         {
-            attachedGameObject.transform.position = roundPos;
+            MoveTo(roundPos);
         }
         else
         {
@@ -158,7 +158,7 @@ class AnarchistBehaviour : MonoBehaviour
                 }
                 attachedGameObject.transform.LookAt(initialPos);
                 Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.8f);
-                return;
+                break;
             default:
                 break;
         }
