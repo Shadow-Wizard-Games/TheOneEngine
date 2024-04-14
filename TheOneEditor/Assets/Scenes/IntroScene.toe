@@ -73,6 +73,13 @@
           "UID": 987700871
         },
         {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "IntroScene",
+          "Type": 4,
+          "UID": 1823036633
+        },
+        {
           "DebugDraw": true,
           "Enabled": true,
           "Name": "Canvas",
@@ -84,11 +91,11 @@
             2.0
           ],
           "Type": 6,
-          "UID": 1310615624,
+          "UID": 686362909,
           "UiElements": [
             {
-              "ID": 644823920,
-              "ImagePath": "Assets/Textures/Hud/Placeholder.png",
+              "ID": 3746357633,
+              "ImagePath": "Assets/Textures/Hud/Placeholder2.png",
               "ImageSection": [
                 0.0,
                 0.0,
@@ -109,16 +116,9 @@
           ],
           "UiTextures": [
             {
-              "Path": "Assets/Textures/Hud/Placeholder.png"
+              "Path": "Assets/Textures/Hud/Placeholder2.png"
             }
           ]
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "IntroScene",
-          "Type": 4,
-          "UID": 1823036633
         }
       ],
       "Enabled": true,
