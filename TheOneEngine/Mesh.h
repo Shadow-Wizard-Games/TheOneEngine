@@ -32,7 +32,6 @@ public:
     void DrawComponent(Camera* camera);
 
     bool RenderOzzSkinnedMesh(
-        Camera* camera,
         const ozz::sample::Mesh& _mesh,
         Material* material,
         const ozz::span<ozz::math::Float4x4> _skinning_matrices,

@@ -7,6 +7,7 @@
 #include "Defs.h"
 
 #include "../TheOneEngine/Animation/samples/shader.h"
+#include "../TheOneEngine/Animation/OzzAnimation.h"
 #include "../external/ozz/include/geometry/runtime/skinning_job.h"
 #include "../external/ozz/include/base/maths/internal/simd_math_config.h"
 
@@ -15,6 +16,68 @@
 #include <array>
 #include <cstdio>
 #include <cassert>
+
+static uint dynamic_vao_;
+static uint dynamic_array_bo_;
+static uint dynamic_index_bo_;
+
+const uint8_t kDefaultColorsArray[][4] = {
+	{255, 255, 255, 255}, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
+	{ 255, 255, 255, 255 }, { 255, 255, 255, 255 }, { 255, 255, 255, 255 }
+};
+
+const float kDefaultNormalsArray[][3] = {
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f},
+	{0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f}, {0.f, 1.f, 0.f} };
+
+const float kDefaultUVsArray[][2] = {
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f},
+	{0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f}, {0.f, 0.f} };
 
 
 Mesh::Mesh(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Mesh)
@@ -126,7 +189,7 @@ void Mesh::DrawComponent(Camera* camera)
 //}
 
 
-bool Mesh::RenderOzzSkinnedMesh(Camera* camera, const ozz::sample::Mesh& _mesh, Material* material, const ozz::span<ozz::math::Float4x4> _skinning_matrices, const ozz::math::Float4x4& _transform)
+bool Mesh::RenderOzzSkinnedMesh(const ozz::sample::Mesh& _mesh, Material* material, const ozz::span<ozz::math::Float4x4> _skinning_matrices, const ozz::math::Float4x4& _transform)
 {
 	const int vertex_count = _mesh.vertex_count();
 
@@ -315,21 +378,6 @@ bool Mesh::RenderOzzSkinnedMesh(Camera* camera, const ozz::sample::Mesh& _mesh, 
 
 	// ========================= RENDERING =====================================
 
-	// Build mvp for object
-	glm::mat4 glm_mvp = camera->projectionMatrix * camera->viewMatrix;
-	glm::mat4 transform_mat = glm::mat4(1.f);
-
-	ozz::math::Float4x4 ozz_mvp;
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			// m128_f32 for float4x4
-			ozz_mvp.cols[i].m128_f32[j] = glm_mvp[i][j];
-			transform_mat[i][j] = _transform.cols[i].m128_f32[j];
-		}
-	}
-
-
 	Shader* anim_shader = material->getShader();
 
 	/*RenderShadowsOzz(
@@ -373,22 +421,35 @@ bool Mesh::RenderOzzSkinnedMesh(Camera* camera, const ozz::sample::Mesh& _mesh, 
 	GLCALL(glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE,
 		colors_stride, GL_PTR_OFFSET(colors_offset)));
 
-	// Binds mw uniform
-	float values[16];
-	const GLint mw_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mw"));//uniform(0);
-	ozz::math::StorePtrU(_transform.cols[0], values + 0);
-	ozz::math::StorePtrU(_transform.cols[1], values + 4);
-	ozz::math::StorePtrU(_transform.cols[2], values + 8);
-	ozz::math::StorePtrU(_transform.cols[3], values + 12);
-	GLCALL(glUniformMatrix4fv(mw_uniform, 1, false, values));
+	//// Build mvp for object
+	//glm::mat4 glm_mvp = camera->projectionMatrix * camera->viewMatrix;
+	//glm::mat4 transform_mat = glm::mat4(1.f);
 
-	// Binds mvp uniform
-	const GLint mvp_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mvp"));//uniform(1);
-	ozz::math::StorePtrU(ozz_mvp.cols[0], values + 0);
-	ozz::math::StorePtrU(ozz_mvp.cols[1], values + 4);
-	ozz::math::StorePtrU(ozz_mvp.cols[2], values + 8);
-	ozz::math::StorePtrU(ozz_mvp.cols[3], values + 12);
-	GLCALL(glUniformMatrix4fv(mvp_uniform, 1, false, values));
+	//ozz::math::Float4x4 ozz_mvp;
+
+	//for (int i = 0; i < 4; i++) {
+	//	for (int j = 0; j < 4; j++) {
+	//		// m128_f32 for float4x4
+	//		ozz_mvp.cols[i].m128_f32[j] = glm_mvp[i][j];
+	//		transform_mat[i][j] = _transform.cols[i].m128_f32[j];
+	//	}
+	//}
+	//// Binds mw uniform
+	//float values[16];
+	//const GLint mw_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mw"));//uniform(0);
+	//ozz::math::StorePtrU(_transform.cols[0], values + 0);
+	//ozz::math::StorePtrU(_transform.cols[1], values + 4);
+	//ozz::math::StorePtrU(_transform.cols[2], values + 8);
+	//ozz::math::StorePtrU(_transform.cols[3], values + 12);
+	//GLCALL(glUniformMatrix4fv(mw_uniform, 1, false, values));
+
+	//// Binds mvp uniform
+	//const GLint mvp_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mvp"));//uniform(1);
+	//ozz::math::StorePtrU(ozz_mvp.cols[0], values + 0);
+	//ozz::math::StorePtrU(ozz_mvp.cols[1], values + 4);
+	//ozz::math::StorePtrU(ozz_mvp.cols[2], values + 8);
+	//ozz::math::StorePtrU(ozz_mvp.cols[3], values + 12);
+	//GLCALL(glUniformMatrix4fv(mvp_uniform, 1, false, values));
 
 	// Maps the index dynamic buffer and update it.
 	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamic_index_bo_));
