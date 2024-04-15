@@ -58,12 +58,12 @@ bool AudioCore::InitEngine()
         return false;
     }
 
-    if (InitSpatialAudio()) LOG(LogType::LOG_OK, "-Init Spatial Audio.");
-    else LOG(LogType::LOG_ERROR, "-Could not initialize the Spatial Audio.");
+    if (InitSpatialAudio()) LOG(LogType::LOG_OK, "-Init Spatial Audio");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Spatial Audio.");
 
 #ifndef AK_OPTIMIZED
-    if (InitCommunication()) LOG(LogType::LOG_OK, "-Initialized communication.");
-    else LOG(LogType::LOG_ERROR, "-Could not initialize communication.");
+    if (InitCommunication()) LOG(LogType::LOG_OK, "-Initialized Communication");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Communication");
 #endif // AK_OPTIMIZED
 
     return true;
@@ -76,7 +76,7 @@ bool AudioCore::InitMemoryManager()
 
     if (AK::MemoryMgr::Init(&memSettings) != AK_Success)
     {
-        LOG(LogType::LOG_AUDIO, "Could not create the memory manager.");
+        LOG(LogType::LOG_ERROR, "Failed Init Memory Manager.");
         return false;
     }
 
@@ -93,7 +93,7 @@ bool AudioCore::InitStreamingManager()
 
     if (!AK::StreamMgr::Create(stmSettings))
     {
-        LOG(LogType::LOG_AUDIO, "Could not create the Streaming Manager");
+        LOG(LogType::LOG_ERROR, "Failed Init Streaming Manager");
         return false;
     }
 

@@ -40,7 +40,7 @@ PanelAnimation::~PanelAnimation()
 
 bool PanelAnimation::Draw()
 {
-	if (ImGui::Begin("Ozz Animator", &enabled, ImGuiWindowFlags_MenuBar))
+	if (ImGui::Begin("Animation", &enabled, ImGuiWindowFlags_MenuBar))
 	{
 		DrawTopbar();
 		DrawBody();
