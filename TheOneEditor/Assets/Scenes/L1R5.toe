@@ -48,7 +48,7 @@
           "UID": 867732310
         },
         {
-          "AudioID": 6,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         }
@@ -35418,7 +35418,7 @@
           "UID": 4107436428
         },
         {
-          "AudioID": 0,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35492,7 +35492,7 @@
           "UID": 2861499079
         },
         {
-          "AudioID": 1,
+          "AudioID": 2,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35605,7 +35605,7 @@
           "UID": 2665179413
         },
         {
-          "AudioID": 2,
+          "AudioID": 3,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35679,7 +35679,7 @@
           "UID": 2753985364
         },
         {
-          "AudioID": 3,
+          "AudioID": 4,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35753,7 +35753,7 @@
           "UID": 3535260967
         },
         {
-          "AudioID": 4,
+          "AudioID": 5,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35827,7 +35827,7 @@
           "UID": 1224199988
         },
         {
-          "AudioID": 5,
+          "AudioID": 6,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35942,6 +35942,79 @@
       ],
       "Enabled": true,
       "Name": "GoBack",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1550741539
+        },
+        {
+          "DebugDraw": true,
+          "Enabled": true,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 3946922021,
+          "UiElements": [
+            {
+              "ID": 3223760361,
+              "ImagePath": "Assets/Textures/Hud/HudDemo.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "Image",
+              "Rect": [
+                0.0,
+                0.75,
+                0.699999988079071,
+                0.25
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ],
+          "UiTextures": [
+            {
+              "Path": "Assets/Textures/Hud/HudDemo.png"
+            }
+          ]
+        }
+      ],
+      "Enabled": true,
+      "Name": "Empty GameObject",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
