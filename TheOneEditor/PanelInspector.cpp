@@ -1022,9 +1022,7 @@ bool PanelInspector::Draw()
         else if (chooseParticlesToImportWindow) ChooseParticlesToImportWindow();
 
         ImGui::End();
-	}	
-
-    ImGui::PopStyleVar();
+	}
 
 	return true;
 }

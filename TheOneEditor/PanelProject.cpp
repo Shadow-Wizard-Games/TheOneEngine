@@ -31,20 +31,17 @@ PanelProject::~PanelProject() {}
 
 bool PanelProject::Draw()
 {
+	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
+
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0.0f, 0.0f });
 
-	if (ImGui::Begin("Project"))
+	if (ImGui::Begin("Project", &enabled, panelFlags))
 	{
-		int width = ImGui::GetContentRegionAvail().x;
+		// LEFT - Directory Tree View ----------------------------
+		ImVec2 directorySize = ImVec2(ImGui::GetWindowSize().x * 0.3, ImGui::GetWindowSize().y);
 
-		static ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;
-
-		if (ImGui::BeginTable("table", 2, tableFlags))
+		if (ImGui::BeginChild("Directory", directorySize, true))
 		{
-			ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 100.0f);
-
-			// Directory Tree View ----------------------------
-			ImGui::TableNextColumn();
 			ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_DefaultOpen;
 			if (ImGui::TreeNodeEx("Assets", base_flags))
 			{
@@ -71,11 +68,22 @@ bool PanelProject::Draw()
 					else //if (!(selection_mask & (1 << clickState.second))) // Depending on selection behavior you want, may want to preserve selection when clicking on item that is part of the selection
 						selection_mask = BIT(clickState.second);		// Click to single-select
 				}
-			}
-			
-			// Inspector ----------------------------
-			ImGui::TableNextColumn();
 
+				ImGui::TreePop();
+			}
+
+			ImGui::EndChild();
+		}
+
+		ImGui::SameLine();
+
+
+		// RIGHT - Inspector ----------------------------
+		ImVec2 inspectorSize = ImVec2(ImGui::GetWindowSize().x * 0.7f, ImGui::GetWindowSize().y);
+		//settingsFlags &= ~(ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+		if (ImGui::BeginChild("Selected", inspectorSize, false))
+		{
 			//Historn: NEED TO CREATE CHILD WINDOW FOR DRAG AND DROP
 			//if(ImGui::BeginChild("FileExplorer"))
 			if (fileSelected)
@@ -87,14 +95,79 @@ bool PanelProject::Draw()
 
 			FileExplorerDraw();
 
-			ImGui::EndTable();
+			ImGui::EndChild();
 		}
 
-		SaveWarning();
+		ImGui::End();
 	}
 
+
+
+		// --------------------------------------------------------------------------------------------------------------------------
+
+	//	int width = ImGui::GetContentRegionAvail().x;
+
+	//	static ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;
+
+	//	if (ImGui::BeginTable("table", 2, tableFlags))
+	//	{
+	//		ImGui::TableSetupColumn("##Directories", ImGuiTableColumnFlags_WidthFixed, 100.0f);
+	//		ImGui::TableSetupColumn("##Explorer", ImGuiTableColumnFlags_WidthFixed, 100.0f);
+
+	//		// Directory Tree View ----------------------------
+	//		ImGui::TableNextColumn();
+	//		ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_DefaultOpen;
+	//		if (ImGui::TreeNodeEx("Assets", base_flags))
+	//		{
+	//			if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(0))
+	//			{
+	//				directoryPath = ASSETS_PATH;
+	//				refresh = true;
+	//			}
+
+	//			uint32_t count = 0;
+	//			for (const auto& entry : fs::recursive_directory_iterator(ASSETS_PATH))
+	//				count++;
+
+	//			static int selection_mask = 0;
+
+	//			auto clickState = DirectoryTreeViewRecursive(ASSETS_PATH, &count, &selection_mask);
+
+	//			if (clickState.first)
+	//			{
+	//				// Update selection state
+	//				// (process outside of tree loop to avoid visual inconsistencies during the clicking frame)
+	//				if (ImGui::GetIO().KeyCtrl)
+	//					selection_mask ^= BIT(clickState.second);		// CTRL+click to toggle
+	//				else //if (!(selection_mask & (1 << clickState.second))) // Depending on selection behavior you want, may want to preserve selection when clicking on item that is part of the selection
+	//					selection_mask = BIT(clickState.second);		// Click to single-select
+	//			}
+	//		}
+	//		
+	//		// Inspector ----------------------------
+	//		ImGui::TableNextColumn();
+
+	//		//Historn: NEED TO CREATE CHILD WINDOW FOR DRAG AND DROP
+	//		//if(ImGui::BeginChild("FileExplorer"))
+	//		if (fileSelected)
+	//		{
+	//			ImGui::Text("%s", fileSelected->path.string().c_str());
+	//		}
+
+	//		ImGui::Separator();
+
+	//		FileExplorerDraw();
+
+	//		ImGui::EndTable();
+	//	}
+
+	//	SaveWarning();
+
+	//	ImGui::End();
+	////}
+
 	ImGui::PopStyleVar();
-	ImGui::End();
+
 	return true;
 }
 
@@ -211,8 +284,8 @@ void PanelProject::FileExplorerDraw()
 
 		ImGui::Indent();
 		ImVec2 textPos(ImGui::GetCursorPos().x + (fontSize - ImGui::CalcTextSize(displayName.c_str()).x) * 0.5f, ImGui::GetCursorPos().y + fontSize + 10);
-		ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0,0));
-		
+
+		ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0,0));		
 		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.f, 0.f, 0.f, 0.f));
 		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
 
@@ -238,7 +311,8 @@ void PanelProject::FileExplorerDraw()
 
 		ImGui::SameLine(0, ImGui::GetStyle().ItemSpacing.y + fontSize);
 		
-		ImGui::PopStyleVar(5);
+		ImGui::PopStyleVar();
+		ImGui::PopStyleColor(2);
 	}
 }
 

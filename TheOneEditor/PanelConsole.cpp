@@ -38,21 +38,22 @@ bool PanelConsole::Draw()
 				{
 					case LogType::LOG_INFO:
 						logType = "";
+						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
 						break;
 
 					case LogType::LOG_ASSIMP:
 						logType = "[ASSIMP] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 1, 0, 1));
+						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
 						break;
 
 					case LogType::LOG_AUDIO:
 						logType = "[AUDIO] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 1, 0, 1));
+						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
 						break;
 
 					case LogType::LOG_MONO:
 						logType = "[MONO] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 1, 0, 1));
+						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
 						break;
 
 					case LogType::LOG_OK:

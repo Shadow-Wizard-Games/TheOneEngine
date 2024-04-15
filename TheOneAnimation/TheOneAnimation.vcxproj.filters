@@ -164,6 +164,12 @@
     <ClCompile Include="samples\framework\internal\shader.cc">
       <Filter>Samples\framework\internal</Filter>
     </ClCompile>
+    <ClCompile Include="src\base\log.cc">
+      <Filter>Sauce\base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\platform.cc">
+      <Filter>Sauce\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ozz\animation\runtime\animation.h">

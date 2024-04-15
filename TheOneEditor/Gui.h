@@ -19,6 +19,7 @@ class PanelInspector;
 class PanelProject;
 class PanelScene;
 class PanelGame;
+class PanelAnimation;
 class PanelSettings;
 class PanelBuild;
 
@@ -63,15 +64,16 @@ private:
 public:
 
 	// Panels
-	PanelAbout* panelAbout = nullptr;
-	PanelConsole* panelConsole = nullptr;
-	PanelHierarchy* panelHierarchy = nullptr;
-	PanelInspector* panelInspector = nullptr;
-	PanelProject* panelProject = nullptr;
-	PanelScene* panelScene = nullptr;
-	PanelGame* panelGame = nullptr;
-	PanelSettings* panelSettings = nullptr;
-	PanelBuild* panelBuild = nullptr;
+	PanelAbout* panelAbout;
+	PanelConsole* panelConsole;
+	PanelHierarchy* panelHierarchy;
+	PanelInspector* panelInspector;
+	PanelProject* panelProject;
+	PanelScene* panelScene;
+	PanelGame* panelGame;
+	PanelAnimation* panelAnimation;
+	PanelSettings* panelSettings;
+	PanelBuild* panelBuild;
 
 private:
 

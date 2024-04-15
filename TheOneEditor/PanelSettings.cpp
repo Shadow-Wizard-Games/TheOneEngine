@@ -88,7 +88,7 @@ bool PanelSettings::Draw()
 		ImGui::End();
 	}
 
-	ImGui::PopStyleVar(1);
+	ImGui::PopStyleVar();
 
 	return true;
 }

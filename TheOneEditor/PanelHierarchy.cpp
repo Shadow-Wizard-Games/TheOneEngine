@@ -27,15 +27,17 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		//bool isOpen = false;
 		//if (!childGO.get()->GetName().empty())
 		//{
-		if (childGO.get()->IsPrefab() && childGO.get()->IsEditablePrefab() && !childGO.get()->IsPrefabDirty())
+		bool isPrefab = childGO.get()->IsPrefab();
+
+		if (isPrefab && childGO.get()->IsEditablePrefab() && !childGO.get()->IsPrefabDirty())
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(.2f, .8f, 1.f, 1.f));
 		}
-		else if (childGO.get()->IsPrefab() && !childGO.get()->IsEditablePrefab())
+		else if (isPrefab && !childGO.get()->IsEditablePrefab())
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, .3f, .2f, 1.f));
 		}
-		else if (childGO.get()->IsPrefab() && childGO.get()->IsEditablePrefab() && childGO.get()->IsPrefabDirty())
+		else if (isPrefab && childGO.get()->IsEditablePrefab() && childGO.get()->IsPrefabDirty())
 		{
 			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, .50f, 1.0f, 1.f));
 		}
@@ -67,6 +69,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		{
 			break;
 		}
+
 		if (isOpen && !reparent)
 		{
 			//treeFlags &= ~ImGuiTreeNodeFlags_Selected;
@@ -74,7 +77,11 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 
 			ImGui::TreePop();
 		}
-		ImGui::PopStyleColor(10);
+
+		if (isPrefab)
+		{
+			ImGui::PopStyleColor();
+		}
 	}
 
 	if (remove)
@@ -171,6 +178,7 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 
 		ImGui::EndDragDropSource();
 	}
+
 	if (ImGui::BeginDragDropTarget())
 	{
 		if (engine->N_sceneManager->GetSelectedGO().get())
@@ -217,5 +225,6 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 		}
 		ImGui::EndDragDropTarget();
 	}
+
 	return reparent;
 }

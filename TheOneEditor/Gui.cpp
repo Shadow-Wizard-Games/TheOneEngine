@@ -18,6 +18,7 @@
 #include "PanelProject.h"
 #include "PanelScene.h"
 #include "PanelGame.h"
+#include "PanelAnimation.h"
 #include "PanelSettings.h"
 #include "PanelBuild.h"
 
@@ -33,7 +34,19 @@
 
 namespace fs = std::filesystem;
 
-Gui::Gui(App* app) : Module(app) {}
+Gui::Gui(App* app) :
+	Module(app),
+	panelAbout(nullptr),
+	panelConsole(nullptr),
+	panelHierarchy(nullptr),
+	panelInspector(nullptr),
+	panelProject(nullptr),
+	panelScene(nullptr),
+	panelGame(nullptr),
+	panelAnimation(nullptr),
+	panelSettings(nullptr),
+	panelBuild(nullptr)
+{}
 
 Gui::~Gui() {}
 
@@ -70,6 +83,10 @@ bool Gui::Awake()
 	panelGame = new PanelGame(PanelType::GAME, "Game");
 	panels.push_back(panelGame);
 	ret *= isInitialized(panelGame);
+
+	panelAnimation = new PanelAnimation(PanelType::ANIMATION, "Animation");
+	panels.push_back(panelAnimation);
+	ret *= isInitialized(panelAnimation);
 
 	panelSettings = new PanelSettings(PanelType::SETTINGS, "Settings");
 	panels.push_back(panelSettings);
@@ -136,12 +153,13 @@ bool Gui::Start()
 	app->gui->panelInspector->SetState(true);
 	app->gui->panelProject->SetState(true);
 	app->gui->panelConsole->SetState(true);
-	app->gui->panelHierarchy->SetState(true);
+	app->gui->panelHierarchy->SetState(false);	//crash
 	app->gui->panelScene->SetState(true);
 	app->gui->panelGame->SetState(true);
+	app->gui->panelAnimation->SetState(false);
 
 	// Style
-#pragma region IMGUI_STYLE
+	#pragma region IMGUI_STYLE
 
 	LOG(LogType::LOG_OK, "-Setting ImGui Custom Style");
 	ImGuiStyle& style = ImGui::GetStyle();
@@ -202,8 +220,7 @@ bool Gui::Start()
 		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 	}
 
-
-#pragma endregion IMGUI_STYLE
+	#pragma endregion IMGUI_STYLE
 
 	// Iterate Panels & Start
 	for (const auto& panel : panels)
@@ -292,9 +309,10 @@ bool Gui::Update(double dt)
 		ImGui::EndMainMenuBar();
 	}
 
-	if (openSceneFileWindow)OpenSceneFileWindow();
+	if (openSceneFileWindow)
+		OpenSceneFileWindow();
 
-    ImGui::PopStyleVar();
+    //ImGui::PopStyleVar();
 
     return ret;
 }
@@ -312,8 +330,12 @@ bool Gui::PostUpdate()
 			panel->Draw();
 	}
 
-	if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable)
-		ImGui::End();
+	ImGuiStyle style = ImGui::GetStyle();
+	const ImGuiDataVarInfo* var = ImGui::GetStyleVarInfo(0);
+
+	//hekbas: this crashes in debug
+	/*if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable)
+		ImGui::End();*/
 
 	io.DisplaySize = ImVec2((float)app->window->GetWidth(), (float)app->window->GetHeight());
 
@@ -415,46 +437,49 @@ void Gui::MainWindowDockspace()
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 
 	static bool p_open = true;
-	ImGui::Begin("DockSpace", &p_open, window_flags);
-	ImGui::PopStyleVar(3);
 
-	// DockSpace
-	ImGuiIO& io = ImGui::GetIO();
-	ImGuiStyle& style = ImGui::GetStyle();
-	float minWinSizeX = style.WindowMinSize.x;
-	style.WindowMinSize.x = 370.0f;
-	if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
+	if (ImGui::Begin("DockSpace", &p_open, window_flags))
 	{
-		ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
-		ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
+		ImGui::PopStyleVar(3);
 
-		//static auto first_time = true;
-		//if (first_time)
-		//{
-		//    first_time = false;
+		// DockSpace
+		ImGuiIO& io = ImGui::GetIO();
+		ImGuiStyle& style = ImGui::GetStyle();
+		float minWinSizeX = style.WindowMinSize.x;
+		style.WindowMinSize.x = 370.0f;
+		if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
+		{
+			ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+			ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
 
-		//    ImGui::DockBuilderRemoveNode(dockspace_id); // Clear any previous layout
-		//    ImGui::DockBuilderAddNode(dockspace_id, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
-		//    ImGui::DockBuilderSetNodeSize(dockspace_id, viewport->Size);
+			//static auto first_time = true;
+			//if (first_time)
+			//{
+			//    first_time = false;
 
-		//    auto dock_id_top = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Up, 0.2f, nullptr, &dockspace_id);
-		//    auto dock_id_down = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Down, 0.25f, nullptr, &dockspace_id);
-		//    auto dock_id_left = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Left, 0.15f, nullptr, &dockspace_id);
-		//    auto dock_id_right = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Right, 0.20f, nullptr, &dockspace_id);
+			//    ImGui::DockBuilderRemoveNode(dockspace_id); // Clear any previous layout
+			//    ImGui::DockBuilderAddNode(dockspace_id, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
+			//    ImGui::DockBuilderSetNodeSize(dockspace_id, viewport->Size);
 
-		//    // Takes the name of a window
-		//    ImGui::DockBuilderDockWindow("Scene", dockspace_id);
-		//    ImGui::DockBuilderDockWindow("Inspector", dock_id_right);
-		//    ImGui::DockBuilderDockWindow("Project", dock_id_down);
-		//    ImGui::DockBuilderDockWindow("Console", dock_id_down);
-		//    ImGui::DockBuilderDockWindow("Hierarchy", dock_id_left);
+			//    auto dock_id_top = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Up, 0.2f, nullptr, &dockspace_id);
+			//    auto dock_id_down = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Down, 0.25f, nullptr, &dockspace_id);
+			//    auto dock_id_left = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Left, 0.15f, nullptr, &dockspace_id);
+			//    auto dock_id_right = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Right, 0.20f, nullptr, &dockspace_id);
 
-		//    ImGui::DockBuilderFinish(dockspace_id);
-		//}
+			//    // Takes the name of a window
+			//    ImGui::DockBuilderDockWindow("Scene", dockspace_id);
+			//    ImGui::DockBuilderDockWindow("Inspector", dock_id_right);
+			//    ImGui::DockBuilderDockWindow("Project", dock_id_down);
+			//    ImGui::DockBuilderDockWindow("Console", dock_id_down);
+			//    ImGui::DockBuilderDockWindow("Hierarchy", dock_id_left);
+
+			//    ImGui::DockBuilderFinish(dockspace_id);
+			//}
+		}
+
+		style.WindowMinSize.x = minWinSizeX;
+		ImGui::End();
 	}
-
-	style.WindowMinSize.x = minWinSizeX;
-	ImGui::End();
 }
 
 
@@ -533,7 +558,9 @@ void Gui::MainMenuGameObject()
 		if (ImGui::MenuItem("Sphere", 0, false, false)) {}
 		if (ImGui::MenuItem("Less than 12?")) { engine->N_sceneManager->CreateMF(); }
 		if (ImGui::MenuItem("Box Low Poly")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Box_LowPoly.fbx"); }
-		if (ImGui::BeginMenu("Characters", "Ctrl+Shift+N")) {
+
+		if (ImGui::BeginMenu("Characters", "Ctrl+Shift+N"))
+		{
 			if (ImGui::MenuItem("Main Character")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_MainCharacter.fbx"); }
 			if (ImGui::MenuItem("FaceHugger (Arnau)")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx"); }
 			if (ImGui::MenuItem("Queen")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Queen.fbx"); }
@@ -577,53 +604,53 @@ void Gui::MainMenuHelp()
 	{
 		OpenURL("https://github.com/Shadow-Wizard-Games/TheOneEngine");
 	}
-
-	ImGui::Separator();
 }
 
 void Gui::OpenSceneFileWindow()
 {
-	ImGui::Begin("Open File", &openSceneFileWindow);
-
-	static char nameSceneBuffer[50];
-
-	ImGui::InputText("File Name", nameSceneBuffer, IM_ARRAYSIZE(nameSceneBuffer));
-
-	/*std::string filename = "Assets/Scenes/Scene 1.toe";
-	app->scenemanager->N_sceneManager->LoadScene(filename);*/
-	std::string nameScene = nameSceneBuffer;
-	std::string file = "Assets/Scenes/" + nameScene + ".toe";
-
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
+	if (ImGui::Begin("Open File", &openSceneFileWindow))
 	{
-		if (engine->N_sceneManager->currentScene->IsDirty())
-		{
-			ImGui::OpenPopup("SaveBeforeLoad");
-			
-		}
-		else
-		{
-			engine->N_sceneManager->LoadScene(nameSceneBuffer);
-			openSceneFileWindow = false;
-		}
-		
-	}
+		static char nameSceneBuffer[50];
 
-	if (ImGui::BeginPopup("SaveBeforeLoad"))
-	{
-		ImGui::Text("You have unsaved changes in this scene. Are you sure?");
-		if (ImGui::Button("Yes", { 100, 20 })) {
-			engine->N_sceneManager->LoadScene(nameSceneBuffer);
-			openSceneFileWindow = false;
+		ImGui::InputText("File Name", nameSceneBuffer, IM_ARRAYSIZE(nameSceneBuffer));
+
+		/*std::string filename = "Assets/Scenes/Scene 1.toe";
+		app->scenemanager->N_sceneManager->LoadScene(filename);*/
+		std::string nameScene = nameSceneBuffer;
+		std::string file = "Assets/Scenes/" + nameScene + ".toe";
+
+		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
+		{
+			if (engine->N_sceneManager->currentScene->IsDirty())
+			{
+				ImGui::OpenPopup("SaveBeforeLoad");
+			}
+			else
+			{
+				engine->N_sceneManager->LoadScene(nameSceneBuffer);
+				openSceneFileWindow = false;
+			}
+
 		}
-		ImGui::SameLine();
-		if (ImGui::Button("No", { 100, 20 })) {
-			openSceneFileWindow = false;
-			ImGui::End();
+
+		if (ImGui::BeginPopup("SaveBeforeLoad"))
+		{
+			ImGui::Text("You have unsaved changes in this scene. Are you sure?");
+
+			if (ImGui::Button("Yes", { 100, 20 })) {
+				engine->N_sceneManager->LoadScene(nameSceneBuffer);
+				openSceneFileWindow = false;
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("No", { 100, 20 })) {
+				openSceneFileWindow = false;
+			}
+
+			ImGui::EndPopup();
 		}
-		
+
+		ImGui::End();
 	}
-	ImGui::End();
 }
 
 void Gui::CalculateSizeAspectRatio(int maxWidth, int maxHeight, int& width, int& height)

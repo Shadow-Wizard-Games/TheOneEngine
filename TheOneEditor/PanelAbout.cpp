@@ -18,6 +18,8 @@ bool PanelAbout::Draw()
 	{
 		ImGui::Text("TheOneEngine by Hector Bascones Zamora, Arnau Jimenez Gallego & Julia Serra Trujillo.");
 		ImGui::Text("This is a demo for the subject of Game Engines, CITM - UPC");
+
+		ImGui::End();
 	}	
 
 	return true;
