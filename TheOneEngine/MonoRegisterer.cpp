@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "Canvas.h"
 #include "ImageUI.h"
+#include "SliderUI.h"
 #include "Collider2D.h"
 #include "ParticleSystem.h"
 #include "N_SceneManager.h"
@@ -317,6 +318,53 @@ static void ChangeSectImg(GameObject* containerGO, MonoString* name, int x, int 
 	}
 }
 
+static int GetSliderValue(GameObject* containerGO, MonoString* name)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::SLIDER && uiElements[i]->GetName() == itemName)
+		{
+			SliderUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<SliderUI>(uiElements[i]->GetID());
+			return ui->GetValue();
+		}
+	}
+
+	return -1;
+}
+
+static int GetSliderMaxValue(GameObject* containerGO, MonoString* name)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::SLIDER && uiElements[i]->GetName() == itemName)
+		{
+			SliderUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<SliderUI>(uiElements[i]->GetID());
+			return ui->GetMaxValue();
+		}
+	}
+
+	return -1;
+}
+
+static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::SLIDER && uiElements[i]->GetName() == itemName)
+		{
+			SliderUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<SliderUI>(uiElements[i]->GetID());
+			ui->SetValue(value);
+			break;
+		}
+	}
+}
+
 //Helpers
 static float GetAppDeltaTime()
 {
@@ -556,6 +604,9 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
 	mono_add_internal_call("InternalCalls::ChangeSectImg", ChangeSectImg);
+	mono_add_internal_call("InternalCalls::GetSliderValue", GetSliderValue);
+	mono_add_internal_call("InternalCalls::SetSliderValue", SetSliderValue);
+	mono_add_internal_call("InternalCalls::GetSliderMaxValue", GetSliderMaxValue);
 
 	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);

@@ -62,7 +62,7 @@
             },
             {
               "DebugDraw": false,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -135,7 +135,7 @@
               "UID": 951121546
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "Name": "Canvas_Inventory",
           "ParentUID": 3452816845,
           "Static": false,
@@ -168,7 +168,7 @@
             },
             {
               "DebugDraw": false,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -351,7 +351,7 @@
               "UID": 1275044213
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "Name": "Canvas_PauseMenu",
           "ParentUID": 3452816845,
           "Static": false,
@@ -397,8 +397,8 @@
               "UID": 1658136721,
               "UiElements": [
                 {
-                  "AdditionalOffsetFirst": 0.00800000037997961,
-                  "AdditionalOffsetLast": 0.05999999865889549,
+                  "AdditionalOffsetFirst": 0.009999999776482582,
+                  "AdditionalOffsetLast": 0.06800000369548798,
                   "ID": 1166239321,
                   "ImageFirstSectionHovered": [
                     0.0,
@@ -459,12 +459,12 @@
                   "MaxValue": 16,
                   "MinValue": 0,
                   "Name": "LifeSlider",
-                  "Offset": 0.020999999716877937,
+                  "Offset": 0.017999999225139618,
                   "Rect": [
-                    -0.5350000262260437,
+                    -0.5149999856948853,
                     0.8799999952316284,
-                    0.06499999761581421,
-                    0.05999999865889549
+                    0.05999999865889549,
+                    0.05000000074505806
                   ],
                   "SliderDesign": 1,
                   "State": 0,
@@ -1000,6 +1000,13 @@
                   "Path": "Assets/Textures/Hud/HUD_SpriteSheet.png"
                 }
               ]
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptHud",
+              "Type": 4,
+              "UID": 3891581621
             }
           ],
           "Enabled": true,
@@ -1035,7 +1042,7 @@
             },
             {
               "DebugDraw": false,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -1110,7 +1117,7 @@
               ]
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "Name": "Canvas_Death",
           "ParentUID": 3452816845,
           "Static": false,
@@ -1127,28 +1134,28 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -1.0,
+            -1.0738747846517072e-07,
+            4.371138473402425e-08,
             0.0,
+            -9.154890534546212e-08,
+            0.4999999701976776,
+            -0.866025447845459,
             0.0,
+            7.114459776857984e-08,
+            -0.866025447845459,
+            -0.4999999701976776,
             0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            18.0,
-            -63.0,
+            73.56257629394531,
+            120.0,
+            305.58563232421875,
             1.0
           ],
           "Type": 0,
           "UID": 472327911
         },
         {
-          "Aspect": 1.7862595319747925,
+          "Aspect": 1.7926044464111328,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -1166,6 +1173,13 @@
           "AudioID": 1,
           "Name": "Listener",
           "Type": 7
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "CameraMovement",
+          "Type": 4,
+          "UID": 3876888715
         }
       ],
       "Enabled": true,
@@ -1191,9 +1205,9 @@
             0.0,
             1.0,
             0.0,
+            73.56257629394531,
             0.0,
-            0.0,
-            0.0,
+            245.58563232421875,
             1.0
           ],
           "Type": 0,
@@ -1225,6 +1239,21 @@
           "AudioID": 2,
           "Name": "AudioSource",
           "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 20.0,
+          "Type": 5,
+          "UID": 3660759441,
+          "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
@@ -1268,6 +1297,65 @@
       ],
       "Enabled": true,
       "Name": "Manager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9946499992067019,
+            0.0,
+            -0.10330236724348449,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.10330236724348449,
+            0.0,
+            0.9946499992067019,
+            0.0,
+            64.30357360839844,
+            0.0,
+            156.43504333496094,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2517446926
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Queen/M_Queen.toematerial",
+          "MeshPath": "Library/Meshes/SK_Queen/SK_Queen.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3836625021
+        },
+        {
+          "AudioID": 3,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AdultXenomorphBehaviour",
+          "Type": 4,
+          "UID": 3144860782
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_Queen",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845

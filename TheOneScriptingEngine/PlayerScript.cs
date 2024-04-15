@@ -221,4 +221,11 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Rotate(Vector3.right * 90f);
         }
     }
+
+    public float CurrentLife()
+    {
+        if (isDead) { return 0; }
+
+        return life;
+    }
 }
