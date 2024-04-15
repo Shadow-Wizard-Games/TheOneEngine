@@ -26,7 +26,7 @@
           "UID": 959417272
         },
         {
-          "Aspect": 1.777,
+          "Aspect": 1.541284441947937,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -32709,6 +32709,84 @@
       ],
       "Enabled": true,
       "Name": "SM_IDCard",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 163678411
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 779663011
+        }
+      ],
+      "Enabled": true,
+      "Name": "GoBack",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1325.0,
+            3.11736403091345e-05,
+            -250.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3542089604
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 1299188397
+        }
+      ],
+      "Enabled": true,
+      "Name": "GoNext",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
