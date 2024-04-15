@@ -125,6 +125,9 @@
     <ClCompile Include="UpdateEmmiterModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TheOneAnimation\TheOneAnimation.vcxproj">
+      <Project>{6ceb38e1-d500-4b35-92d4-9d7051489f29}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\TheOneAudio\TheOneAudio.vcxproj">
       <Project>{606662a0-b707-4c97-8361-5d46fd7fd1f3}</Project>
     </ProjectReference>
@@ -171,7 +174,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
