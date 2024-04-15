@@ -87,6 +87,9 @@ std::filesystem::path Resources::ImportPathImpl(const std::filesystem::path& pat
 
 std::string Resources::FindFileInAssets(const std::string& name)
 {
+	std::string standarizeName = name;
+	StandarizePath(standarizeName);
+
 	if (name.find("Assets") && std::filesystem::exists(name))
 		return name;
 
@@ -95,7 +98,7 @@ std::string Resources::FindFileInAssets(const std::string& name)
 		std::string relPath = p.path().string();
 		std::string fileName = p.path().filename().replace_extension("").string();
 		StandarizePath(relPath);
-		if (fileName == name || relPath == name)
+		if (fileName == name || relPath == standarizeName)
 			return relPath;
 	}
 
