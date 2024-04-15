@@ -80,6 +80,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void Disable(IntPtr GOtoDisable);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void Enable(IntPtr GOtoEnable);
     #endregion
 
     #region Component
@@ -104,6 +107,15 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ChangeSectImg(IntPtr GOptr, string name, int x, int y, int w, int h);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSliderValue(IntPtr GOptr, int value, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int GetSliderValue(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
     #endregion
 
     #region Helpers

@@ -122,7 +122,7 @@ bool CollisionSolver::Update(double dt)
                     case CollisionType::Player:
                         if (CheckCollision(item, item2))
                         {
-                            LOG(LogType::LOG_WARNING, "Player Hit");
+                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
                             item->AddToDelete(engine->N_sceneManager->objectsToDelete);
                         }
                         break;
@@ -445,18 +445,15 @@ bool CollisionSolver::CheckCollision(GameObject* objA, GameObject* objB)
 
 void CollisionSolver::LoadCollisions(std::shared_ptr<GameObject> go)
 {
+    if (go->GetComponent<Collider2D>())
+    {
+        goWithCollision.push_back(go.get());
+    }
     for (auto& item : go->children)
     {
         if (item->IsEnabled())
         {
-            if (item->GetComponent<Collider2D>())
-            {
-                goWithCollision.push_back(item.get());
-            }
-            if (!item->children.empty())
-            {
-                LoadCollisions(item);
-            }
+            LoadCollisions(item);
         }
     }
 }

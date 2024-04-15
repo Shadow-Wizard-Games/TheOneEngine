@@ -50,6 +50,7 @@
     <ClInclude Include="ResourcesShaderImpl.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="SingleOrRandom.h" />
+    <ClInclude Include="SliderUI.h" />
     <ClInclude Include="SpawnEmmiterModule.h" />
     <ClInclude Include="AudioSource.h" />
     <ClInclude Include="Texture.h" />
@@ -96,6 +97,7 @@
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SingleOrRandom.cpp" />
+    <ClCompile Include="SliderUI.cpp" />
     <ClCompile Include="SpawnEmmiterModule.cpp" />
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="Shader.cpp" />
