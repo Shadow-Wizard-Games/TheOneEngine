@@ -32,7 +32,7 @@
           "Name": "Camera",
           "ParentUID": 3452816845,
           "Pitch": 0.0,
-          "PrimaryCamera": false,
+          "PrimaryCamera": true,
           "Size": 5.0,
           "Type": 1,
           "UID": 615640977,
@@ -48,7 +48,7 @@
           "UID": 4074494029
         },
         {
-          "AudioID": 2,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         }
@@ -31453,7 +31453,7 @@
           ]
         },
         {
-          "AudioID": 0,
+          "AudioID": 1,
           "Name": "Source",
           "Type": 8
         },
@@ -31519,7 +31519,7 @@
           "UID": 1796198162
         },
         {
-          "AudioID": 1,
+          "AudioID": 2,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -31686,6 +31686,612 @@
       ],
       "Enabled": true,
       "Name": "Inventory",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            772.5038452148438,
+            14.158227920532227,
+            -1064.0084228515625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1123147672
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 1.0,
+              "InitializeModules": [
+                {
+                  "MaxColor": [
+                    250.0,
+                    250.0,
+                    250.0
+                  ],
+                  "MinColor": [
+                    220.0,
+                    220.0,
+                    220.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "MaxSpeed": [
+                    0.0,
+                    0.0,
+                    50.0
+                  ],
+                  "MinSpeed": [
+                    0.0,
+                    0.0,
+                    100.0
+                  ],
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "MaxScale": [
+                    10.0,
+                    10.0,
+                    10.0
+                  ],
+                  "MinScale": [
+                    1.0,
+                    0.1,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": true,
+              "IsON": true,
+              "Lifetime": 12198.4609375,
+              "MaxParticles": 80,
+              "RenderModule": [
+                {
+                  "BillboardType": 0,
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0,
+                  "SpawnRate": 15.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    2.0,
+                    -40.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 1.0,
+              "InitializeModules": [
+                {
+                  "MaxSpeed": [
+                    0.5,
+                    2.0,
+                    0.5
+                  ],
+                  "MinSpeed": [
+                    10.0,
+                    10.0,
+                    10.0
+                  ],
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                }
+              ],
+              "IsLooping": true,
+              "IsON": true,
+              "Lifetime": 12198.4609375,
+              "MaxParticles": 10,
+              "RenderModule": [
+                {
+                  "BillboardType": 0,
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 10.0,
+                  "Duration": 1.0,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "IsON": true,
+          "Name": "P_Steam_Forward\u0000\u0000\u0000\u0000\u0000",
+          "Type": 9,
+          "UID": 704292522
+        }
+      ],
+      "Enabled": true,
+      "Name": "Steam",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            313.3401184082031,
+            0.0,
+            -915.3995361328125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4018747243
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1470836743
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 3596464034
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 1779098255,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 3,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "Facehugger001",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            359.0841064453125,
+            0.0,
+            -828.6259765625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3547926184
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3150691282
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2220788808
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 1681384569,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "Facehugger002",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            763.6913452148438,
+            0.0,
+            -974.0001831054688,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 322969120
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 4142036839
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 1243237455
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 914069582,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "Facehugger003",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            796.5121459960938,
+            -3.0517578125e-05,
+            -848.7012939453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2977621044
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2666631835
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 4204841037
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 1389822047,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "Facehugger004",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            931.8824462890625,
+            2.772690095298458e-05,
+            -863.6966552734375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2112985292
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 409427718
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 791393220
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 1607149684,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "Facehugger005",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1027.555419921875,
+            9.14482370717451e-05,
+            -763.2177124023438,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3396425512
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3720686925
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 1997881017
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 3119259730,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "Enabled": true,
+      "Name": "Facehugger006",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
