@@ -32411,7 +32411,7 @@
           "UID": 1511020327
         },
         {
-          "AudioID": 0,
+          "AudioID": 10,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -32485,7 +32485,7 @@
           "UID": 3284283325
         },
         {
-          "AudioID": 0,
+          "AudioID": 11,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -32559,7 +32559,7 @@
           "UID": 242324255
         },
         {
-          "AudioID": 0,
+          "AudioID": 12,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -32633,7 +32633,7 @@
           "UID": 3864991694
         },
         {
-          "AudioID": 0,
+          "AudioID": 13,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -32662,6 +32662,53 @@
       ],
       "Enabled": true,
       "Name": "Chestburster005",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -85.0,
+            20.0,
+            -1065.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3530138909
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_IDCard/M_IDCard.toematerial",
+          "MeshPath": "Library/Meshes/SM_IDCard/SM_IDCard.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2524392813
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_IDCard",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
