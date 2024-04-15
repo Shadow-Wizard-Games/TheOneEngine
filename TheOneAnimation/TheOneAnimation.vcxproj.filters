@@ -355,5 +355,23 @@
     <ClInclude Include="samples\framework\internal\shader.h">
       <Filter>Samples\framework\internal</Filter>
     </ClInclude>
+    <ClInclude Include="include\ozz\base\endianness.h">
+      <Filter>Include\ozz\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\export.h">
+      <Filter>Include\ozz\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\gtest_helper.h">
+      <Filter>Include\ozz\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\log.h">
+      <Filter>Include\ozz\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\platform.h">
+      <Filter>Include\ozz\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ozz\base\span.h">
+      <Filter>Include\ozz\base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
