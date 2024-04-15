@@ -55,7 +55,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2359380
     },
@@ -34343,7 +34343,7 @@
         }
       ],
       "Name": "MK_Ship_Room2",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -34442,6 +34442,33 @@
                   "ParentUID": 6619240,
                   "Type": 2,
                   "UID": 3712989521
+                },
+                {
+                  "ColliderType": 0,
+                  "CollisionType": 1,
+                  "CornerPivot": true,
+                  "Height": -1.7976931348623157e+308,
+                  "Name": "Collider2D",
+                  "ObjectOrientation": 0,
+                  "OffsetX": 0.0,
+                  "OffsetY": 0.0,
+                  "ParentUID": 6619240,
+                  "Radius": 5.0,
+                  "Type": 5,
+                  "UID": 2709370914,
+                  "Width": -1.7976931348623157e+308
+                },
+                {
+                  "AudioID": 8,
+                  "Name": "AudioSource",
+                  "Type": 8
+                },
+                {
+                  "Name": "Script",
+                  "ParentUID": 6619240,
+                  "ScriptName": "ChestBusterBehaviour",
+                  "Type": 4,
+                  "UID": 1025288468
                 }
               ],
               "Enabled": true,
@@ -34489,6 +34516,33 @@
                   "ParentUID": 3295293728,
                   "Type": 2,
                   "UID": 2769006400
+                },
+                {
+                  "AudioID": 9,
+                  "Name": "AudioSource",
+                  "Type": 8
+                },
+                {
+                  "ColliderType": 0,
+                  "CollisionType": 1,
+                  "CornerPivot": true,
+                  "Height": -1.7976931348623157e+308,
+                  "Name": "Collider2D",
+                  "ObjectOrientation": 0,
+                  "OffsetX": 0.0,
+                  "OffsetY": 0.0,
+                  "ParentUID": 3295293728,
+                  "Radius": 5.0,
+                  "Type": 5,
+                  "UID": 2870711069,
+                  "Width": -1.7976931348623157e+308
+                },
+                {
+                  "Name": "Script",
+                  "ParentUID": 3295293728,
+                  "ScriptName": "ChestBusterBehaviour",
+                  "Type": 4,
+                  "UID": 421064716
                 }
               ],
               "Enabled": true,
@@ -34983,7 +35037,7 @@
         }
       ],
       "Name": "Enemies",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 1212778432
     },
@@ -35006,7 +35060,7 @@
             0.0,
             0.0,
             0.0,
-            0.0,
+            149.48533630371094,
             1.0
           ],
           "Type": 0,
@@ -35057,7 +35111,7 @@
       ],
       "Enabled": true,
       "Name": "SK_MainCharacter",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -35238,7 +35292,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 4149613856
     },
@@ -35419,7 +35473,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big1",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2348320
     },
@@ -35600,7 +35654,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big2",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 10078192
     },
@@ -35792,7 +35846,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -35984,7 +36038,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft1",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2109027104
     },
@@ -36176,7 +36230,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft2",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -36368,7 +36422,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft3",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -36560,7 +36614,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft4",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 1779500912
     },
@@ -36752,7 +36806,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft5",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2113778768
     },
@@ -36944,7 +36998,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft6",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -37136,7 +37190,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft7",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -37328,7 +37382,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -37520,7 +37574,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack1",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2115568720
     },
@@ -37712,7 +37766,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack2",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2109027104
     },
@@ -37904,7 +37958,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack3",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -38096,7 +38150,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack4",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -38288,7 +38342,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack5",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2109027104
     },
@@ -38327,7 +38381,7 @@
       ],
       "Enabled": true,
       "Name": "Manager",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 674199056
     },
@@ -38366,7 +38420,7 @@
       ],
       "Enabled": true,
       "Name": "GoBack",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -38389,7 +38443,7 @@
             0.0,
             -1007.7366333007813,
             0.0,
-            -65.97237396240234,
+            -65.35092163085938,
             1.0
           ],
           "Type": 0,
@@ -38405,7 +38459,7 @@
       ],
       "Enabled": true,
       "Name": "GoNext",
-      "ParentUID": 524408936,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     }
