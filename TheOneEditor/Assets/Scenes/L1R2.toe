@@ -43,7 +43,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2359380
     },
@@ -34331,7 +34331,7 @@
         }
       ],
       "Name": "MK_Ship_Room2",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -34971,7 +34971,7 @@
         }
       ],
       "Name": "Enemies",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 1212778432
     },
@@ -35014,11 +35014,38 @@
           "ParentUID": 6619240,
           "Type": 2,
           "UID": 3594677328
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 988737408
+        },
+        {
+          "AudioID": 6,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 6619240,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 3965130975,
+          "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
       "Name": "SK_MainCharacter",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -35199,7 +35226,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 4149613856
     },
@@ -35380,7 +35407,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big1",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2348320
     },
@@ -35561,7 +35588,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big2",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 10078192
     },
@@ -35753,7 +35780,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -35945,7 +35972,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft1",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2109027104
     },
@@ -36137,7 +36164,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft2",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -36329,7 +36356,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft3",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -36521,7 +36548,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft4",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 1779500912
     },
@@ -36713,7 +36740,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft5",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2113778768
     },
@@ -36905,7 +36932,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft6",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -37097,7 +37124,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft7",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -37289,7 +37316,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -37481,7 +37508,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack1",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2115568720
     },
@@ -37673,7 +37700,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack2",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2109027104
     },
@@ -37865,7 +37892,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack3",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -38057,7 +38084,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack4",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -38249,7 +38276,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack5",
-      "ParentUID": 3145823,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2109027104
     }
