@@ -211,7 +211,7 @@ bool OzzAnimator::LoadSkeleton(const std::string& path)
 // hekbas: TODO OZZ
 bool OzzAnimator::LoadMaterial(const std::string& path)
 {
-	m_MaterialId = Resources::Load<Material>(path.c_str());
+	m_MaterialId = Resources::LoadFromLibrary<Material>(path.c_str());
 
 	if (m_MaterialId == INVALID_INDEX) return false;
 

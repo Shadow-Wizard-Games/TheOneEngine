@@ -535,9 +535,7 @@ ozz::unique_ptr<JointShader> JointShader::Build() {
       "  return world_matrix;\n"
       "}\n";
   const char* vs[] = {kPlatformSpecivicVSHeader, kPassNoUv,
-                      GL_ARB_instanced_arrays_supported
-                          ? "attribute mat4 joint;\n"
-                          : "uniform mat4 joint;\n",
+                      "uniform mat4 joint;\n",
                       vs_joint_to_world_matrix, kShaderUberVS};
   const char* fs[] = {kPlatformSpecivicFSHeader, kShaderAmbientFct,
                       kShaderAmbientFS};
@@ -554,11 +552,7 @@ ozz::unique_ptr<JointShader> JointShader::Build() {
   // Binds default uniforms
   success &= shader->BindUniform("u_mvp");
 
-  if (GL_ARB_instanced_arrays_supported) {
-    success &= shader->FindAttrib("joint");
-  } else {
-    success &= shader->BindUniform("joint");
-  }
+  success &= shader->BindUniform("joint");
 
   if (!success) {
     shader.reset();
@@ -597,9 +591,7 @@ BoneShader::Build() {  // Builds a world matrix from joint uniforms,
       "  return world_matrix;\n"
       "}\n";
   const char* vs[] = {kPlatformSpecivicVSHeader, kPassNoUv,
-                      GL_ARB_instanced_arrays_supported
-                          ? "attribute mat4 joint;\n"
-                          : "uniform mat4 joint;\n",
+                      "uniform mat4 joint;\n",
                       vs_joint_to_world_matrix, kShaderUberVS};
   const char* fs[] = {kPlatformSpecivicFSHeader, kShaderAmbientFct,
                       kShaderAmbientFS};
@@ -616,11 +608,7 @@ BoneShader::Build() {  // Builds a world matrix from joint uniforms,
   // Binds default uniforms
   success &= shader->BindUniform("u_mvp");
 
-  if (GL_ARB_instanced_arrays_supported) {
-    success &= shader->FindAttrib("joint");
-  } else {
-    success &= shader->BindUniform("joint");
-  }
+  success &= shader->BindUniform("joint");
 
   if (!success) {
     shader.reset();
@@ -761,7 +749,7 @@ void AmbientShaderInstanced::Bind(GLsizei _models_offset,
   GL(VertexAttribPointer(color_attrib, 4, GL_UNSIGNED_BYTE, GL_TRUE,
                          _color_stride, GL_PTR_OFFSET(_color_offset)));
   if (_color_stride == 0) {
-    GL(VertexAttribDivisor_(color_attrib,
+    GL(VertexAttribDivisor(color_attrib,
                             std::numeric_limits<unsigned int>::max()));
   }
 
@@ -771,10 +759,10 @@ void AmbientShaderInstanced::Bind(GLsizei _models_offset,
   GL(EnableVertexAttribArray(models_attrib + 1));
   GL(EnableVertexAttribArray(models_attrib + 2));
   GL(EnableVertexAttribArray(models_attrib + 3));
-  GL(VertexAttribDivisor_(models_attrib + 0, 1));
-  GL(VertexAttribDivisor_(models_attrib + 1, 1));
-  GL(VertexAttribDivisor_(models_attrib + 2, 1));
-  GL(VertexAttribDivisor_(models_attrib + 3, 1));
+  GL(VertexAttribDivisor(models_attrib + 0, 1));
+  GL(VertexAttribDivisor(models_attrib + 1, 1));
+  GL(VertexAttribDivisor(models_attrib + 2, 1));
+  GL(VertexAttribDivisor(models_attrib + 3, 1));
   GL(VertexAttribPointer(models_attrib + 0, 4, GL_FLOAT, GL_FALSE,
                          sizeof(math::Float4x4),
                          GL_PTR_OFFSET(0 + _models_offset)));
@@ -800,17 +788,17 @@ void AmbientShaderInstanced::Bind(GLsizei _models_offset,
 
 void AmbientShaderInstanced::Unbind() {
   const GLint color_attrib = attrib(2);
-  GL(VertexAttribDivisor_(color_attrib, 0));
+  GL(VertexAttribDivisor(color_attrib, 0));
 
   const GLint models_attrib = attrib(3);
   GL(DisableVertexAttribArray(models_attrib + 0));
   GL(DisableVertexAttribArray(models_attrib + 1));
   GL(DisableVertexAttribArray(models_attrib + 2));
   GL(DisableVertexAttribArray(models_attrib + 3));
-  GL(VertexAttribDivisor_(models_attrib + 0, 0));
-  GL(VertexAttribDivisor_(models_attrib + 1, 0));
-  GL(VertexAttribDivisor_(models_attrib + 2, 0));
-  GL(VertexAttribDivisor_(models_attrib + 3, 0));
+  GL(VertexAttribDivisor(models_attrib + 0, 0));
+  GL(VertexAttribDivisor(models_attrib + 1, 0));
+  GL(VertexAttribDivisor(models_attrib + 2, 0));
+  GL(VertexAttribDivisor(models_attrib + 3, 0));
   Shader::Unbind();
 }
 
