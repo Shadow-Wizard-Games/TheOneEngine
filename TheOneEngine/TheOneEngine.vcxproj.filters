@@ -228,6 +228,9 @@
     <ClInclude Include="UniformBuffer.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="SliderUI.h">
+      <Filter>GameObject\Components\UI\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -358,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="UniformBuffer.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SliderUI.cpp">
+      <Filter>GameObject\Components\UI\Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -397,6 +397,81 @@
               "UID": 1658136721,
               "UiElements": [
                 {
+                  "AdditionalOffsetFirst": 0.00800000037997961,
+                  "AdditionalOffsetLast": 0.05999999865889549,
+                  "ID": 1166239321,
+                  "ImageFirstSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdle": [
+                    0.024891775101423264,
+                    0.7172619104385376,
+                    0.04707792028784752,
+                    0.0565476194024086
+                  ],
+                  "ImageFirstSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdle": [
+                    0.07359307259321213,
+                    0.7172619104385376,
+                    0.04707792028784752,
+                    0.0565476194024086
+                  ],
+                  "ImageLastSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionIdle": [
+                    0.12229437381029129,
+                    0.7172619104385376,
+                    0.045995671302080154,
+                    0.0565476194024086
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "MaxValue": 16,
+                  "MinValue": 0,
+                  "Name": "LifeSlider",
+                  "Offset": 0.020999999716877937,
+                  "Rect": [
+                    -0.5350000262260437,
+                    0.8799999952316284,
+                    0.06499999761581421,
+                    0.05999999865889549
+                  ],
+                  "SliderDesign": 1,
+                  "State": 0,
+                  "Type": 2,
+                  "Value": 16
+                },
+                {
                   "ID": 2298871737,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSection": [
@@ -410,7 +485,7 @@
                   "Rect": [
                     -0.75,
                     0.8100000023841858,
-                    0.03999999910593033,
+                    0.05000000074505806,
                     0.05000000074505806
                   ],
                   "State": 0,
@@ -430,7 +505,7 @@
                   "Rect": [
                     -0.6899999976158142,
                     0.699999988079071,
-                    0.03999999910593033,
+                    0.05000000074505806,
                     0.04500000178813934
                   ],
                   "State": 0,
