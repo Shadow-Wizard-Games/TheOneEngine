@@ -359,7 +359,7 @@ bool PanelInspector::Draw()
                 
                 if (camera->cameraType == CameraType::ORTHOGONAL)
                 {
-                    if (ImGui::SliderFloat("SIZE", &size, 0.1, 100.0))
+                    if (ImGui::SliderFloat("SIZE", &size, 0.1, 500.0))
                     {
                         camera->size = size;
                         isDirty = true;
