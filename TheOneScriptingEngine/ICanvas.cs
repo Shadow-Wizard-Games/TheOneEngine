@@ -23,4 +23,19 @@ public class ICanvas : IComponent
     {
         InternalCalls.ChangeSectImg(containerGOptr, name, x, y, w, h);
     }
+
+    public int GetSliderValue(string name)
+    {
+        return InternalCalls.GetSliderValue(containerGOptr, name);
+    }
+
+    public int GetSliderMaxValue(string name)
+    {
+        return InternalCalls.GetSliderMaxValue(containerGOptr, name);
+    }
+
+    public void SetSliderValue(int value, string name)
+    {
+        InternalCalls.SetSliderValue(containerGOptr, value, name);
+    }
 }

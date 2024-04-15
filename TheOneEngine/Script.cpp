@@ -30,7 +30,7 @@ Script::~Script()
 
 void Script::Start()
 {
-	MonoManager::CallScriptFunction(monoBehaviourInstance, "Start");
+ 	MonoManager::CallScriptFunction(monoBehaviourInstance, "Start");
 }
 
 void Script::Enable()
