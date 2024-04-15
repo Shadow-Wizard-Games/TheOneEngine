@@ -123,4 +123,8 @@ public class IGameObject : IObject
     {
         InternalCalls.Disable(containerGOptr);
     }
+    public void Enable()
+    {
+        InternalCalls.Enable(containerGOptr);
+    }
 }

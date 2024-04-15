@@ -80,6 +80,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void Disable(IntPtr GOtoDisable);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void Enable(IntPtr GOtoEnable);
     #endregion
 
     #region Component

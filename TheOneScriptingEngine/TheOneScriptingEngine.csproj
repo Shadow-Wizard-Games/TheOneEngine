@@ -64,7 +64,8 @@
     <Compile Include="IGameObject.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="InternalCalls.cs" />
-    <Compile Include="InventoryMenuManager.cs" />
+    <Compile Include="UiManager.cs" />
+    <Compile Include="UiScriptInventory.cs" />
     <Compile Include="IAudioSource.cs" />
     <Compile Include="IObject.cs" />
     <Compile Include="IParticleSystem.cs" />
@@ -74,7 +75,7 @@
     <Compile Include="Item_Healing.cs" />
     <Compile Include="Item_M4A1.cs" />
     <Compile Include="Item_Shield.cs" />
-    <Compile Include="PauseMenuManager.cs" />
+    <Compile Include="UiScriptPause.cs" />
     <Compile Include="SceneManager.cs" />
     <Compile Include="ITransform.cs" />
     <Compile Include="MonoBehaviour.cs" />

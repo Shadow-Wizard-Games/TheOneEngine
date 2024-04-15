@@ -19,7 +19,8 @@ public class PlayerScript : MonoBehaviour
     float currentTimer = 0.0f;
     float attackCooldown = .10f;
 
-    bool isDead = false;
+    public bool isDead = false;
+    public bool onPause = false;
     float life = 100;
 
     public override void Start()
@@ -32,6 +33,7 @@ public class PlayerScript : MonoBehaviour
     public override void Update()
     {
         if (isDead) return;
+        if (onPause) return;
 
         bool toMove = false;
         Vector3 movement = Vector3.zero;

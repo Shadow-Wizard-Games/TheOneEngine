@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class InventoryMenuManager : MonoBehaviour
+public class UiScriptInventory : MonoBehaviour
 {
     public ICanvas canvas;
     ItemManager itemManager;
@@ -9,11 +9,10 @@ public class InventoryMenuManager : MonoBehaviour
 
     float cooldown = 0;
     bool onCooldown = false;
-    bool inventoryEnabled = false;
 
     int x = 2495, y = 445, width = 200, height = 90;
 
-    public InventoryMenuManager()
+    public UiScriptInventory()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
     }
@@ -22,6 +21,8 @@ public class InventoryMenuManager : MonoBehaviour
     {
         iManagerGO = IGameObject.Find("Manager");
         itemManager = iManagerGO.GetComponent<ItemManager>();
+
+        onCooldown = true;
     }
     public override void Update()
     {
@@ -37,26 +38,19 @@ public class InventoryMenuManager : MonoBehaviour
             onCooldown = false;
         }
 
+        //Input Updates
         if (!onCooldown)
         {
-            if (Input.GetKeyboardButton(Input.KeyboardCode.I))
-            {
-                //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.CLICK);
-                canvas.ToggleEnable();
-                inventoryEnabled = true;
-                onCooldown = true;
-            }
+            
         }
 
-        if (inventoryEnabled)
+        //Update UI
+        if (itemManager != null)
         {
-            if (itemManager != null)
+            if (itemManager.hasInitial && !hasWeapon)
             {
-                if (itemManager.hasInitial && !hasWeapon)
-                {
-                    canvas.ChangeSectImg("Weapon", x, y, width, height);
-                    hasWeapon = true;
-                }
+                canvas.ChangeSectImg("Weapon", x, y, width, height);
+                hasWeapon = true;
             }
         }
     }

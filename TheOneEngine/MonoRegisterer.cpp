@@ -165,6 +165,9 @@ static GameObject* RecursiveFindGO(std::string _name, GameObject* refGO)
 			return go.get();
 		}
 		returnedGO = RecursiveFindGO(_name, go.get());
+
+		if (returnedGO != nullptr)
+			break;
 	}
 	return returnedGO;
 }
@@ -229,6 +232,11 @@ static void* GetScript(GameObject* GOptr, MonoString* scriptName)
 static void Disable(GameObject* GOtoDisable)
 {
 	GOtoDisable->Disable();
+}
+
+static void Enable(GameObject* GOtoEnable)
+{
+	GOtoEnable->Enable();
 }
 
 //Scene Management
@@ -520,6 +528,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);
+	mono_add_internal_call("InternalCalls::Enable", Enable);
 
 	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);

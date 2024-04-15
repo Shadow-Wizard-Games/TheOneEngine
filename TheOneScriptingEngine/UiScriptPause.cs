@@ -1,16 +1,17 @@
 ﻿using System;
 
-public class PauseMenuManager : MonoBehaviour
+public class UiScriptPause : MonoBehaviour
 {
     public ICanvas canvas;
     float cooldown = 0;
     bool onCooldown = false;
-    bool pauseEnabled = false;
 
     IGameObject playerGO;
     PlayerScript player;
 
-    public PauseMenuManager()
+    UiManager menuManager;
+
+    public UiScriptPause()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
     }
@@ -20,6 +21,10 @@ public class PauseMenuManager : MonoBehaviour
         // Error here 
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
+
+        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+
+        onCooldown = true;
     }
 
     public override void Update()
@@ -38,19 +43,8 @@ public class PauseMenuManager : MonoBehaviour
             onCooldown = false;
         }
 
-        //Keyboard
+        //Input Updates
         if (!onCooldown)
-        {
-            if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
-                canvas.ToggleEnable();
-                pauseEnabled = true;
-                onCooldown = true;
-            }
-        }
-
-        if (pauseEnabled)
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
             {
@@ -82,7 +76,7 @@ public class PauseMenuManager : MonoBehaviour
             }
 
             // Select Button
-            if (toMove && !onCooldown)
+            if (toMove)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
                 onCooldown = true;
@@ -94,7 +88,7 @@ public class PauseMenuManager : MonoBehaviour
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 canvas.ToggleEnable();
-                pauseEnabled = false;
+                menuManager.ResumeGame();
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
