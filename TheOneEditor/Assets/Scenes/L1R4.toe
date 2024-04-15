@@ -31989,7 +31989,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 0,
+          "AudioID": 4,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -32063,7 +32063,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 0,
+          "AudioID": 5,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -32137,7 +32137,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 0,
+          "AudioID": 6,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -32211,7 +32211,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 0,
+          "AudioID": 7,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -32285,13 +32285,383 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 0,
+          "AudioID": 8,
           "Name": "AudioSource",
           "Type": 8
         }
       ],
       "Enabled": true,
       "Name": "Facehugger006",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            227.6085205078125,
+            0.0,
+            -967.7326049804688,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 179976285
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+          "Name": "Mesh",
+          "ParentUID": 6619240,
+          "Type": 2,
+          "UID": 3712989521
+        },
+        {
+          "AudioID": 9,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 6619240,
+          "Radius": 5.0,
+          "Type": 5,
+          "UID": 2357730499,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "ChestBusterBehaviour",
+          "Type": 4,
+          "UID": 2990136769
+        }
+      ],
+      "Enabled": true,
+      "Name": "Chestburster001",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            280.9246826171875,
+            0.0,
+            -793.8358154296875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 67157871
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1511020327
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 5.0,
+          "Type": 5,
+          "UID": 2240883377,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestBusterBehaviour",
+          "Type": 4,
+          "UID": 3257328092
+        }
+      ],
+      "Enabled": true,
+      "Name": "Chestburster002",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            713.081787109375,
+            -2.737121940299403e-05,
+            -900.42236328125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 721792210
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3284283325
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 5.0,
+          "Type": 5,
+          "UID": 2180941473,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestBusterBehaviour",
+          "Type": 4,
+          "UID": 883871861
+        }
+      ],
+      "Enabled": true,
+      "Name": "Chestburster003",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            792.9764404296875,
+            0.0,
+            -769.2376098632813,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 124069727
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 242324255
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 5.0,
+          "Type": 5,
+          "UID": 733159635,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestBusterBehaviour",
+          "Type": 4,
+          "UID": 377842569
+        }
+      ],
+      "Enabled": true,
+      "Name": "Chestburster004",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            949.5435791015625,
+            0.0,
+            -725.5888061523438,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3836418562
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3864991694
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 5.0,
+          "Type": 5,
+          "UID": 184911547,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestBusterBehaviour",
+          "Type": 4,
+          "UID": 237916471
+        }
+      ],
+      "Enabled": true,
+      "Name": "Chestburster005",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
