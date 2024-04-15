@@ -6,9 +6,9 @@
 #include "Component.h"
 #include "Resources.h"
 
-#include "../TheOneEngine/Animation/samples/mesh.h"
-#include "../external/ozz/include/base/maths/simd_math.h"
-#include "../external/ozz/include/base/span.h"
+#include "../TheOneAnimation/samples/framework/mesh.h"
+#include "ozz/base/maths/simd_math.h"
+#include "ozz/base/span.h"
 
 #include <vector>
 #include <memory>

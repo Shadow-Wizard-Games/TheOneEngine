@@ -29,7 +29,12 @@
 #define OZZ_SAMPLES_FRAMEWORK_INTERNAL_SHADER_H_
 
 #include "ozz/base/memory/unique_ptr.h"
-#include "renderer_impl.h"
+#include "ozz/base/containers/vector.h"
+
+typedef int GLint;
+typedef unsigned int GLuint;
+
+typedef GLint GLsizei;
 
 namespace ozz {
 namespace math {

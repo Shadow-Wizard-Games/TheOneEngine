@@ -1,5 +1,7 @@
-#include "../../Log.h"
 #include "OzzAnimationSimple.h"
+
+#include "TheOneEngine/Log.h"
+#include "TheOneEngine/Action.h"
 
 
 OzzAnimationSimple::OzzAnimationSimple() :

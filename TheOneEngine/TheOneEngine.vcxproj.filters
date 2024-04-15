@@ -76,9 +76,6 @@
     <Filter Include="Animation\animations">
       <UniqueIdentifier>{35e8665e-8ad5-42bf-95c0-bce29902e91e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Animation\samples">
-      <UniqueIdentifier>{8cf49445-e000-41c9-802d-b997416b646a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Animation\manager">
       <UniqueIdentifier>{b983d0c9-1576-4895-8d0b-be6ec3ebf6af}</UniqueIdentifier>
     </Filter>
@@ -252,15 +249,6 @@
     <ClInclude Include="Animation\animations\OzzAnimationSimple.h">
       <Filter>Animation\animations</Filter>
     </ClInclude>
-    <ClInclude Include="Animation\samples\mesh.h">
-      <Filter>Animation\samples</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\samples\shader.h">
-      <Filter>Animation\samples</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation\samples\utils.h">
-      <Filter>Animation\samples</Filter>
-    </ClInclude>
     <ClInclude Include="Action.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -394,15 +382,6 @@
     </ClCompile>
     <ClCompile Include="Animation\animations\OzzAnimationSimple.cpp">
       <Filter>Animation\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\samples\mesh.cpp">
-      <Filter>Animation\samples</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\samples\shader.cpp">
-      <Filter>Animation\samples</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation\samples\utils.cpp">
-      <Filter>Animation\samples</Filter>
     </ClCompile>
     <ClCompile Include="Animation\manager\OzzAnimationManager.cpp">
       <Filter>Animation\manager</Filter>

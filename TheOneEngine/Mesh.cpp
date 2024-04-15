@@ -6,10 +6,11 @@
 #include "Log.h"
 #include "Defs.h"
 
-#include "../TheOneEngine/Animation/samples/shader.h"
-#include "../TheOneEngine/Animation/OzzAnimation.h"
-#include "../external/ozz/include/geometry/runtime/skinning_job.h"
-#include "../external/ozz/include/base/maths/internal/simd_math_config.h"
+#include "Animation/OzzAnimation.h"
+#include "../TheOneAnimation/samples/framework/internal/shader.h"
+
+#include "ozz/geometry/runtime/skinning_job.h"
+#include "ozz/base/maths/internal/simd_math_config.h"
 
 #include <span>
 #include <vector>

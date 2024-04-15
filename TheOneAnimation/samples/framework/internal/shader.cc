@@ -29,12 +29,17 @@
 
 #include "shader.h"
 
+#include "vcpkg/installed/x64-windows/include/GL/glew.h"
+
 #include <cassert>
 #include <cstdio>
 #include <limits>
 
 #include "ozz/base/log.h"
 #include "ozz/base/maths/simd_math.h"
+
+#define GL_PTR_OFFSET(i) reinterpret_cast<void*>(static_cast<intptr_t>(i))
+#define GL(_f) gl##_f
 
 namespace ozz {
 namespace sample {

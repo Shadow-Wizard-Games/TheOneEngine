@@ -75,6 +75,15 @@
     <Filter Include="Include\ozz\geometry\runtime">
       <UniqueIdentifier>{f7b61424-d62e-450f-8200-9e6e7601aa74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Samples">
+      <UniqueIdentifier>{451ea6bd-5c2e-4958-9577-298c2bac7a5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Samples\framework">
+      <UniqueIdentifier>{18451bb3-cf38-4b57-8f69-2b20e044f9b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Samples\framework\internal">
+      <UniqueIdentifier>{ed248e3b-9c3d-4af4-81ad-0df6cc612f2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\animation\runtime\animation.cc">
@@ -145,6 +154,15 @@
     </ClCompile>
     <ClCompile Include="src\options\options.cc">
       <Filter>Sauce\options</Filter>
+    </ClCompile>
+    <ClCompile Include="samples\framework\mesh.cc">
+      <Filter>Samples\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="samples\framework\utils.cc">
+      <Filter>Samples\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="samples\framework\internal\shader.cc">
+      <Filter>Samples\framework\internal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,6 +345,15 @@
     </ClInclude>
     <ClInclude Include="src\animation\runtime\animation_keyframe.h">
       <Filter>Sauce\animation\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="samples\framework\mesh.h">
+      <Filter>Samples\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="samples\framework\utils.h">
+      <Filter>Samples\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="samples\framework\internal\shader.h">
+      <Filter>Samples\framework\internal</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

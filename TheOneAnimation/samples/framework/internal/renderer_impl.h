@@ -59,7 +59,7 @@
 
 // Include features as extentions
 #include "GL/glext.h"
-#include "framework/renderer.h"
+#include "../renderer.h"
 #include "ozz/base/containers/vector.h"
 #include "ozz/base/memory/unique_ptr.h"
 

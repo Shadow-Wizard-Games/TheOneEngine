@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="samples\framework\internal\shader.cc" />
+    <ClCompile Include="samples\framework\mesh.cc" />
+    <ClCompile Include="samples\framework\utils.cc" />
     <ClCompile Include="src\animation\runtime\animation.cc" />
     <ClCompile Include="src\animation\runtime\animation_utils.cc" />
     <ClCompile Include="src\animation\runtime\blending_job.cc" />
@@ -103,6 +106,9 @@
     <ClInclude Include="include\ozz\geometry\runtime\skinning_job.h" />
     <ClInclude Include="include\ozz\options\export.h" />
     <ClInclude Include="include\ozz\options\options.h" />
+    <ClInclude Include="samples\framework\internal\shader.h" />
+    <ClInclude Include="samples\framework\mesh.h" />
+    <ClInclude Include="samples\framework\utils.h" />
     <ClInclude Include="src\animation\runtime\animation_keyframe.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -201,7 +207,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -221,7 +227,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)TheOneAnimation\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

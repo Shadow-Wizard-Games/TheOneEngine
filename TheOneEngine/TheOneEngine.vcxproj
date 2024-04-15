@@ -17,9 +17,6 @@
     <ClInclude Include="Animation\manager\OzzAnimationManager.h" />
     <ClInclude Include="Animation\OzzAnimation.h" />
     <ClInclude Include="Animation\OzzAnimator.h" />
-    <ClInclude Include="Animation\samples\mesh.h" />
-    <ClInclude Include="Animation\samples\shader.h" />
-    <ClInclude Include="Animation\samples\utils.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="AudioManager.h" />
@@ -81,9 +78,6 @@
     <ClCompile Include="Animation\manager\OzzAnimationManager.cpp" />
     <ClCompile Include="Animation\OzzAnimation.cpp" />
     <ClCompile Include="Animation\OzzAnimator.cpp" />
-    <ClCompile Include="Animation\samples\mesh.cpp" />
-    <ClCompile Include="Animation\samples\shader.cpp" />
-    <ClCompile Include="Animation\samples\utils.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AudioComponent.cpp" />
     <ClCompile Include="AudioManager.cpp" />
@@ -177,7 +171,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -209,7 +203,7 @@ $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew gli stb glm assimp pcg simdjs
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AK_OPTIMIZED;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>

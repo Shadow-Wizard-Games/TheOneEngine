@@ -1,9 +1,7 @@
 #pragma once
 
-// Include core
-//#include <Wiwa/core/Core.h>
+#include "TheOneEngine/Action.h"
 
-// Include ozz
 #include "ozz/animation/runtime/animation.h"
 #include "ozz/animation/runtime/blending_job.h"
 #include "ozz/animation/runtime/local_to_model_job.h"
@@ -16,8 +14,8 @@
 #include "ozz/base/maths/soa_transform.h"
 #include "ozz/base/maths/vec_float.h"
 #include "ozz/options/options.h"
-#include "samples/utils.h"
-#include "samples/mesh.h"
+#include "samples/framework/utils.h"
+#include "samples/framework/mesh.h"
 
 
 enum AnimationType

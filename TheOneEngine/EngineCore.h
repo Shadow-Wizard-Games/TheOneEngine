@@ -19,7 +19,7 @@
 #include "InputManager.h"
 #include "AudioManager.h"
 
-#include "../external/ozz/include/base/memory/allocator.h"
+#include "ozz/base/memory/allocator.h"
 
 #include <chrono>
 #include <memory>
