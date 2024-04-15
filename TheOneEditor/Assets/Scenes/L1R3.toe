@@ -55,7 +55,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 3452816845
     },
@@ -77070,7 +77070,7 @@
         }
       ],
       "Name": "L1R3_Walls",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 3452816845
     },
@@ -88025,7 +88025,7 @@
         }
       ],
       "Name": "Props",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 3452816845
     },
@@ -88206,7 +88206,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire0",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1006632960
     },
@@ -88387,7 +88387,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire1",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 6881399
     },
@@ -88568,7 +88568,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire2",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1281119600
     },
@@ -88749,7 +88749,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire3",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1578330768
     },
@@ -88930,7 +88930,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire4",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 7536741
     },
@@ -89111,7 +89111,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire5",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 7536741
     },
@@ -89303,7 +89303,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks0",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 6881399
     },
@@ -89495,7 +89495,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks1",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1267822448
     },
@@ -89687,7 +89687,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks2",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1582799280
     },
@@ -89879,7 +89879,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks3",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 6881399
     },
@@ -90071,7 +90071,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks4",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1578330768
     },
@@ -90263,7 +90263,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks5",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 6881399
     },
@@ -90455,7 +90455,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks6",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1281119600
     },
@@ -90647,7 +90647,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks7",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 7536741
     },
@@ -90828,7 +90828,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire6",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 6881399
     },
@@ -91020,7 +91020,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks8",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 1265926272
     },
@@ -91094,7 +91094,7 @@
       ],
       "Enabled": true,
       "Name": "SK_MainCharacter",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 6881399
     },
@@ -93052,7 +93052,7 @@
         }
       ],
       "Name": "Enemies_Parent",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 6881399
     },
@@ -93080,11 +93080,18 @@
           ],
           "Type": 0,
           "UID": 630829688
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3161147584,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 3457353834
         }
       ],
       "Enabled": true,
       "Name": "Manager",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 3161147584
     },
@@ -93112,11 +93119,18 @@
           ],
           "Type": 0,
           "UID": 2129495020
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 150220416,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 1187358740
         }
       ],
       "Enabled": true,
       "Name": "GoBack",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 150220416
     },
@@ -93155,7 +93169,7 @@
       ],
       "Enabled": true,
       "Name": "GoNext",
-      "ParentUID": 1319328,
+      "ParentUID": 2703730928,
       "Static": false,
       "UID": 252575232
     }

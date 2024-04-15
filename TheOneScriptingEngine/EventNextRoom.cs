@@ -84,15 +84,15 @@ public class EventNextRoom : Event
                             break;
                         case 2:
                             if (goNext) SceneManager.LoadScene("L1R3");
-                            else SceneManager.LoadScene("L1R2");
+                            else SceneManager.LoadScene("L1R1");
                             break;
                         case 3:
                             if (goNext) SceneManager.LoadScene("L1R4");
-                            else SceneManager.LoadScene("L1R3");
+                            else SceneManager.LoadScene("L1R2");
                             break;
                         case 4:
                             if (goNext) SceneManager.LoadScene("L1R5");
-                            else SceneManager.LoadScene("L1R4");
+                            else SceneManager.LoadScene("L1R3");
                             break;
                         case 5:
                             SceneManager.LoadScene("L1R4");

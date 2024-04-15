@@ -21,9 +21,9 @@ public class ChestBusterBehaviour : MonoBehaviour
     States currentState = States.Idle;
     bool detected = false;
 
-    float enemyDetectedRange = 35.0f * 3;
-    float maxAttackRange = 90.0f;
-    float maxChasingRange = 180.0f;
+    float enemyDetectedRange = 35.0f * 1.5f;
+    float maxAttackRange = 60.0f;
+    float maxChasingRange = 150.0f;
 
     bool shooting = false;
     bool hasShot = false;

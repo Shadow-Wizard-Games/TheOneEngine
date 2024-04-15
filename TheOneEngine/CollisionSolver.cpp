@@ -86,6 +86,10 @@ bool CollisionSolver::Update(double dt)
                     {
                     case CollisionType::Player:
                         //implement any low life to player
+                        if (CheckCollision(item, item2))
+                        {
+                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "CheckJump");
+                        }
                         break;
                     case CollisionType::Enemy:
                         //if they collide
