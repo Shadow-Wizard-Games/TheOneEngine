@@ -26,8 +26,6 @@ public class EventCollectible : Event
         eventType = EventType.COLLECTIBLE;
         itemManagerGO = IGameObject.Find("Manager");
         itemManager = itemManagerGO.GetComponent<ItemManager>();
-        //get item script from the GO
-        //currentItem = attachedGameObject.GetComponent<Item_Shield>();
     }
     
     public override void Update()
@@ -76,12 +74,10 @@ public class EventCollectible : Event
         if (!inRange)
         {
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, collectibleRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
-            //Debug.Log("OUTrange");
         }
         else
         {
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, collectibleRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-            //Debug.Log("INrange");
         }
     }
 }

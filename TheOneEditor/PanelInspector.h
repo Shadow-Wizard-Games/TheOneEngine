@@ -36,6 +36,8 @@ private:
 		"Circle",
 		"Square",
 	};
+
+	int slilderDesignOptionToModify = 0;
 };
 
 #endif // !__PANEL_INSPECTOR_H__

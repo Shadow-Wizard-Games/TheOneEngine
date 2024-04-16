@@ -5,6 +5,7 @@
 #include "ItemUI.h"
 #include "ImageUI.h"
 #include "ButtonImageUI.h"
+#include "SliderUI.h"
 
 Canvas::Canvas(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Canvas)
 {}
@@ -222,6 +223,11 @@ void Canvas::LoadComponent(const json& canvasJSON)
 			{
 				int id = this->AddItemUI<ButtonImageUI>();
 				this->GetItemUI<ButtonImageUI>(id)->LoadUIElement(item);
+			}
+			if (item["Type"] == (int)UiType::SLIDER)
+			{
+				int id = this->AddItemUI<SliderUI>();
+				this->GetItemUI<SliderUI>(id)->LoadUIElement(item);
 			}
 			if (item["Type"] == (int)UiType::UNKNOWN)
 			{

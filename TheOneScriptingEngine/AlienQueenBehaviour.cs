@@ -80,7 +80,12 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     public override void Update()
     {
-        if (currentState == States.Dead) return;
+        if (currentState == States.Dead)
+        {
+            SceneManager.LoadScene("MainMenu");
+            playerGO.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
+            playerGO.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+        }
 
         if (attachedGameObject.transform.ComponentCheck())
         {
