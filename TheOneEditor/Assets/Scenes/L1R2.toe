@@ -5,28 +5,28 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -1.0,
+            -1.0738747846517072e-07,
+            4.371138473402425e-08,
+            0.0,
+            -9.154890534546212e-08,
+            0.4999999701976776,
+            -0.866025447845459,
+            0.0,
+            7.114459776857984e-08,
+            -0.866025447845459,
+            -0.4999999701976776,
             0.0,
             0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
+            120.0,
+            60.0,
             1.0
           ],
           "Type": 0,
           "UID": 2837029610
         },
         {
-          "Aspect": 1.777,
+          "Aspect": 2.3402061462402344,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -39,11 +39,23 @@
           "Yaw": 0.0,
           "zFar": 1000.0,
           "zNear": 0.1
+        },
+        {
+          "AudioID": 0,
+          "Name": "Listener",
+          "Type": 7
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2359380,
+          "ScriptName": "CameraMovement",
+          "Type": 4,
+          "UID": 830597459
         }
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2359380
     },
@@ -34331,7 +34343,7 @@
         }
       ],
       "Name": "MK_Ship_Room2",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -34430,6 +34442,33 @@
                   "ParentUID": 6619240,
                   "Type": 2,
                   "UID": 3712989521
+                },
+                {
+                  "ColliderType": 0,
+                  "CollisionType": 1,
+                  "CornerPivot": true,
+                  "Height": -1.7976931348623157e+308,
+                  "Name": "Collider2D",
+                  "ObjectOrientation": 0,
+                  "OffsetX": 0.0,
+                  "OffsetY": 0.0,
+                  "ParentUID": 6619240,
+                  "Radius": 5.0,
+                  "Type": 5,
+                  "UID": 2709370914,
+                  "Width": -1.7976931348623157e+308
+                },
+                {
+                  "AudioID": 8,
+                  "Name": "AudioSource",
+                  "Type": 8
+                },
+                {
+                  "Name": "Script",
+                  "ParentUID": 6619240,
+                  "ScriptName": "ChestBusterBehaviour",
+                  "Type": 4,
+                  "UID": 1025288468
                 }
               ],
               "Enabled": true,
@@ -34477,6 +34516,33 @@
                   "ParentUID": 3295293728,
                   "Type": 2,
                   "UID": 2769006400
+                },
+                {
+                  "AudioID": 9,
+                  "Name": "AudioSource",
+                  "Type": 8
+                },
+                {
+                  "ColliderType": 0,
+                  "CollisionType": 1,
+                  "CornerPivot": true,
+                  "Height": -1.7976931348623157e+308,
+                  "Name": "Collider2D",
+                  "ObjectOrientation": 0,
+                  "OffsetX": 0.0,
+                  "OffsetY": 0.0,
+                  "ParentUID": 3295293728,
+                  "Radius": 5.0,
+                  "Type": 5,
+                  "UID": 2870711069,
+                  "Width": -1.7976931348623157e+308
+                },
+                {
+                  "Name": "Script",
+                  "ParentUID": 3295293728,
+                  "ScriptName": "ChestBusterBehaviour",
+                  "Type": 4,
+                  "UID": 421064716
                 }
               ],
               "Enabled": true,
@@ -34524,21 +34590,21 @@
                 {
                   "Name": "Transform",
                   "Transformation Matrix": [
-                    -4.371138828673793e-08,
+                    -0.40757431406633565,
                     0.0,
-                    -1.0,
-                    0.0,
-                    0.0,
-                    1.0,
+                    0.9131720421220515,
                     0.0,
                     0.0,
                     1.0,
                     0.0,
-                    -4.371138828673793e-08,
                     0.0,
-                    -1316.83544921875,
+                    -0.9131720421220515,
                     0.0,
-                    267.07757568359375,
+                    -0.40757431406633565,
+                    0.0,
+                    -1388.0,
+                    0.0,
+                    482.9800720214844,
                     1.0
                   ],
                   "Type": 0,
@@ -34560,7 +34626,7 @@
                   "UID": 2771460427
                 },
                 {
-                  "AudioID": 0,
+                  "AudioID": 1,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34598,21 +34664,21 @@
                 {
                   "Name": "Transform",
                   "Transformation Matrix": [
-                    -4.371138828673793e-08,
+                    -0.39847321806628877,
                     0.0,
-                    -1.0,
-                    0.0,
-                    0.0,
-                    1.0,
+                    0.9171799684270789,
                     0.0,
                     0.0,
                     1.0,
                     0.0,
-                    -4.371138828673793e-08,
                     0.0,
-                    -1344.945556640625,
+                    -0.9171799684270789,
                     0.0,
-                    371.1814270019531,
+                    -0.39847321806628877,
+                    0.0,
+                    -1388.0,
+                    0.0,
+                    595.9212646484375,
                     1.0
                   ],
                   "Type": 0,
@@ -34634,7 +34700,7 @@
                   "UID": 3677473773
                 },
                 {
-                  "AudioID": 1,
+                  "AudioID": 2,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34672,21 +34738,21 @@
                 {
                   "Name": "Transform",
                   "Transformation Matrix": [
-                    -1.0,
-                    8.74227694680485e-08,
-                    8.742279078433057e-08,
+                    0.5494879950767241,
                     0.0,
-                    8.742277657347586e-08,
-                    1.0,
-                    8.74227694680485e-08,
+                    0.8355016117677914,
                     0.0,
-                    -8.742278367890322e-08,
-                    8.742277657347586e-08,
-                    -1.0,
                     0.0,
-                    -806.356689453125,
+                    1.0000000000000075,
+                    0.0,
+                    0.0,
+                    -0.8355016117677914,
+                    0.0,
+                    0.5494879950767241,
+                    0.0,
+                    -909.9746704101563,
                     -2.8810967478420935e-07,
-                    777.8262939453125,
+                    863.0,
                     1.0
                   ],
                   "Type": 0,
@@ -34708,7 +34774,7 @@
                   "UID": 1025605467
                 },
                 {
-                  "AudioID": 2,
+                  "AudioID": 3,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34746,21 +34812,21 @@
                 {
                   "Name": "Transform",
                   "Transformation Matrix": [
-                    -1.0,
+                    0.5485384071022691,
                     0.0,
-                    8.742277657347586e-08,
+                    0.8361253589825588,
                     0.0,
                     0.0,
                     1.0,
                     0.0,
                     0.0,
-                    -8.742277657347586e-08,
+                    -0.8361253589825588,
                     0.0,
-                    -1.0,
+                    0.5485384071022691,
                     0.0,
-                    -758.6387939453125,
+                    -885.919677734375,
                     9.29575071495492e-06,
-                    726.8134765625,
+                    863.0,
                     1.0
                   ],
                   "Type": 0,
@@ -34782,7 +34848,7 @@
                   "UID": 2967335595
                 },
                 {
-                  "AudioID": 3,
+                  "AudioID": 4,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34820,21 +34886,21 @@
                 {
                   "Name": "Transform",
                   "Transformation Matrix": [
-                    -1.0,
-                    8.74227694680485e-08,
-                    8.742278367890322e-08,
+                    0.26993281318498924,
                     0.0,
-                    8.742277657347586e-08,
-                    1.0,
-                    8.74227694680485e-08,
+                    0.9628791597942354,
                     0.0,
-                    -8.742277657347586e-08,
-                    8.742277657347586e-08,
-                    -1.0,
                     0.0,
-                    -717.1464233398438,
+                    1.0000000000000075,
+                    0.0,
+                    0.0,
+                    -0.9628791597942354,
+                    0.0,
+                    0.26993281318498924,
+                    0.0,
+                    -793.69921875,
                     -6.497342837974429e-06,
-                    759.641357421875,
+                    863.0,
                     1.0
                   ],
                   "Type": 0,
@@ -34856,7 +34922,7 @@
                   "UID": 1465103925
                 },
                 {
-                  "AudioID": 4,
+                  "AudioID": 5,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34894,21 +34960,21 @@
                 {
                   "Name": "Transform",
                   "Transformation Matrix": [
-                    -0.9999999999999918,
-                    8.74227618253065e-08,
-                    8.742278764646466e-08,
+                    0.5406597660611349,
                     0.0,
-                    8.742276946804804e-08,
-                    0.9999999999999923,
-                    8.742276182530648e-08,
+                    0.8412413550002863,
                     0.0,
-                    -8.74227800037247e-08,
-                    8.742276946804802e-08,
-                    -0.9999999999999918,
                     0.0,
-                    -759.6861572265625,
+                    1.0,
+                    0.0,
+                    0.0,
+                    -0.8412413550002863,
+                    0.0,
+                    0.5406597660611349,
+                    0.0,
+                    -844.7898559570313,
                     -2.1674449612874014e-07,
-                    810.3109130859375,
+                    863.0,
                     1.0
                   ],
                   "Type": 0,
@@ -34930,7 +34996,7 @@
                   "UID": 2414002845
                 },
                 {
-                  "AudioID": 5,
+                  "AudioID": 6,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34971,7 +35037,7 @@
         }
       ],
       "Name": "Enemies",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 1212778432
     },
@@ -34994,7 +35060,7 @@
             0.0,
             0.0,
             0.0,
-            0.0,
+            149.48533630371094,
             1.0
           ],
           "Type": 0,
@@ -35023,7 +35089,7 @@
           "UID": 988737408
         },
         {
-          "AudioID": 6,
+          "AudioID": 7,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -35037,7 +35103,7 @@
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 6619240,
-          "Radius": 0.5,
+          "Radius": 12.0,
           "Type": 5,
           "UID": 3965130975,
           "Width": -1.7976931348623157e+308
@@ -35045,7 +35111,7 @@
       ],
       "Enabled": true,
       "Name": "SK_MainCharacter",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -35125,7 +35191,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 1590.526123046875,
+              "Lifetime": 1617.137451171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -35201,7 +35267,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 1590.526123046875,
+              "Lifetime": 1617.137451171875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35226,7 +35292,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 4149613856
     },
@@ -35306,7 +35372,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 1590.526123046875,
+              "Lifetime": 1617.137451171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -35382,7 +35448,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 1590.526123046875,
+              "Lifetime": 1617.137451171875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35407,7 +35473,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big1",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2348320
     },
@@ -35487,7 +35553,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 1590.526123046875,
+              "Lifetime": 1617.137451171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -35563,7 +35629,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 1590.526123046875,
+              "Lifetime": 1617.137451171875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35588,7 +35654,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big2",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 10078192
     },
@@ -35668,7 +35734,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35744,7 +35810,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -35780,7 +35846,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -35860,7 +35926,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35936,7 +36002,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -35972,7 +36038,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft1",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2109027104
     },
@@ -36052,7 +36118,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36128,7 +36194,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36164,7 +36230,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft2",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -36244,7 +36310,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36320,7 +36386,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36356,7 +36422,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft3",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -36436,7 +36502,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36512,7 +36578,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36548,7 +36614,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft4",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 1779500912
     },
@@ -36628,7 +36694,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36704,7 +36770,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36740,7 +36806,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft5",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2113778768
     },
@@ -36820,7 +36886,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36896,7 +36962,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36932,7 +36998,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft6",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -37012,7 +37078,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4058.30322265625,
+              "Lifetime": 4084.909423828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37088,7 +37154,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3269.73193359375,
+              "Lifetime": 3296.338134765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37124,7 +37190,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkLeft7",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -37204,7 +37270,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4210.53857421875,
+              "Lifetime": 4237.1591796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37280,7 +37346,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3421.968017578125,
+              "Lifetime": 3448.57421875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37316,7 +37382,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -37396,7 +37462,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4210.53857421875,
+              "Lifetime": 4237.1591796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37472,7 +37538,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3421.968017578125,
+              "Lifetime": 3448.57421875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37508,7 +37574,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack1",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2115568720
     },
@@ -37588,7 +37654,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4210.53857421875,
+              "Lifetime": 4237.1591796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37664,7 +37730,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3421.968017578125,
+              "Lifetime": 3448.57421875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37700,7 +37766,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack2",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2109027104
     },
@@ -37780,7 +37846,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4210.53857421875,
+              "Lifetime": 4237.1591796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37856,7 +37922,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3421.968017578125,
+              "Lifetime": 3448.57421875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37892,7 +37958,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack3",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -37972,7 +38038,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4210.53857421875,
+              "Lifetime": 4237.1591796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38048,7 +38114,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3421.968017578125,
+              "Lifetime": 3448.57421875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38084,7 +38150,7 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack4",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 6619240
     },
@@ -38164,7 +38230,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 4210.53857421875,
+              "Lifetime": 4237.1591796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38240,7 +38306,7 @@
               ],
               "IsLooping": true,
               "IsON": true,
-              "Lifetime": 3421.968017578125,
+              "Lifetime": 3448.57421875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38276,9 +38342,1447 @@
       ],
       "Enabled": true,
       "Name": "P_SparkBack5",
-      "ParentUID": 6619240,
+      "ParentUID": 4294967295,
       "Static": false,
       "UID": 2109027104
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3416353542
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 674199056,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 3335252276
+        }
+      ],
+      "Enabled": true,
+      "Name": "Manager",
+      "ParentUID": 4294967295,
+      "Static": false,
+      "UID": 674199056
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            18.910728454589844,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2250193109
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 1664149388
+        }
+      ],
+      "Enabled": true,
+      "Name": "GoBack",
+      "ParentUID": 4294967295,
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -1007.7366333007813,
+            0.0,
+            -65.35092163085938,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1690501408
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 2910147077
+        }
+      ],
+      "Enabled": true,
+      "Name": "GoNext",
+      "ParentUID": 4294967295,
+      "Static": false,
+      "UID": 6619240
+    },
+        {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            549.2697143554688,
+            33.0,
+            -750.9942626953125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3588003588
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxSpeed": [
+                    6.0,
+                    10.0,
+                    15.0
+                  ],
+                  "MinSpeed": [
+                    -6.0,
+                    -2.0,
+                    12.0
+                  ],
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    255.0,
+                    255.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    220.0,
+                    200.0,
+                    0.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "MaxScale": [
+                    1.0,
+                    0.1,
+                    0.0
+                  ],
+                  "MinScale": [
+                    0.2,
+                    0.1,
+                    0.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": true,
+              "IsON": true,
+              "Lifetime": 4144.572265625,
+              "MaxParticles": 50,
+              "RenderModule": [
+                {
+                  "BillboardType": 0,
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 5.0,
+                  "Duration": 0.699999988079071,
+                  "SpawnRate": 0.7820000052452087,
+                  "Type": 2
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -20.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxSpeed": [
+                    6.0,
+                    10.0,
+                    15.0
+                  ],
+                  "MinSpeed": [
+                    -6.0,
+                    -2.0,
+                    12.0
+                  ],
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    255.0,
+                    255.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    220.0,
+                    200.0,
+                    0.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "MaxScale": [
+                    1.0,
+                    0.1,
+                    2.0
+                  ],
+                  "MinScale": [
+                    0.2,
+                    0.1,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": true,
+              "IsON": true,
+              "Lifetime": 3356.000244140625,
+              "MaxParticles": 100,
+              "RenderModule": [
+                {
+                  "BillboardType": 0,
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 5.0,
+                  "Duration": 0.699999988079071,
+                  "SpawnRate": 0.9470000267028809,
+                  "Type": 2
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -20.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "IsON": true,
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Type": 9,
+          "UID": 233702458
+        }
+      ],
+      "Enabled": true,
+      "Name": "P_Sparks_ToFront3",
+      "ParentUID": 6225968,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3560769835
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "UiManager",
+          "Type": 4,
+          "UID": 2371490470
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2889362756
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 149174467,
+              "UiElements": [
+                {
+                  "ID": 2094416682,
+                  "ImagePath": "Assets/Textures/Hud/InventoryMenu_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Weapon",
+                  "Rect": [
+                    -0.7099999785423279,
+                    -0.15000000596046448,
+                    0.20000000298023224,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3854027001,
+                  "ImagePath": "Assets/Textures/Hud/Inventory_HAX.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/InventoryMenu_SpriteSheet.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/Inventory_HAX.png"
+                }
+              ]
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptInventory",
+              "Type": 4,
+              "UID": 951121546
+            }
+          ],
+          "Enabled": false,
+          "Name": "Canvas_Inventory",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 595373127
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 594365140,
+              "UiElements": [
+                {
+                  "ID": 2075171387,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.0,
+                    0.28878048062324524,
+                    0.13705584406852722
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.014213197864592075,
+                    0.2960975468158722,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Resume",
+                  "Rect": [
+                    0.0,
+                    -0.25,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 3024552604,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.16649746894836426,
+                    0.28878048062324524,
+                    0.13705584406852722
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.17258882522583008,
+                    0.2960975468158722,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Settings",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2405774430,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.3289340138435364,
+                    0.28878048062324524,
+                    0.13705584406852722
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.3289340138435364,
+                    0.2960975468158722,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Menu",
+                  "Rect": [
+                    0.0,
+                    0.25,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3811829014,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.48121827840805054,
+                    0.28878048062324524,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.4822334945201874,
+                    0.28878048062324524,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Save&Quit",
+                  "Rect": [
+                    0.0,
+                    0.5,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 1973608398,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.3697561025619507,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    0.4000000059604645,
+                    0.800000011920929
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png"
+                }
+              ]
+            },
+            {
+              "AudioID": 4,
+              "Name": "Source",
+              "Type": 8
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptPause",
+              "Type": 4,
+              "UID": 1275044213
+            }
+          ],
+          "Enabled": false,
+          "Name": "Canvas_PauseMenu",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 75598670
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": true,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 1658136721,
+              "UiElements": [
+                {
+                  "AdditionalOffsetFirst": 0.009999999776482582,
+                  "AdditionalOffsetLast": 0.06800000369548798,
+                  "ID": 1166239321,
+                  "ImageFirstSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdle": [
+                    0.024891775101423264,
+                    0.7172619104385376,
+                    0.04707792028784752,
+                    0.0565476194024086
+                  ],
+                  "ImageFirstSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdle": [
+                    0.07359307259321213,
+                    0.7172619104385376,
+                    0.04707792028784752,
+                    0.0565476194024086
+                  ],
+                  "ImageLastSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionIdle": [
+                    0.12229437381029129,
+                    0.7172619104385376,
+                    0.045995671302080154,
+                    0.0565476194024086
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "MaxValue": 16,
+                  "MinValue": 0,
+                  "Name": "LifeSlider",
+                  "Offset": 0.017999999225139618,
+                  "Rect": [
+                    -0.5149999856948853,
+                    0.8799999952316284,
+                    0.05999999865889549,
+                    0.05000000074505806
+                  ],
+                  "SliderDesign": 1,
+                  "State": 0,
+                  "Type": 2,
+                  "Value": 16
+                },
+                {
+                  "ID": 2298871737,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6845238208770752,
+                    0.6170634627342224,
+                    0.02326839789748192,
+                    0.0376984141767025
+                  ],
+                  "Interactuable": false,
+                  "Name": "KillsIconImage",
+                  "Rect": [
+                    -0.75,
+                    0.8100000023841858,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2963569560,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7142857313156128,
+                    0.6170634627342224,
+                    0.02326839789748192,
+                    0.0376984141767025
+                  ],
+                  "Interactuable": false,
+                  "Name": "MoneyIconImage",
+                  "Rect": [
+                    -0.6899999976158142,
+                    0.699999988079071,
+                    0.05000000074505806,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 657235730,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6677489280700684,
+                    0.4107142984867096,
+                    0.030844155699014664,
+                    0.0535714291036129
+                  ],
+                  "Interactuable": false,
+                  "Name": "StimShotIconImage",
+                  "Rect": [
+                    0.20000000298023224,
+                    0.6800000071525574,
+                    0.05000000074505806,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2420393059,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7045454382896423,
+                    0.4107142984867096,
+                    0.04978355020284653,
+                    0.0496031753718853
+                  ],
+                  "Interactuable": false,
+                  "Name": "RocketIconImage",
+                  "Rect": [
+                    0.4099999964237213,
+                    0.6700000166893005,
+                    0.07999999821186066,
+                    0.07999999821186066
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2745080610,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7586579918861389,
+                    0.4107142984867096,
+                    0.0416666679084301,
+                    0.0496031753718853
+                  ],
+                  "Interactuable": false,
+                  "Name": "TommyGunIconImage",
+                  "Rect": [
+                    -0.20999999344348907,
+                    0.6800000071525574,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3648127897,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.8051947951316833,
+                    0.4117063581943512,
+                    0.03517315909266472,
+                    0.052579365670681
+                  ],
+                  "Interactuable": false,
+                  "Name": "FlamethrowerIconImages",
+                  "Rect": [
+                    -0.4000000059604645,
+                    0.6899999976158142,
+                    0.07000000029802322,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3693130429,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.8668830990791321,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "BandageIconImage",
+                  "Rect": [
+                    -0.1899999976158142,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1393352728,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.8961039185523987,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "CycleIconImage",
+                  "Rect": [
+                    -0.33000001311302185,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2613755513,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.9264069199562073,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "BlackHoleIconImage",
+                  "Rect": [
+                    -0.4699999988079071,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2637438984,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.9556276798248291,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "HealIconImage",
+                  "Rect": [
+                    -0.6100000143051147,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1358360192,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.4047619104385376,
+                    0.6160714030265808,
+                    0.12608225643634796,
+                    0.1626984179019928
+                  ],
+                  "Interactuable": false,
+                  "Name": "LeftPanel_killsCoinsImage",
+                  "Rect": [
+                    -0.6800000071525574,
+                    0.7799999713897705,
+                    0.20000000298023224,
+                    0.20000000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3659260112,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.5308441519737244,
+                    0.6160714030265808,
+                    0.12391775101423264,
+                    0.1607142835855484
+                  ],
+                  "Interactuable": false,
+                  "Name": "RightPanel_gunAmmoImage",
+                  "Rect": [
+                    0.6800000071525574,
+                    0.7799999713897705,
+                    0.20000000298023224,
+                    0.20000000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2078779395,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.016233766451478004,
+                    0.6150793433189392,
+                    0.38852813839912415,
+                    0.0833333358168602
+                  ],
+                  "Interactuable": false,
+                  "Name": "BarPanelImage",
+                  "Rect": [
+                    0.0,
+                    0.8700000047683716,
+                    0.6499999761581421,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2505268316,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6845238208770752,
+                    0.5277777910232544,
+                    0.1818181872367859,
+                    0.0694444477558136
+                  ],
+                  "Interactuable": false,
+                  "Name": "ShieldBarPanelImage",
+                  "Rect": [
+                    0.4000000059604645,
+                    0.5,
+                    0.30000001192092896,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2066092138,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.082341268658638,
+                    0.07413420081138611,
+                    0.0734127014875412
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelRightImage",
+                  "Rect": [
+                    0.20999999344348907,
+                    0.6800000071525574,
+                    0.10999999940395355,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 691572272,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.082341268658638,
+                    0.07413420081138611,
+                    0.0734127014875412
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelLeftImage",
+                  "Rect": [
+                    -0.20999999344348907,
+                    0.6800000071525574,
+                    0.10999999940395355,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 882402322,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.2390872985124588,
+                    0.07792207598686218,
+                    0.085317462682724
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelRightInvImage",
+                  "Rect": [
+                    0.4000000059604645,
+                    0.6800000071525574,
+                    0.11999999731779099,
+                    0.10999999940395355
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 4255291896,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.2390872985124588,
+                    0.07792207598686218,
+                    0.085317462682724
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelLeftInvImage",
+                  "Rect": [
+                    -0.4099999964237213,
+                    0.6800000071525574,
+                    0.11999999731779099,
+                    0.10999999940395355
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3426564605,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.5595238208770752,
+                    0.8234127163887024,
+                    0.09469696879386902,
+                    0.1587301641702652
+                  ],
+                  "Interactuable": false,
+                  "Name": "ProfilePanelImage",
+                  "Rect": [
+                    0.0,
+                    0.5899999737739563,
+                    0.15000000596046448,
+                    0.20000000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2639089074,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel1Image",
+                  "Rect": [
+                    -0.6100000143051147,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 848448960,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel2Image",
+                  "Rect": [
+                    -0.4699999988079071,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1585730099,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel3Image",
+                  "Rect": [
+                    -0.33000001311302185,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 298657616,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel4Image",
+                  "Rect": [
+                    -0.1899999976158142,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 429965271,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.011904762126505375,
+                    0.7857142686843872,
+                    0.24891774356365204,
+                    0.210317462682724
+                  ],
+                  "Interactuable": false,
+                  "Name": "LeftSideTopBarImage",
+                  "Rect": [
+                    -0.47999998927116394,
+                    0.6000000238418579,
+                    0.4000000059604645,
+                    0.25
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 4041761030,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.29004329442977905,
+                    0.7857142686843872,
+                    0.24945887923240662,
+                    0.2123015820980072
+                  ],
+                  "Interactuable": false,
+                  "Name": "RightSideTopBarImage",
+                  "Rect": [
+                    0.47999998927116394,
+                    0.6000000238418579,
+                    0.4000000059604645,
+                    0.25
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1108959449,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.26298701763153076,
+                    0.7876983880996704,
+                    0.024350648745894432,
+                    0.0317460335791111
+                  ],
+                  "Interactuable": false,
+                  "Name": "MiddleTopBarImage",
+                  "Rect": [
+                    0.0,
+                    0.3700000047683716,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/HUD_SpriteSheet.png"
+                }
+              ]
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptHud",
+              "Type": 4,
+              "UID": 3891581621
+            }
+          ],
+          "Enabled": true,
+          "Name": "Canvas_Hud",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2450476722
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 703908814,
+              "UiElements": [
+                {
+                  "ID": 2893125401,
+                  "ImagePath": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.746671736240387,
+                    0.1111111119389534,
+                    0.22251807153224945,
+                    0.03703703731298447
+                  ],
+                  "ImageSectionIdle": [
+                    0.746671736240387,
+                    0.1111111119389534,
+                    0.22251807153224945,
+                    0.03703703731298447
+                  ],
+                  "ImageSectionSelected": [
+                    0.746671736240387,
+                    0.14814814925193787,
+                    0.22251807153224945,
+                    0.03703703731298447
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_PressToContinue",
+                  "Rect": [
+                    0.0,
+                    0.6399999856948853,
+                    0.3499999940395355,
+                    0.03500000014901161
+                  ],
+                  "State": 2,
+                  "Type": 1
+                },
+                {
+                  "ID": 3684267540,
+                  "ImagePath": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.7318372130393982,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png"
+                }
+              ]
+            }
+          ],
+          "Enabled": false,
+          "Name": "Canvas_Death",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "Name": "UI_Manager",
+      "ParentUID": 6225968,
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "index": 0,

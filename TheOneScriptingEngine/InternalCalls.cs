@@ -93,6 +93,9 @@ class InternalCalls
     #region Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void LoadScene(string sceneName);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetCurrentSceneName();
     #endregion
 
     #region User Interfaces

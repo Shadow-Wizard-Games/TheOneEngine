@@ -41,7 +41,7 @@
           "zNear": 0.1
         },
         {
-          "AudioID": 5,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         },
@@ -55,7 +55,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
@@ -24894,225 +24894,7 @@
         }
       ],
       "Name": "MK_Ship_Level1_final",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            49.66573715209961,
-            14.61444091796875,
-            56.85737609863281,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 4287025743
-        },
-        {
-          "Emmiters": [
-            {
-              "Delay": 0.0,
-              "Duration": 10.0,
-              "InitializeModules": [
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    0.5,
-                    2.0,
-                    0.5
-                  ],
-                  "MinSpeed": [
-                    -0.5,
-                    1.0,
-                    -0.5
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxSpeed": [
-                    10.0,
-                    20.0,
-                    -5.0
-                  ],
-                  "MinSpeed": [
-                    -10.0,
-                    10.0,
-                    -10.0
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxColor": [
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "MinColor": [
-                    200.0,
-                    180.0,
-                    1.0
-                  ],
-                  "Type": 1,
-                  "UsingSingleValueColor": true
-                }
-              ],
-              "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 904.6622314453125,
-              "MaxParticles": 100,
-              "RenderModule": [
-                {
-                  "BillboardType": 0,
-                  "Type": 0
-                }
-              ],
-              "SpawnModule": [
-                {
-                  "Amount": 3.0,
-                  "Duration": 10.0,
-                  "SpawnRate": 1.5,
-                  "Type": 2
-                }
-              ]
-            }
-          ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
-          "Type": 9,
-          "UID": 2625644913
-        }
-      ],
-      "Enabled": true,
-      "Name": "Sparks",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
@@ -25164,7 +24946,7 @@
           "UID": 1796198162
         },
         {
-          "AudioID": 7,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -25186,7 +24968,7 @@
       ],
       "Enabled": true,
       "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 6619240
     },
@@ -27456,7 +27238,7 @@
         }
       ],
       "Name": "Room_1",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
@@ -27495,295 +27277,9 @@
       ],
       "Enabled": true,
       "Name": "Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            0.5500000715255737,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.550000011920929,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.5500000715255737,
-            0.0,
-            404.7253112792969,
-            0.0,
-            -276.73529052734375,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 574951406
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
-          "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2743410156
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": false,
-          "Height": 15.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1391803882,
-          "Width": 15.0
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "EventCollectible",
-          "Type": 4,
-          "UID": 3224426140
-        }
-      ],
-      "Enabled": true,
-      "Name": "Collectable_Box",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            172.13796997070313,
-            0.0,
-            10.099597930908203,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3391352433
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
-          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
-          "Name": "Mesh",
-          "ParentUID": 4282524032,
-          "Type": 2,
-          "UID": 2817772349
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": 45.68001937866211,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 4282524032,
-          "Radius": 30.0,
-          "Type": 5,
-          "UID": 378550286,
-          "Width": 26.380828857421875
-        },
-        {
-          "AudioID": 8,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 4282524032,
-          "ScriptName": "FaceHuggerBehaviour",
-          "Type": 4,
-          "UID": 3334498747
-        }
-      ],
-      "Enabled": true,
-      "Name": "Facehugger1",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 4282524032
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            0.0696903922941251,
-            0.0,
-            0.9975686689255486,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            -0.9975686689255486,
-            0.0,
-            0.0696903922941251,
-            0.0,
-            1391.415283203125,
-            0.0,
-            -109.62873077392578,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1621696741
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_Queen/M_Queen.toematerial",
-          "MeshPath": "Library/Meshes/SK_Queen/SK_Queen.mesh",
-          "Name": "Mesh",
-          "ParentUID": 6619240,
-          "Type": 2,
-          "UID": 3588840787
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": 195.95668029785156,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 6619240,
-          "Radius": 40.0,
-          "Type": 5,
-          "UID": 2019878396,
-          "Width": 117.09169006347656
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 6619240,
-          "ScriptName": "AlienQueenBehaviour",
-          "Type": 4,
-          "UID": 3387242555
-        }
-      ],
-      "Enabled": true,
-      "Name": "SK_Queen",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 6619240
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            0.29779822882663187,
-            0.0,
-            0.9546288362016522,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            -0.9546288362016522,
-            0.0,
-            0.29779822882663187,
-            0.0,
-            585.376220703125,
-            0.0,
-            -307.2617492675781,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2585052106
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_Anarchist/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/SK_Anarchist/SK_Anarchist.mesh",
-          "Name": "Mesh",
-          "ParentUID": 6619240,
-          "Type": 2,
-          "UID": 4271079166
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 6619240,
-          "ScriptName": "AnarchistBehaviour",
-          "Type": 4,
-          "UID": 3760042482
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": 9.40987777709961,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 6619240,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 996159718,
-          "Width": 41.961402893066406
-        },
-        {
-          "AudioID": 9,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "Name": "SK_Anarchist",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 6619240
     },
     {
       "Components": [
@@ -27962,7 +27458,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big1",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
@@ -28143,7 +27639,7 @@
       ],
       "Enabled": true,
       "Name": "P_Fire_Big2",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
@@ -28335,7 +27831,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks_ToFront1",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
@@ -28527,7 +28023,7 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks_ToFront2",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
@@ -28719,11 +28215,11 @@
       ],
       "Enabled": true,
       "Name": "P_Sparks_ToFront3",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     },
-{
+    {
       "Components": [
         {
           "Name": "Transform",
@@ -29062,7 +28558,7 @@
               ]
             },
             {
-              "AudioID": 0,
+              "AudioID": 4,
               "Name": "Source",
               "Type": 8
             },
@@ -29848,9 +29344,102 @@
         }
       ],
       "Name": "UI_Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -4.3711395392165286e-08,
+            1.0000001192092896,
+            0.0,
+            0.0,
+            -1.0000001192092896,
+            -4.3711395392165286e-08,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            400.5140075683594,
+            1.0,
+            -275.85906982421875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 383378509
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/WP_CarabinaM4/M_CarabinaM4.toematerial",
+          "MeshPath": "Library/Meshes/WP_CarabinaM4/WP_CarabinaM4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 1165905501
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 1156579328,
+          "ScriptName": "EventCollectible",
+          "Type": 4,
+          "UID": 3804399883
+        }
+      ],
+      "Enabled": true,
+      "Name": "WP_CarabinaM4",
+      "ParentUID": 6225968,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1403.1510009765625,
+            0.0,
+            -6.833650588989258,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2563043666
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2499525968,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 3623741601
+        }
+      ],
+      "Enabled": true,
+      "Name": "GoNext",
+      "ParentUID": 6225968,
+      "Static": false,
+      "UID": 2499525968
     }
   ],
   "index": 0,

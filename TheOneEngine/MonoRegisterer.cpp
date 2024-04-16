@@ -248,6 +248,11 @@ static void LoadScene(MonoString* sceneName)
 	engine->N_sceneManager->LoadScene(name);
 }
 
+static MonoString* GetCurrentSceneName()
+{
+	return mono_string_new(MonoManager::GetAppDomain(), engine->N_sceneManager->currentScene->GetSceneName().c_str());
+}
+
 //User Interface
 static void CanvasEnableToggle(GameObject* containerGO)
 {
@@ -598,6 +603,7 @@ void MonoRegisterer::RegisterFunctions()
 
 	//Scene Manager
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
+	mono_add_internal_call("InternalCalls::GetCurrentSceneName", GetCurrentSceneName);
 
 	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);

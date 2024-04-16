@@ -160,8 +160,13 @@ public class FaceHuggerBehaviour : MonoBehaviour
         }
     }
 
-    public void ReduceLife() //temporary function for the hardcoding of collisions
+    bool hitPlayer = false;
+    public void CheckJump() //temporary function for the hardcoding of collisions
     {
-        life -= 10.0f;
+        if(!hitPlayer)
+        {
+        playerGO.GetComponent<PlayerScript>().ReduceLife();
+        hitPlayer = true;
+        }
     }
 }

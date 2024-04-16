@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
 
     public bool isDead = false;
     public bool onPause = false;
-    float life = 100;
+    float life = 100.0f;
 
     public override void Start()
     {
@@ -208,23 +208,23 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    public void ReduceLife() //temporary function for the hardcoding of collisions
+    public void ReduceLife() // temporary function for the hardcoding of collisions
     {
-        if (isDead) { return; }
+        if (isDead) return;
 
         life -= 10.0f;
         Debug.Log("Player took damage! Current life is: " + life.ToString());
 
-        if (life <= 0.0f) 
-        { 
+        if (life <= 0)
+        {
             isDead = true;
-            attachedGameObject.transform.Rotate(Vector3.right * 90f);
+            attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
     }
 
     public float CurrentLife()
     {
-        if (isDead) { return 0; }
+        if (isDead) return 0;
 
         return life;
     }

@@ -26,8 +26,8 @@
           "UID": 343146881
         },
         {
-          "Aspect": 1.777,
-          "CameraType": 1,
+          "Aspect": 1.817619800567627,
+          "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
           "ParentUID": 3452816845,
@@ -46,6 +46,11 @@
           "ScriptName": "CameraMovement",
           "Type": 4,
           "UID": 867732310
+        },
+        {
+          "AudioID": 10,
+          "Name": "Listener",
+          "Type": 7
         }
       ],
       "Enabled": true,
@@ -32911,1322 +32916,6 @@
             0.0,
             1.0,
             0.0,
-            0.0,
-            0.0,
-            -50.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3868767389
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 3,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1547393680,
-          "Width": 250.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent1_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            275.0,
-            0.0,
-            -50.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1376404943
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 375.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 668032968,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent2_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            275.0,
-            0.0,
-            -425.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2936392861
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 3,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 3780869819,
-          "Width": 1400.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent3_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1675.0,
-            0.0,
-            -425.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 558467090
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 900.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 4069779569,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent4_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1675.0,
-            0.0,
-            475.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2299069075
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 1,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 3408940735,
-          "Width": 1400.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent5_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            275.0,
-            0.0,
-            475.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1847982296
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 375.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 4121888996,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent6_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            250.0,
-            0.0,
-            100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 842990719
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 1,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 334844682,
-          "Width": 250.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent7_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1256755214
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 150.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 4153314282,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "Parent8_ext",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            425.0,
-            0.0,
-            -75.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2699199617
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 3,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 2133665030,
-          "Width": 200.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent1_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            425.0,
-            0.0,
-            -250.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2460630819
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 150.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1692509976,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent2_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            625.0,
-            0.0,
-            -275.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 203591162
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 1,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 3315265705,
-          "Width": 200.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent3_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            625.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 127472676
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 150.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 3113412132,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent4_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            975.0,
-            0.0,
-            -150.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3139852810
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 3,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 3768301824,
-          "Width": 100.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent5_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            975.0,
-            0.0,
-            -225.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2255462699
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1363268256,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent6_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1075.0,
-            0.0,
-            -250.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3628376364
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 1,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 2707261461,
-          "Width": 100.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent7_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1075.0,
-            0.0,
-            -175.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 765594299
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1626960503,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent8_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1425.0,
-            0.0,
-            -50.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3123324883
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 3,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 3052835024,
-          "Width": 100.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent9_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1425.0,
-            0.0,
-            -125.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3219722110
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 546508894,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent10_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1525.0,
-            0.0,
-            -150.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 715736422
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 1,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 275724046,
-          "Width": 100.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent11_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1525.0,
-            0.0,
-            -75.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3746172605
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 998879710,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent12_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1175.0,
-            0.0,
-            300.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 911610606
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 3,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 2110140039,
-          "Width": 100.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent13_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1175.0,
-            0.0,
-            225.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3319302369
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1034279526,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent14_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1275.0,
-            0.0,
-            200.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 851681637
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 1,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 2189565447,
-          "Width": 100.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent15_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            1275.0,
-            0.0,
-            275.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2971589189
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 50.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 2035951808,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent16_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            425.0,
-            0.0,
-            326.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3773579599
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 3,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 877459959,
-          "Width": 200.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent17_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            425.0,
-            0.0,
-            150.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1258847498
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 150.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 2932035790,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent18_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            625.0,
-            0.0,
-            125.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2240451672
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 25.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 1,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 1685868608,
-          "Width": 200.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent19_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            625.0,
-            0.0,
-            300.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 4224867126
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": 150.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 2,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 3670259214,
-          "Width": 25.0
-        }
-      ],
-      "Enabled": true,
-      "Name": "parent20_int",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
             657.160400390625,
             0.0,
             -380.52740478515625,
@@ -35413,7 +34102,7 @@
           "UID": 4107436428
         },
         {
-          "AudioID": 0,
+          "AudioID": 11,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35487,7 +34176,7 @@
           "UID": 2861499079
         },
         {
-          "AudioID": 1,
+          "AudioID": 12,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35600,7 +34289,7 @@
           "UID": 2665179413
         },
         {
-          "AudioID": 2,
+          "AudioID": 13,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35674,7 +34363,7 @@
           "UID": 2753985364
         },
         {
-          "AudioID": 3,
+          "AudioID": 14,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35748,7 +34437,7 @@
           "UID": 3535260967
         },
         {
-          "AudioID": 4,
+          "AudioID": 15,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35822,7 +34511,7 @@
           "UID": 1224199988
         },
         {
-          "AudioID": 5,
+          "AudioID": 16,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -35899,6 +34588,2730 @@
       "Enabled": true,
       "Name": "SK_Queen",
       "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            25.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 206724115
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 1048600706
+        }
+      ],
+      "Enabled": true,
+      "Name": "GoBack",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1981142263
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                -50.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3868767389
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 3,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1547393680,
+              "Width": 250.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent1_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                275.0,
+                0.0,
+                -50.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1376404943
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 375.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 668032968,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent2_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                275.0,
+                0.0,
+                -425.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2936392861
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 3,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3780869819,
+              "Width": 1400.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent3_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1675.0,
+                0.0,
+                -425.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 558467090
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 900.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4069779569,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent4_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1675.0,
+                0.0,
+                475.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2299069075
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 1,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3408940735,
+              "Width": 1400.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent5_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                275.0,
+                0.0,
+                475.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1847982296
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 375.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4121888996,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent6_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                250.0,
+                0.0,
+                100.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 842990719
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 1,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 334844682,
+              "Width": 250.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent7_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                100.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1256755214
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 150.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4153314282,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "Parent8_ext",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                425.0,
+                0.0,
+                -75.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2699199617
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 3,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2133665030,
+              "Width": 200.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent1_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                425.0,
+                0.0,
+                -250.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2460630819
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 150.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1692509976,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent2_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                625.0,
+                0.0,
+                -275.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 203591162
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 1,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3315265705,
+              "Width": 200.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent3_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                625.0,
+                0.0,
+                -100.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 127472676
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 150.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3113412132,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent4_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                975.0,
+                0.0,
+                -150.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3139852810
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 3,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3768301824,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent5_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                975.0,
+                0.0,
+                -225.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2255462699
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1363268256,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent6_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1075.0,
+                0.0,
+                -250.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3628376364
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 1,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2707261461,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent7_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1075.0,
+                0.0,
+                -175.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 765594299
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1626960503,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent8_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1425.0,
+                0.0,
+                -50.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3123324883
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 3,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3052835024,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent9_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1425.0,
+                0.0,
+                -125.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3219722110
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 546508894,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent10_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1525.0,
+                0.0,
+                -150.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 715736422
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 1,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 275724046,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent11_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1525.0,
+                0.0,
+                -75.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3746172605
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 998879710,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent12_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1175.0,
+                0.0,
+                300.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 911610606
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 3,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2110140039,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent13_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1175.0,
+                0.0,
+                225.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3319302369
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1034279526,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent14_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1275.0,
+                0.0,
+                200.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 851681637
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 1,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2189565447,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent15_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1275.0,
+                0.0,
+                275.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2971589189
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2035951808,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent16_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                425.0,
+                0.0,
+                326.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3773579599
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 3,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 877459959,
+              "Width": 200.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent17_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                425.0,
+                0.0,
+                150.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1258847498
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 150.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2932035790,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent18_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                625.0,
+                0.0,
+                125.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2240451672
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 1,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1685868608,
+              "Width": 200.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent19_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                625.0,
+                0.0,
+                300.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4224867126
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 150.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 2,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3670259214,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "parent20_int",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "Name": "Colliders",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1226622375
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1127015692
+            }
+          ],
+          "Enabled": true,
+          "Name": "Canvas_Inventory",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4161211266
+            }
+          ],
+          "Enabled": true,
+          "Name": "Canvas_PauseMenu",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1550741539
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": true,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 3946922021,
+              "UiElements": [
+                {
+                  "ID": 3223760361,
+                  "ImagePath": "Assets/Textures/Hud/HudDemo.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Image",
+                  "Rect": [
+                    0.0,
+                    0.75,
+                    0.699999988079071,
+                    0.25
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/HudDemo.png"
+                }
+              ]
+            }
+          ],
+          "Enabled": true,
+          "Name": "HUD Canvas",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3007076063
+            }
+          ],
+          "Enabled": true,
+          "Name": "Canvas_Death",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "Name": "UI_Manager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3560769835
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "UiManager",
+          "Type": 4,
+          "UID": 2371490470
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2889362756
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 149174467,
+              "UiElements": [
+                {
+                  "ID": 2094416682,
+                  "ImagePath": "Assets/Textures/Hud/InventoryMenu_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Weapon",
+                  "Rect": [
+                    -0.7099999785423279,
+                    -0.15000000596046448,
+                    0.20000000298023224,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3854027001,
+                  "ImagePath": "Assets/Textures/Hud/Inventory_HAX.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/InventoryMenu_SpriteSheet.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/Inventory_HAX.png"
+                }
+              ]
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptInventory",
+              "Type": 4,
+              "UID": 951121546
+            }
+          ],
+          "Enabled": false,
+          "Name": "Canvas_Inventory",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 595373127
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 594365140,
+              "UiElements": [
+                {
+                  "ID": 2075171387,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.0,
+                    0.28878048062324524,
+                    0.13705584406852722
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.014213197864592075,
+                    0.2960975468158722,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Resume",
+                  "Rect": [
+                    0.0,
+                    -0.25,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 3024552604,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.16649746894836426,
+                    0.28878048062324524,
+                    0.13705584406852722
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.17258882522583008,
+                    0.2960975468158722,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Settings",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2405774430,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.3289340138435364,
+                    0.28878048062324524,
+                    0.13705584406852722
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.3289340138435364,
+                    0.2960975468158722,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Menu",
+                  "Rect": [
+                    0.0,
+                    0.25,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3811829014,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7112194895744324,
+                    0.48121827840805054,
+                    0.28878048062324524,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionIdle": [
+                    0.3970731794834137,
+                    0.4822334945201874,
+                    0.28878048062324524,
+                    0.1309644728899002
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Save&Quit",
+                  "Rect": [
+                    0.0,
+                    0.5,
+                    0.3400000035762787,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 1973608398,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.3697561025619507,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    0.4000000059604645,
+                    0.800000011920929
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png"
+                }
+              ]
+            },
+            {
+              "AudioID": 4,
+              "Name": "Source",
+              "Type": 8
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptPause",
+              "Type": 4,
+              "UID": 1275044213
+            }
+          ],
+          "Enabled": false,
+          "Name": "Canvas_PauseMenu",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 75598670
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": true,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 1658136721,
+              "UiElements": [
+                {
+                  "AdditionalOffsetFirst": 0.009999999776482582,
+                  "AdditionalOffsetLast": 0.06800000369548798,
+                  "ID": 1166239321,
+                  "ImageFirstSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdle": [
+                    0.024891775101423264,
+                    0.7172619104385376,
+                    0.04707792028784752,
+                    0.0565476194024086
+                  ],
+                  "ImageFirstSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdle": [
+                    0.07359307259321213,
+                    0.7172619104385376,
+                    0.04707792028784752,
+                    0.0565476194024086
+                  ],
+                  "ImageLastSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionIdle": [
+                    0.12229437381029129,
+                    0.7172619104385376,
+                    0.045995671302080154,
+                    0.0565476194024086
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "MaxValue": 16,
+                  "MinValue": 0,
+                  "Name": "LifeSlider",
+                  "Offset": 0.017999999225139618,
+                  "Rect": [
+                    -0.5149999856948853,
+                    0.8799999952316284,
+                    0.05999999865889549,
+                    0.05000000074505806
+                  ],
+                  "SliderDesign": 1,
+                  "State": 0,
+                  "Type": 2,
+                  "Value": 16
+                },
+                {
+                  "ID": 2298871737,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6845238208770752,
+                    0.6170634627342224,
+                    0.02326839789748192,
+                    0.0376984141767025
+                  ],
+                  "Interactuable": false,
+                  "Name": "KillsIconImage",
+                  "Rect": [
+                    -0.75,
+                    0.8100000023841858,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2963569560,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7142857313156128,
+                    0.6170634627342224,
+                    0.02326839789748192,
+                    0.0376984141767025
+                  ],
+                  "Interactuable": false,
+                  "Name": "MoneyIconImage",
+                  "Rect": [
+                    -0.6899999976158142,
+                    0.699999988079071,
+                    0.05000000074505806,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 657235730,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6677489280700684,
+                    0.4107142984867096,
+                    0.030844155699014664,
+                    0.0535714291036129
+                  ],
+                  "Interactuable": false,
+                  "Name": "StimShotIconImage",
+                  "Rect": [
+                    0.20000000298023224,
+                    0.6800000071525574,
+                    0.05000000074505806,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2420393059,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7045454382896423,
+                    0.4107142984867096,
+                    0.04978355020284653,
+                    0.0496031753718853
+                  ],
+                  "Interactuable": false,
+                  "Name": "RocketIconImage",
+                  "Rect": [
+                    0.4099999964237213,
+                    0.6700000166893005,
+                    0.07999999821186066,
+                    0.07999999821186066
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2745080610,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7586579918861389,
+                    0.4107142984867096,
+                    0.0416666679084301,
+                    0.0496031753718853
+                  ],
+                  "Interactuable": false,
+                  "Name": "TommyGunIconImage",
+                  "Rect": [
+                    -0.20999999344348907,
+                    0.6800000071525574,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3648127897,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.8051947951316833,
+                    0.4117063581943512,
+                    0.03517315909266472,
+                    0.052579365670681
+                  ],
+                  "Interactuable": false,
+                  "Name": "FlamethrowerIconImages",
+                  "Rect": [
+                    -0.4000000059604645,
+                    0.6899999976158142,
+                    0.07000000029802322,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3693130429,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.8668830990791321,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "BandageIconImage",
+                  "Rect": [
+                    -0.1899999976158142,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1393352728,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.8961039185523987,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "CycleIconImage",
+                  "Rect": [
+                    -0.33000001311302185,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2613755513,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.9264069199562073,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "BlackHoleIconImage",
+                  "Rect": [
+                    -0.4699999988079071,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2637438984,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.9556276798248291,
+                    0.420634925365448,
+                    0.021645022556185722,
+                    0.0347222238779068
+                  ],
+                  "Interactuable": false,
+                  "Name": "HealIconImage",
+                  "Rect": [
+                    -0.6100000143051147,
+                    0.5099999904632568,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1358360192,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.4047619104385376,
+                    0.6160714030265808,
+                    0.12608225643634796,
+                    0.1626984179019928
+                  ],
+                  "Interactuable": false,
+                  "Name": "LeftPanel_killsCoinsImage",
+                  "Rect": [
+                    -0.6800000071525574,
+                    0.7799999713897705,
+                    0.20000000298023224,
+                    0.20000000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3659260112,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.5308441519737244,
+                    0.6160714030265808,
+                    0.12391775101423264,
+                    0.1607142835855484
+                  ],
+                  "Interactuable": false,
+                  "Name": "RightPanel_gunAmmoImage",
+                  "Rect": [
+                    0.6800000071525574,
+                    0.7799999713897705,
+                    0.20000000298023224,
+                    0.20000000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2078779395,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.016233766451478004,
+                    0.6150793433189392,
+                    0.38852813839912415,
+                    0.0833333358168602
+                  ],
+                  "Interactuable": false,
+                  "Name": "BarPanelImage",
+                  "Rect": [
+                    0.0,
+                    0.8700000047683716,
+                    0.6499999761581421,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2505268316,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6845238208770752,
+                    0.5277777910232544,
+                    0.1818181872367859,
+                    0.0694444477558136
+                  ],
+                  "Interactuable": false,
+                  "Name": "ShieldBarPanelImage",
+                  "Rect": [
+                    0.4000000059604645,
+                    0.5,
+                    0.30000001192092896,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2066092138,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.082341268658638,
+                    0.07413420081138611,
+                    0.0734127014875412
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelRightImage",
+                  "Rect": [
+                    0.20999999344348907,
+                    0.6800000071525574,
+                    0.10999999940395355,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 691572272,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.082341268658638,
+                    0.07413420081138611,
+                    0.0734127014875412
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelLeftImage",
+                  "Rect": [
+                    -0.20999999344348907,
+                    0.6800000071525574,
+                    0.10999999940395355,
+                    0.10000000149011612
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 882402322,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.2390872985124588,
+                    0.07792207598686218,
+                    0.085317462682724
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelRightInvImage",
+                  "Rect": [
+                    0.4000000059604645,
+                    0.6800000071525574,
+                    0.11999999731779099,
+                    0.10999999940395355
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 4255291896,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0059523810632526875,
+                    0.2390872985124588,
+                    0.07792207598686218,
+                    0.085317462682724
+                  ],
+                  "Interactuable": false,
+                  "Name": "LargeAbilityPanelLeftInvImage",
+                  "Rect": [
+                    -0.4099999964237213,
+                    0.6800000071525574,
+                    0.11999999731779099,
+                    0.10999999940395355
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3426564605,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.5595238208770752,
+                    0.8234127163887024,
+                    0.09469696879386902,
+                    0.1587301641702652
+                  ],
+                  "Interactuable": false,
+                  "Name": "ProfilePanelImage",
+                  "Rect": [
+                    0.0,
+                    0.5899999737739563,
+                    0.15000000596046448,
+                    0.20000000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2639089074,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel1Image",
+                  "Rect": [
+                    -0.6100000143051147,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 848448960,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel2Image",
+                  "Rect": [
+                    -0.4699999988079071,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1585730099,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel3Image",
+                  "Rect": [
+                    -0.33000001311302185,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 298657616,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.020021645352244377,
+                    0.403769850730896,
+                    0.0476190485060215,
+                    0.0505952388048172
+                  ],
+                  "Interactuable": false,
+                  "Name": "SmallAbilityPanel4Image",
+                  "Rect": [
+                    -0.1899999976158142,
+                    0.5099999904632568,
+                    0.08500000089406967,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 429965271,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.011904762126505375,
+                    0.7857142686843872,
+                    0.24891774356365204,
+                    0.210317462682724
+                  ],
+                  "Interactuable": false,
+                  "Name": "LeftSideTopBarImage",
+                  "Rect": [
+                    -0.47999998927116394,
+                    0.6000000238418579,
+                    0.4000000059604645,
+                    0.25
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 4041761030,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.29004329442977905,
+                    0.7857142686843872,
+                    0.24945887923240662,
+                    0.2123015820980072
+                  ],
+                  "Interactuable": false,
+                  "Name": "RightSideTopBarImage",
+                  "Rect": [
+                    0.47999998927116394,
+                    0.6000000238418579,
+                    0.4000000059604645,
+                    0.25
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1108959449,
+                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
+                  "ImageSection": [
+                    0.26298701763153076,
+                    0.7876983880996704,
+                    0.024350648745894432,
+                    0.0317460335791111
+                  ],
+                  "Interactuable": false,
+                  "Name": "MiddleTopBarImage",
+                  "Rect": [
+                    0.0,
+                    0.3700000047683716,
+                    0.05000000074505806,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/HUD_SpriteSheet.png"
+                }
+              ]
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptHud",
+              "Type": 4,
+              "UID": 3891581621
+            }
+          ],
+          "Enabled": true,
+          "Name": "Canvas_Hud",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2450476722
+            },
+            {
+              "DebugDraw": false,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 703908814,
+              "UiElements": [
+                {
+                  "ID": 2893125401,
+                  "ImagePath": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.746671736240387,
+                    0.1111111119389534,
+                    0.22251807153224945,
+                    0.03703703731298447
+                  ],
+                  "ImageSectionIdle": [
+                    0.746671736240387,
+                    0.1111111119389534,
+                    0.22251807153224945,
+                    0.03703703731298447
+                  ],
+                  "ImageSectionSelected": [
+                    0.746671736240387,
+                    0.14814814925193787,
+                    0.22251807153224945,
+                    0.03703703731298447
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_PressToContinue",
+                  "Rect": [
+                    0.0,
+                    0.6399999856948853,
+                    0.3499999940395355,
+                    0.03500000014901161
+                  ],
+                  "State": 2,
+                  "Type": 1
+                },
+                {
+                  "ID": 3684267540,
+                  "ImagePath": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.7318372130393982,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ],
+              "UiTextures": [
+                {
+                  "Path": "Assets/Meshes/HUD.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png"
+                }
+              ]
+            }
+          ],
+          "Enabled": false,
+          "Name": "Canvas_Death",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "Name": "UI_Manager",
+      "ParentUID": 6225968,
       "Static": false,
       "UID": 3452816845
     }
