@@ -223,6 +223,7 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 				}
 			}
 		}
+
 		ImGui::EndDragDropTarget();
 	}
 

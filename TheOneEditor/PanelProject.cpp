@@ -296,9 +296,6 @@ void PanelProject::FileExplorerDraw()
 			fileSelected = &file;
 		}
 
-		if (DragAndDrop(file))
-			break;
-
 		DoubleClickFile();
 
 		ContextMenu();
@@ -313,6 +310,9 @@ void PanelProject::FileExplorerDraw()
 		
 		ImGui::PopStyleVar();
 		ImGui::PopStyleColor(2);
+
+		if (DragAndDrop(file))
+			break;
 	}
 }
 
@@ -481,7 +481,8 @@ void PanelProject::SaveWarning()
 		if (ImGui::Button("No", { 100, 20 })) {
 			ImGui::CloseCurrentPopup();
 		}
-	
+
+		ImGui::EndPopup();
 	}
 }
 

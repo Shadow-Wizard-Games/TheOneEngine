@@ -118,9 +118,9 @@ bool PanelGame::Draw()
 		viewportSize = { availWindowSize.x, availWindowSize.y };
 		ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
+		ImGui::End();
     }
 
-	ImGui::End();
 	ImGui::PopStyleVar();
 
 	return true;

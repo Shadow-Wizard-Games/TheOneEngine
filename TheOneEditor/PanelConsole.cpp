@@ -29,8 +29,8 @@ bool PanelConsole::Draw()
 		if (ImGui::BeginChild("Scrollbar", ImVec2(0, 0), false, scrollFlags))
 		{
 			ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(5, 15));
-
 			std::string logType;
+			ImVec4 color = ImVec4(1, 1, 1, 1);
 
 			for (const auto& log : engine->GetLogs())
 			{
@@ -38,45 +38,47 @@ bool PanelConsole::Draw()
 				{
 					case LogType::LOG_INFO:
 						logType = "";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
+						color = ImVec4(1, 1, 1, 1);
 						break;
 
 					case LogType::LOG_ASSIMP:
 						logType = "[ASSIMP] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
+						color = ImVec4(1, 1, 1, 1);
 						break;
 
 					case LogType::LOG_AUDIO:
 						logType = "[AUDIO] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
+						color = ImVec4(1, 1, 1, 1);
 						break;
 
 					case LogType::LOG_MONO:
 						logType = "[MONO] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 1, 1));
+						color = ImVec4(1, 1, 1, 1);
 						break;
 
 					case LogType::LOG_OK:
 						logType = "[OK] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 1, 0, 1));
+						color = ImVec4(0, 1, 0, 1);
 						break;
 
 					case LogType::LOG_WARNING:
 						logType = "[WARNING] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 1, 0, 1));
+						color = ImVec4(1, 1, 0, 1);
 						break;
 
 					case LogType::LOG_ERROR:
 						logType = "[ERROR] ";
-						ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1, 0, 0, 1));
+						color = ImVec4(1, 0, 0, 1);
 						break;
 				}
 				
 				if (log.message[0] == '-')
 					logType.insert(0, "\t");
 
+				ImGui::PushStyleColor(ImGuiCol_Text, color);
 				ImGui::Text(logType.c_str());
 				ImGui::PopStyleColor();
+
 				ImGui::SameLine();
 				ImGui::Text(log.message.c_str());
 			}
