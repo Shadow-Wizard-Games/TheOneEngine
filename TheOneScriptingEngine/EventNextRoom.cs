@@ -11,6 +11,8 @@ using static AudioManager;
 public class EventNextRoom : Event
 {
     IGameObject playerGO;
+    PlayerScript player;
+
     Vector3 directorVector;
     float playerDistance;
 
@@ -27,6 +29,8 @@ public class EventNextRoom : Event
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
+
         eventType = EventType.NEXTROOM;
         currentSceneName = SceneManager.GetCurrentSceneName();
     }
@@ -72,6 +76,15 @@ public class EventNextRoom : Event
             if(attachedGameObject.name == "GoNext")
             {
                 goNext = true;
+            }
+
+            if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
+            {
+                playerGO.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+            }
+            if (player.currentID == AudioManager.EventIDs.A_AMBIENT_1)
+            {
+                playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
             }
 
             switch (sceneLevel)

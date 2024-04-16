@@ -18,7 +18,6 @@ public class UiScriptPause : MonoBehaviour
 
     public override void Start()
     {
-        // Error here 
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
