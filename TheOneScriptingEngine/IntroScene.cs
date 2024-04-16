@@ -16,6 +16,7 @@
         
         if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN) ||
             Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) ||
+            Input.GetControllerButton(Input.ControllerButtonCode.X) ||
             timerScene >= durationScene)
         {
 
