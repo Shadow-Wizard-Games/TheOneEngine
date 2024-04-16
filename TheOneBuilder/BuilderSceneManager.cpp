@@ -17,7 +17,7 @@ bool BuilderSceneManager::Start()
 {
 	engine->N_sceneManager->currentScene = new Scene(0, "NewUntitledScene");
 	engine->N_sceneManager->CreateCameraGO("mainCamera");
-	engine->N_sceneManager->LoadScene("Level1");
+	engine->N_sceneManager->LoadScene("MainMenu");
 	engine->N_sceneManager->Start();
 
 	return true;
@@ -40,6 +40,7 @@ bool BuilderSceneManager::Update(double dt)
 bool BuilderSceneManager::PostUpdate()
 {
 	engine->Render(engine->N_sceneManager->currentScene->currentCamera);
+	engine->SetUniformBufferCamera(engine->N_sceneManager->currentScene->currentCamera);
 	engine->N_sceneManager->currentScene->Draw();
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);

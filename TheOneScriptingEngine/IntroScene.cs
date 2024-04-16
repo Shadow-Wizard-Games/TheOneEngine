@@ -20,7 +20,7 @@
             timerScene >= durationScene)
         {
 
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("L1R1");
         }
     }
 }
