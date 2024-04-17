@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "Gui.h"
 #include "PanelInspector.h"
+#include "Input.h"
 #include "../TheOneEngine/Log.h"
 
 #include <fstream>
@@ -40,6 +41,11 @@ bool SceneManager::PreUpdate()
 bool SceneManager::Update(double dt)
 {
 	engine->N_sceneManager->Update(dt, app->IsPlaying());
+
+	if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_STATE::KEY_DOWN && app->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_STATE::KEY_REPEAT) && engine->N_sceneManager->currentScene->IsDirty())
+	{
+		engine->N_sceneManager->SaveScene();
+	}
 
 	return true;
 }
