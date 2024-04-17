@@ -64,6 +64,10 @@ private:
 	std::shared_ptr<GameObject> cameraParent;
 	std::shared_ptr<FrameBuffer> frameBuffer;
 
+	// snapping
+	bool snappingFixed = false;
+	float snapAmount = 10.0f;
+
 	glm::vec2 viewportSize = { 0.0f, 0.0f };
 };
 
