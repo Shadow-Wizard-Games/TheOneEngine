@@ -99,7 +99,6 @@ std::string Resources::FindFileInAssets(const std::string& name)
 			return relPath;
 	}
 
-	LOG(LogType::LOG_ERROR, "Wrong Path");
 	return std::string();
 }
 
@@ -117,7 +116,6 @@ std::string Resources::FindFileInLibrary(const std::string& name)
 			return relPath;
 	}
 
-	LOG(LogType::LOG_ERROR, "Wrong Path");
 	return std::string();
 }
 

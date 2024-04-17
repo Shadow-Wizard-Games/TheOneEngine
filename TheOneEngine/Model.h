@@ -32,7 +32,7 @@ public:
 
     void Render();
 
-    std::string GetMaterialPath() { return materials[materialIndex]; }
+    std::string GetMaterialPath() { if (materialIndex) return materials[materialIndex]; else return std::string(); }
     std::string GetMeshPath() { return path; }
 
     std::string meshName;
@@ -65,6 +65,9 @@ private:
 
 
     /*===================================== OZZ MESH =====================================*/
+
+    bool hasBones = false;
+
     enum UpdateState
     {
         US_BLEND,
@@ -112,6 +115,7 @@ private:
     void ImportToOzz(const std::string& file, const std::filesystem::path& importPath);
 public:
 
+    bool LoadMesh(const std::string& path);
 	bool IsMeshLoaded() { return m_LoadedMesh; }
 
 	bool LoadSkeleton(const std::string& path);
@@ -177,8 +181,8 @@ public:
 
     // TODO =>
 	// Static save function
-	//void SaveAnimator(const char* filepath);
+	void SaveAnimator(const char* filepath);
 
 	// Static load function
-	//void LoadAnimator(const char* filepath);
+	void LoadAnimator(const char* filepath);
 };

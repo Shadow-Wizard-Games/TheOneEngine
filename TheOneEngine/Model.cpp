@@ -70,85 +70,6 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
         vec3f* verts = (vec3f*)mesh->mVertices;
         vec3f* texCoords = (vec3f*)mesh->mTextureCoords[0];
 
-        // Process Anim
-        if (mesh->HasBones())
-        {
-            // TODO: Cosa de importar el fbx a .mesh del ozz con el fbx2mesh.exe
-            //std::string importPath = Resources::PathToLibrary<Model>(sceneName) + model->meshName;
-            //model->ImportToOzz(path, importPath);
-
-            //TODO: Process new materials for animated meshes
-        }
-
-        // Process materials
-        if (scene->HasMaterials())
-        {
-            for (unsigned int i = 0; i < scene->mNumMaterials; i++)
-            {
-                aiMaterial* mat = scene->mMaterials[i];
-
-                aiString name;
-                aiGetMaterialString(mat, AI_MATKEY_NAME, &name);
-
-                aiString texture_diffuse;
-                aiGetMaterialString(mat, AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), &texture_diffuse);
-
-                aiColor4D diffuse(1.0f, 1.0f, 1.0f, 1.0f);
-                aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &diffuse);
-
-                aiColor4D specular(1.0f, 1.0f, 1.0f, 1.0f);
-                aiGetMaterialColor(mat, AI_MATKEY_COLOR_SPECULAR, &specular);
-
-                float shininess = 0.1f;
-                aiGetMaterialFloat(mat, AI_MATKEY_SHININESS, &shininess);
-
-                std::filesystem::path matPath = Resources::PathToLibrary<Material>(sceneName);
-                matPath += name.C_Str();
-                matPath += ".toematerial";
-
-                ResourceId matID = Resources::LoadFromLibrary<Material>(matPath.string().c_str());
-
-                model->materials.push_back(matPath.string());
-
-                if (matID != -1)
-                    continue;
-
-                // Import material
-                Material material;
-                size_t id;
-
-                if (texture_diffuse.length > 0)
-                {
-                    // TODO: this only loads texture paths if they are in the same folder as the fbx
-                    fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
-
-
-                    id = Resources::LoadFromLibrary<Shader>("MeshTexture");
-                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshTexture.toeshader");
-                    bool imported = Resources::Import<Texture>(texPath.string());
-
-                    if (imported) {
-                        ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
-                        Texture* img = Resources::GetResourceById<Texture>(imgId);
-                        Uniform::SamplerData data;
-                        data.tex_id = img->GetTextureId();
-                        data.resource_id = imgId;
-                        memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
-                        material.SetUniformData("tex", data);
-                    }
-                }
-                else
-                {
-                    id = Resources::LoadFromLibrary<Shader>("MeshColor");
-                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
-
-                    material.SetUniformData("color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
-                }
-
-
-                Resources::Import<Material>(matPath.string().c_str(), &material);
-            }
-        }
 
         // Basic Data
 
@@ -159,86 +80,170 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             index++;
         }
         model->meshName = standarizedName;
-        model->format = BufferLayout({
-        { ShaderDataType::Float3, "aPos"           },
-        { ShaderDataType::Float2, "aTex"           } });
-        model->materialIndex = mesh->mMaterialIndex;
 
-        // Vertex & Index Data
-        std::vector<float> vertex_data;
-        std::vector<unsigned int> index_data;
-        for (size_t i = 0; i < mesh->mNumVertices; ++i)
+        // Process Anim
+        if (mesh->HasBones())
         {
-            // Vertices
-            vertex_data.push_back(mesh->mVertices[i].x);
-            vertex_data.push_back(mesh->mVertices[i].y);
-            vertex_data.push_back(mesh->mVertices[i].z);
-            // Texture coordinates
-            if (mesh->mTextureCoords[0])
+            // TODO: Cosa de importar el fbx a .mesh del ozz con el fbx2mesh.exe
+            model->hasBones = true;
+            std::filesystem::path importPath = Resources::PathToLibrary<Model>(sceneName) + model->meshName;
+            model->ImportToOzz(path, importPath);
+            LOG(LogType::LOG_INFO, "FBX Loaded has bones");
+            //TODO: Process new materials for animated meshes
+        }
+        else
+        {
+            // Process materials
+            if (scene->HasMaterials())
             {
-                vertex_data.push_back(mesh->mTextureCoords[0][i].x);
-                vertex_data.push_back(mesh->mTextureCoords[0][i].y);
-            }
-            else {
-                vertex_data.push_back(0.0f);
-                vertex_data.push_back(0.0f);
-            }
-        }
-        model->vertexData = vertex_data;
+                for (unsigned int i = 0; i < scene->mNumMaterials; i++)
+                {
+                    aiMaterial* mat = scene->mMaterials[i];
 
-        for (size_t f = 0; f < mesh->mNumFaces; ++f)
-        {
-            index_data.push_back(faces[f].mIndices[0]);
-            index_data.push_back(faces[f].mIndices[1]);
-            index_data.push_back(faces[f].mIndices[2]);
-        }
-        model->indexData = index_data;
+                    aiString name;
+                    aiGetMaterialString(mat, AI_MATKEY_NAME, &name);
 
-        // Transform
-        aiMatrix4x4 transform;
-        glm::mat4 mTransform(1);
-        if (mesh->mName != (aiString)"Scene")
-        {
-            aiNode* meshNode = scene->mRootNode->FindNode(mesh->mName);
-            if (meshNode)
+                    aiString texture_diffuse;
+                    aiGetMaterialString(mat, AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), &texture_diffuse);
+
+                    aiColor4D diffuse(1.0f, 1.0f, 1.0f, 1.0f);
+                    aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &diffuse);
+
+                    aiColor4D specular(1.0f, 1.0f, 1.0f, 1.0f);
+                    aiGetMaterialColor(mat, AI_MATKEY_COLOR_SPECULAR, &specular);
+
+                    float shininess = 0.1f;
+                    aiGetMaterialFloat(mat, AI_MATKEY_SHININESS, &shininess);
+
+                    std::filesystem::path matPath = Resources::PathToLibrary<Material>(sceneName);
+                    matPath += name.C_Str();
+                    matPath += ".toematerial";
+
+                    ResourceId matID = Resources::LoadFromLibrary<Material>(matPath.string().c_str());
+
+                    model->materials.push_back(matPath.string());
+
+                    if (matID != -1)
+                        continue;
+
+                    // Import material
+                    Material material;
+                    size_t id;
+
+                    if (texture_diffuse.length > 0)
+                    {
+                        // TODO: this only loads texture paths if they are in the same folder as the fbx
+                        fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
+
+
+                        id = Resources::LoadFromLibrary<Shader>("MeshTexture");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshTexture.toeshader");
+                        bool imported = Resources::Import<Texture>(texPath.string());
+
+                        if (imported) {
+                            ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
+                            Texture* img = Resources::GetResourceById<Texture>(imgId);
+                            Uniform::SamplerData data;
+                            data.tex_id = img->GetTextureId();
+                            data.resource_id = imgId;
+                            memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
+                            material.SetUniformData("tex", data);
+                        }
+                    }
+                    else
+                    {
+                        id = Resources::LoadFromLibrary<Shader>("MeshColor");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
+
+                        material.SetUniformData("color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
+                    }
+
+
+                    Resources::Import<Material>(matPath.string().c_str(), &material);
+                }
+            }
+            model->format = BufferLayout({
+            { ShaderDataType::Float3, "aPos"           },
+            { ShaderDataType::Float2, "aTex"           } });
+            model->materialIndex = mesh->mMaterialIndex;
+
+            // Vertex & Index Data
+            std::vector<float> vertex_data;
+            std::vector<unsigned int> index_data;
+            for (size_t i = 0; i < mesh->mNumVertices; ++i)
             {
-                transform = meshNode->mTransformation;
-                mTransform = glm::transpose(glm::make_mat4(&transform.a1));
+                // Vertices
+                vertex_data.push_back(mesh->mVertices[i].x);
+                vertex_data.push_back(mesh->mVertices[i].y);
+                vertex_data.push_back(mesh->mVertices[i].z);
+                // Texture coordinates
+                if (mesh->mTextureCoords[0])
+                {
+                    vertex_data.push_back(mesh->mTextureCoords[0][i].x);
+                    vertex_data.push_back(mesh->mTextureCoords[0][i].y);
+                }
+                else {
+                    vertex_data.push_back(0.0f);
+                    vertex_data.push_back(0.0f);
+                }
             }
+            model->vertexData = vertex_data;
+
+            for (size_t f = 0; f < mesh->mNumFaces; ++f)
+            {
+                index_data.push_back(faces[f].mIndices[0]);
+                index_data.push_back(faces[f].mIndices[1]);
+                index_data.push_back(faces[f].mIndices[2]);
+            }
+            model->indexData = index_data;
+
+            // Transform
+            aiMatrix4x4 transform;
+            glm::mat4 mTransform(1);
+            if (mesh->mName != (aiString)"Scene")
+            {
+                aiNode* meshNode = scene->mRootNode->FindNode(mesh->mName);
+                if (meshNode)
+                {
+                    transform = meshNode->mTransformation;
+                    mTransform = glm::transpose(glm::make_mat4(&transform.a1));
+                }
+            }
+            model->meshTransform = mTransform;
+
+
+            // Extra data
+            for (size_t i = 0; i < mesh->mNumVertices; i++) {
+                aiVector3D normal = mesh->mNormals[i];
+                vec3f glmNormal(normal.x, normal.y, normal.z);
+                model->meshNorms.push_back(glmNormal);
+            }
+            for (size_t i = 0; i < mesh->mNumVertices; i++) {
+                aiVector3D vert = mesh->mVertices[i];
+                vec3f glmNormal(vert.x, vert.y, vert.z);
+                model->meshVerts.push_back(glmNormal);
+            }
+            for (size_t f = 0; f < mesh->mNumFaces; ++f)
+            {
+                aiFace face = mesh->mFaces[f];
+
+                vec3f v0(mesh->mVertices[face.mIndices[0]].x, mesh->mVertices[face.mIndices[0]].y, mesh->mVertices[face.mIndices[0]].z);
+                vec3f v1(mesh->mVertices[face.mIndices[1]].x, mesh->mVertices[face.mIndices[1]].y, mesh->mVertices[face.mIndices[1]].z);
+                vec3f v2(mesh->mVertices[face.mIndices[2]].x, mesh->mVertices[face.mIndices[2]].y, mesh->mVertices[face.mIndices[2]].z);
+
+                vec3f faceNormal = glm::cross(v1 - v0, v2 - v0);
+                faceNormal = glm::normalize(faceNormal);
+                model->meshFaceNorms.push_back(faceNormal);
+
+                vec3f faceCenter = (v0 + v1 + v2) / 3.0f;
+                model->meshFaceCenters.push_back(faceCenter);
+            }
+
+            Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
+
+            model->GenBufferData();
         }
-        model->meshTransform = mTransform;
 
-
-        // Extra data
-        for (size_t i = 0; i < mesh->mNumVertices; i++) {
-            aiVector3D normal = mesh->mNormals[i];
-            vec3f glmNormal(normal.x, normal.y, normal.z);
-            model->meshNorms.push_back(glmNormal);
-        }
-        for (size_t i = 0; i < mesh->mNumVertices; i++) {
-            aiVector3D vert = mesh->mVertices[i];
-            vec3f glmNormal(vert.x, vert.y, vert.z);
-            model->meshVerts.push_back(glmNormal);
-        }
-        for (size_t f = 0; f < mesh->mNumFaces; ++f)
-        {
-            aiFace face = mesh->mFaces[f];
-
-            vec3f v0(mesh->mVertices[face.mIndices[0]].x, mesh->mVertices[face.mIndices[0]].y, mesh->mVertices[face.mIndices[0]].z);
-            vec3f v1(mesh->mVertices[face.mIndices[1]].x, mesh->mVertices[face.mIndices[1]].y, mesh->mVertices[face.mIndices[1]].z);
-            vec3f v2(mesh->mVertices[face.mIndices[2]].x, mesh->mVertices[face.mIndices[2]].y, mesh->mVertices[face.mIndices[2]].z);
-
-            vec3f faceNormal = glm::cross(v1 - v0, v2 - v0);
-            faceNormal = glm::normalize(faceNormal);
-            model->meshFaceNorms.push_back(faceNormal);
-
-            vec3f faceCenter = (v0 + v1 + v2) / 3.0f;
-            model->meshFaceCenters.push_back(faceCenter);
-        }
-
-        Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
-
-        model->GenBufferData();
         meshes.push_back(model);
     }
     aiReleaseImport(scene);
@@ -461,14 +466,32 @@ void Model::Render()
 
 /*======================================================= OZZ ANIMATIOR MESH =======================================================*/
 
+
+bool Model::LoadMesh(const std::string& filename)
+{
+    m_LoadedMesh = ozz::sample::LoadMesh(filename.c_str(), &m_Mesh);
+
+    if (m_LoadedMesh)
+    {
+        size_t num_skinning_matrices = 0;
+        num_skinning_matrices = ozz::math::Max(num_skinning_matrices, m_Mesh.joint_remaps.size());
+
+        // Allocates skinning matrices.
+        skinning_matrices_.resize(num_skinning_matrices);
+
+        for (size_t i = 0; i < m_Mesh.joint_remaps.size(); ++i)
+            skinning_matrices_[i] = ozz::math::Float4x4::identity();
+    }
+
+    return m_LoadedMesh;
+}
+
 bool Model::LoadSkeleton(const std::string& path)
 {
     m_LoadedSkeleton = ozz::sample::LoadSkeleton(path.c_str(), &m_Skeleton);
 
     if (m_LoadedSkeleton)
     {
-        m_SkeletonPath = path;
-
         // Allocates runtime buffers.
         const int num_joints = m_Skeleton.num_joints();
         const int num_soa_joints = m_Skeleton.num_soa_joints();
@@ -809,50 +832,52 @@ void Model::ImportToOzz(const std::string& file, const std::filesystem::path& im
 {
     std::string filename = importPath.filename().string();
 
+    Resources::PreparePath(importPath.parent_path().string());
+
     // Skeleton output path
     std::filesystem::path skeleton_path = importPath;
     skeleton_path.replace_filename(filename + "_skeleton");
     skeleton_path.replace_extension(".skeleton");
+    m_SkeletonPath = skeleton_path.string();
+    LOG(LogType::LOG_INFO, "Ozz Skeleton Path: %s", m_SkeletonPath.c_str());
 
     // Animations output path
     std::filesystem::path anim_out_path = importPath;
     anim_out_path.replace_filename(filename + "_*");
     anim_out_path.replace_extension(".anim");
-
+    LOG(LogType::LOG_INFO, "Ozz Anim Path: %s", anim_out_path.string().c_str());
 
     // Mesh output path
     std::filesystem::path mesh_out_path = importPath;
     mesh_out_path.replace_filename(filename + "_animatedmesh");
     mesh_out_path.replace_extension(".mesh");
     path = mesh_out_path.string();
+    LOG(LogType::LOG_INFO, "Ozz Mesh Path: %s", path.c_str());
 
     // === Setup ozz import json config ===
     json ozzImportJSON;
 
     // skeleton settings
     json skeletonJSON;
-
-    // skeleton filename
-    skeletonJSON["filename"] = skeleton_path.string().c_str();
+    skeletonJSON["filename"] = std::filesystem::absolute(skeleton_path).string().c_str();
 
     // skeleton import settings
     json skeletonImportJSON;
     skeletonImportJSON["enable"] = true;
     skeletonImportJSON["raw"] = false;
-
     skeletonJSON["import"] = skeletonImportJSON;
 
     ozzImportJSON["skeleton"] = skeletonJSON;
+
 
     // animation settings
     json animationsJSON;
     json animJSON;
     animJSON["clip"] = "*";
-    animJSON["filename"] = anim_out_path.string().c_str();
+    animJSON["filename"] = std::filesystem::absolute(anim_out_path).string().c_str();
+    animationsJSON.push_back(animJSON);
 
-    animationsJSON = animJSON;
-
-    ozzImportJSON = animationsJSON;
+    ozzImportJSON["animations"] = animationsJSON;
 
     Resources::SaveJSON("Tools\\import_anim.json", ozzImportJSON);
 
