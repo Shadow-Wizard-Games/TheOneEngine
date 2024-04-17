@@ -175,8 +175,10 @@ bool PanelScene::Draw()
 
             if (ImGui::BeginMenu("Gizmo"))
             {
-                ImGui::Text("Gizmo Options");
-                ImGui::Text("It seems like hekbas forgot to implement ImGuizmo...");
+                //ImGui::Text("Gizmo Options");
+                //ImGui::Text("It seems like hekbas forgot to implement ImGuizmo...");
+                ImGui::Checkbox("Snap", &snappingFixed);
+                ImGui::InputFloat("Amount", &snapAmount);
 
                 ImGui::EndMenu();
             }
@@ -222,8 +224,13 @@ bool PanelScene::Draw()
             Transform* tc = selectedGO->GetComponent<Transform>();
             glm::mat4 transform = tc->CalculateWorldTransform();
 
+            bool useSnap = snappingFixed;
+            if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) useSnap = !useSnap;
+
+            vec3f snapAmounts = vec3f(snapAmount, snapAmount, snapAmount);
+
             ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
-                (ImGuizmo::OPERATION)gizmoType, (ImGuizmo::MODE)gizmoMode, glm::value_ptr(transform));
+                (ImGuizmo::OPERATION)gizmoType, (ImGuizmo::MODE)gizmoMode, glm::value_ptr(transform), NULL, useSnap ? &snapAmounts.x : NULL);
 
             if (ImGuizmo::IsUsing())
             {
