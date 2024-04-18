@@ -38,8 +38,8 @@ bool PanelBuild::Draw()
 			ImGui::TreePop();
 		}
 
-		ImGui::End();
 	}
+	ImGui::End();
 
 	ImGui::PopStyleVar();
 

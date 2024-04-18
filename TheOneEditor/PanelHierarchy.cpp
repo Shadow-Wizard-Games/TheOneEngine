@@ -113,9 +113,8 @@ bool PanelHierarchy::Draw()
 			RecurseShowChildren(engine->N_sceneManager->currentScene->GetRootSceneGO());
 			ImGui::TreePop();
 		}
-
-		ImGui::End();
 	}
+	ImGui::End();
 
 	return true;
 }

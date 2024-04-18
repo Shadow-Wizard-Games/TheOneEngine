@@ -44,9 +44,8 @@ bool PanelAnimation::Draw()
 	{
 		DrawTopbar();
 		DrawBody();
-
-		ImGui::End();
 	}
+	ImGui::End();
 
 	return true;
 }

@@ -37,7 +37,6 @@ PanelScene::~PanelScene() {}
 
 void PanelScene::Start()
 {
-
     // Creating Editor Camera GO (Outside hierarchy)
     sceneCamera = std::make_shared<GameObject>("EDITOR CAMERA");
     sceneCamera.get()->AddComponent<Transform>();
@@ -291,10 +290,6 @@ bool PanelScene::Draw()
         }
 
 	}
-
-    engine->LogGL("PanelScene.cpp 289");
-
-
 	ImGui::End();
 	ImGui::PopStyleVar();
 

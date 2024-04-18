@@ -220,13 +220,14 @@ bool Gui::Start()
 	#pragma endregion IMGUI_STYLE
 
 	// Enable Panels
-	app->gui->panelInspector->SetState(true);
-	app->gui->panelProject->SetState(true);
-	app->gui->panelConsole->SetState(true);
-	app->gui->panelHierarchy->SetState(true);
-	app->gui->panelScene->SetState(true);
-	app->gui->panelGame->SetState(true);
-	app->gui->panelAnimation->SetState(true);
+	bool active = true;
+	app->gui->panelInspector->SetState(active);
+	app->gui->panelProject->SetState(active);
+	app->gui->panelConsole->SetState(active);
+	app->gui->panelHierarchy->SetState(active);
+	app->gui->panelScene->SetState(active);
+	app->gui->panelGame->SetState(active);
+	app->gui->panelAnimation->SetState(active);
 
 	// Iterate Panels & Start
 	for (const auto& panel : panels)
@@ -259,8 +260,6 @@ bool Gui::Update(double dt)
 	bool ret = true;
 
     // Creates the Main Menu Bar
-    //ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 50.0f));
-
     if (ImGui::BeginMainMenuBar())
     {
         if (ImGui::BeginMenu("File"))
@@ -308,10 +307,15 @@ bool Gui::Update(double dt)
 		ImGui::EndMainMenuBar();
 	}
 
+	// Iterate Panels & Draw
+	for (const auto& panel : panels)
+	{
+		if (panel->GetState())
+			panel->Draw();
+	}
+
 	if (openSceneFileWindow)
 		OpenSceneFileWindow();
-
-    //ImGui::PopStyleVar();
 
     return ret;
 }
@@ -321,33 +325,10 @@ bool Gui::PostUpdate()
 	bool ret = true;
 
 	ImGuiIO& io = ImGui::GetIO();
-
-	// Iterate Panels & Draw
-	for (const auto& panel : panels)
-	{
-		if (panel->GetState())
-			panel->Draw();
-	}
-
-	//hekbas: this crashes in debug
-	if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable)
-		ImGui::End();
-	else
-	{
-		int a = 2;
-	}
-
 	io.DisplaySize = ImVec2((float)app->window->GetWidth(), (float)app->window->GetHeight());
 
 	ImGui::Render();
-	ImDrawData* drawData = ImGui::GetDrawData();
-
-	if (!drawData)
-	{
-		int a = 2;
-	}
-
-	ImGui_ImplOpenGL3_RenderDrawData(drawData);
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 	// Update and Render additional Platform Windows
 	// (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
@@ -403,9 +384,9 @@ void Gui::PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags
 	{
 		ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, 0.25f);
 
+		ImPlot::SetupAxesLimits(0, data.size(), 0, 250, ImGuiCond_Always);
 		ImPlot::PlotShaded("FPS Area", data.data(), data.size());
 		ImPlot::PlotLine("FPS", data.data(), data.size());
-		ImPlot::SetupAxesLimits(0, data.size(), 0, 250, ImGuiCond_Always);
 
 		ImGui::PopStyleVar();
 		ImPlot::EndPlot();
@@ -414,7 +395,7 @@ void Gui::PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags
 
 void Gui::AssetContainer(const char* label)
 {
-	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 20.0f);
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 10.0f);
 	ImGui::InputText("##label", (char*)label, 64, ImGuiInputTextFlags_ReadOnly);
 	ImGui::PopStyleVar();
 }
@@ -423,6 +404,7 @@ void Gui::MainWindowDockspace()
 {
 	// Flags
 	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
+
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 	window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
 	window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
@@ -704,7 +686,6 @@ void Gui::OpenSceneFileWindow()
 				engine->N_sceneManager->LoadScene(nameSceneBuffer);
 				openSceneFileWindow = false;
 			}
-
 		}
 
 		if (ImGui::BeginPopup("SaveBeforeLoad"))
@@ -726,6 +707,9 @@ void Gui::OpenSceneFileWindow()
 		ImGui::End();
 	}
 }
+
+
+// Utils ------------------------------------------------------
 
 void Gui::CalculateSizeAspectRatio(int maxWidth, int maxHeight, int& width, int& height)
 {

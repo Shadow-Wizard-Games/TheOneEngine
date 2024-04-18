@@ -1021,8 +1021,8 @@ bool PanelInspector::Draw()
         if(chooseScriptNameWindow) ChooseScriptNameWindow();
         else if (chooseParticlesToImportWindow) ChooseParticlesToImportWindow();
 
-        ImGui::End();
 	}
+    ImGui::End();
 
 	return true;
 }

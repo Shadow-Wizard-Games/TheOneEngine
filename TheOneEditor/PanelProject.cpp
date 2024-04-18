@@ -71,12 +71,10 @@ bool PanelProject::Draw()
 
 				ImGui::TreePop();
 			}
-
-			ImGui::EndChild();
 		}
+		ImGui::EndChild();
 
 		ImGui::SameLine();
-
 
 		// RIGHT - Inspector ----------------------------
 		ImVec2 inspectorSize = ImVec2(ImGui::GetWindowSize().x * 0.7f, ImGui::GetWindowSize().y);
@@ -94,12 +92,11 @@ bool PanelProject::Draw()
 			ImGui::Separator();
 
 			FileExplorerDraw();
-
-			ImGui::EndChild();
 		}
+		ImGui::EndChild();
 
-		ImGui::End();
 	}
+	ImGui::End();
 
 
 
