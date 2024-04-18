@@ -64,7 +64,7 @@ void ParticleSystem::Play()
 	isON = true;
 }
 
-void ParticleSystem::Stop()
+void ParticleSystem::Pause()
 {
 	isON = false;
 }
@@ -72,6 +72,14 @@ void ParticleSystem::Stop()
 void ParticleSystem::Replay()
 {
 	Play();
+	for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
+		(*i)->Start();
+	}
+}
+
+void ParticleSystem::Stop()
+{
+	Pause();
 	for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
 		(*i)->Start();
 	}

@@ -466,14 +466,19 @@ static void PlayPS(GameObject* GOptr)
 	GOptr->GetComponent<ParticleSystem>()->Play();
 }
 
-static void StopPS(GameObject* GOptr)
+static void PausePS(GameObject* GOptr)
 {
-	GOptr->GetComponent<ParticleSystem>()->Stop();
+	GOptr->GetComponent<ParticleSystem>()->Pause();
 }
 
 static void ReplayPS(GameObject* GOptr)
 {
 	GOptr->GetComponent<ParticleSystem>()->Replay();
+}
+
+static void StopPS(GameObject* GOptr)
+{
+	GOptr->GetComponent<ParticleSystem>()->Stop();
 }
 
 // Audio Manager
@@ -625,8 +630,9 @@ void MonoRegisterer::RegisterFunctions()
 
 	//Particle Systems
 	mono_add_internal_call("InternalCalls::PlayPS", PlayPS);
-	mono_add_internal_call("InternalCalls::StopPS", StopPS);
+	mono_add_internal_call("InternalCalls::PausePS", PausePS);
 	mono_add_internal_call("InternalCalls::ReplayPS", ReplayPS);
+	mono_add_internal_call("InternalCalls::StopPS", StopPS);
 
 	//Audio
 	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);

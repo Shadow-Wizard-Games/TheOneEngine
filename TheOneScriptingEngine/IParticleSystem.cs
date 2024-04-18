@@ -10,14 +10,18 @@ public class IParticleSystem : IComponent
         InternalCalls.PlayPS(containerGOptr);
     }
 
-    public void Stop()
+    public void Pause()
     {
-        InternalCalls.StopPS(containerGOptr);
+        InternalCalls.PausePS(containerGOptr);
     }
 
     public void Replay()
     {
         InternalCalls.ReplayPS(containerGOptr);
+    }
+    public void Stop()
+    {
+        InternalCalls.StopPS(containerGOptr);
     }
 
 }

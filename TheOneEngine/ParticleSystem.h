@@ -19,8 +19,9 @@ public:
 	void DrawComponent(Camera* camera) override;
 
 	void Play();
-	void Stop();
+	void Pause();
 	void Replay();
+	void Stop();
 
 	void ClearEmmiters();
 	Emmiter* AddEmmiter();

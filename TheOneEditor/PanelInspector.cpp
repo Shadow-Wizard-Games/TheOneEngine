@@ -513,16 +513,24 @@ bool PanelInspector::Draw()
                     particleSystem->Save();
                 }*/
 
-                if (ImGui::Button("Play")) {
-                    particleSystem->Play();
+                if (!particleSystem->IsON()) {
+                    if (ImGui::Button("Play")) {
+                        particleSystem->Play();
+                    }
+                }
+                else {
+                    if (ImGui::Button("Pause")) {
+                        particleSystem->Pause();
+                    }
+                }
+                
+                ImGui::SameLine();
+                if (ImGui::Button("Replay")) {
+                    particleSystem->Replay();
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Stop")) {
                     particleSystem->Stop();
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Replay")) {
-                    particleSystem->Replay();
                 }
 
                 if (ImGui::Button("Export")) {
