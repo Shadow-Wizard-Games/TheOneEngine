@@ -45,9 +45,19 @@ ParticleSystem::~ParticleSystem()
 
 void ParticleSystem::Update()
 {
+	bool allEmmitersOFF = true;
+
 	if (isON) {
 		for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
 			(*i)->Update(engine->dt);
+
+			if ((*i)->isON) {
+				allEmmitersOFF = false;
+			}
+		}
+
+		if (allEmmitersOFF) {
+			Stop();
 		}
 	}
 }
@@ -122,10 +132,6 @@ json ParticleSystem::SaveComponent()
 	particleSystemJSON["UID"] = UID;
 	particleSystemJSON["Name"] = name;
 	particleSystemJSON["Type"] = type;
-	particleSystemJSON["IsON"] = isON;
-
-	// save copy of the json as the ps individually
-
 
 	return particleSystemJSON;
 }
@@ -146,11 +152,6 @@ void ParticleSystem::LoadComponent(const json& transformJSON)
 	if (transformJSON.contains("Type"))
 	{
 		type = transformJSON["Type"];
-	}
-
-	if (transformJSON.contains("IsON"))
-	{
-		isON = transformJSON["IsON"];
 	}
 
 	ClearEmmiters();

@@ -73,6 +73,8 @@ void Emmiter::Start()
 		spawnModule->Reset();
 	}
 
+	isON = true;
+
 	RestartParticlePool();
 }
 
@@ -83,6 +85,10 @@ void Emmiter::Update(double dt)
 	lifetime += dt;
 
 	if (lifetime < delay) return;
+
+	if (lifetime > duration + delay && usingParticlesIDs.empty() && !isLooping) {
+		isON = false;
+	}
 
 	if (lifetime < duration + delay || isLooping) {
 		if (spawnModule) {
@@ -389,7 +395,6 @@ json Emmiter::SaveEmmiter()
 		emmiterJSON["RenderModule"] = renderJSON;
 	}
 
-	emmiterJSON["IsON"] = isON;
 	emmiterJSON["MaxParticles"] = maxParticles;
 	emmiterJSON["Duration"] = duration;
 	emmiterJSON["Lifetime"] = lifetime;
@@ -402,11 +407,6 @@ json Emmiter::SaveEmmiter()
 void Emmiter::LoadEmmiter(const json& emmiterJSON)
 {
 	// Load basic properties
-	if (emmiterJSON.contains("IsON"))
-	{
-		isON = emmiterJSON["IsON"];
-	}
-
 	if (emmiterJSON.contains("MaxParticles"))
 	{
 		maxParticles = emmiterJSON["MaxParticles"];
