@@ -300,28 +300,28 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 
 	if (initModule->scale.usingSingleValue) {
 		ImGui::PushID("set_scale_single_PS");
-		ImGui::InputDouble("R", &initModule->scale.singleValue.x, 0, 0, "%.2f");
+		ImGui::InputDouble("X", &initModule->scale.singleValue.x, 0, 0, "%.2f");
 		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->scale.singleValue.y, 0, 0, "%.2f");
+		ImGui::InputDouble("Y", &initModule->scale.singleValue.y, 0, 0, "%.2f");
 		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->scale.singleValue.z, 0, 0, "%.2f");
+		ImGui::InputDouble("Z", &initModule->scale.singleValue.z, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 	else {
 		ImGui::PushID("set_scale_min_PS");
-		ImGui::InputDouble("R", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+		ImGui::InputDouble("X", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
 		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->scale.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+		ImGui::InputDouble("Y", &initModule->scale.rangeValue.lowerLimit.y, 0, 0, "%.2f");
 		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->scale.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+		ImGui::InputDouble("Z", &initModule->scale.rangeValue.lowerLimit.z, 0, 0, "%.2f");
 		ImGui::PopID();
 
 		ImGui::PushID("set_scale_max_PS");
-		ImGui::InputDouble("R", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
+		ImGui::InputDouble("X", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
 		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->scale.rangeValue.upperLimit.y, 0, 0, "%.2f");
+		ImGui::InputDouble("Y", &initModule->scale.rangeValue.upperLimit.y, 0, 0, "%.2f");
 		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->scale.rangeValue.upperLimit.z, 0, 0, "%.2f");
+		ImGui::InputDouble("Z", &initModule->scale.rangeValue.upperLimit.z, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 
@@ -337,11 +337,11 @@ void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule)
 	ImGui::PushItemWidth(60);
 
 	ImGui::PushID("set_color_max_PS");
-	ImGui::InputDouble("R", &updateModule->acceleration.x, 0, 0, "%.2f");
+	ImGui::InputDouble("X", &updateModule->acceleration.x, 0, 0, "%.2f");
 	ImGui::SameLine();
-	ImGui::InputDouble("G", &updateModule->acceleration.y, 0, 0, "%.2f");
+	ImGui::InputDouble("Y", &updateModule->acceleration.y, 0, 0, "%.2f");
 	ImGui::SameLine();
-	ImGui::InputDouble("B", &updateModule->acceleration.z, 0, 0, "%.2f");
+	ImGui::InputDouble("Z", &updateModule->acceleration.z, 0, 0, "%.2f");
 	ImGui::PopID();
 
 	ImGui::PopItemWidth();
