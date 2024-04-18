@@ -115,7 +115,9 @@ private:
     void ImportToOzz(const std::string& file, const std::filesystem::path& importPath);
 public:
 
-    bool LoadMesh(const std::string& path);
+    bool isAnimated() { return hasBones; }
+
+    bool LoadOzzMesh(const std::string& path);
 	bool IsMeshLoaded() { return m_LoadedMesh; }
 
 	bool LoadSkeleton(const std::string& path);
@@ -166,6 +168,9 @@ public:
 	size_t getActiveAnimationId() { return m_ActiveAnimationId; }
 	OzzAnimation* getActiveAnimation();
 	std::string getActiveAnimationName() { return m_ActiveAnimationName; }
+    const ozz::sample::Mesh& GetOzzMesh() { return m_Mesh; }
+    ozz::vector<ozz::math::Float4x4>& getSkinningMatrices() { return skinning_matrices_; }
+
 
 	// Set upper animation playback speed
 	void SetUpperPlaybackSpeed(size_t anim_id, float playback_speed);

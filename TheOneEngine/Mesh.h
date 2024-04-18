@@ -31,12 +31,6 @@ public:
 
     void DrawComponent(Camera* camera);
 
-    bool RenderOzzSkinnedMesh(
-        const ozz::sample::Mesh& _mesh,
-        Material* material,
-        const ozz::span<ozz::math::Float4x4> _skinning_matrices,
-        const ozz::math::Float4x4& _transform);
-
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
@@ -44,6 +38,13 @@ private:
     //void DrawVertexNormals();
     //void DrawFaceNormals();
     //void DrawWireframe();
+
+    bool RenderOzzSkinnedMesh(
+        Model* mesh,
+        Material* material,
+        const ozz::span<ozz::math::Float4x4> _skinning_matrices,
+        const mat4& _transform);
+    bool RenderMesh(Model* mesh, Material* material, const mat4& transform);
 
 public:
     ResourceId meshID = -1;

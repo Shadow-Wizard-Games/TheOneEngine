@@ -11,6 +11,7 @@
 
 #include "ozz/geometry/runtime/skinning_job.h"
 #include "ozz/base/maths/internal/simd_math_config.h"
+#include "ozz/base/span.h"
 
 #include <span>
 #include <vector>
@@ -18,9 +19,9 @@
 #include <cstdio>
 #include <cassert>
 
-static uint dynamic_vao_;
-static uint dynamic_array_bo_;
-static uint dynamic_index_bo_;
+static uint dynamicVAO;
+static uint dynamicVBO;
+static uint dynamicIBO;
 
 const uint8_t kDefaultColorsArray[][4] = {
 	{255, 255, 255, 255}, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
@@ -116,38 +117,46 @@ void Mesh::DrawComponent(Camera* camera)
 {
     std::shared_ptr<GameObject> containerGO = GetContainerGO();
 
-    if (meshID == -1 || materialID == -1)
+    if (!active || meshID == -1 || materialID == -1)
         return;
 
     Model* mesh = Resources::GetResourceById<Model>(meshID);
     Material* mat = Resources::GetResourceById<Material>(materialID);
+	mat4 transform = containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform();
 
-    Shader* matShader = mat->getShader();
-    matShader->Bind();
-    matShader->SetModel(containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform());
-
-    mat->Bind();
-
-    if (!active)
-        return;
-
-    if (drawWireframe)
-    {
-        GLCALL(glDisable(GL_TEXTURE_2D));
-        GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
-    }
-    else
-    {
-        GLCALL(glEnable(GL_TEXTURE_2D));
-        GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
-    }
-
-    mesh->Render();
-
-    mat->UnBind();
+	if (mesh->isAnimated())
+		RenderOzzSkinnedMesh(mesh, mat, ozz::make_span(mesh->getSkinningMatrices()), transform);
+	else
+		RenderMesh(mesh, mat, transform);
 
     /*if (drawNormalsVerts) DrawVertexNormals();
     if (drawNormalsFaces) DrawFaceNormals();*/
+}
+
+bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
+{
+
+	Shader* matShader = material->getShader();
+	matShader->Bind();
+	matShader->SetModel(transform);
+
+	material->Bind();
+
+	if (drawWireframe)
+	{
+		GLCALL(glDisable(GL_TEXTURE_2D));
+		GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+	}
+	else
+	{
+		GLCALL(glEnable(GL_TEXTURE_2D));
+		GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
+	}
+
+	mesh->Render();
+
+	material->UnBind();
+	return false;
 }
 
 //void Mesh::DrawVertexNormals()
@@ -190,113 +199,122 @@ void Mesh::DrawComponent(Camera* camera)
 //}
 
 
-bool Mesh::RenderOzzSkinnedMesh(const ozz::sample::Mesh& _mesh, Material* material, const ozz::span<ozz::math::Float4x4> _skinning_matrices, const ozz::math::Float4x4& _transform)
+bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span<ozz::math::Float4x4> skinningMatrices, const mat4& transform)
 {
-	const int vertex_count = _mesh.vertex_count();
+	ozz::sample::Mesh ozzMesh = mesh->GetOzzMesh();
+	const int vertexCount = ozzMesh.vertex_count();
+
+	// Convert glm matrix to ozz matrix
+	ozz::math::Float4x4 ozzTransform = ozz::math::Float4x4::identity();
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			ozzTransform.cols[i].m128_f32[j] = transform[i][j];
+		}
+	}
 
 	// Positions and normals are interleaved to improve caching while executing
 	// skinning job.
 
-	const GLsizei positions_offset = 0;
-	const GLsizei positions_stride = sizeof(float) * 3;
-	const GLsizei normals_offset = vertex_count * positions_stride;
-	const GLsizei normals_stride = sizeof(float) * 3;
-	const GLsizei tangents_offset =
-		normals_offset + vertex_count * normals_stride;
-	const GLsizei tangents_stride = sizeof(float) * 3;
-	const GLsizei skinned_data_size =
-		tangents_offset + vertex_count * tangents_stride;
+	const GLsizei positionsVertexDataOffset = 0;
+	const GLsizei positionsVertexDataStride = sizeof(float) * 3;
+	const GLsizei normalsVertexDataOffset = vertexCount * positionsVertexDataStride;
+	const GLsizei normalsVertexDataStride = sizeof(float) * 3;
+	const GLsizei tangentsOffset =
+		normalsVertexDataOffset + vertexCount * normalsVertexDataStride;
+	const GLsizei tangentsStride = sizeof(float) * 3;
+	const GLsizei skinnedDataSize =
+		tangentsOffset + vertexCount * tangentsStride;
 
 	// Colors and uvs are contiguous. They aren't transformed, so they can be
 	// directly copied from source mesh which is non-interleaved as-well.
 	// Colors will be filled with white if _options.colors is false.
 	// UVs will be skipped if _options.textured is false.
-	const GLsizei colors_offset = skinned_data_size;
-	const GLsizei colors_stride = sizeof(uint8_t) * 4;
-	const GLsizei colors_size = vertex_count * colors_stride;
-	const GLsizei uvs_offset = colors_offset + colors_size;
-	const GLsizei uvs_stride = sizeof(float) * 2;
-	const GLsizei uvs_size = vertex_count * uvs_stride;
-	const GLsizei fixed_data_size = colors_size + uvs_size;
+	const GLsizei colorsVertexDataOffset = skinnedDataSize;
+	const GLsizei colorsVertexDataStride = sizeof(uint8_t) * 4;
+	const GLsizei colorsSize = vertexCount * colorsVertexDataStride;
+	const GLsizei uvsVertexDataOffset = colorsVertexDataOffset + colorsSize;
+	const GLsizei uvsVertexDataStride = sizeof(float) * 2;
+	const GLsizei uvsSize = vertexCount * uvsVertexDataStride;
+	const GLsizei fixedDataSize = colorsSize + uvsSize;
 
 	// Reallocate vertex buffer.
-	const GLsizei vbo_size = skinned_data_size + fixed_data_size;
+	const GLsizei vboSize = skinnedDataSize + fixedDataSize;
 
-	void* vbo_map = engine->scratch_buffer_.Resize(vbo_size);
+	void* vboMap = engine->scratch_buffer_.Resize(vboSize);
 
 	// Iterate mesh parts and fills vbo.
 	// Runs a skinning job per mesh part. Triangle indices are shared
 	// across parts.
-	size_t processed_vertex_count = 0;
-	for (size_t i = 0; i < _mesh.parts.size(); ++i) {
-		const ozz::sample::Mesh::Part& part = _mesh.parts[i];
+	size_t processedVertexCount = 0;
+	for (size_t i = 0; i < ozzMesh.parts.size(); ++i) {
+		const ozz::sample::Mesh::Part& meshpart = ozzMesh.parts[i];
 
 		// Skip this iteration if no vertex.
-		const size_t part_vertex_count = part.positions.size() / 3;
-		if (part_vertex_count == 0) {
+		const size_t meshpartVertexCount = meshpart.positions.size() / 3;
+		if (meshpartVertexCount == 0) {
 			continue;
 		}
 
 		// Fills the job.
-		ozz::geometry::SkinningJob skinning_job;
-		skinning_job.vertex_count = static_cast<int>(part_vertex_count);
-		const int part_influences_count = part.influences_count();
+		ozz::geometry::SkinningJob skinningJob;
+		skinningJob.vertex_count = static_cast<int>(meshpartVertexCount);
+		const int part_influences_count = meshpart.influences_count();
 
 		// Clamps joints influence count according to the option.
-		skinning_job.influences_count = part_influences_count;
+		skinningJob.influences_count = part_influences_count;
 
 		// Setup skinning matrices, that came from the animation stage before being
 		// multiplied by inverse model-space bind-pose.
-		skinning_job.joint_matrices = _skinning_matrices;
+		skinningJob.joint_matrices = skinningMatrices;
 
 		// Setup joint's indices.
-		skinning_job.joint_indices = make_span(part.joint_indices);
-		skinning_job.joint_indices_stride =
+		skinningJob.joint_indices = make_span(meshpart.joint_indices);
+		skinningJob.joint_indices_stride =
 			sizeof(uint16_t) * part_influences_count;
 
 		// Setup joint's weights.
 		if (part_influences_count > 1) {
-			skinning_job.joint_weights = make_span(part.joint_weights);
-			skinning_job.joint_weights_stride =
+			skinningJob.joint_weights = make_span(meshpart.joint_weights);
+			skinningJob.joint_weights_stride =
 				sizeof(float) * (part_influences_count - 1);
 		}
 
 		// Setup input positions, coming from the loaded mesh.
-		skinning_job.in_positions = make_span(part.positions);
-		skinning_job.in_positions_stride =
+		skinningJob.in_positions = make_span(meshpart.positions);
+		skinningJob.in_positions_stride =
 			sizeof(float) * ozz::sample::Mesh::Part::kPositionsCpnts;
 
 		// Setup output positions, coming from the rendering output mesh buffers.
 		// We need to offset the buffer every loop.
-		float* out_positions_begin = reinterpret_cast<float*>(ozz::PointerStride(
-			vbo_map, positions_offset + processed_vertex_count * positions_stride));
-		float* out_positions_end = ozz::PointerStride(
-			out_positions_begin, part_vertex_count * positions_stride);
-		skinning_job.out_positions = { out_positions_begin, out_positions_end };
-		skinning_job.out_positions_stride = positions_stride;
+		float* outPositionsBegin = reinterpret_cast<float*>(ozz::PointerStride(
+			vboMap, positionsVertexDataOffset + processedVertexCount * positionsVertexDataStride));
+		float* outPositionsEnd = ozz::PointerStride(
+			outPositionsBegin, meshpartVertexCount * positionsVertexDataStride);
+		skinningJob.out_positions = { outPositionsBegin, outPositionsEnd };
+		skinningJob.out_positions_stride = positionsVertexDataStride;
 
 		// Setup normals if input are provided.
-		float* out_normal_begin = reinterpret_cast<float*>(ozz::PointerStride(
-			vbo_map, normals_offset + processed_vertex_count * normals_stride));
-		float* out_normal_end = ozz::PointerStride(
-			out_normal_begin, part_vertex_count * normals_stride);
+		float* outNormalBegin = reinterpret_cast<float*>(ozz::PointerStride(
+			vboMap, normalsVertexDataOffset + processedVertexCount * normalsVertexDataStride));
+		float* outNormalEnd = ozz::PointerStride(
+			outNormalBegin, meshpartVertexCount * normalsVertexDataStride);
 
-		if (part.normals.size() / ozz::sample::Mesh::Part::kNormalsCpnts ==
-			part_vertex_count) {
+		if (meshpart.normals.size() / ozz::sample::Mesh::Part::kNormalsCpnts ==
+			meshpartVertexCount) {
 			// Setup input normals, coming from the loaded mesh.
-			skinning_job.in_normals = make_span(part.normals);
-			skinning_job.in_normals_stride =
+			skinningJob.in_normals = make_span(meshpart.normals);
+			skinningJob.in_normals_stride =
 				sizeof(float) * ozz::sample::Mesh::Part::kNormalsCpnts;
 
 			// Setup output normals, coming from the rendering output mesh buffers.
 			// We need to offset the buffer every loop.
-			skinning_job.out_normals = { out_normal_begin, out_normal_end };
-			skinning_job.out_normals_stride = normals_stride;
+			skinningJob.out_normals = { outNormalBegin, outNormalEnd };
+			skinningJob.out_normals_stride = normalsVertexDataStride;
 		}
 		else {
 			// Fills output with default normals.
-			for (float* normal = out_normal_begin; normal < out_normal_end;
-				normal = ozz::PointerStride(normal, normals_stride)) {
+			for (float* normal = outNormalBegin; normal < outNormalEnd;
+				normal = ozz::PointerStride(normal, normalsVertexDataStride)) {
 				normal[0] = 0.f;
 				normal[1] = 1.f;
 				normal[2] = 0.f;
@@ -304,27 +322,27 @@ bool Mesh::RenderOzzSkinnedMesh(const ozz::sample::Mesh& _mesh, Material* materi
 		}
 
 		// Setup tangents if input are provided.
-		float* out_tangent_begin = reinterpret_cast<float*>(ozz::PointerStride(
-			vbo_map, tangents_offset + processed_vertex_count * tangents_stride));
-		float* out_tangent_end = ozz::PointerStride(
-			out_tangent_begin, part_vertex_count * tangents_stride);
+		float* outTangentBegin = reinterpret_cast<float*>(ozz::PointerStride(
+			vboMap, tangentsOffset + processedVertexCount * tangentsStride));
+		float* outTangentEnd = ozz::PointerStride(
+			outTangentBegin, meshpartVertexCount * tangentsStride);
 
-		if (part.tangents.size() / ozz::sample::Mesh::Part::kTangentsCpnts ==
-			part_vertex_count) {
+		if (meshpart.tangents.size() / ozz::sample::Mesh::Part::kTangentsCpnts ==
+			meshpartVertexCount) {
 			// Setup input tangents, coming from the loaded mesh.
-			skinning_job.in_tangents = make_span(part.tangents);
-			skinning_job.in_tangents_stride =
+			skinningJob.in_tangents = make_span(meshpart.tangents);
+			skinningJob.in_tangents_stride =
 				sizeof(float) * ozz::sample::Mesh::Part::kTangentsCpnts;
 
 			// Setup output tangents, coming from the rendering output mesh buffers.
 			// We need to offset the buffer every loop.
-			skinning_job.out_tangents = { out_tangent_begin, out_tangent_end };
-			skinning_job.out_tangents_stride = tangents_stride;
+			skinningJob.out_tangents = { outTangentBegin, outTangentEnd };
+			skinningJob.out_tangents_stride = tangentsStride;
 		}
 		else {
 			// Fills output with default tangents.
-			for (float* tangent = out_tangent_begin; tangent < out_tangent_end;
-				tangent = ozz::PointerStride(tangent, tangents_stride)) {
+			for (float* tangent = outTangentBegin; tangent < outTangentEnd;
+				tangent = ozz::PointerStride(tangent, tangentsStride)) {
 				tangent[0] = 1.f;
 				tangent[1] = 0.f;
 				tangent[2] = 0.f;
@@ -332,129 +350,130 @@ bool Mesh::RenderOzzSkinnedMesh(const ozz::sample::Mesh& _mesh, Material* materi
 		}
 
 		// Execute the job, which should succeed unless a parameter is invalid.
-		if (!skinning_job.Run()) {
+		if (!skinningJob.Run()) {
 			return false;
 		}
 
 		// OZZ COLORS
 		// Un-optimal path used when the right number of colors is not provided.
-		static_assert(sizeof(kDefaultColorsArray[0]) == colors_stride,
+		static_assert(sizeof(kDefaultColorsArray[0]) == colorsVertexDataStride,
 			"Stride mismatch");
 
-		for (size_t j = 0; j < part_vertex_count;
+		for (size_t j = 0; j < meshpartVertexCount;
 			j += OZZ_ARRAY_SIZE(kDefaultColorsArray)) {
 			const size_t this_loop_count = ozz::math::Min(
-				OZZ_ARRAY_SIZE(kDefaultColorsArray), part_vertex_count - j);
+				OZZ_ARRAY_SIZE(kDefaultColorsArray), meshpartVertexCount - j);
 			memcpy(ozz::PointerStride(
-				vbo_map, colors_offset +
-				(processed_vertex_count + j) * colors_stride),
-				kDefaultColorsArray, colors_stride * this_loop_count);
+				vboMap, colorsVertexDataOffset +
+				(processedVertexCount + j) * colorsVertexDataStride),
+				kDefaultColorsArray, colorsVertexDataStride * this_loop_count);
 		}
 
-		if (part_vertex_count ==
-			part.uvs.size() / ozz::sample::Mesh::Part::kUVsCpnts) {
+		if (meshpartVertexCount ==
+			meshpart.uvs.size() / ozz::sample::Mesh::Part::kUVsCpnts) {
 			// Optimal path used when the right number of uvs is provided.
 			memcpy(ozz::PointerStride(
-				vbo_map, uvs_offset + processed_vertex_count * uvs_stride),
-				array_begin(part.uvs), part_vertex_count * uvs_stride);
+				vboMap, uvsVertexDataOffset + processedVertexCount * uvsVertexDataStride),
+				array_begin(meshpart.uvs), meshpartVertexCount * uvsVertexDataStride);
 		}
 		else {
 			// Un-optimal path used when the right number of uvs is not provided.
-			assert(sizeof(kDefaultUVsArray[0]) == uvs_stride);
-			for (size_t j = 0; j < part_vertex_count;
+			assert(sizeof(kDefaultUVsArray[0]) == uvsVertexDataStride);
+			for (size_t j = 0; j < meshpartVertexCount;
 				j += OZZ_ARRAY_SIZE(kDefaultUVsArray)) {
 				const size_t this_loop_count = ozz::math::Min(
-					OZZ_ARRAY_SIZE(kDefaultUVsArray), part_vertex_count - j);
+					OZZ_ARRAY_SIZE(kDefaultUVsArray), meshpartVertexCount - j);
 				memcpy(ozz::PointerStride(
-					vbo_map,
-					uvs_offset + (processed_vertex_count + j) * uvs_stride),
-					kDefaultUVsArray, uvs_stride * this_loop_count);
+					vboMap,
+					uvsVertexDataOffset + (processedVertexCount + j) * uvsVertexDataStride),
+					kDefaultUVsArray, uvsVertexDataStride * this_loop_count);
 			}
 		}
 
 		// Some more vertices were processed.
-		processed_vertex_count += part_vertex_count;
+		processedVertexCount += meshpartVertexCount;
 	}
 
 
 	// ========================= RENDERING =====================================
 
-	Shader* anim_shader = material->getShader();
+
+	// Build mvp for object
+	glm::mat4 glm_mvp;/* = camera->projectionMatrix * camera->viewMatrix;*/
+	glm::mat4 transform_mat = glm::mat4(1.f);
+
+	ozz::math::Float4x4 ozz_mvp;
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			// m128_f32 for float4x4
+			ozz_mvp.cols[i].m128_f32[j] = glm_mvp[i][j];
+			transform_mat[i][j] = ozzTransform.cols[i].m128_f32[j];
+		}
+	}
+
+	Shader* animShader = material->getShader();
 
 	/*RenderShadowsOzz(
 		camera,
-		_mesh,
-		anim_shader,
+		ozzMesh,
+		animShader,
 		transform_mat,
-		vbo_size,
-		vbo_map
+		vboSize,
+		vboMap
 	);*/
 
 	//LightManager& lman = Wiwa::SceneManager::getActiveScene()->GetLightManager();
 
-	anim_shader->Bind();
-	GLCALL(glBindVertexArray(dynamic_vao_));
+	animShader->Bind();
+	GLCALL(glBindVertexArray(dynamicVAO));
 	// Updates dynamic vertex buffer with skinned data.
-	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, dynamic_array_bo_));
-	GLCALL(glBufferData(GL_ARRAY_BUFFER, vbo_size, nullptr, GL_STREAM_DRAW));
-	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vbo_size, vbo_map));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, dynamicVBO));
+	GLCALL(glBufferData(GL_ARRAY_BUFFER, vboSize, nullptr, GL_STREAM_DRAW));
+	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vboSize, vboMap));
 
 
-
-	/*SetUpLight(anim_shader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
+	/*SetUpLight(animShader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
 	camera->shadowBuffer->BindTexture();*/
 
 	material->Bind(GL_TEXTURE1);
 
 	GLCALL(glEnableVertexAttribArray(0));
-	GLCALL(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, uvs_stride,
-		GL_PTR_OFFSET(uvs_offset)));
+	GLCALL(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, uvsVertexDataStride,
+		GL_PTR_OFFSET(uvsVertexDataOffset)));
 
 	GLCALL(glEnableVertexAttribArray(1));
-	GLCALL(glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, positions_stride,
-		GL_PTR_OFFSET(positions_offset)));
+	GLCALL(glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, positionsVertexDataStride,
+		GL_PTR_OFFSET(positionsVertexDataOffset)));
 
 	GLCALL(glEnableVertexAttribArray(2));
-	GLCALL(glVertexAttribPointer(2, 3, GL_FLOAT, GL_TRUE, normals_stride,
-		GL_PTR_OFFSET(normals_offset)));
+	GLCALL(glVertexAttribPointer(2, 3, GL_FLOAT, GL_TRUE, normalsVertexDataStride,
+		GL_PTR_OFFSET(normalsVertexDataOffset)));
 
 	GLCALL(glEnableVertexAttribArray(3));
 	GLCALL(glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE,
-		colors_stride, GL_PTR_OFFSET(colors_offset)));
+		colorsVertexDataStride, GL_PTR_OFFSET(colorsVertexDataOffset)));
 
-	//// Build mvp for object
-	//glm::mat4 glm_mvp = camera->projectionMatrix * camera->viewMatrix;
-	//glm::mat4 transform_mat = glm::mat4(1.f);
+	// Binds mw uniform
+	float values[16];
+	const GLint mw_uniform = GLCALL(glGetUniformLocation(animShader->getID(), "u_mw"));//uniform(0);
+	ozz::math::StorePtrU(ozzTransform.cols[0], values + 0);
+	ozz::math::StorePtrU(ozzTransform.cols[1], values + 4);
+	ozz::math::StorePtrU(ozzTransform.cols[2], values + 8);
+	ozz::math::StorePtrU(ozzTransform.cols[3], values + 12);
+	GLCALL(glUniformMatrix4fv(mw_uniform, 1, false, values));
 
-	//ozz::math::Float4x4 ozz_mvp;
-
-	//for (int i = 0; i < 4; i++) {
-	//	for (int j = 0; j < 4; j++) {
-	//		// m128_f32 for float4x4
-	//		ozz_mvp.cols[i].m128_f32[j] = glm_mvp[i][j];
-	//		transform_mat[i][j] = _transform.cols[i].m128_f32[j];
-	//	}
-	//}
-	//// Binds mw uniform
-	//float values[16];
-	//const GLint mw_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mw"));//uniform(0);
-	//ozz::math::StorePtrU(_transform.cols[0], values + 0);
-	//ozz::math::StorePtrU(_transform.cols[1], values + 4);
-	//ozz::math::StorePtrU(_transform.cols[2], values + 8);
-	//ozz::math::StorePtrU(_transform.cols[3], values + 12);
-	//GLCALL(glUniformMatrix4fv(mw_uniform, 1, false, values));
-
-	//// Binds mvp uniform
-	//const GLint mvp_uniform = GLCALL(glGetUniformLocation(anim_shader->getID(), "u_mvp"));//uniform(1);
-	//ozz::math::StorePtrU(ozz_mvp.cols[0], values + 0);
-	//ozz::math::StorePtrU(ozz_mvp.cols[1], values + 4);
-	//ozz::math::StorePtrU(ozz_mvp.cols[2], values + 8);
-	//ozz::math::StorePtrU(ozz_mvp.cols[3], values + 12);
-	//GLCALL(glUniformMatrix4fv(mvp_uniform, 1, false, values));
+	// Binds mvp uniform
+	const GLint mvp_uniform = GLCALL(glGetUniformLocation(animShader->getID(), "u_mvp"));//uniform(1);
+	ozz::math::StorePtrU(ozz_mvp.cols[0], values + 0);
+	ozz::math::StorePtrU(ozz_mvp.cols[1], values + 4);
+	ozz::math::StorePtrU(ozz_mvp.cols[2], values + 8);
+	ozz::math::StorePtrU(ozz_mvp.cols[3], values + 12);
+	GLCALL(glUniformMatrix4fv(mvp_uniform, 1, false, values));
 
 	// Maps the index dynamic buffer and update it.
-	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamic_index_bo_));
-	const ozz::sample::Mesh::TriangleIndices& indices = _mesh.triangle_indices;
+	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamicIBO));
+	const ozz::sample::Mesh::TriangleIndices& indices = ozzMesh.triangle_indices;
 	GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER,
 		indices.size() * sizeof(ozz::sample::Mesh::TriangleIndices::value_type),
 		array_begin(indices), GL_STREAM_DRAW));

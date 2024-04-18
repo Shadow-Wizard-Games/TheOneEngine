@@ -84,11 +84,13 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
         // Process Anim
         if (mesh->HasBones())
         {
-            // TODO: Cosa de importar el fbx a .mesh del ozz con el fbx2mesh.exe
             model->hasBones = true;
             std::filesystem::path importPath = Resources::PathToLibrary<Model>(sceneName) + model->meshName;
             model->ImportToOzz(path, importPath);
             LOG(LogType::LOG_INFO, "FBX Loaded has bones");
+            //TODO: Load ozzmesh & ozzskeleton
+            model->LoadOzzMesh(model->path);
+            model->LoadSkeleton(model->m_SkeletonPath);
             //TODO: Process new materials for animated meshes
         }
         else
@@ -467,7 +469,7 @@ void Model::Render()
 /*======================================================= OZZ ANIMATIOR MESH =======================================================*/
 
 
-bool Model::LoadMesh(const std::string& filename)
+bool Model::LoadOzzMesh(const std::string& filename)
 {
     m_LoadedMesh = ozz::sample::LoadMesh(filename.c_str(), &m_Mesh);
 
