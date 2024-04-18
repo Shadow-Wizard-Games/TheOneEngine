@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    float speed = 40.0f;
+    public float speed = 40.0f;
     bool lastFrameToMove = false;
     ItemManager itemManager;
     IGameObject iManagerGO;
@@ -30,13 +30,14 @@ public class PlayerScript : MonoBehaviour
         itemManager.AddItem(1, 1);
     }
 
+    public Vector3 movement;
     public override void Update()
     {
         if (isDead) return;
         if (onPause) return;
 
         bool toMove = false;
-        Vector3 movement = Vector3.zero;
+        movement = Vector3.zero;
 
         // Background music
         if (!isFighting)
