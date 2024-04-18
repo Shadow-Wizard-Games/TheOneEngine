@@ -124,7 +124,7 @@ bool PanelInspector::Draw()
                 //ImGui::Indent(0.8f);
                 if (ImGui::BeginTable("", 4, tableFlags))
                 {
-                    ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthStretch);
+                    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch);
                     ImGui::TableSetupColumn("X", ImGuiTableColumnFlags_WidthStretch);
                     ImGui::TableSetupColumn("Y", ImGuiTableColumnFlags_WidthStretch);
                     ImGui::TableSetupColumn("Z", ImGuiTableColumnFlags_WidthStretch);
@@ -133,7 +133,7 @@ bool PanelInspector::Draw()
 
                     // Headers
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TableHeader("");
+                    ImGui::TableHeader("##");
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TableHeader("X");
                     ImGui::TableSetColumnIndex(2);
@@ -508,51 +508,31 @@ bool PanelInspector::Draw()
 
             if (particleSystem != nullptr && ImGui::CollapsingHeader("Particle System", treeNodeFlags))
             {
-                /*if (ImGui::Button("Load")) {
-                    particleSystem->Load("");
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Save")) {
-                    particleSystem->Save();
-                }*/
-
-                if (ImGui::Button("Play")) {
-                    particleSystem->Play();
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Stop")) {
-                    particleSystem->Stop();
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Replay")) {
-                    particleSystem->Replay();
-                }
-
-                if (ImGui::Button("Export")) {
-                    particleSystem->ExportParticles();
-                }
-                ImGui::SameLine();
-                if (ImGui::Button("Import")) {
-                    chooseParticlesToImportWindow = true;
-                }
+                //if (ImGui::Button("Load"))      particleSystem->Load("");           ImGui::SameLine();
+                //if (ImGui::Button("Save"))      particleSystem->Save();             ImGui::SameLine();
+                if (ImGui::Button("Play"))      particleSystem->Play();             ImGui::SameLine();               
+                if (ImGui::Button("Stop"))      particleSystem->Stop();             ImGui::SameLine();
+                if (ImGui::Button("Replay"))    particleSystem->Replay();           ImGui::SameLine();
+                if (ImGui::Button("Export"))    particleSystem->ExportParticles();  ImGui::SameLine();
+                if (ImGui::Button("Import"))    chooseParticlesToImportWindow = true;
 
                 // change name
                 particleSystem->GetNameToEdit()->resize(20);
                 ImGui::InputText("Name", (char*)particleSystem->GetNameToEdit()->c_str(), 20);
 
                 int emmiterID = 0;
-                for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter) {
+                for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter)
+                {
                     ImGui::PushID(emmiterID);
                     ImGui::Text("Emmiter %d", emmiterID);
                     // delete emmiter
                     UIEmmiterWriteNode((*emmiter).get());
                     emmiterID++;
+                    ImGui::PopID();
                 }
                 
                 // add emmiter
-                if (ImGui::Button("Add Emmiter")) {
-                    particleSystem->AddEmmiter();
-                }
+                if (ImGui::Button("Add Emmiter")) particleSystem->AddEmmiter();
 
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
                 if (ImGui::Button("Remove Particle System"))
@@ -912,8 +892,8 @@ bool PanelInspector::Draw()
                     selectedGO->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
                     audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<Listener>());
                     audioManager->audio->SetDefaultListener(selectedGO->GetComponent<Listener>()->goID);
-
                 }
+
                 if (ImGui::MenuItem("AudioSource"))
                 {
                     selectedGO->AddComponent<AudioSource>();
@@ -986,7 +966,6 @@ bool PanelInspector::Draw()
                 {
                     selectedGO->AddComponent<Animator>();
                 }
-
 
                 /*ImGuiTextFilter filter;
                 filter.Draw();*/
