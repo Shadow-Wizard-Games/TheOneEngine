@@ -624,7 +624,7 @@ void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 		for (const auto gameObject : parentGO.get()->children)
 		{
 			gameObject.get()->Draw(cam);
-			RecurseSceneDraw(gameObject);
+			RecurseSceneDraw(gameObject, cam);
 		}
 
 	}
