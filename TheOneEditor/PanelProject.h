@@ -9,7 +9,8 @@
 #include <filesystem>
 #include <unordered_map>
 
-enum class FileType {
+enum class FileType
+{
 	MODEL3D,
 	TEXTURE,
 	FOLDER,
@@ -22,7 +23,8 @@ enum class FileType {
 	UNKNOWN
 };
 
-struct FileInfo {
+struct FileInfo
+{
 	std::string name;
 	FileType fileType = FileType::UNKNOWN;
 	bool isDirectory = false;

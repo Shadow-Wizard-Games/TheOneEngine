@@ -2,6 +2,7 @@
 #include "App.h"
 #include "Gui.h"
 #include "imgui.h"
+#include "imgui_internal.h"
 #include "SceneManager.h"
 
 #include "..\TheOneEngine\UIDGen.h"
@@ -33,7 +34,7 @@ bool PanelProject::Draw()
 {
 	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0.0f, 0.0f });
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 5.0f, 10.0f });
 
 	if (ImGui::Begin("Project", &enabled, panelFlags))
 	{
@@ -78,90 +79,40 @@ bool PanelProject::Draw()
 
 		// RIGHT - Inspector ----------------------------
 		ImVec2 inspectorSize = ImVec2(ImGui::GetWindowSize().x * 0.7f, ImGui::GetWindowSize().y);
-		//settingsFlags &= ~(ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
 		if (ImGui::BeginChild("Selected", inspectorSize, false))
 		{
 			//Historn: NEED TO CREATE CHILD WINDOW FOR DRAG AND DROP
 			//if(ImGui::BeginChild("FileExplorer"))
+
+			FileExplorerDraw();
+
 			if (fileSelected)
 			{
 				ImGui::Text("%s", fileSelected->path.string().c_str());
 			}
-
-			ImGui::Separator();
-
-			FileExplorerDraw();
 		}
 		ImGui::EndChild();
 
+
+		if (ImGui::BeginMenuBar())
+		{
+			/*for (size_t i = 0; i < length; i++)
+			{
+
+			}*/
+
+			if (ImGui::BeginMenu("Path"))
+			{
+				ImGui::Text("");
+				ImGui::EndMenu();
+			}
+
+			ImGui::EndMenuBar();
+		}
+
 	}
 	ImGui::End();
-
-
-
-		// --------------------------------------------------------------------------------------------------------------------------
-
-	//	int width = ImGui::GetContentRegionAvail().x;
-
-	//	static ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;
-
-	//	if (ImGui::BeginTable("table", 2, tableFlags))
-	//	{
-	//		ImGui::TableSetupColumn("##Directories", ImGuiTableColumnFlags_WidthFixed, 100.0f);
-	//		ImGui::TableSetupColumn("##Explorer", ImGuiTableColumnFlags_WidthFixed, 100.0f);
-
-	//		// Directory Tree View ----------------------------
-	//		ImGui::TableNextColumn();
-	//		ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_DefaultOpen;
-	//		if (ImGui::TreeNodeEx("Assets", base_flags))
-	//		{
-	//			if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(0))
-	//			{
-	//				directoryPath = ASSETS_PATH;
-	//				refresh = true;
-	//			}
-
-	//			uint32_t count = 0;
-	//			for (const auto& entry : fs::recursive_directory_iterator(ASSETS_PATH))
-	//				count++;
-
-	//			static int selection_mask = 0;
-
-	//			auto clickState = DirectoryTreeViewRecursive(ASSETS_PATH, &count, &selection_mask);
-
-	//			if (clickState.first)
-	//			{
-	//				// Update selection state
-	//				// (process outside of tree loop to avoid visual inconsistencies during the clicking frame)
-	//				if (ImGui::GetIO().KeyCtrl)
-	//					selection_mask ^= BIT(clickState.second);		// CTRL+click to toggle
-	//				else //if (!(selection_mask & (1 << clickState.second))) // Depending on selection behavior you want, may want to preserve selection when clicking on item that is part of the selection
-	//					selection_mask = BIT(clickState.second);		// Click to single-select
-	//			}
-	//		}
-	//		
-	//		// Inspector ----------------------------
-	//		ImGui::TableNextColumn();
-
-	//		//Historn: NEED TO CREATE CHILD WINDOW FOR DRAG AND DROP
-	//		//if(ImGui::BeginChild("FileExplorer"))
-	//		if (fileSelected)
-	//		{
-	//			ImGui::Text("%s", fileSelected->path.string().c_str());
-	//		}
-
-	//		ImGui::Separator();
-
-	//		FileExplorerDraw();
-
-	//		ImGui::EndTable();
-	//	}
-
-	//	SaveWarning();
-
-	//	ImGui::End();
-	////}
 
 	ImGui::PopStyleVar();
 
@@ -248,6 +199,11 @@ std::pair<bool, uint32_t> PanelProject::DirectoryTreeViewRecursive(const fs::pat
 
 void PanelProject::FileExplorerDraw()
 {
+	// Set Style
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
+	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.f, 0.f, 0.f, 0.f));
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
+
 	if (refresh)
 	{
 		fileSelected = nullptr;
@@ -256,68 +212,57 @@ void PanelProject::FileExplorerDraw()
 		refresh = false;
 	}
 
-	float contentWidth = ImGui::GetWindowContentRegionWidth();
 	GLuint textureID = 0;
 
-	for (auto& file : files) 
+	// Item size - column count
+	static float padding = 16.0f;
+	static float thumbnailSize = 64.0f;
+	float itemSize = thumbnailSize + 2*padding;
+
+	float explorerWidth = ImGui::GetContentRegionAvail().x;
+	int columnCount = (int)(explorerWidth / itemSize);
+	if (columnCount < 1) columnCount = 1;
+
+	ImGui::Columns(columnCount, 0, false);
+
+	for (auto& file : files)
 	{
-		std::string displayName = (file.name.size() >= 10) ? file.name.substr(0, 10) + "..." : file.name;
-
-		if (ImGui::GetCursorPosX() + fontSize > contentWidth)
-			ImGui::NewLine();
-
-		ImGui::BeginGroup();
-
 		GLuint iconTexture = 0;
+		iconTexture = file.fileType == FileType::TEXTURE ? imagePreviews[file.name] : iconTextures[file.fileType];
 
-		if (file.fileType == FileType::TEXTURE)
-		{
-			iconTexture = imagePreviews[file.name];
-		}
-		else
-		{
-			iconTexture = iconTextures[file.fileType];
-		}
-
-		ImGui::Indent();
-		ImVec2 textPos(ImGui::GetCursorPos().x + (fontSize - ImGui::CalcTextSize(displayName.c_str()).x) * 0.5f, ImGui::GetCursorPos().y + fontSize + 10);
-
-		ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0,0));		
-		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.f, 0.f, 0.f, 0.f));
-		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
-
-		ImGui::ImageButton((void*)(intptr_t)iconTexture, ImVec2(fontSize, fontSize), ImVec2(0.0f, 0.0f), ImVec2(1.0f, 1.0f), -1, ImVec4(.30f, .30f, .30f, 0.00f));
-
-		if (ImGui::IsItemHovered() && (ImGui::IsMouseClicked(0) || ImGui::IsMouseClicked(1)))
+		if (ImGui::ImageButton((ImTextureID)iconTexture, ImVec2(thumbnailSize, thumbnailSize), { 0, 0 }, { 1, 1 }, padding))
 		{
 			fileSelected = &file;
 		}
 
 		DoubleClickFile();
-
 		ContextMenu();
 
-		ImGui::SetCursorPos(textPos);
+		std::string displayName = (file.name.size() >= 10) ? file.name.substr(0, 8) + "..." : file.name;
 
-		ImGui::Text("%s", displayName.c_str(), ImVec2(fontSize, fontSize));
+		auto offset = (itemSize - ImGui::CalcTextSize(displayName.c_str()).x) / 2 - 6;
+		ImGui::Dummy({ offset, 0 });
+		ImGui::SameLine();
+		ImGui::Text(displayName.c_str());
 
-		ImGui::EndGroup();
-
-		ImGui::SameLine(0, ImGui::GetStyle().ItemSpacing.y + fontSize);
-		
-		ImGui::PopStyleVar();
-		ImGui::PopStyleColor(2);
-
-		if (DragAndDrop(file))
-			break;
+		ImGui::NextColumn();
 	}
+
+	ImGui::Columns();
+
+	ImGui::PopStyleVar();
+	ImGui::PopStyleColor(2);
+	
+	//DragAndDrop(file);
 }
 
 std::vector<FileInfo> PanelProject::ListFiles(const std::string& path)
 {
 	UnloadImagePreviews();
 	std::vector<FileInfo> files;
-	for (const auto& entry : fs::directory_iterator(path)) {
+
+	for (const auto& entry : fs::directory_iterator(path))
+	{
 		FileInfo fileInfo;
 
 		fileInfo.path = entry.path();
@@ -337,6 +282,7 @@ std::vector<FileInfo> PanelProject::ListFiles(const std::string& path)
 
 		files.push_back(fileInfo);
 	}
+
 	return files;
 }
 
@@ -485,39 +431,41 @@ void PanelProject::SaveWarning()
 
 void PanelProject::DoubleClickFile()
 {
-	if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
+	if (!fileSelected)
+		return;
+
+	if (!ImGui::IsItemHovered() || !ImGui::IsMouseDoubleClicked(0))
+		return;
+
+	switch (fileSelected->fileType)
 	{
-		switch (fileSelected->fileType)
+	case FileType::FOLDER:
+		directoryPath = fileSelected->path.string();
+		refresh = true;
+		break;
+	case FileType::SCENE:
+		if (engine->N_sceneManager->currentScene->IsDirty())
 		{
-		case FileType::FOLDER:
-			directoryPath = fileSelected->path.string();
-			refresh = true;
-			break;
-		case FileType::SCENE:
-			if (engine->N_sceneManager->currentScene->IsDirty())
-			{
-				warningScene = true;
-			}
-			else
-			{
-				engine->N_sceneManager->LoadScene(fileSelected->name);
-			}
-			break;
-		case FileType::PREFAB:
-			if (engine->N_sceneManager->currentScene->IsDirty())
-			{
-				warningScene = true;
-			}
-			else
-			{
-				engine->N_sceneManager->LoadScene(fileSelected->name);
-			}
-			break;
-		default:
-			break;
+			warningScene = true;
 		}
+		else
+		{
+			engine->N_sceneManager->LoadScene(fileSelected->name);
+		}
+		break;
+	case FileType::PREFAB:
+		if (engine->N_sceneManager->currentScene->IsDirty())
+		{
+			warningScene = true;
+		}
+		else
+		{
+			engine->N_sceneManager->LoadScene(fileSelected->name);
+		}
+		break;
+	default:
+		break;
 	}
-	
 }
 
 bool PanelProject::DragAndDrop(const FileInfo& info)
@@ -588,9 +536,11 @@ void PanelProject::FileDropping(const FileInfo& info)
 
 void PanelProject::ContextMenu()
 {
+	if (!ImGui::IsItemHovered() || !ImGui::IsMouseClicked(1))
+		return;
+
 	if (ImGui::BeginPopupContextItem())
-	{
-		
+	{		
 		if (ImGui::MenuItem("Delete"))
 		{
 			fs::remove(fileSelected->path);
@@ -602,7 +552,8 @@ void PanelProject::ContextMenu()
 	}
 }
 
-void PanelProject::SaveGameObjectAsPrefab(GameObject& gameObject, const FileInfo& info) {
+void PanelProject::SaveGameObjectAsPrefab(GameObject& gameObject, const FileInfo& info)
+{
 	gameObject.SetPrefab(UIDGen::GenerateUID());
 
 	std::string prefabName = gameObject.GetName() + ".prefab";
