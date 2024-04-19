@@ -237,6 +237,10 @@ InitializeEmmiterModule* Emmiter::AddModule(InitializeEmmiterModule::InitializeE
 		initializeModules.push_back(std::move(std::make_unique<SetScale>(this)));
 		newModule = initializeModules[initializeModules.size() - 1].get();
 		break;
+	case InitializeEmmiterModule::SET_OFFSET:
+		initializeModules.push_back(std::move(std::make_unique<SetOffset>(this)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
 	default:
 		break;
 	}
@@ -311,6 +315,10 @@ InitializeEmmiterModule* Emmiter::AddModule(InitializeEmmiterModule* ref)
 		break;
 	case InitializeEmmiterModule::SET_SCALE:
 		initializeModules.push_back(std::move(std::make_unique<SetScale>(this, (SetScale*)ref)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
+	case InitializeEmmiterModule::SET_OFFSET:
+		initializeModules.push_back(std::move(std::make_unique<SetOffset>(this, (SetOffset*)ref)));
 		newModule = initializeModules[initializeModules.size() - 1].get();
 		break;
 	default:

@@ -20,6 +20,7 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule);
 
 void UIInspectorEmmiterInitializeModule(SetScale* initModule);
 
+void UIInspectorEmmiterInitializeModule(SetOffset* initModule);
 
 
 // update modules

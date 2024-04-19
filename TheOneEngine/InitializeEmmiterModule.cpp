@@ -224,3 +224,79 @@ void SetScale::LoadModule(const json& moduleJSON)
 		scale.rangeValue.upperLimit.z = moduleJSON["MaxScale"][2];
 	}
 }
+
+
+// set offset --------------------------------------------------------------------------------------
+SetOffset::SetOffset(Emmiter* owner)
+{
+	type = SET_OFFSET;
+	this->owner = owner;
+
+	offset.usingSingleValue = true;
+	offset.rangeValue.lowerLimit = vec3(0, 1, 0);
+	offset.rangeValue.upperLimit = vec3(0, -1, 0);
+}
+
+SetOffset::SetOffset(Emmiter* owner, SetOffset* ref)
+{
+	type = SET_OFFSET;
+	this->owner = owner;
+
+	offset = ref->offset;
+}
+
+void SetOffset::Initialize(Particle* particle)
+{
+	if (offset.usingSingleValue) {
+		particle->position += offset.singleValue;
+	}
+	else {
+		vec3 randomVec = vec3{
+			randomFloat(offset.rangeValue.lowerLimit.x, offset.rangeValue.upperLimit.x),
+			randomFloat(offset.rangeValue.lowerLimit.y, offset.rangeValue.upperLimit.y),
+			randomFloat(offset.rangeValue.lowerLimit.z, offset.rangeValue.upperLimit.z) };
+
+		particle->position += randomVec;
+	}
+}
+
+json SetOffset::SaveModule()
+{
+	json moduleJSON;
+
+	moduleJSON["Type"] = type;
+
+	moduleJSON["UsingSingleValueOffset"] = offset.usingSingleValue;
+	moduleJSON["MinOffset"] = { offset.rangeValue.lowerLimit.x, offset.rangeValue.lowerLimit.y, offset.rangeValue.lowerLimit.z };
+	moduleJSON["MaxOffset"] = { offset.rangeValue.upperLimit.x, offset.rangeValue.upperLimit.y, offset.rangeValue.upperLimit.z };
+
+	return moduleJSON;
+}
+
+void SetOffset::LoadModule(const json& moduleJSON)
+{
+	if (moduleJSON.contains("Type"))
+	{
+		type = moduleJSON["Type"];
+	}
+
+	if (moduleJSON.contains("UsingSingleValueOffset"))
+	{
+		offset.usingSingleValue = moduleJSON["UsingSingleValueOffset"];
+	}
+
+	if (moduleJSON.contains("MinOffset"))
+	{
+		offset.rangeValue.lowerLimit.x = moduleJSON["MinOffset"][0];
+		offset.rangeValue.lowerLimit.y = moduleJSON["MinOffset"][1];
+		offset.rangeValue.lowerLimit.z = moduleJSON["MinOffset"][2];
+
+	}
+
+	if (moduleJSON.contains("MaxOffset"))
+	{
+		offset.rangeValue.upperLimit.x = moduleJSON["MaxOffset"][0];
+		offset.rangeValue.upperLimit.y = moduleJSON["MaxOffset"][1];
+		offset.rangeValue.upperLimit.z = moduleJSON["MaxOffset"][2];
+	}
+}

@@ -73,6 +73,10 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 		if (ImGui::MenuItem("Set Scale"))
 			emmiter->AddModule(InitializeEmmiterModule::SET_SCALE);
 
+		if (ImGui::MenuItem("Set Offset"))
+			emmiter->AddModule(InitializeEmmiterModule::SET_OFFSET);
+
+
 		ImGui::EndMenu();
 	}
 	ImGui::PopID();
@@ -103,6 +107,10 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 
 		case InitializeEmmiterModule::SET_SCALE:
 			UIInspectorEmmiterInitializeModule((SetScale*)(*m).get());
+			break;
+
+		case InitializeEmmiterModule::SET_OFFSET:
+			UIInspectorEmmiterInitializeModule((SetOffset*)(*m).get());
 			break;
 
 		default:
@@ -322,6 +330,44 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 		ImGui::InputDouble("Y", &initModule->scale.rangeValue.upperLimit.y, 0, 0, "%.2f");
 		ImGui::SameLine();
 		ImGui::InputDouble("Z", &initModule->scale.rangeValue.upperLimit.z, 0, 0, "%.2f");
+		ImGui::PopID();
+	}
+
+	ImGui::PopItemWidth();
+}
+
+void UIInspectorEmmiterInitializeModule(SetOffset* initModule)
+{
+	ImGui::Text("Set Initial Offset: ");
+
+	ImGui::Checkbox("Single Value", &initModule->offset.usingSingleValue);
+
+	ImGui::PushItemWidth(60);
+
+	if (initModule->offset.usingSingleValue) {
+		ImGui::PushID("set_offset_single_PS");
+		ImGui::InputDouble("X", &initModule->offset.singleValue.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Y", &initModule->offset.singleValue.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Z", &initModule->offset.singleValue.z, 0, 0, "%.2f");
+		ImGui::PopID();
+	}
+	else {
+		ImGui::PushID("set_offset_min_PS");
+		ImGui::InputDouble("X", &initModule->offset.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Y", &initModule->offset.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Z", &initModule->offset.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+		ImGui::PopID();
+
+		ImGui::PushID("set_offset_max_PS");
+		ImGui::InputDouble("X", &initModule->offset.rangeValue.upperLimit.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Y", &initModule->offset.rangeValue.upperLimit.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Z", &initModule->offset.rangeValue.upperLimit.z, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 

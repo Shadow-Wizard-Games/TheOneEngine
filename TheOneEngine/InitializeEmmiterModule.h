@@ -19,7 +19,8 @@ public:
 	enum InitializeEmmiterModuleType {
 		SET_SPEED,
 		SET_COLOR,
-		SET_SCALE
+		SET_SCALE,
+		SET_OFFSET
 	};
 
 	InitializeEmmiterModuleType type;
@@ -69,4 +70,18 @@ public:
 	void LoadModule(const json& moduleJSON);
 
 	SingleOrRandom<vec3> scale;
+};
+
+class SetOffset : public InitializeEmmiterModule {
+public:
+	SetOffset(Emmiter* owner);
+	SetOffset(Emmiter* owner, SetOffset* ref);
+
+	void Initialize(Particle* particle);
+
+	json SaveModule();
+
+	void LoadModule(const json& moduleJSON);
+
+	SingleOrRandom<vec3> offset;
 };
