@@ -34,8 +34,6 @@ bool PanelProject::Draw()
 {
 	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 5.0f, 10.0f });
-
 	if (ImGui::Begin("Project", &enabled, panelFlags))
 	{
 		// LEFT - Directory Tree View ----------------------------
@@ -75,10 +73,17 @@ bool PanelProject::Draw()
 		}
 		ImGui::EndChild();
 
-		ImGui::SameLine();
 
 		// RIGHT - Inspector ----------------------------
-		ImVec2 inspectorSize = ImVec2(ImGui::GetWindowSize().x * 0.7f, ImGui::GetWindowSize().y);
+		ImGui::SameLine();
+		ImVec2 topbarSize = ImVec2(ImGui::GetWindowSize().x * 0.7f - 10, 20);
+
+		if (!directoryPath.empty())
+		{
+			ImGui::Text("%s", directoryPath.c_str());
+		}
+
+		ImVec2 inspectorSize = ImVec2(ImGui::GetWindowSize().x * 0.7f - 10, ImGui::GetWindowSize().y - topbarSize.y);
 
 		if (ImGui::BeginChild("Selected", inspectorSize, false))
 		{
@@ -94,27 +99,8 @@ bool PanelProject::Draw()
 		}
 		ImGui::EndChild();
 
-
-		if (ImGui::BeginMenuBar())
-		{
-			/*for (size_t i = 0; i < length; i++)
-			{
-
-			}*/
-
-			if (ImGui::BeginMenu("Path"))
-			{
-				ImGui::Text("");
-				ImGui::EndMenu();
-			}
-
-			ImGui::EndMenuBar();
-		}
-
 	}
 	ImGui::End();
-
-	ImGui::PopStyleVar();
 
 	return true;
 }
@@ -293,34 +279,23 @@ FileType PanelProject::FindFileType(const std::string& fileExtension)
 	std::transform(lowercaseExtension.begin(), lowercaseExtension.end(), lowercaseExtension.begin(),
 		[](unsigned char c) { return std::tolower(c); });
 
-	if (lowercaseExtension == ".fbx")
+	// Mapping of extensions to FileType enum values
+	static const std::unordered_map<std::string, FileType> extensionToFileType =
 	{
-		return FileType::MODEL3D;
-	}
-	else if (lowercaseExtension == ".png" || lowercaseExtension == ".dds")
-	{
-		return FileType::TEXTURE;
-	}
-	else if (lowercaseExtension == ".cs")
-	{
-		return FileType::SCRIPT;
-	}
-	else if (lowercaseExtension == ".toe")
-	{
-		return FileType::SCENE;
-	}
-	else if (lowercaseExtension == ".prefab")
-	{
-		return FileType::PREFAB;
-	}
-	else if (lowercaseExtension == ".txt")
-	{
-		return FileType::TXT;
-	}
-	else if (lowercaseExtension == ".particles")
-	{
-		return FileType::PARTICLES;
-	}
+		{".fbx", FileType::MODEL3D},
+		{".png", FileType::TEXTURE},
+		{".dds", FileType::TEXTURE},
+		{".cs", FileType::SCRIPT},
+		{".toe", FileType::SCENE},
+		{".prefab", FileType::PREFAB},
+		{".txt", FileType::TXT},
+		{".particles", FileType::PARTICLES}
+	};
+
+	// Check if extension is in map
+	auto it = extensionToFileType.find(lowercaseExtension);
+	if (it != extensionToFileType.end())
+		return it->second;
 
 	return FileType::UNKNOWN;
 }

@@ -102,7 +102,11 @@ void PanelSettings::Performance()
 
 	ImPlotFlags plotFlags = ImPlotFlags_NoInputs | ImPlotFlags_NoFrame | ImPlotFlags_NoLegend;
 	ImPlotAxisFlags axisFlags = ImPlotAxisFlags_NoTickMarks;
-	app->gui->PlotChart("FPS", fpsHistory, plotFlags, axisFlags);
+
+	int fps = fpsHistory.back();
+	char thing[12];
+	sprintf_s(thing, 12, "%i", fps);
+	app->gui->PlotChart(thing, fpsHistory, plotFlags, axisFlags);
 }
 
 void PanelSettings::Window()

@@ -342,7 +342,6 @@ bool Gui::PostUpdate()
 		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
 	}
 
-
 	SDL_GL_SwapWindow(app->window->window);
 
 	return ret;
@@ -380,15 +379,13 @@ void Gui::OpenURL(const char* url) const
 
 void Gui::PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags plotFlags, ImPlotAxisFlags axisFlags)
 {
-	if (ImPlot::BeginPlot(label, "x", "y", ImVec2(-1, -1), plotFlags, axisFlags))
+	if (ImPlot::BeginPlot(label, nullptr, nullptr, ImVec2(-1, -1), plotFlags, axisFlags))
 	{
 		ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, 0.25f);
-
-		ImPlot::SetupAxesLimits(0, data.size(), 0, 250, ImGuiCond_Always);
+		ImPlot::SetupAxesLimits(0, data.size(), 0, 250, ImGuiCond_Once);
 		ImPlot::PlotShaded("FPS Area", data.data(), data.size());
-		ImPlot::PlotLine("FPS", data.data(), data.size());
-
-		ImGui::PopStyleVar();
+		ImPlot::PlotLine(label, data.data(), data.size());
+		ImPlot::PopStyleVar();
 		ImPlot::EndPlot();
 	}
 }
