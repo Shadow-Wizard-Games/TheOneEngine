@@ -19,9 +19,9 @@
 #include <cstdio>
 #include <cassert>
 
-static uint dynamicVAO;
-static uint dynamicVBO;
-static uint dynamicIBO;
+static uint dynamicVAO = 0;
+static uint dynamicVBO = 0;
+static uint dynamicIBO = 0;
 
 const uint8_t kDefaultColorsArray[][4] = {
 	{255, 255, 255, 255}, { 255, 255, 255, 255 }, { 255, 255, 255, 255 },
@@ -92,6 +92,18 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO) : Component(containerGO, Com
 
     normalLineWidth = 1;
     normalLineLength = 0.1f;
+
+	if (dynamicVAO == 0) {
+		GLCALL(glGenVertexArrays(1, &dynamicVAO));
+	}
+
+	if (dynamicVBO == 0) {
+		GLCALL(glGenBuffers(1, &dynamicVBO));
+	}
+
+	if (dynamicIBO == 0) {
+		GLCALL(glGenBuffers(1, &dynamicIBO));
+	}
 }
 
 Mesh::Mesh(std::shared_ptr<GameObject> containerGO, Mesh* ref) : Component(containerGO, ComponentType::Mesh)
@@ -109,7 +121,23 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO, Mesh* ref) : Component(conta
     normalLineLength = ref->normalLineLength;
 }
 
-Mesh::~Mesh() {}
+Mesh::~Mesh()
+{
+	if (dynamicVAO) {
+		GLCALL(glDeleteVertexArrays(1, &dynamicVAO));
+		dynamicVAO = 0;
+	}
+
+	if (dynamicVBO) {
+		GLCALL(glDeleteBuffers(1, &dynamicVBO));
+		dynamicVBO = 0;
+	}
+
+	if (dynamicIBO) {
+		GLCALL(glDeleteBuffers(1, &dynamicIBO));
+		dynamicIBO = 0;
+	}
+}
 
 
 // Draw
@@ -156,7 +184,7 @@ bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 	mesh->Render();
 
 	material->UnBind();
-	return false;
+	return true;
 }
 
 //void Mesh::DrawVertexNormals()
@@ -203,14 +231,6 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 {
 	ozz::sample::Mesh ozzMesh = mesh->GetOzzMesh();
 	const int vertexCount = ozzMesh.vertex_count();
-
-	// Convert glm matrix to ozz matrix
-	ozz::math::Float4x4 ozzTransform = ozz::math::Float4x4::identity();
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			ozzTransform.cols[i].m128_f32[j] = transform[i][j];
-		}
-	}
 
 	// Positions and normals are interleaved to improve caching while executing
 	// skinning job.
@@ -397,28 +417,13 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 
 	// ========================= RENDERING =====================================
 
-
-	// Build mvp for object
-	glm::mat4 glm_mvp;/* = camera->projectionMatrix * camera->viewMatrix;*/
-	glm::mat4 transform_mat = glm::mat4(1.f);
-
-	ozz::math::Float4x4 ozz_mvp;
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			// m128_f32 for float4x4
-			ozz_mvp.cols[i].m128_f32[j] = glm_mvp[i][j];
-			transform_mat[i][j] = ozzTransform.cols[i].m128_f32[j];
-		}
-	}
-
 	Shader* animShader = material->getShader();
 
 	/*RenderShadowsOzz(
 		camera,
 		ozzMesh,
 		animShader,
-		transform_mat,
+		transform,
 		vboSize,
 		vboMap
 	);*/
@@ -426,11 +431,13 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	//LightManager& lman = Wiwa::SceneManager::getActiveScene()->GetLightManager();
 
 	animShader->Bind();
+	animShader->SetModel(transform);
+
 	GLCALL(glBindVertexArray(dynamicVAO));
 	// Updates dynamic vertex buffer with skinned data.
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, dynamicVBO));
-	GLCALL(glBufferData(GL_ARRAY_BUFFER, vboSize, nullptr, GL_STREAM_DRAW));
-	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vboSize, vboMap));
+	GLCALL(glBufferData(GL_ARRAY_BUFFER, vboSize, vboMap, GL_STREAM_DRAW));
+	//GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vboSize, vboMap));
 
 
 	/*SetUpLight(animShader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
@@ -454,22 +461,6 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	GLCALL(glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE,
 		colorsVertexDataStride, GL_PTR_OFFSET(colorsVertexDataOffset)));
 
-	// Binds mw uniform
-	float values[16];
-	const GLint mw_uniform = GLCALL(glGetUniformLocation(animShader->getID(), "u_mw"));//uniform(0);
-	ozz::math::StorePtrU(ozzTransform.cols[0], values + 0);
-	ozz::math::StorePtrU(ozzTransform.cols[1], values + 4);
-	ozz::math::StorePtrU(ozzTransform.cols[2], values + 8);
-	ozz::math::StorePtrU(ozzTransform.cols[3], values + 12);
-	GLCALL(glUniformMatrix4fv(mw_uniform, 1, false, values));
-
-	// Binds mvp uniform
-	const GLint mvp_uniform = GLCALL(glGetUniformLocation(animShader->getID(), "u_mvp"));//uniform(1);
-	ozz::math::StorePtrU(ozz_mvp.cols[0], values + 0);
-	ozz::math::StorePtrU(ozz_mvp.cols[1], values + 4);
-	ozz::math::StorePtrU(ozz_mvp.cols[2], values + 8);
-	ozz::math::StorePtrU(ozz_mvp.cols[3], values + 12);
-	GLCALL(glUniformMatrix4fv(mvp_uniform, 1, false, values));
 
 	// Maps the index dynamic buffer and update it.
 	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dynamicIBO));
@@ -523,7 +514,10 @@ json Mesh::SaveComponent()
     meshJSON["DrawNormalsVerts"] = drawNormalsVerts;
     meshJSON["DrawNormalsFaces"] = drawNormalsFaces;
 
+
     Model* mesh = Resources::GetResourceById<Model>(meshID);
+	meshJSON["IsAnimated"] = mesh->isAnimated();
+
     meshJSON["MeshPath"] = mesh->path;
     Material* mat = Resources::GetResourceById<Material>(materialID);
     meshJSON["MaterialPath"] = mat->getPath();
@@ -592,6 +586,10 @@ void Mesh::LoadComponent(const json& meshJSON)
             materialID = Resources::LoadFromLibrary<Material>(model->GetMaterialPath());
         }
     }
+
+	bool isAnimated = false;
+	if (meshJSON.contains("IsAnimated"))
+		isAnimated = meshJSON["IsAnimated"];
 
     if (meshJSON.contains("MeshPath"))
     {

@@ -37,14 +37,20 @@ void EngineCore::Start()
     ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
     textShader->Compile("Assets/Shaders/MeshTexture");
-    textShader->addUniform("tex", UniformType::Sampler2D);
+    textShader->addUniform("u_Tex", UniformType::Sampler2D);
     Resources::Import<Shader>("MeshTexture", textShader);
 
     ResourceId colorShaderId = Resources::Load<Shader>("Assets/Shaders/MeshColor");
     Shader* colorShader = Resources::GetResourceById<Shader>(colorShaderId);
     colorShader->Compile("Assets/Shaders/MeshColor");
-    colorShader->addUniform("color", UniformType::fVec4);
+    colorShader->addUniform("u_Color", UniformType::fVec4);
     Resources::Import<Shader>("MeshColor", colorShader);
+
+    ResourceId animTextShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimated");
+    Shader* animTextShader = Resources::GetResourceById<Shader>(animTextShaderId);
+    animTextShader->Compile("Assets/Shaders/MeshTextureAnimated");
+    animTextShader->addUniform("u_Tex", UniformType::Sampler2D);
+    Resources::Import<Shader>("MeshTextureAnimated", animTextShader);
 
 
     CameraUniformBuffer = std::make_shared<UniformBuffer>(sizeof(glm::mat4), 0);

@@ -32,7 +32,7 @@ public:
 
     void Render();
 
-    std::string GetMaterialPath() { if (materialIndex) return materials[materialIndex]; else return std::string(); }
+    std::string GetMaterialPath() { return materials[materialIndex]; }
     std::string GetMeshPath() { return path; }
 
     std::string meshName;
@@ -61,7 +61,7 @@ private:
     void GenBufferData();
 
     std::vector<std::string> materials;
-    uint materialIndex = 0;
+    uint materialIndex = INVALID_INDEX;
 
 
     /*===================================== OZZ MESH =====================================*/

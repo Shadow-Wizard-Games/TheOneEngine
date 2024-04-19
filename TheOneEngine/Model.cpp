@@ -84,16 +84,86 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
         // Process Anim
         if (mesh->HasBones())
         {
+            // Process Animated Mesh materials
+            if (scene->HasMaterials())
+            {
+                for (unsigned int i = 0; i < scene->mNumMaterials; i++)
+                {
+                    aiMaterial* mat = scene->mMaterials[i];
+
+                    aiString name;
+                    aiGetMaterialString(mat, AI_MATKEY_NAME, &name);
+
+                    aiString texture_diffuse;
+                    aiGetMaterialString(mat, AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), &texture_diffuse);
+
+                    aiColor4D diffuse(1.0f, 1.0f, 1.0f, 1.0f);
+                    aiGetMaterialColor(mat, AI_MATKEY_COLOR_DIFFUSE, &diffuse);
+
+                    aiColor4D specular(1.0f, 1.0f, 1.0f, 1.0f);
+                    aiGetMaterialColor(mat, AI_MATKEY_COLOR_SPECULAR, &specular);
+
+                    float shininess = 0.1f;
+                    aiGetMaterialFloat(mat, AI_MATKEY_SHININESS, &shininess);
+
+                    std::filesystem::path matPath = Resources::PathToLibrary<Material>(sceneName);
+                    matPath += name.C_Str();
+                    matPath += ".toematerial";
+
+                    ResourceId matID = Resources::LoadFromLibrary<Material>(matPath.string().c_str());
+
+                    model->materials.push_back(matPath.string());
+
+                    if (matID != -1)
+                        continue;
+
+                    // Import material
+                    Material material;
+                    size_t id;
+
+                    if (texture_diffuse.length > 0)
+                    {
+                        // TODO: this only loads texture paths if they are in the same folder as the fbx
+                        fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
+
+
+                        id = Resources::LoadFromLibrary<Shader>("MeshTextureAnimated");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshTextureAnimated.toeshader");
+                        bool imported = Resources::Import<Texture>(texPath.string());
+
+                        if (imported) {
+                            ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
+                            Texture* img = Resources::GetResourceById<Texture>(imgId);
+                            Uniform::SamplerData data;
+                            data.tex_id = img->GetTextureId();
+                            data.resource_id = imgId;
+                            memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
+                            material.SetUniformData("u_Tex", data);
+                        }
+                    }
+                    /*else
+                    {
+                        id = Resources::LoadFromLibrary<Shader>("MeshColor");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
+
+                        material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
+                    }*/
+
+
+                    Resources::Import<Material>(matPath.string().c_str(), &material);
+                }
+            }
+            model->materialIndex = mesh->mMaterialIndex;
+
+
             model->hasBones = true;
             std::filesystem::path importPath = Resources::PathToLibrary<Model>(sceneName) + model->meshName;
             model->ImportToOzz(path, importPath);
             LOG(LogType::LOG_INFO, "FBX Loaded has bones");
-            //TODO: Load ozzmesh & ozzskeleton
             model->LoadOzzMesh(model->path);
             model->LoadSkeleton(model->m_SkeletonPath);
-            //TODO: Process new materials for animated meshes
         }
-        else
+        else // Does not have bones/is not animated
         {
             // Process materials
             if (scene->HasMaterials())
@@ -149,7 +219,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             data.tex_id = img->GetTextureId();
                             data.resource_id = imgId;
                             memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
-                            material.SetUniformData("tex", data);
+                            material.SetUniformData("u_Tex", data);
                         }
                     }
                     else
@@ -157,7 +227,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                         id = Resources::LoadFromLibrary<Shader>("MeshColor");
                         material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
 
-                        material.SetUniformData("color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
+                        material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
                     }
 
 
