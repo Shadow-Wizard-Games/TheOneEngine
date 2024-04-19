@@ -50,6 +50,24 @@ void GameObject::Update(double dt)
 
 	// Recalculate AABBs
 	aabb = CalculateAABB();
+
+	// Prefab deletion check to make GO not prefab
+	// Not works because only goes through GO update in PLAY state
+	/*if (this->IsPrefab())
+	{
+		std::stringstream prefabPath(ASSETS_PATH);
+		prefabPath << "Prefabs\\" << this->name;
+
+		std::ifstream prefabFile(prefabPath.str());
+
+		if (!prefabFile.good())
+		{
+			prefabID = 0;
+			SetPrefab(false);
+
+		}
+	}
+	return false;*/
 }
 
 void GameObject::Draw(Camera* camera)
@@ -498,16 +516,6 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 
 void GameObject::SetPrefab(const uint32_t& pID)
 {
-	if (!children.empty()) 
-	{
-		for (auto item = children.begin(); item != children.end(); ++item) 
-		{
-			if (*item != nullptr && (pID != 0 || (*item).get()->prefabID == this->prefabID))
-			{
-				(*item).get()->SetPrefab(pID);
-			}
-		}
-	}
 	prefabID = pID;
 }
 

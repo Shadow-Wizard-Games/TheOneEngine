@@ -19,6 +19,8 @@ public:
 	void ChooseScriptNameWindow();
 	void ChooseParticlesToImportWindow();
 
+	void OverridePrefabFile(GameObject& gameObject);
+
 private:
 	GameObject* selectedGO = nullptr;
 
