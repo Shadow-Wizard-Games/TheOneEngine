@@ -131,7 +131,7 @@ void SetColor::LoadModule(const json& moduleJSON)
 		color.rangeValue.lowerLimit.x = moduleJSON["MinColor"][0];
 		color.rangeValue.lowerLimit.y = moduleJSON["MinColor"][1];
 		color.rangeValue.lowerLimit.z = moduleJSON["MinColor"][2];
-		color.rangeValue.lowerLimit.z = moduleJSON["MinColor"][3];
+		color.rangeValue.lowerLimit.a = moduleJSON["MinColor"][3];
 	}
 
 	if (moduleJSON.contains("MaxColor"))
@@ -139,7 +139,7 @@ void SetColor::LoadModule(const json& moduleJSON)
 		color.rangeValue.upperLimit.x = moduleJSON["MaxColor"][0];
 		color.rangeValue.upperLimit.y = moduleJSON["MaxColor"][1];
 		color.rangeValue.upperLimit.z = moduleJSON["MaxColor"][2];
-		color.rangeValue.upperLimit.z = moduleJSON["MaxColor"][3];
+		color.rangeValue.upperLimit.a = moduleJSON["MaxColor"][3];
 	}
 }
 
@@ -327,7 +327,7 @@ void SetDirection::Initialize(Particle* particle)
 		particle->direction = randomVec;
 	}
 
-	glm::normalize(particle->direction);
+	particle->direction = glm::normalize(particle->direction);
 }
 
 json SetDirection::SaveModule()

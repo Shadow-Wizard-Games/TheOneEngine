@@ -236,16 +236,16 @@ void UIInspectorEmmiterInitializeModule(SetSpeed* initModule)
 
 	if (initModule->speed.usingSingleValue) {
 		ImGui::PushID("set_speed_single_PS");
-		ImGui::InputFloat("X", &initModule->speed.singleValue, 0, 0, "%.2f");
+		ImGui::InputFloat("Speed", &initModule->speed.singleValue, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 	else {
 		ImGui::PushID("set_speed_min_PS");
-		ImGui::InputFloat("X", &initModule->speed.rangeValue.lowerLimit, 0, 0, "%.2f");
+		ImGui::InputFloat("Speed", &initModule->speed.rangeValue.lowerLimit, 0, 0, "%.2f");
 		ImGui::PopID();
 
 		ImGui::PushID("set_speed_max_PS");
-		ImGui::InputFloat("X", &initModule->speed.rangeValue.upperLimit, 0, 0, "%.2f");
+		ImGui::InputFloat("Speed", &initModule->speed.rangeValue.upperLimit, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 
@@ -263,34 +263,34 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 
 	if (initModule->color.usingSingleValue) {
 		ImGui::PushID("set_color_single_PS");
-		ImGui::InputDouble("R", &initModule->color.singleValue.r, 0, 0, "%.2f");
+		ImGui::InputDouble("R", &initModule->color.singleValue.r, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->color.singleValue.g, 0, 0, "%.2f");
+		ImGui::InputDouble("G", &initModule->color.singleValue.g, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->color.singleValue.b, 0, 0, "%.2f");
+		ImGui::InputDouble("B", &initModule->color.singleValue.b, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("A", &initModule->color.singleValue.a, 0, 0, "%.2f");
+		ImGui::InputDouble("A", &initModule->color.singleValue.a, 0, 0, "%.0f");
 		ImGui::PopID();
 	}
 	else {
 		ImGui::PushID("set_color_min_PS");
-		ImGui::InputDouble("R", &initModule->color.rangeValue.lowerLimit.r, 0, 0, "%.2f");
+		ImGui::InputDouble("R", &initModule->color.rangeValue.lowerLimit.r, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->color.rangeValue.lowerLimit.g, 0, 0, "%.2f");
+		ImGui::InputDouble("G", &initModule->color.rangeValue.lowerLimit.g, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->color.rangeValue.lowerLimit.b, 0, 0, "%.2f");
+		ImGui::InputDouble("B", &initModule->color.rangeValue.lowerLimit.b, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("A", &initModule->color.rangeValue.lowerLimit.a, 0, 0, "%.2f");
+		ImGui::InputDouble("A", &initModule->color.rangeValue.lowerLimit.a, 0, 0, "%.0f");
 		ImGui::PopID();
 
 		ImGui::PushID("set_color_max_PS");
-		ImGui::InputDouble("R", &initModule->color.rangeValue.upperLimit.r, 0, 0, "%.2f");
+		ImGui::InputDouble("R", &initModule->color.rangeValue.upperLimit.r, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->color.rangeValue.upperLimit.g, 0, 0, "%.2f");
+		ImGui::InputDouble("G", &initModule->color.rangeValue.upperLimit.g, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->color.rangeValue.upperLimit.b, 0, 0, "%.2f");
+		ImGui::InputDouble("B", &initModule->color.rangeValue.upperLimit.b, 0, 0, "%.0f");
 		ImGui::SameLine();
-		ImGui::InputDouble("A", &initModule->color.rangeValue.upperLimit.a, 0, 0, "%.2f");
+		ImGui::InputDouble("A", &initModule->color.rangeValue.upperLimit.a, 0, 0, "%.0f");
 		ImGui::PopID();
 	}
 
