@@ -119,17 +119,36 @@ std::string Resources::FindFileInLibrary(const std::string& name)
 	return std::string();
 }
 
-std::vector<std::string> Resources::GetAllFilesFromFolder(const std::string& path)
+std::vector<std::string> Resources::GetAllFilesFromFolder(const std::string& path, const std::string& extension1, const std::string& extension2)
 {
+	bool compareExtension = false;
+	if (!extension1.empty())
+		compareExtension = true;
+
 	std::vector<std::string> fileNames;
 
 	if (fs::is_directory(path))
 	{
 		for (const auto& entry : fs::directory_iterator(path)) {
-			if (fs::is_regular_file(entry)) {
-				std::string path = entry.path().filename().string();
-				LOG(LogType::LOG_WARNING, "- %s is in", path.data());
-				fileNames.push_back(entry.path().string());
+			if (fs::is_regular_file(entry)) 
+			{
+				if (compareExtension)
+				{
+					if (entry.path().extension().string() == extension1 || entry.path().extension().string() == extension2)
+					{
+						std::string path = entry.path().filename().string();
+						LOG(LogType::LOG_WARNING, "- %s is in", path.data());
+						fileNames.push_back(entry.path().string());
+					}
+					else
+						continue;
+				}
+				else
+				{
+					std::string path = entry.path().filename().string();
+					LOG(LogType::LOG_WARNING, "- %s is in", path.data());
+					fileNames.push_back(entry.path().string());
+				}
 			}
 		}
 	}

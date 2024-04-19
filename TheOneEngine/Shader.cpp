@@ -71,7 +71,8 @@ void Shader::Compile(const std::string& filename)
 	if (retflag)
 		return;
 
-	path = filename;
+	std::filesystem::path libraryFilename = filename;
+	path = Resources::PathToLibrary<Shader>() + libraryFilename.filename().replace_extension(".toeshader").string();
 }
 
 void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentShaderSource, bool hasGS, std::string* geometryShaderSourceStr, bool& retflag)

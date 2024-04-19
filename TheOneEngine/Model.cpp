@@ -41,6 +41,11 @@ m_UpdateState(US_UPDATE)
         deserializeMeshData(filename);
         GenBufferData();
     }
+    else if (filename.ends_with(".animator"))
+    {
+        path = filename;
+        LoadAnimator(filename);
+    }
 }
 
 std::vector<Model*> Model::LoadMeshes(const std::string& path)
@@ -132,7 +137,8 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                         bool imported = Resources::Import<Texture>(texPath.string());
 
                         if (imported) {
-                            ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
+                            texPath = Resources::PathToLibrary<Texture>() + texPath.filename().replace_extension(".dds").string();
+                            ResourceId imgId = Resources::LoadFromLibrary<Texture>(texPath.string().c_str());
                             Texture* img = Resources::GetResourceById<Texture>(imgId);
                             Uniform::SamplerData data;
                             data.tex_id = img->GetTextureId();
@@ -160,7 +166,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             std::filesystem::path importPath = Resources::PathToLibrary<Model>(sceneName) + model->meshName;
             model->ImportToOzz(path, importPath);
             LOG(LogType::LOG_INFO, "FBX Loaded has bones");
-            model->LoadOzzMesh(model->path);
+            model->LoadOzzMesh(model->ozzMeshPath);
             model->LoadSkeleton(model->m_SkeletonPath);
         }
         else // Does not have bones/is not animated
@@ -213,7 +219,8 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                         bool imported = Resources::Import<Texture>(texPath.string());
 
                         if (imported) {
-                            ResourceId imgId = Resources::Load<Texture>(texPath.string().c_str());
+                            texPath = Resources::PathToLibrary<Texture>() + texPath.filename().replace_extension(".dds").string();
+                            ResourceId imgId = Resources::LoadFromLibrary<Texture>(texPath.string().c_str());
                             Texture* img = Resources::GetResourceById<Texture>(imgId);
                             Uniform::SamplerData data;
                             data.tex_id = img->GetTextureId();
@@ -311,12 +318,12 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 model->meshFaceCenters.push_back(faceCenter);
             }
 
-            Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
 
             model->GenBufferData();
         }
-
         meshes.push_back(model);
+
+        Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model);
     }
     aiReleaseImport(scene);
 
@@ -526,7 +533,10 @@ void Model::deserializeMeshData(const std::string& filename)
 
 void Model::SaveMesh(Model* mesh, const std::string& path)
 {
-    mesh->serializeMeshData(path);
+    if (mesh->isAnimated())
+        mesh->SaveAnimator(path);
+    else
+        mesh->serializeMeshData(path);
 }
 
 void Model::Render()
@@ -900,6 +910,180 @@ bool Model::UpdateAnim(float _dt)
     return true;
 }
 
+void Model::SaveAnimator(const std::string& filepath)
+{
+    nlohmann::json animator_doc;
+
+    // Save animator mesh
+    animator_doc["mesh"] = GetOzzMeshPath();
+
+    // Save animator material
+    animator_doc["material"] = GetMaterialPath();
+
+    // Save skeleton mesh
+    animator_doc["skeleton"] = getSkeletonPath();
+
+    // Save blending settings
+    animator_doc["transition_blend"] = getBlendOnTransition();
+    animator_doc["transition_time"] = getTransitionTime();
+
+    // Save animation list
+    nlohmann::json animation_list;
+
+    for (const auto& a_data : m_AnimationList)
+    {
+        if (!a_data.animation) continue;
+
+        // Animation
+        OzzAnimation* anim = a_data.animation;
+
+        // Animation type
+        AnimationType a_type = anim->getAnimationType();
+
+        // JSON Animation object
+        nlohmann::json anim_obj;
+
+        // Base data
+        anim_obj["name"] = a_data.name;
+        anim_obj["type"] = static_cast<int>(a_type);
+        anim_obj["playback_speed"] = anim->getPlaybackSpeed();
+        anim_obj["loop"] = anim->getLoop();
+
+        // Specific data
+        switch (a_type)
+        {
+        case AT_PARTIAL_BLEND:
+        {
+            OzzAnimationPartialBlending* partial_anim = dynamic_cast<OzzAnimationPartialBlending*>(anim);
+            if (partial_anim)
+            {
+                anim_obj["upper_body_root"] = partial_anim->GetUpperBodyRoot();
+                anim_obj["lower_body_file"] = partial_anim->GetLowerBodyFile();
+                anim_obj["upper_body_file"] = partial_anim->GetUpperBodyFile();
+            }
+        } break;
+
+        case AT_SIMPLE:
+        {
+            OzzAnimationSimple* simple_anim = dynamic_cast<OzzAnimationSimple*>(anim);
+            if (simple_anim)
+            {
+                anim_obj["animation_file"] = simple_anim->getAnimationPath();
+            }
+        } break;
+
+        default:
+            break;
+        }
+
+        animation_list.push_back(anim_obj);
+    }
+
+    animator_doc["animation_list"] = animation_list;
+
+    Resources::SaveJSON(path, animator_doc);
+}
+
+void Model::LoadAnimator(const std::string& filepath)
+{
+    nlohmann::json animator_doc = Resources::OpenJSON(filepath);
+
+    if (animator_doc.contains("mesh"))
+    {
+        const std::string mesh_file = animator_doc["mesh"].get<std::string>();
+        LoadOzzMesh(mesh_file.c_str());
+    }
+
+    if (animator_doc.contains("skeleton"))
+    {
+        const std::string skeleton_file = animator_doc["skeleton"].get<std::string>();
+        LoadSkeleton(skeleton_file.c_str());
+    }
+
+    if (animator_doc.contains("transition_blend"))
+    {
+        bool transition_blend = animator_doc["transition_blend"].get<bool>();
+        setBlendOnTransition(transition_blend);
+    }
+
+    if (animator_doc.contains("transition_time"))
+    {
+        float transition_time = animator_doc["transition_time"].get<float>();
+        setTransitionTime(transition_time);
+    }
+
+    // Similarly handle other members...
+
+    if (animator_doc.contains("animation_list"))
+    {
+        for (const auto& anim_obj : animator_doc["animation_list"])
+        {
+            AnimationData a_data;
+
+            a_data.name = anim_obj["name"].get<std::string>();
+            AnimationType a_type = static_cast<AnimationType>(anim_obj["type"].get<int>());
+
+            OzzAnimation* animation = nullptr;
+
+            switch (a_type)
+            {
+            case AT_PARTIAL_BLEND:
+            {
+                size_t index = CreatePartialAnimation(a_data.name);
+                animation = getAnimationAt(index).animation;
+                OzzAnimationPartialBlending* partial_anim = dynamic_cast<OzzAnimationPartialBlending*>(animation);
+
+                if (anim_obj.contains("lower_body_file")) {
+                    const std::string lower_body_file = anim_obj["lower_body_file"].get<std::string>();
+                    partial_anim->LoadLowerAnimation(lower_body_file.c_str());
+                }
+
+                if (anim_obj.contains("upper_body_file")) {
+                    std::string upper_body_file = anim_obj["upper_body_file"].get<std::string>();
+                    partial_anim->LoadUpperAnimation(upper_body_file.c_str());
+                }
+
+                if (anim_obj.contains("upper_body_root")) {
+                    int ubr = anim_obj["upper_body_root"].get<int>();
+                    partial_anim->SetUpperBodyRoot(ubr);
+                }
+
+            } break;
+
+            case AT_SIMPLE:
+            {
+                size_t index = CreateSimpleAnimation(a_data.name);
+                animation = getAnimationAt(index).animation;
+                OzzAnimationSimple* simple_anim = dynamic_cast<OzzAnimationSimple*>(animation);
+
+                if (anim_obj.contains("animation_file")) {
+                    const std::string anim_file = anim_obj["animation_file"].get<std::string>();
+                    simple_anim->LoadAnimation(anim_file.c_str());
+                }
+            } break;
+
+            default:
+                break;
+            }
+
+            if (animation)
+            {
+                if (anim_obj.contains("playback_speed"))
+                {
+                    float p_speed = anim_obj["playback_speed"].get<float>();
+                    animation->setPlaybackSpeed(p_speed);
+                }
+
+                if (anim_obj.contains("loop"))
+                {
+                    bool loop = anim_obj["loop"].get<bool>();
+                    animation->setLoop(loop);
+                }
+            }
+        }
+    }
+}
+
 void Model::ImportToOzz(const std::string& file, const std::filesystem::path& importPath)
 {
     std::string filename = importPath.filename().string();
@@ -922,9 +1106,9 @@ void Model::ImportToOzz(const std::string& file, const std::filesystem::path& im
     // Mesh output path
     std::filesystem::path mesh_out_path = importPath;
     mesh_out_path.replace_filename(filename + "_animatedmesh");
-    mesh_out_path.replace_extension(".mesh");
-    path = mesh_out_path.string();
-    LOG(LogType::LOG_INFO, "Ozz Mesh Path: %s", path.c_str());
+    mesh_out_path.replace_extension(".ozzmesh");
+    ozzMeshPath = mesh_out_path.string();
+    LOG(LogType::LOG_INFO, "Ozz Mesh Path: %s", ozzMeshPath.c_str());
 
     // === Setup ozz import json config ===
     json ozzImportJSON;

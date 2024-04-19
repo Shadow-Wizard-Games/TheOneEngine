@@ -82,6 +82,7 @@ private:
     float m_TransitionTime;
     float m_TransitionTimer;
 
+    std::string ozzMeshPath;
     ozz::sample::Mesh m_Mesh;
     bool m_LoadedMesh;
 
@@ -169,6 +170,7 @@ public:
 	OzzAnimation* getActiveAnimation();
 	std::string getActiveAnimationName() { return m_ActiveAnimationName; }
     const ozz::sample::Mesh& GetOzzMesh() { return m_Mesh; }
+    const std::string& GetOzzMeshPath() { return ozzMeshPath; }
     ozz::vector<ozz::math::Float4x4>& getSkinningMatrices() { return skinning_matrices_; }
 
 
@@ -184,10 +186,9 @@ public:
 	// Render
 	//bool Render(Camera* camera, mat4 transform);
 
-    // TODO =>
 	// Static save function
-	void SaveAnimator(const char* filepath);
+	void SaveAnimator(const std::string& filepath);
 
 	// Static load function
-	void LoadAnimator(const char* filepath);
+	void LoadAnimator(const std::string& filepath);
 };

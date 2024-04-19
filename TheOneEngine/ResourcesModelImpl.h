@@ -15,8 +15,14 @@ inline std::string Resources::PathToLibrary<Model>(const std::string& folderName
 template<>
 inline bool Resources::Import<Model>(const std::string& file, Model* model)
 {
-	std::filesystem::path import_path = file + ".mesh";
+	std::filesystem::path import_path;
+	if(model->isAnimated())
+		import_path = file + ".animator";
+	else
+		import_path = file + ".mesh";
+
 	model->path = import_path.string();
+
 	PreparePath(import_path.parent_path().string());
 
 	Model::SaveMesh(model, import_path.string().c_str());
@@ -44,7 +50,7 @@ inline std::vector<ResourceId> Resources::LoadMultiple<Model>(const std::string&
 		unsigned int i = 0;
 		for (auto& mesh : meshes)
 		{
-			PushResource(RES_MODEL, file.c_str(), mesh);
+			PushResource(RES_MODEL, mesh->GetMeshPath().c_str(), mesh);
 			resourcesId.push_back(i + position);
 			i++;
 		}
