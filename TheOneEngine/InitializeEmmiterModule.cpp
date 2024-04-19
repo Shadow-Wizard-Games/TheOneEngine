@@ -6,9 +6,9 @@ SetSpeed::SetSpeed(Emmiter* owner)
 	type = SET_SPEED;
 	this->owner = owner;
 
-	speed.usingSingleValue = true;
-	speed.rangeValue.lowerLimit = vec3(-0.5, 1, -0.5);
-	speed.rangeValue.upperLimit = vec3(0.5, 2, 0.5);
+	speed.usingSingleValue = false;
+	speed.rangeValue.lowerLimit = 1;
+	speed.rangeValue.upperLimit = 2;
 }
 
 SetSpeed::SetSpeed(Emmiter* owner, SetSpeed* ref)
@@ -25,12 +25,7 @@ void SetSpeed::Initialize(Particle* particle)
 		particle->speed = speed.singleValue;
 	}
 	else {
-		vec3 randomVec = vec3{
-			randomFloat(speed.rangeValue.lowerLimit.x, speed.rangeValue.upperLimit.x),
-			randomFloat(speed.rangeValue.lowerLimit.y, speed.rangeValue.upperLimit.y),
-			randomFloat(speed.rangeValue.lowerLimit.z, speed.rangeValue.upperLimit.z) };
-
-		particle->speed = randomVec;
+		particle->speed = randomFloat(speed.rangeValue.lowerLimit, speed.rangeValue.upperLimit);
 	}
 }
 
@@ -41,8 +36,8 @@ json SetSpeed::SaveModule()
 	moduleJSON["Type"] = type;
 
 	moduleJSON["UsingSingleValueSpeed"] = speed.usingSingleValue;
-	moduleJSON["MinSpeed"] = { speed.rangeValue.lowerLimit.x, speed.rangeValue.lowerLimit.y, speed.rangeValue.lowerLimit.z };
-	moduleJSON["MaxSpeed"] = { speed.rangeValue.upperLimit.x, speed.rangeValue.upperLimit.y, speed.rangeValue.upperLimit.z };
+	moduleJSON["MinSpeed"] = speed.rangeValue.lowerLimit;
+	moduleJSON["MaxSpeed"] = speed.rangeValue.upperLimit;
 
 	return moduleJSON;
 }
@@ -61,17 +56,12 @@ void SetSpeed::LoadModule(const json& moduleJSON)
 
 	if (moduleJSON.contains("MinSpeed"))
 	{
-		speed.rangeValue.lowerLimit.x = moduleJSON["MinSpeed"][0];
-		speed.rangeValue.lowerLimit.y = moduleJSON["MinSpeed"][1];
-		speed.rangeValue.lowerLimit.z = moduleJSON["MinSpeed"][2];
-
+		speed.rangeValue.lowerLimit = moduleJSON["MinSpeed"];
 	}
 
 	if (moduleJSON.contains("MaxSpeed"))
 	{
-		speed.rangeValue.upperLimit.x = moduleJSON["MaxSpeed"][0];
-		speed.rangeValue.upperLimit.y = moduleJSON["MaxSpeed"][1];
-		speed.rangeValue.upperLimit.z = moduleJSON["MaxSpeed"][2];
+		speed.rangeValue.upperLimit = moduleJSON["MaxSpeed"];
 	}
 }
 
@@ -82,8 +72,8 @@ SetColor::SetColor(Emmiter* owner)
 	this->owner = owner;
 
 	color.usingSingleValue = true;
-	color.rangeValue.lowerLimit = vec3(0, 0, 0);
-	color.rangeValue.upperLimit = vec3(255, 255, 255);
+	color.rangeValue.lowerLimit = vec4(0, 0, 0, 255);
+	color.rangeValue.upperLimit = vec4(255, 255, 255, 0);
 }
 
 SetColor::SetColor(Emmiter* owner, SetColor* ref)
@@ -100,10 +90,12 @@ void SetColor::Initialize(Particle* particle)
 		particle->color = color.singleValue;
 	}
 	else {
-		vec3 randomVec = vec3{
+		vec4 randomVec = vec4{
 			randomInt(color.rangeValue.lowerLimit.r, color.rangeValue.upperLimit.r),
 			randomInt(color.rangeValue.lowerLimit.g, color.rangeValue.upperLimit.g),
-			randomInt(color.rangeValue.lowerLimit.b, color.rangeValue.upperLimit.b) };
+			randomInt(color.rangeValue.lowerLimit.b, color.rangeValue.upperLimit.b),
+			randomInt(color.rangeValue.lowerLimit.a, color.rangeValue.upperLimit.a),
+		};
 
 		particle->color = randomVec;
 	}
@@ -116,8 +108,8 @@ json SetColor::SaveModule()
 	moduleJSON["Type"] = type;
 
 	moduleJSON["UsingSingleValueColor"] = color.usingSingleValue;
-	moduleJSON["MinColor"] = { color.rangeValue.lowerLimit.x, color.rangeValue.lowerLimit.y, color.rangeValue.lowerLimit.z };
-	moduleJSON["MaxColor"] = { color.rangeValue.upperLimit.x, color.rangeValue.upperLimit.y, color.rangeValue.upperLimit.z };
+	moduleJSON["MinColor"] = { color.rangeValue.lowerLimit.x, color.rangeValue.lowerLimit.y, color.rangeValue.lowerLimit.z, color.rangeValue.lowerLimit.a };
+	moduleJSON["MaxColor"] = { color.rangeValue.upperLimit.x, color.rangeValue.upperLimit.y, color.rangeValue.upperLimit.z, color.rangeValue.upperLimit.a };
 
 	return moduleJSON;
 }
@@ -139,7 +131,7 @@ void SetColor::LoadModule(const json& moduleJSON)
 		color.rangeValue.lowerLimit.x = moduleJSON["MinColor"][0];
 		color.rangeValue.lowerLimit.y = moduleJSON["MinColor"][1];
 		color.rangeValue.lowerLimit.z = moduleJSON["MinColor"][2];
-
+		color.rangeValue.lowerLimit.z = moduleJSON["MinColor"][3];
 	}
 
 	if (moduleJSON.contains("MaxColor"))
@@ -147,6 +139,7 @@ void SetColor::LoadModule(const json& moduleJSON)
 		color.rangeValue.upperLimit.x = moduleJSON["MaxColor"][0];
 		color.rangeValue.upperLimit.y = moduleJSON["MaxColor"][1];
 		color.rangeValue.upperLimit.z = moduleJSON["MaxColor"][2];
+		color.rangeValue.upperLimit.z = moduleJSON["MaxColor"][3];
 	}
 }
 
@@ -225,7 +218,6 @@ void SetScale::LoadModule(const json& moduleJSON)
 	}
 }
 
-
 // set offset --------------------------------------------------------------------------------------
 SetOffset::SetOffset(Emmiter* owner)
 {
@@ -298,5 +290,83 @@ void SetOffset::LoadModule(const json& moduleJSON)
 		offset.rangeValue.upperLimit.x = moduleJSON["MaxOffset"][0];
 		offset.rangeValue.upperLimit.y = moduleJSON["MaxOffset"][1];
 		offset.rangeValue.upperLimit.z = moduleJSON["MaxOffset"][2];
+	}
+}
+
+// set direction -----------------------------------------------------------------------------------
+SetDirection::SetDirection(Emmiter* owner)
+{
+	type = SET_DIRECTION;
+	this->owner = owner;
+
+	direction.usingSingleValue = false;
+	direction.rangeValue.lowerLimit = vec3(-0.5f, 1, -0.5f);
+	direction.rangeValue.upperLimit = vec3(0.5f, 2, 0.5f);
+}
+
+SetDirection::SetDirection(Emmiter* owner, SetDirection* ref)
+{
+	type = SET_DIRECTION;
+	this->owner = owner;
+
+	direction = ref->direction;
+
+}
+
+void SetDirection::Initialize(Particle* particle)
+{
+	if (direction.usingSingleValue) {
+		particle->direction = direction.singleValue;
+	}
+	else {
+		vec3 randomVec = vec3{
+			randomFloat(direction.rangeValue.lowerLimit.x, direction.rangeValue.upperLimit.x),
+			randomFloat(direction.rangeValue.lowerLimit.y, direction.rangeValue.upperLimit.y),
+			randomFloat(direction.rangeValue.lowerLimit.z, direction.rangeValue.upperLimit.z) };
+
+		particle->direction = randomVec;
+	}
+
+	glm::normalize(particle->direction);
+}
+
+json SetDirection::SaveModule()
+{
+	json moduleJSON;
+
+	moduleJSON["Type"] = type;
+
+	moduleJSON["UsingSingleValueDirection"] = direction.usingSingleValue;
+	moduleJSON["MinDirection"] = { direction.rangeValue.lowerLimit.x, direction.rangeValue.lowerLimit.y, direction.rangeValue.lowerLimit.z };
+	moduleJSON["MaxDirection"] = { direction.rangeValue.upperLimit.x, direction.rangeValue.upperLimit.y, direction.rangeValue.upperLimit.z };
+
+	return moduleJSON;
+}
+
+void SetDirection::LoadModule(const json& moduleJSON)
+{
+	if (moduleJSON.contains("Type"))
+	{
+		type = moduleJSON["Type"];
+	}
+
+	if (moduleJSON.contains("UsingSingleValueDirection"))
+	{
+		direction.usingSingleValue = moduleJSON["UsingSingleValueDirection"];
+	}
+
+	if (moduleJSON.contains("MinDirection"))
+	{
+		direction.rangeValue.lowerLimit.x = moduleJSON["MinDirection"][0];
+		direction.rangeValue.lowerLimit.y = moduleJSON["MinDirection"][1];
+		direction.rangeValue.lowerLimit.z = moduleJSON["MinDirection"][2];
+
+	}
+
+	if (moduleJSON.contains("MaxDirection"))
+	{
+		direction.rangeValue.upperLimit.x = moduleJSON["MaxDirection"][0];
+		direction.rangeValue.upperLimit.y = moduleJSON["MaxDirection"][1];
+		direction.rangeValue.upperLimit.z = moduleJSON["MaxDirection"][2];
 	}
 }

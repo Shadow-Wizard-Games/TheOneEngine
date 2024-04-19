@@ -505,6 +505,11 @@ bool PanelInspector::Draw()
 
             if (particleSystem != nullptr && ImGui::CollapsingHeader("Particle System", treeNodeFlags))
             {
+                // to see the particles without playing
+                if (app->state == GameState::NONE) {
+                    particleSystem->Update();
+                }
+
                 /*if (ImGui::Button("Load")) {
                     particleSystem->Load("");
                 }

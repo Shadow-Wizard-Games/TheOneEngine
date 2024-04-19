@@ -76,6 +76,9 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 		if (ImGui::MenuItem("Set Offset"))
 			emmiter->AddModule(InitializeEmmiterModule::SET_OFFSET);
 
+		if (ImGui::MenuItem("Set Direction"))
+			emmiter->AddModule(InitializeEmmiterModule::SET_DIRECTION);
+
 
 		ImGui::EndMenu();
 	}
@@ -111,6 +114,10 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 
 		case InitializeEmmiterModule::SET_OFFSET:
 			UIInspectorEmmiterInitializeModule((SetOffset*)(*m).get());
+			break;
+
+		case InitializeEmmiterModule::SET_DIRECTION:
+			UIInspectorEmmiterInitializeModule((SetDirection*)(*m).get());
 			break;
 
 		default:
@@ -195,7 +202,6 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 	}
 
 	ImGui::Separator();
-
 }
 
 // spawn modules ---------------------------------------------------------------------------------------------------------------
@@ -230,28 +236,16 @@ void UIInspectorEmmiterInitializeModule(SetSpeed* initModule)
 
 	if (initModule->speed.usingSingleValue) {
 		ImGui::PushID("set_speed_single_PS");
-		ImGui::InputDouble("X", &initModule->speed.singleValue.x, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->speed.singleValue.y, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->speed.singleValue.z, 0, 0, "%.2f");
+		ImGui::InputFloat("X", &initModule->speed.singleValue, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 	else {
 		ImGui::PushID("set_speed_min_PS");
-		ImGui::InputDouble("X", &initModule->speed.rangeValue.lowerLimit.x, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->speed.rangeValue.lowerLimit.y, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->speed.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+		ImGui::InputFloat("X", &initModule->speed.rangeValue.lowerLimit, 0, 0, "%.2f");
 		ImGui::PopID();
 
 		ImGui::PushID("set_speed_max_PS");
-		ImGui::InputDouble("X", &initModule->speed.rangeValue.upperLimit.x, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->speed.rangeValue.upperLimit.y, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->speed.rangeValue.upperLimit.z, 0, 0, "%.2f");
+		ImGui::InputFloat("X", &initModule->speed.rangeValue.upperLimit, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 
@@ -274,6 +268,8 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 		ImGui::InputDouble("G", &initModule->color.singleValue.g, 0, 0, "%.2f");
 		ImGui::SameLine();
 		ImGui::InputDouble("B", &initModule->color.singleValue.b, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("A", &initModule->color.singleValue.a, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 	else {
@@ -283,6 +279,8 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 		ImGui::InputDouble("G", &initModule->color.rangeValue.lowerLimit.g, 0, 0, "%.2f");
 		ImGui::SameLine();
 		ImGui::InputDouble("B", &initModule->color.rangeValue.lowerLimit.b, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("A", &initModule->color.rangeValue.lowerLimit.a, 0, 0, "%.2f");
 		ImGui::PopID();
 
 		ImGui::PushID("set_color_max_PS");
@@ -291,6 +289,8 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 		ImGui::InputDouble("G", &initModule->color.rangeValue.upperLimit.g, 0, 0, "%.2f");
 		ImGui::SameLine();
 		ImGui::InputDouble("B", &initModule->color.rangeValue.upperLimit.b, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("A", &initModule->color.rangeValue.upperLimit.a, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 
@@ -368,6 +368,44 @@ void UIInspectorEmmiterInitializeModule(SetOffset* initModule)
 		ImGui::InputDouble("Y", &initModule->offset.rangeValue.upperLimit.y, 0, 0, "%.2f");
 		ImGui::SameLine();
 		ImGui::InputDouble("Z", &initModule->offset.rangeValue.upperLimit.z, 0, 0, "%.2f");
+		ImGui::PopID();
+	}
+
+	ImGui::PopItemWidth();
+}
+
+void UIInspectorEmmiterInitializeModule(SetDirection* initModule)
+{
+	ImGui::Text("Set Initial Direction: ");
+
+	ImGui::Checkbox("Single Value", &initModule->direction.usingSingleValue);
+
+	ImGui::PushItemWidth(60);
+
+	if (initModule->direction.usingSingleValue) {
+		ImGui::PushID("set_direction_single_PS");
+		ImGui::InputDouble("X", &initModule->direction.singleValue.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Y", &initModule->direction.singleValue.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Z", &initModule->direction.singleValue.z, 0, 0, "%.2f");
+		ImGui::PopID();
+	}
+	else {
+		ImGui::PushID("set_direction_min_PS");
+		ImGui::InputDouble("X", &initModule->direction.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Y", &initModule->direction.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Z", &initModule->direction.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+		ImGui::PopID();
+
+		ImGui::PushID("set_direction_max_PS");
+		ImGui::InputDouble("X", &initModule->direction.rangeValue.upperLimit.x, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Y", &initModule->direction.rangeValue.upperLimit.y, 0, 0, "%.2f");
+		ImGui::SameLine();
+		ImGui::InputDouble("Z", &initModule->direction.rangeValue.upperLimit.z, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 

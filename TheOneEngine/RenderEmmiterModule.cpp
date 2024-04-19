@@ -47,7 +47,7 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
 
     // render
     glBegin(GL_TRIANGLES);
-    glColor3ub(particle->color.r, particle->color.g, particle->color.b);
+    glColor4ub(particle->color.r, particle->color.g, particle->color.b, particle->color.a);
 
     glVertex3f(- (1 * particle->scale.x), + (1 * particle->scale.y), 0);
     glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);

@@ -8,23 +8,29 @@
 
 class Particle {
 public:
+	// pass the duration of the particle and calculate other values needed
+	void SetDuration(float duration);
+
+	// reset all attributes other than duration-related ones
+	void ResetAttributes();
+
+	void Update(double dt);
+
 	float duration;
 	float lifetime;
 
-	void Update(double dt);
-	void Render();
+	float lifetimeOverOne;
+	float dtOverOne;
 
-	vec3 color;
-	vec3 deltaColor;
+	vec4 color;
 
 	vec3 position;
-	vec3 speed;
 
-	vec3 rotation;
+	// normalized
+	vec3 direction;
+	float speed;
 
+	vec4 rotation;
 
-	vec3 scale = vec3(1, 1, 1);
-
-private:
-
+	vec3 scale;
 };

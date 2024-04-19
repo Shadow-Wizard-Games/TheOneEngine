@@ -20,7 +20,8 @@ public:
 		SET_SPEED,
 		SET_COLOR,
 		SET_SCALE,
-		SET_OFFSET
+		SET_OFFSET,
+		SET_DIRECTION
 	};
 
 	InitializeEmmiterModuleType type;
@@ -41,7 +42,7 @@ public:
 
 	void LoadModule(const json& moduleJSON);
 
-	SingleOrRandom<vec3> speed;
+	SingleOrRandom<float> speed;
 };
 
 class SetColor : public InitializeEmmiterModule {
@@ -55,7 +56,7 @@ public:
 
 	void LoadModule(const json& moduleJSON);
 
-	SingleOrRandom<vec3> color;
+	SingleOrRandom<vec4> color;
 };
 
 class SetScale : public InitializeEmmiterModule {
@@ -84,4 +85,18 @@ public:
 	void LoadModule(const json& moduleJSON);
 
 	SingleOrRandom<vec3> offset;
+};
+
+class SetDirection : public InitializeEmmiterModule {
+public:
+	SetDirection(Emmiter* owner);
+	SetDirection(Emmiter* owner, SetDirection* ref);
+
+	void Initialize(Particle* particle);
+
+	json SaveModule();
+
+	void LoadModule(const json& moduleJSON);
+
+	SingleOrRandom<vec3> direction;
 };

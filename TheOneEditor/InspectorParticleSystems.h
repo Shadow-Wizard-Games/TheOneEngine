@@ -22,6 +22,7 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule);
 
 void UIInspectorEmmiterInitializeModule(SetOffset* initModule);
 
+void UIInspectorEmmiterInitializeModule(SetDirection* initModule);
 
 // update modules
 void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule);

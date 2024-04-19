@@ -18,7 +18,12 @@ AccelerationUpdate::AccelerationUpdate(Emmiter* owner, AccelerationUpdate* ref)
 
 void AccelerationUpdate::Update(double dt, Particle* particle)
 {
-	particle->speed = particle->speed + (acceleration * dt);
+	vec3 vectorSpeed = (double)particle->speed * particle->direction;
+
+	vectorSpeed = vectorSpeed + (acceleration * dt);
+
+	particle->direction = glm::normalize(vectorSpeed);
+	particle->speed = glm::length(vectorSpeed);
 }
 
 json AccelerationUpdate::SaveModule()
