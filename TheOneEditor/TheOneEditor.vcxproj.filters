@@ -73,6 +73,9 @@
     <ClCompile Include="PanelAnimation.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Panel.h">

@@ -79,17 +79,8 @@ private:
 
 	std::list<Panel*> panels;
 
-	/*Create bools for each window to show and the general that contains all of them*/
-	bool show_gui = true;
-
-
-	/*GuiWindow1 Vars*/
-	bool show_guiwindow_1 = false;
-	bool full_desktop = false;
-	bool minimize_window = false;
-
+	bool showImGuiDemo = false;
 	bool openSceneFileWindow = false;
-	//ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 };
 
 #endif // !__GUI_H__

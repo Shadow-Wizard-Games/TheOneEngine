@@ -314,6 +314,11 @@ bool Gui::Update(double dt)
 			panel->Draw();
 	}
 
+	if (showImGuiDemo)
+	{
+		ImGui::ShowDemoWindow();
+	}
+
 	if (openSceneFileWindow)
 		OpenSceneFileWindow();
 
@@ -564,6 +569,11 @@ void Gui::MainMenuHelp()
 	if (ImGui::MenuItem("Documentation"))
 	{
 		OpenURL("https://github.com/Shadow-Wizard-Games/TheOneEngine");
+	}
+
+	if (ImGui::MenuItem("ImGui Demo"))
+	{
+		showImGuiDemo = !showImGuiDemo;
 	}
 }
 

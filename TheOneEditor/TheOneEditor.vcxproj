@@ -114,6 +114,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Hardware.cpp" />
     <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
     <ClCompile Include="Importer.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InspectorParticleSystems.cpp" />

@@ -32,14 +32,20 @@ PanelProject::~PanelProject() {}
 
 bool PanelProject::Draw()
 {
-	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
+	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_AlwaysAutoResize;
+	panelFlags |= ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0, 0 });
 
 	if (ImGui::Begin("Project", &enabled, panelFlags))
 	{
 		// LEFT - Directory Tree View ----------------------------
-		ImVec2 directorySize = ImVec2(ImGui::GetWindowSize().x * 0.3, ImGui::GetWindowSize().y);
+		ImVec2 directorySize = ImVec2(ImGui::GetContentRegionAvail().x * 0.3, ImGui::GetContentRegionAvail().y);
+		ImGuiWindowFlags directoryFlags = ImGuiWindowFlags_AlwaysAutoResize;
+		ImGui::PopStyleVar();
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0, 0 });
 
-		if (ImGui::BeginChild("Directory", directorySize, true))
+		if (ImGui::BeginChild("Directory", directorySize, true, directoryFlags))
 		{
 			ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_DefaultOpen;
 			if (ImGui::TreeNodeEx("Assets", base_flags))
@@ -58,47 +64,73 @@ bool PanelProject::Draw()
 
 				auto clickState = DirectoryTreeViewRecursive(ASSETS_PATH, &count, &selection_mask);
 
-				if (clickState.first)
-				{
-					// Update selection state
-					// (process outside of tree loop to avoid visual inconsistencies during the clicking frame)
-					if (ImGui::GetIO().KeyCtrl)
-						selection_mask ^= BIT(clickState.second);		// CTRL+click to toggle
-					else //if (!(selection_mask & (1 << clickState.second))) // Depending on selection behavior you want, may want to preserve selection when clicking on item that is part of the selection
-						selection_mask = BIT(clickState.second);		// Click to single-select
-				}
+				// Multi-selection (CTRL)
+				//if (clickState.first)
+				//{
+				//	// Update selection state
+				//	// (process outside of tree loop to avoid visual inconsistencies during the clicking frame)
+				//	if (ImGui::GetIO().KeyCtrl)
+				//		selection_mask ^= BIT(clickState.second);		// CTRL+click to toggle
+				//	else //if (!(selection_mask & (1 << clickState.second))) // Depending on selection behavior you want, may want to preserve selection when clicking on item that is part of the selection
+				//		selection_mask = BIT(clickState.second);		// Click to single-select
+				//}
 
 				ImGui::TreePop();
 			}
 		}
 		ImGui::EndChild();
 
-
-		// RIGHT - Inspector ----------------------------
 		ImGui::SameLine();
-		ImVec2 topbarSize = ImVec2(ImGui::GetWindowSize().x * 0.7f - 10, 20);
 
-		if (!directoryPath.empty())
+		// RIGHT - Inspector -------------------------------------	
+		ImVec2 inspectorSize = ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y);
+		ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
+
+		if (ImGui::BeginChild("Inspector", inspectorSize, true))
 		{
-			ImGui::Text("%s", directoryPath.c_str());
-		}
+			ImVec2 barSize = ImVec2(ImGui::GetContentRegionAvail().x, 22);
+			ImVec2 explorerSize = ImVec2(ImGui::GetContentRegionAvail().x, inspectorSize.y - 2 * barSize.y);
 
-		ImVec2 inspectorSize = ImVec2(ImGui::GetWindowSize().x * 0.7f - 10, ImGui::GetWindowSize().y - topbarSize.y);
-
-		if (ImGui::BeginChild("Selected", inspectorSize, false))
-		{
-			//Historn: NEED TO CREATE CHILD WINDOW FOR DRAG AND DROP
-			//if(ImGui::BeginChild("FileExplorer"))
-
-			FileExplorerDraw();
-
-			if (fileSelected)
+			// TopBar Folder Path
+			if (ImGui::BeginChild("path", barSize, true))
 			{
-				ImGui::Text("%s", fileSelected->path.string().c_str());
+				if (!directoryPath.empty())
+				{
+					ImGui::Dummy({  0, 4 });
+					ImGui::Dummy({ 10, 0 });
+					ImGui::SameLine();
+					ImGui::Text("%s", directoryPath.c_str());
+				}
 			}
+			ImGui::EndChild();
+
+			// Explorer
+			if (ImGui::BeginChild("view", explorerSize, true))
+			{
+				FileExplorerDraw();
+			}
+			ImGui::EndChild();
+
+			// BotBar selected item path
+			if (ImGui::BeginChild("selection", barSize, true))
+			{
+				if (fileSelected)
+				{
+					ImGui::Dummy({  0, 4 });
+					ImGui::Dummy({ 10, 0 });
+					ImGui::SameLine();
+					ImGui::Text("%s", fileSelected->path.string().c_str());
+				}
+			}
+			ImGui::EndChild();
 		}
 		ImGui::EndChild();
 
+		ImGui::PopStyleVar(2);
+	}
+	else
+	{
+		ImGui::PopStyleVar();
 	}
 	ImGui::End();
 
@@ -126,22 +158,22 @@ std::pair<bool, uint32_t> PanelProject::DirectoryTreeViewRecursive(const fs::pat
 	bool any_node_clicked = false;
 	uint32_t node_clicked = 0;
 
+	bool has_subdirectories = false;
+
 	for (const auto& entry : fs::directory_iterator(path))
 	{
+		// Skip non-directory entries
+		if (!fs::is_directory(entry.path()))
+			continue; 
+
+		has_subdirectories = true;
+
 		ImGuiTreeNodeFlags node_flags = base_flags;
 		const bool is_selected = (*selection_mask & BIT(*count)) != 0;
 		if (is_selected)
 			node_flags |= ImGuiTreeNodeFlags_Selected;
 
-		std::string name = entry.path().string();
-
-		auto lastSlash = name.find_last_of("/\\");
-		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
-		name = name.substr(lastSlash, name.size() - lastSlash);
-
-		bool entryIsFile = !fs::is_directory(entry.path());
-		if (entryIsFile)
-			node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+		std::string name = entry.path().filename().string();
 
 		bool node_open = ImGui::TreeNodeEx((void*)(intptr_t)(*count), node_flags, name.c_str());
 
@@ -158,35 +190,28 @@ std::pair<bool, uint32_t> PanelProject::DirectoryTreeViewRecursive(const fs::pat
 
 		(*count)--;
 
-		if (!entryIsFile)
+		if (node_open)
 		{
-			if (node_open)
-			{
-				auto clickState = DirectoryTreeViewRecursive(entry.path(), count, selection_mask);
+			auto clickState = DirectoryTreeViewRecursive(entry.path(), count, selection_mask);
 
-				if (!any_node_clicked)
-				{
-					any_node_clicked = clickState.first;
-					node_clicked = clickState.second;
-				}
-
-				ImGui::TreePop();
-			}
-			else
+			if (!any_node_clicked)
 			{
-				for (const auto& e : fs::recursive_directory_iterator(entry.path()))
-					(*count)--;
+				any_node_clicked = clickState.first;
+				node_clicked = clickState.second;
 			}
+
+			ImGui::TreePop();
 		}
 	}
 
 	return { any_node_clicked, node_clicked };
 }
 
+
 void PanelProject::FileExplorerDraw()
 {
 	// Set Style
-	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 0));
+	//ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.f, 0.f, 0.f, 0.f));
 	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.f, 0.f, 0.f, 0.f));
 
@@ -200,16 +225,23 @@ void PanelProject::FileExplorerDraw()
 
 	GLuint textureID = 0;
 
+	// left/right padding
+	static float windowPadding = 16;
+
 	// Item size - column count
 	static float padding = 16.0f;
-	static float thumbnailSize = 64.0f;
+	static float thumbnailSize = 48.0f;
 	float itemSize = thumbnailSize + 2*padding;
 
-	float explorerWidth = ImGui::GetContentRegionAvail().x;
+	float explorerWidth = ImGui::GetContentRegionAvail().x - 2*windowPadding;
 	int columnCount = (int)(explorerWidth / itemSize);
 	if (columnCount < 1) columnCount = 1;
 
-	ImGui::Columns(columnCount, 0, false);
+	
+	ImGui::Columns(columnCount+2, 0, false);
+	ImGui::Dummy({ windowPadding, 0 });
+	ImGui::SameLine();
+	ImGui::NextColumn();
 
 	for (auto& file : files)
 	{
@@ -226,7 +258,7 @@ void PanelProject::FileExplorerDraw()
 
 		std::string displayName = (file.name.size() >= 10) ? file.name.substr(0, 8) + "..." : file.name;
 
-		auto offset = (itemSize - ImGui::CalcTextSize(displayName.c_str()).x) / 2 - 6;
+		auto offset = (itemSize - ImGui::CalcTextSize(displayName.c_str()).x) / 2;
 		ImGui::Dummy({ offset, 0 });
 		ImGui::SameLine();
 		ImGui::Text(displayName.c_str());
@@ -236,7 +268,7 @@ void PanelProject::FileExplorerDraw()
 
 	ImGui::Columns();
 
-	ImGui::PopStyleVar();
+	//ImGui::PopStyleVar(1);
 	ImGui::PopStyleColor(2);
 	
 	//DragAndDrop(file);
@@ -275,8 +307,8 @@ std::vector<FileInfo> PanelProject::ListFiles(const std::string& path)
 FileType PanelProject::FindFileType(const std::string& fileExtension)
 {
 	// Convert fileExtension to lowercase
-	std::string lowercaseExtension = fileExtension;
-	std::transform(lowercaseExtension.begin(), lowercaseExtension.end(), lowercaseExtension.begin(),
+	std::string toLower = fileExtension;
+	std::transform(toLower.begin(), toLower.end(), toLower.begin(),
 		[](unsigned char c) { return std::tolower(c); });
 
 	// Mapping of extensions to FileType enum values
@@ -293,7 +325,7 @@ FileType PanelProject::FindFileType(const std::string& fileExtension)
 	};
 
 	// Check if extension is in map
-	auto it = extensionToFileType.find(lowercaseExtension);
+	auto it = extensionToFileType.find(toLower);
 	if (it != extensionToFileType.end())
 		return it->second;
 

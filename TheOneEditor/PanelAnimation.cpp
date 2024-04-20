@@ -3,9 +3,12 @@
 #include "App.h"
 #include "Gui.h"
 
+#include "../TheOneEngine/EngineCore.h"
+#include "../TheOneEngine/N_SceneManager.h"
+#include "../TheOneEngine/FrameBuffer.h"
 #include "../TheOneEngine/FileDialog.h"
 #include "../TheOneEngine/Camera.h"
-#include "../TheOneEngine/Animation/OzzAnimator.h"
+#include "../TheOneEngine/Model.h"
 #include "../TheOneEngine/Animation/animations/OzzAnimationSimple.h"
 #include "../TheOneEngine/Animation/animations/OzzAnimationPartialBlending.h"
 
@@ -15,324 +18,141 @@
 
 // hekbas: TODO OZZ
 PanelAnimation::PanelAnimation(PanelType type, std::string name) : Panel(type, name),
-m_ActiveAnimator(nullptr),
-m_Camera(nullptr)
+activeAnimator(nullptr),
+animationCamera(nullptr)
 {
-	/*m_Camera = new Camera();
+	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
 
-	Wiwa::Size2i& size = Wiwa::Application::Get().GetTargetResolution();
-	float aratio = size.w / (float)size.h;
-
-	m_Camera->SetPerspective(45.0f, aratio);
-
-	m_Camera->setPosition(glm::vec3(5.0f, 6.5f, 5.0f));
-	m_Camera->lookat({ 0.0f, 2.5f, 0.0f });
-
-	m_Transform = glm::mat4(1.0f);
-
-	m_Transform = glm::scale(m_Transform, glm::vec3(100.0f, 100.0f, 100.0f));*/
+	animationCamera = std::make_shared<GameObject>("ANIMATION CAMERA");
+	animationCamera.get()->AddComponent<Transform>();
+	animationCamera.get()->GetComponent<Transform>()->SetPosition(vec3f(0, 3, -10));
+	animationCamera.get()->AddComponent<Camera>();
+	animationCamera.get()->GetComponent<Camera>()->UpdateCamera();
 }
 
-PanelAnimation::~PanelAnimation()
-{
-	delete m_Camera;
-}
+PanelAnimation::~PanelAnimation() {}
 
 bool PanelAnimation::Draw()
 {
-	if (ImGui::Begin("Animation", &enabled, ImGuiWindowFlags_MenuBar))
+	if (ImGui::Begin("Animation", &enabled))
 	{
-		DrawTopbar();
-		DrawBody();
+		if (!AnimationAvaliable())
+		{
+			ImGui::Text("Select a GameObject with a Skeleton");
+			ImGui::End();
+			return false;
+		}
+
+		if (ImGui::BeginChild("Settings", { 400, 0 }, false, ImGuiTableFlags_Resizable))
+		{
+			Settings();
+		}
+		ImGui::EndChild();
+
+		ImGui::SameLine();
+
+		if (ImGui::BeginChild("Viewport", { 0, 0 }, false, ImGuiTableFlags_Resizable))
+		{
+			Viewport();
+		}
+		ImGui::EndChild();		
 	}
 	ImGui::End();
 
 	return true;
 }
 
-void PanelAnimation::DrawTopbar()
+bool PanelAnimation::AnimationAvaliable()
 {
-	if (ImGui::BeginMenuBar())
+	GameObject* selectedGO = engine->N_sceneManager->GetSelectedGO().get();
+
+	if (!selectedGO)
 	{
-		if (ImGui::BeginMenu("File"))
-		{
-			if (ImGui::MenuItem("New animator"))
-			{
-				if (m_ActiveAnimator) {
-					delete m_ActiveAnimator;
-				}
-
-				m_ActiveAnimator = new OzzAnimator();
-				m_ActiveAnimatorPath = "";
-			}
-
-			if (ImGui::MenuItem("Open Animator"))
-			{
-				std::string filePath = FileDialog::OpenFile("TOE Animator (*.toeanimator)\0*.toeanimator\0");
-				if (!filePath.empty())
-				{
-					if (filePath.find(".toeanimator") == filePath.npos)
-					{
-						filePath += ".toeanimator";
-					}
-
-					if (m_ActiveAnimator) {
-						delete m_ActiveAnimator;
-					}
-
-					m_ActiveAnimator = OzzAnimator::LoadAnimator(filePath.c_str());
-					m_ActiveAnimatorPath = filePath;
-				}
-			}
-
-			if (ImGui::MenuItem("Save Animator"))
-			{
-				if (m_ActiveAnimator)
-				{
-					if (m_ActiveAnimatorPath != "") {
-						OzzAnimator::SaveAnimator(m_ActiveAnimator, m_ActiveAnimatorPath.c_str());
-					}
-					else
-					{
-						std::string filePath = FileDialog::SaveFile("TOE Animator (*.toeanimator)\0*.toeanimator\0");
-
-						if (!filePath.empty()) {
-							if (filePath.find(".toeanimator") == filePath.npos)
-							{
-								filePath += ".toeanimator";
-							}
-
-							m_ActiveAnimatorPath = filePath;
-
-							OzzAnimator::SaveAnimator(m_ActiveAnimator, m_ActiveAnimatorPath.c_str());
-						}
-					}
-				}
-			}
-
-			if (ImGui::MenuItem("Save Animator as..."))
-			{
-				if (m_ActiveAnimator)
-				{
-					std::string filePath = FileDialog::SaveFile("TOE Animator (*.toeanimator)\0*.toeanimator\0");
-
-					if (!filePath.empty())
-					{
-						if (filePath.find(".toeanimator") == filePath.npos)
-						{
-							filePath += ".toeanimator";
-						}
-
-						m_ActiveAnimatorPath = filePath;
-
-						OzzAnimator::SaveAnimator(m_ActiveAnimator, m_ActiveAnimatorPath.c_str());
-					}
-				}
-			}
-
-			ImGui::EndMenu();
-		}
-
-		ImGui::EndMenuBar();
+		return false;
 	}
+
+	if (!selectedGO->GetComponent<Mesh>())
+	{
+		return false;
+	}
+
+	auto resourceID = selectedGO->GetComponent<Mesh>()->meshID;
+
+	if (!Resources::GetResourceById<Model>(resourceID)->isAnimated())
+	{
+		return false;
+	}
+
+	activeAnimator = Resources::GetResourceById<Model>(resourceID);
+
+	return true;
 }
 
-void PanelAnimation::DrawBody()
+void PanelAnimation::Settings()
 {
-	if (!m_ActiveAnimator) {
-		ImGui::Text("Create or open an animator");
-		return;
-	}
-
 	const char* animator_path = "Not saved.";
 
-	if (m_ActiveAnimatorPath != "") {
-		animator_path = m_ActiveAnimatorPath.c_str();
-	}
+	if (activeAnimatorPath != "")
+		animator_path = activeAnimatorPath.c_str();
 
 	ImGui::Text("Animator file: %s", animator_path);
 
-	if (ImGui::BeginTable("##anim_table", 2, ImGuiTableFlags_Resizable))
+	bool blend = activeAnimator->getBlendOnTransition();
+
+	if (ImGui::Checkbox("Blend on transition", &blend))
+		activeAnimator->setBlendOnTransition(blend);
+
+	float transtime = activeAnimator->getTransitionTime();
+
+	if (blend)
 	{
-		ImGui::TableNextColumn();
-
-		DrawMeshContainer();
-		DrawMaterialContainer();
-		DrawSkeletonContainer();
-
-		bool blend = m_ActiveAnimator->getBlendOnTransition();
-
-		if (ImGui::Checkbox("Blend on transition", &blend)) {
-			m_ActiveAnimator->setBlendOnTransition(blend);
-		}
-
-		float transtime = m_ActiveAnimator->getTransitionTime();
-
-		if (blend)
-		{
-			if (ImGui::InputFloat("Transition time", &transtime)) {
-				m_ActiveAnimator->setTransitionTime(transtime);
-			}
-		}
-		else
-		{
-			ImGui::BeginDisabled();
-			ImGui::InputFloat("Transition time", &transtime);
-			ImGui::EndDisabled();
-		}
-
-		DrawAnimations();
-
-		ImGui::TableNextColumn();
-
-		DrawAnimationViewer();
-
-		ImGui::EndTable();
+		if (ImGui::InputFloat("Transition time", &transtime))
+			activeAnimator->setTransitionTime(transtime);
 	}
+	else
+	{
+		ImGui::BeginDisabled();
+		ImGui::InputFloat("Transition time", &transtime);
+		ImGui::EndDisabled();
+	}
+
+	DrawAnimations();
 }
 
 // hekbas: TODO OZZ
-void PanelAnimation::DrawAnimationViewer()
+void PanelAnimation::Viewport()
 {
-	//m_Camera->frameBuffer->Clear({ 0.1f, 0.1f, 0.1f, 1.0f });
+	// Set viewport size
+	ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 
-	//// Render animation
-	//m_ActiveAnimator->Update(app->GetDT());
-	//m_ActiveAnimator->Render(m_Camera, m_Transform);
-
-	//// ImGui draw
-	//ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-
-	//Wiwa::Size2i resolution = Wiwa::Application::Get().GetTargetResolution();
-	//float ar = resolution.w / (float)resolution.h;
-	//Wiwa::Size2f scales = { viewportPanelSize.x / (float)resolution.w, viewportPanelSize.y / (float)resolution.h };
-
-	//float scale = scales.x < scales.y ? scales.x : scales.y;
-
-	//ImVec2 isize = { resolution.w * scale, resolution.h * scale };
-
-	//ImTextureID tex = (ImTextureID)(intptr_t)m_Camera->frameBuffer->getColorBufferTexture();
-	//ImGui::Image(tex, isize, ImVec2(0, 1), ImVec2(1, 0));
-}
-
-void PanelAnimation::DrawMeshContainer()
-{
-	// Mesh file
-	std::string mesh_label = "No mesh";
-
-	if (m_ActiveAnimator->IsMeshLoaded()) {
-		mesh_label = m_ActiveAnimator->getMeshPath();
-	}
-
-	ImGui::Text("Mesh");
-	ImGui::PushID("ozz_mesh");
-
-	app->gui->AssetContainer(mesh_label.c_str());
-	if (ImGui::BeginDragDropTarget())
+	if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
+		(frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
 	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-		{
-			const wchar_t* path = (const wchar_t*)payload->Data;
-			std::wstring ws(path);
-			std::string pathS(ws.begin(), ws.end());
-			std::filesystem::path p = pathS.c_str();
-			if (p.extension() == ".mesh")
-			{
-				std::string libpath = Resources::AssetToLibPath(p.string());
-				bool loaded = m_ActiveAnimator->LoadMesh(libpath);
-
-				if (loaded) {
-					LOG(LogType::LOG_OK, "Loaded ozz mesh %s", p.string().c_str());
-				}
-				else {
-					LOG(LogType::LOG_ERROR, "Failed to load ozz mesh %s", p.string().c_str());
-				}
-			}
-		}
-
-		ImGui::EndDragDropTarget();
-	}
-	ImGui::PopID();
-}
-
-void PanelAnimation::DrawSkeletonContainer()
-{
-	// Mesh file
-	std::string skeleton_label = "No skeleton";
-
-	if (m_ActiveAnimator->IsSkeletonLoaded()) {
-		skeleton_label = m_ActiveAnimator->getSkeletonPath();
+		frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+		animationCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
 	}
 
-	ImGui::Text("Skeleton");
-	ImGui::PushID("ozz_skeleton");
-
-	app->gui->AssetContainer(skeleton_label.c_str());
-	if (ImGui::BeginDragDropTarget())
+	//ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
 	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-		{
-			const wchar_t* path = (const wchar_t*)payload->Data;
-			std::wstring ws(path);
-			std::string pathS(ws.begin(), ws.end());
-			std::filesystem::path p = pathS.c_str();
-			if (p.extension() == ".skeleton")
-			{
-				std::string libpath = Resources::AssetToLibPath(p.string());
-				bool loaded = m_ActiveAnimator->LoadSkeleton(libpath);
+		frameBuffer->Bind();
+		frameBuffer->Clear({ 0.13f, 0.14f, 0.15f, 1.00f });
+		frameBuffer->ClearBuffer(-1);
 
-				if (loaded) {
-					LOG(LogType::LOG_OK, "Loaded ozz mesh %s", p.string().c_str());
-				}
-				else {
-					LOG(LogType::LOG_ERROR, "Failed to load ozz mesh %s", p.string().c_str());
-				}
-			}
-		}
+		// Draw
+		//engine->Render(animationCamera->GetComponent<Camera>());
+		engine->SetUniformBufferCamera(animationCamera->GetComponent<Camera>());
 
-		ImGui::EndDragDropTarget();
-	}
-	ImGui::PopID();
-}
+		engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Mesh>()->DrawComponent(animationCamera->GetComponent<Camera>());
 
-void PanelAnimation::DrawMaterialContainer()
-{
-	// Material file
-	std::string material_label = "No material";
+		/*current->Draw(DrawMode::EDITOR, animationCamera->GetComponent<Camera>());
+		if (engine->N_sceneManager->GetSceneIsChanging())
+			engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);*/
 
-	if (m_ActiveAnimator->IsMaterialLoaded()) {
-		material_label = m_ActiveAnimator->getMaterialPath();
+		frameBuffer->Unbind();
 	}
 
-	ImGui::Text("Material");
-	ImGui::PushID("material");
-
-	app->gui->AssetContainer(material_label.c_str());
-	if (ImGui::BeginDragDropTarget())
-	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-		{
-			const wchar_t* path = (const wchar_t*)payload->Data;
-			std::wstring ws(path);
-			std::string pathS(ws.begin(), ws.end());
-			std::filesystem::path p = pathS.c_str();
-			if (p.extension() == ".toematerial")
-			{
-				std::string libpath = Resources::AssetToLibPath(p.string());
-				bool loaded = m_ActiveAnimator->LoadMaterial(libpath);
-
-				if (loaded) {
-					LOG(LogType::LOG_OK, "Loaded ozz mesh %s", p.string().c_str());
-				}
-				else {
-					LOG(LogType::LOG_ERROR, "Failed to load ozz mesh %s", p.string().c_str());
-				}
-			}
-		}
-
-		ImGui::EndDragDropTarget();
-	}
-	ImGui::PopID();
+	//Draw FrameBuffer Texture
+	ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), { viewportSize.x, viewportSize.y }, { 0, 1 }, { 1, 0 });
 }
 
 void PanelAnimation::DrawAnimations()
@@ -385,10 +205,10 @@ void PanelAnimation::DrawAnimations()
 			switch (current_item)
 			{
 				case AnimationType::AT_PARTIAL_BLEND:
-					anim_id = m_ActiveAnimator->CreatePartialAnimation(animation_name);
+					anim_id = activeAnimator->CreatePartialAnimation(animation_name);
 					break;
 				case AnimationType::AT_SIMPLE:
-					anim_id = m_ActiveAnimator->CreateSimpleAnimation(animation_name);
+					anim_id = activeAnimator->CreateSimpleAnimation(animation_name);
 					break;
 				default:
 					break;
@@ -419,11 +239,11 @@ void PanelAnimation::DrawAnimations()
 	// Show animation list
 	if (ImGui::CollapsingHeader("Animation list"))
 	{
-		size_t anim_count = m_ActiveAnimator->getAnimationCount();
+		size_t anim_count = activeAnimator->getAnimationCount();
 
 		for (size_t i = 0; i < anim_count; i++)
 		{
-			OzzAnimator::AnimationData& a_data = m_ActiveAnimator->getAnimationAt(i);
+			Model::AnimationData& a_data = activeAnimator->getAnimationAt(i);
 
 			if (!a_data.animation) continue;
 
@@ -473,17 +293,17 @@ void PanelAnimation::DrawAnimations()
 				}
 
 				if (ImGui::Button("Play")) {
-					m_ActiveAnimator->PlayAnimation(i);
+					activeAnimator->PlayAnimation(i);
 				}
 
 				ImGui::SameLine();
 
 				if (ImGui::Button("Stop")) {
-					m_ActiveAnimator->StopAnimation(false);
+					activeAnimator->StopAnimation(false);
 				}
 
 				if (ImGui::Button("Delete")) {
-					m_ActiveAnimator->RemoveAnimationAt(i);
+					activeAnimator->RemoveAnimationAt(i);
 				}
 
 				ImGui::TreePop();
@@ -503,7 +323,7 @@ void PanelAnimation::DrawPartialBlendingAnimation(OzzAnimationPartialBlending* p
 	ubr = partial_animation->GetUpperBodyRoot();
 	prevubr = ubr;
 
-	ozz::span<const char* const> bone_names = m_ActiveAnimator->getSkeletonBoneNames();
+	ozz::span<const char* const> bone_names = activeAnimator->getSkeletonBoneNames();
 
 	if (ImGui::BeginCombo("Upper body root", bone_names[ubr]))
 	{

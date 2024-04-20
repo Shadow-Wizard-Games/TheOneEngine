@@ -3,17 +3,14 @@
 #include "Panel.h"
 #include "../TheOneEngine/Defs.h"
 
-//#include <Wiwa/animation/OzzAnimator.h>
-//#include <Wiwa/animation/animations/OzzAnimationSimple.h>
-//#include <glm/glm.hpp>
-
 #include <string>
 
 
-class Camera;
-class OzzAnimator;
+class Model;
 class OzzAnimationSimple;
 class OzzAnimationPartialBlending;
+class GameObject;
+class FrameBuffer;
 
 class PanelAnimation : public Panel
 {
@@ -24,23 +21,20 @@ public:
 	bool Draw() override;
 
 private:
-	void DrawTopbar();
-	void DrawBody();
-	void DrawAnimationViewer();
 
-	void DrawMeshContainer();
-	void DrawSkeletonContainer();
-	void DrawMaterialContainer();
+	bool AnimationAvaliable();
+	void Settings();
+	void Viewport();
+
 	void DrawAnimations();
 
 	void DrawSimpleAnimation(OzzAnimationSimple* simple_animation);
 	void DrawPartialBlendingAnimation(OzzAnimationPartialBlending* partial_animation);
 
 private:
-	std::string m_ActiveAnimatorPath;
-	OzzAnimator* m_ActiveAnimator;
+	std::string activeAnimatorPath;
+	Model* activeAnimator;
 
-	mat4 m_Transform;
-
-	Camera* m_Camera;
+	std::shared_ptr<GameObject> animationCamera;
+	std::shared_ptr<FrameBuffer> frameBuffer;
 };
