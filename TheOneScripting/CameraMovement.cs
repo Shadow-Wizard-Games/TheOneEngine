@@ -4,7 +4,7 @@ public class CameraMovement : MonoBehaviour
 {
 	IGameObject playerGO;
     PlayerScript playerScript;
-	Vector3 camOffset = new Vector3(0, 130, 60);
+	Vector3 camOffset = new Vector3(0, 100, 90);
 	//float camJoyDisplacement = 10.0f;
 
     float cameraMargin = 15.0f;
@@ -15,13 +15,17 @@ public class CameraMovement : MonoBehaviour
         playerScript = playerGO.GetComponent<PlayerScript>();
         attachedGameObject.transform.position = playerGO.transform.position + camOffset;
         attachedGameObject.transform.LookAt(playerGO.transform.position);
-        attachedGameObject.transform.Rotate(attachedGameObject.transform.right * 65);
     }
 
     public override void Update()
 	{
         if (!attachedGameObject.transform.ComponentCheck()) { return; }
 
+        DoCameraMovement();
+    }
+
+    void DoCameraMovement()
+    {
         Vector3 difference = attachedGameObject.transform.position - playerGO.transform.position;
 
         Vector3 displacement = difference - camOffset;
