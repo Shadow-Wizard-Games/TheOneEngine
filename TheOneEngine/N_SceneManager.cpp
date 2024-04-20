@@ -572,6 +572,98 @@ void N_SceneManager::DeletePendingGOs()
 	objectsToDelete.clear();	
 }
 
+void N_SceneManager::OverrideScenePrefabs(uint32_t prefabID)
+{
+	for (auto child : currentScene->GetRootSceneGO()->children)
+	{
+		if (child->GetPrefabID() == prefabID)
+		{
+			OverrideGameobjectFromPrefab(child);
+		}
+
+		OverridePrefabsRecursive(child, prefabID);
+	}
+}
+
+void N_SceneManager::OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID)
+{
+	for (auto& child : parent->children)
+	{
+		if (child->GetPrefabID() == prefabID)
+		{
+			OverrideGameobjectFromPrefab(child);
+		}
+
+		OverridePrefabsRecursive(child, prefabID);
+	}
+}
+
+void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify)
+{
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + goToModify->GetName() + ".prefab";
+
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open scene file: {}", filename);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse scene JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	// particles, camera, collider, --canvas--
+	const json& componentsJSON = prefabJSON["Components"];
+
+	for (const auto& componentJSON : componentsJSON)
+	{
+		if (componentJSON["Type"] == (int)ComponentType::Camera)
+		{
+			auto camera = goToModify->GetComponent<Camera>();
+			camera->fov = componentJSON["FOV"];
+			camera->aspect = componentJSON["Aspect"];
+			camera->zNear = componentJSON["zNear"];
+			camera->zFar = componentJSON["zFar"];
+			camera->yaw = componentJSON["Yaw"];
+			camera->pitch = componentJSON["Pitch"];
+			camera->size = componentJSON["Size"];
+			camera->cameraType = componentJSON["CameraType"];
+			camera->primaryCam = componentJSON["PrimaryCamera"];
+		}
+		if (componentJSON["Type"] == (int)ComponentType::Collider2D)
+		{
+			auto collider = goToModify->GetComponent<Collider2D>();
+			collider->collisionType = componentJSON["CollisionType"];
+			collider->colliderType = componentJSON["ColliderType"];
+			collider->w = componentJSON["Width"];
+			collider->h = componentJSON["Height"];
+			collider->radius = componentJSON["Radius"];
+			collider->offset.x = componentJSON["OffsetX"];
+			collider->offset.y = componentJSON["OffsetY"];
+		}
+	}
+}
+
+void N_SceneManager::CreatePrefabFromFile(std::string prefabPath)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+	// Load the game object from JSON
+	//newGameObject->LoadGameObject(gameObjectJSON);
+}
+
 uint N_SceneManager::GetNumberGO() const
 {
 	return static_cast<uint>(currentScene->GetRootSceneGO().get()->children.size());

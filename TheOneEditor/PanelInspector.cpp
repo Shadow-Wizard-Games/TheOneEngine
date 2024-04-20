@@ -71,14 +71,14 @@ bool PanelInspector::Draw()
             //ImGui::Checkbox("Active", &gameObjSelected->isActive);
             ImGui::SameLine(); ImGui::Text("GameObject:");
             ImGui::SameLine(); ImGui::TextColored({ 0.144f, 0.422f, 0.720f, 1.0f }, selectedGO->GetName().c_str());
-            if (selectedGO->IsPrefab() && selectedGO->IsPrefabDirty())
+            if (selectedGO->IsPrefab()/* && selectedGO->IsPrefabDirty()*/)
             {
                 ImGui::SameLine(0.0f, -1.0f);
                 if (ImGui::Button("Overrides", { 75.0f, 20.0f }))
                 {
                     ImGui::OpenPopup("ChangesWarning");
 
-                    OverridePrefabFile(*selectedGO);
+                    OverridePrefabs(*selectedGO);
                 }
             }
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
@@ -1399,16 +1399,20 @@ void PanelInspector::ChooseParticlesToImportWindow()
     ImGui::End();
 }
 
+void PanelInspector::OverridePrefabs(GameObject& gameObject)
+{
+    OverridePrefabFile(gameObject);
+    engine->N_sceneManager->OverrideScenePrefabs(gameObject.GetPrefabID());
+}
+
 void PanelInspector::OverridePrefabFile(GameObject& gameObject)
 {
-    gameObject.SetPrefab(UIDGen::GenerateUID());
-
-    std::string prefabName = gameObject.GetName() + ".prefab";
+    //gameObject.SetPrefab(UIDGen::GenerateUID());
 
     // Serialize the GameObject and save it as a prefab file
     json gameObjectJSON = gameObject.SaveGameObject();
 
-    fs::path filename = "Assets\\";
+    fs::path filename = ASSETS_PATH;
     filename += "Prefabs\\" + gameObject.GetName() + ".prefab";
 
     std::ofstream(filename) << gameObjectJSON.dump(2);

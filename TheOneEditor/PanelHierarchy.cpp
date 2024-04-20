@@ -50,6 +50,9 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		{
 			engine->N_sceneManager->SetSelectedGO(childGO);
 			LOG(LogType::LOG_INFO, "SelectedGO: %s", engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str());
+			
+			if (engine->N_sceneManager->GetSelectedGO()->IsPrefab())
+				LOG(LogType::LOG_INFO, "Selected Prefab ID: %zu", engine->N_sceneManager->GetSelectedGO()->GetPrefabID());
 		}
 
 		ContextMenu(childGO);
@@ -142,7 +145,7 @@ void PanelHierarchy::ContextMenu(std::shared_ptr<GameObject> go)
 			//go.get()->Delete();
 			//go.get()->Disable();
 		}
-		
+
 		if ((go.get()->IsPrefab() && go.get()->IsEditablePrefab()) && ImGui::MenuItem("Lock"))
 		{
 			go.get()->SetEditablePrefab(false);

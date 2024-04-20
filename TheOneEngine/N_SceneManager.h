@@ -58,6 +58,11 @@ public:
 	void AddPendingGOs();
 	void DeletePendingGOs();
 
+	void OverrideScenePrefabs(uint32_t prefabID);
+	void OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID);
+	void OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify);
+	void CreatePrefabFromFile(std::string prefabPath);
+
 	// Get/Set
 	uint GetNumberGO() const;
 	std::vector<std::shared_ptr<GameObject>>GetGameObjects();

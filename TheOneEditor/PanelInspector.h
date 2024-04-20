@@ -19,6 +19,7 @@ public:
 	void ChooseScriptNameWindow();
 	void ChooseParticlesToImportWindow();
 
+	void OverridePrefabs(GameObject& gameObject);
 	void OverridePrefabFile(GameObject& gameObject);
 
 private:
