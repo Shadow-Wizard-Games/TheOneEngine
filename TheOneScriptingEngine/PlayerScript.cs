@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
     ItemManager itemManager;
     IGameObject iManagerGO;
 
+    IGameObject iShotPSGO;
+
     public bool isFighting = false;
 
     // Bckg music
@@ -28,6 +30,9 @@ public class PlayerScript : MonoBehaviour
         iManagerGO = IGameObject.Find("Manager");
         itemManager = iManagerGO.GetComponent<ItemManager>();
         itemManager.AddItem(1, 1);
+
+        iShotPSGO = IGameObject.Find("ShotPlayerPS");
+
     }
 
     public override void Update()
@@ -130,6 +135,7 @@ public class PlayerScript : MonoBehaviour
                             InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
                             attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
                             hasShot = true;
+                            if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
                         }
                     }
                     else

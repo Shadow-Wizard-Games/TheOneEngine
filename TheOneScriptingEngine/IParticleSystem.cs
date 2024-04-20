@@ -19,6 +19,7 @@ public class IParticleSystem : IComponent
     {
         InternalCalls.ReplayPS(containerGOptr);
     }
+
     public void Stop()
     {
         InternalCalls.StopPS(containerGOptr);
