@@ -618,16 +618,16 @@ bool PanelInspector::Draw()
                         tempH = item->GetRect().h;
                         ImGui::Text("   X:");
                         ImGui::SameLine();
-                        ImGui::DragFloat(" ", &tempX, 0.01f, -2.0f, 2.0f);
+                        ImGui::DragFloat(" ", &tempX, 0.005f, -2.0f, 2.0f);
                         ImGui::Text("   Y:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("  ", &tempY, 0.01f, -2.0f, 2.0f);
+                        ImGui::DragFloat("  ", &tempY, 0.005f, -2.0f, 2.0f);
                         ImGui::Text("   W:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("   ", &tempW, 0.05f, 0.0f, 10.0f);
+                        ImGui::DragFloat("   ", &tempW, 0.005f, 0.0f, 10.0f);
                         ImGui::Text("   H:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("    ", &tempH, 0.05f, 0.0f, 10.0f);
+                        ImGui::DragFloat("    ", &tempH, 0.005f, 0.0f, 10.0f);
                         ImGui::Dummy(ImVec2(0.0f, 5.0f));
 
                         item->SetRect(tempX, tempY, tempW, tempH);
