@@ -307,33 +307,65 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 	ImGui::PushItemWidth(60);
 
 	if (initModule->scale.usingSingleValue) {
-		ImGui::PushID("set_scale_single_PS");
-		ImGui::InputDouble("X", &initModule->scale.singleValue.x, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->scale.singleValue.y, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->scale.singleValue.z, 0, 0, "%.2f");
-		ImGui::PopID();
+
+		if (initModule->isProportional) {
+			ImGui::PushID("set_scale_single_PS");
+			ImGui::InputDouble("Scale", &initModule->scale.singleValue.x, 0, 0, "%.2f");
+			ImGui::PopID();
+		}
+		else {
+			ImGui::PushItemWidth(60);
+
+			ImGui::PushID("set_scale_single_PS");
+			ImGui::InputDouble("X", &initModule->scale.singleValue.x, 0, 0, "%.2f");
+			ImGui::SameLine();
+			ImGui::InputDouble("Y", &initModule->scale.singleValue.y, 0, 0, "%.2f");
+			ImGui::SameLine();
+			ImGui::InputDouble("Z", &initModule->scale.singleValue.z, 0, 0, "%.2f");
+			ImGui::PopID();
+
+			ImGui::PopItemWidth();
+
+		}
 	}
 	else {
-		ImGui::PushID("set_scale_min_PS");
-		ImGui::InputDouble("X", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->scale.rangeValue.lowerLimit.y, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->scale.rangeValue.lowerLimit.z, 0, 0, "%.2f");
-		ImGui::PopID();
+		if (initModule->isProportional) {
+			ImGui::PushID("set_scale_min_PS");
+			ImGui::InputDouble("Scale", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+			ImGui::PopID();
 
-		ImGui::PushID("set_scale_max_PS");
-		ImGui::InputDouble("X", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->scale.rangeValue.upperLimit.y, 0, 0, "%.2f");
-		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->scale.rangeValue.upperLimit.z, 0, 0, "%.2f");
-		ImGui::PopID();
+			ImGui::PushID("set_scale_max_PS");
+			ImGui::InputDouble("Scale", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
+			ImGui::PopID();
+
+		}
+		else {
+			ImGui::PushItemWidth(60);
+
+			ImGui::PushID("set_scale_min_PS");
+			ImGui::InputDouble("X", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+			ImGui::SameLine();
+			ImGui::InputDouble("Y", &initModule->scale.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+			ImGui::SameLine();
+			ImGui::InputDouble("Z", &initModule->scale.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+			ImGui::PopID();
+
+			ImGui::PushID("set_scale_max_PS");
+			ImGui::InputDouble("X", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
+			ImGui::SameLine();
+			ImGui::InputDouble("Y", &initModule->scale.rangeValue.upperLimit.y, 0, 0, "%.2f");
+			ImGui::SameLine();
+			ImGui::InputDouble("Z", &initModule->scale.rangeValue.upperLimit.z, 0, 0, "%.2f");
+			ImGui::PopID();
+
+			ImGui::PopItemWidth();
+		}
 	}
+	ImGui::PushID("set_scale_proportional");
 
-	ImGui::PopItemWidth();
+	ImGui::Checkbox("Is Proportional", &initModule->isProportional);
+
+	ImGui::PopID();
 }
 
 void UIInspectorEmmiterInitializeModule(SetOffset* initModule)

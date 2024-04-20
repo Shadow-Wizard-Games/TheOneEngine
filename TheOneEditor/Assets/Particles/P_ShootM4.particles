@@ -2,19 +2,25 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 0.5,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
             120.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
             75.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 120.0,
+          "MinSpeed": 75.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,12 +28,14 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
             210.0,
             128.0,
-            0.0
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
@@ -47,13 +55,12 @@
           "UsingSingleValueScale": false
         }
       ],
-      "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 4.75777530670166,
+      "IsLooping": false,
+      "Lifetime": 0.0,
       "MaxParticles": 50,
       "RenderModule": [
         {
-          "BillboardType": 0,
+          "BillboardType": 1,
           "Type": 0
         }
       ],
@@ -77,19 +84,25 @@
     },
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 0.5,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
             150.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
             100.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 150.0,
+          "MinSpeed": 100.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -97,12 +110,14 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
             210.0,
             128.0,
-            0.0
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
@@ -122,9 +137,8 @@
           "UsingSingleValueScale": false
         }
       ],
-      "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 4.75777530670166,
+      "IsLooping": false,
+      "Lifetime": 0.0,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -151,8 +165,7 @@
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_ShootM4_Upwards",
+  "Name": "P_ShootM4",
   "Type": 9,
   "UID": 4200920531
 }

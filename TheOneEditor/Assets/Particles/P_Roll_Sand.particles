@@ -6,14 +6,16 @@
       "InitializeModules": [
         {
           "MaxColor": [
-            255.0,
-            255.0,
+            226.0,
+            197.0,
+            99.0,
             255.0
           ],
           "MinColor": [
-            240.0,
-            240.0,
-            240.0
+            252.0,
+            223.0,
+            144.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
@@ -33,23 +35,28 @@
           "UsingSingleValueScale": false
         },
         {
-          "MaxSpeed": [
-            0.0,
+          "MaxDirection": [
             20.0,
-            -20.0
+            20.0,
+            5.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             1.0,
             1.0,
-            -1.0
+            1.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 20.0,
+          "MinSpeed": 1.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         }
       ],
       "IsLooping": false,
-      "IsON": true,
-      "Lifetime": 1.6119155883789063,
+      "Lifetime": 0.0,
       "MaxParticles": 10,
       "RenderModule": [
         {
@@ -69,15 +76,14 @@
           "Acceleration": [
             0.0,
             30.0,
-            -75.0
+            75.0
           ],
           "Type": 0
         }
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_Roll_Upwards_LvL3",
+  "Name": "P_Roll_Sand",
   "Type": 9,
   "UID": 402248169
 }

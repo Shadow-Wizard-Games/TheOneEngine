@@ -71,6 +71,7 @@ public:
 	void LoadModule(const json& moduleJSON);
 
 	SingleOrRandom<vec3> scale;
+	bool isProportional;
 };
 
 class SetOffset : public InitializeEmmiterModule {

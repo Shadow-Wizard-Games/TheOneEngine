@@ -5,16 +5,22 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
             15.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
             12.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 15.0,
+          "MinSpeed": 5.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,17 +28,20 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
             220.0,
             200.0,
-            0.0
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.0,
             0.1,
@@ -48,8 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 4144.572265625,
+      "Lifetime": 4247.87158203125,
       "MaxParticles": 50,
       "RenderModule": [
         {
@@ -81,16 +89,22 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
             15.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
             12.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 15.0,
+          "MinSpeed": 12.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -98,17 +112,20 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
             220.0,
             200.0,
-            0.0
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.0,
             0.1,
@@ -124,8 +141,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 3356.000244140625,
+      "Lifetime": 3459.26513671875,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -153,8 +169,7 @@
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_Sparks_ToFront",
+  "Name": "P_Sparks",
   "Type": 9,
   "UID": 4200920531
 }

@@ -5,16 +5,22 @@
       "Duration": 1.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
-            -150.0,
+          "MaxDirection": [
+            20.0,
             10.0,
-            20.0
+            150.0
           ],
-          "MinSpeed": [
-            -100.0,
+          "MinDirection": [
+            -20.0,
             -10.0,
-            -20.0
+            100.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 150.0,
+          "MinSpeed": 100.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,12 +28,14 @@
           "MaxColor": [
             0.0,
             0.0,
-            250.0
+            250.0,
+            255.0
           ],
           "MinColor": [
             0.0,
             0.0,
-            50.0
+            50.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
@@ -47,9 +55,8 @@
           "UsingSingleValueScale": false
         }
       ],
-      "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 3.49281907081604,
+      "IsLooping": false,
+      "Lifetime": 0.0,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -76,8 +83,7 @@
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_ShootLaser_ToRigh",
+  "Name": "P_ShootLaser",
   "Type": 9,
   "UID": 1044709403
 }

@@ -152,6 +152,8 @@ SetScale::SetScale(Emmiter* owner)
 	scale.usingSingleValue = true;
 	scale.rangeValue.lowerLimit = vec3(1, 1, 1);
 	scale.rangeValue.upperLimit = vec3(2, 2, 2);
+
+	isProportional = true;
 }
 
 SetScale::SetScale(Emmiter* owner, SetScale* ref)
@@ -165,14 +167,25 @@ SetScale::SetScale(Emmiter* owner, SetScale* ref)
 void SetScale::Initialize(Particle* particle)
 {
 	if (scale.usingSingleValue) {
-		particle->scale = scale.singleValue;
+		if (isProportional) {
+			particle->scale = vec3(scale.singleValue.x, scale.singleValue.x, scale.singleValue.x);
+		}
+		else {
+			particle->scale = scale.singleValue;
+		}
 	}
 	else {
-		vec3 randomVec = vec3{
-			randomFloat(scale.rangeValue.lowerLimit.x, scale.rangeValue.upperLimit.x),
-			randomFloat(scale.rangeValue.lowerLimit.y, scale.rangeValue.upperLimit.y),
-			randomFloat(scale.rangeValue.lowerLimit.z, scale.rangeValue.upperLimit.z) };
-
+		vec3 randomVec;
+		if (isProportional) {
+			auto value = randomFloat(scale.rangeValue.lowerLimit.x, scale.rangeValue.upperLimit.x);
+			randomVec = vec3(value, value, value);
+		}
+		else {
+			randomVec = vec3{
+				randomFloat(scale.rangeValue.lowerLimit.x, scale.rangeValue.upperLimit.x),
+				randomFloat(scale.rangeValue.lowerLimit.y, scale.rangeValue.upperLimit.y),
+				randomFloat(scale.rangeValue.lowerLimit.z, scale.rangeValue.upperLimit.z) };
+		}
 		particle->scale = randomVec;
 	}
 }
@@ -186,6 +199,8 @@ json SetScale::SaveModule()
 	moduleJSON["UsingSingleValueScale"] = scale.usingSingleValue;
 	moduleJSON["MinScale"] = { scale.rangeValue.lowerLimit.x, scale.rangeValue.lowerLimit.y, scale.rangeValue.lowerLimit.z };
 	moduleJSON["MaxScale"] = { scale.rangeValue.upperLimit.x, scale.rangeValue.upperLimit.y, scale.rangeValue.upperLimit.z };
+
+	moduleJSON["IsProportional"] = isProportional;
 
 	return moduleJSON;
 }
@@ -215,6 +230,11 @@ void SetScale::LoadModule(const json& moduleJSON)
 		scale.rangeValue.upperLimit.x = moduleJSON["MaxScale"][0];
 		scale.rangeValue.upperLimit.y = moduleJSON["MaxScale"][1];
 		scale.rangeValue.upperLimit.z = moduleJSON["MaxScale"][2];
+	}
+
+	if (moduleJSON.contains("IsProportional"))
+	{
+		isProportional = moduleJSON["IsProportional"];
 	}
 }
 
