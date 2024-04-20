@@ -182,18 +182,18 @@
               "UiElements": [
                 {
                   "ID": 2075171387,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
                   "ImageSectionHovered": [
-                    0.7112194895744324,
-                    0.0,
-                    0.28878048062324524,
-                    0.13705584406852722
+                    0.5058685541152954,
+                    0.00405954010784626,
+                    0.24256651103496552,
+                    0.22598105669021606
                   ],
                   "ImageSectionIdle": [
-                    0.3970731794834137,
-                    0.014213197864592075,
-                    0.2960975468158722,
-                    0.1309644728899002
+                    0.7566510438919067,
+                    0.00405954010784626,
+                    0.24256651103496552,
+                    0.22868742048740387
                   ],
                   "ImageSectionSelected": [
                     0.0,
@@ -204,28 +204,28 @@
                   "Interactuable": false,
                   "Name": "Button_Resume",
                   "Rect": [
-                    0.0,
-                    -0.25,
+                    -0.36000001430511475,
+                    0.15000000596046448,
                     0.3400000035762787,
-                    0.10000000149011612
+                    0.15000000596046448
                   ],
                   "State": 1,
                   "Type": 1
                 },
                 {
                   "ID": 3024552604,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
                   "ImageSectionHovered": [
-                    0.7112194895744324,
-                    0.16649746894836426,
-                    0.28878048062324524,
-                    0.13705584406852722
+                    0.5058685541152954,
+                    0.25033828616142273,
+                    0.24256651103496552,
+                    0.22598105669021606
                   ],
                   "ImageSectionIdle": [
-                    0.3970731794834137,
-                    0.17258882522583008,
-                    0.2960975468158722,
-                    0.1309644728899002
+                    0.7566510438919067,
+                    0.25033828616142273,
+                    0.24256651103496552,
+                    0.22868742048740387
                   ],
                   "ImageSectionSelected": [
                     0.0,
@@ -236,28 +236,28 @@
                   "Interactuable": false,
                   "Name": "Button_Settings",
                   "Rect": [
-                    0.0,
-                    0.0,
                     0.3400000035762787,
-                    0.10000000149011612
+                    0.15000000596046448,
+                    0.3400000035762787,
+                    0.15000000596046448
                   ],
                   "State": 0,
                   "Type": 1
                 },
                 {
                   "ID": 2405774430,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
                   "ImageSectionHovered": [
-                    0.7112194895744324,
-                    0.3289340138435364,
-                    0.28878048062324524,
-                    0.13705584406852722
+                    0.5058685541152954,
+                    0.49661704897880554,
+                    0.24256651103496552,
+                    0.22868742048740387
                   ],
                   "ImageSectionIdle": [
-                    0.3970731794834137,
-                    0.3289340138435364,
-                    0.2960975468158722,
-                    0.1309644728899002
+                    0.7566510438919067,
+                    0.5047361254692078,
+                    0.24256651103496552,
+                    0.22868742048740387
                   ],
                   "ImageSectionSelected": [
                     0.0,
@@ -268,28 +268,28 @@
                   "Interactuable": false,
                   "Name": "Button_Menu",
                   "Rect": [
-                    0.0,
-                    0.25,
+                    -0.36000001430511475,
+                    0.5099999904632568,
                     0.3400000035762787,
-                    0.10000000149011612
+                    0.15000000596046448
                   ],
                   "State": 0,
                   "Type": 1
                 },
                 {
                   "ID": 3811829014,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
                   "ImageSectionHovered": [
-                    0.7112194895744324,
-                    0.48121827840805054,
-                    0.28878048062324524,
-                    0.1309644728899002
+                    0.5058685541152954,
+                    0.7550744414329529,
+                    0.24256651103496552,
+                    0.22868742048740387
                   ],
                   "ImageSectionIdle": [
-                    0.3970731794834137,
-                    0.4822334945201874,
-                    0.28878048062324524,
-                    0.1309644728899002
+                    0.7566510438919067,
+                    0.7618403434753418,
+                    0.24256651103496552,
+                    0.22868742048740387
                   ],
                   "ImageSectionSelected": [
                     0.0,
@@ -300,21 +300,105 @@
                   "Interactuable": false,
                   "Name": "Button_Save&Quit",
                   "Rect": [
-                    0.0,
-                    0.5,
                     0.3400000035762787,
-                    0.10000000149011612
+                    0.5099999904632568,
+                    0.3400000035762787,
+                    0.15000000596046448
                   ],
                   "State": 0,
                   "Type": 1
                 },
                 {
+                  "ID": 2658540040,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.4722598195075989,
+                    0.24569639563560486,
+                    0.46143436431884766
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.0,
+                    0.24569639563560486,
+                    0.46143436431884766
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Inventory",
+                  "Rect": [
+                    -0.3499999940395355,
+                    -0.33000001311302185,
+                    0.33500000834465027,
+                    0.2800000011920929
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 1751157100,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
+                  "ImageSectionHovered": [
+                    0.24687011539936066,
+                    0.4722598195075989,
+                    0.24569639563560486,
+                    0.46143436431884766
+                  ],
+                  "ImageSectionIdle": [
+                    0.24687011539936066,
+                    0.0,
+                    0.24569639563560486,
+                    0.46143436431884766
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Missions",
+                  "Rect": [
+                    0.33000001311302185,
+                    -0.33000001311302185,
+                    0.33500000834465027,
+                    0.2800000011920929
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2448393211,
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
+                  "ImageSection": [
+                    0.0,
+                    0.97428959608078,
+                    0.49687010049819946,
+                    0.02841677889227867
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Slide",
+                  "Rect": [
+                    -0.009999999776482582,
+                    -0.03999999910593033,
+                    0.6899999976158142,
+                    0.019999999552965164
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
                   "ID": 1973608398,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png",
+                  "ImagePath": "Assets/Textures/Hud/PauseMenu_BG.png",
                   "ImageSection": [
                     0.0,
                     0.0,
-                    0.3697561025619507,
+                    1.0,
                     1.0
                   ],
                   "Interactuable": false,
@@ -322,7 +406,7 @@
                   "Rect": [
                     0.0,
                     0.0,
-                    0.4000000059604645,
+                    0.75,
                     0.800000011920929
                   ],
                   "State": 0,
@@ -334,7 +418,10 @@
                   "Path": "Assets/Meshes/HUD.png"
                 },
                 {
-                  "Path": "Assets/Textures/Hud/PauseMenu_SpriteSheet.png"
+                  "Path": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png"
+                },
+                {
+                  "Path": "Assets/Textures/Hud/PauseMenu_BG.png"
                 }
               ]
             },
