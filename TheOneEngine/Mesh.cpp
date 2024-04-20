@@ -514,11 +514,9 @@ json Mesh::SaveComponent()
     meshJSON["DrawNormalsVerts"] = drawNormalsVerts;
     meshJSON["DrawNormalsFaces"] = drawNormalsFaces;
 
-
     Model* mesh = Resources::GetResourceById<Model>(meshID);
-	meshJSON["IsAnimated"] = mesh->isAnimated();
+    meshJSON["MeshPath"] = mesh->GetMeshPath();
 
-    meshJSON["MeshPath"] = mesh->path;
     Material* mat = Resources::GetResourceById<Material>(materialID);
     meshJSON["MaterialPath"] = mat->getPath();
 
@@ -586,10 +584,6 @@ void Mesh::LoadComponent(const json& meshJSON)
             materialID = Resources::LoadFromLibrary<Material>(model->GetMaterialPath());
         }
     }
-
-	bool isAnimated = false;
-	if (meshJSON.contains("IsAnimated"))
-		isAnimated = meshJSON["IsAnimated"];
 
     if (meshJSON.contains("MeshPath"))
     {

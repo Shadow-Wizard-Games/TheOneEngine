@@ -32,7 +32,7 @@ public:
 
     void Render();
 
-    std::string GetMaterialPath() { return materials[materialIndex]; }
+    std::string GetMaterialPath() { return auxMatPath.empty() ? materials[materialIndex] : auxMatPath; }
     std::string GetMeshPath() { return path; }
 
     std::string meshName;
@@ -93,6 +93,8 @@ private:
     std::string m_ActiveAnimationName;
     size_t m_ActiveAnimationId;
     size_t m_PrevAnimationId;
+
+    std::string auxMatPath;
 
     // Buffer of model space matrices. These are computed by the local-to-model
     // job after the blending stage.

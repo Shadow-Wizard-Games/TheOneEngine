@@ -32,7 +32,8 @@ m_BlendOnTransition(true),
 m_BlendThreshold(ozz::animation::BlendingJob().threshold),
 m_TransitionTime(1.0f),
 m_TransitionTimer(0.0f),
-m_UpdateState(US_UPDATE)
+m_UpdateState(US_UPDATE),
+meshTransform(glm::mat4(1))
 {
     // This constructor only loads .mesh
     if (filename.ends_with(".mesh"))
@@ -914,6 +915,8 @@ void Model::SaveAnimator(const std::string& filepath)
 {
     nlohmann::json animator_doc;
 
+    // Save animator name
+    animator_doc["name"] = meshName;
     // Save animator mesh
     animator_doc["mesh"] = GetOzzMeshPath();
 
@@ -986,12 +989,24 @@ void Model::SaveAnimator(const std::string& filepath)
 
 void Model::LoadAnimator(const std::string& filepath)
 {
+    hasBones = true;
+
     nlohmann::json animator_doc = Resources::OpenJSON(filepath);
+
+    if (animator_doc.contains("name"))
+    {
+        meshName = animator_doc["name"].get<std::string>();
+    }
 
     if (animator_doc.contains("mesh"))
     {
         const std::string mesh_file = animator_doc["mesh"].get<std::string>();
         LoadOzzMesh(mesh_file.c_str());
+    }
+
+    if (animator_doc.contains("material"))
+    {
+        auxMatPath = animator_doc["material"].get<std::string>();
     }
 
     if (animator_doc.contains("skeleton"))

@@ -79,7 +79,7 @@ inline ResourceId Resources::LoadFromLibrary<Model>(const std::string& file)
 	if (file_path.empty())
 		return -1;
 
-	file_path.replace_extension(".mesh");
+
 	ResourceId position = getResourcePosition(RES_MODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_MODEL].size();
 
