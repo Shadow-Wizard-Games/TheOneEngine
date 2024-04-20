@@ -443,7 +443,7 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	/*SetUpLight(animShader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
 	camera->shadowBuffer->BindTexture();*/
 
-	material->Bind(GL_TEXTURE1);
+	material->Bind();
 
 	GLCALL(glEnableVertexAttribArray(0));
 	GLCALL(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, uvsVertexDataStride,
@@ -488,7 +488,7 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	GLCALL(glBindVertexArray(0));
 
 	//camera->shadowBuffer->UnbindTexture();
-	material->UnBind(GL_TEXTURE1);
+	material->UnBind();
 
 	return true;
 }
