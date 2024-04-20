@@ -19,18 +19,18 @@ std::string GetAssemblyPath()
         // Running from Visual Studio
 #ifdef _DEBUG
 
-        resultingAssembly = "../TheOneScriptingEngine/bin/Debug/TheOneScriptingEngine.dll";
+        resultingAssembly = "../TheOneScripting/bin/Debug/TheOneScripting.dll";
 
 #else
 
-        resultingAssembly = "../TheOneScriptingEngine/bin/Release/TheOneScriptingEngine.dll";
+        resultingAssembly = "../TheOneScripting/bin/Release/TheOneScripting.dll";
 
 #endif
     }
     else
     {
         // Running from generated .exe file
-        resultingAssembly = "TheOneScriptingEngine.dll";
+        resultingAssembly = "TheOneScripting.dll";
     }
 
     free(vsVersion); // Remember to free the memory allocated by _dupenv_s

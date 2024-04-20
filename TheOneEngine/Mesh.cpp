@@ -518,7 +518,8 @@ json Mesh::SaveComponent()
     meshJSON["MeshPath"] = mesh->GetMeshPath();
 
     Material* mat = Resources::GetResourceById<Material>(materialID);
-    meshJSON["MaterialPath"] = mat->getPath();
+    std::string matPath = mat->getPath();
+    meshJSON["MaterialPath"] = matPath;
 
     return meshJSON;
 }

@@ -144,6 +144,7 @@
     <ClInclude Include="PanelAnimation.h">
       <Filter>Panels</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Panels">
@@ -170,5 +171,11 @@
     <Filter Include="Panels\Inspector">
       <UniqueIdentifier>{3f293774-551c-49ee-aaf7-385b2fefbaaf}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TheOneEditor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="TheOneIcon.ico" />
   </ItemGroup>
 </Project>

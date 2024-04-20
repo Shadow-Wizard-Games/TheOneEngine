@@ -1,0 +1,83 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 10.0,
+      "InitializeModules": [
+        {
+          "MaxSpeed": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "MinSpeed": [
+            -10.0,
+            5.0,
+            -10.0
+          ],
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "MinColor": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "MaxScale": [
+            7.0,
+            7.0,
+            7.0
+          ],
+          "MinScale": [
+            3.0,
+            3.0,
+            3.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        }
+      ],
+      "IsLooping": true,
+      "IsON": true,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 30.0,
+          "Duration": 4.0,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            10.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "IsON": true,
+  "Name": "P_SmokeExplosion",
+  "Type": 9,
+  "UID": 1138319974
+}

@@ -58,6 +58,7 @@
     <ClInclude Include="ResourcesShaderImpl.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="SingleOrRandom.h" />
+    <ClInclude Include="SliderUI.h" />
     <ClInclude Include="SpawnEmmiterModule.h" />
     <ClInclude Include="AudioSource.h" />
     <ClInclude Include="Texture.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SingleOrRandom.cpp" />
+    <ClCompile Include="SliderUI.cpp" />
     <ClCompile Include="SpawnEmmiterModule.cpp" />
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -131,7 +133,7 @@
     <ProjectReference Include="..\TheOneAudio\TheOneAudio.vcxproj">
       <Project>{606662a0-b707-4c97-8361-5d46fd7fd1f3}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\TheOneScriptingEngine\TheOneScriptingEngine.csproj">
+    <ProjectReference Include="..\TheOneScripting\TheOneScripting.csproj">
       <Project>{e3064d12-da09-4437-920e-cfeee63bdd82}</Project>
     </ProjectReference>
   </ItemGroup>

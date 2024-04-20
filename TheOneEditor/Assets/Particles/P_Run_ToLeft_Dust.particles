@@ -1,0 +1,69 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxSpeed": [
+            1.0,
+            5.0,
+            1.0
+          ],
+          "MinSpeed": [
+            -1.0,
+            0.5,
+            -1.0
+          ],
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            250.0,
+            250.0,
+            250.0
+          ],
+          "MinColor": [
+            240.0,
+            240.0,
+            240.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        }
+      ],
+      "IsLooping": true,
+      "IsON": true,
+      "Lifetime": 1159.4725341796875,
+      "MaxParticles": 5,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 1.0,
+          "SpawnRate": 4.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            -10.0,
+            10.0,
+            10.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "IsON": true,
+  "Name": "P_Run_ToLeft_LvL3",
+  "Type": 9,
+  "UID": 402248169
+}

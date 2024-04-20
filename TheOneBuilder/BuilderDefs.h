@@ -3,8 +3,8 @@
 #pragma once
 
 // CONFIGURATION -----------------------------------------------------------------
-#define GAME_TITLE			"Game name"
-#define GAME_VERSION		"v0.0"
+#define GAME_TITLE			"Alien: Nemesis"
+#define GAME_VERSION		"Alpha 1.5"
 #define GAME_ORGANIZATION	"Shadow Wizard Games"
 
 // -------------------------------------------------------------------------------
