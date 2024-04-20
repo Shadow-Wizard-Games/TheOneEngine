@@ -274,6 +274,9 @@ void PanelAnimation::DrawAnimations()
 					animation->setLoop(loop);
 				}
 
+				if (activeAnimator->HasAnimation(a_data.name))
+					activeAnimator->UpdateAnim(app->GetDT());
+
 				switch (a_type)
 				{
 				case AnimationType::AT_PARTIAL_BLEND:
@@ -414,23 +417,14 @@ void PanelAnimation::DrawSimpleAnimation(OzzAnimationSimple* simple_animation)
 
 	ImGui::Text("Animation file");
 	ImGui::PushID("animation_file");
-	app->gui->AssetContainer(anim_file);
-	if (ImGui::BeginDragDropTarget())
+	//app->gui->AssetContainer(anim_file);
+	if (ImGui::Button(anim_file))
 	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+		std::string filePath = FileDialog::OpenFile("Open Animation (*.anim)\0*.anim\0");
+		if (!filePath.empty() && filePath.ends_with(".anim"))
 		{
-			const wchar_t* path = (const wchar_t*)payload->Data;
-			std::wstring ws(path);
-			std::string pathS(ws.begin(), ws.end());
-			std::filesystem::path p = pathS.c_str();
-			if (p.extension() == ".anim")
-			{
-				std::string libpath = Resources::AssetToLibPath(p.string());
-				simple_animation->LoadAnimation(libpath.c_str());
-			}
+			simple_animation->LoadAnimation(filePath.c_str());
 		}
-
-		ImGui::EndDragDropTarget();
 	}
 	ImGui::PopID();
 }
