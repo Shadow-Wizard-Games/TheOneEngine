@@ -93,39 +93,39 @@
           "UiElements": [
             {
               "ID": 2653792806,
-              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSection": [
-                0.007194244768470526,
+                0.1277424693107605,
                 0.012500000186264515,
-                0.981500506401062,
-                0.13625000417232513
+                0.6082192063331604,
+                0.23043477535247803
               ],
               "Interactuable": false,
               "Name": "GameTitle_img",
               "Rect": [
-                0.07000000029802322,
-                -0.5199999809265137,
-                0.5,
-                0.10000000149011612
+                -0.20000000298023224,
+                -0.3400000035762787,
+                0.25,
+                0.1599999964237213
               ],
               "State": 0,
               "Type": 0
             },
             {
               "ID": 3226093247,
-              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSection": [
-                0.7327852249145508,
-                0.39125001430511475,
+                0.7547026872634888,
+                0.3072487413883209,
                 0.2343268245458603,
                 0.17249999940395355
               ],
               "Interactuable": false,
               "Name": "Version&Studio_img",
               "Rect": [
-                0.8199999928474426,
-                0.8299999833106995,
-                0.11999999731779099,
+                0.15000000596046448,
+                0.5400000214576721,
+                0.10000000149011612,
                 0.11999999731779099
               ],
               "State": 0,
@@ -133,18 +133,18 @@
             },
             {
               "ID": 2797854607,
-              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
-                0.0051387459971010685,
-                0.17000000178813934,
-                0.6104830503463745,
-                0.10125000029802322
+                0.005138356238603592,
+                0.2717948853969574,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionIdle": [
                 0.0051387459971010685,
-                0.6937500238418579,
-                0.6104830503463745,
-                0.10125000029802322
+                0.6461538672447205,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionSelected": [
                 0.0051387459971010685,
@@ -155,28 +155,28 @@
               "Interactuable": false,
               "Name": "StartButton",
               "Rect": [
-                -0.6499999761581421,
+                -0.23999999463558197,
+                -0.05999999865889549,
                 0.30000001192092896,
-                0.30000001192092896,
-                0.07000000029802322
+                0.05999999865889549
               ],
               "State": 1,
               "Type": 1
             },
             {
               "ID": 347713686,
-              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
-                0.0,
-                0.2824999988079071,
-                0.6104830503463745,
-                0.10125000029802322
+                0.005138356238603592,
+                0.36282050609588623,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionIdle": [
-                0.0,
-                0.7762500047683716,
-                0.6104830503463745,
-                0.10125000029802322
+                0.005138356238603592,
+                0.735897421836853,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionSelected": [
                 0.0,
@@ -187,28 +187,28 @@
               "Interactuable": false,
               "Name": "LoadGameButton",
               "Rect": [
-                -0.6499999761581421,
-                0.44999998807907104,
+                -0.23999999463558197,
+                0.07999999821186066,
                 0.30000001192092896,
-                0.07000000029802322
+                0.05999999865889549
               ],
               "State": 0,
               "Type": 1
             },
             {
               "ID": 2588875562,
-              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
-                0.0,
-                0.38499999046325684,
-                0.6104830503463745,
-                0.10125000029802322
+                0.005138356238603592,
+                0.4529486894607544,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionIdle": [
-                0.0,
-                0.8450000286102295,
-                0.6104830503463745,
-                0.10125000029802322
+                0.005138356238603592,
+                0.8270512223243713,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionSelected": [
                 0.0,
@@ -219,28 +219,28 @@
               "Interactuable": false,
               "Name": "SettingsButton",
               "Rect": [
-                -0.6499999761581421,
-                0.6000000238418579,
+                -0.23999999463558197,
+                0.23000000417232513,
                 0.30000001192092896,
-                0.07000000029802322
+                0.05999999865889549
               ],
               "State": 0,
               "Type": 1
             },
             {
               "ID": 58222174,
-              "ImagePath": "Assets/Textures/Hud/menu.png",
+              "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
-                0.0,
-                0.4937500059604645,
-                0.6104830503463745,
-                0.10125000029802322
+                0.005138356238603592,
+                0.5424679517745972,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionIdle": [
-                0.0,
-                0.9212499856948853,
-                0.6104830503463745,
-                0.10125000029802322
+                0.005138356238603592,
+                0.9174038767814636,
+                0.7452054619789124,
+                0.08589743822813034
               ],
               "ImageSectionSelected": [
                 0.0,
@@ -251,17 +251,17 @@
               "Interactuable": false,
               "Name": "QuitButton",
               "Rect": [
-                -0.6499999761581421,
-                0.75,
+                -0.23999999463558197,
+                0.3700000047683716,
                 0.30000001192092896,
-                0.07000000029802322
+                0.05999999865889549
               ],
               "State": 0,
               "Type": 1
             },
             {
               "ID": 653564428,
-              "ImagePath": "Assets/Textures/Hud/MainMenuBackDrop.png",
+              "ImagePath": "Assets/Textures/Hud/Background_Sprite.png",
               "ImageSection": [
                 0.0,
                 0.0,
@@ -285,10 +285,10 @@
               "Path": "Assets/Meshes/HUD.png"
             },
             {
-              "Path": "Assets/Textures/Hud/menu.png"
+              "Path": "Assets/Textures/Hud/MainMenu_SpriteSheet.png"
             },
             {
-              "Path": "Assets/Textures/Hud/MainMenuBackDrop.png"
+              "Path": "Assets/Textures/Hud/Background_Sprite.png"
             }
           ]
         },
