@@ -31,29 +31,35 @@ public:
 	//sectionType = 0 -> normal section
 	//sectionType = 1 -> first section
 	//sectionType = 2 -> last section
-	Rect2D GetSectIdle(int sectionType = 0) const;
+	//activeParts = true -> when the sect is inside value range
+	Rect2D GetSectIdle(int sectionType = 0, bool activeParts = true) const;
 	//sectionType = 0 -> normal section
 	//sectionType = 1 -> first section
 	//sectionType = 2 -> last section
-	void SetSectSizeIdle(float x, float y, float width, float height, int sectionType = 0);
+	//activeParts = true -> when the sect is inside value range
+	void SetSectSizeIdle(float x, float y, float width, float height, int sectionType = 0, bool activeParts = true);
 	//hovered section
 	//sectionType = 0 -> normal section
 	//sectionType = 1 -> first section
 	//sectionType = 2 -> last section
-	Rect2D GetSectHovered(int sectionType = 0) const;
+	//activeParts = true -> when the sect is inside value range
+	Rect2D GetSectHovered(int sectionType = 0, bool activeParts = true) const;
 	//sectionType = 0 -> normal section
 	//sectionType = 1 -> first section
 	//sectionType = 2 -> last section
-	void SetSectSizeHovered(float x, float y, float width, float height, int sectionType = 0);
+	//activeParts = true -> when the sect is inside value range
+	void SetSectSizeHovered(float x, float y, float width, float height, int sectionType = 0, bool activeParts = true);
 	//selected section
 	//sectionType = 0 -> normal section
 	//sectionType = 1 -> first section
 	//sectionType = 2 -> last section
-	Rect2D GetSectSelected(int sectionType = 0) const;
+	//activeParts = true -> when the sect is inside value range
+	Rect2D GetSectSelected(int sectionType = 0, bool activeParts = true) const;
 	//sectionType = 0 -> normal section
 	//sectionType = 1 -> first section
 	//sectionType = 2 -> last section
-	void SetSectSizeSelected(float x, float y, float width, float height, int sectionType = 0);
+	//activeParts = true -> when the sect is inside value range
+	void SetSectSizeSelected(float x, float y, float width, float height, int sectionType = 0, bool activeParts = true);
 
 	//path
 	std::string GetPath()
@@ -159,6 +165,22 @@ private:
 	Rect2D imageIdleLastSection;
 	Rect2D imageHoveredLastSection;
 	Rect2D imageSelectedLastSection;
+	////
+	//section of each slider part when its OFF
+	Rect2D* currentSectionOff;
+	Rect2D imageIdleSectionOff;
+	Rect2D imageHoveredSectionOff;
+	Rect2D imageSelectedSectionOff;
+	//section of first and last slider part OFF
+	Rect2D* currentFirstSectionOff;
+	Rect2D imageIdleFirstSectionOff;
+	Rect2D imageHoveredFirstSectionOff;
+	Rect2D imageSelectedFirstSectionOff;
+	//
+	Rect2D* currentLastSectionOff;
+	Rect2D imageIdleLastSectionOff;
+	Rect2D imageHoveredLastSectionOff;
+	Rect2D imageSelectedLastSectionOff;
 	////
 
 	//dont modify this value, minValue must be 0
