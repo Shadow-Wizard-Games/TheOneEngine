@@ -31,17 +31,12 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 			fs::path filename = ASSETS_PATH;
 			filename += "Prefabs\\" + childGO->GetPrefabName() + ".prefab";
 
-			// opening the file
-			prefabFile.open(filename);
-
-			// checking if the file opening was successful, it will only be true ie. file would have been opened, only if the file exists, so indirectly we are checking if the file exists or not by opening it, if opened, then the file exists, else does not exists
+			prefabFile.open(filename);			
 			if (!prefabFile)
 			{
-				// printing the success message
 				childGO->UnpackPrefab();
 			}
 			else prefabFile.close();
-			
 		}
 
 		//bool isOpen = false;
@@ -229,7 +224,7 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 
 					if (dragging->parent.lock().get()->IsPrefab())
 					{
-						dragging->SetPrefab(dragging->parent.lock().get()->GetPrefabID(), dragging->GetPrefabName());
+						//dragging->SetPrefab(dragging->parent.lock().get()->GetPrefabID(), dragging->GetPrefabName());
 						dragging->parent.lock().get()->SetPrefabDirty(true);
 					}
 
