@@ -6,21 +6,21 @@
       "InitializeModules": [
         {
           "MaxDirection": [
+            2.0,
             1.0,
-            5.0,
-            1.0
+            -5.0
           ],
           "MinDirection": [
-            -1.0,
-            0.5,
-            -1.0
+            -2.0,
+            0.0,
+            -0.5
           ],
           "Type": 4,
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 5.0,
-          "MinSpeed": 0.5,
+          "MaxSpeed": 10.0,
+          "MinSpeed": 0.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -42,8 +42,8 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 7.950094699859619,
-      "MaxParticles": 5,
+      "Lifetime": 505.34674072265625,
+      "MaxParticles": 20,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -52,9 +52,10 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 1.0,
-          "SpawnRate": 4.0,
-          "Type": 0
+          "Amount": 10.0,
+          "Duration": 0.800000011920929,
+          "SpawnRate": 1.5499999523162842,
+          "Type": 2
         }
       ],
       "UpdateModules": [
@@ -62,7 +63,7 @@
           "Acceleration": [
             0.0,
             10.0,
-            -10.0
+            -30.0
           ],
           "Type": 0
         }

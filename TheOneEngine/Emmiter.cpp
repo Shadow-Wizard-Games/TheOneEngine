@@ -14,6 +14,7 @@ Emmiter::Emmiter(ParticleSystem* owner)
 	lifetime = 0;
 	isLooping = true;
 	isON = true;
+	isGlobal = true;
 
 	AddModule(SpawnEmmiterModule::CONSTANT);
 
@@ -35,6 +36,7 @@ Emmiter::Emmiter(ParticleSystem* owner, Emmiter* ref)
 	lifetime = ref->lifetime;
 	isLooping = ref->isLooping;
 	isON = ref->isON;
+	isGlobal = ref->isGlobal;
 
 	// TO-DO
 	AddModule(ref->spawnModule.get());
@@ -173,6 +175,10 @@ void Emmiter::InitializeParticle(Particle* particle)
 	particle->SetDuration(spawnModule->duration);
 
 	particle->ResetAttributes();
+
+	if (isGlobal) {
+		particle->position += (vec3)owner->GetTransform()->CalculateWorldTransform()[3];
+	}
 
 	for (auto i = initializeModules.begin(); i != initializeModules.end(); ++i) {
 		(*i)->Initialize(particle);

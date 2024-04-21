@@ -1,4 +1,6 @@
 #include "InitializeEmmiterModule.h"
+#include "Emmiter.h"
+#include "ParticleSystem.h"
 
 // set speed ---------------------------------------------------------------------------------------------------
 SetSpeed::SetSpeed(Emmiter* owner)
@@ -345,6 +347,14 @@ void SetDirection::Initialize(Particle* particle)
 			randomFloat(direction.rangeValue.lowerLimit.z, direction.rangeValue.upperLimit.z) };
 
 		particle->direction = randomVec;
+	}
+
+	if (owner->isGlobal) {
+		mat4 worldTransform = owner->owner->GetTransform()->CalculateWorldTransform();
+
+		glm::dmat3 worldRotation = worldTransform;
+		
+		particle->direction = worldRotation * particle->direction;
 	}
 
 	particle->direction = glm::normalize(particle->direction);

@@ -60,6 +60,8 @@ public:
 
 	bool isLooping;
 
+	bool isGlobal;
+
 	// specific behaviors
 	std::unique_ptr<SpawnEmmiterModule> spawnModule;
 

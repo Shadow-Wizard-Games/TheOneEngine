@@ -34,14 +34,17 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     vec3 cameraPosition;
     cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
 
-    mat4 worldTransform = owner->owner->GetTransform()->CalculateWorldTransform();
+    vec3 particlePosition = particle->position;
 
-    glm::dmat3 worldRotation = worldTransform;
+    if (!owner->isGlobal) {
+        mat4 worldTransform = owner->owner->GetTransform()->CalculateWorldTransform();
 
-    vec3 worldPosition = worldTransform[3];
+        glm::dmat3 worldRotation = worldTransform;
 
+        vec3 worldPosition = worldTransform[3];
 
-    vec3 particlePosition = (worldRotation * particle->position) + worldPosition;
+        particlePosition = (worldRotation * particle->position) + worldPosition;
+    }
 
     Billboard::BeginSphericalBillboard(particlePosition, cameraPosition);
 
