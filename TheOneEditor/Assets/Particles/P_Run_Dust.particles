@@ -5,16 +5,22 @@
       "Duration": 1.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             1.0,
-            5.0,
-            1.0
+            1.0,
+            -5.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -1.0,
-            0.5,
-            -1.0
+            0.0,
+            -0.5
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 15.0,
+          "MinSpeed": 5.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,21 +28,22 @@
           "MaxColor": [
             250.0,
             250.0,
-            250.0
+            250.0,
+            255.0
           ],
           "MinColor": [
             240.0,
             240.0,
-            240.0
+            240.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 1131.483642578125,
-      "MaxParticles": 5,
+      "Lifetime": 572.3740234375,
+      "MaxParticles": 20,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -45,25 +52,26 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 1.0,
-          "SpawnRate": 4.0,
-          "Type": 0
+          "Amount": 10.0,
+          "Duration": 0.800000011920929,
+          "SpawnRate": 1.5499999523162842,
+          "Type": 2
         }
       ],
       "UpdateModules": [
         {
           "Acceleration": [
+            0.0,
             10.0,
-            10.0,
-            10.0
+            0.0
           ],
           "Type": 0
         }
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_Run_ToRight_LvL3",
+  "Name": "P_Run_Dust",
+  "StartON": false,
   "Type": 9,
   "UID": 402248169
 }

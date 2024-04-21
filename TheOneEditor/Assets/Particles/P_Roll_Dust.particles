@@ -8,12 +8,14 @@
           "MaxColor": [
             255.0,
             255.0,
+            255.0,
             255.0
           ],
           "MinColor": [
             240.0,
             240.0,
-            240.0
+            240.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
@@ -33,23 +35,28 @@
           "UsingSingleValueScale": false
         },
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             0.0,
             20.0,
             20.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             1.0,
             1.0,
             1.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 1.0,
+          "MinSpeed": 20.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         }
       ],
       "IsLooping": false,
-      "IsON": true,
-      "Lifetime": 5.739127159118652,
+      "Lifetime": 0.0,
       "MaxParticles": 10,
       "RenderModule": [
         {
@@ -76,8 +83,7 @@
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_Roll_Downwar_LvL3",
+  "Name": "P_Roll_Dust",
   "Type": 9,
   "UID": 402248169
 }

@@ -45,7 +45,24 @@ public class IGameObject : IObject
         
         return goToReturn;
     }
-    
+
+    public IGameObject FindInChildren(string name)
+    {
+        IntPtr foundGOptr = InternalCalls.FindGameObjectInChildren(containerGOptr, name);
+
+        if (foundGOptr == IntPtr.Zero)
+        {
+            Debug.LogError("GameObject with name '" + name + "' not found.");
+
+            return null;
+        }
+
+        IGameObject goToReturn = new IGameObject(foundGOptr);
+
+        return goToReturn;
+    }
+
+
     //Used to get any component except scripts
     public TComponent GetComponent<TComponent>() where TComponent : IComponent
     {

@@ -8,31 +8,40 @@
           "MaxColor": [
             250.0,
             250.0,
-            250.0
+            250.0,
+            255.0
           ],
           "MinColor": [
             220.0,
             220.0,
-            220.0
+            220.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": true
         },
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             0.0,
             0.0,
             50.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             0.0,
             0.0,
-            100.0
+            1.0
           ],
-          "Type": 0,
-          "UsingSingleValueSpeed": true
+          "Type": 4,
+          "UsingSingleValueDirection": true
         },
         {
+          "MaxSpeed": 100.0,
+          "MinSpeed": 50.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "IsProportional": true,
           "MaxScale": [
             10.0,
             10.0,
@@ -48,8 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 12198.4609375,
+      "Lifetime": 12666.6923828125,
       "MaxParticles": 80,
       "RenderModule": [
         {
@@ -80,23 +88,20 @@
       "Duration": 1.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
-            0.5,
-            2.0,
-            0.5
-          ],
-          "MinSpeed": [
-            10.0,
-            10.0,
-            10.0
-          ],
+          "MaxSpeed": 2.0,
+          "MinSpeed": 1.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
+        },
+        {
+          "MaxSpeed": 10.0,
+          "MinSpeed": 2.0,
           "Type": 0,
           "UsingSingleValueSpeed": true
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 12198.4609375,
+      "Lifetime": 12666.6923828125,
       "MaxParticles": 10,
       "RenderModule": [
         {
@@ -123,8 +128,7 @@
       ]
     }
   ],
-  "IsON": false,
-  "Name": "P_Steam_Forward",
+  "Name": "P_Steam",
   "Type": 9,
   "UID": 704292522
 }

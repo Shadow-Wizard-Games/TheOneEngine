@@ -5,16 +5,22 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
-            -120.0
+            15.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
-            -75.0
+            12.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 15.0,
+          "MinSpeed": 5.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,34 +28,36 @@
           "MaxColor": [
             255.0,
             255.0,
-            100.0
+            0.0,
+            255.0
           ],
           "MinColor": [
-            210.0,
-            128.0,
-            0.0
+            220.0,
+            200.0,
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
-            3.0,
-            3.0,
-            3.0
+            1.0,
+            0.1,
+            0.0
           ],
           "MinScale": [
-            1.0,
-            1.0,
-            1.0
+            0.2,
+            0.1,
+            0.0
           ],
           "Type": 2,
           "UsingSingleValueScale": false
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 3.96075439453125,
+      "Lifetime": 4247.87158203125,
       "MaxParticles": 50,
       "RenderModule": [
         {
@@ -59,16 +67,17 @@
       ],
       "SpawnModule": [
         {
-          "Amount": 20.0,
-          "Duration": 0.4000000059604645,
-          "Type": 1
+          "Amount": 5.0,
+          "Duration": 0.699999988079071,
+          "SpawnRate": 0.7820000052452087,
+          "Type": 2
         }
       ],
       "UpdateModules": [
         {
           "Acceleration": [
             0.0,
-            20.0,
+            -20.0,
             0.0
           ],
           "Type": 0
@@ -80,16 +89,22 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
-            -150.0
+            15.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
-            -100.0
+            12.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 15.0,
+          "MinSpeed": 12.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -97,17 +112,20 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
-            210.0,
-            128.0,
-            0.0
+            220.0,
+            200.0,
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.0,
             0.1,
@@ -123,8 +141,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 3.96075439453125,
+      "Lifetime": 3459.26513671875,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -134,16 +151,17 @@
       ],
       "SpawnModule": [
         {
-          "Amount": 10.0,
-          "Duration": 0.20000000298023224,
-          "Type": 1
+          "Amount": 5.0,
+          "Duration": 0.699999988079071,
+          "SpawnRate": 0.9470000267028809,
+          "Type": 2
         }
       ],
       "UpdateModules": [
         {
           "Acceleration": [
             0.0,
-            20.0,
+            -20.0,
             0.0
           ],
           "Type": 0
@@ -151,8 +169,7 @@
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_ShootLaImpaciente",
+  "Name": "P_Sparks",
   "Type": 9,
   "UID": 4200920531
 }

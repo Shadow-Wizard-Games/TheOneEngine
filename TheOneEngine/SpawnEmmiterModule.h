@@ -49,12 +49,13 @@ public:
 		return spawnRate;
 	};
 
+	void Reset() override;
+
 	void Update(double dt) override;
 
 	json SaveModule();
 
 	void LoadModule(const json& moduleJSON);
-
 };
 
 class SingleBurstSpawn : public SpawnEmmiterModule {
@@ -77,7 +78,6 @@ public:
 	json SaveModule();
 
 	void LoadModule(const json& moduleJSON);
-
 };
 
 class ConstantBurstSpawn : public SpawnEmmiterModule {
@@ -97,10 +97,11 @@ public:
 		return amount;
 	};
 
+	void Reset() override;
+
 	void Update(double dt) override;
 
 	json SaveModule();
 
 	void LoadModule(const json& moduleJSON);
-
 };

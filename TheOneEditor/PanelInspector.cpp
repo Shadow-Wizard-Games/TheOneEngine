@@ -100,7 +100,7 @@ bool PanelInspector::Draw()
                 std::string newName(newNameBuffer);
                 LOG(LogType::LOG_INFO, "GameObject %s has been renamed to %s", selectedGO->GetName().c_str(), newName.c_str());
                 selectedGO->SetName(newName); // Establece el nuevo nombre del GameObject
-                // Limpiar el buffer después de cambiar el nombre
+                // Limpiar el buffer despuï¿½s de cambiar el nombre
                 newNameBuffer[0] = '\0';
             }
 
@@ -525,6 +525,10 @@ bool PanelInspector::Draw()
 
             if (particleSystem != nullptr && ImGui::CollapsingHeader("Particle System", treeNodeFlags))
             {
+                // to see the particles without playing
+                if (app->state == GameState::NONE) {
+                    particleSystem->Update();
+                }
                 bool isDirty = false;
 
                 /*if (ImGui::Button("Load")) {
@@ -535,17 +539,27 @@ bool PanelInspector::Draw()
                     particleSystem->Save();
                 }*/
 
-                if (ImGui::Button("Play")) {
-                    particleSystem->Play();
+                if (!particleSystem->IsON()) {
+                    if (ImGui::Button("Play")) {
+                        particleSystem->Play();
+                    }
+                }
+                else {
+                    if (ImGui::Button("Pause")) {
+                        particleSystem->Pause();
+                    }
+                }
+                
+                ImGui::SameLine();
+                if (ImGui::Button("Replay")) {
+                    particleSystem->Replay();
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Stop")) {
                     particleSystem->Stop();
                 }
-                ImGui::SameLine();
-                if (ImGui::Button("Replay")) {
-                    particleSystem->Replay();
-                }
+
+                ImGui::Checkbox("Start ON", &particleSystem->startON);
 
                 if (ImGui::Button("Export")) {
                     particleSystem->ExportParticles();

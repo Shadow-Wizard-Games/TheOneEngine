@@ -2,19 +2,25 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 0.5,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
-            15.0
+            120.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
-            12.0
+            75.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 120.0,
+          "MinSpeed": 75.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,20 +28,23 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
-            220.0,
-            200.0,
-            0.0
+            210.0,
+            128.0,
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.0,
-            0.1,
+            1.0,
             0.0
           ],
           "MinScale": [
@@ -47,22 +56,20 @@
           "UsingSingleValueScale": false
         }
       ],
-      "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 4144.572265625,
+      "IsLooping": false,
+      "Lifetime": 0.0,
       "MaxParticles": 50,
       "RenderModule": [
         {
-          "BillboardType": 0,
+          "BillboardType": 1,
           "Type": 0
         }
       ],
       "SpawnModule": [
         {
-          "Amount": 5.0,
-          "Duration": 0.699999988079071,
-          "SpawnRate": 0.7820000052452087,
-          "Type": 2
+          "Amount": 10.0,
+          "Duration": 0.20000000298023224,
+          "Type": 1
         }
       ],
       "UpdateModules": [
@@ -78,19 +85,25 @@
     },
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 0.5,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
-            15.0
+            150.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
-            12.0
+            100.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 150.0,
+          "MinSpeed": 100.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -98,17 +111,20 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
-            220.0,
-            200.0,
-            0.0
+            210.0,
+            128.0,
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.0,
             0.1,
@@ -123,9 +139,8 @@
           "UsingSingleValueScale": false
         }
       ],
-      "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 3356.000244140625,
+      "IsLooping": false,
+      "Lifetime": 0.0,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -135,10 +150,9 @@
       ],
       "SpawnModule": [
         {
-          "Amount": 5.0,
-          "Duration": 0.699999988079071,
-          "SpawnRate": 0.9470000267028809,
-          "Type": 2
+          "Amount": 10.0,
+          "Duration": 0.20000000298023224,
+          "Type": 1
         }
       ],
       "UpdateModules": [
@@ -153,8 +167,8 @@
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_Sparks_ToFront",
+  "Name": "P_ShootM4",
+  "StartON": false,
   "Type": 9,
   "UID": 4200920531
 }
