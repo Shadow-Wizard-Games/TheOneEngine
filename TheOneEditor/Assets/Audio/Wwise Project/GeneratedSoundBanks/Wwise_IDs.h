@@ -13,10 +13,49 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID MUSIC1 = 1730564819U;
-        static const AkUniqueID MUSIC2 = 1730564816U;
-        static const AkUniqueID SPATIAL1 = 2134552412U;
-        static const AkUniqueID SPATIAL2 = 2134552415U;
+        static const AkUniqueID A_AMBIENT_1 = 1547765315U;
+        static const AkUniqueID A_CAMP_2 = 895381461U;
+        static const AkUniqueID A_COMBAT_1 = 3486252281U;
+        static const AkUniqueID A_RUINS_2 = 4189504465U;
+        static const AkUniqueID DEBUG_GUNSHOT = 1535709413U;
+        static const AkUniqueID DEBUG_MUSIC1 = 830312575U;
+        static const AkUniqueID DEBUG_MUSIC2 = 830312572U;
+        static const AkUniqueID DEBUG_SPATIAL1 = 3632435752U;
+        static const AkUniqueID DEBUG_SPATIAL2 = 3632435755U;
+        static const AkUniqueID E_CB_DEATH = 2100764501U;
+        static const AkUniqueID E_EGG_CRACK = 3286329979U;
+        static const AkUniqueID E_FH_CRAWL = 3938483819U;
+        static const AkUniqueID E_FH_DEATH = 4203716004U;
+        static const AkUniqueID E_FH_JUMP = 2711568226U;
+        static const AkUniqueID E_QUEEN_BOMB = 975078008U;
+        static const AkUniqueID E_QUEEN_CHANGE = 587747760U;
+        static const AkUniqueID E_QUEEN_DEATH = 1479922750U;
+        static const AkUniqueID E_QUEEN_JUMP = 3480783404U;
+        static const AkUniqueID E_QUEEN_SPIT = 3576793690U;
+        static const AkUniqueID E_QUEEN_STEP = 3778713374U;
+        static const AkUniqueID E_REBEL_DEATH = 4009974304U;
+        static const AkUniqueID E_REBEL_SHOOT = 319492235U;
+        static const AkUniqueID E_REBEL_STEP = 2489932272U;
+        static const AkUniqueID E_X_ADULT_DEATH = 3828971157U;
+        static const AkUniqueID E_X_ADULT_MELEE = 3271687631U;
+        static const AkUniqueID E_X_ADULT_SPIT = 2247807735U;
+        static const AkUniqueID E_X_ADULT_STEP = 1644504899U;
+        static const AkUniqueID P_DASH = 3919743498U;
+        static const AkUniqueID P_DEATH = 947529532U;
+        static const AkUniqueID P_HIT = 1073763149U;
+        static const AkUniqueID P_PICK = 1941667005U;
+        static const AkUniqueID P_ROLL = 2206507859U;
+        static const AkUniqueID P_STEP = 3875642140U;
+        static const AkUniqueID UI_A_MENU = 464895987U;
+        static const AkUniqueID UI_CLICK = 2249769530U;
+        static const AkUniqueID UI_HOVER = 2118900976U;
+        static const AkUniqueID UI_PAUSEGAME = 3783962382U;
+        static const AkUniqueID VO_GUARD2_VL1_0 = 1098830151U;
+        static const AkUniqueID VO_GUARD2_VL2_0 = 2172450704U;
+        static const AkUniqueID W_M4_AIM = 3949582022U;
+        static const AkUniqueID W_M4_RELOAD = 2147632472U;
+        static const AkUniqueID W_M4_SHOOT = 933371860U;
+        static const AkUniqueID W_SL_SHOOT = 3010972734U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS
