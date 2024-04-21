@@ -33,7 +33,7 @@ private:
 
 private:
 	Model* activeAnimator;
-	bool hasAnimation;
+	bool isPlaying;
 
 	std::shared_ptr<GameObject> animationCamera;
 	std::shared_ptr<FrameBuffer> frameBuffer;

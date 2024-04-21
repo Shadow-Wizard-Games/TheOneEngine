@@ -1154,7 +1154,7 @@ void Model::ImportToOzz(const std::string& file, const std::filesystem::path& im
     Resources::SaveJSON("Tools\\import_anim.json", ozzImportJSON);
 
     // === Import ozz ===
-    std::string cmd = "Tools\\import_anim.bat";
+    std::string cmd = "Tools\\import_mesh.bat";
     cmd += " \"";
     cmd += file.c_str(); // Path of file to import (.fbx)
     cmd += "\" \"";
@@ -1163,4 +1163,68 @@ void Model::ImportToOzz(const std::string& file, const std::filesystem::path& im
     cmd += skeleton_path.string().c_str(); // Path of skeleton to import mesh
     cmd += "\"";
     system(cmd.c_str());
+}
+
+void Model::ImportAnimation(const std::string& file)
+{
+    CreateConfigOzzJSON(fs::path(path).parent_path().string() + "/" + meshName, fs::path(file).filename().replace_extension().string());
+
+    // === Import ozz ===
+    std::string cmd = "Tools\\import_anim.bat";
+    cmd += " \"";
+    cmd += file.c_str(); // Path of file to import (.fbx)
+    cmd += " \"";
+    system(cmd.c_str());
+}
+
+void Model::CreateConfigOzzJSON(const std::filesystem::path& importPath, const std::string& name)
+{
+    std::string filename = importPath.filename().string();
+
+    Resources::PreparePath(importPath.parent_path().string());
+
+    // Skeleton output path
+    std::filesystem::path skeleton_path = importPath;
+    skeleton_path.replace_filename(filename + "_skeleton");
+    skeleton_path.replace_extension(".skeleton");
+    LOG(LogType::LOG_INFO, "Ozz Skeleton Path: %s", skeleton_path.c_str());
+
+    // Animations output path
+    std::filesystem::path anim_out_path = importPath;
+    anim_out_path.replace_filename(filename + "_*" + name);
+    anim_out_path.replace_extension(".anim");
+    LOG(LogType::LOG_INFO, "Ozz Anim Path: %s", anim_out_path.string().c_str());
+
+    // Mesh output path
+    std::filesystem::path mesh_out_path = importPath;
+    mesh_out_path.replace_filename(filename + "_animatedmesh");
+    mesh_out_path.replace_extension(".ozzmesh");
+    LOG(LogType::LOG_INFO, "Ozz Mesh Path: %s", mesh_out_path.c_str());
+
+    // === Setup ozz import json config ===
+    json ozzImportJSON;
+
+    // skeleton settings
+    json skeletonJSON;
+    skeletonJSON["filename"] = std::filesystem::absolute(skeleton_path).string().c_str();
+
+    // skeleton import settings
+    json skeletonImportJSON;
+    skeletonImportJSON["enable"] = true;
+    skeletonImportJSON["raw"] = false;
+    skeletonJSON["import"] = skeletonImportJSON;
+
+    ozzImportJSON["skeleton"] = skeletonJSON;
+
+
+    // animation settings
+    json animationsJSON;
+    json animJSON;
+    animJSON["clip"] = "*";
+    animJSON["filename"] = std::filesystem::absolute(anim_out_path).string().c_str();
+    animationsJSON.push_back(animJSON);
+
+    ozzImportJSON["animations"] = animationsJSON;
+
+    Resources::SaveJSON("Tools\\import_anim.json", ozzImportJSON);
 }

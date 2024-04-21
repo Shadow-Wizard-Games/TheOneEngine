@@ -116,7 +116,9 @@ private:
     bool _update(float _dt);
     bool _update_blend(float _dt);
     void ImportToOzz(const std::string& file, const std::filesystem::path& importPath);
+    void CreateConfigOzzJSON(const std::filesystem::path& importPath, const std::string& name);
 public:
+    void ImportAnimation(const std::string& file);
 
     bool isAnimated() { return hasBones; }
 
