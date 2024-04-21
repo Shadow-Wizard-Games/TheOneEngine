@@ -128,7 +128,6 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClCompile Include="PanelProject.cpp" />
     <ClCompile Include="PanelScene.cpp" />
     <ClCompile Include="PanelSettings.cpp" />
-    <ClCompile Include="Prefab.cpp" />
     <ClCompile Include="Renderer3D.cpp" />
     <ClCompile Include="Panel.cpp" />
     <ClCompile Include="PanelAbout.cpp" />
@@ -162,7 +161,6 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClInclude Include="PanelProject.h" />
     <ClInclude Include="PanelScene.h" />
     <ClInclude Include="PanelSettings.h" />
-    <ClInclude Include="Prefab.h" />
     <ClInclude Include="Renderer3D.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="PanelAbout.h" />

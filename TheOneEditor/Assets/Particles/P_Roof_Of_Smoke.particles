@@ -5,16 +5,22 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             4.0,
             0.0,
             4.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -4.0,
             -0.5,
             -4.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 4.0,
+          "MinSpeed": 1.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,12 +28,14 @@
           "MaxColor": [
             255.0,
             255.0,
+            255.0,
             255.0
           ],
           "MinColor": [
             40.0,
             40.0,
-            40.0
+            40.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": true
@@ -48,8 +56,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 147.04025268554688,
+      "Lifetime": 29.117238998413086,
       "MaxParticles": 500,
       "RenderModule": [
         {
@@ -59,10 +66,9 @@
       ],
       "SpawnModule": [
         {
-          "Amount": 15.0,
           "Duration": 5.0,
-          "SpawnRate": 2.0,
-          "Type": 2
+          "SpawnRate": 50.0,
+          "Type": 0
         }
       ],
       "UpdateModules": [
@@ -77,7 +83,6 @@
       ]
     }
   ],
-  "IsON": true,
   "Name": "P_Roof_Of_Smoke",
   "Type": 9,
   "UID": 627001985

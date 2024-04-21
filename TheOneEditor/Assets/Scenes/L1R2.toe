@@ -41,7 +41,7 @@
           "zNear": 0.1
         },
         {
-          "AudioID": 0,
+          "AudioID": 3,
           "Name": "Listener",
           "Type": 7
         },
@@ -55,7 +55,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 2359380
     },
@@ -34343,7 +34343,7 @@
         }
       ],
       "Name": "MK_Ship_Room2",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -34459,7 +34459,7 @@
                   "Width": -1.7976931348623157e+308
                 },
                 {
-                  "AudioID": 8,
+                  "AudioID": 4,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34518,7 +34518,7 @@
                   "UID": 2769006400
                 },
                 {
-                  "AudioID": 9,
+                  "AudioID": 5,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34626,7 +34626,7 @@
                   "UID": 2771460427
                 },
                 {
-                  "AudioID": 1,
+                  "AudioID": 6,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34700,7 +34700,7 @@
                   "UID": 3677473773
                 },
                 {
-                  "AudioID": 2,
+                  "AudioID": 7,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34774,7 +34774,7 @@
                   "UID": 1025605467
                 },
                 {
-                  "AudioID": 3,
+                  "AudioID": 8,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34848,7 +34848,7 @@
                   "UID": 2967335595
                 },
                 {
-                  "AudioID": 4,
+                  "AudioID": 9,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34922,7 +34922,7 @@
                   "UID": 1465103925
                 },
                 {
-                  "AudioID": 5,
+                  "AudioID": 10,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34996,7 +34996,7 @@
                   "UID": 2414002845
                 },
                 {
-                  "AudioID": 6,
+                  "AudioID": 11,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -35037,7 +35037,7 @@
         }
       ],
       "Name": "Enemies",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1212778432
     },
@@ -35089,7 +35089,7 @@
           "UID": 988737408
         },
         {
-          "AudioID": 7,
+          "AudioID": 12,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -35110,8 +35110,215 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                35.0,
+                10.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1818517941
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.5,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        6.0,
+                        10.0,
+                        120.0
+                      ],
+                      "MinDirection": [
+                        -6.0,
+                        -2.0,
+                        75.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 75.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        210.0,
+                        128.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "MinScale": [
+                        0.2,
+                        0.1,
+                        0.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 50,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -20.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.5,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        6.0,
+                        10.0,
+                        150.0
+                      ],
+                      "MinDirection": [
+                        -6.0,
+                        -2.0,
+                        100.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 150.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        210.0,
+                        128.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.0,
+                        0.1,
+                        2.0
+                      ],
+                      "MinScale": [
+                        0.2,
+                        0.1,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 0,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -20.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    }
+                  ]
+                }
+              ],
+              "Name": "P_ShootM4\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "Type": 9,
+              "UID": 4200920531
+            }
+          ],
+          "Enabled": true,
+          "Name": "ShotPlayerPS",
+          "ParentUID": 6619240,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "Name": "SK_MainCharacter",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -35144,37 +35351,30 @@
           "Emmiters": [
             {
               "Delay": 0.0,
-              "Duration": 0.5,
+              "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxColor": [
-                    250.0,
-                    100.0,
-                    0.0
+                  "MaxDirection": [
+                    1.0,
+                    0.8,
+                    1.0
                   ],
-                  "MinColor": [
-                    225.0,
-                    0.0,
-                    0.0
+                  "MinDirection": [
+                    -1.0,
+                    0.5,
+                    -1.0
                   ],
-                  "Type": 1,
-                  "UsingSingleValueColor": false
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
                 },
                 {
-                  "MaxSpeed": [
-                    10.0,
-                    8.0,
-                    10.0
-                  ],
-                  "MinSpeed": [
-                    -10.0,
-                    5.0,
-                    -10.0
-                  ],
+                  "MaxSpeed": 5.0,
+                  "MinSpeed": 10.0,
                   "Type": 0,
-                  "UsingSingleValueSpeed": false
+                  "UsingSingleValueSpeed": true
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.5,
                     1.5,
@@ -35187,15 +35387,30 @@
                   ],
                   "Type": 2,
                   "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    250.0,
+                    100.0,
+                    0.0,
+                    255.0
+                  ],
+                  "MinColor": [
+                    225.0,
+                    0.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 1617.137451171875,
+              "Lifetime": 424.6925354003906,
               "MaxParticles": 500,
               "RenderModule": [
                 {
-                  "BillboardType": 0,
+                  "BillboardType": 1,
                   "Type": 0
                 }
               ],
@@ -35223,20 +35438,27 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     1.0,
                     9.0,
                     1.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -1.0,
                     7.0,
                     -1.0
                   ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
                 },
                 {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.75,
                     1.75,
@@ -35254,24 +35476,25 @@
                   "MaxColor": [
                     45.0,
                     45.0,
-                    45.0
+                    45.0,
+                    255.0
                   ],
                   "MinColor": [
                     40.0,
                     40.0,
-                    40.0
+                    40.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": true
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 1617.137451171875,
+              "Lifetime": 355.4642333984375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
-                  "BillboardType": 0,
+                  "BillboardType": 1,
                   "Type": 0
                 }
               ],
@@ -35284,15 +35507,14 @@
               ]
             }
           ],
-          "IsON": true,
           "Name": "P_Fire_Big\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 704292522
+          "UID": 2963937243
         }
       ],
       "Enabled": true,
       "Name": "P_Fire_Big",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 4149613856
     },
@@ -35325,37 +35547,30 @@
           "Emmiters": [
             {
               "Delay": 0.0,
-              "Duration": 0.5,
+              "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxColor": [
-                    250.0,
-                    100.0,
-                    0.0
+                  "MaxDirection": [
+                    1.0,
+                    0.8,
+                    1.0
                   ],
-                  "MinColor": [
-                    225.0,
-                    0.0,
-                    0.0
+                  "MinDirection": [
+                    -1.0,
+                    0.5,
+                    -1.0
                   ],
-                  "Type": 1,
-                  "UsingSingleValueColor": false
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
                 },
                 {
-                  "MaxSpeed": [
-                    10.0,
-                    8.0,
-                    10.0
-                  ],
-                  "MinSpeed": [
-                    -10.0,
-                    5.0,
-                    -10.0
-                  ],
+                  "MaxSpeed": 5.0,
+                  "MinSpeed": 10.0,
                   "Type": 0,
-                  "UsingSingleValueSpeed": false
+                  "UsingSingleValueSpeed": true
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.5,
                     1.5,
@@ -35368,15 +35583,30 @@
                   ],
                   "Type": 2,
                   "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    250.0,
+                    100.0,
+                    0.0,
+                    255.0
+                  ],
+                  "MinColor": [
+                    225.0,
+                    0.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 1617.137451171875,
+              "Lifetime": 425.32562255859375,
               "MaxParticles": 500,
               "RenderModule": [
                 {
-                  "BillboardType": 0,
+                  "BillboardType": 1,
                   "Type": 0
                 }
               ],
@@ -35404,20 +35634,27 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     1.0,
                     9.0,
                     1.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -1.0,
                     7.0,
                     -1.0
                   ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
                 },
                 {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.75,
                     1.75,
@@ -35435,24 +35672,25 @@
                   "MaxColor": [
                     45.0,
                     45.0,
-                    45.0
+                    45.0,
+                    255.0
                   ],
                   "MinColor": [
                     40.0,
                     40.0,
-                    40.0
+                    40.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": true
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 1617.137451171875,
+              "Lifetime": 356.0973205566406,
               "MaxParticles": 50,
               "RenderModule": [
                 {
-                  "BillboardType": 0,
+                  "BillboardType": 1,
                   "Type": 0
                 }
               ],
@@ -35465,15 +35703,14 @@
               ]
             }
           ],
-          "IsON": true,
           "Name": "P_Fire_Big\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 704292522
+          "UID": 2963937243
         }
       ],
       "Enabled": true,
       "Name": "P_Fire_Big1",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 2348320
     },
@@ -35506,37 +35743,30 @@
           "Emmiters": [
             {
               "Delay": 0.0,
-              "Duration": 0.5,
+              "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxColor": [
-                    250.0,
-                    100.0,
-                    0.0
+                  "MaxDirection": [
+                    1.0,
+                    0.8,
+                    1.0
                   ],
-                  "MinColor": [
-                    225.0,
-                    0.0,
-                    0.0
+                  "MinDirection": [
+                    -1.0,
+                    0.5,
+                    -1.0
                   ],
-                  "Type": 1,
-                  "UsingSingleValueColor": false
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
                 },
                 {
-                  "MaxSpeed": [
-                    10.0,
-                    8.0,
-                    10.0
-                  ],
-                  "MinSpeed": [
-                    -10.0,
-                    5.0,
-                    -10.0
-                  ],
+                  "MaxSpeed": 5.0,
+                  "MinSpeed": 10.0,
                   "Type": 0,
-                  "UsingSingleValueSpeed": false
+                  "UsingSingleValueSpeed": true
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.5,
                     1.5,
@@ -35549,15 +35779,30 @@
                   ],
                   "Type": 2,
                   "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    250.0,
+                    100.0,
+                    0.0,
+                    255.0
+                  ],
+                  "MinColor": [
+                    225.0,
+                    0.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 1617.137451171875,
+              "Lifetime": 431.867431640625,
               "MaxParticles": 500,
               "RenderModule": [
                 {
-                  "BillboardType": 0,
+                  "BillboardType": 1,
                   "Type": 0
                 }
               ],
@@ -35585,20 +35830,27 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     1.0,
                     9.0,
                     1.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -1.0,
                     7.0,
                     -1.0
                   ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
                 },
                 {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.75,
                     1.75,
@@ -35616,24 +35868,25 @@
                   "MaxColor": [
                     45.0,
                     45.0,
-                    45.0
+                    45.0,
+                    255.0
                   ],
                   "MinColor": [
                     40.0,
                     40.0,
-                    40.0
+                    40.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": true
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 1617.137451171875,
+              "Lifetime": 362.6391296386719,
               "MaxParticles": 50,
               "RenderModule": [
                 {
-                  "BillboardType": 0,
+                  "BillboardType": 1,
                   "Type": 0
                 }
               ],
@@ -35646,15 +35899,14 @@
               ]
             }
           ],
-          "IsON": true,
           "Name": "P_Fire_Big\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 704292522
+          "UID": 2963937243
         }
       ],
       "Enabled": true,
       "Name": "P_Fire_Big2",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 10078192
     },
@@ -35663,17 +35915,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371140569550603e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -1.0000003576278675,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            1.0000003576278675,
+            0.0,
+            -4.371140569550603e-08,
             0.0,
             -1210.5645751953125,
             13.61451244354248,
@@ -35690,16 +35942,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -35707,17 +35965,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -35733,8 +35994,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4293.50927734375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35766,16 +36026,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -35783,17 +36049,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -35809,8 +36078,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3504.900390625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -35838,15 +36106,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "P_Sparks_ToLeft\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark001",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -35855,17 +36122,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371139006309477e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -0.999999999999999,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            0.999999999999999,
+            0.0,
+            -4.371139006309477e-08,
             0.0,
             -1207.3389892578125,
             26.252235412597656,
@@ -35882,16 +36149,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -35899,17 +36172,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -35925,8 +36201,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4346.28173828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35958,16 +36233,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -35975,17 +36256,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36001,8 +36285,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3557.67431640625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36030,15 +36313,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 3648243002
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft1",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark002",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 2109027104
     },
@@ -36047,17 +36329,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371139006309477e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -0.999999999999999,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            0.999999999999999,
+            0.0,
+            -4.371139006309477e-08,
             0.0,
             -1207.3389892578125,
             15.492107391357422,
@@ -36074,16 +36356,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36091,17 +36379,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36117,8 +36408,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4268.43310546875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36150,16 +36440,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36167,17 +36463,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36193,8 +36492,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3479.823486328125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36222,15 +36520,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 1917768361
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft2",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark003",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -36239,17 +36536,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371139006309477e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -0.999999999999999,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            0.999999999999999,
+            0.0,
+            -4.371139006309477e-08,
             0.0,
             -1207.3389892578125,
             36.33549880981445,
@@ -36266,16 +36563,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36283,17 +36586,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36309,8 +36615,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4646.1904296875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36342,16 +36647,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36359,17 +36670,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36385,8 +36699,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3857.564208984375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36414,15 +36727,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 2981950801
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft3",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark004",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -36431,17 +36743,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371139006309477e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -0.999999999999999,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            0.999999999999999,
+            0.0,
+            -4.371139006309477e-08,
             0.0,
             -1207.3389892578125,
             36.33549880981445,
@@ -36458,16 +36770,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36475,17 +36793,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36501,8 +36822,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4305.88134765625,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36534,16 +36854,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36551,17 +36877,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36577,8 +36906,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3517.283447265625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36606,15 +36934,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 2756528388
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft4",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark005",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1779500912
     },
@@ -36623,17 +36950,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371139006309477e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -0.999999999999999,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            0.999999999999999,
+            0.0,
+            -4.371139006309477e-08,
             0.0,
             -1207.3389892578125,
             28.723764419555664,
@@ -36650,16 +36977,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36667,17 +37000,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36693,8 +37029,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4259.40966796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36726,16 +37061,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36743,17 +37084,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36769,8 +37113,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3470.799560546875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36798,15 +37141,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 660086982
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft5",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark006",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 2113778768
     },
@@ -36815,17 +37157,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371139006309477e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -0.999999999999999,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            0.999999999999999,
+            0.0,
+            -4.371139006309477e-08,
             0.0,
             -1207.3389892578125,
             40.854576110839844,
@@ -36842,16 +37184,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36859,17 +37207,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36885,8 +37236,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4271.61328125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36918,16 +37268,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -36935,17 +37291,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -36961,8 +37320,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3483.00146484375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36990,15 +37348,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 2978562378
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft6",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark007",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -37007,17 +37364,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -4.371139006309477e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            -0.999999999999999,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            0.999999999999999,
+            0.0,
+            -4.371139006309477e-08,
             0.0,
             -1207.3389892578125,
             40.854576110839844,
@@ -37034,16 +37391,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37051,17 +37414,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37077,8 +37443,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4084.909423828125,
+              "Lifetime": 4621.1005859375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37110,16 +37475,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
-                    15.0,
+                  "MaxDirection": [
+                    6.0,
                     10.0,
-                    6.0
+                    15.0
                   ],
-                  "MinSpeed": [
-                    12.0,
+                  "MinDirection": [
+                    -6.0,
                     -2.0,
-                    -6.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37127,17 +37498,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37153,8 +37527,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3296.338134765625,
+              "Lifetime": 3832.4951171875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37182,15 +37555,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 1316374250
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkLeft7",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark008",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -37199,17 +37571,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -0.999999999999996,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            8.742278000372473e-08,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            -8.742278000372473e-08,
+            0.0,
+            -0.999999999999996,
             0.0,
             -578.578369140625,
             40.854576110839844,
@@ -37226,16 +37598,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    -12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37243,17 +37621,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37269,8 +37650,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4237.1591796875,
+              "Lifetime": 4268.25390625,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37302,16 +37682,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37319,17 +37705,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37345,8 +37734,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3448.57421875,
+              "Lifetime": 3479.645751953125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37374,15 +37762,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "P_Sparks_ToBack\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkBack",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark009",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -37391,17 +37778,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -0.999999999999996,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            8.742278000372473e-08,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            -8.742278000372473e-08,
+            0.0,
+            -0.999999999999996,
             0.0,
             -591.9686279296875,
             33.647071838378906,
@@ -37418,16 +37805,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    -12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37435,17 +37828,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37461,8 +37857,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4237.1591796875,
+              "Lifetime": 4263.62548828125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37494,16 +37889,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37511,17 +37912,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37537,8 +37941,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3448.57421875,
+              "Lifetime": 3475.022705078125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37566,15 +37969,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 1750534543
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkBack1",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark010",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 2115568720
     },
@@ -37583,17 +37985,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -0.999999999999996,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            8.742278000372473e-08,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            -8.742278000372473e-08,
+            0.0,
+            -0.999999999999996,
             0.0,
             -578.578369140625,
             25.49199104309082,
@@ -37610,16 +38012,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    -12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37627,17 +38035,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37653,8 +38064,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4237.1591796875,
+              "Lifetime": 4262.724609375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37686,16 +38096,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37703,17 +38119,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37729,8 +38148,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3448.57421875,
+              "Lifetime": 3474.1240234375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37758,15 +38176,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 2241187929
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkBack2",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark011",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 2109027104
     },
@@ -37775,17 +38192,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -0.999999999999996,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            8.742278000372473e-08,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            -8.742278000372473e-08,
+            0.0,
+            -0.999999999999996,
             0.0,
             -591.945556640625,
             21.629592895507813,
@@ -37802,16 +38219,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    -12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37819,17 +38242,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37845,8 +38271,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4237.1591796875,
+              "Lifetime": 4261.57177734375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37878,16 +38303,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -37895,17 +38326,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -37921,8 +38355,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3448.57421875,
+              "Lifetime": 3472.966796875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37950,15 +38383,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 2036672318
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkBack3",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark012",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -37967,17 +38399,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -0.999999999999996,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            8.742278000372473e-08,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            -8.742278000372473e-08,
+            0.0,
+            -0.999999999999996,
             0.0,
             -578.578369140625,
             6.619104385375977,
@@ -37994,16 +38426,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    -12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -38011,17 +38449,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -38037,8 +38478,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4237.1591796875,
+              "Lifetime": 4258.74560546875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38070,16 +38510,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -38087,17 +38533,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -38113,8 +38562,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3448.57421875,
+              "Lifetime": 3470.140625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38142,15 +38590,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 3851095827
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkBack4",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark013",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -38159,17 +38606,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -0.999999999999996,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
+            8.742278000372473e-08,
             0.0,
             0.0,
             1.0,
+            0.0,
+            0.0,
+            -8.742278000372473e-08,
+            0.0,
+            -0.999999999999996,
             0.0,
             -578.578369140625,
             40.854576110839844,
@@ -38186,16 +38633,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    -12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 5.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -38203,17 +38656,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -38229,8 +38685,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4237.1591796875,
+              "Lifetime": 4268.35888671875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38262,16 +38717,22 @@
               "Duration": 10.0,
               "InitializeModules": [
                 {
-                  "MaxSpeed": [
+                  "MaxDirection": [
                     6.0,
                     10.0,
-                    12.0
+                    15.0
                   ],
-                  "MinSpeed": [
+                  "MinDirection": [
                     -6.0,
                     -2.0,
-                    -15.0
+                    12.0
                   ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 15.0,
+                  "MinSpeed": 12.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
@@ -38279,17 +38740,20 @@
                   "MaxColor": [
                     255.0,
                     255.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "MinColor": [
                     220.0,
                     200.0,
-                    0.0
+                    0.0,
+                    255.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
                 },
                 {
+                  "IsProportional": true,
                   "MaxScale": [
                     1.0,
                     0.1,
@@ -38305,8 +38769,7 @@
                 }
               ],
               "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3448.57421875,
+              "Lifetime": 3479.75048828125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38334,15 +38797,14 @@
               ]
             }
           ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "Type": 9,
-          "UID": 3826442989
+          "UID": 4200920531
         }
       ],
       "Enabled": true,
-      "Name": "P_SparkBack5",
-      "ParentUID": 4294967295,
+      "Name": "P_Spark014",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 2109027104
     },
@@ -38381,7 +38843,7 @@
       ],
       "Enabled": true,
       "Name": "Manager",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 674199056
     },
@@ -38420,7 +38882,7 @@
       ],
       "Enabled": true,
       "Name": "GoBack",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
     },
@@ -38459,201 +38921,9 @@
       ],
       "Enabled": true,
       "Name": "GoNext",
-      "ParentUID": 4294967295,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6619240
-    },
-        {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            549.2697143554688,
-            33.0,
-            -750.9942626953125,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3588003588
-        },
-        {
-          "Emmiters": [
-            {
-              "Delay": 0.0,
-              "Duration": 10.0,
-              "InitializeModules": [
-                {
-                  "MaxSpeed": [
-                    6.0,
-                    10.0,
-                    15.0
-                  ],
-                  "MinSpeed": [
-                    -6.0,
-                    -2.0,
-                    12.0
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxColor": [
-                    255.0,
-                    255.0,
-                    0.0
-                  ],
-                  "MinColor": [
-                    220.0,
-                    200.0,
-                    0.0
-                  ],
-                  "Type": 1,
-                  "UsingSingleValueColor": false
-                },
-                {
-                  "MaxScale": [
-                    1.0,
-                    0.1,
-                    0.0
-                  ],
-                  "MinScale": [
-                    0.2,
-                    0.1,
-                    0.0
-                  ],
-                  "Type": 2,
-                  "UsingSingleValueScale": false
-                }
-              ],
-              "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 4144.572265625,
-              "MaxParticles": 50,
-              "RenderModule": [
-                {
-                  "BillboardType": 0,
-                  "Type": 0
-                }
-              ],
-              "SpawnModule": [
-                {
-                  "Amount": 5.0,
-                  "Duration": 0.699999988079071,
-                  "SpawnRate": 0.7820000052452087,
-                  "Type": 2
-                }
-              ],
-              "UpdateModules": [
-                {
-                  "Acceleration": [
-                    0.0,
-                    -20.0,
-                    0.0
-                  ],
-                  "Type": 0
-                }
-              ]
-            },
-            {
-              "Delay": 0.0,
-              "Duration": 10.0,
-              "InitializeModules": [
-                {
-                  "MaxSpeed": [
-                    6.0,
-                    10.0,
-                    15.0
-                  ],
-                  "MinSpeed": [
-                    -6.0,
-                    -2.0,
-                    12.0
-                  ],
-                  "Type": 0,
-                  "UsingSingleValueSpeed": false
-                },
-                {
-                  "MaxColor": [
-                    255.0,
-                    255.0,
-                    0.0
-                  ],
-                  "MinColor": [
-                    220.0,
-                    200.0,
-                    0.0
-                  ],
-                  "Type": 1,
-                  "UsingSingleValueColor": false
-                },
-                {
-                  "MaxScale": [
-                    1.0,
-                    0.1,
-                    2.0
-                  ],
-                  "MinScale": [
-                    0.2,
-                    0.1,
-                    1.0
-                  ],
-                  "Type": 2,
-                  "UsingSingleValueScale": false
-                }
-              ],
-              "IsLooping": true,
-              "IsON": true,
-              "Lifetime": 3356.000244140625,
-              "MaxParticles": 100,
-              "RenderModule": [
-                {
-                  "BillboardType": 0,
-                  "Type": 0
-                }
-              ],
-              "SpawnModule": [
-                {
-                  "Amount": 5.0,
-                  "Duration": 0.699999988079071,
-                  "SpawnRate": 0.9470000267028809,
-                  "Type": 2
-                }
-              ],
-              "UpdateModules": [
-                {
-                  "Acceleration": [
-                    0.0,
-                    -20.0,
-                    0.0
-                  ],
-                  "Type": 0
-                }
-              ]
-            }
-          ],
-          "IsON": true,
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
-          "Type": 9,
-          "UID": 233702458
-        }
-      ],
-      "Enabled": true,
-      "Name": "P_Sparks_ToFront3",
-      "ParentUID": 6225968,
-      "Static": false,
-      "UID": 3452816845
     },
     {
       "Components": [
@@ -38994,7 +39264,7 @@
               ]
             },
             {
-              "AudioID": 4,
+              "AudioID": 13,
               "Name": "Source",
               "Type": 8
             },
@@ -39780,7 +40050,7 @@
         }
       ],
       "Name": "UI_Manager",
-      "ParentUID": 6225968,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     }

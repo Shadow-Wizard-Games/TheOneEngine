@@ -73,12 +73,14 @@ bool PanelInspector::Draw()
             //ImGui::Checkbox("Active", &gameObjSelected->isActive);
             ImGui::SameLine(); ImGui::Text("GameObject:");
             ImGui::SameLine(); ImGui::TextColored({ 0.144f, 0.422f, 0.720f, 1.0f }, selectedGO->GetName().c_str());
-            if (selectedGO->IsPrefab() && selectedGO->IsPrefabDirty())
+            if (selectedGO->IsPrefab()/* && selectedGO->IsPrefabDirty()*/)
             {
                 ImGui::SameLine(0.0f, -1.0f);
                 if (ImGui::Button("Overrides", { 75.0f, 20.0f }))
                 {
                     ImGui::OpenPopup("ChangesWarning");
+
+                    OverridePrefabs(*selectedGO);
                 }
             }
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
@@ -101,7 +103,7 @@ bool PanelInspector::Draw()
                 std::string newName(newNameBuffer);
                 LOG(LogType::LOG_INFO, "GameObject %s has been renamed to %s", selectedGO->GetName().c_str(), newName.c_str());
                 selectedGO->SetName(newName); // Establece el nuevo nombre del GameObject
-                // Limpiar el buffer después de cambiar el nombre
+                // Limpiar el buffer despuï¿½s de cambiar el nombre
                 newNameBuffer[0] = '\0';
             }
 
@@ -394,6 +396,11 @@ bool PanelInspector::Draw()
                 }
 
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+                if (isDirty && selectedGO->IsPrefab())
+                {
+                    selectedGO->SetPrefabDirty(true);
+                }
             }
             
 
@@ -412,6 +419,8 @@ bool PanelInspector::Draw()
 
             if (collider2D != nullptr && ImGui::CollapsingHeader("Collider 2D", treeNodeFlags))
             {
+                bool isDirty = false;
+
                 // Collision type
                 int collisionType = (int)collider2D->collisionType;
                 ImGui::Text("Collision Type");
@@ -441,17 +450,19 @@ bool PanelInspector::Draw()
                 if (ImGui::InputFloat("##OffsetX", &offsetX))
                 {
                     collider2D->offset.x = offsetX;
+                    isDirty = true;
                 }
                 ImGui::Text("Y");
                 ImGui::SameLine();
                 if (ImGui::InputFloat("##OffsetY", &offsetY))
                 {
                     collider2D->offset.y = offsetY;
+                    isDirty = true;
                 }
 
                 if (collider2D->colliderType == ColliderType::Rect)
                 {
-                    ImGui::Checkbox("CornerPivot", &(collider2D->cornerPivot));
+                    if (ImGui::Checkbox("CornerPivot", &(collider2D->cornerPivot))) isDirty = true;
 
                     if (collider2D->cornerPivot)
                     {
@@ -475,6 +486,7 @@ bool PanelInspector::Draw()
                     if (ImGui::InputFloat("##Width", &w))
                     {
                         collider2D->w = w;
+                        isDirty = true;
                     }
 
                     ImGui::Text("Height");
@@ -482,6 +494,7 @@ bool PanelInspector::Draw()
                     if (ImGui::InputFloat("##Height", &h))
                     {
                         collider2D->h = h;
+                        isDirty = true;
                     }
                 }
                 else if (collider2D->colliderType == ColliderType::Circle)
@@ -493,6 +506,7 @@ bool PanelInspector::Draw()
                     if (ImGui::InputFloat("##Radius", &radius))
                     {
                         collider2D->radius = radius;
+                        isDirty = true;
                     }
                 }
 
@@ -500,6 +514,12 @@ bool PanelInspector::Draw()
                 if (ImGui::Button("Remove Collider"))
                 {
                     selectedGO->RemoveComponent(ComponentType::Collider2D);
+                    isDirty = true;
+                }
+
+                if (isDirty && selectedGO->IsPrefab())
+                {
+                    selectedGO->SetPrefabDirty(true);
                 }
             }
 
@@ -509,13 +529,50 @@ bool PanelInspector::Draw()
 
             if (particleSystem != nullptr && ImGui::CollapsingHeader("Particle System", treeNodeFlags))
             {
-                //if (ImGui::Button("Load"))      particleSystem->Load("");           ImGui::SameLine();
-                //if (ImGui::Button("Save"))      particleSystem->Save();             ImGui::SameLine();
-                if (ImGui::Button("Play"))      particleSystem->Play();             ImGui::SameLine();               
-                if (ImGui::Button("Stop"))      particleSystem->Stop();             ImGui::SameLine();
-                if (ImGui::Button("Replay"))    particleSystem->Replay();           ImGui::SameLine();
-                if (ImGui::Button("Export"))    particleSystem->ExportParticles();  ImGui::SameLine();
-                if (ImGui::Button("Import"))    chooseParticlesToImportWindow = true;
+                // to see the particles without playing
+                if (app->state == GameState::NONE) {
+                    particleSystem->Update();
+                }
+                bool isDirty = false;
+
+                /*if (ImGui::Button("Load")) {
+                    particleSystem->Load("");
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Save")) {
+                    particleSystem->Save();
+                }*/
+
+                if (!particleSystem->IsON()) {
+                    if (ImGui::Button("Play")) {
+                        particleSystem->Play();
+                    }
+                }
+                else {
+                    if (ImGui::Button("Pause")) {
+                        particleSystem->Pause();
+                    }
+                }
+                
+                ImGui::SameLine();
+                if (ImGui::Button("Replay")) {
+                    particleSystem->Replay();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Stop")) {
+                    particleSystem->Stop();
+                }
+
+                ImGui::Checkbox("Start ON", &particleSystem->startON);
+
+                if (ImGui::Button("Export")) {
+                    particleSystem->ExportParticles();
+                }
+                ImGui::SameLine();
+                if (ImGui::Button("Import")) {
+                    chooseParticlesToImportWindow = true;
+                    isDirty = true;
+                }
 
                 // change name
                 particleSystem->GetNameToEdit()->resize(20);
@@ -533,12 +590,21 @@ bool PanelInspector::Draw()
                 }
                 
                 // add emmiter
-                if (ImGui::Button("Add Emmiter")) particleSystem->AddEmmiter();
+                if (ImGui::Button("Add Emmiter")) {
+                    particleSystem->AddEmmiter();
+                    isDirty = true;
+                }
 
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
                 if (ImGui::Button("Remove Particle System"))
                 {
                     selectedGO->RemoveComponent(ComponentType::ParticleSystem);
+                    isDirty = true;
+                }
+
+                if (isDirty && selectedGO->IsPrefab())
+                {
+                    selectedGO->SetPrefabDirty(true);
                 }
             }
 
@@ -1364,4 +1430,27 @@ void PanelInspector::ChooseParticlesToImportWindow()
     }
 
     ImGui::End();
+}
+
+void PanelInspector::OverridePrefabs(GameObject& gameObject)
+{
+    OverridePrefabFile(gameObject);
+    engine->N_sceneManager->OverrideScenePrefabs(gameObject.GetPrefabID());
+}
+
+void PanelInspector::OverridePrefabFile(GameObject& gameObject)
+{
+    //gameObject.SetPrefab(UIDGen::GenerateUID());
+
+    // Serialize the GameObject and save it as a prefab file
+    json gameObjectJSON = gameObject.SaveGameObject();
+
+    fs::path filename = ASSETS_PATH;
+    filename += "Prefabs\\" + gameObject.GetName() + ".prefab";
+
+    std::ofstream(filename) << gameObjectJSON.dump(2);
+
+    LOG(LogType::LOG_OK, "PREFAB UPDATED SUCCESSFULLY");
+
+    gameObject.SetPrefabDirty(false);
 }

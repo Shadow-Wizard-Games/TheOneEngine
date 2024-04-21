@@ -5,52 +5,59 @@
       "Duration": 1.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
-            1.0,
-            5.0,
-            1.0
-          ],
-          "MinSpeed": [
-            -1.0,
-            0.5,
-            -1.0
-          ],
-          "Type": 0,
-          "UsingSingleValueSpeed": false
-        },
-        {
           "MaxColor": [
             226.0,
             197.0,
-            99.0
+            99.0,
+            255.0
           ],
           "MinColor": [
             252.0,
             223.0,
-            144.0
+            144.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
           "MaxScale": [
+            5.0,
+            5.0,
+            5.0
+          ],
+          "MinScale": [
             2.0,
             2.0,
             2.0
           ],
-          "MinScale": [
+          "Type": 2,
+          "UsingSingleValueScale": false
+        },
+        {
+          "MaxDirection": [
+            20.0,
+            20.0,
+            5.0
+          ],
+          "MinDirection": [
             1.0,
             1.0,
             1.0
           ],
-          "Type": 2,
-          "UsingSingleValueScale": false
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 20.0,
+          "MinSpeed": 1.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
         }
       ],
-      "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 123.2428970336914,
-      "MaxParticles": 5,
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 10,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -59,25 +66,24 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 1.0,
-          "SpawnRate": 4.0,
-          "Type": 0
+          "Amount": 10.0,
+          "Duration": 0.75,
+          "Type": 1
         }
       ],
       "UpdateModules": [
         {
           "Acceleration": [
-            -10.0,
-            10.0,
-            10.0
+            0.0,
+            30.0,
+            75.0
           ],
           "Type": 0
         }
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_Run_ToLeft_LvL2",
+  "Name": "P_Roll_Sand",
   "Type": 9,
   "UID": 402248169
 }

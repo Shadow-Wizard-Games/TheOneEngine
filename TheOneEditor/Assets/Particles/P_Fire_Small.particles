@@ -8,29 +8,37 @@
           "MaxColor": [
             250.0,
             60.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
             180.0,
             0.0,
-            0.0
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             5.0,
             8.0,
             5.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -5.0,
             5.0,
             -5.0
           ],
-          "Type": 0,
+          "Type": 4,
           "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxSpeed": 5.0,
+          "MinSpeed": 8.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
         },
         {
           "MaxScale": [
@@ -81,18 +89,24 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             1.0,
             9.0,
             1.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -1.0,
             7.0,
             -1.0
           ],
-          "Type": 0,
+          "Type": 4,
           "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxSpeed": 5.0,
+          "MinSpeed": 9.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
         },
         {
           "MaxScale": [
@@ -112,12 +126,14 @@
           "MaxColor": [
             45.0,
             45.0,
-            45.0
+            45.0,
+            255.0
           ],
           "MinColor": [
             40.0,
             40.0,
-            40.0
+            40.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": true

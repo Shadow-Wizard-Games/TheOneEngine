@@ -2,19 +2,25 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 1.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
             120.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
             75.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 120.0,
+          "MinSpeed": 75.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -22,34 +28,35 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            100.0,
+            255.0
           ],
           "MinColor": [
             210.0,
             128.0,
-            0.0
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
           "MaxScale": [
-            1.0,
-            1.0,
-            0.0
+            3.0,
+            3.0,
+            3.0
           ],
           "MinScale": [
-            0.2,
-            0.1,
-            0.0
+            1.0,
+            1.0,
+            1.0
           ],
           "Type": 2,
           "UsingSingleValueScale": false
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 4.75777530670166,
+      "Lifetime": 11.592087745666504,
       "MaxParticles": 50,
       "RenderModule": [
         {
@@ -59,8 +66,8 @@
       ],
       "SpawnModule": [
         {
-          "Amount": 10.0,
-          "Duration": 0.20000000298023224,
+          "Amount": 20.0,
+          "Duration": 0.4000000059604645,
           "Type": 1
         }
       ],
@@ -68,7 +75,7 @@
         {
           "Acceleration": [
             0.0,
-            -20.0,
+            20.0,
             0.0
           ],
           "Type": 0
@@ -80,16 +87,22 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             6.0,
             10.0,
             150.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -6.0,
             -2.0,
             100.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 150.0,
+          "MinSpeed": 100.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -97,12 +110,14 @@
           "MaxColor": [
             255.0,
             255.0,
-            0.0
+            0.0,
+            255.0
           ],
           "MinColor": [
             210.0,
             128.0,
-            0.0
+            0.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
@@ -123,8 +138,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 4.75777530670166,
+      "Lifetime": 11.592087745666504,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -143,7 +157,7 @@
         {
           "Acceleration": [
             0.0,
-            -20.0,
+            20.0,
             0.0
           ],
           "Type": 0
@@ -151,8 +165,7 @@
       ]
     }
   ],
-  "IsON": true,
-  "Name": "P_ShootM4_Upwards",
+  "Name": "P_ShootLaImpaciente",
   "Type": 9,
   "UID": 4200920531
 }
