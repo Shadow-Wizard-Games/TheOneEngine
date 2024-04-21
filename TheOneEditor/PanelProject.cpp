@@ -531,7 +531,7 @@ void PanelProject::ContextMenu()
 }
 
 void PanelProject::SaveGameObjectAsPrefab(GameObject& gameObject, const FileInfo& info) {
-	gameObject.SetPrefab(UIDGen::GenerateUID());
+	gameObject.SetPrefab(UIDGen::GenerateUID(), gameObject.GetName());
 
 	std::string prefabName = gameObject.GetName() + ".prefab";
 

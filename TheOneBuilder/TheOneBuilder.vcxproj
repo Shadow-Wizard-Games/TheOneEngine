@@ -225,7 +225,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ProjectReference Include="..\TheOneEngine\TheOneEngine.vcxproj">
       <Project>{0e04f5b4-d4a2-4f7b-b350-a0edcae8a446}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\TheOneScriptingEngine\TheOneScriptingEngine.csproj">
+    <ProjectReference Include="..\TheOneScripting\TheOneScripting.csproj">
       <Project>{e3064d12-da09-4437-920e-cfeee63bdd82}</Project>
     </ProjectReference>
   </ItemGroup>
