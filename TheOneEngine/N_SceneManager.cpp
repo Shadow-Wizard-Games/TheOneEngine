@@ -689,6 +689,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 		}
 	}
 
+	// Update other prefab instances children
 	/*
 	if (prefabJSON.contains("GameObjects"))
 	{
