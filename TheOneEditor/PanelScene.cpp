@@ -37,7 +37,6 @@ PanelScene::~PanelScene() {}
 
 void PanelScene::Start()
 {
-
     // Creating Editor Camera GO (Outside hierarchy)
     sceneCamera = std::make_shared<GameObject>("EDITOR CAMERA");
     sceneCamera.get()->AddComponent<Transform>();
@@ -110,7 +109,6 @@ bool PanelScene::Draw()
             if (ImGui::Combo("##HandlePosition", &position, positions, 2))
             {
                 handlePosition = (HandlePosition)position;
-                ImGui::EndCombo();
             }
 
             // HandleSpace
@@ -119,7 +117,6 @@ bool PanelScene::Draw()
             {
                 //handleSpace = (HandleSpace)space;
                 LOG(LogType::LOG_INFO, "gizMode: %d", gizmoMode);
-                ImGui::EndCombo();
             }
 
             ImGui::Dummy(ImVec2(availWindowSize.x - 360.0f, 0.0f));
@@ -183,17 +180,13 @@ bool PanelScene::Draw()
                 ImGui::EndMenu();
             }
 
-            ImGui::PopStyleVar();
             ImGui::EndMenuBar();
         }
-
-        engine->LogGL("PanelScene.cpp 188");
+        ImGui::PopStyleVar();
 
         //Draw FrameBuffer Texture
         viewportSize = { availWindowSize.x, availWindowSize.y };
         ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
-        engine->LogGL("PanelScene.cpp 194");
 
 
         // ImGuizmo ------------------------------------------------------------------------
@@ -259,14 +252,8 @@ bool PanelScene::Draw()
         //ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
         {
             frameBuffer->Bind();
-            engine->LogGL("Bind was Mondongo");
-
             frameBuffer->Clear();
-            engine->LogGL("Clear was Mondongo");
-
             frameBuffer->ClearBuffer(-1);
-            engine->LogGL("ClearBuffer was Mondongo");
-
 
             // Draw
             engine->Render(sceneCamera->GetComponent<Camera>());
@@ -298,10 +285,6 @@ bool PanelScene::Draw()
         }
 
 	}
-
-    engine->LogGL("PanelScene.cpp 289");
-
-
 	ImGui::End();
 	ImGui::PopStyleVar();
 

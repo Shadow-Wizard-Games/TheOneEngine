@@ -475,7 +475,7 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
 	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
 
-	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName);
+	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName, ".mesh", ".animator");
 
 	if (fileNames.empty())
 		CreateMeshGO(path);
@@ -793,7 +793,7 @@ void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 		for (const auto& gameObject : parentGO.get()->children)
 		{
 			gameObject.get()->Draw(cam);
-			RecurseSceneDraw(gameObject);
+			RecurseSceneDraw(gameObject, cam);
 		}
 
 	}

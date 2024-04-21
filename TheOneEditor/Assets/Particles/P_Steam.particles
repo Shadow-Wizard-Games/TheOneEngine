@@ -1,0 +1,134 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxColor": [
+            250.0,
+            250.0,
+            250.0,
+            255.0
+          ],
+          "MinColor": [
+            220.0,
+            220.0,
+            220.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "MaxDirection": [
+            0.0,
+            0.0,
+            50.0
+          ],
+          "MinDirection": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": true
+        },
+        {
+          "MaxSpeed": 100.0,
+          "MinSpeed": 50.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            10.0,
+            10.0,
+            10.0
+          ],
+          "MinScale": [
+            1.0,
+            0.1,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 12666.6923828125,
+      "MaxParticles": 80,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 2.0,
+          "SpawnRate": 15.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            2.0,
+            -40.0
+          ],
+          "Type": 0
+        }
+      ]
+    },
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxSpeed": 2.0,
+          "MinSpeed": 1.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
+        },
+        {
+          "MaxSpeed": 10.0,
+          "MinSpeed": 2.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 12666.6923828125,
+      "MaxParticles": 10,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 10.0,
+          "Duration": 1.0,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "P_Steam",
+  "Type": 9,
+  "UID": 704292522
+}

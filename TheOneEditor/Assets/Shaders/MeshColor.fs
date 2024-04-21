@@ -1,9 +1,10 @@
 #version 450 core
 
-uniform vec4 color;
+// Outputs colors in RGBA
+out vec4 FragColor;
 
-out vec4 out_color;
+uniform vec4 u_Color;
 
 void main() {
-	out_color = color;
+	FragColor = u_Color;
 }

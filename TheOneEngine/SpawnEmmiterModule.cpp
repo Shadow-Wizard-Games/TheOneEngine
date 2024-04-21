@@ -21,6 +21,11 @@ ConstantSpawnRate::ConstantSpawnRate(Emmiter* owner, ConstantSpawnRate* ref)
 	timeFromLastSpawn = ref->timeFromLastSpawn;
 }
 
+void ConstantSpawnRate::Reset()
+{
+	timeFromLastSpawn = 0;
+}
+
 void ConstantSpawnRate::Update(double dt)
 {
 	if (spawnRate <= 0.001) return;
@@ -154,6 +159,11 @@ ConstantBurstSpawn::ConstantBurstSpawn(Emmiter* owner, ConstantBurstSpawn* ref)
 	spawnRate = ref->spawnRate;
 	amount = ref->amount;
 	timeFromLastSpawn = ref->timeFromLastSpawn;
+}
+
+void ConstantBurstSpawn::Reset()
+{
+	timeFromLastSpawn = 0;
 }
 
 void ConstantBurstSpawn::Update(double dt)

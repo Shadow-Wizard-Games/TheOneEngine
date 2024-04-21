@@ -35,6 +35,7 @@ public:
 	};
 
 	struct Resource {
+		std::string name;
 		// Path to resource
 		std::string filePath;
 		bool isNative;
@@ -74,7 +75,7 @@ public:
 	static std::filesystem::path ImportPathImpl(const std::filesystem::path& path, const char* extension);
 	static std::string FindFileInAssets(const std::string& name);
 	static std::string FindFileInLibrary(const std::string& name);
-	static std::vector<std::string> GetAllFilesFromFolder(const std::string& path);
+	static std::vector<std::string> GetAllFilesFromFolder(const std::string& path, const std::string& extension1 = "", const std::string& extension2 = "");
 	
 	static inline void StandarizePath(std::string& file_path, bool toLower = false);
 

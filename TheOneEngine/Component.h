@@ -23,6 +23,7 @@ enum class ComponentType
     Listener        = 7,
     AudioSource     = 8,
     ParticleSystem  = 9,
+    Animator        = 10,
 
 	Unknown // Last
 };

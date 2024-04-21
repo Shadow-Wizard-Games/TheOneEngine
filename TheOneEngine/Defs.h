@@ -28,6 +28,10 @@
 #endif
 #define NULL  0
 
+// Invalid Index
+#define INVALID_INDEX static_cast<unsigned long long>(-1)
+
+#define GL_PTR_OFFSET(i) reinterpret_cast<void*>(static_cast<intptr_t>(i))
 
 // PREDEFINED & GENERAL VARIABLES ------------------------------------------------
 /// Keep a value between 0.0f and 1.0f

@@ -2,35 +2,27 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 0.5,
+      "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxColor": [
-            250.0,
-            100.0,
-            0.0
+          "MaxDirection": [
+            1.0,
+            0.8,
+            1.0
           ],
-          "MinColor": [
-            225.0,
-            0.0,
-            0.0
+          "MinDirection": [
+            -1.0,
+            0.5,
+            -1.0
           ],
-          "Type": 1,
-          "UsingSingleValueColor": false
+          "Type": 4,
+          "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": [
-            10.0,
-            8.0,
-            10.0
-          ],
-          "MinSpeed": [
-            -10.0,
-            5.0,
-            -10.0
-          ],
+          "MaxSpeed": 5.0,
+          "MinSpeed": 10.0,
           "Type": 0,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueSpeed": true
         },
         {
           "MaxScale": [
@@ -45,15 +37,30 @@
           ],
           "Type": 2,
           "UsingSingleValueScale": false
+        },
+        {
+          "MaxColor": [
+            250.0,
+            100.0,
+            0.0,
+            255.0
+          ],
+          "MinColor": [
+            225.0,
+            0.0,
+            0.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 1541.2259521484375,
+      "Lifetime": 422.9227294921875,
       "MaxParticles": 500,
       "RenderModule": [
         {
-          "BillboardType": 0,
+          "BillboardType": 1,
           "Type": 0
         }
       ],
@@ -81,18 +88,24 @@
       "Duration": 10.0,
       "InitializeModules": [
         {
-          "MaxSpeed": [
+          "MaxDirection": [
             1.0,
             9.0,
             1.0
           ],
-          "MinSpeed": [
+          "MinDirection": [
             -1.0,
             7.0,
             -1.0
           ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 10.0,
+          "MinSpeed": 8.0,
           "Type": 0,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueSpeed": true
         },
         {
           "MaxScale": [
@@ -112,24 +125,25 @@
           "MaxColor": [
             45.0,
             45.0,
-            45.0
+            45.0,
+            255.0
           ],
           "MinColor": [
             40.0,
             40.0,
-            40.0
+            40.0,
+            255.0
           ],
           "Type": 1,
           "UsingSingleValueColor": true
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 1541.2259521484375,
+      "Lifetime": 353.6944274902344,
       "MaxParticles": 50,
       "RenderModule": [
         {
-          "BillboardType": 0,
+          "BillboardType": 1,
           "Type": 0
         }
       ],
@@ -142,8 +156,7 @@
       ]
     }
   ],
-  "IsON": true,
   "Name": "P_Fire_Big",
   "Type": 9,
-  "UID": 704292522
+  "UID": 2963937243
 }

@@ -1,17 +1,8 @@
 #pragma once
 #include "glm/glm.hpp"
 
-class FrameBuffer {
-private:
-	unsigned int FBO = 0;
-	unsigned int colorAttachment = 0;
-	unsigned int depthAttachment = 0;
-	unsigned int width, height;
-
-	bool depthActive = false;
-	bool initialized = false;
-
-	void Reset(bool depth);
+class FrameBuffer
+{
 public:
 	FrameBuffer(int newWidth, int newHeight, bool depth);
 	~FrameBuffer();
@@ -30,4 +21,16 @@ public:
 
 	inline unsigned int getColorBufferTexture() { return colorAttachment; }
 	inline unsigned int getDepthBufferTexture() { return depthAttachment; }
+
+private:
+	void Reset(bool depth);
+
+private:
+	unsigned int FBO = 0;
+	unsigned int colorAttachment = 0;
+	unsigned int depthAttachment = 0;
+	unsigned int width, height;
+
+	bool depthActive = false;
+	bool initialized = false;
 };

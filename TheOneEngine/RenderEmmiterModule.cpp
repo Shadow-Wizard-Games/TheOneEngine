@@ -25,6 +25,15 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
 {
     glDisable(GL_CULL_FACE);
 
+    //glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //
+    //glEnable(GL_DEPTH_TEST);
+    //glDepthFunc(GL_LEQUAL);
+    //
+    //glClear(GL_DEPTH_BUFFER_BIT);
+
+
     const float* viewProjectionMatrix = glm::value_ptr(camera->viewProjectionMatrix);
 
     glPushMatrix();
@@ -34,13 +43,25 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     vec3 cameraPosition;
     cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
 
-    vec3 particlePosition = particle->position + owner->owner->GetTransform()->GetPosition();
+    vec3 particlePosition = particle->position;
+
+    if (!owner->isGlobal) {
+        mat4 worldTransform = owner->owner->GetTransform()->CalculateWorldTransform();
+
+        glm::dmat3 worldRotation = worldTransform;
+
+        vec3 worldPosition = worldTransform[3];
+
+        particlePosition = (worldRotation * particle->position) + worldPosition;
+    }
 
     Billboard::BeginSphericalBillboard(particlePosition, cameraPosition);
 
     // render
     glBegin(GL_TRIANGLES);
-    glColor3ub(particle->color.r, particle->color.g, particle->color.b);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glColor4ub(particle->color.r, particle->color.g, particle->color.b, particle->color.a);
 
     glVertex3f(- (1 * particle->scale.x), + (1 * particle->scale.y), 0);
     glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
@@ -57,6 +78,10 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     Billboard::EndBillboard();
 
     //glPopMatrix();
+
+    //glDisable(GL_DEPTH_TEST);
+
+    //glDisable(GL_BLEND);
 
     glEnable(GL_CULL_FACE);
 
