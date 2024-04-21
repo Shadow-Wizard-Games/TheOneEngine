@@ -6,12 +6,12 @@
       "InitializeModules": [
         {
           "MaxDirection": [
-            2.0,
+            1.0,
             1.0,
             -5.0
           ],
           "MinDirection": [
-            -2.0,
+            -1.0,
             0.0,
             -0.5
           ],
@@ -19,8 +19,8 @@
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 10.0,
-          "MinSpeed": 0.0,
+          "MaxSpeed": 15.0,
+          "MinSpeed": 5.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -42,7 +42,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 505.34674072265625,
+      "Lifetime": 572.3740234375,
       "MaxParticles": 20,
       "RenderModule": [
         {
@@ -63,7 +63,7 @@
           "Acceleration": [
             0.0,
             10.0,
-            -30.0
+            0.0
           ],
           "Type": 0
         }
