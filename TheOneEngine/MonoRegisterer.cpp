@@ -118,7 +118,7 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	go->AddScript("Bullet");
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-	go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
+	//->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
 	go->GetComponent<Collider2D>()->radius = 0.4f;
 	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
 	return go;
@@ -135,7 +135,7 @@ static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction
 
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-	go->GetComponent<Collider2D>()->collisionType = CollisionType::Enemy;
+	//go->GetComponent<Collider2D>()->collisionType = CollisionType::Enemy;
 	go->GetComponent<Collider2D>()->radius = 30.0f;
 
 	go->AddComponent<AudioSource>();

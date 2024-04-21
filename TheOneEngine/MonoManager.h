@@ -25,7 +25,7 @@ private:
 
     static MonoManagerData monoData;
 
-    static inline std::vector<std::string> functionsToIgnore = { "Start", "Update" };
+    static inline std::vector<std::string> functionsToIgnore = { "Start", "Update", "OnCollision"};
 
 public:
     MonoManager() {}

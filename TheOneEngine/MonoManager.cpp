@@ -173,7 +173,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
     return functionToReturn;
 }
 
-void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall, void** params, int parameterCount)
+void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall, void* params[], int parameterCount)
 {
     // Get the MonoClass pointer from the instance
     MonoClass* instanceClass = mono_object_get_class(monoBehaviourInstance);
@@ -188,12 +188,23 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
 
         method = mono_class_get_method_from_name(parentClass, functionToCall.c_str(), 0);
     }
-
     if (method == nullptr)
     {
-        LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall);
+        //Used for handling virtual functions errors
+        for (auto checkFunction : functionsToIgnore)
+        {
+            if (functionToCall == checkFunction) return nullptr;
+        }
+
+        LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall.c_str());
         return nullptr;
     }
+
+    //if (method == nullptr)
+    //{
+    //    LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall);
+    //    return nullptr;
+    //}
 
     // Call the C# method on the objectInstance instance, and get any potential exceptions
     MonoObject* exception = nullptr;

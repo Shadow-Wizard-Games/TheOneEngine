@@ -47,28 +47,43 @@ bool CollisionSolver::Update(double dt)
     //now lets check and solve collisions
     for (auto& item : goWithCollision)
     {
+        auto colliderComp = item->GetComponent<Collider2D>();
         // Collision solving
-        switch (item->GetComponent<Collider2D>()->collisionType)
+        switch (colliderComp->colliderType)
         {
-        case CollisionType::Player:
+        case ColliderType::Circle:
             for (auto& item2 : goWithCollision)
             {
                 if (item != item2)
                 {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                    switch (item2->GetComponent<Collider2D>()->colliderType)
                     {
-                    case CollisionType::Player:
-                        //there is no player-player collision since we only have 1 player
-                        break;
-                    case CollisionType::Enemy:
-                        //implement any low life to player
-                        break;
-                    case CollisionType::Wall:
-                        //if they collide
+                    case ColliderType::Rect:
                         if (CheckCollision(item, item2))
                         {
-                            //we push player out of wall
-                            SolveCollision(item, item2);
+                            if (!colliderComp->isTrigger)
+                            {
+                                SolveCollision(item, item2);  
+                            }
+                            void* params[1];
+                            params[0] = &item2;
+                            if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            params[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                        }
+                        break;
+                    case ColliderType::Circle:
+                        if (CheckCollision(item, item2))
+                        {
+                            if (!colliderComp->isTrigger)
+                            {
+                                SolveCollision(item, item2);
+                            }
+                            void* params[1];
+                            params[0] = &item2;
+                            if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            params[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
                         }
                         break;
                     default:
@@ -77,65 +92,39 @@ bool CollisionSolver::Update(double dt)
                 }
             }
             break;
-        case CollisionType::Enemy:
+        case ColliderType::Rect:
             for (auto& item2 : goWithCollision)
             {
                 if (item != item2)
                 {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                    switch (item2->GetComponent<Collider2D>()->colliderType)
                     {
-                    case CollisionType::Player:
-                        //implement any low life to player
+                    case ColliderType::Circle:
                         if (CheckCollision(item, item2))
                         {
-                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "CheckJump");
+                            if (!colliderComp->isTrigger)
+                            {
+                                SolveCollision(item, item2);
+                            }
+                            void* params[1];
+                            params[0] = &item2;
+                            if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            params[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
                         }
                         break;
-                    case CollisionType::Enemy:
-                        //if they collide
+                    case ColliderType::Rect:
                         if (CheckCollision(item, item2))
                         {
-                            //we push player out of other enemy
-                            SolveCollision(item, item2);
-                        }
-                        break;
-                    case CollisionType::Wall:
-                        //if they collide
-                        if (CheckCollision(item, item2))
-                        {
-                            //we push enemy out of wall
-                            SolveCollision(item, item2);
-                        }
-                        break;
-                    default:
-                        break;
-                    }
-                }
-            }
-            break;
-        case CollisionType::Wall:
-            // do nothing at all
-            break;
-        case CollisionType::Bullet:
-            for (auto& item2 : goWithCollision)
-            {
-                if (item != item2)
-                {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
-                    {
-                    case CollisionType::Player:
-                        if (CheckCollision(item, item2))
-                        {
-                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
-                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
-                        }
-                        break;
-                    case CollisionType::Enemy:
-                        //if they collide
-                        if (CheckCollision(item, item2))
-                        {
-                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
-                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                            if (!colliderComp->isTrigger)
+                            {
+                                SolveCollision(item, item2);
+                            }
+                            void* params[1];
+                            params[0] = &item2;
+                            if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            params[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
                         }
                         break;
                     default:
@@ -147,6 +136,106 @@ bool CollisionSolver::Update(double dt)
         default:
             break;
         }
+        
+        //switch (item->GetComponent<Collider2D>()->collisionType)
+        //{
+        //case CollisionType::Player:
+        //    for (auto& item2 : goWithCollision)
+        //    {
+        //        if (item != item2)
+        //        {
+        //            switch (item2->GetComponent<Collider2D>()->collisionType)
+        //            {
+        //            case CollisionType::Player:
+        //                //there is no player-player collision since we only have 1 player
+        //                break;
+        //            case CollisionType::Enemy:
+        //                //implement any low life to player
+        //                break;
+        //            case CollisionType::Wall:
+        //                //if they collide
+        //                if (CheckCollision(item, item2))
+        //                {
+        //                    //we push player out of wall
+        //                    SolveCollision(item, item2);
+        //                }
+        //                break;
+        //            default:
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    break;
+        //case CollisionType::Enemy:
+        //    for (auto& item2 : goWithCollision)
+        //    {
+        //        if (item != item2)
+        //        {
+        //            switch (item2->GetComponent<Collider2D>()->collisionType)
+        //            {
+        //            case CollisionType::Player:
+        //                //implement any low life to player
+        //                if (CheckCollision(item, item2))
+        //                {
+        //                    MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "CheckJump");
+        //                }
+        //                break;
+        //            case CollisionType::Enemy:
+        //                //if they collide
+        //                if (CheckCollision(item, item2))
+        //                {
+        //                    //we push player out of other enemy
+        //                    SolveCollision(item, item2);
+        //                }
+        //                break;
+        //            case CollisionType::Wall:
+        //                //if they collide
+        //                if (CheckCollision(item, item2))
+        //                {
+        //                    //we push enemy out of wall
+        //                    SolveCollision(item, item2);
+        //                }
+        //                break;
+        //            default:
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    break;
+        //case CollisionType::Wall:
+        //    // do nothing at all
+        //    break;
+        //case CollisionType::Bullet:
+        //    for (auto& item2 : goWithCollision)
+        //    {
+        //        if (item != item2)
+        //        {
+        //            switch (item2->GetComponent<Collider2D>()->collisionType)
+        //            {
+        //            case CollisionType::Player:
+        //                if (CheckCollision(item, item2))
+        //                {
+        //                    MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
+        //                    item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+        //                }
+        //                break;
+        //            case CollisionType::Enemy:
+        //                //if they collide
+        //                if (CheckCollision(item, item2))
+        //                {
+        //                    MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
+        //                    item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+        //                }
+        //                break;
+        //            default:
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    break;
+        //default:
+        //    break;
+        //}
     }
 
     return ret;
@@ -187,24 +276,25 @@ void CollisionSolver::DrawCollisions()
 
         glTranslatef(x_, y_, z_);
 
+        glColor3f(0.2f, 1.0f, 0.2f); // Verde
         // Dibujar la colisión según su tipo y configuración
-        switch (collider->collisionType) {
-        case CollisionType::Player:
-            glColor3f(0.0f, 1.0f, 0.0f); // Verde para jugador
-            break;
-        case CollisionType::Enemy:
-            glColor3f(1.0f, 0.0f, 0.0f); // Rojo para enemigo
-            break;
-        case CollisionType::Wall:
-            glColor3f(0.0f, 0.0f, 1.0f); // Azul para muro
-            break;
-        case CollisionType::Bullet:
-            glColor3f(1.0f, 0.7f, 0.0f); // Naranja para bala
-            break;
-        default:
-            glColor3f(1.0f, 1.0f, 1.0f); // Blanco para otros tipos
-            break;
-        }
+        //switch (collider->collisionType) {
+        //case CollisionType::Player:
+        //    glColor3f(0.0f, 1.0f, 0.0f); // Verde para jugador
+        //    break;
+        //case CollisionType::Enemy:
+        //    glColor3f(1.0f, 0.0f, 0.0f); // Rojo para enemigo
+        //    break;
+        //case CollisionType::Wall:
+        //    glColor3f(0.0f, 0.0f, 1.0f); // Azul para muro
+        //    break;
+        //case CollisionType::Bullet:
+        //    glColor3f(1.0f, 0.7f, 0.0f); // Naranja para bala
+        //    break;
+        //default:
+        //    glColor3f(1.0f, 1.0f, 1.0f); // Blanco para otros tipos
+        //    break;
+        //}
 
         glBegin(GL_LINE_LOOP);
         if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Rect) {
@@ -575,8 +665,8 @@ void CollisionSolver::CirRectCollision(GameObject* objA, GameObject* objB)
     Collider2D* colliderB = objB->GetComponent<Collider2D>();
 
     // Closest point on the rectangle to the circle center
-    vec2 topLeft = { transformB->GetPosition().x - colliderB->w / 2 + colliderB->offset.x, transformB->GetPosition().z - colliderB->h / 2 + colliderB->offset.y };
-    vec2 botRight = { transformB->GetPosition().x + colliderB->w / 2 + colliderB->offset.x, transformB->GetPosition().z + colliderB->h / 2 + colliderB->offset.y };
+    vec2 topLeft = { 0,0 };
+    vec2 botRight = { 0,0 };
 
     if (colliderB->cornerPivot)
     {
@@ -625,6 +715,11 @@ void CollisionSolver::CirRectCollision(GameObject* objA, GameObject* objB)
         default:
             break;
         }
+    }
+    else 
+    {
+        topLeft = { transformB->GetPosition().x - colliderB->w / 2 + colliderB->offset.x, transformB->GetPosition().z - colliderB->h / 2 + colliderB->offset.y };
+        botRight = { transformB->GetPosition().x + colliderB->w / 2 + colliderB->offset.x, transformB->GetPosition().z + colliderB->h / 2 + colliderB->offset.y };
     }
 
     vec2 temp = { transformA->GetPosition().x + colliderA->offset.x, transformA->GetPosition().z + colliderA->offset.y };

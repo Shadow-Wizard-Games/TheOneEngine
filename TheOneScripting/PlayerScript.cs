@@ -228,4 +228,10 @@ public class PlayerScript : MonoBehaviour
 
         return life;
     }
+
+    public override void OnCollision(IntPtr collidedGO)
+    {
+        IGameObject colGO = new IGameObject(collidedGO);
+
+    }
 }

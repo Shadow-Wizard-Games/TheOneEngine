@@ -15,13 +15,13 @@ enum class ColliderType
     Rect
 };
 
-enum class CollisionType
-{
-    Player,
-    Enemy,
-    Wall,
-    Bullet,
-};
+//enum class CollisionType
+//{
+//    Player,
+//    Enemy,
+//    Wall,
+//    Bullet,
+//};
 
 enum class ObjectOrientation
 {
@@ -47,10 +47,11 @@ public:
 public:
 
     ColliderType colliderType;
-    CollisionType collisionType;
+    //CollisionType collisionType;
     double radius;
     double w, h;
     vec2 offset;
+    bool isTrigger;
     //true:   collision will be build with pivot as corner
     //false:  collision will be build with pivot as center
     bool cornerPivot;
