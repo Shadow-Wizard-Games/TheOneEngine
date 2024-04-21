@@ -29,6 +29,8 @@ void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule);
 
 void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule);
 
+void UIInspectorEmmiterUpdateModule(ScaleOverLifeUpdate* updateModule);
+
 
 // render modules
 void UIInspectorEmmiterRenderModule(BillboardRender* renderModule);

@@ -67,17 +67,17 @@ public:
 
 };
 
-//class ScaleOverLifeUpdate : public UpdateEmmiterModule {
-//public:
-//	AccelerationUpdate(Emmiter* owner);
-//	AccelerationUpdate(Emmiter* owner, AccelerationUpdate* ref);
-//
-//	vec3 acceleration;
-//
-//	void Update(double dt, Particle* particle) override;
-//
-//	json SaveModule();
-//
-//	void LoadModule(const json& moduleJSON);
-//
-//};
+class ScaleOverLifeUpdate : public UpdateEmmiterModule {
+public:
+	ScaleOverLifeUpdate(Emmiter* owner);
+	ScaleOverLifeUpdate(Emmiter* owner, ScaleOverLifeUpdate* ref);
+
+	vec3 finalScale;
+
+	void Update(double dt, Particle* particle) override;
+
+	json SaveModule();
+
+	void LoadModule(const json& moduleJSON);
+
+};

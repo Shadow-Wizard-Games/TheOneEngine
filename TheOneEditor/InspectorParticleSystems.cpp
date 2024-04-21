@@ -144,6 +144,8 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 			emmiter->AddModule(UpdateEmmiterModule::ACCELERATION);
 		if (ImGui::MenuItem("Color Over Life"))
 			emmiter->AddModule(UpdateEmmiterModule::COLOR_OVER_LIFE);
+		if (ImGui::MenuItem("Scale Over Life"))
+			emmiter->AddModule(UpdateEmmiterModule::SCALE_OVER_LIFE);
 
 		ImGui::EndMenu();
 	}
@@ -170,6 +172,9 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 			break;
 		case UpdateEmmiterModule::COLOR_OVER_LIFE:
 			UIInspectorEmmiterUpdateModule((ColorOverLifeUpdate*)(*m).get());
+			break;
+		case UpdateEmmiterModule::SCALE_OVER_LIFE:
+			UIInspectorEmmiterUpdateModule((ScaleOverLifeUpdate*)(*m).get());
 			break;
 
 		default:
@@ -509,6 +514,24 @@ void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule)
 	ImGui::PopID();
 
 	ImGui::PopItemWidth();
+}
+
+void UIInspectorEmmiterUpdateModule(ScaleOverLifeUpdate* updateModule)
+{
+	ImGui::Text("Final Scale: ");
+
+	ImGui::PushItemWidth(60);
+
+	ImGui::PushID("set_final_scale_PS");
+	ImGui::InputDouble("X", &updateModule->finalScale.x, 0, 0, "%.2f");
+	ImGui::SameLine();
+	ImGui::InputDouble("Y", &updateModule->finalScale.y, 0, 0, "%.2f");
+	ImGui::SameLine();
+	ImGui::InputDouble("Z", &updateModule->finalScale.z, 0, 0, "%.2f");
+	ImGui::PopID();
+
+	ImGui::PopItemWidth();
+
 }
 
 

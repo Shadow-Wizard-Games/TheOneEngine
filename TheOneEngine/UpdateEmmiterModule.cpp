@@ -140,3 +140,54 @@ void ColorOverLifeUpdate::LoadModule(const json& moduleJSON)
 		affectA = moduleJSON["AffectA"];
 	}
 }
+
+// scale over life -----------------------------------------------------------------------------
+ScaleOverLifeUpdate::ScaleOverLifeUpdate(Emmiter* owner)
+{
+	type = SCALE_OVER_LIFE;
+	this->owner = owner;
+
+	finalScale = vec3(0, 0, 0);
+}
+
+ScaleOverLifeUpdate::ScaleOverLifeUpdate(Emmiter* owner, ScaleOverLifeUpdate* ref)
+{
+	type = SCALE_OVER_LIFE;
+	this->owner = owner;
+
+	finalScale = ref->finalScale;
+}
+
+void ScaleOverLifeUpdate::Update(double dt, Particle* particle)
+{
+	particle->scale.x = particle->initialScale.x * (1 - particle->lifetimeOverOne) + finalScale.x * particle->lifetimeOverOne;
+	particle->scale.y = particle->initialScale.y * (1 - particle->lifetimeOverOne) + finalScale.y * particle->lifetimeOverOne;
+	particle->scale.z = particle->initialScale.z * (1 - particle->lifetimeOverOne) + finalScale.z * particle->lifetimeOverOne;
+}
+
+json ScaleOverLifeUpdate::SaveModule()
+{
+	json moduleJSON;
+
+	moduleJSON["Type"] = type;
+
+	moduleJSON["FinalScale"] = { finalScale.x, finalScale.y, finalScale.z};
+
+	return moduleJSON;
+}
+
+void ScaleOverLifeUpdate::LoadModule(const json& moduleJSON)
+{
+	if (moduleJSON.contains("Type"))
+	{
+		type = moduleJSON["Type"];
+	}
+
+	if (moduleJSON.contains("FinalScale"))
+	{
+		finalScale.x = moduleJSON["FinalScale"][0];
+		finalScale.y = moduleJSON["FinalScale"][1];
+		finalScale.z = moduleJSON["FinalScale"][2];
+	}
+
+}
