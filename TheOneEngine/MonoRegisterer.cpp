@@ -253,6 +253,13 @@ static MonoString* GetCurrentSceneName()
 	return mono_string_new(MonoManager::GetAppDomain(), engine->N_sceneManager->currentScene->GetSceneName().c_str());
 }
 
+static void CreatePrefab(MonoString* prefabName, vec3f* position)
+{
+	std::string MprefabName = MonoRegisterer::MonoStringToUTF8(prefabName);
+
+	engine->N_sceneManager->CreatePrefabFromFile(MprefabName, *position);
+}
+
 //User Interface
 static void CanvasEnableToggle(GameObject* containerGO)
 {
@@ -582,6 +589,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);
 	mono_add_internal_call("InternalCalls::Enable", Enable);
+	mono_add_internal_call("InternalCalls::CreatePrefab", CreatePrefab);
+
 
 	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
