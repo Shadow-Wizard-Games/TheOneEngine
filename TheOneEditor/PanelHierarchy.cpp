@@ -209,7 +209,7 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 
 					if (dragging->parent.lock().get()->IsPrefab())
 					{
-						dragging->SetPrefab(dragging->parent.lock().get()->GetPrefabID());
+						dragging->SetPrefab(dragging->parent.lock().get()->GetPrefabID(), dragging->GetPrefabName());
 						dragging->parent.lock().get()->SetPrefabDirty(true);
 					}
 

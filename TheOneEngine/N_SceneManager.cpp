@@ -325,7 +325,7 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 
 	if (originalGO.get()->IsPrefab())
 	{
-		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID());
+		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID(), originalGO->GetPrefabName());
 		duplicatedGO.get()->SetEditablePrefab(originalGO.get()->IsEditablePrefab());
 		duplicatedGO.get()->SetPrefabDirty(originalGO.get()->IsPrefabDirty());
 	}
@@ -601,12 +601,12 @@ void N_SceneManager::OverridePrefabsRecursive(std::shared_ptr<GameObject> parent
 void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify)
 {
 	fs::path filename = ASSETS_PATH;
-	filename += "Prefabs\\" + goToModify->GetName() + ".prefab";
+	filename += "Prefabs\\" + goToModify->GetPrefabName() + ".prefab";
 
 	std::ifstream file(filename);
 	if (!file.is_open())
 	{
-		LOG(LogType::LOG_ERROR, "Failed to open scene file: {}", filename);
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
 		return;
 	}
 
@@ -617,7 +617,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	}
 	catch (const json::parse_error& e)
 	{
-		LOG(LogType::LOG_ERROR, "Failed to parse scene JSON: {}", e.what());
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
 		return;
 	}
 
@@ -629,34 +629,60 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 
 	for (const auto& componentJSON : componentsJSON)
 	{
-		if (componentJSON["Type"] == (int)ComponentType::Camera)
+		ComponentType type = static_cast<ComponentType>(componentJSON["Type"]);
+
+		switch (type)
 		{
-			auto camera = goToModify->GetComponent<Camera>();
-			camera->fov = componentJSON["FOV"];
-			camera->aspect = componentJSON["Aspect"];
-			camera->zNear = componentJSON["zNear"];
-			camera->zFar = componentJSON["zFar"];
-			camera->yaw = componentJSON["Yaw"];
-			camera->pitch = componentJSON["Pitch"];
-			camera->size = componentJSON["Size"];
-			camera->cameraType = componentJSON["CameraType"];
-			camera->primaryCam = componentJSON["PrimaryCamera"];
-		}
-		else if (componentJSON["Type"] == (int)ComponentType::Collider2D)
+		case ComponentType::Collider2D:
 		{
-			if (goToModify->GetComponent<Collider2D>() == nullptr)
-			{
-				goToModify->AddComponent<Collider2D>();
-			}
+			if (goToModify->GetComponent<Collider2D>() == nullptr) goToModify->AddComponent<Collider2D>();
 
 			auto collider = goToModify->GetComponent<Collider2D>();
-			collider->collisionType = componentJSON["CollisionType"];
-			collider->colliderType = componentJSON["ColliderType"];
-			collider->w = componentJSON["Width"];
-			collider->h = componentJSON["Height"];
-			collider->radius = componentJSON["Radius"];
-			collider->offset.x = componentJSON["OffsetX"];
-			collider->offset.y = componentJSON["OffsetY"];
+			collider->LoadComponent(componentJSON);
+			break;
+		}
+		case ComponentType::Camera:
+		{
+			if (goToModify->GetComponent<Camera>() == nullptr) goToModify->AddComponent<Camera>();
+
+			auto camera = goToModify->GetComponent<Camera>();
+			camera->LoadComponent(componentJSON);
+			break;
+		}
+		case ComponentType::Canvas:
+		{
+			if (goToModify->GetComponent<Canvas>() == nullptr) goToModify->AddComponent<Canvas>();
+
+			auto canvas = goToModify->GetComponent<Canvas>();
+			canvas->LoadComponent(componentJSON);
+			break;
+		}
+		case ComponentType::AudioSource:
+		{
+			if (goToModify->GetComponent<AudioSource>() == nullptr) goToModify->AddComponent<AudioSource>();
+
+			auto audioSource = goToModify->GetComponent<AudioSource>();
+			audioSource->LoadComponent(componentJSON);
+			break;
+		}
+		case ComponentType::Listener:
+		{
+			if (goToModify->GetComponent<Listener>() == nullptr) goToModify->AddComponent<Listener>();
+
+			auto listener = goToModify->GetComponent<Listener>();
+			listener->LoadComponent(componentJSON);
+			break;
+		}
+		case ComponentType::ParticleSystem:
+		{
+			if (goToModify->GetComponent<ParticleSystem>() == nullptr) goToModify->AddComponent<ParticleSystem>();
+
+			auto particleSystem = goToModify->GetComponent<ParticleSystem>();
+			particleSystem->LoadComponent(componentJSON);
+			break;
+		}
+		default:
+			break;
 		}
 	}
 }

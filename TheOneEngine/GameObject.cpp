@@ -514,16 +514,17 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 	}
 }
 
-void GameObject::SetPrefab(const uint32_t& pID)
+void GameObject::SetPrefab(const uint32_t& pID, const std::string fileName)
 {
 	prefabID = pID;
+	prefabName = fileName;
 }
 
 void GameObject::UnpackPrefab()
 {
 	if (IsPrefab())
 	{
-		SetPrefab(0);
+		SetPrefab(0, "");
 		editablePrefab = true; 
 		isPrefabDirty = false;
 	}
