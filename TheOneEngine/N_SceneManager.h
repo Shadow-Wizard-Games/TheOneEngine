@@ -69,7 +69,7 @@ public:
 	const bool GetSceneIsPlaying() { return sceneIsPlaying; }
 	const bool GetSceneIsChanging() { return sceneChange; }
 
-	// SelectedGo (Editor Only???)
+	// SelectedGo
 	std::shared_ptr<GameObject> GetSelectedGO() const;
 	void SetSelectedGO(std::shared_ptr<GameObject> gameObj);
 
