@@ -556,7 +556,7 @@ void N_SceneManager::CreateTeapot()
 
 void N_SceneManager::AddPendingGOs()
 {
-	for (const auto objToAdd : engine->N_sceneManager->objectsToAdd)
+	for (const auto& objToAdd : engine->N_sceneManager->objectsToAdd)
 	{
 		engine->N_sceneManager->currentScene->GetRootSceneGO().get()->children.push_back(objToAdd);
 	}
@@ -574,7 +574,7 @@ void N_SceneManager::DeletePendingGOs()
 
 void N_SceneManager::OverrideScenePrefabs(uint32_t prefabID)
 {
-	for (auto child : currentScene->GetRootSceneGO()->children)
+	for (auto& child : currentScene->GetRootSceneGO()->children)
 	{
 		if (child->GetPrefabID() == prefabID)
 		{
@@ -737,7 +737,7 @@ void N_SceneManager::SetSelectedGO(std::shared_ptr<GameObject> gameObj)
 
 void N_SceneManager::FindCameraInScene()
 {
-	for (const auto GO : GetGameObjects())
+	for (const auto& GO : GetGameObjects())
 	{
 		if (GO->HasCameraComponent())
 		{
@@ -769,7 +769,7 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
 	if (cam != nullptr) {
-		for (const auto gameObject : parentGO.get()->children)
+		for (const auto& gameObject : parentGO.get()->children)
 		{
 			gameObject.get()->Draw(cam);
 			RecurseSceneDraw(gameObject);
@@ -777,7 +777,7 @@ void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 
 	}
 	else {
-		for (const auto gameObject : parentGO.get()->children)
+		for (const auto& gameObject : parentGO.get()->children)
 		{
 			gameObject.get()->Draw(currentCamera);
 			RecurseSceneDraw(gameObject);
@@ -790,7 +790,7 @@ void Scene::UpdateGOs(double dt)
 {
 	engine->N_sceneManager->AddPendingGOs();
 
-	for (const auto gameObject : rootSceneGO->children)
+	for (const auto& gameObject : rootSceneGO->children)
 	{
 		gameObject->Update(dt);
 	}
@@ -800,7 +800,7 @@ void Scene::UpdateGOs(double dt)
 
 void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 {
-	for (const auto gameObject : parentGO.get()->children)
+	for (const auto& gameObject : parentGO.get()->children)
 	{
 		gameObject.get()->DrawUI(currentCamera, mode);
 		RecurseUIDraw(gameObject, mode);
