@@ -65,8 +65,8 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 
 	// Save Scene by checking if isDirty and pressing CTRL+S
 	//if (currentScene->IsDirty()) SaveScene();
-	
-	if(!sceneChange)
+
+	if (!sceneChange)
 		sceneIsPlaying = isPlaying;
 	//this will be called when we click play
 	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying)
@@ -181,7 +181,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	try
 	{
 		file >> sceneJSON;
-		
+
 		// JULS: Audio Manager should delete this, but for now leave this commented
 		//audioManager->DeleteAudioComponents();
 	}
@@ -284,7 +284,7 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 			break;
 		case ComponentType::Script:
 			duplicatedGO.get()->AddCopiedComponent<Script>((Script*)item);
-			break;	
+			break;
 		case ComponentType::Collider2D:
 			duplicatedGO.get()->AddCopiedComponent<Collider2D>((Collider2D*)item);
 			break;
@@ -398,7 +398,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	std::shared_ptr<GameObject> canvasGO = std::make_shared<GameObject>(name);
 	canvasGO.get()->AddComponent<Transform>();
 	canvasGO.get()->AddComponent<Canvas>();
-	
+
 	// Debug Img
 	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
 
@@ -482,7 +482,7 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 	else
 	{
 		std::string name = fbxName;
- 		name = GenerateUniqueName(name);
+		name = GenerateUniqueName(name);
 
 		// Create emptyGO parent if meshes >1
 		bool isSingleMesh = fileNames.size() > 1 ? false : true;
@@ -569,7 +569,7 @@ void N_SceneManager::DeletePendingGOs()
 	for (auto object : objectsToDelete)
 		object->Delete();
 
-	objectsToDelete.clear();	
+	objectsToDelete.clear();
 }
 
 void N_SceneManager::OverrideScenePrefabs(uint32_t prefabID)
@@ -642,8 +642,13 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			camera->cameraType = componentJSON["CameraType"];
 			camera->primaryCam = componentJSON["PrimaryCamera"];
 		}
-		if (componentJSON["Type"] == (int)ComponentType::Collider2D)
+		else if (componentJSON["Type"] == (int)ComponentType::Collider2D)
 		{
+			if (goToModify->GetComponent<Collider2D>() == nullptr)
+			{
+				goToModify->AddComponent<Collider2D>();
+			}
+
 			auto collider = goToModify->GetComponent<Collider2D>();
 			collider->collisionType = componentJSON["CollisionType"];
 			collider->colliderType = componentJSON["ColliderType"];
@@ -656,12 +661,37 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	}
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabPath)
+void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
-	// Load the game object from JSON
-	//newGameObject->LoadGameObject(gameObjectJSON);
+
+	// Load the game object from 
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + prefabName + ".prefab";
+
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
 }
 
 uint N_SceneManager::GetNumberGO() const
@@ -684,7 +714,7 @@ void N_SceneManager::FindCameraInScene()
 	for (const auto GO : GetGameObjects())
 	{
 		if (GO->HasCameraComponent())
-		{ 
+		{
 			currentScene->currentCamera = GO->GetComponent<Camera>();
 			break;
 		}
