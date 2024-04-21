@@ -34,10 +34,14 @@ bool PanelBuild::Draw()
 		if (ImGui::TreeNodeEx("Scenes", treeFlags))
 		{
 			//for (auto sceneFile : fs::iterator)
-		}
-	}
 
-	ImGui::PopStyleVar(1);
+			ImGui::TreePop();
+		}
+
+	}
+	ImGui::End();
+
+	ImGui::PopStyleVar();
 
 	return true;
 }

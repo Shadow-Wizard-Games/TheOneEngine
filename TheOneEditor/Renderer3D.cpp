@@ -61,7 +61,6 @@ bool Renderer3D::CleanUp()
 
 void Renderer3D::CameraInput(GameObject* cam)
 {
-
 	Camera* camera = cam->GetComponent<Camera>();
 	Transform* transform = cam->GetComponent<Transform>();
 
