@@ -73,6 +73,9 @@ class InternalCalls
     internal extern static IntPtr FindGameObject(string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IntPtr FindGameObjectInChildren(IntPtr gameObject, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr ComponentCheck(IntPtr gameObject, int componentType, string scriptName = null);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]

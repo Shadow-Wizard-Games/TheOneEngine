@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
         itemManager = iManagerGO.GetComponent<ItemManager>();
         itemManager.AddItem(1, 1);
 
-        iShotPSGO = IGameObject.Find("ShotPlayerPS");
+        iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
 
     }
 
