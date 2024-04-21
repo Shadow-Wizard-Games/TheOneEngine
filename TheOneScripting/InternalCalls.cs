@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using static AudioManager;
+using static IAudioSource;
 using static ICamera;
 
 class InternalCalls

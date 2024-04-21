@@ -438,7 +438,8 @@
 											<ChildrenList>
 												<AudioFileSource Name="AM_Ambient_Level_1" ID="{4FFD9B2C-D3E3-4859-A259-A838FD6085AF}">
 													<PropertyList>
-														<Property Name="LoopEnd" Type="Real64" Value="118.469566774078"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="3.98311259483217"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="3.98311259483216"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 														<Property Name="TrimBegin" Type="Real64" Value="2.04418076002331"/>
 														<Property Name="TrimEnd" Type="Real64" Value="118.469566774078"/>
@@ -468,6 +469,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="AM_Combat_Level_1" ID="{F51B5C84-4463-4C9F-826D-CCDDE5F557C8}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.622341049382716"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.726064557613171"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>AM_Combat_Level_1.wav</AudioFile>
 													<MediaIDList>
