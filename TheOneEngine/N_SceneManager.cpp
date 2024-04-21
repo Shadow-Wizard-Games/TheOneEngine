@@ -475,7 +475,7 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
 	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
 
-	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName);
+	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName, ".mesh", ".animator");
 
 	if (fileNames.empty())
 		CreateMeshGO(path);
@@ -706,7 +706,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
+void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& position)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -737,6 +737,8 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
 	file.close();
 
 	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
 uint N_SceneManager::GetNumberGO() const
@@ -791,7 +793,7 @@ void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 		for (const auto& gameObject : parentGO.get()->children)
 		{
 			gameObject.get()->Draw(cam);
-			RecurseSceneDraw(gameObject);
+			RecurseSceneDraw(gameObject, cam);
 		}
 
 	}

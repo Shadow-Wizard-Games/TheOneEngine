@@ -1,7 +1,4 @@
-#include <windows.h>
-#include <shellapi.h>
 #include "App.h"
-#include "../TheOneEngine/Log.h"
 
 #include "Time.h"
 #include "Gui.h"
@@ -18,24 +15,46 @@
 #include "PanelProject.h"
 #include "PanelScene.h"
 #include "PanelGame.h"
+#include "PanelAnimation.h"
 #include "PanelSettings.h"
 #include "PanelBuild.h"
+
+#include "../TheOneEngine/Log.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_opengl3.h"
-
 #include "implot.h"
 #include "imGuizmo.h"
 
 #include <filesystem>
+#include <windows.h>
+#include <shellapi.h>
 
 namespace fs = std::filesystem;
 
-Gui::Gui(App* app) : Module(app) {}
+Gui::Gui(App* app) :
+	Module(app),
+	panelAbout(nullptr),
+	panelConsole(nullptr),
+	panelHierarchy(nullptr),
+	panelInspector(nullptr),
+	panelProject(nullptr),
+	panelScene(nullptr),
+	panelGame(nullptr),
+	panelAnimation(nullptr),
+	panelSettings(nullptr),
+	panelBuild(nullptr)
+{}
 
-Gui::~Gui() {}
+Gui::~Gui()
+{
+	for (auto panel : panels)
+	{
+		delete panel;
+	}
+}
 
 bool Gui::Awake()
 {
@@ -70,6 +89,10 @@ bool Gui::Awake()
 	panelGame = new PanelGame(PanelType::GAME, "Game");
 	panels.push_back(panelGame);
 	ret *= isInitialized(panelGame);
+
+	panelAnimation = new PanelAnimation(PanelType::ANIMATION, "Animation");
+	panels.push_back(panelAnimation);
+	ret *= isInitialized(panelAnimation);
 
 	panelSettings = new PanelSettings(PanelType::SETTINGS, "Settings");
 	panels.push_back(panelSettings);
@@ -117,7 +140,7 @@ bool Gui::Start()
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
-	// Hekbas: Enableing viewports causes ImGui panels
+	// Hekbas: Enabling viewports causes ImGui panels
 	// to disappear if not fully contained in main window
 	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
 
@@ -132,16 +155,8 @@ bool Gui::Start()
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();
 
-	// Enable Panels
-	app->gui->panelInspector->SetState(true);
-	app->gui->panelProject->SetState(true);
-	app->gui->panelConsole->SetState(true);
-	app->gui->panelHierarchy->SetState(true);
-	app->gui->panelScene->SetState(true);
-	app->gui->panelGame->SetState(true);
-
-	// Style
-#pragma region IMGUI_STYLE
+	// Custom Style
+	#pragma region IMGUI_STYLE
 
 	LOG(LogType::LOG_OK, "-Setting ImGui Custom Style");
 	ImGuiStyle& style = ImGui::GetStyle();
@@ -196,14 +211,24 @@ bool Gui::Start()
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 	style.GrabRounding = style.FrameRounding = 2.3f;
+	style.WindowMenuButtonPosition = -1;
 	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 	{
 		style.WindowRounding = 0.0f;
 		style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 	}
 
+	#pragma endregion IMGUI_STYLE
 
-#pragma endregion IMGUI_STYLE
+	// Enable Panels
+	bool active = true;
+	app->gui->panelInspector->SetState(active);
+	app->gui->panelProject->SetState(active);
+	app->gui->panelConsole->SetState(active);
+	app->gui->panelHierarchy->SetState(active);
+	app->gui->panelScene->SetState(active);
+	app->gui->panelGame->SetState(active);
+	app->gui->panelAnimation->SetState(active);
 
 	// Iterate Panels & Start
 	for (const auto& panel : panels)
@@ -236,8 +261,6 @@ bool Gui::Update(double dt)
 	bool ret = true;
 
     // Creates the Main Menu Bar
-    //ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 50.0f));
-
     if (ImGui::BeginMainMenuBar())
     {
         if (ImGui::BeginMenu("File"))
@@ -281,20 +304,24 @@ bool Gui::Update(double dt)
             MainMenuHelp();
             ImGui::EndMenu();
         }
-        
-
-        // Play/Pause/Stop
-        ImGui::Dummy(ImVec2(ImGui::GetContentRegionAvail().x / 2 - 265, 0.0f));
-        if (ImGui::Button("Play"))  app->Play();
-        if (ImGui::Button("Pause")) app->Pause();
-        if (ImGui::Button("Stop"))  app->Stop();
 
 		ImGui::EndMainMenuBar();
 	}
 
-	if (openSceneFileWindow)OpenSceneFileWindow();
+	// Iterate Panels & Draw
+	for (const auto& panel : panels)
+	{
+		if (panel->GetState())
+			panel->Draw();
+	}
 
-    ImGui::PopStyleVar();
+	if (showImGuiDemo)
+	{
+		ImGui::ShowDemoWindow();
+	}
+
+	if (openSceneFileWindow)
+		OpenSceneFileWindow();
 
     return ret;
 }
@@ -304,17 +331,6 @@ bool Gui::PostUpdate()
 	bool ret = true;
 
 	ImGuiIO& io = ImGui::GetIO();
-
-	// Iterate Panels & Draw
-	for (const auto& panel : panels)
-	{
-		if (panel->GetState())
-			panel->Draw();
-	}
-
-	if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DockingEnable)
-		ImGui::End();
-
 	io.DisplaySize = ImVec2((float)app->window->GetWidth(), (float)app->window->GetHeight());
 
 	ImGui::Render();
@@ -331,7 +347,6 @@ bool Gui::PostUpdate()
 		ImGui::RenderPlatformWindowsDefault();
 		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
 	}
-
 
 	SDL_GL_SwapWindow(app->window->window);
 
@@ -357,6 +372,7 @@ bool Gui::CleanUp()
 	return ret;
 }
 
+
 void Gui::HandleInput(SDL_Event* event)
 {
 	ImGui_ImplSDL2_ProcessEvent(event);
@@ -364,30 +380,42 @@ void Gui::HandleInput(SDL_Event* event)
 
 void Gui::OpenURL(const char* url) const
 {
-	// hekbas need shellapi
 	ShellExecuteA(0, 0, url, 0, 0, SW_SHOW);
 }
 
 void Gui::PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags plotFlags, ImPlotAxisFlags axisFlags)
 {
-	if (ImPlot::BeginPlot(label, "", "", ImVec2(-1, -1), plotFlags, axisFlags))
+	if (ImPlot::BeginPlot(label, nullptr, nullptr, ImVec2(-1, -1), plotFlags, axisFlags))
 	{
 		ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, 0.25f);
+		ImPlot::SetupAxesLimits(0, data.size(), 0, 250, ImGuiCond_Once);
 		ImPlot::PlotShaded("FPS Area", data.data(), data.size());
-		ImPlot::PlotLine("FPS", data.data(), data.size());
-		ImPlot::SetupAxesLimits(0, data.size(), 0, 250, ImGuiCond_Always);
-
+		ImPlot::PlotLine(label, data.data(), data.size());
+		ImPlot::PopStyleVar();
 		ImPlot::EndPlot();
 	}
+}
+
+void Gui::AssetContainer(const char* label)
+{
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 10.0f);
+	ImGui::InputText("##label", (char*)label, 64, ImGuiInputTextFlags_ReadOnly);
 	ImGui::PopStyleVar();
 }
 
 void Gui::MainWindowDockspace()
 {
-
 	// Flags
 	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
+
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
+	window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+	window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+
+	// When using ImGuiDockNodeFlags_PassthruCentralNode,
+	// DockSpace() will render our background and handle the pass-thru hole, so we ask Begin() to not render a background.
+	if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
+		window_flags |= ImGuiWindowFlags_NoBackground;
 
 	// Resize
 	ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -398,58 +426,28 @@ void Gui::MainWindowDockspace()
 	// Style
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-
-	window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-	window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
-
-	// When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background and handle the pass-thru hole, so we ask Begin() to not render a background.
-	if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
-		window_flags |= ImGuiWindowFlags_NoBackground;
-
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 
 	static bool p_open = true;
+
 	ImGui::Begin("DockSpace", &p_open, window_flags);
+	
 	ImGui::PopStyleVar(3);
 
 	// DockSpace
 	ImGuiIO& io = ImGui::GetIO();
 	ImGuiStyle& style = ImGui::GetStyle();
-	float minWinSizeX = style.WindowMinSize.x;
-	style.WindowMinSize.x = 370.0f;
+	style.WindowMinSize = ImVec2(150, 150);
+
 	if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
 	{
-		ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+		ImGuiID dockspace_id = ImGui::GetID("ToeDockSpace");
 		ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
-
-		//static auto first_time = true;
-		//if (first_time)
-		//{
-		//    first_time = false;
-
-		//    ImGui::DockBuilderRemoveNode(dockspace_id); // Clear any previous layout
-		//    ImGui::DockBuilderAddNode(dockspace_id, dockspace_flags | ImGuiDockNodeFlags_DockSpace);
-		//    ImGui::DockBuilderSetNodeSize(dockspace_id, viewport->Size);
-
-		//    auto dock_id_top = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Up, 0.2f, nullptr, &dockspace_id);
-		//    auto dock_id_down = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Down, 0.25f, nullptr, &dockspace_id);
-		//    auto dock_id_left = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Left, 0.15f, nullptr, &dockspace_id);
-		//    auto dock_id_right = ImGui::DockBuilderSplitNode(dockspace_id, ImGuiDir_Right, 0.20f, nullptr, &dockspace_id);
-
-		//    // Takes the name of a window
-		//    ImGui::DockBuilderDockWindow("Scene", dockspace_id);
-		//    ImGui::DockBuilderDockWindow("Inspector", dock_id_right);
-		//    ImGui::DockBuilderDockWindow("Project", dock_id_down);
-		//    ImGui::DockBuilderDockWindow("Console", dock_id_down);
-		//    ImGui::DockBuilderDockWindow("Hierarchy", dock_id_left);
-
-		//    ImGui::DockBuilderFinish(dockspace_id);
-		//}
 	}
 
-	style.WindowMinSize.x = minWinSizeX;
 	ImGui::End();
 }
+
 
 // Main Menu Bar ----------------------------------------------
 
@@ -526,7 +524,9 @@ void Gui::MainMenuGameObject()
 		if (ImGui::MenuItem("Sphere", 0, false, false)) {}
 		if (ImGui::MenuItem("Less than 12?")) { engine->N_sceneManager->CreateMF(); }
 		if (ImGui::MenuItem("Box Low Poly")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Box_LowPoly.fbx"); }
-		if (ImGui::BeginMenu("Characters", "Ctrl+Shift+N")) {
+
+		if (ImGui::BeginMenu("Characters", "Ctrl+Shift+N"))
+		{
 			if (ImGui::MenuItem("Main Character")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_MainCharacter.fbx"); }
 			if (ImGui::MenuItem("FaceHugger (Arnau)")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx"); }
 			if (ImGui::MenuItem("Queen")) { engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Queen.fbx"); }
@@ -554,6 +554,7 @@ void Gui::MainMenuWindow()
 	if (ImGui::MenuItem("Project"))     app->gui->panelProject->SwitchState();
 	if (ImGui::MenuItem("Scene"))       app->gui->panelScene->SwitchState();
 	if (ImGui::MenuItem("Game"))        app->gui->panelGame->SwitchState();
+	if (ImGui::MenuItem("Animation"))   app->gui->panelAnimation->SwitchState();
 	if (ImGui::MenuItem("Settings"))    app->gui->panelSettings->SwitchState();
 }
 
@@ -571,53 +572,60 @@ void Gui::MainMenuHelp()
 		OpenURL("https://github.com/Shadow-Wizard-Games/TheOneEngine");
 	}
 
-	ImGui::Separator();
+	if (ImGui::MenuItem("ImGui Demo"))
+	{
+		showImGuiDemo = !showImGuiDemo;
+	}
 }
 
 void Gui::OpenSceneFileWindow()
 {
-	ImGui::Begin("Open File", &openSceneFileWindow);
-
-	static char nameSceneBuffer[50];
-
-	ImGui::InputText("File Name", nameSceneBuffer, IM_ARRAYSIZE(nameSceneBuffer));
-
-	/*std::string filename = "Assets/Scenes/Scene 1.toe";
-	app->scenemanager->N_sceneManager->LoadScene(filename);*/
-	std::string nameScene = nameSceneBuffer;
-	std::string file = "Assets/Scenes/" + nameScene + ".toe";
-
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
+	if (ImGui::Begin("Open File", &openSceneFileWindow))
 	{
-		if (engine->N_sceneManager->currentScene->IsDirty())
-		{
-			ImGui::OpenPopup("SaveBeforeLoad");
-			
-		}
-		else
-		{
-			engine->N_sceneManager->LoadScene(nameSceneBuffer);
-			openSceneFileWindow = false;
-		}
-		
-	}
+		static char nameSceneBuffer[50];
 
-	if (ImGui::BeginPopup("SaveBeforeLoad"))
-	{
-		ImGui::Text("You have unsaved changes in this scene. Are you sure?");
-		if (ImGui::Button("Yes", { 100, 20 })) {
-			engine->N_sceneManager->LoadScene(nameSceneBuffer);
-			openSceneFileWindow = false;
+		ImGui::InputText("File Name", nameSceneBuffer, IM_ARRAYSIZE(nameSceneBuffer));
+
+		/*std::string filename = "Assets/Scenes/Scene 1.toe";
+		app->scenemanager->N_sceneManager->LoadScene(filename);*/
+		std::string nameScene = nameSceneBuffer;
+		std::string file = "Assets/Scenes/" + nameScene + ".toe";
+
+		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
+		{
+			if (engine->N_sceneManager->currentScene->IsDirty())
+			{
+				ImGui::OpenPopup("SaveBeforeLoad");
+			}
+			else
+			{
+				engine->N_sceneManager->LoadScene(nameSceneBuffer);
+				openSceneFileWindow = false;
+			}
 		}
-		ImGui::SameLine();
-		if (ImGui::Button("No", { 100, 20 })) {
-			openSceneFileWindow = false;
-			ImGui::End();
+
+		if (ImGui::BeginPopup("SaveBeforeLoad"))
+		{
+			ImGui::Text("You have unsaved changes in this scene. Are you sure?");
+
+			if (ImGui::Button("Yes", { 100, 20 })) {
+				engine->N_sceneManager->LoadScene(nameSceneBuffer);
+				openSceneFileWindow = false;
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("No", { 100, 20 })) {
+				openSceneFileWindow = false;
+			}
+
+			ImGui::EndPopup();
 		}
-		
+
+		ImGui::End();
 	}
-	ImGui::End();
 }
+
+
+// Utils ------------------------------------------------------
 
 void Gui::CalculateSizeAspectRatio(int maxWidth, int maxHeight, int& width, int& height)
 {

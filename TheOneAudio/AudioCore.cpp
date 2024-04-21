@@ -19,17 +19,19 @@ AudioCore::AudioCore()
 
 bool AudioCore::InitEngine()
 {
-    if (InitMemoryManager())  LOG(LogType::LOG_AUDIO, "Initialized the Memory Manager.");
-    else LOG(LogType::LOG_AUDIO, "Could not initialize the Memory Manager.");
+    LOG(LogType::LOG_INFO, "# Initializing Audio Engine...");
 
-    if (InitStreamingManager()) LOG(LogType::LOG_AUDIO, "Initialized the Streaming Manager.");
-    else LOG(LogType::LOG_AUDIO, "Could not initialize the Streaming Manager.");
+    if (InitMemoryManager())  LOG(LogType::LOG_OK, "-Init Memory Manager");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Memory Manager");
 
-    if (InitSoundEngine()) LOG(LogType::LOG_AUDIO, "Initialized the Sound Engine.");
-    else LOG(LogType::LOG_AUDIO, "Could not initialize the Sound Engine.");
+    if (InitStreamingManager()) LOG(LogType::LOG_OK, "-Init Streaming Manager");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Streaming Manager");
 
-    if (InitMusicEngine()) LOG(LogType::LOG_AUDIO, "Initialized the Music Engine.");
-    else LOG(LogType::LOG_AUDIO, "Could not initialize the Music Engine.");
+    if (InitSoundEngine()) LOG(LogType::LOG_OK, "-Init Sound Engine");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Sound Engine");
+
+    if (InitMusicEngine()) LOG(LogType::LOG_OK, "-Init Music Engine");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Music Engine");
 
     g_lowLevelIO.SetBasePath(AKTEXT("Assets\\Audio\\Wwise Project\\GeneratedSoundBanks\\Windows"));
     AK::StreamMgr::SetCurrentLanguage(AKTEXT("English(us)"));
@@ -38,30 +40,30 @@ bool AudioCore::InitEngine()
     AkBankID bankID;
     if (AK::SoundEngine::LoadBank(BANKNAME_INIT, bankID) == AK_Success)
     {
-        LOG(LogType::LOG_AUDIO, "Init bank loaded");
+        LOG(LogType::LOG_OK, "-Loaded BANKNAME_INIT ");
     }
     else
     {
-        LOG(LogType::LOG_AUDIO, "Could not load init bank");
+        LOG(LogType::LOG_ERROR, "-Failed loading BANKNAME_INIT");
         return false;
     }
 
     if (AK::SoundEngine::LoadBank(BANKNAME_THEONEENGINE, bankID) == AK_Success)
     {
-        LOG(LogType::LOG_AUDIO, "TheOneEngine bank loaded");
+        LOG(LogType::LOG_OK, "-Loaded BANKNAME_THEONEENGINE");
     }
     else
     {
-        LOG(LogType::LOG_AUDIO, "Could not load MantelEngine bank");
+        LOG(LogType::LOG_ERROR, "-Failed loading BANKNAME_THEONEENGINE");
         return false;
     }
 
-    if (InitSpatialAudio()) LOG(LogType::LOG_AUDIO, "Initialized the Spatial Audio.");
-    else LOG(LogType::LOG_AUDIO, "Could not initialize the Spatial Audio.");
+    if (InitSpatialAudio()) LOG(LogType::LOG_OK, "-Init Spatial Audio");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Spatial Audio.");
 
 #ifndef AK_OPTIMIZED
-    if (InitCommunication()) LOG(LogType::LOG_AUDIO, "Initialized communication.");
-    else LOG(LogType::LOG_AUDIO, "Could not initialize communication.");
+    if (InitCommunication()) LOG(LogType::LOG_OK, "-Initialized Communication");
+    else LOG(LogType::LOG_ERROR, "-Failed Init Communication");
 #endif // AK_OPTIMIZED
 
     return true;
@@ -74,7 +76,7 @@ bool AudioCore::InitMemoryManager()
 
     if (AK::MemoryMgr::Init(&memSettings) != AK_Success)
     {
-        LOG(LogType::LOG_AUDIO, "Could not create the memory manager.");
+        LOG(LogType::LOG_ERROR, "Failed Init Memory Manager.");
         return false;
     }
 
@@ -91,7 +93,7 @@ bool AudioCore::InitStreamingManager()
 
     if (!AK::StreamMgr::Create(stmSettings))
     {
-        LOG(LogType::LOG_AUDIO, "Could not create the Streaming Manager");
+        LOG(LogType::LOG_ERROR, "Failed Init Streaming Manager");
         return false;
     }
 

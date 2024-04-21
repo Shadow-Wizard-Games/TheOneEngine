@@ -14,18 +14,14 @@ Emmiter::Emmiter(ParticleSystem* owner)
 	lifetime = 0;
 	isLooping = true;
 	isON = true;
+	isGlobal = true;
 
-	spawnModule = std::make_unique<ConstantSpawnRate>(this);
+	AddModule(SpawnEmmiterModule::CONSTANT);
 
-	renderModule = std::make_unique<BillboardRender>(this);
+	AddModule(RenderEmmiterModule::BILLBOARD);
 
-	auto setSpeed = std::make_unique<SetSpeed>(this);
-	setSpeed->speed.usingSingleValue = false;
-	setSpeed->speed.rangeValue.lowerLimit = vec3{ -0.5, 1, -0.5 };
-	setSpeed->speed.rangeValue.upperLimit = vec3{ 0.5, 2, 0.5 };
-
-
-	initializeModules.push_back(std::move(setSpeed));
+	AddModule(InitializeEmmiterModule::SET_DIRECTION);
+	AddModule(InitializeEmmiterModule::SET_SPEED);
 
 	RestartParticlePool();
 }
@@ -40,6 +36,7 @@ Emmiter::Emmiter(ParticleSystem* owner, Emmiter* ref)
 	lifetime = ref->lifetime;
 	isLooping = ref->isLooping;
 	isON = ref->isON;
+	isGlobal = ref->isGlobal;
 
 	// TO-DO
 	AddModule(ref->spawnModule.get());
@@ -73,6 +70,8 @@ void Emmiter::Start()
 		spawnModule->Reset();
 	}
 
+	isON = true;
+
 	RestartParticlePool();
 }
 
@@ -83,6 +82,10 @@ void Emmiter::Update(double dt)
 	lifetime += dt;
 
 	if (lifetime < delay) return;
+
+	if (lifetime > duration + delay && usingParticlesIDs.empty() && !isLooping) {
+		isON = false;
+	}
 
 	if (lifetime < duration + delay || isLooping) {
 		if (spawnModule) {
@@ -108,7 +111,6 @@ void Emmiter::Update(double dt)
 	for (auto i = particlesToFree.rbegin(); i != particlesToFree.rend(); ++i) {
 		freeParticlesIDs.push(*(*i));
 		usingParticlesIDs.erase(*i);
-
 	}
 }
 
@@ -170,13 +172,13 @@ void Emmiter::RestartParticlePool()
 
 void Emmiter::InitializeParticle(Particle* particle)
 {
-	if (spawnModule) {
-		particle->duration = spawnModule->duration;
-	}
+	particle->SetDuration(spawnModule->duration);
 
-	particle->lifetime = 0;
-	particle->position = vec3{ 0, 0, 0 };
-	particle->color = vec3{ 0, 0, 0 };
+	particle->ResetAttributes();
+
+	if (isGlobal) {
+		particle->position += (vec3)owner->GetTransform()->CalculateWorldTransform()[3];
+	}
 
 	for (auto i = initializeModules.begin(); i != initializeModules.end(); ++i) {
 		(*i)->Initialize(particle);
@@ -231,6 +233,14 @@ InitializeEmmiterModule* Emmiter::AddModule(InitializeEmmiterModule::InitializeE
 		initializeModules.push_back(std::move(std::make_unique<SetScale>(this)));
 		newModule = initializeModules[initializeModules.size() - 1].get();
 		break;
+	case InitializeEmmiterModule::SET_OFFSET:
+		initializeModules.push_back(std::move(std::make_unique<SetOffset>(this)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
+	case InitializeEmmiterModule::SET_DIRECTION:
+		initializeModules.push_back(std::move(std::make_unique<SetDirection>(this)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
 	default:
 		break;
 	}
@@ -246,6 +256,15 @@ UpdateEmmiterModule* Emmiter::AddModule(UpdateEmmiterModule::UpdateEmmiterModule
 		updateModules.push_back(std::move(std::make_unique<AccelerationUpdate>(this)));
 		newModule = updateModules[updateModules.size() - 1].get();
 		break;
+	case UpdateEmmiterModule::COLOR_OVER_LIFE:
+		updateModules.push_back(std::move(std::make_unique<ColorOverLifeUpdate>(this)));
+		newModule = updateModules[updateModules.size() - 1].get();
+		break;
+	case UpdateEmmiterModule::SCALE_OVER_LIFE:
+		updateModules.push_back(std::move(std::make_unique<ScaleOverLifeUpdate>(this)));
+		newModule = updateModules[updateModules.size() - 1].get();
+		break;
+
 	default:
 		break;
 	}
@@ -307,6 +326,14 @@ InitializeEmmiterModule* Emmiter::AddModule(InitializeEmmiterModule* ref)
 		initializeModules.push_back(std::move(std::make_unique<SetScale>(this, (SetScale*)ref)));
 		newModule = initializeModules[initializeModules.size() - 1].get();
 		break;
+	case InitializeEmmiterModule::SET_OFFSET:
+		initializeModules.push_back(std::move(std::make_unique<SetOffset>(this, (SetOffset*)ref)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
+	case InitializeEmmiterModule::SET_DIRECTION:
+		initializeModules.push_back(std::move(std::make_unique<SetDirection>(this, (SetDirection*)ref)));
+		newModule = initializeModules[initializeModules.size() - 1].get();
+		break;
 	default:
 		break;
 	}
@@ -322,6 +349,15 @@ UpdateEmmiterModule* Emmiter::AddModule(UpdateEmmiterModule* ref)
 		updateModules.push_back(std::move(std::make_unique<AccelerationUpdate>(this, (AccelerationUpdate*)ref)));
 		newModule = updateModules[updateModules.size() - 1].get();
 		break;
+	case UpdateEmmiterModule::COLOR_OVER_LIFE:
+		updateModules.push_back(std::move(std::make_unique<ColorOverLifeUpdate>(this, (ColorOverLifeUpdate*)ref)));
+		newModule = updateModules[updateModules.size() - 1].get();
+		break;
+		case UpdateEmmiterModule::SCALE_OVER_LIFE:
+			updateModules.push_back(std::move(std::make_unique<ScaleOverLifeUpdate>(this, (ScaleOverLifeUpdate*)ref)));
+			newModule = updateModules[updateModules.size() - 1].get();
+			break;
+
 	default:
 		break;
 	}
@@ -389,7 +425,6 @@ json Emmiter::SaveEmmiter()
 		emmiterJSON["RenderModule"] = renderJSON;
 	}
 
-	emmiterJSON["IsON"] = isON;
 	emmiterJSON["MaxParticles"] = maxParticles;
 	emmiterJSON["Duration"] = duration;
 	emmiterJSON["Lifetime"] = lifetime;
@@ -402,11 +437,6 @@ json Emmiter::SaveEmmiter()
 void Emmiter::LoadEmmiter(const json& emmiterJSON)
 {
 	// Load basic properties
-	if (emmiterJSON.contains("IsON"))
-	{
-		isON = emmiterJSON["IsON"];
-	}
-
 	if (emmiterJSON.contains("MaxParticles"))
 	{
 		maxParticles = emmiterJSON["MaxParticles"];

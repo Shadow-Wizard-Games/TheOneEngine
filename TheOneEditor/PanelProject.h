@@ -9,7 +9,8 @@
 #include <filesystem>
 #include <unordered_map>
 
-enum class FileType {
+enum class FileType
+{
 	MODEL3D,
 	TEXTURE,
 	FOLDER,
@@ -22,7 +23,8 @@ enum class FileType {
 	UNKNOWN
 };
 
-struct FileInfo {
+struct FileInfo
+{
 	std::string name;
 	FileType fileType = FileType::UNKNOWN;
 	bool isDirectory = false;
@@ -63,7 +65,7 @@ public:
 	void LoadImagePreviews(const FileInfo& info);
 	void UnloadImagePreviews();
 
-	void SaveWarning();
+	void SaveWarning(bool warning);
 	
 	void FileDropping(const FileInfo& info);
 
@@ -84,6 +86,7 @@ private:
 	std::unordered_map<std::string, GLuint> imagePreviews;
 
 	bool warningScene = false;
+	bool contextMenu = false;
 };
 
 #endif // !__PANEL_PROJECT_H__

@@ -360,6 +360,7 @@ json GameObject::SaveGameObject()
 		gameObjectJSON["PrefabID"] = prefabID;
 		gameObjectJSON["EditablePrefab"] = editablePrefab;
 		gameObjectJSON["PrefabDirty"] = isPrefabDirty;
+		gameObjectJSON["PrefabName"] = prefabName;
 	}
 
 	if (!components.empty())
@@ -421,6 +422,10 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 		if (gameObjectJSON.contains("PrefabDirty"))
 		{
 			isPrefabDirty = gameObjectJSON["PrefabDirty"];
+		}
+		if (gameObjectJSON.contains("PrefabName"))
+		{
+			prefabName = gameObjectJSON["PrefabName"];
 		}
 	}
 

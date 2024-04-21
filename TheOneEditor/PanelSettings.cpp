@@ -31,9 +31,7 @@ bool PanelSettings::Draw()
 	ImGuiWindowFlags settingsFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-
-	ImVec2 mainViewportPos = ImGui::GetMainViewport()->GetCenter();
-	ImGui::SetNextWindowPos(ImVec2(mainViewportPos.x, mainViewportPos.y), ImGuiCond_Appearing, ImVec2(0.5, 0.8));
+	ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5, 0.8));
 
 	if (ImGui::Begin("Settings", &enabled, settingsFlags))
 	{
@@ -41,7 +39,7 @@ bool PanelSettings::Draw()
 		ImVec2 leftChildSize = ImVec2(ImGui::GetWindowSize().x * 0.2, ImGui::GetWindowSize().y);
 		ImVec2 buttonSize = ImVec2(ImGui::GetWindowSize().x * 0.2, 20);
 	
-		if (ImGui::BeginChild("", leftChildSize, true))
+		if (ImGui::BeginChild("Options", leftChildSize, true))
 		{
 			if (ImGui::Button("Performance", buttonSize))
 				selected = SelectedSetting::PERFORMANCE;
@@ -60,9 +58,8 @@ bool PanelSettings::Draw()
 
 			if (ImGui::Button("Software", buttonSize))
 				selected = SelectedSetting::SOFTWARE;
-
-			ImGui::EndChild();
 		}
+		ImGui::EndChild();
 
 		ImGui::SameLine();
 
@@ -81,14 +78,11 @@ bool PanelSettings::Draw()
 				case SelectedSetting::SOFTWARE:		Software();		break;
 				default: Performance(); break;
 			}
-
-			ImGui::EndChild();
 		}
-
-		ImGui::End();
+		ImGui::EndChild();
 	}
-
-	ImGui::PopStyleVar(1);
+	ImGui::PopStyleVar();
+	ImGui::End();
 
 	return true;
 }
@@ -101,14 +95,18 @@ void PanelSettings::Performance()
 	int frameRate = app->GetFrameRate();
 	ImGui::Text("Frame Rate");
 	ImGui::SameLine();
-	if (ImGui::SliderInt("", &frameRate, 0, app->window->GetDisplayRefreshRate()))
+	if (ImGui::SliderInt("##Frame Rate", &frameRate, 0, app->window->GetDisplayRefreshRate()))
 		app->SetFrameRate(frameRate);
 
 	ImGui::Separator();
 
 	ImPlotFlags plotFlags = ImPlotFlags_NoInputs | ImPlotFlags_NoFrame | ImPlotFlags_NoLegend;
 	ImPlotAxisFlags axisFlags = ImPlotAxisFlags_NoTickMarks;
-	app->gui->PlotChart("FPS", fpsHistory, plotFlags, axisFlags);
+
+	int fps = fpsHistory.back();
+	char thing[12];
+	sprintf_s(thing, 12, "%i", fps);
+	app->gui->PlotChart(thing, fpsHistory, plotFlags, axisFlags);
 }
 
 void PanelSettings::Window()

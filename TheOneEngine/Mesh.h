@@ -3,16 +3,23 @@
 #pragma once
 
 #include "Defs.h"
-
 #include "Component.h"
 #include "Resources.h"
+
+#include "../TheOneAnimation/samples/framework/mesh.h"
+#include "ozz/base/maths/simd_math.h"
+#include "ozz/base/span.h"
 
 #include <vector>
 #include <memory>
 #include <string>
 
+
+class Camera;
+class Material;
 class GameObject;
 struct MeshBufferData;
+
 
 class Mesh : public Component
 {
@@ -31,6 +38,13 @@ private:
     //void DrawVertexNormals();
     //void DrawFaceNormals();
     //void DrawWireframe();
+
+    bool RenderOzzSkinnedMesh(
+        Model* mesh,
+        Material* material,
+        const ozz::span<ozz::math::Float4x4> _skinning_matrices,
+        const mat4& _transform);
+    bool RenderMesh(Model* mesh, Material* material, const mat4& transform);
 
 public:
     ResourceId meshID = -1;
