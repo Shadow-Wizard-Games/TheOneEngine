@@ -19,7 +19,8 @@
 // hekbas: TODO OZZ
 PanelAnimation::PanelAnimation(PanelType type, std::string name) : Panel(type, name),
 activeAnimator(nullptr),
-animationCamera(nullptr)
+animationCamera(nullptr),
+isPlaying(false)
 {
 	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
 
@@ -85,17 +86,27 @@ bool PanelAnimation::AnimationAvaliable()
 
 	activeAnimator = Resources::GetResourceById<Model>(resourceID);
 
+	if(isPlaying)
+		activeAnimator->UpdateAnim(app->GetDT());
+
 	return true;
 }
 
 void PanelAnimation::Settings()
 {
-	const char* animator_path = "Not saved.";
+	ImGui::Text("Animator file: %s", activeAnimator->GetMeshPath().c_str());
 
-	if (activeAnimatorPath != "")
-		animator_path = activeAnimatorPath.c_str();
+	if (ImGui::Button("Import FBX Animation"))
+	{
+		std::string filePath = FileDialog::OpenFile("Open FBX with animation (*.fbx)\0*.fbx\0");
+		if (!filePath.empty() && filePath.ends_with(".fbx"))
+		{
+			activeAnimator->ImportAnimation(filePath.c_str());
+		}
+	}
 
-	ImGui::Text("Animator file: %s", animator_path);
+	if (ImGui::Button("Save animator") && activeAnimator)
+		activeAnimator->SaveAnimator();
 
 	bool blend = activeAnimator->getBlendOnTransition();
 
@@ -171,7 +182,7 @@ void PanelAnimation::DrawAnimations()
 
 		ImGui::InputText("Name", &animation_name);
 
-		const char* items[] = { "Partial blending", "Simple animation" };
+		const char* items[] = { "Simple animation", "Partial blending"};
 
 		static int current_item = 0;
 
@@ -274,9 +285,6 @@ void PanelAnimation::DrawAnimations()
 					animation->setLoop(loop);
 				}
 
-				if (activeAnimator->HasAnimation(a_data.name))
-					activeAnimator->UpdateAnim(app->GetDT());
-
 				switch (a_type)
 				{
 				case AnimationType::AT_PARTIAL_BLEND:
@@ -297,16 +305,19 @@ void PanelAnimation::DrawAnimations()
 
 				if (ImGui::Button("Play")) {
 					activeAnimator->PlayAnimation(i);
+					isPlaying = true;
 				}
 
 				ImGui::SameLine();
 
 				if (ImGui::Button("Stop")) {
 					activeAnimator->StopAnimation(false);
+					isPlaying = false;
 				}
 
 				if (ImGui::Button("Delete")) {
 					activeAnimator->RemoveAnimationAt(i);
+					isPlaying = false;
 				}
 
 				ImGui::TreePop();
@@ -357,23 +368,13 @@ void PanelAnimation::DrawPartialBlendingAnimation(OzzAnimationPartialBlending* p
 
 	ImGui::Text("Lower body animation");
 	ImGui::PushID("lower_body");
-	app->gui->AssetContainer(lower);
-	if (ImGui::BeginDragDropTarget())
+	if (ImGui::Button(lower))
 	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+		std::string filePath = FileDialog::OpenFile("Open Lower Animation (*.anim)\0*.anim\0");
+		if (!filePath.empty() && filePath.ends_with(".anim"))
 		{
-			const wchar_t* path = (const wchar_t*)payload->Data;
-			std::wstring ws(path);
-			std::string pathS(ws.begin(), ws.end());
-			std::filesystem::path p = pathS.c_str();
-			if (p.extension() == ".anim")
-			{
-				std::string libpath = Resources::AssetToLibPath(p.string());
-				partial_animation->LoadLowerAnimation(libpath.c_str());
-			}
+			partial_animation->LoadLowerAnimation(filePath.c_str());
 		}
-
-		ImGui::EndDragDropTarget();
 	}
 	ImGui::PopID();
 
@@ -386,23 +387,14 @@ void PanelAnimation::DrawPartialBlendingAnimation(OzzAnimationPartialBlending* p
 
 	ImGui::Text("Upper body animation");
 	ImGui::PushID("upper_body");
-	app->gui->AssetContainer(upper);
-	if (ImGui::BeginDragDropTarget())
-	{
-		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-		{
-			const wchar_t* path = (const wchar_t*)payload->Data;
-			std::wstring ws(path);
-			std::string pathS(ws.begin(), ws.end());
-			std::filesystem::path p = pathS.c_str();
-			if (p.extension() == ".anim")
-			{
-				std::string libpath = Resources::AssetToLibPath(p.string());
-				partial_animation->LoadUpperAnimation(libpath.c_str());
-			}
-		}
 
-		ImGui::EndDragDropTarget();
+	if (ImGui::Button(upper))
+	{
+		std::string filePath = FileDialog::OpenFile("Open Upper Animation (*.anim)\0*.anim\0");
+		if (!filePath.empty() && filePath.ends_with(".anim"))
+		{
+			partial_animation->LoadUpperAnimation(filePath.c_str());
+		}
 	}
 	ImGui::PopID();
 }

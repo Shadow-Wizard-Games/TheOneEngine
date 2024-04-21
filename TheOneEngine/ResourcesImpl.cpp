@@ -87,8 +87,8 @@ std::filesystem::path Resources::ImportPathImpl(const std::filesystem::path& pat
 
 std::string Resources::FindFileInAssets(const std::string& name)
 {
-	std::string standarizeName = name;
-	StandarizePath(standarizeName);
+	std::string standarizedPath = name;
+	StandarizePath(standarizedPath);
 
 	if (name.find("Assets") && std::filesystem::exists(name))
 		return name;
@@ -98,8 +98,16 @@ std::string Resources::FindFileInAssets(const std::string& name)
 		std::string relPath = p.path().string();
 		std::string fileName = p.path().filename().replace_extension("").string();
 		StandarizePath(relPath);
-		if (fileName == name || relPath == standarizeName)
+		if (fileName == name || relPath == standarizedPath)
+		{
+			// Parche pocho pero esque estoy hasta los c* de los .fbm
+			if(relPath.ends_with(".fbm"))
+			{
+				std::filesystem::path finalPath = relPath;
+				return finalPath.replace_extension(".fbx").string();
+			}
 			return relPath;
+		}
 	}
 
 	return std::string();
