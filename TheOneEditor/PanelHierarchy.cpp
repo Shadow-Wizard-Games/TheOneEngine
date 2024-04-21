@@ -12,13 +12,14 @@ PanelHierarchy::PanelHierarchy(PanelType type, std::string name) : Panel(type, n
 
 PanelHierarchy::~PanelHierarchy() {}
 
+
 void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 {
 	for (const auto& childGO : parent.get()->children)
 	{
 		uint treeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
 
-		if (childGO.get()->children.size() == 0)
+		if (childGO.get()->children.empty())
 			treeFlags |= ImGuiTreeNodeFlags_Leaf;
 
 		if (childGO == engine->N_sceneManager->GetSelectedGO())
@@ -61,7 +62,10 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		//}
 
 		if (ReparentDragDrop(childGO))
+		{
+			ImGui::TreePop();
 			break;
+		}
 
 		if (ImGui::IsItemClicked(0) && !ImGui::IsItemToggledOpen())
 		{
@@ -87,7 +91,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		}
 		if (remove)
 		{
-			ImGui::TreePop();
+			//ImGui::TreePop();
 			break;
 		}
 
@@ -116,6 +120,114 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 	}
 }
 
+// old
+//void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
+//{
+//	for (const auto& childGO : parent.get()->children)
+//	{
+//		uint treeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+//
+//		if (childGO.get()->children.size() == 0)
+//			treeFlags |= ImGuiTreeNodeFlags_Leaf;
+//
+//		if (childGO == engine->N_sceneManager->GetSelectedGO())
+//			treeFlags |= ImGuiTreeNodeFlags_Selected;
+//
+//		if (childGO->IsPrefab())
+//		{
+//			ifstream prefabFile;
+//
+//			fs::path filename = ASSETS_PATH;
+//			filename += "Prefabs\\" + childGO->GetPrefabName() + ".prefab";
+//
+//			prefabFile.open(filename);
+//			if (!prefabFile)
+//			{
+//				childGO->UnpackPrefab();
+//			}
+//			else prefabFile.close();
+//		}
+//
+//		//bool isOpen = false;
+//		//if (!childGO.get()->GetName().empty())
+//		//{
+//		bool isPrefab = childGO.get()->IsPrefab();
+//
+//		if (isPrefab && childGO.get()->IsEditablePrefab() && !childGO.get()->IsPrefabDirty())
+//		{
+//			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(.2f, .8f, 1.f, 1.f));
+//		}
+//		else if (isPrefab && !childGO.get()->IsEditablePrefab())
+//		{
+//			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, .3f, .2f, 1.f));
+//		}
+//		else if (isPrefab && childGO.get()->IsEditablePrefab() && childGO.get()->IsPrefabDirty())
+//		{
+//			ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, .50f, 1.0f, 1.f));
+//		}
+//
+//		bool isOpen = ImGui::TreeNodeEx(childGO.get()->GetName().data(), treeFlags);
+//		//}
+//
+//		if (ReparentDragDrop(childGO))
+//		{
+//			ImGui::TreePop();
+//			break;
+//		}
+//
+//		if (ImGui::IsItemClicked(0) && !ImGui::IsItemToggledOpen())
+//		{
+//			engine->N_sceneManager->SetSelectedGO(childGO);
+//			LOG(LogType::LOG_INFO, "SelectedGO: %s", engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str());
+//
+//			if (engine->N_sceneManager->GetSelectedGO()->IsPrefab())
+//				LOG(LogType::LOG_INFO, "Selected Prefab ID: %zu", engine->N_sceneManager->GetSelectedGO()->GetPrefabID());
+//		}
+//
+//		ContextMenu(childGO);
+//		if (duplicate)
+//		{
+//			ImGui::TreePop();
+//			duplicate = false;
+//			break;
+//		}
+//		if (createEmpty)
+//		{
+//			ImGui::TreePop();
+//			createEmpty = false;
+//			break;
+//		}
+//		if (remove)
+//		{
+//			ImGui::TreePop();
+//			break;
+//		}
+//
+//		if (isOpen && !reparent)
+//		{
+//			//treeFlags &= ~ImGuiTreeNodeFlags_Selected;
+//			RecurseShowChildren(childGO);
+//
+//			ImGui::TreePop();
+//		}
+//
+//		if (isPrefab)
+//		{
+//			ImGui::PopStyleColor();
+//		}
+//	}
+//
+//	if (remove)
+//	{
+//		for (auto& item : toDeleteList)
+//		{
+//			item.get()->Delete();
+//		}
+//
+//		remove = false;
+//	}
+//}
+
 bool PanelHierarchy::Draw()
 {
 	ImGuiWindowFlags settingsFlags = 0;
@@ -130,7 +242,7 @@ bool PanelHierarchy::Draw()
 		if (ImGui::TreeNodeEx(engine->N_sceneManager->currentScene->GetRootSceneGO().get()->GetName().data(), treeFlags))
 		{
 			reparent = false;
-			ReparentDragDrop(engine->N_sceneManager->currentScene->GetRootSceneGO());
+			//ReparentDragDrop(engine->N_sceneManager->currentScene->GetRootSceneGO());
 			RecurseShowChildren(engine->N_sceneManager->currentScene->GetRootSceneGO());
 			ImGui::TreePop();
 		}
