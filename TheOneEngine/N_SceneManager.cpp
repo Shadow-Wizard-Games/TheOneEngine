@@ -624,67 +624,85 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	// Close the file
 	file.close();
 
-	// particles, camera, collider, --canvas--
-	const json& componentsJSON = prefabJSON["Components"];
+	if (prefabJSON.contains("Components")) {
 
-	for (const auto& componentJSON : componentsJSON)
-	{
-		ComponentType type = static_cast<ComponentType>(componentJSON["Type"]);
+		// particles, camera, collider, --canvas--
+		const json& componentsJSON = prefabJSON["Components"];
 
-		switch (type)
+		for (const auto& componentJSON : componentsJSON)
 		{
-		case ComponentType::Collider2D:
-		{
-			if (goToModify->GetComponent<Collider2D>() == nullptr) goToModify->AddComponent<Collider2D>();
+			ComponentType type = static_cast<ComponentType>(componentJSON["Type"]);
 
-			auto collider = goToModify->GetComponent<Collider2D>();
-			collider->LoadComponent(componentJSON);
-			break;
-		}
-		case ComponentType::Camera:
-		{
-			if (goToModify->GetComponent<Camera>() == nullptr) goToModify->AddComponent<Camera>();
+			switch (type)
+			{
+			case ComponentType::Collider2D:
+			{
+				if (goToModify->GetComponent<Collider2D>() == nullptr) goToModify->AddComponent<Collider2D>();
 
-			auto camera = goToModify->GetComponent<Camera>();
-			camera->LoadComponent(componentJSON);
-			break;
-		}
-		case ComponentType::Canvas:
-		{
-			if (goToModify->GetComponent<Canvas>() == nullptr) goToModify->AddComponent<Canvas>();
+				auto collider = goToModify->GetComponent<Collider2D>();
+				collider->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Camera:
+			{
+				if (goToModify->GetComponent<Camera>() == nullptr) goToModify->AddComponent<Camera>();
 
-			auto canvas = goToModify->GetComponent<Canvas>();
-			canvas->LoadComponent(componentJSON);
-			break;
-		}
-		case ComponentType::AudioSource:
-		{
-			if (goToModify->GetComponent<AudioSource>() == nullptr) goToModify->AddComponent<AudioSource>();
+				auto camera = goToModify->GetComponent<Camera>();
+				camera->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Canvas:
+			{
+				if (goToModify->GetComponent<Canvas>() == nullptr) goToModify->AddComponent<Canvas>();
 
-			auto audioSource = goToModify->GetComponent<AudioSource>();
-			audioSource->LoadComponent(componentJSON);
-			break;
-		}
-		case ComponentType::Listener:
-		{
-			if (goToModify->GetComponent<Listener>() == nullptr) goToModify->AddComponent<Listener>();
+				auto canvas = goToModify->GetComponent<Canvas>();
+				canvas->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::AudioSource:
+			{
+				if (goToModify->GetComponent<AudioSource>() == nullptr) goToModify->AddComponent<AudioSource>();
 
-			auto listener = goToModify->GetComponent<Listener>();
-			listener->LoadComponent(componentJSON);
-			break;
-		}
-		case ComponentType::ParticleSystem:
-		{
-			if (goToModify->GetComponent<ParticleSystem>() == nullptr) goToModify->AddComponent<ParticleSystem>();
+				auto audioSource = goToModify->GetComponent<AudioSource>();
+				audioSource->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Listener:
+			{
+				if (goToModify->GetComponent<Listener>() == nullptr) goToModify->AddComponent<Listener>();
 
-			auto particleSystem = goToModify->GetComponent<ParticleSystem>();
-			particleSystem->LoadComponent(componentJSON);
-			break;
-		}
-		default:
-			break;
+				auto listener = goToModify->GetComponent<Listener>();
+				listener->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::ParticleSystem:
+			{
+				if (goToModify->GetComponent<ParticleSystem>() == nullptr) goToModify->AddComponent<ParticleSystem>();
+
+				auto particleSystem = goToModify->GetComponent<ParticleSystem>();
+				particleSystem->LoadComponent(componentJSON);
+				break;
+			}
+			default:
+				break;
+			}
 		}
 	}
+
+	/*
+	if (prefabJSON.contains("GameObjects"))
+	{
+		const json& childrenJSON = prefabJSON["GameObjects"];
+
+		for (const auto& childJSON : childrenJSON)
+		{
+			if(childJSON["UID"] == 0)
+			{
+
+			}
+		}
+	}
+	*/
 }
 
 void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
