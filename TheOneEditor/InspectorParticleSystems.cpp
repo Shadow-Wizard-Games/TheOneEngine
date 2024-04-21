@@ -8,6 +8,8 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 
 	if (ImGui::Button("Reset Pool")) emmiter->RestartParticlePool();
 
+	ImGui::Checkbox("Global Particles", &emmiter->isGlobal);
+
 	ImGui::InputFloat("Duration", &emmiter->duration);
 	ImGui::InputFloat("Delay", &emmiter->delay);
 	ImGui::Checkbox("Loop", &emmiter->isLooping);
@@ -140,6 +142,8 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 	{
 		if (ImGui::MenuItem("Acceleration"))
 			emmiter->AddModule(UpdateEmmiterModule::ACCELERATION);
+		if (ImGui::MenuItem("Color Over Life"))
+			emmiter->AddModule(UpdateEmmiterModule::COLOR_OVER_LIFE);
 
 		ImGui::EndMenu();
 	}
@@ -163,6 +167,9 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 		switch ((*m)->type) {
 		case UpdateEmmiterModule::ACCELERATION:
 			UIInspectorEmmiterUpdateModule((AccelerationUpdate*)(*m).get());
+			break;
+		case UpdateEmmiterModule::COLOR_OVER_LIFE:
+			UIInspectorEmmiterUpdateModule((ColorOverLifeUpdate*)(*m).get());
 			break;
 
 		default:
@@ -241,11 +248,11 @@ void UIInspectorEmmiterInitializeModule(SetSpeed* initModule)
 	}
 	else {
 		ImGui::PushID("set_speed_min_PS");
-		ImGui::InputFloat("Speed", &initModule->speed.rangeValue.lowerLimit, 0, 0, "%.2f");
+		ImGui::InputFloat("Minimum Speed", &initModule->speed.rangeValue.lowerLimit, 0, 0, "%.2f");
 		ImGui::PopID();
 
 		ImGui::PushID("set_speed_max_PS");
-		ImGui::InputFloat("Speed", &initModule->speed.rangeValue.upperLimit, 0, 0, "%.2f");
+		ImGui::InputFloat("Maximum Speed", &initModule->speed.rangeValue.upperLimit, 0, 0, "%.2f");
 		ImGui::PopID();
 	}
 
@@ -331,11 +338,11 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 	else {
 		if (initModule->isProportional) {
 			ImGui::PushID("set_scale_min_PS");
-			ImGui::InputDouble("Scale", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+			ImGui::InputDouble("Minimum Scale", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
 			ImGui::PopID();
 
 			ImGui::PushID("set_scale_max_PS");
-			ImGui::InputDouble("Scale", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
+			ImGui::InputDouble("Maximum Scale", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
 			ImGui::PopID();
 
 		}
@@ -452,7 +459,7 @@ void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule)
 
 	ImGui::PushItemWidth(60);
 
-	ImGui::PushID("set_color_max_PS");
+	ImGui::PushID("set_acceleration_PS");
 	ImGui::InputDouble("X", &updateModule->acceleration.x, 0, 0, "%.2f");
 	ImGui::SameLine();
 	ImGui::InputDouble("Y", &updateModule->acceleration.y, 0, 0, "%.2f");
@@ -462,6 +469,46 @@ void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule)
 
 	ImGui::PopItemWidth();
 
+}
+
+void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule)
+{
+	ImGui::Text("Color Over Life: ");
+
+	ImGui::PushItemWidth(60);
+
+	bool setNextOnSameLine = false;
+
+	ImGui::PushID("set_final_color_PS");
+	if (updateModule->affectR) {
+		ImGui::InputDouble("R", &updateModule->finalColor.r, 0, 0, "%.0f");
+		setNextOnSameLine = true;
+	}
+	if (updateModule->affectG) {
+		if (setNextOnSameLine) ImGui::SameLine();
+		ImGui::InputDouble("G", &updateModule->finalColor.g, 0, 0, "%.0f");
+		setNextOnSameLine = true;
+	}
+	if (updateModule->affectB) {
+		if (setNextOnSameLine) ImGui::SameLine();
+		ImGui::InputDouble("B", &updateModule->finalColor.b, 0, 0, "%.0f");
+		setNextOnSameLine = true;
+	}
+	if (updateModule->affectA) { 
+		if (setNextOnSameLine) ImGui::SameLine();
+		ImGui::InputDouble("A", &updateModule->finalColor.a, 0, 0, "%.0f"); 
+	}
+
+	ImGui::Checkbox("Use R", &updateModule->affectR);
+	ImGui::SameLine();
+	ImGui::Checkbox("Use G", &updateModule->affectG);
+	ImGui::SameLine();
+	ImGui::Checkbox("Use B", &updateModule->affectB);
+	ImGui::SameLine();
+	ImGui::Checkbox("Use A", &updateModule->affectA);
+	ImGui::PopID();
+
+	ImGui::PopItemWidth();
 }
 
 

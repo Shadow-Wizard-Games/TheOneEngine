@@ -89,7 +89,7 @@ SetColor::SetColor(Emmiter* owner, SetColor* ref)
 void SetColor::Initialize(Particle* particle)
 {
 	if (color.usingSingleValue) {
-		particle->color = color.singleValue;
+		particle->initialColor = color.singleValue;
 	}
 	else {
 		vec4 randomVec = vec4{
@@ -99,8 +99,10 @@ void SetColor::Initialize(Particle* particle)
 			randomInt(color.rangeValue.lowerLimit.a, color.rangeValue.upperLimit.a),
 		};
 
-		particle->color = randomVec;
+		particle->initialColor = randomVec;
 	}
+
+	particle->color = particle->initialColor;
 }
 
 json SetColor::SaveModule()
@@ -170,10 +172,10 @@ void SetScale::Initialize(Particle* particle)
 {
 	if (scale.usingSingleValue) {
 		if (isProportional) {
-			particle->scale = vec3(scale.singleValue.x, scale.singleValue.x, scale.singleValue.x);
+			particle->initialScale = vec3(scale.singleValue.x, scale.singleValue.x, scale.singleValue.x);
 		}
 		else {
-			particle->scale = scale.singleValue;
+			particle->initialScale = scale.singleValue;
 		}
 	}
 	else {
@@ -188,8 +190,10 @@ void SetScale::Initialize(Particle* particle)
 				randomFloat(scale.rangeValue.lowerLimit.y, scale.rangeValue.upperLimit.y),
 				randomFloat(scale.rangeValue.lowerLimit.z, scale.rangeValue.upperLimit.z) };
 		}
-		particle->scale = randomVec;
+		particle->initialScale = randomVec;
 	}
+
+	particle->scale = particle->initialScale;
 }
 
 json SetScale::SaveModule()

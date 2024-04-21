@@ -22,6 +22,7 @@ public:
 	float lifetimeOverOne;
 	float dtOverOne;
 
+	vec4 initialColor;
 	vec4 color;
 
 	vec3 position;
@@ -32,5 +33,6 @@ public:
 
 	vec4 rotation;
 
+	vec3 initialScale;
 	vec3 scale;
 };

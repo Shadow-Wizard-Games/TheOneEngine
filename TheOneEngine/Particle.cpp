@@ -12,7 +12,8 @@ void Particle::SetDuration(float duration)
 
 void Particle::ResetAttributes()
 {
-    color = vec4(0, 0, 0, 255);
+    initialColor = vec4(0, 0, 0, 255);
+    color = initialColor;
 
     position = vec3(0, 0, 0);
 
@@ -21,14 +22,15 @@ void Particle::ResetAttributes()
 
     rotation = vec4(1, 0, 0, 0);
 
-    scale = vec3(1, 1, 1);
+    initialScale = vec3(1, 1, 1);
+    scale = initialScale;
 }
 
 void Particle::Update(double dt)
 {
     lifetime += dt;
 
-    lifetimeOverOne += dtOverOne;
+    lifetimeOverOne += dtOverOne * dt;
 
     position += direction * (speed * dt);
 }

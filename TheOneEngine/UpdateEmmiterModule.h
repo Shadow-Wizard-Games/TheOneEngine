@@ -17,7 +17,9 @@ public:
 	virtual void LoadModule(const json& moduleJSON) { };
 
 	enum UpdateEmmiterModuleType {
-		ACCELERATION
+		ACCELERATION,
+		COLOR_OVER_LIFE,
+		SCALE_OVER_LIFE
 	};
 
 	UpdateEmmiterModuleType type;
@@ -41,3 +43,41 @@ public:
 	void LoadModule(const json& moduleJSON);
 
 };
+
+class ColorOverLifeUpdate : public UpdateEmmiterModule {
+public:
+	ColorOverLifeUpdate(Emmiter* owner);
+	ColorOverLifeUpdate(Emmiter* owner, ColorOverLifeUpdate* ref);
+
+	vec4 finalColor;
+
+	bool affectR;
+	bool affectG;
+	bool affectB;
+	bool affectA;
+
+	// interpolation
+	// InterpolationType
+
+	void Update(double dt, Particle* particle) override;
+
+	json SaveModule();
+
+	void LoadModule(const json& moduleJSON);
+
+};
+
+//class ScaleOverLifeUpdate : public UpdateEmmiterModule {
+//public:
+//	AccelerationUpdate(Emmiter* owner);
+//	AccelerationUpdate(Emmiter* owner, AccelerationUpdate* ref);
+//
+//	vec3 acceleration;
+//
+//	void Update(double dt, Particle* particle) override;
+//
+//	json SaveModule();
+//
+//	void LoadModule(const json& moduleJSON);
+//
+//};

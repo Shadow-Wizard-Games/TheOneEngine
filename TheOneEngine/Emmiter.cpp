@@ -256,6 +256,15 @@ UpdateEmmiterModule* Emmiter::AddModule(UpdateEmmiterModule::UpdateEmmiterModule
 		updateModules.push_back(std::move(std::make_unique<AccelerationUpdate>(this)));
 		newModule = updateModules[updateModules.size() - 1].get();
 		break;
+	case UpdateEmmiterModule::COLOR_OVER_LIFE:
+		updateModules.push_back(std::move(std::make_unique<ColorOverLifeUpdate>(this)));
+		newModule = updateModules[updateModules.size() - 1].get();
+		break;
+	//case UpdateEmmiterModule::SCALE_OVER_LIFE:
+	//	updateModules.push_back(std::move(std::make_unique<ScaleOverLifeUpdate>(this)));
+	//	newModule = updateModules[updateModules.size() - 1].get();
+	//	break;
+
 	default:
 		break;
 	}
@@ -340,6 +349,15 @@ UpdateEmmiterModule* Emmiter::AddModule(UpdateEmmiterModule* ref)
 		updateModules.push_back(std::move(std::make_unique<AccelerationUpdate>(this, (AccelerationUpdate*)ref)));
 		newModule = updateModules[updateModules.size() - 1].get();
 		break;
+	case UpdateEmmiterModule::COLOR_OVER_LIFE:
+		updateModules.push_back(std::move(std::make_unique<ColorOverLifeUpdate>(this, (ColorOverLifeUpdate*)ref)));
+		newModule = updateModules[updateModules.size() - 1].get();
+		break;
+		//case UpdateEmmiterModule::SCALE_OVER_LIFE:
+		//	updateModules.push_back(std::move(std::make_unique<ScaleOverLifeUpdate>(this)));
+		//	newModule = updateModules[updateModules.size() - 1].get();
+		//	break;
+
 	default:
 		break;
 	}

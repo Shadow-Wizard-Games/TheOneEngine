@@ -27,6 +27,7 @@ void UIInspectorEmmiterInitializeModule(SetDirection* initModule);
 // update modules
 void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule);
 
+void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule);
 
 
 // render modules
