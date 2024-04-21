@@ -57,16 +57,19 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		ContextMenu(childGO);
 		if (duplicate)
 		{
+			ImGui::TreePop();
 			duplicate = false;
 			break;
 		}
 		if (createEmpty)
 		{
+			ImGui::TreePop();
 			createEmpty = false;
 			break;
 		}
 		if (remove)
 		{
+			ImGui::TreePop();
 			break;
 		}
 
@@ -185,7 +188,6 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str()))
 			{
 				GameObject* dragging = *(GameObject**)payload->Data;
-
 				GameObject* currentParent = childGO.get();
 
 				if (childGO.get()->IsEditablePrefab())
@@ -193,16 +195,13 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 					while (currentParent)
 					{
 						if (currentParent == dragging)
-						{
 							return false;
-						}
+
 						currentParent = currentParent->parent.lock().get();
 					}
 
 					GameObject* oldParent = dragging->parent.lock().get();
-
 					dragging->parent = childGO.get()->weak_from_this();
-
 					std::shared_ptr<GameObject> newChild = dragging->weak_from_this().lock();
 
 					if (oldParent != nullptr)

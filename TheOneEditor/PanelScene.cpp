@@ -109,7 +109,6 @@ bool PanelScene::Draw()
             if (ImGui::Combo("##HandlePosition", &position, positions, 2))
             {
                 handlePosition = (HandlePosition)position;
-                ImGui::EndCombo();
             }
 
             // HandleSpace
@@ -118,7 +117,6 @@ bool PanelScene::Draw()
             {
                 //handleSpace = (HandleSpace)space;
                 LOG(LogType::LOG_INFO, "gizMode: %d", gizmoMode);
-                ImGui::EndCombo();
             }
 
             ImGui::Dummy(ImVec2(availWindowSize.x - 360.0f, 0.0f));
@@ -182,9 +180,9 @@ bool PanelScene::Draw()
                 ImGui::EndMenu();
             }
 
-            ImGui::PopStyleVar();
             ImGui::EndMenuBar();
         }
+        ImGui::PopStyleVar();
 
         //Draw FrameBuffer Texture
         viewportSize = { availWindowSize.x, availWindowSize.y };

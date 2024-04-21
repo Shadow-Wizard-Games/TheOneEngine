@@ -65,7 +65,7 @@ public:
 	void LoadImagePreviews(const FileInfo& info);
 	void UnloadImagePreviews();
 
-	void SaveWarning();
+	void SaveWarning(bool warning);
 	
 	void FileDropping(const FileInfo& info);
 
@@ -86,6 +86,7 @@ private:
 	std::unordered_map<std::string, GLuint> imagePreviews;
 
 	bool warningScene = false;
+	bool contextMenu = false;
 };
 
 #endif // !__PANEL_PROJECT_H__

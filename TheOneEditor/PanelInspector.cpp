@@ -121,7 +121,7 @@ bool PanelInspector::Draw()
 
 
                 // Transform table ----------------------------------------------------------------------------------
-                ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable | ImGuiTableFlags_SizingFixedFit;
+                ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
                 //ImGui::Indent(0.8f);
                 if (ImGui::BeginTable("", 4, tableFlags))
                 {

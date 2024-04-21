@@ -23,17 +23,18 @@
 
 #include "Animation/animations/OzzAnimationSimple.h"
 
-Model::Model(const std::string& filename) :
-m_ActiveAnimationId(INVALID_INDEX),
-m_PrevAnimationId(INVALID_INDEX),
-m_LoadedMesh(false),
-m_LoadedSkeleton(false),
-m_BlendOnTransition(true),
-m_BlendThreshold(ozz::animation::BlendingJob().threshold),
-m_TransitionTime(1.0f),
-m_TransitionTimer(0.0f),
-m_UpdateState(US_UPDATE),
-meshTransform(glm::mat4(1))
+
+Model::Model(const std::string& filename) : 
+    m_ActiveAnimationId(INVALID_INDEX),
+    m_PrevAnimationId(INVALID_INDEX),
+    m_LoadedMesh(false),
+    m_LoadedSkeleton(false),
+    m_BlendOnTransition(true),
+    m_BlendThreshold(ozz::animation::BlendingJob().threshold),
+    m_TransitionTime(1.0f),
+    m_TransitionTimer(0.0f),
+    m_UpdateState(US_UPDATE),
+    meshTransform(glm::mat4(1))
 {
     // This constructor only loads .mesh
     if (filename.ends_with(".mesh"))
@@ -78,7 +79,6 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
 
 
         // Basic Data
-
         std::string standarizedName = mesh->mName.C_Str();
         size_t index = 0;
         while ((index = standarizedName.find('.', index)) != std::string::npos) {
@@ -86,6 +86,22 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             index++;
         }
         model->meshName = standarizedName;
+
+
+        // Transform
+        aiMatrix4x4 transform;
+        glm::mat4 mTransform(1);
+        if (mesh->mName != (aiString)"Scene")
+        {
+            aiNode* meshNode = scene->mRootNode->FindNode(mesh->mName);
+            if (meshNode)
+            {
+                transform = meshNode->mTransformation;
+                mTransform = glm::transpose(glm::make_mat4(&transform.a1));
+            }
+        }
+        model->meshTransform = mTransform;
+
 
         // Process Anim
         if (mesh->HasBones())
@@ -276,22 +292,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 index_data.push_back(faces[f].mIndices[2]);
             }
             model->indexData = index_data;
-
-            // Transform
-            aiMatrix4x4 transform;
-            glm::mat4 mTransform(1);
-            if (mesh->mName != (aiString)"Scene")
-            {
-                aiNode* meshNode = scene->mRootNode->FindNode(mesh->mName);
-                if (meshNode)
-                {
-                    transform = meshNode->mTransformation;
-                    mTransform = glm::transpose(glm::make_mat4(&transform.a1));
-                }
-            }
-            model->meshTransform = mTransform;
-
-
+           
             // Extra data
             for (size_t i = 0; i < mesh->mNumVertices; i++) {
                 aiVector3D normal = mesh->mNormals[i];
