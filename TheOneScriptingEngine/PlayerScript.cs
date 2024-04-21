@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     IGameObject iManagerGO;
 
     IGameObject iShotPSGO;
+    IGameObject iStepPSGO;
 
     public bool isFighting = false;
 
@@ -32,6 +33,7 @@ public class PlayerScript : MonoBehaviour
         itemManager.AddItem(1, 1);
 
         iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
+        iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
 
     }
 
@@ -204,12 +206,21 @@ public class PlayerScript : MonoBehaviour
             if (toMove)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.P_STEP);
+                if (iStepPSGO != null)
+                {
+                    iStepPSGO.GetComponent<IParticleSystem>().Play();
+                }
             }
             else
             {
                 attachedGameObject.source.StopAudio(AudioManager.EventIDs.P_STEP);
+                if (iStepPSGO != null)
+                {
+                    iStepPSGO.GetComponent<IParticleSystem>().Stop();
+                }
             }
             lastFrameToMove = toMove;
+
         }
 
     }

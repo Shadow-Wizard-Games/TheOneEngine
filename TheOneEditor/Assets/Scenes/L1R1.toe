@@ -25172,6 +25172,113 @@
           "ParentUID": 6619240,
           "Static": false,
           "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                -6.373384475708008,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 273534109
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        5.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.5,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 5.0,
+                      "MinSpeed": 0.5,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        250.0,
+                        250.0,
+                        250.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        240.0,
+                        240.0,
+                        240.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 5,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 0,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 4.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        10.0,
+                        -10.0
+                      ],
+                      "Type": 0
+                    }
+                  ]
+                }
+              ],
+              "Name": "P_Run_Dust\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "Type": 9,
+              "UID": 402248169
+            }
+          ],
+          "Enabled": true,
+          "Name": "StepsPS",
+          "ParentUID": 6619240,
+          "Static": false,
+          "UID": 3452816845
         }
       ],
       "Name": "SK_MainCharacter",
