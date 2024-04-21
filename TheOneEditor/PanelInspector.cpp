@@ -20,6 +20,7 @@
 #include "..\TheOneEngine\ImageUI.h"
 #include "..\TheOneEngine\ButtonImageUI.h"
 #include "..\TheOneEngine\SliderUI.h"
+#include "..\TheOneEngine\CheckerUI.h"
 
 #include "InspectorParticleSystems.h"
 
@@ -1017,6 +1018,107 @@ bool PanelInspector::Draw()
                                 }
                             }
                         }
+                        else if (item->GetType() == UiType::CHECKER)
+                        {
+                            CheckerUI* tempCheckerUI = tempCanvas->GetItemUI<CheckerUI>(id);
+                            ImGui::Text("UiType: CHECKER");
+                            
+                            bool checkerActive = tempCheckerUI->GetChecker();
+                            ImGui::Checkbox("Toggle Checkbox State", &checkerActive);
+                            tempCheckerUI->SetChecker(checkerActive);
+
+                            ImGui::Text("Image Path: %s", tempCheckerUI->GetPath().c_str());
+                            if (ImGui::CollapsingHeader("Image section IDLE info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as idle"))
+                                {
+                                    tempCheckerUI->SetState(UiState::IDLE);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempCheckerUI->GetSectIdle().x;
+                                tempY2 = tempCheckerUI->GetSectIdle().y;
+                                tempW2 = tempCheckerUI->GetSectIdle().w;
+                                tempH2 = tempCheckerUI->GetSectIdle().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("     ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("      ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("       ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("        ", &tempH2, 1.0f);
+
+                                if (tempCheckerUI->GetState() == UiState::IDLE)
+                                {
+                                    tempCheckerUI->SetSectSizeIdle(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                            if (ImGui::CollapsingHeader("Image section HOVERED info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as hovered"))
+                                {
+                                    tempCheckerUI->SetState(UiState::HOVERED);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempCheckerUI->GetSectHovered().x;
+                                tempY2 = tempCheckerUI->GetSectHovered().y;
+                                tempW2 = tempCheckerUI->GetSectHovered().w;
+                                tempH2 = tempCheckerUI->GetSectHovered().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("         ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("          ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("           ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("            ", &tempH2, 1.0f);
+
+                                if (tempCheckerUI->GetState() == UiState::HOVERED)
+                                {
+                                    tempCheckerUI->SetSectSizeHovered(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                            if (ImGui::CollapsingHeader("Image section SELECTED info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as selected"))
+                                {
+                                    tempCheckerUI->SetState(UiState::SELECTED);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempCheckerUI->GetSectSelected().x;
+                                tempY2 = tempCheckerUI->GetSectSelected().y;
+                                tempW2 = tempCheckerUI->GetSectSelected().w;
+                                tempH2 = tempCheckerUI->GetSectSelected().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("             ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("              ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("               ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("                ", &tempH2, 1.0f);
+
+                                if (tempCheckerUI->GetState() == UiState::SELECTED)
+                                {
+                                    tempCheckerUI->SetSectSizeSelected(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                        }
                         //else if (item->GetType() == UiType::FONT)
                         //{
 
@@ -1074,6 +1176,19 @@ bool PanelInspector::Draw()
                         if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
                         {
                             tempCanvas->AddItemUI<SliderUI>(nameRecipient);
+                            nameRecipient[0] = '\0';
+                        }
+                        ImGui::TreePop();
+                    }
+                    if (ImGui::TreeNode("CheckerUI"))
+                    {
+                        static char nameRecipient[64];
+
+                        ImGui::InputText("File Name   ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+
+                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        {
+                            tempCanvas->AddItemUI<CheckerUI>(nameRecipient);
                             nameRecipient[0] = '\0';
                         }
                         ImGui::TreePop();
