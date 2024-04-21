@@ -25,6 +25,8 @@ public:
 
 	bool ReparentDragDrop(std::shared_ptr<GameObject> childGO);
 
+	void SaveGameobjectAsPrefab(std::shared_ptr<GameObject> goToSaveAsPrefab);
+
 private:
 	bool open_selected;
 	bool reparent;

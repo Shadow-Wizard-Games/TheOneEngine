@@ -31,7 +31,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 			fs::path filename = ASSETS_PATH;
 			filename += "Prefabs\\" + childGO->GetPrefabName() + ".prefab";
 
-			prefabFile.open(filename);			
+			prefabFile.open(filename);
 			if (!prefabFile)
 			{
 				childGO->UnpackPrefab();
@@ -65,7 +65,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		{
 			engine->N_sceneManager->SetSelectedGO(childGO);
 			LOG(LogType::LOG_INFO, "SelectedGO: %s", engine->N_sceneManager->GetSelectedGO().get()->GetName().c_str());
-			
+
 			if (engine->N_sceneManager->GetSelectedGO()->IsPrefab())
 				LOG(LogType::LOG_INFO, "Selected Prefab ID: %zu", engine->N_sceneManager->GetSelectedGO()->GetPrefabID());
 		}
@@ -147,6 +147,14 @@ void PanelHierarchy::ContextMenu(std::shared_ptr<GameObject> go)
 			duplicate = true;
 			engine->N_sceneManager->SetSelectedGO(engine->N_sceneManager->DuplicateGO(go));
 			LOG(LogType::LOG_INFO, "%s has been duplicated", go.get()->GetName().c_str());
+		}
+
+		if (!go.get()->IsPrefab())
+		{
+			if (ImGui::MenuItem("Make Prefab"))
+			{
+				SaveGameobjectAsPrefab(engine->N_sceneManager->GetSelectedGO());
+			}
 		}
 
 		if (ImGui::MenuItem("Remove"))
@@ -236,4 +244,22 @@ bool PanelHierarchy::ReparentDragDrop(std::shared_ptr<GameObject> childGO)
 		ImGui::EndDragDropTarget();
 	}
 	return reparent;
+}
+
+void PanelHierarchy::SaveGameobjectAsPrefab(std::shared_ptr<GameObject> goToSaveAsPrefab)
+{
+	goToSaveAsPrefab->SetPrefab(UIDGen::GenerateUID(), goToSaveAsPrefab->GetName());
+
+	std::string prefabName = goToSaveAsPrefab->GetName() + ".prefab";
+
+	// Serialize the GameObject and save it as a prefab file
+	json gameObjectJSON = goToSaveAsPrefab->SaveGameObject();
+
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + prefabName;
+
+	std::ofstream(filename) << gameObjectJSON.dump(2);
+
+	LOG(LogType::LOG_OK, "PREFAB CREATED SUCCESSFULLY");
+	engine->N_sceneManager->currentScene->SetIsDirty(true);
 }
