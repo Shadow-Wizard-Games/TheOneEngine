@@ -32,8 +32,8 @@ private:
 	void DrawPartialBlendingAnimation(OzzAnimationPartialBlending* partial_animation);
 
 private:
-	std::string activeAnimatorPath;
 	Model* activeAnimator;
+	bool hasAnimation;
 
 	std::shared_ptr<GameObject> animationCamera;
 	std::shared_ptr<FrameBuffer> frameBuffer;

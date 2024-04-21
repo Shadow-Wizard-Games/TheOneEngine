@@ -535,7 +535,7 @@ void Model::deserializeMeshData(const std::string& filename)
 void Model::SaveMesh(Model* mesh, const std::string& path)
 {
     if (mesh->isAnimated())
-        mesh->SaveAnimator(path);
+        mesh->SaveAnimator();
     else
         mesh->serializeMeshData(path);
 }
@@ -911,20 +911,21 @@ bool Model::UpdateAnim(float _dt)
     return true;
 }
 
-void Model::SaveAnimator(const std::string& filepath)
+void Model::SaveAnimator()
 {
     nlohmann::json animator_doc;
 
     // Save animator name
     animator_doc["name"] = meshName;
     // Save animator mesh
-    animator_doc["mesh"] = GetOzzMeshPath();
+    animator_doc["mesh"] = ozzMeshPath;
 
     // Save animator material
-    animator_doc["material"] = GetMaterialPath();
+    std::string matPath = GetMaterialPath();
+    animator_doc["material"] = matPath;
 
     // Save skeleton mesh
-    animator_doc["skeleton"] = getSkeletonPath();
+    animator_doc["skeleton"] = m_SkeletonPath;
 
     // Save blending settings
     animator_doc["transition_blend"] = getBlendOnTransition();
@@ -1000,8 +1001,8 @@ void Model::LoadAnimator(const std::string& filepath)
 
     if (animator_doc.contains("mesh"))
     {
-        const std::string mesh_file = animator_doc["mesh"].get<std::string>();
-        LoadOzzMesh(mesh_file.c_str());
+        ozzMeshPath = animator_doc["mesh"].get<std::string>();
+        LoadOzzMesh(ozzMeshPath);
     }
 
     if (animator_doc.contains("material"))
@@ -1011,8 +1012,8 @@ void Model::LoadAnimator(const std::string& filepath)
 
     if (animator_doc.contains("skeleton"))
     {
-        const std::string skeleton_file = animator_doc["skeleton"].get<std::string>();
-        LoadSkeleton(skeleton_file.c_str());
+        m_SkeletonPath = animator_doc["skeleton"].get<std::string>();
+        LoadSkeleton(m_SkeletonPath);
     }
 
     if (animator_doc.contains("transition_blend"))

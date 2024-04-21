@@ -19,7 +19,8 @@
 // hekbas: TODO OZZ
 PanelAnimation::PanelAnimation(PanelType type, std::string name) : Panel(type, name),
 activeAnimator(nullptr),
-animationCamera(nullptr)
+animationCamera(nullptr),
+hasAnimation(false)
 {
 	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
 
@@ -85,17 +86,18 @@ bool PanelAnimation::AnimationAvaliable()
 
 	activeAnimator = Resources::GetResourceById<Model>(resourceID);
 
+	if(hasAnimation)
+		activeAnimator->UpdateAnim(app->GetDT());
+
 	return true;
 }
 
 void PanelAnimation::Settings()
 {
-	const char* animator_path = "Not saved.";
+	ImGui::Text("Animator file: %s", activeAnimator->GetMeshPath().c_str());
 
-	if (activeAnimatorPath != "")
-		animator_path = activeAnimatorPath.c_str();
-
-	ImGui::Text("Animator file: %s", animator_path);
+	if (ImGui::Button("Save animator") && activeAnimator)
+		activeAnimator->SaveAnimator();
 
 	bool blend = activeAnimator->getBlendOnTransition();
 
@@ -252,6 +254,7 @@ void PanelAnimation::DrawAnimations()
 			if (ImGui::TreeNode(a_data.name.c_str()))
 			{
 				OzzAnimation* animation = a_data.animation;
+				hasAnimation = animation->getStatus() != OzzAnimation::Status::INVALID;
 				AnimationType a_type = animation->getAnimationType();
 				ImGui::Text("Status: ");
 				ImGui::SameLine();
@@ -273,9 +276,6 @@ void PanelAnimation::DrawAnimations()
 				if (ImGui::Checkbox("Loop", &loop)) {
 					animation->setLoop(loop);
 				}
-
-				if (activeAnimator->HasAnimation(a_data.name))
-					activeAnimator->UpdateAnim(app->GetDT());
 
 				switch (a_type)
 				{

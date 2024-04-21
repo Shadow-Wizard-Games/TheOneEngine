@@ -189,7 +189,7 @@ public:
 	//bool Render(Camera* camera, mat4 transform);
 
 	// Static save function
-	void SaveAnimator(const std::string& filepath);
+	void SaveAnimator();
 
 	// Static load function
 	void LoadAnimator(const std::string& filepath);
