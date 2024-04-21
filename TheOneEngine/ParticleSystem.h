@@ -38,6 +38,8 @@ public:
 
 	std::vector<std::unique_ptr<Emmiter>> emmiters;
 
+	bool startON;
+
 protected:
 
 private:

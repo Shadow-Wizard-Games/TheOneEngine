@@ -538,6 +538,8 @@ bool PanelInspector::Draw()
                     particleSystem->Stop();
                 }
 
+                ImGui::Checkbox("Start ON", &particleSystem->startON);
+
                 if (ImGui::Button("Export")) {
                     particleSystem->ExportParticles();
                 }

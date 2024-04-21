@@ -18,7 +18,9 @@ ParticleSystem::ParticleSystem(std::shared_ptr<GameObject> containerGO) : Compon
 		LOG(LogType::LOG_ERROR, "GameObject Container invalid!");
 	}
 
-	isON = true;
+	startON = true;
+
+	isON = startON;
 	AddEmmiter();
 }
 
@@ -36,7 +38,9 @@ isON(ref->isON)
 		AddEmmiter(emmiter.get());
 	}
 
-	isON = true;
+	startON = ref->startON;
+
+	isON = startON;
 }
 
 ParticleSystem::~ParticleSystem()
@@ -133,6 +137,8 @@ json ParticleSystem::SaveComponent()
 	particleSystemJSON["Name"] = name;
 	particleSystemJSON["Type"] = type;
 
+	particleSystemJSON["StartON"] = startON;
+
 	return particleSystemJSON;
 }
 
@@ -152,6 +158,12 @@ void ParticleSystem::LoadComponent(const json& transformJSON)
 	if (transformJSON.contains("Type"))
 	{
 		type = transformJSON["Type"];
+	}
+
+	if (transformJSON.contains("StartON"))
+	{
+		startON = transformJSON["StartON"];
+		isON = startON;
 	}
 
 	ClearEmmiters();
