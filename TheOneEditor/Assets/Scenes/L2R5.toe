@@ -1,0 +1,1093 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4216226475
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 2,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 3771785662,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 2
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3964681347
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_L2R5/M_L2R5.toematerial",
+          "MeshPath": "Library/Meshes/MK_L2R5/MK_L2R5.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3487201861
+        }
+      ],
+      "Enabled": true,
+      "Name": "MK_L2R5",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7578853964805603,
+            0.0,
+            -0.6523880958557129,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.6523880958557129,
+            0.0,
+            0.7578853964805603,
+            0.0,
+            274.0501403808594,
+            0.0,
+            182.19422912597656,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 943930108
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+          "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1006632960,
+          "Type": 2,
+          "UID": 773270821
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": false,
+          "Height": 30.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1006632960,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 1439099408,
+          "Width": 30.0
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Box_01",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1006632960
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9832713603973389,
+            0.0,
+            -0.18214671313762665,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.18214671313762665,
+            0.0,
+            0.9832713603973389,
+            0.0,
+            670.8035888671875,
+            0.0,
+            373.3233337402344,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1804033355
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+          "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 1390979140
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": false,
+          "Height": 30.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 3908711018,
+          "Width": 30.0
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Box_02",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9491316676139832,
+            0.0,
+            -0.3148796856403351,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.3148796856403351,
+            0.0,
+            0.9491316676139832,
+            0.0,
+            715.267578125,
+            1.52587890625e-05,
+            264.2248840332031,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2043486437
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+          "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 2208132563
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": false,
+          "Height": 30.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 3503571539,
+          "Width": 30.0
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Box_03",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9055566191673279,
+            0.0,
+            0.42422565817832947,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.42422565817832947,
+            0.0,
+            0.9055566191673279,
+            0.0,
+            -22.854263305664063,
+            0.0,
+            285.2796630859375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 457561558
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+          "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1006632960,
+          "Type": 2,
+          "UID": 2859128863
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": false,
+          "Height": 30.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1006632960,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 2293785271,
+          "Width": 30.0
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Box_04",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1006632960
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -88.30307006835938,
+            0.0,
+            87.00762939453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2591161072
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+          "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 1735062262
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1102577664,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 3978232289,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_OilDrums_01",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1102577664
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            80.95756530761719,
+            0.0,
+            297.1127014160156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 963414240
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+          "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1006632960,
+          "Type": 2,
+          "UID": 490734035
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1006632960,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 280063717,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_OilDrums_02",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1006632960
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -532.937744140625,
+            0.0,
+            255.17489624023438,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2171813429
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+          "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 1866883093
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 3883881359,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_OilDrums_03",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -126.2437744140625,
+            0.0,
+            306.1951904296875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 567070675
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+          "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 3705829385
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 3862429794,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_OilDrums_04",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.85853111743927,
+            0.0,
+            -0.5127617716789246,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.5127617716789246,
+            0.0,
+            0.85853111743927,
+            0.0,
+            -574.7236328125,
+            0.0,
+            185.1912841796875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3741357487
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+          "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 4180888284
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": false,
+          "Height": 30.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1102577664,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 3090280687,
+          "Width": 30.0
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Box_05",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1102577664
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -267.035888671875,
+            -2.9657805498572998e-05,
+            104.5655517578125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4159366566
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 1955799224
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1606265067,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "polySurface4_01",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -110.66320037841797,
+            -2.9308590455912054e-05,
+            -260.9975280761719,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 47478310
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 835715809
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2840739562,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "polySurface4_02",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9912175536155701,
+            0.0,
+            0.13224174082279205,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.13224174082279205,
+            0.0,
+            0.9912175536155701,
+            0.0,
+            11.557292938232422,
+            0.0,
+            -312.7725830078125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2190193726
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_3/lambert13.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_3/SM_Plant_3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 740962076
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2222766841,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Plant_3_01",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7850924134254456,
+            0.0,
+            0.6193786859512329,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.6193786859512329,
+            0.0,
+            0.7850924134254456,
+            0.0,
+            115.29713439941406,
+            0.0,
+            -343.83514404296875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 572579357
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_3/lambert13.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_3/SM_Plant_3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 3552118162
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1102577664,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3487505240,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Plant_3_02",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1102577664
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.3992293179035187,
+            0.0,
+            0.916851282119751,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.916851282119751,
+            0.0,
+            0.3992293179035187,
+            0.0,
+            244.11392211914063,
+            3.0517578125e-05,
+            -289.1543273925781,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 519216327
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_3/lambert13.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_3/SM_Plant_3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1006632960,
+          "Type": 2,
+          "UID": 646689478
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1006632960,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3273137948,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Plant_3_03",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1006632960
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.39878520369529724,
+            0.0,
+            -0.9170445203781128,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.9170445203781128,
+            0.0,
+            0.39878520369529724,
+            0.0,
+            -654.726318359375,
+            0.0,
+            60.17466354370117,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4226337946
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 886857049
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 20.0,
+          "Type": 5,
+          "UID": 226316064,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Stone_01",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.754291296005249,
+            0.0,
+            0.6565402150154114,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.6565402150154114,
+            0.0,
+            -0.754291296005249,
+            0.0,
+            473.9869384765625,
+            -3.062301766476594e-05,
+            5.938691139221191,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3633829677
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 3832372550
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1102577664,
+          "Radius": 20.0,
+          "Type": 5,
+          "UID": 929614996,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SM_Stone_02",
+      "ParentUID": 2956382816,
+      "Static": false,
+      "UID": 1102577664
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\L2R5.toe",
+  "sceneName": "L2R5"
+}
