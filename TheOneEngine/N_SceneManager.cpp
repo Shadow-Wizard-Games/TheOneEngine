@@ -706,7 +706,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
+void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& position)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -737,6 +737,8 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
 	file.close();
 
 	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
 uint N_SceneManager::GetNumberGO() const

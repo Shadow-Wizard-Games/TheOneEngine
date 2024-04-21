@@ -10,4 +10,9 @@ public class SceneManager {
     public static string GetCurrentSceneName() {
         return InternalCalls.GetCurrentSceneName();
     }
+
+    public static void CreatePrefab(string prefabName, Vector3 position)
+    {
+        InternalCalls.CreatePrefab(prefabName, position);
+    }
 }
