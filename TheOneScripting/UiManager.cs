@@ -120,6 +120,7 @@ public class UiManager : MonoBehaviour
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
                 {
+                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_PAUSEGAME);
                     if (previousState == MenuState.Hud)
                     {
                         pauseMenuGo.Enable();

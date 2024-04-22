@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour
         iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
         iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
 
-        attachedGameObject.animator.Play("Run");
+        attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.blend = true;
         attachedGameObject.animator.time = 0.0f;
     }
@@ -162,6 +162,7 @@ public class PlayerScript : MonoBehaviour
         if (toMove)
         {
             attachedGameObject.transform.Translate(movement.Normalize() * speed * Time.deltaTime);
+            attachedGameObject.animator.Play("Run");
         }
 
         //Controller

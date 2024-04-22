@@ -117,7 +117,7 @@ public class MainMenuManager : MonoBehaviour
             {
                 onCooldown = true;
                 canvas.MoveSelectionButton(direction);
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
             }
 
             // Selection Executters

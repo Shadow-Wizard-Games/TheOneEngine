@@ -113,7 +113,7 @@ public class UiScriptPause : MonoBehaviour
             // Selection Executters
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Inventory);
             }
 

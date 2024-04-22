@@ -1,0 +1,79 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 47571003
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+      "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
+      "Name": "Mesh",
+      "ParentUID": 113510800,
+      "Type": 2,
+      "UID": 3098960481
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 113510800,
+      "ScriptName": "PlayerScript",
+      "Type": 4,
+      "UID": 225613267
+    },
+    {
+      "AudioID": 10,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 0,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 113510800,
+      "Radius": 12.0,
+      "Type": 5,
+      "UID": 3282283334,
+      "Width": -1.7976931348623157e+308
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "Keeped": false,
+  "Name": "SK_MainCharacter",
+  "ParentUID": 2712971144,
+  "PrefabDirty": false,
+  "PrefabID": 186710944,
+  "PrefabName": "SK_MainCharacter",
+  "Static": false,
+  "UID": 113510800
+}
