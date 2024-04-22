@@ -52,8 +52,8 @@ void EngineCore::Start()
 
 bool EngineCore::PreUpdate()
 {
-    inputManager->PreUpdate();
-    collisionSolver->PreUpdate();
+    if (!inputManager->PreUpdate()) { return false; }
+    if (!collisionSolver->PreUpdate()) { return false; }
     return true;
 }
 

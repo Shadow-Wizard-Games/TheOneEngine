@@ -35,7 +35,7 @@ public:
 
 	// Change between scenes
 	void LoadScene(uint index);
-	void LoadScene(std::string sceneName);
+	void LoadScene(std::string sceneName, bool keep = false);
 
 	std::string GenerateUniqueName(const std::string& baseName);
 
@@ -72,11 +72,11 @@ public:
 
 	/*SCENE SERIALIZATION*/
 	void SaveScene();
-	void LoadSceneFromJSON(const std::string& filename);
+	void LoadSceneFromJSON(const std::string& filename, bool keepGO = false);
 
 private:
 
-	void RecursiveScriptInit(std::shared_ptr<GameObject> go);
+	void RecursiveScriptInit(std::shared_ptr<GameObject> go, bool firstInit = false);
 
 public:
 	Scene* currentScene = nullptr; //Convert to smart ptr
@@ -90,6 +90,7 @@ private:
 	bool previousFrameIsPlaying = false;
 	//Kikofp02: This will check if the engine has to change scene
 	bool sceneChange = false;
+	bool sceneChangeKeepGOs = false;
 };
 
 class Scene

@@ -131,4 +131,12 @@ public class ItemManager : MonoBehaviour
 
         return false;
     }
+
+    public void ResetInventory()
+    {
+        inventory.Clear();
+        equipped.Clear();
+
+        Debug.LogWarning("TuMadre");
+    }
 }

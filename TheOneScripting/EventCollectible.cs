@@ -24,7 +24,7 @@ public class EventCollectible : Event
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         eventType = EventType.COLLECTIBLE;
-        itemManagerGO = IGameObject.Find("Manager");
+        itemManagerGO = IGameObject.Find("ItemManager");
         itemManager = itemManagerGO.GetComponent<ItemManager>();
     }
     

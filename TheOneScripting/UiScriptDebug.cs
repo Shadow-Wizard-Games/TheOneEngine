@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class UiScriptPause : MonoBehaviour
+public class UiScriptDebug : MonoBehaviour
 {
     public ICanvas canvas;
     float cooldown = 0;
@@ -14,7 +14,7 @@ public class UiScriptPause : MonoBehaviour
 
     UiManager menuManager;
 
-    public UiScriptPause()
+    public UiScriptDebug()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
     }
@@ -107,23 +107,23 @@ public class UiScriptPause : MonoBehaviour
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
                 onCooldown = true;
-                canvas.MoveSelectionButton(direction);
+                canvas.MoveSelection(direction);
             }
 
             // Selection Executters
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Inventory);
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 menuManager.ResumeGame();
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 4)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
@@ -139,7 +139,7 @@ public class UiScriptPause : MonoBehaviour
                 SceneManager.LoadScene("MainMenu");
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 5)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 5)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 InternalCalls.ExitApplication();

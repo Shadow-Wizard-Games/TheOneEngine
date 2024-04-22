@@ -241,11 +241,11 @@ static void Enable(GameObject* GOtoEnable)
 }
 
 //Scene Management
-static void LoadScene(MonoString* sceneName)
+static void LoadScene(MonoString* sceneName, bool keep)
 {
 	std::string name = MonoRegisterer::MonoStringToUTF8(sceneName);
 
-	engine->N_sceneManager->LoadScene(name);
+	engine->N_sceneManager->LoadScene(name, keep);
 }
 
 static MonoString* GetCurrentSceneName()
@@ -282,6 +282,22 @@ static int GetSelectedButton(GameObject* containerGO)
 	return ret;
 }
 
+static int GetSelected(GameObject* containerGO)
+{
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	int ret = -1;
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() != UiType::IMAGE)
+		{
+			ret++;
+			if (uiElements[i]->GetState() == UiState::HOVERED)
+				return ret;
+		}
+	}
+	return ret;
+}
+
 static void MoveSelectedButton(GameObject* containerGO, int direction)
 {
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
@@ -290,7 +306,11 @@ static void MoveSelectedButton(GameObject* containerGO, int direction)
 	{
 		if (uiElements[i]->GetType() == UiType::BUTTONIMAGE && uiElements[i]->GetState() == UiState::HOVERED)
 		{
-			for (int j = i + direction; j != i; j += direction)
+			int val = 1;
+			if (direction < 0)
+				val *= -1;
+
+			for (int j = i + val; j != i; j += val)
 			{
 				if (j < 0)
 					j = uiElements.size() - 1;
@@ -299,9 +319,52 @@ static void MoveSelectedButton(GameObject* containerGO, int direction)
 
 				if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
 				{
-					uiElements[i]->SetState(UiState::IDLE);
-					uiElements[j]->SetState(UiState::HOVERED);
-					break;
+					if (direction != 0)
+						direction += (val * -1);
+
+					if (direction == 0)
+					{
+						uiElements[i]->SetState(UiState::IDLE);
+						uiElements[j]->SetState(UiState::HOVERED);
+						break;
+					}
+				}
+			}
+			break;
+		}
+	}
+}
+
+static void MoveSelection(GameObject* containerGO, int direction)
+{
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() != UiType::IMAGE && uiElements[i]->GetState() == UiState::HOVERED)
+		{
+			int val = 1;
+			if (direction < 0)
+				val *= -1;
+
+			for (int j = i + val; j != i; j += val)
+			{
+				if (j < 0)
+					j = uiElements.size() - 1;
+				else if (j >= uiElements.size())
+					j = 0;
+
+				if (uiElements[j]->GetType() != UiType::IMAGE)
+				{
+					if (direction != 0)
+						direction += (val * -1);
+
+					if (direction == 0)
+					{
+						uiElements[i]->SetState(UiState::IDLE);
+						uiElements[j]->SetState(UiState::HOVERED);
+						break;
+					}
 				}
 			}
 			break;
@@ -608,7 +671,9 @@ void MonoRegisterer::RegisterFunctions()
 	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);
 	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
+	mono_add_internal_call("InternalCalls::GetSelected", GetSelected);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
+	mono_add_internal_call("InternalCalls::MoveSelection", MoveSelection);
 	mono_add_internal_call("InternalCalls::ChangeSectImg", ChangeSectImg);
 	mono_add_internal_call("InternalCalls::GetSliderValue", GetSliderValue);
 	mono_add_internal_call("InternalCalls::SetSliderValue", SetSliderValue);

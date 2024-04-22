@@ -79,6 +79,21 @@ bool PanelInspector::Draw()
                     ImGui::OpenPopup("ChangesWarning");
                 }
             }
+
+            bool isEnabled = selectedGO->IsEnabled();
+            if (ImGui::Checkbox("Enable", &isEnabled)) {
+                if (isEnabled != selectedGO->IsEnabled())
+                {
+                    if (isEnabled)
+                        selectedGO->Enable();
+                    else
+                        selectedGO->Disable();
+                }
+            }
+
+            ImGui::SameLine();
+            ImGui::Checkbox("Keep GO", &selectedGO->isKeeped);
+
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             /*Tag + Layer*/

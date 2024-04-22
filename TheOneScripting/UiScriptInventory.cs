@@ -19,7 +19,7 @@ public class UiScriptInventory : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("Manager");
+        iManagerGO = IGameObject.Find("ItemManager");
         itemManager = iManagerGO.GetComponent<ItemManager>();
 
         onCooldown = true;

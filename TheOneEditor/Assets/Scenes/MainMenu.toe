@@ -47,6 +47,7 @@
         }
       ],
       "Enabled": true,
+      "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
       "Static": false,
@@ -306,6 +307,7 @@
         }
       ],
       "Enabled": true,
+      "Keeped": false,
       "Name": "MainMenuCanvas",
       "ParentUID": 3452816845,
       "Static": false,
@@ -382,6 +384,7 @@
         }
       ],
       "Enabled": true,
+      "Keeped": false,
       "Name": "TitleCanvas",
       "ParentUID": 3452816845,
       "Static": false,
@@ -458,7 +461,88 @@
         }
       ],
       "Enabled": true,
+      "Keeped": false,
       "Name": "LogoCanvas",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 26427860
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "GameManager",
+          "Type": 4,
+          "UID": 451020097
+        }
+      ],
+      "Enabled": true,
+      "Keeped": true,
+      "Name": "GameManager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2580068331
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 71955449
+        }
+      ],
+      "Enabled": true,
+      "Keeped": true,
+      "Name": "ItemManager",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845

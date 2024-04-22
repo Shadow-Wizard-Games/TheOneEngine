@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    float speed = 40.0f;
+    float speed = 80.0f;
     bool lastFrameToMove = false;
     ItemManager itemManager;
     IGameObject iManagerGO;
@@ -25,9 +25,9 @@ public class PlayerScript : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("Manager");
+        iManagerGO = IGameObject.Find("ItemManager");
         itemManager = iManagerGO.GetComponent<ItemManager>();
-        itemManager.AddItem(1, 1);
+        //itemManager.AddItem(1, 1);
     }
 
     public override void Update()
@@ -66,15 +66,6 @@ public class PlayerScript : MonoBehaviour
                 enemyTimer = 0;
                 isFighting = false;
             }
-        }
-
-        if (Input.GetKeyboardButton(Input.KeyboardCode.K))
-        {
-            if (itemManager != null)
-            {
-                itemManager.AddItem(1, 1);
-            }
-
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.W))
@@ -142,8 +133,10 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) { speed = 80.0f; }
-        else { speed = 40.0f; }
+        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
+        {
+            //Here Dash
+        }
 
         if (toMove)
         {

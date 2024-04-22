@@ -12,6 +12,9 @@ public class MainMenuManager : MonoBehaviour
     bool title = false;
     bool logo = true;
 
+    IGameObject GameManagerGO;
+    GameManager gameManager;
+
     public MainMenuManager()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
@@ -22,6 +25,22 @@ public class MainMenuManager : MonoBehaviour
         attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_A_MENU);
         canvasLogo = IGameObject.Find("LogoCanvas").GetComponent<ICanvas>();
         canvasTitle = IGameObject.Find("TitleCanvas").GetComponent<ICanvas>();
+
+        GameManagerGO = IGameObject.Find("GameManager");
+        gameManager = GameManagerGO.GetComponent<GameManager>();
+
+        if (gameManager != null)
+        {
+            if (gameManager.credits)
+            {
+                logo = false;
+                title = false;
+                mainMenu = true;
+
+                canvasLogo.ToggleEnable();
+                canvasTitle.ToggleEnable();
+            }
+        }
     }
     public override void Update()
     {
@@ -56,6 +75,7 @@ public class MainMenuManager : MonoBehaviour
                     mainMenu = true;
                     canvasTitle.ToggleEnable();
                     onCooldown = true;
+                    gameManager.credits = true;
                 }
             }
         }
@@ -96,19 +116,31 @@ public class MainMenuManager : MonoBehaviour
             if (toMove && !onCooldown)
             {
                 onCooldown = true;
-                canvas.MoveSelection(direction);
+                canvas.MoveSelectionButton(direction);
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
             }
 
             // Selection Executters
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
             {
+                if(gameManager.resumeGame) { gameManager.ResetSave(); }
+
                 SceneManager.LoadScene("IntroScene");
                 attachedGameObject.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+            {
+                if (gameManager.resumeGame)
+                {
+                    SceneManager.LoadScene(gameManager.GetSavedLevel());
+                    attachedGameObject.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
+                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                }
+            }
+
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
             {
                 InternalCalls.ExitApplication();
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
