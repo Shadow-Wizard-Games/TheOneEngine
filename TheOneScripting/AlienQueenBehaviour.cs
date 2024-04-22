@@ -317,9 +317,12 @@ public class AlienQueenBehaviour : MonoBehaviour
 
         Vector3 scale = new Vector3(1,1,1);
         
-        InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
-                                           attachedGameObject.transform.rotation,
-                                           scale);
+        //InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+        //                                   attachedGameObject.transform.rotation,
+        //                                   scale);
+        InternalCalls.CreatePrefab("SK_Facehugger",
+            attachedGameObject.transform.position + attachedGameObject.transform.forward*(attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f));
+
         ResetState();
     }
 
