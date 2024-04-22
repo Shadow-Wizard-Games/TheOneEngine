@@ -147,7 +147,7 @@ public:
     void LoadGameObject(const json& gameObjectJSON);
 
     //Prefab State Methods
-    void SetPrefab(const uint32_t& pId);
+    void SetPrefab(const uint32_t& pId, const std::string fileName);
     const uint32_t GetPrefabID() const { return prefabID; }
     void UnpackPrefab();
     bool IsPrefab() const { return prefabID != 0; }
@@ -155,6 +155,7 @@ public:
     bool IsEditablePrefab() const { return editablePrefab; }
     void SetPrefabDirty(bool changed);
     bool IsPrefabDirty() const { return isPrefabDirty; }
+    std::string GetPrefabName() const { return prefabName; }
 
 
 public:
@@ -174,7 +175,7 @@ private:
     uint32_t prefabID = 0; //Init at 0 for GO that are not Prefab
     bool editablePrefab = true;
     bool isPrefabDirty = false;
-    std::string prefabPath;
+    std::string prefabName;
 };
 
 #endif // !__GAME_OBJECT_H__

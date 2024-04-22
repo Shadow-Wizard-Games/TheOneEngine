@@ -181,6 +181,13 @@ static GameObject* FindGameObject(MonoString* monoString)
 	return RecursiveFindGO(name, engine->N_sceneManager->currentScene->GetRootSceneGO().get());
 }
 
+static GameObject* FindGameObjectInChildren(GameObject* refGO, MonoString* monoString)
+{
+	std::string name = MonoRegisterer::MonoStringToUTF8(monoString);
+
+	return RecursiveFindGO(name, refGO);
+}
+
 static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* scriptName = nullptr)
 {
 	ComponentType type = (ComponentType)componentType;
@@ -252,6 +259,13 @@ static void LoadScene(MonoString* sceneName, bool keep)
 static MonoString* GetCurrentSceneName()
 {
 	return mono_string_new(MonoManager::GetAppDomain(), engine->N_sceneManager->currentScene->GetSceneName().c_str());
+}
+
+static void CreatePrefab(MonoString* prefabName, vec3f* position)
+{
+	std::string MprefabName = MonoRegisterer::MonoStringToUTF8(prefabName);
+
+	engine->N_sceneManager->CreatePrefabFromFile(MprefabName, *position);
 }
 
 //User Interface
@@ -554,14 +568,19 @@ static void PlayPS(GameObject* GOptr)
 	GOptr->GetComponent<ParticleSystem>()->Play();
 }
 
-static void StopPS(GameObject* GOptr)
+static void PausePS(GameObject* GOptr)
 {
-	GOptr->GetComponent<ParticleSystem>()->Stop();
+	GOptr->GetComponent<ParticleSystem>()->Pause();
 }
 
 static void ReplayPS(GameObject* GOptr)
 {
 	GOptr->GetComponent<ParticleSystem>()->Replay();
+}
+
+static void StopPS(GameObject* GOptr)
+{
+	GOptr->GetComponent<ParticleSystem>()->Stop();
 }
 
 // Audio Manager
@@ -666,10 +685,13 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
+	mono_add_internal_call("InternalCalls::FindGameObjectInChildren", FindGameObjectInChildren);
 	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);
 	mono_add_internal_call("InternalCalls::Enable", Enable);
+	mono_add_internal_call("InternalCalls::CreatePrefab", CreatePrefab);
+
 
 	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
@@ -718,8 +740,9 @@ void MonoRegisterer::RegisterFunctions()
 
 	//Particle Systems
 	mono_add_internal_call("InternalCalls::PlayPS", PlayPS);
-	mono_add_internal_call("InternalCalls::StopPS", StopPS);
+	mono_add_internal_call("InternalCalls::PausePS", PausePS);
 	mono_add_internal_call("InternalCalls::ReplayPS", ReplayPS);
+	mono_add_internal_call("InternalCalls::StopPS", StopPS);
 
 	//Audio
 	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);

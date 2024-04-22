@@ -18,7 +18,9 @@ ParticleSystem::ParticleSystem(std::shared_ptr<GameObject> containerGO) : Compon
 		LOG(LogType::LOG_ERROR, "GameObject Container invalid!");
 	}
 
-	isON = true;
+	startON = true;
+
+	isON = startON;
 	AddEmmiter();
 }
 
@@ -36,7 +38,9 @@ isON(ref->isON)
 		AddEmmiter(emmiter.get());
 	}
 
-	isON = true;
+	startON = ref->startON;
+
+	isON = startON;
 }
 
 ParticleSystem::~ParticleSystem()
@@ -45,9 +49,19 @@ ParticleSystem::~ParticleSystem()
 
 void ParticleSystem::Update()
 {
+	bool allEmmitersOFF = true;
+
 	if (isON) {
 		for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
 			(*i)->Update(engine->dt);
+
+			if ((*i)->isON) {
+				allEmmitersOFF = false;
+			}
+		}
+
+		if (allEmmitersOFF) {
+			Stop();
 		}
 	}
 }
@@ -64,7 +78,7 @@ void ParticleSystem::Play()
 	isON = true;
 }
 
-void ParticleSystem::Stop()
+void ParticleSystem::Pause()
 {
 	isON = false;
 }
@@ -72,6 +86,14 @@ void ParticleSystem::Stop()
 void ParticleSystem::Replay()
 {
 	Play();
+	for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
+		(*i)->Start();
+	}
+}
+
+void ParticleSystem::Stop()
+{
+	Pause();
 	for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
 		(*i)->Start();
 	}
@@ -114,10 +136,8 @@ json ParticleSystem::SaveComponent()
 	particleSystemJSON["UID"] = UID;
 	particleSystemJSON["Name"] = name;
 	particleSystemJSON["Type"] = type;
-	particleSystemJSON["IsON"] = isON;
 
-	// save copy of the json as the ps individually
-
+	particleSystemJSON["StartON"] = startON;
 
 	return particleSystemJSON;
 }
@@ -140,9 +160,10 @@ void ParticleSystem::LoadComponent(const json& transformJSON)
 		type = transformJSON["Type"];
 	}
 
-	if (transformJSON.contains("IsON"))
+	if (transformJSON.contains("StartON"))
 	{
-		isON = transformJSON["IsON"];
+		startON = transformJSON["StartON"];
+		isON = startON;
 	}
 
 	ClearEmmiters();

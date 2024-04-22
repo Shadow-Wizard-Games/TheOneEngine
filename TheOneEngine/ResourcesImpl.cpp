@@ -87,8 +87,8 @@ std::filesystem::path Resources::ImportPathImpl(const std::filesystem::path& pat
 
 std::string Resources::FindFileInAssets(const std::string& name)
 {
-	std::string standarizeName = name;
-	StandarizePath(standarizeName);
+	std::string standarizedPath = name;
+	StandarizePath(standarizedPath);
 
 	if (name.find("Assets") && std::filesystem::exists(name))
 		return name;
@@ -98,11 +98,18 @@ std::string Resources::FindFileInAssets(const std::string& name)
 		std::string relPath = p.path().string();
 		std::string fileName = p.path().filename().replace_extension("").string();
 		StandarizePath(relPath);
-		if (fileName == name || relPath == standarizeName)
+		if (fileName == name || relPath == standarizedPath)
+		{
+			// Parche pocho pero esque estoy hasta los c* de los .fbm
+			if(relPath.ends_with(".fbm"))
+			{
+				std::filesystem::path finalPath = relPath;
+				return finalPath.replace_extension(".fbx").string();
+			}
 			return relPath;
+		}
 	}
 
-	LOG(LogType::LOG_ERROR, "Wrong Path");
 	return std::string();
 }
 
@@ -120,21 +127,39 @@ std::string Resources::FindFileInLibrary(const std::string& name)
 			return relPath;
 	}
 
-	LOG(LogType::LOG_ERROR, "Wrong Path");
 	return std::string();
 }
 
-std::vector<std::string> Resources::GetAllFilesFromFolder(const std::string& path)
+std::vector<std::string> Resources::GetAllFilesFromFolder(const std::string& path, const std::string& extension1, const std::string& extension2)
 {
+	bool compareExtension = false;
+	if (!extension1.empty())
+		compareExtension = true;
+
 	std::vector<std::string> fileNames;
 
 	if (fs::is_directory(path))
 	{
 		for (const auto& entry : fs::directory_iterator(path)) {
-			if (fs::is_regular_file(entry)) {
-				std::string path = entry.path().filename().string();
-				LOG(LogType::LOG_WARNING, "- %s is in", path.data());
-				fileNames.push_back(entry.path().string());
+			if (fs::is_regular_file(entry)) 
+			{
+				if (compareExtension)
+				{
+					if (entry.path().extension().string() == extension1 || entry.path().extension().string() == extension2)
+					{
+						std::string path = entry.path().filename().string();
+						LOG(LogType::LOG_WARNING, "- %s is in", path.data());
+						fileNames.push_back(entry.path().string());
+					}
+					else
+						continue;
+				}
+				else
+				{
+					std::string path = entry.path().filename().string();
+					LOG(LogType::LOG_WARNING, "- %s is in", path.data());
+					fileNames.push_back(entry.path().string());
+				}
 			}
 		}
 	}

@@ -20,11 +20,16 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule);
 
 void UIInspectorEmmiterInitializeModule(SetScale* initModule);
 
+void UIInspectorEmmiterInitializeModule(SetOffset* initModule);
 
+void UIInspectorEmmiterInitializeModule(SetDirection* initModule);
 
 // update modules
 void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule);
 
+void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule);
+
+void UIInspectorEmmiterUpdateModule(ScaleOverLifeUpdate* updateModule);
 
 
 // render modules

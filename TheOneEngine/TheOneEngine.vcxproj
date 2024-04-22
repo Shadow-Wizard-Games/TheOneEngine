@@ -11,6 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="Animation\animations\OzzAnimationPartialBlending.h" />
+    <ClInclude Include="Animation\animations\OzzAnimationSimple.h" />
+    <ClInclude Include="Animation\OzzAnimation.h" />
+    <ClInclude Include="Animator.h" />
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Billboard.h" />
@@ -24,6 +29,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="DebugShape.h" />
     <ClInclude Include="Defs.h" />
+    <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Framebuffer.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="GameObject.h" />
@@ -67,6 +73,10 @@
     <ClInclude Include="VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation\animations\OzzAnimationPartialBlending.cpp" />
+    <ClCompile Include="Animation\animations\OzzAnimationSimple.cpp" />
+    <ClCompile Include="Animation\OzzAnimation.cpp" />
+    <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AudioComponent.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Billboard.cpp" />
@@ -78,6 +88,7 @@
     <ClCompile Include="CollisionSolver.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="FileDialog.cpp" />
     <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -114,6 +125,9 @@
     <ClCompile Include="UpdateEmmiterModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TheOneAnimation\TheOneAnimation.vcxproj">
+      <Project>{6ceb38e1-d500-4b35-92d4-9d7051489f29}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\TheOneAudio\TheOneAudio.vcxproj">
       <Project>{606662a0-b707-4c97-8361-5d46fd7fd1f3}</Project>
     </ProjectReference>
@@ -160,9 +174,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -174,7 +189,7 @@
 $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew gli stb glm assimp pcg simdjson nlohmann-json devil[libjpeg,libpng] --recurse --overlay-triplets=$(SolutionDir)custom-triplets</Command>
     </PreBuildEvent>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;ILU.lib;ILUT.lib;mono-2.0-sgen.lib</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;ILU.lib;ILUT.lib;mono-2.0-sgen.lib;</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)vcpkg\installed\x64-windows\lib\;$(SolutionDir)mono\lib\Debug\</AdditionalLibraryDirectories>
@@ -191,7 +206,7 @@ $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew gli stb glm assimp pcg simdjs
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AK_OPTIMIZED;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -207,7 +222,7 @@ $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew gli stb glm assimp pcg simdjs
 $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew gli stb glm assimp pcg simdjson nlohmann-json devil[libjpeg,libpng] --recurse --overlay-triplets=$(SolutionDir)custom-triplets</Command>
     </PreBuildEvent>
     <Lib>
-      <AdditionalDependencies>OpenGL32.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;ILU.lib;ILUT.lib;mono-2.0-sgen.lib</AdditionalDependencies>
+      <AdditionalDependencies>OpenGL32.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;ILU.lib;ILUT.lib;mono-2.0-sgen.lib;</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)vcpkg\installed\x64-windows\lib\;$(SolutionDir)mono\lib\Release\</AdditionalLibraryDirectories>

@@ -13,6 +13,8 @@
 #include "..\TheOneEngine\Collider2D.h"
 #include "..\TheOneEngine\Listener.h"
 #include "..\TheOneEngine\AudioSource.h"
+#include "..\TheOneEngine\Animator.h"
+
 #include "..\TheOneEngine\MonoManager.h"
 #include "..\TheOneEngine\ParticleSystem.h"
 #include "..\TheOneEngine\Canvas.h"
@@ -72,12 +74,14 @@ bool PanelInspector::Draw()
             //ImGui::Checkbox("Active", &gameObjSelected->isActive);
             ImGui::SameLine(); ImGui::Text("GameObject:");
             ImGui::SameLine(); ImGui::TextColored({ 0.144f, 0.422f, 0.720f, 1.0f }, selectedGO->GetName().c_str());
-            if (selectedGO->IsPrefab() && selectedGO->IsPrefabDirty())
+            if (selectedGO->IsPrefab()/* && selectedGO->IsPrefabDirty()*/)
             {
                 ImGui::SameLine(0.0f, -1.0f);
                 if (ImGui::Button("Overrides", { 75.0f, 20.0f }))
                 {
                     ImGui::OpenPopup("ChangesWarning");
+
+                    OverridePrefabs(*selectedGO);
                 }
             }
 
@@ -110,11 +114,12 @@ bool PanelInspector::Draw()
             //add change name imgui
             static char newNameBuffer[32]; // Buffer para el nuevo nombre
             strcpy(newNameBuffer, selectedGO->GetName().c_str());
-            if (ImGui::InputText("New Name", newNameBuffer, sizeof(newNameBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
+            if (ImGui::InputText("New Name", newNameBuffer, sizeof(newNameBuffer), ImGuiInputTextFlags_EnterReturnsTrue))
+            {
                 std::string newName(newNameBuffer);
                 LOG(LogType::LOG_INFO, "GameObject %s has been renamed to %s", selectedGO->GetName().c_str(), newName.c_str());
                 selectedGO->SetName(newName); // Establece el nuevo nombre del GameObject
-                // Limpiar el buffer después de cambiar el nombre
+                // Limpiar el buffer despuï¿½s de cambiar el nombre
                 newNameBuffer[0] = '\0';
             }
 
@@ -134,11 +139,11 @@ bool PanelInspector::Draw()
 
 
                 // Transform table ----------------------------------------------------------------------------------
-                ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable | ImGuiTableFlags_SizingFixedFit;
+                ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
                 //ImGui::Indent(0.8f);
                 if (ImGui::BeginTable("", 4, tableFlags))
                 {
-                    ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthStretch);
+                    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch);
                     ImGui::TableSetupColumn("X", ImGuiTableColumnFlags_WidthStretch);
                     ImGui::TableSetupColumn("Y", ImGuiTableColumnFlags_WidthStretch);
                     ImGui::TableSetupColumn("Z", ImGuiTableColumnFlags_WidthStretch);
@@ -147,7 +152,7 @@ bool PanelInspector::Draw()
 
                     // Headers
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TableHeader("");
+                    ImGui::TableHeader("##");
                     ImGui::TableSetColumnIndex(1);
                     ImGui::TableHeader("X");
                     ImGui::TableSetColumnIndex(2);
@@ -407,6 +412,11 @@ bool PanelInspector::Draw()
                 }
 
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
+
+                if (isDirty && selectedGO->IsPrefab())
+                {
+                    selectedGO->SetPrefabDirty(true);
+                }
             }
             
 
@@ -425,6 +435,8 @@ bool PanelInspector::Draw()
 
             if (collider2D != nullptr && ImGui::CollapsingHeader("Collider 2D", treeNodeFlags))
             {
+                bool isDirty = false;
+
                 // Collision type
                 int collisionType = (int)collider2D->collisionType;
                 ImGui::Text("Collision Type");
@@ -454,17 +466,19 @@ bool PanelInspector::Draw()
                 if (ImGui::InputFloat("##OffsetX", &offsetX))
                 {
                     collider2D->offset.x = offsetX;
+                    isDirty = true;
                 }
                 ImGui::Text("Y");
                 ImGui::SameLine();
                 if (ImGui::InputFloat("##OffsetY", &offsetY))
                 {
                     collider2D->offset.y = offsetY;
+                    isDirty = true;
                 }
 
                 if (collider2D->colliderType == ColliderType::Rect)
                 {
-                    ImGui::Checkbox("CornerPivot", &(collider2D->cornerPivot));
+                    if (ImGui::Checkbox("CornerPivot", &(collider2D->cornerPivot))) isDirty = true;
 
                     if (collider2D->cornerPivot)
                     {
@@ -488,6 +502,7 @@ bool PanelInspector::Draw()
                     if (ImGui::InputFloat("##Width", &w))
                     {
                         collider2D->w = w;
+                        isDirty = true;
                     }
 
                     ImGui::Text("Height");
@@ -495,6 +510,7 @@ bool PanelInspector::Draw()
                     if (ImGui::InputFloat("##Height", &h))
                     {
                         collider2D->h = h;
+                        isDirty = true;
                     }
                 }
                 else if (collider2D->colliderType == ColliderType::Circle)
@@ -506,6 +522,7 @@ bool PanelInspector::Draw()
                     if (ImGui::InputFloat("##Radius", &radius))
                     {
                         collider2D->radius = radius;
+                        isDirty = true;
                     }
                 }
 
@@ -513,14 +530,27 @@ bool PanelInspector::Draw()
                 if (ImGui::Button("Remove Collider"))
                 {
                     selectedGO->RemoveComponent(ComponentType::Collider2D);
+                    isDirty = true;
+                }
+
+                if (isDirty && selectedGO->IsPrefab())
+                {
+                    selectedGO->SetPrefabDirty(true);
                 }
             }
+
 
             /*Particle System Component*/
             ParticleSystem* particleSystem = selectedGO->GetComponent<ParticleSystem>();
 
             if (particleSystem != nullptr && ImGui::CollapsingHeader("Particle System", treeNodeFlags))
             {
+                // to see the particles without playing
+                if (app->state == GameState::NONE) {
+                    particleSystem->Update();
+                }
+                bool isDirty = false;
+
                 /*if (ImGui::Button("Load")) {
                     particleSystem->Load("");
                 }
@@ -529,17 +559,27 @@ bool PanelInspector::Draw()
                     particleSystem->Save();
                 }*/
 
-                if (ImGui::Button("Play")) {
-                    particleSystem->Play();
+                if (!particleSystem->IsON()) {
+                    if (ImGui::Button("Play")) {
+                        particleSystem->Play();
+                    }
+                }
+                else {
+                    if (ImGui::Button("Pause")) {
+                        particleSystem->Pause();
+                    }
+                }
+                
+                ImGui::SameLine();
+                if (ImGui::Button("Replay")) {
+                    particleSystem->Replay();
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Stop")) {
                     particleSystem->Stop();
                 }
-                ImGui::SameLine();
-                if (ImGui::Button("Replay")) {
-                    particleSystem->Replay();
-                }
+
+                ImGui::Checkbox("Start ON", &particleSystem->startON);
 
                 if (ImGui::Button("Export")) {
                     particleSystem->ExportParticles();
@@ -547,6 +587,7 @@ bool PanelInspector::Draw()
                 ImGui::SameLine();
                 if (ImGui::Button("Import")) {
                     chooseParticlesToImportWindow = true;
+                    isDirty = true;
                 }
 
                 // change name
@@ -554,25 +595,35 @@ bool PanelInspector::Draw()
                 ImGui::InputText("Name", (char*)particleSystem->GetNameToEdit()->c_str(), 20);
 
                 int emmiterID = 0;
-                for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter) {
+                for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter)
+                {
                     ImGui::PushID(emmiterID);
                     ImGui::Text("Emmiter %d", emmiterID);
                     // delete emmiter
                     UIEmmiterWriteNode((*emmiter).get());
                     emmiterID++;
+                    ImGui::PopID();
                 }
                 
                 // add emmiter
                 if (ImGui::Button("Add Emmiter")) {
                     particleSystem->AddEmmiter();
+                    isDirty = true;
                 }
 
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
                 if (ImGui::Button("Remove Particle System"))
                 {
                     selectedGO->RemoveComponent(ComponentType::ParticleSystem);
+                    isDirty = true;
+                }
+
+                if (isDirty && selectedGO->IsPrefab())
+                {
+                    selectedGO->SetPrefabDirty(true);
                 }
             }
+
 
             // Canvas Component
             Canvas* tempCanvas = selectedGO->GetComponent<Canvas>();
@@ -1265,10 +1316,12 @@ bool PanelInspector::Draw()
                 }
             }
 
+
             /*Listener Component*/
             Listener* listener = selectedGO->GetComponent<Listener>();
 
-            if (listener != nullptr && ImGui::CollapsingHeader("Listener", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
+            if (listener != nullptr && ImGui::CollapsingHeader("Listener", treeNodeFlags))
+            {
                 // No properties
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
@@ -1307,6 +1360,16 @@ bool PanelInspector::Draw()
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
 
+
+            /*Animator Component*/
+            Animator* animator = selectedGO->GetComponent<Animator>();
+
+            if (animator != nullptr && ImGui::CollapsingHeader("Animator", treeNodeFlags))
+            {
+
+            }
+
+
             /*Add Component*/
             if (ImGui::BeginMenu("Add Component"))
             {
@@ -1317,7 +1380,6 @@ bool PanelInspector::Draw()
                 {
                     selectedGO->AddComponent<ParticleSystem>();
                 }
-
                 
                 if (ImGui::MenuItem("Listener"))
                 {
@@ -1325,8 +1387,8 @@ bool PanelInspector::Draw()
                     selectedGO->GetComponent<Listener>()->goID = audioManager->audio->RegisterGameObject(selectedGO->GetName());
                     audioManager->AddAudioObject((std::shared_ptr<AudioComponent>)selectedGO->GetComponent<Listener>());
                     audioManager->audio->SetDefaultListener(selectedGO->GetComponent<Listener>()->goID);
-
                 }
+
                 if (ImGui::MenuItem("AudioSource"))
                 {
                     selectedGO->AddComponent<AudioSource>();
@@ -1395,8 +1457,10 @@ bool PanelInspector::Draw()
                     selectedGO->AddComponent<Canvas>();
                 }
 
-
-
+                if (ImGui::MenuItem("Animator"))
+                {
+                    selectedGO->AddComponent<Animator>();
+                }
 
                 /*ImGuiTextFilter filter;
                 filter.Draw();*/
@@ -1427,13 +1491,12 @@ bool PanelInspector::Draw()
             //    ImGui::EndPopup();*/
             //}
         }
+
         if(chooseScriptNameWindow) ChooseScriptNameWindow();
         else if (chooseParticlesToImportWindow) ChooseParticlesToImportWindow();
 
-        ImGui::End();
-	}	
-
-    ImGui::PopStyleVar();
+	}
+    ImGui::End();
 
 	return true;
 }
@@ -1520,4 +1583,27 @@ void PanelInspector::ChooseParticlesToImportWindow()
     }
 
     ImGui::End();
+}
+
+void PanelInspector::OverridePrefabs(GameObject& gameObject)
+{
+    OverridePrefabFile(gameObject);
+    engine->N_sceneManager->OverrideScenePrefabs(gameObject.GetPrefabID());
+}
+
+void PanelInspector::OverridePrefabFile(GameObject& gameObject)
+{
+    //gameObject.SetPrefab(UIDGen::GenerateUID());
+
+    // Serialize the GameObject and save it as a prefab file
+    json gameObjectJSON = gameObject.SaveGameObject();
+
+    fs::path filename = ASSETS_PATH;
+    filename += "Prefabs\\" + gameObject.GetName() + ".prefab";
+
+    std::ofstream(filename) << gameObjectJSON.dump(2);
+
+    LOG(LogType::LOG_OK, "PREFAB UPDATED SUCCESSFULLY");
+
+    gameObject.SetPrefabDirty(false);
 }

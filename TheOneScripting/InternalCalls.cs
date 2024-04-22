@@ -73,6 +73,9 @@ class InternalCalls
     internal extern static IntPtr FindGameObject(string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IntPtr FindGameObjectInChildren(IntPtr gameObject, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr ComponentCheck(IntPtr gameObject, int componentType, string scriptName = null);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -96,6 +99,9 @@ class InternalCalls
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetCurrentSceneName();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void CreatePrefab(string prefabName, Vector3 position);
     #endregion
 
     #region User Interfaces
@@ -160,10 +166,13 @@ class InternalCalls
     internal extern static void PlayPS(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void StopPS(IntPtr GOptr);
+    internal extern static void PausePS(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ReplayPS(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void StopPS(IntPtr GOptr);
     #endregion
 
     #region Audio

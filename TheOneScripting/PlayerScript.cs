@@ -8,6 +8,9 @@ public class PlayerScript : MonoBehaviour
     ItemManager itemManager;
     IGameObject iManagerGO;
 
+    IGameObject iShotPSGO;
+    IGameObject iStepPSGO;
+
     GameManager gameManager;
     IGameObject gManagerGO;
 
@@ -34,6 +37,10 @@ public class PlayerScript : MonoBehaviour
         gManagerGO = IGameObject.Find("GameManager");
         gameManager = gManagerGO.GetComponent<GameManager>();
         //itemManager.AddItem(1, 1);
+
+        iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
+        iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
+
     }
 
     public override void Update()
@@ -130,6 +137,7 @@ public class PlayerScript : MonoBehaviour
                             InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
                             attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
                             hasShot = true;
+                            if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
                         }
                     }
                     else
@@ -200,12 +208,21 @@ public class PlayerScript : MonoBehaviour
             if (toMove)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.P_STEP);
+                if (iStepPSGO != null)
+                {
+                    iStepPSGO.GetComponent<IParticleSystem>().Play();
+                }
             }
             else
             {
                 attachedGameObject.source.StopAudio(AudioManager.EventIDs.P_STEP);
+                if (iStepPSGO != null)
+                {
+                    iStepPSGO.GetComponent<IParticleSystem>().Stop();
+                }
             }
             lastFrameToMove = toMove;
+
         }
 
     }

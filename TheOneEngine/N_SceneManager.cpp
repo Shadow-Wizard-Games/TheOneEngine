@@ -189,7 +189,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	try
 	{
 		file >> sceneJSON;
-		
+
 		// JULS: Audio Manager should delete this, but for now leave this commented
 		//audioManager->DeleteAudioComponents();
 	}
@@ -318,7 +318,7 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 			break;
 		case ComponentType::Script:
 			duplicatedGO.get()->AddCopiedComponent<Script>((Script*)item);
-			break;	
+			break;
 		case ComponentType::Collider2D:
 			duplicatedGO.get()->AddCopiedComponent<Collider2D>((Collider2D*)item);
 			break;
@@ -359,7 +359,7 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 
 	if (originalGO.get()->IsPrefab())
 	{
-		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID());
+		duplicatedGO.get()->SetPrefab(originalGO.get()->GetPrefabID(), originalGO->GetPrefabName());
 		duplicatedGO.get()->SetEditablePrefab(originalGO.get()->IsEditablePrefab());
 		duplicatedGO.get()->SetPrefabDirty(originalGO.get()->IsPrefabDirty());
 	}
@@ -432,7 +432,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	std::shared_ptr<GameObject> canvasGO = std::make_shared<GameObject>(name);
 	canvasGO.get()->AddComponent<Transform>();
 	canvasGO.get()->AddComponent<Canvas>();
-	
+
 	// Debug Img
 	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
 
@@ -509,14 +509,14 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
 	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
 
-	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName);
+	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName, ".mesh", ".animator");
 
 	if (fileNames.empty())
 		CreateMeshGO(path);
 	else
 	{
 		std::string name = fbxName;
- 		name = GenerateUniqueName(name);
+		name = GenerateUniqueName(name);
 
 		// Create emptyGO parent if meshes >1
 		bool isSingleMesh = fileNames.size() > 1 ? false : true;
@@ -590,7 +590,7 @@ void N_SceneManager::CreateTeapot()
 
 void N_SceneManager::AddPendingGOs()
 {
-	for (const auto objToAdd : engine->N_sceneManager->objectsToAdd)
+	for (const auto& objToAdd : engine->N_sceneManager->objectsToAdd)
 	{
 		engine->N_sceneManager->currentScene->GetRootSceneGO().get()->children.push_back(objToAdd);
 	}
@@ -603,7 +603,176 @@ void N_SceneManager::DeletePendingGOs()
 	for (auto object : objectsToDelete)
 		object->Delete();
 
-	objectsToDelete.clear();	
+	objectsToDelete.clear();
+}
+
+void N_SceneManager::OverrideScenePrefabs(uint32_t prefabID)
+{
+	for (auto& child : currentScene->GetRootSceneGO()->children)
+	{
+		if (child->GetPrefabID() == prefabID)
+		{
+			OverrideGameobjectFromPrefab(child);
+		}
+
+		OverridePrefabsRecursive(child, prefabID);
+	}
+}
+
+void N_SceneManager::OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID)
+{
+	for (auto& child : parent->children)
+	{
+		if (child->GetPrefabID() == prefabID)
+		{
+			OverrideGameobjectFromPrefab(child);
+		}
+
+		OverridePrefabsRecursive(child, prefabID);
+	}
+}
+
+void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify)
+{
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + goToModify->GetPrefabName() + ".prefab";
+
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	if (prefabJSON.contains("Components")) {
+
+		// particles, camera, collider, --canvas--
+		const json& componentsJSON = prefabJSON["Components"];
+
+		for (const auto& componentJSON : componentsJSON)
+		{
+			ComponentType type = static_cast<ComponentType>(componentJSON["Type"]);
+
+			switch (type)
+			{
+			case ComponentType::Collider2D:
+			{
+				if (goToModify->GetComponent<Collider2D>() == nullptr) goToModify->AddComponent<Collider2D>();
+
+				auto collider = goToModify->GetComponent<Collider2D>();
+				collider->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Camera:
+			{
+				if (goToModify->GetComponent<Camera>() == nullptr) goToModify->AddComponent<Camera>();
+
+				auto camera = goToModify->GetComponent<Camera>();
+				camera->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Canvas:
+			{
+				if (goToModify->GetComponent<Canvas>() == nullptr) goToModify->AddComponent<Canvas>();
+
+				auto canvas = goToModify->GetComponent<Canvas>();
+				canvas->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::AudioSource:
+			{
+				if (goToModify->GetComponent<AudioSource>() == nullptr) goToModify->AddComponent<AudioSource>();
+
+				auto audioSource = goToModify->GetComponent<AudioSource>();
+				audioSource->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Listener:
+			{
+				if (goToModify->GetComponent<Listener>() == nullptr) goToModify->AddComponent<Listener>();
+
+				auto listener = goToModify->GetComponent<Listener>();
+				listener->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::ParticleSystem:
+			{
+				if (goToModify->GetComponent<ParticleSystem>() == nullptr) goToModify->AddComponent<ParticleSystem>();
+
+				auto particleSystem = goToModify->GetComponent<ParticleSystem>();
+				particleSystem->LoadComponent(componentJSON);
+				break;
+			}
+			default:
+				break;
+			}
+		}
+	}
+
+	// Update other prefab instances children
+	/*
+	if (prefabJSON.contains("GameObjects"))
+	{
+		const json& childrenJSON = prefabJSON["GameObjects"];
+
+		for (const auto& childJSON : childrenJSON)
+		{
+			if(childJSON["UID"] == 0)
+			{
+
+			}
+		}
+	}
+	*/
+}
+
+void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& position)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+
+	// Load the game object from 
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + prefabName + ".prefab";
+
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
 uint N_SceneManager::GetNumberGO() const
@@ -623,10 +792,10 @@ void N_SceneManager::SetSelectedGO(std::shared_ptr<GameObject> gameObj)
 
 void N_SceneManager::FindCameraInScene()
 {
-	for (const auto GO : GetGameObjects())
+	for (const auto& GO : GetGameObjects())
 	{
 		if (GO->HasCameraComponent())
-		{ 
+		{
 			currentScene->currentCamera = GO->GetComponent<Camera>();
 			break;
 		}
@@ -655,15 +824,15 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
 	if (cam != nullptr) {
-		for (const auto gameObject : parentGO.get()->children)
+		for (const auto& gameObject : parentGO.get()->children)
 		{
 			gameObject.get()->Draw(cam);
-			RecurseSceneDraw(gameObject);
+			RecurseSceneDraw(gameObject, cam);
 		}
 
 	}
 	else {
-		for (const auto gameObject : parentGO.get()->children)
+		for (const auto& gameObject : parentGO.get()->children)
 		{
 			gameObject.get()->Draw(currentCamera);
 			RecurseSceneDraw(gameObject);
@@ -676,7 +845,7 @@ void Scene::UpdateGOs(double dt)
 {
 	engine->N_sceneManager->AddPendingGOs();
 
-	for (const auto gameObject : rootSceneGO->children)
+	for (const auto& gameObject : rootSceneGO->children)
 	{
 		gameObject->Update(dt);
 	}
@@ -686,7 +855,7 @@ void Scene::UpdateGOs(double dt)
 
 void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 {
-	for (const auto gameObject : parentGO.get()->children)
+	for (const auto& gameObject : parentGO.get()->children)
 	{
 		gameObject.get()->DrawUI(currentCamera, mode);
 		RecurseUIDraw(gameObject, mode);

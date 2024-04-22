@@ -1,27 +1,24 @@
 #version 450 core
 
 // Positions/Coordinates
-layout (location = 0) in vec3 pos;
+layout (location = 0) in vec3 a_Pos;
 // Texture Coordinates
-layout (location = 1) in vec2 texCoords;
+layout (location = 1) in vec2 a_UV;
 
-
-// Outputs the color for the Fragment Shader
-out vec3 color;
 // Outputs the texture coordinates to the fragment shader
-out vec2 texCoord;
+out vec2 v_Vertex_uv;
 
 layout(std140, binding = 0) uniform Camera
 {
 	mat4 u_ViewProjection;
 };
 
-uniform mat4 model;
+uniform mat4 u_Model;
 
 void main()
 {
-	gl_Position = u_ViewProjection * model * vec4(pos, 1.0);
+	gl_Position = u_ViewProjection * u_Model * vec4(a_Pos, 1.0);
 
 	// Assigns the texture coordinates from the Vertex Data to "texCoord"
-	texCoord = texCoords;
+	v_Vertex_uv = a_UV;
 }
