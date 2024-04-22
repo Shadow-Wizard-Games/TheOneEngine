@@ -3,7 +3,7 @@
     public ICanvas canvasText;
 
     private float timerScene = 0.0f;
-    private float durationScene = 8.0f;
+    private float durationScene = 5.0f;
 
     public override void Start()
     {
@@ -14,12 +14,11 @@
     {
         timerScene += Time.deltaTime;
         
-        if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN) ||
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.RETURN) ||
             Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) ||
-            Input.GetControllerButton(Input.ControllerButtonCode.X) ||
+            Input.GetControllerButton(Input.ControllerButtonCode.X)) &&
             timerScene >= durationScene)
         {
-
             SceneManager.LoadScene("L1R1");
         }
     }

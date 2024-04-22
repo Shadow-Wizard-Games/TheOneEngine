@@ -13,16 +13,14 @@ public class EventNextRoom : Event
     IGameObject playerGO;
     PlayerScript player;
 
-    Vector3 directorVector;
+    GameManager gameManager;
+
     float playerDistance;
 
     float tpRange = 100.0f;
     bool inRange = false;
 
-    string currentSceneName;
-    uint sceneLevel = 0;
-    uint roomNumber = 0;
-    bool goNext = false;
+    string goName;
 
     AudioManager.EventIDs currentID = 0;    //change to correct audio ID
 
@@ -31,8 +29,10 @@ public class EventNextRoom : Event
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
         eventType = EventType.NEXTROOM;
-        currentSceneName = SceneManager.GetCurrentSceneName();
+        goName = attachedGameObject.name;
     }
 
     public override void Update()
@@ -41,7 +41,8 @@ public class EventNextRoom : Event
         {
             DoEvent();
         }
-        DrawEventDebug();
+
+        if (gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
@@ -66,17 +67,10 @@ public class EventNextRoom : Event
 
         if(Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
-            sceneLevel = ExtractNumberFromSceneName('L');
-            roomNumber = ExtractNumberFromSceneName('R');
+            string sceneName = ExtractSceneName();
 
-            Debug.LogWarning(currentSceneName);
-            Debug.LogWarning(sceneLevel.ToString());
-            Debug.LogWarning(roomNumber.ToString());
-
-            if(attachedGameObject.name == "GoNext")
-            {
-                goNext = true;
-            }
+            Debug.LogWarning(sceneName);
+            Debug.LogWarning(goName);
 
             if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
             {
@@ -87,36 +81,7 @@ public class EventNextRoom : Event
                 playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
             }
 
-            switch (sceneLevel)
-            {
-                case 1:
-                    switch (roomNumber)
-                    {
-                        case 1:
-                            SceneManager.LoadScene("L1R2");
-                            break;
-                        case 2:
-                            if (goNext) SceneManager.LoadScene("L1R3");
-                            else SceneManager.LoadScene("L1R1");
-                            break;
-                        case 3:
-                            if (goNext) SceneManager.LoadScene("L1R4");
-                            else SceneManager.LoadScene("L1R2");
-                            break;
-                        case 4:
-                            if (goNext) SceneManager.LoadScene("L1R5");
-                            else SceneManager.LoadScene("L1R3");
-                            break;
-                        case 5:
-                            SceneManager.LoadScene("L1R4");
-                            break;
-                    }
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-            }
+            SceneManager.LoadScene(sceneName);
         }
 
         return ret;
@@ -134,19 +99,28 @@ public class EventNextRoom : Event
         }
     }
 
-    public uint ExtractNumberFromSceneName(char identifier)
+    public string ExtractSceneName()
     {
-        string pattern = $"{identifier}(\\d+)";
+        string sceneName = "";
 
-        Match match = Regex.Match(currentSceneName, pattern);
+        string patternL = $"L(\\d+)";
+        string patternR = $"R(\\d+)";
 
-        if (!match.Success)
+        Match matchL = Regex.Match(goName, patternL);
+        Match matchR = Regex.Match(goName, patternR);
+
+        if (matchL.Success)
         {
-            throw new ArgumentException($"Identifier {identifier} not found in the string.");
+            sceneName += matchL.Groups[0].Value;
         }
+        else { Debug.LogWarning("Could not find scene name in GO name"); }
 
-        string numberStr = match.Groups[1].Value;
+        if (matchR.Success)
+        {
+            sceneName += matchR.Groups[0].Value;
+        }
+        else { Debug.LogWarning("Could not find scene name in GO name"); }
 
-        return uint.Parse(numberStr);
+        return sceneName;
     }
 }

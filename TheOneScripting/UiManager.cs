@@ -2,21 +2,26 @@
 
 public class UiManager : MonoBehaviour
 {
-    enum MenuState
+    public enum MenuState
     {
         Hud,
         Inventory,
         Death,
-        Pause
+        Pause,
+        Debug
     }
 
     IGameObject inventoryGo;
     IGameObject deathScreenGo;
     IGameObject pauseMenuGo;
     IGameObject hudGo;
+    IGameObject debugGo;
 
     IGameObject playerGO;
     PlayerScript playerScript;
+
+    IGameObject GameManagerGO;
+    GameManager gameManager;
 
     MenuState state;
 
@@ -29,6 +34,7 @@ public class UiManager : MonoBehaviour
         deathScreenGo = IGameObject.Find("Canvas_Death");
         pauseMenuGo = IGameObject.Find("Canvas_PauseMenu");
         hudGo = IGameObject.Find("Canvas_Hud");
+        debugGo = IGameObject.Find("Canvas_Debug");
 
         playerGO = IGameObject.Find("SK_MainCharacter");
         playerScript = playerGO.GetComponent<PlayerScript>();
@@ -36,8 +42,12 @@ public class UiManager : MonoBehaviour
         inventoryGo.Disable();
         deathScreenGo.Disable();
         pauseMenuGo.Disable();
+        debugGo.Disable();
         state = MenuState.Hud;
         playerScript.onPause = false;
+
+        GameManagerGO = IGameObject.Find("GameManager");
+        gameManager = GameManagerGO.GetComponent<GameManager>();
     }
 
     public override void Update()
@@ -70,6 +80,7 @@ public class UiManager : MonoBehaviour
                     {
                         playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
                     }
+                    gameManager.UpdateLevel();
                     SceneManager.LoadScene("MainMenu");
                 }
             }
@@ -91,15 +102,9 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
+                else if(Input.GetKeyboardButton(Input.KeyboardCode.K))
                 {
-                    if (previousState == MenuState.Pause)
-                    {
-                        hudGo.Enable();
-                        state = MenuState.Hud;
-                        playerScript.onPause = false;
-                    }
-                    else if (previousState == MenuState.Inventory)
+                    if (previousState == MenuState.Debug)
                     {
                         hudGo.Enable();
                         state = MenuState.Hud;
@@ -107,9 +112,25 @@ public class UiManager : MonoBehaviour
                     }
                     else
                     {
+                        debugGo.Enable();
+                        state = MenuState.Debug;
+                        playerScript.onPause = true;
+                    }
+                    onCooldown = true;
+                }
+                else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
+                {
+                    if (previousState == MenuState.Hud)
+                    {
                         pauseMenuGo.Enable();
                         state = MenuState.Pause;
                         playerScript.onPause = true;
+                    }
+                    else
+                    {
+                        hudGo.Enable();
+                        state = MenuState.Hud;
+                        playerScript.onPause = false;
                     }
                     onCooldown = true;
                 }
@@ -136,6 +157,9 @@ public class UiManager : MonoBehaviour
                     case MenuState.Pause:
                         pauseMenuGo.Disable();
                         break;
+                    case MenuState.Debug:
+                        debugGo.Disable();
+                        break;
                 }
             }
         }
@@ -159,6 +183,60 @@ public class UiManager : MonoBehaviour
                 state = MenuState.Hud;
                 playerScript.onPause = false;
                 break;
+            case MenuState.Debug:
+                debugGo.Disable();
+                hudGo.Enable();
+                state = MenuState.Hud;
+                playerScript.onPause = false;
+                break;
+        }
+    }
+
+    public void OpenMenu(MenuState state)
+    {
+        if (this.state != state)
+        {
+            switch (this.state)
+            {
+                case MenuState.Hud:
+                    hudGo.Disable();
+                    break;
+                case MenuState.Inventory:
+                    inventoryGo.Disable();
+                    break;
+                case MenuState.Pause:
+                    pauseMenuGo.Disable();
+                    break;
+                case MenuState.Debug:
+                    debugGo.Disable();
+                    break;
+            }
+
+            switch (state)
+            {
+                case MenuState.Hud:
+                    hudGo.Enable();
+                    state = MenuState.Hud;
+                    playerScript.onPause = false;
+                    break;
+                case MenuState.Inventory:
+                    inventoryGo.Enable();
+                    state = MenuState.Inventory;
+                    playerScript.onPause = true;
+                    break;
+                case MenuState.Pause:
+                    pauseMenuGo.Enable();
+                    state = MenuState.Pause;
+                    playerScript.onPause = true;
+                    break;
+                case MenuState.Debug:
+                    debugGo.Enable();
+                    state = MenuState.Debug;
+                    playerScript.onPause = true;
+                    break;
+            }
+
+            this.state = state;
         }
     }
 }
