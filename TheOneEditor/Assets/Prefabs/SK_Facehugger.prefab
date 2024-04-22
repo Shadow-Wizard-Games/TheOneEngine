@@ -1,0 +1,78 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        0.2754419445991516,
+        0.0,
+        -0.961317777633667,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.961317777633667,
+        0.0,
+        0.2754419445991516,
+        0.0,
+        -191.5452117919922,
+        1.622992022021208e-05,
+        -358.0263671875,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 791159107
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+      "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+      "Name": "Mesh",
+      "ParentUID": 6881399,
+      "Type": 2,
+      "UID": 504839621
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 6881399,
+      "Radius": 30.0,
+      "Type": 5,
+      "UID": 2286673920,
+      "Width": -1.7976931348623157e+308
+    },
+    {
+      "AudioID": 2,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 6881399,
+      "ScriptName": "FaceHuggerBehaviour",
+      "Type": 4,
+      "UID": 1991345679
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "Name": "SK_Facehugger",
+  "ParentUID": 6881399,
+  "PrefabDirty": false,
+  "PrefabID": 101485899,
+  "PrefabName": "SK_Facehugger",
+  "Static": false,
+  "UID": 6881399
+}
