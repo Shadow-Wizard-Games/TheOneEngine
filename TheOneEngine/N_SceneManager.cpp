@@ -741,6 +741,37 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
+void N_SceneManager::CreatePrefabFromPath(std::string prefabPath, const vec3f& position)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+
+	std::ifstream file(prefabPath);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", prefabPath);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetPosition(position);
+}
+
 uint N_SceneManager::GetNumberGO() const
 {
 	return static_cast<uint>(currentScene->GetRootSceneGO().get()->children.size());
