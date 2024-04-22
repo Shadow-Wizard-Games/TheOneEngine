@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static AudioManager;
 
 public class EventCollectible : Event
 {
@@ -17,8 +16,6 @@ public class EventCollectible : Event
 
     //debug
     bool inRange = false;
-
-    AudioManager.EventIDs currentID = 0;    //change to correct audio ID
 
     public override void Start()
     {

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static AudioManager;
 
 public class EventChangeScene : Event
 {
@@ -14,8 +13,6 @@ public class EventChangeScene : Event
 
     float tpRange = 30.0f;
     bool inRange = false;
-
-    AudioManager.EventIDs currentID = 0;    //change to correct audio ID
 
     public override void Start()
     {

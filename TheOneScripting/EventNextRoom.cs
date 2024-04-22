@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-using static AudioManager;
-
 public class EventNextRoom : Event
 {
     IGameObject playerGO;
@@ -23,8 +21,6 @@ public class EventNextRoom : Event
     uint sceneLevel = 0;
     uint roomNumber = 0;
     bool goNext = false;
-
-    AudioManager.EventIDs currentID = 0;    //change to correct audio ID
 
     public override void Start()
     {
@@ -78,13 +74,13 @@ public class EventNextRoom : Event
                 goNext = true;
             }
 
-            if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
+            if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
             {
-                playerGO.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
             }
-            if (player.currentID == AudioManager.EventIDs.A_AMBIENT_1)
+            if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
             {
-                playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
             }
 
             switch (sceneLevel)

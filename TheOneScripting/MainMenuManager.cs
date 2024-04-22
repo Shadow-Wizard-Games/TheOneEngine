@@ -19,7 +19,7 @@ public class MainMenuManager : MonoBehaviour
 
     public override void Start()
     {
-        attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_A_MENU);
+        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_A_MENU);
         canvasLogo = IGameObject.Find("LogoCanvas").GetComponent<ICanvas>();
         canvasTitle = IGameObject.Find("TitleCanvas").GetComponent<ICanvas>();
     }
@@ -97,21 +97,21 @@ public class MainMenuManager : MonoBehaviour
             {
                 onCooldown = true;
                 canvas.MoveSelection(direction);
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
             }
 
             // Selection Executters
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
                 SceneManager.LoadScene("IntroScene");
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.UI_A_MENU);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
                 InternalCalls.ExitApplication();
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
             }
         }
     }

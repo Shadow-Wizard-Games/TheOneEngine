@@ -51,7 +51,8 @@ public class IAudioSource : IComponent
 
     public IAudioSource() : base() { }
     public IAudioSource(IntPtr GOptr) : base(GOptr) { }
-
+    
+    public EventIDs currentID = 0;
     public void PlayAudio(EventIDs audio)
     {
         InternalCalls.PlaySource(containerGOptr, audio);

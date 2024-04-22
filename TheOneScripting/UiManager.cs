@@ -62,13 +62,13 @@ public class UiManager : MonoBehaviour
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
-                    if (playerScript.currentID == AudioManager.EventIDs.A_COMBAT_1)
+                    if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
                     {
-                        playerGO.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                        playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
                     }
-                    if (playerScript.currentID == AudioManager.EventIDs.A_AMBIENT_1)
+                    if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
                     {
-                        playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                        playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
                     }
                     SceneManager.LoadScene("MainMenu");
                 }

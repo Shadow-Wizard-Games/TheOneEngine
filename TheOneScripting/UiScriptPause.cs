@@ -77,7 +77,7 @@ public class UiScriptPause : MonoBehaviour
             // Select Button
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
                 onCooldown = true;
                 canvas.MoveSelection(direction);
             }
@@ -85,21 +85,21 @@ public class UiScriptPause : MonoBehaviour
             // Selection Executters
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                 canvas.ToggleEnable();
                 menuManager.ResumeGame();
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
-                if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
                 {
-                    playerGO.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
+                    playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
                 }
-                if (player.currentID == AudioManager.EventIDs.A_AMBIENT_1)
+                if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
                 {
-                    playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
+                    playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
                 }
 
                 SceneManager.LoadScene("MainMenu");
@@ -108,7 +108,7 @@ public class UiScriptPause : MonoBehaviour
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                 InternalCalls.ExitApplication();
             }
         }

@@ -44,8 +44,6 @@ public class AlienQueenBehaviour : MonoBehaviour
     float attackTimer = 0.0f;
     float attackCooldown = 4.0f;
 
-    AudioManager.EventIDs currentID = 0;
-
     // Attack variables
     // Head Charge
     private Vector3 coordinatesToDash = Vector3.zero;
@@ -83,8 +81,8 @@ public class AlienQueenBehaviour : MonoBehaviour
         if (currentState == States.Dead)
         {
             SceneManager.LoadScene("MainMenu");
-            playerGO.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
-            playerGO.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+            playerGO.source.StopAudio(IAudioSource.EventIDs.UI_A_MENU);
+            playerGO.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
         }
 
         if (attachedGameObject.transform.ComponentCheck())
