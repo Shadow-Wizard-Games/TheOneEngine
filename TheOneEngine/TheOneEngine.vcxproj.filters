@@ -231,6 +231,9 @@
     <ClInclude Include="SliderUI.h">
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClInclude>
+    <ClInclude Include="CheckerUI.h">
+      <Filter>GameObject\Components\UI\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -363,6 +366,9 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="SliderUI.cpp">
+      <Filter>GameObject\Components\UI\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckerUI.cpp">
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClCompile>
   </ItemGroup>

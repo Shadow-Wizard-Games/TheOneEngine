@@ -378,24 +378,24 @@ Rect2D SliderUI::GetSectIdle(int sectionType, bool activePart) const
 	{
 		if (sectionType == 0)
 		{
-			imageSect.x = imageIdleSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageIdleSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageIdleSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageIdleSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageIdleSection.x : imageIdleSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageIdleSection.y : imageIdleSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageIdleSection.w : imageIdleSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageIdleSection.h : imageIdleSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 1)
 		{
-			imageSect.x = imageIdleFirstSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageIdleFirstSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageIdleFirstSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageIdleFirstSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageIdleFirstSection.x : imageIdleFirstSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageIdleFirstSection.y : imageIdleFirstSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageIdleFirstSection.w : imageIdleFirstSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageIdleFirstSection.h : imageIdleFirstSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 2)
 		{
-			imageSect.x = imageIdleLastSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageIdleLastSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageIdleLastSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageIdleLastSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageIdleLastSection.x : imageIdleLastSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageIdleLastSection.y : imageIdleLastSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageIdleLastSection.w : imageIdleLastSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageIdleLastSection.h : imageIdleLastSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 	}
 	return imageSect;
@@ -407,24 +407,24 @@ void SliderUI::SetSectSizeIdle(float x, float y, float width, float height, int 
 	{
 		if (sectionType == 0)
 		{
-			imageIdleSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageIdleSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageIdleSection.x : imageIdleSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageIdleSection.y : imageIdleSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageIdleSection.w : imageIdleSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageIdleSection.h : imageIdleSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 1)
 		{
-			imageIdleFirstSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleFirstSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageIdleFirstSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleFirstSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageIdleFirstSection.x : imageIdleFirstSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageIdleFirstSection.y : imageIdleFirstSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageIdleFirstSection.w : imageIdleFirstSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageIdleFirstSection.h : imageIdleFirstSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 2)
 		{
-			imageIdleLastSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleLastSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageIdleLastSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleLastSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageIdleLastSection.x : imageIdleLastSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageIdleLastSection.y : imageIdleLastSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageIdleLastSection.w : imageIdleLastSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageIdleLastSection.h : imageIdleLastSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 	}
 }
@@ -436,24 +436,24 @@ Rect2D SliderUI::GetSectHovered(int sectionType, bool activePart) const
 	{
 		if (sectionType == 0)
 		{
-			imageSect.x = imageHoveredSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageHoveredSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageHoveredSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageHoveredSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageHoveredSection.x : imageHoveredSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageHoveredSection.y : imageHoveredSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageHoveredSection.w : imageHoveredSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageHoveredSection.h : imageHoveredSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 1)
 		{
-			imageSect.x = imageHoveredFirstSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageHoveredFirstSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageHoveredFirstSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageHoveredFirstSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageHoveredFirstSection.x : imageHoveredFirstSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageHoveredFirstSection.y : imageHoveredFirstSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageHoveredFirstSection.w : imageHoveredFirstSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageHoveredFirstSection.h : imageHoveredFirstSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 2)
 		{
-			imageSect.x = imageHoveredLastSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageHoveredLastSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageHoveredLastSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageHoveredLastSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageHoveredLastSection.x : imageHoveredLastSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageHoveredLastSection.y : imageHoveredLastSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageHoveredLastSection.w : imageHoveredLastSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageHoveredLastSection.h : imageHoveredLastSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 	}
 	return imageSect;
@@ -465,24 +465,24 @@ void SliderUI::SetSectSizeHovered(float x, float y, float width, float height, i
 	{
 		if (sectionType == 0)
 		{
-			imageHoveredSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageHoveredSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageHoveredSection.x : imageHoveredSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageHoveredSection.y : imageHoveredSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageHoveredSection.w : imageHoveredSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageHoveredSection.h : imageHoveredSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 1)
 		{
-			imageHoveredFirstSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredFirstSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageHoveredFirstSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredFirstSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageHoveredFirstSection.x : imageHoveredFirstSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageHoveredFirstSection.y : imageHoveredFirstSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageHoveredFirstSection.w : imageHoveredFirstSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageHoveredFirstSection.h : imageHoveredFirstSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 2)
 		{
-			imageHoveredLastSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredLastSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageHoveredLastSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredLastSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageHoveredLastSection.x : imageHoveredLastSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageHoveredLastSection.y : imageHoveredLastSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageHoveredLastSection.w : imageHoveredLastSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageHoveredLastSection.h : imageHoveredLastSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 	}
 }
@@ -494,24 +494,24 @@ Rect2D SliderUI::GetSectSelected(int sectionType, bool activePart) const
 	{
 		if (sectionType == 0)
 		{
-			imageSect.x = imageSelectedSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageSelectedSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageSelectedSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageSelectedSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageSelectedSection.x : imageSelectedSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageSelectedSection.y : imageSelectedSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageSelectedSection.w : imageSelectedSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageSelectedSection.h : imageSelectedSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 1)
 		{
-			imageSect.x = imageSelectedFirstSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageSelectedFirstSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageSelectedFirstSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageSelectedFirstSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageSelectedFirstSection.x : imageSelectedFirstSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageSelectedFirstSection.y : imageSelectedFirstSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageSelectedFirstSection.w : imageSelectedFirstSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageSelectedFirstSection.h : imageSelectedFirstSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 2)
 		{
-			imageSect.x = imageSelectedLastSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageSelectedLastSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageSelectedLastSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageSelectedLastSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.x = (activePart ? imageSelectedLastSection.x : imageSelectedLastSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.y = (activePart ? imageSelectedLastSection.y : imageSelectedLastSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			imageSect.w = (activePart ? imageSelectedLastSection.w : imageSelectedLastSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			imageSect.h = (activePart ? imageSelectedLastSection.h : imageSelectedLastSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 	}
 	return imageSect;
@@ -523,24 +523,24 @@ void SliderUI::SetSectSizeSelected(float x, float y, float width, float height, 
 	{
 		if (sectionType == 0)
 		{
-			imageSelectedSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSelectedSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageSelectedSection.x : imageSelectedSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageSelectedSection.y : imageSelectedSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageSelectedSection.w : imageSelectedSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageSelectedSection.h : imageSelectedSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 1)
 		{
-			imageSelectedFirstSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedFirstSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSelectedFirstSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedFirstSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageSelectedFirstSection.x : imageSelectedFirstSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageSelectedFirstSection.y : imageSelectedFirstSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageSelectedFirstSection.w : imageSelectedFirstSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageSelectedFirstSection.h : imageSelectedFirstSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 		else if (sectionType == 2)
 		{
-			imageSelectedLastSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedLastSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSelectedLastSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedLastSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageSelectedLastSection.x : imageSelectedLastSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageSelectedLastSection.y : imageSelectedLastSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+			(activePart ? imageSelectedLastSection.w : imageSelectedLastSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
+			(activePart ? imageSelectedLastSection.h : imageSelectedLastSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
 		}
 	}
 }
