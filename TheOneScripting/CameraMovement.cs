@@ -4,7 +4,7 @@ public class CameraMovement : MonoBehaviour
 {
 	IGameObject playerGO;
     PlayerScript playerScript;
-	Vector3 camOffset = new Vector3(70, 200, 90);
+	Vector3 camOffset = new Vector3(90, 220, 90);
 	//float camJoyDisplacement = 10.0f;
 
     float cameraMargin = 15.0f;
