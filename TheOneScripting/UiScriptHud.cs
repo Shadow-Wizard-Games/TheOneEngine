@@ -19,12 +19,12 @@ public class UiScriptHud : MonoBehaviour
         if(playerScript != null && canvas != null)
         {
             float currLife = playerScript.CurrentLife();
-            int sliderMax = canvas.GetSliderMaxValue("LifeSlider");
+            int sliderMax = canvas.GetSliderMaxValue("Slider_HP");
             int life = (sliderMax * ((int)currLife)) / 100;
             
-            if ((life != canvas.GetSliderValue("LifeSlider")) && (canvas.GetSliderValue("LifeSlider") != -1))
+            if ((life != canvas.GetSliderValue("Slider_HP")) && (canvas.GetSliderValue("Slider_HP") != -1))
             {
-                canvas.SetSliderValue(life, "LifeSlider");
+                canvas.SetSliderValue(life, "Slider_HP");
             }
         }
     }

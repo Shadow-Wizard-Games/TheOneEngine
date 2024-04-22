@@ -3,7 +3,7 @@
 
 ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemUI(containerGO, UiType::IMAGE, name, false, rect)
 {
-	this->name = "Image";
+	this->name = "Img";
 	imagePath = "Assets/Meshes/HUD.png";
 	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
 }
