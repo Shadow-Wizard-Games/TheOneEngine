@@ -136,7 +136,5 @@ public class ItemManager : MonoBehaviour
     {
         inventory.Clear();
         equipped.Clear();
-
-        Debug.LogWarning("TuMadre");
     }
 }

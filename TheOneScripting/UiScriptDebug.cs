@@ -30,6 +30,8 @@ public class UiScriptDebug : MonoBehaviour
         gameManager = GameManagerGO.GetComponent<GameManager>();
 
         onCooldown = true;
+
+        UpdateCheckers();
     }
 
     public override void Update()
@@ -48,17 +50,19 @@ public class UiScriptDebug : MonoBehaviour
             onCooldown = false;
         }
 
+        UpdateCheckers();
+
         //Input Updates
         if (!onCooldown)
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
             {
-                direction = -2;
+                direction = -1;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
             {
-                direction = +2;
+                direction = +1;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
@@ -79,12 +83,12 @@ public class UiScriptDebug : MonoBehaviour
             {
                 if (movementVector.y > 0.0f)
                 {
-                    direction = +2;
+                    direction = +1;
                     toMove = true;
                 }
                 else if (movementVector.y < 0.0f)
                 {
-                    direction = -2;
+                    direction = -1;
                     toMove = true;
                 }
             }
@@ -114,36 +118,38 @@ public class UiScriptDebug : MonoBehaviour
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
-                menuManager.OpenMenu(UiManager.MenuState.Inventory);
+                gameManager.DrawColliders();
+                onCooldown = true;
+            }
+
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
+            {
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                gameManager.DrawGrid();
+                onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
-                menuManager.ResumeGame();
+                gameManager.godMode = !gameManager.godMode;
+                onCooldown = true;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 4)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
-                if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
-                {
-                    playerGO.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
-                }
-                if (player.currentID == AudioManager.EventIDs.A_AMBIENT_1)
-                {
-                    playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
-                }
-
-                gameManager.UpdateLevel();
-                SceneManager.LoadScene("MainMenu");
-            }
-
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 5)
-            {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
-                InternalCalls.ExitApplication();
+                gameManager.extraSpeed = !gameManager.extraSpeed;
+                onCooldown = true;
             }
         }
+    }
+
+    private void UpdateCheckers()
+    {
+        canvas.ToggleChecker(gameManager.colliderRender, "Checker_ColliderRender");
+        canvas.ToggleChecker(gameManager.gridRender, "Checker_GridRender");
+        canvas.ToggleChecker(gameManager.godMode, "Checker_GodMode");
+        canvas.ToggleChecker(gameManager.extraSpeed, "Checker_ExtraSpeed");
     }
 }

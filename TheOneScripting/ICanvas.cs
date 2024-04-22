@@ -20,6 +20,11 @@ public class ICanvas : IComponent
         return InternalCalls.GetSelected(containerGOptr);
     }
 
+    public void ToggleChecker(bool value, string name)
+    {
+        InternalCalls.ToggleChecker(containerGOptr, value, name);
+    }
+
     public void MoveSelectionButton(int direction)
     {
         InternalCalls.MoveSelectedButton(containerGOptr, direction);

@@ -8,6 +8,9 @@ public class PlayerScript : MonoBehaviour
     ItemManager itemManager;
     IGameObject iManagerGO;
 
+    GameManager gameManager;
+    IGameObject gManagerGO;
+
     public bool isFighting = false;
 
     // Bckg music
@@ -27,6 +30,9 @@ public class PlayerScript : MonoBehaviour
     {
         iManagerGO = IGameObject.Find("ItemManager");
         itemManager = iManagerGO.GetComponent<ItemManager>();
+
+        gManagerGO = IGameObject.Find("GameManager");
+        gameManager = gManagerGO.GetComponent<GameManager>();
         //itemManager.AddItem(1, 1);
     }
 
@@ -67,6 +73,9 @@ public class PlayerScript : MonoBehaviour
                 isFighting = false;
             }
         }
+
+        if (gameManager.extraSpeed) { speed = 200.0f; }
+        else { speed = 80.0f; }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.W))
         {
@@ -203,7 +212,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
-        if (isDead) return;
+        if (isDead || gameManager.godMode) return;
 
         life -= 10.0f;
         Debug.Log("Player took damage! Current life is: " + life.ToString());

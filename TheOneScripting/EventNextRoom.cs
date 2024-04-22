@@ -13,6 +13,8 @@ public class EventNextRoom : Event
     IGameObject playerGO;
     PlayerScript player;
 
+    GameManager gameManager;
+
     float playerDistance;
 
     float tpRange = 100.0f;
@@ -27,6 +29,8 @@ public class EventNextRoom : Event
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
         eventType = EventType.NEXTROOM;
         goName = attachedGameObject.name;
     }
@@ -37,7 +41,8 @@ public class EventNextRoom : Event
         {
             DoEvent();
         }
-        DrawEventDebug();
+
+        if (gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()

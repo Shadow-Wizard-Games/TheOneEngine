@@ -42,6 +42,7 @@ public class UiManager : MonoBehaviour
         inventoryGo.Disable();
         deathScreenGo.Disable();
         pauseMenuGo.Disable();
+        debugGo.Disable();
         state = MenuState.Hud;
         playerScript.onPause = false;
 
@@ -103,7 +104,7 @@ public class UiManager : MonoBehaviour
                 }
                 else if(Input.GetKeyboardButton(Input.KeyboardCode.K))
                 {
-                    if (previousState == MenuState.Pause)
+                    if (previousState == MenuState.Debug)
                     {
                         hudGo.Enable();
                         state = MenuState.Hud;

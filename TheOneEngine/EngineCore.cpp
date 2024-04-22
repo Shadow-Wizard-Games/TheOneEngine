@@ -109,7 +109,7 @@ void EngineCore::Render(Camera* camera)
         camera->lookAt.x, camera->lookAt.y, camera->lookAt.z,
 		cameraTransform->GetUp().x, cameraTransform->GetUp().y, cameraTransform->GetUp().z);
 
-    DrawGrid(1000, 50);
+    if (drawGrid) { DrawGrid(1000, 50); }
     DrawAxis();
 
     if (collisionSolver->drawCollisions) collisionSolver->DrawCollisions();

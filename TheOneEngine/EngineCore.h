@@ -70,6 +70,8 @@ public:
 	InputManager* inputManager = nullptr;
 	N_SceneManager* N_sceneManager = nullptr;
 
+	bool drawGrid = true;
+
 private:
 
 	// Logs

@@ -112,6 +112,9 @@ class InternalCalls
     internal extern static int GetSelectedButton(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSelected(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -144,6 +147,12 @@ class InternalCalls
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DrawWireSphere(Vector3 position, float radius, Vector3 color);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void ToggleCollidersDraw();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void ToggleGridDraw();
     #endregion
 
     #region Particle System

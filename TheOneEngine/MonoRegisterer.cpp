@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "Canvas.h"
 #include "ImageUI.h"
+#include "CheckerUI.h"
 #include "SliderUI.h"
 #include "Collider2D.h"
 #include "ParticleSystem.h"
@@ -263,6 +264,20 @@ static void CanvasEnableToggle(GameObject* containerGO)
 	else
 	{
 		containerGO->GetComponent<Canvas>()->Enable();
+	}
+}
+
+static void ToggleChecker(GameObject* containerGO, bool value, MonoString* nameM)
+{
+	std::string name = MonoRegisterer::MonoStringToUTF8(nameM);
+
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::CHECKER && uiElements[i]->GetName() == name)
+		{
+			containerGO->GetComponent<Canvas>()->GetItemUI<CheckerUI>(uiElements[i]->GetID())->SetChecker(value);
+		}
 	}
 }
 
@@ -523,6 +538,16 @@ static void DrawWireCube()
 
 }
 
+static void ToggleCollidersDraw()
+{
+	engine->collisionSolver->drawCollisions = !engine->collisionSolver->drawCollisions;
+}
+
+static void ToggleGridDraw()
+{
+	engine->drawGrid = !engine->drawGrid;
+}
+
 // Particle System
 static void PlayPS(GameObject* GOptr)
 {
@@ -670,6 +695,7 @@ void MonoRegisterer::RegisterFunctions()
 
 	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);
+	mono_add_internal_call("InternalCalls::ToggleChecker", ToggleChecker);
 	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
 	mono_add_internal_call("InternalCalls::GetSelected", GetSelected);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
@@ -687,6 +713,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::ScriptingLog", ScriptingLog);
 	mono_add_internal_call("InternalCalls::DrawWireCircle", DrawWireCircle);
 	mono_add_internal_call("InternalCalls::DrawWireSphere", DrawWireSphere);
+	mono_add_internal_call("InternalCalls::ToggleCollidersDraw", ToggleCollidersDraw);
+	mono_add_internal_call("InternalCalls::ToggleGridDraw", ToggleGridDraw);
 
 	//Particle Systems
 	mono_add_internal_call("InternalCalls::PlayPS", PlayPS);

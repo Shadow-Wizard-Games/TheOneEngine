@@ -11,10 +11,23 @@ public class GameManager : MonoBehaviour
 
     ItemManager itemManager;
 
+    public bool colliderRender;
+    public bool gridRender;
+    public bool godMode;
+    public bool extraSpeed;
+
     public override void Start()
     {
         resumeGame = false;
         credits = false;
+
+        colliderRender = true;
+        gridRender = true;
+        godMode = false;
+        extraSpeed = false;
+
+        DrawColliders();
+        DrawGrid();
 
         itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
     }
@@ -38,5 +51,17 @@ public class GameManager : MonoBehaviour
     public void ResetSave()
     {
         itemManager.ResetInventory();
+    }
+
+    public void DrawColliders()
+    {
+        colliderRender = !colliderRender;
+        InternalCalls.ToggleCollidersDraw();
+    }
+
+    public void DrawGrid()
+    {
+        gridRender = !gridRender;
+        InternalCalls.ToggleGridDraw();
     }
 }
