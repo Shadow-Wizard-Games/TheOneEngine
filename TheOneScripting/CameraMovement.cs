@@ -30,11 +30,20 @@ public class CameraMovement : MonoBehaviour
 
         Vector3 displacement = difference - camOffset;
 
-        if (Math.Abs(displacement.x) > cameraMargin || Math.Abs(displacement.z) > cameraMargin)
+        Vector3 camMovement = Vector3.zero;
+
+        if (Math.Abs(displacement.x) > cameraMargin)
         {
-            attachedGameObject.transform.Translate(playerScript.movement.Normalize() * playerScript.speed * Time.deltaTime);
+            camMovement += Vector3.right * playerScript.movement.x;
         }
-        //Debug.Log("X: " + displacement.x + " Y: " + displacement.y + " Z: " + displacement.z);
+        if (Math.Abs(displacement.z) > cameraMargin)
+        {
+            camMovement += Vector3.forward * playerScript.movement.z;
+        }
+
+        attachedGameObject.transform.Translate(camMovement.Normalize() * playerScript.speed * Time.deltaTime);
+
+        //Debug.Log("X: " + displacement.x + " | " + " Z: " + displacement.z);
 
         #region Old Behaviour
         /*
