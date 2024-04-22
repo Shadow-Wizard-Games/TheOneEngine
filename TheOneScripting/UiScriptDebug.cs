@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class UiScriptPause : MonoBehaviour
+public class UiScriptDebug : MonoBehaviour
 {
     public ICanvas canvas;
     float cooldown = 0;
@@ -14,7 +14,7 @@ public class UiScriptPause : MonoBehaviour
 
     UiManager menuManager;
 
-    public UiScriptPause()
+    public UiScriptDebug()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
     }
@@ -30,6 +30,8 @@ public class UiScriptPause : MonoBehaviour
         gameManager = GameManagerGO.GetComponent<GameManager>();
 
         onCooldown = true;
+
+        UpdateCheckers();
     }
 
     public override void Update()
@@ -48,17 +50,19 @@ public class UiScriptPause : MonoBehaviour
             onCooldown = false;
         }
 
+        UpdateCheckers();
+
         //Input Updates
         if (!onCooldown)
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
             {
-                direction = -2;
+                direction = -1;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
             {
-                direction = +2;
+                direction = +1;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
@@ -79,12 +83,12 @@ public class UiScriptPause : MonoBehaviour
             {
                 if (movementVector.y > 0.0f)
                 {
-                    direction = +2;
+                    direction = +1;
                     toMove = true;
                 }
                 else if (movementVector.y < 0.0f)
                 {
-                    direction = -2;
+                    direction = -1;
                     toMove = true;
                 }
             }
@@ -105,45 +109,47 @@ public class UiScriptPause : MonoBehaviour
             // Select Button
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
                 onCooldown = true;
-                canvas.MoveSelectionButton(direction);
+                canvas.MoveSelection(direction);
             }
 
             // Selection Executters
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
-                menuManager.OpenMenu(UiManager.MenuState.Inventory);
+                gameManager.DrawColliders();
+                onCooldown = true;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                menuManager.ResumeGame();
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                gameManager.DrawGrid();
+                onCooldown = true;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
-                {
-                    playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                }
-                if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
-                {
-                    playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                }
-
-                gameManager.UpdateLevel();
-                SceneManager.LoadScene("MainMenu");
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                gameManager.godMode = !gameManager.godMode;
+                onCooldown = true;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 5)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                InternalCalls.ExitApplication();
+                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                gameManager.extraSpeed = !gameManager.extraSpeed;
+                onCooldown = true;
             }
         }
+    }
+
+    private void UpdateCheckers()
+    {
+        canvas.ToggleChecker(gameManager.colliderRender, "Checker_ColliderRender");
+        canvas.ToggleChecker(gameManager.gridRender, "Checker_GridRender");
+        canvas.ToggleChecker(gameManager.godMode, "Checker_GodMode");
+        canvas.ToggleChecker(gameManager.extraSpeed, "Checker_ExtraSpeed");
     }
 }

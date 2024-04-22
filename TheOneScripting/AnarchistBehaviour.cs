@@ -24,6 +24,7 @@ class AnarchistBehaviour : MonoBehaviour
     float life = 100;
     ICollider2D collider;
     PlayerScript player;
+    GameManager gameManager;
 
     public override void Start()
     {
@@ -32,6 +33,8 @@ class AnarchistBehaviour : MonoBehaviour
         initialPos = attachedGameObject.transform.position;
 
         collider = attachedGameObject.GetComponent<ICollider2D>();
+
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public override void Update()
@@ -106,7 +109,7 @@ class AnarchistBehaviour : MonoBehaviour
             goingToRoundPos = !MoveTo(roundPos);
         }
         //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
-        Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up);
+        if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up); }
     }
 
 
@@ -137,7 +140,7 @@ class AnarchistBehaviour : MonoBehaviour
                     currentSubstate = InspctStates.Inspecting;
                 }
                 attachedGameObject.transform.LookAt(playerLastPosition);
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.3f);
+                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.3f); }
                 break;
             case InspctStates.Inspecting:
                 //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
@@ -148,7 +151,7 @@ class AnarchistBehaviour : MonoBehaviour
                     currentSubstate = InspctStates.ComingBack;
                 }
                 attachedGameObject.transform.Rotate(Vector3.up * 150.0f * Time.deltaTime);
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.5f);
+                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.5f); }
                 break;
             case InspctStates.ComingBack:
                 if (MoveTo(initialPos))
@@ -157,7 +160,7 @@ class AnarchistBehaviour : MonoBehaviour
                     currentState = States.Patrol;
                 }
                 attachedGameObject.transform.LookAt(initialPos);
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.8f);
+                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.8f); }
                 break;
             default:
                 break;
@@ -222,7 +225,7 @@ class AnarchistBehaviour : MonoBehaviour
             }
         }
 
-        Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, loseRange, Vector3.right);
+        if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, loseRange, Vector3.right); }
     }
 
 

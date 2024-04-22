@@ -3,13 +3,16 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    float speed = 40.0f;
+    float speed = 80.0f;
     bool lastFrameToMove = false;
     ItemManager itemManager;
     IGameObject iManagerGO;
 
     IGameObject iShotPSGO;
     IGameObject iStepPSGO;
+
+    GameManager gameManager;
+    IGameObject gManagerGO;
 
     public bool isFighting = false;
 
@@ -27,9 +30,12 @@ public class PlayerScript : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("Manager");
+        iManagerGO = IGameObject.Find("ItemManager");
         itemManager = iManagerGO.GetComponent<ItemManager>();
-        itemManager.AddItem(1, 1);
+
+        gManagerGO = IGameObject.Find("GameManager");
+        gameManager = gManagerGO.GetComponent<GameManager>();
+        //itemManager.AddItem(1, 1);
 
         iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
         iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
@@ -79,14 +85,8 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.K))
-        {
-            if (itemManager != null)
-            {
-                itemManager.AddItem(1, 1);
-            }
-
-        }
+        if (gameManager.extraSpeed) { speed = 200.0f; }
+        else { speed = 80.0f; }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.W))
         {
@@ -154,8 +154,10 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) { speed = 80.0f; }
-        else { speed = 40.0f; }
+        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
+        {
+            //Here Dash
+        }
 
         if (toMove)
         {
@@ -231,7 +233,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
-        if (isDead) return;
+        if (isDead || gameManager.godMode) return;
 
         life -= 10.0f;
         Debug.Log("Player took damage! Current life is: " + life.ToString());

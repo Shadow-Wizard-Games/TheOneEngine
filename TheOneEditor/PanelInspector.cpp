@@ -21,6 +21,7 @@
 #include "..\TheOneEngine\ImageUI.h"
 #include "..\TheOneEngine\ButtonImageUI.h"
 #include "..\TheOneEngine\SliderUI.h"
+#include "..\TheOneEngine\CheckerUI.h"
 
 #include "InspectorParticleSystems.h"
 
@@ -82,6 +83,21 @@ bool PanelInspector::Draw()
                     OverridePrefabs(*selectedGO);
                 }
             }
+
+            bool isEnabled = selectedGO->IsEnabled();
+            if (ImGui::Checkbox("Enable", &isEnabled)) {
+                if (isEnabled != selectedGO->IsEnabled())
+                {
+                    if (isEnabled)
+                        selectedGO->Enable();
+                    else
+                        selectedGO->Disable();
+                }
+            }
+
+            ImGui::SameLine();
+            ImGui::Checkbox("Keep GO", &selectedGO->isKeeped);
+
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             /*Tag + Layer*/
@@ -668,16 +684,16 @@ bool PanelInspector::Draw()
                         tempH = item->GetRect().h;
                         ImGui::Text("   X:");
                         ImGui::SameLine();
-                        ImGui::DragFloat(" ", &tempX, 0.01f, -2.0f, 2.0f);
+                        ImGui::DragFloat(" ", &tempX, 0.005f, -2.0f, 2.0f);
                         ImGui::Text("   Y:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("  ", &tempY, 0.01f, -2.0f, 2.0f);
+                        ImGui::DragFloat("  ", &tempY, 0.005f, -2.0f, 2.0f);
                         ImGui::Text("   W:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("   ", &tempW, 0.05f, 0.0f, 10.0f);
+                        ImGui::DragFloat("   ", &tempW, 0.005f, 0.0f, 10.0f);
                         ImGui::Text("   H:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("    ", &tempH, 0.05f, 0.0f, 10.0f);
+                        ImGui::DragFloat("    ", &tempH, 0.005f, 0.0f, 10.0f);
                         ImGui::Dummy(ImVec2(0.0f, 5.0f));
 
                         item->SetRect(tempX, tempY, tempW, tempH);
@@ -849,6 +865,18 @@ bool PanelInspector::Draw()
 
                             if (tempSliderUI->GetSliderDesign() == SliderDesign::SAMEFOREACH)
                             {
+                                if (ImGui::ArrowButton("Change Section to edit Left 1", 0))
+                                {
+                                    sliderActivePart = !sliderActivePart;
+                                }
+                                ImGui::SameLine();
+                                ImGui::Text(sliderActivePart ? "  Activated Part  " : "  Disabled Part  ");
+                                ImGui::SameLine();
+                                if (ImGui::ArrowButton("Change Section to edit Right 1", 1))
+                                {
+                                    sliderActivePart = !sliderActivePart;
+                                }
+
                                 if (ImGui::CollapsingHeader("Image section IDLE info: ", treeNodeFlags))
                                 {
                                     if (ImGui::Button("Set current Section ptr as idle"))
@@ -856,10 +884,10 @@ bool PanelInspector::Draw()
                                         tempSliderUI->SetState(UiState::IDLE);
                                     }
                                     float tempX2, tempY2, tempW2, tempH2;
-                                    tempX2 = tempSliderUI->GetSectIdle().x;
-                                    tempY2 = tempSliderUI->GetSectIdle().y;
-                                    tempW2 = tempSliderUI->GetSectIdle().w;
-                                    tempH2 = tempSliderUI->GetSectIdle().h;
+                                    tempX2 = tempSliderUI->GetSectIdle(0, sliderActivePart).x;
+                                    tempY2 = tempSliderUI->GetSectIdle(0, sliderActivePart).y;
+                                    tempW2 = tempSliderUI->GetSectIdle(0, sliderActivePart).w;
+                                    tempH2 = tempSliderUI->GetSectIdle(0, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
                                     ImGui::DragFloat("     ", &tempX2, 1.0f);
@@ -875,7 +903,7 @@ bool PanelInspector::Draw()
 
                                     if (tempSliderUI->GetState() == UiState::IDLE)
                                     {
-                                        tempSliderUI->SetSectSizeIdle(tempX2, tempY2, tempW2, tempH2);
+                                        tempSliderUI->SetSectSizeIdle(tempX2, tempY2, tempW2, tempH2, 0, sliderActivePart);
                                     }
                                     ImGui::Dummy(ImVec2(0.0f, 5.0f));
                                 }
@@ -886,10 +914,10 @@ bool PanelInspector::Draw()
                                         tempSliderUI->SetState(UiState::HOVERED);
                                     }
                                     float tempX2, tempY2, tempW2, tempH2;
-                                    tempX2 = tempSliderUI->GetSectHovered().x;
-                                    tempY2 = tempSliderUI->GetSectHovered().y;
-                                    tempW2 = tempSliderUI->GetSectHovered().w;
-                                    tempH2 = tempSliderUI->GetSectHovered().h;
+                                    tempX2 = tempSliderUI->GetSectHovered(0, sliderActivePart).x;
+                                    tempY2 = tempSliderUI->GetSectHovered(0, sliderActivePart).y;
+                                    tempW2 = tempSliderUI->GetSectHovered(0, sliderActivePart).w;
+                                    tempH2 = tempSliderUI->GetSectHovered(0, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
                                     ImGui::DragFloat("         ", &tempX2, 1.0f);
@@ -905,7 +933,7 @@ bool PanelInspector::Draw()
 
                                     if (tempSliderUI->GetState() == UiState::HOVERED)
                                     {
-                                        tempSliderUI->SetSectSizeHovered(tempX2, tempY2, tempW2, tempH2);
+                                        tempSliderUI->SetSectSizeHovered(tempX2, tempY2, tempW2, tempH2, 0, sliderActivePart);
                                     }
                                     ImGui::Dummy(ImVec2(0.0f, 5.0f));
                                 }
@@ -916,10 +944,10 @@ bool PanelInspector::Draw()
                                         tempSliderUI->SetState(UiState::SELECTED);
                                     }
                                     float tempX2, tempY2, tempW2, tempH2;
-                                    tempX2 = tempSliderUI->GetSectSelected().x;
-                                    tempY2 = tempSliderUI->GetSectSelected().y;
-                                    tempW2 = tempSliderUI->GetSectSelected().w;
-                                    tempH2 = tempSliderUI->GetSectSelected().h;
+                                    tempX2 = tempSliderUI->GetSectSelected(0, sliderActivePart).x;
+                                    tempY2 = tempSliderUI->GetSectSelected(0, sliderActivePart).y;
+                                    tempW2 = tempSliderUI->GetSectSelected(0, sliderActivePart).w;
+                                    tempH2 = tempSliderUI->GetSectSelected(0, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
                                     ImGui::DragFloat("             ", &tempX2, 1.0f);
@@ -935,7 +963,7 @@ bool PanelInspector::Draw()
 
                                     if (tempSliderUI->GetState() == UiState::SELECTED)
                                     {
-                                        tempSliderUI->SetSectSizeSelected(tempX2, tempY2, tempW2, tempH2);
+                                        tempSliderUI->SetSectSizeSelected(tempX2, tempY2, tempW2, tempH2, 0, sliderActivePart);
                                     }
                                     ImGui::Dummy(ImVec2(0.0f, 5.0f));
                                 }
@@ -951,28 +979,39 @@ bool PanelInspector::Draw()
                                 ImGui::DragFloat("Slider Last Additional Offset", &tempAdditionalOffsetLast, 0.002f);
                                 tempSliderUI->SetAdditionalOffsetLast(tempAdditionalOffsetLast);
 
-                                if (ImGui::Button("Change Section to modify"))
+                                if (ImGui::ArrowButton("Change Section to edit Left 2", 0))
                                 {
-                                    slilderDesignOptionToModify++;
-                                    if (slilderDesignOptionToModify >= 3)
+                                    sliderDesignOptionToModify--;
+                                    if (sliderDesignOptionToModify < 0)
                                     {
-                                        slilderDesignOptionToModify = 0;
+                                        sliderActivePart = !sliderActivePart;
+                                        sliderDesignOptionToModify = 2;
                                     }
                                 }
                                 ImGui::SameLine();
-                                switch (slilderDesignOptionToModify)
+                                switch (sliderDesignOptionToModify)
                                 {
                                 case 0:
-                                    ImGui::Text("Modifying Middle Part");
+                                    ImGui::Text(sliderActivePart ? "  Middle Part Activated  " : "  Middle Part Disabled  ");
                                     break;
                                 case 1:
-                                    ImGui::Text("Modifying First Part");
+                                    ImGui::Text(sliderActivePart ? "  First Part Activated  " : "  First Part Disabled  ");
                                     break;
                                 case 2:
-                                    ImGui::Text("Modifying Last Part");
+                                    ImGui::Text(sliderActivePart ? "  Last Part Activated  " : "  Last Part Disabled  ");
                                     break;
                                 default:
                                     break;
+                                }
+                                ImGui::SameLine();
+                                if (ImGui::ArrowButton("Change Section to edit Right 2", 1))
+                                {
+                                    sliderDesignOptionToModify++;
+                                    if (sliderDesignOptionToModify >= 3)
+                                    {
+                                        sliderActivePart = !sliderActivePart;
+                                        sliderDesignOptionToModify = 0;
+                                    }
                                 }
 
                                 if (ImGui::CollapsingHeader("Image section IDLE info: ", treeNodeFlags))
@@ -982,10 +1021,10 @@ bool PanelInspector::Draw()
                                         tempSliderUI->SetState(UiState::IDLE);
                                     }
                                     float tempX2, tempY2, tempW2, tempH2;
-                                    tempX2 = tempSliderUI->GetSectIdle(slilderDesignOptionToModify).x;
-                                    tempY2 = tempSliderUI->GetSectIdle(slilderDesignOptionToModify).y;
-                                    tempW2 = tempSliderUI->GetSectIdle(slilderDesignOptionToModify).w;
-                                    tempH2 = tempSliderUI->GetSectIdle(slilderDesignOptionToModify).h;
+                                    tempX2 = tempSliderUI->GetSectIdle(sliderDesignOptionToModify, sliderActivePart).x;
+                                    tempY2 = tempSliderUI->GetSectIdle(sliderDesignOptionToModify, sliderActivePart).y;
+                                    tempW2 = tempSliderUI->GetSectIdle(sliderDesignOptionToModify, sliderActivePart).w;
+                                    tempH2 = tempSliderUI->GetSectIdle(sliderDesignOptionToModify, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
                                     ImGui::DragFloat("     ", &tempX2, 1.0f);
@@ -1001,7 +1040,7 @@ bool PanelInspector::Draw()
 
                                     if (tempSliderUI->GetState() == UiState::IDLE)
                                     {
-                                        tempSliderUI->SetSectSizeIdle(tempX2, tempY2, tempW2, tempH2, slilderDesignOptionToModify);
+                                        tempSliderUI->SetSectSizeIdle(tempX2, tempY2, tempW2, tempH2, sliderDesignOptionToModify, sliderActivePart);
                                     }
                                     ImGui::Dummy(ImVec2(0.0f, 5.0f));
                                 }
@@ -1012,10 +1051,10 @@ bool PanelInspector::Draw()
                                         tempSliderUI->SetState(UiState::HOVERED);
                                     }
                                     float tempX2, tempY2, tempW2, tempH2;
-                                    tempX2 = tempSliderUI->GetSectHovered(slilderDesignOptionToModify).x;
-                                    tempY2 = tempSliderUI->GetSectHovered(slilderDesignOptionToModify).y;
-                                    tempW2 = tempSliderUI->GetSectHovered(slilderDesignOptionToModify).w;
-                                    tempH2 = tempSliderUI->GetSectHovered(slilderDesignOptionToModify).h;
+                                    tempX2 = tempSliderUI->GetSectHovered(sliderDesignOptionToModify, sliderActivePart).x;
+                                    tempY2 = tempSliderUI->GetSectHovered(sliderDesignOptionToModify, sliderActivePart).y;
+                                    tempW2 = tempSliderUI->GetSectHovered(sliderDesignOptionToModify, sliderActivePart).w;
+                                    tempH2 = tempSliderUI->GetSectHovered(sliderDesignOptionToModify, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
                                     ImGui::DragFloat("         ", &tempX2, 1.0f);
@@ -1031,7 +1070,7 @@ bool PanelInspector::Draw()
 
                                     if (tempSliderUI->GetState() == UiState::HOVERED)
                                     {
-                                        tempSliderUI->SetSectSizeHovered(tempX2, tempY2, tempW2, tempH2, slilderDesignOptionToModify);
+                                        tempSliderUI->SetSectSizeHovered(tempX2, tempY2, tempW2, tempH2, sliderDesignOptionToModify, sliderActivePart);
                                     }
                                     ImGui::Dummy(ImVec2(0.0f, 5.0f));
                                 }
@@ -1042,10 +1081,10 @@ bool PanelInspector::Draw()
                                         tempSliderUI->SetState(UiState::SELECTED);
                                     }
                                     float tempX2, tempY2, tempW2, tempH2;
-                                    tempX2 = tempSliderUI->GetSectSelected(slilderDesignOptionToModify).x;
-                                    tempY2 = tempSliderUI->GetSectSelected(slilderDesignOptionToModify).y;
-                                    tempW2 = tempSliderUI->GetSectSelected(slilderDesignOptionToModify).w;
-                                    tempH2 = tempSliderUI->GetSectSelected(slilderDesignOptionToModify).h;
+                                    tempX2 = tempSliderUI->GetSectSelected(sliderDesignOptionToModify, sliderActivePart).x;
+                                    tempY2 = tempSliderUI->GetSectSelected(sliderDesignOptionToModify, sliderActivePart).y;
+                                    tempW2 = tempSliderUI->GetSectSelected(sliderDesignOptionToModify, sliderActivePart).w;
+                                    tempH2 = tempSliderUI->GetSectSelected(sliderDesignOptionToModify, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
                                     ImGui::DragFloat("             ", &tempX2, 1.0f);
@@ -1061,10 +1100,111 @@ bool PanelInspector::Draw()
 
                                     if (tempSliderUI->GetState() == UiState::SELECTED)
                                     {
-                                        tempSliderUI->SetSectSizeSelected(tempX2, tempY2, tempW2, tempH2, slilderDesignOptionToModify);
+                                        tempSliderUI->SetSectSizeSelected(tempX2, tempY2, tempW2, tempH2, sliderDesignOptionToModify, sliderActivePart);
                                     }
                                     ImGui::Dummy(ImVec2(0.0f, 5.0f));
                                 }
+                            }
+                        }
+                        else if (item->GetType() == UiType::CHECKER)
+                        {
+                            CheckerUI* tempCheckerUI = tempCanvas->GetItemUI<CheckerUI>(id);
+                            ImGui::Text("UiType: CHECKER");
+                            
+                            bool checkerActive = tempCheckerUI->GetChecker();
+                            ImGui::Checkbox("Toggle Checkbox State", &checkerActive);
+                            tempCheckerUI->SetChecker(checkerActive);
+
+                            ImGui::Text("Image Path: %s", tempCheckerUI->GetPath().c_str());
+                            if (ImGui::CollapsingHeader("Image section IDLE info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as idle"))
+                                {
+                                    tempCheckerUI->SetState(UiState::IDLE);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempCheckerUI->GetSectIdle().x;
+                                tempY2 = tempCheckerUI->GetSectIdle().y;
+                                tempW2 = tempCheckerUI->GetSectIdle().w;
+                                tempH2 = tempCheckerUI->GetSectIdle().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("     ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("      ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("       ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("        ", &tempH2, 1.0f);
+
+                                if (tempCheckerUI->GetState() == UiState::IDLE)
+                                {
+                                    tempCheckerUI->SetSectSizeIdle(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                            if (ImGui::CollapsingHeader("Image section HOVERED info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as hovered"))
+                                {
+                                    tempCheckerUI->SetState(UiState::HOVERED);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempCheckerUI->GetSectHovered().x;
+                                tempY2 = tempCheckerUI->GetSectHovered().y;
+                                tempW2 = tempCheckerUI->GetSectHovered().w;
+                                tempH2 = tempCheckerUI->GetSectHovered().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("         ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("          ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("           ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("            ", &tempH2, 1.0f);
+
+                                if (tempCheckerUI->GetState() == UiState::HOVERED)
+                                {
+                                    tempCheckerUI->SetSectSizeHovered(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                            }
+                            if (ImGui::CollapsingHeader("Image section SELECTED info: ", treeNodeFlags))
+                            {
+                                if (ImGui::Button("Set current Section ptr as selected"))
+                                {
+                                    tempCheckerUI->SetState(UiState::SELECTED);
+                                }
+                                float tempX2, tempY2, tempW2, tempH2;
+                                tempX2 = tempCheckerUI->GetSectSelected().x;
+                                tempY2 = tempCheckerUI->GetSectSelected().y;
+                                tempW2 = tempCheckerUI->GetSectSelected().w;
+                                tempH2 = tempCheckerUI->GetSectSelected().h;
+                                ImGui::Text("   X:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("             ", &tempX2, 1.0f);
+                                ImGui::Text("   Y:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("              ", &tempY2, 1.0f);
+                                ImGui::Text("   W:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("               ", &tempW2, 1.0f);
+                                ImGui::Text("   H:");
+                                ImGui::SameLine();
+                                ImGui::DragFloat("                ", &tempH2, 1.0f);
+
+                                if (tempCheckerUI->GetState() == UiState::SELECTED)
+                                {
+                                    tempCheckerUI->SetSectSizeSelected(tempX2, tempY2, tempW2, tempH2);
+                                }
+                                ImGui::Dummy(ImVec2(0.0f, 5.0f));
                             }
                         }
                         //else if (item->GetType() == UiType::FONT)
@@ -1124,6 +1264,19 @@ bool PanelInspector::Draw()
                         if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
                         {
                             tempCanvas->AddItemUI<SliderUI>(nameRecipient);
+                            nameRecipient[0] = '\0';
+                        }
+                        ImGui::TreePop();
+                    }
+                    if (ImGui::TreeNode("CheckerUI"))
+                    {
+                        static char nameRecipient[64];
+
+                        ImGui::InputText("File Name   ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+
+                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        {
+                            tempCanvas->AddItemUI<CheckerUI>(nameRecipient);
                             nameRecipient[0] = '\0';
                         }
                         ImGui::TreePop();

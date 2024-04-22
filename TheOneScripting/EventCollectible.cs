@@ -12,6 +12,8 @@ public class EventCollectible : Event
     Item currentItem;
     float playerDistance;
 
+    GameManager gameManager;
+
     float collectibleRange = 100.0f;
 
     //debug
@@ -21,8 +23,10 @@ public class EventCollectible : Event
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         eventType = EventType.COLLECTIBLE;
-        itemManagerGO = IGameObject.Find("Manager");
+        itemManagerGO = IGameObject.Find("ItemManager");
         itemManager = itemManagerGO.GetComponent<ItemManager>();
+
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
     public override void Update()
@@ -32,7 +36,8 @@ public class EventCollectible : Event
         {
             DoEvent();
         }
-        DrawEventDebug();       
+
+        if (gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()

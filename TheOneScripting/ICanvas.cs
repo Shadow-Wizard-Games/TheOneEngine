@@ -9,14 +9,30 @@ public class ICanvas : IComponent
     {
         InternalCalls.CanvasEnableToggle(containerGOptr);
     }
-    public int GetSelection()
+
+    public int GetSelectedButton()
     {
         return InternalCalls.GetSelectedButton(containerGOptr);
     }
 
-    public void MoveSelection(int direction)
+    public int GetSelection()
+    {
+        return InternalCalls.GetSelected(containerGOptr);
+    }
+
+    public void ToggleChecker(bool value, string name)
+    {
+        InternalCalls.ToggleChecker(containerGOptr, value, name);
+    }
+
+    public void MoveSelectionButton(int direction)
     {
         InternalCalls.MoveSelectedButton(containerGOptr, direction);
+    }
+
+    public void MoveSelection(int direction)
+    {
+        InternalCalls.MoveSelection(containerGOptr, direction);
     }
 
     public void ChangeSectImg(string name, int x, int y, int w, int h)

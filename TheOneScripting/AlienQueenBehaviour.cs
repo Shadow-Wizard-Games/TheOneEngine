@@ -70,10 +70,14 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     PlayerScript player;
 
+    GameManager gameManager;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
+
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public override void Update()
@@ -87,7 +91,7 @@ public class AlienQueenBehaviour : MonoBehaviour
 
         if (attachedGameObject.transform.ComponentCheck())
         {
-            DebugDraw();
+            if (gameManager.colliderRender) { DebugDraw(); }
 
             //Set the director vector and distance to the player
             directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
