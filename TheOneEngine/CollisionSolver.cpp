@@ -54,6 +54,7 @@ bool CollisionSolver::Update(double dt)
         case ColliderType::Circle:
             for (auto& item2 : goWithCollision)
             {
+                auto colliderComp2 = item2->GetComponent<Collider2D>();
                 if (item != item2)
                 {
                     switch (item2->GetComponent<Collider2D>()->colliderType)
@@ -61,7 +62,7 @@ bool CollisionSolver::Update(double dt)
                     case ColliderType::Rect:
                         if (CheckCollision(item, item2))
                         {
-                            if (!colliderComp->isTrigger)
+                            if (!colliderComp->isTrigger && !colliderComp2->isTrigger)
                             {
                                 SolveCollision(item, item2);  
                             }
@@ -75,7 +76,7 @@ bool CollisionSolver::Update(double dt)
                     case ColliderType::Circle:
                         if (CheckCollision(item, item2))
                         {
-                            if (!colliderComp->isTrigger)
+                            if (!colliderComp->isTrigger && !colliderComp2->isTrigger)
                             {
                                 SolveCollision(item, item2);
                             }
@@ -95,14 +96,15 @@ bool CollisionSolver::Update(double dt)
         case ColliderType::Rect:
             for (auto& item2 : goWithCollision)
             {
+                auto colliderComp2 = item2->GetComponent<Collider2D>();
                 if (item != item2)
                 {
                     switch (item2->GetComponent<Collider2D>()->colliderType)
                     {
-                    case ColliderType::Circle:
+                    case ColliderType::Rect:
                         if (CheckCollision(item, item2))
                         {
-                            if (!colliderComp->isTrigger)
+                            if (!colliderComp->isTrigger && !colliderComp2->isTrigger)
                             {
                                 SolveCollision(item, item2);
                             }
@@ -113,10 +115,10 @@ bool CollisionSolver::Update(double dt)
                             if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
                         }
                         break;
-                    case ColliderType::Rect:
+                    case ColliderType::Circle:
                         if (CheckCollision(item, item2))
                         {
-                            if (!colliderComp->isTrigger)
+                            if (!colliderComp->isTrigger && !colliderComp2->isTrigger)
                             {
                                 SolveCollision(item, item2);
                             }

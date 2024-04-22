@@ -1,0 +1,595 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -1.0,
+            -1.0738747846517072e-07,
+            4.371138473402425e-08,
+            0.0,
+            -9.154890534546212e-08,
+            0.4999999701976776,
+            -0.866025447845459,
+            0.0,
+            7.114459066315248e-08,
+            -0.866025447845459,
+            -0.4999999701976776,
+            0.0,
+            6.630154609680176,
+            120.0,
+            73.39502716064453,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4238362238
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": true,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 2305643590,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "CameraMovement",
+          "Type": 4,
+          "UID": 3226044018
+        },
+        {
+          "AudioID": 0,
+          "Name": "Listener",
+          "Type": 7
+        }
+      ],
+      "Enabled": true,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "Tag": "UnTagged",
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            6.630154609680176,
+            0.0,
+            13.395028114318848,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2545150034
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_MainCharacter/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3933422802
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 596904104
+        },
+        {
+          "AudioID": 1,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "IsTrigger": false,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 15.0,
+          "Type": 5,
+          "UID": 4161978925,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_MainCharacter",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "Tag": "UnTagged",
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1400836792
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -0.10434246063232422,
+                0.0,
+                77.71324920654297,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 361026062
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+              "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 3576261042
+            },
+            {
+              "ColliderType": 1,
+              "CornerPivot": false,
+              "Height": 25.0,
+              "IsTrigger": false,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2418229243,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "Rect_Center",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "Tag": "Collider",
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                70.2730712890625,
+                0.0,
+                -30.16922950744629,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3402343970
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+              "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 2718519318
+            },
+            {
+              "ColliderType": 1,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "IsTrigger": false,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 668786237,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "Rect_Corner",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "Tag": "Collider",
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                8.802143096923828,
+                -6.103515625e-05,
+                -84.14209747314453,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2041816603
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+              "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 1294291234
+            },
+            {
+              "ColliderType": 0,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "IsTrigger": false,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 20.0,
+              "Type": 5,
+              "UID": 3846146315,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "Circle",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "Tag": "Collider",
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -126.66096496582031,
+                0.0,
+                -86.26757049560547,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1329402414
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+              "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 3481383016
+            },
+            {
+              "ColliderType": 0,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "IsTrigger": true,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 20.0,
+              "Type": 5,
+              "UID": 4201609417,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "circle_trigger",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "Tag": "Collider",
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -204.47711181640625,
+                -6.103515625e-05,
+                -27.580406188964844,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 70097702
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+              "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 2495258961
+            },
+            {
+              "ColliderType": 1,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "IsTrigger": true,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3043969030,
+              "Width": 25.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "Rect_Corner_trigger",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "Tag": "Collider",
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -156.1981964111328,
+                0.0,
+                63.86503219604492,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1923120956
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Box/M_Box.toematerial",
+              "MeshPath": "Library/Meshes/SM_Box/SM_Box.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 525188579
+            },
+            {
+              "ColliderType": 1,
+              "CornerPivot": true,
+              "Height": 25.0,
+              "IsTrigger": true,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3507050171,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "Name": "Rect_Center_trigger",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "Tag": "Collider",
+          "UID": 3452816845
+        }
+      ],
+      "Name": "Colliders",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "Tag": "UnTagged",
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3034458813
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 1027392074
+        }
+      ],
+      "Enabled": true,
+      "Name": "Manager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "Tag": "UnTagged",
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\CollisionsTestZone.toe",
+  "sceneName": "CollisionsTestZone"
+}

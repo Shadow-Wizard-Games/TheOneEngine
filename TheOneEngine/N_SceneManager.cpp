@@ -17,6 +17,7 @@
 #include <fstream>
 #include <filesystem>
 #include "ImageUI.h"
+#include <unordered_set>
 
 namespace fs = std::filesystem;
 
@@ -38,6 +39,7 @@ bool N_SceneManager::Start()
 	loadingScreen.get()->AddComponent<Transform>();
 	loadingScreen.get()->AddComponent<Canvas>();
 	loadingScreen.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>("Assets/Textures/Hud/LoadingTxt.png");
+	tagList.push_back("UnTagged");
 
 	return true;
 }
@@ -54,6 +56,8 @@ bool N_SceneManager::PreUpdate()
 		FindCameraInScene();
 		currentScene->SetIsDirty(true);
 		sceneChange = false;
+
+		LoadTagList(currentScene->GetRootSceneGO());
 	}
 
 	return true;
@@ -232,6 +236,16 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	}
 }
 
+std::vector<std::string> N_SceneManager::GetTagList()
+{
+	return tagList;
+}
+
+void N_SceneManager::AddNewTag(std::string newTag)
+{
+	tagList.push_back(newTag);
+}
+
 void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go)
 {
 	for (const auto gameObject : go.get()->children)
@@ -240,6 +254,23 @@ void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go)
 			gameObject.get()->GetComponent<Script>()->Start();
 
 		RecursiveScriptInit(gameObject);
+	}
+}
+
+void N_SceneManager::LoadTagList(std::shared_ptr<GameObject> go)
+{
+	// Set taglist
+	std::unordered_set<std::string> uniqueTags(tagList.begin(), tagList.end());
+
+	// Update tagList with unique tags
+	for (auto childGO : go->children)
+	{
+		if (uniqueTags.find(childGO->GetTag()) == uniqueTags.end())
+		{
+			tagList.push_back(childGO->GetTag());
+			uniqueTags.insert(childGO->GetTag());
+		}
+		LoadTagList(childGO);
 	}
 }
 

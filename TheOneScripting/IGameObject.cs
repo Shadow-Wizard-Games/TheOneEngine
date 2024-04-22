@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -20,6 +21,7 @@ public class IGameObject : IObject
     {
         containerGOptr = GOref;
         name = InternalCalls.GetGameObjectName(containerGOptr);
+        tag = InternalCalls.GetTag(containerGOptr);
         transform = new ITransform(GOref);
 
         source = new IAudioSource(GOref);

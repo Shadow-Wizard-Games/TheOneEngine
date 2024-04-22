@@ -9,6 +9,7 @@ public class IObject
     protected IntPtr containerGOptr;
 
     public string name;
+    public string tag;
     public bool isActive;
 
     public IObject()

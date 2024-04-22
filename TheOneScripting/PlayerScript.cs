@@ -232,6 +232,6 @@ public class PlayerScript : MonoBehaviour
     public override void OnCollision(IntPtr collidedGO)
     {
         IGameObject colGO = new IGameObject(collidedGO);
-
+        Debug.LogWarning(colGO.tag);
     }
 }

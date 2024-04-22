@@ -74,9 +74,14 @@ public:
 	void SaveScene();
 	void LoadSceneFromJSON(const std::string& filename);
 
+	// TagList
+	std::vector<std::string> GetTagList();
+	void AddNewTag(std::string newTag);
+
 private:
 
 	void RecursiveScriptInit(std::shared_ptr<GameObject> go);
+	void LoadTagList(std::shared_ptr<GameObject> go);
 
 public:
 	Scene* currentScene = nullptr; //Convert to smart ptr
@@ -90,6 +95,8 @@ private:
 	bool previousFrameIsPlaying = false;
 	//Kikofp02: This will check if the engine has to change scene
 	bool sceneChange = false;
+
+	std::vector<std::string> tagList;
 };
 
 class Scene

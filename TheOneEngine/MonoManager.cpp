@@ -200,12 +200,6 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
         return nullptr;
     }
 
-    //if (method == nullptr)
-    //{
-    //    LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall);
-    //    return nullptr;
-    //}
-
     // Call the C# method on the objectInstance instance, and get any potential exceptions
     MonoObject* exception = nullptr;
     MonoObject* returnResult = mono_runtime_invoke(method, monoBehaviourInstance, params, &exception);

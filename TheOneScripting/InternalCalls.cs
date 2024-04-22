@@ -83,6 +83,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void Enable(IntPtr GOtoEnable);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetTag(IntPtr gameObject);
     #endregion
 
     #region Component

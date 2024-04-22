@@ -133,6 +133,8 @@ public:
 
     std::string GetName() const;
     void SetName(const std::string& name);
+    std::string GetTag() const;
+    void SetTag(const std::string& newTag);
 
     bool IsStatic() const;
     void SetStatic(bool isStatic);
@@ -164,6 +166,7 @@ public:
 
 private:
     std::string name;
+    std::string tag;
     std::vector<std::unique_ptr<Component>> components;
     uint32_t UID;
     bool enabled;

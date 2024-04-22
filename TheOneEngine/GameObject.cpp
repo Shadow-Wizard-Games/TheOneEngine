@@ -300,6 +300,16 @@ void GameObject::SetName(const std::string& newName)
 	name = newName;
 }
 
+std::string GameObject::GetTag() const
+{
+	return tag;
+}
+
+void GameObject::SetTag(const std::string& newTag)
+{
+	tag = newTag;
+}
+
 bool GameObject::IsStatic() const
 {
 	return isStatic;
@@ -333,6 +343,7 @@ json GameObject::SaveGameObject()
 
 	gameObjectJSON["UID"] = UID;
 	gameObjectJSON["Name"] = name;
+	gameObjectJSON["Tag"] = tag;
 	gameObjectJSON["Static"] = isStatic;
 	gameObjectJSON["Enabled"] = enabled;
 	
@@ -380,6 +391,15 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 	if (gameObjectJSON.contains("Name"))
 	{
 		name = gameObjectJSON["Name"];
+	}
+	
+	if (gameObjectJSON.contains("Tag"))
+	{
+		tag = gameObjectJSON["Tag"];
+	}
+	else 
+	{
+		tag = "UnTagged";
 	}
 
 	if (gameObjectJSON.contains("Static"))

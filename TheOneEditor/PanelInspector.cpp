@@ -80,15 +80,41 @@ bool PanelInspector::Draw()
                 }
             }
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
-
+            
             /*Tag + Layer*/
-            ImGui::SetNextItemWidth(100.0f);
-            if (ImGui::BeginCombo("Tag", "Untagged", ImGuiComboFlags_HeightSmall)) { ImGui::EndCombo(); }
+            static char newTagBuffer[32];
 
+            ImGui::SetNextItemWidth(100.0f);
+            if (ImGui::BeginCombo("Tag", selectedGO->GetTag().c_str(), ImGuiComboFlags_HeightRegular)) 
+            { 
+                float scrollableHeight = ImGui::GetFrameHeight() * (engine->N_sceneManager->GetTagList().size() + 1);
+
+                ImGui::BeginChild("TagScroll", ImVec2(0, scrollableHeight), false);
+
+                for (std::string tag : engine->N_sceneManager->GetTagList())
+                {
+                    if (ImGui::Selectable(tag.c_str()))
+                    {
+                        selectedGO->SetTag(tag);
+                    }
+                }
+                ImGui::EndChild();
+
+                if (ImGui::InputText("New Tag", newTagBuffer, sizeof(newTagBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
+                    std::string newTag(newTagBuffer);
+                    LOG(LogType::LOG_INFO, "New Tag added %s ", newTag.c_str());
+                    engine->N_sceneManager->AddNewTag(newTag); // Establece el nuevo tag del GameObject
+                    // Limpiar el buffer después de cambiar el tag
+                    newTagBuffer[0] = '\0';
+                }
+
+                ImGui::EndCombo(); 
+            }
+            
             ImGui::SameLine();
 
             ImGui::SetNextItemWidth(100.0f);
-            if (ImGui::BeginCombo("Layer", "Default", ImGuiComboFlags_HeightSmall)) { ImGui::EndCombo(); }
+            if (ImGui::BeginCombo("Layer", "Default", ImGuiComboFlags_HeightRegular)) { ImGui::EndCombo(); }
             ImGui::Dummy(ImVec2(0.0f, 10.0f));
 
             //add change name imgui

@@ -240,6 +240,11 @@ static void Enable(GameObject* GOtoEnable)
 	GOtoEnable->Enable();
 }
 
+static MonoString* GetTag(GameObject* gameObject)
+{
+	return mono_string_new(MonoManager::GetAppDomain(), gameObject->GetTag().c_str());
+}
+
 //Scene Management
 static void LoadScene(MonoString* sceneName)
 {
@@ -582,6 +587,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);
 	mono_add_internal_call("InternalCalls::Enable", Enable);
+	mono_add_internal_call("InternalCalls::GetTag", GetTag);
 
 	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
