@@ -73,10 +73,12 @@ public class ITransform : IComponent
 
         if (directorVector == Vector3.zero) return;
 
-        float angleY = (float)Math.Atan2(directorVector.x, directorVector.z);
-        float angleX = (float)Math.Atan2(directorVector.y, directorVector.Magnitude());
+        float distanceXZ = (float)Math.Sqrt(directorVector.x * directorVector.x + directorVector.z * directorVector.z);
+
+        float angleY = -(float)Math.Atan2(directorVector.x, directorVector.z);
+        float angleX =  (float)Math.Atan2(directorVector.y, distanceXZ);
 
         rotation = Vector3.zero;
-        Rotate(new Vector3(angleX * 180.0f / (float)Math.PI, -angleY * 180.0f / (float)Math.PI, 0.0f));
+        Rotate(new Vector3(angleX * 180.0f / (float)Math.PI, angleY * 180.0f / (float)Math.PI, 0.0f));
     }
 }
