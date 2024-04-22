@@ -305,6 +305,12 @@ bool Gui::Update(double dt)
             ImGui::EndMenu();
         }
 
+		// Play/Pause/Stop
+		ImGui::Dummy(ImVec2(ImGui::GetContentRegionAvail().x / 2 - 290, 0.0f));
+		if (ImGui::Button(" > "))  app->Play();
+		if (ImGui::Button(" || ")) app->Pause();
+		if (ImGui::Button(" [] "))  app->Stop();
+
 		ImGui::EndMainMenuBar();
 	}
 
