@@ -162,7 +162,7 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{D723BA9F-9B43-03DB-F0A0-D7C6A5AEF91C}">
+		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{AC956129-8596-EF09-986C-6BFBD759B72D}">
 			<ShortName>TheOneEngine</ShortName>
 			<Path>TheOneEngine.bnk</Path>
 			<Media>
@@ -216,7 +216,7 @@
 				</File>
 				<File Id="303888556" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>AM_Combat_Level_1.wav</ShortName>
-					<CachePath>SFX/AM_Combat_Level_1_2822E220.wem</CachePath>
+					<CachePath>SFX/AM_Combat_Level_1_F6FDDA4C.wem</CachePath>
 				</File>
 				<File Id="358062072" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Facehugger_Crawl_E.wav</ShortName>
@@ -261,6 +261,10 @@
 				<File Id="558968172" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>UI_Menu_Music_AM.wav</ShortName>
 					<CachePath>SFX/UI_Menu_Music_AM_818F3B66.wem</CachePath>
+				</File>
+				<File Id="588527722" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_SpawnXenomorph_E.wav</ShortName>
+					<CachePath>SFX/SFX_SpawnXenomorph_E_818F3B66.wem</CachePath>
 				</File>
 				<File Id="589914555" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Player_Hit_CH.wav</ShortName>
@@ -328,7 +332,7 @@
 				</File>
 				<File Id="994093999" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>AM_Ambient_Level_1.wav</ShortName>
-					<CachePath>SFX/AM_Ambient_Level_1_52853155.wem</CachePath>
+					<CachePath>SFX/AM_Ambient_Level_1_4CE279A8.wem</CachePath>
 				</File>
 				<File Id="1013643951" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Facehugger_Death_E.wav</ShortName>
@@ -465,6 +469,11 @@
 						<MediaRef Id="365237862"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3991779178" Name="E_X_ADULT_SPAWN">
+					<MediaRefs>
+						<MediaRef Id="588527722"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2247807735" Name="E_X_ADULT_SPIT">
 					<MediaRefs>
 						<MediaRef Id="552844014"/>
@@ -558,5 +567,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{C21C7179-51EA-2BFE-0926-CC01F8A7D260}</FileHash>
+	<FileHash>{55A083DE-E7F6-C3BE-FD57-A57D5951BEB6}</FileHash>
 </SoundBanksInfo>

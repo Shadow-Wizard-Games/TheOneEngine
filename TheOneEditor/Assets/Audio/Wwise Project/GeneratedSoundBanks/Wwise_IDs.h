@@ -38,6 +38,7 @@ namespace AK
         static const AkUniqueID E_REBEL_STEP = 2489932272U;
         static const AkUniqueID E_X_ADULT_DEATH = 3828971157U;
         static const AkUniqueID E_X_ADULT_MELEE = 3271687631U;
+        static const AkUniqueID E_X_ADULT_SPAWN = 3991779178U;
         static const AkUniqueID E_X_ADULT_SPIT = 2247807735U;
         static const AkUniqueID E_X_ADULT_STEP = 1644504899U;
         static const AkUniqueID P_DASH = 3919743498U;

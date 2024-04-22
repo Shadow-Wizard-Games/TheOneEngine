@@ -100,7 +100,10 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) { currentState = States.Dead; return; }
+        if (life <= 0) { 
+            currentState = States.Dead;
+            //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_DEATH);
+            return; }
 
         if (playerDistance < farRangeThreshold && !isClose)
         {
@@ -274,6 +277,7 @@ public class AlienQueenBehaviour : MonoBehaviour
     {
         InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
                                             attachedGameObject.transform.rotation);
+        //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.); // there is no audio for tail shot
         ResetState();
     }
 
@@ -290,9 +294,10 @@ public class AlienQueenBehaviour : MonoBehaviour
         {
             InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
                                             attachedGameObject.transform.rotation);
+            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_SPIT);
             delayTimer = 0.0f;
             shotsCounter++;
-            Debug.Log("Mondongo has shot " + shotsCounter + " times");
+            Debug.Log("Alien Queen has shot " + shotsCounter + " times");
         }
 
         if (shotsCounter >= maxShots)
@@ -316,7 +321,7 @@ public class AlienQueenBehaviour : MonoBehaviour
         //                                   scale);
         InternalCalls.CreatePrefab("SK_Facehugger",
             attachedGameObject.transform.position + attachedGameObject.transform.forward*(attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f));
-
+        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPAWN);
         ResetState();
     }
 
@@ -324,6 +329,7 @@ public class AlienQueenBehaviour : MonoBehaviour
     {
         InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
                                             attachedGameObject.transform.rotation);
+        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_BOMB);
         ResetState();
     }
 
@@ -337,6 +343,7 @@ public class AlienQueenBehaviour : MonoBehaviour
             if (maxHeight >= currentHeight)
             {
                 attachedGameObject.transform.Translate(Vector3.up * currentHeight * Time.deltaTime);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_JUMP);
                 currentHeight += 10.0f;
             }
             else
@@ -353,6 +360,7 @@ public class AlienQueenBehaviour : MonoBehaviour
             else
             {
                 attachedGameObject.transform.Translate(Vector3.up * -currentHeight * Time.deltaTime);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_JUMP);
                 currentHeight -= 10.0f;
             }
         }

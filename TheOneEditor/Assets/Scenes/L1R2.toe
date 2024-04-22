@@ -26,7 +26,7 @@
           "UID": 2837029610
         },
         {
-          "Aspect": 2.3402061462402344,
+          "Aspect": 2.297198534011841,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -41,7 +41,7 @@
           "zNear": 0.1
         },
         {
-          "AudioID": 3,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         },
@@ -55,7 +55,7 @@
       ],
       "Enabled": true,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2359380
     },
@@ -34343,7 +34343,7 @@
         }
       ],
       "Name": "MK_Ship_Room2",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -34459,7 +34459,7 @@
                   "Width": -1.7976931348623157e+308
                 },
                 {
-                  "AudioID": 4,
+                  "AudioID": 1,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34518,7 +34518,7 @@
                   "UID": 2769006400
                 },
                 {
-                  "AudioID": 5,
+                  "AudioID": 2,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34626,7 +34626,7 @@
                   "UID": 2771460427
                 },
                 {
-                  "AudioID": 6,
+                  "AudioID": 3,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34700,7 +34700,7 @@
                   "UID": 3677473773
                 },
                 {
-                  "AudioID": 7,
+                  "AudioID": 4,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34774,7 +34774,7 @@
                   "UID": 1025605467
                 },
                 {
-                  "AudioID": 8,
+                  "AudioID": 5,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34848,7 +34848,7 @@
                   "UID": 2967335595
                 },
                 {
-                  "AudioID": 9,
+                  "AudioID": 6,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34922,7 +34922,7 @@
                   "UID": 1465103925
                 },
                 {
-                  "AudioID": 10,
+                  "AudioID": 7,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -34996,7 +34996,7 @@
                   "UID": 2414002845
                 },
                 {
-                  "AudioID": 11,
+                  "AudioID": 8,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -35037,290 +35037,9 @@
         }
       ],
       "Name": "Enemies",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 1212778432
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            149.48533630371094,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 559327710
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_MainCharacter/M_MainCharacter.toematerial",
-          "MeshPath": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
-          "Name": "Mesh",
-          "ParentUID": 6619240,
-          "Type": 2,
-          "UID": 3594677328
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 6619240,
-          "ScriptName": "PlayerScript",
-          "Type": 4,
-          "UID": 988737408
-        },
-        {
-          "AudioID": 12,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 0,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 6619240,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 3965130975,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "Enabled": true,
-      "GameObjects": [
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                35.0,
-                10.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 1818517941
-            },
-            {
-              "Emmiters": [
-                {
-                  "Delay": 0.0,
-                  "Duration": 0.5,
-                  "InitializeModules": [
-                    {
-                      "MaxDirection": [
-                        6.0,
-                        10.0,
-                        120.0
-                      ],
-                      "MinDirection": [
-                        -6.0,
-                        -2.0,
-                        75.0
-                      ],
-                      "Type": 4,
-                      "UsingSingleValueDirection": false
-                    },
-                    {
-                      "MaxSpeed": 120.0,
-                      "MinSpeed": 75.0,
-                      "Type": 0,
-                      "UsingSingleValueSpeed": false
-                    },
-                    {
-                      "MaxColor": [
-                        255.0,
-                        255.0,
-                        0.0,
-                        255.0
-                      ],
-                      "MinColor": [
-                        210.0,
-                        128.0,
-                        0.0,
-                        255.0
-                      ],
-                      "Type": 1,
-                      "UsingSingleValueColor": false
-                    },
-                    {
-                      "IsProportional": true,
-                      "MaxScale": [
-                        1.0,
-                        1.0,
-                        0.0
-                      ],
-                      "MinScale": [
-                        0.2,
-                        0.1,
-                        0.0
-                      ],
-                      "Type": 2,
-                      "UsingSingleValueScale": false
-                    }
-                  ],
-                  "IsLooping": false,
-                  "Lifetime": 0.0,
-                  "MaxParticles": 50,
-                  "RenderModule": [
-                    {
-                      "BillboardType": 1,
-                      "Type": 0
-                    }
-                  ],
-                  "SpawnModule": [
-                    {
-                      "Amount": 10.0,
-                      "Duration": 0.20000000298023224,
-                      "Type": 1
-                    }
-                  ],
-                  "UpdateModules": [
-                    {
-                      "Acceleration": [
-                        0.0,
-                        -20.0,
-                        0.0
-                      ],
-                      "Type": 0
-                    }
-                  ]
-                },
-                {
-                  "Delay": 0.0,
-                  "Duration": 0.5,
-                  "InitializeModules": [
-                    {
-                      "MaxDirection": [
-                        6.0,
-                        10.0,
-                        150.0
-                      ],
-                      "MinDirection": [
-                        -6.0,
-                        -2.0,
-                        100.0
-                      ],
-                      "Type": 4,
-                      "UsingSingleValueDirection": false
-                    },
-                    {
-                      "MaxSpeed": 150.0,
-                      "MinSpeed": 100.0,
-                      "Type": 0,
-                      "UsingSingleValueSpeed": false
-                    },
-                    {
-                      "MaxColor": [
-                        255.0,
-                        255.0,
-                        0.0,
-                        255.0
-                      ],
-                      "MinColor": [
-                        210.0,
-                        128.0,
-                        0.0,
-                        255.0
-                      ],
-                      "Type": 1,
-                      "UsingSingleValueColor": false
-                    },
-                    {
-                      "IsProportional": true,
-                      "MaxScale": [
-                        1.0,
-                        0.1,
-                        2.0
-                      ],
-                      "MinScale": [
-                        0.2,
-                        0.1,
-                        1.0
-                      ],
-                      "Type": 2,
-                      "UsingSingleValueScale": false
-                    }
-                  ],
-                  "IsLooping": false,
-                  "Lifetime": 0.0,
-                  "MaxParticles": 100,
-                  "RenderModule": [
-                    {
-                      "BillboardType": 0,
-                      "Type": 0
-                    }
-                  ],
-                  "SpawnModule": [
-                    {
-                      "Amount": 10.0,
-                      "Duration": 0.20000000298023224,
-                      "Type": 1
-                    }
-                  ],
-                  "UpdateModules": [
-                    {
-                      "Acceleration": [
-                        0.0,
-                        -20.0,
-                        0.0
-                      ],
-                      "Type": 0
-                    }
-                  ]
-                }
-              ],
-              "Name": "P_ShootM4\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
-              "Type": 9,
-              "UID": 4200920531
-            }
-          ],
-          "Enabled": true,
-          "Name": "ShotPlayerPS",
-          "ParentUID": 6619240,
-          "Static": false,
-          "UID": 3452816845
-        }
-      ],
-      "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 6619240
     },
     {
       "Components": [
@@ -35508,13 +35227,14 @@
             }
           ],
           "Name": "P_Fire_Big\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 2963937243
         }
       ],
       "Enabled": true,
       "Name": "P_Fire_Big",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 4149613856
     },
@@ -35704,13 +35424,14 @@
             }
           ],
           "Name": "P_Fire_Big\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 2963937243
         }
       ],
       "Enabled": true,
       "Name": "P_Fire_Big1",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2348320
     },
@@ -35900,13 +35621,14 @@
             }
           ],
           "Name": "P_Fire_Big\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 2963937243
         }
       ],
       "Enabled": true,
       "Name": "P_Fire_Big2",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 10078192
     },
@@ -36107,13 +35829,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark001",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -36314,13 +36037,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark002",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2109027104
     },
@@ -36521,13 +36245,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark003",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -36728,13 +36453,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark004",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -36935,13 +36661,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark005",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 1779500912
     },
@@ -37142,13 +36869,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark006",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2113778768
     },
@@ -37349,13 +37077,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark007",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -37556,13 +37285,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark008",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -37763,13 +37493,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark009",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -37970,13 +37701,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark010",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2115568720
     },
@@ -38177,13 +37909,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark011",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2109027104
     },
@@ -38384,13 +38117,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark012",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -38591,13 +38325,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark013",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -38798,13 +38533,14 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
       ],
       "Enabled": true,
       "Name": "P_Spark014",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2109027104
     },
@@ -38843,7 +38579,7 @@
       ],
       "Enabled": true,
       "Name": "Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 674199056
     },
@@ -38882,7 +38618,7 @@
       ],
       "Enabled": true,
       "Name": "GoBack",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -38921,7 +38657,7 @@
       ],
       "Enabled": true,
       "Name": "GoNext",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 6619240
     },
@@ -39264,7 +39000,7 @@
               ]
             },
             {
-              "AudioID": 13,
+              "AudioID": 9,
               "Name": "Source",
               "Type": 8
             },
@@ -40050,9 +39786,83 @@
         }
       ],
       "Name": "UI_Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 0,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 47571003
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
+          "Name": "Mesh",
+          "ParentUID": 113510800,
+          "Type": 2,
+          "UID": 3098960481
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 113510800,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 225613267
+        },
+        {
+          "AudioID": 10,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 113510800,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3282283334,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Name": "SK_MainCharacter",
+      "ParentUID": 0,
+      "Static": false,
+      "UID": 113510800
     }
   ],
   "index": 0,

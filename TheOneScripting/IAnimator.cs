@@ -27,6 +27,7 @@ public class IAnimator : IComponent
             InternalCalls.SetTransitionBlend(containerGOptr, ref value);
         }
     }
+
     public float time
     {
         get

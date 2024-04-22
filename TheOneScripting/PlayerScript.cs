@@ -34,6 +34,9 @@ public class PlayerScript : MonoBehaviour
         iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
         iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
 
+        attachedGameObject.animator.Play("Run");
+        attachedGameObject.animator.blend = true;
+        attachedGameObject.animator.time = 0.0f;
     }
 
     public override void Update()
@@ -43,6 +46,8 @@ public class PlayerScript : MonoBehaviour
 
         bool toMove = false;
         Vector3 movement = Vector3.zero;
+
+        attachedGameObject.animator.UpdateAnimation();
 
         // Background music
         if (!isFighting)

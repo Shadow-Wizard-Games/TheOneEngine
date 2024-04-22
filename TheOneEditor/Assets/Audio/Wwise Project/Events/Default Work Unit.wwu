@@ -262,6 +262,17 @@
 																</Action>
 															</ChildrenList>
 														</Event>
+														<Event Name="E_X_ADULT_SPAWN" ID="{372D4673-3DFF-4BDD-9A8E-81223C4F1448}">
+															<ChildrenList>
+																<Action Name="" ID="{486C4AA3-58EB-4905-AE90-2A62E65BED36}" ShortID="993304453">
+																	<ReferenceList>
+																		<Reference Name="Target">
+																			<ObjectRef Name="SFX_Xenomorph_Spawn_E" ID="{98CC6EE3-33E4-40BF-ACC5-548116E2EF38}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																		</Reference>
+																	</ReferenceList>
+																</Action>
+															</ChildrenList>
+														</Event>
 													</ChildrenList>
 												</Folder>
 												<Folder Name="Red" ID="{F260D7CC-C83D-42FA-99BC-99535BBC66DA}" ShortID="279407588"/>

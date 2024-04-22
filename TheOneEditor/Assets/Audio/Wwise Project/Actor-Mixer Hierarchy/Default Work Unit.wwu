@@ -781,6 +781,18 @@
 															</ActiveSourceList>
 														</Sound>
 														<Sound Name="SFX_Xenomorph_Spawn_E" ID="{98CC6EE3-33E4-40BF-ACC5-548116E2EF38}" ShortID="580128797">
+															<PropertyList>
+																<Property Name="Pitch" Type="int32">
+																	<ValueList>
+																		<Value>-660</Value>
+																	</ValueList>
+																</Property>
+																<Property Name="Volume" Type="Real64">
+																	<ValueList>
+																		<Value>-20</Value>
+																	</ValueList>
+																</Property>
+															</PropertyList>
 															<ReferenceList>
 																<Reference Name="Conversion">
 																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>

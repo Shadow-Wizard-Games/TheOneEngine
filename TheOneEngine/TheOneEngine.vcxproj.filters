@@ -246,9 +246,6 @@
     <ClInclude Include="Action.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>GameObject\Components</Filter>
-    </ClInclude>
     <ClInclude Include="FileDialog.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -373,9 +370,6 @@
     </ClCompile>
     <ClCompile Include="Animation\animations\OzzAnimationSimple.cpp">
       <Filter>Animation\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="Animator.cpp">
-      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Render</Filter>
