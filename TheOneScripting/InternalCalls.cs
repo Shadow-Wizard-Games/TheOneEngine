@@ -219,4 +219,27 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetPrimaryCam(IntPtr GOptr, ref bool cameraType);
     #endregion
+
+    #region Animation
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void PlayAnimation(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void StopAnimation(IntPtr GOptr);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetTransitionBlend(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTransitionBlend(IntPtr GOptr, ref bool blend);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetTransitionTime(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTransitionTime(IntPtr GOptr, ref float time);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void UpdateAnimation(IntPtr GOptr, ref float dt);
+    #endregion
 }

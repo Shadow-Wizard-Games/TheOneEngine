@@ -527,7 +527,7 @@ static void SetColliderBoxSize(GameObject* GOptr, vec2f sizeToSet)
 	GOptr->GetComponent<Collider2D>()->h = (double)sizeToSet.y;
 }
 
-//Camera
+// Camera
 static double GetFov(GameObject* GOptr)
 {
 	return (double)GOptr->GetComponent<Camera>()->fov;
@@ -588,6 +588,59 @@ static void SetPrimaryCam(GameObject* GOptr, bool* primaryCam)
 	GOptr->GetComponent<Camera>()->primaryCam = (bool)*primaryCam;
 }
 
+// Animator
+static void PlayAnimation(GameObject* GOptr, MonoString* name) {
+	std::string aName = MonoRegisterer::MonoStringToUTF8(name);
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->HasAnimation(aName)) {
+		m->PlayAnimation(aName);
+	}
+}
+
+static void StopAnimation(GameObject* GOptr) {
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated()) {
+		m->StopAnimation();
+	}
+}
+
+static bool GetTransitionBlend(GameObject* GOptr){
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated()) {
+		return m->getBlendOnTransition();
+	}
+	return false;
+}
+
+static void SetTransitionBlend(GameObject* GOptr, bool* blend) {
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated()) {
+		m->setBlendOnTransition((bool)*blend);
+	}
+}
+
+static float GetTransitionTime(GameObject* GOptr) {
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated()) {
+		return m->getTransitionTime();
+	}
+	return -1.0f;
+}
+
+static void SetTransitionTime(GameObject* GOptr, float* time) {
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated()) {
+		m->setTransitionTime((float)*time);
+	}
+}
+
+static void UpdateAnimation(GameObject* GOptr, float* dt) {
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated()) {
+		m->UpdateAnim((float)*dt);
+	}
+}
+
 void MonoRegisterer::RegisterFunctions()
 {
 	//GameObject
@@ -602,8 +655,6 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);
 	mono_add_internal_call("InternalCalls::Enable", Enable);
-	mono_add_internal_call("InternalCalls::CreatePrefab", CreatePrefab);
-
 
 	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
@@ -626,6 +677,7 @@ void MonoRegisterer::RegisterFunctions()
 	//Scene Manager
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
 	mono_add_internal_call("InternalCalls::GetCurrentSceneName", GetCurrentSceneName);
+	mono_add_internal_call("InternalCalls::CreatePrefab", CreatePrefab);
 
 	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);
@@ -674,6 +726,15 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::SetCameraType", SetCameraType);
 	mono_add_internal_call("InternalCalls::GetPrimaryCam", GetPrimaryCam);
 	mono_add_internal_call("InternalCalls::SetPrimaryCam", SetPrimaryCam);
+
+	//Animation
+	mono_add_internal_call("InternalCalls::PlayAnimation", PlayAnimation);
+	mono_add_internal_call("InternalCalls::StopAnimation", StopAnimation);
+	mono_add_internal_call("InternalCalls::SetTransitionBlend", GetTransitionBlend);
+	mono_add_internal_call("InternalCalls::SetTransitionBlend", SetTransitionBlend);
+	mono_add_internal_call("InternalCalls::SetTransitionTime", GetTransitionTime);
+	mono_add_internal_call("InternalCalls::SetTransitionTime", SetTransitionTime);
+	mono_add_internal_call("InternalCalls::UpdateAnimation", UpdateAnimation);
 }
 
 bool MonoRegisterer::CheckMonoError(MonoError& error)
