@@ -29,10 +29,14 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
     PlayerScript player;
 
+    IGameObject iJumpPS;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
+
+        iJumpPS = attachedGameObject.FindInChildren("JumpPS");
     }
 
     public override void Update()
@@ -64,6 +68,10 @@ public class FaceHuggerBehaviour : MonoBehaviour
         {
             attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_JUMP);
             isJumping = false;
+            if (iJumpPS != null)
+            {
+                iJumpPS.GetComponent<IParticleSystem>().Replay();
+            }
         }
     }
 

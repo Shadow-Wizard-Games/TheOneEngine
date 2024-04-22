@@ -31184,6 +31184,7 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
@@ -31459,6 +31460,7 @@
                 }
               ],
               "Name": "P_ShootM4\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
               "Type": 9,
               "UID": 4200920531
             }
@@ -31631,6 +31633,7 @@
             }
           ],
           "Name": "P_Steam\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 704292522
         }
@@ -31710,6 +31713,106 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.6230878829956055,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2982684463
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.20000000298023224,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        0.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 20.0,
+                      "MinSpeed": 60.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        200.0,
+                        200.0,
+                        200.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.4000000059604645,
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 2047186163
+            }
+          ],
+          "Enabled": true,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "Name": "Facehugger001",
       "ParentUID": 3452816845,
       "Static": false,
@@ -31784,6 +31887,106 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.6230878829956055,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 681276070
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.20000000298023224,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        0.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 20.0,
+                      "MinSpeed": 60.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        200.0,
+                        200.0,
+                        200.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.4000000059604645,
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1651383333
+            }
+          ],
+          "Enabled": true,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "Name": "Facehugger002",
       "ParentUID": 3452816845,
       "Static": false,
@@ -31858,6 +32061,106 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.6230878829956055,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 469591506
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.20000000298023224,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        0.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 20.0,
+                      "MinSpeed": 60.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        200.0,
+                        200.0,
+                        200.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.4000000059604645,
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 2163563806
+            }
+          ],
+          "Enabled": true,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "Name": "Facehugger003",
       "ParentUID": 3452816845,
       "Static": false,
@@ -31932,6 +32235,106 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.6230878829956055,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 380539105
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.20000000298023224,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        0.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 20.0,
+                      "MinSpeed": 60.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        200.0,
+                        200.0,
+                        200.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.4000000059604645,
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 488446027
+            }
+          ],
+          "Enabled": true,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "Name": "Facehugger004",
       "ParentUID": 3452816845,
       "Static": false,
@@ -32006,6 +32409,106 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.6230878829956055,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1687982512
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.20000000298023224,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        0.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 20.0,
+                      "MinSpeed": 60.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        200.0,
+                        200.0,
+                        200.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.4000000059604645,
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 15731078
+            }
+          ],
+          "Enabled": true,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "Name": "Facehugger005",
       "ParentUID": 3452816845,
       "Static": false,
@@ -32080,6 +32583,106 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.6230878829956055,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 889305341
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.20000000298023224,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        0.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 20.0,
+                      "MinSpeed": 60.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        200.0,
+                        200.0,
+                        200.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.4000000059604645,
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3436752255
+            }
+          ],
+          "Enabled": true,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "Name": "Facehugger006",
       "ParentUID": 3452816845,
       "Static": false,
@@ -32777,6 +33380,7 @@
             }
           ],
           "Name": "P_Sparks\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
           "Type": 9,
           "UID": 4200920531
         }
