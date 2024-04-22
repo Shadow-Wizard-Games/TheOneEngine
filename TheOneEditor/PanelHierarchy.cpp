@@ -60,6 +60,11 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 
 		bool isOpen = ImGui::TreeNodeEx(childGO.get()->GetName().data(), treeFlags);
 		//}
+		
+		if (isPrefab)
+		{
+			ImGui::PopStyleColor();
+		}
 
 		if (ReparentDragDrop(childGO))
 		{
@@ -76,10 +81,6 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 				LOG(LogType::LOG_INFO, "Selected Prefab ID: %zu", engine->N_sceneManager->GetSelectedGO()->GetPrefabID());
 		}
 
-		if (isPrefab)
-		{
-			ImGui::PopStyleColor();
-		}
 
 		ContextMenu(childGO);
 		if (duplicate)
