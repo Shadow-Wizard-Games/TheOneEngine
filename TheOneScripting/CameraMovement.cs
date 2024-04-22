@@ -4,7 +4,7 @@ public class CameraMovement : MonoBehaviour
 {
 	IGameObject playerGO;
     PlayerScript playerScript;
-	Vector3 camOffset = new Vector3(0, 100, 90);
+	Vector3 camOffset = new Vector3(70, 200, 90);
 	//float camJoyDisplacement = 10.0f;
 
     float cameraMargin = 15.0f;
@@ -32,13 +32,21 @@ public class CameraMovement : MonoBehaviour
 
         Vector3 camMovement = Vector3.zero;
 
-        if (Math.Abs(displacement.x) > cameraMargin)
+        if (displacement.x > cameraMargin)
         {
-            camMovement += Vector3.right * playerScript.movement.x;
+            camMovement -= Vector3.right;
         }
-        if (Math.Abs(displacement.z) > cameraMargin)
+        else if (displacement.x < -cameraMargin)
         {
-            camMovement += Vector3.forward * playerScript.movement.z;
+            camMovement += Vector3.right;
+        }
+        if (displacement.z > cameraMargin)
+        {
+            camMovement -= Vector3.forward;
+        }
+        else if (displacement.z < -cameraMargin)
+        {
+            camMovement += Vector3.forward;
         }
 
         attachedGameObject.transform.Translate(camMovement.Normalize() * playerScript.speed * Time.deltaTime);
