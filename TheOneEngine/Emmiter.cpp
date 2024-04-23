@@ -116,23 +116,27 @@ void Emmiter::Update(double dt)
 
 void Emmiter::Render(Camera* camera)
 {
-	//// sort particles by distance to the camera
-	//std::map<float, Particle*> particlesToRender;
-	//float modelview[16];
-	//glGetFloatv(GL_MODELVIEW_MATRIX, modelview);
-
-	//for () {
-	//	particlesToRender.insert
-	//}
-
+	// sort particles by distance to the camera
 	std::vector<Particle*> particlesToRender;
 	for (auto i = usingParticlesIDs.begin(); i != usingParticlesIDs.end(); ++i) {
 		particlesToRender.push_back(particles[(*i)].get());
 	}
 
+	std::multimap<float, Particle*> sortedParticlesToRender;
+	for (auto i = particlesToRender.begin(); i != particlesToRender.end(); ++i) {
+		float particleZ;
+		if (isGlobal) {
+			particleZ = glm::length((*i)->position - camera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+		}
+		else {
+			particleZ = glm::length((*i)->position - camera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+		}
+		sortedParticlesToRender.insert(std::pair<float, Particle*>(particleZ, (*i)));
+	}
+
 	if (renderModule) {
-		for (auto i = particlesToRender.begin(); i != particlesToRender.end(); ++i) {
-			renderModule->Update(*i, camera);
+		for (auto i = sortedParticlesToRender.rbegin(); i != sortedParticlesToRender.rend(); ++i) {
+			renderModule->Update(i->second, camera);
 		}
 	}
 }
