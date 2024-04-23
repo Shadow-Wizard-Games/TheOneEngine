@@ -1,0 +1,79 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 864852735
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
+      "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+      "Name": "Mesh",
+      "ParentUID": 3709323096,
+      "Type": 2,
+      "UID": 1681333897
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3709323096,
+      "ScriptName": "AnarchistBehaviour",
+      "Type": 4,
+      "UID": 3030456654
+    },
+    {
+      "AudioID": 0,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 3709323096,
+      "Radius": 12.0,
+      "Type": 5,
+      "UID": 2902732076,
+      "Width": -1.7976931348623157e+308
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "Keeped": false,
+  "Name": "SK_Anarchist",
+  "ParentUID": 3539000,
+  "PrefabDirty": false,
+  "PrefabID": 1735851601,
+  "PrefabName": "SK_Anarchist",
+  "Static": false,
+  "UID": 3709323096
+}

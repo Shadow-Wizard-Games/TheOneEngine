@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TheOneEngine/Action.h"
+#include "../TheOneEngine/Action.h"
 
 #include "ozz/animation/runtime/animation.h"
 #include "ozz/animation/runtime/blending_job.h"

@@ -7,6 +7,7 @@ public class IGameObject : IObject
 {
     public ITransform transform;
     public IAudioSource source;
+    public IAnimator animator;
 
     public IGameObject() : base()
     {
@@ -15,14 +16,16 @@ public class IGameObject : IObject
         transform = new ITransform();
 
         source = new IAudioSource();
+
+        animator = new IAnimator();
     }
     public IGameObject(IntPtr GOref) : base(GOref)
     {
         containerGOptr = GOref;
         name = InternalCalls.GetGameObjectName(containerGOptr);
         transform = new ITransform(GOref);
-
         source = new IAudioSource(GOref);
+        animator = new IAnimator(GOref);
     }
 
     public void Destroy()
@@ -110,6 +113,9 @@ public class IGameObject : IObject
                         break;
                     case IComponent.ComponentType.IParticleSystem:
                         componentToReturn = new IParticleSystem(containerGOptr) as TComponent;
+                        break;
+                    case IComponent.ComponentType.IAnimator:
+                        componentToReturn = new IAnimator(containerGOptr) as TComponent;
                         break;
                     default:
                         break;

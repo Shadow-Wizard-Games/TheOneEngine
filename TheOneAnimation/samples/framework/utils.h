@@ -32,7 +32,7 @@
 #include "ozz/base/platform.h"
 #include "ozz/base/span.h"
 
-#include "TheOneEngine/Action.h"
+#include "../../TheOneEngine/Action.h"
 
 namespace ozz {
     // Forward declarations.
