@@ -20,8 +20,8 @@
 
 enum AnimationType
 {
-    AT_PARTIAL_BLEND,
     AT_SIMPLE,
+    AT_PARTIAL_BLEND,
     AT_LAST
 };
 

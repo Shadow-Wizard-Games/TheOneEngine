@@ -215,11 +215,11 @@ void PanelAnimation::DrawAnimations()
 
 			switch (current_item)
 			{
-				case AnimationType::AT_PARTIAL_BLEND:
-					anim_id = activeAnimator->CreatePartialAnimation(animation_name);
-					break;
 				case AnimationType::AT_SIMPLE:
 					anim_id = activeAnimator->CreateSimpleAnimation(animation_name);
+					break;
+				case AnimationType::AT_PARTIAL_BLEND:
+					anim_id = activeAnimator->CreatePartialAnimation(animation_name);
 					break;
 				default:
 					break;
