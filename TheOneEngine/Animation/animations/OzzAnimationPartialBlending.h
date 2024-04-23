@@ -1,7 +1,7 @@
 #pragma once
 
-#include "TheOneEngine/Animation/OzzAnimation.h"
-#include "TheOneEngine/Action.h"
+#include "../TheOneEngine/Animation/OzzAnimation.h"
+#include "../TheOneEngine/Action.h"
 
 
 class OzzAnimationPartialBlending : public OzzAnimation
