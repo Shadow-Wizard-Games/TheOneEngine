@@ -35,12 +35,18 @@ bool AudioManager::CleanUp()
 
 void AudioManager::PlayAudio(AudioSource* source, AkUniqueID event)
 {
-	audio->PlayEvent(event, source->goID);
+	if (source != nullptr)
+		audio->PlayEvent(event, source->goID);
+	else
+		LOG(LogType::LOG_ERROR, "There is no component Audio Source to play");
 }
 
 void AudioManager::StopAudio(AudioSource* source, AkUniqueID event)
 {
-	audio->StopEvent(event, source->goID);
+	if (source != nullptr)
+		audio->StopEvent(event, source->goID);
+	else
+		LOG(LogType::LOG_ERROR, "There is no component Audio Source to stop");
 }
 
 void AudioManager::PauseAudio(AudioSource* source, AkUniqueID event)

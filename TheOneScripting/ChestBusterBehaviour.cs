@@ -110,7 +110,7 @@ public class ChestBusterBehaviour : MonoBehaviour
                     currentTimer += Time.deltaTime;
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
-                        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
+                        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
                         hasShot = true;
                     }
                     break;

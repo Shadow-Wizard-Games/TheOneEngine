@@ -18,6 +18,7 @@ public class IComponent : IObject
         IListener,
         IAudioSource,
         IParticleSystem,
+        IAnimator,
         Unknown
     }
 
