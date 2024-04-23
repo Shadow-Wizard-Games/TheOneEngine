@@ -111,7 +111,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                     currentTimer += Time.deltaTime;
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
-                        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
+                        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
                         attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
                         hasShot = true;
                     }

@@ -47,7 +47,12 @@ public class PlayerScript : MonoBehaviour
 
     public override void Update()
     {
-        if (isDead) return;
+        if (isDead)
+        {
+            attachedGameObject.animator.Play("Death");
+            return;
+        }
+      
         if (onPause) return;
 
         bool toMove = false;
@@ -111,7 +116,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0); 
+            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0);
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
         {
@@ -132,16 +137,17 @@ public class PlayerScript : MonoBehaviour
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
                 {
+                    //attachedGameObject.animator.Play("ShootM4");
                     Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
                     if (currentTimer < attackCooldown)
                     {
                         currentTimer += Time.deltaTime;
                         if (!hasShot && currentTimer > attackCooldown / 2)
                         {
-                            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                            //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
                             attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
                             hasShot = true;
-                            if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+                            //if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
                         }
                     }
                     else
@@ -149,7 +155,6 @@ public class PlayerScript : MonoBehaviour
                         currentTimer = 0.0f;
                         hasShot = false;
                     }
-                    // call particleSystem.Replay()
                 }
             }
         }
@@ -163,6 +168,10 @@ public class PlayerScript : MonoBehaviour
         {
             attachedGameObject.transform.Translate(movement.Normalize() * speed * Time.deltaTime);
             attachedGameObject.animator.Play("Run");
+        }
+        else
+        {
+            attachedGameObject.animator.Play("Idle");
         }
 
         //Controller
@@ -194,9 +203,10 @@ public class PlayerScript : MonoBehaviour
                 currentTimer += Time.deltaTime;
                 if (!hasShot && currentTimer > attackCooldown / 2)
                 {
-                    InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                    //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
                     hasShot = true;
+                    attachedGameObject.animator.Play("Shoot M4");
                 }
             }
             else

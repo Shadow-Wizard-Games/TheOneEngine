@@ -84,7 +84,7 @@ public class AlienQueenBehaviour : MonoBehaviour
     {
         if (currentState == States.Dead)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("L2R1");
             playerGO.source.StopAudio(IAudioSource.EventIDs.UI_A_MENU);
             playerGO.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
         }
@@ -279,8 +279,8 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     private void TailShot()
     {
-        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
-                                            attachedGameObject.transform.rotation);
+        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
+        //                                    attachedGameObject.transform.rotation);
         //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.); // there is no audio for tail shot
         ResetState();
     }
@@ -296,8 +296,8 @@ public class AlienQueenBehaviour : MonoBehaviour
 
         if (delayTimer >= delay)
         {
-            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
-                                            attachedGameObject.transform.rotation);
+            //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
+            //                                attachedGameObject.transform.rotation);
             attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_SPIT);
             delayTimer = 0.0f;
             shotsCounter++;
@@ -331,8 +331,8 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     private void AcidBomb()
     {
-        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
-                                            attachedGameObject.transform.rotation);
+        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
+        //                                    attachedGameObject.transform.rotation);
         attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_BOMB);
         ResetState();
     }

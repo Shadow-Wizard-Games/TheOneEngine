@@ -13,7 +13,7 @@
             0.4999999701976776,
             -0.866025447845459,
             0.0,
-            7.114459776857984e-08,
+            7.114459066315248e-08,
             -0.866025447845459,
             -0.4999999701976776,
             0.0,
@@ -26,7 +26,7 @@
           "UID": 2837029610
         },
         {
-          "Aspect": 1.8526523113250732,
+          "Aspect": 1.8859275579452515,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -41,7 +41,7 @@
           "zNear": 0.1
         },
         {
-          "AudioID": 3,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         },
@@ -56,7 +56,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2359380
     },
@@ -35015,7 +35015,7 @@
       ],
       "Keeped": false,
       "Name": "MK_Ship_Room2",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -35131,7 +35131,7 @@
                   "Width": -1.7976931348623157e+308
                 },
                 {
-                  "AudioID": 4,
+                  "AudioID": 1,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -35191,7 +35191,7 @@
                   "UID": 2769006400
                 },
                 {
-                  "AudioID": 5,
+                  "AudioID": 2,
                   "Name": "AudioSource",
                   "Type": 8
                 },
@@ -35235,7 +35235,7 @@
       ],
       "Keeped": false,
       "Name": "Enemies",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 1212778432
     },
@@ -35323,7 +35323,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 424.6925354003906,
+              "Lifetime": 477.35589599609375,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -35407,7 +35407,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 355.4642333984375,
+              "Lifetime": 408.1275939941406,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35433,7 +35433,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Fire_Big",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 4149613856
     },
@@ -35521,7 +35521,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 425.32562255859375,
+              "Lifetime": 477.9889831542969,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -35605,7 +35605,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 356.0973205566406,
+              "Lifetime": 408.76068115234375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35631,7 +35631,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Fire_Big1",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2348320
     },
@@ -35719,7 +35719,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 431.867431640625,
+              "Lifetime": 484.5307922363281,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -35803,7 +35803,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 362.6391296386719,
+              "Lifetime": 415.302490234375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -35829,7 +35829,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Fire_Big2",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 10078192
     },
@@ -35917,7 +35917,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4293.50927734375,
+              "Lifetime": 4346.1806640625,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36001,7 +36001,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3504.900390625,
+              "Lifetime": 3557.5634765625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36038,7 +36038,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark001",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -36126,7 +36126,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4346.28173828125,
+              "Lifetime": 4398.953125,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36210,7 +36210,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3557.67431640625,
+              "Lifetime": 3610.33740234375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36247,7 +36247,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark002",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2109027104
     },
@@ -36335,7 +36335,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4268.43310546875,
+              "Lifetime": 4321.1044921875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36419,7 +36419,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3479.823486328125,
+              "Lifetime": 3532.486572265625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36456,7 +36456,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark003",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -36544,7 +36544,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4646.1904296875,
+              "Lifetime": 4698.86181640625,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36628,7 +36628,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3857.564208984375,
+              "Lifetime": 3910.227294921875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36665,7 +36665,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark004",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -36753,7 +36753,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4305.88134765625,
+              "Lifetime": 4358.552734375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -36837,7 +36837,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3517.283447265625,
+              "Lifetime": 3569.946533203125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -36874,7 +36874,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark005",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 1779500912
     },
@@ -36962,7 +36962,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4259.40966796875,
+              "Lifetime": 4312.0810546875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37046,7 +37046,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3470.799560546875,
+              "Lifetime": 3523.462646484375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37083,7 +37083,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark006",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2113778768
     },
@@ -37171,7 +37171,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4271.61328125,
+              "Lifetime": 4324.28466796875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37255,7 +37255,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3483.00146484375,
+              "Lifetime": 3535.66455078125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37292,7 +37292,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark007",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -37380,7 +37380,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4621.1005859375,
+              "Lifetime": 4673.77197265625,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37464,7 +37464,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3832.4951171875,
+              "Lifetime": 3885.158203125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37501,7 +37501,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark008",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -37589,7 +37589,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4268.25390625,
+              "Lifetime": 4320.92529296875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37673,7 +37673,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3479.645751953125,
+              "Lifetime": 3532.308837890625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37710,7 +37710,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark009",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -37798,7 +37798,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4263.62548828125,
+              "Lifetime": 4316.296875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -37882,7 +37882,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3475.022705078125,
+              "Lifetime": 3527.685791015625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -37919,7 +37919,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark010",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2115568720
     },
@@ -38007,7 +38007,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4262.724609375,
+              "Lifetime": 4315.39599609375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38091,7 +38091,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3474.1240234375,
+              "Lifetime": 3526.787109375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38128,7 +38128,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark011",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2109027104
     },
@@ -38216,7 +38216,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4261.57177734375,
+              "Lifetime": 4314.2431640625,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38300,7 +38300,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3472.966796875,
+              "Lifetime": 3525.6298828125,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38337,7 +38337,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark012",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -38425,7 +38425,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4258.74560546875,
+              "Lifetime": 4311.4169921875,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38509,7 +38509,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3470.140625,
+              "Lifetime": 3522.8037109375,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38546,7 +38546,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark013",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -38634,7 +38634,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 4268.35888671875,
+              "Lifetime": 4321.0302734375,
               "MaxParticles": 50,
               "RenderModule": [
                 {
@@ -38718,7 +38718,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3479.75048828125,
+              "Lifetime": 3532.41357421875,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -38755,7 +38755,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "P_Spark014",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 2109027104
     },
@@ -38795,7 +38795,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "SwapSceneGo_L1_R1",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -38835,7 +38835,7 @@
       "Enabled": true,
       "Keeped": false,
       "Name": "SwapSceneGo_L1_R3",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 6619240
     },
@@ -39266,7 +39266,7 @@
               ]
             },
             {
-              "AudioID": 13,
+              "AudioID": 3,
               "Name": "Source",
               "Type": 8
             },
@@ -40412,7 +40412,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -40746,12 +40746,12 @@
               "UID": 607510851
             },
             {
-              "AudioID": 14,
+              "AudioID": 4,
               "Name": "AudioSource",
               "Type": 8
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "Keeped": false,
           "Name": "Canvas_Debug",
           "ParentUID": 3452816845,
@@ -40761,9 +40761,423 @@
       ],
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 0,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            64.04764556884766,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 47571003
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
+          "Name": "Mesh",
+          "ParentUID": 113510800,
+          "Type": 2,
+          "UID": 3098960481
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 113510800,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 225613267
+        },
+        {
+          "AudioID": 5,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 113510800,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3282283334,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "SK_MainCharacter",
+      "ParentUID": 6619240,
+      "PrefabDirty": false,
+      "PrefabID": 186710944,
+      "PrefabName": "SK_MainCharacter",
+      "Static": false,
+      "UID": 113510800
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            -749.065185546875,
+            0.0,
+            719.4785766601563,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 864852735
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "Name": "Mesh",
+          "ParentUID": 3709323096,
+          "Type": 2,
+          "UID": 1681333897
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3709323096,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 3030456654
+        },
+        {
+          "AudioID": 6,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3709323096,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 2902732076,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "SK_Anarchist",
+      "ParentUID": 6619240,
+      "PrefabDirty": false,
+      "PrefabID": 1735851601,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3709323096
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -100.33422088623047,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 412782611
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": 50.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1372097056,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 2039101943,
+          "Width": 250.0
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "Wall Start",
+      "ParentUID": 6619240,
+      "Static": false,
+      "UID": 1372097056
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            53.32539367675781,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1053158274
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 1738822240,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 4130092067
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "SwapScene_L1_R1",
+      "ParentUID": 6619240,
+      "Static": false,
+      "UID": 1738822240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -1094.11962890625,
+            0.0,
+            -98.7318344116211,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1255954281
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": 25.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 6619240,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 1675150667,
+          "Width": 200.0
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "Wall End",
+      "ParentUID": 6619240,
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -998.0582885742188,
+            0.0,
+            -66.59471130371094,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2370202399
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 1059881427
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "SwapScene_L1_R3",
+      "ParentUID": 6619240,
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2580851376
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 508103648,
+          "ScriptName": "GameManager",
+          "Type": 4,
+          "UID": 3617852810
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "GameManager",
+      "ParentUID": 6619240,
+      "Static": false,
+      "UID": 508103648
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3970746884
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 512215488,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 3659663379
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "ItemManager",
+      "ParentUID": 6619240,
+      "Static": false,
+      "UID": 512215488
     }
   ],
   "index": 0,
