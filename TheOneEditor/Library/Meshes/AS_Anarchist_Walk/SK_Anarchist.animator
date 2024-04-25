@@ -1,0 +1,46 @@
+{
+  "animation_list": [
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Walk",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Shoot",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Scan",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": false,
+      "lower_body_file": "",
+      "name": "Death",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    }
+  ],
+  "material": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
+  "mesh": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist_animatedmesh.ozzmesh",
+  "name": "SK_Anarchist",
+  "skeleton": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist_skeleton.skeleton",
+  "transition_blend": false,
+  "transition_time": 0.0
+}

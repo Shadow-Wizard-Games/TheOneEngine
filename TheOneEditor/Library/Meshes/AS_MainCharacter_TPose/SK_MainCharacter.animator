@@ -1,0 +1,82 @@
+{
+  "animation_list": [
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Idle M4",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": false,
+      "lower_body_file": "",
+      "name": "Death",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Grab",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": false,
+      "lower_body_file": "",
+      "name": "Roll",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Run",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "Run M4",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    },
+    {
+      "loop": true,
+      "lower_body_file": "",
+      "name": "ShootM4",
+      "playback_speed": 1.0,
+      "type": 1,
+      "upper_body_file": "",
+      "upper_body_root": 0
+    }
+  ],
+  "material": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+  "mesh": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter_animatedmesh.ozzmesh",
+  "name": "SK_MainCharacter",
+  "skeleton": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter_skeleton.skeleton",
+  "transition_blend": false,
+  "transition_time": 0.0
+}
