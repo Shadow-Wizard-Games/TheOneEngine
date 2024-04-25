@@ -173,7 +173,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
     return functionToReturn;
 }
 
-void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall, void** params, int parameterCount)
+void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::string functionToCall, void* params[], int parameterCount)
 {
     // Get the MonoClass pointer from the instance
     MonoClass* instanceClass = mono_object_get_class(monoBehaviourInstance);

@@ -70,6 +70,12 @@
     <Filter Include="GameObject\Components\Audio\Items">
       <UniqueIdentifier>{e8e13a2f-ef25-4c4d-8f6d-7b3c4034238f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{5101171b-bd24-43d0-b3e3-9ed5b8e68d81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation\animations">
+      <UniqueIdentifier>{35e8665e-8ad5-42bf-95c0-bce29902e91e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -228,7 +234,25 @@
     <ClInclude Include="UniformBuffer.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="Animation\OzzAnimation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\animations\OzzAnimationPartialBlending.h">
+      <Filter>Animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\animations\OzzAnimationSimple.h">
+      <Filter>Animation\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDialog.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="SliderUI.h">
+      <Filter>GameObject\Components\UI\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckerUI.h">
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClInclude>
   </ItemGroup>
@@ -341,6 +365,15 @@
     <ClCompile Include="AudioSource.cpp">
       <Filter>GameObject\Components\Audio\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Animation\OzzAnimation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\animations\OzzAnimationPartialBlending.cpp">
+      <Filter>Animation\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\animations\OzzAnimationSimple.cpp">
+      <Filter>Animation\animations</Filter>
+    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -363,6 +396,12 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="SliderUI.cpp">
+      <Filter>GameObject\Components\UI\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDialog.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckerUI.cpp">
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClCompile>
   </ItemGroup>

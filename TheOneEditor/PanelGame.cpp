@@ -27,7 +27,6 @@ bool PanelGame::Draw()
 	for (const auto GO : engine->N_sceneManager->GetGameObjects())
 	{
 		if (GO->HasCameraComponent()) { gameCameras.push_back(GO.get()); }
-
 	}
 
 	for (const auto& cam : gameCameras)
@@ -43,11 +42,10 @@ bool PanelGame::Draw()
 		(frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
 	{
 		frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+
 		if(primaryCamera)
 			primaryCamera->aspect = viewportSize.x / viewportSize.y;
 	}
-
-
 
 	ImGuiWindowFlags settingsFlags = 0;
 	settingsFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
@@ -59,7 +57,7 @@ bool PanelGame::Draw()
 	{
 		isHovered = ImGui::IsWindowHovered();
 		isFocused = ImGui::IsWindowFocused();
-		//Get selected GO
+
 		selectedGO = engine->N_sceneManager->GetSelectedGO().get();
 
 		ImVec2 availWindowSize = ImGui::GetContentRegionAvail();
@@ -78,12 +76,12 @@ bool PanelGame::Draw()
 		//		}
 		//		ImGui::EndMenu();
 		//	}
-
+		//
 		//	if (ImGui::BeginMenu("Aspect"))
 		//	{
 		//		ImGui::EndMenu();
 		//	}
-
+		//
 		//	ImGui::PopStyleVar();
 		//	ImGui::EndMenuBar();
 		//}
@@ -91,10 +89,9 @@ bool PanelGame::Draw()
 		//ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND-------------------------------------------------
 		{
 			frameBuffer->Bind();
-
-
 			frameBuffer->Clear();
 			frameBuffer->ClearBuffer(-1);
+
 			// Draw
 			engine->Render(primaryCamera);
 			engine->SetUniformBufferCamera(primaryCamera);
@@ -107,6 +104,7 @@ bool PanelGame::Draw()
 				if (gameCam != nullptr && gameCam->drawFrustum)
 					engine->DrawFrustum(gameCam->frustum);
 			}
+
 			current->Draw(DrawMode::EDITOR);
 			if (engine->N_sceneManager->GetSceneIsChanging())
 				engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
@@ -117,10 +115,9 @@ bool PanelGame::Draw()
 		//Draw FrameBuffer Texture
 		viewportSize = { availWindowSize.x, availWindowSize.y };
 		ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
     }
-
 	ImGui::End();
+
 	ImGui::PopStyleVar();
 
 	return true;

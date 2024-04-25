@@ -54,8 +54,8 @@ public struct Color
                          (int)Math.Round(a * 255.0f));
     }
 
-    public Vector3 ToVector3(Color color)
+    public Vector3 ToVector3()
     {
-        return new Vector3(color.r, color.g, color.b);
+        return new Vector3(r, g, b);
     }
 }

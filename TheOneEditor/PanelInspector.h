@@ -40,7 +40,8 @@ private:
 		"Square",
 	};
 
-	int slilderDesignOptionToModify = 0;
+	int sliderDesignOptionToModify = 0;
+	bool sliderActivePart = true;
 };
 
 #endif // !__PANEL_INSPECTOR_H__

@@ -118,14 +118,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>TheOneAudio.lib;TheOneEngine.lib;glew32.lib;OpenGL32.lib;SDL2.lib;SDL2main.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;imgui.lib;implot.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;AkMusicEngine.lib;AkSpatialAudio.lib;AkAudioInputSource.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>TheOneAudio.lib;TheOneEngine.lib;TheOneAnimation.lib;glew32.lib;OpenGL32.lib;SDL2.lib;SDL2main.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;imgui.lib;implot.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;AkMusicEngine.lib;AkSpatialAudio.lib;AkAudioInputSource.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Wwise\SDK\Debug\lib;$(SolutionDir)vcpkg\installed\x64-windows\lib\;$(SolutionDir)vcpkg\installed\x64-windows\lib\manual-link\;$(SolutionDir)x64\Debug\;$(SolutionDir)mono\lib\Debug\</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -142,6 +142,7 @@ xcopy "$(SolutionDir)mono" "$(OutDir)mono" /E /Y
 
 mkdir "$(ProjectDir)Assets"
 mkdir "$(ProjectDir)Library"
+mkdir "$(ProjectDir)Tools"
 xcopy "$(SolutionDir)TheOneEditor\Assets" "$(ProjectDir)Assets" /E /Y
 rd /s /q "$(ProjectDir)Assets\Meshes"
 xcopy "$(SolutionDir)TheOneEditor\Library" "$(ProjectDir)Library" /E /Y
@@ -149,8 +150,10 @@ xcopy "$(SolutionDir)TheOneEditor\Library" "$(ProjectDir)Library" /E /Y
 mkdir "$(OutDir)Assets"
 mkdir "$(OutDir)Library"
 mkdir "$(OutDir)mono"
+mkdir "$(OutDir)Tools"
 xcopy "$(SolutionDir)TheOneEditor\Assets" "$(OutDir)Assets" /E /Y
-xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y</Command>
+xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y
+xcopy "$(SolutionDir)TheOneEditor\Tools" "$(OutDir)Tools" /E /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,7 +164,7 @@ xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AK_OPTIMIZED;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -170,7 +173,7 @@ xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>TheOneAudio.lib;TheOneEngine.lib;glew32.lib;OpenGL32.lib;SDL2.lib;SDL2main.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;imgui.lib;implot.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;AkMusicEngine.lib;AkSpatialAudio.lib;AkAudioInputSource.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>TheOneAudio.lib;TheOneAnimation.lib;TheOneEngine.lib;glew32.lib;OpenGL32.lib;SDL2.lib;SDL2main.lib;GlU32.lib;assimp-vc142-mt.lib;DevIL.lib;imgui.lib;implot.lib;AkSoundEngine.lib;AkMemoryMgr.lib;AkStreamMgr.lib;AkMusicEngine.lib;AkSpatialAudio.lib;AkAudioInputSource.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Wwise\SDK\Release\lib;$(SolutionDir)vcpkg\installed\x64-windows\lib\;$(SolutionDir)vcpkg\installed\x64-windows\lib\manual-link\;$(SolutionDir)x64\Release\;$(SolutionDir)mono\lib\Release\</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -181,18 +184,19 @@ xcopy "$(SolutionDir)mono" "$(OutDir)mono" /E /Y
 
 mkdir "$(ProjectDir)Assets"
 mkdir "$(ProjectDir)Library"
+mkdir "$(ProjectDir)Tools"
 xcopy "$(SolutionDir)TheOneEditor\Assets" "$(ProjectDir)Assets" /E /Y
 rd /s /q "$(ProjectDir)Assets\Meshes"
 xcopy "$(SolutionDir)TheOneEditor\Library" "$(ProjectDir)Library" /E /Y
 
 mkdir "$(OutDir)Assets"
 mkdir "$(OutDir)Library"
+mkdir "$(OutDir)Tools"
 xcopy "$(SolutionDir)TheOneEditor\Assets" "$(OutDir)Assets" /E /Y
 xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y
+xcopy "$(SolutionDir)TheOneEditor\Tools" "$(OutDir)Tools" /E /Y
 
-del "$(OutDir)*.pdb"
-
-rename "$(OutDir)TheOneBuilder.exe" "Game.exe"</Command>
+del "$(OutDir)*.pdb"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>call $(SolutionDir)vcpkg\bootstrap-vcpkg.bat
@@ -219,6 +223,9 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TheOneAnimation\TheOneAnimation.vcxproj">
+      <Project>{6ceb38e1-d500-4b35-92d4-9d7051489f29}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\TheOneAudio\TheOneAudio.vcxproj">
       <Project>{606662a0-b707-4c97-8361-5d46fd7fd1f3}</Project>
     </ProjectReference>

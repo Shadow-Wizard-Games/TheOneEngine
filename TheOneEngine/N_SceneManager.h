@@ -35,7 +35,7 @@ public:
 
 	// Change between scenes
 	void LoadScene(uint index);
-	void LoadScene(std::string sceneName);
+	void LoadScene(std::string sceneName, bool keep = false);
 
 	std::string GenerateUniqueName(const std::string& baseName);
 
@@ -61,7 +61,8 @@ public:
 	void OverrideScenePrefabs(uint32_t prefabID);
 	void OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID);
 	void OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify);
-	void CreatePrefabFromFile(std::string prefabName);
+	void CreatePrefabFromFile(std::string prefabName, const vec3f& position);
+	void CreatePrefabFromPath(std::string prefabPath, const vec3f& position);
 
 	// Get/Set
 	uint GetNumberGO() const;
@@ -69,7 +70,7 @@ public:
 	const bool GetSceneIsPlaying() { return sceneIsPlaying; }
 	const bool GetSceneIsChanging() { return sceneChange; }
 
-	// SelectedGo (Editor Only???)
+	// SelectedGo
 	std::shared_ptr<GameObject> GetSelectedGO() const;
 	void SetSelectedGO(std::shared_ptr<GameObject> gameObj);
 
@@ -77,11 +78,11 @@ public:
 
 	/*SCENE SERIALIZATION*/
 	void SaveScene();
-	void LoadSceneFromJSON(const std::string& filename);
+	void LoadSceneFromJSON(const std::string& filename, bool keepGO = false);
 
 private:
 
-	void RecursiveScriptInit(std::shared_ptr<GameObject> go);
+	void RecursiveScriptInit(std::shared_ptr<GameObject> go, bool firstInit = false);
 
 public:
 	Scene* currentScene = nullptr; //Convert to smart ptr
@@ -95,6 +96,7 @@ private:
 	bool previousFrameIsPlaying = false;
 	//Kikofp02: This will check if the engine has to change scene
 	bool sceneChange = false;
+	bool sceneChangeKeepGOs = false;
 };
 
 class Scene

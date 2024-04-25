@@ -31,11 +31,14 @@ public class ChestBusterBehaviour : MonoBehaviour
     float attackCooldown = 2.0f;
 
     PlayerScript player;
+    GameManager gameManager;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
+
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public override void Update()
@@ -45,14 +48,17 @@ public class ChestBusterBehaviour : MonoBehaviour
         if (attachedGameObject.transform.ComponentCheck())
         {
             //Draw debug ranges
-            if (!detected)
+            if (gameManager.colliderRender)
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
-            }
-            else
-            {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+                if (!detected)
+                {
+                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                }
+                else
+                {
+                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+                }
             }
 
             //Set the director vector and distance to the player
@@ -104,7 +110,7 @@ public class ChestBusterBehaviour : MonoBehaviour
                     currentTimer += Time.deltaTime;
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
-                        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
+                        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
                         hasShot = true;
                     }
                     break;

@@ -49,11 +49,17 @@ bool N_SceneManager::PreUpdate()
 		// Kiko - Here add the transition managing
 		engine->collisionSolver->ClearCollisions();
 
-		LoadSceneFromJSON(currentScene->GetPath());
+		objectsToDelete.clear();
+
+		if (previousFrameIsPlaying)
+			LoadSceneFromJSON(currentScene->GetPath(), sceneChangeKeepGOs);
+		else
+			LoadSceneFromJSON(currentScene->GetPath());
 
 		FindCameraInScene();
 		currentScene->SetIsDirty(true);
 		sceneChange = false;
+		sceneChangeKeepGOs = false;
 	}
 
 	return true;
@@ -65,16 +71,17 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 
 	// Save Scene by checking if isDirty and pressing CTRL+S
 	//if (currentScene->IsDirty()) SaveScene();
-
-	if (!sceneChange)
-		sceneIsPlaying = isPlaying;
+	
 	//this will be called when we click play
-	if (previousFrameIsPlaying != sceneIsPlaying && sceneIsPlaying)
+	if (!sceneIsPlaying && isPlaying)
 	{
-		RecursiveScriptInit(currentScene->GetRootSceneGO());
+		RecursiveScriptInit(currentScene->GetRootSceneGO(), !previousFrameIsPlaying);
 		//add game objects to collision solver vector
 		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
 	}
+
+	if (!sceneChange)
+		sceneIsPlaying = isPlaying;
 
 	if (isPlaying)
 	{
@@ -87,7 +94,7 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 		engine->collisionSolver->ClearCollisions();
 	}
 
-	previousFrameIsPlaying = sceneIsPlaying;
+	previousFrameIsPlaying = isPlaying;
 
 	return true;
 }
@@ -119,11 +126,12 @@ void N_SceneManager::LoadScene(uint index)
 
 }
 
-void N_SceneManager::LoadScene(std::string sceneName)
+void N_SceneManager::LoadScene(std::string sceneName, bool keep)
 {
 	this->currentScene->SetPath("Assets/Scenes/" + sceneName + ".toe");
 	this->sceneChange = true;
 	sceneIsPlaying = false;
+	sceneChangeKeepGOs = keep;
 }
 
 void N_SceneManager::SaveScene()
@@ -158,7 +166,7 @@ void N_SceneManager::SaveScene()
 	currentScene->SetIsDirty(false);
 }
 
-void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
+void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 {
 	//Change to load the Scene Class
 
@@ -208,7 +216,17 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 		currentScene->SetPath(sceneJSON["path"]);
 	}
 
-	currentScene->GetRootSceneGO().get()->children.clear();
+	if (keepGO)
+	{
+		for (auto it = currentScene->GetRootSceneGO()->children.begin(); it != currentScene->GetRootSceneGO()->children.end();)
+		{
+			if (!(*it)->isKeeped)
+				it = currentScene->GetRootSceneGO().get()->children.erase(it);
+			else
+				++it;
+		}
+	}
+	else { currentScene->GetRootSceneGO().get()->children.clear(); }
 
 	// Load game objects from the JSON data
 	if (sceneJSON.contains("GameObjects"))
@@ -217,6 +235,12 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 
 		for (const auto& gameObjectJSON : gameObjectsJSON)
 		{
+			if (gameObjectJSON.contains("Keeped"))
+			{
+				if (gameObjectJSON["Keeped"] == true && previousFrameIsPlaying)
+					continue;
+			}
+			
 			// Create a new game object
 			auto newGameObject = CreateEmptyGO();
 			newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -232,12 +256,22 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename)
 	}
 }
 
-void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go)
+void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go, bool firstInit)
 {
 	for (const auto gameObject : go.get()->children)
 	{
-		if (gameObject.get()->GetComponent<Script>())
-			gameObject.get()->GetComponent<Script>()->Start();
+		if (gameObject.get()->isKeeped && !firstInit)
+			continue;
+
+		gameObject.get()->GetAllComponents();
+		for (const auto compGO : gameObject.get()->GetAllComponents())
+		{
+			if (compGO->GetType() == ComponentType::Script)
+			{
+				Script* script = dynamic_cast<Script*>(compGO);
+				script->Start();
+			}
+		}
 
 		RecursiveScriptInit(gameObject);
 	}
@@ -475,7 +509,7 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
 	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
 
-	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName);
+	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName, ".mesh", ".animator");
 
 	if (fileNames.empty())
 		CreateMeshGO(path);
@@ -706,7 +740,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
+void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& position)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -737,6 +771,39 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
 	file.close();
 
 	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetPosition(position);
+}
+
+void N_SceneManager::CreatePrefabFromPath(std::string prefabPath, const vec3f& position)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+
+	std::ifstream file(prefabPath);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", prefabPath);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
 uint N_SceneManager::GetNumberGO() const

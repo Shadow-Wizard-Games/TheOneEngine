@@ -95,7 +95,7 @@ inline ResourceId Resources::Load<Shader>(const std::string& file) {
 
 		shader->Init(file);
 
-		PushResource(RES_SHADER, file.c_str(), shader);
+		PushResource(RES_SHADER, shader->getPath(), shader);
 
 		resourceId = size;
 	}
