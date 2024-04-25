@@ -3,22 +3,9 @@ using System.Collections.Generic;
 
 public class AlienQueenBehaviourNew : MonoBehaviour
 {
-    uint currentPhase = 1;
-
-    enum States
-    {
-        InitialState,
-        Zigzag,
-        Waiting,
-        None
-    }
-
-    States lastState = States.InitialState;
-    States currentState = States.InitialState;
-
     IGameObject playerGO;
-    float playerDistance;
-
+    float countDown = 0.0f; //Do not touch
+    
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
@@ -26,9 +13,25 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     public override void Update()
     {
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
         DoStateBehaviour();
     }
+
+    #region FSM
+
+    uint currentPhase = 1;
+
+    enum States
+    {
+        InitialState,
+        Zigzag,
+        Circle,
+        Waiting,
+        Attack,
+        None
+    }
+
+    States lastState = States.InitialState;
+    States currentState = States.InitialState;
 
     void DoStateBehaviour()
     {
@@ -40,18 +43,27 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             case States.Zigzag:
                 DoZigzag();
                 break;
+            case States.Circle:
+                DoCircle();
+                break;
             case States.Waiting:
                 DoWait();
                 break;
+            case States.Attack:
+                DoAttack();
+                break;
             default:
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
+                Debug.LogError("Fallen out of FSM");
                 break;
         }
     }
 
     float detectionRange = 400.0f;
+    float playerDistance; //Do not touch
     void DoIdle()
     {
+        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
         if (playerDistance < detectionRange)
         {
             currentState = States.Zigzag;
@@ -82,6 +94,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     {
         if (currentState != lastState)
         {
+            Debug.Log("I am now entering zigzag");
+
             lastState = currentState;
 
             lastPlayerPos = playerGO.transform.position;
@@ -89,6 +103,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             chargeDirectionRightVec = attachedGameObject.transform.right;
             chargeDirectionForwardVec = attachedGameObject.transform.forward;
             yProgress = attachedGameObject.transform.position;
+            zigzagPos = 270.0f;
+            reachedPoint = false;
         }
 
 
@@ -118,20 +134,38 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
     }
 
+    float circleTime = 5.0f;
+    void DoCircle()
+    {
+        //Implement circle around player
+        Debug.Log("Doing Circle");
+
+        countDown += Time.deltaTime;
+        if (countDown > circleTime)
+        {
+            countDown = 0.0f;
+            currentState = States.Attack;
+        }
+
+    }
+
     float waitingTime = 3.0f;
-    float elapsedTime = 0.0f; //Do not touch
     void DoWait()
     {
         if (currentState != lastState)
         {
-            elapsedTime = 0;
+            Debug.Log("I am now entering wait");
+            lastState = currentState;
+            countDown = 0.0f;
         }
 
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime > waitingTime)
+        attachedGameObject.transform.LookAt(playerGO.transform.position);
+
+        countDown += Time.deltaTime;
+        if (countDown > waitingTime)
         {
-            elapsedTime = 0.0f;
-            currentState = nextState;
+            countDown = 0.0f;
+            currentState = States.Attack;
         }
     }
 
@@ -148,20 +182,31 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     }
 
     Attacks currentAttack = Attacks.None;
+    bool attackedFinished = false;
     void DoAttack()
     {
+        if (currentState != lastState)
+        {
+            Debug.Log("I am now entering attack");
+            lastState = currentState;
+            currentAttack = ChooseAttack();
+        }
+
         switch (currentAttack)
         {
             case Attacks.TailPhase1:
+                TailSweep();
                 break;
             case Attacks.AcidPhase1:
+                AcidBomb();
                 break;
             case Attacks.Spawn:
+                Spawn();
                 break;
-            //case Attacks.TailPhase2:
-            //    break;
-            //case Attacks.AcidPhase2:
-            //    break;
+            case Attacks.TailPhase2:
+                break;
+            case Attacks.AcidPhase2:
+                break;
             //case Attacks.Jump:
             //    break;
             //case Attacks.Charge:
@@ -169,40 +214,160 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             default:
                 break;
         }
+
+        if (attackedFinished)
+        {
+            attackedFinished = false;
+
+            if (currentPhase == 1) { currentState = States.Zigzag; }
+            else
+            {
+                currentState = (Convert.ToBoolean(new Random().Next(2)))
+                ? States.Zigzag
+                : States.Circle;
+            }
+        }
     }
+
+    #endregion
+
+    #region Attacks
 
     Dictionary<Attacks, float> chancesPhase1 =
     new Dictionary<Attacks, float>
     {
-        { Attacks.TailPhase1, 0.3f },
-        { Attacks.AcidPhase1, 0.3f },
-        { Attacks.Spawn, 0.4f },
+        { Attacks.TailPhase1, 0.05f },
+        { Attacks.AcidPhase1, 0.9f },
+        { Attacks.Spawn, 0.05f },
+    };
+
+    Dictionary<Attacks, float> chancesPhase2 =
+    new Dictionary<Attacks, float>
+    {
+        { Attacks.TailPhase2, 0.7f },
+        { Attacks.AcidPhase2, 0.7f },
+        { Attacks.Spawn, 0.3f },
     };
 
     Attacks ChooseAttack()
     {
-        //Random rand = new Random();
-        //return (Attacks)rand.Next(3); //Phase 1
-        //return (Attacks)rand.Next(2, 5); //Phase 2
-        //return (Attacks)rand.Next(2, 7); //Phase 3
-
-        if (currentPhase > 2)
-        {
-            //choose next attack in phase 3
-            //return attack;
-        }
-
-
         Random rand = new Random();
         float randomNum = (float)rand.NextDouble();
 
-        Dictionary<Attacks, float> currentPhaseChances;
-
-        (currentPhase == 1) ? currentPhaseChances = chancesPhase1 : currentPhaseChances = chancesPhase2;
-
-        foreach (KeyValuePair<Attacks, float> entry in chancesPhase1)
+        switch (currentPhase)
         {
+            case 1:
+                foreach (KeyValuePair<Attacks, float> entry in chancesPhase1)
+                {
+                    randomNum -= entry.Value;
+                    if (randomNum <= 0)
+                    {
+                        Debug.Log("Doing attack: " + entry.Key.ToString());
+                        return entry.Key;
+                    }
+                }
+                Debug.LogError("Queen FSM fell into unintended behaviour");
+                return Attacks.None;
+            case 2:
+                if (currentState == States.Circle)
+                {
+                    randomNum -= chancesPhase2[Attacks.TailPhase2];
+                    if (randomNum <= 0) return Attacks.TailPhase2;
+                    else return Attacks.Spawn;
+                }
+                else if (currentState == States.Zigzag)
+                {
+                    randomNum -= chancesPhase2[Attacks.AcidPhase2];
+                    if (randomNum <= 0) return Attacks.AcidPhase2;
+                    else return Attacks.Spawn;
+                }
+                Debug.LogError("Queen FSM fell into unintended behaviour");
+                return Attacks.None;
+            case 3:
+                Debug.LogWarning("Queen FSM phase 3 pending to implement");
+                return Attacks.None;
 
+            default:
+                Debug.LogError("Queen FSM current phase is invalid");
+                return Attacks.None;
         }
     }
+
+    float spinDuration = 5.0f;
+    bool isSpinning = false; //Do not touch
+    private void TailSweep()
+    {
+        //float damage = 15;
+        if (!isSpinning) isSpinning = true;
+
+        attachedGameObject.transform.Rotate(Vector3.up * -180 * Time.deltaTime);
+
+        countDown += Time.deltaTime;
+        if (countDown >= spinDuration)
+        {
+            countDown = 0.0f;
+            isSpinning = false;
+
+            currentAttack = Attacks.None;
+            attackedFinished = true;
+        }
+    }
+
+    float acidBombDuration = 5.0f;
+    Vector3 height = Vector3.up * 30.0f;
+    bool shot = false; //Do not touch
+    private void AcidBomb()
+    {
+        if (!shot)
+        {
+            shot = true;
+
+            InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
+                                        attachedGameObject.transform.forward *
+                                        (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
+                                        attachedGameObject.transform.rotation);
+        }
+
+        countDown += Time.deltaTime;
+        if (countDown >= acidBombDuration)
+        {
+            countDown = 0.0f;
+
+            shot = false;
+            currentAttack = Attacks.None;
+            attackedFinished = true;
+        }
+        //ResetState();
+    }
+
+    float spawnDuration = 5.0f;
+    bool spawned = false; //Do not touch
+    private void Spawn()
+    {
+        if (!spawned)
+        {
+            spawned = true;
+
+            Vector3 scale = new Vector3(1, 1, 1);
+
+            InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position +
+                                               attachedGameObject.transform.forward *
+                                               (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+                                               attachedGameObject.transform.rotation,
+                                               scale);
+        }
+
+        countDown += Time.deltaTime;
+        if (countDown >= spawnDuration)
+        {
+            countDown = 0.0f;
+
+            spawned = false;
+            currentAttack = Attacks.None;
+            attackedFinished = true;
+        }
+        //ResetState();
+    }
+
+    #endregion
 }
