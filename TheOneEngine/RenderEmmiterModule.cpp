@@ -37,7 +37,7 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     vec3 particlePosition = particle->position;
 
     if (!owner->isGlobal) {
-        mat4 worldTransform = owner->owner->GetTransform()->CalculateWorldTransform();
+        mat4 worldTransform = owner->owner->GetTransform()->GetGlobalTransform();
 
         glm::dmat3 worldRotation = worldTransform;
 

@@ -852,23 +852,23 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
+void Scene::RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
 	if (cam != nullptr) {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->CalculateWorldTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
 			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneDraw(gameObject, cam);
+			RecurseSceneSort(gameObject, cam);
 		}
 
 	}
 	else {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->CalculateWorldTransform()[3]);
+			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3]);
 			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneDraw(gameObject);
+			RecurseSceneSort(gameObject);
 		}
 
 	}
@@ -899,7 +899,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
-	RecurseSceneDraw(rootSceneGO, cam);
+	RecurseSceneSort(rootSceneGO, cam);
 
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {

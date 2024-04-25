@@ -182,7 +182,7 @@ void Emmiter::InitializeParticle(Particle* particle)
 	particle->ResetAttributes();
 
 	if (isGlobal) {
-		particle->position += (vec3)owner->GetTransform()->CalculateWorldTransform()[3];
+		particle->position += (vec3)owner->GetTransform()->GetGlobalTransform()[3];
 	}
 
 	for (auto i = initializeModules.begin(); i != initializeModules.end(); ++i) {
