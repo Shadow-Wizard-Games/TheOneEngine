@@ -108,7 +108,7 @@ bool PanelGame::Draw()
 					engine->DrawFrustum(gameCam->frustum);
 			}
 			current->Draw(DrawMode::EDITOR);
-			if(engine->N_sceneManager->GetSceneIsChanging())
+			if (engine->N_sceneManager->GetSceneIsChanging())
 				engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
 
 			frameBuffer->Unbind();

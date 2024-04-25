@@ -1,6 +1,7 @@
 #include "Emmiter.h"
 #include <map>
 #include <GL/glew.h>
+#include <glm/gtx/norm.hpp>
 
 #include "ParticleSystem.h"
 

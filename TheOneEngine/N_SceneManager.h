@@ -152,6 +152,9 @@ private:
 
 public:
 	Camera* currentCamera = nullptr;
+
+	std::multimap<float, GameObject*> zSorting;
+
 	//int listenerAudioGOID = -1;
 };
 
