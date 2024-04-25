@@ -243,6 +243,16 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    public override void OnCollision(IntPtr collidedGO)
+    {
+        IGameObject colGO = new IGameObject(collidedGO);
+        if(colGO.tag == "Bullet")
+        {
+            ReduceLife();
+            colGO.Destroy();
+        }
+    }
+
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
         if (isDead || gameManager.godMode) return;
@@ -262,11 +272,5 @@ public class PlayerScript : MonoBehaviour
         if (isDead) return 0;
 
         return life;
-    }
-
-    public override void OnCollision(IntPtr collidedGO)
-    {
-        IGameObject colGO = new IGameObject(collidedGO);
-        Debug.LogWarning(colGO.tag);
     }
 }

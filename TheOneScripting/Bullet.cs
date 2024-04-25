@@ -23,4 +23,9 @@ class Bullet : MonoBehaviour
 
         attachedGameObject.transform.Translate(attachedGameObject.transform.forward * bulletSpeed * Time.deltaTime);
     }
+    public override void OnCollision(IntPtr collidedGO)
+    {
+        IGameObject colGO = new IGameObject(collidedGO);
+
+    }
 }

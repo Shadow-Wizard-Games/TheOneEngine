@@ -12,7 +12,6 @@
 Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Collider2D)
 {
     colliderType = ColliderType::Circle;
-    //this->collisionType = CollisionType::Player;
 
     w = containerGO.get()->GetAABBox().sizes().x;
     h = containerGO.get()->GetAABBox().sizes().z;
@@ -28,7 +27,6 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO) : Component(cont
 Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, Collider2D* ref) : Component(containerGO, ref,ComponentType::Collider2D)
 {
     this->colliderType = ref->colliderType;
-    //this->collisionType = ref->collisionType;
     this->h = ref->h;
     this->w = ref->w;
     this->offset = ref->offset;
@@ -43,7 +41,6 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType col
     Component(containerGO, ComponentType::Collider2D),
     colliderType(colliderType)
 {
-    //this->collisionType = CollisionType::Player;
     radius = 0.0;
     //TODO: CHANGE INTO REAL CALCULATED SIZES
     h = 1;
@@ -59,7 +56,6 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType col
     Component(containerGO, ref, ComponentType::Collider2D),
     colliderType(colliderType)
 {
-    //this->collisionType = CollisionType::Player;
     radius = 0.0;
     //TODO: CHANGE INTO REAL CALCULATED SIZES
     h = 1;
@@ -80,7 +76,6 @@ json Collider2D::SaveComponent()
     colliderJSON["UID"] = UID;
     colliderJSON["Name"] = name;
     colliderJSON["Type"] = type;
-    //colliderJSON["CollisionType"] = collisionType;
     colliderJSON["ColliderType"] = colliderType;
     colliderJSON["Width"] = w;
     colliderJSON["Height"] = h;
@@ -104,7 +99,6 @@ void Collider2D::LoadComponent(const json& colliderJSON)
     if (colliderJSON.contains("UID")) UID = colliderJSON["UID"];
     if (colliderJSON.contains("Name")) name = colliderJSON["Name"];
     if (colliderJSON.contains("Type")) type = colliderJSON["Type"];
-    //if (colliderJSON.contains("CollisionType")) collisionType = colliderJSON["CollisionType"];
     if (colliderJSON.contains("ColliderType")) colliderType = colliderJSON["ColliderType"];
     if (colliderJSON.contains("Width")) w = colliderJSON["Width"];
     if (colliderJSON.contains("Height")) h = colliderJSON["Height"];

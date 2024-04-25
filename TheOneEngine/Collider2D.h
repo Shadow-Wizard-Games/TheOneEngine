@@ -15,14 +15,6 @@ enum class ColliderType
     Rect
 };
 
-//enum class CollisionType
-//{
-//    Player,
-//    Enemy,
-//    Wall,
-//    Bullet,
-//};
-
 enum class ObjectOrientation
 {
     Front = 0,
@@ -47,7 +39,6 @@ public:
 public:
 
     ColliderType colliderType;
-    //CollisionType collisionType;
     double radius;
     double w, h;
     vec2 offset;

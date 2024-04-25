@@ -1425,58 +1425,6 @@ bool PanelInspector::Draw()
                         selectedGO->AddComponent<Collider2D>();
                         selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
                     }
-
-                    //if (ImGui::TreeNode("Player"))
-                    //{
-                    //    if (ImGui::MenuItem("Circle"))
-                    //    {
-                    //        selectedGO->AddComponent<Collider2D>();
-                    //        selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-                    //        selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Player;
-                    //    }
-                    //    if (ImGui::MenuItem("Rectangle"))
-                    //    {
-                    //        selectedGO->AddComponent<Collider2D>();
-                    //        selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
-                    //        selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Player;
-                    //    }
-                    //    ImGui::TreePop();
-                    //}
-
-                    //if (ImGui::TreeNode("Enemy"))
-                    //{
-                    //    if (ImGui::MenuItem("Circle"))
-                    //    {
-                    //        selectedGO->AddComponent<Collider2D>();
-                    //        selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-                    //        selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Enemy;
-                    //    }
-                    //    if (ImGui::MenuItem("Rectangle"))
-                    //    {
-                    //        selectedGO->AddComponent<Collider2D>();
-                    //        selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
-                    //        selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Enemy;
-                    //    }
-                    //    ImGui::TreePop();
-                    //}
-
-                    //if (ImGui::TreeNode("Wall"))
-                    //{
-                    //    if (ImGui::MenuItem("Circle"))
-                    //    {
-                    //        selectedGO->AddComponent<Collider2D>();
-                    //        selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-                    //        selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Wall;
-                    //    }
-                    //    if (ImGui::MenuItem("Rectangle"))
-                    //    {
-                    //        selectedGO->AddComponent<Collider2D>();
-                    //        selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
-                    //        selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Wall;
-                    //    }
-                    //    ImGui::TreePop();
-                    //}
-
                     ImGui::TreePop();
                 }
 
