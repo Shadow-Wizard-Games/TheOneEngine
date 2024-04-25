@@ -117,7 +117,7 @@ void ColorOverLifeUpdate::LoadModule(const json& moduleJSON)
 		finalColor.r = moduleJSON["FinalColor"][0];
 		finalColor.g = moduleJSON["FinalColor"][1];
 		finalColor.b = moduleJSON["FinalColor"][2];
-		finalColor.a = moduleJSON["FinalColor"][2];
+		finalColor.a = moduleJSON["FinalColor"][3];
 	}
 
 	if (moduleJSON.contains("AffectR"))

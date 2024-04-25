@@ -30,6 +30,7 @@ public:
     Transform(std::shared_ptr<GameObject> containerGO, Transform* ref);
     virtual ~Transform();
 
+    void Update() override;
 
     // @Transform -------------------------------
     void Translate(const vec3& translation, const HandleSpace& space = HandleSpace::LOCAL);
@@ -50,6 +51,7 @@ public:
     // @Utils -----------------------------------
     void DecomposeTransform();   
     mat4 CalculateWorldTransform();
+    mat4 GetGlobalTransform();
     mat4 WorldToLocalTransform(GameObject* GO, mat4 modifiedWorldTransform);
 
     void ExtractBasis(const glm::mat4& transformMatrix, glm::mat3& basis);
@@ -88,6 +90,8 @@ private:
     vec3 position;
     quat rotation;
     vec3 scale;
+
+    mat4 globalTransformMatrix;
 };
 
 #endif //__TRANSFORM_H__

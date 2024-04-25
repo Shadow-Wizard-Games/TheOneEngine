@@ -354,7 +354,7 @@ void SetDirection::Initialize(Particle* particle)
 	}
 
 	if (owner->isGlobal) {
-		mat4 worldTransform = owner->owner->GetTransform()->CalculateWorldTransform();
+		mat4 worldTransform = owner->owner->GetTransform()->GetGlobalTransform();
 
 		glm::dmat3 worldRotation = worldTransform;
 		
