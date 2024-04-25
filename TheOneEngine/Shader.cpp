@@ -71,7 +71,8 @@ void Shader::Compile(const std::string& filename)
 	if (retflag)
 		return;
 
-	path = filename;
+	std::filesystem::path libraryFilename = filename;
+	path = Resources::PathToLibrary<Shader>() + libraryFilename.filename().replace_extension(".toeshader").string();
 }
 
 void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentShaderSource, bool hasGS, std::string* geometryShaderSourceStr, bool& retflag)
@@ -164,9 +165,10 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 
 	compileState = State::Compiled;
 
-	modelMatrixID = glGetUniformLocation(ProgramID, "model");
+	modelMatrixID = glGetUniformLocation(ProgramID, "u_Model");
 	//projectionMatrixID = GLCALL(glGetUniformLocation(ProgramID, "projection");
 	//viewMatrixID = GLCALL(glGetUniformLocation(ProgramID, "view");
+	GLERR;
 }
 
 bool Shader::LoadFromTOEasset(const std::string& filename)

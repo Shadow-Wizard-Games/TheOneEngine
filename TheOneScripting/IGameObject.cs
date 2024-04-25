@@ -8,6 +8,7 @@ public class IGameObject : IObject
 {
     public ITransform transform;
     public IAudioSource source;
+    public IAnimator animator;
 
     public IGameObject() : base()
     {
@@ -16,6 +17,8 @@ public class IGameObject : IObject
         transform = new ITransform();
 
         source = new IAudioSource();
+
+        animator = new IAnimator();
     }
     public IGameObject(IntPtr GOref) : base(GOref)
     {
@@ -23,8 +26,8 @@ public class IGameObject : IObject
         name = InternalCalls.GetGameObjectName(containerGOptr);
         tag = InternalCalls.GetTag(containerGOptr);
         transform = new ITransform(GOref);
-
         source = new IAudioSource(GOref);
+        animator = new IAnimator(GOref);
     }
 
     public void Destroy()
@@ -47,7 +50,24 @@ public class IGameObject : IObject
         
         return goToReturn;
     }
-    
+
+    public IGameObject FindInChildren(string name)
+    {
+        IntPtr foundGOptr = InternalCalls.FindGameObjectInChildren(containerGOptr, name);
+
+        if (foundGOptr == IntPtr.Zero)
+        {
+            Debug.LogError("GameObject with name '" + name + "' not found.");
+
+            return null;
+        }
+
+        IGameObject goToReturn = new IGameObject(foundGOptr);
+
+        return goToReturn;
+    }
+
+
     //Used to get any component except scripts
     public TComponent GetComponent<TComponent>() where TComponent : IComponent
     {
@@ -95,6 +115,9 @@ public class IGameObject : IObject
                         break;
                     case IComponent.ComponentType.IParticleSystem:
                         componentToReturn = new IParticleSystem(containerGOptr) as TComponent;
+                        break;
+                    case IComponent.ComponentType.IAnimator:
+                        componentToReturn = new IAnimator(containerGOptr) as TComponent;
                         break;
                     default:
                         break;

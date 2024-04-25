@@ -23,6 +23,7 @@ GameObject::GameObject(std::string name) :
 	components(),
 	enabled(true),
 	isStatic(false),
+	isKeeped(false),
 	aabb()
 {
 	// hekbas - shared_from_this() must NOT be called in the constructor!!!
@@ -50,6 +51,24 @@ void GameObject::Update(double dt)
 
 	// Recalculate AABBs
 	aabb = CalculateAABB();
+
+	// Prefab deletion check to make GO not prefab
+	// Not works because only goes through GO update in PLAY state
+	/*if (this->IsPrefab())
+	{
+		std::stringstream prefabPath(ASSETS_PATH);
+		prefabPath << "Prefabs\\" << this->name;
+
+		std::ifstream prefabFile(prefabPath.str());
+
+		if (!prefabFile.good())
+		{
+			prefabID = 0;
+			SetPrefab(false);
+
+		}
+	}
+	return false;*/
 }
 
 void GameObject::Draw(Camera* camera)
@@ -345,6 +364,7 @@ json GameObject::SaveGameObject()
 	gameObjectJSON["Name"] = name;
 	gameObjectJSON["Tag"] = tag;
 	gameObjectJSON["Static"] = isStatic;
+	gameObjectJSON["Keeped"] = isKeeped;
 	gameObjectJSON["Enabled"] = enabled;
 	
 	//Save prefab variables
@@ -353,6 +373,7 @@ json GameObject::SaveGameObject()
 		gameObjectJSON["PrefabID"] = prefabID;
 		gameObjectJSON["EditablePrefab"] = editablePrefab;
 		gameObjectJSON["PrefabDirty"] = isPrefabDirty;
+		gameObjectJSON["PrefabName"] = prefabName;
 	}
 
 	if (!components.empty())
@@ -407,6 +428,11 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 		isStatic = gameObjectJSON["Static"];
 	}
 
+	if (gameObjectJSON.contains("Keeped"))
+	{
+		isKeeped = gameObjectJSON["Keeped"];
+	}
+
 	if (gameObjectJSON.contains("Enabled"))
 	{
 		enabled = gameObjectJSON["Enabled"];
@@ -423,6 +449,10 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 		if (gameObjectJSON.contains("PrefabDirty"))
 		{
 			isPrefabDirty = gameObjectJSON["PrefabDirty"];
+		}
+		if (gameObjectJSON.contains("PrefabName"))
+		{
+			prefabName = gameObjectJSON["PrefabName"];
 		}
 	}
 
@@ -516,26 +546,17 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 	}
 }
 
-void GameObject::SetPrefab(const uint32_t& pID)
+void GameObject::SetPrefab(const uint32_t& pID, const std::string fileName)
 {
-	if (!children.empty()) 
-	{
-		for (auto item = children.begin(); item != children.end(); ++item) 
-		{
-			if (*item != nullptr && (pID != 0 || (*item).get()->prefabID == this->prefabID))
-			{
-				(*item).get()->SetPrefab(pID);
-			}
-		}
-	}
 	prefabID = pID;
+	prefabName = fileName;
 }
 
 void GameObject::UnpackPrefab()
 {
 	if (IsPrefab())
 	{
-		SetPrefab(0);
+		SetPrefab(0, "");
 		editablePrefab = true; 
 		isPrefabDirty = false;
 	}

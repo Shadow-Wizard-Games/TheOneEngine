@@ -8,7 +8,18 @@ public class IObject
 {
     protected IntPtr containerGOptr;
 
-    public string name;
+    public string name
+    {
+        get
+        {
+            return InternalCalls.GetGameObjectName(containerGOptr);
+        }
+        set
+        {
+            //InternallCalls.SetGameObjectName(containerGOptr, ref value);
+        }
+    }
+
     public string tag;
     public bool isActive;
 

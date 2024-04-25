@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static AudioManager;
 
 public class EventCollectible : Event
 {
@@ -13,19 +12,21 @@ public class EventCollectible : Event
     Item currentItem;
     float playerDistance;
 
+    GameManager gameManager;
+
     float collectibleRange = 100.0f;
 
     //debug
     bool inRange = false;
 
-    AudioManager.EventIDs currentID = 0;    //change to correct audio ID
-
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         eventType = EventType.COLLECTIBLE;
-        itemManagerGO = IGameObject.Find("Manager");
+        itemManagerGO = IGameObject.Find("ItemManager");
         itemManager = itemManagerGO.GetComponent<ItemManager>();
+
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
     public override void Update()
@@ -35,7 +36,8 @@ public class EventCollectible : Event
         {
             DoEvent();
         }
-        DrawEventDebug();       
+
+        if (gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()

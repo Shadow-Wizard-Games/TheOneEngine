@@ -1,27 +1,36 @@
 #include "Particle.h"
 #include <GL/glew.h>
 
+void Particle::SetDuration(float duration)
+{
+    this->duration = duration;
+    lifetime = 0;
+
+    lifetimeOverOne = 0;
+    dtOverOne = 1 / duration;
+}
+
+void Particle::ResetAttributes()
+{
+    initialColor = vec4(0, 0, 0, 255);
+    color = initialColor;
+
+    position = vec3(0, 0, 0);
+
+    direction = vec3(0, 0, 0);
+    speed = 0;
+
+    rotation = vec4(1, 0, 0, 0);
+
+    initialScale = vec3(1, 1, 1);
+    scale = initialScale;
+}
+
 void Particle::Update(double dt)
 {
     lifetime += dt;
 
-    color += deltaColor * dt;
+    lifetimeOverOne += dtOverOne * dt;
 
-    position += speed * dt;
-}
-
-void Particle::Render()
-{
-    glBegin(GL_TRIANGLES);
-    glColor3ub(color.r, color.g, color.b);
-
-    glVertex3d(position.x - 1, position.y + 1, position.z);
-    glVertex3d(position.x - 1, position.y - 1, position.z);
-    glVertex3d(position.x + 1, position.y + 1, position.z);
-
-    glVertex3d(position.x - 1, position.y - 1, position.z);
-    glVertex3d(position.x + 1, position.y - 1, position.z);
-    glVertex3d(position.x + 1, position.y + 1, position.z);
-
-    glEnd();
+    position += direction * (speed * dt);
 }

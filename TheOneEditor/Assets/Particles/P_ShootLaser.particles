@@ -1,0 +1,89 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            20.0,
+            10.0,
+            150.0
+          ],
+          "MinDirection": [
+            -20.0,
+            -10.0,
+            100.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 150.0,
+          "MinSpeed": 100.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            0.0,
+            0.0,
+            250.0,
+            255.0
+          ],
+          "MinColor": [
+            0.0,
+            0.0,
+            50.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        },
+        {
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            0.1,
+            0.1,
+            0.1
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 30.0,
+          "Duration": 0.4000000059604645,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            1.0,
+            2.0,
+            1.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "P_ShootLaser",
+  "Type": 9,
+  "UID": 1044709403
+}

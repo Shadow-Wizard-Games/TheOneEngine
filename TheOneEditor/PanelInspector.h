@@ -19,6 +19,9 @@ public:
 	void ChooseScriptNameWindow();
 	void ChooseParticlesToImportWindow();
 
+	void OverridePrefabs(GameObject& gameObject);
+	void OverridePrefabFile(GameObject& gameObject);
+
 private:
 	GameObject* selectedGO = nullptr;
 
@@ -37,7 +40,8 @@ private:
 		"Square",
 	};
 
-	int slilderDesignOptionToModify = 0;
+	int sliderDesignOptionToModify = 0;
+	bool sliderActivePart = true;
 };
 
 #endif // !__PANEL_INSPECTOR_H__

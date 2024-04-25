@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using static AudioManager;
+using static IAudioSource;
 using static ICamera;
 
 class InternalCalls
@@ -73,6 +73,9 @@ class InternalCalls
     internal extern static IntPtr FindGameObject(string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IntPtr FindGameObjectInChildren(IntPtr gameObject, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr ComponentCheck(IntPtr gameObject, int componentType, string scriptName = null);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -95,10 +98,13 @@ class InternalCalls
 
     #region Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void LoadScene(string sceneName);
+    internal extern static void LoadScene(string sceneName, bool keep = false);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetCurrentSceneName();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void CreatePrefab(string prefabName, Vector3 position);
     #endregion
 
     #region User Interfaces
@@ -109,7 +115,16 @@ class InternalCalls
     internal extern static void MoveSelectedButton(IntPtr GOptr, int direction);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void MoveSelection(IntPtr GOptr, int direction);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSelectedButton(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int GetSelected(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ChangeSectImg(IntPtr GOptr, string name, int x, int y, int w, int h);
@@ -141,6 +156,12 @@ class InternalCalls
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DrawWireSphere(Vector3 position, float radius, Vector3 color);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void ToggleCollidersDraw();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void ToggleGridDraw();
     #endregion
 
     #region Particle System
@@ -148,10 +169,13 @@ class InternalCalls
     internal extern static void PlayPS(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void StopPS(IntPtr GOptr);
+    internal extern static void PausePS(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ReplayPS(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void StopPS(IntPtr GOptr);
     #endregion
 
     #region Audio
@@ -212,5 +236,28 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetPrimaryCam(IntPtr GOptr, ref bool cameraType);
+    #endregion
+
+    #region Animation
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void PlayAnimation(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void StopAnimation(IntPtr GOptr);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetTransitionBlend(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTransitionBlend(IntPtr GOptr, ref bool blend);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetTransitionTime(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTransitionTime(IntPtr GOptr, ref float time);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void UpdateAnimation(IntPtr GOptr, ref float dt);
     #endregion
 }

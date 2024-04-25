@@ -1,0 +1,89 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxColor": [
+            255.0,
+            255.0,
+            255.0,
+            255.0
+          ],
+          "MinColor": [
+            240.0,
+            240.0,
+            240.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        },
+        {
+          "MaxScale": [
+            5.0,
+            5.0,
+            5.0
+          ],
+          "MinScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        },
+        {
+          "MaxDirection": [
+            0.0,
+            20.0,
+            20.0
+          ],
+          "MinDirection": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 1.0,
+          "MinSpeed": 20.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 10,
+      "RenderModule": [
+        {
+          "BillboardType": 0,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 10.0,
+          "Duration": 0.75,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            30.0,
+            75.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "P_Roll_Dust",
+  "Type": 9,
+  "UID": 402248169
+}

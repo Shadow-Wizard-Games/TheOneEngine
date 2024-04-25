@@ -44,16 +44,16 @@
     <Compile Include="AdultXenomorphBehaviour.cs" />
     <Compile Include="AlienQueenBehaviour.cs" />
     <Compile Include="AnarchistBehaviour.cs" />
-    <Compile Include="AudioManager.cs" />
+    <Compile Include="IAnimator.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="CamControlTest.cs" />
     <Compile Include="CameraMovement.cs" />
     <Compile Include="ChestBusterBehaviour.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="IntroScene.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Event.cs" />
-    <Compile Include="EventChangeScene.cs" />
     <Compile Include="EventNextRoom.cs" />
     <Compile Include="EventCollectible.cs" />
     <Compile Include="ExampleScript.cs" />
@@ -66,6 +66,7 @@
     <Compile Include="IGameObject.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="InternalCalls.cs" />
+    <Compile Include="UiScriptDebug.cs" />
     <Compile Include="UiManager.cs" />
     <Compile Include="UiScriptHud.cs" />
     <Compile Include="UiScriptInventory.cs" />
