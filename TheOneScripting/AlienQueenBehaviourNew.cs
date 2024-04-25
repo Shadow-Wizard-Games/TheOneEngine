@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class AlienQueenBehaviourNew : MonoBehaviour
 {
+    uint currentPhase = 1;
+
     enum States
     {
-        Waiting,
+        InitialState,
         Zigzag,
+        Waiting,
         None
     }
 
-    States lastState = States.Waiting;
-    States currentState = States.Waiting;
+    States lastState = States.InitialState;
+    States currentState = States.InitialState;
 
     IGameObject playerGO;
     float playerDistance;
@@ -30,11 +34,14 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     {
         switch (currentState)
         {
-            case States.Waiting:
+            case States.InitialState:
                 DoIdle();
                 break;
             case States.Zigzag:
                 DoZigzag();
+                break;
+            case States.Waiting:
+                DoWait();
                 break;
             default:
                 attachedGameObject.transform.LookAt(playerGO.transform.position);
@@ -107,7 +114,95 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
         if (reachedPoint && ((zigzagPos > 80 && zigzagPos < 100) || (zigzagPos > 260 && zigzagPos < 280)))
         {
-            currentState = States.None;
+            currentState = States.Waiting;
+        }
+    }
+
+    float waitingTime = 3.0f;
+    float elapsedTime = 0.0f; //Do not touch
+    void DoWait()
+    {
+        if (currentState != lastState)
+        {
+            elapsedTime = 0;
+        }
+
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime > waitingTime)
+        {
+            elapsedTime = 0.0f;
+            currentState = nextState;
+        }
+    }
+
+    enum Attacks
+    {
+        TailPhase1, //1
+        AcidPhase1, //1
+        Spawn,      //1 2 3
+        TailPhase2, //2 3
+        AcidPhase2, //2 3
+        Jump,       //3
+        Charge,     //3
+        None
+    }
+
+    Attacks currentAttack = Attacks.None;
+    void DoAttack()
+    {
+        switch (currentAttack)
+        {
+            case Attacks.TailPhase1:
+                break;
+            case Attacks.AcidPhase1:
+                break;
+            case Attacks.Spawn:
+                break;
+            //case Attacks.TailPhase2:
+            //    break;
+            //case Attacks.AcidPhase2:
+            //    break;
+            //case Attacks.Jump:
+            //    break;
+            //case Attacks.Charge:
+            //    break;
+            default:
+                break;
+        }
+    }
+
+    Dictionary<Attacks, float> chancesPhase1 =
+    new Dictionary<Attacks, float>
+    {
+        { Attacks.TailPhase1, 0.3f },
+        { Attacks.AcidPhase1, 0.3f },
+        { Attacks.Spawn, 0.4f },
+    };
+
+    Attacks ChooseAttack()
+    {
+        //Random rand = new Random();
+        //return (Attacks)rand.Next(3); //Phase 1
+        //return (Attacks)rand.Next(2, 5); //Phase 2
+        //return (Attacks)rand.Next(2, 7); //Phase 3
+
+        if (currentPhase > 2)
+        {
+            //choose next attack in phase 3
+            //return attack;
+        }
+
+
+        Random rand = new Random();
+        float randomNum = (float)rand.NextDouble();
+
+        Dictionary<Attacks, float> currentPhaseChances;
+
+        (currentPhase == 1) ? currentPhaseChances = chancesPhase1 : currentPhaseChances = chancesPhase2;
+
+        foreach (KeyValuePair<Attacks, float> entry in chancesPhase1)
+        {
+
         }
     }
 }
