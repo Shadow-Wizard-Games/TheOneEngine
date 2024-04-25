@@ -1132,7 +1132,7 @@ void Model::ImportToOzz(const std::string& file, const std::filesystem::path& im
 
     // skeleton settings
     json skeletonJSON;
-    skeletonJSON["filename"] = std::filesystem::absolute(skeleton_path).string().c_str();
+    skeletonJSON["filename"] = skeleton_path.string().c_str();
 
     // skeleton import settings
     json skeletonImportJSON;
@@ -1147,7 +1147,7 @@ void Model::ImportToOzz(const std::string& file, const std::filesystem::path& im
     json animationsJSON;
     json animJSON;
     animJSON["clip"] = "*";
-    animJSON["filename"] = std::filesystem::absolute(anim_out_path).string().c_str();
+    animJSON["filename"] = anim_out_path.string().c_str();
     animationsJSON.push_back(animJSON);
 
     ozzImportJSON["animations"] = animationsJSON;
@@ -1207,7 +1207,7 @@ void Model::CreateConfigOzzJSON(const std::filesystem::path& importPath, const s
 
     // skeleton settings
     json skeletonJSON;
-    skeletonJSON["filename"] = std::filesystem::absolute(skeleton_path).string().c_str();
+    skeletonJSON["filename"] = skeleton_path.string().c_str();
 
     // skeleton import settings
     json skeletonImportJSON;
@@ -1222,7 +1222,7 @@ void Model::CreateConfigOzzJSON(const std::filesystem::path& importPath, const s
     json animationsJSON;
     json animJSON;
     animJSON["clip"] = "*";
-    animJSON["filename"] = std::filesystem::absolute(anim_out_path).string().c_str();
+    animJSON["filename"] = anim_out_path.string().c_str();
     animationsJSON.push_back(animJSON);
 
     ozzImportJSON["animations"] = animationsJSON;
