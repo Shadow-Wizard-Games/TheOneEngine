@@ -41,7 +41,7 @@ public class PlayerScript : MonoBehaviour
         iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
 
         attachedGameObject.animator.Play("Idle");
-        attachedGameObject.animator.blend = true;
+        attachedGameObject.animator.blend = false;
         attachedGameObject.animator.time = 0.0f;
     }
 

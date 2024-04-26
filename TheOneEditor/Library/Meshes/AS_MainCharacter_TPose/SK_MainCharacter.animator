@@ -1,76 +1,60 @@
 {
   "animation_list": [
     {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_Idle.anim",
       "loop": true,
-      "lower_body_file": "",
       "name": "Idle",
       "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
+      "type": 0
     },
     {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_IdleWithM4.anim",
       "loop": true,
-      "lower_body_file": "",
       "name": "Idle M4",
       "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
+      "type": 0
     },
     {
-      "loop": false,
-      "lower_body_file": "",
-      "name": "Death",
-      "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
-    },
-    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_Roll.anim",
       "loop": true,
-      "lower_body_file": "",
-      "name": "Grab",
-      "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
-    },
-    {
-      "loop": false,
-      "lower_body_file": "",
       "name": "Roll",
       "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
+      "type": 0
     },
     {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_Run.anim",
       "loop": true,
-      "lower_body_file": "",
       "name": "Run",
       "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
+      "type": 0
     },
     {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_RunAndShootWithM4.anim",
       "loop": true,
-      "lower_body_file": "",
       "name": "Run M4",
       "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
+      "type": 0
     },
     {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_ShootM4.anim",
       "loop": true,
-      "lower_body_file": "",
-      "name": "ShootM4",
+      "name": "Shoot M4",
       "playback_speed": 1.0,
-      "type": 1,
-      "upper_body_file": "",
-      "upper_body_root": 0
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_GrabItem.anim",
+      "loop": true,
+      "name": "Grab",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_Dying.anim",
+      "loop": true,
+      "name": "Death",
+      "playback_speed": 1.0,
+      "type": 0
     }
   ],
   "material": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
