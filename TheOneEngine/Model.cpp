@@ -164,13 +164,13 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             material.SetUniformData("u_Tex", data);
                         }
                     }
-                    /*else
+                    else
                     {
                         id = Resources::LoadFromLibrary<Shader>("MeshColor");
                         material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
 
                         material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
-                    }*/
+                    }
 
 
                     Resources::Import<Material>(matPath.string().c_str(), &material);
