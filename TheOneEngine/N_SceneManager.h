@@ -146,7 +146,7 @@ public:
 	void ChangePrimaryCamera(GameObject* newPrimaryCam);
 
 private:
-	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
+	inline void RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
 
 private:
@@ -161,6 +161,9 @@ private:
 
 public:
 	Camera* currentCamera = nullptr;
+
+	std::multimap<float, GameObject*> zSorting;
+
 	//int listenerAudioGOID = -1;
 };
 

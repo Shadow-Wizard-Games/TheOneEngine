@@ -159,7 +159,6 @@ public:
     bool IsPrefabDirty() const { return isPrefabDirty; }
     std::string GetPrefabName() const { return prefabName; }
 
-
 public:
     std::weak_ptr<GameObject> parent;
     std::vector<std::shared_ptr<GameObject>> children;

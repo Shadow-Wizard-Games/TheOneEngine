@@ -145,11 +145,16 @@ void Mesh::DrawComponent(Camera* camera)
 {
     std::shared_ptr<GameObject> containerGO = GetContainerGO();
 
-    if (!active || meshID == -1 || materialID == -1)
+    if (!active || meshID == -1)
         return;
 
+	Material* mat;
+	if(materialID == -1)
+		mat = Resources::GetResourceById<Material>(0);
+	else
+		mat = Resources::GetResourceById<Material>(materialID);
+
     Model* mesh = Resources::GetResourceById<Model>(meshID);
-    Material* mat = Resources::GetResourceById<Material>(materialID);
 	mat4 transform = containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform();
 
 	if (mesh->isAnimated())
@@ -446,20 +451,20 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	material->Bind();
 
 	GLCALL(glEnableVertexAttribArray(0));
-	GLCALL(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, uvsVertexDataStride,
-		GL_PTR_OFFSET(uvsVertexDataOffset)));
+	GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, positionsVertexDataStride,
+		GL_PTR_OFFSET(positionsVertexDataOffset)));
 
 	GLCALL(glEnableVertexAttribArray(1));
-	GLCALL(glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, positionsVertexDataStride,
-		GL_PTR_OFFSET(positionsVertexDataOffset)));
+	GLCALL(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, uvsVertexDataStride,
+		GL_PTR_OFFSET(uvsVertexDataOffset)));
 
 	GLCALL(glEnableVertexAttribArray(2));
 	GLCALL(glVertexAttribPointer(2, 3, GL_FLOAT, GL_TRUE, normalsVertexDataStride,
 		GL_PTR_OFFSET(normalsVertexDataOffset)));
 
 	GLCALL(glEnableVertexAttribArray(3));
-	GLCALL(glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE,
-		colorsVertexDataStride, GL_PTR_OFFSET(colorsVertexDataOffset)));
+	GLCALL(glVertexAttribPointer(3, 4, GL_UNSIGNED_BYTE, GL_TRUE, colorsVertexDataStride, 
+		GL_PTR_OFFSET(colorsVertexDataOffset)));
 
 
 	// Maps the index dynamic buffer and update it.

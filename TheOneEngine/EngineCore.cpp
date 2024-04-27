@@ -52,6 +52,12 @@ void EngineCore::Start()
     animTextShader->addUniform("u_Tex", UniformType::Sampler2D);
     Resources::Import<Shader>("MeshTextureAnimated", animTextShader);
 
+    //Default Material
+    Material defaultMat(colorShader);
+    defaultMat.SetUniformData("u_Color", glm::vec4(1, 0, 1, 1));
+    std::string matPath = Resources::PathToLibrary<Material>() + "defaultMat.toematerial";
+    Resources::Import<Material>(matPath, &defaultMat);
+    Resources::LoadFromLibrary<Material>(matPath);
 
     CameraUniformBuffer = std::make_shared<UniformBuffer>(sizeof(glm::mat4), 0);
 }
@@ -89,6 +95,8 @@ void EngineCore::Render(Camera* camera)
 
     GLCALL(glEnable(GL_DEPTH_TEST));
     GLCALL(glEnable(GL_CULL_FACE));
+    GLCALL(glEnable(GL_BLEND));
+    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glEnable(GL_COLOR_MATERIAL));
 
     switch (camera->cameraType)
