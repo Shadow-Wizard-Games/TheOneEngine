@@ -13,6 +13,7 @@
 #include "ParticleSystem.h"
 #include "../TheOneAudio/AudioCore.h"
 #include "EngineCore.h"
+#include "Renderer2D.h"
 
 #include <fstream>
 #include <filesystem>
@@ -901,6 +902,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 
 	RecurseSceneSort(rootSceneGO, cam);
 
+	Renderer2D::StartBatch();
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
 			i->second->Draw(cam);
@@ -913,4 +915,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	}
 
 	RecurseUIDraw(rootSceneGO, mode);
+
+	Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(10.0f, 10.0f), glm::vec4(0, 0, 1, 1));
+	Renderer2D::Flush();
 }
