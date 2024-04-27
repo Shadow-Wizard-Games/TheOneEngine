@@ -219,6 +219,7 @@ void Renderer2D::Flush()
 		renderer2D.QuadShader->Bind();
 		DrawIndexed(renderer2D.QuadVertexArray, renderer2D.QuadIndexCount);
 		renderer2D.Stats.DrawCalls++;
+		renderer2D.QuadShader->UnBind();
 	}
 
 	if (renderer2D.CircleIndexCount)
@@ -229,6 +230,7 @@ void Renderer2D::Flush()
 		renderer2D.CircleShader->Bind();
 		DrawIndexed(renderer2D.CircleVertexArray, renderer2D.CircleIndexCount);
 		renderer2D.Stats.DrawCalls++;
+		renderer2D.CircleShader->UnBind();
 	}
 
 	if (renderer2D.LineVertexCount)
@@ -240,6 +242,7 @@ void Renderer2D::Flush()
 		SetLineWidth(renderer2D.LineWidth);
 		DrawLines(renderer2D.LineVertexArray, renderer2D.LineVertexCount);
 		renderer2D.Stats.DrawCalls++;
+		renderer2D.LineShader->UnBind();
 	}
 }
 
