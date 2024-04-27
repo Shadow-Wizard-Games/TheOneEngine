@@ -896,13 +896,31 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
+inline void Scene::SetCamera(Camera* cam)
+{
+	if(cam)
+		engine->SetUniformBufferCamera(cam->viewProjectionMatrix);
+	else
+		engine->SetUniformBufferCamera(currentCamera->viewProjectionMatrix);
+}
+
+void Scene::Set2DCamera()
+{
+	glm::mat4 viewMatrix = glm::mat4(1.0f);
+	viewMatrix[0][0] *= -1;
+	viewMatrix[2][2] *= -1;
+	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f) * viewMatrix));
+}
+
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
 	RecurseSceneSort(rootSceneGO, cam);
 
-	Renderer2D::StartBatch();
+	//Setting Camera for 3D Rendering
+	SetCamera(cam);
+	Renderer2D::StartBatch();//           START BATCH
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
 			i->second->Draw(cam);
@@ -913,9 +931,20 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 			i->second->Draw(currentCamera);
 		}
 	}
+	// RENDERER2D DEBUG TESTING DRAW
+	Renderer2D::DrawQuad(glm::vec3(20.0f, 20.0f, 0.0f), glm::vec2(10.0f, 10.0f), glm::vec4(0, 0, 1, 1));
 
+	// RENDERER2D DEBUG TESTING DRAW
+	Renderer2D::Flush();//           END BATCH
+
+
+	//Setting Camera for 2D Rendering
+	Set2DCamera();
+	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
+	// RENDERER2D DEBUG TESTING DRAW
+	Renderer2D::DrawQuad(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec4(1, 0, 0, 1));
 
-	Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(10.0f, 10.0f), glm::vec4(0, 0, 1, 1));
-	Renderer2D::Flush();
+	// RENDERER2D DEBUG TESTING DRAW
+	Renderer2D::Flush();//           END BATCH
 }

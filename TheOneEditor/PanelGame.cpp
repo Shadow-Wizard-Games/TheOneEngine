@@ -94,7 +94,6 @@ bool PanelGame::Draw()
 
 			// Draw
 			engine->Render(primaryCamera);
-			engine->SetUniformBufferCamera(primaryCamera);
 
 			// Game cameras Frustum
 			for (const auto& cam : gameCameras)
@@ -105,7 +104,7 @@ bool PanelGame::Draw()
 					engine->DrawFrustum(gameCam->frustum);
 			}
 
-			current->Draw(DrawMode::EDITOR);
+			current->Draw(DrawMode::EDITOR, primaryCamera);
 			if (engine->N_sceneManager->GetSceneIsChanging())
 				engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
 

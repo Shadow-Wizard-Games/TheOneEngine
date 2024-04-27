@@ -430,10 +430,7 @@ void EngineCore::SetEditorCamera(Camera* cam)
         editorCamReference = cam;
 }
 
-void EngineCore::SetUniformBufferCamera(Camera* cam)
+void EngineCore::SetUniformBufferCamera(const glm::mat4& camMatrix)
 {
-    if(cam)
-        CameraUniformBuffer->SetData(&cam->viewProjectionMatrix, sizeof(glm::mat4));
-    else
-        CameraUniformBuffer->SetData(&N_sceneManager->currentScene->currentCamera->viewProjectionMatrix, sizeof(glm::mat4));
+    CameraUniformBuffer->SetData(&camMatrix, sizeof(glm::mat4));
 }
