@@ -3,6 +3,7 @@
 #include "Defs.h"
 #include "N_SceneManager.h"
 #include "Collider2D.h"
+#include "Renderer2D.h"
 #include <GL\glew.h>
 #include <glm\ext\matrix_transform.hpp>
 #include <IL\il.h>
@@ -32,6 +33,7 @@ void EngineCore::Awake()
 
 void EngineCore::Start()
 {
+    Renderer2D::Init();
 
     //Init default shaders with uniforms
     ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
@@ -154,6 +156,8 @@ void EngineCore::LogGL(string id)
 
 void EngineCore::CleanUp()
 {
+    Renderer2D::Shutdown();
+
     audioManager->CleanUp();
     audioManager = nullptr;
     delete audioManager;

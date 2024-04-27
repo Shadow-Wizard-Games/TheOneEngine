@@ -27,6 +27,8 @@ public:
 
 	void SetData(void* data, uint32_t size);
 
+	void Delete();
+
 	bool CreateCheckerTexture();
 
 	uint32_t GetTextureId() const { return textureID; }

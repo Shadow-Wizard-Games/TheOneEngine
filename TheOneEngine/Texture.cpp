@@ -34,9 +34,6 @@ Texture::Texture(const std::string& newPath)
 
 Texture::~Texture() 
 {
-    if (textureID != uint32_t(-1)) {
-        GLCALL(glDeleteTextures(1, &textureID));
-    }
 }
 
 void Texture::Bind(uint32_t slot) const
@@ -184,6 +181,15 @@ void Texture::SetData(void* data, uint32_t size)
     uint32_t bpp = textureChannels == 4 ? 4 : 3;
     assert(size == imageSize.x * imageSize.y * bpp, "Data must be entire texture!");
     GLCALL(glTextureSubImage2D(textureID, 0, 0, 0, imageSize.x, imageSize.y, textureChannels == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data));
+}
+
+void Texture::Delete()
+{
+    if (textureID != uint32_t(-1) && textureID) 
+    {
+        GLCALL(glDeleteTextures(1, &textureID));
+        textureID = 0;
+    }
 }
 
 //============================== DDS MANAGEMENT ==============================

@@ -184,6 +184,10 @@ void Renderer2D::Init()
 
 void Renderer2D::Shutdown()
 {
+	renderer2D.WhiteTexture->Delete();
+	renderer2D.QuadVertexArray->Delete();
+	renderer2D.CircleVertexArray->Delete();
+	renderer2D.LineVertexArray->Delete();
 	delete[] renderer2D.QuadVertexBufferBase;
 }
 
