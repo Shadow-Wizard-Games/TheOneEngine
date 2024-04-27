@@ -9,6 +9,20 @@
 #define CHECKERS_HEIGHT 32
 #define CHECKERS_WIDTH 32
 
+Texture::Texture() : textureChannels(4), imageSize(1)
+{
+    //Blank texture
+
+    glCreateTextures(GL_TEXTURE_2D, 1, &textureID);
+    glTextureStorage2D(textureID, 1, GL_RGBA8, imageSize.x, imageSize.y);
+
+    glTextureParameteri(textureID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTextureParameteri(textureID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+}
+
 Texture::Texture(const std::string& newPath)
 {
     path = newPath;
@@ -25,9 +39,9 @@ Texture::~Texture()
     }
 }
 
-void Texture::Bind()
+void Texture::Bind(uint32_t slot) const
 {
-    GLCALL(glBindTexture(GL_TEXTURE_2D, textureID));
+    GLCALL(glBindTextureUnit(slot, textureID));
 }
 
 bool Texture::Init(const std::string& path)
@@ -163,6 +177,13 @@ bool Texture::CreateCheckerTexture()
         0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage));
 
     return true;
+}
+
+void Texture::SetData(void* data, uint32_t size)
+{
+    uint32_t bpp = textureChannels == 4 ? 4 : 3;
+    assert(size == imageSize.x * imageSize.y * bpp, "Data must be entire texture!");
+    GLCALL(glTextureSubImage2D(textureID, 0, 0, 0, imageSize.x, imageSize.y, textureChannels, GL_UNSIGNED_BYTE, data));
 }
 
 //============================== DDS MANAGEMENT ==============================

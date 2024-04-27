@@ -48,6 +48,7 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="N_SceneManager.h" />
     <ClInclude Include="RenderEmmiterModule.h" />
+    <ClInclude Include="Renderer2D.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesImageImpl.h" />
     <ClInclude Include="ResourcesImpl.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="N_SceneManager.cpp" />
     <ClCompile Include="RenderEmmiterModule.cpp" />
+    <ClCompile Include="Renderer2D.cpp" />
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SingleOrRandom.cpp" />
