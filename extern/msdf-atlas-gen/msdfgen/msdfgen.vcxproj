@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>msdfgen</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MSDFGEN_USE_CPP11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MSDFGEN_USE_CPP11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)extern\msdf-atlas-gen\msdfgen\include;$(SolutionDir)extern\msdf-atlas-gen\msdfgen\freetype\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="core\Bitmap.h" />
+    <ClInclude Include="core\Bitmap.hpp" />
+    <ClInclude Include="core\BitmapRef.hpp" />
+    <ClInclude Include="core\Contour.h" />
+    <ClInclude Include="core\EdgeColor.h" />
+    <ClInclude Include="core\EdgeHolder.h" />
+    <ClInclude Include="core\MSDFErrorCorrection.h" />
+    <ClInclude Include="core\Projection.h" />
+    <ClInclude Include="core\Scanline.h" />
+    <ClInclude Include="core\Shape.h" />
+    <ClInclude Include="core\ShapeDistanceFinder.h" />
+    <ClInclude Include="core\ShapeDistanceFinder.hpp" />
+    <ClInclude Include="core\SignedDistance.h" />
+    <ClInclude Include="core\Vector2.h" />
+    <ClInclude Include="core\arithmetics.hpp" />
+    <ClInclude Include="core\bitmap-interpolation.hpp" />
+    <ClInclude Include="core\contour-combiners.h" />
+    <ClInclude Include="core\edge-coloring.h" />
+    <ClInclude Include="core\edge-segments.h" />
+    <ClInclude Include="core\edge-selectors.h" />
+    <ClInclude Include="core\equation-solver.h" />
+    <ClInclude Include="core\generator-config.h" />
+    <ClInclude Include="core\msdf-error-correction.h" />
+    <ClInclude Include="core\pixel-conversion.hpp" />
+    <ClInclude Include="core\rasterization.h" />
+    <ClInclude Include="core\render-sdf.h" />
+    <ClInclude Include="core\save-bmp.h" />
+    <ClInclude Include="core\save-tiff.h" />
+    <ClInclude Include="core\sdf-error-estimation.h" />
+    <ClInclude Include="core\shape-description.h" />
+    <ClInclude Include="ext\import-font.h" />
+    <ClInclude Include="ext\import-svg.h" />
+    <ClInclude Include="ext\resolve-shape-geometry.h" />
+    <ClInclude Include="ext\save-png.h" />
+    <ClInclude Include="include\lodepng.h" />
+    <ClInclude Include="include\tinyxml2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\Contour.cpp" />
+    <ClCompile Include="core\EdgeHolder.cpp" />
+    <ClCompile Include="core\MSDFErrorCorrection.cpp" />
+    <ClCompile Include="core\Projection.cpp" />
+    <ClCompile Include="core\Scanline.cpp" />
+    <ClCompile Include="core\Shape.cpp" />
+    <ClCompile Include="core\SignedDistance.cpp" />
+    <ClCompile Include="core\Vector2.cpp" />
+    <ClCompile Include="core\contour-combiners.cpp" />
+    <ClCompile Include="core\edge-coloring.cpp" />
+    <ClCompile Include="core\edge-segments.cpp" />
+    <ClCompile Include="core\edge-selectors.cpp" />
+    <ClCompile Include="core\equation-solver.cpp" />
+    <ClCompile Include="core\msdf-error-correction.cpp" />
+    <ClCompile Include="core\msdfgen.cpp" />
+    <ClCompile Include="core\rasterization.cpp" />
+    <ClCompile Include="core\render-sdf.cpp" />
+    <ClCompile Include="core\save-bmp.cpp" />
+    <ClCompile Include="core\save-tiff.cpp" />
+    <ClCompile Include="core\sdf-error-estimation.cpp" />
+    <ClCompile Include="core\shape-description.cpp" />
+    <ClCompile Include="ext\import-font.cpp" />
+    <ClCompile Include="ext\import-svg.cpp" />
+    <ClCompile Include="ext\resolve-shape-geometry.cpp" />
+    <ClCompile Include="ext\save-png.cpp" />
+    <ClCompile Include="lib\lodepng.cpp" />
+    <ClCompile Include="lib\tinyxml2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="freetype\freetype.vcxproj">
+      <Project>{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{4E40957C-3A77-960D-E363-7C10CF79120F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext">
+      <UniqueIdentifier>{7670880B-E279-887C-6BF5-9E7CD7FD937C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{3C8C880B-A895-887C-3111-9F7C9D19947C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\Bitmap.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Bitmap.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\BitmapRef.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Contour.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\EdgeColor.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\EdgeHolder.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\MSDFErrorCorrection.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Projection.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Scanline.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Shape.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ShapeDistanceFinder.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ShapeDistanceFinder.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\SignedDistance.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Vector2.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\arithmetics.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\bitmap-interpolation.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\contour-combiners.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\edge-coloring.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\edge-segments.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\edge-selectors.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\equation-solver.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\generator-config.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\msdf-error-correction.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\pixel-conversion.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rasterization.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\render-sdf.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\save-bmp.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\save-tiff.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\sdf-error-estimation.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\shape-description.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\import-font.h">
+      <Filter>ext</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\import-svg.h">
+      <Filter>ext</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\resolve-shape-geometry.h">
+      <Filter>ext</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\save-png.h">
+      <Filter>ext</Filter>
+    </ClInclude>
+    <ClInclude Include="include\lodepng.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tinyxml2.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\Contour.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\EdgeHolder.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\MSDFErrorCorrection.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Projection.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Scanline.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Shape.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\SignedDistance.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Vector2.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\contour-combiners.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\edge-coloring.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\edge-segments.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\edge-selectors.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\equation-solver.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\msdf-error-correction.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\msdfgen.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\rasterization.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\render-sdf.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\save-bmp.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\save-tiff.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\sdf-error-estimation.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\shape-description.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\import-font.cpp">
+      <Filter>ext</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\import-svg.cpp">
+      <Filter>ext</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\resolve-shape-geometry.cpp">
+      <Filter>ext</Filter>
+    </ClCompile>
+    <ClCompile Include="ext\save-png.cpp">
+      <Filter>ext</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\lodepng.cpp">
+      <Filter>lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\tinyxml2.cpp">
+      <Filter>lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
