@@ -258,6 +258,12 @@
     <ClInclude Include="Renderer2D.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="MSDFData.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -408,6 +414,9 @@
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClCompile>
     <ClCompile Include="Renderer2D.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
       <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>

@@ -29,6 +29,7 @@
     <ClInclude Include="DebugShape.h" />
     <ClInclude Include="Defs.h" />
     <ClInclude Include="FileDialog.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="Framebuffer.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="GameObject.h" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="MonoManager.h" />
     <ClInclude Include="MonoRegisterer.h" />
+    <ClInclude Include="MSDFData.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Ray.h" />
@@ -88,6 +90,7 @@
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileDialog.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -174,7 +177,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;$(SolutionDir)extern\msdf-atlas-gen\msdf-atlas-gen</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -206,7 +209,7 @@ $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew gli stb glm assimp pcg simdjs
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AK_OPTIMIZED;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;$(SolutionDir)extern\msdf-atlas-gen\msdf-atlas-gen</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
