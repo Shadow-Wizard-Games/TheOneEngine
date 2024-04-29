@@ -58,7 +58,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MSDFGEN_USE_CPP11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)extern\msdf-atlas-gen\msdfgen;$(SolutionDir)extern\msdf-atlas-gen\msdfgen\include;$(SolutionDir)extern\msdf-atlas-gen\msdfgen\freetype\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -77,7 +77,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MSDFGEN_USE_CPP11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)extern\msdf-atlas-gen\msdfgen\include;$(SolutionDir)extern\msdf-atlas-gen\msdfgen\freetype\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)extern\msdf-atlas-gen\msdfgen;$(SolutionDir)extern\msdf-atlas-gen\msdfgen\include;$(SolutionDir)extern\msdf-atlas-gen\msdfgen\freetype\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -132,6 +132,8 @@
     <ClInclude Include="ext\save-png.h" />
     <ClInclude Include="include\lodepng.h" />
     <ClInclude Include="include\tinyxml2.h" />
+    <ClInclude Include="msdfgen-ext.h" />
+    <ClInclude Include="msdfgen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\Contour.cpp" />

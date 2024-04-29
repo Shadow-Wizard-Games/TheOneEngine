@@ -123,6 +123,12 @@
     <ClInclude Include="include\tinyxml2.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="msdfgen.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="msdfgen-ext.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\Contour.cpp">
