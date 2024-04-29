@@ -23,6 +23,15 @@ enum class ObjectOrientation
     Left
 };
 
+enum class ColliderColor 
+{
+    GREEN,
+    RED,
+    BLUE,
+    ORANGE,
+    WHITE,
+};
+
 class Collider2D : public Component
 {
 public:
@@ -47,5 +56,6 @@ public:
     //false:  collision will be build with pivot as center
     bool cornerPivot;
     ObjectOrientation objectOrientation = ObjectOrientation::Front;
+    ColliderColor colliderColor;
 };
 #endif // !__COLLIDER_2D_H__

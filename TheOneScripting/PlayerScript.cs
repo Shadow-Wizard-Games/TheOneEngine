@@ -246,10 +246,13 @@ public class PlayerScript : MonoBehaviour
     public override void OnCollision(IntPtr collidedGO)
     {
         IGameObject colGO = new IGameObject(collidedGO);
-        if(colGO.tag == "Bullet")
+        if(colGO != null )
         {
-            ReduceLife();
-            colGO.Destroy();
+            if (colGO.tag == "Bullet")
+            {
+                ReduceLife();
+                colGO.Destroy();
+            }
         }
     }
 

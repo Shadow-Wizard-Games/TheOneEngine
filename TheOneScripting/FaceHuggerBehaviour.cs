@@ -76,11 +76,15 @@ public class FaceHuggerBehaviour : MonoBehaviour
     public override void OnCollision(IntPtr collidedGO)
     {
         IGameObject colGO = new IGameObject(collidedGO);
-        if(colGO.tag == "Player")
+        if (colGO != null)
         {
-            CheckJump();
+            if (colGO.tag == "Player")
+            {
+                CheckJump();
+            }
         }
     }
+
     void UpdateFSMStates()
     {
         if (life <= 0) { currentState = States.Dead; return; }

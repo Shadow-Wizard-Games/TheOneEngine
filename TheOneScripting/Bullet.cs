@@ -26,6 +26,9 @@ class Bullet : MonoBehaviour
     public override void OnCollision(IntPtr collidedGO)
     {
         IGameObject colGO = new IGameObject(collidedGO);
+        if (colGO != null)
+        {
 
+        }
     }
 }

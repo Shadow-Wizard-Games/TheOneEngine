@@ -33,28 +33,41 @@ public class EventNextRoom : Event
 
     public override void Update()
     {
-        if (CheckEventIsPossible())
-        {
-            DoEvent();
-        }
+        //if (CheckEventIsPossible())
+        //{
+        //    DoEvent();
+        //}
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        //if (gameManager.colliderRender) { DrawEventDebug(); }
+    }
+
+    public override void OnCollision(IntPtr collidedGO)
+    {
+        IGameObject colGO = new IGameObject(collidedGO);
+        if (colGO != null)
+        {
+            if (colGO.tag == "Player")
+            {
+                DoEvent();
+            }
+        }
     }
 
     public override bool CheckEventIsPossible()
     {
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
-
-        if (playerDistance < tpRange)
-        {
-            inRange = true;
-        }
-        else
-        {
-            inRange = false;
-        }
-
-        return inRange;
+        //playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        //
+        //if (playerDistance < tpRange)
+        //{
+        //    inRange = true;
+        //}
+        //else
+        //{
+        //    inRange = false;
+        //}
+        //
+        //return inRange;
+        return false;
     }
 
     public override bool DoEvent()
@@ -64,10 +77,10 @@ public class EventNextRoom : Event
         if(Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             string sceneName = ExtractSceneName();
-
+        
             Debug.LogWarning(sceneName);
             Debug.LogWarning(goName);
-
+        
             if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
             {
                 playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
@@ -76,7 +89,7 @@ public class EventNextRoom : Event
             {
                 playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
             }
-
+        
             SceneManager.LoadScene(sceneName);
         }
 

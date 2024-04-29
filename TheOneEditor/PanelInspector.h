@@ -40,6 +40,15 @@ private:
 		"Square",
 	};
 
+	const char* colors[5] =
+	{
+		"Green",
+		"Red",
+		"Blue",
+		"Orange",
+		"White",
+	};
+
 	int sliderDesignOptionToModify = 0;
 	bool sliderActivePart = true;
 };

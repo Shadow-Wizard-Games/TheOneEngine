@@ -462,17 +462,6 @@ bool PanelInspector::Draw()
             {
                 bool isDirty = false;
 
-                // Collision type
-                /*int collisionType = (int)collider2D->collisionType;
-                ImGui::Text("Collision Type");
-                ImGui::SameLine();
-                const char* collisionTypes[] = { "Player", "Enemy", "Wall" };
-                if (ImGui::Combo("##CollisionType", &collisionType, collisionTypes, 3))
-                {
-                    collider2D->collisionType = (CollisionType)collisionType;
-                }*/
-
-
                 // Collider type
                 int colliderType = (int)collider2D->colliderType;
                 ImGui::Text("Collider Type");
@@ -480,6 +469,15 @@ bool PanelInspector::Draw()
                 if (ImGui::Combo("##ColliderType", &colliderType, colliders, 2))
                 {
                     collider2D->colliderType = (ColliderType)colliderType;
+                }
+
+                // Collider color  
+                int colliderColor = (int)collider2D->colliderColor;
+                ImGui::Text("Color");
+                ImGui::SameLine();
+                if (ImGui::Combo("##ColliderColor", &colliderColor, colors, 5))
+                {
+                    collider2D->colliderColor = (ColliderColor)colliderColor;
                 }
 
                 // Offset of collider

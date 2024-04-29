@@ -32,25 +32,21 @@ public class EventCollectible : Event
     public override void Update()
     {
 
-        if (CheckEventIsPossible())
-        {
-            DoEvent();
-        }
+        //if (CheckEventIsPossible())
+        //{
+        //    DoEvent();
+        //}
 
         if (gameManager.colliderRender) { DrawEventDebug(); }
     }
     public override void OnCollision(IntPtr collidedGO)
     {
         IGameObject colGO = new IGameObject(collidedGO);
-        if (colGO.tag == "Player")
+        if (colGO != null)
         {
-            if (itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
+            if (colGO.tag == "Player")
             {
-                itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
-                attachedGameObject.Disable();
-
-                //Degug
-                Debug.LogWarning("LOOTED");
+                DoEvent();
             }
         }
     }
@@ -74,14 +70,14 @@ public class EventCollectible : Event
     public override bool DoEvent()
     {
         //Add item
-        //if(itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
-        //{
-        //    itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
-        //    attachedGameObject.Disable();
+        if(itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
+        {
+            itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
+            attachedGameObject.Disable();
 
-        //    //Degug
-        //    Debug.LogWarning("LOOTED");
-        //}
+            //Degug
+            Debug.LogWarning("LOOTED");
+        }
 
         return false;
     }

@@ -105,10 +105,13 @@ public class AlienQueenBehaviour : MonoBehaviour
     public override void OnCollision(IntPtr collidedGO)
     {
         IGameObject colGO = new IGameObject(collidedGO);
-        if (colGO.tag == "Bullet")
+        if (colGO != null)
         {
-            ReduceLife(2);//add correct damage
-            colGO.Destroy();
+            if (colGO.tag == "Bullet")
+            {
+                ReduceLife(2);//add correct damage
+                colGO.Destroy();
+            }
         }
     }
 

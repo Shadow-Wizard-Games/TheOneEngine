@@ -77,6 +77,7 @@ json Collider2D::SaveComponent()
     colliderJSON["Name"] = name;
     colliderJSON["Type"] = type;
     colliderJSON["ColliderType"] = colliderType;
+    colliderJSON["ColliderColor"] = colliderColor;
     colliderJSON["Width"] = w;
     colliderJSON["Height"] = h;
     colliderJSON["Radius"] = radius;
@@ -100,6 +101,7 @@ void Collider2D::LoadComponent(const json& colliderJSON)
     if (colliderJSON.contains("Name")) name = colliderJSON["Name"];
     if (colliderJSON.contains("Type")) type = colliderJSON["Type"];
     if (colliderJSON.contains("ColliderType")) colliderType = colliderJSON["ColliderType"];
+    if (colliderJSON.contains("ColliderColor")) colliderColor = colliderJSON["ColliderColor"];
     if (colliderJSON.contains("Width")) w = colliderJSON["Width"];
     if (colliderJSON.contains("Height")) h = colliderJSON["Height"];
     if (colliderJSON.contains("Radius")) radius = colliderJSON["Radius"];
