@@ -122,6 +122,8 @@ bool PanelInspector::Draw()
                 newNameBuffer[0] = '\0';
             }
 
+            ImGui::Checkbox("Has Transparency", &selectedGO->hasTransparency);
+
             /*Transform Component*/
             Transform* transform = selectedGO->GetComponent<Transform>();
 
