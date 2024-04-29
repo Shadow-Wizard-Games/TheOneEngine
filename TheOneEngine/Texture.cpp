@@ -23,6 +23,18 @@ Texture::Texture() : textureChannels(4), imageSize(1)
     glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
 
+Texture::Texture(glm::ivec2 size, uint channels) : imageSize(size), textureChannels(channels)
+{
+    glCreateTextures(GL_TEXTURE_2D, 1, &textureID);
+    glTextureStorage2D(textureID, 1, textureChannels == 4 ? GL_RGBA8 : GL_RGB8, imageSize.x, imageSize.y);
+
+    glTextureParameteri(textureID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTextureParameteri(textureID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTextureParameteri(textureID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTextureParameteri(textureID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+}
+
 Texture::Texture(const std::string& newPath)
 {
     path = newPath;

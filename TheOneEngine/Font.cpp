@@ -25,13 +25,7 @@ static std::shared_ptr<Texture> CreateAndCacheAtlas(const std::string& fontName,
 
 	msdfgen::BitmapConstRef<T, N> bitmap = (msdfgen::BitmapConstRef<T, N>)generator.atlasStorage();
 
-	TextureSpecification spec;
-	spec.Width = bitmap.width;
-	spec.Height = bitmap.height;
-	spec.Format = ImageFormat::RGB8;
-	spec.GenerateMips = false;
-
-	std::shared_ptr<Texture> texture = std::make_shared(spec);
+	std::shared_ptr<Texture> texture = std::make_shared<Texture>(glm::ivec2(bitmap.width, bitmap.height), 3);
 	texture->SetData((void*)bitmap.pixels, bitmap.width * bitmap.height * 3);
 	return texture;
 }

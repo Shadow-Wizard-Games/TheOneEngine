@@ -2,6 +2,7 @@
 
 #include "Defs.h"
 #include "Resources.h"
+#include "Font.h"
 
 class Renderer2D
 {
@@ -33,7 +34,13 @@ public:
 	static void DrawRect(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
 	static void DrawRect(const glm::mat4& transform, const glm::vec4& color);
 
-	//TODO: Draw text
+	struct TextParams
+	{
+		glm::vec4 Color{ 1.0f };
+		float Kerning = 0.0f;
+		float LineSpacing = 0.0f;
+	};
+	static void DrawString(const std::string& string, std::shared_ptr<Font> font, const glm::mat4& transform, const TextParams& textParams);
 
 	static float GetLineWidth();
 	static void SetLineWidth(float width);

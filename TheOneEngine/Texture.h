@@ -8,35 +8,19 @@
 #include <string>
 #include <memory>
 
-enum class ImageFormat
-{
-	None = 0,
-	R8,
-	RGB8,
-	RGBA8,
-	RGBA32F
-};
-
-struct TextureSpecification
-{
-	glm::ivec2 size;
-	ImageFormat Format = ImageFormat::RGBA8;
-	bool GenerateMips = true;
-};
-
 class Texture
 {
 private:
 	uint32_t textureID;
 	glm::ivec2 imageSize;
-	int textureChannels;
+	uint textureChannels;
 
 	bool Init(const std::string& path);
 	bool InitDDS(const std::string& path);
 
 public:
 	Texture();
-	Texture(TextureSpecification spec);
+	Texture(glm::ivec2 size, uint channels);
 	Texture(const std::string& path);
 	~Texture();
 
