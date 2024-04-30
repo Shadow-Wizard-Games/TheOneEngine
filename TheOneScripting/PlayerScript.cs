@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed = 40.0f;
+    public float speed = 80.0f;
     bool lastFrameToMove = false;
     ItemManager itemManager;
     IGameObject iManagerGO;
@@ -28,6 +28,133 @@ public class PlayerScript : MonoBehaviour
     public bool onPause = false;
     float life = 100.0f;
 
+    private Vector3 movementDirection;
+    private float movementMagnitude;
+
+    private void Step()
+    {
+        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
+        if (iStepPSGO != null)
+        {
+            iStepPSGO.GetComponent<IParticleSystem>().Play();
+        }
+    }
+
+    private void Die()
+    {
+        attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+        attachedGameObject.animator.Play("Death");
+        // play sound (?)
+    }
+
+    private void Dash()
+    {
+
+    }
+
+    private bool SetMoveDirection()
+    {
+        bool toMove = false;
+
+        #region CONTROLLER
+        Vector2 leftJoystickDirection = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
+
+        if (leftJoystickDirection.x != 0.0f || leftJoystickDirection.y != 0.0f)
+        {
+            movementDirection += new Vector3(-leftJoystickDirection.x, 0.0f, -leftJoystickDirection.y);
+            movementMagnitude = leftJoystickDirection.Magnitude();
+            toMove = true;
+        }
+
+        #endregion
+
+        #region KEYBOARD
+        if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+        {
+            movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
+            movementMagnitude = 1.0f;
+            toMove = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.A))
+        {
+            movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
+            movementMagnitude = 1.0f;
+            toMove = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.S))
+        {
+            movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
+            movementMagnitude = 1.0f;
+            toMove = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.D))
+        {
+            movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
+            movementMagnitude = 1.0f;
+            toMove = true;
+        }
+
+        #endregion
+
+        movementDirection = movementDirection.Normalize();
+
+        return toMove;
+    }
+
+    private void SetShootDirection()
+    {
+        bool hasAimed = false;
+        Vector2 aimingDirection = Vector2.zero;
+
+        #region KEYBOARD
+        if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
+        {
+            aimingDirection += Vector2.zero - Vector2.right - Vector2.up;
+            hasAimed = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
+        {
+            aimingDirection += Vector2.zero - Vector2.right + Vector2.up;
+            hasAimed = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
+        {
+            aimingDirection += Vector2.zero + Vector2.right + Vector2.up;
+            hasAimed = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
+        {
+            aimingDirection += Vector2.zero + Vector2.right - Vector2.up;
+            hasAimed = true;
+        }
+
+        #endregion
+
+        #region CONTROLLER
+        Vector2 lookVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
+
+        if (lookVector.x != 0.0f || lookVector.y != 0.0f)
+        {
+            aimingDirection += lookVector;
+            hasAimed = true;
+        }
+
+        #endregion
+
+        if (hasAimed)
+        {
+            aimingDirection = aimingDirection.Normalize();
+            float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
+            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+        }
+    }
+
     public override void Start()
     {
         iManagerGO = IGameObject.Find("ItemManager");
@@ -45,7 +172,6 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.time = 0.0f;
     }
 
-    public Vector3 movement;
     public override void Update()
     {
         if (isDead)
@@ -55,9 +181,6 @@ public class PlayerScript : MonoBehaviour
         }
       
         if (onPause) return;
-
-        bool toMove = false;
-        movement = Vector3.zero;
 
         attachedGameObject.animator.UpdateAnimation();
 
@@ -91,46 +214,26 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (gameManager.extraSpeed) { speed = 200.0f; }
-        else { speed = 80.0f; }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+        float currentSpeed = speed;
+        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
+
+        // set movement
+        movementDirection = Vector3.zero;
+        movementMagnitude = 0;
+        bool toMove = SetMoveDirection();
+        if (toMove)
         {
-            movement = movement - Vector3.forward;
-            toMove = true;
+            attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
+            attachedGameObject.animator.Play("Run");
         }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.D))
+        else
         {
-            movement = movement + Vector3.right;
-            toMove = true;
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.S))
-        {
-            movement = movement + Vector3.forward;
-            toMove = true;
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.A))
-        {
-            movement = movement - Vector3.right;
-            toMove = true;
+            attachedGameObject.animator.Play("Idle");
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
-        {
-            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0);
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
-        {
-            attachedGameObject.transform.rotation = new Vector3(0, 4.71f, 0);
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
-        {
-            attachedGameObject.transform.rotation = new Vector3(0, 1.57f, 0);
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
-        {
-            attachedGameObject.transform.rotation = Vector3.zero;
-        }
+        // set shoot direction
+        SetShootDirection();
 
         if (itemManager != null)
         {
@@ -165,35 +268,7 @@ public class PlayerScript : MonoBehaviour
             //Here Dash
         }
 
-        if (toMove)
-        {
-            attachedGameObject.transform.Translate(movement.Normalize() * speed * Time.deltaTime);
-            attachedGameObject.animator.Play("Run");
-        }
-        else
-        {
-            attachedGameObject.animator.Play("Idle");
-        }
 
-        //Controller
-        Vector2 movementVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
-
-        if (movementVector.x != 0.0f || movementVector.y != 0.0f)
-        {
-            movement = new Vector3(-movementVector.x, 0.0f, -movementVector.y);
-
-            attachedGameObject.transform.Translate(movement * speed * Time.deltaTime);
-
-            toMove = true;
-        }
-
-        Vector2 lookVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
-
-        if (lookVector.x != 0.0f || lookVector.y != 0.0f)
-        {
-            float characterRotation = (float)Math.Atan2(-lookVector.x, -lookVector.y);
-            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
-        }
 
         if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
