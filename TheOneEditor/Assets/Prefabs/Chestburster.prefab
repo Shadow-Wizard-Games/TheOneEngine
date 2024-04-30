@@ -1,0 +1,64 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        309.2085876464844,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 4107805206
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
+      "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 3433682538
+    },
+    {
+      "AudioID": 1,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "ChestBusterBehaviour",
+      "Type": 4,
+      "UID": 4215861680
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "Keeped": false,
+  "Name": "Chestburster",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 1319425646,
+  "PrefabName": "Chestburster",
+  "Static": false,
+  "UID": 3452816845
+}
