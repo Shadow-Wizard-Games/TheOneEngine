@@ -159,9 +159,12 @@ bool Input::processSDLEvents()
 
 	mouse_x_motion = mouse_y_motion = 0;
 
+	int countEvents = 0;
+
 	static SDL_Event event;
 	while (SDL_PollEvent(&event) != 0)
 	{
+		countEvents++;
 		app->gui->HandleInput(&event);
 		switch (event.type)
 		{
@@ -172,16 +175,18 @@ bool Input::processSDLEvents()
 		case SDL_MOUSEMOTION:
 			mouse_x = event.motion.x / SCREEN_SIZE;
 			mouse_y = event.motion.y / SCREEN_SIZE;
-
 			mouse_x_motion = event.motion.xrel / SCREEN_SIZE;
 			mouse_y_motion = event.motion.yrel / SCREEN_SIZE;
 			break;
 
-		case SDL_QUIT: return false;
+		case SDL_QUIT:
+			return false;
 
 		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym) {
-			//case SDLK_ESCAPE: //return false;
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_ESCAPE: 
+				return false;
 			}
 			break;
 
@@ -195,11 +200,12 @@ bool Input::processSDLEvents()
 
 		case SDL_WINDOWEVENT:
 		{
-			if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
+			if (event.window.event == SDL_WINDOWEVENT_RESIZED)
 				app->window->OnResizeWindow(event.window.data1, event.window.data2);
-			}
+
 			if (event.window.event == SDL_WINDOWEVENT_CLOSE)
 				return false;
+
 			break;
 		}
 		case SDL_DROPFILE:
@@ -246,6 +252,12 @@ bool Input::processSDLEvents()
 			break;
 		}
 		}
+	}
+
+	if (countEvents > 0)
+	{
+		LOG(LogType::LOG_INFO, "Num Events %i", countEvents);
+
 	}
 	return true;
 }

@@ -74,6 +74,8 @@ private:
     Resolution resolution;
     uint width;
     uint height;
+    uint minWidth;
+    uint minHeight;
 };
 
 #endif // !__WINDOW_H__

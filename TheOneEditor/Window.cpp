@@ -10,7 +10,9 @@ Window::Window(App* app) :
     displayMode(DisplayMode::WINDOWED),
     resolution(Resolution::R_1280x720),
     borderless(false),
-    refreshRate(0)
+    refreshRate(0),
+    minWidth(640),
+    minHeight(360)
 {}
 
 Window::~Window() {}
@@ -84,7 +86,9 @@ bool Window::initSDLWindowWithOpenGL()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
     std::string title = std::string(TITLE) + "_" + VERSION;
-    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    SDL_WindowFlags windowFlags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, windowFlags);
+    SDL_SetWindowMinimumSize(window, minWidth, minHeight);
 
     if (!window)
     {
