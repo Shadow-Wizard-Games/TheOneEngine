@@ -40,6 +40,7 @@ public:
 		float Kerning = 0.0f;
 		float LineSpacing = 0.0f;
 	};
+	static void DrawString(const std::string& string, std::shared_ptr<Font> font, const glm::vec2& position, const glm::vec2& size, const TextParams& textParams);
 	static void DrawString(const std::string& string, std::shared_ptr<Font> font, const glm::mat4& transform, const TextParams& textParams);
 
 	static float GetLineWidth();

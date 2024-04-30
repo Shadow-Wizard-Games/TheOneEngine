@@ -138,12 +138,12 @@ void Renderer2D::Init()
 	for (uint32_t i = 0; i < renderer2D.MaxIndices; i += 6)
 	{
 		quadIndices[i + 0] = offset + 0;
-		quadIndices[i + 1] = offset + 2;
-		quadIndices[i + 2] = offset + 1;
+		quadIndices[i + 1] = offset + 1;
+		quadIndices[i + 2] = offset + 2;
 
-		quadIndices[i + 3] = offset + 0;
+		quadIndices[i + 3] = offset + 2;
 		quadIndices[i + 4] = offset + 3;
-		quadIndices[i + 5] = offset + 2;
+		quadIndices[i + 5] = offset + 0;
 
 		offset += 4;
 	}
@@ -478,6 +478,14 @@ void Renderer2D::DrawRect(const glm::mat4& transform, const glm::vec4& color)
 	DrawLine(lineVertices[1], lineVertices[2], color);
 	DrawLine(lineVertices[2], lineVertices[3], color);
 	DrawLine(lineVertices[3], lineVertices[0], color);
+}
+
+void Renderer2D::DrawString(const std::string& string, std::shared_ptr<Font> font, const glm::vec2& position, const glm::vec2& size, const TextParams& textParams)
+{
+	glm::mat4 transform = glm::translate(glm::mat4(1.0f), { position.x, position.y, 0.0f })
+		* glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+	DrawString(string, font, transform, textParams);
 }
 
 void Renderer2D::DrawString(const std::string& string, std::shared_ptr<Font> font, const glm::mat4& transform, const TextParams& textParams)

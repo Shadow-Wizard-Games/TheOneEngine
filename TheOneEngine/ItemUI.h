@@ -10,6 +10,7 @@ enum class UiType {
 	BUTTONIMAGE,
 	SLIDER,
 	CHECKER,
+	TEXT,
 	UNKNOWN
 };
 

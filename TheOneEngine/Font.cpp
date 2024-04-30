@@ -67,7 +67,7 @@ Font::Font(const std::filesystem::path& filepath)
 	double fontScale = 1.0;
 	m_Data->FontGeometry = msdf_atlas::FontGeometry(&m_Data->Glyphs);
 	int glyphsLoaded = m_Data->FontGeometry.loadCharset(font, fontScale, charset);
-	LOG(LogType::LOG_INFO, "Loaded {} glyphs from font (out of {})", glyphsLoaded, charset.size());
+	LOG(LogType::LOG_INFO, "Loaded %d glyphs from font (out of %d)", glyphsLoaded, charset.size());
 
 
 	double emSize = 40.0;
@@ -143,7 +143,7 @@ std::shared_ptr<Font> Font::GetDefault()
 {
 	static std::shared_ptr<Font> DefaultFont;
 	if (!DefaultFont)
-		DefaultFont = std::make_shared<Font>("assets/fonts/opensans/OpenSans-Regular.ttf");
+		DefaultFont = std::make_shared<Font>("Assets/Fonts/ComicSansMS.ttf");
 
 	return DefaultFont;
 }

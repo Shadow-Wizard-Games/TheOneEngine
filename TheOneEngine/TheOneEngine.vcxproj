@@ -62,6 +62,7 @@
     <ClInclude Include="SliderUI.h" />
     <ClInclude Include="SpawnEmmiterModule.h" />
     <ClInclude Include="AudioSource.h" />
+    <ClInclude Include="TextUI.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="EngineCore.h" />
     <ClInclude Include="Shader.h" />
@@ -118,6 +119,7 @@
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="AudioSource.cpp" />
+    <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="ImageUI.cpp" />

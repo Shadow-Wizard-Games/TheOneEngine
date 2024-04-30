@@ -18,6 +18,7 @@
 #include <fstream>
 #include <filesystem>
 #include "ImageUI.h"
+#include "TextUI.h"
 
 namespace fs = std::filesystem;
 
@@ -435,7 +436,9 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	canvasGO.get()->AddComponent<Canvas>();
 
 	// Debug Img
-	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+	//canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+
+	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<TextUI>("Assets/Fonts/ComicSansMS.ttf");
 
 	canvasGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
 
@@ -907,8 +910,8 @@ inline void Scene::SetCamera(Camera* cam)
 void Scene::Set2DCamera()
 {
 	glm::mat4 viewMatrix = glm::mat4(1.0f);
-	viewMatrix[0][0] *= -1;
-	viewMatrix[2][2] *= -1;
+	//viewMatrix[0][0] *= -1;
+	//viewMatrix[2][2] *= -1;
 	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f) * viewMatrix));
 }
 
@@ -943,7 +946,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
 	// RENDERER2D DEBUG TESTING DRAW
-	Renderer2D::DrawQuad(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec4(1, 0, 0, 1));
+	//Renderer2D::DrawQuad(glm::vec2(0.0f, 0.0f), glm::vec2(1.0f, 1.0f), glm::vec4(1, 0, 0, 1));
 
 	// RENDERER2D DEBUG TESTING DRAW
 	Renderer2D::Flush();//           END BATCH
