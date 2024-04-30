@@ -25,7 +25,7 @@ public:
 
 private:
 	std::string textString = "Lore ipsum";
-	glm::vec4 color{ 1.0f };
+	glm::vec4 color = { 1.0f, 0.0f, 0.0f, 1.0f };
 	float kerning = 1.0f;
 	float lineSpacing = 1.0f;
 

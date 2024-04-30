@@ -286,7 +286,7 @@ void Renderer2D::Flush()
 		renderer2D.TextVertexBuffer->SetData(renderer2D.TextVertexBufferBase, dataSize);
 
 		auto buf = renderer2D.TextVertexBufferBase;
-		renderer2D.FontAtlasTexture->Bind(0);
+		renderer2D.FontAtlasTexture->Bind();
 
 		renderer2D.TextShader->Bind();
 		DrawIndexed(renderer2D.TextVertexArray, renderer2D.TextIndexCount);
@@ -325,6 +325,14 @@ void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, Reso
 		* glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 	DrawQuad(transform, spriteID, tilingFactor, tintColor);
+}
+
+void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, std::shared_ptr<Texture> sprite, float tilingFactor, const glm::vec4& tintColor)
+{
+	glm::mat4 transform = glm::translate(glm::mat4(1.0f), { position.x, position.y, 0.0f })
+		* glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+	DrawQuad(transform, sprite, tilingFactor, tintColor);
 }
 
 void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color)
@@ -379,6 +387,49 @@ void Renderer2D::DrawQuad(const glm::mat4& transform, ResourceId spriteID, float
 
 		textureIndex = (float)renderer2D.TextureSlotIndex;
 		renderer2D.TextureSlots[renderer2D.TextureSlotIndex] = sprite;
+		renderer2D.TextureSlotIndex++;
+	}
+
+	for (size_t i = 0; i < quadVertexCount; i++)
+	{
+		renderer2D.QuadVertexBufferPtr->Position = transform * renderer2D.QuadVertexPositions[i];
+		renderer2D.QuadVertexBufferPtr->Color = tintColor;
+		renderer2D.QuadVertexBufferPtr->TexCoord = textureCoords[i];
+		renderer2D.QuadVertexBufferPtr->TexIndex = textureIndex;
+		renderer2D.QuadVertexBufferPtr->TilingFactor = tilingFactor;
+		renderer2D.QuadVertexBufferPtr++;
+	}
+
+	renderer2D.QuadIndexCount += 6;
+
+	renderer2D.Stats.QuadCount++;
+}
+
+void Renderer2D::DrawQuad(const glm::mat4& transform, std::shared_ptr<Texture> sprite, float tilingFactor, const glm::vec4& tintColor)
+{
+	constexpr size_t quadVertexCount = 4;
+	constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
+
+	if (renderer2D.QuadIndexCount >= Renderer2DData::MaxIndices)
+		NextBatch();
+
+	float textureIndex = 0.0f;
+	for (uint32_t i = 1; i < renderer2D.TextureSlotIndex; i++)
+	{
+		if (*renderer2D.TextureSlots[i] == *sprite)
+		{
+			textureIndex = (float)i;
+			break;
+		}
+	}
+
+	if (textureIndex == 0.0f)
+	{
+		if (renderer2D.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+			NextBatch();
+
+		textureIndex = (float)renderer2D.TextureSlotIndex;
+		renderer2D.TextureSlots[renderer2D.TextureSlotIndex] = sprite.get();
 		renderer2D.TextureSlotIndex++;
 	}
 
