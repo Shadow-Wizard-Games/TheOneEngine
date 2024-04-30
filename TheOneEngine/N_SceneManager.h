@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "Canvas.h"
+#include "Light.h"
 
 #include <string>
 #include <memory>
@@ -156,6 +157,9 @@ public:
 	Camera* currentCamera = nullptr;
 
 	std::multimap<float, GameObject*> zSorting;
+
+	//Arnau: Create a lights list
+	std::vector<Light*> pointLights;
 
 	//int listenerAudioGOID = -1;
 };

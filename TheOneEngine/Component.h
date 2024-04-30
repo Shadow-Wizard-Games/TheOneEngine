@@ -24,6 +24,7 @@ enum class ComponentType
     AudioSource     = 8,
     ParticleSystem  = 9,
     Animator        = 10,
+    Light           = 11,
 
 	Unknown // Last
 };

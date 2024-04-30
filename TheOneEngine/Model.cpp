@@ -166,10 +166,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                     }
                     else
                     {
-                        id = Resources::LoadFromLibrary<Shader>("MeshColor");
-                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
+                        id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
 
-                        material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
+                        material.SetUniformData("u_Material.diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
                     }
 
 
@@ -248,10 +248,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                     }
                     else
                     {
-                        id = Resources::LoadFromLibrary<Shader>("MeshColor");
-                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
+                        id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
 
-                        material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
+                        material.SetUniformData("u_Material.diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
                     }
 
 

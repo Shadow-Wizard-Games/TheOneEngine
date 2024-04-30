@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "Light.h"
+#include "N_SceneManager.h"
 #include "Log.h"
 #include "Defs.h"
 
@@ -172,6 +174,8 @@ bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 	Shader* matShader = material->getShader();
 	matShader->Bind();
 	matShader->SetModel(transform);
+
+	SetUpLight(material);
 
 	material->Bind();
 
@@ -444,7 +448,7 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	GLCALL(glBufferData(GL_ARRAY_BUFFER, vboSize, vboMap, GL_STREAM_DRAW));
 	//GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vboSize, vboMap));
 
-
+	SetUpLight(material);
 	/*SetUpLight(animShader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
 	camera->shadowBuffer->BindTexture();*/
 
@@ -611,4 +615,27 @@ void Mesh::LoadComponent(const json& meshJSON)
     {
         materialID = Resources::LoadFromLibrary<Material>(meshJSON["MaterialPath"]);
     }
+}
+
+bool Mesh::SetUpLight(Material* material)
+{
+	bool ret = true;
+
+	std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
+
+	material->SetUniformData("u_PointLightsNum", pointLights.size());
+	for (int i = 0; i < pointLights.size(); i++)
+	{
+		string iteration = to_string(i);
+
+		material->SetUniformData("u_PointLights[" + iteration + "].position", pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+		material->SetUniformData("u_PointLights[" + iteration + "].constant", 1.0f);
+		material->SetUniformData("u_PointLights[" + iteration + "].linear", 0.3f);
+		material->SetUniformData("u_PointLights[" + iteration + "].quadratic", 0.3f);
+		material->SetUniformData("u_PointLights[" + iteration + "].ambient", pointLights[i]->color * 0.1f);
+		material->SetUniformData("u_PointLights[" + iteration + "].diffuse", pointLights[i]->color);
+		material->SetUniformData("u_PointLights[" + iteration + "].specular", pointLights[i]->specular);
+	}
+
+	return ret;
 }

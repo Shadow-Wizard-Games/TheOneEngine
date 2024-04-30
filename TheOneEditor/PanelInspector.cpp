@@ -22,6 +22,7 @@
 #include "..\TheOneEngine\ButtonImageUI.h"
 #include "..\TheOneEngine\SliderUI.h"
 #include "..\TheOneEngine\CheckerUI.h"
+#include "..\TheOneEngine\Light.h"
 
 #include "InspectorParticleSystems.h"
 
@@ -418,6 +419,52 @@ bool PanelInspector::Draw()
                 }
             }
             
+            /*Light Component*/
+            Light* light = selectedGO->GetComponent<Light>();
+            if (light != nullptr && ImGui::CollapsingHeader("Light", treeNodeFlags))
+            {
+                ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
+                //ImGui::Indent(0.8f);
+                if (ImGui::BeginTable("", 4, tableFlags))
+                {
+                    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch);
+                    ImGui::TableSetupColumn("X", ImGuiTableColumnFlags_WidthStretch);
+                    ImGui::TableSetupColumn("Y", ImGuiTableColumnFlags_WidthStretch);
+                    ImGui::TableSetupColumn("Z", ImGuiTableColumnFlags_WidthStretch);
+
+                    ImGui::TableNextRow();
+
+                    // Headers
+                    ImGui::TableSetColumnIndex(0);
+                    ImGui::TableHeader("##");
+                    ImGui::TableSetColumnIndex(1);
+                    ImGui::TableHeader("X");
+                    ImGui::TableSetColumnIndex(2);
+                    ImGui::TableHeader("Y");
+                    ImGui::TableSetColumnIndex(3);
+                    ImGui::TableHeader("Z");
+
+                    ImGui::TableNextRow();
+
+                    // Color
+                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Text("Color");
+
+                    ImGui::TableSetColumnIndex(1);
+                    if (ImGui::DragFloat("##lightX", &light->color.x, 0.5F, 0, 0, "%.3f", 1)) {}
+
+                    ImGui::TableSetColumnIndex(2);
+                    if (ImGui::DragFloat("##lightY", &light->color.y, 0.5F, 0, 0, "%.3f", 1)) {}
+
+                    ImGui::TableSetColumnIndex(3);
+                    if (ImGui::DragFloat("##lightZ", &light->color.z, 0.5F, 0, 0, "%.3f", 1)) {}
+
+                    ImGui::EndTable();
+                    //ImGui::TableNextRow();
+                }
+                //if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
+
+            }
 
             /*Script Component*/
             Script* script = selectedGO->GetComponent<Script>();
@@ -1368,6 +1415,11 @@ bool PanelInspector::Draw()
                 if (ImGui::MenuItem("Particle System"))
                 {
                     selectedGO->AddComponent<ParticleSystem>();
+                }
+                
+                if (ImGui::MenuItem("Light"))
+                {
+                    selectedGO->AddComponent<Light>();
                 }
                 
                 if (ImGui::MenuItem("Listener"))

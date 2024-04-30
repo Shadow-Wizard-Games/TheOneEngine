@@ -34,6 +34,8 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
+    bool SetUpLight(Material* material);
+
 private:
     //void DrawVertexNormals();
     //void DrawFaceNormals();
