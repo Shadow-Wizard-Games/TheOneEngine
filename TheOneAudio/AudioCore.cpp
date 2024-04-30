@@ -22,16 +22,16 @@ bool AudioCore::InitEngine()
     LOG(LogType::LOG_INFO, "# Initializing Audio Engine...");
 
     if (InitMemoryManager())  LOG(LogType::LOG_OK, "-Init Memory Manager");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Memory Manager");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Memory Manager");
 
     if (InitStreamingManager()) LOG(LogType::LOG_OK, "-Init Streaming Manager");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Streaming Manager");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Streaming Manager");
 
     if (InitSoundEngine()) LOG(LogType::LOG_OK, "-Init Sound Engine");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Sound Engine");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Sound Engine");
 
     if (InitMusicEngine()) LOG(LogType::LOG_OK, "-Init Music Engine");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Music Engine");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Music Engine");
 
     g_lowLevelIO.SetBasePath(AKTEXT("Assets\\Audio\\Wwise Project\\GeneratedSoundBanks\\Windows"));
     AK::StreamMgr::SetCurrentLanguage(AKTEXT("English(us)"));
@@ -306,6 +306,16 @@ void AudioCore::ResumeEvent(AkUniqueID event, AkGameObjectID goID)
 {
     AK::SoundEngine::ExecuteActionOnEvent(event, AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Resume, gameObjectIDs[goID]);
     LOG(LogType::LOG_AUDIO, "Resuming event from %d audiogameobject", goID);
+}
+
+void AudioCore::SetState(int stategroup, int state)
+{
+    AK::SoundEngine::SetState(stategroup, state);
+}
+
+void AudioCore::SetSwitch()
+{
+    //AK::SoundEngine::SetSwitch()
 }
 
 // JULS: Probably not necessary actually
