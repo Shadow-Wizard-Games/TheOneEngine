@@ -71,12 +71,14 @@ bool PanelScene::Draw()
 
 	if (ImGui::Begin("Scene", &enabled, settingsFlags))
 	{
+        // ImGui Window focus - camera controls
         isHovered = ImGui::IsWindowHovered();
         isFocused = ImGui::IsWindowFocused();
 
-        if(isFocused)
-            app->renderer3D->CameraInput(sceneCamera.get());
 
+
+        if(isHovered)
+            app->renderer3D->CameraInput(sceneCamera.get());
 
         // SDL Window
         int SDLWindowWidth, SDLWindowHeight;
@@ -89,8 +91,8 @@ bool PanelScene::Draw()
 
         // Viewport Control ----------------------------------------------------------------
         // Aspect Ratio Size
-        int width, height;
-        app->gui->CalculateSizeAspectRatio(availWindowSize.x, availWindowSize.y, width, height);
+        //int width, height;
+        //app->gui->CalculateSizeAspectRatio(availWindowSize.x, availWindowSize.y, width, height);
 
         // Set glViewport coordinates
         // SDL origin at top left corner (+x >, +y v)
@@ -100,7 +102,7 @@ bool PanelScene::Draw()
 
 
         // Top Bar -------------------------------------------------------------------------
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.5f, 0.5f));
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
         if (ImGui::BeginMenuBar())
         {
             // HandlePosition
@@ -184,6 +186,44 @@ bool PanelScene::Draw()
         }
         ImGui::PopStyleVar();
 
+
+        // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
+        {
+            frameBuffer->Bind();
+            frameBuffer->Clear();
+
+            // Set Render Environment
+            engine->Render(sceneCamera->GetComponent<Camera>());
+            engine->SetUniformBufferCamera(sceneCamera->GetComponent<Camera>());
+
+            // Game cameras Frustum
+            for (const auto GO : engine->N_sceneManager->GetGameObjects())
+            {
+                Camera* gameCam = GO.get()->GetComponent<Camera>();
+
+                if (gameCam != nullptr && gameCam->drawFrustum)
+                    engine->DrawFrustum(gameCam->frustum);
+            }
+
+            // Draw Rays
+            if (drawRaycasting)
+            {
+                for (auto ray : rays)
+                {
+                    engine->DrawRay(ray);
+                }
+            }
+
+            // Draw Scene
+            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
+
+            // Draw Loading Screen - only on panel game
+            /*if (engine->N_sceneManager->GetSceneIsChanging())
+                engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);*/
+
+            frameBuffer->Unbind();
+        }
+
         //Draw FrameBuffer Texture
         viewportSize = { availWindowSize.x, availWindowSize.y };
         ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
@@ -238,55 +278,20 @@ bool PanelScene::Draw()
         // Mouse Picking -------------------------------------------------------------------
         if (isHovered && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
         {
-            int sdlY = SDLWindowHeight - y - height;
+            int sdlY = SDLWindowHeight - y - viewportSize.y;
             auto clickPos = glm::vec2(app->input->GetMouseX() - x, app->input->GetMouseY() - sdlY);
 
-			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), width, height);
+			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), viewportSize.x, viewportSize.y);
 
             if (drawRaycasting) rays.push_back(ray);
             
             //editor->SelectObject(ray);
         }
-
-
-        //ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
-        {
-            frameBuffer->Bind();
-            frameBuffer->Clear();
-            frameBuffer->ClearBuffer(-1);
-
-            // Draw
-            engine->Render(sceneCamera->GetComponent<Camera>());
-            engine->SetUniformBufferCamera(sceneCamera->GetComponent<Camera>());
-
-            // Game cameras Frustum
-            for (const auto GO : engine->N_sceneManager->GetGameObjects())
-            {
-                Camera* gameCam = GO.get()->GetComponent<Camera>();
-
-                if (gameCam != nullptr && gameCam->drawFrustum)
-                    engine->DrawFrustum(gameCam->frustum);
-            }
-
-            //Draw Rays
-            if (drawRaycasting)
-            {
-                for (auto ray : rays)
-                {
-                    engine->DrawRay(ray);
-                }
-            }
-
-            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
-            if (engine->N_sceneManager->GetSceneIsChanging())
-                engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
-
-            frameBuffer->Unbind();
-        }
-
 	}
 	ImGui::End();
 	ImGui::PopStyleVar();
+
+    //LOG(LogType::LOG_INFO, "Resolution (%.f, %.f)", viewportSize.x, viewportSize.y);
 
 	return true;
 }

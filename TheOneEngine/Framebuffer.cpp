@@ -84,12 +84,12 @@ void FrameBuffer::Reset(bool depth)
 	}
 
 	// Check framebuffer status
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	/*if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
 		LOG(LogType::LOG_WARNING, "Framebuffer not completed");
 	}
 	else
-		LOG(LogType::LOG_OK, "Framebuffer completed");
+		LOG(LogType::LOG_OK, "Framebuffer completed");*/
 
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 
@@ -113,7 +113,7 @@ void FrameBuffer::Resize(unsigned int newWidth, unsigned int newHeight)
 void FrameBuffer::Clear(glm::vec4 color)
 {
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
-	GLCALL(glClearColor(color.r, color.g, color.b, color.a));
+	//GLCALL(glClearColor(color.r, color.g, color.b, color.a));
 	GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
 }
 
