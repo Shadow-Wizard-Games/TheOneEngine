@@ -44,14 +44,7 @@ void Script::Enable()
 
 void Script::Update()
 {
-	if (monoBehaviourInstance->vtable)
-	{
-		MonoManager::CallScriptFunction(monoBehaviourInstance, "Update");
-	}
-	else
-	{
-		LOG(LogType::LOG_MONO, "vtable NULL NULL NULL NULL");
-	}
+	MonoManager::CallScriptFunction(monoBehaviourInstance, "Update");
 }
 
 json Script::SaveComponent()
