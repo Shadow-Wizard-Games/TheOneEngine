@@ -26,7 +26,7 @@ void TextUI::Draw2D()
 
 	Renderer2D::DrawString(textString, fontAsset, { imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, params);
 	Renderer2D::DrawRect({ imageRect.x, imageRect.y, 0.0f }, { imageRect.w, imageRect.h }, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-	Renderer2D::DrawQuad({ imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, fontAsset->GetAtlasTexture());
+	//Renderer2D::DrawQuad({ imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, fontAsset->GetAtlasTexture());
 }
 
 void TextUI::SetFont(const std::string& path)

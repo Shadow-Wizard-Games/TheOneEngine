@@ -25,6 +25,16 @@ static std::shared_ptr<Texture> CreateAndCacheAtlas(const std::string& fontName,
 
 	msdfgen::BitmapConstRef<T, N> bitmap = (msdfgen::BitmapConstRef<T, N>)generator.atlasStorage();
 
+	// Crear un buffer para almacenar los datos volteados
+	//std::vector<T> flippedPixels(bitmap.width * bitmap.height * N);
+	//for (int y = 0; y < bitmap.height; ++y) {
+	//	for (int x = 0; x < bitmap.width; ++x) {
+	//		int srcIndex = (y * bitmap.width + x) * N; // Índice original
+	//		int destIndex = ((bitmap.height - 1 - y) * bitmap.width + (bitmap.width - 1 - x)) * N; // Índice de destino volteado
+	//		std::memcpy(&flippedPixels[destIndex], &bitmap.pixels[srcIndex], N * sizeof(T));
+	//	}
+	//}
+
 	std::shared_ptr<Texture> texture = std::make_shared<Texture>(glm::ivec2(bitmap.width, bitmap.height), 3);
 	texture->SetData((void*)bitmap.pixels, bitmap.width * bitmap.height * 3);
 	return texture;

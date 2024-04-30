@@ -203,13 +203,13 @@ void Renderer2D::Init()
 	renderer2D.CircleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DCircle");
 	renderer2D.LineShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DLine");
 	renderer2D.TextShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DText");
-	//TODO cambiar lo de arriba
+
 	// Set first texture slot to 0
 	renderer2D.TextureSlots[0] = renderer2D.WhiteTexture.get();
 
 	renderer2D.QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
-	renderer2D.QuadVertexPositions[1] = { 0.5f, -0.5f, 0.0f, 1.0f };
-	renderer2D.QuadVertexPositions[2] = { 0.5f,  0.5f, 0.0f, 1.0f };
+	renderer2D.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
+	renderer2D.QuadVertexPositions[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
 }
 
@@ -285,7 +285,6 @@ void Renderer2D::Flush()
 		uint32_t dataSize = (uint32_t)((uint8_t*)renderer2D.TextVertexBufferPtr - (uint8_t*)renderer2D.TextVertexBufferBase);
 		renderer2D.TextVertexBuffer->SetData(renderer2D.TextVertexBufferBase, dataSize);
 
-		auto buf = renderer2D.TextVertexBufferBase;
 		renderer2D.FontAtlasTexture->Bind();
 
 		renderer2D.TextShader->Bind();
@@ -547,6 +546,9 @@ void Renderer2D::DrawString(const std::string& string, std::shared_ptr<Font> fon
 
 	renderer2D.FontAtlasTexture = fontAtlas;
 
+	//DEBUG
+	DrawQuad(transform, renderer2D.FontAtlasTexture);
+
 	double x = 0.0;
 	double fsScale = 1.0 / (metrics.ascenderY - metrics.descenderY);
 	double y = 0.0;
@@ -583,7 +585,6 @@ void Renderer2D::DrawString(const std::string& string, std::shared_ptr<Font> fon
 
 		if (character == '\t')
 		{
-			// NOTE(Yan): is this right?
 			x += 4.0f * (fsScale * spaceGlyphAdvance + textParams.Kerning);
 			continue;
 		}
