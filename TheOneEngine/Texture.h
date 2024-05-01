@@ -37,7 +37,7 @@ public:
 
 	int GetWidth() { return imageSize.x; }
 	int GetHeight() { return imageSize.y; }
-	glm::ivec2 GetSize() { return imageSize; }
+	glm::ivec2 GetSize() const { return imageSize; }
 
 	std::string path;
 

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "ItemUI.h"
-#include "Texture.h"
+#include "Resources.h"
 #include <string>
 
 class ButtonImageUI : public ItemUI
@@ -38,7 +38,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID;
 
 	Rect2D* currentSection;
 	Rect2D imageIdleSection;

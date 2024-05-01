@@ -5,6 +5,7 @@
 #include "ItemUI.h"
 #include "Texture.h"
 #include <string>
+#include "Resources.h"
 
 enum class SliderDesign
 {
@@ -144,7 +145,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID;
 
 	//section of each slider part
 	Rect2D* currentSection;

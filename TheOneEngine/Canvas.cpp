@@ -20,17 +20,12 @@ Canvas::Canvas(std::shared_ptr<GameObject> containerGO, Canvas* ref) : Component
 		std::unique_ptr<ItemUI> uniquePtr(itemPtr);
 		this->uiElements.push_back(std::move(uniquePtr));
 	}
-	for (auto& itemPtr : ref->uiTextures)
-	{
-		this->AddTexture(itemPtr->path);
-	}
 	this->debugDraw = ref->debugDraw;
 	this->rect = ref->rect;
 }
 
 Canvas::~Canvas() 
 {
-	uiTextures.clear();
 	uiElements.clear();
 }
 
@@ -48,74 +43,6 @@ void Canvas::DrawComponent(Camera* camera)
 	{
 		(*element)->Draw2D();
 	}
-}
-
-void Canvas::SetTo2DRenderSettings(Camera* camera, const bool& setTo)
-{
-	glm::mat4 viewMatrix = glm::mat4(1.0f);
-	viewMatrix[0][0] *= -1;
-	viewMatrix[2][2] *= -1;
-	glm::mat4 projectionMatrix = glm::transpose(glm::mat4(camera->projectionMatrix));
-
-	if (setTo)
-	{
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadMatrixf(glm::value_ptr(viewMatrix));
-	}
-	else
-	{
-		glMatrixMode(GL_PROJECTION);
-		glLoadMatrixf(glm::value_ptr(projectionMatrix));
-		glMatrixMode(GL_MODELVIEW);
-		glLoadMatrixf(glm::value_ptr(viewMatrix));
-	}
-}
-
-bool Canvas::RemoveTextureUI(Texture* tex) {
-
-	for (auto it = uiTextures.begin(); it != uiTextures.end(); ++it) {
-		if (it->get() == tex) {
-			uiTextures.erase(it);
-			return true;
-		}
-	}
-	return false;
-}
-
-bool Canvas::RemoveAllTexturesUI()
-{
-	uiTextures.clear();
-	return true;
-}
-
-void Canvas::AddTexture(const std::string path)
-{
-	if (GetTexture(path) == nullptr)
-	{
-		std::shared_ptr<Texture> tex = std::make_shared<Texture>(path);
-		uiTextures.push_back(tex);
-	}
-}
-
-Texture* Canvas::GetTexture(std::string path)
-{
-	std::string fixedPath(path.c_str());
-	size_t index = fixedPath.find("\\");
-	while (index != std::string::npos)
-	{
-		fixedPath.replace(index, 1, "/");
-		index = fixedPath.find("\\", index + 1);
-	}
-
-	for (auto it = uiTextures.begin(); it != uiTextures.end(); ++it) {
-		if (it->get()->path == fixedPath) {
-			return it->get();
-		}
-	}
-	return nullptr;
 }
 
 Rect2D Canvas::GetRect() const
@@ -142,18 +69,6 @@ json Canvas::SaveComponent()
 
 	if (auto pGO = containerGO.lock())
 		canvasJSON["ParentUID"] = pGO.get()->GetUID();
-
-	if (!uiTextures.empty())
-	{
-		json uiTexturesJSON;
-		for (auto& item : uiTextures)
-		{
-			json uiTextures2JSON;
-			uiTextures2JSON["Path"] = item->path.c_str();
-			uiTexturesJSON.push_back(uiTextures2JSON);
-		}
-		canvasJSON["UiTextures"] = uiTexturesJSON;
-	}
 
 	if (!uiElements.empty())
 	{
@@ -182,16 +97,6 @@ void Canvas::LoadComponent(const json& canvasJSON)
 		rect.h = canvasJSON["Rect"][3];
 	}
 	if (canvasJSON.contains("DebugDraw")) debugDraw = canvasJSON["DebugDraw"];
-
-	if (canvasJSON.contains("UiTextures"))
-	{
-		const json& uiTexturesJSON = canvasJSON["UiTextures"];
-
-		for (auto& item : uiTexturesJSON)
-		{
-			if (canvasJSON.contains("Path")) this->AddTexture(canvasJSON["Path"]);
-		}
-	}
 
 	if (canvasJSON.contains("UiElements"))
 	{

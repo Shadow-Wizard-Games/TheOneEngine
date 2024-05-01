@@ -5,6 +5,7 @@
 #include "ItemUI.h"
 #include "Texture.h"
 #include <string>
+#include "Resources.h"
 
 class ImageUI : public ItemUI
 {
@@ -30,7 +31,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID;
 	Rect2D textureSection = { 0,0,1,1 };
 };
 

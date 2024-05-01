@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Texture.h"
 #include <string>
 
 enum class UiType {
@@ -95,6 +96,24 @@ protected:
 
 	unsigned int id;
 	std::string name;
+
+	Rect2D GetImageSection(const Rect2D& activeSection, const Rect2D& inactiveSection, bool activePart, Texture* texture) const {
+		const Rect2D& section = activePart ? activeSection : inactiveSection;
+		return {
+			section.x * texture->GetSize().x,
+			section.y * texture->GetSize().y,
+			section.w * texture->GetSize().x,
+			section.h * texture->GetSize().y
+		};
+	}
+
+	void SetImageSection(Rect2D& activeSection, Rect2D& inactiveSection, bool activePart, float x, float y, float w, float h, Texture* texture) {
+		Rect2D& section = activePart ? activeSection : inactiveSection;
+		section.x = x / texture->GetSize().x;
+		section.y = y / texture->GetSize().y;
+		section.w = w / texture->GetSize().x;
+		section.h = h / texture->GetSize().y;
+	}
 };
 
 #endif // !__ITEMUI_H__
