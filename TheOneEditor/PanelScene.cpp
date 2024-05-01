@@ -31,8 +31,8 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     cameraIn = make_unique<Easing>(0.6);
     cameraOut = make_unique<Easing>(0.3);
 
-    snappingFixed = false;
-    snapAmount = 10.0f;
+    snapping = false;
+    snapAmount = 10;
 
     easing = true;
     camTargetSpeed = 2;
@@ -107,7 +107,7 @@ bool PanelScene::Draw()
             {
                 MoveCamera();
             }
-        }       
+        }
 
         // SDL Window
         int SDLWindowWidth, SDLWindowHeight;
@@ -208,8 +208,8 @@ bool PanelScene::Draw()
             {
                 //ImGui::Text("Gizmo Options");
                 //ImGui::Text("It seems like hekbas forgot to implement ImGuizmo...");
-                ImGui::Checkbox("Snap", &snappingFixed);
-                ImGui::InputFloat("Amount", &snapAmount);
+                ImGui::Checkbox("Snap", &snapping);
+                ImGui::SliderInt("Amount", &snapAmount, 1, 100);
 
                 ImGui::EndMenu();
             }
@@ -289,13 +289,14 @@ bool PanelScene::Draw()
             Transform* tc = selectedGO->GetComponent<Transform>();
             glm::mat4 transform = tc->CalculateWorldTransform();
 
-            bool useSnap = snappingFixed;
-            if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) useSnap = !useSnap;
+            // Snap
+            bool snappingSC = app->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT ? true : false;            
+            vec3f snapSize = vec3f(snapAmount, snapAmount, snapAmount);
 
-            vec3f snapAmounts = vec3f(snapAmount, snapAmount, snapAmount);
-
-            ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
-                (ImGuizmo::OPERATION)gizmoType, (ImGuizmo::MODE)gizmoMode, glm::value_ptr(transform), NULL, useSnap ? &snapAmounts.x : NULL);
+            ImGuizmo::Manipulate(
+                glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
+                (ImGuizmo::OPERATION)gizmoType, (ImGuizmo::MODE)gizmoMode,
+                glm::value_ptr(transform), NULL, snapping || snappingSC ? &snapSize.x : NULL);
 
             if (ImGuizmo::IsUsing())
             {

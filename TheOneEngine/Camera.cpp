@@ -8,7 +8,7 @@
 Camera::Camera(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Camera),
     aspect(1.777), fov(65), 
     size(5), 
-    zNear(0.1), zFar(1000),
+    zNear(0.1), zFar(3000),
     yaw(0), pitch(0),
     viewMatrix(1.0f),
     lookAt(0, 0, 0),
@@ -41,7 +41,6 @@ primaryCam(ref->primaryCam)
     frustum = ref->frustum;
     projectionMatrix = ref->projectionMatrix;
     viewProjectionMatrix = ref->viewProjectionMatrix;
-    //eeeeldeeen riiiiiiing
 }
 
 Camera::~Camera() {}

@@ -53,8 +53,8 @@ private:
 	std::shared_ptr<FrameBuffer> frameBuffer;
 
 	// snapping
-	bool snappingFixed;
-	float snapAmount;
+	bool snapping;
+	int snapAmount;
 
 	bool easing;
 	float camTargetSpeed;
