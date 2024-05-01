@@ -12,7 +12,6 @@ TextUI::TextUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemUI(co
 TextUI::TextUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::TEXT, name, false, rect), fontPath(path)
 {
 	SetFont(path);
-	LOG(LogType::LOG_INFO, (fontAsset->GetAtlasTexture()->GetTextureId() == 0 ? ("Failed to set new font '%s' to the TextUI") : ("Succesfully set new font '%s' to the TextUI")), path.c_str());
 }
 
 TextUI::~TextUI() {}
@@ -24,9 +23,9 @@ void TextUI::Draw2D()
 	params.Kerning = kerning;
 	params.LineSpacing = lineSpacing;
 
-	Renderer2D::DrawString(textString, fontAsset, { imageRect.x, imageRect.y }, {imageRect.w, imageRect.h}, params);
+	Renderer2D::DrawString(textString, Resources::GetResourceById<Font>(fontID), { imageRect.x, imageRect.y }, {imageRect.w, imageRect.h}, params);
 	//Renderer2D::DrawRect({ imageRect.x, imageRect.y, 0.0f }, { imageRect.w, imageRect.h }, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	//Renderer2D::DrawQuad({ imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, fontAsset->GetAtlasTexture());
+	//Renderer2D::DrawQuad({ imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, fontID->GetAtlasTexture());
 }
 
 void TextUI::SetText(const std::string& newText)
@@ -40,7 +39,7 @@ void TextUI::SetFont(const std::string& path)
 		return;
 
 	fontPath = path;
-	fontAsset = std::make_shared<Font>(path);
+	fontID = Resources::Load<Font>(path);
 }
 
 void TextUI::SetColor(const glm::vec4& c)

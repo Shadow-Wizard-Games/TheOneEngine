@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Model.h"
 #include "Material.h"
+#include "Font.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -31,6 +32,7 @@ public:
 		RES_MODEL,
 		RES_SHADER,
 		RES_MATERIAL,
+		RES_FONT,
 		RES_LAST
 	};
 
