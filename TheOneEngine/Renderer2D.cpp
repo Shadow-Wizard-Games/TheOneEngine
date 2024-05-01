@@ -188,9 +188,29 @@ void Renderer2D::Init()
 		{ ShaderDataType::Float2, "a_TexCoord"     }
 		});
 	renderer2D.TextVertexArray->AddVertexBuffer(renderer2D.TextVertexBuffer);
-	renderer2D.TextVertexArray->SetIndexBuffer(quadIB);
 	renderer2D.TextVertexBufferBase = new TextVertex[renderer2D.MaxVertices];
 
+	uint32_t* textIndices = new uint32_t[renderer2D.MaxIndices];
+
+	offset = 0;
+	for (uint32_t i = 0; i < renderer2D.MaxIndices; i += 6)
+	{
+		textIndices[i + 0] = offset + 0;
+		textIndices[i + 1] = offset + 2;
+		textIndices[i + 2] = offset + 1;
+
+		textIndices[i + 3] = offset + 0;
+		textIndices[i + 4] = offset + 3;
+		textIndices[i + 5] = offset + 2;
+
+		offset += 4;
+	}
+
+	std::shared_ptr<IndexBuffer> textIB = std::make_shared<IndexBuffer>(textIndices, renderer2D.MaxIndices);
+	renderer2D.TextVertexArray->SetIndexBuffer(textIB);
+	delete[] textIndices;
+
+	// White Texture
 	renderer2D.WhiteTexture = std::make_shared<Texture>();
 	uint32_t whiteTextureData = 0xffffffff;
 	renderer2D.WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
@@ -199,6 +219,7 @@ void Renderer2D::Init()
 	for (uint32_t i = 0; i < renderer2D.MaxTextureSlots; i++)
 		samplers[i] = i;
 
+	// Shaders
 	renderer2D.QuadShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuad");
 	renderer2D.CircleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DCircle");
 	renderer2D.LineShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DLine");

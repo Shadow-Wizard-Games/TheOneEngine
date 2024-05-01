@@ -29,6 +29,11 @@ void TextUI::Draw2D()
 	//Renderer2D::DrawQuad({ imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, fontAsset->GetAtlasTexture());
 }
 
+void TextUI::SetText(const std::string& newText)
+{
+	textString = newText;
+}
+
 void TextUI::SetFont(const std::string& path)
 {
 	if (path.empty())

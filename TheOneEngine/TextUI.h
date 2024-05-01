@@ -7,12 +7,13 @@
 class TextUI : public ItemUI
 {
 public:
-	TextUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,50,50 });
+	TextUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,0.1,0.1 });
 	TextUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Text", Rect2D rect = { 0,0,0.1,0.1 });
 	~TextUI();
 
 	void Draw2D();
 
+	void SetText(const std::string& newText);
 	void SetFont(const std::string& path);
 	void SetColor(const glm::vec4& c);
 	void SetKerning(float k);
