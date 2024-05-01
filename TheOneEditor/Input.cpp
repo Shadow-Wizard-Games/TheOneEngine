@@ -159,12 +159,9 @@ bool Input::processSDLEvents()
 
 	mouse_x_motion = mouse_y_motion = 0;
 
-	int countEvents = 0;
-
 	static SDL_Event event;
 	while (SDL_PollEvent(&event) != 0)
 	{
-		countEvents++;
 		app->gui->HandleInput(&event);
 		switch (event.type)
 		{
@@ -254,10 +251,5 @@ bool Input::processSDLEvents()
 		}
 	}
 
-	if (countEvents > 0)
-	{
-		LOG(LogType::LOG_INFO, "Num Events %i", countEvents);
-
-	}
 	return true;
 }

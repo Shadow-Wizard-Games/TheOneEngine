@@ -62,29 +62,29 @@ bool PanelGame::Draw()
 
 		ImVec2 availWindowSize = ImGui::GetContentRegionAvail();
 
-		//// Top Bar --------------------------
-		//if (ImGui::BeginMenuBar())
-		//{
-		//	if (ImGui::BeginMenu("Camera"))
-		//	{
-		//		for (auto camerasGO : gameCameras)
-		//		{
-		//			if(ImGui::MenuItem(camerasGO->GetName().c_str()))
-		//			{
-		//				cameraToRender = camerasGO->GetComponent<Camera>();
-		//			}
-		//		}
-		//		ImGui::EndMenu();
-		//	}
-		//
-		//	if (ImGui::BeginMenu("Aspect"))
-		//	{
-		//		ImGui::EndMenu();
-		//	}
-		//
-		//	ImGui::PopStyleVar();
-		//	ImGui::EndMenuBar();
-		//}
+		// Top Bar --------------------------
+		if (ImGui::BeginMenuBar())
+		{
+			if (ImGui::BeginMenu("Camera"))
+			{
+				for (auto camerasGO : gameCameras)
+				{
+					if(ImGui::MenuItem(camerasGO->GetName().c_str()))
+					{
+						//cameraToRender = camerasGO->GetComponent<Camera>();
+					}
+				}
+				ImGui::EndMenu();
+			}
+		
+			if (ImGui::BeginMenu("Aspect"))
+			{
+				ImGui::EndMenu();
+			}
+		
+			//ImGui::PopStyleVar();
+			ImGui::EndMenuBar();
+		}
 
 		//ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND-------------------------------------------------
 		{

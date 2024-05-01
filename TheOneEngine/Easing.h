@@ -98,9 +98,10 @@ public:
     double EaseInOutBounce(double t);
 
 
-    double TrackTime(double dt);
-    double EasingAnimation(int start, int end, double time, EasingType easingType);
+    double TrackTime(double dt, bool loop);
+    double Ease(int start, int end, double dt, EasingType easingType, bool loop = false);
 
+    void Reset();
 
     double GetElapsedTime() const { return elapsedTime; }
     void SetElapsedTime(double elapsedTime) { this->elapsedTime = elapsedTime; }
@@ -108,16 +109,17 @@ public:
     double GetTotalTime() const { return totalTime; }
     void SetTotalTime(double totalTime) { this->totalTime = totalTime; }
 
-    double GetDelayTime() const { return delayTime; }
-    void SetDelayTime(double delayTime) { this->delayTime = delayTime; }
+    double GetDelayTime() const { return delay; }
+    void SetDelayTime(double delay) { this->delay = delay; }
 
-    bool GetFinished() const { return bFinished; }
-    void SetFinished(bool bFinished) { this->bFinished = bFinished; }
+    bool GetFinished() const { return finished; }
+    void SetFinished(bool finished) { this->finished = finished; }
+
 
 private:
 
-    double elapsedTime = 0;
-    double totalTime = 0;
-    double delayTime = 0;
-    bool bFinished = true;
+    double elapsedTime;
+    double totalTime;
+    double delay;
+    bool finished;
 };

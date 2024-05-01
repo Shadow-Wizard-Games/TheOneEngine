@@ -8,14 +8,34 @@
 #include "imgui.h"
 #include "imGuizmo.h"
 
-#include "../TheOneEngine/EngineCore.h"
-#include "../TheOneEngine/Ray.h"
-#include "../TheOneEngine/Log.h"
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Ray.h"
+#include "TheOneEngine/Log.h"
+#include "TheOneEngine/Easing.h"
 
 #include <vector>
 
 PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name), isHovered(false)
 {
+	handleSpace = HandleSpace::LOCAL;
+    handlePosition = HandlePosition::PIVOT;
+    gizmoType = -1;
+    gizmoMode = ImGuizmo::MODE::LOCAL;
+
+    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+
+    cameraIn = make_unique<Easing>(0.6);
+    cameraOut = make_unique<Easing>(0.3);
+
+    snappingFixed = false;
+    snapAmount = 10.0f;
+
+    easing = true;
+    camTargetSpeed = 2;
+    camSpeed = 0;
+    camSpeedOut = 0;
+    camKeyOut = 'n';
+
     drawMesh = true;
     drawWireframe = false;
     drawNormalsVerts = false;
@@ -24,13 +44,6 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name), is
     drawOBB = false;
     drawRaycasting = false;
     drawChecker = false;
-
-	handleSpace = HandleSpace::LOCAL;
-    handlePosition = HandlePosition::PIVOT;
-    gizmoType = -1;
-    gizmoMode = ImGuizmo::MODE::LOCAL;
-
-    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
 }
 
 PanelScene::~PanelScene() {}
@@ -75,10 +88,22 @@ bool PanelScene::Draw()
         isHovered = ImGui::IsWindowHovered();
         isFocused = ImGui::IsWindowFocused();
 
+        // Camera Controls
+        if (isHovered)
+            CameraInput(sceneCamera.get());
 
-
-        if(isHovered)
-            app->renderer3D->CameraInput(sceneCamera.get());
+        // Finish Camera Ease Out
+        else if (camKeyOut != 'n')
+        {
+            // Don't move twice in the same frame
+            if (app->input->GetKey(SDL_SCANCODE_W) != KEY_UP &&
+                app->input->GetKey(SDL_SCANCODE_S) != KEY_UP &&
+                app->input->GetKey(SDL_SCANCODE_A) != KEY_UP &&
+                app->input->GetKey(SDL_SCANCODE_D) != KEY_UP)
+            {
+                MoveCamera();
+            }
+        }       
 
         // SDL Window
         int SDLWindowWidth, SDLWindowHeight;
@@ -90,7 +115,7 @@ bool PanelScene::Draw()
         ImVec2 availWindowSize = ImGui::GetContentRegionAvail();
 
         // Viewport Control ----------------------------------------------------------------
-        // Aspect Ratio Size
+        // Aspect Ratio Size - only in Panel Game
         //int width, height;
         //app->gui->CalculateSizeAspectRatio(availWindowSize.x, availWindowSize.y, width, height);
 
@@ -148,9 +173,6 @@ bool PanelScene::Draw()
 
 			if (ImGui::BeginMenu("Camera"))
 			{
-				// Camera settings
-				ImGui::TextWrapped("Scene Camera");
-
 				Camera* camera = sceneCamera.get()->GetComponent<Camera>();
 
 				float fov = static_cast<float>(camera->fov);
@@ -158,11 +180,17 @@ bool PanelScene::Draw()
 				float zNear = static_cast<float>(camera->zNear);
 				float zFar = static_cast<float>(camera->zFar);
 
+				ImGui::Text("Scene Camera");
 				ImGui::SliderFloat("FOV", &fov, 20.0, 120.0);
 				ImGui::SliderFloat("Aspect", &aspect, 0.1, 10.0);
+
 				ImGui::Text("Clipping Plane");
 				ImGui::SliderFloat("Near", &zNear, 0.01, 10.0);
 				ImGui::SliderFloat("Far ", &zFar, 1.0, 20000.0);
+
+                ImGui::Text("Navigation");
+                ImGui::Checkbox("Easing", &easing);
+                ImGui::SliderFloat("Speed ", &camTargetSpeed, 0.1, 10);
 
 				camera->fov = fov;
 				camera->aspect = aspect;
@@ -309,4 +337,156 @@ Ray PanelScene::GetScreenRay(int x, int y, Camera* camera, int width, int height
 	float rayY = -(2.0f * y) / height + 1.0f;
 
 	return camera->ComputeCameraRay(rayX, rayY);
+}
+
+void PanelScene::CameraInput(GameObject* cam)
+{
+    Camera* camera = cam->GetComponent<Camera>();
+    Transform* transform = cam->GetComponent<Transform>();
+    double dt = app->GetDT();
+
+    double mouseSensitivity = 32.0 * dt;
+
+    if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+    {
+        // Yaw and Pitch
+        camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity;
+        camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity;
+        transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
+        transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
+
+        MoveCamera();
+    }
+    else if (camKeyOut != 'n')
+    {
+        MoveCamera();
+    }
+    else if (app->input->GetMouseZ() != 0)
+    {
+        // Zoom
+        transform->Translate(transform->GetForward() * (double)app->input->GetMouseZ());
+    }
+
+    // (MMB) Panning
+    if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE))
+    {
+        double deltaX = app->input->GetMouseXMotion();
+        double deltaY = app->input->GetMouseYMotion();
+
+        float panSpeed = 10 * dt;
+
+        transform->Translate(vec3(deltaX * panSpeed, 0, 0), HandleSpace::GLOBAL);
+        transform->Translate(vec3(0, deltaY * panSpeed, 0), HandleSpace::GLOBAL);
+    }
+
+    // (F) Focus Selection
+    if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && engine->N_sceneManager->GetSelectedGO() != nullptr)
+    {
+        transform->SetPosition(camera->lookAt);
+        vec3f finalPos;
+        finalPos = transform->GetPosition() - transform->GetForward();
+        finalPos = engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Transform>()->GetPosition() - (transform->GetForward() * 10.0);
+
+        transform->SetPosition(finalPos);
+    }
+
+    // ALT
+    // (Alt + LMB) Orbit Selection
+    if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT)
+    {
+        camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity;
+        camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity;
+
+        transform->SetPosition(camera->lookAt);
+
+        transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
+        transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
+
+        vec3f finalPos;
+
+        if (engine->N_sceneManager->GetSelectedGO() != nullptr)
+        {
+            finalPos = engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Transform>()->GetPosition() - (transform->GetForward() * 40.0);
+        }
+        else
+        {
+            finalPos = transform->GetPosition() - transform->GetForward();
+        }
+
+        transform->SetPosition(finalPos);
+    }
+}
+
+void PanelScene::MoveCamera()
+{
+    // Camera Speed
+    if (easing)
+    {
+        if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT ||
+            app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT ||
+            app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT ||
+            app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+        {
+            camKeyOut = 'n';
+            camSpeed = cameraIn.get()->Ease(0, camTargetSpeed, app->GetDT(), EasingType::EASE_IN_SIN);
+        }
+        else if (app->input->GetKey(SDL_SCANCODE_W) == KEY_UP)
+        {
+            camKeyOut = 'w';
+            cameraIn.get()->Reset();
+            camSpeedOut = camSpeed;
+        }
+        else if (app->input->GetKey(SDL_SCANCODE_S) == KEY_UP)
+        {
+            camKeyOut = 's';
+            cameraIn.get()->Reset();
+            camSpeedOut = camSpeed;
+        }
+        else if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
+        {
+            camKeyOut = 'a';
+            cameraIn.get()->Reset();
+            camSpeedOut = camSpeed;
+        }
+        else if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
+        {
+            camKeyOut = 'd';
+            cameraIn.get()->Reset();
+            camSpeedOut = camSpeed;
+        }
+        else if (camSpeed != 0) //hekbas maybe easing finished better
+        {
+            camSpeed = cameraOut.get()->Ease(camSpeedOut, 0, app->GetDT(), EasingType::EASE_INOUT_SIN);
+
+            if (cameraOut.get()->GetFinished())
+            {
+                cameraOut.get()->Reset();
+                camKeyOut = 'n';
+            }
+        }
+    }
+    else
+    {
+        camSpeed = camTargetSpeed;
+    }
+
+    if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+        camSpeed *= 2;
+
+    // Movement
+    Transform* transform = sceneCamera->GetComponent<Transform>();
+
+    if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT || camKeyOut == 'w')
+        transform->Translate(transform->GetForward() * camSpeed, HandleSpace::LOCAL);
+
+    if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT || camKeyOut == 's')
+        transform->Translate(-transform->GetForward() * camSpeed, HandleSpace::LOCAL);
+
+    if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT || camKeyOut == 'a')
+        transform->Translate(transform->GetRight() * camSpeed, HandleSpace::LOCAL);
+
+    if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || camKeyOut == 'd')
+        transform->Translate(-transform->GetRight() * camSpeed, HandleSpace::LOCAL);
+    
+    //LOG(LogType::LOG_INFO, "Speed: %f", camSpeed);
 }

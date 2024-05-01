@@ -6,14 +6,11 @@ Easing::Easing(double totalTime)
 {
     this->totalTime = totalTime;
     this->elapsedTime = 0;
-    this->delayTime = 0;
-    this->bFinished = true;
+    this->delay = 0;
+    this->finished = false;
 }
 
-Easing::~Easing()
-{
-    //release stuff
-}
+Easing::~Easing() {}
 
 // Sin
 double Easing::EaseInSin(double t) {
@@ -178,8 +175,10 @@ double Easing::EaseInOutBounce(double t) {
 }
 
 
-double Easing::EasingAnimation(int start, int end, double time, EasingType easingType)
+double Easing::Ease(int start, int end, double dt, EasingType easingType, bool loop)
 {
+    double time = TrackTime(dt, loop);
+
     // Lambda function:
     // [capture list](parameters) -> return type {function body}
     // Captures current object and easingType by value,
@@ -226,24 +225,39 @@ double Easing::EasingAnimation(int start, int end, double time, EasingType easin
     return start + (end - start) * t;
 }
 
-double Easing::TrackTime(double dt)
+double Easing::TrackTime(double dt, bool loop)
 {
-    double dtCap = fmin(dt, 32);
+    // cap for lag spikes/window pause
+    double dtCapped = fmin(dt, 32);
+    elapsedTime += dtCapped;
 
-    elapsedTime += (dtCap / 1000);
-
-    if (elapsedTime < delayTime)
+    if (elapsedTime < delay)
     {
+        // delay
         return 0;
     }
-    else if (elapsedTime - delayTime < totalTime)
+    else if (elapsedTime - delay < totalTime)
     {
-        return (elapsedTime - delayTime) / totalTime;
+        // playing
+        return (elapsedTime - delay) / totalTime;
+    }
+    else if (!loop)
+    {
+        // finished, no loop
+        finished = true;
+        elapsedTime = totalTime;
+        return 1;
     }
     else
     {
-        bFinished = true;
-        elapsedTime = 0;
-        return 1;
+        // finished, loop
+        elapsedTime -= totalTime;
+        return (elapsedTime - delay) / totalTime;
     }
+}
+
+void Easing::Reset()
+{
+    elapsedTime = 0;
+    finished = false;
 }
