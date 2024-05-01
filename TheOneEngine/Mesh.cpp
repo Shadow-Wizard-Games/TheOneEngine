@@ -623,12 +623,17 @@ bool Mesh::SetUpLight(Material* material)
 
 	std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
 
+	Transform* cameraTransform = engine->N_sceneManager->currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>();
+	
+	//Variables need to be float not double
+	material->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
 	material->SetUniformData("u_PointLightsNum", pointLights.size());
 	for (int i = 0; i < pointLights.size(); i++)
 	{
 		string iteration = to_string(i);
 
-		material->SetUniformData("u_PointLights[" + iteration + "].position", pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+		//Variables need to be float not double
+		material->SetUniformData("u_PointLights[" + iteration + "].position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
 		material->SetUniformData("u_PointLights[" + iteration + "].constant", 1.0f);
 		material->SetUniformData("u_PointLights[" + iteration + "].linear", 0.3f);
 		material->SetUniformData("u_PointLights[" + iteration + "].quadratic", 0.3f);

@@ -115,7 +115,12 @@ public:
 		rootSceneGO.get()->AddComponent<Transform>();
 	}
 
-	~Scene() {}
+	~Scene() 
+	{ 
+		pointLights.clear();
+		delete currentCamera;
+		currentCamera = nullptr;
+	}
 
 	inline std::string GetSceneName() const { return sceneName; }
 	inline void SetSceneName(std::string name) { sceneName = name; }

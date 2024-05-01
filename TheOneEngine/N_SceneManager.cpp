@@ -202,6 +202,8 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	// Close the file
 	file.close();
 
+	currentScene->pointLights.clear();
+
 	if (sceneJSON.contains("sceneName"))
 	{
 		currentScene->SetSceneName(sceneJSON["sceneName"]);

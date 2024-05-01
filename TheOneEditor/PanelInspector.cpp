@@ -423,6 +423,11 @@ bool PanelInspector::Draw()
             Light* light = selectedGO->GetComponent<Light>();
             if (light != nullptr && ImGui::CollapsingHeader("Light", treeNodeFlags))
             {
+                //ImGui::SameLine();
+                if (ImGui::Button("Delete")) 
+                {
+                    selectedGO->RemoveComponent(ComponentType::Light);
+                }
                 ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
                 //ImGui::Indent(0.8f);
                 if (ImGui::BeginTable("", 4, tableFlags))

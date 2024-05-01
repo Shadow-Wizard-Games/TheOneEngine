@@ -4,7 +4,7 @@ const int MAX_POINT_LIGHTS = 32;
 
 struct Material {
     sampler2D diffuse;
-    sampler2D specular;
+    vec3 specular;
     float shininess;
 };
 
@@ -51,7 +51,7 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * vec3(texture(u_Material.diffuse, v_Vertex_UV));
     vec3 diffuse = light.diffuse * diff * vec3(texture(u_Material.diffuse, v_Vertex_UV));
-    vec3 specular = light.specular * spec * vec3(texture(u_Material.specular, v_Vertex_UV));
+    vec3 specular = light.specular * spec * u_Material.specular;
     return (ambient + diffuse + specular);
 }
 
@@ -69,7 +69,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     // combine results
     vec3 ambient = light.ambient * vec3(texture(u_Material.diffuse, v_Vertex_UV));
     vec3 diffuse = light.diffuse * diff * vec3(texture(u_Material.diffuse, v_Vertex_UV));
-    vec3 specular = light.specular * spec * vec3(texture(u_Material.specular, v_Vertex_UV));
+    vec3 specular = light.specular * spec * u_Material.specular;
 
     ambient *= attenuation;
     diffuse *= attenuation;

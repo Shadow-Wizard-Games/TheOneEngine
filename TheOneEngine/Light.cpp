@@ -23,7 +23,15 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(co
 
 Light::~Light() 
 {
-    //Destory in scene list
+    //Destory in scene vector
+    if (lightType == LightType::Point)
+    {
+        auto it = std::find(engine->N_sceneManager->currentScene->pointLights.begin(), engine->N_sceneManager->currentScene->pointLights.end(),
+            this);
+        if (it != engine->N_sceneManager->currentScene->pointLights.end()) {
+            engine->N_sceneManager->currentScene->pointLights.erase(it);
+        }
+    }
 }
 
 void Light::DrawComponent(Camera* camera)
