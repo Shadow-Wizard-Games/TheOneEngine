@@ -24,8 +24,8 @@ void TextUI::Draw2D()
 	params.Kerning = kerning;
 	params.LineSpacing = lineSpacing;
 
-	Renderer2D::DrawString(textString, fontAsset, { imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, params);
-	Renderer2D::DrawRect({ imageRect.x, imageRect.y, 0.0f }, { imageRect.w, imageRect.h }, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	Renderer2D::DrawString(textString, fontAsset, { imageRect.x, imageRect.y }, {imageRect.w, imageRect.h}, params);
+	//Renderer2D::DrawRect({ imageRect.x, imageRect.y, 0.0f }, { imageRect.w, imageRect.h }, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 	//Renderer2D::DrawQuad({ imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, fontAsset->GetAtlasTexture());
 }
 

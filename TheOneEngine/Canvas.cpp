@@ -7,6 +7,7 @@
 #include "ButtonImageUI.h"
 #include "SliderUI.h"
 #include "CheckerUI.h"
+#include "Renderer2D.h"
 
 Canvas::Canvas(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Canvas)
 {}
@@ -38,32 +39,15 @@ void Canvas::DrawComponent(Camera* camera)
 	if (!camera)
 		return;
 
-	SetTo2DRenderSettings(camera, true);
-
 	if (debugDraw)
 	{
-		glLineWidth(2.0f);
-
-		glBegin(GL_LINES);
-
-		glColor4f(1.0f, 0.0f, 0.0f, 1.0f);										// X Axis.
-		glVertex2f(rect.x - rect.w / 2, rect.y + rect.h / 2);			glVertex2f(rect.x + rect.w / 2, rect.y + rect.h / 2);
-		glVertex2f(rect.x + rect.w / 2, rect.y + rect.h / 2);			glVertex2f(rect.x + rect.w / 2, rect.y - rect.h / 2);
-		glVertex2f(rect.x + rect.w / 2, rect.y - rect.h / 2);			glVertex2f(rect.x - rect.w / 2, rect.y - rect.h / 2);
-		glVertex2f(rect.x - rect.w / 2, rect.y - rect.h / 2);			glVertex2f(rect.x - rect.w / 2, rect.y + rect.h / 2);
-
-		glEnd();
-
-		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-		glLineWidth(1.0f);
+		Renderer2D::DrawRect({ rect.x, rect.y, 0.0f }, { rect.w, rect.h }, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	}
 
 	for (auto element = uiElements.rbegin(); element != uiElements.rend(); ++element)
 	{
 		(*element)->Draw2D();
 	}
-
-	SetTo2DRenderSettings(camera, false);
 }
 
 void Canvas::SetTo2DRenderSettings(Camera* camera, const bool& setTo)

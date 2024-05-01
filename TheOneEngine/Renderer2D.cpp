@@ -547,7 +547,7 @@ void Renderer2D::DrawString(const std::string& string, std::shared_ptr<Font> fon
 	renderer2D.FontAtlasTexture = fontAtlas;
 
 	//DEBUG
-	DrawQuad(transform, renderer2D.FontAtlasTexture);
+	//DrawQuad(transform, renderer2D.FontAtlasTexture);
 
 	double x = 0.0;
 	double fsScale = 1.0 / (metrics.ascenderY - metrics.descenderY);
