@@ -15,8 +15,12 @@
 
 #include <vector>
 
-PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name), isHovered(false)
+PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
 {
+    isHovered = false;
+    isFocused = false;
+    cameraControl = false;
+
 	handleSpace = HandleSpace::LOCAL;
     handlePosition = HandlePosition::PIVOT;
     gizmoType = -1;
@@ -89,10 +93,10 @@ bool PanelScene::Draw()
         isFocused = ImGui::IsWindowFocused();
 
         // Camera Controls
-        if (isHovered)
+        if (isHovered || cameraControl)
             CameraInput(sceneCamera.get());
 
-        // Finish Camera Ease Out
+        // Finish Camera Ease Out even if scene isn't hovered
         else if (camKeyOut != 'n')
         {
             // Don't move twice in the same frame
@@ -190,7 +194,7 @@ bool PanelScene::Draw()
 
                 ImGui::Text("Navigation");
                 ImGui::Checkbox("Easing", &easing);
-                ImGui::SliderFloat("Speed ", &camTargetSpeed, 0.1, 10);
+                ImGui::SliderFloat("Speed ", &camTargetSpeed, 1, 10);
 
 				camera->fov = fov;
 				camera->aspect = aspect;
@@ -252,7 +256,7 @@ bool PanelScene::Draw()
             frameBuffer->Unbind();
         }
 
-        //Draw FrameBuffer Texture
+        // Draw FrameBuffer Texture
         viewportSize = { availWindowSize.x, availWindowSize.y };
         ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
@@ -304,7 +308,7 @@ bool PanelScene::Draw()
 
 
         // Mouse Picking -------------------------------------------------------------------
-        if (isHovered && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+        if (isHovered && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) //hekbas need to chek if using imguizmo?
         {
             int sdlY = SDLWindowHeight - y - viewportSize.y;
             auto clickPos = glm::vec2(app->input->GetMouseX() - x, app->input->GetMouseY() - sdlY);
@@ -349,6 +353,8 @@ void PanelScene::CameraInput(GameObject* cam)
 
     if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
     {
+        cameraControl = true;
+
         // Yaw and Pitch
         camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity;
         camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity;
@@ -365,6 +371,10 @@ void PanelScene::CameraInput(GameObject* cam)
     {
         // Zoom
         transform->Translate(transform->GetForward() * (double)app->input->GetMouseZ());
+    }
+    else if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
+    {
+        cameraControl = false;
     }
 
     // (MMB) Panning
@@ -456,7 +466,7 @@ void PanelScene::MoveCamera()
         }
         else if (camSpeed != 0) //hekbas maybe easing finished better
         {
-            camSpeed = cameraOut.get()->Ease(camSpeedOut, 0, app->GetDT(), EasingType::EASE_INOUT_SIN);
+            camSpeed = cameraOut.get()->Ease(camSpeedOut, 0, app->GetDT(), EasingType::EASE_OUT_SIN);
 
             if (cameraOut.get()->GetFinished())
             {

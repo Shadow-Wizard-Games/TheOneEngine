@@ -31,6 +31,7 @@ public:
 	HandlePosition GetHandlePosition() const { return handlePosition; }
 
 public:
+	bool cameraControl;
 	bool isHovered;
 	bool isFocused;
 	std::vector<Ray> rays;

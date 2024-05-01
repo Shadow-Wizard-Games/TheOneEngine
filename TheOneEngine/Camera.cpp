@@ -127,7 +127,7 @@ Ray Camera::ComputeCameraRay(float x, float y)
 {
     glm::mat4 viewProjInverse = glm::inverse(viewProjectionMatrix);
 
-    //glm::vec4 worldOrigin = viewProjInverse * glm::vec4(x, y, -1.0f, 1.0f);
+    //glm::vec4 worldDirection = viewProjInverse * glm::vec4(x, y, -1.0f, 1.0f);
     glm::vec4 worldDirection = viewProjInverse * glm::vec4(x, y, 1.0f, 1.0f);
 
 	GameObject* GO = this->containerGO.lock().get();
