@@ -1,6 +1,5 @@
 #include "App.h"
 
-#include "Time.h"
 #include "Gui.h"
 #include "Window.h"
 #include "Hardware.h"
@@ -19,7 +18,7 @@
 #include "PanelSettings.h"
 #include "PanelBuild.h"
 
-#include "../TheOneEngine/Log.h"
+#include "TheOneEngine/Log.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
@@ -31,6 +30,7 @@
 #include <filesystem>
 #include <windows.h>
 #include <shellapi.h>
+#include <Time.h>
 
 namespace fs = std::filesystem;
 
@@ -64,56 +64,45 @@ bool Gui::Awake()
 
 	panelAbout = new PanelAbout(PanelType::ABOUT, "About");
 	panels.push_back(panelAbout);
-	ret *= isInitialized(panelAbout);
+	ret *= IsInitialized(panelAbout);
 
 	panelConsole = new PanelConsole(PanelType::CONSOLE, "Console");
 	panels.push_back(panelConsole);
-	ret *= isInitialized(panelConsole);
+	ret *= IsInitialized(panelConsole);
 
 	panelHierarchy = new PanelHierarchy(PanelType::HIERARCHY, "Hierarchy");
 	panels.push_back(panelHierarchy);
-	ret *= isInitialized(panelHierarchy);
+	ret *= IsInitialized(panelHierarchy);
 
 	panelInspector = new PanelInspector(PanelType::INSPECTOR, "Inspector");
 	panels.push_back(panelInspector);
-	ret *= isInitialized(panelInspector);
+	ret *= IsInitialized(panelInspector);
 
 	panelProject = new PanelProject(PanelType::PROJECT, "Project");
 	panels.push_back(panelProject);
-	ret *= isInitialized(panelProject);
+	ret *= IsInitialized(panelProject);
 
 	panelScene = new PanelScene(PanelType::SCENE, "Scene");
 	panels.push_back(panelScene);
-	ret *= isInitialized(panelScene);
+	ret *= IsInitialized(panelScene);
 
 	panelGame = new PanelGame(PanelType::GAME, "Game");
 	panels.push_back(panelGame);
-	ret *= isInitialized(panelGame);
+	ret *= IsInitialized(panelGame);
 
 	panelAnimation = new PanelAnimation(PanelType::ANIMATION, "Animation");
 	panels.push_back(panelAnimation);
-	ret *= isInitialized(panelAnimation);
+	ret *= IsInitialized(panelAnimation);
 
 	panelSettings = new PanelSettings(PanelType::SETTINGS, "Settings");
 	panels.push_back(panelSettings);
-	ret *= isInitialized(panelSettings);
+	ret *= IsInitialized(panelSettings);
 	
 	panelBuild = new PanelBuild(PanelType::BUILD, "Build");
 	panels.push_back(panelBuild);
-	ret *= isInitialized(panelBuild);
+	ret *= IsInitialized(panelBuild);
 
 	return ret;
-}
-
-bool Gui::isInitialized(Panel* panel)
-{
-	if (!panel)
-	{
-		LOG(LogType::LOG_ERROR, "-%s", panel->GetName().c_str());
-		return false;
-	}
-	LOG(LogType::LOG_OK, "-%s", panel->GetName().c_str());
-	return true;
 }
 
 bool Gui::Start()
@@ -376,10 +365,29 @@ bool Gui::CleanUp()
 }
 
 
+bool Gui::IsInitialized(Panel* panel)
+{
+	if (!panel)
+	{
+		LOG(LogType::LOG_ERROR, "-%s", panel->GetName().c_str());
+		return false;
+	}
+	LOG(LogType::LOG_OK, "-%s", panel->GetName().c_str());
+	return true;
+}
+
+std::list<Panel*> Gui::GetPanels()
+{
+	return panels;
+}
+
 void Gui::HandleInput(SDL_Event* event)
 {
 	ImGui_ImplSDL2_ProcessEvent(event);
 }
+
+
+// Utils ------------------------------------------------------
 
 void Gui::OpenURL(const char* url) const
 {
@@ -405,6 +413,9 @@ void Gui::AssetContainer(const char* label)
 	ImGui::InputText("##label", (char*)label, 64, ImGuiInputTextFlags_ReadOnly);
 	ImGui::PopStyleVar();
 }
+
+
+// Main Dock Space ----------------------------------------------
 
 void Gui::MainWindowDockspace()
 {
@@ -451,9 +462,7 @@ void Gui::MainWindowDockspace()
 	ImGui::End();
 }
 
-
-// Main Menu Bar ----------------------------------------------
-
+// Menu Bar ------
 bool Gui::MainMenuFile()
 {
 	bool ret = true;
@@ -624,28 +633,5 @@ void Gui::OpenSceneFileWindow()
 		}
 
 		ImGui::End();
-	}
-}
-
-
-// Utils ------------------------------------------------------
-
-void Gui::CalculateSizeAspectRatio(int maxWidth, int maxHeight, int& width, int& height)
-{
-	// Calculate the aspect ratio of the given rectangle
-	double aspectRatio = static_cast<double>(maxWidth) / static_cast<double>(maxHeight);
-
-	// Calculate the aspect ratio of a 16:9 rectangle
-	double targetAspectRatio = 16.0 / 9.0;
-
-	if (aspectRatio <= targetAspectRatio) {
-		// The given rectangle is wider, so the width is limited
-		width = maxWidth;
-		height = static_cast<int>(std::round(width / targetAspectRatio));
-	}
-	else {
-		// The given rectangle is taller, so the height is limited
-		height = maxHeight;
-		width = static_cast<int>(std::round(height * targetAspectRatio));
 	}
 }

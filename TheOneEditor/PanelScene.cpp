@@ -72,13 +72,6 @@ void PanelScene::Start()
 
 bool PanelScene::Draw()
 {
-    if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-        (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
-    {
-        frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
-        sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
-    }
-
 	ImGuiWindowFlags settingsFlags = 0;
 	settingsFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
 
@@ -150,7 +143,7 @@ bool PanelScene::Draw()
                 LOG(LogType::LOG_INFO, "gizMode: %d", gizmoMode);
             }
 
-            ImGui::Dummy(ImVec2(availWindowSize.x - 360.0f, 0.0f));
+            ImGui::Dummy(ImVec2(MAX(availWindowSize.x - 360.0f, 0), 0.0f));
 
             if (ImGui::BeginMenu("Render"))
             {
@@ -206,8 +199,6 @@ bool PanelScene::Draw()
 
             if (ImGui::BeginMenu("Gizmo"))
             {
-                //ImGui::Text("Gizmo Options");
-                //ImGui::Text("It seems like hekbas forgot to implement ImGuizmo...");
                 ImGui::Checkbox("Snap", &snapping);
                 ImGui::SliderInt("Amount", &snapAmount, 1, 100);
 
@@ -218,6 +209,17 @@ bool PanelScene::Draw()
         }
         ImGui::PopStyleVar();
 
+
+        // Viewport resize check
+        viewportSize = { availWindowSize.x, availWindowSize.y };
+
+        if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
+            (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+        {
+            frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+            sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
+            sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+        }
 
         // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
         {
@@ -257,7 +259,6 @@ bool PanelScene::Draw()
         }
 
         // Draw FrameBuffer Texture
-        viewportSize = { availWindowSize.x, availWindowSize.y };
         ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 
@@ -323,8 +324,6 @@ bool PanelScene::Draw()
 	}
 	ImGui::End();
 	ImGui::PopStyleVar();
-
-    //LOG(LogType::LOG_INFO, "Resolution (%.f, %.f)", viewportSize.x, viewportSize.y);
 
 	return true;
 }
@@ -465,7 +464,7 @@ void PanelScene::MoveCamera()
             cameraIn.get()->Reset();
             camSpeedOut = camSpeed;
         }
-        else if (camSpeed != 0) //hekbas maybe easing finished better
+        else if (!cameraOut.get()->GetFinished()) //hekbas maybe easing finished better
         {
             camSpeed = cameraOut.get()->Ease(camSpeedOut, 0, app->GetDT(), EasingType::EASE_OUT_SIN);
 
@@ -498,6 +497,4 @@ void PanelScene::MoveCamera()
 
     if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || camKeyOut == 'd')
         transform->Translate(-transform->GetRight() * camSpeed, HandleSpace::LOCAL);
-    
-    //LOG(LogType::LOG_INFO, "Speed: %f", camSpeed);
 }

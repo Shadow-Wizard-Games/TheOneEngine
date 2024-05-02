@@ -67,6 +67,9 @@ public:
 	// Get/Set
 	uint GetNumberGO() const;
 	std::vector<std::shared_ptr<GameObject>>GetGameObjects();
+
+	// hekbas: Either rename to IsSceneXXX
+	// or use enum > GetSceneState
 	const bool GetSceneIsPlaying() { return sceneIsPlaying; }
 	const bool GetSceneIsChanging() { return sceneChange; }
 

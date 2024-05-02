@@ -113,7 +113,7 @@ void FrameBuffer::Resize(unsigned int newWidth, unsigned int newHeight)
 void FrameBuffer::Clear(glm::vec4 color)
 {
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
-	//GLCALL(glClearColor(color.r, color.g, color.b, color.a));
+	GLCALL(glClearColor(color.r, color.g, color.b, color.a));
 	GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
 }
 

@@ -32,7 +32,6 @@ void EngineCore::Awake()
 
 void EngineCore::Start()
 {
-
     //Init default shaders with uniforms
     ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);

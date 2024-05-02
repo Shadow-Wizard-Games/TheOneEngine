@@ -42,8 +42,8 @@ private:
 	int gizmoType;
 	int gizmoMode;
 
-	const char* spaces[2] = { "Local","Global" };
-	const char* positions[2] = { "Pivot","Center" };
+	const char* spaces[2] = { "Local", "Global" };
+	const char* positions[2] = { "Pivot", "Center" };
 
 	Scene* current;
 	std::shared_ptr<GameObject> sceneCamera;
