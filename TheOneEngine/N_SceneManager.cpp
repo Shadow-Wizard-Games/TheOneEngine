@@ -336,6 +336,9 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::ParticleSystem:
 			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
 			break;
+		case ComponentType::Light:
+			duplicatedGO.get()->AddCopiedComponent<Light>((Light*)item);
+			break;
 		case ComponentType::Unknown:
 			break;
 		default:

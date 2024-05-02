@@ -100,6 +100,10 @@ void GameObject::RemoveComponent(ComponentType type)
 	{
 		if ((*it)->GetType() == type)
 		{
+			if ((*it)->GetType() == ComponentType::Light)
+			{
+				this->GetComponent<Light>()->~Light();
+			}
 			it = components.erase(it);
 			break;
 		}

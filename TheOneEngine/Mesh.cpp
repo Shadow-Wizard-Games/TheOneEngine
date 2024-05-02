@@ -635,8 +635,8 @@ bool Mesh::SetUpLight(Material* material)
 		//Variables need to be float not double
 		material->SetUniformData("u_PointLights[" + iteration + "].position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
 		material->SetUniformData("u_PointLights[" + iteration + "].constant", 1.0f);
-		material->SetUniformData("u_PointLights[" + iteration + "].linear", 0.3f);
-		material->SetUniformData("u_PointLights[" + iteration + "].quadratic", 0.3f);
+		material->SetUniformData("u_PointLights[" + iteration + "].linear", pointLights[i]->linear);
+		material->SetUniformData("u_PointLights[" + iteration + "].quadratic", pointLights[i]->quadratic);
 		material->SetUniformData("u_PointLights[" + iteration + "].ambient", pointLights[i]->color * 0.1f);
 		material->SetUniformData("u_PointLights[" + iteration + "].diffuse", pointLights[i]->color);
 		material->SetUniformData("u_PointLights[" + iteration + "].specular", pointLights[i]->specular);

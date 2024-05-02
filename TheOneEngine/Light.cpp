@@ -8,7 +8,7 @@
 #include "Shader.h"
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0), specular(0.5), linear(0.3f), quadratic(0.2f)
+color(1.0f), specular(0.5f), linear(0.0014f), quadratic(0.000007f)
 {
     if (lightType == LightType::Point)
     {
@@ -16,9 +16,13 @@ color(1.0), specular(0.5), linear(0.3f), quadratic(0.2f)
     }
 }
 
-Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(containerGO, ComponentType::Light)
+Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(containerGO, ComponentType::Light), lightType(ref->lightType),
+color(ref->color), specular(ref->specular), linear(ref->linear), quadratic(ref->quadratic)
 {
-    
+    if (lightType == LightType::Point)
+    {
+        engine->N_sceneManager->currentScene->pointLights.push_back(this);
+    }
 }
 
 Light::~Light() 
@@ -65,6 +69,8 @@ json Light::SaveComponent()
     //lightJSON["SpotAngle"] = spotAngle;
     lightJSON["Color"] = { color.r, color.g, color.b};
     lightJSON["Specular"] = specular;
+    lightJSON["Linear"] = linear;
+    lightJSON["Quadratic"] = quadratic;
 
     return lightJSON;
 }
@@ -134,5 +140,13 @@ void Light::LoadComponent(const json& meshJSON)
     if (meshJSON.contains("Specular"))
     {
         specular = meshJSON["Specular"];
+    }
+    if (meshJSON.contains("Linear"))
+    {
+        linear = meshJSON["Linear"];
+    }
+    if (meshJSON.contains("Quadratic"))
+    {
+        quadratic = meshJSON["Quadratic"];
     }
 }
