@@ -22,7 +22,7 @@ public class ChestBusterBehaviour : MonoBehaviour
 
     // Chestburster parameters
     float life = 80.0f;
-    float movementSpeed = 0.0f * 2;
+    float movementSpeed = 30.0f * 2;
     States currentState = States.Idle;
     ChestbursterAttack currentAttack = ChestbursterAttack.None;
 
@@ -113,13 +113,14 @@ public class ChestBusterBehaviour : MonoBehaviour
                 Debug.Log("Player is NOT DETECTED ANYMORE");
             }
 
-            if (currentAttack != ChestbursterAttack.None)
+            if (currentAttack == ChestbursterAttack.None)
             {
                 attackTimer += Time.deltaTime;
             }
 
             if (currentAttack == ChestbursterAttack.None && attackTimer >= attackCooldown)
             {
+                Debug.Log("Attempt to attack");
                 currentState = States.ChaseAttack;
             }
         }
@@ -133,6 +134,8 @@ public class ChestBusterBehaviour : MonoBehaviour
                 if (currentAttack == ChestbursterAttack.None && detected)
                     attachedGameObject.transform.LookAt(playerGO.transform.position);
 
+                if (!detected) ResetState();
+                
                 break;
             case States.ChaseAttack:
                 player.isFighting = true;
@@ -179,6 +182,7 @@ public class ChestBusterBehaviour : MonoBehaviour
 
     private void TailPunch()
     {
+        Debug.Log("Attempt to do TailPunch");
         ResetState();
     }
 
@@ -187,7 +191,7 @@ public class ChestBusterBehaviour : MonoBehaviour
         float damage = 5.0f;
         spinElapsed += Time.deltaTime;
         attachedGameObject.transform.Rotate(Vector3.up * -180 * Time.deltaTime);
-
+        Debug.Log("Attempt to do TailTrip");
         if (spinElapsed >= spinTime)
         {
             spinElapsed = 0.0f;
