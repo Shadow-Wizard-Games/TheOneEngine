@@ -32,7 +32,7 @@ void CheckerUI::Draw2D()
 	float width = (canvas->GetRect().w * imageRect.w);
 	float height = (canvas->GetRect().h * imageRect.h);
 
-	Renderer2D::DrawQuad({ posX, posY }, { width, height }, imageID);
+	Renderer2D::DrawQuad({ posX, posY }, { width, height }, imageID, Rect2DToTexCoordsSection(*currentSection));
 }
 
 json CheckerUI::SaveUIElement()

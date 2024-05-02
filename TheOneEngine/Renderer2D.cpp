@@ -433,7 +433,7 @@ void Renderer2D::DrawQuad(const glm::mat4& transform, ResourceId spriteID, float
 void Renderer2D::DrawQuad(const glm::mat4& transform, ResourceId imageID, const TexCoordsSection& texCoords, float tilingFactor, const glm::vec4& tintColor)
 {
 	constexpr size_t quadVertexCount = 4;
-	glm::vec2 textureCoords[] = { texCoords.leftBottom, texCoords.rightBottom, texCoords.rigtTop, texCoords.leftTop };
+	glm::vec2 textureCoords[] = { texCoords.leftBottom, texCoords.rightBottom, texCoords.rightTop, texCoords.leftTop };
 
 	Texture* sprite = Resources::GetResourceById<Texture>(imageID);
 

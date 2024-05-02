@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "Texture.h"
 #include <string>
+#include "Renderer2D.h"
+#include <TheOneEngine/Renderer2D.h>
 
 enum class UiType {
 	IMAGE,
@@ -113,6 +115,17 @@ protected:
 		section.y = y / texture->GetSize().y;
 		section.w = w / texture->GetSize().x;
 		section.h = h / texture->GetSize().y;
+	}
+
+	Renderer2D::TexCoordsSection Rect2DToTexCoordsSection(const Rect2D& rect) {
+		Renderer2D::TexCoordsSection texCoords;
+
+		texCoords.leftBottom = { rect.x, rect.y };
+		texCoords.rightBottom = { rect.x + rect.w, rect.y };
+		texCoords.rightTop = { rect.x + rect.w, rect.y + rect.h };
+		texCoords.leftTop = { rect.x, rect.y + rect.h };
+
+		return texCoords;
 	}
 };
 

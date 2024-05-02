@@ -22,8 +22,6 @@
 
 namespace fs = std::filesystem;
 
-static ResourceId debugTexture;
-
 N_SceneManager::N_SceneManager() {}
 
 N_SceneManager::~N_SceneManager() {}
@@ -43,7 +41,6 @@ bool N_SceneManager::Start()
 	loadingScreen.get()->AddComponent<Canvas>();
 	loadingScreen.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>("Assets/Textures/Hud/LoadingTxt.png");
 
-	debugTexture = Resources::Load<Texture>("Assets/Textures/Hud/HudDemo.png");
 	return true;
 }
 
@@ -934,10 +931,6 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 			i->second->Draw(currentCamera);
 		}
 	}
-	// RENDERER2D DEBUG TESTING DRAW
-	Renderer2D::DrawQuad(glm::vec3(20.0f, 20.0f, 0.0f), glm::vec2(10.0f, 10.0f), glm::vec4(0, 0, 1, 1));
-
-	// RENDERER2D DEBUG TESTING DRAW
 	Renderer2D::Flush();//           END BATCH
 
 
@@ -945,9 +938,5 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	Set2DCamera();
 	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
-	// RENDERER2D DEBUG TESTING DRAW
-	Renderer2D::DrawQuad(glm::vec2(-0.5f, -0.5f), glm::vec2(0.5f, 0.5f), debugTexture);
-
-	// RENDERER2D DEBUG TESTING DRAW
 	Renderer2D::Flush();//           END BATCH
 }
