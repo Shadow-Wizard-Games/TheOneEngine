@@ -139,7 +139,7 @@ public:
 	void ChangePrimaryCamera(GameObject* newPrimaryCam);
 
 private:
-	inline void RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
+	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
 
 private:

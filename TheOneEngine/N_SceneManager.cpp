@@ -852,26 +852,39 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-void Scene::RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam)
+inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
 	if (cam != nullptr) {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneSort(gameObject, cam);
+			if (!gameObject->hasTransparency) {
+				gameObject->Draw(cam);
+			}
+			else {
+				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			}
+
+			RecurseSceneDraw(gameObject, cam);
 		}
 
 	}
 	else {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3]);
-			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneSort(gameObject);
+			if (!gameObject->hasTransparency) {
+				gameObject->Draw(currentCamera);
+			}
+			else {
+				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - currentCamera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			}
+
+			RecurseSceneDraw(gameObject, currentCamera);
 		}
 
 	}
+
 }
 
 void Scene::UpdateGOs(double dt)
@@ -899,7 +912,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
-	RecurseSceneSort(rootSceneGO, cam);
+	RecurseSceneDraw(rootSceneGO, cam);
 
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
