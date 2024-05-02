@@ -39,9 +39,9 @@ void Canvas::DrawComponent(Camera* camera)
 		Renderer2D::DrawRect({ rect.x, rect.y, 0.0f }, { rect.w, rect.h }, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	}
 
-	for (auto element = uiElements.rbegin(); element != uiElements.rend(); ++element)
+	for (auto const& element : uiElements)
 	{
-		(*element)->Draw2D();
+		element->Draw2D();
 	}
 }
 
