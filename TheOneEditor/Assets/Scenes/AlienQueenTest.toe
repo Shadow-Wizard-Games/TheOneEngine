@@ -23,10 +23,10 @@
             1.0
           ],
           "Type": 0,
-          "UID": 1696880053
+          "UID": 3177144211
         },
         {
-          "Aspect": 1.87087082862854,
+          "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -35,9 +35,9 @@
           "PrimaryCamera": true,
           "Size": 5.0,
           "Type": 1,
-          "UID": 3633329673,
+          "UID": 3550673124,
           "Yaw": 0.0,
-          "zFar": 1000.0,
+          "zFar": 2114.610107421875,
           "zNear": 0.1
         },
         {
@@ -45,7 +45,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 1319657077
+          "UID": 2254748095
         }
       ],
       "Enabled": true,
@@ -74,11 +74,11 @@
             0.0,
             0.0,
             0.0,
-            -300.0,
+            -400.0,
             1.0
           ],
           "Type": 0,
-          "UID": 1584224668
+          "UID": 475525498
         },
         {
           "Active": true,
@@ -93,14 +93,7 @@
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 307458882
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AlienQueenBehaviourNew",
-          "Type": 4,
-          "UID": 224051049
+          "UID": 3461662831
         },
         {
           "ColliderType": 0,
@@ -112,10 +105,17 @@
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 3452816845,
-          "Radius": 40.0,
+          "Radius": 30.0,
           "Type": 5,
-          "UID": 3096989029,
+          "UID": 2293105699,
           "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AlienQueenBehaviourNew",
+          "Type": 4,
+          "UID": 2810585523
         }
       ],
       "Enabled": true,
@@ -130,25 +130,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            100.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            1.0,
+            100.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            1.0,
+            100.0,
             0.0,
             0.0,
             0.0,
-            300.0,
+            400.0,
             1.0
           ],
           "Type": 0,
-          "UID": 2753163318
+          "UID": 2164112949
         },
         {
           "Active": true,
@@ -158,12 +158,24 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_MainCharacter/M_MainCharacter.toematerial",
-          "MeshPath": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
+          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 513922119
+          "UID": 1372494642
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 4197445285
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
         },
         {
           "ColliderType": 0,
@@ -177,26 +189,18 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 899819762,
+          "UID": 1944253935,
           "Width": -1.7976931348623157e+308
-        },
-        {
-          "AudioID": 0,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "PlayerScript",
-          "Type": 4,
-          "UID": 1279510312
         }
       ],
+      "EditablePrefab": true,
       "Enabled": true,
       "Keeped": false,
       "Name": "SK_MainCharacter",
       "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 2959458870,
+      "PrefabName": "SK_MainCharacter",
       "Static": false,
       "UID": 3452816845
     },
@@ -223,62 +227,70 @@
             1.0
           ],
           "Type": 0,
-          "UID": 4189459008
+          "UID": 672686657
         },
         {
           "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "ItemManager",
-          "Type": 4,
-          "UID": 1017800701
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "ItemManager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2798104028
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
+          "ParentUID": 6619240,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 4229930496
+          "UID": 467118552
         }
       ],
+      "EditablePrefab": true,
       "Enabled": true,
       "Keeped": false,
       "Name": "GameManager",
       "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 3294318030,
+      "PrefabName": "GameManager",
       "Static": false,
-      "UID": 3452816845
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4180287200
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 2738842466
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "ItemManager",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1145673280,
+      "PrefabName": "ItemManager",
+      "Static": false,
+      "UID": 6619240
     }
   ],
   "index": 0,
