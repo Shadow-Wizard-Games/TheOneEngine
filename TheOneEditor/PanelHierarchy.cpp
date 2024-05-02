@@ -281,6 +281,14 @@ void PanelHierarchy::ContextMenu(std::shared_ptr<GameObject> go)
 			}
 		}
 
+		if (go.get()->IsPrefab())
+		{
+			if (ImGui::MenuItem("Unpack Prefab"))
+			{
+				go.get()->UnpackPrefab();
+			}
+		}
+
 		if (ImGui::MenuItem("Remove"))
 		{
 			remove = true;
