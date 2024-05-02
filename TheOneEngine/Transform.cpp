@@ -23,6 +23,14 @@ Transform::Transform(std::shared_ptr<GameObject> containerGO, mat4 transform) : 
 
 Transform::~Transform() {}
 
+void Transform::Update()
+{
+    globalTransformMatrix = transformMatrix;
+    if (containerGO.lock()->parent.lock()) {
+        globalTransformMatrix = containerGO.lock()->parent.lock()->GetComponent<Transform>()->GetGlobalTransform() * globalTransformMatrix;
+    }
+}
+
 
 // @Transform ----------------------------------------------------
 void Transform::Translate(const vec3& translation, const HandleSpace& space)
@@ -230,7 +238,14 @@ mat4 Transform::CalculateWorldTransform()
         parent = parent->parent.lock().get();
     }
 
+    globalTransformMatrix = worldTransform;
+
     return worldTransform;
+}
+
+mat4 Transform::GetGlobalTransform()
+{
+    return globalTransformMatrix;
 }
 
 mat4 Transform::WorldToLocalTransform(GameObject* GO, mat4 modifiedWorldTransform)
@@ -383,6 +398,8 @@ void Transform::LoadComponent(const json& transformJSON)
         }
 
         SetTransform(temp);
+        globalTransformMatrix = transformMatrix;
+        CalculateWorldTransform();
         UpdateCameraIfPresent(); //Check if first creates camera component transform
     }
 }

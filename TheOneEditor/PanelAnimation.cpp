@@ -215,11 +215,11 @@ void PanelAnimation::DrawAnimations()
 
 			switch (current_item)
 			{
-				case AnimationType::AT_PARTIAL_BLEND:
-					anim_id = activeAnimator->CreatePartialAnimation(animation_name);
-					break;
 				case AnimationType::AT_SIMPLE:
 					anim_id = activeAnimator->CreateSimpleAnimation(animation_name);
+					break;
+				case AnimationType::AT_PARTIAL_BLEND:
+					anim_id = activeAnimator->CreatePartialAnimation(animation_name);
 					break;
 				default:
 					break;
@@ -393,7 +393,7 @@ void PanelAnimation::DrawPartialBlendingAnimation(OzzAnimationPartialBlending* p
 		std::string filePath = FileDialog::OpenFile("Open Upper Animation (*.anim)\0*.anim\0");
 		if (!filePath.empty() && filePath.ends_with(".anim"))
 		{
-			partial_animation->LoadUpperAnimation(filePath.c_str());
+			partial_animation->LoadUpperAnimation(fs::relative(filePath).string().c_str());
 		}
 	}
 	ImGui::PopID();
@@ -415,7 +415,7 @@ void PanelAnimation::DrawSimpleAnimation(OzzAnimationSimple* simple_animation)
 		std::string filePath = FileDialog::OpenFile("Open Animation (*.anim)\0*.anim\0");
 		if (!filePath.empty() && filePath.ends_with(".anim"))
 		{
-			simple_animation->LoadAnimation(filePath.c_str());
+			simple_animation->LoadAnimation(fs::relative(filePath).string().c_str());
 		}
 	}
 	ImGui::PopID();

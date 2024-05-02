@@ -13,7 +13,6 @@
 #include "..\TheOneEngine\Collider2D.h"
 #include "..\TheOneEngine\Listener.h"
 #include "..\TheOneEngine\AudioSource.h"
-#include "..\TheOneEngine\Animator.h"
 
 #include "..\TheOneEngine\MonoManager.h"
 #include "..\TheOneEngine\ParticleSystem.h"
@@ -1360,16 +1359,6 @@ bool PanelInspector::Draw()
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
 
-
-            /*Animator Component*/
-            Animator* animator = selectedGO->GetComponent<Animator>();
-
-            if (animator != nullptr && ImGui::CollapsingHeader("Animator", treeNodeFlags))
-            {
-
-            }
-
-
             /*Add Component*/
             if (ImGui::BeginMenu("Add Component"))
             {
@@ -1455,11 +1444,6 @@ bool PanelInspector::Draw()
                 if (ImGui::MenuItem("New Canvas"))
                 {
                     selectedGO->AddComponent<Canvas>();
-                }
-
-                if (ImGui::MenuItem("Animator"))
-                {
-                    selectedGO->AddComponent<Animator>();
                 }
 
                 /*ImGuiTextFilter filter;

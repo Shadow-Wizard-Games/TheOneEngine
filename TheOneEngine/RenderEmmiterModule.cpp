@@ -25,15 +25,6 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
 {
     glDisable(GL_CULL_FACE);
 
-    //glEnable(GL_BLEND);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    //
-    //glEnable(GL_DEPTH_TEST);
-    //glDepthFunc(GL_LEQUAL);
-    //
-    //glClear(GL_DEPTH_BUFFER_BIT);
-
-
     const float* viewProjectionMatrix = glm::value_ptr(camera->viewProjectionMatrix);
 
     glPushMatrix();
@@ -46,7 +37,7 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     vec3 particlePosition = particle->position;
 
     if (!owner->isGlobal) {
-        mat4 worldTransform = owner->owner->GetTransform()->CalculateWorldTransform();
+        mat4 worldTransform = owner->owner->GetTransform()->GetGlobalTransform();
 
         glm::dmat3 worldRotation = worldTransform;
 
@@ -78,10 +69,6 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     Billboard::EndBillboard();
 
     //glPopMatrix();
-
-    //glDisable(GL_DEPTH_TEST);
-
-    //glDisable(GL_BLEND);
 
     glEnable(GL_CULL_FACE);
 

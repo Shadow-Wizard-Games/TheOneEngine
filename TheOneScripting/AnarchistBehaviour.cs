@@ -35,11 +35,20 @@ class AnarchistBehaviour : MonoBehaviour
         collider = attachedGameObject.GetComponent<ICollider2D>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+        attachedGameObject.animator.Play("Scan");
+
+        attachedGameObject.animator.blend = false;
+        attachedGameObject.animator.time = 0.0f;
     }
 
     public override void Update()
     {
-        if (currentState == States.Dead) return;
+        attachedGameObject.animator.UpdateAnimation();
+        if (currentState == States.Dead)
+        {
+            attachedGameObject.animator.Play("Death");
+            return; 
+        }
 
         playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
 
@@ -86,6 +95,8 @@ class AnarchistBehaviour : MonoBehaviour
     bool goingToRoundPos = false;
     void PatrolState()
     {
+        attachedGameObject.animator.Play("Walk");
+
         if (currentState != lastState)
         {
             lastState = currentState;
@@ -135,6 +146,7 @@ class AnarchistBehaviour : MonoBehaviour
         switch (currentSubstate)
         {
             case InspctStates.Going:
+                attachedGameObject.animator.Play("Walk");
                 if (MoveTo(playerLastPosition))
                 {
                     currentSubstate = InspctStates.Inspecting;
@@ -143,7 +155,7 @@ class AnarchistBehaviour : MonoBehaviour
                 if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.3f); }
                 break;
             case InspctStates.Inspecting:
-                //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
+                attachedGameObject.animator.Play("Scan");
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime > maxInspectTime)
                 {
@@ -154,6 +166,7 @@ class AnarchistBehaviour : MonoBehaviour
                 if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.5f); }
                 break;
             case InspctStates.ComingBack:
+                attachedGameObject.animator.Play("Walk");
                 if (MoveTo(initialPos))
                 {
                     currentSubstate = InspctStates.Going;
@@ -210,12 +223,13 @@ class AnarchistBehaviour : MonoBehaviour
             timerBetweenBullets += Time.deltaTime;
             if (timerBetweenBullets > timeBetweenBullets)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
-                                                attachedGameObject.transform.forward * (collider.radius + 0.5f),
-                                                attachedGameObject.transform.rotation);
+                attachedGameObject.animator.Play("Shoot");
+                //InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
+                //                                attachedGameObject.transform.forward * (collider.radius + 0.5f),
+                //                                attachedGameObject.transform.rotation);
                 timerBetweenBullets = 0.0f;
                 bulletCounter++;
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_REBEL_SHOOT);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_REBEL_SHOOT);
             }
 
             if (bulletCounter >= burstBulletCount)

@@ -775,6 +775,37 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
+void N_SceneManager::CreatePrefabFromPath(std::string prefabPath, const vec3f& position)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+
+	std::ifstream file(prefabPath);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", prefabPath);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetPosition(position);
+}
+
 uint N_SceneManager::GetNumberGO() const
 {
 	return static_cast<uint>(currentScene->GetRootSceneGO().get()->children.size());
@@ -821,21 +852,23 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
+void Scene::RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
 	if (cam != nullptr) {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			gameObject.get()->Draw(cam);
-			RecurseSceneDraw(gameObject, cam);
+			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			RecurseSceneSort(gameObject, cam);
 		}
 
 	}
 	else {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			gameObject.get()->Draw(currentCamera);
-			RecurseSceneDraw(gameObject);
+			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3]);
+			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			RecurseSceneSort(gameObject);
 		}
 
 	}
@@ -864,6 +897,20 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
-	RecurseSceneDraw(rootSceneGO, cam);
+	zSorting.clear();
+
+	RecurseSceneSort(rootSceneGO, cam);
+
+	if (cam != nullptr) {
+		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
+			i->second->Draw(cam);
+		}
+	}
+	else {
+		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
+			i->second->Draw(currentCamera);
+		}
+	}
+
 	RecurseUIDraw(rootSceneGO, mode);
 }

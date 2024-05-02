@@ -467,10 +467,7 @@ void PanelProject::DoubleClickFile()
 		break;
 
 	case FileType::PREFAB:
-		if (engine->N_sceneManager->currentScene->IsDirty())
-			warningScene = true;
-		else
-			engine->N_sceneManager->LoadScene(fileSelected->name);
+		engine->N_sceneManager->CreatePrefabFromPath(fileSelected->path.string(), (vec3)(0, 0, 0));
 		break;
 
 	default:
@@ -554,6 +551,13 @@ void PanelProject::ContextMenu()
 
 	if (ImGui::BeginPopupContextItem())
 	{		
+		if (directoryPath.ends_with("Prefabs"))
+		{
+			if (ImGui::MenuItem("Add Prefab"))
+			{
+				engine->N_sceneManager->CreatePrefabFromPath(fileSelected->path.string(), (vec3)(0, 0, 0));
+			}
+		}
 		if (ImGui::MenuItem("Delete"))
 		{
 			fs::remove(fileSelected->path);

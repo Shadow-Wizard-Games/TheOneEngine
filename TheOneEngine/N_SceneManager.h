@@ -62,6 +62,7 @@ public:
 	void OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID);
 	void OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify);
 	void CreatePrefabFromFile(std::string prefabName, const vec3f& position);
+	void CreatePrefabFromPath(std::string prefabPath, const vec3f& position);
 
 	// Get/Set
 	uint GetNumberGO() const;
@@ -138,7 +139,7 @@ public:
 	void ChangePrimaryCamera(GameObject* newPrimaryCam);
 
 private:
-	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
+	inline void RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
 
 private:
@@ -153,6 +154,9 @@ private:
 
 public:
 	Camera* currentCamera = nullptr;
+
+	std::multimap<float, GameObject*> zSorting;
+
 	//int listenerAudioGOID = -1;
 };
 
