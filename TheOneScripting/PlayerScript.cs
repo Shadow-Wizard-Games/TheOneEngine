@@ -3,33 +3,196 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed = 80.0f;
-    bool lastFrameToMove = false;
+    // managers
     ItemManager itemManager;
     IGameObject iManagerGO;
-
-    IGameObject iShotPSGO;
-    IGameObject iStepPSGO;
 
     GameManager gameManager;
     IGameObject gManagerGO;
 
+
+    // particles
+    IGameObject iShotPSGO;
+    IGameObject iStepPSGO;
+
+
+    // background music
     public bool isFighting = false;
-
-    // Bckg music
-    float enemyTimer = 0;
-    float combatThreshold = 5.0f;
-
-    bool hasShot = false;
-    float currentTimer = 0.0f;
-    float attackCooldown = .10f;
-
-    public bool isDead = false;
     public bool onPause = false;
-    float life = 100.0f;
+    float timeAfterCombat = 0;
+    float maxTimeAfterCombat = 5.0f;
 
-    private Vector3 movementDirection;
-    private float movementMagnitude;
+
+    // stats
+    float life = 100.0f;
+    public bool isDead = false;
+
+
+    // movement
+    public float speed = 80.0f;
+    Vector3 movementDirection;
+    float movementMagnitude;
+    bool lastFrameRunned = false;
+
+
+    // shooting
+    bool hasShot = false;
+    float timeSinceLastShot = 0.0f;
+    float shootingCooldown = 0.10f;
+
+    // dashing
+    bool isDashing = false;
+    float timeSinceLastDash = 0.0f;
+    float dashingCooldown = 0.10f;
+
+
+
+    // animation states
+    bool isRunning;
+    bool isShooting;
+
+    public override void Start()
+    {
+        iManagerGO = IGameObject.Find("ItemManager");
+        itemManager = iManagerGO.GetComponent<ItemManager>();
+
+        gManagerGO = IGameObject.Find("GameManager");
+        gameManager = gManagerGO.GetComponent<GameManager>();
+        //itemManager.AddItem(1, 1);
+
+        iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
+        iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
+
+        attachedGameObject.animator.Play("Idle");
+        attachedGameObject.animator.blend = false;
+        attachedGameObject.animator.time = 0.0f;
+    }
+
+    public override void Update()
+    {
+        isRunning = false;
+        isShooting = false;
+
+        if (isDead)
+        {
+            attachedGameObject.animator.Play("Death");
+
+            return;
+        }
+
+        if (onPause) return;
+
+        attachedGameObject.animator.UpdateAnimation();
+
+        // Background music
+        if (!isFighting)
+        {
+            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_AMBIENT_1)
+            {
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_AMBIENT_1;
+            }
+        }
+        else
+        {
+            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_COMBAT_1)
+            {
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_COMBAT_1;
+            }
+        }
+
+        if (isFighting)
+        {
+            timeAfterCombat += Time.deltaTime;
+            if (timeAfterCombat >= maxTimeAfterCombat)
+            {
+                timeAfterCombat = 0;
+                isFighting = false;
+            }
+        }
+
+
+        float currentSpeed = speed;
+        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
+
+        // set movement
+        movementDirection = Vector3.zero;
+        movementMagnitude = 0;
+        isRunning = SetMoveDirection();
+        if (isRunning)
+        {
+            attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
+        }
+
+        // set shoot direction
+        SetShootDirection();
+
+        if (itemManager != null)
+        {
+            if (itemManager.hasInitial)
+            {
+                if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+                {
+                    Shoot();
+                }
+            }
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
+        {
+            Dash();
+        }
+
+        // Play steps
+        if (lastFrameRunned != isRunning)
+        {
+            if (isRunning)
+            {
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
+                if (iStepPSGO != null)
+                {
+                    iStepPSGO.GetComponent<IParticleSystem>().Play();
+                }
+            }
+            else
+            {
+                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.P_STEP);
+                if (iStepPSGO != null)
+                {
+                    iStepPSGO.GetComponent<IParticleSystem>().Stop();
+                }
+            }
+            lastFrameRunned = isRunning;
+
+        }
+
+        // animations
+        if (isRunning)
+        {
+            if (isShooting)
+            {
+                attachedGameObject.animator.Play("Run M4");
+            }
+            else
+            {
+                attachedGameObject.animator.Play("Run");
+            }
+        }
+        else
+        {
+            if (isShooting)
+            {
+                attachedGameObject.animator.Play("Shoot M4");
+            }
+            else
+            {
+                attachedGameObject.animator.Play("Idle");
+            }
+        }
+    }
 
     private void Step()
     {
@@ -49,7 +212,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Dash()
     {
-
+        //isDashing;
     }
 
     private bool SetMoveDirection()
@@ -155,168 +318,29 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public override void Start()
+    private void Shoot()
     {
-        iManagerGO = IGameObject.Find("ItemManager");
-        itemManager = iManagerGO.GetComponent<ItemManager>();
-
-        gManagerGO = IGameObject.Find("GameManager");
-        gameManager = gManagerGO.GetComponent<GameManager>();
-        //itemManager.AddItem(1, 1);
-
-        iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
-        iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
-
-        attachedGameObject.animator.Play("Idle");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.time = 0.0f;
-    }
-
-    public override void Update()
-    {
-        if (isDead)
+        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+        isShooting = true;
+        if (timeSinceLastShot < shootingCooldown)
         {
-            attachedGameObject.animator.Play("Death");
-            return;
-        }
-      
-        if (onPause) return;
-
-        attachedGameObject.animator.UpdateAnimation();
-
-        // Background music
-        if (!isFighting)
-        {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_AMBIENT_1)
+            timeSinceLastShot += Time.deltaTime;
+            if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_AMBIENT_1;
+                //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
+                hasShot = true;
+                //if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
             }
         }
         else
         {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_COMBAT_1)
-            {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_COMBAT_1;
-            }
+            timeSinceLastShot = 0.0f;
+            hasShot = false;
         }
-
-        if (isFighting)
-        {
-            enemyTimer += Time.deltaTime;
-            if (enemyTimer >= combatThreshold)
-            {
-                enemyTimer = 0;
-                isFighting = false;
-            }
-        }
-
-
-        float currentSpeed = speed;
-        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
-
-        // set movement
-        movementDirection = Vector3.zero;
-        movementMagnitude = 0;
-        bool toMove = SetMoveDirection();
-        if (toMove)
-        {
-            attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
-            attachedGameObject.animator.Play("Run");
-        }
-        else
-        {
-            attachedGameObject.animator.Play("Idle");
-        }
-
-        // set shoot direction
-        SetShootDirection();
-
-        if (itemManager != null)
-        {
-            if (itemManager.hasInitial)
-            {
-                if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
-                {
-                    //attachedGameObject.animator.Play("ShootM4");
-                    Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-                    if (currentTimer < attackCooldown)
-                    {
-                        currentTimer += Time.deltaTime;
-                        if (!hasShot && currentTimer > attackCooldown / 2)
-                        {
-                            //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
-                            hasShot = true;
-                            //if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
-                        }
-                    }
-                    else
-                    {
-                        currentTimer = 0.0f;
-                        hasShot = false;
-                    }
-                }
-            }
-        }
-
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
-        {
-            //Here Dash
-        }
-
-
-
-        if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
-        {
-            Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-
-            if (currentTimer < attackCooldown)
-            {
-                currentTimer += Time.deltaTime;
-                if (!hasShot && currentTimer > attackCooldown / 2)
-                {
-                    //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
-                    hasShot = true;
-                    attachedGameObject.animator.Play("Shoot M4");
-                }
-            }
-            else
-            {
-                currentTimer = 0.0f;
-                hasShot = false;
-            }
-            // call particleSystem.Replay()
-        }
-
-        // Play steps
-        if (lastFrameToMove != toMove)
-        {
-            if (toMove)
-            {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
-                if (iStepPSGO != null)
-                {
-                    iStepPSGO.GetComponent<IParticleSystem>().Play();
-                }
-            }
-            else
-            {
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.P_STEP);
-                if (iStepPSGO != null)
-                {
-                    iStepPSGO.GetComponent<IParticleSystem>().Stop();
-                }
-            }
-            lastFrameToMove = toMove;
-
-        }
-
     }
+
+
 
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
