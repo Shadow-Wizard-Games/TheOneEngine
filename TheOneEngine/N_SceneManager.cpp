@@ -931,7 +931,6 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 			i->second->Draw(currentCamera);
 		}
 	}
-	Renderer2D::DrawQuad({ 10.0f, 10.0f }, { 2.0f, 2.0f }, { 0.0f, 0.0f, 1.0f, 1.0f });
 	Renderer2D::Flush();//           END BATCH
 
 

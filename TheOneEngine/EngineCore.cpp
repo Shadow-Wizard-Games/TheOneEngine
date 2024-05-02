@@ -96,10 +96,13 @@ void EngineCore::Render(Camera* camera)
     GLCALL(glClearDepth(1.0f));
 
     GLCALL(glEnable(GL_DEPTH_TEST));
+    GLCALL(glDepthFunc(GL_LEQUAL));
     GLCALL(glEnable(GL_CULL_FACE));
     GLCALL(glEnable(GL_BLEND));
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glEnable(GL_COLOR_MATERIAL));
+
+    glClear(GL_DEPTH_BUFFER_BIT);
 
     switch (camera->cameraType)
     {
