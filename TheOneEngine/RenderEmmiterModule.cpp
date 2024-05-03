@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "Billboard.h"
 #include "GL/glew.h"
+#include "Renderer2D.h"
 
 BillboardRender::BillboardRender(Emmiter* owner)
 {
@@ -25,14 +26,7 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
 {
     glDisable(GL_CULL_FACE);
 
-    const float* viewProjectionMatrix = glm::value_ptr(camera->viewProjectionMatrix);
-
-    glPushMatrix();
-    //glLoadIdentity();
-    glLoadMatrixf(viewProjectionMatrix);
-
-    vec3 cameraPosition;
-    cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
+    vec3 cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
 
     vec3 particlePosition = particle->position;
 
@@ -46,29 +40,18 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
         particlePosition = (worldRotation * particle->position) + worldPosition;
     }
 
-    Billboard::BeginSphericalBillboard(particlePosition, cameraPosition);
+    particle->rotation = Billboard::CalculateSphericalBillboardRotation(particlePosition, cameraPosition);
 
-    // render
-    glBegin(GL_TRIANGLES);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glColor4ub(particle->color.r, particle->color.g, particle->color.b, particle->color.a);
+    glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(particlePosition))
+        * glm::rotate(glm::mat4(1.0f), float(glm::radians(particle->rotation.w)), glm::vec3(particle->rotation))
+        * glm::scale(glm::mat4(1.0f),  glm::vec3(particle->scale));
 
-    glVertex3f(- (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-    glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3f(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-             
-    glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3f(+ (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3f(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-
-    glEnd();
-
-    // particle->Render();
-
-    Billboard::EndBillboard();
-
-    //glPopMatrix();
+    Renderer2D::DrawQuad(transform, glm::vec4(particle->color));
+    //Debug
+    /*Renderer2D::DrawQuad(glm::vec3(particle->position), glm::vec2(particle->scale), glm::vec4(1));
+    Renderer2D::DrawQuad({ particle->position.x, particle->position.y }, { particle->scale.x, particle->scale.y }, glm::vec4(1));
+    Renderer2D::DrawQuad({ 10.0f, 10.0f }, { 1.0f, 1.0f }, glm::vec4(1));*/
 
     glEnable(GL_CULL_FACE);
 

@@ -361,7 +361,8 @@ void SetDirection::Initialize(Particle* particle)
 		particle->direction = worldRotation * particle->direction;
 	}
 
-	particle->direction = glm::normalize(particle->direction);
+	if(particle->direction != vec3())
+		particle->direction = glm::normalize(particle->direction);
 }
 
 json SetDirection::SaveModule()
