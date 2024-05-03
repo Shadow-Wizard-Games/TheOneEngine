@@ -114,7 +114,7 @@ bool PanelScene::Draw()
         // Viewport Control ----------------------------------------------------------------
         // Aspect Ratio Size - only in Panel Game
         //int width, height;
-        //app->gui->CalculateSizeAspectRatio(availWindowSize.x, availWindowSize.y, width, height);
+        //app->gui->CalculateSizeAspectRatio(availWindowSize.x, availWindowSize.y, width, height, aspect);
 
         // Set glViewport coordinates
         // SDL origin at top left corner (+x >, +y v)
@@ -178,12 +178,18 @@ bool PanelScene::Draw()
 				float zFar = static_cast<float>(camera->zFar);
 
 				ImGui::Text("Scene Camera");
-				ImGui::SliderFloat("FOV", &fov, 20.0, 120.0);
-				ImGui::SliderFloat("Aspect", &aspect, 0.1, 10.0);
+				if (ImGui::SliderFloat("FOV", &fov, 4.0, 120.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+
+                if (ImGui::SliderFloat("Aspect", &aspect, 0.1, 10.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
 
 				ImGui::Text("Clipping Plane");
-				ImGui::SliderFloat("Near", &zNear, 0.01, 10.0);
-				ImGui::SliderFloat("Far ", &zFar, 1.0, 20000.0);
+                if (ImGui::SliderFloat("Near", &zNear, 0.01, 10.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+
+                if (ImGui::SliderFloat("Far ", &zFar, 1.0, 20000.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
 
                 ImGui::Text("Navigation");
                 ImGui::Checkbox("Easing", &easing);
@@ -217,6 +223,7 @@ bool PanelScene::Draw()
             (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
         {
             frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+
             sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
@@ -259,7 +266,10 @@ bool PanelScene::Draw()
         }
 
         // Draw FrameBuffer Texture
-        ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+        ImGui::Image(
+            (ImTextureID)frameBuffer->getColorBufferTexture(),
+            ImVec2{ viewportSize.x, viewportSize.y },
+            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 
         // ImGuizmo ------------------------------------------------------------------------

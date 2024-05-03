@@ -102,9 +102,15 @@ void Camera::UpdateProjectionMatrix()
     case CameraType::PERSPECTIVE:
         projectionMatrix = glm::perspective(glm::radians(fov), aspect, zNear, zFar);
         break;
-    case CameraType::ORTHOGONAL:
-        projectionMatrix = glm::ortho(-size, size, -size * 0.75, size * 0.75, zNear, zFar);
-        break;
+
+    case CameraType::ORTHOGRAPHIC:
+    {
+        double halfWidth = size * 0.5f;
+        double halfHeight = halfWidth / aspect;
+        projectionMatrix = glm::ortho(-halfWidth, halfWidth, -halfHeight, halfHeight, zNear, zFar);
+    }
+    break;
+
     default:
         LOG(LogType::LOG_ERROR, "CameraType invalid!");
         break;
@@ -188,7 +194,7 @@ void Camera::LoadComponent(const json& cameraJSON)
         if (cameraJSON["CameraType"] == 0)
             cameraType = CameraType::PERSPECTIVE;
         else if (cameraJSON["CameraType"] == 1)
-            cameraType = CameraType::ORTHOGONAL;
+            cameraType = CameraType::ORTHOGRAPHIC;
     }
 
     if (cameraJSON.contains("PrimaryCamera")) primaryCam = cameraJSON["PrimaryCamera"];

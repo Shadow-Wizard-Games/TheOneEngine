@@ -103,9 +103,15 @@ void EngineCore::Render(Camera* camera)
     case CameraType::PERSPECTIVE:
         gluPerspective(camera->fov, camera->aspect, camera->zNear, camera->zFar);
         break;
-    case CameraType::ORTHOGONAL:
-        GLCALL(glOrtho(-camera->size, camera->size, -camera->size * 0.75, camera->size * 0.75, camera->zNear, camera->zFar));
-        break;
+
+    case CameraType::ORTHOGRAPHIC:
+    {
+        float halfWidth = camera->size * 0.5f;
+        float halfHeight = halfWidth / camera->aspect;
+        GLCALL(glOrtho(-halfWidth, halfWidth, -halfHeight, halfHeight, camera->zNear, camera->zFar));
+    }
+    break;
+
     default:
         LOG(LogType::LOG_ERROR, "EngineCore - CameraType invalid!");
         break;

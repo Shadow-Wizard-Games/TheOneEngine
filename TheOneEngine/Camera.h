@@ -14,7 +14,7 @@
 enum class CameraType 
 {
     PERSPECTIVE,
-    ORTHOGONAL
+    ORTHOGRAPHIC
 };
 
 struct Plane

@@ -98,8 +98,6 @@ bool PanelGame::Draw()
 		ImVec2 offset = { (availWindowSize.x - size.x) * 0.5f, (availWindowSize.y - size.y) * 0.5f };
 		viewportSize = { size.x, size.y };
 
-		LOG(LogType::LOG_INFO, "%.f x %.f", size.x, size.y);
-
 		if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
 			(frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
 		{
@@ -112,13 +110,13 @@ bool PanelGame::Draw()
 			}
 		}
 
-		// ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND-------------------------------------------------
+		// ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND -------------------------------------------------
 		{
 			frameBuffer->Bind();
 			frameBuffer->Clear();
 			frameBuffer->ClearBuffer(-1);
 
-			// Draw
+			// Set Render Environment
 			engine->Render(gameCamera);
 			engine->SetUniformBufferCamera(gameCamera);
 
