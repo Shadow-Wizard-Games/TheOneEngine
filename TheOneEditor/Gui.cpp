@@ -560,14 +560,14 @@ void Gui::MainMenuComponent()
 
 void Gui::MainMenuWindow()
 {
-	if (ImGui::MenuItem("Console"))     app->gui->panelConsole->SwitchState();
-	if (ImGui::MenuItem("Hierarchy"))   app->gui->panelHierarchy->SwitchState();
-	if (ImGui::MenuItem("Inspector"))   app->gui->panelInspector->SwitchState();
-	if (ImGui::MenuItem("Project"))     app->gui->panelProject->SwitchState();
-	if (ImGui::MenuItem("Scene"))       app->gui->panelScene->SwitchState();
-	if (ImGui::MenuItem("Game"))        app->gui->panelGame->SwitchState();
-	if (ImGui::MenuItem("Animation"))   app->gui->panelAnimation->SwitchState();
-	if (ImGui::MenuItem("Settings"))    app->gui->panelSettings->SwitchState();
+	for (auto panel : app->gui->GetPanels())
+	{
+		if (panel->GetType() == PanelType::ABOUT || panel->GetType() == PanelType::BUILD)
+			continue;
+
+		if (ImGui::MenuItem(panel->GetName().c_str(), NULL, panel->GetState()))
+			panel->SwitchState();
+	}
 }
 
 void Gui::MainMenuHelp()

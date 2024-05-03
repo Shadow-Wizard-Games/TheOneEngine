@@ -66,7 +66,7 @@ bool PanelGame::Draw()
 		{
 			// Select Camera
 			std::string camName = gameCamera ? gameCamera->GetContainerGO().get()->GetName() : "None";
-			ImGui::SetNextItemWidth(120);
+			ImGui::SetNextItemWidth(105);
 			if (ImGui::BeginCombo("##Camera", camName.c_str()))
 			{
 				std::vector<GameObject*> gameCameras = GetGameCameras();
@@ -82,11 +82,21 @@ bool PanelGame::Draw()
 
 			// Select Aspect Ratio
 			int aspect = (int)this->aspect;
-			ImGui::SetNextItemWidth(120);
+			ImGui::SetNextItemWidth(105);
 			if (ImGui::Combo("##Aspect", &aspect, aspects, 3))
 			{
 				this->aspect = (Aspect)aspect;
 			}
+
+			ImGui::Dummy(ImVec2(MAX(availWindowSize.x - 308.0f, 0), 0.0f));
+
+			// Render Settings
+			if (ImGui::BeginMenu("Render"))
+			{
+
+				ImGui::EndMenu();
+			}
+
 			ImGui::EndMenuBar();
 		}
 		ImGui::PopStyleVar();

@@ -183,6 +183,7 @@ bool PanelScene::Draw()
 
                 if (ImGui::SliderFloat("Aspect", &aspect, 0.1, 10.0))
                     sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+                ImGui::Dummy({ 0, 4 });
 
 				ImGui::Text("Clipping Plane");
                 if (ImGui::SliderFloat("Near", &zNear, 0.01, 10.0))
@@ -190,6 +191,7 @@ bool PanelScene::Draw()
 
                 if (ImGui::SliderFloat("Far ", &zFar, 1.0, 20000.0))
                     sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+                ImGui::Dummy({ 0, 4 });
 
                 ImGui::Text("Navigation");
                 ImGui::Checkbox("Easing", &easing);
