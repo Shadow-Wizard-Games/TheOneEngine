@@ -51,9 +51,7 @@ Gui::Gui(App* app) :
 Gui::~Gui()
 {
 	for (auto panel : panels)
-	{
 		delete panel;
-	}
 }
 
 bool Gui::Awake()
@@ -197,6 +195,7 @@ bool Gui::Start()
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 	style.GrabRounding = style.FrameRounding = 2.3f;
+	style.FramePadding = { 4, 4 };
 	style.WindowMenuButtonPosition = -1;
 	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 	{
@@ -218,9 +217,7 @@ bool Gui::Start()
 
 	// Iterate Panels & Start
 	for (const auto& panel : panels)
-	{
 		panel->Start();
-	}
 
 	return true;
 }

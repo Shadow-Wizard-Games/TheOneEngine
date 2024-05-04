@@ -6,14 +6,13 @@
 #include "Ray.h"
 
 Camera::Camera(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Camera),
-    aspect(1.777), fov(65), 
-    size(5), 
+    cameraType(CameraType::PERSPECTIVE),
+    aspect(1.777), fov(65), size(200), 
     zNear(0.1), zFar(3000),
     yaw(0), pitch(0),
     viewMatrix(1.0f),
     lookAt(0, 0, 0),
     drawFrustum(true),
-    cameraType(CameraType::PERSPECTIVE),
     primaryCam(false)
 {
     Transform* transform = containerGO.get()->GetComponent<Transform>();
@@ -29,14 +28,14 @@ Camera::Camera(std::shared_ptr<GameObject> containerGO) : Component(containerGO,
 }
 
 Camera::Camera(std::shared_ptr<GameObject> containerGO, Camera* ref) : Component(containerGO, ComponentType::Camera),
-aspect(ref->aspect), fov(ref->fov),
-zNear(ref->zNear), zFar(ref->zFar),
-yaw(ref->yaw), pitch(ref->pitch),
-viewMatrix(ref->viewMatrix),
-lookAt(ref->lookAt), size(ref->size),
-drawFrustum(ref->drawFrustum),
-cameraType(ref->cameraType),
-primaryCam(ref->primaryCam)
+    cameraType(ref->cameraType),
+    aspect(ref->aspect), fov(ref->fov), size(ref->size),
+    zNear(ref->zNear), zFar(ref->zFar),
+    yaw(ref->yaw), pitch(ref->pitch),
+    viewMatrix(ref->viewMatrix),
+    lookAt(ref->lookAt),
+    drawFrustum(ref->drawFrustum),
+    primaryCam(ref->primaryCam)
 {
     frustum = ref->frustum;
     projectionMatrix = ref->projectionMatrix;

@@ -26,6 +26,7 @@ public:
 	Ray GetScreenRay(int x, int y, Camera* camera, int width, int height);
 	void CameraInput(GameObject* cam);
 	void MoveCamera();
+	void InfiniteScroll(bool global = true);
 
 	HandleSpace GetHandleSpace() const { return handleSpace; }
 	HandlePosition GetHandlePosition() const { return handlePosition; }

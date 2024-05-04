@@ -172,12 +172,19 @@ bool PanelScene::Draw()
 			{
 				Camera* camera = sceneCamera.get()->GetComponent<Camera>();
 
+                bool ortho = camera->cameraType == CameraType::ORTHOGRAPHIC ? true : false;
 				float fov = static_cast<float>(camera->fov);
 				float aspect = static_cast<float>(camera->aspect);
 				float zNear = static_cast<float>(camera->zNear);
 				float zFar = static_cast<float>(camera->zFar);
 
 				ImGui::Text("Scene Camera");
+                if (ImGui::Checkbox("Orthographic", &ortho))
+                {
+                    camera->cameraType = ortho ? CameraType::ORTHOGRAPHIC : CameraType::PERSPECTIVE;
+                    camera->UpdateCamera();
+                }
+
 				if (ImGui::SliderFloat("FOV", &fov, 4.0, 120.0))
                     sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
 
