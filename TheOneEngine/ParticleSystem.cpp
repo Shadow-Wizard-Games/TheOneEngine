@@ -78,6 +78,7 @@ void ParticleSystem::DrawComponent(Camera* camera)
 void ParticleSystem::Play()
 {
 	isON = true;
+	hasToEnd = false;
 }
 
 void ParticleSystem::Pause()

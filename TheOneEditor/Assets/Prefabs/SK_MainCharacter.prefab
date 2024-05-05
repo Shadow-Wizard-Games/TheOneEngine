@@ -46,7 +46,7 @@
       "UID": 225613267
     },
     {
-      "AudioID": 5,
+      "AudioID": 0,
       "Name": "AudioSource",
       "Type": 8
     },
@@ -194,6 +194,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "StepsPS",
       "ParentUID": 113510800,
@@ -409,6 +410,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "ShotPlayerPS",
       "ParentUID": 113510800,
@@ -416,6 +418,7 @@
       "UID": 3452816845
     }
   ],
+  "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
   "ParentUID": 3452816845,
