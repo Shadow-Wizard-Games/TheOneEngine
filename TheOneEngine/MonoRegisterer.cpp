@@ -583,6 +583,11 @@ static void StopPS(GameObject* GOptr)
 	GOptr->GetComponent<ParticleSystem>()->Stop();
 }
 
+static void EndPS(GameObject* GOptr)
+{
+	GOptr->GetComponent<ParticleSystem>()->End();
+}
+
 // Audio Manager
 static void PlayAudioSource(GameObject* GOptr, uint audio) {
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
@@ -795,6 +800,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::PausePS", PausePS);
 	mono_add_internal_call("InternalCalls::ReplayPS", ReplayPS);
 	mono_add_internal_call("InternalCalls::StopPS", StopPS);
+	mono_add_internal_call("InternalCalls::EndPS", EndPS);
 
 	//Audio
 	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);

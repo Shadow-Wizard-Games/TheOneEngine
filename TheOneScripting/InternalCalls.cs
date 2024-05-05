@@ -173,6 +173,10 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopPS(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void EndPS(IntPtr GOptr);
+
     #endregion
 
     #region Audio

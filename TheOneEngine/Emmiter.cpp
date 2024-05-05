@@ -89,7 +89,7 @@ void Emmiter::Update(double dt)
 	}
 
 	if (lifetime < duration + delay || isLooping) {
-		if (spawnModule) {
+		if (spawnModule && !owner->HasToEnd()) {
 			spawnModule->Update(dt);
 		}
 	}

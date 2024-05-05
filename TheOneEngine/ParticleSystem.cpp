@@ -21,6 +21,7 @@ ParticleSystem::ParticleSystem(std::shared_ptr<GameObject> containerGO) : Compon
 	startON = true;
 
 	isON = startON;
+	hasToEnd = false;
 	AddEmmiter();
 }
 
@@ -41,6 +42,7 @@ isON(ref->isON)
 	startON = ref->startON;
 
 	isON = startON;
+	hasToEnd = false;
 }
 
 ParticleSystem::~ParticleSystem()
@@ -89,6 +91,7 @@ void ParticleSystem::Replay()
 	for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
 		(*i)->Start();
 	}
+	hasToEnd = false;
 }
 
 void ParticleSystem::Stop()
@@ -97,6 +100,16 @@ void ParticleSystem::Stop()
 	for (auto i = emmiters.begin(); i != emmiters.end(); ++i) {
 		(*i)->Start();
 	}
+}
+
+void ParticleSystem::End()
+{
+	hasToEnd = true;
+}
+
+bool ParticleSystem::HasToEnd()
+{
+	return hasToEnd;
 }
 
 void ParticleSystem::ClearEmmiters()

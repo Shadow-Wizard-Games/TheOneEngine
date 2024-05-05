@@ -162,7 +162,7 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.source.StopAudio(IAudioSource.EventIDs.P_STEP);
                 if (iStepPSGO != null)
                 {
-                    iStepPSGO.GetComponent<IParticleSystem>().Stop();
+                    iStepPSGO.GetComponent<IParticleSystem>().End();
                 }
             }
             lastFrameRunned = isRunning;
