@@ -243,7 +243,8 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 
 			if (gameObjectJSON.contains("PrefabID") && gameObjectJSON["PrefabID"] != 0)
 			{
-				CreatePrefabFromFile(gameObjectJSON["PrefabName"]);
+				CreatePrefabWithName(gameObjectJSON["PrefabName"]);
+				LOG(LogType::LOG_INFO, "Loaded prefab from prefab file instead of scene file");
 			}
 			else
 			{
@@ -747,7 +748,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& position)
+void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& position)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -782,7 +783,7 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
+void N_SceneManager::CreatePrefabWithName(std::string prefabName)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
