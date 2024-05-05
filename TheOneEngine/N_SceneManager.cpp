@@ -71,7 +71,7 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 
 	// Save Scene by checking if isDirty and pressing CTRL+S
 	//if (currentScene->IsDirty()) SaveScene();
-	
+
 	//this will be called when we click play
 	if (!sceneIsPlaying && isPlaying)
 	{
@@ -240,12 +240,19 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 				if (gameObjectJSON["Keeped"] == true && previousFrameIsPlaying)
 					continue;
 			}
-			
-			// Create a new game object
-			auto newGameObject = CreateEmptyGO();
-			newGameObject.get()->SetName(currentScene->GetSceneName());
-			// Load the game object from JSON
-			newGameObject->LoadGameObject(gameObjectJSON);
+
+			if (gameObjectJSON.contains("PrefabID") && gameObjectJSON["PrefabID"] != 0)
+			{
+				CreatePrefabFromFile(gameObjectJSON["PrefabName"]);
+			}
+			else
+			{
+				// Create a new game object
+				auto newGameObject = CreateEmptyGO();
+				newGameObject.get()->SetName(currentScene->GetSceneName());
+				// Load the game object from JSON
+				newGameObject->LoadGameObject(gameObjectJSON);
+			}
 		}
 
 		LOG(LogType::LOG_OK, "LOAD SUCCESSFUL");
@@ -773,6 +780,39 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	newGameObject->LoadGameObject(prefabJSON);
 
 	newGameObject->GetComponent<Transform>()->SetPosition(position);
+}
+
+void N_SceneManager::CreatePrefabFromFile(std::string prefabName)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+
+	// Load the game object from 
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + prefabName + ".prefab";
+
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
 }
 
 void N_SceneManager::CreatePrefabFromPath(std::string prefabPath, const vec3f& position)
