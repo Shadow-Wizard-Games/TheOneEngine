@@ -3,6 +3,7 @@
 #include "Defs.h"
 #include "N_SceneManager.h"
 #include "Collider2D.h"
+
 #include <GL\glew.h>
 #include <glm\ext\matrix_transform.hpp>
 #include <IL\il.h>
@@ -19,6 +20,7 @@ EngineCore::EngineCore()
     collisionSolver = new CollisionSolver();
     inputManager = new InputManager();
     N_sceneManager = new N_SceneManager();
+    easingManager = new EasingManager();
 }
 
 void EngineCore::Awake()
@@ -72,7 +74,8 @@ void EngineCore::Update(double dt)
 {
     audioManager->Update(dt);
     collisionSolver->Update(dt);
-  
+    //easingManager->Update(dt);
+
     this->dt = dt;
 }
 

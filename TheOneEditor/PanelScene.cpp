@@ -19,26 +19,29 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
 {
     isHovered = false;
     isFocused = false;
-    cameraControl = false;
 
-	handleSpace = HandleSpace::LOCAL;
-    handlePosition = HandlePosition::PIVOT;
+    current = nullptr;
+
+    sceneCamera = nullptr;
+    cameraParent = nullptr;
+    camControlMode = CamControlMode::DISABLED;
+
+    camEaseInX = engine->easingManager->AddEasing(1.2);
+    camEaseInY = engine->easingManager->AddEasing(1.2);
+    camEaseOutX = engine->easingManager->AddEasing(0.8);
+    camEaseOutY = engine->easingManager->AddEasing(0.8);
+
+    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+    viewportSize = { 0.0f, 0.0f };
+
     gizmoType = -1;
     gizmoMode = ImGuizmo::MODE::LOCAL;
 
-    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
-
-    cameraIn = make_unique<Easing>(0.6);
-    cameraOut = make_unique<Easing>(0.3);
-
-    snapping = false;
-    snapAmount = 10;
+    handleSpace = HandleSpace::LOCAL;
+    handlePosition = HandlePosition::PIVOT;
 
     easing = true;
-    camTargetSpeed = 2;
-    camSpeed = 0;
-    camSpeedOut = 0;
-    camKeyOut = 'n';
+    camSpeedMult = 5;
 
     drawMesh = true;
     drawWireframe = false;
@@ -48,6 +51,9 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     drawOBB = false;
     drawRaycasting = false;
     drawChecker = false;
+
+    snapping = false;
+    snapAmount = 10;
 }
 
 PanelScene::~PanelScene() {}
@@ -81,26 +87,13 @@ bool PanelScene::Draw()
 
 	if (ImGui::Begin("Scene", &enabled, settingsFlags))
 	{
-        // ImGui Window focus - camera controls
+        // ImGui Window status
         isHovered = ImGui::IsWindowHovered();
         isFocused = ImGui::IsWindowFocused();
 
-        // Camera Controls
-        if (isHovered || cameraControl)
-            CameraInput(sceneCamera.get());
-
-        // Finish Camera Ease Out even if scene isn't hovered
-        else if (camKeyOut != 'n')
-        {
-            // Don't move twice in the same frame
-            if (app->input->GetKey(SDL_SCANCODE_W) != KEY_UP &&
-                app->input->GetKey(SDL_SCANCODE_S) != KEY_UP &&
-                app->input->GetKey(SDL_SCANCODE_A) != KEY_UP &&
-                app->input->GetKey(SDL_SCANCODE_D) != KEY_UP)
-            {
-                MoveCamera();
-            }
-        }
+        // Camera Control     
+        CameraMode();
+        CameraMovement(sceneCamera.get());
 
         // SDL Window
         int SDLWindowWidth, SDLWindowHeight;
@@ -202,7 +195,7 @@ bool PanelScene::Draw()
 
                 ImGui::Text("Navigation");
                 ImGui::Checkbox("Easing", &easing);
-                ImGui::SliderFloat("Speed ", &camTargetSpeed, 1, 10);
+                ImGui::SliderFloat("Speed ", &camSpeedMult, 1, 10);
 
 				camera->fov = fov;
 				camera->aspect = aspect;
@@ -362,54 +355,187 @@ Ray PanelScene::GetScreenRay(int x, int y, Camera* camera, int width, int height
 	return camera->ComputeCameraRay(rayX, rayY);
 }
 
-void PanelScene::CameraInput(GameObject* cam)
+void PanelScene::CameraMode()
+{
+    switch (camControlMode)
+    {
+        case CamControlMode::ENABLED:
+        {
+            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
+                camControlMode = CamControlMode::DISABLED;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+                camControlMode = CamControlMode::PANNING;
+
+            if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+                camControlMode = CamControlMode::ORBIT;
+        }
+        break;
+
+        case CamControlMode::PANNING:
+        {
+            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_UP)
+                camControlMode = CamControlMode::DISABLED;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+                camControlMode = CamControlMode::ENABLED;
+
+            if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+                camControlMode = CamControlMode::ORBIT;
+        }
+        break;
+
+        case CamControlMode::ORBIT:
+        {
+            if (app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_UP)
+                camControlMode = CamControlMode::DISABLED;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+                camControlMode = CamControlMode::PANNING;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+                camControlMode = CamControlMode::ENABLED;
+        }
+        break;
+
+        case CamControlMode::DISABLED:
+        {
+            if (isHovered)
+            {
+                if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+                    camControlMode = CamControlMode::ENABLED;
+
+                if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+                    camControlMode = CamControlMode::PANNING;
+
+                if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                    app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+                    camControlMode = CamControlMode::ORBIT;
+            }
+        }
+        break;
+    }
+}
+
+void PanelScene::CameraMovement(GameObject* cam)
 {
     Camera* camera = cam->GetComponent<Camera>();
     Transform* transform = cam->GetComponent<Transform>();
     double dt = app->GetDT();
+    double mouseSensitivity = 32.0;
+    bool wasd = false;
 
-    double mouseSensitivity = 32.0 * dt;
-
-    if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+    switch (camControlMode)
     {
-        cameraControl = true;
+        case CamControlMode::ENABLED:
+        {
+            InfiniteScroll();
 
-        // Yaw and Pitch
-        camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity;
-        camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity;
-        transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
-        transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
+            // Yaw and Pitch
+            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
+            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+            transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
+            transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
 
-        MoveCamera();
+            HandleInput(SDL_SCANCODE_A);
+            HandleInput(SDL_SCANCODE_D);
+            HandleInput(SDL_SCANCODE_W);
+            HandleInput(SDL_SCANCODE_S);
+
+            SetTargetSpeed();
+        }
+        break;
+
+        case CamControlMode::PANNING:
+        {
+            InfiniteScroll();
+
+            double deltaX = app->input->GetMouseXMotion();
+            double deltaY = app->input->GetMouseYMotion();
+            float panSpeed = 10 * dt;
+            transform->Translate(vec3(deltaX * panSpeed, 0, 0), HandleSpace::GLOBAL);
+            transform->Translate(vec3(0, deltaY * panSpeed, 0), HandleSpace::GLOBAL);
+        }
+        break;
+
+        case CamControlMode::ORBIT:
+        {
+            InfiniteScroll();
+
+            // (Alt + LMB)
+            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity;
+            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity;
+
+            transform->SetPosition(camera->lookAt);
+
+            transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
+            transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
+
+            vec3f finalPos;
+
+            auto selectedGO = engine->N_sceneManager->GetSelectedGO();
+            if (selectedGO)
+                finalPos = selectedGO->GetComponent<Transform>()->GetPosition() - (transform->GetForward() * 40.0);
+            else
+                finalPos = transform->GetPosition() - transform->GetForward();
+
+            transform->SetPosition(finalPos);
+        }
+        break;
+
+        case CamControlMode::DISABLED:
+        {
+            camTargetSpeed.x = 0;
+            camTargetSpeed.y = 0;
+        }
+        break;
     }
-    else if (camKeyOut != 'n')
+
+    // Camera Speed Easing
+    if (camTargetSpeed.x)
     {
-        MoveCamera();
+        engine->easingManager->GetEasing(camEaseInX).Play();
+        engine->easingManager->GetEasing(camEaseOutX).Reset();
+        camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseInX).Ease(
+            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_IN_SIN, false) * dt;
     }
-    else if (app->input->GetMouseZ() != 0)
+    else
     {
-        // Zoom
+        engine->easingManager->GetEasing(camEaseOutX).Play();
+        engine->easingManager->GetEasing(camEaseInX).Reset();
+        camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseOutX).Ease(
+            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_OUT_SIN, false) * dt;
+    }
+
+    if (camTargetSpeed.y)
+    {
+        engine->easingManager->GetEasing(camEaseInY).Play();
+        engine->easingManager->GetEasing(camEaseOutY).Reset();
+        camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseInY).Ease(
+            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_IN_SIN, false) * dt;
+    }
+    else
+    {
+        engine->easingManager->GetEasing(camEaseOutY).Play();
+        engine->easingManager->GetEasing(camEaseInY).Reset();
+        camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseOutY).Ease(
+            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_OUT_SIN, false) * dt;
+    }
+
+    LOG(LogType::LOG_INFO, "%f, %f", camCurrentSpeed.x, camCurrentSpeed.y);
+
+    // Move
+    transform->Translate(camCurrentSpeed.x * camSpeedMult * transform->GetRight(), HandleSpace::LOCAL);
+    transform->Translate(camCurrentSpeed.y * camSpeedMult * transform->GetForward(), HandleSpace::LOCAL);
+
+    // Zoom
+    if (isHovered && app->input->GetMouseZ() != 0)
         transform->Translate(transform->GetForward() * (double)app->input->GetMouseZ());
-    }
-    else if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
-    {
-        cameraControl = false;
-    }
-
-    // (MMB) Panning
-    if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE))
-    {
-        double deltaX = app->input->GetMouseXMotion();
-        double deltaY = app->input->GetMouseYMotion();
-
-        float panSpeed = 10 * dt;
-
-        transform->Translate(vec3(deltaX * panSpeed, 0, 0), HandleSpace::GLOBAL);
-        transform->Translate(vec3(0, deltaY * panSpeed, 0), HandleSpace::GLOBAL);
-    }
 
     // (F) Focus Selection
-    if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && engine->N_sceneManager->GetSelectedGO() != nullptr)
+    if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && engine->N_sceneManager->GetSelectedGO())
     {
         transform->SetPosition(camera->lookAt);
         vec3f finalPos;
@@ -418,102 +544,114 @@ void PanelScene::CameraInput(GameObject* cam)
 
         transform->SetPosition(finalPos);
     }
+}
 
-    // ALT
-    // (Alt + LMB) Orbit Selection
-    if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT)
+void PanelScene::HandleInput(SDL_Scancode key)
+{
+    if (app->input->GetKey(key) == KEY_DOWN)
     {
-        camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity;
-        camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity;
+        inputStack.push(key);
+    }
+    else if (app->input->GetKey(key) == KEY_UP)
+    {
+        std::stack<SDL_Scancode> tempStack;
 
-        transform->SetPosition(camera->lookAt);
-
-        transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
-        transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
-
-        vec3f finalPos;
-
-        if (engine->N_sceneManager->GetSelectedGO() != nullptr)
+        while (!inputStack.empty())
         {
-            finalPos = engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Transform>()->GetPosition() - (transform->GetForward() * 40.0);
+            if (inputStack.top() != key)
+                tempStack.push(inputStack.top());
+            inputStack.pop();
         }
-        else
+        while (!tempStack.empty())
         {
-            finalPos = transform->GetPosition() - transform->GetForward();
+            inputStack.push(tempStack.top());
+            tempStack.pop();
         }
-
-        transform->SetPosition(finalPos);
     }
 }
 
-void PanelScene::MoveCamera()
+void PanelScene::SetTargetSpeed()
 {
-    // Camera Speed
-    if (easing)
-    {
-        if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT ||
-            app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT ||
-            app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT ||
-            app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-        {
-            camKeyOut = 'n';
-            camSpeed = cameraIn.get()->Ease(0, camTargetSpeed, app->GetDT(), EasingType::EASE_IN_SIN);
-        }
-        else if (app->input->GetKey(SDL_SCANCODE_W) == KEY_UP)
-        {
-            camKeyOut = 'w';
-            cameraIn.get()->Reset();
-            camSpeedOut = camSpeed;
-        }
-        else if (app->input->GetKey(SDL_SCANCODE_S) == KEY_UP)
-        {
-            camKeyOut = 's';
-            cameraIn.get()->Reset();
-            camSpeedOut = camSpeed;
-        }
-        else if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
-        {
-            camKeyOut = 'a';
-            cameraIn.get()->Reset();
-            camSpeedOut = camSpeed;
-        }
-        else if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
-        {
-            camKeyOut = 'd';
-            cameraIn.get()->Reset();
-            camSpeedOut = camSpeed;
-        }
-        else if (!cameraOut.get()->GetFinished()) //hekbas maybe easing finished better
-        {
-            camSpeed = cameraOut.get()->Ease(camSpeedOut, 0, app->GetDT(), EasingType::EASE_OUT_SIN);
+    std::stack<SDL_Scancode> tempStack = inputStack;
+    std::stack<SDL_Scancode> reversedStack; 
 
-            if (cameraOut.get()->GetFinished())
-            {
-                cameraOut.get()->Reset();
-                camKeyOut = 'n';
-            }
+    // Reverse the order of elements
+    while (!tempStack.empty())
+    {
+        reversedStack.push(tempStack.top());
+        tempStack.pop();
+    }
+
+    bool zeroX = true;
+    bool zeroY = true;
+
+    // Compute speed
+    while (!reversedStack.empty())
+    {
+        switch (reversedStack.top())
+        {
+            case SDL_SCANCODE_A:
+                camTargetSpeed.x =  50;
+                camInitSpeed.x = camCurrentSpeed.x;
+                zeroX = false;
+                break;
+
+            case SDL_SCANCODE_D:
+                camTargetSpeed.x = -50;
+                camInitSpeed.x = camCurrentSpeed.x;
+                zeroX = false;
+                break;
+
+            case SDL_SCANCODE_W:
+                camTargetSpeed.y =  50;
+                camInitSpeed.y = camCurrentSpeed.y;
+                zeroY = false;
+                break;
+
+            case SDL_SCANCODE_S:
+                camTargetSpeed.y = -50;
+                camInitSpeed.y = camCurrentSpeed.y;
+                zeroY = false;
+                break;
+
+            default: break;
         }
+
+        reversedStack.pop();
+    }
+
+    if (zeroX) camTargetSpeed.x = 0;
+    if (zeroY) camTargetSpeed.y = 0;
+}
+
+void PanelScene::InfiniteScroll(bool global)
+{
+    if (global)
+    {
+        // hekbas: Implemet this if I have time :3
+        //SDL_WarpMouseGlobal();
     }
     else
     {
-        camSpeed = camTargetSpeed;
+        int width, height;
+        app->window->GetSDLWindowSize(&width, &height);
+
+        int mouseX = app->input->GetMouseX();
+        int mouseY = app->input->GetMouseY();
+        int warpToX = -1;
+        int warpToY = -1;
+        
+        if (mouseX < 5) warpToX = width - 10;
+        else if (mouseX > width - 5) warpToX = 10;
+
+        if (mouseY < 5) warpToY = height - 10;
+        else if (mouseY > height - 5) warpToY = 10;
+
+        if (warpToX == -1 && warpToY == -1) return;
+
+        if (warpToX == -1) warpToX = mouseX;
+        if (warpToY == -1) warpToY = mouseY;
+
+        SDL_WarpMouseInWindow(app->window->window, warpToX, warpToY);
     }
-
-    if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-        camSpeed *= 2;
-
-    // Movement
-    Transform* transform = sceneCamera->GetComponent<Transform>();
-
-    if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT || camKeyOut == 'w')
-        transform->Translate(transform->GetForward() * camSpeed, HandleSpace::LOCAL);
-
-    if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT || camKeyOut == 's')
-        transform->Translate(-transform->GetForward() * camSpeed, HandleSpace::LOCAL);
-
-    if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT || camKeyOut == 'a')
-        transform->Translate(transform->GetRight() * camSpeed, HandleSpace::LOCAL);
-
-    if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT || camKeyOut == 'd')
-        transform->Translate(-transform->GetRight() * camSpeed, HandleSpace::LOCAL);
 }

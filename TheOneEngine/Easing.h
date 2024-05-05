@@ -5,6 +5,14 @@
 #define PI acos(-1)
 
 
+enum class EasingState
+{
+    PLAY,
+    PAUSE,
+    END,
+    END_LOOP
+};
+
 enum class EasingType
 {
     EASE_IN_SIN,
@@ -43,8 +51,7 @@ enum class EasingType
 class Easing
 {
 public:
-    Easing();
-    Easing(double totalTime);
+    Easing(double totalTime, double delay = 0, bool loop = false);
     ~Easing();
 
     // Sin
@@ -99,9 +106,20 @@ public:
 
 
     double TrackTime(double dt, bool loop);
-    double Ease(int start, int end, double dt, EasingType easingType, bool loop = false);
+    double Ease(int start, int end, double dt, EasingType easingType, bool loop);
 
-    void Reset();
+    void Play() { state = EasingState::PLAY; }
+
+    void Pause() { state = EasingState::PAUSE; }
+
+    void Reset()
+    {
+        elapsedTime = 0;
+        state = EasingState::PAUSE;
+    }
+
+    EasingState GetState() const { return state; }
+    void SetState(EasingState state) { this->state = state; }
 
     double GetElapsedTime() const { return elapsedTime; }
     void SetElapsedTime(double elapsedTime) { this->elapsedTime = elapsedTime; }
@@ -112,14 +130,14 @@ public:
     double GetDelayTime() const { return delay; }
     void SetDelayTime(double delay) { this->delay = delay; }
 
-    bool GetFinished() const { return finished; }
-    void SetFinished(bool finished) { this->finished = finished; }
-
+    double IsLooped() const { return loop; }
+    void SetLoop(bool loop) { this->loop = loop; }
 
 private:
 
+    EasingState state;
     double elapsedTime;
     double totalTime;
     double delay;
-    bool finished;
+    bool loop;
 };

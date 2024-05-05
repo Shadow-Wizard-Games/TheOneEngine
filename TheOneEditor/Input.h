@@ -28,6 +28,11 @@ public:
 
     bool processSDLEvents();
 
+	const Uint8* GetKeyboardState(int* numkeys)
+	{
+		return SDL_GetKeyboardState(numkeys);
+	}
+
 	KEY_STATE GetKey(int id) const
 	{
 		return keyboard[id];

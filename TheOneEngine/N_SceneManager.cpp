@@ -11,12 +11,13 @@
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
+#include "ImageUI.h"
+
 #include "../TheOneAudio/AudioCore.h"
-#include "EngineCore.h"
 
 #include <fstream>
 #include <filesystem>
-#include "ImageUI.h"
+#include <unordered_set>
 
 namespace fs = std::filesystem;
 
@@ -277,29 +278,44 @@ void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go, bool fi
 	}
 }
 
-std::string N_SceneManager::GenerateUniqueName(const std::string& baseName)
+std::string N_SceneManager::GenerateUniqueName(const std::string& baseName, const GameObject* go)
 {
-	std::string uniqueName = baseName;
-	int counter = 1;
+	std::unordered_set<std::string> existingNames;
+	std::string newName = baseName;
+	std::vector<std::shared_ptr<GameObject>> children;
+	children = go ? go->parent.lock()->children : currentScene->GetRootSceneGO()->children;
 
-	while (std::any_of(
-		currentScene->GetRootSceneGO().get()->children.begin(), currentScene->GetRootSceneGO().get()->children.end(),
-		[&uniqueName](const std::shared_ptr<GameObject>& obj)
-		{ return obj.get()->GetName() == uniqueName; }))
+	for (const auto& child : children)
+		existingNames.insert(child->GetName());
+
+	if (existingNames.count(newName) > 0)
 	{
-		uniqueName = baseName + "(" + std::to_string(counter) + ")";
-		++counter;
+		int count = 1;
+		while (existingNames.count(newName) > 0)
+		{
+			// Check if the name already ends with a number in parentheses
+			size_t pos = newName.find_last_of('(');
+			if (pos != std::string::npos && newName.back() == ')' && newName[pos] == '(' && pos > 0)
+			{
+				// Extract the number, increment it, and update the newName
+				int num = std::stoi(newName.substr(pos + 1, newName.size() - pos - 2));
+				newName = newName.substr(0, pos - 1) + " (" + std::to_string(++num) + ")";
+			}
+			else
+			{
+				newName = baseName + " (" + std::to_string(count++) + ")";
+			}
+		}
 	}
 
-	return uniqueName;
+	return newName;
 }
 
 std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObject> originalGO, bool recursive)
 {
 	GameObject* ref = originalGO.get();
 
-
-	std::shared_ptr<GameObject> duplicatedGO = std::make_shared<GameObject>(recursive ? originalGO.get()->GetName() : GenerateUniqueName("Copy of " + originalGO.get()->GetName()));
+	std::shared_ptr<GameObject> duplicatedGO = std::make_shared<GameObject>(recursive ? originalGO.get()->GetName() : GenerateUniqueName(originalGO.get()->GetName(), ref));
 	//meshGO.get()->GetComponent<Mesh>()->mesh = mesh;
 	//meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex];
 

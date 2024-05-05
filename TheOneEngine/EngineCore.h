@@ -4,7 +4,7 @@
 
 
 // hekbas: Include here all headers needed in Editor
-// Include in Editor when needed: #include "../TheOneEngine/EngineCore.h"
+// Include in Editor when needed: #include "TheOneEngine/EngineCore.h"
 #include "Defs.h"
 #include "Camera.h"
 #include "Transform.h"
@@ -18,6 +18,7 @@
 #include "MonoManager.h"
 #include "InputManager.h"
 #include "AudioManager.h"
+#include "EasingManager.h"
 
 #include "ozz/base/memory/allocator.h"
 
@@ -93,11 +94,11 @@ public:
 
 	bool vsync = false;
 
-	CollisionSolver* collisionSolver = nullptr;
-
 	MonoManager* monoManager = nullptr;
 	InputManager* inputManager = nullptr;
 	N_SceneManager* N_sceneManager = nullptr;
+	CollisionSolver* collisionSolver = nullptr;
+	EasingManager* easingManager = nullptr;
 
 	bool drawGrid = true;
 

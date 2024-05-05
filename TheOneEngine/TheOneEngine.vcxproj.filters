@@ -256,7 +256,10 @@
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClInclude>
     <ClInclude Include="Easing.h">
-      <Filter>Utils</Filter>
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EasingManager.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -408,7 +411,7 @@
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClCompile>
     <ClCompile Include="Easing.cpp">
-      <Filter>Utils</Filter>
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,13 +1,12 @@
 #include "Easing.h"
 
-Easing::Easing() {}
-
-Easing::Easing(double totalTime)
+Easing::Easing(double totalTime, double delay, bool loop)
 {
     this->totalTime = totalTime;
+    this->delay = delay;
+    this->loop = loop;
     this->elapsedTime = 0;
-    this->delay = 0;
-    this->finished = false;
+    this->state = EasingState::PAUSE;
 }
 
 Easing::~Easing() {}
@@ -179,10 +178,6 @@ double Easing::Ease(int start, int end, double dt, EasingType easingType, bool l
 {
     double time = TrackTime(dt, loop);
 
-    // Lambda function:
-    // [capture list](parameters) -> return type {function body}
-    // Captures current object and easingType by value,
-    // making them accessible within the function's scope.
     auto easing = [this, easingType](double t) -> double
     {
         switch (easingType)
@@ -227,37 +222,35 @@ double Easing::Ease(int start, int end, double dt, EasingType easingType, bool l
 
 double Easing::TrackTime(double dt, bool loop)
 {
-    // cap for lag spikes/window pause
-    double dtCapped = fmin(dt, 32);
-    elapsedTime += dtCapped;
+    if (state != EasingState::PAUSE)
+    {
+        // Cap for lag spikes/window pause
+        double dtCapped = fmin(dt, 32);
+        elapsedTime += dtCapped;
 
-    if (elapsedTime < delay)
-    {
-        // delay
-        return 0;
+        // Set state
+        if (elapsedTime - delay < totalTime)
+            state = EasingState::PLAY;
+        else if (!loop)
+            state = EasingState::END;
+        else
+            state = EasingState::END_LOOP;
     }
-    else if (elapsedTime - delay < totalTime)
-    {
-        // playing
-        return (elapsedTime - delay) / totalTime;
-    }
-    else if (!loop)
-    {
-        // finished, no loop
-        finished = true;
-        elapsedTime = totalTime;
-        return 1;
-    }
-    else
-    {
-        // finished, loop
-        elapsedTime -= totalTime;
-        return (elapsedTime - delay) / totalTime;
-    }
-}
 
-void Easing::Reset()
-{
-    elapsedTime = 0;
-    finished = false;
+    switch (state)
+    {
+        case EasingState::PLAY:
+            if (elapsedTime < delay) return 0;
+            return (elapsedTime - delay) / totalTime;
+
+        case EasingState::END:
+            elapsedTime = totalTime;
+            return 1;
+
+        case EasingState::END_LOOP:
+            elapsedTime -= totalTime;
+            return (elapsedTime - delay) / totalTime;
+
+        default: break;
+    }
 }
