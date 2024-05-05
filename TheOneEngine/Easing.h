@@ -106,7 +106,7 @@ public:
 
 
     double TrackTime(double dt, bool loop);
-    double Ease(int start, int end, double dt, EasingType easingType, bool loop);
+    double Ease(double start, double end, double dt, EasingType easingType, bool loop);
 
     void Play() { state = EasingState::PLAY; }
 

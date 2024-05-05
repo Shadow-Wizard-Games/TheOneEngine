@@ -26,10 +26,10 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     cameraParent = nullptr;
     camControlMode = CamControlMode::DISABLED;
 
-    camEaseInX = engine->easingManager->AddEasing(1.2);
-    camEaseInY = engine->easingManager->AddEasing(1.2);
-    camEaseOutX = engine->easingManager->AddEasing(0.8);
-    camEaseOutY = engine->easingManager->AddEasing(0.8);
+    camEaseInX = engine->easingManager->AddEasing(2);
+    camEaseInY = engine->easingManager->AddEasing(2);
+    camEaseOutX = engine->easingManager->AddEasing(0.2);
+    camEaseOutY = engine->easingManager->AddEasing(0.2);
 
     frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
     viewportSize = { 0.0f, 0.0f };
@@ -41,7 +41,7 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     handlePosition = HandlePosition::PIVOT;
 
     easing = true;
-    camSpeedMult = 5;
+    camSpeedMult = 4;
 
     drawMesh = true;
     drawWireframe = false;
@@ -357,12 +357,14 @@ Ray PanelScene::GetScreenRay(int x, int y, Camera* camera, int width, int height
 
 void PanelScene::CameraMode()
 {
+    bool disable = false;
+
     switch (camControlMode)
     {
         case CamControlMode::ENABLED:
         {
             if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
-                camControlMode = CamControlMode::DISABLED;
+                disable = true;
 
             if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
                 camControlMode = CamControlMode::PANNING;
@@ -417,6 +419,12 @@ void PanelScene::CameraMode()
         }
         break;
     }
+
+    if (disable)
+    {
+        while (!inputStack.empty()) inputStack.pop();
+        camControlMode = CamControlMode::DISABLED;
+    }
 }
 
 void PanelScene::CameraMovement(GameObject* cam)
@@ -425,15 +433,14 @@ void PanelScene::CameraMovement(GameObject* cam)
     Transform* transform = cam->GetComponent<Transform>();
     double dt = app->GetDT();
     double mouseSensitivity = 32.0;
-    bool wasd = false;
 
     switch (camControlMode)
     {
+        // (RMB)
         case CamControlMode::ENABLED:
         {
             InfiniteScroll();
 
-            // Yaw and Pitch
             camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
             camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
             transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
@@ -448,6 +455,7 @@ void PanelScene::CameraMovement(GameObject* cam)
         }
         break;
 
+        // (MMB)
         case CamControlMode::PANNING:
         {
             InfiniteScroll();
@@ -460,13 +468,13 @@ void PanelScene::CameraMovement(GameObject* cam)
         }
         break;
 
+        // (Alt + LMB)
         case CamControlMode::ORBIT:
         {
             InfiniteScroll();
 
-            // (Alt + LMB)
-            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity;
-            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity;
+            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
+            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
 
             transform->SetPosition(camera->lookAt);
 
@@ -496,43 +504,61 @@ void PanelScene::CameraMovement(GameObject* cam)
     // Camera Speed Easing
     if (camTargetSpeed.x)
     {
-        engine->easingManager->GetEasing(camEaseInX).Play();
-        engine->easingManager->GetEasing(camEaseOutX).Reset();
+        if (engine->easingManager->GetEasing(camEaseInX).GetState() == EasingState::PAUSE)
+        {
+            engine->easingManager->GetEasing(camEaseInX).Play();
+            engine->easingManager->GetEasing(camEaseOutX).Reset();
+        }
+               
         camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseInX).Ease(
-            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_IN_SIN, false) * dt;
+            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_IN_SIN, false);
     }
-    else
+    else if (camCurrentSpeed.x)
     {
-        engine->easingManager->GetEasing(camEaseOutX).Play();
-        engine->easingManager->GetEasing(camEaseInX).Reset();
+        if (engine->easingManager->GetEasing(camEaseOutX).GetState() == EasingState::PAUSE)
+        {
+            engine->easingManager->GetEasing(camEaseOutX).Play();
+            engine->easingManager->GetEasing(camEaseInX).Reset();
+        }
+        
         camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseOutX).Ease(
-            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_OUT_SIN, false) * dt;
+            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_OUT_SIN, false);
     }
 
     if (camTargetSpeed.y)
     {
-        engine->easingManager->GetEasing(camEaseInY).Play();
-        engine->easingManager->GetEasing(camEaseOutY).Reset();
+        if (engine->easingManager->GetEasing(camEaseInY).GetState() == EasingState::PAUSE)
+        {
+            engine->easingManager->GetEasing(camEaseInY).Play();
+            engine->easingManager->GetEasing(camEaseOutY).Reset();
+        }
+        
         camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseInY).Ease(
-            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_IN_SIN, false) * dt;
+            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_IN_SIN, false);
     }
-    else
+    else if (camCurrentSpeed.y)
     {
-        engine->easingManager->GetEasing(camEaseOutY).Play();
-        engine->easingManager->GetEasing(camEaseInY).Reset();
+        if (engine->easingManager->GetEasing(camEaseOutY).GetState() == EasingState::PAUSE)
+        {
+            engine->easingManager->GetEasing(camEaseOutY).Play();
+            engine->easingManager->GetEasing(camEaseInY).Reset();
+        }
+       
         camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseOutY).Ease(
-            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_OUT_SIN, false) * dt;
+            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_OUT_SIN, false);
     }
 
-    LOG(LogType::LOG_INFO, "%f, %f", camCurrentSpeed.x, camCurrentSpeed.y);
+    LOG(LogType::LOG_INFO, "Current: %f, %f", camCurrentSpeed.x, camCurrentSpeed.y);
+    LOG(LogType::LOG_INFO, "Init:    %f, %f", camInitSpeed.x, camInitSpeed.y);
+    LOG(LogType::LOG_INFO, "Target:  %f, %f", camTargetSpeed.x, camTargetSpeed.y);
 
     // Move
-    transform->Translate(camCurrentSpeed.x * camSpeedMult * transform->GetRight(), HandleSpace::LOCAL);
-    transform->Translate(camCurrentSpeed.y * camSpeedMult * transform->GetForward(), HandleSpace::LOCAL);
+    transform->Translate(camCurrentSpeed.x * camSpeedMult * dt * transform->GetRight(), HandleSpace::LOCAL);
+    transform->Translate(camCurrentSpeed.y * camSpeedMult * dt * transform->GetForward(), HandleSpace::LOCAL);
 
-    // Zoom
+    // (Wheel) Zoom
     if (isHovered && app->input->GetMouseZ() != 0)
-        transform->Translate(transform->GetForward() * (double)app->input->GetMouseZ());
+        transform->Translate(transform->GetForward() * (double)app->input->GetMouseZ() * 4.0, HandleSpace::LOCAL);
 
     // (F) Focus Selection
     if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && engine->N_sceneManager->GetSelectedGO())

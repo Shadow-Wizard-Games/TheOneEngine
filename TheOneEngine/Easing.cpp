@@ -174,7 +174,7 @@ double Easing::EaseInOutBounce(double t) {
 }
 
 
-double Easing::Ease(int start, int end, double dt, EasingType easingType, bool loop)
+double Easing::Ease(double start, double end, double dt, EasingType easingType, bool loop)
 {
     double time = TrackTime(dt, loop);
 
