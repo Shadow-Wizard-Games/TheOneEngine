@@ -330,7 +330,7 @@ public class PlayerScript : MonoBehaviour
                 //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
                 attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
                 hasShot = true;
-                //if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+                if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
             }
         }
         else

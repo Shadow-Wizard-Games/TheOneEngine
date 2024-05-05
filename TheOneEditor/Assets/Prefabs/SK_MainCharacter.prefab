@@ -46,7 +46,7 @@
       "UID": 225613267
     },
     {
-      "AudioID": 3,
+      "AudioID": 5,
       "Name": "AudioSource",
       "Type": 8
     },
@@ -199,12 +199,227 @@
       "ParentUID": 113510800,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.28999999165534973,
+            0.09000000357627869,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2719197524
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 0.5,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    6.0,
+                    10.0,
+                    120.0
+                  ],
+                  "MinDirection": [
+                    -6.0,
+                    -2.0,
+                    75.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 120.0,
+                  "MinSpeed": 75.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    255.0,
+                    255.0,
+                    0.0,
+                    255.0
+                  ],
+                  "MinColor": [
+                    210.0,
+                    128.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinScale": [
+                    0.2,
+                    0.1,
+                    0.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 50,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 10.0,
+                  "Duration": 0.20000000298023224,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -20.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 0.5,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    6.0,
+                    10.0,
+                    150.0
+                  ],
+                  "MinDirection": [
+                    -6.0,
+                    -2.0,
+                    100.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 150.0,
+                  "MinSpeed": 100.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    255.0,
+                    255.0,
+                    0.0,
+                    255.0
+                  ],
+                  "MinColor": [
+                    210.0,
+                    128.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    1.0,
+                    0.1,
+                    2.0
+                  ],
+                  "MinScale": [
+                    0.2,
+                    0.1,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 100,
+              "RenderModule": [
+                {
+                  "BillboardType": 0,
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 10.0,
+                  "Duration": 0.20000000298023224,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -20.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Name": "P_ShootM4\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": false,
+          "Type": 9,
+          "UID": 4200920531
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "ShotPlayerPS",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "Keeped": false,
   "Name": "SK_MainCharacter",
   "ParentUID": 3452816845,
-  "PrefabDirty": false,
+  "PrefabDirty": true,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,
