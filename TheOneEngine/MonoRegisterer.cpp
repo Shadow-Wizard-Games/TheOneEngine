@@ -265,7 +265,7 @@ static void CreatePrefab(MonoString* prefabName, vec3f* position)
 {
 	std::string MprefabName = MonoRegisterer::MonoStringToUTF8(prefabName);
 
-	engine->N_sceneManager->CreatePrefabFromFile(MprefabName, *position);
+	engine->N_sceneManager->CreatePrefabWithName(MprefabName, *position);
 }
 
 //User Interface
