@@ -71,7 +71,7 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 
 	// Save Scene by checking if isDirty and pressing CTRL+S
 	//if (currentScene->IsDirty()) SaveScene();
-	
+
 	//this will be called when we click play
 	if (!sceneIsPlaying && isPlaying)
 	{
@@ -240,12 +240,20 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 				if (gameObjectJSON["Keeped"] == true && previousFrameIsPlaying)
 					continue;
 			}
-			
-			// Create a new game object
-			auto newGameObject = CreateEmptyGO();
-			newGameObject.get()->SetName(currentScene->GetSceneName());
-			// Load the game object from JSON
-			newGameObject->LoadGameObject(gameObjectJSON);
+
+			if (gameObjectJSON.contains("PrefabID") && gameObjectJSON["PrefabID"] != 0)
+			{
+				CreatePrefabWithName(gameObjectJSON["PrefabName"]);
+				LOG(LogType::LOG_INFO, "Loaded prefab from prefab file instead of scene file");
+			}
+			else
+			{
+				// Create a new game object
+				auto newGameObject = CreateEmptyGO();
+				newGameObject.get()->SetName(currentScene->GetSceneName());
+				// Load the game object from JSON
+				newGameObject->LoadGameObject(gameObjectJSON);
+			}
 		}
 
 		LOG(LogType::LOG_OK, "LOAD SUCCESSFUL");
@@ -740,7 +748,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& position)
+void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& position)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -773,6 +781,39 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	newGameObject->LoadGameObject(prefabJSON);
 
 	newGameObject->GetComponent<Transform>()->SetPosition(position);
+}
+
+void N_SceneManager::CreatePrefabWithName(std::string prefabName)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+
+	// Load the game object from 
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + prefabName + ".prefab";
+
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
 }
 
 void N_SceneManager::CreatePrefabFromPath(std::string prefabPath, const vec3f& position)
@@ -852,26 +893,39 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-void Scene::RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam)
+inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
 	if (cam != nullptr) {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneSort(gameObject, cam);
+			if (!gameObject->hasTransparency) {
+				gameObject->Draw(cam);
+			}
+			else {
+				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			}
+
+			RecurseSceneDraw(gameObject, cam);
 		}
 
 	}
 	else {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3]);
-			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneSort(gameObject);
+			if (!gameObject->hasTransparency) {
+				gameObject->Draw(currentCamera);
+			}
+			else {
+				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - currentCamera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			}
+
+			RecurseSceneDraw(gameObject, currentCamera);
 		}
 
 	}
+
 }
 
 void Scene::UpdateGOs(double dt)
@@ -899,7 +953,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
-	RecurseSceneSort(rootSceneGO, cam);
+	RecurseSceneDraw(rootSceneGO, cam);
 
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
