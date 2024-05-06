@@ -536,9 +536,13 @@ void PanelScene::CameraMovement(GameObject* cam)
             camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_OUT_SIN, false);
     }
 
+    double shift = app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT ? 2 : 1;
+    double speedX = camCurrentSpeed.x * camSpeedMult * shift * dt;
+    double speedY = camCurrentSpeed.y * camSpeedMult * shift * dt;
+
     // Move
-    transform->Translate(camCurrentSpeed.x * camSpeedMult * dt * transform->GetRight(), HandleSpace::LOCAL);
-    transform->Translate(camCurrentSpeed.y * camSpeedMult * dt * transform->GetForward(), HandleSpace::LOCAL);
+    transform->Translate(speedX * transform->GetRight(), HandleSpace::LOCAL);
+    transform->Translate(speedY * transform->GetForward(), HandleSpace::LOCAL);
 
     // (Wheel) Zoom
     if (isHovered && app->input->GetMouseZ() != 0)
@@ -611,8 +615,6 @@ void PanelScene::SetTargetSpeed()
     // Compute speed
     while (!reversedStack.empty())
     {
-        LOG(LogType::LOG_INFO, "Scancode: %i", reversedStack.top());
-
         switch (reversedStack.top())
         {
             case SDL_SCANCODE_A:
