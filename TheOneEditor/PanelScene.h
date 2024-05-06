@@ -38,7 +38,6 @@ public:
 	void CameraMovement(GameObject* cam);
 	void HandleInput(SDL_Scancode key);
 	void SetTargetSpeed();
-	void InfiniteScroll(bool global = false);
 
 	HandleSpace GetHandleSpace() const { return handleSpace; }
 	HandlePosition GetHandlePosition() const { return handlePosition; }

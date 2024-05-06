@@ -243,3 +243,35 @@ void Window::OnResizeWindow(int width, int height)
     SDL_SetWindowSize(window, width, height);
     //app->engine->OnWindowResize(0, 0, width, height);
 }
+
+void Window::InfiniteScroll(bool global)
+{
+    if (global)
+    {
+        // hekbas: Implemet this if I have time :3
+        //SDL_WarpMouseGlobal();
+    }
+    else
+    {
+        int width, height;
+        app->window->GetSDLWindowSize(&width, &height);
+
+        int mouseX = app->input->GetMouseX();
+        int mouseY = app->input->GetMouseY();
+        int warpToX = -1;
+        int warpToY = -1;
+
+        if (mouseX < 5) warpToX = width - 10;
+        else if (mouseX > width - 5) warpToX = 10;
+
+        if (mouseY < 5) warpToY = height - 10;
+        else if (mouseY > height - 5) warpToY = 10;
+
+        if (warpToX == -1 && warpToY == -1) return;
+
+        if (warpToX == -1) warpToX = mouseX;
+        if (warpToY == -1) warpToY = mouseY;
+
+        SDL_WarpMouseInWindow(app->window->window, warpToX, warpToY);
+    }
+}

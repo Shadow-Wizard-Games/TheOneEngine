@@ -81,8 +81,6 @@ void EngineCore::Update(double dt)
 
 void EngineCore::Render(Camera* camera)
 {
-    LogGL("BEFORE RENDER");
-
     if (!camera) camera = editorCamReference;
 
     // Update Camera Matrix
@@ -134,8 +132,7 @@ void EngineCore::Render(Camera* camera)
     // Draw Editor / Debug
     DrawAxis();
 
-    if (drawGrid)
-        DrawGrid(1000, 50);
+    if (drawGrid) DrawGrid(5000, 50);
 
     if (collisionSolver->drawCollisions)
         collisionSolver->DrawCollisions();
@@ -143,11 +140,7 @@ void EngineCore::Render(Camera* camera)
     if (!monoManager->debugShapesQueue.empty())
         monoManager->RenderShapesQueue();
 
-
     GLCALL(glColor3f(1.0f, 1.0f, 1.0f));
-    //DrawFrustum(camera->viewMatrix);
-
-    LogGL("DURING RENDER");
 
     assert(glGetError() == GL_NONE);
 }
@@ -297,7 +290,9 @@ void EngineCore::DrawGrid(int grid_size, int grid_step)
     GLCALL(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, nullptr));
     GLCALL(glEnableVertexAttribArray(1));
 
+
     // Draw lines
+    GLCALL(glColor3f(0.33f, 0.33f, 0.33f));
     GLCALL(glDrawArrays(GL_LINES, 0, gridVertices.size() / 3));
 
     // Cleanup

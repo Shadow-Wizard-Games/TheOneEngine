@@ -225,7 +225,6 @@ bool PanelScene::Draw()
             (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
         {
             frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
-
             sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
@@ -439,7 +438,7 @@ void PanelScene::CameraMovement(GameObject* cam)
         // (RMB)
         case CamControlMode::ENABLED:
         {
-            InfiniteScroll();
+            app->window->InfiniteScroll();
 
             camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
             camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
@@ -458,7 +457,7 @@ void PanelScene::CameraMovement(GameObject* cam)
         // (MMB)
         case CamControlMode::PANNING:
         {
-            InfiniteScroll();
+            app->window->InfiniteScroll();
 
             double deltaX = app->input->GetMouseXMotion();
             double deltaY = app->input->GetMouseYMotion();
@@ -471,7 +470,7 @@ void PanelScene::CameraMovement(GameObject* cam)
         // (Alt + LMB)
         case CamControlMode::ORBIT:
         {
-            InfiniteScroll();
+            app->window->InfiniteScroll();
 
             camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
             camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
@@ -645,36 +644,4 @@ void PanelScene::SetTargetSpeed()
 
     if (zeroX) camTargetSpeed.x = 0;
     if (zeroY) camTargetSpeed.y = 0;
-}
-
-void PanelScene::InfiniteScroll(bool global)
-{
-    if (global)
-    {
-        // hekbas: Implemet this if I have time :3
-        //SDL_WarpMouseGlobal();
-    }
-    else
-    {
-        int width, height;
-        app->window->GetSDLWindowSize(&width, &height);
-
-        int mouseX = app->input->GetMouseX();
-        int mouseY = app->input->GetMouseY();
-        int warpToX = -1;
-        int warpToY = -1;
-        
-        if (mouseX < 5) warpToX = width - 10;
-        else if (mouseX > width - 5) warpToX = 10;
-
-        if (mouseY < 5) warpToY = height - 10;
-        else if (mouseY > height - 5) warpToY = 10;
-
-        if (warpToX == -1 && warpToY == -1) return;
-
-        if (warpToX == -1) warpToX = mouseX;
-        if (warpToY == -1) warpToY = mouseY;
-
-        SDL_WarpMouseInWindow(app->window->window, warpToX, warpToY);
-    }
 }

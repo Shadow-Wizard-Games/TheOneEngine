@@ -58,6 +58,8 @@ public:
 
     void OnResizeWindow(int width, int height);
 
+    void InfiniteScroll(bool global = false);
+
     uint GetWidth() { return width; }
     uint GetHeight() { return height; }
 
