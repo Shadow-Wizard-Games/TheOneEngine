@@ -5,6 +5,7 @@
 #include "ItemUI.h"
 #include "Texture.h"
 #include <string>
+#include "Resources.h"
 
 class CheckerUI : public ItemUI
 {
@@ -49,7 +50,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID = -1;
 
 	Rect2D* currentSection;
 

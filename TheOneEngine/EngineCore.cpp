@@ -3,7 +3,7 @@
 #include "Defs.h"
 #include "N_SceneManager.h"
 #include "Collider2D.h"
-
+#include "Renderer2D.h"
 #include <GL\glew.h>
 #include <glm\ext\matrix_transform.hpp>
 #include <IL\il.h>
@@ -34,6 +34,8 @@ void EngineCore::Awake()
 
 void EngineCore::Start()
 {
+    Renderer2D::Init();
+
     //Init default shaders with uniforms
     ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
@@ -94,10 +96,13 @@ void EngineCore::SetRenderEnvironment(Camera* camera)
     GLCALL(glClearDepth(1.0f));
 
     GLCALL(glEnable(GL_DEPTH_TEST));
+    GLCALL(glDepthFunc(GL_LEQUAL));
     GLCALL(glEnable(GL_CULL_FACE));
     GLCALL(glEnable(GL_BLEND));
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glEnable(GL_COLOR_MATERIAL));
+
+    glClear(GL_DEPTH_BUFFER_BIT);
 
     switch (camera->cameraType)
     {
@@ -163,6 +168,8 @@ void EngineCore::LogGL(string id)
 
 void EngineCore::CleanUp()
 {
+    Renderer2D::Shutdown();
+
     audioManager->CleanUp();
     audioManager = nullptr;
     delete audioManager;
@@ -437,10 +444,7 @@ void EngineCore::SetEditorCamera(Camera* cam)
         editorCamReference = cam;
 }
 
-void EngineCore::SetUniformBufferCamera(Camera* cam)
+void EngineCore::SetUniformBufferCamera(const glm::mat4& camMatrix)
 {
-    if(cam)
-        CameraUniformBuffer->SetData(&cam->viewProjectionMatrix, sizeof(glm::mat4));
-    else
-        CameraUniformBuffer->SetData(&N_sceneManager->currentScene->currentCamera->viewProjectionMatrix, sizeof(glm::mat4));
+    CameraUniformBuffer->SetData(&camMatrix, sizeof(glm::mat4));
 }

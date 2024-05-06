@@ -44,6 +44,7 @@ bool BuilderSceneManager::PostUpdate()
 
 	//hekbas: add here engine->DebugDraw
 
+	engine->Render(engine->N_sceneManager->currentScene->currentCamera);
 	engine->N_sceneManager->currentScene->Draw();
 
 	if (engine->N_sceneManager->GetSceneIsChanging())

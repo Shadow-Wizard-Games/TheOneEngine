@@ -1283,7 +1283,7 @@ bool PanelInspector::Draw()
                         }
                         ImGui::TreePop();
                     }
-                    if (ImGui::MenuItem("FontUI"))
+                    if (ImGui::MenuItem("TextUI"))
                     {
                         //to implement
 
@@ -1296,7 +1296,7 @@ bool PanelInspector::Draw()
                         //    //std::string className = "ActualScriptTest2";
                         //    if (MonoManager::IsClassInMainAssembly(nameRecipient))
                         //    {
-                        //        tempCanvas->AddItemUI<FontUI>(nameRecipient);
+                        //        tempCanvas->AddItemUI<TextUI>(nameRecipient);
                         //    }
                         //    else
                         //    {

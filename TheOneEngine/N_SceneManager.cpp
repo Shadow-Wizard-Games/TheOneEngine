@@ -14,9 +14,13 @@
 #include "ImageUI.h"
 
 #include "../TheOneAudio/AudioCore.h"
+#include "EngineCore.h"
+#include "Renderer2D.h"
 
 #include <fstream>
 #include <filesystem>
+#include "ImageUI.h"
+#include "TextUI.h"
 #include <unordered_set>
 
 namespace fs = std::filesystem;
@@ -458,7 +462,9 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	canvasGO.get()->AddComponent<Canvas>();
 
 	// Debug Img
-	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+	//canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+
+	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<TextUI>("Assets/Fonts/ComicSansMS.ttf");
 
 	canvasGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
 
@@ -965,12 +971,27 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
+inline void Scene::SetCamera(Camera* cam)
+{
+	if(cam)
+		engine->SetUniformBufferCamera(cam->viewProjectionMatrix);
+	else
+		engine->SetUniformBufferCamera(currentCamera->viewProjectionMatrix);
+}
+
+void Scene::Set2DCamera()
+{
+	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
+}
+
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
+	//Setting Camera for 3D Rendering
+	SetCamera(cam);
+	Renderer2D::StartBatch();//           START BATCH
 	RecurseSceneDraw(rootSceneGO, cam);
-
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(cam);
@@ -978,10 +999,17 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	else {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(currentCamera);
+		
 	}
+	Renderer2D::Flush();//           END BATCH
+
 
 	if (mode == DrawMode::EDITOR)
 		return;
 
+	//Setting Camera for 2D Rendering
+	Set2DCamera();
+	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
+	Renderer2D::Flush();//           END BATCH
 }
