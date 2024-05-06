@@ -66,11 +66,14 @@ bool CollisionSolver::Update(double dt)
                             {
                                 SolveCollision(item, item2);  
                             }
-                            void* params[1];
+                            void** params = new void* [1];
                             params[0] = &item2;
                             if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
-                            params[0] = &item;
-                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            void** params2 = new void* [1];
+                            params2[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params2, 1);
+                            delete[] params;
+                            delete[] params2;
                         }
                         break;
                     case ColliderType::Circle:
@@ -80,11 +83,14 @@ bool CollisionSolver::Update(double dt)
                             {
                                 SolveCollision(item, item2);
                             }
-                            void* params[1];
+                            void** params = new void* [1];
                             params[0] = &item2;
                             if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
-                            params[0] = &item;
-                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            void** params2 = new void* [1];
+                            params2[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params2, 1);
+                            delete[] params;
+                            delete[] params2;
                         }
                         break;
                     default:
@@ -108,11 +114,14 @@ bool CollisionSolver::Update(double dt)
                             {
                                 SolveCollision(item, item2);
                             }
-                            void* params[1];
+                            void** params = new void*[1];
                             params[0] = &item2;
                             if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
-                            params[0] = &item;
-                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            void** params2 = new void* [1];
+                            params2[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params2, 1);
+                            delete[] params;
+                            delete[] params2;
                         }
                         break;
                     case ColliderType::Circle:
@@ -122,11 +131,14 @@ bool CollisionSolver::Update(double dt)
                             {
                                 SolveCollision(item, item2);
                             }
-                            void* params[1];
+                            void** params = new void* [1];
                             params[0] = &item2;
                             if (item->GetComponent<Script>()) MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
-                            params[0] = &item;
-                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params, 1);
+                            void** params2 = new void* [1];
+                            params2[0] = &item;
+                            if (item2->GetComponent<Script>()) MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "OnCollision", params2, 1);
+                            delete[] params;
+                            delete[] params2;
                         }
                         break;
                     default:
