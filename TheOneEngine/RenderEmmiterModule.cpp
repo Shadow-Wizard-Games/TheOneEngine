@@ -43,7 +43,7 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
         * glm::scale(mat4(1.0f), particle->scale);
 
     if(textureID != -1)
-        Renderer2D::DrawQuad(transform, textureID);
+        Renderer2D::DrawQuad(transform, textureID, glm::vec4(particle->color));
     else
         Renderer2D::DrawQuad(transform, glm::vec4(particle->color));
 }
