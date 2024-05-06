@@ -24,6 +24,7 @@ GameObject::GameObject(std::string name) :
 	enabled(true),
 	isStatic(false),
 	isKeeped(false),
+	hasTransparency(false),
 	aabb()
 {
 	// hekbas - shared_from_this() must NOT be called in the constructor!!!
@@ -355,6 +356,7 @@ json GameObject::SaveGameObject()
 	gameObjectJSON["Static"] = isStatic;
 	gameObjectJSON["Keeped"] = isKeeped;
 	gameObjectJSON["Enabled"] = enabled;
+	gameObjectJSON["HasTransparency"] = hasTransparency;
 	
 	//Save prefab variables
 	if (prefabID != 0)
@@ -417,7 +419,12 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 	{
 		enabled = gameObjectJSON["Enabled"];
 	}
-	
+
+	if (gameObjectJSON.contains("HasTransparency"))
+	{
+		hasTransparency = gameObjectJSON["HasTransparency"];
+	}
+
 	if (gameObjectJSON.contains("PrefabID"))
 	{
 		prefabID = gameObjectJSON["PrefabID"];

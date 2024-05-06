@@ -28,6 +28,8 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="DebugShape.h" />
     <ClInclude Include="Defs.h" />
+    <ClInclude Include="Easing.h" />
+    <ClInclude Include="EasingManager.h" />
     <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Framebuffer.h" />
@@ -91,6 +93,7 @@
     <ClCompile Include="CollisionSolver.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Easing.cpp" />
     <ClCompile Include="FileDialog.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Framebuffer.cpp" />

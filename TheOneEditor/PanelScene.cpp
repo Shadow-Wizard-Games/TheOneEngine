@@ -8,14 +8,41 @@
 #include "imgui.h"
 #include "imGuizmo.h"
 
-#include "../TheOneEngine/EngineCore.h"
-#include "../TheOneEngine/Ray.h"
-#include "../TheOneEngine/Log.h"
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Ray.h"
+#include "TheOneEngine/Log.h"
+#include "TheOneEngine/Easing.h"
 
 #include <vector>
 
-PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name), isHovered(false)
+PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
 {
+    isHovered = false;
+    isFocused = false;
+
+    current = nullptr;
+
+    sceneCamera = nullptr;
+    cameraParent = nullptr;
+    camControlMode = CamControlMode::DISABLED;
+
+    camEaseInX = engine->easingManager->AddEasing(2);
+    camEaseInY = engine->easingManager->AddEasing(2);
+    camEaseOutX = engine->easingManager->AddEasing(0.2);
+    camEaseOutY = engine->easingManager->AddEasing(0.2);
+
+    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+    viewportSize = { 0.0f, 0.0f };
+
+    gizmoType = -1;
+    gizmoMode = ImGuizmo::MODE::LOCAL;
+
+    handleSpace = HandleSpace::LOCAL;
+    handlePosition = HandlePosition::PIVOT;
+
+    easing = true;
+    camSpeedMult = 4;
+
     drawMesh = true;
     drawWireframe = false;
     drawNormalsVerts = false;
@@ -25,12 +52,8 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name), is
     drawRaycasting = false;
     drawChecker = false;
 
-	handleSpace = HandleSpace::LOCAL;
-    handlePosition = HandlePosition::PIVOT;
-    gizmoType = -1;
-    gizmoMode = ImGuizmo::MODE::LOCAL;
-
-    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+    snapping = false;
+    snapAmount = 10;
 }
 
 PanelScene::~PanelScene() {}
@@ -55,15 +78,8 @@ void PanelScene::Start()
 
 bool PanelScene::Draw()
 {
-    if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-        (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
-    {
-        frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
-        sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
-    }
-
 	ImGuiWindowFlags settingsFlags = 0;
-	settingsFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
+	settingsFlags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
 
 	//ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2(0.f, 0.f));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.f, 0.f));
@@ -71,12 +87,13 @@ bool PanelScene::Draw()
 
 	if (ImGui::Begin("Scene", &enabled, settingsFlags))
 	{
+        // ImGui Window status
         isHovered = ImGui::IsWindowHovered();
         isFocused = ImGui::IsWindowFocused();
 
-        if(isFocused)
-            app->renderer3D->CameraInput(sceneCamera.get());
-
+        // Camera Control     
+        CameraMode();
+        CameraMovement(sceneCamera.get());
 
         // SDL Window
         int SDLWindowWidth, SDLWindowHeight;
@@ -88,9 +105,9 @@ bool PanelScene::Draw()
         ImVec2 availWindowSize = ImGui::GetContentRegionAvail();
 
         // Viewport Control ----------------------------------------------------------------
-        // Aspect Ratio Size
-        int width, height;
-        app->gui->CalculateSizeAspectRatio(availWindowSize.x, availWindowSize.y, width, height);
+        // Aspect Ratio Size - only in Panel Game
+        //int width, height;
+        //app->gui->CalculateSizeAspectRatio(availWindowSize.x, availWindowSize.y, width, height, aspect);
 
         // Set glViewport coordinates
         // SDL origin at top left corner (+x >, +y v)
@@ -100,7 +117,7 @@ bool PanelScene::Draw()
 
 
         // Top Bar -------------------------------------------------------------------------
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.5f, 0.5f));
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
         if (ImGui::BeginMenuBar())
         {
             // HandlePosition
@@ -119,7 +136,7 @@ bool PanelScene::Draw()
                 LOG(LogType::LOG_INFO, "gizMode: %d", gizmoMode);
             }
 
-            ImGui::Dummy(ImVec2(availWindowSize.x - 360.0f, 0.0f));
+            ImGui::Dummy(ImVec2(MAX(availWindowSize.x - 360.0f, 0), 0.0f));
 
             if (ImGui::BeginMenu("Render"))
             {
@@ -146,21 +163,39 @@ bool PanelScene::Draw()
 
 			if (ImGui::BeginMenu("Camera"))
 			{
-				// Camera settings
-				ImGui::TextWrapped("Scene Camera");
-
 				Camera* camera = sceneCamera.get()->GetComponent<Camera>();
 
+                bool ortho = camera->cameraType == CameraType::ORTHOGRAPHIC ? true : false;
 				float fov = static_cast<float>(camera->fov);
 				float aspect = static_cast<float>(camera->aspect);
 				float zNear = static_cast<float>(camera->zNear);
 				float zFar = static_cast<float>(camera->zFar);
 
-				ImGui::SliderFloat("FOV", &fov, 20.0, 120.0);
-				ImGui::SliderFloat("Aspect", &aspect, 0.1, 10.0);
+				ImGui::Text("Scene Camera");
+                if (ImGui::Checkbox("Orthographic", &ortho))
+                {
+                    camera->cameraType = ortho ? CameraType::ORTHOGRAPHIC : CameraType::PERSPECTIVE;
+                    camera->UpdateCamera();
+                }
+
+				if (ImGui::SliderFloat("FOV", &fov, 4.0, 120.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+
+                if (ImGui::SliderFloat("Aspect", &aspect, 0.1, 10.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+                ImGui::Dummy({ 0, 4 });
+
 				ImGui::Text("Clipping Plane");
-				ImGui::SliderFloat("Near", &zNear, 0.01, 10.0);
-				ImGui::SliderFloat("Far ", &zFar, 1.0, 20000.0);
+                if (ImGui::SliderFloat("Near", &zNear, 0.01, 10.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+
+                if (ImGui::SliderFloat("Far ", &zFar, 1.0, 20000.0))
+                    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+                ImGui::Dummy({ 0, 4 });
+
+                ImGui::Text("Navigation");
+                ImGui::Checkbox("Easing", &easing);
+                ImGui::SliderFloat("Speed ", &camSpeedMult, 1, 10);
 
 				camera->fov = fov;
 				camera->aspect = aspect;
@@ -172,10 +207,8 @@ bool PanelScene::Draw()
 
             if (ImGui::BeginMenu("Gizmo"))
             {
-                //ImGui::Text("Gizmo Options");
-                //ImGui::Text("It seems like hekbas forgot to implement ImGuizmo...");
-                ImGui::Checkbox("Snap", &snappingFixed);
-                ImGui::InputFloat("Amount", &snapAmount);
+                ImGui::Checkbox("Snap", &snapping);
+                ImGui::SliderInt("Amount", &snapAmount, 1, 100);
 
                 ImGui::EndMenu();
             }
@@ -184,9 +217,63 @@ bool PanelScene::Draw()
         }
         ImGui::PopStyleVar();
 
-        //Draw FrameBuffer Texture
+
+        // Viewport resize check
         viewportSize = { availWindowSize.x, availWindowSize.y };
-        ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+        if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
+            (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+        {
+            frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+            sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
+            sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
+        }
+
+        // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
+        {
+            frameBuffer->Bind();
+            frameBuffer->Clear();
+
+            // Set Render Environment
+            engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
+            engine->SetUniformBufferCamera(sceneCamera->GetComponent<Camera>());
+
+            // Debug Draw
+            engine->DebugDraw(true);
+
+            // Game cameras Frustum
+            glColor3f(0.9f, 0.9f, 0.9f);
+            for (const auto GO : engine->N_sceneManager->GetGameObjects())
+            {
+                Camera* gameCam = GO.get()->GetComponent<Camera>();
+
+                if (gameCam != nullptr && gameCam->drawFrustum)
+                    engine->DrawFrustum(gameCam->frustum);
+            }
+
+            // Draw Rays
+            if (drawRaycasting)
+            {
+                glColor3f(0.8f, 0.0f, 0.0f);
+                for (auto ray : rays)
+                    engine->DrawRay(ray);
+            }
+
+            // Draw Scene
+            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
+
+            // Draw Loading Screen - only on panel game
+            /*if (engine->N_sceneManager->GetSceneIsChanging())
+                engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);*/
+
+            frameBuffer->Unbind();
+        }
+
+        // Draw FrameBuffer Texture
+        ImGui::Image(
+            (ImTextureID)frameBuffer->getColorBufferTexture(),
+            ImVec2{ viewportSize.x, viewportSize.y },
+            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 
         // ImGuizmo ------------------------------------------------------------------------
@@ -217,13 +304,14 @@ bool PanelScene::Draw()
             Transform* tc = selectedGO->GetComponent<Transform>();
             glm::mat4 transform = tc->CalculateWorldTransform();
 
-            bool useSnap = snappingFixed;
-            if (app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) useSnap = !useSnap;
+            // Snap
+            bool snappingSC = app->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT ? true : false;            
+            vec3f snapSize = vec3f(snapAmount, snapAmount, snapAmount);
 
-            vec3f snapAmounts = vec3f(snapAmount, snapAmount, snapAmount);
-
-            ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
-                (ImGuizmo::OPERATION)gizmoType, (ImGuizmo::MODE)gizmoMode, glm::value_ptr(transform), NULL, useSnap ? &snapAmounts.x : NULL);
+            ImGuizmo::Manipulate(
+                glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
+                (ImGuizmo::OPERATION)gizmoType, (ImGuizmo::MODE)gizmoMode,
+                glm::value_ptr(transform), NULL, snapping || snappingSC ? &snapSize.x : NULL);
 
             if (ImGuizmo::IsUsing())
             {
@@ -236,53 +324,17 @@ bool PanelScene::Draw()
 
 
         // Mouse Picking -------------------------------------------------------------------
-        if (isHovered && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+        if (isHovered && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) //hekbas need to chek if using imguizmo?
         {
-            int sdlY = SDLWindowHeight - y - height;
+            int sdlY = SDLWindowHeight - y - viewportSize.y;
             auto clickPos = glm::vec2(app->input->GetMouseX() - x, app->input->GetMouseY() - sdlY);
 
-			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), width, height);
+			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), viewportSize.x, viewportSize.y);
 
             if (drawRaycasting) rays.push_back(ray);
             
             //editor->SelectObject(ray);
         }
-
-
-        //ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
-        {
-            frameBuffer->Bind();
-            frameBuffer->Clear();
-            frameBuffer->ClearBuffer(-1);
-
-            // Draw
-            engine->Render(sceneCamera->GetComponent<Camera>());
-
-            // Game cameras Frustum
-            for (const auto GO : engine->N_sceneManager->GetGameObjects())
-            {
-                Camera* gameCam = GO.get()->GetComponent<Camera>();
-
-                if (gameCam != nullptr && gameCam->drawFrustum)
-                    engine->DrawFrustum(gameCam->frustum);
-            }
-
-            //Draw Rays
-            if (drawRaycasting)
-            {
-                for (auto ray : rays)
-                {
-                    engine->DrawRay(ray);
-                }
-            }
-
-            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
-            if (engine->N_sceneManager->GetSceneIsChanging())
-                engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
-
-            frameBuffer->Unbind();
-        }
-
 	}
 	ImGui::End();
 	ImGui::PopStyleVar();
@@ -303,4 +355,296 @@ Ray PanelScene::GetScreenRay(int x, int y, Camera* camera, int width, int height
 	float rayY = -(2.0f * y) / height + 1.0f;
 
 	return camera->ComputeCameraRay(rayX, rayY);
+}
+
+void PanelScene::CameraMode()
+{
+    bool disable = false;
+
+    switch (camControlMode)
+    {
+        case CamControlMode::ENABLED:
+        {
+            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
+                disable = true;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+                camControlMode = CamControlMode::PANNING;
+
+            if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+                camControlMode = CamControlMode::ORBIT;
+        }
+        break;
+
+        case CamControlMode::PANNING:
+        {
+            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_UP)
+                camControlMode = CamControlMode::DISABLED;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+                camControlMode = CamControlMode::ENABLED;
+
+            if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+                camControlMode = CamControlMode::ORBIT;
+        }
+        break;
+
+        case CamControlMode::ORBIT:
+        {
+            if (app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_UP)
+                camControlMode = CamControlMode::DISABLED;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+                camControlMode = CamControlMode::PANNING;
+
+            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+                camControlMode = CamControlMode::ENABLED;
+        }
+        break;
+
+        case CamControlMode::DISABLED:
+        {
+            if (isHovered)
+            {
+                if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+                    camControlMode = CamControlMode::ENABLED;
+
+                if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+                    camControlMode = CamControlMode::PANNING;
+
+                if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                    app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+                    camControlMode = CamControlMode::ORBIT;
+            }
+        }
+        break;
+    }
+
+    if (disable)
+    {
+        while (!inputStack.empty()) inputStack.pop();
+        camControlMode = CamControlMode::DISABLED;
+    }
+}
+
+void PanelScene::CameraMovement(GameObject* cam)
+{
+    Camera* camera = cam->GetComponent<Camera>();
+    Transform* transform = cam->GetComponent<Transform>();
+    double dt = app->GetDT();
+    double mouseSensitivity = 28.0;
+
+    switch (camControlMode)
+    {
+        // (RMB)
+        case CamControlMode::ENABLED:
+        {
+            app->window->InfiniteScroll();
+
+            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
+            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+            transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
+            transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
+
+            HandleInput(SDL_SCANCODE_A);
+            HandleInput(SDL_SCANCODE_D);
+            HandleInput(SDL_SCANCODE_W);
+            HandleInput(SDL_SCANCODE_S);
+
+            SetTargetSpeed();
+        }
+        break;
+
+        // (MMB)
+        case CamControlMode::PANNING:
+        {
+            app->window->InfiniteScroll();
+
+            double deltaX = app->input->GetMouseXMotion();
+            double deltaY = app->input->GetMouseYMotion();
+            float panSpeed = 10 * dt;
+            transform->Translate(vec3(deltaX * panSpeed, 0, 0), HandleSpace::GLOBAL);
+            transform->Translate(vec3(0, deltaY * panSpeed, 0), HandleSpace::GLOBAL);
+        }
+        break;
+
+        // (Alt + LMB)
+        case CamControlMode::ORBIT:
+        {
+            app->window->InfiniteScroll();
+
+            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
+            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+
+            transform->SetPosition(camera->lookAt);
+
+            transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
+            transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
+
+            vec3f finalPos;
+
+            auto selectedGO = engine->N_sceneManager->GetSelectedGO();
+            if (selectedGO)
+                finalPos = selectedGO->GetComponent<Transform>()->GetPosition() - (transform->GetForward() * 40.0);
+            else
+                finalPos = transform->GetPosition() - transform->GetForward();
+
+            transform->SetPosition(finalPos);
+        }
+        break;
+
+        case CamControlMode::DISABLED:
+        {
+            camTargetSpeed.x = 0;
+            camTargetSpeed.y = 0;
+        }
+        break;
+    }
+
+    // Camera Speed Easing
+    if (camTargetSpeed.x)
+    {
+        engine->easingManager->GetEasing(camEaseInX).Play();
+        engine->easingManager->GetEasing(camEaseOutX).Reset();
+
+        camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseInX).Ease(
+            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_IN_SIN, false);
+    }
+    else if (camCurrentSpeed.x)
+    {
+        engine->easingManager->GetEasing(camEaseOutX).Play();
+        engine->easingManager->GetEasing(camEaseInX).Reset();
+
+        camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseOutX).Ease(
+            camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_OUT_SIN, false);
+    }
+
+    if (camTargetSpeed.y)
+    {
+        engine->easingManager->GetEasing(camEaseInY).Play();
+        engine->easingManager->GetEasing(camEaseOutY).Reset();
+
+        camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseInY).Ease(
+            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_IN_SIN, false);
+    }
+    else if (camCurrentSpeed.y)
+    {
+        engine->easingManager->GetEasing(camEaseOutY).Play();
+        engine->easingManager->GetEasing(camEaseInY).Reset();
+
+        camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseOutY).Ease(
+            camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_OUT_SIN, false);
+    }
+
+    double shift = app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT ? 2 : 1;
+    double speedX = camCurrentSpeed.x * camSpeedMult * shift * dt;
+    double speedY = camCurrentSpeed.y * camSpeedMult * shift * dt;
+
+    // Move
+    transform->Translate(speedX * transform->GetRight(), HandleSpace::LOCAL);
+    transform->Translate(speedY * transform->GetForward(), HandleSpace::LOCAL);
+
+    // (Wheel) Zoom
+    if (isHovered && app->input->GetMouseZ() != 0)
+        transform->Translate(transform->GetForward() * (double)app->input->GetMouseZ() * 4.0, HandleSpace::LOCAL);
+
+    // (F) Focus Selection
+    if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && engine->N_sceneManager->GetSelectedGO())
+    {
+        transform->SetPosition(camera->lookAt);
+        vec3f finalPos;
+        finalPos = transform->GetPosition() - transform->GetForward();
+        finalPos = engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Transform>()->GetPosition() - (transform->GetForward() * 10.0);
+
+        transform->SetPosition(finalPos);
+    }
+}
+
+void PanelScene::HandleInput(SDL_Scancode key)
+{
+    if (app->input->GetKey(key) == KEY_DOWN)
+    {
+        inputStack.push(key);
+    }
+    else if (app->input->GetKey(key) == KEY_UP)
+    {
+        std::stack<SDL_Scancode> tempStack;
+
+        while (!inputStack.empty())
+        {
+            if (inputStack.top() != key)
+                tempStack.push(inputStack.top());
+            inputStack.pop();
+        }
+        while (!tempStack.empty())
+        {
+            inputStack.push(tempStack.top());
+            tempStack.pop();
+        }
+    }
+
+    if (app->input->GetKey(key) == KEY_UP ||
+        app->input->GetKey(key) == KEY_DOWN)
+    {
+        switch (key)
+        {
+            case SDL_SCANCODE_A: camInitSpeed.x = camCurrentSpeed.x; break;
+            case SDL_SCANCODE_D: camInitSpeed.x = camCurrentSpeed.x; break;
+            case SDL_SCANCODE_W: camInitSpeed.y = camCurrentSpeed.y; break;
+            case SDL_SCANCODE_S: camInitSpeed.y = camCurrentSpeed.y; break;
+            default: break;
+        }
+    }
+}
+
+void PanelScene::SetTargetSpeed()
+{
+    std::stack<SDL_Scancode> tempStack = inputStack;
+    std::stack<SDL_Scancode> reversedStack; 
+
+    // Reverse the order of elements
+    while (!tempStack.empty())
+    {
+        reversedStack.push(tempStack.top());
+        tempStack.pop();
+    }
+
+    bool zeroX = true;
+    bool zeroY = true;
+
+    // Compute speed
+    while (!reversedStack.empty())
+    {
+        switch (reversedStack.top())
+        {
+            case SDL_SCANCODE_A:
+                camTargetSpeed.x =  50;
+                zeroX = false;
+                break;
+
+            case SDL_SCANCODE_D:
+                camTargetSpeed.x = -50;
+                zeroX = false;
+                break;
+
+            case SDL_SCANCODE_W:
+                camTargetSpeed.y =  50;
+                zeroY = false;
+                break;
+
+            case SDL_SCANCODE_S:
+                camTargetSpeed.y = -50;
+                zeroY = false;
+                break;
+
+            default: break;
+        }
+
+        reversedStack.pop();
+    }
+
+    if (zeroX) camTargetSpeed.x = 0;
+    if (zeroY) camTargetSpeed.y = 0;
 }

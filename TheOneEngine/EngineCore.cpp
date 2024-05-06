@@ -20,6 +20,7 @@ EngineCore::EngineCore()
     collisionSolver = new CollisionSolver();
     inputManager = new InputManager();
     N_sceneManager = new N_SceneManager();
+    easingManager = new EasingManager();
 }
 
 void EngineCore::Awake()
@@ -75,14 +76,13 @@ void EngineCore::Update(double dt)
 {
     audioManager->Update(dt);
     collisionSolver->Update(dt);
-  
+    //easingManager->Update(dt);
+
     this->dt = dt;
 }
 
-void EngineCore::Render(Camera* camera)
+void EngineCore::SetRenderEnvironment(Camera* camera)
 {
-    LogGL("BEFORE RENDER");
-
     if (!camera) camera = editorCamReference;
 
     // Update Camera Matrix
@@ -109,9 +109,15 @@ void EngineCore::Render(Camera* camera)
     case CameraType::PERSPECTIVE:
         gluPerspective(camera->fov, camera->aspect, camera->zNear, camera->zFar);
         break;
-    case CameraType::ORTHOGONAL:
-        GLCALL(glOrtho(-camera->size, camera->size, -camera->size * 0.75, camera->size * 0.75, camera->zNear, camera->zFar));
-        break;
+
+    case CameraType::ORTHOGRAPHIC:
+    {
+        float halfWidth = camera->size * 0.5f;
+        float halfHeight = halfWidth / camera->aspect;
+        GLCALL(glOrtho(-halfWidth, halfWidth, -halfHeight, halfHeight, camera->zNear, camera->zFar));
+    }
+    break;
+
     default:
         LOG(LogType::LOG_ERROR, "EngineCore - CameraType invalid!");
         break;
@@ -128,22 +134,25 @@ void EngineCore::Render(Camera* camera)
         camera->lookAt.x, camera->lookAt.y, camera->lookAt.z,
 		cameraTransform->GetUp().x, cameraTransform->GetUp().y, cameraTransform->GetUp().z);
 
-    if (drawGrid) { DrawGrid(1000, 50); }
-    DrawAxis();
-
-    if (collisionSolver->drawCollisions) collisionSolver->DrawCollisions();
-
-    if (!monoManager->debugShapesQueue.empty())
-    {
-        monoManager->RenderShapesQueue();
-    }
-
-    GLCALL(glColor3f(1.0f, 1.0f, 1.0f));
-    //DrawFrustum(camera->viewMatrix);
-
-    LogGL("DURING RENDER");
+    //GLCALL(glColor3f(1.0f, 1.0f, 1.0f));
 
     assert(glGetError() == GL_NONE);
+}
+
+void EngineCore::DebugDraw(bool override)
+{
+    // Draw Editor / Debug
+    if (drawAxis || override)
+        DrawAxis();
+
+    if (drawGrid || override)
+        DrawGrid(5000, 50);
+
+    if (drawCollisions || override)
+        collisionSolver->DrawCollisions();
+
+    if (drawScriptShapes || override)
+        monoManager->RenderShapesQueue();
 }
 
 void EngineCore::LogGL(string id)
@@ -293,7 +302,9 @@ void EngineCore::DrawGrid(int grid_size, int grid_step)
     GLCALL(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, nullptr));
     GLCALL(glEnableVertexAttribArray(1));
 
+
     // Draw lines
+    GLCALL(glColor3f(0.33f, 0.33f, 0.33f));
     GLCALL(glDrawArrays(GL_LINES, 0, gridVertices.size() / 3));
 
     // Cleanup

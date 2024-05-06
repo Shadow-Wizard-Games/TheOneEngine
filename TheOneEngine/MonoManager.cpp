@@ -223,23 +223,20 @@ bool MonoManager::IsClassInMainAssembly(const char* className)
 
 void MonoManager::RenderShapesQueue()
 {
+    if (debugShapesQueue.empty())
+        return;
+
     for (auto shape : debugShapesQueue)
     {
         glPushMatrix();
-
         glTranslatef(shape.center.x, shape.center.y, shape.center.z);
-
         glColor3f(shape.color.r, shape.color.g, shape.color.b);
-
         glBegin(GL_LINE_LOOP);
 
         for (auto point : shape.points)
-        {
             glVertex3f(point.x, point.y, point.z);
-        }
 
         glEnd();
-
         glPopMatrix();
     }
 

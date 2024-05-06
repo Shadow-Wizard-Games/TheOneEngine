@@ -39,8 +39,14 @@ bool BuilderSceneManager::Update(double dt)
 
 bool BuilderSceneManager::PostUpdate()
 {
+	engine->SetRenderEnvironment(engine->N_sceneManager->currentScene->currentCamera);
+	engine->SetUniformBufferCamera(engine->N_sceneManager->currentScene->currentCamera);
+
+	//hekbas: add here engine->DebugDraw
+
 	engine->Render(engine->N_sceneManager->currentScene->currentCamera);
 	engine->N_sceneManager->currentScene->Draw();
+
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
 

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Module.h"
-#include "../TheOneEngine/InputManager.h"
+#include "TheOneEngine/InputManager.h"
 
 #define MAX_MOUSE_BUTTONS 5
 
@@ -19,7 +19,6 @@ class Input : public Module
 {
 public:
     Input(App* app);
-
     virtual ~Input();
 
     bool Awake();
@@ -28,6 +27,11 @@ public:
     bool Update(double dt);
 
     bool processSDLEvents();
+
+	const Uint8* GetKeyboardState(int* numkeys)
+	{
+		return SDL_GetKeyboardState(numkeys);
+	}
 
 	KEY_STATE GetKey(int id) const
 	{
