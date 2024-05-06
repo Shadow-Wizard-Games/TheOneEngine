@@ -463,6 +463,18 @@ bool PanelInspector::Draw()
 
                     ImGui::TableSetColumnIndex(3);
                     if (ImGui::DragFloat("##lightZ", &light->color.z, 0.5F, 0, 0, "%.3f", 1)) {}
+                    
+                    ImGui::TableNextRow();
+
+                    // Range
+                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Text("Range");
+
+                    ImGui::TableSetColumnIndex(1);
+                    if (ImGui::DragFloat("##linear", &light->linear, 0.5F, 0, 0, "%.3f", 1)) {}
+
+                    ImGui::TableSetColumnIndex(2);
+                    if (ImGui::DragFloat("##quadratic", &light->quadratic, 0.5F, 0, 0, "%.3f", 1)) {}
 
                     ImGui::EndTable();
                     //ImGui::TableNextRow();

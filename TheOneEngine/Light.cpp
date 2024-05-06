@@ -8,7 +8,7 @@
 #include "Shader.h"
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0f), specular(0.5f), linear(0.0014f), quadratic(0.000007f)
+color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f)
 {
     if (lightType == LightType::Point)
     {
