@@ -4,6 +4,7 @@
 #include "Billboard.h"
 #include "Camera.h"
 #include "Defs.h"
+#include "Resources.h"
 
 #include <vector>
 
@@ -25,6 +26,7 @@ public:
 
 	RenderEmmiterModuleType type;
 
+	ResourceId textureID = -1;
 protected:
 	Emmiter* owner;
 };

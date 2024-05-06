@@ -44,8 +44,11 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
         * Billboard::CalculateSphericalBillboardRotationMatrix(particlePosition, cameraPosition)
         * glm::scale(mat4(1.0f), particle->scale);
 
-    Renderer2D::DrawQuad(transform, glm::vec4(particle->color));
-
+    if(textureID != -1)
+        Renderer2D::DrawQuad(transform, textureID);
+    else
+        Renderer2D::DrawQuad(transform, glm::vec4(particle->color));
+        
     glEnable(GL_CULL_FACE);
 
 }
