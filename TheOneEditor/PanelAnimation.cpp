@@ -1,16 +1,16 @@
 #include "PanelAnimation.h"
-
 #include "App.h"
 #include "Gui.h"
+#include "Window.h"
 
-#include "../TheOneEngine/EngineCore.h"
-#include "../TheOneEngine/N_SceneManager.h"
-#include "../TheOneEngine/FrameBuffer.h"
-#include "../TheOneEngine/FileDialog.h"
-#include "../TheOneEngine/Camera.h"
-#include "../TheOneEngine/Model.h"
-#include "../TheOneEngine/Animation/animations/OzzAnimationSimple.h"
-#include "../TheOneEngine/Animation/animations/OzzAnimationPartialBlending.h"
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/N_SceneManager.h"
+#include "TheOneEngine/FrameBuffer.h"
+#include "TheOneEngine/FileDialog.h"
+#include "TheOneEngine/Camera.h"
+#include "TheOneEngine/Model.h"
+#include "TheOneEngine/Animation/animations/OzzAnimationSimple.h"
+#include "TheOneEngine/Animation/animations/OzzAnimationPartialBlending.h"
 
 #include "imgui.h"
 #include "imgui_stdlib.h"
@@ -35,7 +35,9 @@ PanelAnimation::~PanelAnimation() {}
 
 bool PanelAnimation::Draw()
 {
-	if (ImGui::Begin("Animation", &enabled))
+	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing;
+
+	if (ImGui::Begin("Animation", &enabled, panelFlags))
 	{
 		if (!AnimationAvaliable())
 		{
@@ -54,6 +56,7 @@ bool PanelAnimation::Draw()
 
 		if (ImGui::BeginChild("Viewport", { 0, 0 }, false, ImGuiTableFlags_Resizable))
 		{
+			CameraControl();
 			Viewport();
 		}
 		ImGui::EndChild();		
@@ -63,26 +66,60 @@ bool PanelAnimation::Draw()
 	return true;
 }
 
+void PanelAnimation::CameraControl()
+{	
+	Transform* transform = animationCamera->GetComponent<Transform>();
+	auto selectedGO = engine->N_sceneManager->GetSelectedGO();
+	vec3f finalPos;
+	static double mouseSensitivity = 28.0f;
+	static double orbitDistance = 40.0f;
+
+	if (ImGui::IsWindowHovered())
+	{
+		Camera* camera = animationCamera->GetComponent<Camera>();
+		double dt = app->GetDT();
+
+		// (Alt + LMB) Orbit
+		if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+		{
+			app->window->InfiniteScroll();
+
+			vec3 cameraPos = transform->GetPosition();
+			vec3 targetPos = selectedGO->GetComponent<Transform>()->GetPosition() + vec3(0, 20.0, 0);
+
+			camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
+			camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+			transform->SetPosition(camera->lookAt);
+			transform->Rotate(vec3(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
+			transform->Rotate(vec3(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
+		}
+
+		// (Wheel) Zoom
+		if (app->input->GetMouseZ() != 0)
+			orbitDistance -= app->input->GetMouseZ() * 2;
+	}	
+
+	// Set position
+	if (selectedGO) finalPos = selectedGO->GetComponent<Transform>()->GetPosition() + vec3(0, 20, 0) - (transform->GetForward() * orbitDistance);
+	else finalPos = transform->GetPosition() - transform->GetForward() * orbitDistance;
+
+	transform->SetPosition(finalPos);	
+}
+
 bool PanelAnimation::AnimationAvaliable()
 {
 	GameObject* selectedGO = engine->N_sceneManager->GetSelectedGO().get();
 
 	if (!selectedGO)
-	{
 		return false;
-	}
 
 	if (!selectedGO->GetComponent<Mesh>())
-	{
 		return false;
-	}
 
 	auto resourceID = selectedGO->GetComponent<Mesh>()->meshID;
 
 	if (!Resources::GetResourceById<Model>(resourceID)->isAnimated())
-	{
 		return false;
-	}
 
 	activeAnimator = Resources::GetResourceById<Model>(resourceID);
 
@@ -130,7 +167,6 @@ void PanelAnimation::Settings()
 	DrawAnimations();
 }
 
-// hekbas: TODO OZZ
 void PanelAnimation::Viewport()
 {
 	// Set viewport size
@@ -141,29 +177,27 @@ void PanelAnimation::Viewport()
 	{
 		frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
 		animationCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
+		animationCamera.get()->GetComponent<Camera>()->UpdateCamera();
 	}
 
 	//ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
 	{
 		frameBuffer->Bind();
 		frameBuffer->Clear({ 0.13f, 0.14f, 0.15f, 1.00f });
-		frameBuffer->ClearBuffer(-1);
 
 		// Draw
-		//engine->Render(animationCamera->GetComponent<Camera>());
+		engine->SetRenderEnvironment(animationCamera->GetComponent<Camera>());
 		engine->SetUniformBufferCamera(animationCamera->GetComponent<Camera>());
-
 		engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Mesh>()->DrawComponent(animationCamera->GetComponent<Camera>());
-
-		/*current->Draw(DrawMode::EDITOR, animationCamera->GetComponent<Camera>());
-		if (engine->N_sceneManager->GetSceneIsChanging())
-			engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);*/
 
 		frameBuffer->Unbind();
 	}
 
 	//Draw FrameBuffer Texture
-	ImGui::Image((ImTextureID)frameBuffer->getColorBufferTexture(), { viewportSize.x, viewportSize.y }, { 0, 1 }, { 1, 0 });
+	ImGui::Image(
+		(ImTextureID)frameBuffer->getColorBufferTexture(),
+		{ viewportSize.x, viewportSize.y },
+		{ 0, 1 }, { 1, 0 });
 }
 
 void PanelAnimation::DrawAnimations()
@@ -190,7 +224,8 @@ void PanelAnimation::DrawAnimations()
 		{
 			for (int n = 0; n < IM_ARRAYSIZE(items); n++)
 			{
-				bool is_selected = (current_item == n); // You can store your selection however you want, outside or inside your objects
+				// You can store your selection however you want, outside or inside your objects
+				bool is_selected = (current_item == n); 
 				if (ImGui::Selectable(items[n], is_selected))
 				{
 					current_item = n;

@@ -65,7 +65,7 @@ public:
 	void LoadImagePreviews(const FileInfo& info);
 	void UnloadImagePreviews();
 
-	void SaveWarning(bool warning);
+	void SaveScenePopup();
 	
 	void FileDropping(const FileInfo& info);
 
@@ -85,7 +85,7 @@ private:
 	std::unordered_map<FileType, GLuint> iconTextures;
 	std::unordered_map<std::string, GLuint> imagePreviews;
 
-	bool warningScene = false;
+	bool saveScenePopup = false;
 	bool contextMenu = false;
 };
 

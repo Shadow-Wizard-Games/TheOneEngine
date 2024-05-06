@@ -554,7 +554,7 @@ static void DrawWireCube()
 
 static void ToggleCollidersDraw()
 {
-	engine->collisionSolver->drawCollisions = !engine->collisionSolver->drawCollisions;
+	engine->drawCollisions = !engine->drawCollisions;
 }
 
 static void ToggleGridDraw()
