@@ -145,7 +145,7 @@ public:
 
 private:
 	std::string imagePath;
-	ResourceId imageID;
+	ResourceId imageID = -1;
 
 	//section of each slider part
 	Rect2D* currentSection;

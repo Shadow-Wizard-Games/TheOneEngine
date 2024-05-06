@@ -38,7 +38,7 @@ public:
 
 private:
 	std::string imagePath;
-	ResourceId imageID;
+	ResourceId imageID = -1;
 
 	Rect2D* currentSection;
 	Rect2D imageIdleSection;

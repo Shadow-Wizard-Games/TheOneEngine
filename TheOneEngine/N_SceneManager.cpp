@@ -981,18 +981,17 @@ inline void Scene::SetCamera(Camera* cam)
 
 void Scene::Set2DCamera()
 {
-	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f)));
+	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
 }
 
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
-	RecurseSceneDraw(rootSceneGO, cam);
-
 	//Setting Camera for 3D Rendering
 	SetCamera(cam);
 	Renderer2D::StartBatch();//           START BATCH
+	RecurseSceneDraw(rootSceneGO, cam);
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(cam);
@@ -1000,7 +999,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	else {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(currentCamera);
-		}
+		
 	}
 	Renderer2D::Flush();//           END BATCH
 

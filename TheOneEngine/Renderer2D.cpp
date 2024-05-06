@@ -207,7 +207,7 @@ void Renderer2D::Init()
 	}
 
 	std::shared_ptr<IndexBuffer> textIB = std::make_shared<IndexBuffer>(textIndices, renderer2D.MaxIndices);
-	renderer2D.TextVertexArray->SetIndexBuffer(textIB);
+	renderer2D.TextVertexArray->SetIndexBuffer(quadIB);
 	delete[] textIndices;
 
 	// White Texture
@@ -263,6 +263,8 @@ void Renderer2D::StartBatch()
 
 void Renderer2D::Flush()
 {
+	glDisable(GL_CULL_FACE);
+
 	if (renderer2D.QuadIndexCount)
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)renderer2D.QuadVertexBufferPtr - (uint8_t*)renderer2D.QuadVertexBufferBase);
@@ -313,6 +315,8 @@ void Renderer2D::Flush()
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.TextShader->UnBind();
 	}
+
+	glEnable(GL_CULL_FACE);
 }
 
 void Renderer2D::NextBatch()
@@ -589,7 +593,7 @@ void Renderer2D::DrawString(const std::string& string, Font* font, const glm::ma
 		if (character == '\n')
 		{
 			x = 0;
-			y -= fsScale * metrics.lineHeight + textParams.LineSpacing;
+			y += fsScale * metrics.lineHeight + textParams.LineSpacing;
 			continue;
 		}
 
@@ -630,7 +634,7 @@ void Renderer2D::DrawString(const std::string& string, Font* font, const glm::ma
 		glm::vec2 quadMin((float)pl, (float)pb);
 		glm::vec2 quadMax((float)pr, (float)pt);
 
-		//quadMin.y *= -1, quadMax.y *= -1;
+		quadMin.y *= -1, quadMax.y *= -1;
 		quadMin *= fsScale, quadMax *= fsScale;
 		quadMin += glm::vec2(x, y);
 		quadMax += glm::vec2(x, y);

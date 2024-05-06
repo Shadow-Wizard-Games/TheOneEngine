@@ -24,8 +24,6 @@ BillboardRender::BillboardRender(Emmiter* owner, BillboardRender* ref)
 
 void BillboardRender::Update(Particle* particle, Camera* camera)
 {
-    glDisable(GL_CULL_FACE);
-
     vec3 cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
 
     vec3 particlePosition = particle->position;
@@ -48,9 +46,6 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
         Renderer2D::DrawQuad(transform, textureID);
     else
         Renderer2D::DrawQuad(transform, glm::vec4(particle->color));
-        
-    glEnable(GL_CULL_FACE);
-
 }
 
 json BillboardRender::SaveModule()
@@ -78,8 +73,8 @@ void BillboardRender::LoadModule(const json& moduleJSON)
         billboardType = moduleJSON["BillboardType"];
     }
 
-    if (moduleJSON.contains("TexturePath")) texturePath = moduleJSON["TexturePath"];
-    textureID = Resources::Load<Texture>(texturePath);
+    if (moduleJSON.contains("TexturePath")) 
+        SetTexture(moduleJSON["TexturePath"]);
 }
 
 void RenderEmmiterModule::SetTexture(const std::string& filename)

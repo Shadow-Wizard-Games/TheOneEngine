@@ -31,7 +31,7 @@ public:
 
 private:
 	std::string imagePath;
-	ResourceId imageID;
+	ResourceId imageID = -1;
 	Rect2D textureSection = { 0,0,1,1 };
 };
 
