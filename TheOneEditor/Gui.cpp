@@ -61,8 +61,8 @@ bool Gui::Awake()
 	bool ret = true;
 
 	panelAbout = new PanelAbout(PanelType::ABOUT, "About");
-	panels.push_back(panelAbout);
 	ret *= IsInitialized(panelAbout);
+	panels.push_back(panelAbout);
 
 	panelConsole = new PanelConsole(PanelType::CONSOLE, "Console");
 	panels.push_back(panelConsole);

@@ -35,7 +35,9 @@ PanelAnimation::~PanelAnimation() {}
 
 bool PanelAnimation::Draw()
 {
-	if (ImGui::Begin("Animation", &enabled))
+	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing;
+
+	if (ImGui::Begin("Animation", &enabled, panelFlags))
 	{
 		if (!AnimationAvaliable())
 		{

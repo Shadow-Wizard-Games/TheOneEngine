@@ -1,5 +1,7 @@
 #include "Easing.h"
 
+#include "Log.h"
+
 Easing::Easing(double totalTime, double delay, bool loop)
 {
     this->totalTime = totalTime;

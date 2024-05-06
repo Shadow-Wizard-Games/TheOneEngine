@@ -32,7 +32,7 @@ PanelProject::~PanelProject() {}
 
 bool PanelProject::Draw()
 {
-	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_AlwaysAutoResize;
+	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_AlwaysAutoResize;
 	panelFlags |= ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 	
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0, 0 });
@@ -434,7 +434,11 @@ void PanelProject::SaveScenePopup()
 
 			ImGui::TableSetColumnIndex(1);
 			ImGui::TextWrapped("Do you want to save the changes you made in the scenes:");
-			ImGui::TextWrapped(engine->N_sceneManager->currentScene->GetPath().c_str());
+
+			std::string path = engine->N_sceneManager->currentScene->GetPath().empty() ?
+				"NewUntitledScene" : engine->N_sceneManager->currentScene->GetPath();
+
+			ImGui::TextWrapped(path.c_str());
 			ImGui::Dummy({ 0, 8 });
 			ImGui::TextWrapped("Your changes will be lost if you don't save them.");
 			ImGui::Dummy({ 0, 8 });

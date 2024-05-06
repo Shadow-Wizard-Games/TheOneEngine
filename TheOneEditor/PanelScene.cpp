@@ -79,7 +79,7 @@ void PanelScene::Start()
 bool PanelScene::Draw()
 {
 	ImGuiWindowFlags settingsFlags = 0;
-	settingsFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
+	settingsFlags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
 
 	//ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2(0.f, 0.f));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.f, 0.f));
@@ -432,7 +432,7 @@ void PanelScene::CameraMovement(GameObject* cam)
     Camera* camera = cam->GetComponent<Camera>();
     Transform* transform = cam->GetComponent<Transform>();
     double dt = app->GetDT();
-    double mouseSensitivity = 32.0;
+    double mouseSensitivity = 28.0;
 
     switch (camControlMode)
     {
@@ -504,53 +504,37 @@ void PanelScene::CameraMovement(GameObject* cam)
     // Camera Speed Easing
     if (camTargetSpeed.x)
     {
-        if (engine->easingManager->GetEasing(camEaseInX).GetState() == EasingState::PAUSE)
-        {
-            engine->easingManager->GetEasing(camEaseInX).Play();
-            engine->easingManager->GetEasing(camEaseOutX).Reset();
-        }
-               
+        engine->easingManager->GetEasing(camEaseInX).Play();
+        engine->easingManager->GetEasing(camEaseOutX).Reset();
+
         camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseInX).Ease(
             camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_IN_SIN, false);
     }
     else if (camCurrentSpeed.x)
     {
-        if (engine->easingManager->GetEasing(camEaseOutX).GetState() == EasingState::PAUSE)
-        {
-            engine->easingManager->GetEasing(camEaseOutX).Play();
-            engine->easingManager->GetEasing(camEaseInX).Reset();
-        }
-        
+        engine->easingManager->GetEasing(camEaseOutX).Play();
+        engine->easingManager->GetEasing(camEaseInX).Reset();
+
         camCurrentSpeed.x = engine->easingManager->GetEasing(camEaseOutX).Ease(
             camInitSpeed.x, camTargetSpeed.x, dt, EasingType::EASE_OUT_SIN, false);
     }
 
     if (camTargetSpeed.y)
     {
-        if (engine->easingManager->GetEasing(camEaseInY).GetState() == EasingState::PAUSE)
-        {
-            engine->easingManager->GetEasing(camEaseInY).Play();
-            engine->easingManager->GetEasing(camEaseOutY).Reset();
-        }
-        
+        engine->easingManager->GetEasing(camEaseInY).Play();
+        engine->easingManager->GetEasing(camEaseOutY).Reset();
+
         camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseInY).Ease(
             camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_IN_SIN, false);
     }
     else if (camCurrentSpeed.y)
     {
-        if (engine->easingManager->GetEasing(camEaseOutY).GetState() == EasingState::PAUSE)
-        {
-            engine->easingManager->GetEasing(camEaseOutY).Play();
-            engine->easingManager->GetEasing(camEaseInY).Reset();
-        }
-       
+        engine->easingManager->GetEasing(camEaseOutY).Play();
+        engine->easingManager->GetEasing(camEaseInY).Reset();
+
         camCurrentSpeed.y = engine->easingManager->GetEasing(camEaseOutY).Ease(
             camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_OUT_SIN, false);
     }
-
-    LOG(LogType::LOG_INFO, "Current: %f, %f", camCurrentSpeed.x, camCurrentSpeed.y);
-    LOG(LogType::LOG_INFO, "Init:    %f, %f", camInitSpeed.x, camInitSpeed.y);
-    LOG(LogType::LOG_INFO, "Target:  %f, %f", camTargetSpeed.x, camTargetSpeed.y);
 
     // Move
     transform->Translate(camCurrentSpeed.x * camSpeedMult * dt * transform->GetRight(), HandleSpace::LOCAL);
@@ -594,6 +578,19 @@ void PanelScene::HandleInput(SDL_Scancode key)
             tempStack.pop();
         }
     }
+
+    if (app->input->GetKey(key) == KEY_UP ||
+        app->input->GetKey(key) == KEY_DOWN)
+    {
+        switch (key)
+        {
+            case SDL_SCANCODE_A: camInitSpeed.x = camCurrentSpeed.x; break;
+            case SDL_SCANCODE_D: camInitSpeed.x = camCurrentSpeed.x; break;
+            case SDL_SCANCODE_W: camInitSpeed.y = camCurrentSpeed.y; break;
+            case SDL_SCANCODE_S: camInitSpeed.y = camCurrentSpeed.y; break;
+            default: break;
+        }
+    }
 }
 
 void PanelScene::SetTargetSpeed()
@@ -614,29 +611,27 @@ void PanelScene::SetTargetSpeed()
     // Compute speed
     while (!reversedStack.empty())
     {
+        LOG(LogType::LOG_INFO, "Scancode: %i", reversedStack.top());
+
         switch (reversedStack.top())
         {
             case SDL_SCANCODE_A:
                 camTargetSpeed.x =  50;
-                camInitSpeed.x = camCurrentSpeed.x;
                 zeroX = false;
                 break;
 
             case SDL_SCANCODE_D:
                 camTargetSpeed.x = -50;
-                camInitSpeed.x = camCurrentSpeed.x;
                 zeroX = false;
                 break;
 
             case SDL_SCANCODE_W:
                 camTargetSpeed.y =  50;
-                camInitSpeed.y = camCurrentSpeed.y;
                 zeroY = false;
                 break;
 
             case SDL_SCANCODE_S:
                 camTargetSpeed.y = -50;
-                camInitSpeed.y = camCurrentSpeed.y;
                 zeroY = false;
                 break;
 
