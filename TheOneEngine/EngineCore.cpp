@@ -79,7 +79,7 @@ void EngineCore::Update(double dt)
     this->dt = dt;
 }
 
-void EngineCore::Render(Camera* camera)
+void EngineCore::SetRenderEnvironment(Camera* camera)
 {
     if (!camera) camera = editorCamReference;
 
@@ -129,20 +129,25 @@ void EngineCore::Render(Camera* camera)
         camera->lookAt.x, camera->lookAt.y, camera->lookAt.z,
 		cameraTransform->GetUp().x, cameraTransform->GetUp().y, cameraTransform->GetUp().z);
 
-    // Draw Editor / Debug
-    DrawAxis();
-
-    if (drawGrid) DrawGrid(5000, 50);
-
-    if (collisionSolver->drawCollisions)
-        collisionSolver->DrawCollisions();
-
-    if (!monoManager->debugShapesQueue.empty())
-        monoManager->RenderShapesQueue();
-
-    GLCALL(glColor3f(1.0f, 1.0f, 1.0f));
+    //GLCALL(glColor3f(1.0f, 1.0f, 1.0f));
 
     assert(glGetError() == GL_NONE);
+}
+
+void EngineCore::DebugDraw(bool override)
+{
+    // Draw Editor / Debug
+    if (drawAxis || override)
+        DrawAxis();
+
+    if (drawGrid || override)
+        DrawGrid(5000, 50);
+
+    if (drawCollisions || override)
+        collisionSolver->DrawCollisions();
+
+    if (drawScriptShapes || override)
+        monoManager->RenderShapesQueue();
 }
 
 void EngineCore::LogGL(string id)

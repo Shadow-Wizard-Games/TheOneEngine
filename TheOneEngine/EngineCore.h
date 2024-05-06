@@ -67,7 +67,8 @@ public:
 	bool PreUpdate();
 	void Update(double dt);
 
-	void Render(Camera* camera);
+	void SetRenderEnvironment(Camera* camera);
+	void DebugDraw(bool override = false);
 
 	void LogGL(string id);
 
@@ -91,7 +92,6 @@ public:
 public:
 	
 	double dt = 0;
-
 	bool vsync = false;
 
 	MonoManager* monoManager = nullptr;
@@ -101,6 +101,9 @@ public:
 	EasingManager* easingManager = nullptr;
 
 	bool drawGrid = true;
+	bool drawAxis = true;
+	bool drawCollisions = true;
+	bool drawScriptShapes = true;
 
 	ScratchBuffer scratch_buffer_;
 

@@ -235,10 +235,14 @@ bool PanelScene::Draw()
             frameBuffer->Clear();
 
             // Set Render Environment
-            engine->Render(sceneCamera->GetComponent<Camera>());
+            engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
             engine->SetUniformBufferCamera(sceneCamera->GetComponent<Camera>());
 
+            // Debug Draw
+            engine->DebugDraw(true);
+
             // Game cameras Frustum
+            glColor3f(0.9f, 0.9f, 0.9f);
             for (const auto GO : engine->N_sceneManager->GetGameObjects())
             {
                 Camera* gameCam = GO.get()->GetComponent<Camera>();
@@ -250,10 +254,9 @@ bool PanelScene::Draw()
             // Draw Rays
             if (drawRaycasting)
             {
+                glColor3f(0.8f, 0.0f, 0.0f);
                 for (auto ray : rays)
-                {
                     engine->DrawRay(ray);
-                }
             }
 
             // Draw Scene

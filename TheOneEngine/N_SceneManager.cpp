@@ -918,15 +918,16 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	RecurseSceneSort(rootSceneGO, cam);
 
 	if (cam != nullptr) {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
+		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(cam);
-		}
 	}
 	else {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
+		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(currentCamera);
-		}
 	}
+
+	if (mode == DrawMode::EDITOR)
+		return;
 
 	RecurseUIDraw(rootSceneGO, mode);
 }

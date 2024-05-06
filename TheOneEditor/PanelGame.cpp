@@ -127,10 +127,10 @@ bool PanelGame::Draw()
 			frameBuffer->ClearBuffer(-1);
 
 			// Set Render Environment
-			engine->Render(gameCamera);
+			engine->SetRenderEnvironment(gameCamera);
 			engine->SetUniformBufferCamera(gameCamera);
 
-			currentScene->Draw(DrawMode::EDITOR);
+			currentScene->Draw(DrawMode::GAME);
 
 			N_SceneManager* engineSM = engine->N_sceneManager;
 			if (engineSM->GetSceneIsChanging())

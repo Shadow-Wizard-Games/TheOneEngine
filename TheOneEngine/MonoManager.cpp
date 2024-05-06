@@ -223,6 +223,9 @@ bool MonoManager::IsClassInMainAssembly(const char* className)
 
 void MonoManager::RenderShapesQueue()
 {
+    if (debugShapesQueue.empty())
+        return;
+
     for (auto shape : debugShapesQueue)
     {
         glPushMatrix();
