@@ -1,0 +1,297 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999999999958,
+            8.742278000372373e-08,
+            1.528548517127136e-14,
+            0.0,
+            8.742278000372473e-08,
+            0.9999999999999923,
+            8.742278000372373e-08,
+            0.0,
+            -7.642742707691764e-15,
+            8.742278000372473e-08,
+            -0.9999999999999958,
+            0.0,
+            3.539551926223794e-06,
+            40.0,
+            280.9588317871094,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2288035414
+        },
+        {
+          "Aspect": 2.326225996017456,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": true,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 3118477051,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4180287200
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 2738842466
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "ItemManager",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1145673280,
+      "PrefabName": "ItemManager",
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 672686657
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "GameManager",
+          "Type": 4,
+          "UID": 467118552
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "GameManager",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 3294318030,
+      "PrefabName": "GameManager",
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2164112949
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1372494642
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 4197445285
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 1944253935,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "SK_MainCharacter",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 2959458870,
+      "PrefabName": "SK_MainCharacter",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            309.2085876464844,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4107805206
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3433682538
+        },
+        {
+          "AudioID": 1,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestBusterBehaviour",
+          "Type": 4,
+          "UID": 4215861680
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 933198342,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "Chestburster",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\Playground.toe",
+  "sceneName": "Playground"
+}
