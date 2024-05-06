@@ -41,29 +41,32 @@ void Billboard::BeginCylindricBillboard(vec3 objectPosition, vec3 cameraPosition
 		glRotatef(acos(angleCosine) * 180 / 3.14, upAux[0], upAux[1], upAux[2]);
 }
 
-vec4 Billboard::CalculateSphericalBillboardRotation(const vec3& objectPosition, const vec3& cameraPosition) 
-{
+mat4 Billboard::CalculateSphericalBillboardRotationMatrix(const vec3& objectPosition, const vec3& cameraPosition) {
 	vec3 lookAt(0.0f, 0.0f, 1.0f);
 	vec3 objToCamProj(cameraPosition.x - objectPosition.x, 0, cameraPosition.z - objectPosition.z);
 	objToCamProj = glm::normalize(objToCamProj);
 
 	vec3 upAux = glm::cross(lookAt, objToCamProj);
-	float angleCosine = glm::dot(lookAt, objToCamProj);
+	double angleCosine = glm::dot(lookAt, objToCamProj);
 
-	vec4 resultRotation(0.0f);
+	vec4 verticalRotation(1.0);
 	if (std::abs(angleCosine) < 0.99999f) {
-		float angle = acosf(angleCosine) * 180 / glm::pi<float>();
-		resultRotation = vec4(upAux, angle);
+		double angle = acos(angleCosine) * 180 / glm::pi<float>();
+		verticalRotation = vec4(upAux, angle);
 	}
 
 	vec3 objToCam = glm::normalize(cameraPosition - objectPosition);
 
+	vec4 tiltRotation(1.0);
 	angleCosine = glm::dot(objToCamProj, objToCam);
 	if (std::abs(angleCosine) < 0.99999f) {
-		float tiltAngle = acosf(angleCosine) * 180 / glm::pi<float>();
+		double tiltAngle = acos(angleCosine) * 180 / glm::pi<float>();
 		vec3 tiltAxis((objToCam.y < 0) ? 1 : -1, 0, 0);
-		resultRotation = vec4(tiltAxis, tiltAngle);
+		tiltRotation = vec4(tiltAxis, tiltAngle);
 	}
 
-	return resultRotation;
+	mat4 vertical = glm::rotate(mat4(1.0), glm::radians(verticalRotation.w), vec3(verticalRotation));
+	mat4 tilt = glm::rotate(mat4(1.0), glm::radians(tiltRotation.w), vec3(tiltRotation));
+
+	return vertical * tilt;
 }

@@ -909,7 +909,7 @@ inline void Scene::SetCamera(Camera* cam)
 
 void Scene::Set2DCamera()
 {
-	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
+	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f)));
 }
 
 void Scene::Draw(DrawMode mode, Camera* cam)

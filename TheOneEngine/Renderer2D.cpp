@@ -138,12 +138,12 @@ void Renderer2D::Init()
 	for (uint32_t i = 0; i < renderer2D.MaxIndices; i += 6)
 	{
 		quadIndices[i + 0] = offset + 0;
-		quadIndices[i + 1] = offset + 2;
-		quadIndices[i + 2] = offset + 1;
+		quadIndices[i + 1] = offset + 1;
+		quadIndices[i + 2] = offset + 2;
 
-		quadIndices[i + 3] = offset + 0;
+		quadIndices[i + 3] = offset + 2;
 		quadIndices[i + 4] = offset + 3;
-		quadIndices[i + 5] = offset + 2;
+		quadIndices[i + 5] = offset + 0;
 
 		offset += 4;
 	}
@@ -196,12 +196,12 @@ void Renderer2D::Init()
 	for (uint32_t i = 0; i < renderer2D.MaxIndices; i += 6)
 	{
 		textIndices[i + 0] = offset + 0;
-		textIndices[i + 1] = offset + 1;
-		textIndices[i + 2] = offset + 2;
+		textIndices[i + 1] = offset + 2;
+		textIndices[i + 2] = offset + 1;
 
-		textIndices[i + 3] = offset + 2;
+		textIndices[i + 3] = offset + 0;
 		textIndices[i + 4] = offset + 3;
-		textIndices[i + 5] = offset + 0;
+		textIndices[i + 5] = offset + 2;
 
 		offset += 4;
 	}
@@ -574,9 +574,6 @@ void Renderer2D::DrawString(const std::string& string, Font* font, const glm::ma
 
 	renderer2D.FontAtlasTexture = fontAtlas;
 
-	//DEBUG
-	//DrawQuad(transform, renderer2D.FontAtlasTexture);
-
 	double x = 0.0;
 	double fsScale = 1.0 / (metrics.ascenderY - metrics.descenderY);
 	double y = 0.0;
@@ -629,11 +626,11 @@ void Renderer2D::DrawString(const std::string& string, Font* font, const glm::ma
 		glm::vec2 texCoordMax((float)ar, (float)at);
 
 		double pl, pb, pr, pt;
-		glyph->getQuadPlaneBounds(pl, pb, pr, pt);
+		glyph->getQuadPlaneBounds(pl, pt, pr, pb);
 		glm::vec2 quadMin((float)pl, (float)pb);
 		glm::vec2 quadMax((float)pr, (float)pt);
 
-		quadMin.y *= -1, quadMax.y *= -1;
+		//quadMin.y *= -1, quadMax.y *= -1;
 		quadMin *= fsScale, quadMax *= fsScale;
 		quadMin += glm::vec2(x, y);
 		quadMax += glm::vec2(x, y);
@@ -647,22 +644,22 @@ void Renderer2D::DrawString(const std::string& string, Font* font, const glm::ma
 
 		renderer2D.TextVertexBufferPtr->Position = transform * glm::vec4(quadMin, 0.0f, 1.0f);
 		renderer2D.TextVertexBufferPtr->Color = textParams.Color;
-		renderer2D.TextVertexBufferPtr->TexCoord = texCoordMin;
+		renderer2D.TextVertexBufferPtr->TexCoord = { texCoordMin.x, texCoordMax.y };
 		renderer2D.TextVertexBufferPtr++;
 
 		renderer2D.TextVertexBufferPtr->Position = transform * glm::vec4(quadMax.x, quadMin.y, 0.0f, 1.0f);
 		renderer2D.TextVertexBufferPtr->Color = textParams.Color;
-		renderer2D.TextVertexBufferPtr->TexCoord = { texCoordMax.x, texCoordMin.y };
+		renderer2D.TextVertexBufferPtr->TexCoord = texCoordMax; 
 		renderer2D.TextVertexBufferPtr++;
 
 		renderer2D.TextVertexBufferPtr->Position = transform * glm::vec4(quadMax, 0.0f, 1.0f);
 		renderer2D.TextVertexBufferPtr->Color = textParams.Color;
-		renderer2D.TextVertexBufferPtr->TexCoord = texCoordMax;
+		renderer2D.TextVertexBufferPtr->TexCoord = { texCoordMax.x, texCoordMin.y };
 		renderer2D.TextVertexBufferPtr++;
 
 		renderer2D.TextVertexBufferPtr->Position = transform * glm::vec4(quadMin.x, quadMax.y, 0.0f, 1.0f);
 		renderer2D.TextVertexBufferPtr->Color = textParams.Color;
-		renderer2D.TextVertexBufferPtr->TexCoord = { texCoordMin.x, texCoordMax.y };
+		renderer2D.TextVertexBufferPtr->TexCoord = texCoordMin;
 		renderer2D.TextVertexBufferPtr++;
 
 		renderer2D.TextIndexCount += 6;

@@ -24,8 +24,6 @@ void TextUI::Draw2D()
 	params.LineSpacing = lineSpacing;
 
 	Renderer2D::DrawString(textString, Resources::GetResourceById<Font>(fontID), { imageRect.x, imageRect.y }, {imageRect.w, imageRect.h}, params);
-	//Renderer2D::DrawRect({ imageRect.x, imageRect.y, 0.0f }, { imageRect.w, imageRect.h }, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	//Renderer2D::DrawQuad({ imageRect.x, imageRect.y }, { imageRect.w, imageRect.h }, fontID->GetAtlasTexture());
 }
 
 void TextUI::SetText(const std::string& newText)

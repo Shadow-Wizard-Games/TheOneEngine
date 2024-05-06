@@ -40,18 +40,11 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
         particlePosition = (worldRotation * particle->position) + worldPosition;
     }
 
-    particle->rotation = Billboard::CalculateSphericalBillboardRotation(particlePosition, cameraPosition);
-
-
-    glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(particlePosition))
-        * glm::rotate(glm::mat4(1.0f), float(glm::radians(particle->rotation.w)), glm::vec3(particle->rotation))
-        * glm::scale(glm::mat4(1.0f),  glm::vec3(particle->scale));
+    mat4 transform = glm::translate(mat4(1.0f), particlePosition)
+        * Billboard::CalculateSphericalBillboardRotationMatrix(particlePosition, cameraPosition)
+        * glm::scale(mat4(1.0f), particle->scale);
 
     Renderer2D::DrawQuad(transform, glm::vec4(particle->color));
-    //Debug
-    /*Renderer2D::DrawQuad(glm::vec3(particle->position), glm::vec2(particle->scale), glm::vec4(1));
-    Renderer2D::DrawQuad({ particle->position.x, particle->position.y }, { particle->scale.x, particle->scale.y }, glm::vec4(1));
-    Renderer2D::DrawQuad({ 10.0f, 10.0f }, { 1.0f, 1.0f }, glm::vec4(1));*/
 
     glEnable(GL_CULL_FACE);
 
