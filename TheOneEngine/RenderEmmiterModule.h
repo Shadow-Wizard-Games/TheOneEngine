@@ -20,14 +20,17 @@ public:
 
 	virtual void LoadModule(const json& moduleJSON) { };
 
+	void SetTexture(const std::string& filename);
+
 	enum RenderEmmiterModuleType {
 		BILLBOARD
 	};
 
 	RenderEmmiterModuleType type;
 
-	ResourceId textureID = -1;
 protected:
+	std::string texturePath;
+	ResourceId textureID = -1;
 	Emmiter* owner;
 };
 

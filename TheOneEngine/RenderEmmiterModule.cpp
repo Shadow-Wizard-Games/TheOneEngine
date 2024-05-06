@@ -61,6 +61,8 @@ json BillboardRender::SaveModule()
 
     moduleJSON["BillboardType"] = billboardType;
 
+    moduleJSON["TexturePath"] = texturePath;
+
     return moduleJSON;
 }
 
@@ -75,4 +77,14 @@ void BillboardRender::LoadModule(const json& moduleJSON)
     {
         billboardType = moduleJSON["BillboardType"];
     }
+
+    if (moduleJSON.contains("TexturePath")) texturePath = moduleJSON["TexturePath"];
+    textureID = Resources::Load<Texture>(texturePath);
+}
+
+void RenderEmmiterModule::SetTexture(const std::string& filename)
+{
+    textureID = Resources::Load<Texture>(filename);
+    if (textureID != -1)
+        texturePath = filename;
 }
