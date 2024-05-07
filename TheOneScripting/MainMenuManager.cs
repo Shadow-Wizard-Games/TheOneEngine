@@ -5,11 +5,13 @@ public class MainMenuManager : MonoBehaviour
     public ICanvas canvas;
     public ICanvas canvasLogo;
     public ICanvas canvasTitle;
+    public ICanvas canvasCredits;
     float cooldown = 0;
     bool onCooldown = false;
 
     bool mainMenu = false;
     bool title = false;
+    bool credits = false;
     bool logo = true;
 
     IGameObject GameManagerGO;
@@ -25,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
         attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_A_MENU);
         canvasLogo = IGameObject.Find("LogoCanvas").GetComponent<ICanvas>();
         canvasTitle = IGameObject.Find("TitleCanvas").GetComponent<ICanvas>();
+        canvasCredits = IGameObject.Find("CreditsCanvas").GetComponent<ICanvas>();
 
         GameManagerGO = IGameObject.Find("GameManager");
         gameManager = GameManagerGO.GetComponent<GameManager>();
@@ -58,7 +61,7 @@ public class MainMenuManager : MonoBehaviour
             onCooldown = false;
         }
 
-        if ((title || logo) && !onCooldown)
+        if ((title || logo || credits) && !onCooldown)
         {
             if (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
             {
@@ -67,6 +70,14 @@ public class MainMenuManager : MonoBehaviour
                     title = true;
                     logo = false;
                     canvasLogo.ToggleEnable();
+                    onCooldown = true;
+                }
+                else if (credits)
+                {
+                    credits = false;
+                    mainMenu = true;
+                    canvasCredits.ToggleEnable();
+                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                     onCooldown = true;
                 }
                 else
@@ -140,7 +151,20 @@ public class MainMenuManager : MonoBehaviour
                 }
             }
 
+            //to add: settings
+
+
+            //to add: credits
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
+            {
+                credits = true;
+                canvasCredits.ToggleEnable();
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                onCooldown = true;
+                mainMenu = false;
+            }
+
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
             {
                 InternalCalls.ExitApplication();
                 attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
