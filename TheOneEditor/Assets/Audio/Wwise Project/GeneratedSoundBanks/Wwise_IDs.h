@@ -13,29 +13,28 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID A_AMBIENT_1 = 1547765315U;
-        static const AkUniqueID A_CAMP_2 = 895381461U;
-        static const AkUniqueID A_COMBAT_1 = 3486252281U;
-        static const AkUniqueID A_RUINS_2 = 4189504465U;
         static const AkUniqueID DEBUG_GUNSHOT = 1535709413U;
         static const AkUniqueID DEBUG_MUSIC1 = 830312575U;
         static const AkUniqueID DEBUG_MUSIC2 = 830312572U;
         static const AkUniqueID DEBUG_SPATIAL1 = 3632435752U;
         static const AkUniqueID DEBUG_SPATIAL2 = 3632435755U;
+        static const AkUniqueID E_A_DEATH = 1015701557U;
+        static const AkUniqueID E_A_SHOOT = 2923735218U;
+        static const AkUniqueID E_A_STEP = 1828976739U;
         static const AkUniqueID E_CB_DEATH = 2100764501U;
         static const AkUniqueID E_EGG_CRACK = 3286329979U;
         static const AkUniqueID E_FH_CRAWL = 3938483819U;
         static const AkUniqueID E_FH_DEATH = 4203716004U;
         static const AkUniqueID E_FH_JUMP = 2711568226U;
-        static const AkUniqueID E_QUEEN_BOMB = 975078008U;
-        static const AkUniqueID E_QUEEN_CHANGE = 587747760U;
-        static const AkUniqueID E_QUEEN_DEATH = 1479922750U;
-        static const AkUniqueID E_QUEEN_JUMP = 3480783404U;
-        static const AkUniqueID E_QUEEN_SPIT = 3576793690U;
-        static const AkUniqueID E_QUEEN_STEP = 3778713374U;
-        static const AkUniqueID E_REBEL_DEATH = 4009974304U;
-        static const AkUniqueID E_REBEL_SHOOT = 319492235U;
-        static const AkUniqueID E_REBEL_STEP = 2489932272U;
+        static const AkUniqueID E_Q_BOMB = 692574897U;
+        static const AkUniqueID E_Q_CHANGE = 3169029109U;
+        static const AkUniqueID E_Q_DEATH = 610103877U;
+        static const AkUniqueID E_Q_JUMP = 3869385341U;
+        static const AkUniqueID E_Q_SPIT = 2254856839U;
+        static const AkUniqueID E_Q_SPITCHARGE = 3547019691U;
+        static const AkUniqueID E_Q_STEP = 2725321747U;
+        static const AkUniqueID E_Q_TAILSHOT = 2084671035U;
+        static const AkUniqueID E_Q_TAILSWEEP = 1606613397U;
         static const AkUniqueID E_X_ADULT_DEATH = 3828971157U;
         static const AkUniqueID E_X_ADULT_MELEE = 3271687631U;
         static const AkUniqueID E_X_ADULT_SPAWN = 3991779178U;
@@ -47,17 +46,51 @@ namespace AK
         static const AkUniqueID P_PICK = 1941667005U;
         static const AkUniqueID P_ROLL = 2206507859U;
         static const AkUniqueID P_STEP = 3875642140U;
+        static const AkUniqueID PLAYMUSIC = 417627684U;
+        static const AkUniqueID STOPMUSIC = 1917263390U;
         static const AkUniqueID UI_A_MENU = 464895987U;
         static const AkUniqueID UI_CLICK = 2249769530U;
         static const AkUniqueID UI_HOVER = 2118900976U;
         static const AkUniqueID UI_PAUSEGAME = 3783962382U;
         static const AkUniqueID VO_GUARD2_VL1_0 = 1098830151U;
         static const AkUniqueID VO_GUARD2_VL2_0 = 2172450704U;
-        static const AkUniqueID W_M4_AIM = 3949582022U;
         static const AkUniqueID W_M4_RELOAD = 2147632472U;
         static const AkUniqueID W_M4_SHOOT = 933371860U;
         static const AkUniqueID W_SL_SHOOT = 3010972734U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace GAMEPLAYMODE
+        {
+            static const AkUniqueID GROUP = 15699892U;
+
+            namespace STATE
+            {
+                static const AkUniqueID CAMP = 3736508534U;
+                static const AkUniqueID COMBAT = 2764240573U;
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID RUINS = 417916826U;
+                static const AkUniqueID SHIP = 284967655U;
+            } // namespace STATE
+        } // namespace GAMEPLAYMODE
+
+    } // namespace STATES
+
+    namespace SWITCHES
+    {
+        namespace SURFACETYPE
+        {
+            static const AkUniqueID GROUP = 63790334U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID SHIP = 284967655U;
+            } // namespace SWITCH
+        } // namespace SURFACETYPE
+
+    } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
     {

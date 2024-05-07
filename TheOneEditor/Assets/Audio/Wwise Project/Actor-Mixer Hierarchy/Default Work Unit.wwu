@@ -1158,6 +1158,59 @@
 														<ActiveSource Name="SFX_E_Q_TailSweep" ID="{7AB850A7-14A3-480C-8380-369D167585DE}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
+												<SwitchContainer Name="Q Steps" ID="{0672F250-ACBA-489F-B8C1-C718D1599E14}" ShortID="283584931">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<RandomSequenceContainer Name="Queen Footsteps" ID="{F7D9B1D0-E909-44FF-A50B-14E99C9FF80E}" ShortID="703004497">
+															<ReferenceList>
+																<Reference Name="Conversion">
+																	<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+																</Reference>
+																<Reference Name="OutputBus">
+																	<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+																</Reference>
+															</ReferenceList>
+															<ChildrenList>
+																<Sound Name="SFX_E_Q_Movement" ID="{43DD5F4F-4AD4-4CE3-B267-4D36595EDECE}" ShortID="792828739">
+																	<ReferenceList>
+																		<Reference Name="Conversion">
+																			<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+																		</Reference>
+																		<Reference Name="OutputBus">
+																			<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+																		</Reference>
+																	</ReferenceList>
+																	<ChildrenList>
+																		<AudioFileSource Name="SFX_E_Q_Movement" ID="{A37794BA-52D5-4756-9D96-1B095A7ECCC1}">
+																			<Language>SFX</Language>
+																			<AudioFile>SFX_E_Q_Movement.wav</AudioFile>
+																			<MediaIDList>
+																				<MediaID ID="391948462"/>
+																			</MediaIDList>
+																		</AudioFileSource>
+																	</ChildrenList>
+																	<ActiveSourceList>
+																		<ActiveSource Name="SFX_E_Q_Movement" ID="{A37794BA-52D5-4756-9D96-1B095A7ECCC1}" Platform="Linked"/>
+																	</ActiveSourceList>
+																</Sound>
+															</ChildrenList>
+														</RandomSequenceContainer>
+													</ChildrenList>
+													<GroupingInfo>
+														<GroupingBehaviorList>
+															<GroupingBehavior>
+																<ItemRef Name="Queen Footsteps" ID="{F7D9B1D0-E909-44FF-A50B-14E99C9FF80E}"/>
+															</GroupingBehavior>
+														</GroupingBehaviorList>
+													</GroupingInfo>
+												</SwitchContainer>
 											</ChildrenList>
 										</Folder>
 										<Folder Name="Chest burster" ID="{86492030-06DE-4D76-97FD-90AB99194EC0}" ShortID="533649441">

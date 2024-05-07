@@ -308,14 +308,24 @@ void AudioCore::ResumeEvent(AkUniqueID event, AkGameObjectID goID)
     LOG(LogType::LOG_AUDIO, "Resuming event from %d audiogameobject", goID);
 }
 
-void AudioCore::SetState(int stategroup, int state)
+void AudioCore::SetState(AkStateGroupID stategroup, AkStateID state)
 {
     AK::SoundEngine::SetState(stategroup, state);
 }
 
-void AudioCore::SetSwitch()
+void AudioCore::SetState(const char* stategroup, const char* state)
 {
-    //AK::SoundEngine::SetSwitch()
+    AK::SoundEngine::SetState(stategroup, state);
+}
+
+void AudioCore::SetSwitch(AkSwitchGroupID switchGroup, AkStateGroupID switchState, AkGameObjectID goID)
+{
+    AK::SoundEngine::SetSwitch(switchGroup, switchState, goID);
+}
+
+void AudioCore::SetRTPCValue(const char* name, int value)
+{
+    AK::SoundEngine::SetRTPCValue(name, value);
 }
 
 // JULS: Probably not necessary actually

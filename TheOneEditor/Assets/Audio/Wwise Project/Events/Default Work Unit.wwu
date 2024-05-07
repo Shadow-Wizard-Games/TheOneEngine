@@ -366,7 +366,7 @@
 														<Action Name="" ID="{CB4B631F-5ECA-4A34-8973-00BA23D3E442}" ShortID="190030784">
 															<ReferenceList>
 																<Reference Name="Target">
-																	<ObjectRef Name="SFX_Queen_Movement_E" ID="{0FF43C37-0F91-4583-A057-6EB45ED958A6}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																	<ObjectRef Name="Q Steps" ID="{0672F250-ACBA-489F-B8C1-C718D1599E14}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 																</Reference>
 															</ReferenceList>
 														</Action>
@@ -514,17 +514,6 @@
 							<ChildrenList>
 								<Folder Name="M4" ID="{EA38E44A-324C-4780-853B-DAC89CABD00D}" ShortID="405804824">
 									<ChildrenList>
-										<Event Name="W_M4_AIM" ID="{379EEE83-E50D-4834-86DB-4D137F0D0793}">
-											<ChildrenList>
-												<Action Name="" ID="{4E556CB3-D240-4825-8119-F97A9845EAD3}" ShortID="783419952">
-													<ReferenceList>
-														<Reference Name="Target">
-															<ObjectRef Name="SFX_CH_m4_aim" ID="{B07D7EDD-EEFA-4025-81CA-B2E038419965}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-														</Reference>
-													</ReferenceList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="W_M4_RELOAD" ID="{681901DC-F2E7-42FB-BEAE-132E6607C4E0}">
 											<ChildrenList>
 												<Action Name="" ID="{8FD06694-EC1C-46F4-AA33-A74A048B652E}" ShortID="704513282">
@@ -568,12 +557,129 @@
 						</Folder>
 						<Folder Name="Abilities" ID="{E7122CE0-FE77-41B7-83C5-717045CE1EAB}" ShortID="179790379">
 							<ChildrenList>
-								<Folder Name="Flamethrower" ID="{EB0C1C58-0F28-46B5-8632-19B10DF67053}" ShortID="762921195"/>
-								<Folder Name="Grenade Launcher" ID="{0E240D51-EC03-46E5-9F4C-9D2A75F49F5C}" ShortID="2798518"/>
-								<Folder Name="La Impaciente" ID="{AA1876D3-531B-4411-BB11-89ABD44A13A3}" ShortID="45189325"/>
-								<Folder Name="Adrenaline Rush" ID="{AB3770DF-028B-4964-89F8-7A9700E2D283}" ShortID="938832628"/>
-								<Folder Name="Bandage" ID="{5C733A15-A588-4F95-BD13-07CB97CF202D}" ShortID="848106103"/>
-								<Folder Name="Shield" ID="{BBA27AA2-96D6-44B4-B176-14FE399D6E2B}" ShortID="246921180"/>
+								<Folder Name="Flamethrower" ID="{EB0C1C58-0F28-46B5-8632-19B10DF67053}" ShortID="762921195">
+									<ChildrenList>
+										<Event Name="A_FT" ID="{1E9615DA-8D3D-4819-B014-1DC516D3B2C2}">
+											<ChildrenList>
+												<Action Name="" ID="{16B74C4E-E5EB-47C0-B2C3-F82AA67C3B1E}" ShortID="485990039">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_flamethrower" ID="{3B0952BE-5DF4-4275-BD7C-35DD2C64BAB8}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Grenade Launcher" ID="{0E240D51-EC03-46E5-9F4C-9D2A75F49F5C}" ShortID="2798518">
+									<ChildrenList>
+										<Event Name="A_GL_SHOOT" ID="{4A58856C-5C14-4853-BCE0-E688D4982496}">
+											<ChildrenList>
+												<Action Name="" ID="{11285CEB-59D3-480D-ADAA-7F37C3E4BE50}" ShortID="619949042">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_gl_shoot" ID="{1081BF34-AB76-415E-8DDF-E92A0A2C53FA}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="A_GL_EXPLOSION" ID="{7625FEE2-192B-4DFD-9D8C-08297E04E210}">
+											<ChildrenList>
+												<Action Name="" ID="{140C9244-E6E6-46C7-895C-3844958B394A}" ShortID="252420633">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_gl_explosion" ID="{1E3AEFFE-5EAF-492F-910B-5BB552A2E13A}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="La Impaciente" ID="{AA1876D3-531B-4411-BB11-89ABD44A13A3}" ShortID="45189325">
+									<ChildrenList>
+										<Event Name="A_LI" ID="{E29DA3A9-4141-4EFA-A102-995A816AA32A}">
+											<ChildrenList>
+												<Action Name="" ID="{DCA537DD-2C16-4591-870F-6952B83A574D}" ShortID="147594477">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_li" ID="{0C72A072-5ED4-4059-B27E-36731AD58DB1}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Adrenaline Rush" ID="{AB3770DF-028B-4964-89F8-7A9700E2D283}" ShortID="938832628">
+									<ChildrenList>
+										<Event Name="A_AR" ID="{30B2D9D3-7BE5-4ACB-B213-489F5EC3E907}">
+											<ChildrenList>
+												<Action Name="" ID="{4927EC3C-D94C-41CC-84B6-E87972AF6179}" ShortID="635607705">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_AdrenalineRush" ID="{113D7B1F-56E9-473B-BB59-121186F0FD31}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Bandage" ID="{5C733A15-A588-4F95-BD13-07CB97CF202D}" ShortID="848106103">
+									<ChildrenList>
+										<Event Name="A_BANDAGE" ID="{F4B3059B-8C81-4B37-9596-266DB5539474}">
+											<ChildrenList>
+												<Action Name="" ID="{2F69DC8D-8F1E-4E2E-A00C-458CDF643A0B}" ShortID="180891344">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_bandage" ID="{CD410D05-6FD2-42B1-8990-3714D03A86D4}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Shield" ID="{BBA27AA2-96D6-44B4-B176-14FE399D6E2B}" ShortID="246921180">
+									<ChildrenList>
+										<Event Name="A_S_ACTIVATE" ID="{5CD7001C-3C72-4E83-8DF8-1255903E3B61}">
+											<ChildrenList>
+												<Action Name="" ID="{14629D3A-B0AA-4B49-BDA3-2371B46DBF94}" ShortID="998320563">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_s_activate" ID="{C212D13F-F0A3-4FCC-85E7-82398D214EE3}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="A_S_DEACTIVATE" ID="{3DFCDDE9-7D03-4431-9897-3D409E478CE9}">
+											<ChildrenList>
+												<Action Name="" ID="{AD6BB299-FE7B-4795-9E54-5B1D54790B41}" ShortID="520895288">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_s_deactivate" ID="{57B38BBD-2F6C-44F2-8413-367F3114788D}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="A_S_HIT" ID="{9BD30658-FDF6-483A-BA33-9D01DA71830F}">
+											<ChildrenList>
+												<Action Name="" ID="{AF018A52-61D5-4CA5-BB2E-A0374757336C}" ShortID="726009670">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_A_s_hit" ID="{4D1AB0AA-6B02-4DAE-A161-0263C84FA3DA}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>

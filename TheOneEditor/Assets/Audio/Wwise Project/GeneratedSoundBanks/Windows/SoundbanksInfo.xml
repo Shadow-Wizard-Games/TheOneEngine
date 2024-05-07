@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{AB9F0343-CD85-AB9E-58D8-B63D74A50185}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{E2F590F1-40B4-7841-4996-FFEFD04A6FC3}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -33,6 +33,25 @@
 				<GameParameter Id="3847924954" Name="SS_Air_Presence"/>
 				<GameParameter Id="4160247818" Name="SS_Air_Turbulence"/>
 			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="15699892" Name="GameplayMode">
+					<States>
+						<State Id="284967655" Name="Ship"/>
+						<State Id="417916826" Name="Ruins"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="2764240573" Name="Combat"/>
+						<State Id="3736508534" Name="Camp"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+			<SwitchGroups>
+				<SwitchGroup Id="63790334" Name="SurfaceType">
+					<Switches>
+						<Switch Id="284967655" Name="Ship"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 			<AcousticTextures>
 				<AcousticTexture Id="504532776" Name="Brick">
 					<Properties>
@@ -162,17 +181,25 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{AC956129-8596-EF09-986C-6BFBD759B72D}">
+		<SoundBank Id="3491347560" Type="User" Language="SFX" Hash="{2F696BD8-71E7-400A-4CEA-09D5A1CC066B}">
 			<ShortName>TheOneEngine</ShortName>
 			<Path>TheOneEngine.bnk</Path>
 			<Media>
-				<File Id="52880726" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_QueenDeath_E.wav</ShortName>
-					<CachePath>SFX/SFX_QueenDeath_E_818F3B66.wem</CachePath>
+				<File Id="33415099" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_CH_Item_Pickup.wav</ShortName>
+					<CachePath>SFX/SFX_CH_Item_Pickup_818F3B66.wem</CachePath>
 				</File>
-				<File Id="92885057" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Facehugger_Jump_E.wav</ShortName>
-					<CachePath>SFX/SFX_Facehugger_Jump_E_818F3B66.wem</CachePath>
+				<File Id="35231276" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_FH_Crawl_Ship.wav</ShortName>
+					<CachePath>SFX/SFX_E_FH_Crawl_Ship_818F3B66.wem</CachePath>
+				</File>
+				<File Id="48884840" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_TailSweep.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_TailSweep_818F3B66.wem</CachePath>
+				</File>
+				<File Id="82457123" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_UI_M_Hover.wav</ShortName>
+					<CachePath>SFX/SFX_UI_M_Hover_818F3B66.wem</CachePath>
 				</File>
 				<File Id="102266085" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Bass160Fight.wav</ShortName>
@@ -182,77 +209,53 @@
 					<ShortName>SFX_Xenomorph_Footsetps_E.wav</ShortName>
 					<CachePath>SFX/SFX_Xenomorph_Footsetps_E_818F3B66.wem</CachePath>
 				</File>
-				<File Id="155174684" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>UI_Menu_Click_SFX.wav</ShortName>
-					<CachePath>SFX/UI_Menu_Click_SFX_818F3B66.wem</CachePath>
+				<File Id="159622919" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_FH_Crawl_Dirt.wav</ShortName>
+					<CachePath>SFX/SFX_E_FH_Crawl_Dirt_818F3B66.wem</CachePath>
 				</File>
-				<File Id="180490151" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_AcidSpit_E.wav</ShortName>
-					<CachePath>SFX/SFX_AcidSpit_E_818F3B66.wem</CachePath>
+				<File Id="247209249" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_Jump.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_Jump_818F3B66.wem</CachePath>
 				</File>
-				<File Id="188792581" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Rebel_death_E.wav</ShortName>
-					<CachePath>SFX/SFX_Rebel_death_E_818F3B66.wem</CachePath>
-				</File>
-				<File Id="221057048" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_CH_playerdash.wav</ShortName>
-					<CachePath>SFX/SFX_CH_playerdash_818F3B66.wem</CachePath>
-				</File>
-				<File Id="224668572" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_W_camp.wav</ShortName>
-					<CachePath>SFX/SFX_W_camp_818F3B66.wem</CachePath>
-				</File>
-				<File Id="257220973" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_CH_playerroll.wav</ShortName>
-					<CachePath>SFX/SFX_CH_playerroll_818F3B66.wem</CachePath>
-				</File>
-				<File Id="260252503" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_CH_m4_aim.wav</ShortName>
-					<CachePath>SFX/SFX_CH_m4_aim_818F3B66.wem</CachePath>
+				<File Id="247422101" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_W_sl_shoot.wav</ShortName>
+					<CachePath>SFX/SFX_W_sl_shoot_818F3B66.wem</CachePath>
 				</File>
 				<File Id="261288475" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>VO_guard2_voiceline2.wav</ShortName>
 					<CachePath>SFX/VO_guard2_voiceline2_818F3B66.wem</CachePath>
 				</File>
-				<File Id="303888556" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>AM_Combat_Level_1.wav</ShortName>
-					<CachePath>SFX/AM_Combat_Level_1_F6FDDA4C.wem</CachePath>
-				</File>
-				<File Id="358062072" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Facehugger_Crawl_E.wav</ShortName>
-					<CachePath>SFX/SFX_Facehugger_Crawl_E_FBC78EF0.wem</CachePath>
-				</File>
-				<File Id="364825977" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_CH_m4_reload.wav</ShortName>
-					<CachePath>SFX/SFX_CH_m4_reload_818F3B66.wem</CachePath>
+				<File Id="317356435" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_CH_Dash.wav</ShortName>
+					<CachePath>SFX/SFX_CH_Dash_818F3B66.wem</CachePath>
 				</File>
 				<File Id="365237862" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Xenomorph_Melee_E.wav</ShortName>
 					<CachePath>SFX/SFX_Xenomorph_Melee_E_818F3B66.wem</CachePath>
 				</File>
-				<File Id="369657722" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Jump_E.wav</ShortName>
-					<CachePath>SFX/SFX_Jump_E_818F3B66.wem</CachePath>
-				</File>
 				<File Id="414090755" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_ChestbusterDeath_E.wav</ShortName>
 					<CachePath>SFX/SFX_ChestbusterDeath_E_818F3B66.wem</CachePath>
 				</File>
-				<File Id="419397976" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Item_Pickup_CH.wav</ShortName>
-					<CachePath>SFX/SFX_Item_Pickup_CH_818F3B66.wem</CachePath>
-				</File>
-				<File Id="437230071" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_W_ruins.wav</ShortName>
-					<CachePath>SFX/SFX_W_ruins_818F3B66.wem</CachePath>
+				<File Id="433229473" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_TailShot.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_TailShot_818F3B66.wem</CachePath>
 				</File>
 				<File Id="466064314" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>waves.wav</ShortName>
 					<CachePath>SFX/waves_818F3B66.wem</CachePath>
 				</File>
-				<File Id="498493897" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Rebel_steps_E.wav</ShortName>
-					<CachePath>SFX/SFX_Rebel_steps_E_FBC78EF0.wem</CachePath>
+				<File Id="476179393" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AM_Ambient_Level_1.wav</ShortName>
+					<CachePath>SFX/AM_Ambient_Level_1_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="517462623" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_FH_Jump.wav</ShortName>
+					<CachePath>SFX/SFX_E_FH_Jump_818F3B66.wem</CachePath>
+				</File>
+				<File Id="527567376" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AM_L3_Explore.wav</ShortName>
+					<CachePath>SFX/AM_L3_Explore_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="552844014" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Xenomorph_Spit_E.wav</ShortName>
@@ -274,13 +277,17 @@
 					<ShortName>SFX_Facehugger_Eggcrack_E.wav</ShortName>
 					<CachePath>SFX/SFX_Facehugger_Eggcrack_E_818F3B66.wem</CachePath>
 				</File>
+				<File Id="624497162" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_UI_M_Click.wav</ShortName>
+					<CachePath>SFX/SFX_UI_M_Click_818F3B66.wem</CachePath>
+				</File>
 				<File Id="635286070" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Guitar.wav</ShortName>
 					<CachePath>SFX/Guitar_818F3B66.wem</CachePath>
 				</File>
-				<File Id="635432014" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_QueenChangePhase_E.wav</ShortName>
-					<CachePath>SFX/SFX_QueenChangePhase_E_818F3B66.wem</CachePath>
+				<File Id="649793213" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_FH_Crawl_Death.wav</ShortName>
+					<CachePath>SFX/SFX_E_FH_Crawl_Death_818F3B66.wem</CachePath>
 				</File>
 				<File Id="657823762" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>seagull1.wav</ShortName>
@@ -290,80 +297,68 @@
 					<ShortName>VO_guard2_voiceline1.wav</ShortName>
 					<CachePath>SFX/VO_guard2_voiceline1_818F3B66.wem</CachePath>
 				</File>
+				<File Id="678013479" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_W_m4_shoot.wav</ShortName>
+					<CachePath>SFX/SFX_W_m4_shoot_818F3B66.wem</CachePath>
+				</File>
 				<File Id="692788379" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Xenomorph_Death_E.wav</ShortName>
 					<CachePath>SFX/SFX_Xenomorph_Death_E_818F3B66.wem</CachePath>
-				</File>
-				<File Id="695855090" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Player_Step_CH.wav</ShortName>
-					<CachePath>SFX/SFX_Player_Step_CH_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="715356811" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>gunshot.wav</ShortName>
 					<CachePath>SFX/gunshot_818F3B66.wem</CachePath>
 				</File>
-				<File Id="737475653" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_QueenMovement_E.wav</ShortName>
-					<CachePath>SFX/SFX_QueenMovement_E_818F3B66.wem</CachePath>
+				<File Id="730529704" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_A_Death.wav</ShortName>
+					<CachePath>SFX/SFX_E_A_Death_818F3B66.wem</CachePath>
 				</File>
-				<File Id="809215257" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_CH_m4_shoot.wav</ShortName>
-					<CachePath>SFX/SFX_CH_m4_shoot_818F3B66.wem</CachePath>
+				<File Id="732584561" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_CH_Roll.wav</ShortName>
+					<CachePath>SFX/SFX_CH_Roll_818F3B66.wem</CachePath>
 				</File>
-				<File Id="842622820" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_CH_sl_shoot.wav</ShortName>
-					<CachePath>SFX/SFX_CH_sl_shoot_818F3B66.wem</CachePath>
+				<File Id="757988013" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AM_Combat_Level_1.wav</ShortName>
+					<CachePath>SFX/AM_Combat_Level_1_FBC78EF0.wem</CachePath>
 				</File>
-				<File Id="852480059" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>UI_Menu_Hover_SFX.wav</ShortName>
-					<CachePath>SFX/UI_Menu_Hover_SFX_818F3B66.wem</CachePath>
+				<File Id="758485825" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_UI_Pause.wav</ShortName>
+					<CachePath>SFX/SFX_UI_Pause_818F3B66.wem</CachePath>
 				</File>
-				<File Id="938926544" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Rebel_shooting_E.wav</ShortName>
-					<CachePath>SFX/SFX_Rebel_shooting_E_818F3B66.wem</CachePath>
+				<File Id="760076921" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_W_m4_reload.wav</ShortName>
+					<CachePath>SFX/SFX_W_m4_reload_818F3B66.wem</CachePath>
+				</File>
+				<File Id="797598712" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_SpitCharge.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_SpitCharge_818F3B66.wem</CachePath>
+				</File>
+				<File Id="842763712" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_PhaseChange.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_PhaseChange_818F3B66.wem</CachePath>
+				</File>
+				<File Id="882278297" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_Spit.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_Spit_818F3B66.wem</CachePath>
 				</File>
 				<File Id="958004585" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Player_Death_CH.wav</ShortName>
 					<CachePath>SFX/SFX_Player_Death_CH_818F3B66.wem</CachePath>
 				</File>
-				<File Id="959111577" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_UI_pausegame.wav</ShortName>
-					<CachePath>SFX/SFX_UI_pausegame_818F3B66.wem</CachePath>
+				<File Id="961676207" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_A_Shoot.wav</ShortName>
+					<CachePath>SFX/SFX_E_A_Shoot_818F3B66.wem</CachePath>
 				</File>
-				<File Id="994093999" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>AM_Ambient_Level_1.wav</ShortName>
-					<CachePath>SFX/AM_Ambient_Level_1_4CE279A8.wem</CachePath>
+				<File Id="974273116" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_AcidBomb.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_AcidBomb_818F3B66.wem</CachePath>
 				</File>
-				<File Id="1013643951" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_Facehugger_Death_E.wav</ShortName>
-					<CachePath>SFX/SFX_Facehugger_Death_E_818F3B66.wem</CachePath>
-				</File>
-				<File Id="1033752204" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>SFX_AcidBomb_E.wav</ShortName>
-					<CachePath>SFX/SFX_AcidBomb_E_818F3B66.wem</CachePath>
+				<File Id="980670709" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>SFX_E_Q_Death.wav</ShortName>
+					<CachePath>SFX/SFX_E_Q_Death_818F3B66.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
-				<Event Id="1547765315" Name="A_AMBIENT_1">
-					<MediaRefs>
-						<MediaRef Id="994093999"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="895381461" Name="A_CAMP_2">
-					<MediaRefs>
-						<MediaRef Id="224668572"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="3486252281" Name="A_COMBAT_1">
-					<MediaRefs>
-						<MediaRef Id="303888556"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="4189504465" Name="A_RUINS_2">
-					<MediaRefs>
-						<MediaRef Id="437230071"/>
-					</MediaRefs>
-				</Event>
 				<Event Id="1535709413" Name="DEBUG_GUNSHOT">
 					<MediaRefs>
 						<MediaRef Id="715356811"/>
@@ -389,6 +384,19 @@
 						<MediaRef Id="102266085"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1015701557" Name="E_A_DEATH">
+					<MediaRefs>
+						<MediaRef Id="730529704"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2923735218" Name="E_A_SHOOT">
+					<MediaRefs>
+						<MediaRef Id="961676207"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1828976739" Name="E_A_STEP">
+					<SwitchContainers/>
+				</Event>
 				<Event Id="2100764501" Name="E_CB_DEATH">
 					<MediaRefs>
 						<MediaRef Id="414090755"/>
@@ -400,63 +408,70 @@
 					</MediaRefs>
 				</Event>
 				<Event Id="3938483819" Name="E_FH_CRAWL">
-					<MediaRefs>
-						<MediaRef Id="358062072"/>
-					</MediaRefs>
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="63790334" Id="284967655"/>
+							<MediaRefs>
+								<MediaRef Id="35231276"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="63790334" Id="2195636714"/>
+							<MediaRefs>
+								<MediaRef Id="159622919"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
 				<Event Id="4203716004" Name="E_FH_DEATH">
 					<MediaRefs>
-						<MediaRef Id="1013643951"/>
+						<MediaRef Id="649793213"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2711568226" Name="E_FH_JUMP">
 					<MediaRefs>
-						<MediaRef Id="92885057"/>
+						<MediaRef Id="517462623"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="975078008" Name="E_QUEEN_BOMB">
+				<Event Id="692574897" Name="E_Q_BOMB">
 					<MediaRefs>
-						<MediaRef Id="1033752204"/>
+						<MediaRef Id="974273116"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="587747760" Name="E_QUEEN_CHANGE">
+				<Event Id="3169029109" Name="E_Q_CHANGE">
 					<MediaRefs>
-						<MediaRef Id="635432014"/>
+						<MediaRef Id="842763712"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1479922750" Name="E_QUEEN_DEATH">
+				<Event Id="610103877" Name="E_Q_DEATH">
 					<MediaRefs>
-						<MediaRef Id="52880726"/>
+						<MediaRef Id="980670709"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3480783404" Name="E_QUEEN_JUMP">
+				<Event Id="3869385341" Name="E_Q_JUMP">
 					<MediaRefs>
-						<MediaRef Id="369657722"/>
+						<MediaRef Id="247209249"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3576793690" Name="E_QUEEN_SPIT">
+				<Event Id="2254856839" Name="E_Q_SPIT">
 					<MediaRefs>
-						<MediaRef Id="180490151"/>
+						<MediaRef Id="882278297"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3778713374" Name="E_QUEEN_STEP">
+				<Event Id="3547019691" Name="E_Q_SPITCHARGE">
 					<MediaRefs>
-						<MediaRef Id="737475653"/>
+						<MediaRef Id="797598712"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="4009974304" Name="E_REBEL_DEATH">
+				<Event Id="2725321747" Name="E_Q_STEP"/>
+				<Event Id="2084671035" Name="E_Q_TAILSHOT">
 					<MediaRefs>
-						<MediaRef Id="188792581"/>
+						<MediaRef Id="433229473"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="319492235" Name="E_REBEL_SHOOT">
+				<Event Id="1606613397" Name="E_Q_TAILSWEEP">
 					<MediaRefs>
-						<MediaRef Id="938926544"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="2489932272" Name="E_REBEL_STEP">
-					<MediaRefs>
-						<MediaRef Id="498493897"/>
+						<MediaRef Id="48884840"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3828971157" Name="E_X_ADULT_DEATH">
@@ -486,7 +501,7 @@
 				</Event>
 				<Event Id="3919743498" Name="P_DASH">
 					<MediaRefs>
-						<MediaRef Id="221057048"/>
+						<MediaRef Id="317356435"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="947529532" Name="P_DEATH">
@@ -501,19 +516,40 @@
 				</Event>
 				<Event Id="1941667005" Name="P_PICK">
 					<MediaRefs>
-						<MediaRef Id="419397976"/>
+						<MediaRef Id="33415099"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2206507859" Name="P_ROLL">
 					<MediaRefs>
-						<MediaRef Id="257220973"/>
+						<MediaRef Id="732584561"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3875642140" Name="P_STEP">
-					<MediaRefs>
-						<MediaRef Id="695855090"/>
-					</MediaRefs>
+					<SwitchContainers/>
 				</Event>
+				<Event Id="417627684" Name="PlayMusic">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="15699892" Id="2764240573"/>
+							<MediaRefs>
+								<MediaRef Id="757988013"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="15699892" Id="284967655"/>
+							<MediaRefs>
+								<MediaRef Id="476179393"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="15699892" Id="417916826"/>
+							<MediaRefs>
+								<MediaRef Id="527567376"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="1917263390" Name="StopMusic"/>
 				<Event Id="464895987" Name="UI_A_MENU">
 					<MediaRefs>
 						<MediaRef Id="558968172"/>
@@ -521,17 +557,17 @@
 				</Event>
 				<Event Id="2249769530" Name="UI_CLICK">
 					<MediaRefs>
-						<MediaRef Id="155174684"/>
+						<MediaRef Id="624497162"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2118900976" Name="UI_HOVER">
 					<MediaRefs>
-						<MediaRef Id="852480059"/>
+						<MediaRef Id="82457123"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3783962382" Name="UI_PAUSEGAME">
 					<MediaRefs>
-						<MediaRef Id="959111577"/>
+						<MediaRef Id="758485825"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="1098830151" Name="VO_GUARD2_VL1_0">
@@ -544,28 +580,42 @@
 						<MediaRef Id="261288475"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3949582022" Name="W_M4_AIM">
-					<MediaRefs>
-						<MediaRef Id="260252503"/>
-					</MediaRefs>
-				</Event>
 				<Event Id="2147632472" Name="W_M4_RELOAD">
 					<MediaRefs>
-						<MediaRef Id="364825977"/>
+						<MediaRef Id="760076921"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="933371860" Name="W_M4_SHOOT">
 					<MediaRefs>
-						<MediaRef Id="809215257"/>
+						<MediaRef Id="678013479"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3010972734" Name="W_SL_SHOOT">
 					<MediaRefs>
-						<MediaRef Id="842622820"/>
+						<MediaRef Id="247422101"/>
 					</MediaRefs>
 				</Event>
 			</Events>
+			<StateGroups>
+				<StateGroup Id="15699892" Name="GameplayMode">
+					<States>
+						<State Id="284967655" Name="Ship"/>
+						<State Id="417916826" Name="Ruins"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="2764240573" Name="Combat"/>
+						<State Id="3736508534" Name="Camp"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+			<SwitchGroups>
+				<SwitchGroup Id="63790334" Name="SurfaceType">
+					<Switches>
+						<Switch Id="284967655" Name="Ship"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{55A083DE-E7F6-C3BE-FD57-A57D5951BEB6}</FileHash>
+	<FileHash>{1FB70877-CA6A-142A-A9C1-C54E4807A708}</FileHash>
 </SoundBanksInfo>

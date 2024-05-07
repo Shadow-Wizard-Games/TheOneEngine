@@ -53,11 +53,15 @@ public:
 	// Function to resume the event if it has been paused
 	void ResumeEvent(AkUniqueID event, AkGameObjectID goID);
 
-	// ---------------------- STATES ---------------------- //
-	void SetState(int stategroup, int state);
+	// ----------------------- STATES ---------------------- //
+	void SetState(AkStateGroupID stategroup, AkStateID state);
+	void SetState(const char* stategroup, const char* state);
 
 	// ---------------------- SWITCHES ---------------------- //
-	void SetSwitch();
+	void SetSwitch(AkSwitchGroupID switchGroup, AkStateGroupID switchState, AkGameObjectID goID);
+
+	// ------------------------ RTPC ------------------------ //
+	void SetRTPCValue(const char* name, int value);
 
 	//audio engine functions
 	void PlayEngine();
