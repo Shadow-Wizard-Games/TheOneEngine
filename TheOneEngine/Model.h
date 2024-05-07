@@ -54,7 +54,7 @@ public:
     std::vector<vec3f> meshFaceCenters;
     std::vector<vec3f> meshFaceNorms;
 
-    aiAABB* aabb;
+    aiAABB aabb = { { 0, 0, 0 }, { 0, 0, 0 } };
 
     std::string path;
 

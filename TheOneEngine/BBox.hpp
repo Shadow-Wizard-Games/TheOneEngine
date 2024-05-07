@@ -1,7 +1,8 @@
 #pragma once
 
-#include <array>
 #include "types.h"
+#include "assimp/aabb.h"
+#include <array>
 
 struct AABBox
 {
@@ -54,4 +55,11 @@ inline OBBox operator*(const mat4& transform, const AABBox& aabb)
 	bbox.g = transform * vec4(aabb.g(), 1);
 	bbox.h = transform * vec4(aabb.h(), 1);
 	return bbox;
+}
+
+static AABBox aiAABB_To_AABBox(const aiAABB& aiAABB)
+{
+	return AABBox{
+		vec3(aiAABB.mMin.x, aiAABB.mMin.y, aiAABB.mMin.z),
+		vec3(aiAABB.mMax.x, aiAABB.mMax.y, aiAABB.mMax.z) };
 }

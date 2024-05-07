@@ -50,16 +50,11 @@ Model::Model(const std::string& filename) :
         path = filename;
         LoadAnimator(filename);
     }
-
-    aabb = new aiAABB({ 0, 0, 0 }, { 0, 0, 0 });
-
-    aabb.
 }
 
 std::vector<Model*> Model::LoadMeshes(const std::string& path)
 {
     std::vector<Model*> meshes;
-    //aiPostProcessSteps postProcessFlags = aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals | aiProcess_GenBoundingBoxes;
     const aiScene* scene = aiImportFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals | aiProcess_GenBoundingBoxes);
 
     std::string fileName = scene->GetShortFilename(path.c_str());
@@ -109,10 +104,8 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
         model->meshTransform = mTransform;
 
 
-        // aabb
-        aabb.
-
-        //const aiAABB& aabb = mesh->mAABB;
+        // AABB
+        model->aabb = mesh->mAABB;
 
 
         // Process Anim

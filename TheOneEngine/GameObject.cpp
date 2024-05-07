@@ -118,43 +118,7 @@ void GameObject::RemoveComponent(ComponentType type)
 // AABB -------------------------------------
 void GameObject::GenerateAABBFromMesh()
 {
-	//TODO: this comment is temporal, it needs to be changed to retained mode
-
-	/*Mesh* mesh = GetComponent<Mesh>();
-
-	glGenBuffers(1, &mesh->mesh.vertex_buffer_id);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->mesh.vertex_buffer_id);
-
-	switch (mesh->mesh.format)
-	{
-	case Formats::F_V3:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(V3) * mesh->mesh.numVerts, mesh->meshData.vertex_data.data(), GL_STATIC_DRAW);
-		for (const auto& v : std::span((V3*)mesh->meshData.vertex_data.data(), mesh->meshData.vertex_data.size())) {
-			aabb.min = (glm::min)(aabb.min, vec3(v.v));
-			aabb.max = (glm::max)(aabb.max, vec3(v.v));
-		}
-		break;
-
-	case Formats::F_V3C4:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(V3C4) * mesh->mesh.numVerts, mesh->meshData.vertex_data.data(), GL_STATIC_DRAW);
-		for (const auto& v : std::span((V3C4*)mesh->meshData.vertex_data.data(), mesh->meshData.vertex_data.size())) {
-			aabb.min = (glm::min)(aabb.min, vec3(v.v));
-			aabb.max = (glm::max)(aabb.max, vec3(v.v));
-		}
-		break;
-
-	case Formats::F_V3T2:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(V3T2) * mesh->mesh.numVerts, mesh->meshData.vertex_data.data(), GL_STATIC_DRAW);
-		for (const auto& v : std::span((V3T2*)mesh->meshData.vertex_data.data(), mesh->meshData.vertex_data.size())) {
-			aabb.min = (glm::min)(aabb.min, vec3(v.v));
-			aabb.max = (glm::max)(aabb.max, vec3(v.v));
-		}
-		break;
-	}*/
-
-	/*::Assimp::Importer importer;
-	const aiScene* scene = importer.import("testmodel.obj", aiProcess_GenBoundingBoxes);
-	const aabb& aabb = scene->mMeshes[0]->mAABB;*/
+	aabb = aiAABB_To_AABBox(Resources::GetResourceById<Model>(GetComponent<Mesh>()->meshID)->aabb);
 }
 
 AABBox GameObject::CalculateAABB()

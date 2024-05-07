@@ -3,7 +3,7 @@
 #include "Gui.h"
 #include "PanelInspector.h"
 #include "Input.h"
-#include "../TheOneEngine/Log.h"
+#include "TheOneEngine/Log.h"
 
 #include <fstream>
 #include <filesystem>

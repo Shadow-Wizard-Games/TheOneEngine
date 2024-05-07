@@ -8,6 +8,8 @@
 #include "Script.h"
 #include "Log.h"
 
+#include "assimp/vector3.h"
+
 #include <string>
 #include <vector>
 #include <list>

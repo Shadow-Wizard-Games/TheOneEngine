@@ -4,6 +4,7 @@
 #include "N_SceneManager.h"
 #include "Collider2D.h"
 #include "Renderer2D.h"
+
 #include <GL\glew.h>
 #include <glm\ext\matrix_transform.hpp>
 #include <IL\il.h>
