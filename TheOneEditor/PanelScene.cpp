@@ -317,6 +317,9 @@ bool PanelScene::Draw()
                 tc->SetTransform(tc->WorldToLocalTransform(selectedGO.get(), transform));
                 tc->DecomposeTransform();
 
+                Light* light = selectedGO->GetComponent<Light>();
+                if (light != nullptr) light->recalculate = true;
+
                 app->gui->panelInspector->OnSelectGO(selectedGO);
             }
         }

@@ -172,13 +172,25 @@ bool PanelInspector::Draw()
                     ImGui::Text("Position");
 
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        if (light != nullptr) light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        if (light != nullptr) light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        if (light != nullptr) light->recalculate = true;
+                    }
 
                     ImGui::TableNextRow();
 
@@ -187,13 +199,25 @@ bool PanelInspector::Draw()
                     ImGui::Text("Rotation");
 
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        if (light != nullptr) light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        if (light != nullptr) light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        if (light != nullptr) light->recalculate = true;
+                    }
 
                     ImGui::TableNextRow();
 
