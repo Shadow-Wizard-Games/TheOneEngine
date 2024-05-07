@@ -21,6 +21,7 @@
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             5.0,
             5.0,
@@ -79,11 +80,25 @@
             75.0
           ],
           "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
         }
       ]
     }
   ],
   "Name": "P_Roll_Dust",
+  "StartON": true,
   "Type": 9,
   "UID": 402248169
 }

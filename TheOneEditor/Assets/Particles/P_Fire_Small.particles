@@ -32,7 +32,7 @@
             -5.0
           ],
           "Type": 4,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueDirection": false
         },
         {
           "MaxSpeed": 5.0,
@@ -41,6 +41,7 @@
           "UsingSingleValueSpeed": true
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.0,
             1.0,
@@ -56,9 +57,8 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 1861.513916015625,
-      "MaxParticles": 200,
+      "Lifetime": 1939.55078125,
+      "MaxParticles": 100,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -67,10 +67,9 @@
       ],
       "SpawnModule": [
         {
-          "Amount": 4.0,
-          "Duration": 0.6499999761581421,
+          "Duration": 0.699999988079071,
           "SpawnRate": 10.0,
-          "Type": 2
+          "Type": 0
         }
       ],
       "UpdateModules": [
@@ -81,6 +80,19 @@
             0.0
           ],
           "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
         }
       ]
     },
@@ -100,7 +112,7 @@
             -1.0
           ],
           "Type": 4,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueDirection": false
         },
         {
           "MaxSpeed": 5.0,
@@ -109,6 +121,7 @@
           "UsingSingleValueSpeed": true
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.0,
             1.0,
@@ -140,8 +153,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 1861.513916015625,
+      "Lifetime": 1939.55078125,
       "MaxParticles": 50,
       "RenderModule": [
         {
@@ -152,14 +164,29 @@
       "SpawnModule": [
         {
           "Duration": 1.7000000476837158,
-          "SpawnRate": 5.0,
+          "SpawnRate": 2.0,
           "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
         }
       ]
     }
   ],
-  "IsON": true,
   "Name": "P_Fire_Small",
+  "StartON": true,
   "Type": 9,
   "UID": 704292522
 }
