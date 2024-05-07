@@ -12,8 +12,8 @@ public class ChestBusterBehaviour : MonoBehaviour
     private enum ChestbursterAttack
     {
         None,
-        Tail_Punch,
-        Tail_Trip
+        TailPunch,
+        TailTrip
     }
 
     IGameObject playerGO;
@@ -26,7 +26,7 @@ public class ChestBusterBehaviour : MonoBehaviour
     States currentState = States.Idle;
     ChestbursterAttack currentAttack = ChestbursterAttack.None;
 
-    // Tail Trip
+    // Tail Trip, might remove this variables due to the animations
     private float spinElapsed = 0.0f;
     private const float spinTime = 2.0f;
 
@@ -91,7 +91,6 @@ public class ChestBusterBehaviour : MonoBehaviour
 
         if (detected)
         {
-
             attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
 
             if (playerDistance < farRangeThreshold && !isClose)
@@ -144,11 +143,11 @@ public class ChestBusterBehaviour : MonoBehaviour
 
                 switch (currentAttack)
                 {
-                    case ChestbursterAttack.Tail_Punch:
+                    case ChestbursterAttack.TailPunch:
                         //Debug.Log("TAIL PUNCH");
                         TailPunch();
                         break;
-                    case ChestbursterAttack.Tail_Trip:
+                    case ChestbursterAttack.TailTrip:
                         //Debug.Log("TAIL TRIP");
                         TailTrip();
                         break;
@@ -170,11 +169,11 @@ public class ChestBusterBehaviour : MonoBehaviour
         {
             if (isClose)
             {
-                currentAttack = ChestbursterAttack.Tail_Punch;
+                currentAttack = ChestbursterAttack.TailPunch;
             }
             else
             {
-                currentAttack = ChestbursterAttack.Tail_Trip;
+                currentAttack = ChestbursterAttack.TailTrip;
             }
             //Debug.Log("Chestburster current attack: " + currentAttack);
         }

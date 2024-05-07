@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class AdultXenomorphBehaviour : MonoBehaviour
+public class RedXenomorphBehaviour : MonoBehaviour
 {
     enum States
     {
@@ -11,11 +11,11 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         Dead
     }
 
-    private enum AdultXenomorphAttacks
+    private enum RedXenomorphAttacks
     {
         None,
-        AcidSpit,
-        TailAttack
+        SpikeThrow,
+        TailStab
     }
 
     IGameObject playerGO;
@@ -26,7 +26,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     float life = 200.0f;
     float movementSpeed = 40.0f * 3;
     States currentState = States.Idle;
-    AdultXenomorphAttacks currentAttack = AdultXenomorphAttacks.None;
+    RedXenomorphAttacks currentAttack = RedXenomorphAttacks.None;
 
     // Ranges
     const float farRangeThreshold = 50.0f * 3;
@@ -91,12 +91,12 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 currentState = States.Idle;
             }
 
-            if (currentAttack == AdultXenomorphAttacks.None)
+            if (currentAttack == RedXenomorphAttacks.None)
             {
                 attackTimer += Time.deltaTime;
             }
 
-            if (currentAttack == AdultXenomorphAttacks.None && attackTimer >= attackCooldown)
+            if (currentAttack == RedXenomorphAttacks.None && attackTimer >= attackCooldown)
             {
                 //Debug.Log("Attempt to attack");
                 currentState = States.Attack;
@@ -117,10 +117,10 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
                 switch (currentAttack)
                 {
-                    case AdultXenomorphAttacks.AcidSpit:
+                    case RedXenomorphAttacks.SpikeThrow:
                         AcidSpit();
                         break;
-                    case AdultXenomorphAttacks.TailAttack:
+                    case RedXenomorphAttacks.TailStab:
                         TailAttack();
                         break;
                     default:
