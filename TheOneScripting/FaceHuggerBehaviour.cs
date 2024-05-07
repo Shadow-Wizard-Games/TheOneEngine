@@ -31,6 +31,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
     GameManager gameManager;
 
     IGameObject jumpPSGO;
+    IGameObject deathPSGO;
 
     public override void Start()
     {
@@ -40,6 +41,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         jumpPSGO = attachedGameObject.FindInChildren("JumpPS");
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
     }
 
     public override void Update()
@@ -96,6 +98,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_DEATH);
                     detected = false;
+                    deathPSGO.GetComponent<IParticleSystem>().Replay();
                 }
             }
             else
