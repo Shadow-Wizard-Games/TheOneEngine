@@ -61,18 +61,18 @@ public class ChestBusterBehaviour : MonoBehaviour
         if (attachedGameObject.transform.ComponentCheck())
         {
             //Draw debug ranges
-            //if (gameManager.colliderRender)
-            //{
-            if (!detected)
+            if (gameManager.colliderRender)
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                if (!detected)
+                {
+                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                }
+                else
+                {
+                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+                }
             }
-            else
-            {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
-            }
-            //}
 
             //Set the director vector and distance to the player
             //directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
@@ -97,20 +97,20 @@ public class ChestBusterBehaviour : MonoBehaviour
             if (playerDistance < farRangeThreshold && !isClose)
             {
                 isClose = true;
-                Debug.Log("Player is now CLOSE");
+                //Debug.Log("Player is now CLOSE");
             }
 
             if (playerDistance >= farRangeThreshold && isClose)
             {
                 isClose = false;
-                Debug.Log("Player is now FAR");
+                //Debug.Log("Player is now FAR");
             }
 
             if (playerDistance > maxChasingRange && detected)
             {
                 detected = false;
                 currentState = States.Idle;
-                Debug.Log("Player is NOT DETECTED ANYMORE");
+                //Debug.Log("Player is NOT DETECTED ANYMORE");
             }
 
             if (currentAttack == ChestbursterAttack.None)
@@ -120,7 +120,7 @@ public class ChestBusterBehaviour : MonoBehaviour
 
             if (currentAttack == ChestbursterAttack.None && attackTimer >= attackCooldown)
             {
-                Debug.Log("Attempt to attack");
+                //Debug.Log("Attempt to attack");
                 currentState = States.ChaseAttack;
             }
         }
@@ -135,7 +135,7 @@ public class ChestBusterBehaviour : MonoBehaviour
                     attachedGameObject.transform.LookAt(playerGO.transform.position);
 
                 if (!detected) ResetState();
-                
+
                 break;
             case States.ChaseAttack:
                 player.isFighting = true;
@@ -145,11 +145,11 @@ public class ChestBusterBehaviour : MonoBehaviour
                 switch (currentAttack)
                 {
                     case ChestbursterAttack.Tail_Punch:
-                        Debug.Log("TAIL PUNCH");
+                        //Debug.Log("TAIL PUNCH");
                         TailPunch();
                         break;
                     case ChestbursterAttack.Tail_Trip:
-                        Debug.Log("TAIL TRIP");
+                        //Debug.Log("TAIL TRIP");
                         TailTrip();
                         break;
                     default:
@@ -176,22 +176,23 @@ public class ChestBusterBehaviour : MonoBehaviour
             {
                 currentAttack = ChestbursterAttack.Tail_Trip;
             }
-            Debug.Log("Chestburster current attack: " + currentAttack);
+            //Debug.Log("Chestburster current attack: " + currentAttack);
         }
     }
 
     private void TailPunch()
     {
-        Debug.Log("Attempt to do TailPunch");
+        //Debug.Log("Attempt to do TailPunch");
         ResetState();
     }
 
     private void TailTrip()
     {
+        // Debug.Log("Attempt to do TailTrip");
         float damage = 5.0f;
         spinElapsed += Time.deltaTime;
         attachedGameObject.transform.Rotate(Vector3.up * -180 * Time.deltaTime);
-        Debug.Log("Attempt to do TailTrip");
+        // Remove this so that it does not rotate and substitute it with the animation
         if (spinElapsed >= spinTime)
         {
             spinElapsed = 0.0f;

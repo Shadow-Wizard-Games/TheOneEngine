@@ -42,6 +42,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
@@ -83,6 +84,7 @@
       ],
       "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "ItemManager",
       "ParentUID": 3452816845,
@@ -127,6 +129,7 @@
       ],
       "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "GameManager",
       "ParentUID": 3452816845,
@@ -206,6 +209,7 @@
       ],
       "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
       "ParentUID": 3452816845,
@@ -234,7 +238,7 @@
             0.0,
             0.0,
             0.0,
-            309.2085876464844,
+            300.0,
             1.0
           ],
           "Type": 0,
@@ -283,10 +287,15 @@
           "Width": -1.7976931348623157e+308
         }
       ],
+      "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster",
       "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1562809080,
+      "PrefabName": "Chestburster",
       "Static": false,
       "UID": 3452816845
     }
