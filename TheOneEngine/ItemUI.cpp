@@ -1,10 +1,22 @@
 #include "ItemUI.h"
 #include "UIDGen.h"
+#include "N_SceneManager.h"
 
 ItemUI::ItemUI(std::shared_ptr<GameObject> containerGO, UiType type, std::string name, bool interactuable, Rect2D rect) : containerGO(containerGO), type(type), interactuable(interactuable), imageRect(rect), name(name)
 {
 	this->state = UiState::IDLE;
 	this->id = UIDGen::GenerateUID();
+}
+
+ItemUI::ItemUI(std::shared_ptr<GameObject> containerGO, ItemUI* ref)
+{
+	this->type = ref->type;
+	this->interactuable = ref->interactuable;
+	this->containerGO = ref->containerGO;
+	this->imageRect = ref->GetRect();
+	this->state = ref->GetState();
+	this->id = UIDGen::GenerateUID();
+	this->name = N_SceneManager::GenerateUniqueName(ref->GetName());
 }
 
 ItemUI::~ItemUI()

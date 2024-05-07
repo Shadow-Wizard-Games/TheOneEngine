@@ -7,51 +7,27 @@ ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rec
 	this->name = "ButtonImage";
 	imagePath = "Assets/Meshes/HUD.png";
 	imageID = Resources::Load<Texture>(imagePath);
-	switch (this->state)
-	{
-	case UiState::IDLE:
-		currentSection = &imageIdleSection;
-		break;
-	case UiState::HOVERED:
-		currentSection = &imageHoveredSection;
-		break;
-	case UiState::SELECTED:
-		currentSection = &imageSelectedSection;
-		break;
-	case UiState::HOVEREDSELECTED:
-		break;
-	case UiState::DISABLED:
-		break;
-	case UiState::UNKNOWN:
-		break;
-	default:
-		break;
-	}
+
+	UpdateState();
 }
 
 ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::BUTTONIMAGE, name, false, rect), imagePath(path)
 {
 	imageID = Resources::Load<Texture>(imagePath);
-	switch (this->state)
-	{
-	case UiState::IDLE:
-		currentSection = &imageIdleSection;
-		break;
-	case UiState::HOVERED:
-		currentSection = &imageHoveredSection;
-		break;
-	case UiState::SELECTED:
-		currentSection = &imageSelectedSection;
-		break;
-	case UiState::HOVEREDSELECTED:
-		break;
-	case UiState::DISABLED:
-		break;
-	case UiState::UNKNOWN:
-		break;
-	default:
-		break;
-	}
+
+	UpdateState();
+}
+
+ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, ButtonImageUI* ref) : ItemUI(ref->containerGO, ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+	this->imageIdleSection = ref->imageIdleSection;
+	this->imageHoveredSection = ref->imageHoveredSection;
+	this->imageSelectedSection = ref->imageSelectedSection;
+	this->currentSection = ref->currentSection;
+
+	UpdateState();
 }
 
 ButtonImageUI::~ButtonImageUI() {}

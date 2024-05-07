@@ -35,6 +35,7 @@ class ItemUI
 {
 public:
 	ItemUI(std::shared_ptr<GameObject> containerGO, UiType type, std::string name = "Name", bool interactuable = false, Rect2D rect = {0,0,1,1});
+	ItemUI(std::shared_ptr<GameObject> containerGO, ItemUI* ref); 
 	virtual ~ItemUI();
 
 	virtual void Draw2D();

@@ -12,6 +12,7 @@ class CheckerUI : public ItemUI
 public:
 	CheckerUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,1,1 });
 	CheckerUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Checker", Rect2D rect = { 0,0,1,1 });
+	CheckerUI(std::shared_ptr<GameObject> containerGO, CheckerUI* ref); 
 	~CheckerUI();
 
 	void Draw2D();

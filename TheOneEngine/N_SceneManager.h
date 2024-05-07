@@ -37,7 +37,7 @@ public:
 	void LoadScene(uint index);
 	void LoadScene(std::string sceneName, bool keep = false);
 
-	std::string GenerateUniqueName(const std::string& baseName, const GameObject* parent = nullptr);
+	static std::string GenerateUniqueName(const std::string& baseName, const GameObject* parent = nullptr);
 
 	// Create GameObjects functions
 	std::shared_ptr<GameObject> DuplicateGO(std::shared_ptr<GameObject> originalGO, bool recursive = false);
