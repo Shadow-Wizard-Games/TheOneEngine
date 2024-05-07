@@ -373,7 +373,6 @@ bool PanelInspector::Draw()
                 float size = static_cast<float>(camera->size);
                 float zNear = static_cast<float>(camera->zNear);
                 float zFar = static_cast<float>(camera->zFar);
-
                 if (ImGui::BeginCombo("Camera Type", camera->cameraType == CameraType::PERSPECTIVE ? "Perspective" : "Orthographic"))
                 {
                     if (ImGui::Selectable("Perspective", camera->cameraType == CameraType::PERSPECTIVE))
@@ -459,6 +458,26 @@ bool PanelInspector::Draw()
                 }
                 ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
                 //ImGui::Indent(0.8f);
+
+                /*if (ImGui::BeginCombo("Camera Type", camera->cameraType == CameraType::PERSPECTIVE ? "Perspective" : "Orthographic"))
+                {
+                    if (ImGui::Selectable("Perspective", camera->cameraType == CameraType::PERSPECTIVE))
+                    {
+                        camera->cameraType = CameraType::PERSPECTIVE;
+                        LOG(LogType::LOG_INFO, "Camera projection changed to PERSPECTIVE");
+                        isDirty = true;
+                    }
+
+                    if (ImGui::Selectable("Orthogonal", camera->cameraType == CameraType::ORTHOGRAPHIC))
+                    {
+                        camera->cameraType = CameraType::ORTHOGRAPHIC;
+                        LOG(LogType::LOG_INFO, "Camera projection changed to ORTHOGRAPHIC");
+                        isDirty = true;
+                    }
+
+                    ImGui::EndCombo();
+                }*/
+
                 if (ImGui::BeginTable("", 4, tableFlags))
                 {
                     ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch);

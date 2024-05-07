@@ -56,8 +56,10 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
+    LightType GetLightType() const { return lightType; }
+    void SetLightType(LightType type);
+
 public:
-    LightType lightType;
     //ModeType modeType;  //PBR
     //Shadow shadows;     //PBR
 
@@ -72,5 +74,8 @@ public:
     std::string lightPresetPath;
 
     bool recalculate = true;
+
+private:
+    LightType lightType;
 };
 #endif //__LIGHT_H__

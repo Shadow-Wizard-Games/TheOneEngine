@@ -171,6 +171,8 @@ public:
 
 	//Arnau: Create a lights list
 	std::vector<Light*> pointLights;
+	std::vector<Light*> spotLights;
+	Light* directionalLight;
 
 	//int listenerAudioGOID = -1;
 };

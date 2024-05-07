@@ -156,3 +156,67 @@ void Light::LoadComponent(const json& meshJSON)
         quadratic = meshJSON["Quadratic"];
     }
 }
+
+void Light::SetLightType(LightType type)
+{
+    if (type != lightType)
+    {
+        //Destory in scene vector
+        switch (lightType)
+        {
+        case Light::Point: 
+        {
+            auto it = std::find(engine->N_sceneManager->currentScene->pointLights.begin(), engine->N_sceneManager->currentScene->pointLights.end(),
+                this);
+            if (it != engine->N_sceneManager->currentScene->pointLights.end()) {
+                engine->N_sceneManager->currentScene->pointLights.erase(it);
+            }
+        }
+            break;
+        case Light::Directional:
+        {
+            delete engine->N_sceneManager->currentScene->directionalLight;
+            engine->N_sceneManager->currentScene->directionalLight = nullptr;
+        }
+            break;
+        case Light::Spot: 
+        {
+            auto it = std::find(engine->N_sceneManager->currentScene->spotLights.begin(), engine->N_sceneManager->currentScene->spotLights.end(),
+                this);
+            if (it != engine->N_sceneManager->currentScene->spotLights.end()) {
+                engine->N_sceneManager->currentScene->spotLights.erase(it);
+            }
+        }
+            break;
+        case Light::Area:
+            break;
+        default:
+            break;
+        }
+
+        lightType = type;
+
+        switch (lightType)
+        {
+        case Light::Point:
+        {
+            engine->N_sceneManager->currentScene->pointLights.push_back(this);
+        }
+        break;
+        case Light::Directional:
+        {
+            engine->N_sceneManager->currentScene->directionalLight = this;
+        }
+        break;
+        case Light::Spot:
+        {
+            engine->N_sceneManager->currentScene->spotLights.push_back(this);
+        }
+        break;
+        case Light::Area:
+            break;
+        default:
+            break;
+        }
+    }
+}
