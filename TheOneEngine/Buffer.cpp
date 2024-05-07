@@ -22,7 +22,7 @@ VertexBuffer::VertexBuffer(float* vertices, uint32_t size)
 
 VertexBuffer::~VertexBuffer()
 {
-	GLCALL(glDeleteBuffers(1, &m_RendererID));
+	Delete();
 }
 
 void VertexBuffer::Bind() const
@@ -33,6 +33,15 @@ void VertexBuffer::Bind() const
 void VertexBuffer::Unbind() const
 {
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+}
+
+void VertexBuffer::Delete()
+{
+	if (m_RendererID)
+	{
+		GLCALL(glDeleteBuffers(1, &m_RendererID));
+		m_RendererID = 0;
+	}
 }
 
 void VertexBuffer::SetData(const void* data, uint32_t size)
@@ -58,7 +67,7 @@ IndexBuffer::IndexBuffer(uint32_t* indices, uint32_t count)
 
 IndexBuffer::~IndexBuffer()
 {
-	GLCALL(glDeleteBuffers(1, &m_RendererID));
+	Delete();
 }
 
 void IndexBuffer::Bind() const
@@ -69,4 +78,13 @@ void IndexBuffer::Bind() const
 void IndexBuffer::Unbind() const
 {
 	GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+}
+
+void IndexBuffer::Delete()
+{
+	if (this != nullptr && m_RendererID)
+	{
+		GLCALL(glDeleteBuffers(1, &m_RendererID));
+		m_RendererID = 0;
+	}
 }

@@ -122,6 +122,8 @@ bool PanelInspector::Draw()
                 newNameBuffer[0] = '\0';
             }
 
+            ImGui::Checkbox("Has Transparency", &selectedGO->hasTransparency);
+
             /*Transform Component*/
             Transform* transform = selectedGO->GetComponent<Transform>();
 
@@ -344,7 +346,7 @@ bool PanelInspector::Draw()
                 float zNear = static_cast<float>(camera->zNear);
                 float zFar = static_cast<float>(camera->zFar);
 
-                if (ImGui::BeginCombo("Camera Type", camera->cameraType == CameraType::PERSPECTIVE ? "Perspective" : "Orthogonal"))
+                if (ImGui::BeginCombo("Camera Type", camera->cameraType == CameraType::PERSPECTIVE ? "Perspective" : "Orthographic"))
                 {
                     if (ImGui::Selectable("Perspective", camera->cameraType == CameraType::PERSPECTIVE))
                     {
@@ -353,10 +355,10 @@ bool PanelInspector::Draw()
                         isDirty = true;
                     }
 
-                    if (ImGui::Selectable("Orthogonal", camera->cameraType == CameraType::ORTHOGONAL))
+                    if (ImGui::Selectable("Orthogonal", camera->cameraType == CameraType::ORTHOGRAPHIC))
                     {
-                        camera->cameraType = CameraType::ORTHOGONAL;
-                        LOG(LogType::LOG_INFO, "Camera projection changed to ORTHOGONAL");
+                        camera->cameraType = CameraType::ORTHOGRAPHIC;
+                        LOG(LogType::LOG_INFO, "Camera projection changed to ORTHOGRAPHIC");
                         isDirty = true;
                     }
 
@@ -378,7 +380,7 @@ bool PanelInspector::Draw()
                     }
                 }
                 
-                if (camera->cameraType == CameraType::ORTHOGONAL)
+                if (camera->cameraType == CameraType::ORTHOGRAPHIC)
                 {
                     if (ImGui::SliderFloat("SIZE", &size, 0.1, 500.0))
                     {
@@ -1281,7 +1283,7 @@ bool PanelInspector::Draw()
                         }
                         ImGui::TreePop();
                     }
-                    if (ImGui::MenuItem("FontUI"))
+                    if (ImGui::MenuItem("TextUI"))
                     {
                         //to implement
 
@@ -1294,7 +1296,7 @@ bool PanelInspector::Draw()
                         //    //std::string className = "ActualScriptTest2";
                         //    if (MonoManager::IsClassInMainAssembly(nameRecipient))
                         //    {
-                        //        tempCanvas->AddItemUI<FontUI>(nameRecipient);
+                        //        tempCanvas->AddItemUI<TextUI>(nameRecipient);
                         //    }
                         //    else
                         //    {

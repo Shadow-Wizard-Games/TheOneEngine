@@ -159,93 +159,102 @@ bool Input::processSDLEvents()
 
 	mouse_x_motion = mouse_y_motion = 0;
 
+	if (SDL_HasEvent(SDL_DROPFILE))
+	{
+		LOG(LogType::LOG_INFO, "DROP FILE");
+	}
+
 	static SDL_Event event;
-	while (SDL_PollEvent(&event) != 0)
+	while (SDL_PollEvent(&event))
 	{
 		app->gui->HandleInput(&event);
 		switch (event.type)
 		{
-		case SDL_MOUSEWHEEL:
-			mouse_z = event.wheel.y;
-			break;
-
-		case SDL_MOUSEMOTION:
-			mouse_x = event.motion.x / SCREEN_SIZE;
-			mouse_y = event.motion.y / SCREEN_SIZE;
-
-			mouse_x_motion = event.motion.xrel / SCREEN_SIZE;
-			mouse_y_motion = event.motion.yrel / SCREEN_SIZE;
-			break;
-
-		case SDL_QUIT: return false;
-
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym) {
-			//case SDLK_ESCAPE: //return false;
-			}
-			break;
-
-		case SDL_CONTROLLERDEVICEADDED:
-			inputManagerInstance->HandleDeviceConnection(event.cdevice.which);
-			break;
-
-		case SDL_CONTROLLERDEVICEREMOVED:
-			inputManagerInstance->HandleDeviceRemoval(event.cdevice.which);
-			break;
-
-		case SDL_WINDOWEVENT:
-		{
-			if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-				app->window->OnResizeWindow(event.window.data1, event.window.data2);
-			}
-			if (event.window.event == SDL_WINDOWEVENT_CLOSE)
+			case SDL_QUIT:
 				return false;
-			break;
-		}
-		case SDL_DROPFILE:
-		{
-			// Just flag event here
-			// This code elsewhere
-			std::string fileDir = event.drop.file;
-			std::string fileNameExt = fileDir.substr(fileDir.find_last_of('\\') + 1);
 
-			std::string fbxName = fileDir.substr(fileDir.find_last_of("\\/") + 1, fileDir.find_last_of('.') - fileDir.find_last_of("\\/") - 1);
-
-			// FBX
-			if (fileDir.ends_with(".fbx") || fileDir.ends_with(".FBX"))
+			case SDL_WINDOWEVENT:
 			{
-				fs::path assetsDir = fs::path(ASSETS_PATH) / "Meshes" / fileNameExt;
+				if (event.window.event == SDL_WINDOWEVENT_CLOSE)
+					return false;
 
-				LOG(LogType::LOG_ASSIMP, "Importing %s from: %s", fileNameExt.data(), fileDir.data());
+				if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+					app->window->OnResizeWindow(event.window.data1, event.window.data2);
+			} break;
 
-				// Check if it already exists in Library
-				if (std::filesystem::exists(assetsDir))
-				{
-					LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
+			case SDL_MOUSEWHEEL:
+				mouse_z = event.wheel.y;
+				break;
 
-					//Find Meshes in Library
-					engine->N_sceneManager->CreateExistingMeshGO(assetsDir.string());
-				}
-				else
-				{
-					LOG(LogType::LOG_OK, "-%s Imported successfully into: %s", fileNameExt.data(), assetsDir.string().data());
-					std::filesystem::copy(fileDir, assetsDir, std::filesystem::copy_options::overwrite_existing);
+			case SDL_MOUSEMOTION:
+				mouse_x = event.motion.x / SCREEN_SIZE;
+				mouse_y = event.motion.y / SCREEN_SIZE;
+				mouse_x_motion = event.motion.xrel / SCREEN_SIZE;
+				mouse_y_motion = event.motion.yrel / SCREEN_SIZE;
+				break;
 
-					//Creates GO and Serialize
-					engine->N_sceneManager->CreateMeshGO(assetsDir.string());
-					LOG(LogType::LOG_OK, "-Created GameObject: %s", assetsDir.string().data());
-				}
-			}
+			case SDL_KEYDOWN:
+				//switch (event.key.keysym.sym)
+				//{
+				///*case SDLK_ESCAPE: 
+				//	return false;*/
+				//}
+				break;
 
-			// PNG / DDS
-			else if (fileDir.ends_with(".png") || fileDir.ends_with(".dds"))
+			case SDL_CONTROLLERDEVICEADDED:
+				inputManagerInstance->HandleDeviceConnection(event.cdevice.which);
+				break;
+
+			case SDL_CONTROLLERDEVICEREMOVED:
+				inputManagerInstance->HandleDeviceRemoval(event.cdevice.which);
+				break;
+
+			case SDL_DROPFILE:
 			{
-				std::filesystem::copy(fileDir, "Assets", std::filesystem::copy_options::overwrite_existing);
-			}
-			SDL_free(event.drop.file);
-			break;
-		}
+				// Just flag event here
+				// This code elsewhere
+				std::string fileDir = event.drop.file;
+				std::string fileNameExt = fileDir.substr(fileDir.find_last_of('\\') + 1);
+
+				std::string fbxName = fileDir.substr(fileDir.find_last_of("\\/") + 1, fileDir.find_last_of('.') - fileDir.find_last_of("\\/") - 1);
+
+				// FBX
+				if (fileDir.ends_with(".fbx") || fileDir.ends_with(".FBX"))
+				{
+					fs::path assetsDir = fs::path(ASSETS_PATH) / "Meshes" / fileNameExt;
+
+					LOG(LogType::LOG_ASSIMP, "Importing %s from: %s", fileNameExt.data(), fileDir.data());
+
+					// Check if it already exists in Assets
+					if (std::filesystem::exists(assetsDir))
+					{
+						LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
+
+						//Find Meshes in Library
+						engine->N_sceneManager->CreateExistingMeshGO(assetsDir.string());
+					}
+					else
+					{
+						LOG(LogType::LOG_OK, "-%s Imported successfully into: %s", fileNameExt.data(), assetsDir.string().data());
+						std::filesystem::copy(fileDir, assetsDir, std::filesystem::copy_options::overwrite_existing);
+
+						//Creates GO and Serialize
+						engine->N_sceneManager->CreateMeshGO(assetsDir.string());
+						LOG(LogType::LOG_OK, "-Created GameObject: %s", assetsDir.string().data());
+					}
+				}
+
+				// PNG / DDS
+				else if (fileDir.ends_with(".png") || fileDir.ends_with(".dds"))
+				{
+					std::filesystem::copy(fileDir, "Assets", std::filesystem::copy_options::overwrite_existing);
+				}
+
+				SDL_free(event.drop.file);
+			}break;
+
 		}
 	}
+
 	return true;
 }

@@ -163,6 +163,9 @@ public:
     bool isStatic;
     bool isKeeped;
 
+    // activate this bool if the mesh is transparent so it's rendered okay
+    bool hasTransparency;
+
 private:
     std::string name;
     std::vector<std::unique_ptr<Component>> components;

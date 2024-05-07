@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "Billboard.h"
 #include "GL/glew.h"
+#include "Renderer2D.h"
 
 BillboardRender::BillboardRender(Emmiter* owner)
 {
@@ -23,16 +24,7 @@ BillboardRender::BillboardRender(Emmiter* owner, BillboardRender* ref)
 
 void BillboardRender::Update(Particle* particle, Camera* camera)
 {
-    glDisable(GL_CULL_FACE);
-
-    const float* viewProjectionMatrix = glm::value_ptr(camera->viewProjectionMatrix);
-
-    glPushMatrix();
-    //glLoadIdentity();
-    glLoadMatrixf(viewProjectionMatrix);
-
-    vec3 cameraPosition;
-    cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
+    vec3 cameraPosition = camera->GetContainerGO()->GetComponent<Transform>()->GetPosition();
 
     vec3 particlePosition = particle->position;
 
@@ -46,32 +38,14 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
         particlePosition = (worldRotation * particle->position) + worldPosition;
     }
 
-    Billboard::BeginSphericalBillboard(particlePosition, cameraPosition);
+    mat4 transform = glm::translate(mat4(1.0f), particlePosition)
+        * Billboard::CalculateSphericalBillboardRotationMatrix(particlePosition, cameraPosition)
+        * glm::scale(mat4(1.0f), particle->scale);
 
-    // render
-    glBegin(GL_TRIANGLES);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    glColor4ub(particle->color.r, particle->color.g, particle->color.b, particle->color.a);
-
-    glVertex3f(- (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-    glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3f(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-             
-    glVertex3f(- (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3f(+ (1 * particle->scale.x), - (1 * particle->scale.y), 0);
-    glVertex3f(+ (1 * particle->scale.x), + (1 * particle->scale.y), 0);
-
-    glEnd();
-
-    // particle->Render();
-
-    Billboard::EndBillboard();
-
-    //glPopMatrix();
-
-    glEnable(GL_CULL_FACE);
-
+    if(textureID != -1)
+        Renderer2D::DrawQuad(transform, textureID, glm::vec4(particle->color));
+    else
+        Renderer2D::DrawQuad(transform, glm::vec4(particle->color));
 }
 
 json BillboardRender::SaveModule()
@@ -81,6 +55,8 @@ json BillboardRender::SaveModule()
     moduleJSON["Type"] = type;
 
     moduleJSON["BillboardType"] = billboardType;
+
+    moduleJSON["TexturePath"] = texturePath;
 
     return moduleJSON;
 }
@@ -96,4 +72,14 @@ void BillboardRender::LoadModule(const json& moduleJSON)
     {
         billboardType = moduleJSON["BillboardType"];
     }
+
+    if (moduleJSON.contains("TexturePath")) 
+        SetTexture(moduleJSON["TexturePath"]);
+}
+
+void RenderEmmiterModule::SetTexture(const std::string& filename)
+{
+    textureID = Resources::Load<Texture>(filename);
+    if (textureID != -1)
+        texturePath = filename;
 }
