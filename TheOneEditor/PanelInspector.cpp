@@ -22,7 +22,6 @@
 #include "..\TheOneEngine\ButtonImageUI.h"
 #include "..\TheOneEngine\SliderUI.h"
 #include "..\TheOneEngine\CheckerUI.h"
-#include "..\TheOneEngine\TextUI.h"
 
 #include "InspectorParticleSystems.h"
 
@@ -1223,32 +1222,6 @@ bool PanelInspector::Draw()
                         if (ImGui::Button("Remove ItemUI"))
                         {
                             tempCanvas->RemoveItemUI(id);
-                        }
-                        ImGui::Dummy(ImVec2(0.0f, 5.0f));
-                        if (ImGui::Button("Duplicate ItemUI"))
-                        {
-                            switch (item->GetType())
-                            {
-                            case UiType::IMAGE:
-                                tempCanvas->AddCopiedItemUI<ImageUI>((ImageUI*)item);
-                                break;
-                            case UiType::BUTTONIMAGE:
-                                tempCanvas->AddCopiedItemUI<ButtonImageUI>((ButtonImageUI*)item);
-                                break;
-                            case UiType::SLIDER:
-                                tempCanvas->AddCopiedItemUI<SliderUI>((SliderUI*)item);
-                                break;
-                            case UiType::CHECKER:
-                                tempCanvas->AddCopiedItemUI<CheckerUI>((CheckerUI*)item);
-                                break;
-                            case UiType::TEXT:
-                                tempCanvas->AddCopiedItemUI<TextUI>((TextUI*)item);
-                                break;
-                            case UiType::UNKNOWN:
-                                break;
-                            default:
-                                break;
-                            }
                         }
                     }
                     counter++;

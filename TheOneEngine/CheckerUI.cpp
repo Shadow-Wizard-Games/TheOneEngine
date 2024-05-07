@@ -18,24 +18,6 @@ CheckerUI::CheckerUI(std::shared_ptr<GameObject> containerGO, const std::string&
 	checkerActive = false;
 }
 
-CheckerUI::CheckerUI(std::shared_ptr<GameObject> containerGO, CheckerUI* ref) : ItemUI(ref->containerGO, ref)
-{
-	this->imagePath = ref->imagePath;
-	this->imageID = ref->imageID;
-
-	this->imageIdleSection = ref->imageIdleSection;
-	this->imageHoveredSection = ref->imageHoveredSection;
-	this->imageSelectedSection = ref->imageSelectedSection;
-
-	this->imageIdleSectionOff = ref->imageIdleSectionOff;
-	this->imageHoveredSectionOff = ref->imageHoveredSectionOff;
-	this->imageSelectedSectionOff = ref->imageSelectedSectionOff;
-
-	this->currentSection = ref->currentSection;
-
-	this->checkerActive = ref->checkerActive;
-}
-
 CheckerUI::~CheckerUI() {}
 
 void CheckerUI::Draw2D()

@@ -28,53 +28,6 @@ SliderUI::SliderUI(std::shared_ptr<GameObject> containerGO, const std::string& p
 	additionalOffsetLast = 0.0f;
 }
 
-SliderUI::SliderUI(std::shared_ptr<GameObject> containerGO, SliderUI* ref) : ItemUI(ref->containerGO, ref)
-{
-	this->imagePath = ref->imagePath;
-	this->imageID = ref->imageID;
-
-	this->imageIdleSection = ref->imageIdleSection;
-	this->imageHoveredSection = ref->imageHoveredSection;
-	this->imageSelectedSection = ref->imageSelectedSection;
-	this->currentSection = ref->currentSection;
-
-	this->sliderDesign = ref->sliderDesign;
-
-	this->imageIdleFirstSection = ref->imageIdleFirstSection;
-	this->imageHoveredFirstSection = ref->imageHoveredFirstSection;
-	this->imageSelectedFirstSection = ref->imageSelectedFirstSection;
-	this->currentFirstSection = ref->currentFirstSection;
-
-	this->imageIdleLastSection = ref->imageIdleLastSection;
-	this->imageHoveredLastSection = ref->imageHoveredLastSection;
-	this->imageSelectedLastSection = ref->imageSelectedLastSection;
-	this->currentLastSection = ref->currentLastSection;
-
-
-	this->imageIdleSectionOff = ref->imageIdleSectionOff;
-	this->imageHoveredSectionOff = ref->imageHoveredSectionOff;
-	this->imageSelectedSectionOff = ref->imageSelectedSectionOff;
-	this->currentSectionOff = ref->currentSectionOff;
-
-	this->imageIdleFirstSectionOff = ref->imageIdleFirstSectionOff;
-	this->imageHoveredFirstSectionOff = ref->imageHoveredFirstSectionOff;
-	this->imageSelectedFirstSectionOff = ref->imageSelectedFirstSectionOff;
-	this->currentFirstSectionOff = ref->currentFirstSectionOff;
-
-	this->imageIdleLastSectionOff = ref->imageIdleLastSectionOff;
-	this->imageHoveredLastSectionOff = ref->imageHoveredLastSectionOff;
-	this->imageSelectedLastSectionOff = ref->imageSelectedLastSectionOff;
-	this->currentLastSectionOff = ref->currentLastSectionOff;
-
-	this->minValue = ref->minValue;
-	this->maxValue = ref->maxValue;
-	this->currentValue = ref->currentValue;
-
-	this->offset = ref->offset;
-	this->additionalOffsetFirst = ref->additionalOffsetFirst;
-	this->additionalOffsetLast = ref->additionalOffsetLast;
-}
-
 SliderUI::~SliderUI() {}
 
 void SliderUI::Draw2D()

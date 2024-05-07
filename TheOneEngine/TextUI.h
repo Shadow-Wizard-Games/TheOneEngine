@@ -10,7 +10,6 @@ class TextUI : public ItemUI
 public:
 	TextUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,0.1,0.1 });
 	TextUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Text", Rect2D rect = { 0,0,0.1,0.1 });
-	TextUI(std::shared_ptr<GameObject> containerGO, TextUI* ref);
 	~TextUI();
 
 	void Draw2D();
