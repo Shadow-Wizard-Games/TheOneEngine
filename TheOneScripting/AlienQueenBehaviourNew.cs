@@ -14,10 +14,14 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         currentLife = maxLife;
+
+        attachedGameObject.animator.Play("Idle");
     }
 
     public override void Update()
     {
+        attachedGameObject.animator.UpdateAnimation();
+
         //THIS IF IS DEBUG ONLY. DELETE ON COMPLETION
         if (Input.GetKeyboardButton(Input.KeyboardCode.K))
         {
@@ -89,7 +93,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 DoAttack();
                 break;
             default:
-                attachedGameObject.transform.LookAt(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 Debug.LogError("Fallen out of FSM");
                 break;
         }
@@ -135,7 +139,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             lastState = currentState;
 
             lastPlayerPos = playerGO.transform.position;
-            attachedGameObject.transform.LookAt(lastPlayerPos);
+            attachedGameObject.transform.LookAt2D(lastPlayerPos);
             chargeDirectionRightVec = attachedGameObject.transform.right;
             chargeDirectionForwardVec = attachedGameObject.transform.forward;
             yProgress = attachedGameObject.transform.position;
@@ -153,7 +157,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         moveToTarget = xProgress + yProgress;
 
-        attachedGameObject.transform.LookAt(moveToTarget);
+        attachedGameObject.transform.LookAt2D(moveToTarget);
         attachedGameObject.transform.Translate(attachedGameObject.transform.forward * alienSpeed * Time.deltaTime);
 
         //Debug.DrawWireSphere(xProgress, 10.0f, Color.russianRed.ToVector3());
@@ -195,7 +199,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position) > circleSize + circleSize / 2)
         {
             MoveTo(playerGO.transform.position, alienCircleSpeed / 1.5f);
-            attachedGameObject.transform.LookAt(playerGO.transform.position);
+            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
 
             Debug.DrawWireCircle(playerGO.transform.position, circleSize, Color.pitufoBlue.ToVector3());
 
@@ -222,7 +226,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         Debug.DrawWireSphere(progressPos, 10.0f, Color.chernobylGreen.ToVector3());
 
-        attachedGameObject.transform.LookAt(progressPos);
+        attachedGameObject.transform.LookAt2D(progressPos);
         attachedGameObject.transform.Translate(attachedGameObject.transform.forward * alienCircleSpeed * Time.deltaTime);
 
         countDown += Time.deltaTime;
@@ -243,7 +247,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             countDown = 0.0f;
         }
 
-        attachedGameObject.transform.LookAt(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
 
         countDown += Time.deltaTime;
         if (countDown > waitingTime)
@@ -427,7 +431,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                                         attachedGameObject.transform.rotation);
         }
 
-        attachedGameObject.transform.LookAt(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
 
         countDown += Time.deltaTime;
         if (countDown >= acidBombDuration)
@@ -457,7 +461,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                                                scale);
         }
 
-        attachedGameObject.transform.LookAt(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
 
         countDown += Time.deltaTime;
         if (countDown >= spawnDuration)
