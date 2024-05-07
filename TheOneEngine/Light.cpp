@@ -8,7 +8,7 @@
 #include "Shader.h"
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f)
+color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f), recalculate(true)
 {
     if (lightType == LightType::Point)
     {
@@ -17,7 +17,7 @@ color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f)
 }
 
 Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(containerGO, ComponentType::Light), lightType(ref->lightType),
-color(ref->color), specular(ref->specular), linear(ref->linear), quadratic(ref->quadratic)
+color(ref->color), specular(ref->specular), linear(ref->linear), quadratic(ref->quadratic), recalculate(true)
 {
     if (lightType == LightType::Point)
     {
@@ -40,7 +40,13 @@ Light::~Light()
 
 void Light::DrawComponent(Camera* camera)
 {
+    std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
 
+    for (uint i = 0; i < pointLights.size(); i++)
+    {
+        if (pointLights[i]->recalculate) pointLights[i]->recalculate = false;
+    }
+    pointLights.clear();
 }
 
 json Light::SaveComponent()

@@ -70,5 +70,7 @@ public:
     float quadratic;
 
     std::string lightPresetPath;
+
+    bool recalculate = true;
 };
 #endif //__LIGHT_H__

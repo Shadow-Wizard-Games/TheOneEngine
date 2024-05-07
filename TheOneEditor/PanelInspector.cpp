@@ -125,6 +125,9 @@ bool PanelInspector::Draw()
 
             ImGui::Checkbox("Has Transparency", &selectedGO->hasTransparency);
 
+            //Get Light Component to recalculate lights at any case
+            Light* light = selectedGO->GetComponent<Light>();
+
             /*Transform Component*/
             Transform* transform = selectedGO->GetComponent<Transform>();
 
@@ -169,13 +172,25 @@ bool PanelInspector::Draw()
                     ImGui::Text("Position");
 
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f", 1)) 
+                    { 
+                        matrixDirty = true;
+                        light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        light->recalculate = true;
+                    }
 
                     ImGui::TableNextRow();
 
@@ -184,13 +199,25 @@ bool PanelInspector::Draw()
                     ImGui::Text("Rotation");
 
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        light->recalculate = true;
+                    }
 
                     ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    if (ImGui::DragFloat("##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f", 1))
+                    {
+                        matrixDirty = true;
+                        light->recalculate = true;
+                    }
 
                     ImGui::TableNextRow();
 
@@ -422,7 +449,7 @@ bool PanelInspector::Draw()
             }
             
             /*Light Component*/
-            Light* light = selectedGO->GetComponent<Light>();
+            
             if (light != nullptr && ImGui::CollapsingHeader("Light", treeNodeFlags))
             {
                 //ImGui::SameLine();
@@ -458,13 +485,13 @@ bool PanelInspector::Draw()
                     ImGui::Text("Color");
 
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##lightX", &light->color.x, 0.5F, 0, 0, "%.3f", 1)) {}
+                    if (ImGui::DragFloat("##lightX", &light->color.x, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
 
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##lightY", &light->color.y, 0.5F, 0, 0, "%.3f", 1)) {}
+                    if (ImGui::DragFloat("##lightY", &light->color.y, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
 
                     ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##lightZ", &light->color.z, 0.5F, 0, 0, "%.3f", 1)) {}
+                    if (ImGui::DragFloat("##lightZ", &light->color.z, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
                     
                     ImGui::TableNextRow();
 
@@ -473,16 +500,13 @@ bool PanelInspector::Draw()
                     ImGui::Text("Range");
 
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##linear", &light->linear, 0.5F, 0, 0, "%.3f", 1)) {}
+                    if (ImGui::DragFloat("##linear", &light->linear, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
 
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##quadratic", &light->quadratic, 0.5F, 0, 0, "%.3f", 1)) {}
+                    if (ImGui::DragFloat("##quadratic", &light->quadratic, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
 
                     ImGui::EndTable();
-                    //ImGui::TableNextRow();
                 }
-                //if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
-
             }
 
             /*Script Component*/

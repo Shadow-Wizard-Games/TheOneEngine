@@ -449,8 +449,6 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	//GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vboSize, vboMap));
 
 	SetUpLight(material);
-	/*SetUpLight(animShader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
-	camera->shadowBuffer->BindTexture();*/
 
 	material->Bind();
 
@@ -630,16 +628,19 @@ bool Mesh::SetUpLight(Material* material)
 	material->SetUniformData("u_PointLightsNum", pointLights.size());
 	for (int i = 0; i < pointLights.size(); i++)
 	{
-		string iteration = to_string(i);
+		if (pointLights[i]->recalculate)
+		{
+			string iteration = to_string(i);
 
-		//Variables need to be float not double
-		material->SetUniformData("u_PointLights[" + iteration + "].position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
-		material->SetUniformData("u_PointLights[" + iteration + "].constant", 1.0f);
-		material->SetUniformData("u_PointLights[" + iteration + "].linear", pointLights[i]->linear);
-		material->SetUniformData("u_PointLights[" + iteration + "].quadratic", pointLights[i]->quadratic);
-		material->SetUniformData("u_PointLights[" + iteration + "].ambient", pointLights[i]->color * 0.1f);
-		material->SetUniformData("u_PointLights[" + iteration + "].diffuse", pointLights[i]->color);
-		material->SetUniformData("u_PointLights[" + iteration + "].specular", pointLights[i]->specular);
+			//Variables need to be float not double
+			material->SetUniformData("u_PointLights[" + iteration + "].position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+			material->SetUniformData("u_PointLights[" + iteration + "].constant", 1.0f);
+			material->SetUniformData("u_PointLights[" + iteration + "].linear", pointLights[i]->linear);
+			material->SetUniformData("u_PointLights[" + iteration + "].quadratic", pointLights[i]->quadratic);
+			material->SetUniformData("u_PointLights[" + iteration + "].ambient", pointLights[i]->color * 0.1f);
+			material->SetUniformData("u_PointLights[" + iteration + "].diffuse", pointLights[i]->color);
+			material->SetUniformData("u_PointLights[" + iteration + "].specular", pointLights[i]->specular);
+		}
 	}
 
 	return ret;
