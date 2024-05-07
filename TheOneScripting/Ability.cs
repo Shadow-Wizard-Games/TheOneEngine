@@ -4,10 +4,21 @@ namespace TheOneScripting
 {
     public class Ability : MonoBehaviour
     {
-        string name;
-        float cooldownTime;
-        float activeTime;
+        public enum AbilityState
+        {
+            READY,
+            ACTIVE,
+            COOLDOWN,
+        }
 
-        public virtual void Activate() { }
+        public string name;
+        public float activeTime;
+        public float cooldownTime;
+
+        public AbilityState state = AbilityState.READY;
+
+        public virtual void UpdateAbilityState() { }
+        public virtual void Activated() { }
+        public virtual void OnCooldown() { }
     }
 }

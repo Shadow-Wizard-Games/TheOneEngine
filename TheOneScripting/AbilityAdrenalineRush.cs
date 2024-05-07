@@ -9,7 +9,7 @@ namespace TheOneScripting
             
         }
 
-        public override void Activate()
+        public override void Activated()
         {
             
         }

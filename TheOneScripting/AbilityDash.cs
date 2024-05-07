@@ -17,7 +17,7 @@ namespace TheOneScripting
 
             dashSpeed = 50.0f;
         }
-        public override void Activate()
+        public override void Activated()
         {
             player.speed += dashSpeed;
         }

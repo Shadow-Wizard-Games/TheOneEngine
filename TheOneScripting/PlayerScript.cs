@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TheOneScripting;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -146,10 +147,8 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
-        {
-            Dash();
-        }
+        // Call Ability Updates
+        CallAbilitiesUpdates();
 
         // Play steps
         if (lastFrameRunned != isRunning)
@@ -213,11 +212,6 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         attachedGameObject.animator.Play("Death");
         // play sound (?)
-    }
-
-    private void Dash()
-    {
-        //isDashing;
     }
 
     private bool SetMoveDirection()
@@ -345,8 +339,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-
-
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
         if (isDead || gameManager.godMode) return;
@@ -366,5 +358,60 @@ public class PlayerScript : MonoBehaviour
         if (isDead) return 0;
 
         return life;
+    }
+
+    private Ability FindAbilities(string AbilityName)
+    {
+        IGameObject go = attachedGameObject.FindInChildren(AbilityName);
+        Ability ability = go.GetComponent<Ability>();
+
+        return ability;
+    }
+
+    private void CallAbilitiesUpdates() 
+    {
+        Ability abilityToCall;
+
+        abilityToCall = FindAbilities("Dash");                       // Dash
+        if (abilityToCall != null)
+            abilityToCall.UpdateAbilityState();
+        else
+            Debug.LogError("Dash ability not found");
+
+        abilityToCall = FindAbilities("Heal");                       // Heal
+        if (abilityToCall != null)
+            abilityToCall.UpdateAbilityState();
+        else
+            Debug.LogError("Heal ability not found");
+
+        abilityToCall = FindAbilities("Shield");                     //  Shield
+        if (abilityToCall != null)
+            abilityToCall.UpdateAbilityState();
+        else
+            Debug.LogError("Shield ability not found");
+
+        abilityToCall = FindAbilities("AdrenalineRush");             // Adrenaline Rush
+        if (abilityToCall != null)
+            abilityToCall.UpdateAbilityState();
+        else
+            Debug.LogError("Adrenaline Rush ability not found");
+        
+        abilityToCall = FindAbilities("Impaciente");                 // Impaciente
+        if (abilityToCall != null)
+            abilityToCall.UpdateAbilityState();
+        else
+            Debug.LogError("Impaciente ability not found");
+
+        abilityToCall = FindAbilities("GremadeLauncher");            // Grenade Launcher
+        if (abilityToCall != null)
+            abilityToCall.UpdateAbilityState();
+        else
+            Debug.LogError("Grenade Launcher ability not found");
+
+        abilityToCall = FindAbilities("FlameThrower");               // Flame Thrower
+        if (abilityToCall != null)
+            abilityToCall.UpdateAbilityState();
+        else
+            Debug.LogError("Flame Thrower ability not found");
     }
 }
