@@ -57,7 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 4247.87158203125,
+      "Lifetime": 33.931907653808594,
       "MaxParticles": 50,
       "RenderModule": [
         {
@@ -81,6 +81,14 @@
             0.0
           ],
           "Type": 0
+        },
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
         }
       ]
     },
@@ -141,7 +149,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 3459.26513671875,
+      "Lifetime": 33.931907653808594,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -165,11 +173,20 @@
             0.0
           ],
           "Type": 0
+        },
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
         }
       ]
     }
   ],
   "Name": "P_Sparks",
+  "StartON": false,
   "Type": 9,
   "UID": 4200920531
 }
