@@ -10,7 +10,9 @@ Window::Window(App* app) :
     displayMode(DisplayMode::WINDOWED),
     resolution(Resolution::R_1280x720),
     borderless(false),
-    refreshRate(0)
+    refreshRate(0),
+    minWidth(640),
+    minHeight(360)
 {}
 
 Window::~Window() {}
@@ -84,7 +86,9 @@ bool Window::initSDLWindowWithOpenGL()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
     std::string title = std::string(TITLE) + "_" + VERSION;
-    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    SDL_WindowFlags windowFlags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, windowFlags);
+    SDL_SetWindowMinimumSize(window, minWidth, minHeight);
 
     if (!window)
     {
@@ -238,4 +242,36 @@ void Window::OnResizeWindow(int width, int height)
 {
     SDL_SetWindowSize(window, width, height);
     //app->engine->OnWindowResize(0, 0, width, height);
+}
+
+void Window::InfiniteScroll(bool global)
+{
+    if (global)
+    {
+        // hekbas: Implemet this if I have time :3
+        //SDL_WarpMouseGlobal();
+    }
+    else
+    {
+        int width, height;
+        app->window->GetSDLWindowSize(&width, &height);
+
+        int mouseX = app->input->GetMouseX();
+        int mouseY = app->input->GetMouseY();
+        int warpToX = -1;
+        int warpToY = -1;
+
+        if (mouseX < 5) warpToX = width - 10;
+        else if (mouseX > width - 5) warpToX = 10;
+
+        if (mouseY < 5) warpToY = height - 10;
+        else if (mouseY > height - 5) warpToY = 10;
+
+        if (warpToX == -1 && warpToY == -1) return;
+
+        if (warpToX == -1) warpToX = mouseX;
+        if (warpToY == -1) warpToY = mouseY;
+
+        SDL_WarpMouseInWindow(app->window->window, warpToX, warpToY);
+    }
 }

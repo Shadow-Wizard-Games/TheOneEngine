@@ -13,27 +13,38 @@ class Texture
 private:
 	uint32_t textureID;
 	glm::ivec2 imageSize;
-	int textureChannels;
+	uint textureChannels;
 
 	bool Init(const std::string& path);
 	bool InitDDS(const std::string& path);
 
 public:
+	Texture();
+	Texture(glm::ivec2 size, uint channels);
 	Texture(const std::string& path);
 	~Texture();
 
-	void Bind();
+	void Bind(uint32_t slot = 0) const;
+
+	void SetData(void* data, uint32_t size);
+
+	void Delete();
 
 	bool CreateCheckerTexture();
 
-	inline uint32_t GetTextureId() { return textureID; }
+	uint32_t GetTextureId() const { return textureID; }
 	int GetChannels() { return textureChannels; }
 
 	int GetWidth() { return imageSize.x; }
 	int GetHeight() { return imageSize.y; }
-	glm::ivec2 GetSize() { return imageSize; }
+	glm::ivec2 GetSize() const { return imageSize; }
 
 	std::string path;
+
+	bool operator==(const Texture& other) const
+	{
+		return textureID == other.GetTextureId();
+	}
 
 	// Image utils
 	static void raw_to_dds_file(const char* filename, const unsigned char* pData, int width, int height, int bpp);

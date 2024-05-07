@@ -4,6 +4,7 @@
 #include "Billboard.h"
 #include "Camera.h"
 #include "Defs.h"
+#include "Resources.h"
 
 #include <vector>
 
@@ -19,6 +20,8 @@ public:
 
 	virtual void LoadModule(const json& moduleJSON) { };
 
+	void SetTexture(const std::string& filename);
+
 	enum RenderEmmiterModuleType {
 		BILLBOARD
 	};
@@ -26,6 +29,8 @@ public:
 	RenderEmmiterModuleType type;
 
 protected:
+	std::string texturePath;
+	ResourceId textureID = -1;
 	Emmiter* owner;
 };
 
