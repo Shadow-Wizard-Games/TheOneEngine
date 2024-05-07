@@ -7,8 +7,8 @@ namespace TheOneScripting
         IGameObject playerGO;
         PlayerScript player;
 
-        float healAmount = 60; // in %
-        float slowAmount = 40; // in %
+        float healAmount = 0.6f; // in %
+        float slowAmount = 0.4f; // in %
         public override void Start()
         {
             name = "Dash";
@@ -18,15 +18,18 @@ namespace TheOneScripting
 
         public override void Activate()
         {
-            float healing = player.maxLife * healAmount / 100;
+            // Calculate heal amount
+            float healing = player.maxLife * healAmount;
             healing += player.life;
 
+            // heal
             if (healing > player.life)
                 player.life = player.maxLife;
             else
                 player.life = healing;
 
-
+            float speedReduce = player.baseSpeed * slowAmount;
+            player.speed -= speedReduce;
         }
     } 
 }
