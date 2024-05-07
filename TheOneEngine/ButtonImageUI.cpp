@@ -128,7 +128,7 @@ void ButtonImageUI::LoadUIElement(const json& UIElementJSON)
 Rect2D ButtonImageUI::GetSectIdle() const
 {
 	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSect.x = imageIdleSection.x  * image->GetSize().x;
@@ -141,7 +141,7 @@ Rect2D ButtonImageUI::GetSectIdle() const
 
 void ButtonImageUI::SetSectSizeIdle(float x, float y, float width, float height)
 {
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageIdleSection.x = x        / image->GetSize().x;
@@ -154,7 +154,7 @@ void ButtonImageUI::SetSectSizeIdle(float x, float y, float width, float height)
 Rect2D ButtonImageUI::GetSectHovered() const
 {
 	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSect.x = imageHoveredSection.x  * image->GetSize().x;
@@ -167,7 +167,7 @@ Rect2D ButtonImageUI::GetSectHovered() const
 
 void ButtonImageUI::SetSectSizeHovered(float x, float y, float width, float height)
 {
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageHoveredSection.x = x        / image->GetSize().x;
@@ -180,7 +180,7 @@ void ButtonImageUI::SetSectSizeHovered(float x, float y, float width, float heig
 Rect2D ButtonImageUI::GetSectSelected() const
 {
 	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSect.x = imageSelectedSection.x  * image->GetSize().x;
@@ -193,7 +193,7 @@ Rect2D ButtonImageUI::GetSectSelected() const
 
 void ButtonImageUI::SetSectSizeSelected(float x, float y, float width, float height)
 {
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSelectedSection.x = x        / image->GetSize().x;
