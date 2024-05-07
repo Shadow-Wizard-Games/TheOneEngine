@@ -16,7 +16,6 @@ class SceneManager : public Module
 {
 public:
 	SceneManager(App* app);
-
 	virtual ~SceneManager();
 
 	bool Awake();

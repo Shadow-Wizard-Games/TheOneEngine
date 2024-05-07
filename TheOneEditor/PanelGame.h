@@ -3,8 +3,10 @@
 #pragma once
 
 #include "Panel.h"
-#include "../TheOneEngine/Defs.h"
-#include "../TheOneEngine/Framebuffer.h"
+#include "Gui.h"
+
+#include "TheOneEngine/Defs.h"
+#include "TheOneEngine/Framebuffer.h"
 
 #include <vector>
 #include <memory>
@@ -18,22 +20,26 @@ class PanelGame : public Panel
 public:
 	PanelGame(PanelType type, std::string name);
 	~PanelGame();
-	void Start();
 
+	void Start();
 	bool Draw();
 
-	Camera* primaryCamera = nullptr;
+	void OnSceneChange();
+	std::vector<GameObject*> GetGameCameras();
 
-	Scene* current;
+	Scene* currentScene;
+	Camera* gameCamera;
+
 	std::shared_ptr<FrameBuffer> frameBuffer;
+	vec2f viewportSize;
 
-	vec2f viewportSize = { 0.0f, 0.0f };
-
-	GameObject* selectedGO = nullptr;
 private:
 
 	bool isHovered;
 	bool isFocused;
+
+	Aspect aspect;
+	const char* aspects[3] = { "Free Aspect", "16:9 Aspect", "21:9 Aspect" };
 };
 
 #endif // !__PANEL_SCENE_H__

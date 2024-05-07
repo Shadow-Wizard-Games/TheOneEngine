@@ -66,16 +66,6 @@ public:
 
     void DrawComponent(Camera* camera);
 
-    void SetTo2DRenderSettings(Camera* camera, const bool& setTo);
-
-
-    //textures
-    bool RemoveTextureUI(Texture* tex);
-    bool RemoveAllTexturesUI();
-    void AddTexture(std::string path);
-
-    Texture* GetTexture(std::string path);
-
     // @Get / Set --------------------------------
     Rect2D GetRect() const;
 
@@ -92,8 +82,6 @@ public:
     std::vector<std::unique_ptr<ItemUI>>& GetUiElementsPtr();
 
     bool debugDraw = true;
-
-    std::vector<std::shared_ptr<Texture>> uiTextures;
 
 private:
     Rect2D rect = { 0,0,2,2 };

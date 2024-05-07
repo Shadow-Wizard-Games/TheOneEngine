@@ -11,12 +11,17 @@
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
+#include "ImageUI.h"
+
 #include "../TheOneAudio/AudioCore.h"
 #include "EngineCore.h"
+#include "Renderer2D.h"
 
 #include <fstream>
 #include <filesystem>
 #include "ImageUI.h"
+#include "TextUI.h"
+#include <unordered_set>
 
 namespace fs = std::filesystem;
 
@@ -71,7 +76,7 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 
 	// Save Scene by checking if isDirty and pressing CTRL+S
 	//if (currentScene->IsDirty()) SaveScene();
-	
+
 	//this will be called when we click play
 	if (!sceneIsPlaying && isPlaying)
 	{
@@ -242,12 +247,20 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 				if (gameObjectJSON["Keeped"] == true && previousFrameIsPlaying)
 					continue;
 			}
-			
-			// Create a new game object
-			auto newGameObject = CreateEmptyGO();
-			newGameObject.get()->SetName(currentScene->GetSceneName());
-			// Load the game object from JSON
-			newGameObject->LoadGameObject(gameObjectJSON);
+
+			if (gameObjectJSON.contains("PrefabID") && gameObjectJSON["PrefabID"] != 0)
+			{
+				CreatePrefabWithName(gameObjectJSON["PrefabName"]);
+				LOG(LogType::LOG_INFO, "Loaded prefab from prefab file instead of scene file");
+			}
+			else
+			{
+				// Create a new game object
+				auto newGameObject = CreateEmptyGO();
+				newGameObject.get()->SetName(currentScene->GetSceneName());
+				// Load the game object from JSON
+				newGameObject->LoadGameObject(gameObjectJSON);
+			}
 		}
 
 		LOG(LogType::LOG_OK, "LOAD SUCCESSFUL");
@@ -279,29 +292,44 @@ void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go, bool fi
 	}
 }
 
-std::string N_SceneManager::GenerateUniqueName(const std::string& baseName)
+std::string N_SceneManager::GenerateUniqueName(const std::string& baseName, const GameObject* go)
 {
-	std::string uniqueName = baseName;
-	int counter = 1;
+	std::unordered_set<std::string> existingNames;
+	std::string newName = baseName;
+	std::vector<std::shared_ptr<GameObject>> children;
+	children = go ? go->parent.lock()->children : currentScene->GetRootSceneGO()->children;
 
-	while (std::any_of(
-		currentScene->GetRootSceneGO().get()->children.begin(), currentScene->GetRootSceneGO().get()->children.end(),
-		[&uniqueName](const std::shared_ptr<GameObject>& obj)
-		{ return obj.get()->GetName() == uniqueName; }))
+	for (const auto& child : children)
+		existingNames.insert(child->GetName());
+
+	if (existingNames.count(newName) > 0)
 	{
-		uniqueName = baseName + "(" + std::to_string(counter) + ")";
-		++counter;
+		int count = 1;
+		while (existingNames.count(newName) > 0)
+		{
+			// Check if the name already ends with a number in parentheses
+			size_t pos = newName.find_last_of('(');
+			if (pos != std::string::npos && newName.back() == ')' && newName[pos] == '(' && pos > 0)
+			{
+				// Extract the number, increment it, and update the newName
+				int num = std::stoi(newName.substr(pos + 1, newName.size() - pos - 2));
+				newName = newName.substr(0, pos - 1) + " (" + std::to_string(++num) + ")";
+			}
+			else
+			{
+				newName = baseName + " (" + std::to_string(count++) + ")";
+			}
+		}
 	}
 
-	return uniqueName;
+	return newName;
 }
 
 std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObject> originalGO, bool recursive)
 {
 	GameObject* ref = originalGO.get();
 
-
-	std::shared_ptr<GameObject> duplicatedGO = std::make_shared<GameObject>(recursive ? originalGO.get()->GetName() : GenerateUniqueName("Copy of " + originalGO.get()->GetName()));
+	std::shared_ptr<GameObject> duplicatedGO = std::make_shared<GameObject>(recursive ? originalGO.get()->GetName() : GenerateUniqueName(originalGO.get()->GetName(), ref));
 	//meshGO.get()->GetComponent<Mesh>()->mesh = mesh;
 	//meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex];
 
@@ -439,7 +467,9 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	canvasGO.get()->AddComponent<Canvas>();
 
 	// Debug Img
-	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+	//canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+
+	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<TextUI>("Assets/Fonts/ComicSansMS.ttf");
 
 	canvasGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
 
@@ -745,7 +775,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& position)
+void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& position)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -778,6 +808,39 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	newGameObject->LoadGameObject(prefabJSON);
 
 	newGameObject->GetComponent<Transform>()->SetPosition(position);
+}
+
+void N_SceneManager::CreatePrefabWithName(std::string prefabName)
+{
+	auto newGameObject = CreateEmptyGO();
+	newGameObject.get()->SetName(currentScene->GetSceneName());
+
+	// Load the game object from 
+	fs::path filename = ASSETS_PATH;
+	filename += "Prefabs\\" + prefabName + ".prefab";
+
+	std::ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		return;
+	}
+
+	json prefabJSON;
+	try
+	{
+		file >> prefabJSON;
+	}
+	catch (const json::parse_error& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		return;
+	}
+
+	// Close the file
+	file.close();
+
+	newGameObject->LoadGameObject(prefabJSON);
 }
 
 void N_SceneManager::CreatePrefabFromPath(std::string prefabPath, const vec3f& position)
@@ -857,26 +920,39 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-void Scene::RecurseSceneSort(std::shared_ptr<GameObject> parentGO, Camera* cam)
+inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
 {
 	if (cam != nullptr) {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneSort(gameObject, cam);
+			if (!gameObject->hasTransparency) {
+				gameObject->Draw(cam);
+			}
+			else {
+				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			}
+
+			RecurseSceneDraw(gameObject, cam);
 		}
 
 	}
 	else {
 		for (const auto& gameObject : parentGO.get()->children)
 		{
-			float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3]);
-			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			RecurseSceneSort(gameObject);
+			if (!gameObject->hasTransparency) {
+				gameObject->Draw(currentCamera);
+			}
+			else {
+				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - currentCamera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+			}
+
+			RecurseSceneDraw(gameObject, currentCamera);
 		}
 
 	}
+
 }
 
 void Scene::UpdateGOs(double dt)
@@ -900,22 +976,45 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
+inline void Scene::SetCamera(Camera* cam)
+{
+	if(cam)
+		engine->SetUniformBufferCamera(cam->viewProjectionMatrix);
+	else
+		engine->SetUniformBufferCamera(currentCamera->viewProjectionMatrix);
+}
+
+void Scene::Set2DCamera()
+{
+	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
+}
+
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
-	RecurseSceneSort(rootSceneGO, cam);
-
+	//Setting Camera for 3D Rendering
+	SetCamera(cam);
+	Renderer2D::StartBatch();//           START BATCH
+	RecurseSceneDraw(rootSceneGO, cam);
 	if (cam != nullptr) {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
+		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(cam);
-		}
 	}
 	else {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i) {
+		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(currentCamera);
-		}
+		
 	}
+	Renderer2D::Flush();//           END BATCH
 
+
+	if (mode == DrawMode::EDITOR)
+		return;
+
+	//Setting Camera for 2D Rendering
+	Set2DCamera();
+	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
+	Renderer2D::Flush();//           END BATCH
 }

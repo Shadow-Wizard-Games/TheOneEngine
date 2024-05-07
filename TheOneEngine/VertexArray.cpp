@@ -29,7 +29,7 @@ VertexArray::VertexArray()
 
 VertexArray::~VertexArray()
 {
-	GLCALL(glDeleteVertexArrays(1, &m_RendererID));
+	Delete();
 }
 
 void VertexArray::Bind() const
@@ -40,6 +40,20 @@ void VertexArray::Bind() const
 void VertexArray::Unbind() const
 {
 	GLCALL(glBindVertexArray(0));
+}
+
+void VertexArray::Delete()
+{
+	if (m_RendererID)
+	{
+		GLCALL(glDeleteVertexArrays(1, &m_RendererID));
+		m_RendererID = 0;
+
+		for (auto& vbo : m_VertexBuffers)
+			vbo->Delete();
+
+		m_IndexBuffer->Delete();
+	}
 }
 
 void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)

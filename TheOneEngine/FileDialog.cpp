@@ -37,7 +37,7 @@ std::string FileDialog::SaveFile(const char* filter)
     ofn.nFilterIndex = 1;
     ofn.lpstrFile = sizeFile;
     ofn.nMaxFile = sizeof(sizeFile);
-    ofn.lpstrTitle = "Open File";
+    ofn.lpstrTitle = "Save File";
     ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 
     if (GetSaveFileNameA(&ofn) == TRUE)
