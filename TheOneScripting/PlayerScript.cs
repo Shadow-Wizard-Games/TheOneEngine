@@ -24,12 +24,14 @@ public class PlayerScript : MonoBehaviour
 
 
     // stats
-    float life = 100.0f;
+    public float maxLife = 100.0f;
+    public float life;
     public bool isDead = false;
 
 
     // movement
-    public float speed = 80.0f;
+    public float baseSpeed = 80.0f;
+    public float speed;
     Vector3 movementDirection;
     float movementMagnitude;
     bool lastFrameRunned = false;
@@ -66,6 +68,9 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.time = 0.0f;
+
+        life = maxLife;
+        speed = baseSpeed;
     }
 
     public override void Update()
