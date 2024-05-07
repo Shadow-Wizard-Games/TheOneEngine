@@ -7,6 +7,17 @@ ItemUI::ItemUI(std::shared_ptr<GameObject> containerGO, UiType type, std::string
 	this->id = UIDGen::GenerateUID();
 }
 
+ItemUI::ItemUI(ItemUI* ref)
+{
+	this->type = ref->type;
+	this->interactuable = ref->interactuable;
+	this->containerGO = ref->containerGO;
+	this->imageRect = ref->GetRect();
+	this->state = ref->GetState();
+	this->id = UIDGen::GenerateUID();
+	this->name = ref->GetName();
+}
+
 ItemUI::~ItemUI()
 {
 }

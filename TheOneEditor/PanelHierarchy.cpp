@@ -1,4 +1,4 @@
-#include "PanelHierarchy.h"
+﻿#include "PanelHierarchy.h"
 #include "App.h"
 #include "Renderer3D.h"
 #include "SceneManager.h"
@@ -15,6 +15,23 @@ PanelHierarchy::~PanelHierarchy() {}
 
 void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 {
+	if (ImGui::BeginPopupContextItem())
+	{
+		//add change name imgui
+
+		static char newNameBuffer[32]; // Buffer para el nuevo nombre
+		strcpy(newNameBuffer, parent->GetName().c_str());
+		if (ImGui::InputText("Change Scene Name", newNameBuffer, sizeof(newNameBuffer), ImGuiInputTextFlags_EnterReturnsTrue))
+		{
+			std::string newSceneName(newNameBuffer);
+			LOG(LogType::LOG_INFO, "Scene %s has been renamed to %s", parent->GetName().c_str(), newSceneName.c_str());
+			parent->SetName(newSceneName); // Establece el nuevo nombre del GameObject
+			engine->N_sceneManager->currentScene->SetSceneName(newSceneName);
+			// Limpiar el buffer despu�s de cambiar el nombre
+			newNameBuffer[0] = '\0';
+		}
+		ImGui::EndPopup();
+	}
 	for (const auto& childGO : parent.get()->children)
 	{
 		uint treeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;

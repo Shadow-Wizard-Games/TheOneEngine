@@ -14,6 +14,12 @@ TextUI::TextUI(std::shared_ptr<GameObject> containerGO, const std::string& path,
 	SetFont(path);
 }
 
+TextUI::TextUI(TextUI* ref) : ItemUI(ref)
+{
+	this->fontPath = ref->fontPath;
+	this->fontID = ref->fontID;
+}
+
 TextUI::~TextUI() {}
 
 void TextUI::Draw2D()

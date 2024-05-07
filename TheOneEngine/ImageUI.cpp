@@ -14,6 +14,13 @@ ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, const std::string& pat
 	imageID = Resources::Load<Texture>(imagePath);
 }
 
+ImageUI::ImageUI(ImageUI* ref) : ItemUI(ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+	this->textureSection = ref->textureSection;
+}
+
 ImageUI::~ImageUI(){}
 
 void ImageUI::Draw2D()

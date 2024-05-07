@@ -166,7 +166,7 @@ void N_SceneManager::SaveScene()
 	sceneJSON["GameObjects"] = gameObjectsJSON;
 
 	std::ofstream(filename) << sceneJSON.dump(2);
-	LOG(LogType::LOG_OK, "SAVE SUCCESFUL");
+	LOG(LogType::LOG_OK, (currentScene->GetSceneName() + " SAVE SUCCESFUL at " + filename.string()).c_str());
 
 	currentScene->SetIsDirty(false);
 }
