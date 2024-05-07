@@ -16,6 +16,9 @@
 #include "Math.h"
 #include "EngineCore.h"
 
+//#include "assimp/Importer.hpp"
+//#include "assimp/postprocess.h"
+
 GameObject::GameObject(std::string name) :
 	name(name),
 	parent(),
@@ -148,6 +151,10 @@ void GameObject::GenerateAABBFromMesh()
 		}
 		break;
 	}*/
+
+	/*::Assimp::Importer importer;
+	const aiScene* scene = importer.import("testmodel.obj", aiProcess_GenBoundingBoxes);
+	const aabb& aabb = scene->mMeshes[0]->mAABB;*/
 }
 
 AABBox GameObject::CalculateAABB()

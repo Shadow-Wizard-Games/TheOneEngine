@@ -1,12 +1,8 @@
 #include "Model.h"
 #include "Defs.h"
-
-#include <assimp/postprocess.h>
-#include <assimp/cimport.h>
-#include <assimp/scene.h>
-#include <filesystem>
-#include <fstream>
 #include "Resources.h"
+
+#include "Animation/animations/OzzAnimationSimple.h"
 
 #include "ozz/animation/runtime/animation.h"
 #include "ozz/animation/runtime/blending_job.h"
@@ -21,7 +17,13 @@
 #include "ozz/base/maths/vec_float.h"
 #include "ozz/options/options.h"
 
-#include "Animation/animations/OzzAnimationSimple.h"
+#include <assimp/postprocess.h>
+#include <assimp/cimport.h>
+#include <assimp/scene.h>
+#include <assimp/aabb.h>
+
+#include <filesystem>
+#include <fstream>
 
 
 Model::Model(const std::string& filename) : 
@@ -48,13 +50,17 @@ Model::Model(const std::string& filename) :
         path = filename;
         LoadAnimator(filename);
     }
+
+    aabb = new aiAABB({ 0, 0, 0 }, { 0, 0, 0 });
+
+    aabb.
 }
 
 std::vector<Model*> Model::LoadMeshes(const std::string& path)
 {
     std::vector<Model*> meshes;
-
-    const aiScene* scene = aiImportFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals);
+    //aiPostProcessSteps postProcessFlags = aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals | aiProcess_GenBoundingBoxes;
+    const aiScene* scene = aiImportFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals | aiProcess_GenBoundingBoxes);
 
     std::string fileName = scene->GetShortFilename(path.c_str());
     std::string sceneName = fileName.substr(fileName.find_last_of("\\/") + 1, fileName.find_last_of('.') - fileName.find_last_of("\\/") - 1);
@@ -101,6 +107,12 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             }
         }
         model->meshTransform = mTransform;
+
+
+        // aabb
+        aabb.
+
+        //const aiAABB& aabb = mesh->mAABB;
 
 
         // Process Anim

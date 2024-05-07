@@ -1,7 +1,9 @@
 #pragma once
+
 #include "VertexArray.h"
 #include "Animation/animations/OzzAnimationPartialBlending.h"
 
+#include "assimp/aabb.h"
 
 class Texture;
 struct aiMesh;
@@ -51,6 +53,8 @@ public:
     std::vector<vec3f> meshNorms;
     std::vector<vec3f> meshFaceCenters;
     std::vector<vec3f> meshFaceNorms;
+
+    aiAABB* aabb;
 
     std::string path;
 
