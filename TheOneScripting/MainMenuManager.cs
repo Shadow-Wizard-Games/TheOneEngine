@@ -14,6 +14,8 @@ public class MainMenuManager : MonoBehaviour
     bool credits = false;
     bool logo = true;
 
+    int creditsView = 0;
+
     IGameObject GameManagerGO;
     GameManager gameManager;
 
@@ -63,6 +65,15 @@ public class MainMenuManager : MonoBehaviour
 
         if ((title || logo || credits) && !onCooldown)
         {
+            if (creditsView == 0)
+            {
+                canvasCredits.PrintItemUI(true, "Text_Producer&Lead");
+                canvasCredits.PrintItemUI(false, "Text_ArtTeam");
+                canvasCredits.PrintItemUI(false, "Text_DesignTeam");
+                canvasCredits.PrintItemUI(false, "Text_CodeTeam");
+                onCooldown = true;
+                creditsView++;
+            }
             if (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
             {
                 if (logo)
@@ -74,11 +85,49 @@ public class MainMenuManager : MonoBehaviour
                 }
                 else if (credits)
                 {
-                    credits = false;
-                    mainMenu = true;
-                    canvasCredits.ToggleEnable();
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                    onCooldown = true;
+                    if (creditsView == 1)
+                    {
+                        canvasCredits.PrintItemUI(false, "Text_Producer&Lead");
+                        canvasCredits.PrintItemUI(true, "Text_ArtTeam");
+                        canvasCredits.PrintItemUI(false, "Text_DesignTeam");
+                        canvasCredits.PrintItemUI(false, "Text_CodeTeam");
+                        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                        onCooldown = true;
+                        creditsView++;
+                    }
+                    else if (creditsView == 2)
+                    {
+                        canvasCredits.PrintItemUI(false, "Text_Producer&Lead");
+                        canvasCredits.PrintItemUI(false, "Text_ArtTeam");
+                        canvasCredits.PrintItemUI(true, "Text_DesignTeam");
+                        canvasCredits.PrintItemUI(false, "Text_CodeTeam");
+                        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                        onCooldown = true;
+                        creditsView++;
+                    }
+                    else if (creditsView == 3)
+                    {
+                        canvasCredits.PrintItemUI(false, "Text_Producer&Lead");
+                        canvasCredits.PrintItemUI(false, "Text_ArtTeam");
+                        canvasCredits.PrintItemUI(false, "Text_DesignTeam");
+                        canvasCredits.PrintItemUI(true, "Text_CodeTeam");
+                        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                        onCooldown = true;
+                        creditsView++;
+                    }
+                    else if (creditsView == 4)
+                    {
+                        canvasCredits.PrintItemUI(true, "Text_Producer&Lead");
+                        canvasCredits.PrintItemUI(false, "Text_ArtTeam");
+                        canvasCredits.PrintItemUI(false, "Text_DesignTeam");
+                        canvasCredits.PrintItemUI(false, "Text_CodeTeam");
+                        creditsView = 0;
+                        credits = false;
+                        mainMenu = true;
+                        canvasCredits.ToggleEnable();
+                        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                        onCooldown = true;
+                    }
                 }
                 else
                 {

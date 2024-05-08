@@ -24,6 +24,9 @@
 #include "..\TheOneEngine\CheckerUI.h"
 #include "..\TheOneEngine\TextUI.h"
 
+#include "..\TheOneEngine\ResourcesImpl.h"
+#include "..\TheOneEngine\FileDialog.h"
+
 #include "InspectorParticleSystems.h"
 
 #include "../TheOneAudio/AudioCore.h"
@@ -655,7 +658,7 @@ bool PanelInspector::Draw()
                         //add change name imgui
                         static char changeUIName[32]; // Buffer para el nuevo nombre
                         strcpy(changeUIName, item->GetName().c_str());
-                        if (ImGui::InputText("Set Name", changeUIName, sizeof(changeUIName), ImGuiInputTextFlags_EnterReturnsTrue)) {
+                        if (ImGui::InputText(("Set Name##" + std::to_string(item->GetID())).c_str(), changeUIName, sizeof(changeUIName), ImGuiInputTextFlags_EnterReturnsTrue)) {
                             std::string newName(changeUIName);
                             LOG(LogType::LOG_INFO, "ItemUI %s has been renamed to %s", item->GetName().c_str(), newName.c_str());
                             item->SetName(newName);
@@ -676,6 +679,10 @@ bool PanelInspector::Draw()
                         }
                         ImGui::SameLine();
                         ImGui::Text("  Move Down");
+
+                        bool print = item->IsPrintable();
+                        ImGui::Checkbox(("Print##" + std::to_string(id)).c_str(), &print);
+                        item->SetPrint(print);
 
                         std::string idstring = "Current ItemID is: " + std::to_string(item->GetID());
                         ImGui::Text(idstring.c_str());
@@ -1115,7 +1122,7 @@ bool PanelInspector::Draw()
                             ImGui::Text("UiType: CHECKER");
                             
                             bool checkerActive = tempCheckerUI->GetChecker();
-                            ImGui::Checkbox("Toggle Checkbox State", &checkerActive);
+                            ImGui::Checkbox(("Toggle Checkbox State##" + std::to_string(id)).c_str(), &checkerActive);
                             tempCheckerUI->SetChecker(checkerActive);
 
                             ImGui::Text("Image Path: %s", tempCheckerUI->GetPath().c_str());
@@ -1210,10 +1217,58 @@ bool PanelInspector::Draw()
                                 ImGui::Dummy(ImVec2(0.0f, 5.0f));
                             }
                         }
-                        //else if (item->GetType() == UiType::FONT)
-                        //{
+                        else if (item->GetType() == UiType::TEXT)
+                        {
+                            TextUI* tempTextUI = tempCanvas->GetItemUI<TextUI>(id);
+                            ImGui::Text("UiType: TEXT");
+                            ImGui::Text("Image Path: %s", tempTextUI->GetPath().c_str());
+                            ImGui::Text("Text info:");
+                            static char currentTextString[512]; // Buffer para el nuevo nombre
+                            ImGui::InputTextMultiline(("##Text String chupala ticher" + std::to_string(item->GetID())).c_str(), currentTextString, sizeof(currentTextString));
+                            if (ImGui::Button("Set Text"))
+                            {
+                                std::string newName(currentTextString);
+                                tempTextUI->SetText(newName);
+                            }
+                            ImGui::SameLine();
+                            if (ImGui::Button("Recover Text"))
+                            {
+                                strcpy(currentTextString, tempTextUI->GetText().c_str());
+                            }
+                            float r, g, b, a;
+                            r = tempTextUI->GetColor().r;
+                            g = tempTextUI->GetColor().g;
+                            b = tempTextUI->GetColor().b;
+                            a = tempTextUI->GetColor().a;
+                            ImGui::Text("   R:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("##Text Color R", &r, 0.005f, 0.0f, 1.0f);
+                            ImGui::Text("   G:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("##Text Color G", &g, 0.005f, 0.0f, 1.0f);
+                            ImGui::Text("   B:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("##Text Color B", &b, 0.005f, 0.0f, 1.0f);
+                            ImGui::Text("   A:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("##Text Color A", &a, 0.005f, 0.0f, 1.0f);
 
-                        //}
+                            tempTextUI->SetColor({ r,g,b,a });
+
+                            float k, l;
+                            k = tempTextUI->GetKerning();
+                            l = tempTextUI->GetLineSpacing();
+
+                            ImGui::Text("   Kerning:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("##Text Kerning", &k, 0.005f, -0.1f, 1.0f);
+                            tempTextUI->SetKerning(k);
+
+                            ImGui::Text("   LineSpacing:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat("##Text LineSpacing", &l, 0.005f, -0.3f, 1.0f);
+                            tempTextUI->SetLineSpacing(l);
+                        }
                         else if (item->GetType() == UiType::UNKNOWN)
                         {
                             ImGui::Text("UiType: UNKNOWN TYPE");
@@ -1310,8 +1365,25 @@ bool PanelInspector::Draw()
                         }
                         ImGui::TreePop();
                     }
-                    if (ImGui::MenuItem("TextUI"))
+                    if (ImGui::TreeNode("TextUI"))
                     {
+                        std::vector<Resources::Resource*> tempFontResources = Resources::GetResourcesOf(Resources::RES_FONT);
+
+                        for (auto& item : tempFontResources)
+                        {
+                            if (ImGui::MenuItem(item->name.c_str()))
+                            {
+                                tempCanvas->AddItemUI<TextUI>(item->filePath.c_str());
+                            }
+                        }
+                        if (ImGui::MenuItem("Import Font"))
+                        {
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Font file (*.ttf)\0*.ttf\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".ttf"))
+                            {
+                                tempCanvas->AddItemUI<TextUI>(filePath.c_str());
+                            }
+                        }
                         //to implement
 
                         //static char nameRecipient[32];
@@ -1330,7 +1402,9 @@ bool PanelInspector::Draw()
                         //        LOG(LogType::LOG_WARNING, "Could not find image '%s'", nameRecipient);
                         //    }
                         //}
-                        //ImGui::TreePop();
+
+
+                        ImGui::TreePop();
                     }
                     ImGui::TreePop();
                 }

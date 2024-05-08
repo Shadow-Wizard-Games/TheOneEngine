@@ -180,6 +180,7 @@ json SliderUI::SaveUIElement()
 	uiElementJSON["AdditionalOffsetFirst"] = additionalOffsetFirst;
 	uiElementJSON["AdditionalOffsetLast"] = additionalOffsetLast;
 	uiElementJSON["Interactuable"] = interactuable;
+	uiElementJSON["Print"] = print;
 
 	uiElementJSON["ImagePath"] = imagePath;
 
@@ -333,6 +334,7 @@ void SliderUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("AdditionalOffsetFirst")) this->additionalOffsetFirst = UIElementJSON["AdditionalOffsetFirst"];
 	if (UIElementJSON.contains("AdditionalOffsetLast")) this->additionalOffsetLast = UIElementJSON["AdditionalOffsetLast"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
 	imageID = Resources::Load<Texture>(imagePath);

@@ -119,6 +119,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int PrintItemUI(IntPtr GOptr, bool value, string nameM);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSelected(IntPtr GOptr);

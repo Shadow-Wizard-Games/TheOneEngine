@@ -58,6 +58,7 @@ json ButtonImageUI::SaveUIElement()
 	uiElementJSON["Type"] = (int)type;
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;
+	uiElementJSON["Print"] = print;
 
 	uiElementJSON["ImagePath"] = imagePath;
 
@@ -99,6 +100,7 @@ void ButtonImageUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
 	imageID = Resources::Load<Texture>(imagePath);

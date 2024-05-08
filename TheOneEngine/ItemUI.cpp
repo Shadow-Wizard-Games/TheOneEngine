@@ -4,6 +4,7 @@
 ItemUI::ItemUI(std::shared_ptr<GameObject> containerGO, UiType type, std::string name, bool interactuable, Rect2D rect) : containerGO(containerGO), type(type), interactuable(interactuable), imageRect(rect), name(name)
 {
 	this->state = UiState::IDLE;
+	this->print = true;
 	this->id = UIDGen::GenerateUID();
 }
 
@@ -16,6 +17,7 @@ ItemUI::ItemUI(ItemUI* ref)
 	this->state = ref->GetState();
 	this->id = UIDGen::GenerateUID();
 	this->name = ref->GetName();
+	this->print = ref->print;
 }
 
 ItemUI::~ItemUI()
@@ -53,6 +55,7 @@ json ItemUI::SaveUIElement()
 	uiElementJSON["Type"] = (int)type;
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;
+	uiElementJSON["Print"] = print;
 
 	return uiElementJSON;
 }
@@ -71,4 +74,5 @@ void ItemUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 }

@@ -104,6 +104,7 @@
               ],
               "Interactuable": false,
               "Name": "GameTitle_img",
+              "Print": true,
               "Rect": [
                 -0.20000000298023224,
                 -0.3400000035762787,
@@ -124,6 +125,7 @@
               ],
               "Interactuable": false,
               "Name": "Version&Studio_img",
+              "Print": true,
               "Rect": [
                 0.15000000596046448,
                 0.5149999856948853,
@@ -156,6 +158,7 @@
               ],
               "Interactuable": false,
               "Name": "StartButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
                 -0.05999999865889549,
@@ -188,6 +191,7 @@
               ],
               "Interactuable": false,
               "Name": "LoadGameButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
                 0.05999999865889549,
@@ -220,6 +224,7 @@
               ],
               "Interactuable": false,
               "Name": "SettingsButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
                 0.17000000178813934,
@@ -252,6 +257,7 @@
               ],
               "Interactuable": false,
               "Name": "CreditsButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
                 0.2800000011920929,
@@ -284,6 +290,7 @@
               ],
               "Interactuable": false,
               "Name": "QuitButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
                 0.3799999952316284,
@@ -304,6 +311,7 @@
               ],
               "Interactuable": false,
               "Name": "BackgroudMenu_img",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -386,6 +394,7 @@
               ],
               "Interactuable": false,
               "Name": "Image",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -456,6 +465,7 @@
               ],
               "Interactuable": false,
               "Name": "Image",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -608,6 +618,7 @@
               ],
               "Interactuable": false,
               "Name": "Img_Background",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -616,6 +627,102 @@
               ],
               "State": 0,
               "Type": 0
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 804456227,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_Producer&Lead",
+              "Print": false,
+              "Rect": [
+                -0.5299999713897705,
+                -0.10999999940395355,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "producer      Ariadna Sevcik\nlead art      Adria Pons\nlead design   Adrian Ponce\nlead code     Julia Serra",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 3692938590,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_ArtTeam",
+              "Print": false,
+              "Rect": [
+                -0.3449999988079071,
+                -0.22499999403953552,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "   art team\n\nDaniel Garcia\nSergio Garriguez\nXavier Alcaniz\nAdria Pons\nEric Regalon\nKaede Sato\nRylan Graham",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 4154705917,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_DesignTeam",
+              "Print": false,
+              "Rect": [
+                -0.3449999988079071,
+                -0.1550000011920929,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "  design team\n\nAriadna Sevcik\nJoel Chaves\nOscar Escofet\nAdrian Ponce\nPau Vivas",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 2476398111,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_CodeTeam",
+              "Print": false,
+              "Rect": [
+                -0.3449999988079071,
+                -0.3149999976158142,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "  code team\n\nHector Bascones\nJonathan Cacay\nAlex Delgado\nFrancisco Ferreros\nPau Fusco\nLuis Gonzalez\nArnau Jimenez\nEthan Martin\nJan Neto\nJulia Serra\nVictor Martin",
+              "Type": 4
             }
           ]
         }
@@ -690,6 +797,7 @@
               ],
               "Interactuable": false,
               "Name": "Button_Controls",
+              "Print": true,
               "Rect": [
                 -0.8949999809265137,
                 -0.5350000262260437,
@@ -722,6 +830,7 @@
               ],
               "Interactuable": false,
               "Name": "Button_Display",
+              "Print": true,
               "Rect": [
                 -0.8949999809265137,
                 0.2849999964237213,
@@ -742,6 +851,7 @@
               ],
               "Interactuable": false,
               "Name": "Img_Background",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -806,6 +916,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Controls",
+                  "Print": true,
                   "Rect": [
                     0.06499999761581421,
                     -0.10499999672174454,
@@ -876,6 +987,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Vsync",
+                  "Print": true,
                   "Rect": [
                     -0.2549999952316284,
                     -0.5,
@@ -927,6 +1039,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Checker_Vsync",
+                  "Print": true,
                   "Rect": [
                     -0.5299999713897705,
                     -0.5799999833106995,
@@ -947,6 +1060,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Fullscreen",
+                  "Print": true,
                   "Rect": [
                     0.5400000214576721,
                     -0.5,
@@ -998,6 +1112,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Checker_Fullscreen",
+                  "Print": true,
                   "Rect": [
                     0.14499999582767487,
                     -0.5799999833106995,
@@ -1018,6 +1133,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_MainVolume",
+                  "Print": true,
                   "Rect": [
                     0.0,
                     -0.11500000208616257,
@@ -1145,6 +1261,7 @@
                   "MinValue": 0,
                   "Name": "Slider_MainVolume",
                   "Offset": 0.024000000208616257,
+                  "Print": true,
                   "Rect": [
                     -0.26499998569488525,
                     0.07500000298023224,
@@ -1167,6 +1284,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Minus_MainVolume",
+                  "Print": true,
                   "Rect": [
                     -0.4699999988079071,
                     0.029999999329447746,
@@ -1187,6 +1305,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Plus_MainVolume",
+                  "Print": true,
                   "Rect": [
                     0.4650000035762787,
                     0.029999999329447746,
@@ -1207,6 +1326,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_SFX",
+                  "Print": true,
                   "Rect": [
                     -0.4350000023841858,
                     0.29499998688697815,
@@ -1334,6 +1454,7 @@
                   "MinValue": 0,
                   "Name": "Slider_SFX",
                   "Offset": 0.006000000052154064,
+                  "Print": true,
                   "Rect": [
                     -0.6399999856948853,
                     0.4749999940395355,
@@ -1356,6 +1477,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Minus_SFX",
+                  "Print": true,
                   "Rect": [
                     -0.7850000262260437,
                     0.46000000834465027,
@@ -1376,6 +1498,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Plus_SFX",
+                  "Print": true,
                   "Rect": [
                     -0.09000000357627869,
                     0.46000000834465027,
@@ -1396,6 +1519,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Music",
+                  "Print": true,
                   "Rect": [
                     0.4399999976158142,
                     0.29499998688697815,
@@ -1523,6 +1647,7 @@
                   "MinValue": 0,
                   "Name": "Slider_Music",
                   "Offset": 0.006000000052154064,
+                  "Print": true,
                   "Rect": [
                     0.25,
                     0.4749999940395355,
@@ -1545,6 +1670,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Minus_Music",
+                  "Print": true,
                   "Rect": [
                     0.0949999988079071,
                     0.46000000834465027,
@@ -1565,6 +1691,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Plus_Music",
+                  "Print": true,
                   "Rect": [
                     0.8050000071525574,
                     0.46000000834465027,

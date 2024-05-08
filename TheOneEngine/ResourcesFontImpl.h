@@ -63,6 +63,10 @@ template<>
 inline ResourceId Resources::Load<Font>(const std::string& file)
 {
 	std::string path = FindFileInAssets(file);
+	if (path.empty())
+	{
+		return -1;
+	}
 	StandarizePath(path);
 	ResourceId position = getResourcePosition(RES_FONT, path.c_str());
 	size_t size = m_Resources[RES_FONT].size();

@@ -7,6 +7,7 @@
 #include "ButtonImageUI.h"
 #include "SliderUI.h"
 #include "CheckerUI.h"
+#include "TextUI.h"
 #include "Renderer2D.h"
 
 Canvas::Canvas(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Canvas)
@@ -41,7 +42,8 @@ void Canvas::DrawComponent(Camera* camera)
 
 	for (auto element = uiElements.rbegin(); element != uiElements.rend(); ++element)
 	{
-		(*element)->Draw2D();
+		if ((*element)->IsPrintable())
+			(*element)->Draw2D();
 	}
 }
 
@@ -123,6 +125,11 @@ void Canvas::LoadComponent(const json& canvasJSON)
 			{
 				int id = this->AddItemUI<CheckerUI>();
 				this->GetItemUI<CheckerUI>(id)->LoadUIElement(item);
+			}
+			if (item["Type"] == (int)UiType::TEXT)
+			{
+				int id = this->AddItemUI<TextUI>();
+				this->GetItemUI<TextUI>(id)->LoadUIElement(item);
 			}
 			if (item["Type"] == (int)UiType::UNKNOWN)
 			{

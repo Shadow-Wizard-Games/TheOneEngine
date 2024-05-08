@@ -87,6 +87,10 @@ public:
 
 	virtual void UpdateState();
 
+	bool IsPrintable() { return print; }
+
+	void SetPrint(bool print) { this->print = print; }
+
 protected:
 
 	Rect2D imageRect;
@@ -96,6 +100,8 @@ protected:
 	UiType type;
 
 	UiState state;
+
+	bool print;
 
 	unsigned int id;
 	std::string name;
