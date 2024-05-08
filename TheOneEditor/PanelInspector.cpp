@@ -1263,16 +1263,16 @@ bool PanelInspector::Draw()
                             a = tempTextUI->GetColor().a;
                             ImGui::Text("   R:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("##Text Color R", &r, 0.005f, 0.0f, 1.0f);
+                            ImGui::DragFloat(("##Text Color R" + std::to_string(item->GetID())).c_str(), &r, 0.005f, 0.0f, 1.0f);
                             ImGui::Text("   G:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("##Text Color G", &g, 0.005f, 0.0f, 1.0f);
+                            ImGui::DragFloat(("##Text Color G" + std::to_string(item->GetID())).c_str(), &g, 0.005f, 0.0f, 1.0f);
                             ImGui::Text("   B:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("##Text Color B", &b, 0.005f, 0.0f, 1.0f);
+                            ImGui::DragFloat(("##Text Color B" + std::to_string(item->GetID())).c_str(), &b, 0.005f, 0.0f, 1.0f);
                             ImGui::Text("   A:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("##Text Color A", &a, 0.005f, 0.0f, 1.0f);
+                            ImGui::DragFloat(("##Text Color A" + std::to_string(item->GetID())).c_str(), &a, 0.005f, 0.0f, 1.0f);
 
                             tempTextUI->SetColor({ r,g,b,a });
 
@@ -1282,12 +1282,12 @@ bool PanelInspector::Draw()
 
                             ImGui::Text("   Kerning:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("##Text Kerning", &k, 0.005f, -0.1f, 1.0f);
+                            ImGui::DragFloat(("##Text Kerning" + std::to_string(item->GetID())).c_str(), &k, 0.005f, -0.1f, 1.0f);
                             tempTextUI->SetKerning(k);
 
                             ImGui::Text("   LineSpacing:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("##Text LineSpacing", &l, 0.005f, -0.3f, 1.0f);
+                            ImGui::DragFloat(("##Text LineSpacing" + std::to_string(item->GetID())).c_str(), &l, 0.005f, -0.3f, 1.0f);
                             tempTextUI->SetLineSpacing(l);
                         }
                         else if (item->GetType() == UiType::UNKNOWN)
