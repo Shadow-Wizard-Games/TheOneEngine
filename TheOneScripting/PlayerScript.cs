@@ -210,7 +210,7 @@ public class PlayerScript : MonoBehaviour
         // play sound (?)
     }
 
-    private void Dash()
+    private void Dash(Vector3 direction, float distance)
     {
         //isDashing;
     }
