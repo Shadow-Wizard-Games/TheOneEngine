@@ -1221,7 +1221,28 @@ bool PanelInspector::Draw()
                         {
                             TextUI* tempTextUI = tempCanvas->GetItemUI<TextUI>(id);
                             ImGui::Text("UiType: TEXT");
-                            ImGui::Text("Image Path: %s", tempTextUI->GetPath().c_str());
+                            ImGui::Text("Font Path: %s", tempTextUI->GetPath().c_str());
+                            if (ImGui::TreeNode(("Change Font##" + std::to_string(item->GetID())).c_str()))
+                            {
+                                std::vector<Resources::Resource*> tempFontResources = Resources::GetResourcesOf(Resources::RES_FONT);
+
+                                for (auto& item : tempFontResources)
+                                {
+                                    if (ImGui::MenuItem(item->name.c_str()))
+                                    {
+                                        tempTextUI->SetFont(item->filePath.c_str());
+                                    }
+                                }
+                                if (ImGui::MenuItem("Import Font"))
+                                {
+                                    std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Font file (*.ttf)\0*.ttf\0")).string();
+                                    if (!filePath.empty() && filePath.ends_with(".ttf"))
+                                    {
+                                        tempTextUI->SetFont(filePath.c_str());
+                                    }
+                                }
+                                ImGui::TreePop();
+                            }
                             ImGui::Text("Text info:");
                             static char currentTextString[512]; // Buffer para el nuevo nombre
                             ImGui::InputTextMultiline(("##Text String chupala ticher" + std::to_string(item->GetID())).c_str(), currentTextString, sizeof(currentTextString));
@@ -1384,26 +1405,6 @@ bool PanelInspector::Draw()
                                 tempCanvas->AddItemUI<TextUI>(filePath.c_str());
                             }
                         }
-                        //to implement
-
-                        //static char nameRecipient[32];
-
-                        //ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        //if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
-                        //{
-                        //    //std::string className = "ActualScriptTest2";
-                        //    if (MonoManager::IsClassInMainAssembly(nameRecipient))
-                        //    {
-                        //        tempCanvas->AddItemUI<TextUI>(nameRecipient);
-                        //    }
-                        //    else
-                        //    {
-                        //        LOG(LogType::LOG_WARNING, "Could not find image '%s'", nameRecipient);
-                        //    }
-                        //}
-
-
                         ImGui::TreePop();
                     }
                     ImGui::TreePop();
