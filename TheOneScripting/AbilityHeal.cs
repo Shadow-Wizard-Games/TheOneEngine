@@ -1,89 +1,96 @@
-﻿using System.Collections;
+﻿using System;
 
-namespace TheOneScripting
+public class AbilityHeal : Ability
 {
-    public class AbilityHeal : Ability
+    IGameObject playerGO;
+    PlayerScript player;
+
+    float healAmount = 0.6f; // in %
+    float slowAmount = 0.4f; // in %
+
+    float totalHeal = 0.0f;
+
+    public override void Start()
     {
-        IGameObject playerGO;
-        PlayerScript player;
+        name = "Heal";
+        playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
 
-        float healAmount = 0.6f; // in %
-        float slowAmount = 0.4f; // in %
-        public override void Start()
+        activeTime = 1.0f;
+        cooldownTime = 8.0f;
+    }
+
+    // put update and call the abilityStatUpdate from there or 
+    public override void Update()
+    {
+        switch (state)
         {
-            name = "Heal";
-            playerGO = IGameObject.Find("SK_MainCharacter");
-            player = playerGO.GetComponent<PlayerScript>();
-
-            activeTime = 1.0f;
-            cooldownTime = 8.0f;
-        }
-
-        // put update and call the abilityStatUpdate from there or 
-        public override void UpdateAbilityState()
-        {
-            switch (state)
-            {
-                case AbilityState.CHARGING:
-                    break;
-                case AbilityState.READY:
-                    if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) // change input
-                    {
-                        state = AbilityState.ACTIVE;    
-                        break;
-                    }
-                    // controller input
-                    break;
-                case AbilityState.ACTIVE:
+            case AbilityState.CHARGING:
+                break;
+            case AbilityState.READY:
+                if (Input.GetKeyboardButton(Input.KeyboardCode.E)) // change input
+                {
                     Activated();
-                    Debug.Log("Heal active time" + activeTime);
+                    state = AbilityState.ACTIVE;    
                     break;
-                case AbilityState.COOLDOWN:
-                    OnCooldown();
-                    Debug.Log("Heal active time" + cooldownTime);
-                    break;
-            }
+                }
+                // controller input
+                break;
+            case AbilityState.ACTIVE:
+                WhileActive();
+                Debug.Log("Heal active time --> " + activeTime.ToString("F2"));
+                break;
+            case AbilityState.COOLDOWN:
+                OnCooldown();
+                Debug.Log("Heal active time" + cooldownTime.ToString("F2"));
+                break;
         }
+    }
 
-        public override void Activated()
+    public override void Activated()
+    {
+        // Calculate heal amount
+        totalHeal = player.maxLife * healAmount;
+        totalHeal += player.life;
+        
+        float speedReduce = player.baseSpeed * slowAmount;
+        player.speed -= speedReduce;
+    }
+
+    public override void WhileActive()
+    {
+        if (activeTime > 0)
         {
-            if (activeTime > 0)
-            {
-                // update time
-                activeTime -= Time.deltaTime;
-
-                // Calculate heal amount
-                float healing = player.maxLife * healAmount;
-                healing += player.life;
-
-                // heal
-                if (healing > player.life)
-                    player.life = player.maxLife;
-                else
-                    player.life = healing;
-
-                float speedReduce = player.baseSpeed * slowAmount;
-                player.speed -= speedReduce;
-            }
-            else
-            {
-                activeTime = 1.0f;
-                state = AbilityState.COOLDOWN;
-            }
+            // update time
+            activeTime -= Time.deltaTime;
         }
-
-        public override void OnCooldown()
+        else
         {
-            if(cooldownTime > 0)
-            {
-                // update time
-                cooldownTime -= Time.deltaTime;
-            }
+            // heal
+            if (totalHeal > player.maxLife)
+                player.life = player.maxLife;
             else
-            {
-                cooldownTime = 8.0f;
-                state = AbilityState.READY;
-            }
+                player.life = totalHeal;
+
+            // reset stats
+            player.speed = player.baseSpeed;
+
+            activeTime = 0.3f;
+            state = AbilityState.COOLDOWN;
         }
-    } 
-}
+    }
+
+    public override void OnCooldown()
+    {
+        if(cooldownTime > 0)
+        {
+            // update time
+            cooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            cooldownTime = 8.0f;
+            state = AbilityState.READY;
+        }
+    }
+} 

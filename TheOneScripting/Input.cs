@@ -13,6 +13,7 @@ public class Input
 		E = 8,
 		K = 14,
 		I = 12,
+		V = 25,
 		RIGHT = 79,
 		LEFT = 80,
 		DOWN = 81,

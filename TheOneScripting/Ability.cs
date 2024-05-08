@@ -1,26 +1,24 @@
-﻿using System.Collections;
+﻿using System;
 
-namespace TheOneScripting
+public class Ability : MonoBehaviour
 {
-    public class Ability : MonoBehaviour
+    public enum AbilityState
     {
-        public enum AbilityState
-        {
-            CHARGING,
-            READY,
-            ACTIVE,
-            COOLDOWN,
-        }
-
-        public string name;
-        public float activeTime;
-        public float cooldownTime;
-
-        public AbilityState state = AbilityState.READY;
-
-        public virtual void ChargeAbility() { }
-        public virtual void UpdateAbilityState() { }
-        public virtual void Activated() { }
-        public virtual void OnCooldown() { }
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
     }
+
+    public string name;
+    public float activeTime;
+    public float cooldownTime;
+
+    public AbilityState state = AbilityState.READY;
+
+    public virtual void ChargeAbility() { }
+    public virtual void UpdateAbilityState() { }
+    public virtual void Activated() { }
+    public virtual void WhileActive() { }
+    public virtual void OnCooldown() { }
 }

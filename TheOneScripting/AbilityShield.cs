@@ -1,92 +1,90 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
+﻿using System;
 
-namespace TheOneScripting
+public class AbilityShield : Ability
 {
-    public class AbilityShield : Ability
+    IGameObject playerGO;
+    PlayerScript player;
+
+    int killsToUnlock = 2;
+
+
+    public override void Start()
     {
-        IGameObject playerGO;
-        PlayerScript player;
+        name = "Shield";
+        playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
 
-        int killsToUnlock = 2;
+        state = AbilityState.CHARGING;
 
-
-        public override void Start()
+        activeTime = 6.0f;
+        cooldownTime = 8.0f;
+    }
+        
+    public override void Update()
+    {
+        switch (state)
         {
-            name = "Shield";
-            playerGO = IGameObject.Find("SK_MainCharacter");
-            player = playerGO.GetComponent<PlayerScript>();
-
-            state = AbilityState.CHARGING;
-
-            activeTime = 6.0f;
-            cooldownTime = 8.0f;
-        }
-
-        public override void UpdateAbilityState()
-        {
-            switch (state)
-            {
-                case AbilityState.CHARGING:
-                    ChargeAbility();
-                    break;
-                case AbilityState.READY:
-                    if (Input.GetKeyboardButton(Input.KeyboardCode.W)) // change input
-                    {
-                        state = AbilityState.ACTIVE;
-                        break;
-                    }
-                    // controller input
-                    break;
-                case AbilityState.ACTIVE:
+            case AbilityState.CHARGING:
+                ChargeAbility();
+                break;
+            case AbilityState.READY:
+                if (Input.GetKeyboardButton(Input.KeyboardCode.W)) // change input
+                {
                     Activated();
-                    Debug.Log("Shield active time" + activeTime);
+                    state = AbilityState.ACTIVE;
                     break;
-                case AbilityState.COOLDOWN:
-                    OnCooldown();
-                    Debug.Log("Shield active time" + cooldownTime);
-                    break;
-            }
+                }
+                // controller input
+                break;
+            case AbilityState.ACTIVE:
+                Debug.Log("Shield active time" + activeTime.ToString("F2"));
+                break;
+            case AbilityState.COOLDOWN:
+                OnCooldown();
+                Debug.Log("Shield active time" + cooldownTime.ToString("F2"));
+                break;
         }
+    }
 
-        public override void ChargeAbility()
+    public override void ChargeAbility()
+    {
+        if(player.shieldKillCounter == 2) 
         {
-            if(player.shieldKillCounter == 2) 
-            {
-                player.shieldKillCounter = 0;
-                state = AbilityState.READY;
-            }
+            player.shieldKillCounter = 0;
+            state = AbilityState.READY;
         }
+    }
 
-        public override void Activated()
+    public override void Activated()
+    {
+        player.shieldIsActive = true;
+    }
+
+    public override void WhileActive()
+    {
+        if (activeTime > 0)
         {
-            if (activeTime > 0)
-            {
-                // update time
-                activeTime -= Time.deltaTime;
-
-                player.shieldIsActive = true;
-            }
-            else
-            {
-                // update time
-                activeTime = 6.0f;
-                state = AbilityState.COOLDOWN;
-            }
+            // update time
+            activeTime -= Time.deltaTime;
         }
-
-        public override void OnCooldown()
+        else
         {
-            if (cooldownTime > 0)
-            {
-                // update time
-                cooldownTime -= Time.deltaTime;
-            }
-            else
-            {
-                cooldownTime = 8.0f;
-                state = AbilityState.READY;
-            }
+            activeTime = 0.3f;
+            state = AbilityState.COOLDOWN;
+        }
+    }
+
+    public override void OnCooldown()
+    {
+        if (cooldownTime > 0)
+        {
+            // update time
+            cooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            cooldownTime = 8.0f;
+            state = AbilityState.READY;
         }
     }
 }
