@@ -26,15 +26,7 @@ public:
 
 	bool CleanUp();
 
-	void CameraInput(GameObject* cam);
-
 	void CreateRay();
-
-public:
-
-	//hekbas test
-	double dtSum = 0;
-	double dtTemp = 0;
 };
 
 #endif // !__RENDERER_3D_H__
