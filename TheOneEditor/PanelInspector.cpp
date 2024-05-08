@@ -548,6 +548,10 @@ bool PanelInspector::Draw()
             {
                 // to see the particles without playing
                 if (app->state == GameState::NONE) {
+                    auto componentTransform = selectedGO->GetComponent<Transform>();
+                    if (componentTransform != nullptr) {
+                        componentTransform->CalculateWorldTransform();
+                    }
                     particleSystem->Update();
                 }
                 bool isDirty = false;
