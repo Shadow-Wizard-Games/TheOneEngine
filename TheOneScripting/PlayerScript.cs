@@ -43,10 +43,11 @@ public class PlayerScript : MonoBehaviour
     float timeSinceLastShot = 0.0f;
     float shootingCooldown = 0.10f;
 
-    // dashing
+    // Abilities
     bool isDashing = false;
-    float timeSinceLastDash = 0.0f;
-    float dashingCooldown = 0.10f;
+
+    public int shieldKillCounter = 0;
+    public bool shieldIsActive = false;
 
 
 
@@ -343,13 +344,20 @@ public class PlayerScript : MonoBehaviour
     {
         if (isDead || gameManager.godMode) return;
 
-        life -= 10.0f;
-        Debug.Log("Player took damage! Current life is: " + life.ToString());
-
-        if (life <= 0)
+        if(!shieldIsActive)
         {
-            isDead = true;
-            attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+            life -= 10.0f;
+            Debug.Log("Player took damage! Current life is: " + life.ToString());
+
+            if (life <= 0)
+            {
+                isDead = true;
+                attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+            }
+        }
+        else
+        {
+            Debug.Log("Shield prevented the player from taking damage!");
         }
     }
 

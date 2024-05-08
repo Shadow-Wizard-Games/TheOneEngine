@@ -6,6 +6,7 @@ namespace TheOneScripting
     {
         public enum AbilityState
         {
+            CHARGING,
             READY,
             ACTIVE,
             COOLDOWN,
@@ -17,6 +18,7 @@ namespace TheOneScripting
 
         public AbilityState state = AbilityState.READY;
 
+        public virtual void ChargeAbility() { }
         public virtual void UpdateAbilityState() { }
         public virtual void Activated() { }
         public virtual void OnCooldown() { }

@@ -1,47 +1,60 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace TheOneScripting
 {
-    public class AbilityHeal : Ability
+    public class AbilityShield : Ability
     {
         IGameObject playerGO;
         PlayerScript player;
 
-        float healAmount = 0.6f; // in %
-        float slowAmount = 0.4f; // in %
+        int killsToUnlock = 2;
+
+
         public override void Start()
         {
-            name = "Heal";
+            name = "Shield";
             playerGO = IGameObject.Find("SK_MainCharacter");
             player = playerGO.GetComponent<PlayerScript>();
 
-            activeTime = 1.0f;
+            state = AbilityState.CHARGING;
+
+            activeTime = 6.0f;
             cooldownTime = 8.0f;
         }
 
-        // put update and call the abilityStatUpdate from there or 
         public override void UpdateAbilityState()
         {
             switch (state)
             {
                 case AbilityState.CHARGING:
+                    ChargeAbility();
                     break;
                 case AbilityState.READY:
-                    if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) // change input
+                    if (Input.GetKeyboardButton(Input.KeyboardCode.W)) // change input
                     {
-                        state = AbilityState.ACTIVE;    
+                        state = AbilityState.ACTIVE;
                         break;
                     }
                     // controller input
                     break;
                 case AbilityState.ACTIVE:
                     Activated();
-                    Debug.Log("Heal active time" + activeTime);
+                    Debug.Log("Shield active time" + activeTime);
                     break;
                 case AbilityState.COOLDOWN:
                     OnCooldown();
-                    Debug.Log("Heal active time" + cooldownTime);
+                    Debug.Log("Shield active time" + cooldownTime);
                     break;
+            }
+        }
+
+        public override void ChargeAbility()
+        {
+            if(player.shieldKillCounter == 2) 
+            {
+                player.shieldKillCounter = 0;
+                state = AbilityState.READY;
             }
         }
 
@@ -52,29 +65,19 @@ namespace TheOneScripting
                 // update time
                 activeTime -= Time.deltaTime;
 
-                // Calculate heal amount
-                float healing = player.maxLife * healAmount;
-                healing += player.life;
-
-                // heal
-                if (healing > player.life)
-                    player.life = player.maxLife;
-                else
-                    player.life = healing;
-
-                float speedReduce = player.baseSpeed * slowAmount;
-                player.speed -= speedReduce;
+                player.shieldIsActive = true;
             }
             else
             {
-                activeTime = 1.0f;
+                // update time
+                activeTime = 6.0f;
                 state = AbilityState.COOLDOWN;
             }
         }
 
         public override void OnCooldown()
         {
-            if(cooldownTime > 0)
+            if (cooldownTime > 0)
             {
                 // update time
                 cooldownTime -= Time.deltaTime;
@@ -85,5 +88,5 @@ namespace TheOneScripting
                 state = AbilityState.READY;
             }
         }
-    } 
+    }
 }
