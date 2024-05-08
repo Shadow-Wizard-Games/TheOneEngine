@@ -470,7 +470,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -1436,7 +1436,7 @@
               ]
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Hud",
@@ -2355,7 +2355,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -2499,10 +2499,1977 @@
               ]
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Dialogue",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2109956043
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": true,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 3801842989,
+              "UiElements": [
+                {
+                  "ID": 2625849279,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.7142857313156128,
+                    0.29954615235328674,
+                    0.08775509893894196
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_StatUpgradesTitle",
+                  "Print": true,
+                  "Rect": [
+                    -0.5149999856948853,
+                    -0.6600000262260437,
+                    0.22499999403953552,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 887949198,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.009077155962586403,
+                    0.8693877458572388,
+                    0.06505294889211655,
+                    0.12244898080825806
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_CurrentCurrencyIcon",
+                  "Print": true,
+                  "Rect": [
+                    0.3499999940395355,
+                    -0.6800000071525574,
+                    0.05999999865889549,
+                    0.06499999761581421
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2784990497,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_CurrentCurrencyAmount",
+                  "Print": true,
+                  "Rect": [
+                    0.4300000071525574,
+                    -0.6349999904632568,
+                    0.054999999701976776,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "TextString": "5000",
+                  "Type": 4
+                },
+                {
+                  "ID": 4075757284,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.00378214824013412,
+                    0.8102040886878967,
+                    0.9727685451507568,
+                    0.022448979318141937
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_GreenBar",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    -0.5899999737739563,
+                    0.7450000047683716,
+                    0.014999999664723873
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1606800772,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.9727685451507568,
+                    0.022448979318141937
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_DamageYellowBar",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    -0.4699999988079071,
+                    0.7450000047683716,
+                    0.014999999664723873
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 837098649,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.9727685451507568,
+                    0.022448979318141937
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_HealthYellowBar",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    -0.07000000029802322,
+                    0.7450000047683716,
+                    0.014999999664723873
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2444594422,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.9727685451507568,
+                    0.022448979318141937
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_SpeedYellowBar",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    0.3700000047683716,
+                    0.7450000047683716,
+                    0.014999999664723873
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2636266365,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.827534019947052,
+                    0.08367346972227097,
+                    0.09531013667583466,
+                    0.059183672070503235
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_DamageTitle",
+                  "Print": true,
+                  "Rect": [
+                    -0.6299999952316284,
+                    -0.5,
+                    0.10999999940395355,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1646066632,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.827534019947052,
+                    0.15918366611003876,
+                    0.09531013667583466,
+                    0.059183672070503235
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_HealthTitle",
+                  "Print": true,
+                  "Rect": [
+                    -0.6299999952316284,
+                    -0.10000000149011612,
+                    0.10999999940395355,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 687320634,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.827534019947052,
+                    0.23061224818229675,
+                    0.09531013667583466,
+                    0.059183672070503235
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_SpeedTitle",
+                  "Print": true,
+                  "Rect": [
+                    -0.6299999952316284,
+                    0.3400000035762787,
+                    0.10999999940395355,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3162548390,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.646747350692749,
+                    0.0714285746216774,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.646747350692749,
+                    0.2489795982837677,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageIconLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6600000262260437,
+                    -0.2750000059604645,
+                    0.03500000014901161,
+                    0.05999999865889549
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2079892797,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.646747350692749,
+                    0.0714285746216774,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.646747350692749,
+                    0.2489795982837677,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageIconLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.30000001192092896,
+                    -0.2750000059604645,
+                    0.03500000014901161,
+                    0.05999999865889549
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 898212654,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.646747350692749,
+                    0.0714285746216774,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.646747350692749,
+                    0.2489795982837677,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageIconLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.08500000089406967,
+                    -0.2750000059604645,
+                    0.03500000014901161,
+                    0.05999999865889549
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1605316063,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.646747350692749,
+                    0.0714285746216774,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.646747350692749,
+                    0.2489795982837677,
+                    0.05673222243785858,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageIconLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.4350000023841858,
+                    -0.2750000059604645,
+                    0.03500000014901161,
+                    0.05999999865889549
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1009443435,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.54841148853302,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.5468986630439758,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthIconLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6600000262260437,
+                    0.1550000011920929,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3586412451,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.54841148853302,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.5468986630439758,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthIconLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.30000001192092896,
+                    0.1550000011920929,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 3485283364,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.54841148853302,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.5468986630439758,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthIconLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.08500000089406967,
+                    0.1550000011920929,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1264722428,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.54841148853302,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.5468986630439758,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthIconLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.4350000023841858,
+                    0.1550000011920929,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 808972213,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7261724472045898,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.7261724472045898,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedIconLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6600000262260437,
+                    0.625,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 1685852407,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7261724472045898,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.7261724472045898,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedIconLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.30000001192092896,
+                    0.625,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1575274375,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7261724472045898,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.7261724472045898,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedIconLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.08500000089406967,
+                    0.625,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 2459328744,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7261724472045898,
+                    0.0714285746216774,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionIdle": [
+                    0.7261724472045898,
+                    0.2489795982837677,
+                    0.07034795731306076,
+                    0.16734693944454193
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedIconLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.4350000023841858,
+                    0.625,
+                    0.04500000178813934,
+                    0.06499999761581421
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 160474440,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageLayerLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6600000262260437,
+                    -0.2750000059604645,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2609888491,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageLayerLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.30000001192092896,
+                    -0.2750000059604645,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 2422832144,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageLayerLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.08500000089406967,
+                    -0.2750000059604645,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1838207713,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageLayerLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.4350000023841858,
+                    -0.2750000059604645,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 3011436480,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthLayerLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6600000262260437,
+                    0.1550000011920929,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 4023450950,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthLayerLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.30000001192092896,
+                    0.1550000011920929,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 3959732063,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthLayerLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.08500000089406967,
+                    0.1550000011920929,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1213524772,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthLayerLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.4350000023841858,
+                    0.1550000011920929,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 555723010,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedLayerLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6600000262260437,
+                    0.6200000047683716,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2672851644,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedLayerLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.30000001192092896,
+                    0.6200000047683716,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 920302970,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedLayerLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.08500000089406967,
+                    0.6200000047683716,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 251393799,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.005295007489621639,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionIdle": [
+                    0.14069591462612152,
+                    0.08571428805589676,
+                    0.11800302565097809,
+                    0.2836734652519226
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedLayerLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.4350000023841858,
+                    0.6200000047683716,
+                    0.07000000029802322,
+                    0.10999999940395355
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 2843720506,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageArrowsLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.49000000953674316,
+                    -0.2750000059604645,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3780602241,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageArrowsLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.11500000208616257,
+                    -0.2750000059604645,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1184538457,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageArrowsLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.2549999952316284,
+                    -0.2750000059604645,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 2078565925,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthArrowsLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.49000000953674316,
+                    0.1550000011920929,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 279961191,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthArrowsLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.11500000208616257,
+                    0.1550000011920929,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1788634707,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthArrowsLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.2549999952316284,
+                    0.1550000011920929,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 10297130,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedArrowsLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.49000000953674316,
+                    0.6200000047683716,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 558728995,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedArrowsLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.11500000208616257,
+                    0.6200000047683716,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 56033803,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4183056056499481,
+                    0.08367346972227097,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionIdle": [
+                    0.4183056056499481,
+                    0.2612244784832001,
+                    0.11800302565097809,
+                    0.15714286267757416
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedArrowsLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.2549999952316284,
+                    0.6200000047683716,
+                    0.10000000149011612,
+                    0.08500000089406967
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1105435765,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.009077155962586403,
+                    0.8693877458572388,
+                    0.06505294889211655,
+                    0.12244898080825806
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_DamageCurrencyIcon",
+                  "Print": true,
+                  "Rect": [
+                    0.5699999928474426,
+                    -0.1899999976158142,
+                    0.029999999329447746,
+                    0.03500000014901161
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3061081040,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.009077155962586403,
+                    0.8693877458572388,
+                    0.06505294889211655,
+                    0.12244898080825806
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_HealthCurrencyIcon",
+                  "Print": true,
+                  "Rect": [
+                    0.5699999928474426,
+                    0.23499999940395355,
+                    0.029999999329447746,
+                    0.03500000014901161
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3227671961,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.009077155962586403,
+                    0.8693877458572388,
+                    0.06505294889211655,
+                    0.12244898080825806
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_SpeedCurrencyIcon",
+                  "Print": true,
+                  "Rect": [
+                    0.5699999928474426,
+                    0.699999988079071,
+                    0.029999999329447746,
+                    0.03500000014901161
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 4255723173,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DamageCurrencyValue",
+                  "Print": true,
+                  "Rect": [
+                    0.6100000143051147,
+                    -0.17000000178813934,
+                    0.029999999329447746,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "100",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1751644556,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_HealthCurrencyValue",
+                  "Print": true,
+                  "Rect": [
+                    0.6100000143051147,
+                    0.2549999952316284,
+                    0.029999999329447746,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "100",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3151100563,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_SpeedCurrencyValue",
+                  "Print": true,
+                  "Rect": [
+                    0.6100000143051147,
+                    0.7200000286102295,
+                    0.029999999329447746,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "100",
+                  "Type": 4
+                },
+                {
+                  "ID": 236817145,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26323750615119934,
+                    0.24081632494926453,
+                    0.15355521440505981,
+                    0.13673469424247742
+                  ],
+                  "ImageSectionIdle": [
+                    0.26323750615119934,
+                    0.09795918315649033,
+                    0.15355521440505981,
+                    0.13673469424247742
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_DamageLvlUp",
+                  "Print": true,
+                  "Rect": [
+                    0.6050000190734863,
+                    -0.1850000023841858,
+                    0.11999999731779099,
+                    0.08500000089406967
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "ID": 1582076177,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26323750615119934,
+                    0.24081632494926453,
+                    0.15355521440505981,
+                    0.13673469424247742
+                  ],
+                  "ImageSectionIdle": [
+                    0.26323750615119934,
+                    0.09795918315649033,
+                    0.15355521440505981,
+                    0.13673469424247742
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_HealthLvlUp",
+                  "Print": true,
+                  "Rect": [
+                    0.6050000190734863,
+                    0.23999999463558197,
+                    0.11999999731779099,
+                    0.08500000089406967
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 526690301,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26323750615119934,
+                    0.24081632494926453,
+                    0.15355521440505981,
+                    0.13673469424247742
+                  ],
+                  "ImageSectionIdle": [
+                    0.26323750615119934,
+                    0.09795918315649033,
+                    0.15355521440505981,
+                    0.13673469424247742
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_SpeedLvlUp",
+                  "Print": true,
+                  "Rect": [
+                    0.6050000190734863,
+                    0.7049999833106995,
+                    0.11999999731779099,
+                    0.08500000089406967
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.5350000262260437
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 663232167,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DescriptionDamage",
+                  "Print": true,
+                  "Rect": [
+                    -0.7350000143051147,
+                    -0.41999998688697815,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "player damage increased by +10 per upgrade",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.5350000262260437
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2426187411,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DescriptionHealth",
+                  "Print": true,
+                  "Rect": [
+                    -0.7350000143051147,
+                    -0.019999999552965164,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "player health increased by +20 per upgrade",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.5350000262260437
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3709614906,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DescriptionSpeed",
+                  "Print": true,
+                  "Rect": [
+                    -0.7350000143051147,
+                    0.42500001192092896,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "player speed increased by +?? per upgrade",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 650283236,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DamageLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6100000143051147,
+                    -0.3700000047683716,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl i",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1073597933,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DamageLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.24500000476837158,
+                    -0.3700000047683716,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl ii",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1636675050,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DamageLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.13500000536441803,
+                    -0.3700000047683716,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl iii",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2533293113,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_DamageLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.48500001430511475,
+                    -0.3700000047683716,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl iv",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2791469657,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_HealthLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6100000143051147,
+                    0.054999999701976776,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl i",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2232809152,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_HealthLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.24500000476837158,
+                    0.054999999701976776,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl ii",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2406430594,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_HealthLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.13500000536441803,
+                    0.054999999701976776,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl iii",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 474498323,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_HealthLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.48500001430511475,
+                    0.054999999701976776,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl iv",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3826009908,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_SpeedLvl1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6100000143051147,
+                    0.5249999761581421,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl i",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3545548352,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_SpeedLvl2",
+                  "Print": true,
+                  "Rect": [
+                    -0.24500000476837158,
+                    0.5249999761581421,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl ii",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2488488850,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_SpeedLvl3",
+                  "Print": true,
+                  "Rect": [
+                    0.13500000536441803,
+                    0.5249999761581421,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl iii",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2018747261,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_SpeedLvl4",
+                  "Print": true,
+                  "Rect": [
+                    0.48500001430511475,
+                    0.5249999761581421,
+                    0.02500000037252903,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "lvl iv",
+                  "Type": 4
+                },
+                {
+                  "ID": 572144032,
+                  "ImagePath": "Assets/Textures/Hud/Stats_Screen_Background.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    0.824999988079071,
+                    0.8849999904632568
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_Stats",
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
