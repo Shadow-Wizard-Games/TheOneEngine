@@ -84,12 +84,9 @@ void FrameBuffer::Reset(bool depth)
 	}
 
 	// Check framebuffer status
-	/*if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	{
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		LOG(LogType::LOG_WARNING, "Framebuffer not completed");
-	}
-	else
-		LOG(LogType::LOG_OK, "Framebuffer completed");*/
+
 
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 

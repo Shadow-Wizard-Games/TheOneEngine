@@ -37,7 +37,7 @@ void EngineCore::Start()
 {
     Renderer2D::Init();
 
-    //Init default shaders with uniforms
+    // Init default shaders with uniforms
     ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
     textShader->Compile("Assets/Shaders/MeshTexture");
@@ -56,12 +56,14 @@ void EngineCore::Start()
     animTextShader->addUniform("u_Tex", UniformType::Sampler2D);
     Resources::Import<Shader>("MeshTextureAnimated", animTextShader);
 
-    //Default Material
+    // Default Material
     Material defaultMat(colorShader);
     defaultMat.SetUniformData("u_Color", glm::vec4(1, 0, 1, 1));
     std::string matPath = Resources::PathToLibrary<Material>() + "defaultMat.toematerial";
     Resources::Import<Material>(matPath, &defaultMat);
     Resources::LoadFromLibrary<Material>(matPath);
+
+    // Post Processing
 
     CameraUniformBuffer = std::make_shared<UniformBuffer>(sizeof(glm::mat4), 0);
 }

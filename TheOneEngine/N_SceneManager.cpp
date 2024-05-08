@@ -1012,12 +1012,13 @@ void Scene::Set2DCamera()
 
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
-	zSorting.clear();
-
 	//Setting Camera for 3D Rendering
 	SetCamera(cam);
-	Renderer2D::StartBatch();//           START BATCH
+
+	Renderer2D::StartBatch();	// -------------- START BATCH
 	RecurseSceneDraw(rootSceneGO, cam);
+
+	zSorting.clear();
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(cam);
@@ -1025,17 +1026,15 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	else {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(currentCamera);
-
 	}
-	Renderer2D::Flush();//           END BATCH
-
+	Renderer2D::Flush();	// -------------- END BATCH
 
 	if (mode == DrawMode::EDITOR)
 		return;
 
 	//Setting Camera for 2D Rendering
 	Set2DCamera();
-	Renderer2D::StartBatch();//           START BATCH
+	Renderer2D::StartBatch();	// -------------- START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
-	Renderer2D::Flush();//           END BATCH
+	Renderer2D::Flush();	// -------------- END BATCH
 }

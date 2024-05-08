@@ -5,15 +5,12 @@
 inline static std::string* getFileData(const char* file)
 {
 	std::fstream shaderFile;
-
 	shaderFile.open(file, std::ios::in);
 
 	if (!shaderFile.is_open()) return NULL;
 
 	std::stringstream buffer;
-
 	buffer << shaderFile.rdbuf();
-
 	shaderFile.close();
 
 	return new std::string(buffer.str());
@@ -28,6 +25,7 @@ inline std::string Resources::PathToLibrary<Shader>(const std::string& folderNam
 	else
 		return "Library/Shaders/";
 }
+
 template<>
 inline bool Resources::Import<Shader>(const std::string& file, Shader* shader)
 {
@@ -53,6 +51,7 @@ inline bool Resources::Import<Shader>(const std::string& file, Shader* shader)
 		document["fragment"] = fragmentShader->c_str();
 	if (geometryShader)
 		document["geometry"] = geometryShader->c_str();
+
 	json uniformsJSON;
 	if (!shader->getUniforms().empty())
 	{
@@ -62,7 +61,6 @@ inline bool Resources::Import<Shader>(const std::string& file, Shader* shader)
 			json uJSON;
 			uJSON["Name"] = uniform.name.c_str();
 			uJSON["Type"] = (int)uniform.type;
-
 			uniformsJSON.push_back(uJSON);
 		}
 	}
@@ -83,20 +81,19 @@ inline bool Resources::Import<Shader>(const std::string& file, Shader* shader)
 
 	return true;
 }
+
 template<>
-inline ResourceId Resources::Load<Shader>(const std::string& file) {
+inline ResourceId Resources::Load<Shader>(const std::string& file)
+{
 	ResourceId position = getResourcePosition(RES_SHADER, file.c_str());
 	size_t size = m_Resources[RES_SHADER].size();
-
 	ResourceId resourceId;
 
-	if (position == size) {
+	if (position == size)
+	{
 		Shader* shader = new Shader();
-
 		shader->Init(file);
-
 		PushResource(RES_SHADER, shader->getPath(), shader);
-
 		resourceId = size;
 	}
 	else {
@@ -105,6 +102,7 @@ inline ResourceId Resources::Load<Shader>(const std::string& file) {
 
 	return resourceId;
 }
+
 template<>
 inline ResourceId Resources::LoadFromLibrary<Shader>(const std::string& file) {
 
@@ -118,16 +116,13 @@ inline ResourceId Resources::LoadFromLibrary<Shader>(const std::string& file) {
 
 	ResourceId position = getResourcePosition(RES_SHADER, file_path.c_str());
 	size_t size = m_Resources[RES_SHADER].size();
-
 	ResourceId resourceId;
 
-	if (position == size) {
+	if (position == size)
+	{
 		Shader* shader = new Shader();
-
 		shader->LoadFromTOEasset(file_path.c_str());
-
 		PushResource(RES_SHADER, file_path.c_str(), shader, true);
-
 		resourceId = size;
 	}
 	else {
@@ -148,11 +143,13 @@ inline Shader* Resources::GetResourceById<Shader>(ResourceId id) {
 
 	return resource;
 }
+
 template<>
 inline bool Resources::CheckImport<Shader>(const std::string& file)
 {
 	return CheckImport(file.c_str(), ".toeshader");
 }
+
 template<>
 inline const char* Resources::getResourcePathById<Shader>(size_t id)
 {

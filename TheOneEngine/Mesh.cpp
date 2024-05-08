@@ -168,7 +168,6 @@ void Mesh::DrawComponent(Camera* camera)
 
 bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 {
-
 	Shader* matShader = material->getShader();
 	matShader->Bind();
 	matShader->SetModel(transform);

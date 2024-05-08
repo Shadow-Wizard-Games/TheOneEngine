@@ -124,7 +124,6 @@ bool PanelGame::Draw()
 		{
 			frameBuffer->Bind();
 			frameBuffer->Clear();
-			frameBuffer->ClearBuffer(-1);
 
 			// Set Render Environment
 			engine->SetRenderEnvironment(gameCamera);
