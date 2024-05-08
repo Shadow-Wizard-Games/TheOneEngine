@@ -470,7 +470,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": false,
+              "Enabled": true,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -1866,7 +1866,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -2320,10 +2320,189 @@
               ]
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Missions",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 511634923
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": true,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 1944687447,
+              "UiElements": [
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2487634769,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_Dialogue",
+                  "Print": true,
+                  "Rect": [
+                    -0.35499998927116394,
+                    0.6299999952316284,
+                    0.03500000014901161,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "TextString": "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor\nincididunt ut labore et\ndolore magna aliqua. Id velit\nut tortor pretium viverra.",
+                  "Type": 4
+                },
+                {
+                  "ID": 170723650,
+                  "ImagePath": "Assets/Textures/Hud/Dialogue_Screen_Profiles_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.3223031163215637,
+                    0.49300700426101685
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_ShopKeeper",
+                  "Print": true,
+                  "Rect": [
+                    0.7300000190734863,
+                    -0.18000000715255737,
+                    0.26499998569488525,
+                    0.26499998569488525
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3099788797,
+                  "ImagePath": "Assets/Textures/Hud/Dialogue_Screen_Profiles_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.503496527671814,
+                    0.3223031163215637,
+                    0.49300700426101685
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Medic",
+                  "Print": false,
+                  "Rect": [
+                    0.7300000190734863,
+                    -0.1899999976158142,
+                    0.26499998569488525,
+                    0.26499998569488525
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1050211218,
+                  "ImagePath": "Assets/Textures/Hud/Dialogue_Screen_Profiles_SpriteSheet.png",
+                  "ImageSection": [
+                    0.33884844183921814,
+                    0.0,
+                    0.3223031163215637,
+                    0.49300700426101685
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_CampLeader",
+                  "Print": false,
+                  "Rect": [
+                    0.7300000190734863,
+                    -0.18000000715255737,
+                    0.26499998569488525,
+                    0.26499998569488525
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 883515064,
+                  "ImagePath": "Assets/Textures/Hud/Dialogue_Screen_Profiles_SpriteSheet.png",
+                  "ImageSection": [
+                    0.33884844183921814,
+                    0.503496527671814,
+                    0.3223031163215637,
+                    0.49300700426101685
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Sargeant",
+                  "Print": false,
+                  "Rect": [
+                    0.7300000190734863,
+                    -0.18000000715255737,
+                    0.26499998569488525,
+                    0.26499998569488525
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 275385601,
+                  "ImagePath": "Assets/Textures/Hud/Dialogue_Screen_Box_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_DialogueBox",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    0.7450000047683716,
+                    0.4000000059604645,
+                    0.25999999046325684
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_Dialogue",
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
