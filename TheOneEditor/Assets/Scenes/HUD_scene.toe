@@ -85,6 +85,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Weapon",
+                  "Print": true,
                   "Rect": [
                     -0.7099999785423279,
                     -0.15000000596046448,
@@ -105,6 +106,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Background",
+                  "Print": true,
                   "Rect": [
                     0.0,
                     0.0,
@@ -194,6 +196,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_Inventory",
+                  "Print": true,
                   "Rect": [
                     -0.3499999940395355,
                     -0.33000001311302185,
@@ -226,6 +229,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_Missions",
+                  "Print": true,
                   "Rect": [
                     0.33000001311302185,
                     -0.33000001311302185,
@@ -258,6 +262,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_Resume",
+                  "Print": true,
                   "Rect": [
                     -0.36000001430511475,
                     0.15000000596046448,
@@ -290,6 +295,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_Settings",
+                  "Print": true,
                   "Rect": [
                     0.3400000035762787,
                     0.15000000596046448,
@@ -322,6 +328,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_Menu",
+                  "Print": true,
                   "Rect": [
                     -0.36000001430511475,
                     0.5099999904632568,
@@ -354,6 +361,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_Save&Quit",
+                  "Print": true,
                   "Rect": [
                     0.3400000035762787,
                     0.5099999904632568,
@@ -374,6 +382,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Slide",
+                  "Print": true,
                   "Rect": [
                     -0.009999999776482582,
                     -0.03999999910593033,
@@ -394,6 +403,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Background",
+                  "Print": true,
                   "Rect": [
                     0.0,
                     0.0,
@@ -460,7 +470,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -483,6 +493,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_KillsIcon",
+                  "Print": true,
                   "Rect": [
                     0.07000000029802322,
                     -0.9300000071525574,
@@ -503,6 +514,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_CoinIcon",
+                  "Print": true,
                   "Rect": [
                     -0.14000000059604645,
                     -0.9300000071525574,
@@ -523,6 +535,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_TopBar",
+                  "Print": true,
                   "Rect": [
                     0.0,
                     -0.9300000071525574,
@@ -543,6 +556,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_UsingWeaponIcon",
+                  "Print": true,
                   "Rect": [
                     0.8550000190734863,
                     0.7850000262260437,
@@ -563,6 +577,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_WeaponBar",
+                  "Print": true,
                   "Rect": [
                     0.7350000143051147,
                     0.8450000286102295,
@@ -583,6 +598,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Character",
+                  "Print": true,
                   "Rect": [
                     -0.8299999833106995,
                     -0.7799999713897705,
@@ -603,6 +619,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_LifeBar",
+                  "Print": true,
                   "Rect": [
                     -0.6100000143051147,
                     -0.6499999761581421,
@@ -623,6 +640,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_LifeIcon",
+                  "Print": true,
                   "Rect": [
                     -0.4399999976158142,
                     -0.6399999856948853,
@@ -643,6 +661,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_ShieldIcon",
+                  "Print": true,
                   "Rect": [
                     -0.4300000071525574,
                     -0.7200000286102295,
@@ -663,6 +682,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_MissionTitleBar",
+                  "Print": true,
                   "Rect": [
                     0.7699999809265137,
                     -0.8899999856948853,
@@ -683,6 +703,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_MissionDescripionBar",
+                  "Print": true,
                   "Rect": [
                     0.800000011920929,
                     -0.7799999713897705,
@@ -715,6 +736,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_HealIcon",
+                  "Print": true,
                   "Rect": [
                     -0.8299999833106995,
                     -0.5600000023841858,
@@ -747,6 +769,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_HealLayout",
+                  "Print": true,
                   "Rect": [
                     -0.8299999833106995,
                     -0.7300000190734863,
@@ -779,6 +802,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponIcon1",
+                  "Print": true,
                   "Rect": [
                     -0.8650000095367432,
                     -0.20999999344348907,
@@ -811,6 +835,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponSlot1",
+                  "Print": true,
                   "Rect": [
                     -0.8600000143051147,
                     -0.20999999344348907,
@@ -843,6 +868,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponIcon2",
+                  "Print": true,
                   "Rect": [
                     -0.8650000095367432,
                     -0.019999999552965164,
@@ -875,6 +901,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponSlot2",
+                  "Print": true,
                   "Rect": [
                     -0.8600000143051147,
                     -0.019999999552965164,
@@ -907,6 +934,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponIcon3",
+                  "Print": true,
                   "Rect": [
                     -0.8650000095367432,
                     0.18000000715255737,
@@ -939,6 +967,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponSlot3",
+                  "Print": true,
                   "Rect": [
                     -0.8600000143051147,
                     0.17000000178813934,
@@ -971,6 +1000,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponIcon4",
+                  "Print": true,
                   "Rect": [
                     -0.8650000095367432,
                     0.36000001430511475,
@@ -1003,6 +1033,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponSlot4",
+                  "Print": true,
                   "Rect": [
                     -0.8600000143051147,
                     0.36000001430511475,
@@ -1130,6 +1161,7 @@
                   "MinValue": 0,
                   "Name": "Slider_HP",
                   "Offset": -0.009999999776482582,
+                  "Print": true,
                   "Rect": [
                     -0.6970000267028809,
                     -0.6449999809265137,
@@ -1259,6 +1291,7 @@
                   "MinValue": 0,
                   "Name": "Slider_Shield",
                   "Offset": 0.009999999776482582,
+                  "Print": true,
                   "Rect": [
                     -0.6800000071525574,
                     -0.7250000238418579,
@@ -1388,6 +1421,7 @@
                   "MinValue": 0,
                   "Name": "Slider_Ammo",
                   "Offset": -0.012000000104308128,
+                  "Print": true,
                   "Rect": [
                     0.49000000953674316,
                     0.9150000214576721,
@@ -1472,6 +1506,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_PressToContinue",
+                  "Print": true,
                   "Rect": [
                     0.0,
                     0.6399999856948853,
@@ -1492,6 +1527,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Background",
+                  "Print": true,
                   "Rect": [
                     0.0,
                     0.0,
@@ -1593,6 +1629,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Checker_ColliderRender",
+                  "Print": true,
                   "Rect": [
                     -0.2549999952316284,
                     -0.054999999701976776,
@@ -1644,6 +1681,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Checker_GridRender",
+                  "Print": true,
                   "Rect": [
                     0.12999999523162842,
                     -0.054999999701976776,
@@ -1695,6 +1733,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Checker_GodMode",
+                  "Print": true,
                   "Rect": [
                     -0.2549999952316284,
                     0.28999999165534973,
@@ -1746,6 +1785,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Checker_ExtraSpeed",
+                  "Print": true,
                   "Rect": [
                     0.12999999523162842,
                     0.28999999165534973,
@@ -1766,6 +1806,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Img_Background",
+                  "Print": true,
                   "Rect": [
                     0.0,
                     0.07500000298023224,
@@ -1794,6 +1835,495 @@
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Debug",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3102803846
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": true,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 3123442631,
+              "UiElements": [
+                {
+                  "ID": 2441017390,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.22819314897060394,
+                    0.09494324028491974,
+                    0.3940809965133667,
+                    0.03818369284272194
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_MissionsInfo",
+                  "Print": true,
+                  "Rect": [
+                    0.3050000071525574,
+                    -0.5899999737739563,
+                    0.2750000059604645,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1309944859,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.37227413058280945,
+                    0.6057791709899902,
+                    0.050623051822185516,
+                    0.0784313753247261
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_MissionsInfoArrow",
+                  "Print": true,
+                  "Rect": [
+                    -0.03500000014901161,
+                    0.10499999672174454,
+                    0.05000000074505806,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 607823039,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.26006191968917847,
+                    0.4236760139465332,
+                    0.11042311787605286
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.14757481217384338,
+                    0.4236752390861511,
+                    0.11042311787605286
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_ToDo_Done",
+                  "Print": true,
+                  "Rect": [
+                    -0.35499998927116394,
+                    -0.5799999833106995,
+                    0.27000001072883606,
+                    0.07999999821186066
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 171599070,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.5887850522994995,
+                    0.20433436334133148,
+                    0.33255451917648315,
+                    0.055727552622556686
+                  ],
+                  "ImageSectionIdle": [
+                    0.5887850522994995,
+                    0.2837977409362793,
+                    0.33255451917648315,
+                    0.055727552622556686
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionTypeRightPanel",
+                  "Print": true,
+                  "Rect": [
+                    0.30000001192092896,
+                    -0.38499999046325684,
+                    0.23499999940395355,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2478741276,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.59112149477005,
+                    0.4097007215023041,
+                    0.3956386148929596,
+                    0.07739938050508499
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Details",
+                  "Print": true,
+                  "Rect": [
+                    0.3199999928474426,
+                    -0.14000000059604645,
+                    0.24500000476837158,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3886539528,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.59112149477005,
+                    0.5655314922332764,
+                    0.3956386148929596,
+                    0.07739938050508499
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Objectives",
+                  "Print": true,
+                  "Rect": [
+                    0.3199999928474426,
+                    0.20999999344348907,
+                    0.24500000476837158,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2108229754,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.59112149477005,
+                    0.7471620440483093,
+                    0.3956386148929596,
+                    0.07739938050508499
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_MissionStatus",
+                  "Print": true,
+                  "Rect": [
+                    0.3199999928474426,
+                    0.5149999856948853,
+                    0.24500000476837158,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 932965676,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.6274510025978088,
+                    0.13862928748130798,
+                    0.028895769268274307
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.6656346917152405,
+                    0.13862928748130798,
+                    0.028895769268274307
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionStatus",
+                  "Print": true,
+                  "Rect": [
+                    0.17499999701976776,
+                    0.6150000095367432,
+                    0.10499999672174454,
+                    0.029999999329447746
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3339058309,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.007788162212818861,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionIdle": [
+                    0.1059190034866333,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionTypeLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.550000011920929,
+                    -0.3400000035762787,
+                    0.05999999865889549,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "CheckerActive": true,
+                  "ID": 3017230494,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4322429895401001,
+                    0.8720329999923706,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.4322429895401001,
+                    0.5820433497428894,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdle": [
+                    0.4322429895401001,
+                    0.7254902124404907,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.4322429895401001,
+                    0.43550050258636475,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_MissionActive",
+                  "Print": true,
+                  "Rect": [
+                    -0.14499999582767487,
+                    -0.3400000035762787,
+                    0.03999999910593033,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    0.9399999976158142,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 1702456573,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionTitleRightPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.48500001430511475,
+                    -0.32499998807907104,
+                    0.02500000037252903,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "escape the ship",
+                  "Type": 4
+                },
+                {
+                  "ID": 3468629696,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.8586171269416809,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.7089783549308777,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionLayer",
+                  "Print": true,
+                  "Rect": [
+                    -0.35499998927116394,
+                    -0.3400000035762787,
+                    0.27000001072883606,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "Color": [
+                    1.0,
+                    0.75,
+                    0.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 3895433980,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionTitleRightPanel",
+                  "Print": true,
+                  "Rect": [
+                    0.07999999821186066,
+                    -0.2150000035762787,
+                    0.03999999910593033,
+                    0.08500000089406967
+                  ],
+                  "State": 0,
+                  "TextString": "escape the ship",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    0.8999999761581421,
+                    0.8999999761581421,
+                    0.8999999761581421,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 3855266108,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionDetailsRightPanel",
+                  "Print": true,
+                  "Rect": [
+                    0.07999999821186066,
+                    -0.004999999888241291,
+                    0.014999999664723873,
+                    0.029999999329447746
+                  ],
+                  "State": 0,
+                  "TextString": "you've managed to escape your cell, but the\nspaceship has been overrun by xenomorphs,\nlook for a weapon in this rubble of the\ncrashing and make your way out of the ship",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    0.8999999761581421,
+                    0.8999999761581421,
+                    0.8999999761581421,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 2046570873,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 1.0,
+                  "Name": "Text_MissionObjectiveRightPanel",
+                  "Print": true,
+                  "Rect": [
+                    0.07999999821186066,
+                    0.3199999928474426,
+                    0.014999999664723873,
+                    0.029999999329447746
+                  ],
+                  "State": 0,
+                  "TextString": "Find a weapon\nMeke your way out of the ship",
+                  "Type": 4
+                },
+                {
+                  "ID": 2409450994,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_Background.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    0.7250000238418579,
+                    0.8849999904632568
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_Missions",
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
@@ -1832,7 +2362,7 @@
           "UID": 472327911
         },
         {
-          "Aspect": 1.7786259651184082,
+          "Aspect": 1.7773109674453735,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
