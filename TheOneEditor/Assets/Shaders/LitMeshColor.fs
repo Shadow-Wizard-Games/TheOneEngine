@@ -1,7 +1,7 @@
 #version 450 core
 
 const int MAX_POINT_LIGHTS = 32;
-const int MAX_SPOT_LIGHTS = 32;
+const int MAX_SPOT_LIGHTS = 12;
 
 struct Material {
     vec3 diffuse;
@@ -104,8 +104,8 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
     
     // combine results
-    vec3 ambient = light.ambient * vec3(texture(u_Material.diffuse, v_Vertex_UV));
-    vec3 diffuse = light.diffuse * diff * vec3(texture(u_Material.diffuse, v_Vertex_UV));
+    vec3 ambient = light.ambient * u_Material.diffuse;
+    vec3 diffuse = light.diffuse * diff * u_Material.diffuse;
     vec3 specular = light.specular * spec * u_Material.specular;
 
     // spotlight (soft edges)

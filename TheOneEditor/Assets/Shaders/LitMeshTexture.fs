@@ -1,7 +1,7 @@
 #version 450 core
 
 const int MAX_POINT_LIGHTS = 32;
-const int MAX_SPOT_LIGHTS = 32;
+const int MAX_SPOT_LIGHTS = 12;
 
 struct Material {
     sampler2D diffuse;

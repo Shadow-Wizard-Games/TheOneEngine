@@ -1,7 +1,7 @@
 #version 450 core
 
 const int MAX_POINT_LIGHTS = 32;
-const int MAX_SPOT_LIGHTS = 32;
+const int MAX_SPOT_LIGHTS = 12;
 
 struct Material {
     sampler2D diffuse;
@@ -142,6 +142,4 @@ void main() {
     vec2 flipUV = vec2(v_Vertex_UV.s, 1. - v_Vertex_UV.t);
 
     FragColor = texture(u_Material.diffuse, flipUV) * vec4(result, 1.0);
-    //FragColor = vec4(result, 1.0);
-    //FragColor = texture(u_Material.diffuse, flipUV);
 }

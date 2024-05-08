@@ -459,24 +459,40 @@ bool PanelInspector::Draw()
                 ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
                 //ImGui::Indent(0.8f);
 
-                /*if (ImGui::BeginCombo("Camera Type", camera->cameraType == CameraType::PERSPECTIVE ? "Perspective" : "Orthographic"))
-                {
-                    if (ImGui::Selectable("Perspective", camera->cameraType == CameraType::PERSPECTIVE))
-                    {
-                        camera->cameraType = CameraType::PERSPECTIVE;
-                        LOG(LogType::LOG_INFO, "Camera projection changed to PERSPECTIVE");
-                        isDirty = true;
-                    }
+                const char* label = nullptr;
 
-                    if (ImGui::Selectable("Orthogonal", camera->cameraType == CameraType::ORTHOGRAPHIC))
+                switch (light->lightType)
+                {
+                case LightType::Point:
+                    label = "Point";
+                    break;
+                case LightType::Spot:
+                    label = "Spot";
+                    break;
+                case LightType::Directional:
+                    label = "Directional";
+                    break;
+                default:
+                    break;
+                }
+
+                if (ImGui::BeginCombo("Light Type", label))
+                {
+                    if (ImGui::Selectable("Point", light->lightType == LightType::Point))
                     {
-                        camera->cameraType = CameraType::ORTHOGRAPHIC;
-                        LOG(LogType::LOG_INFO, "Camera projection changed to ORTHOGRAPHIC");
-                        isDirty = true;
+                        light->SetLightType(LightType::Point);
+                    }
+                    if (ImGui::Selectable("Spot", light->lightType == LightType::Spot))
+                    {
+                        light->SetLightType(LightType::Spot);
+                    }
+                    if (ImGui::Selectable("Directional", light->lightType == LightType::Directional))
+                    {
+                        light->SetLightType(LightType::Directional);
                     }
 
                     ImGui::EndCombo();
-                }*/
+                }
 
                 if (ImGui::BeginTable("", 4, tableFlags))
                 {

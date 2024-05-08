@@ -10,43 +10,42 @@
 class Material;
 class Shader;
 
+//  For PBR Lighting
+struct Shadow
+{
+    enum ShadowType
+    {
+        NoShadow = 0,
+        Hard,
+        Soft,
+    };
+    ShadowType shadowType;
+    float strength;
+    float bias;
+    float normalBias;
+    float nearPlane;
+    float bakedShadowRadius;
+};
+
+enum LightType
+{
+    Point = 0,
+    Directional,
+    Spot,
+    Area, //Only in Baked mode? PBR
+};
+
+//  For PBR Lighting
+enum ModeType
+{
+    Realtime = 0,
+    Mixed,  //PBR?
+    Baked,  //PBR?
+};
+
 class Light : public Component
 {
 public:
-
-    //  For PBR Lighting
-    struct Shadow 
-    {
-        enum ShadowType
-        {
-            NoShadow = 0,
-            Hard,
-            Soft,
-        };
-        ShadowType shadowType;
-        float strength;
-        float bias;
-        float normalBias;
-        float nearPlane;
-        float bakedShadowRadius;
-    };
-
-    enum LightType
-    {
-        Point = 0, //PBR
-        Directional,
-        Spot,
-        Area, //Only in Baked mode? PBR
-    };
-
-    //  For PBR Lighting
-    enum ModeType
-    {
-        Realtime = 0,
-        Mixed,  //PBR?
-        Baked,  //PBR?
-    };
-
     Light(std::shared_ptr<GameObject> containerGO);
     Light(std::shared_ptr<GameObject> containerGO, Light* ref);
     virtual ~Light();
@@ -60,6 +59,7 @@ public:
     void SetLightType(LightType type);
 
 public:
+    LightType lightType;
     //ModeType modeType;  //PBR
     //Shadow shadows;     //PBR
 
@@ -70,12 +70,11 @@ public:
 
     float linear;
     float quadratic;
+    float cutOff;
+    float outerCutOff;
 
     std::string lightPresetPath;
 
-    bool recalculate = true;
-
-private:
-    LightType lightType;
+    bool recalculate = true; 
 };
 #endif //__LIGHT_H__

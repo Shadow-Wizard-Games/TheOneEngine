@@ -8,7 +8,7 @@
 #include "Shader.h"
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f), recalculate(true)
+color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f), recalculate(true), cutOff(0.09f), outerCutOff(0.56f)
 {
     if (lightType == LightType::Point)
     {
@@ -159,13 +159,46 @@ void Light::LoadComponent(const json& meshJSON)
 
 void Light::SetLightType(LightType type)
 {
+    bool changedToDirectional = false;
     if (type != lightType)
     {
+        switch (type)
+        {
+        case LightType::Point:
+        {
+            engine->N_sceneManager->currentScene->pointLights.push_back(this);
+        }
+        break;
+        case LightType::Directional:
+        {   
+            if (engine->N_sceneManager->currentScene->directionalLight == nullptr)
+            {
+                engine->N_sceneManager->currentScene->directionalLight = this;
+                changedToDirectional = true;
+            }
+            else
+            {
+                LOG(LogType::LOG_ERROR, "Already exists a Directional Light in scene");
+            }
+        }
+        break;
+        case LightType::Spot:
+        {
+            engine->N_sceneManager->currentScene->spotLights.push_back(this);
+        }
+        break;
+        case LightType::Area:
+            break;
+        default:
+            break;
+        }
+
         //Destory in scene vector
         switch (lightType)
         {
-        case Light::Point: 
+        case LightType::Point:
         {
+            if (type == LightType::Directional && !changedToDirectional) break;
             auto it = std::find(engine->N_sceneManager->currentScene->pointLights.begin(), engine->N_sceneManager->currentScene->pointLights.end(),
                 this);
             if (it != engine->N_sceneManager->currentScene->pointLights.end()) {
@@ -173,14 +206,15 @@ void Light::SetLightType(LightType type)
             }
         }
             break;
-        case Light::Directional:
+        case LightType::Directional:
         {
             delete engine->N_sceneManager->currentScene->directionalLight;
             engine->N_sceneManager->currentScene->directionalLight = nullptr;
         }
             break;
-        case Light::Spot: 
+        case LightType::Spot:
         {
+            if (type == LightType::Directional && !changedToDirectional) break;
             auto it = std::find(engine->N_sceneManager->currentScene->spotLights.begin(), engine->N_sceneManager->currentScene->spotLights.end(),
                 this);
             if (it != engine->N_sceneManager->currentScene->spotLights.end()) {
@@ -188,35 +222,12 @@ void Light::SetLightType(LightType type)
             }
         }
             break;
-        case Light::Area:
+        case LightType::Area:
             break;
         default:
             break;
         }
-
-        lightType = type;
-
-        switch (lightType)
-        {
-        case Light::Point:
-        {
-            engine->N_sceneManager->currentScene->pointLights.push_back(this);
-        }
-        break;
-        case Light::Directional:
-        {
-            engine->N_sceneManager->currentScene->directionalLight = this;
-        }
-        break;
-        case Light::Spot:
-        {
-            engine->N_sceneManager->currentScene->spotLights.push_back(this);
-        }
-        break;
-        case Light::Area:
-            break;
-        default:
-            break;
-        }
+        this->lightType = type;
+        this->recalculate = true;
     }
 }
