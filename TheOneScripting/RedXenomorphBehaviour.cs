@@ -112,7 +112,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 ChooseAttack();
 
                 switch (currentAttack)
@@ -130,7 +130,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Chase:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Patrol:

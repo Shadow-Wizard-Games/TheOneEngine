@@ -131,7 +131,7 @@ public class ChestBusterBehaviour : MonoBehaviour
         {
             case States.Idle:
                 if (currentAttack == ChestbursterAttack.None && detected)
-                    attachedGameObject.transform.LookAt(playerGO.transform.position);
+                    attachedGameObject.transform.LookAt2D(playerGO.transform.position);
 
                 if (!detected) ResetState();
 
