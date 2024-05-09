@@ -4,7 +4,7 @@
 class FrameBuffer
 {
 public:
-	FrameBuffer(int newWidth, int newHeight, bool depth);
+	FrameBuffer(int newWidth, int newHeight, bool depth = true, bool normal = false, bool position = false);
 	~FrameBuffer();
 
 	void Bind(bool clear = true);
@@ -20,17 +20,23 @@ public:
 	inline int getHeight() { return height; }
 
 	inline unsigned int getColorBufferTexture() { return colorAttachment; }
+	inline unsigned int getPositionBufferTexture() { return positionAttachment; }
+	inline unsigned int getNormalBufferTexture() { return normalAttachment; }
 	inline unsigned int getDepthBufferTexture() { return depthAttachment; }
 
 private:
-	void Reset(bool depth);
+	void Reset(bool depth, bool normal, bool position);
 
 private:
 	unsigned int FBO = 0;
 	unsigned int colorAttachment = 0;
+	unsigned int positionAttachment = 0;
+	unsigned int normalAttachment = 0;
 	unsigned int depthAttachment = 0;
 	unsigned int width, height;
 
 	bool depthActive = false;
+	bool positionActive = false;
+	bool normalActive = false;
 	bool initialized = false;
 };

@@ -67,7 +67,9 @@ public:
     vec3f color;
     float specular;
 
-    float flux;
+    float radius;
+    float linear;
+    float quadratic;
     float innerCutOff;
     float outerCutOff;
 

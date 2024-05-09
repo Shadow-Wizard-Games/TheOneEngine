@@ -8,9 +8,11 @@
 #include "Shader.h"
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0f), specular(0.5f), flux(1.0f), innerCutOff(0.91f), outerCutOff(0.82f),
-recalculate(true)
+color(1.0f), specular(0.5f), linear(0.7f), quadratic(1.8f), innerCutOff(0.91f), outerCutOff(0.82f), recalculate(true)
 {
+    const float maxBrightness = std::fmaxf(std::fmaxf(color.r, color.g), color.b);
+    radius = (-linear + std::sqrt(linear * linear - 4 * quadratic * (1.0f - (256.0f / 5.0f) * maxBrightness))) / (2.0f * quadratic);
+
     if (lightType == LightType::Point)
     {
         engine->N_sceneManager->currentScene->pointLights.push_back(this);
@@ -18,8 +20,8 @@ recalculate(true)
 }
 
 Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(containerGO, ComponentType::Light), lightType(ref->lightType),
-color(ref->color), specular(ref->specular), flux(ref->flux), innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff),
-recalculate(true)
+color(ref->color), specular(ref->specular), radius(ref->radius), linear(ref->linear), quadratic(ref->quadratic), 
+innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff), recalculate(true)
 {
     switch (lightType)
     {
@@ -112,7 +114,6 @@ json Light::SaveComponent()
     lightJSON["UID"] = UID;
     lightJSON["Color"] = { color.r, color.g, color.b};
     lightJSON["Specular"] = specular;
-    lightJSON["Flux"] = flux;
     lightJSON["InnerCutOff"] = innerCutOff;
     lightJSON["OuterCutOff"] = outerCutOff;
 
@@ -142,10 +143,6 @@ void Light::LoadComponent(const json& meshJSON)
     if (meshJSON.contains("Specular"))
     {
         specular = meshJSON["Specular"];
-    }
-    if (meshJSON.contains("Flux"))
-    {
-        flux = meshJSON["Flux"];
     }
     if (meshJSON.contains("InnerCutOff"))
     {

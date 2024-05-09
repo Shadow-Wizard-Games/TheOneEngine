@@ -31,7 +31,7 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     camEaseOutX = engine->easingManager->AddEasing(0.2);
     camEaseOutY = engine->easingManager->AddEasing(0.2);
 
-    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true, true, true);
     viewportSize = { 0.0f, 0.0f };
 
     gizmoType = -1;
@@ -266,6 +266,61 @@ bool PanelScene::Draw()
                 engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);*/
 
             frameBuffer->Unbind();
+        }
+
+        //  POST PROCESS -------------------------------------------------------------------
+        {
+            GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
+            std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
+            std::vector<Light*> spotLights = engine->N_sceneManager->currentScene->spotLights;
+
+            Transform* cameraTransform = engine->N_sceneManager->currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>();
+
+            Uniform::SamplerData gPositionData;
+            gPositionData.tex_id = frameBuffer->getPositionBufferTexture();
+            Uniform::SamplerData gNormalData;
+            gNormalData.tex_id = frameBuffer->getNormalBufferTexture();
+            Uniform::SamplerData gAlbedoSpecData;
+            gAlbedoSpecData.tex_id = frameBuffer->getColorBufferTexture();
+
+            engine->lightingProcess.SetUniformData("gPosition", gPositionData);
+            engine->lightingProcess.SetUniformData("gNormal", gNormalData);
+            engine->lightingProcess.SetUniformData("gAlbedoSpec", gAlbedoSpecData);
+            engine->lightingProcess.SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
+            for (int i = 0; i < pointLights.size(); i++)
+            {
+                if (pointLights[i]->recalculate)
+                {
+                    string iteration = to_string(i);
+
+                    //Variables need to be float not double
+                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Color", pointLights[i]->color);
+                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Linear", pointLights[i]->linear);
+                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Quadratic", pointLights[i]->quadratic);
+                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Radius", pointLights[i]->radius);
+                }
+            }
+            engine->lightingProcess.SetUniformData("u_SpotLightsNum", spotLights.size());
+            for (int i = 0; i < spotLights.size(); i++)
+            {
+                if (spotLights[i]->recalculate)
+                {
+                    string iteration = to_string(i);
+
+                    //Variables need to be float not double
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetForward());
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Color", spotLights[i]->color);
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Linear", pointLights[i]->linear);
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Quadratic", pointLights[i]->quadratic);
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Radius", pointLights[i]->radius);
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].CutOff", spotLights[i]->innerCutOff);
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", spotLights[i]->outerCutOff);
+                }
+            }
+            pointLights.clear();
+            spotLights.clear();
         }
 
         // Draw FrameBuffer Texture

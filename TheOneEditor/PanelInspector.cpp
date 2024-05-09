@@ -529,27 +529,37 @@ bool PanelInspector::Draw()
                     if (ImGui::DragFloat("##lightZ", &light->color.z, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
 
                     // Range
-                    if (light->lightType == LightType::Point)
+                    if (light->lightType == LightType::Point || light->lightType == LightType::Spot)
                     {
+                        ImGui::TableNextRow();
+
+                        // Headers
+                        ImGui::TableSetColumnIndex(0);
+                        ImGui::TableHeader("##");
+                        ImGui::TableSetColumnIndex(1);
+                        ImGui::TableHeader("Radius");
+                        ImGui::TableSetColumnIndex(2);
+                        ImGui::TableHeader("Linear");
+                        ImGui::TableSetColumnIndex(3);
+                        ImGui::TableHeader("Quadratic");
+
                         ImGui::TableNextRow();
 
                         ImGui::TableSetColumnIndex(0);
                         ImGui::Text("Range");
 
                         ImGui::TableSetColumnIndex(1);
-                        if (ImGui::DragFloat("##flux", &light->flux, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+                        if (ImGui::DragFloat("##radius", &light->radius, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+
+                        ImGui::TableSetColumnIndex(2);
+                        if (ImGui::DragFloat("##linear", &light->linear, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+
+                        ImGui::TableSetColumnIndex(3);
+                        if (ImGui::DragFloat("##quadratic", &light->quadratic, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
                     }
 
                     if (light->lightType == LightType::Spot)
                     {
-                        ImGui::TableNextRow();
-
-                        ImGui::TableSetColumnIndex(0);
-                        ImGui::Text("Range");
-
-                        ImGui::TableSetColumnIndex(1);
-                        if (ImGui::DragFloat("##flux", &light->flux, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
-
                         ImGui::TableNextRow();
 
                         ImGui::TableSetColumnIndex(0);

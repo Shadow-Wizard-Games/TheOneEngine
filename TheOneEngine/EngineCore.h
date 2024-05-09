@@ -89,9 +89,10 @@ public:
 	void SetEditorCamera(Camera* cam);
 	void SetUniformBufferCamera(const glm::mat4& cam);
 
-	void InitLitMeshTextureShaders();
+	void InitPostLightingShader();
 	void InitLitMeshColorShaders();
 	void InitLitMeshTextureAnimatedShaders();
+	void InitPreLightingShader();
 
 public:
 	
@@ -110,6 +111,8 @@ public:
 	bool drawScriptShapes = true;
 
 	ScratchBuffer scratch_buffer_;
+
+	Material lightingProcess;
 
 private:
 

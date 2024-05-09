@@ -7,18 +7,21 @@
 
 static const unsigned int s_MaxFramebufferSize = 8192;
 
-FrameBuffer::FrameBuffer(int newWidth, int newHeight, bool depth) : initialized(true), depthActive(depth)
+FrameBuffer::FrameBuffer(int newWidth, int newHeight, bool depth, bool normal, bool position) : initialized(true), 
+depthActive(depth), positionActive(position), normalActive(normal)
 {
 	width = newWidth;
 	height = newHeight;
 
-	Reset(depth);
+	Reset(depth, normal, position);
 }
 
 FrameBuffer::~FrameBuffer()
 {
 	if (initialized) {
 		GLCALL(glDeleteTextures(1, &colorAttachment));
+		GLCALL(glDeleteTextures(1, &positionAttachment));
+		GLCALL(glDeleteTextures(1, &normalAttachment));
 		GLCALL(glDeleteTextures(1, &depthAttachment));
 		GLCALL(glDeleteFramebuffers(1, &FBO));
 	}
@@ -39,15 +42,19 @@ void FrameBuffer::Unbind()
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 }
 
-void FrameBuffer::Reset(bool depth)
+void FrameBuffer::Reset(bool depth, bool normal, bool position)
 {
 	if (FBO)
 	{
 		GLCALL(glDeleteTextures(1, &colorAttachment));
+		GLCALL(glDeleteTextures(1, &positionAttachment));
+		GLCALL(glDeleteTextures(1, &normalAttachment));
 		GLCALL(glDeleteTextures(1, &depthAttachment));
 		GLCALL(glDeleteFramebuffers(1, &FBO));
 
 		colorAttachment = 0;
+		positionAttachment = 0;
+		normalAttachment = 0;
 		depthAttachment = 0;
 	}
 
@@ -67,6 +74,38 @@ void FrameBuffer::Reset(bool depth)
 	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 
 	GLCALL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorAttachment, 0));
+	
+	if (position)
+	{
+		// Position texture
+		GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &positionAttachment));
+		GLCALL(glBindTexture(GL_TEXTURE_2D, positionAttachment));
+
+		GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, width, height, 0, GL_RGBA, GL_FLOAT, nullptr));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+
+		GLCALL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, positionAttachment, 0));
+	}
+
+	if (normal)
+	{
+		// Normal texture
+		GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &normalAttachment));
+		GLCALL(glBindTexture(GL_TEXTURE_2D, normalAttachment));
+
+		GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, width, height, 0, GL_RGBA, GL_FLOAT, nullptr));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+
+		GLCALL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, normalAttachment, 0));
+	}
 
 	if (depth) {
 		// Depth attachment
@@ -107,7 +146,7 @@ void FrameBuffer::Resize(unsigned int newWidth, unsigned int newHeight)
 	width = newWidth;
 	height = newHeight;
 
-	Reset(depthActive);
+	Reset(depthActive, normalActive, positionActive);
 }
 
 void FrameBuffer::Clear(glm::vec4 color)

@@ -175,8 +175,6 @@ bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 	matShader->Bind();
 	matShader->SetModel(transform);
 
-	SetUpLight(material);
-
 	material->Bind();
 
 	if (drawWireframe)
@@ -448,8 +446,6 @@ bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span
 	GLCALL(glBufferData(GL_ARRAY_BUFFER, vboSize, vboMap, GL_STREAM_DRAW));
 	//GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vboSize, vboMap));
 
-	SetUpLight(material);
-
 	material->Bind();
 
 	GLCALL(glEnableVertexAttribArray(0));
@@ -613,53 +609,4 @@ void Mesh::LoadComponent(const json& meshJSON)
     {
         materialID = Resources::LoadFromLibrary<Material>(meshJSON["MaterialPath"]);
     }
-}
-
-bool Mesh::SetUpLight(Material* material)
-{
-	bool ret = true;
-
-	std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
-	std::vector<Light*> spotLights = engine->N_sceneManager->currentScene->spotLights;
-
-	Transform* cameraTransform = engine->N_sceneManager->currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>();
-	
-	//Variables need to be float not double
-	material->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
-	material->SetUniformData("u_PointLightsNum", pointLights.size());
-	for (int i = 0; i < pointLights.size(); i++)
-	{
-		if (pointLights[i]->recalculate)
-		{
-			string iteration = to_string(i);
-
-			//Variables need to be float not double
-			material->SetUniformData("u_PointLights[" + iteration + "].position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
-			material->SetUniformData("u_PointLights[" + iteration + "].flux", pointLights[i]->flux);
-			material->SetUniformData("u_PointLights[" + iteration + "].ambient", pointLights[i]->color * 0.1f);
-			material->SetUniformData("u_PointLights[" + iteration + "].diffuse", pointLights[i]->color);
-			material->SetUniformData("u_PointLights[" + iteration + "].specular", pointLights[i]->specular);
-		}
-	}
-	material->SetUniformData("u_SpotLightsNum", spotLights.size());
-	for (int i = 0; i < spotLights.size(); i++)
-	{
-		if (spotLights[i]->recalculate)
-		{
-			string iteration = to_string(i);
-
-			//Variables need to be float not double
-			material->SetUniformData("u_SpotLights[" + iteration + "].position", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
-			material->SetUniformData("u_SpotLights[" + iteration + "].direction", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetForward());
-			material->SetUniformData("u_SpotLights[" + iteration + "].flux", spotLights[i]->flux);
-			material->SetUniformData("u_SpotLights[" + iteration + "].cutOff", spotLights[i]->innerCutOff);
-			material->SetUniformData("u_SpotLights[" + iteration + "].outerCutOff", spotLights[i]->outerCutOff);
-			material->SetUniformData("u_SpotLights[" + iteration + "].ambient", spotLights[i]->color * 0.1f);
-			material->SetUniformData("u_SpotLights[" + iteration + "].diffuse", spotLights[i]->color);
-			material->SetUniformData("u_SpotLights[" + iteration + "].specular", spotLights[i]->specular);
-		}
-	}
-	pointLights.clear();
-	spotLights.clear();
-	return ret;
 }

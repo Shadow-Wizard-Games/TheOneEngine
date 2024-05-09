@@ -149,8 +149,8 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                         fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
 
 
-                        id = Resources::LoadFromLibrary<Shader>("LitMeshTextureAnimated");
-                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshTextureAnimated.toeshader");
+                        id = Resources::LoadFromLibrary<Shader>("PreLightingShader");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "PreLightingShader.toeshader");
                         bool imported = Resources::Import<Texture>(texPath.string());
 
                         if (imported) {
@@ -161,8 +161,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             data.tex_id = img->GetTextureId();
                             data.resource_id = imgId;
                             memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
-                            material.SetUniformData("u_Material.diffuse", data);
-                            material.SetUniformData("u_Material.shininess", shininess);
+                            material.SetUniformData("diffuse", data);
                         }
                     }
                     else
@@ -170,9 +169,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                         id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
                         material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
 
-                        material.SetUniformData("u_Material.diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
-                        material.SetUniformData("u_Material.diffuse", glm::vec3(specular.r, specular.g, specular.b));
-                        material.SetUniformData("u_Material.shininess", shininess);
+                        material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
                     }
 
 
@@ -234,8 +231,8 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                         fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
 
 
-                        id = Resources::LoadFromLibrary<Shader>("LitMeshTexture");
-                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshTexture.toeshader");
+                        id = Resources::LoadFromLibrary<Shader>("PreLightingShader");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "PreLightingShader.toeshader");
                         bool imported = Resources::Import<Texture>(texPath.string());
 
                         if (imported) {
@@ -246,8 +243,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             data.tex_id = img->GetTextureId();
                             data.resource_id = imgId;
                             memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
-                            material.SetUniformData("u_Material.diffuse", data);
-                            material.SetUniformData("u_Material.shininess", shininess);
+                            material.SetUniformData("diffuse", data);
                         }
                     }
                     else
@@ -255,9 +251,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                         id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
                         material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
 
-                        material.SetUniformData("u_Material.diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
-                        material.SetUniformData("u_Material.diffuse", glm::vec3(specular.r, specular.g, specular.b));
-                        material.SetUniformData("u_Material.shininess", shininess);
+                        material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
                     }
 
 

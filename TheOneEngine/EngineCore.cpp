@@ -36,10 +36,11 @@ void EngineCore::Start()
 {
     Renderer2D::Init();
 
-    InitLitMeshTextureShaders();
-    InitLitMeshTextureAnimatedShaders();
+    InitPreLightingShader();
+    InitPostLightingShader();
+    //InitLitMeshTextureAnimatedShaders();
     InitLitMeshColorShaders();
-
+    
     CameraUniformBuffer = std::make_shared<UniformBuffer>(sizeof(glm::mat4), 0);
 }
 
@@ -427,42 +428,51 @@ void EngineCore::SetUniformBufferCamera(const glm::mat4& camMatrix)
     CameraUniformBuffer->SetData(&camMatrix, sizeof(glm::mat4));
 }
 
-void EngineCore::InitLitMeshTextureShaders()
+void EngineCore::InitPostLightingShader()
 {
     //Init default shaders with uniforms
-    ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/LitMeshTexture");
+    ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PostLightingShader");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
-    textShader->Compile("Assets/Shaders/LitMeshTexture");
+    textShader->Compile("Assets/Shaders/PostLightingShader");
+    textShader->addUniform("gPosition", UniformType::Sampler2D);
+    textShader->addUniform("gNormal", UniformType::Sampler2D);
+    textShader->addUniform("gAlbedoSpec", UniformType::Sampler2D);
+    textShader->addUniform("u_ViewPos", UniformType::fVec3);
     textShader->addUniform("u_PointLightsNum", UniformType::Int);
     for (uint i = 0; i < 32; i++)
     {
         string iteration = to_string(i);
-        textShader->addUniform("u_PointLights[" + iteration + "].position", UniformType::fVec3);
-        textShader->addUniform("u_PointLights[" + iteration + "].flux", UniformType::Float);
-        textShader->addUniform("u_PointLights[" + iteration + "].ambient", UniformType::fVec3);
-        textShader->addUniform("u_PointLights[" + iteration + "].diffuse", UniformType::fVec3);
-        textShader->addUniform("u_PointLights[" + iteration + "].specular", UniformType::fVec3);
+        textShader->addUniform("u_PointLights[" + iteration + "].Position", UniformType::fVec3);
+        textShader->addUniform("u_PointLights[" + iteration + "].Color", UniformType::fVec3);
+        textShader->addUniform("u_PointLights[" + iteration + "].Linear", UniformType::Float);
+        textShader->addUniform("u_PointLights[" + iteration + "].Quadratic", UniformType::Float);
+        textShader->addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
     }
     textShader->addUniform("u_SpotLightsNum", UniformType::Int);
     for (uint i = 0; i < 12; i++)
     {
         string iteration = to_string(i);
-        textShader->addUniform("u_SpotLights[" + iteration + "].position", UniformType::fVec3);
-        textShader->addUniform("u_SpotLights[" + iteration + "].direction", UniformType::fVec3);
-        textShader->addUniform("u_SpotLights[" + iteration + "].cutOff", UniformType::Float);
-        textShader->addUniform("u_SpotLights[" + iteration + "].outerCutOff", UniformType::Float);
-        textShader->addUniform("u_SpotLights[" + iteration + "].ambient", UniformType::fVec3);
-        textShader->addUniform("u_SpotLights[" + iteration + "].diffuse", UniformType::fVec3);
-        textShader->addUniform("u_SpotLights[" + iteration + "].specular", UniformType::fVec3);
-        textShader->addUniform("u_SpotLights[" + iteration + "].constant", UniformType::Float);
-        textShader->addUniform("u_SpotLights[" + iteration + "].linear", UniformType::Float);
-        textShader->addUniform("u_SpotLights[" + iteration + "].quadratic", UniformType::Float);
+        textShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);
+        textShader->addUniform("u_SpotLights[" + iteration + "].Color", UniformType::fVec3);
+        textShader->addUniform("u_SpotLights[" + iteration + "].Direction", UniformType::fVec3);
+        textShader->addUniform("u_SpotLights[" + iteration + "].Linear", UniformType::Float);
+        textShader->addUniform("u_SpotLights[" + iteration + "].Quadratic", UniformType::Float);
+        textShader->addUniform("u_SpotLights[" + iteration + "].Radius", UniformType::Float);
+        textShader->addUniform("u_SpotLights[" + iteration + "].CutOff", UniformType::Float);
+        textShader->addUniform("u_SpotLights[" + iteration + "].OuterCutOff", UniformType::Float);
     }
-    textShader->addUniform("u_ViewPos", UniformType::fVec3);
-    textShader->addUniform("u_Material.diffuse", UniformType::Sampler2D);
-    textShader->addUniform("u_Material.specular", UniformType::fVec3);
-    textShader->addUniform("u_Material.shininess", UniformType::Float);
-    Resources::Import<Shader>("LitMeshTexture", textShader);
+    Resources::Import<Shader>("PostLightingShader", textShader);
+
+    lightingProcess.setShader(textShader, textShader->getPath());
+    /*Uniform::SamplerData gPositionData;
+    Uniform::SamplerData gNormalData;
+    Uniform::SamplerData gAlbedoSpecData;*/
+    /*lightingProcess.SetUniformData("gPosition", gPositionData);
+    lightingProcess.SetUniformData("gNormal", gNormalData);
+    lightingProcess.SetUniformData("gAlbedoSpec", gAlbedoSpecData);*/
+    std::string lightPath = Resources::PathToLibrary<Material>() + "lightingProcess.toematerial";
+    Resources::Import<Material>(lightPath, &lightingProcess);
+    Resources::LoadFromLibrary<Material>(lightPath);
 }
 
 void EngineCore::InitLitMeshColorShaders()
@@ -547,4 +557,15 @@ void EngineCore::InitLitMeshTextureAnimatedShaders()
     animTextShader->addUniform("u_Material.specular", UniformType::fVec3);
     animTextShader->addUniform("u_Material.shininess", UniformType::Float);
     Resources::Import<Shader>("LitMeshTextureAnimated", animTextShader);
+}
+
+void EngineCore::InitPreLightingShader()
+{
+    //Init default shaders with uniforms
+    ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PreLightingShader");
+    Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
+    textShader->Compile("Assets/Shaders/PreLightingShader");
+
+    textShader->addUniform("diffuse", UniformType::Sampler2D);
+    Resources::Import<Shader>("PreLightingShader", textShader);
 }
