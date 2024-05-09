@@ -207,7 +207,7 @@
 																<Action Name="" ID="{55D7B45E-A3E1-4262-A791-AF27610C070B}" ShortID="697945540">
 																	<ReferenceList>
 																		<Reference Name="Target">
-																			<ObjectRef Name="SFX_Xenomorph_Footsetps_E" ID="{D32DF82F-1673-4A39-BF7B-053FF656E203}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																			<ObjectRef Name="AX Steps" ID="{1CB17810-D287-4BFE-A7A1-AE8A6796A980}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 																		</Reference>
 																	</ReferenceList>
 																</Action>
@@ -686,25 +686,36 @@
 				</Folder>
 				<Folder Name="Voice Over" ID="{939BF861-AD2F-479B-94DF-79B87B0F0FBF}" ShortID="342914556">
 					<ChildrenList>
-						<Folder Name="0-Narrative Intro" ID="{15808843-6DEC-47B2-9414-ECCE8567FC16}" ShortID="676511315">
+						<Folder Name="Guard 1" ID="{98A1995E-A2DB-4119-812F-77BF69A3A057}" ShortID="553703852">
 							<ChildrenList>
-								<Event Name="VO_0_GUARD2_VL1" ID="{276C88EF-9D7C-44B0-AA3D-4B8ADFEECD30}">
+								<Event Name="VO_guard1_voiceline2" ID="{BBCD6424-7EEC-4707-8F3B-B8754AE53C5A}">
 									<ChildrenList>
-										<Action Name="" ID="{574DFCA8-BDAC-419D-8F7A-A533E59A4837}" ShortID="7223526">
+										<Action Name="" ID="{8A920244-B39C-446C-8549-6E087B8DB117}" ShortID="224475769">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="VO_Guard2_voiceline1_0" ID="{4DE8C4EC-C936-4139-B255-377152849307}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+													<ObjectRef Name="VO_guard1_voiceline2" ID="{94124B86-3F32-40F1-A79A-2119EC7CEA6F}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="VO_0_GUARD2_VL2" ID="{FED2C6E2-66EE-46FC-B748-803FB358F355}">
+								<Event Name="VO_guard1_voiceline1_v1" ID="{F02A4407-46DA-46BC-B1A5-145C916D1A94}">
 									<ChildrenList>
-										<Action Name="" ID="{AC21401F-96E1-4C47-83C5-DE32DE607B59}" ShortID="686459260">
+										<Action Name="" ID="{6176CD99-A774-4F3A-91E8-6BEB7E76E4FB}" ShortID="1069152823">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="VO_Guard2_voiceline2_0" ID="{3BD81ED0-C9A0-4749-BD15-60E12689AE60}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+													<ObjectRef Name="VO_guard1_voiceline1_v1" ID="{5549A574-B9FE-4827-A939-1621BA05B1C4}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_guard1_voiceline1_v2" ID="{A5F4221C-C277-4417-82E5-DB4C38E4D8C7}">
+									<ChildrenList>
+										<Action Name="" ID="{1DA3084D-9EFE-4A96-9BD5-825FF706FAAE}" ShortID="283842551">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_guard1_voiceline1_v2" ID="{45343272-5A8A-4108-92DA-B1A67D3103A4}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -712,9 +723,381 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-						<Folder Name="1-Level 1" ID="{1769190B-0458-4E5E-98C3-1FF55B8E1357}" ShortID="732066834"/>
-						<Folder Name="2_Level 2" ID="{BE5C3948-6D32-4A2A-B26A-74F393E71AE5}" ShortID="1056667522"/>
-						<Folder Name="Character" ID="{2845E442-5510-43B0-B6FF-1F1DB271CA27}" ShortID="452618547"/>
+						<Folder Name="Guard 2" ID="{D84E67B7-E060-46C7-8EBE-39248C595666}" ShortID="418038343">
+							<ChildrenList>
+								<Event Name="VO_guard2_voiceline2" ID="{FE47E9E5-455D-40B3-98BB-47D411594F37}">
+									<ChildrenList>
+										<Action Name="" ID="{D7B158BD-381D-48A3-830A-4B09726482C2}" ShortID="186849389">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_guard2_voiceline2" ID="{AC3BFB39-04D0-466F-8C7F-765957F851D6}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_guard2_voiceline1" ID="{42EC23F2-7051-44E2-A537-18A015E6CAEC}">
+									<ChildrenList>
+										<Action Name="" ID="{68ECBEAC-C882-4B02-9BA8-62C92420897E}" ShortID="215660943">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_guard2_voiceline1" ID="{73B6936D-E504-4EA6-B30C-219728D9948E}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Stub" ID="{F78B4203-0B99-44D9-B5D6-7664332FCD9C}" ShortID="743599006">
+							<ChildrenList>
+								<Event Name="VO_stub_door2" ID="{9205BFE7-3CC1-4EC6-ADD8-2524D20D2EAC}">
+									<ChildrenList>
+										<Action Name="" ID="{C614C98F-997A-4484-A97C-9D0C5E5FDCFB}" ShortID="176922462">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_door2" ID="{E29B83A7-C80A-466C-9C15-EC07F2C2D667}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_fighting1" ID="{6394BF72-2F24-4066-90ED-11A7345527D8}">
+									<ChildrenList>
+										<Action Name="" ID="{65B13953-4485-4655-BAFC-27240F1D3BFB}" ShortID="692455558">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_fighting1" ID="{23D540A8-602D-4F77-BDD0-3411793D6E9A}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_fighting3" ID="{57848C58-5F02-4C5E-B49F-2FA843ACCE37}">
+									<ChildrenList>
+										<Action Name="" ID="{17ECBB40-F820-46CD-B8FD-42CC0FE09C66}" ShortID="801678475">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_fighting3" ID="{0E1AE195-049A-4320-8C3E-769F741D2918}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_fighting2" ID="{C0585462-BB8E-4624-A912-C0B68A85C542}">
+									<ChildrenList>
+										<Action Name="" ID="{DDD7182B-98B3-4D01-A1E8-845C41423A76}" ShortID="546883169">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_fighting2" ID="{E55BFF00-93E1-47D7-8A7A-5D8DD78150FB}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_xenoFightEnd1" ID="{FCC5F1A6-9401-4B5B-921F-32F7458055B9}">
+									<ChildrenList>
+										<Action Name="" ID="{492FEFC1-E741-4738-A360-737C674817E9}" ShortID="1052237331">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_xenoFightEnd1" ID="{CA8B8FB8-543B-4280-894E-2613CCCBE4CE}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_outShip" ID="{8AE30A17-7F7D-4EE8-AE42-A773B618C0D7}">
+									<ChildrenList>
+										<Action Name="" ID="{80DC6AC1-A6B1-4FF3-B5FB-D32950592955}" ShortID="883855893">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_outShip" ID="{DD67A5AC-60C9-43F4-9347-F6574156516E}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_xenoFight3" ID="{A99ED4C1-F210-4D19-844A-F91DD8BD6E7D}">
+									<ChildrenList>
+										<Action Name="" ID="{82A278E2-5B48-473E-BA4F-28BE6D6BFCA8}" ShortID="860199133">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_xenoFight3" ID="{5FD87926-0A96-44C8-9074-5E881D48D878}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_xenoFight2" ID="{56D2C4B4-9F0D-43A8-ACEA-96CB74F859D8}">
+									<ChildrenList>
+										<Action Name="" ID="{2A6E723D-CF5B-45FC-8690-40BF3C20D586}" ShortID="550724522">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_xenoFight2" ID="{287CECF4-1DA7-4531-AD61-EC27C7C8B584}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_xenoFight1" ID="{97EB0C4E-A43E-4433-8C0B-4A12C01BC57A}">
+									<ChildrenList>
+										<Action Name="" ID="{E0374FFF-39E5-45B1-BC98-100A0909C23C}" ShortID="1057236310">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_xenoFight1" ID="{58A57DB0-02A8-4634-808C-59E8F121610D}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_heal3" ID="{350A53DD-9B00-4764-886D-1701990CCE89}">
+									<ChildrenList>
+										<Action Name="" ID="{7668D9F0-D30E-4BC3-A0E4-B4EB482AEBF9}" ShortID="958896813">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_heal3" ID="{58EE34BA-E51C-4F7F-BA78-C259B85DFD41}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_crash1" ID="{42773BA1-E8A6-4F4E-93F2-0916494C1B36}">
+									<ChildrenList>
+										<Action Name="" ID="{A02122B3-198C-4D21-965F-1EC418495822}" ShortID="797839356">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_crash1" ID="{C2B16C2E-C8E4-4D96-BC28-2B61232E8C60}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_crash2" ID="{D29F2067-DAD7-4E67-AB9E-3899A169EADD}">
+									<ChildrenList>
+										<Action Name="" ID="{30E9A70E-2556-4E33-9FDE-F088413A8AE5}" ShortID="60945154">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_crash2" ID="{4F40A9FD-696B-4451-AEF1-9F395C493DF8}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_guardWeapon" ID="{C8EDD90A-DE81-491B-8B10-AF74A9ADF1E6}">
+									<ChildrenList>
+										<Action Name="" ID="{6C1BB7DD-D33D-49E4-9807-5CC938FB4F72}" ShortID="877705954">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_guardWeapon" ID="{5776D816-A15A-4834-9E08-05557649E8F7}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_firstAlien" ID="{53476433-0CE0-4643-AD73-0E80DC99C39D}">
+									<ChildrenList>
+										<Action Name="" ID="{BCE5A474-A016-4E8E-898D-C2B313BCC6EA}" ShortID="206572500">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_firstAlien" ID="{9C1C2BD5-E3EA-4E18-8B44-F7C23F6B5998}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_planetInfo2" ID="{2EF49AF3-BB07-4E29-8487-7912479FA414}">
+									<ChildrenList>
+										<Action Name="" ID="{635AFE8E-5737-47B7-8E11-EAF87E3A3BF0}" ShortID="1033976245">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_planetInfo2" ID="{82A6E018-269C-4BAD-9194-AF97A04E4808}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_planetInfo1" ID="{BE0EA009-868F-4F0D-86BC-AEFF375DE5C7}">
+									<ChildrenList>
+										<Action Name="" ID="{7FEF4A0B-536D-4E0F-9800-3FC83A5AD7EB}" ShortID="740016176">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_planetInfo1" ID="{388FBCF6-8DE5-49DF-A3EB-6D2193E48ACC}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_planetInfo3" ID="{F5BF87AA-5EE8-47B9-93B8-EB31C9B287D3}">
+									<ChildrenList>
+										<Action Name="" ID="{63A0735F-C0F3-44AD-9E0B-7E126DDF970F}" ShortID="421239302">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_planetInfo3" ID="{ABC33738-8330-4B00-89B6-0BE742FE2B00}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_heal1" ID="{4FDE2258-99BD-4A92-B69E-8EA686612138}">
+									<ChildrenList>
+										<Action Name="" ID="{7D4AEA63-865F-4B79-8259-B274CE697AD1}" ShortID="747115514">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_heal1" ID="{E5CF267C-67C3-43AF-A029-AFE82AA20C8A}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_heal2" ID="{9211870F-C1EE-4E4B-A9A6-2F1C81FB2647}">
+									<ChildrenList>
+										<Action Name="" ID="{CF4C3F9F-6D8A-409A-867B-3F12794645F3}" ShortID="534076968">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_heal2" ID="{DDDE55E7-51D7-4909-921D-0FC05994AA99}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_clearroom2" ID="{EBEF5539-0851-41BC-95AA-C9059C9BF8BB}">
+									<ChildrenList>
+										<Action Name="" ID="{B7390295-6F30-4543-9890-0F33A338E51A}" ShortID="260242952">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_clearroom2" ID="{C0B0AA4B-B687-4429-A3D9-8B0A92F68176}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_clearroom3" ID="{483B0C4D-7130-4398-9D94-267A226407AB}">
+									<ChildrenList>
+										<Action Name="" ID="{85794B4E-55AD-4718-973D-4FE88E47531F}" ShortID="298201622">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_clearroom3" ID="{FD637C82-4EA2-4774-87D4-DCFB32584ECF}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_finding2" ID="{7A4747C7-5E2E-4DDD-835C-1FD03AACD82A}">
+									<ChildrenList>
+										<Action Name="" ID="{963A81D4-52DE-4CD7-A023-42C5F5B97CB7}" ShortID="593734441">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_finding2" ID="{60D55DB7-3FA1-4E18-83DB-DEBC2F7227BC}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_finding3" ID="{2C3F234D-366B-4A2F-9DA4-D93ADF27329A}">
+									<ChildrenList>
+										<Action Name="" ID="{35D94167-C832-47E6-AA17-BF7AFE1696A9}" ShortID="863267883">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_finding3" ID="{6F962761-C806-403B-9CC6-2CDDB98F035C}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_door1" ID="{8A910182-B9D4-4012-832F-F1ED826914C5}">
+									<ChildrenList>
+										<Action Name="" ID="{809B5752-42DA-478C-9125-051F5D61AFD4}" ShortID="776861858">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_door1" ID="{98DEF1E9-0605-41CB-B302-05DE0D1920D4}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_clearroom1" ID="{B954418A-6B73-47DC-B623-F3D0263B8049}">
+									<ChildrenList>
+										<Action Name="" ID="{F315DCD4-C597-4C81-B7A7-B8F7D32A22AD}" ShortID="565906107">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_clearroom1" ID="{5BFB0286-7DF8-48C7-BCB0-F674D67F3843}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_finding1" ID="{609C6560-B8A1-491B-AC9D-A606CD4028BC}">
+									<ChildrenList>
+										<Action Name="" ID="{F3BB5196-4174-47DD-81A7-3CE1B8852428}" ShortID="874596665">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_finding1" ID="{937A376B-6022-4475-BC10-55E9077FAADB}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_stub_fighting4" ID="{6A5F9FC8-3D23-4920-B8E3-448C44F1BDC6}">
+									<ChildrenList>
+										<Action Name="" ID="{544CDB4E-C393-461E-8348-E21721B902E9}" ShortID="235002126">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_fighting4" ID="{938054E7-E52B-436B-B7FC-2373E14267CC}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Grant" ID="{87881BE9-9BD3-40FF-83F1-B4179CC1BD58}" ShortID="387414389">
+							<ChildrenList>
+								<Event Name="VO_grant_noah2" ID="{7431DD63-CA83-4A25-98A8-0D3A14CC7A32}">
+									<ChildrenList>
+										<Action Name="" ID="{D4060123-8A77-43AF-B21C-D11C15581750}" ShortID="86943645">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_grant_noah2" ID="{68EF14BE-128E-4FEF-AB67-89F8DC3C5045}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_grant_noah3" ID="{E8848F75-7F6A-48F4-B919-CD6B5BDB3690}">
+									<ChildrenList>
+										<Action Name="" ID="{9D96105E-3227-4FB8-BBD8-FCEC9EA3D63C}" ShortID="77109921">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_grant_noah3" ID="{533E1634-4992-45E4-9AB2-0B7C1351E90A}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_grant_noah1" ID="{5A1028FB-E57A-40D4-9962-39FAB64CADA0}">
+									<ChildrenList>
+										<Action Name="" ID="{B59C29F4-9F80-4827-B836-034EA84236C5}" ShortID="27421137">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_grant_noah1" ID="{B58C3C91-A99D-4215-AD80-3E6F5FA90A42}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_grant_noah4" ID="{77895D56-5B21-4E98-B02B-06C97097E08C}">
+									<ChildrenList>
+										<Action Name="" ID="{E1065117-BFDD-4E90-965A-6E33755ED51B}" ShortID="10077487">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_grant_noah4" ID="{46159076-9D84-488C-831B-8BBB5A1DEF64}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
