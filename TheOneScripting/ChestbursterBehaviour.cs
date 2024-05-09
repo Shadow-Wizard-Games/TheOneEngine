@@ -178,7 +178,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     private void TailPunch()
     {
-        Debug.Log("Attempt to do TailPunch");
+        //Debug.Log("Attempt to do TailPunch");
         
         if (attachedGameObject.animator.currentAnimHasFinished)
         {
@@ -189,7 +189,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     private void TailTrip()
     {
-        Debug.Log("Attempt to do TailTrip");
+        //Debug.Log("Attempt to do TailTrip");
 
         if (attachedGameObject.animator.currentAnimHasFinished)
         {
@@ -200,7 +200,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     private void ResetState()
     {
-        Debug.Log("Reset State");
+        //Debug.Log("Reset State");
         attackTimer = 0.0f;
         currentAttack = ChestbursterAttack.None;
         currentState = States.Idle;
@@ -215,9 +215,9 @@ public class ChestbursterBehaviour : MonoBehaviour
     private void DebugDraw()
     {
         //Draw debug ranges
-        //if (gameManager.colliderRender)
-        //{
-        if (!detected)
+        if (gameManager.colliderRender)
+        {
+            if (!detected)
         {
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
         }
@@ -226,6 +226,6 @@ public class ChestbursterBehaviour : MonoBehaviour
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
         }
-        //}
+        }
     }
 }
