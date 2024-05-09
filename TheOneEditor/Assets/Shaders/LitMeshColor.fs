@@ -20,9 +20,7 @@ struct DirLight {
 struct PointLight {
     vec3 position;
 
-    float constant;
-    float linear;
-    float quadratic;
+    float flux;
 
     vec3 ambient;
     vec3 diffuse;
@@ -39,9 +37,7 @@ struct SpotLight {
     vec3 diffuse;
     vec3 specular;
 	
-    float constant;
-    float linear;
-    float quadratic;
+    float flux;
 };
 
 // Outputs colors in RGBA
@@ -57,6 +53,8 @@ uniform int u_SpotLightsNum;
 uniform SpotLight u_SpotLights[MAX_SPOT_LIGHTS];
 uniform vec3 u_ViewPos;
 uniform Material u_Material;
+
+const float PI = 3.14159265359;
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
     vec3 lightDir = normalize(-light.direction);
@@ -74,29 +72,27 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
 
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     vec3 lightDir = normalize(light.position - fragPos);
+    float r = length(lightDir);
     // diffuse shading
     float diff = max(dot(normal, lightDir), 0.0);
     // specular shading
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
-    // attenuation
-    float distance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance +
-        light.quadratic * (distance * distance));    
-    // combine results
+    
     vec3 ambient = light.ambient * u_Material.diffuse;
     vec3 diffuse = light.diffuse * diff * u_Material.diffuse;
     vec3 specular = light.specular * spec * u_Material.specular;
 
-    ambient *= attenuation;
-    diffuse *= attenuation;
-    specular *= attenuation;
+    vec3 radiance = vec3(0.0);
+    float irradiance = max(dot(lightDir, normal), 0.0) * light.flux / (4.0 * PI * r * r);
+    radiance += (ambient + diffuse + specular) * irradiance;
 
-    return (ambient + diffuse + specular);
+    return radiance;
 }
 
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     vec3 lightDir = normalize(light.position - fragPos);
+    float r = length(lightDir);
     // diffuse shading
     float diff = max(dot(normal, lightDir), 0.0);
     // specular shading
@@ -115,15 +111,11 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     diffuse  *= intensity;
     specular *= intensity;
 
-    // attenuation
-    float distance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance +
-        light.quadratic * (distance * distance));    
-    ambient *= attenuation;
-    diffuse *= attenuation;
-    specular *= attenuation;
+    vec3 radiance = vec3(0.0);
+    float irradiance = max(dot(lightDir, normal), 0.0) * light.flux / (4.0 * PI * r * r);
+    radiance += (ambient + diffuse + specular) * irradiance;
 
-    return (ambient + diffuse + specular);
+    return radiance;
 }
 
 void main() {

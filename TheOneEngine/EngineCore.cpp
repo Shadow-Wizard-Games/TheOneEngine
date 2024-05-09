@@ -438,9 +438,7 @@ void EngineCore::InitLitMeshTextureShaders()
     {
         string iteration = to_string(i);
         textShader->addUniform("u_PointLights[" + iteration + "].position", UniformType::fVec3);
-        textShader->addUniform("u_PointLights[" + iteration + "].constant", UniformType::Float);
-        textShader->addUniform("u_PointLights[" + iteration + "].linear", UniformType::Float);
-        textShader->addUniform("u_PointLights[" + iteration + "].quadratic", UniformType::Float);
+        textShader->addUniform("u_PointLights[" + iteration + "].flux", UniformType::Float);
         textShader->addUniform("u_PointLights[" + iteration + "].ambient", UniformType::fVec3);
         textShader->addUniform("u_PointLights[" + iteration + "].diffuse", UniformType::fVec3);
         textShader->addUniform("u_PointLights[" + iteration + "].specular", UniformType::fVec3);
@@ -462,7 +460,7 @@ void EngineCore::InitLitMeshTextureShaders()
     }
     textShader->addUniform("u_ViewPos", UniformType::fVec3);
     textShader->addUniform("u_Material.diffuse", UniformType::Sampler2D);
-    textShader->addUniform("u_Material.specular", UniformType::Sampler2D);
+    textShader->addUniform("u_Material.specular", UniformType::fVec3);
     textShader->addUniform("u_Material.shininess", UniformType::Float);
     Resources::Import<Shader>("LitMeshTexture", textShader);
 }
@@ -524,9 +522,7 @@ void EngineCore::InitLitMeshTextureAnimatedShaders()
     {
         string iteration = to_string(i);
         animTextShader->addUniform("u_PointLights[" + iteration + "].position", UniformType::fVec3);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].constant", UniformType::Float);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].linear", UniformType::Float);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].quadratic", UniformType::Float);
+        animTextShader->addUniform("u_PointLights[" + iteration + "].flux", UniformType::Float);
         animTextShader->addUniform("u_PointLights[" + iteration + "].ambient", UniformType::fVec3);
         animTextShader->addUniform("u_PointLights[" + iteration + "].diffuse", UniformType::fVec3);
         animTextShader->addUniform("u_PointLights[" + iteration + "].specular", UniformType::fVec3);
@@ -548,7 +544,7 @@ void EngineCore::InitLitMeshTextureAnimatedShaders()
     }
     animTextShader->addUniform("u_ViewPos", UniformType::fVec3);
     animTextShader->addUniform("u_Material.diffuse", UniformType::Sampler2D);
-    animTextShader->addUniform("u_Material.specular", UniformType::Sampler2D);
+    animTextShader->addUniform("u_Material.specular", UniformType::fVec3);
     animTextShader->addUniform("u_Material.shininess", UniformType::Float);
     Resources::Import<Shader>("LitMeshTextureAnimated", animTextShader);
 }

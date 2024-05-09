@@ -8,7 +8,8 @@
 #include "Shader.h"
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f), recalculate(true), cutOff(0.09f), outerCutOff(0.56f)
+color(1.0f), specular(0.5f), flux(1.0f), innerCutOff(0.91f), outerCutOff(0.82f),
+recalculate(true)
 {
     if (lightType == LightType::Point)
     {
@@ -17,18 +18,33 @@ color(1.0f), specular(0.5f), linear(0.007f), quadratic(0.0002f), recalculate(tru
 }
 
 Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(containerGO, ComponentType::Light), lightType(ref->lightType),
-color(ref->color), specular(ref->specular), linear(ref->linear), quadratic(ref->quadratic), recalculate(true)
+color(ref->color), specular(ref->specular), flux(ref->flux), innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff),
+recalculate(true)
 {
-    if (lightType == LightType::Point)
+    switch (lightType)
     {
+    case Point:
         engine->N_sceneManager->currentScene->pointLights.push_back(this);
+        break;
+    case Directional:
+        engine->N_sceneManager->currentScene->directionalLight = this;
+        break;
+    case Spot:
+        engine->N_sceneManager->currentScene->spotLights.push_back(this);
+        break;
+    case Area:
+        break;
+    default:
+        break;
     }
 }
 
 Light::~Light() 
 {
     //Destory in scene vector
-    if (lightType == LightType::Point)
+    switch (lightType)
+    {
+    case LightType::Point:
     {
         auto it = std::find(engine->N_sceneManager->currentScene->pointLights.begin(), engine->N_sceneManager->currentScene->pointLights.end(),
             this);
@@ -36,10 +52,32 @@ Light::~Light()
             engine->N_sceneManager->currentScene->pointLights.erase(it);
         }
     }
+    break;
+    case LightType::Directional:
+    {
+        delete engine->N_sceneManager->currentScene->directionalLight;
+        engine->N_sceneManager->currentScene->directionalLight = nullptr;
+    }
+    break;
+    case LightType::Spot:
+    {
+        auto it = std::find(engine->N_sceneManager->currentScene->spotLights.begin(), engine->N_sceneManager->currentScene->spotLights.end(),
+            this);
+        if (it != engine->N_sceneManager->currentScene->spotLights.end()) {
+            engine->N_sceneManager->currentScene->spotLights.erase(it);
+        }
+    }
+    break;
+    case LightType::Area:
+        break;
+    default:
+        break;
+    }
 }
 
 void Light::DrawComponent(Camera* camera)
 {
+    //Stop shaders calculus to not be each frame doing it
     std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
 
     for (uint i = 0; i < pointLights.size(); i++)
@@ -47,6 +85,17 @@ void Light::DrawComponent(Camera* camera)
         if (pointLights[i]->recalculate) pointLights[i]->recalculate = false;
     }
     pointLights.clear();
+    
+    std::vector<Light*> spotLights = engine->N_sceneManager->currentScene->spotLights;
+
+    for (uint i = 0; i < spotLights.size(); i++)
+    {
+        if (spotLights[i]->recalculate) spotLights[i]->recalculate = false;
+    }
+    spotLights.clear();
+
+    if (engine->N_sceneManager->currentScene->directionalLight != nullptr && engine->N_sceneManager->currentScene->directionalLight->recalculate)
+        engine->N_sceneManager->currentScene->directionalLight->recalculate = false;
 }
 
 json Light::SaveComponent()
@@ -60,23 +109,12 @@ json Light::SaveComponent()
         lightJSON["ParentUID"] = pGO.get()->GetUID();
     }
     lightJSON["LightType"] = lightType;
-    //lightJSON["ModeType"] = modeType;
-    /*lightJSON["Shadow"] = 
-    {
-        {"ShadowType", shadows.shadowType},
-        {"Strength", shadows.strength},
-        {"Bias", shadows.bias},
-        {"NormalBias", shadows.normalBias},
-        {"NearPlane", shadows.nearPlane},
-        {"BakedShadowRadius", shadows.bakedShadowRadius},
-    };*/
     lightJSON["UID"] = UID;
-    //lightJSON["Range"] = range;
-    //lightJSON["SpotAngle"] = spotAngle;
     lightJSON["Color"] = { color.r, color.g, color.b};
     lightJSON["Specular"] = specular;
-    lightJSON["Linear"] = linear;
-    lightJSON["Quadratic"] = quadratic;
+    lightJSON["Flux"] = flux;
+    lightJSON["InnerCutOff"] = innerCutOff;
+    lightJSON["OuterCutOff"] = outerCutOff;
 
     return lightJSON;
 }
@@ -87,56 +125,14 @@ void Light::LoadComponent(const json& meshJSON)
     {
         name = meshJSON["Name"];
     }
-    
     if (meshJSON.contains("LightType"))
     {
         lightType = meshJSON["LightType"];
     }
-    
-   /* if (meshJSON.contains("ModeType"))
-    {
-        modeType = meshJSON["ModeType"];
-    }
-    
-    if (meshJSON.contains("Shadow"))
-    {
-        if (meshJSON.contains("ShadowType"))
-        {
-            shadows.shadowType = meshJSON["ShadowType"];
-        }
-        if (meshJSON.contains("Strength"))
-        {
-            shadows.strength = meshJSON["Strength"];
-        }
-        if (meshJSON.contains("Bias"))
-        {
-            shadows.bias = meshJSON["Bias"];
-        }
-        if (meshJSON.contains("NormalBias"))
-        {
-            shadows.normalBias = meshJSON["NormalBias"];
-        }
-        if (meshJSON.contains("NearPlane"))
-        {
-            shadows.nearPlane = meshJSON["NearPlane"];
-        }
-        if (meshJSON.contains("BakedShadowRadius"))
-        {
-            shadows.bakedShadowRadius = meshJSON["BakedShadowRadius"];
-        }
-    }*/
     if (meshJSON.contains("UID"))
     {
         UID = meshJSON["UID"];
     }
-    /*if (meshJSON.contains("Range"))
-    {
-        range = meshJSON["Range"];
-    }*/
-    /*if (meshJSON.contains("SpotAngle"))
-    {
-        spotAngle = meshJSON["SpotAngle"];
-    }*/
     if (meshJSON.contains("Color"))
     {
         color.r = meshJSON["Color"][0];
@@ -147,13 +143,17 @@ void Light::LoadComponent(const json& meshJSON)
     {
         specular = meshJSON["Specular"];
     }
-    if (meshJSON.contains("Linear"))
+    if (meshJSON.contains("Flux"))
     {
-        linear = meshJSON["Linear"];
+        flux = meshJSON["Flux"];
     }
-    if (meshJSON.contains("Quadratic"))
+    if (meshJSON.contains("InnerCutOff"))
     {
-        quadratic = meshJSON["Quadratic"];
+        innerCutOff = meshJSON["InnerCutOff"];
+    }
+    if (meshJSON.contains("OuterCutOff"))
+    {
+        outerCutOff = meshJSON["OuterCutOff"];
     }
 }
 

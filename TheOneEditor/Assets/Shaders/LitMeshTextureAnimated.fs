@@ -20,9 +20,7 @@ struct DirLight {
 struct PointLight {
     vec3 position;
 
-    float constant;
-    float linear;
-    float quadratic;
+    float flux;
 
     vec3 ambient;
     vec3 diffuse;
@@ -39,9 +37,7 @@ struct SpotLight {
     vec3 diffuse;
     vec3 specular;
 	
-    float constant;
-    float linear;
-    float quadratic;
+    float flux;
 };
 
 // Outputs colors in RGBA
@@ -51,6 +47,7 @@ in vec3 normal;
 in vec3 fragPos;
 in vec2 v_Vertex_UV;
 
+//Lighting Uniforms
 uniform DirLight u_DirLight;
 uniform int u_PointLightsNum;
 uniform PointLight u_PointLights[MAX_POINT_LIGHTS];
@@ -59,7 +56,18 @@ uniform SpotLight u_SpotLights[MAX_SPOT_LIGHTS];
 uniform vec3 u_ViewPos;
 uniform Material u_Material;
 
+//Depth Uniforms (Change to uniforms)
+float near = 0.1f;
+float far = 100.0f;
+float steepness = 0.5f; //Controls how fast depth value changes from 0 to 1
+float offset = 5.0f;
+bool fogActivated = false;
+
+const float PI = 3.14159265359;
+
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
+    vec2 flipUV = vec2(v_Vertex_UV.s, 1. - v_Vertex_UV.t);
+
     vec3 lightDir = normalize(-light.direction);
     // diffuse shading
     float diff = max(dot(normal, lightDir), 0.0);
@@ -67,46 +75,50 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
     // combine results
-    vec3 ambient = light.ambient * vec3(texture(u_Material.diffuse, v_Vertex_UV));
-    vec3 diffuse = light.diffuse * diff * vec3(texture(u_Material.diffuse, v_Vertex_UV));
+    vec3 ambient = light.ambient * vec3(texture(u_Material.diffuse, flipUV));
+    vec3 diffuse = light.diffuse * diff * vec3(texture(u_Material.diffuse, flipUV));
     vec3 specular = light.specular * spec * u_Material.specular;
     return (ambient + diffuse + specular);
 }
 
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
+    vec2 flipUV = vec2(v_Vertex_UV.s, 1. - v_Vertex_UV.t);
+
     vec3 lightDir = normalize(light.position - fragPos);
+    float r = length(lightDir);
     // diffuse shading
     float diff = max(dot(lightDir, normal), 0.0);
     // specular shading
-    vec3 halfwayDir = normalize(lightDir + viewDir);
-    float spec = pow(max(dot(normal, halfwayDir), 0.0), u_Material.shininess);
-    // attenuation
-    float distance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance +
-        light.quadratic * (distance * distance));    
+    vec3 halfwayDir = normalize(viewDir + lightDir);
+    float spec = pow(max(dot(normal, halfwayDir), 0.0), 16.0);
+    
     // combine results
-    vec3 ambient = light.ambient * vec3(texture(u_Material.diffuse, v_Vertex_UV));
-    vec3 diffuse = light.diffuse * diff * vec3(texture(u_Material.diffuse, v_Vertex_UV));
+    vec3 ambient = light.ambient * texture(u_Material.diffuse, flipUV).rgb;
+    vec3 diffuse = light.diffuse * diff * texture(u_Material.diffuse, flipUV).rgb;
     vec3 specular = light.specular * spec * u_Material.specular;
+    //if (diff == 0.0f) specular = vec3(0.0f);
 
-    ambient *= attenuation;
-    diffuse *= attenuation;
-    specular *= attenuation;
+    vec3 radiance = vec3(0.0);
+    float irradiance = max(dot(lightDir, normal), 0.0) * light.flux / (4.0 * PI * r * r);
+    radiance += (ambient + diffuse + specular) * irradiance;
 
-    return (ambient + diffuse + specular);
+    return radiance;
 }
 
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
+    vec2 flipUV = vec2(v_Vertex_UV.s, 1. - v_Vertex_UV.t);
+
     vec3 lightDir = normalize(light.position - fragPos);
+    float r = length(lightDir);
     // diffuse shading
     float diff = max(dot(normal, lightDir), 0.0);
     // specular shading
-    vec3 reflectDir = reflect(-lightDir, normal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_Material.shininess);
+    vec3 halfwayDir = normalize(lightDir + viewDir);
+    float spec = pow(max(dot(viewDir, halfwayDir), 0.0), u_Material.shininess);
     
     // combine results
-    vec3 ambient = light.ambient * vec3(texture(u_Material.diffuse, v_Vertex_UV));
-    vec3 diffuse = light.diffuse * diff * vec3(texture(u_Material.diffuse, v_Vertex_UV));
+    vec3 ambient = light.ambient * texture(u_Material.diffuse, flipUV).rgb;
+    vec3 diffuse = light.diffuse * diff * texture(u_Material.diffuse, flipUV).rgb;
     vec3 specular = light.specular * spec * u_Material.specular;
 
     // spotlight (soft edges)
@@ -116,15 +128,23 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     diffuse  *= intensity;
     specular *= intensity;
 
-    // attenuation
-    float distance = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance +
-        light.quadratic * (distance * distance));    
-    ambient *= attenuation;
-    diffuse *= attenuation;
-    specular *= attenuation;
+    vec3 radiance = vec3(0.0);
+    float irradiance = max(dot(lightDir, normal), 0.0) * light.flux / (4.0 * PI * r * r);
+    radiance += (ambient + diffuse + specular) * irradiance;
 
-    return (ambient + diffuse + specular);
+    return radiance;
+}
+
+//Function for fixing depth calculus
+float linearizeDepth(float depth){
+    return (2.0 * near * far) / (far + near - (depth * 2.0 - 1.0) * (far - near));
+}
+
+
+//Function for creating fog effect
+float logisticDepth(float depth, float steepness, float offset){
+    float zVal = linearizeDepth(depth);
+    return (1 / (1 + exp(-steepness * (zVal - offset))));
 }
 
 void main() {
@@ -134,12 +154,10 @@ void main() {
     // phase 1: Directional lighting
     //vec3 result = CalcDirLight(u_DirLight, norm, viewDir);
     // phase 2: Point lights
-    vec3 result = {0,0,0};
+    vec3 result = {0, 0, 0};
     for(int i = 0; i < u_PointLightsNum; i++) result += CalcPointLight(u_PointLights[i], norm, fragPos, viewDir);
 
     for(int i = 0; i < u_SpotLightsNum; i++) result += CalcSpotLight(u_SpotLights[i], norm, fragPos, viewDir);
 
-    vec2 flipUV = vec2(v_Vertex_UV.s, 1. - v_Vertex_UV.t);
-
-    FragColor = texture(u_Material.diffuse, flipUV) * vec4(result, 1.0);
+    FragColor = vec4(result, 1.0);
 }

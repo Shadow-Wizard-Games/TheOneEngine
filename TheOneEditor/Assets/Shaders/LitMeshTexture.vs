@@ -3,7 +3,6 @@
 layout(location = 0) in vec3 a_Pos;
 layout(location = 1) in vec2 a_UV;
 layout(location = 2) in vec3 a_Normal;
-layout(location = 3) in vec4 a_Color;
 
 out vec3 normal;
 out vec3 fragPos;

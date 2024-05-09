@@ -55,7 +55,6 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
-    LightType GetLightType() const { return lightType; }
     void SetLightType(LightType type);
 
 public:
@@ -68,13 +67,12 @@ public:
     vec3f color;
     float specular;
 
-    float linear;
-    float quadratic;
-    float cutOff;
+    float flux;
+    float innerCutOff;
     float outerCutOff;
 
     std::string lightPresetPath;
 
-    bool recalculate = true; 
+    bool recalculate;
 };
 #endif //__LIGHT_H__

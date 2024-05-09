@@ -635,15 +635,12 @@ bool Mesh::SetUpLight(Material* material)
 
 			//Variables need to be float not double
 			material->SetUniformData("u_PointLights[" + iteration + "].position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
-			material->SetUniformData("u_PointLights[" + iteration + "].constant", 1.0f);
-			material->SetUniformData("u_PointLights[" + iteration + "].linear", pointLights[i]->linear);
-			material->SetUniformData("u_PointLights[" + iteration + "].quadratic", pointLights[i]->quadratic);
+			material->SetUniformData("u_PointLights[" + iteration + "].flux", pointLights[i]->flux);
 			material->SetUniformData("u_PointLights[" + iteration + "].ambient", pointLights[i]->color * 0.1f);
 			material->SetUniformData("u_PointLights[" + iteration + "].diffuse", pointLights[i]->color);
 			material->SetUniformData("u_PointLights[" + iteration + "].specular", pointLights[i]->specular);
 		}
 	}
-	
 	material->SetUniformData("u_SpotLightsNum", spotLights.size());
 	for (int i = 0; i < spotLights.size(); i++)
 	{
@@ -652,18 +649,17 @@ bool Mesh::SetUpLight(Material* material)
 			string iteration = to_string(i);
 
 			//Variables need to be float not double
-			material->SetUniformData("u_PointLights[" + iteration + "].position", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
-			material->SetUniformData("u_PointLights[" + iteration + "].direction", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetForward());
-			material->SetUniformData("u_PointLights[" + iteration + "].cutOff", spotLights[i]->cutOff);
-			material->SetUniformData("u_PointLights[" + iteration + "].outerCutOff", spotLights[i]->outerCutOff);
-			material->SetUniformData("u_PointLights[" + iteration + "].constant", 1.0f);
-			material->SetUniformData("u_PointLights[" + iteration + "].linear", spotLights[i]->linear);
-			material->SetUniformData("u_PointLights[" + iteration + "].quadratic", spotLights[i]->quadratic);
-			material->SetUniformData("u_PointLights[" + iteration + "].ambient", spotLights[i]->color * 0.1f);
-			material->SetUniformData("u_PointLights[" + iteration + "].diffuse", spotLights[i]->color);
-			material->SetUniformData("u_PointLights[" + iteration + "].specular", spotLights[i]->specular);
+			material->SetUniformData("u_SpotLights[" + iteration + "].position", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+			material->SetUniformData("u_SpotLights[" + iteration + "].direction", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetForward());
+			material->SetUniformData("u_SpotLights[" + iteration + "].flux", spotLights[i]->flux);
+			material->SetUniformData("u_SpotLights[" + iteration + "].cutOff", spotLights[i]->innerCutOff);
+			material->SetUniformData("u_SpotLights[" + iteration + "].outerCutOff", spotLights[i]->outerCutOff);
+			material->SetUniformData("u_SpotLights[" + iteration + "].ambient", spotLights[i]->color * 0.1f);
+			material->SetUniformData("u_SpotLights[" + iteration + "].diffuse", spotLights[i]->color);
+			material->SetUniformData("u_SpotLights[" + iteration + "].specular", spotLights[i]->specular);
 		}
 	}
-
+	pointLights.clear();
+	spotLights.clear();
 	return ret;
 }

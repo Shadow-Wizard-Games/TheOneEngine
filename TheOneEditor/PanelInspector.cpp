@@ -478,15 +478,15 @@ bool PanelInspector::Draw()
 
                 if (ImGui::BeginCombo("Light Type", label))
                 {
-                    if (ImGui::Selectable("Point", light->lightType == LightType::Point))
+                    if (ImGui::Selectable("Point"))
                     {
                         light->SetLightType(LightType::Point);
                     }
-                    if (ImGui::Selectable("Spot", light->lightType == LightType::Spot))
+                    if (ImGui::Selectable("Spot"))
                     {
                         light->SetLightType(LightType::Spot);
                     }
-                    if (ImGui::Selectable("Directional", light->lightType == LightType::Directional))
+                    if (ImGui::Selectable("Directional"))
                     {
                         light->SetLightType(LightType::Directional);
                     }
@@ -527,18 +527,40 @@ bool PanelInspector::Draw()
 
                     ImGui::TableSetColumnIndex(3);
                     if (ImGui::DragFloat("##lightZ", &light->color.z, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
-                    
-                    ImGui::TableNextRow();
 
                     // Range
-                    ImGui::TableSetColumnIndex(0);
-                    ImGui::Text("Range");
+                    if (light->lightType == LightType::Point)
+                    {
+                        ImGui::TableNextRow();
 
-                    ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##linear", &light->linear, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+                        ImGui::TableSetColumnIndex(0);
+                        ImGui::Text("Range");
 
-                    ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##quadratic", &light->quadratic, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+                        ImGui::TableSetColumnIndex(1);
+                        if (ImGui::DragFloat("##flux", &light->flux, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+                    }
+
+                    if (light->lightType == LightType::Spot)
+                    {
+                        ImGui::TableNextRow();
+
+                        ImGui::TableSetColumnIndex(0);
+                        ImGui::Text("Range");
+
+                        ImGui::TableSetColumnIndex(1);
+                        if (ImGui::DragFloat("##flux", &light->flux, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+
+                        ImGui::TableNextRow();
+
+                        ImGui::TableSetColumnIndex(0);
+                        ImGui::Text("Cut Off");
+
+                        ImGui::TableSetColumnIndex(1);
+                        if (ImGui::DragFloat("##inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+
+                        ImGui::TableSetColumnIndex(2);
+                        if (ImGui::DragFloat("##outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f", 1)) light->recalculate = true;
+                    }
 
                     ImGui::EndTable();
                 }
