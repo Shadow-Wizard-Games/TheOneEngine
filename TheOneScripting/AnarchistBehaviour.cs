@@ -38,7 +38,7 @@ class AnarchistBehaviour : MonoBehaviour
         attachedGameObject.animator.Play("Scan");
 
         attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.time = 0.0f;
+        attachedGameObject.animator.transitionTime = 0.0f;
     }
 
     public override void Update()
