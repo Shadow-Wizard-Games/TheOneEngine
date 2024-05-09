@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class ChestBusterBehaviour : MonoBehaviour
+public class ChestbursterBehaviour : MonoBehaviour
 {
     enum States
     {
