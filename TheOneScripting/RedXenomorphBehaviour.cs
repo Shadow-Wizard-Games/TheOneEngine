@@ -22,20 +22,28 @@ public class RedXenomorphBehaviour : MonoBehaviour
     Vector3 directorVector;
     float playerDistance;
 
-    // Adult Xenomorph parameters
-    float life = 200.0f;
+    // Red Xenomorph parameters
+    float life = 250.0f;
     float movementSpeed = 40.0f * 3;
     States currentState = States.Idle;
+    States lastState = States.Idle;
     RedXenomorphAttacks currentAttack = RedXenomorphAttacks.None;
+    Vector3 initialPos;
+
+    // Patrol
+    float patrolRange = 100;
+    float patrolSpeed = 20.0f;
+    float roundProgress = 0.0f; //Do not modify
+    bool goingToRoundPos = false;
 
     // Ranges
-    const float farRangeThreshold = 50.0f * 3;
-    const float enemyDetectedRange = 35.0f * 3;
-    const float maxAttackRange = 90.0f;
+    const float detectedRange = 35.0f * 3;
+    const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
 
     // Flags
     bool detected = false;
+    bool isClose = false;
 
     // Timers
     float attackTimer = 0.0f;
@@ -50,49 +58,65 @@ public class RedXenomorphBehaviour : MonoBehaviour
         player = playerGO.GetComponent<PlayerScript>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
+        //attachedGameObject.animator.Play("Idle");
+        //attachedGameObject.animator.blend = false;
+        //attachedGameObject.animator.transitionTime = 0.0f;
     }
 
     public override void Update()
     {
+        //attachedGameObject.animator.UpdateAnimation();
+
         if (currentState == States.Dead) return;
 
         if (attachedGameObject.transform.ComponentCheck())
         {
+            DebugDraw();
+
             //Set the director vector and distance to the player
             directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
             playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
 
-            UpdateFSMStates();
+            UpdateFSM();
             DoStateBehaviour();
         }
-
-        DebugDraw();
     }
 
-    void UpdateFSMStates()
+    void UpdateFSM()
     {
         if (life <= 0) { currentState = States.Dead; return; }
 
-        if (!detected && playerDistance < enemyDetectedRange) detected = true;
+        if (!detected && playerDistance < detectedRange)
+        {
+            detected = true;
+            currentState = States.Chase;
+        }
 
         if (detected)
         {
-            if (playerDistance < maxAttackRange)
+            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+            if (playerDistance < isCloseRange && !isClose)
             {
-                currentState = States.Attack;
+                isClose = true;
+                Debug.Log("Player is now CLOSE");
             }
-            else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
+
+            if (playerDistance >= isCloseRange && isClose)
             {
-                currentState = States.Chase;
+                isClose = false;
+                Debug.Log("Player is now FAR");
             }
-            else if (playerDistance > maxChasingRange)
+
+            if (playerDistance > maxChasingRange)
             {
                 detected = false;
-                currentState = States.Idle;
+                currentState = States.Patrol;
             }
 
             if (currentAttack == RedXenomorphAttacks.None)
             {
+                //attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attackTimer += Time.deltaTime;
             }
 
@@ -112,16 +136,17 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+
+
                 ChooseAttack();
 
                 switch (currentAttack)
                 {
                     case RedXenomorphAttacks.SpikeThrow:
-                        AcidSpit();
+                        SpikeThrow();
                         break;
                     case RedXenomorphAttacks.TailStab:
-                        TailAttack();
+                        TailStab();
                         break;
                     default:
                         break;
@@ -130,10 +155,10 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Chase:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Patrol:
+                Patrol();
                 break;
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
@@ -145,46 +170,103 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     private void ChooseAttack()
     {
-
+        if (currentAttack == RedXenomorphAttacks.None)
+        {
+            if (isClose)
+            {
+                currentAttack = RedXenomorphAttacks.TailStab;
+                //attachedGameObject.animator.Play("TailAttack");
+            }
+            else
+            {
+                currentAttack = RedXenomorphAttacks.SpikeThrow;
+                //attachedGameObject.animator.Play("AcidSpit");
+            }
+            Debug.Log("Chestburster current attack: " + currentAttack);
+        }
     }
 
-    private void AcidSpit()
+    private void SpikeThrow()
     {
         //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
+        //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
         ResetState();
+        //if (attachedGameObject.animator.currentAnimHasFinished)
+        //{
+        //    ResetState();
+        //}
     }
 
-    private void TailAttack()
+    private void TailStab()
     {
+        ResetState();
+        //if (attachedGameObject.animator.currentAnimHasFinished)
+        //{
+        //    ResetState();
+        //}
+    }
+    private void Patrol()
+    {
+        if (currentState != lastState)
+        {
+            lastState = currentState;
+            goingToRoundPos = true;
+        }
 
+        roundProgress += Time.deltaTime * patrolSpeed;
+        if (roundProgress > 360.0f) roundProgress -= 360.0f;
+
+        Vector3 roundPos = initialPos +
+                           Vector3.right * (float)Math.Cos(roundProgress * Math.PI / 180.0f) * patrolRange +
+                           Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
+
+        attachedGameObject.transform.LookAt2D(roundPos);
+        if (!goingToRoundPos)
+        {
+            MoveTo(roundPos);
+        }
+        else
+        {
+            goingToRoundPos = !MoveTo(roundPos);
+        }
     }
 
     private void ResetState()
     {
         attackTimer = 0.0f;
+        currentAttack = RedXenomorphAttacks.None;
+        currentState = States.Chase;
     }
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
         life -= 10.0f;
     }
+    private bool MoveTo(Vector3 targetPosition)
+    {
+        //Return true if arrived at destination
+        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
+        //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_REBEL_STEP);
+        return false;
+    }
 
     private void DebugDraw()
     {
         //Draw debug ranges
-        if (gameManager.colliderRender)
+        //if (gameManager.colliderRender)
+        //{
+        if (!detected)
         {
-            if (!detected)
-            {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
-            }
-            else
-            {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
-            }
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
+            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
         }
+        else
+        {
+            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
+            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
+        }
+        //}
     }
 }
