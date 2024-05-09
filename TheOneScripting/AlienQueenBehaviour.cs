@@ -151,7 +151,7 @@ public class AlienQueenBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    attachedGameObject.transform.LookAt(playerGO.transform.position);
+                    attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 }
                 return;
             case States.Attack:

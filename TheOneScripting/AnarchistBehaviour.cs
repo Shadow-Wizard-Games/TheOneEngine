@@ -110,7 +110,7 @@ class AnarchistBehaviour : MonoBehaviour
                            Vector3.right * (float)Math.Cos(roundProgress * Math.PI / 180.0f) * patrolRange +
                            Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
 
-        attachedGameObject.transform.LookAt(roundPos);
+        attachedGameObject.transform.LookAt2D(roundPos);
         if (!goingToRoundPos)
         {
             MoveTo(roundPos);
@@ -151,7 +151,7 @@ class AnarchistBehaviour : MonoBehaviour
                 {
                     currentSubstate = InspctStates.Inspecting;
                 }
-                attachedGameObject.transform.LookAt(playerLastPosition);
+                attachedGameObject.transform.LookAt2D(playerLastPosition);
                 if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.3f); }
                 break;
             case InspctStates.Inspecting:
@@ -172,7 +172,7 @@ class AnarchistBehaviour : MonoBehaviour
                     currentSubstate = InspctStates.Going;
                     currentState = States.Patrol;
                 }
-                attachedGameObject.transform.LookAt(initialPos);
+                attachedGameObject.transform.LookAt2D(initialPos);
                 if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.8f); }
                 break;
             default:
@@ -200,7 +200,7 @@ class AnarchistBehaviour : MonoBehaviour
     int burstBulletCount = 3;
     void AttackState()
     {
-        attachedGameObject.transform.LookAt(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
         //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
 
         if (playerDistance > loseRange)

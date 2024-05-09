@@ -11,6 +11,8 @@ public:
 	void Bind() const;
 	void Unbind() const;
 
+	void Delete();
+
 	void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer);
 	void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer);
 

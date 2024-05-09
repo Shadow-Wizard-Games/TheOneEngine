@@ -58,6 +58,8 @@ public:
 
     void OnResizeWindow(int width, int height);
 
+    void InfiniteScroll(bool global = false);
+
     uint GetWidth() { return width; }
     uint GetHeight() { return height; }
 
@@ -74,6 +76,8 @@ private:
     Resolution resolution;
     uint width;
     uint height;
+    uint minWidth;
+    uint minHeight;
 };
 
 #endif // !__WINDOW_H__
