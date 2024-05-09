@@ -107,6 +107,10 @@ void FrameBuffer::Reset(bool depth, bool normal, bool position)
 		GLCALL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, normalAttachment, 0));
 	}
 
+	// tell OpenGL which color attachments we'll use (of this framebuffer) for rendering 
+	unsigned int attachments[3] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2 };
+	glDrawBuffers(3, attachments);
+
 	if (depth) {
 		// Depth attachment
 		GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &depthAttachment));

@@ -464,12 +464,6 @@ void EngineCore::InitPostLightingShader()
     Resources::Import<Shader>("PostLightingShader", textShader);
 
     lightingProcess.setShader(textShader, textShader->getPath());
-    /*Uniform::SamplerData gPositionData;
-    Uniform::SamplerData gNormalData;
-    Uniform::SamplerData gAlbedoSpecData;*/
-    /*lightingProcess.SetUniformData("gPosition", gPositionData);
-    lightingProcess.SetUniformData("gNormal", gNormalData);
-    lightingProcess.SetUniformData("gAlbedoSpec", gAlbedoSpecData);*/
     std::string lightPath = Resources::PathToLibrary<Material>() + "lightingProcess.toematerial";
     Resources::Import<Material>(lightPath, &lightingProcess);
     Resources::LoadFromLibrary<Material>(lightPath);

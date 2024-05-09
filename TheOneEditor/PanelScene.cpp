@@ -232,7 +232,7 @@ bool PanelScene::Draw()
         // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
         {
             frameBuffer->Bind();
-            frameBuffer->Clear();
+            frameBuffer->Clear({0.0f, 0.0f, 0.0f, 1.0f});
 
             // Set Render Environment
             engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
@@ -319,13 +319,11 @@ bool PanelScene::Draw()
                     engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", spotLights[i]->outerCutOff);
                 }
             }
-            pointLights.clear();
-            spotLights.clear();
         }
 
         // Draw FrameBuffer Texture
         ImGui::Image(
-            (ImTextureID)frameBuffer->getColorBufferTexture(),
+            (ImTextureID)frameBuffer->getNormalBufferTexture(),
             ImVec2{ viewportSize.x, viewportSize.y },
             ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 

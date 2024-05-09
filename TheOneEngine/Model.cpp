@@ -259,8 +259,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 }
             }
             model->format = BufferLayout({
-            { ShaderDataType::Float3, "aPos"           },
-            { ShaderDataType::Float2, "aTex"           } });
+            { ShaderDataType::Float3, "a_Pos"           },
+            { ShaderDataType::Float2, "a_UV"            },
+            { ShaderDataType::Float3, "a_Normal"        }
+            });
             model->materialIndex = mesh->mMaterialIndex;
 
             // Vertex & Index Data
@@ -282,6 +284,11 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                     vertex_data.push_back(0.0f);
                     vertex_data.push_back(0.0f);
                 }
+
+                // NormalVertices
+                vertex_data.push_back(mesh->mNormals[i].x);
+                vertex_data.push_back(mesh->mNormals[i].y);
+                vertex_data.push_back(mesh->mNormals[i].z);
             }
             model->vertexData = vertex_data;
 
@@ -348,8 +355,9 @@ void Model::GenBufferData()
     }
 
     meshVBO->SetLayout({
-        { ShaderDataType::Float3, "aPos"           },
-        { ShaderDataType::Float2, "aTex"           }
+        { ShaderDataType::Float3, "a_Pos"          },
+        { ShaderDataType::Float2, "a_UV"           },
+        { ShaderDataType::Float3, "a_Normal"       }
         });
     meshVAO->AddVertexBuffer(meshVBO);
 
