@@ -13,6 +13,15 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID A_AR = 3814696296U;
+        static const AkUniqueID A_BANDAGE = 2650455497U;
+        static const AkUniqueID A_FT = 3730808143U;
+        static const AkUniqueID A_GL_EXPLOSION = 337852012U;
+        static const AkUniqueID A_GL_SHOOT = 323248236U;
+        static const AkUniqueID A_LI = 3630142368U;
+        static const AkUniqueID A_S_ACTIVATE = 1589784596U;
+        static const AkUniqueID A_S_DEACTIVATE = 1176085861U;
+        static const AkUniqueID A_S_HIT = 2965692658U;
         static const AkUniqueID DEBUG_GUNSHOT = 1535709413U;
         static const AkUniqueID DEBUG_MUSIC1 = 830312575U;
         static const AkUniqueID DEBUG_MUSIC2 = 830312572U;
@@ -52,8 +61,8 @@ namespace AK
         static const AkUniqueID UI_CLICK = 2249769530U;
         static const AkUniqueID UI_HOVER = 2118900976U;
         static const AkUniqueID UI_PAUSEGAME = 3783962382U;
-        static const AkUniqueID VO_GUARD2_VL1_0 = 1098830151U;
-        static const AkUniqueID VO_GUARD2_VL2_0 = 2172450704U;
+        static const AkUniqueID VO_0_GUARD2_VL1 = 2370046945U;
+        static const AkUniqueID VO_0_GUARD2_VL2 = 2370046946U;
         static const AkUniqueID W_M4_RELOAD = 2147632472U;
         static const AkUniqueID W_M4_SHOOT = 933371860U;
         static const AkUniqueID W_SL_SHOOT = 3010972734U;
