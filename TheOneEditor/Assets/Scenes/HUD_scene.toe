@@ -62,7 +62,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -756,6 +756,90 @@
                   "Type": 1
                 },
                 {
+                  "ID": 149134431,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6095736622810364,
+                    0.25333333015441895,
+                    0.07479431480169296,
+                    0.10256410390138626
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_AbilityIconLeft",
+                  "Print": true,
+                  "Rect": [
+                    0.38999998569488525,
+                    -0.2199999988079071,
+                    0.05999999865889549,
+                    0.10499999672174454
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3786996359,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.8511593341827393,
+                    0.25333333015441895,
+                    0.07479431480169296,
+                    0.10256410390138626
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_AbilityIconRight",
+                  "Print": true,
+                  "Rect": [
+                    0.6449999809265137,
+                    -0.2199999988079071,
+                    0.05999999865889549,
+                    0.10499999672174454
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1178968805,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7681376338005066,
+                    0.25333333015441895,
+                    0.07479431480169296,
+                    0.10256410390138626
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_AbilityIconTop",
+                  "Print": true,
+                  "Rect": [
+                    0.5199999809265137,
+                    -0.4350000023841858,
+                    0.05999999865889549,
+                    0.10499999672174454
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1461606610,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6873597502708435,
+                    0.25333333015441895,
+                    0.07479431480169296,
+                    0.10256410390138626
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_AbilityIconBot",
+                  "Print": true,
+                  "Rect": [
+                    0.5199999809265137,
+                    0.009999999776482582,
+                    0.05999999865889549,
+                    0.10499999672174454
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
                   "ID": 3286584945,
                   "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -991,7 +1075,7 @@
               "UID": 951121546
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Inventory",
@@ -1335,7 +1419,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": false,
+              "Enabled": true,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -2301,7 +2385,7 @@
               ]
             }
           ],
-          "Enabled": false,
+          "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Hud",
