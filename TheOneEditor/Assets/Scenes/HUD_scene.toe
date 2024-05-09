@@ -61,8 +61,8 @@
               "UID": 2889362756
             },
             {
-              "DebugDraw": false,
-              "Enabled": false,
+              "DebugDraw": true,
+              "Enabled": true,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -75,29 +75,873 @@
               "UID": 149174467,
               "UiElements": [
                 {
-                  "ID": 2094416682,
-                  "ImagePath": "Assets/Textures/Hud/InventoryMenu_SpriteSheet.png",
-                  "ImageSection": [
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3269413881,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_StatsTitle",
+                  "Print": true,
+                  "Rect": [
+                    -0.7599999904632568,
+                    -0.7400000095367432,
+                    0.03999999910593033,
+                    0.05999999865889549
+                  ],
+                  "State": 0,
+                  "TextString": "stats",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 31171813,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_UpgradeButton",
+                  "Print": true,
+                  "Rect": [
+                    -0.6949999928474426,
+                    -0.5849999785423279,
+                    0.03999999910593033,
+                    0.05999999865889549
+                  ],
+                  "State": 0,
+                  "TextString": "upgrade",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3222192157,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_CurentLoadout",
+                  "Print": true,
+                  "Rect": [
+                    -0.7250000238418579,
+                    -0.27000001072883606,
+                    0.019999999552965164,
+                    0.03500000014901161
+                  ],
+                  "State": 0,
+                  "TextString": "shoulder\nlaser",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1095913263,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_CurentConsumable",
+                  "Print": true,
+                  "Rect": [
+                    -0.6000000238418579,
+                    0.10499999672174454,
+                    0.03500000014901161,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "bandages",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    0.4300000071525574,
+                    1.0,
+                    0.4300000071525574,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2254963903,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_CurentConsumableCharges",
+                  "Print": true,
+                  "Rect": [
+                    -0.6000000238418579,
+                    0.23000000417232513,
+                    0.029999999329447746,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "TextString": "2/3",
+                  "Type": 4
+                },
+                {
+                  "ID": 4224993993,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
                     0.0,
                     0.0,
                     0.0,
                     0.0
                   ],
                   "Interactuable": false,
-                  "Name": "Weapon",
+                  "Name": "Button_UpgradeMenu",
                   "Print": true,
                   "Rect": [
-                    -0.7099999785423279,
-                    -0.15000000596046448,
-                    0.20000000298023224,
-                    0.10000000149011612
+                    -0.5799999833106995,
+                    -0.6050000190734863,
+                    0.1850000023841858,
+                    0.0949999988079071
                   ],
-                  "State": 0,
-                  "Type": 0
+                  "State": 1,
+                  "Type": 1
                 },
                 {
-                  "ID": 3854027001,
-                  "ImagePath": "Assets/Textures/Hud/Inventory_HAX.png",
+                  "ID": 3644016856,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_CurrentLoadout",
+                  "Print": true,
+                  "Rect": [
+                    -0.5799999833106995,
+                    -0.22499999403953552,
+                    0.1850000023841858,
+                    0.125
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 4135507180,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_CurrentConsumable",
+                  "Print": true,
+                  "Rect": [
+                    -0.6899999976158142,
+                    0.15000000596046448,
+                    0.06499999761581421,
+                    0.125
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2992342578,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot1",
+                  "Print": true,
+                  "Rect": [
+                    -0.6700000166893005,
+                    0.4650000035762787,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 472437747,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot2",
+                  "Print": true,
+                  "Rect": [
+                    -0.4449999928474426,
+                    0.4650000035762787,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2712333165,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot3",
+                  "Print": true,
+                  "Rect": [
+                    -0.2199999988079071,
+                    0.4650000035762787,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2773404253,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot4",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    0.4650000035762787,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2284154807,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot5",
+                  "Print": true,
+                  "Rect": [
+                    0.2199999988079071,
+                    0.4650000035762787,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 102809899,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot6",
+                  "Print": true,
+                  "Rect": [
+                    0.4399999976158142,
+                    0.4650000035762787,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 4195015686,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot7",
+                  "Print": true,
+                  "Rect": [
+                    0.6600000262260437,
+                    0.4650000035762787,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 532101273,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot8",
+                  "Print": true,
+                  "Rect": [
+                    -0.6700000166893005,
+                    0.7300000190734863,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3570391770,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot9",
+                  "Print": true,
+                  "Rect": [
+                    -0.4449999928474426,
+                    0.7300000190734863,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2593558636,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot10",
+                  "Print": true,
+                  "Rect": [
+                    -0.2199999988079071,
+                    0.7300000190734863,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2713866311,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot11",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    0.7300000190734863,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3070744380,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot12",
+                  "Print": true,
+                  "Rect": [
+                    0.2199999988079071,
+                    0.7300000190734863,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 2220696733,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot13",
+                  "Print": true,
+                  "Rect": [
+                    0.4399999976158142,
+                    0.7300000190734863,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 706097468,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.26252806186676025,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionIdle": [
+                    0.009723260998725891,
+                    0.002051281975582242,
+                    0.22139117121696472,
+                    0.13641025125980377
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_InventorySlot14",
+                  "Print": true,
+                  "Rect": [
+                    0.6600000262260437,
+                    0.7300000190734863,
+                    0.10000000149011612,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 3286584945,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.30815258622169495,
+                    0.3774358928203583,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionIdle": [
+                    0.30815258622169495,
+                    0.16410256922245026,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_AbilityLeft",
+                  "Print": true,
+                  "Rect": [
+                    0.3799999952316284,
+                    -0.2199999988079071,
+                    0.10499999672174454,
+                    0.18000000715255737
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 441395597,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4540014863014221,
+                    0.3774358928203583,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionIdle": [
+                    0.4540014863014221,
+                    0.16410256922245026,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_AbilityRight",
+                  "Print": true,
+                  "Rect": [
+                    0.6549999713897705,
+                    -0.2150000035762787,
+                    0.10499999672174454,
+                    0.18000000715255737
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 4068446478,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.004487658850848675,
+                    0.3774358928203583,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionIdle": [
+                    0.004487658850848675,
+                    0.16410256922245026,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_AbilityTop",
+                  "Print": true,
+                  "Rect": [
+                    0.5099999904632568,
+                    -0.44999998807907104,
+                    0.10499999672174454,
+                    0.18000000715255737
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "ID": 48618157,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.14809274673461914,
+                    0.3774358928203583,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionIdle": [
+                    0.14809274673461914,
+                    0.16410256922245026,
+                    0.1421092003583908,
+                    0.19487179815769196
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_AbilityBot",
+                  "Print": true,
+                  "Rect": [
+                    0.5099999904632568,
+                    0.019999999552965164,
+                    0.10499999672174454,
+                    0.18000000715255737
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "CheckerActive": false,
+                  "ID": 3863976764,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.7546746730804443,
+                    0.417435884475708,
+                    0.052356019616127014,
+                    0.07179487496614456
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.6522064208984375,
+                    0.4276922941207886,
+                    0.052356019616127014,
+                    0.07179487496614456
+                  ],
+                  "ImageSectionIdle": [
+                    0.7030665874481201,
+                    0.4276922941207886,
+                    0.052356019616127014,
+                    0.07179487496614456
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.6073298454284668,
+                    0.4276922941207886,
+                    0.052356019616127014,
+                    0.07179487496614456
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_AbilityArrow",
+                  "Print": true,
+                  "Rect": [
+                    0.5099999904632568,
+                    -0.2150000035762787,
+                    0.04500000178813934,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "ID": 3735024186,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_Background.png",
                   "ImageSection": [
                     0.0,
                     0.0,
@@ -105,13 +949,13 @@
                     1.0
                   ],
                   "Interactuable": false,
-                  "Name": "Img_Background",
+                  "Name": "Img_BackGround",
                   "Print": true,
                   "Rect": [
                     0.0,
                     0.0,
-                    1.0,
-                    1.0
+                    0.8349999785423279,
+                    0.9300000071525574
                   ],
                   "State": 0,
                   "Type": 0
@@ -126,7 +970,7 @@
               "UID": 951121546
             }
           ],
-          "Enabled": false,
+          "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Inventory",
@@ -416,7 +1260,7 @@
               ]
             },
             {
-              "AudioID": 2,
+              "AudioID": 0,
               "Name": "Source",
               "Type": 8
             },
@@ -470,7 +1314,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -1436,7 +2280,7 @@
               ]
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Hud",
@@ -1826,7 +2670,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 3,
+              "AudioID": 1,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -4603,7 +5447,6 @@
               ]
             }
           ],
-          "EditablePrefab": true,
           "Enabled": false,
           "GameObjects": [
             {
@@ -5457,9 +6300,6 @@
           "Keeped": false,
           "Name": "SettingsCanvas",
           "ParentUID": 3452816845,
-          "PrefabDirty": false,
-          "PrefabID": 137523213,
-          "PrefabName": "SettingsCanvas",
           "Static": false,
           "UID": 3452816845
         }
@@ -5512,7 +6352,7 @@
           "zNear": 0.1
         },
         {
-          "AudioID": 4,
+          "AudioID": 2,
           "Name": "Listener",
           "Type": 7
         },
@@ -5580,7 +6420,7 @@
           "UID": 3227234719
         },
         {
-          "AudioID": 5,
+          "AudioID": 3,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -5690,7 +6530,7 @@
           "UID": 3836625021
         },
         {
-          "AudioID": 6,
+          "AudioID": 4,
           "Name": "AudioSource",
           "Type": 8
         },

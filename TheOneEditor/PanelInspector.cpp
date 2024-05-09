@@ -1336,53 +1336,49 @@ bool PanelInspector::Draw()
                 {
                     if (ImGui::TreeNode("ImageUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<ImageUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<ImageUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
                     if (ImGui::TreeNode("ButtonImageUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<ButtonImageUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<ButtonImageUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
                     if (ImGui::TreeNode("SliderUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name  ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<SliderUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<SliderUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
                     if (ImGui::TreeNode("CheckerUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name   ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<CheckerUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<CheckerUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
