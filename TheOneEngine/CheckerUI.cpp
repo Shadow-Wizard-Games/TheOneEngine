@@ -18,6 +18,24 @@ CheckerUI::CheckerUI(std::shared_ptr<GameObject> containerGO, const std::string&
 	checkerActive = false;
 }
 
+CheckerUI::CheckerUI(CheckerUI* ref) : ItemUI(ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+
+	this->imageIdleSection = ref->imageIdleSection;
+	this->imageHoveredSection = ref->imageHoveredSection;
+	this->imageSelectedSection = ref->imageSelectedSection;
+
+	this->imageIdleSectionOff = ref->imageIdleSectionOff;
+	this->imageHoveredSectionOff = ref->imageHoveredSectionOff;
+	this->imageSelectedSectionOff = ref->imageSelectedSectionOff;
+
+	this->currentSection = ref->currentSection;
+
+	this->checkerActive = ref->checkerActive;
+}
+
 CheckerUI::~CheckerUI() {}
 
 void CheckerUI::Draw2D()
@@ -51,6 +69,7 @@ json CheckerUI::SaveUIElement()
 	uiElementJSON["Type"] = (int)type;
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;
+	uiElementJSON["Print"] = print;
 	uiElementJSON["CheckerActive"] = checkerActive;
 
 	uiElementJSON["ImagePath"] = imagePath;
@@ -114,6 +133,7 @@ void CheckerUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 	if (UIElementJSON.contains("CheckerActive")) checkerActive = UIElementJSON["CheckerActive"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
