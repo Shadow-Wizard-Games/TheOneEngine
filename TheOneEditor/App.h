@@ -3,8 +3,9 @@
 #pragma once
 
 #include "Timer.h"
-#include "../TheOneEngine/EngineCore.h"
-#include "../TheOneEngine/Log.h"
+
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Log.h"
 
 #include <iostream>
 #include <sstream>
@@ -24,12 +25,14 @@ class SceneManager;
 class Gui;
 class Renderer3D;
 
-enum class GameState {
+enum class GameState
+{
 	NONE,
 	PLAY,
 	PAUSE,
 	PLAY_ONCE
 };
+
 
 class App
 {
@@ -49,8 +52,6 @@ public:
 	// Exposing some properties for reading
 	int GetArgc() const;
 	const char* GetArgv(int index) const;
-
-	
 
 	int GetFrameRate() const;
 	void SetFrameRate(int refreshRate);

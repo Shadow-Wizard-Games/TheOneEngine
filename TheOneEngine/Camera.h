@@ -14,7 +14,7 @@
 enum class CameraType 
 {
     PERSPECTIVE,
-    ORTHOGONAL
+    ORTHOGRAPHIC
 };
 
 struct Plane
@@ -124,6 +124,8 @@ public:
 
 public:
 
+    CameraType cameraType;
+
     //perpective
     double fov;
     double aspect;
@@ -139,11 +141,9 @@ public:
 	vec3f lookAt;
 
     Frustum frustum;
-    mat4 viewMatrix;
-    mat4 projectionMatrix;
+    glm::mat4 viewMatrix;
+    glm::mat4 projectionMatrix;
     glm::mat4 viewProjectionMatrix;
-
-    CameraType cameraType;
 
     bool drawFrustum;
 

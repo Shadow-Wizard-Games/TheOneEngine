@@ -9,10 +9,7 @@
 #include "SDL2/SDL.h"
 #include "GL/gl.h"
 
-CollisionSolver::CollisionSolver()
-{
-    drawCollisions = true;
-}
+CollisionSolver::CollisionSolver() {}
 
 CollisionSolver::~CollisionSolver() {}
 
@@ -187,24 +184,27 @@ void CollisionSolver::DrawCollisions()
 
         glTranslatef(x_, y_, z_);
 
+        // Draw every collision in green, less confusing
+        glColor3f(0.0f, 0.8f, 0.0f);
+
         // Dibujar la colisión según su tipo y configuración
-        switch (collider->collisionType) {
-        case CollisionType::Player:
-            glColor3f(0.0f, 1.0f, 0.0f); // Verde para jugador
-            break;
-        case CollisionType::Enemy:
-            glColor3f(1.0f, 0.0f, 0.0f); // Rojo para enemigo
-            break;
-        case CollisionType::Wall:
-            glColor3f(0.0f, 0.0f, 1.0f); // Azul para muro
-            break;
-        case CollisionType::Bullet:
-            glColor3f(1.0f, 0.7f, 0.0f); // Naranja para bala
-            break;
-        default:
-            glColor3f(1.0f, 1.0f, 1.0f); // Blanco para otros tipos
-            break;
-        }
+        //switch (collider->collisionType) {
+        //case CollisionType::Player:
+        //    glColor3f(0.0f, 1.0f, 0.0f); // Verde para jugador
+        //    break;
+        //case CollisionType::Enemy:
+        //    glColor3f(1.0f, 0.0f, 0.0f); // Rojo para enemigo
+        //    break;
+        //case CollisionType::Wall:
+        //    glColor3f(0.0f, 0.0f, 1.0f); // Azul para muro
+        //    break;
+        //case CollisionType::Bullet:
+        //    glColor3f(1.0f, 0.7f, 0.0f); // Naranja para bala
+        //    break;
+        //default:
+        //    glColor3f(1.0f, 1.0f, 1.0f); // Blanco para otros tipos
+        //    break;
+        //}
 
         glBegin(GL_LINE_LOOP);
         if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Rect) {

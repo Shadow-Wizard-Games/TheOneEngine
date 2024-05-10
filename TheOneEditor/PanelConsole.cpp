@@ -17,8 +17,13 @@ bool PanelConsole::Draw()
 
 	if (ImGui::Begin("Console", &enabled, consoleFlags))
 	{
-		if (ImGui::SmallButton("Clear"))
+		if (ImGui::Button("Clear"))
 			engine->CleanLogs();
+
+		ImGui::SameLine();
+
+		static bool clearOnPlay = false;
+		ImGui::Checkbox("Clear on Play", &clearOnPlay);
 
 		ImGui::Separator();
 
@@ -90,6 +95,8 @@ bool PanelConsole::Draw()
 
 		}
 		ImGui::EndChild();
+
+		if (clearOnPlay) engine->CleanLogs();
 	}
 	ImGui::End();
 

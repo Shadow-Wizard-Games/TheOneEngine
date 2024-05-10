@@ -30,7 +30,8 @@ bool PanelSettings::Draw()
 {
 	ImGuiWindowFlags settingsFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 6);
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0, 0 });
 	ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5, 0.8));
 
 	if (ImGui::Begin("Settings", &enabled, settingsFlags))
@@ -38,7 +39,7 @@ bool PanelSettings::Draw()
 		// LEFT - Buttons
 		ImVec2 leftChildSize = ImVec2(ImGui::GetWindowSize().x * 0.2, ImGui::GetWindowSize().y);
 		ImVec2 buttonSize = ImVec2(ImGui::GetWindowSize().x * 0.2, 20);
-	
+
 		if (ImGui::BeginChild("Options", leftChildSize, true))
 		{
 			if (ImGui::Button("Performance", buttonSize))
@@ -60,10 +61,12 @@ bool PanelSettings::Draw()
 				selected = SelectedSetting::SOFTWARE;
 		}
 		ImGui::EndChild();
+		ImGui::PopStyleVar(2);
 
 		ImGui::SameLine();
 
 		// RIGHT - Display selected
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
 		settingsFlags &= ~(ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
 		if (ImGui::BeginChild("Selected", ImVec2(ImGui::GetWindowSize().x * 0.8f, ImGui::GetWindowSize().y), false, settingsFlags))

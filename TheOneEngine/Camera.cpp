@@ -6,14 +6,13 @@
 #include "Ray.h"
 
 Camera::Camera(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Camera),
-    aspect(1.777), fov(65), 
-    size(5), 
-    zNear(0.1), zFar(1000),
+    cameraType(CameraType::PERSPECTIVE),
+    aspect(1.777), fov(65), size(200), 
+    zNear(0.1), zFar(3000),
     yaw(0), pitch(0),
     viewMatrix(1.0f),
     lookAt(0, 0, 0),
     drawFrustum(true),
-    cameraType(CameraType::PERSPECTIVE),
     primaryCam(false)
 {
     Transform* transform = containerGO.get()->GetComponent<Transform>();
@@ -29,19 +28,18 @@ Camera::Camera(std::shared_ptr<GameObject> containerGO) : Component(containerGO,
 }
 
 Camera::Camera(std::shared_ptr<GameObject> containerGO, Camera* ref) : Component(containerGO, ComponentType::Camera),
-aspect(ref->aspect), fov(ref->fov),
-zNear(ref->zNear), zFar(ref->zFar),
-yaw(ref->yaw), pitch(ref->pitch),
-viewMatrix(ref->viewMatrix),
-lookAt(ref->lookAt), size(ref->size),
-drawFrustum(ref->drawFrustum),
-cameraType(ref->cameraType),
-primaryCam(ref->primaryCam)
+    cameraType(ref->cameraType),
+    aspect(ref->aspect), fov(ref->fov), size(ref->size),
+    zNear(ref->zNear), zFar(ref->zFar),
+    yaw(ref->yaw), pitch(ref->pitch),
+    viewMatrix(ref->viewMatrix),
+    lookAt(ref->lookAt),
+    drawFrustum(ref->drawFrustum),
+    primaryCam(ref->primaryCam)
 {
     frustum = ref->frustum;
     projectionMatrix = ref->projectionMatrix;
     viewProjectionMatrix = ref->viewProjectionMatrix;
-    //eeeeldeeen riiiiiiing
 }
 
 Camera::~Camera() {}
@@ -103,9 +101,15 @@ void Camera::UpdateProjectionMatrix()
     case CameraType::PERSPECTIVE:
         projectionMatrix = glm::perspective(glm::radians(fov), aspect, zNear, zFar);
         break;
-    case CameraType::ORTHOGONAL:
-        projectionMatrix = glm::ortho(-size, size, -size * 0.75, size * 0.75, zNear, zFar);
-        break;
+
+    case CameraType::ORTHOGRAPHIC:
+    {
+        double halfWidth = size * 0.5f;
+        double halfHeight = halfWidth / aspect;
+        projectionMatrix = glm::ortho(-halfWidth, halfWidth, -halfHeight, halfHeight, zNear, zFar);
+    }
+    break;
+
     default:
         LOG(LogType::LOG_ERROR, "CameraType invalid!");
         break;
@@ -127,7 +131,7 @@ Ray Camera::ComputeCameraRay(float x, float y)
 {
     glm::mat4 viewProjInverse = glm::inverse(viewProjectionMatrix);
 
-    //glm::vec4 worldOrigin = viewProjInverse * glm::vec4(x, y, -1.0f, 1.0f);
+    //glm::vec4 worldDirection = viewProjInverse * glm::vec4(x, y, -1.0f, 1.0f);
     glm::vec4 worldDirection = viewProjInverse * glm::vec4(x, y, 1.0f, 1.0f);
 
 	GameObject* GO = this->containerGO.lock().get();
@@ -189,7 +193,7 @@ void Camera::LoadComponent(const json& cameraJSON)
         if (cameraJSON["CameraType"] == 0)
             cameraType = CameraType::PERSPECTIVE;
         else if (cameraJSON["CameraType"] == 1)
-            cameraType = CameraType::ORTHOGONAL;
+            cameraType = CameraType::ORTHOGRAPHIC;
     }
 
     if (cameraJSON.contains("PrimaryCamera")) primaryCam = cameraJSON["PrimaryCamera"];
