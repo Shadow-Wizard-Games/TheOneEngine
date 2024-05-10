@@ -32,8 +32,8 @@ public class PlayerScript : MonoBehaviour
     // movement
     public float baseSpeed = 80.0f;
     public float speed;
-    Vector3 movementDirection;
-    float movementMagnitude;
+    public Vector3 movementDirection;
+    public float movementMagnitude;
     bool lastFrameRunned = false;
 
 
@@ -50,7 +50,7 @@ public class PlayerScript : MonoBehaviour
     IGameObject shieldGO;
     Ability shield;
 
-    bool isDashing = false;
+    public bool isDashing = false;
 
     public int shieldKillCounter = 0;
     public bool shieldIsActive = false;
@@ -251,34 +251,36 @@ public class PlayerScript : MonoBehaviour
         #endregion
 
         #region KEYBOARD
-        if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+        if (!isDashing)
         {
-            movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
-        }
+            if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+            {
+                movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.A))
-        {
-            movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
-        }
+            if (Input.GetKeyboardButton(Input.KeyboardCode.A))
+            {
+                movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.S))
-        {
-            movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
-        }
+            if (Input.GetKeyboardButton(Input.KeyboardCode.S))
+            {
+                movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.D))
-        {
-            movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
+            if (Input.GetKeyboardButton(Input.KeyboardCode.D))
+            {
+                movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
         }
-
         #endregion
 
         movementDirection = movementDirection.Normalize();

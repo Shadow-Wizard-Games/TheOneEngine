@@ -6,6 +6,8 @@ public class AbilityDash : Ability
     PlayerScript player;
 
     float dashSpeed = 50.0f;
+
+    Vector3 moveDir = Vector3.zero;
     
     public override void Start()
     {
@@ -13,7 +15,7 @@ public class AbilityDash : Ability
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
-        activeTime = 0.3f;
+        activeTime = 3f;
         cooldownTime = 4.0f;
     }
 
@@ -45,8 +47,11 @@ public class AbilityDash : Ability
 
     public override void Activated()
     {
+        player.isDashing = true;
         player.speed += dashSpeed;
-        //player.attachedGameObject.transform.Translate(attachedGameObject.transform.position);
+        moveDir = player.movementDirection + Vector3.zero + Vector3.right + Vector3.forward;
+        //attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
+
     }
 
     public override void WhileActive()
@@ -55,12 +60,13 @@ public class AbilityDash : Ability
         {
             // update time
             activeTime -= Time.deltaTime;
+            player.attachedGameObject.transform.Translate(moveDir * player.movementMagnitude * player.speed * Time.deltaTime);
         }
         else
         {
             player.speed = player.baseSpeed;
-
-            activeTime = 0.3f;
+            player.isDashing = false;
+            activeTime = 3f;
             state = AbilityState.COOLDOWN;
         }
     }

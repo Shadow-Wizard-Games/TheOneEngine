@@ -17,7 +17,6 @@ public class Ability : MonoBehaviour
     public AbilityState state = AbilityState.READY;
 
     public virtual void ChargeAbility() { }
-    public virtual void UpdateAbilityState() { }
     public virtual void Activated() { }
     public virtual void WhileActive() { }
     public virtual void OnCooldown() { }
