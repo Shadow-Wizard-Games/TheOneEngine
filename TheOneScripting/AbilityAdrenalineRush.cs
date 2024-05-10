@@ -10,6 +10,7 @@ public class AbilityAdrenalineRush : Ability
     float damageAmount = 0.5f; // in %
 
     float healthRegenTime = 3.0f;
+    float healthRegenTimeCounter = 3.0f;
     float intervalTime = 0.2f;
     float timeSinceLastTick = 0.0f;
     float healingInterval = 0.0f;
@@ -23,7 +24,11 @@ public class AbilityAdrenalineRush : Ability
         player = playerGO.GetComponent<PlayerScript>();
 
         activeTime = 8.0f;
+        activeTimeCounter = activeTime;
         cooldownTime = 8.0f;
+        cooldownTimeCounter = cooldownTime;
+
+        healthRegenTimeCounter = healthRegenTime;
 
         numÍntervals = (int)(healthRegenTime / intervalTime);
     }
@@ -35,7 +40,7 @@ public class AbilityAdrenalineRush : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.V)) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.THREE)) // change input
                 {
                     Activated();
                     state = AbilityState.ACTIVE;
@@ -45,11 +50,11 @@ public class AbilityAdrenalineRush : Ability
                 break;
             case AbilityState.ACTIVE:
                 WhileActive();
-                Debug.Log("Adrenaline active time --> " + activeTime.ToString("F2"));
+                Debug.Log("Adrenaline active time -> " + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
-                Debug.Log("Adrenaline active time" + cooldownTime.ToString("F2"));
+                Debug.Log("Adrenaline cooldown time -> " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
@@ -68,31 +73,29 @@ public class AbilityAdrenalineRush : Ability
 
     public override void WhileActive()
     {
-        if (activeTime > 0)
+        if (activeTimeCounter > 0)
         {
             // update time
-            activeTime -= Time.deltaTime;
-
-            
+            activeTimeCounter -= Time.deltaTime;  
         }
         else
         {
             // reset stats
             player.speed = player.baseSpeed;
-            healthRegenTime = 3.0f;
+            healthRegenTimeCounter = healthRegenTime;
 
-            activeTime = 8.0f;
+            activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
         }
 
-        if (healthRegenTime > 0)
+        if (healthRegenTimeCounter > 0)
         {
             // update time
-            healthRegenTime -= Time.deltaTime;
+            healthRegenTimeCounter -= Time.deltaTime;
 
             timeSinceLastTick += Time.deltaTime;
 
-            // Tegeneration tick
+            // Regeneration tick
             if (timeSinceLastTick >= intervalTime)
             {
                 if ((player.life + healingInterval) < player.maxLife)
@@ -107,20 +110,15 @@ public class AbilityAdrenalineRush : Ability
 
     public override void OnCooldown()
     {
-        if (cooldownTime > 0)
+        if (cooldownTimeCounter > 0)
         {
             // update time
-            cooldownTime -= Time.deltaTime;
+            cooldownTimeCounter -= Time.deltaTime;
         }
         else
         {
-            cooldownTime = 8.0f;
+            cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
         }
-    }
-
-    private void RegenerationTick()
-    {
-
     }
 }

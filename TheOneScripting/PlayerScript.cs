@@ -33,6 +33,7 @@ public class PlayerScript : MonoBehaviour
     public float baseSpeed = 80.0f;
     public float speed;
     public Vector3 movementDirection;
+    public Vector3 lastMovementDirection;
     public float movementMagnitude;
     bool lastFrameRunned = false;
 
@@ -51,6 +52,7 @@ public class PlayerScript : MonoBehaviour
     Ability shield;
 
     public bool isDashing = false;
+    public string dashAbilityName = "Roll"; // delete
 
     public int shieldKillCounter = 0;
     public bool shieldIsActive = false;
@@ -71,16 +73,6 @@ public class PlayerScript : MonoBehaviour
         iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
         iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
 
-        #region ABILITIES
-        //IGameObject go;
-        //go = IGameObject.Find("Dash");
-        //dash = go.GetComponent<AbilityDash>();
-        //go = IGameObject.Find("Heal");
-        //heal = go.GetComponent<AbilityHeal>();
-        //go = IGameObject.Find("Shield");
-        //shield = go.GetComponent<AbilityShield>();
-        #endregion
-
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.time = 0.0f;
@@ -93,6 +85,12 @@ public class PlayerScript : MonoBehaviour
     {
         isRunning = false;
         isShooting = false;
+
+        //to delete just test
+        if (Input.GetKeyboardButton(Input.KeyboardCode.SIX))
+        {
+            dashAbilityName = "Dash";
+        }
 
         if (isDead)
         {
@@ -161,9 +159,6 @@ public class PlayerScript : MonoBehaviour
                 }
             }
         }
-
-        // Call Ability Updates
-        //CallAbilitiesUpdates();
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) 
         { 
@@ -284,6 +279,11 @@ public class PlayerScript : MonoBehaviour
         #endregion
 
         movementDirection = movementDirection.Normalize();
+
+        if (movementDirection != Vector3.zero)
+        {
+            lastMovementDirection = movementDirection;
+        }
 
         return toMove;
     }

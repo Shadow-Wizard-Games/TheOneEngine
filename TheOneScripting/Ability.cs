@@ -12,7 +12,9 @@ public class Ability : MonoBehaviour
 
     public string name;
     public float activeTime;
+    public float activeTimeCounter;
     public float cooldownTime;
+    public float cooldownTimeCounter;
 
     public AbilityState state = AbilityState.READY;
 

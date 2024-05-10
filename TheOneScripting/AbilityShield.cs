@@ -17,7 +17,9 @@ public class AbilityShield : Ability
         state = AbilityState.CHARGING;
 
         activeTime = 6.0f;
-        cooldownTime = 8.0f;
+        activeTimeCounter = activeTime;
+        cooldownTime = 3.0f;
+        cooldownTimeCounter = cooldownTime;
     }
         
     public override void Update()
@@ -28,7 +30,7 @@ public class AbilityShield : Ability
                 ChargeAbility();
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.W)) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.TWO)) // change input
                 {
                     Activated();
                     state = AbilityState.ACTIVE;
@@ -37,11 +39,12 @@ public class AbilityShield : Ability
                 // controller input
                 break;
             case AbilityState.ACTIVE:
-                Debug.Log("Shield active time" + activeTime.ToString("F2"));
+                Debug.Log("Shield active time" + activeTimeCounter.ToString("F2"));
+                WhileActive();
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
-                Debug.Log("Shield active time" + cooldownTime.ToString("F2"));
+                Debug.Log("Shield cooldown time" + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
@@ -62,29 +65,29 @@ public class AbilityShield : Ability
 
     public override void WhileActive()
     {
-        if (activeTime > 0)
+        if (activeTimeCounter > 0)
         {
             // update time
-            activeTime -= Time.deltaTime;
+            activeTimeCounter -= Time.deltaTime;
         }
         else
         {
-            activeTime = 0.3f;
+            activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
         }
     }
 
     public override void OnCooldown()
     {
-        if (cooldownTime > 0)
+        if (cooldownTimeCounter > 0)
         {
             // update time
-            cooldownTime -= Time.deltaTime;
+            cooldownTimeCounter -= Time.deltaTime;
         }
         else
         {
-            cooldownTime = 8.0f;
-            state = AbilityState.READY;
+            cooldownTimeCounter = cooldownTime;
+            state = AbilityState.CHARGING;
         }
     }
 }

@@ -5,6 +5,9 @@ public class AbilityHeal : Ability
     IGameObject playerGO;
     PlayerScript player;
 
+    int numHeals = 0;
+    int maxHeals = 3;
+
     float healAmount = 0.6f; // in %
     float slowAmount = 0.4f; // in %
 
@@ -17,7 +20,9 @@ public class AbilityHeal : Ability
         player = playerGO.GetComponent<PlayerScript>();
 
         activeTime = 1.0f;
+        activeTimeCounter = activeTime;
         cooldownTime = 8.0f;
+        cooldownTimeCounter = cooldownTime;
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -28,7 +33,7 @@ public class AbilityHeal : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.E)) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && numHeals > 0)
                 {
                     Activated();
                     state = AbilityState.ACTIVE;    
@@ -38,11 +43,11 @@ public class AbilityHeal : Ability
                 break;
             case AbilityState.ACTIVE:
                 WhileActive();
-                Debug.Log("Heal active time --> " + activeTime.ToString("F2"));
+                Debug.Log("Heal active time -> " + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
-                Debug.Log("Heal active time" + cooldownTime.ToString("F2"));
+                Debug.Log("Heal cooldown time -> " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
@@ -59,10 +64,11 @@ public class AbilityHeal : Ability
 
     public override void WhileActive()
     {
-        if (activeTime > 0)
+
+        if (activeTimeCounter > 0)
         {
             // update time
-            activeTime -= Time.deltaTime;
+            activeTimeCounter -= Time.deltaTime;
         }
         else
         {
@@ -75,21 +81,21 @@ public class AbilityHeal : Ability
             // reset stats
             player.speed = player.baseSpeed;
 
-            activeTime = 0.3f;
+            activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
         }
     }
 
     public override void OnCooldown()
     {
-        if(cooldownTime > 0)
+        if(cooldownTimeCounter > 0)
         {
             // update time
-            cooldownTime -= Time.deltaTime;
+            cooldownTimeCounter -= Time.deltaTime;
         }
         else
         {
-            cooldownTime = 8.0f;
+            cooldownTimeCounter = 8.0f;
             state = AbilityState.READY;
         }
     }
