@@ -72,16 +72,16 @@ void EngineCore::SetRenderEnvironment(Camera* camera)
     GLCALL(glLoadIdentity());
 
     GLCALL(glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST));
-    GLCALL(glClearDepth(1.0f));
+    //GLCALL(glClearDepth(1.0f));
 
     GLCALL(glEnable(GL_DEPTH_TEST));
     GLCALL(glDepthFunc(GL_LEQUAL));
     GLCALL(glEnable(GL_CULL_FACE));
-    GLCALL(glEnable(GL_BLEND));
-    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+    /*GLCALL(glEnable(GL_BLEND));
+    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));*/
     GLCALL(glEnable(GL_COLOR_MATERIAL));
 
-    glClear(GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_DEPTH_BUFFER_BIT);
 
     switch (camera->cameraType)
     {
@@ -510,7 +510,7 @@ void EngineCore::InitLitMeshColorShaders()
 
     //Default Material
     Material defaultMat(colorShader);
-    defaultMat.SetUniformData("u_Material.diffuse", glm::vec3(1.0f, 0, 1.0f));
+    defaultMat.SetUniformData("u_Material.diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
     std::string matPath = Resources::PathToLibrary<Material>() + "defaultMat.toematerial";
     Resources::Import<Material>(matPath, &defaultMat);
     Resources::LoadFromLibrary<Material>(matPath);

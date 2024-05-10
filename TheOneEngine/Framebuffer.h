@@ -12,7 +12,7 @@ public:
 
 	void Resize(unsigned int newWidth, unsigned int newHeight);
 
-	void Clear(glm::vec4 color = glm::vec4(0.22, 0.22, 0.22, 1));
+	void Clear(glm::vec4 color = glm::vec4(0.22, 0.22, 0.22, 1.0));
 	void ClearBuffer(int value);
 
 

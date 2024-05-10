@@ -229,10 +229,13 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
+        GLCALL(glDisable(GL_BLEND));
+        //GLCALL(glDisable(GL_STENCIL_TEST));
+        //GLCALL(glStencilMask(0x00));
         // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
         {
             frameBuffer->Bind();
-            frameBuffer->Clear({0.0f, 0.0f, 0.0f, 1.0f});
+            frameBuffer->Clear({ 0.0f, 0.0f, 0.0f, 1.0f });
 
             // Set Render Environment
             engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
@@ -261,12 +264,30 @@ bool PanelScene::Draw()
             // Draw Scene
             current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
-            // Draw Loading Screen - only on panel game
-            /*if (engine->N_sceneManager->GetSceneIsChanging())
-                engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);*/
-
             frameBuffer->Unbind();
         }
+
+        if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
+        {
+            float sizeX = viewportSize.x / 2;
+            float sizeY = viewportSize.y / 2;
+
+            ImGui::Image(
+                (ImTextureID)frameBuffer->getPositionBufferTexture(),
+                ImVec2{ sizeX, sizeY },
+                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+            ImGui::Image(
+                (ImTextureID)frameBuffer->getNormalBufferTexture(),
+                ImVec2{ sizeX, sizeY },
+                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+            ImGui::Image(
+                (ImTextureID)frameBuffer->getColorBufferTexture(),
+                ImVec2{ sizeX, sizeY },
+                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+        }
+        ImGui::End();
 
         //  POST PROCESS -------------------------------------------------------------------
         {
