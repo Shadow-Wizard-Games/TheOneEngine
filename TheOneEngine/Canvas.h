@@ -39,7 +39,7 @@ public:
     template <typename TUI>
     unsigned int AddCopiedItemUI(TUI* ref)
     {
-        std::unique_ptr<ItemUI> newItemUI = std::make_unique<TUI>(containerGO.lock(), ref);
+        std::unique_ptr<ItemUI> newItemUI = std::make_unique<TUI>(ref);
         unsigned int tempID = newItemUI->GetID();
         uiElements.push_back(std::move(newItemUI));
 

@@ -25,6 +25,11 @@ public class ICanvas : IComponent
         InternalCalls.ToggleChecker(containerGOptr, value, name);
     }
 
+    public void PrintItemUI(bool value, string name)
+    {
+        InternalCalls.PrintItemUI(containerGOptr, value, name);
+    }
+
     public void MoveSelectionButton(int direction)
     {
         InternalCalls.MoveSelectedButton(containerGOptr, direction);
