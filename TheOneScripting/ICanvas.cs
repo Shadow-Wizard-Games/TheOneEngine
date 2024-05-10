@@ -59,4 +59,14 @@ public class ICanvas : IComponent
     {
         InternalCalls.SetSliderValue(containerGOptr, value, name);
     }
+
+    public string GetTextString(string name)
+    {
+        return InternalCalls.GetTextString(containerGOptr, name);
+    }
+
+    public void SetTextString(string text, string name)
+    {
+        InternalCalls.SetTextString(containerGOptr, text, name);
+    }
 }

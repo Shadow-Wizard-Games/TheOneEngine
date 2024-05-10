@@ -41,6 +41,7 @@ public class UiManager : MonoBehaviour
 
     float saveCooldown = 0;
     bool saveOnCooldown = false;
+    float changeSaveTextCooldown = 0;
 
     float pickUpFeedbackCooldown = 0;
     bool pickUpFeedbackOnCooldown = false;
@@ -106,11 +107,32 @@ public class UiManager : MonoBehaviour
         if (saveOnCooldown && saveCooldown < 4.5f)
         {
             saveCooldown += dt;
+            changeSaveTextCooldown += dt;
+
+            if (changeSaveTextCooldown > 2.0f)
+            {
+                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress", "Text_SavingProgress");
+                changeSaveTextCooldown = 0.0f;
+            }
+            else if (changeSaveTextCooldown > 1.5f)
+            {
+                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress...", "Text_SavingProgress");
+            }
+            else if (changeSaveTextCooldown > 1.0f)
+            {
+                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress..", "Text_SavingProgress");
+            }
+            else if (changeSaveTextCooldown > 0.5f)
+            {
+                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress.", "Text_SavingProgress");
+            }
+
             if (state != MenuState.Hud)
             {
                 saveOnCooldown = false;
                 saveCooldown = 0.0f;
                 savingSceneGo.Disable();
+                changeSaveTextCooldown = 0.0f;
             }
         }
         else if (saveOnCooldown && saveCooldown >= 4.5f)
@@ -121,6 +143,7 @@ public class UiManager : MonoBehaviour
         else
         {
             saveCooldown = 0.0f;
+            changeSaveTextCooldown = 0.0f;
         }
 
         if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown < 4.5f)
@@ -225,11 +248,13 @@ public class UiManager : MonoBehaviour
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.F1))//for the moment for debug porpuses
                 {
                     savingSceneGo.Enable();
+                    savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress","Text_SavingProgress");
                     saveOnCooldown = true;
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.F2))//for the moment for debug porpuses
                 {
                     pickUpFeedbackGo.Enable();
+                    pickUpFeedbackGo.GetComponent<ICanvas>().SetTextString("shoulder laser","Text_PickedItem");
                     pickUpFeedbackOnCooldown = true;
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.F3))//for the moment for debug porpuses

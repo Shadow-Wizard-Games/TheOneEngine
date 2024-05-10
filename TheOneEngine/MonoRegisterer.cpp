@@ -9,6 +9,7 @@
 #include "ImageUI.h"
 #include "CheckerUI.h"
 #include "SliderUI.h"
+#include "TextUI.h"
 #include "Collider2D.h"
 #include "ParticleSystem.h"
 #include "N_SceneManager.h"
@@ -476,6 +477,37 @@ static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
 	}
 }
 
+static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
+		{
+			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
+			ui->SetText(MonoRegisterer::MonoStringToUTF8(text));
+			break;
+		}
+	}
+}
+
+static string GetTextString(GameObject* containerGO, MonoString* name)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
+		{
+			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
+			return ui->GetText();
+		}
+	}
+
+	return "TextUI element not found";
+}
+
 //Helpers
 static float GetAppDeltaTime()
 {
@@ -793,6 +825,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetSliderValue", GetSliderValue);
 	mono_add_internal_call("InternalCalls::SetSliderValue", SetSliderValue);
 	mono_add_internal_call("InternalCalls::GetSliderMaxValue", GetSliderMaxValue);
+	mono_add_internal_call("InternalCalls::SetTextString", SetTextString);
+	mono_add_internal_call("InternalCalls::GetTextString", GetTextString);
 
 	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);

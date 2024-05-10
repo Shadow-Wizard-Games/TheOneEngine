@@ -136,6 +136,12 @@ class InternalCalls
     internal extern static int GetSliderValue(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTextString(IntPtr GOptr, string text, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetTextString(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
     #endregion
 
