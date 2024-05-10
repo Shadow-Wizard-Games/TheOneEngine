@@ -64,20 +64,20 @@ public class PlayerScript : MonoBehaviour
         // Background music
         if (!isFighting)
         {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_AMBIENT_1)
+            if (attachedGameObject.source.currentID != IAudioSource.Events.A_AMBIENT_1)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_AMBIENT_1;
+                attachedGameObject.source.PlayAudio(IAudioSource.Events.A_AMBIENT_1);
+                attachedGameObject.source.StopAudio(IAudioSource.Events.A_COMBAT_1);
+                attachedGameObject.source.currentID = IAudioSource.Events.A_AMBIENT_1;
             }
         }
         else
         {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_COMBAT_1)
+            if (attachedGameObject.source.currentID != IAudioSource.Events.A_COMBAT_1)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_COMBAT_1;
+                attachedGameObject.source.PlayAudio(IAudioSource.Events.A_COMBAT_1);
+                attachedGameObject.source.StopAudio(IAudioSource.Events.A_AMBIENT_1);
+                attachedGameObject.source.currentID = IAudioSource.Events.A_COMBAT_1;
             }
         }
 
@@ -146,7 +146,7 @@ public class PlayerScript : MonoBehaviour
                         if (!hasShot && currentTimer > attackCooldown / 2)
                         {
                             //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
+                            attachedGameObject.source.PlayAudio(IAudioSource.Events.DEBUG_GUNSHOT);
                             hasShot = true;
                             //if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
                         }
@@ -205,7 +205,7 @@ public class PlayerScript : MonoBehaviour
                 if (!hasShot && currentTimer > attackCooldown / 2)
                 {
                     //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
+                    attachedGameObject.source.PlayAudio(IAudioSource.Events.DEBUG_GUNSHOT);
                     hasShot = true;
                     attachedGameObject.animator.Play("Shoot M4");
                 }
@@ -223,7 +223,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
+                attachedGameObject.source.PlayAudio(IAudioSource.Events.P_STEP);
                 if (iStepPSGO != null)
                 {
                     iStepPSGO.GetComponent<IParticleSystem>().Play();
@@ -231,7 +231,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.P_STEP);
+                attachedGameObject.source.StopAudio(IAudioSource.Events.P_STEP);
                 if (iStepPSGO != null)
                 {
                     iStepPSGO.GetComponent<IParticleSystem>().Stop();

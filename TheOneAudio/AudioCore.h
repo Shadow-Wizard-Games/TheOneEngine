@@ -38,6 +38,7 @@ public:
 
 	// Set default listener
 	void SetDefaultListener(AkGameObjectID goID);
+	void RemoveDefaultListener(AkGameObjectID goID);
 
 	// ---------------------- EVENTS ---------------------- //
 	// Register a Wwise game object and return its id or return -1 if failed

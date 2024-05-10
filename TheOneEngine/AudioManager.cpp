@@ -64,6 +64,11 @@ void AudioManager::AddAudioObject(std::shared_ptr<AudioComponent> audioGO)
 	audioComponents.push_back(audioGO);
 }
 
+void AudioManager::RemoveAudioObject(std::shared_ptr<AudioComponent> audioGO)
+{
+	audioComponents.
+}
+
 void AudioManager::DeleteAudioComponents()
 {
 	audioComponents.clear();

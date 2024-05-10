@@ -18,9 +18,8 @@ public:
 	void PauseAudio(AudioSource* source, AkUniqueID event);
 	void ResumeAudio(AudioSource* source, AkUniqueID event);
 
-	void FadeAudio(AudioSource* source, AkUniqueID event1, AkUniqueID event2);
-
 	void AddAudioObject(std::shared_ptr<AudioComponent> audioGO);
+	void RemoveAudioObject(std::shared_ptr<AudioComponent> audioGO);
 	void DeleteAudioComponents();
 
 	AudioCore* audio = nullptr;

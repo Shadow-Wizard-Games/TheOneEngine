@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 public class IAudioSource : IComponent
 {
-    public enum EventIDs : uint
+    public enum Events : uint
     {
         A_AMBIENT_1 = 1547765315U,
         A_CAMP_2 = 895381461U,
@@ -50,16 +50,26 @@ public class IAudioSource : IComponent
         W_SL_SHOOT = 3010972734U,
     }
 
+    public enum States
+    {
+
+    }
+
+    public enum Switches
+    {
+
+    }
+
     public IAudioSource() : base() { }
     public IAudioSource(IntPtr GOptr) : base(GOptr) { }
     
-    public EventIDs currentID = 0;
-    public void PlayAudio(EventIDs audio)
+    public Events currentID = 0;
+    public void PlayAudio(Events audio)
     {
         InternalCalls.PlaySource(containerGOptr, audio);
     }
 
-    public void StopAudio(EventIDs audio)
+    public void StopAudio(Events audio)
     {
         InternalCalls.StopSource(containerGOptr, audio);
     }

@@ -244,6 +244,12 @@ void AudioCore::SetDefaultListener(AkGameObjectID goID)
     LOG(LogType::LOG_AUDIO, "Set default listener: %d audiogameobject", goID);
 }
 
+void AudioCore::RemoveDefaultListener(AkGameObjectID goID)
+{
+    AK::SoundEngine::RemoveDefaultListener(goID);
+    LOG(LogType::LOG_AUDIO, "Remove default listener: %d audiogameobject", goID);
+}
+
 AkGameObjectID AudioCore::RegisterGameObject(std::string name)
 {
     if (AK::SoundEngine::RegisterGameObj((AkGameObjectID)gameObjectIDs.size(), name.c_str()) == AK_Success)
