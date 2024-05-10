@@ -1432,6 +1432,126 @@
               "UID": 948763056,
               "UiElements": [
                 {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 665219275,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionName",
+                  "Print": true,
+                  "Rect": [
+                    0.6200000047683716,
+                    -0.8700000047683716,
+                    0.029999999329447746,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "mission name",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3804665374,
+                  "Interactuable": false,
+                  "Kerning": -0.09000000357627869,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionDescription",
+                  "Print": true,
+                  "Rect": [
+                    0.6899999976158142,
+                    -0.7649999856948853,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "mission description",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2881826622,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_CurrencyAmount",
+                  "Print": true,
+                  "Rect": [
+                    -0.0949999988079071,
+                    -0.9150000214576721,
+                    0.029999999329447746,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "5000",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 201470886,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_KillsAmount",
+                  "Print": true,
+                  "Rect": [
+                    0.10999999940395355,
+                    -0.9150000214576721,
+                    0.029999999329447746,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "5000",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1808470824,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AmmoAmount",
+                  "Print": true,
+                  "Rect": [
+                    0.5600000023841858,
+                    0.824999988079071,
+                    0.03500000014901161,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "TextString": "20 / 20",
+                  "Type": 4
+                },
+                {
                   "ID": 3176509821,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSection": [
@@ -2381,6 +2501,30 @@
                   "State": 0,
                   "Type": 2,
                   "Value": 10
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3506077180,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_CurrentLoadoutName",
+                  "Print": true,
+                  "Rect": [
+                    0.6949999928474426,
+                    0.9300000071525574,
+                    0.02500000037252903,
+                    0.03500000014901161
+                  ],
+                  "State": 0,
+                  "TextString": "    m4a1",
+                  "Type": 4
                 }
               ]
             }
@@ -6407,6 +6551,220 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4292751725
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 27801636,
+              "UiElements": [
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 619681716,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_SavingProgress",
+                  "Print": true,
+                  "Rect": [
+                    -0.875,
+                    0.949999988079071,
+                    0.03999999910593033,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "TextString": "saving progress...",
+                  "Type": 4
+                },
+                {
+                  "ID": 2475109732,
+                  "ImagePath": "Assets\\Textures\\Hud\\GameIcon.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_SavingIcon",
+                  "Print": true,
+                  "Rect": [
+                    -0.9350000023841858,
+                    0.9150000214576721,
+                    0.03500000014901161,
+                    0.06499999761581421
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Enabled": false,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_SavingScene",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3712653715
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 2755791311,
+              "UiElements": [
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    0.009999999776482582,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2770986528,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_TitleNewItem",
+                  "Print": true,
+                  "Rect": [
+                    -0.925000011920929,
+                    0.6150000095367432,
+                    0.03500000014901161,
+                    0.06499999761581421
+                  ],
+                  "State": 0,
+                  "TextString": "New item:",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1456410993,
+                  "Interactuable": false,
+                  "Kerning": 0.014999999664723873,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_PickedItem",
+                  "Print": true,
+                  "Rect": [
+                    -0.925000011920929,
+                    0.6949999928474426,
+                    0.029999999329447746,
+                    0.05000000074505806
+                  ],
+                  "State": 0,
+                  "TextString": "shoulder laser",
+                  "Type": 4
+                },
+                {
+                  "ID": 3957239493,
+                  "ImagePath": "Assets\\Textures\\Hud\\Dialogue_Screen_Box_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Background",
+                  "Print": true,
+                  "Rect": [
+                    -0.7149999737739563,
+                    0.6449999809265137,
+                    0.25,
+                    0.17000000178813934
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Enabled": false,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_PickUpFeedback",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
@@ -6442,7 +6800,7 @@
           "UID": 472327911
         },
         {
-          "Aspect": 1.7774686813354492,
+          "Aspect": 1.7771084308624268,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
