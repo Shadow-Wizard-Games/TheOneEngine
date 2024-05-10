@@ -263,8 +263,7 @@ void Renderer2D::StartBatch()
 
 void Renderer2D::Flush()
 {
-	glDisable(GL_CULL_FACE);
-
+	GLCALL(glDisable(GL_CULL_FACE));
 	if (renderer2D.QuadIndexCount)
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)renderer2D.QuadVertexBufferPtr - (uint8_t*)renderer2D.QuadVertexBufferBase);
@@ -315,8 +314,7 @@ void Renderer2D::Flush()
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.TextShader->UnBind();
 	}
-
-	glEnable(GL_CULL_FACE);
+	GLCALL(glEnable(GL_CULL_FACE));
 }
 
 void Renderer2D::NextBatch()

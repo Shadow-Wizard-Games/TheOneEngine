@@ -81,17 +81,8 @@ void EngineCore::Update(double dt)
     this->dt = dt;
 }
 
-void EngineCore::SetRenderEnvironment(Camera* camera)
+void EngineCore::SetRenderEnvironment()
 {
-    if (!camera) camera = editorCamReference;
-
-    // Update Camera Matrix
-    GLCALL(glMatrixMode(GL_PROJECTION));
-    GLCALL(glLoadIdentity());
-
-    GLCALL(glMatrixMode(GL_MODELVIEW));
-    GLCALL(glLoadIdentity());
-
     GLCALL(glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST));
     GLCALL(glClearDepth(1.0f));
 
@@ -102,41 +93,7 @@ void EngineCore::SetRenderEnvironment(Camera* camera)
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glEnable(GL_COLOR_MATERIAL));
 
-    glClear(GL_DEPTH_BUFFER_BIT);
-
-    switch (camera->cameraType)
-    {
-    case CameraType::PERSPECTIVE:
-        gluPerspective(camera->fov, camera->aspect, camera->zNear, camera->zFar);
-        break;
-
-    case CameraType::ORTHOGRAPHIC:
-    {
-        float halfWidth = camera->size * 0.5f;
-        float halfHeight = halfWidth / camera->aspect;
-        GLCALL(glOrtho(-halfWidth, halfWidth, -halfHeight, halfHeight, camera->zNear, camera->zFar));
-    }
-    break;
-
-    default:
-        LOG(LogType::LOG_ERROR, "EngineCore - CameraType invalid!");
-        break;
-    }
-
-	Transform* cameraTransform = camera->GetContainerGO().get()->GetComponent<Transform>();
-
-    if (cameraTransform == nullptr)
-    {
-        LOG(LogType::LOG_ERROR, "Camera Transform not found");
-    }
-
-    gluLookAt(cameraTransform->GetPosition().x, cameraTransform->GetPosition().y, cameraTransform->GetPosition().z,
-        camera->lookAt.x, camera->lookAt.y, camera->lookAt.z,
-		cameraTransform->GetUp().x, cameraTransform->GetUp().y, cameraTransform->GetUp().z);
-
-    //GLCALL(glColor3f(1.0f, 1.0f, 1.0f));
-
-    assert(glGetError() == GL_NONE);
+    GLCALL(glClear(GL_DEPTH_BUFFER_BIT));
 }
 
 void EngineCore::DebugDraw(bool override)
@@ -153,17 +110,6 @@ void EngineCore::DebugDraw(bool override)
 
     if (drawScriptShapes || override)
         monoManager->RenderShapesQueue();
-}
-
-void EngineCore::LogGL(string id)
-{
-    GLenum errorCode = glGetError();
-    
-    if (errorCode != GL_NO_ERROR)
-    {
-        const GLubyte* errorString = gluErrorString(errorCode);
-        LOG(LogType::LOG_ERROR, "GL_%d  %s  %s", errorCode, errorString, id.c_str());
-    }
 }
 
 void EngineCore::CleanUp()

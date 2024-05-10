@@ -92,10 +92,6 @@ void SliderUI::Draw2D()
 			break;
 		}
 	}
-
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	glDisable(GL_TEXTURE_2D);
 }
 
 json SliderUI::SaveUIElement()

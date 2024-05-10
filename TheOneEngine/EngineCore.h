@@ -67,10 +67,8 @@ public:
 	bool PreUpdate();
 	void Update(double dt);
 
-	void SetRenderEnvironment(Camera* camera);
+	void SetRenderEnvironment();
 	void DebugDraw(bool override = false);
-
-	void LogGL(string id);
 
 	void CleanUp();
 
