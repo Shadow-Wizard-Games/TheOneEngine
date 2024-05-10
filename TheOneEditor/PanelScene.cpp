@@ -229,7 +229,6 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        GLCALL(glDisable(GL_BLEND));
         //GLCALL(glDisable(GL_STENCIL_TEST));
         //GLCALL(glStencilMask(0x00));
         // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
@@ -260,6 +259,10 @@ bool PanelScene::Draw()
                 for (auto ray : rays)
                     engine->DrawRay(ray);
             }
+
+            GLCALL(glDisable(GL_BLEND));
+            //GLCALL(glDisable(GL_DEPTH_TEST));
+            //GLCALL(glDisable(GL_STENCIL_TEST));
 
             // Draw Scene
             current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
