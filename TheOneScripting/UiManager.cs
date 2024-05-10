@@ -14,6 +14,21 @@ public class UiManager : MonoBehaviour
         Stats,
     }
 
+    public enum HudPopUpMenu
+    {
+        SaveScene,
+        PickUpFeedback,
+        Dialogue
+    }
+
+    public enum Dialoguer
+    {
+        ShopKeeper,
+        Medic,
+        CampLeader,
+        Sargeant
+    }
+
     IGameObject inventoryGo;
     IGameObject deathScreenGo;
     IGameObject pauseMenuGo;
@@ -247,20 +262,15 @@ public class UiManager : MonoBehaviour
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.F1))//for the moment for debug porpuses
                 {
-                    savingSceneGo.Enable();
-                    savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress","Text_SavingProgress");
-                    saveOnCooldown = true;
+                    OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.F2))//for the moment for debug porpuses
                 {
-                    pickUpFeedbackGo.Enable();
-                    pickUpFeedbackGo.GetComponent<ICanvas>().SetTextString("shoulder laser","Text_PickedItem");
-                    pickUpFeedbackOnCooldown = true;
+                    OpenHudPopUpMenu(HudPopUpMenu.PickUpFeedback, "shoulder laser");
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.F3))//for the moment for debug porpuses
                 {
-                    dialogueGo.Enable();
-                    dialogueOnCooldown = true;
+                    OpenHudPopUpMenu(HudPopUpMenu.Dialogue, "Tu madre tiene una polla\n que ya la quisiera yo, me \ndio pena por tu padre el\n dia que se entero",Dialoguer.Sargeant);
                 }
             }
 
@@ -421,6 +431,51 @@ public class UiManager : MonoBehaviour
                     break;
             }
             this.state = state;
+        }
+    }
+
+    public void OpenHudPopUpMenu(HudPopUpMenu type, string text = "", Dialoguer dialoguer = Dialoguer.ShopKeeper)
+    {
+        switch (type)
+        {
+            case HudPopUpMenu.SaveScene:
+                savingSceneGo.Enable();
+                savingSceneGo.GetComponent<ICanvas>().SetTextString(text, "Text_SavingProgress");
+                saveOnCooldown = true;
+                break;
+            case HudPopUpMenu.PickUpFeedback:
+                pickUpFeedbackGo.Enable();
+                pickUpFeedbackGo.GetComponent<ICanvas>().SetTextString(text, "Text_PickedItem");
+                pickUpFeedbackOnCooldown = true;
+                break;
+            case HudPopUpMenu.Dialogue:
+                dialogueGo.Enable();
+                dialogueGo.GetComponent<ICanvas>().SetTextString(text, "Text_Dialogue");
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_ShopKeeper");
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_Medic");
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_CampLeader");
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_Sargeant");
+                switch (dialoguer)
+                {
+                    case Dialoguer.ShopKeeper:
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_ShopKeeper");
+                        break;
+                    case Dialoguer.Medic:
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_Medic");
+                        break;
+                    case Dialoguer.CampLeader:
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_CampLeader");
+                        break;
+                    case Dialoguer.Sargeant:
+                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_Sargeant");
+                        break;
+                    default:
+                        break;
+                }
+                dialogueOnCooldown = true;
+                break;
+            default:
+                break;
         }
     }
 }
