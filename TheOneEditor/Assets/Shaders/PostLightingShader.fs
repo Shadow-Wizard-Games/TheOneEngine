@@ -3,6 +3,11 @@
 const int MAX_POINT_LIGHTS = 32;
 const int MAX_SPOT_LIGHTS = 12;
 
+// Outputs colors in RGBA
+out vec4 FragColor;
+
+in vec2 TexCoords;
+
 uniform sampler2D gPosition;
 uniform sampler2D gNormal;
 uniform sampler2D gAlbedoSpec;
@@ -35,18 +40,13 @@ struct SpotLight {
     float OuterCutOff;
 };
 
-// Outputs colors in RGBA
-out vec4 FragColor;
-
-in vec2 TexCoords;
-
-uniform vec3 u_ViewPos;
-
 uniform DirLight u_DirLight;
 uniform int u_PointLightsNum;
 uniform PointLight u_PointLights[MAX_POINT_LIGHTS];
 uniform int u_SpotLightsNum;
 uniform SpotLight u_SpotLights[MAX_SPOT_LIGHTS];
+
+uniform vec3 u_ViewPos;
 
 const float PI = 3.14159265359;
 
@@ -65,7 +65,6 @@ const float PI = 3.14159265359;
 // }
 
 vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir) {
-    vec3 ambient  = Diffuse * 0.1; 
     float distance = length(light.Position - FragPos);
     if(distance < light.Radius)
     {
@@ -80,12 +79,11 @@ vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal,
         float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
         diffuse *= attenuation;
         specular *= attenuation;
-        return (ambient + diffuse + specular);
+        return (diffuse + specular);
     }
 }
 
 vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir) {
-    vec3 ambient  = Diffuse * 0.1; 
     float distance = length(light.Position - FragPos);
     if(distance < light.Radius)
     {
@@ -109,7 +107,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
         float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
         diffuse *= attenuation;
         specular *= attenuation;
-        return (ambient + diffuse + specular);
+        return (diffuse + specular);
     }
 }
 
@@ -119,14 +117,16 @@ void main() {
     vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
     float Specular = texture(gAlbedoSpec, TexCoords).a;
     vec3 ViewDir  = normalize(u_ViewPos - FragPos);
+
     // phase 1: Directional lighting
     //vec3 result = CalcDirLight(u_DirLight, norm, viewDir);
-    // phase 2: Point lights
 
-    vec3 result = {0,0,0};
+    // phase 2: Point lights
+    vec3 result = Diffuse;
     for(int i = 0; i < u_PointLightsNum; i++) result += CalcPointLight(u_PointLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
 
+    // phase 3: Spot lights
     for(int i = 0; i < u_SpotLightsNum; i++) result += CalcSpotLight(u_SpotLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
 
-    FragColor = vec4(result, 1.0);
+    FragColor = vec4(0.5, 0.2, 0.0, 1.0);
 }

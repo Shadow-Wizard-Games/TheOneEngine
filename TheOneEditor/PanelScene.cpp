@@ -319,48 +319,43 @@ bool PanelScene::Draw()
             Uniform::SamplerData gAlbedoSpecData;
             gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
 
+            Shader* shader = engine->lightingProcess.getShader();
+            shader->Bind();
+
             engine->lightingProcess.SetUniformData("gPosition", gPositionData);
             engine->lightingProcess.SetUniformData("gNormal", gNormalData);
             engine->lightingProcess.SetUniformData("gAlbedoSpec", gAlbedoSpecData);
             engine->lightingProcess.SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
 
+            engine->lightingProcess.SetUniformData("u_PointLightsNum", pointLights.size());
             for (int i = 0; i < pointLights.size(); i++)
             {
-                if (pointLights[i]->recalculate)
-                {
-                    string iteration = to_string(i);
-                    Transform* transform = pointLights[i]->GetContainerGO().get()->GetComponent<Transform>();
+                string iteration = to_string(i);
+                Transform* transform = pointLights[i]->GetContainerGO().get()->GetComponent<Transform>();
 
-                    //Variables need to be float not double
-                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Color", pointLights[i]->color);
-                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Linear", pointLights[i]->linear);
-                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Quadratic", pointLights[i]->quadratic);
-                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Radius", pointLights[i]->radius);
-                }
+                //Variables need to be float not double
+                engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+                engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Color", pointLights[i]->color);
+                engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Linear", pointLights[i]->linear);
+                engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Quadratic", pointLights[i]->quadratic);
+                engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Radius", pointLights[i]->radius);
             }
             engine->lightingProcess.SetUniformData("u_SpotLightsNum", spotLights.size());
             for (int i = 0; i < spotLights.size(); i++)
             {
-                if (spotLights[i]->recalculate)
-                {
-                    string iteration = to_string(i);
-                    Transform* transform = spotLights[i]->GetContainerGO().get()->GetComponent<Transform>();
+                string iteration = to_string(i);
+                Transform* transform = spotLights[i]->GetContainerGO().get()->GetComponent<Transform>();
 
-                    //Variables need to be float not double
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Color", spotLights[i]->color);
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Linear", pointLights[i]->linear);
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Quadratic", pointLights[i]->quadratic);
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Radius", pointLights[i]->radius);
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].CutOff", spotLights[i]->innerCutOff);
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", spotLights[i]->outerCutOff);
-                }
+                //Variables need to be float not double
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Color", spotLights[i]->color);
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Linear", spotLights[i]->linear);
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Quadratic", spotLights[i]->quadratic);
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Radius", spotLights[i]->radius);
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].CutOff", spotLights[i]->innerCutOff);
+                engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", spotLights[i]->outerCutOff);
             }
-
-            Shader* shader = engine->lightingProcess.getShader();
-            shader->Bind();
 
             unsigned int quadVAO = 0;
             unsigned int quadVBO;
