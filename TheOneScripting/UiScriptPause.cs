@@ -30,6 +30,8 @@ public class UiScriptPause : MonoBehaviour
         gameManager = GameManagerGO.GetComponent<GameManager>();
 
         onCooldown = true;
+
+        canvas.MoveSelectionButton(2 - canvas.GetSelectedButton());
     }
 
     public override void Update()

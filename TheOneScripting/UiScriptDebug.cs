@@ -31,6 +31,8 @@ public class UiScriptDebug : MonoBehaviour
 
         onCooldown = true;
 
+        canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
+
         UpdateCheckers();
     }
 

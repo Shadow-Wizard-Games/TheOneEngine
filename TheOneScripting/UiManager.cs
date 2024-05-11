@@ -52,6 +52,8 @@ public class UiManager : MonoBehaviour
     MenuState state;
     MenuState previousState;
 
+    public MenuState GetMenuState() { return this.state; }
+
     float cooldown = 0;
     bool onCooldown = false;
 
@@ -251,14 +253,17 @@ public class UiManager : MonoBehaviour
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
                 {
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_PAUSEGAME);
-                    if (state == MenuState.Pause)
+                    if (!settingsGo.GetComponent<UiScriptSettings>().editing)
                     {
-                        ResumeGame();
-                    }
-                    else
-                    {
-                        OpenMenu(previousState);
-                        previousState = MenuState.Pause;
+                        if (state == MenuState.Pause)
+                        {
+                            ResumeGame();
+                        }
+                        else
+                        {
+                            OpenMenu(previousState);
+                            previousState = MenuState.Pause;
+                        }
                     }
                     onCooldown = true;
                 }
@@ -385,6 +390,7 @@ public class UiManager : MonoBehaviour
                     break;
                 case MenuState.Settings:
                     settingsGo.Enable();
+                    settingsGo.GetComponent<UiScriptSettings>().firstFrameUpdate = false;
                     playerScript.onPause = true;
                     break;
                 case MenuState.Missions:

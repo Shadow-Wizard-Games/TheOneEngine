@@ -71,9 +71,9 @@ public class ICanvas : IComponent
         InternalCalls.SetSliderValue(containerGOptr, value, name);
     }
 
-    public void SetButtonState(UiState state, string name)
+    public void SetUiItemState(UiState state, string name)
     {
-        InternalCalls.SetButtonState(containerGOptr, (int)state, name);
+        InternalCalls.SetUiItemState(containerGOptr, (int)state, name);
     }
 
     public string GetTextString(string name)

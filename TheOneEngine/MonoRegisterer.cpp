@@ -358,101 +358,106 @@ static int GetSelected(GameObject* containerGO)
 	return ret;
 }
 
-static void SetButtonState(GameObject* containerGO, int state, MonoString* name)
+static void SetUiItemState(GameObject* containerGO, int state, MonoString* name)
 {
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
-		if (uiElements[i]->GetType() == UiType::BUTTONIMAGE && uiElements[i]->GetName() == itemName)
+		if ((uiElements[i]->GetType() != UiType::IMAGE && uiElements[i]->GetType() != UiType::TEXT) && uiElements[i]->GetName() == itemName)
 		{
-			ButtonImageUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<ButtonImageUI>(uiElements[i]->GetID());
-			ui->SetState((UiState)state);
+			(uiElements[i]->SetState((UiState)state));
 		}
 	}
 }
 
 static void MoveSelectedButton(GameObject* containerGO, int direction)
 {
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
-
-	for (size_t i = 0; i < uiElements.size(); i++)
+	if (direction != 0)
 	{
-		ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
-		if (uiElements[i]->GetType() == UiType::BUTTONIMAGE && tempButton->IsRealButton() && uiElements[i]->GetState() == UiState::HOVERED)
+		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+
+		for (size_t i = 0; i < uiElements.size(); i++)
 		{
-			int val = 1;
-			if (direction < 0)
-				val *= -1;
-
-			for (int j = i + val; j != i; j += val)
+			ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
+			if (uiElements[i]->GetType() == UiType::BUTTONIMAGE && tempButton->IsRealButton() && uiElements[i]->GetState() == UiState::HOVERED)
 			{
-				if (j < 0)
-					j = uiElements.size() - 1;
-				else if (j >= uiElements.size())
-					j = 0;
+				int val = 1;
+				if (direction < 0)
+					val *= -1;
 
-				if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
+				for (int j = i + val; j != i; j += val)
 				{
-					if (direction != 0)
-						direction += (val * -1);
+					if (j < 0)
+						j = uiElements.size() - 1;
+					else if (j >= uiElements.size())
+						j = 0;
 
-					if (direction == 0)
+					if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
 					{
-						uiElements[i]->SetState(UiState::IDLE);
-						uiElements[j]->SetState(UiState::HOVERED);
-						break;
+						if (direction != 0)
+							direction += (val * -1);
+
+						if (direction == 0)
+						{
+							uiElements[i]->SetState(UiState::IDLE);
+							uiElements[j]->SetState(UiState::HOVERED);
+							break;
+						}
 					}
 				}
+				break;
 			}
-			break;
 		}
 	}
 }
 
 static void MoveSelection(GameObject* containerGO, int direction)
 {
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
-
-	for (size_t i = 0; i < uiElements.size(); i++)
+	if (direction != 0)
 	{
-		if ((uiElements[i]->GetType() != UiType::IMAGE || uiElements[i]->GetType() != UiType::TEXT) && uiElements[i]->GetState() == UiState::HOVERED)
+		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+
+		for (size_t i = 0; i < uiElements.size(); i++)
 		{
-			if (uiElements[i]->GetType() == UiType::BUTTONIMAGE)
+			if ((uiElements[i]->GetType() != UiType::IMAGE && uiElements[i]->GetType() != UiType::TEXT) && uiElements[i]->GetState() == UiState::HOVERED)
 			{
-				ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
-				if (!tempButton->IsRealButton()) continue;
-			}
-			int val = 1;
-			if (direction < 0)
-				val *= -1;
-
-			for (int j = i + val; j != i; j += val)
-			{
-				if (j < 0)
-					j = uiElements.size() - 1;
-				else if (j >= uiElements.size())
-					j = 0;
-
-				if (uiElements[j]->GetType() != UiType::IMAGE)
+				if (uiElements[i]->GetType() == UiType::BUTTONIMAGE)
 				{
-					if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
-					{
-						ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[j];
-						if (!tempButton->IsRealButton()) continue;
-					}
-					if (direction != 0)
-						direction += (val * -1);
+					ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
+					if (!tempButton->IsRealButton()) continue;
+				}
+				int val = 1;
+				if (direction < 0)
+					val *= -1;
 
-					if (direction == 0)
+				for (int j = i + val; j != i; j += val)
+				{
+					if (j < 0)
+						j = uiElements.size() - 1;
+					else if (j >= uiElements.size())
+						j = 0;
+
+					if (uiElements[j]->GetType() != UiType::IMAGE)
 					{
-						uiElements[i]->SetState(UiState::IDLE);
-						uiElements[j]->SetState(UiState::HOVERED);
-						break;
+						if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
+						{
+							ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[j];
+							if (!tempButton->IsRealButton()) continue;
+						}
+						if (direction != 0)
+							direction += (val * -1);
+
+						if (direction == 0)
+						{
+							uiElements[i]->SetState(UiState::IDLE);
+							uiElements[j]->SetState(UiState::HOVERED);
+							break;
+						}
 					}
 				}
+				break;
 			}
-			break;
 		}
 	}
 }
@@ -861,7 +866,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
 	mono_add_internal_call("InternalCalls::GetSelected", GetSelected);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
-	mono_add_internal_call("InternalCalls::SetButtonState", SetButtonState);
+	mono_add_internal_call("InternalCalls::SetUiItemState", SetUiItemState);
 	mono_add_internal_call("InternalCalls::MoveSelection", MoveSelection);
 	mono_add_internal_call("InternalCalls::ChangeSectImg", ChangeSectImg);
 	mono_add_internal_call("InternalCalls::GetSliderValue", GetSliderValue);

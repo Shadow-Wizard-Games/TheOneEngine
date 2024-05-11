@@ -23,6 +23,7 @@ public class UiScriptInventory : MonoBehaviour
         itemManager = iManagerGO.GetComponent<ItemManager>();
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
+        canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
 
         onCooldown = true;
