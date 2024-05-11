@@ -111,7 +111,8 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
     }
 }
 
-void main() {
+void main()
+{
     vec3 FragPos = texture(gPosition, TexCoords).rgb;
     vec3 Normal = texture(gNormal, TexCoords).rgb;
     vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
@@ -122,11 +123,13 @@ void main() {
     //vec3 result = CalcDirLight(u_DirLight, norm, viewDir);
 
     // phase 2: Point lights
-    vec3 result = Diffuse;
-    for(int i = 0; i < u_PointLightsNum; i++) result += CalcPointLight(u_PointLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
+    vec3 result = Diffuse * 0.1;
+    for(int i = 0; i < u_PointLightsNum; i++)
+    result += CalcPointLight(u_PointLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
 
     // phase 3: Spot lights
-    for(int i = 0; i < u_SpotLightsNum; i++) result += CalcSpotLight(u_SpotLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
+    // for(int i = 0; i < u_SpotLightsNum; i++)
+    // result += CalcSpotLight(u_SpotLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
 
-    FragColor = vec4(0.5, 0.2, 0.0, 1.0);
+    FragColor = vec4(result, 1.0);
 }

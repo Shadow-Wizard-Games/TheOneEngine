@@ -74,7 +74,7 @@ void FrameBuffer::GenerateFrameBuffer()
                 drawBuffers[drawBufferIndex++] = GL_COLOR_ATTACHMENT0 + drawBufferIndex;
                 break;
 
-            case Attachment::Type::RGB16F:
+                    case Attachment::Type::RGB16F:
                 GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &attachment.textureId));
                 GLCALL(glBindTexture(GL_TEXTURE_2D, attachment.textureId));
                 GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, nullptr));

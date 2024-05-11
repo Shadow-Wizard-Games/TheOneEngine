@@ -310,7 +310,7 @@ bool PanelScene::Draw()
             std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
             std::vector<Light*> spotLights = engine->N_sceneManager->currentScene->spotLights;
 
-            Transform* cameraTransform = engine->N_sceneManager->currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>();
+            Transform* cameraTransform = sceneCamera.get()->GetComponent<Transform>();
 
             Uniform::SamplerData gPositionData;
             gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
@@ -357,6 +357,8 @@ bool PanelScene::Draw()
                 engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", spotLights[i]->outerCutOff);
             }
 
+            engine->lightingProcess.Bind();
+
             unsigned int quadVAO = 0;
             unsigned int quadVBO;
             if (quadVAO == 0)
@@ -383,7 +385,7 @@ bool PanelScene::Draw()
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
             glBindVertexArray(0);
 
-            shader->UnBind();
+            engine->lightingProcess.UnBind();
 
             postBuffer->Unbind();
         }
