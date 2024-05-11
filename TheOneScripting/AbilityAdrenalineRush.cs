@@ -19,7 +19,7 @@ public class AbilityAdrenalineRush : Ability
 
     public override void Start()
     {
-        name = "Heal";
+        name = "AdrenalineRush";
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
@@ -43,18 +43,17 @@ public class AbilityAdrenalineRush : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.THREE)) // change input
                 {
                     Activated();
-                    state = AbilityState.ACTIVE;
                     break;
                 }
                 // controller input
                 break;
             case AbilityState.ACTIVE:
                 WhileActive();
-                Debug.Log("Adrenaline active time -> " + activeTimeCounter.ToString("F2"));
+                Debug.Log("AdrenalineRush active time -> " + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
-                Debug.Log("Adrenaline cooldown time -> " + cooldownTimeCounter.ToString("F2"));
+                Debug.Log("AdrenalineRush cooldown time -> " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
@@ -69,6 +68,11 @@ public class AbilityAdrenalineRush : Ability
         player.speed += speedIncrease;
 
         // increase damage
+
+
+        state = AbilityState.ACTIVE;
+
+        Debug.Log("Ability AdrenalineRush Activated");
     }
 
     public override void WhileActive()
@@ -86,6 +90,8 @@ public class AbilityAdrenalineRush : Ability
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
+
+            Debug.Log("Ability AdrenalineRush on Cooldown");
         }
 
         if (healthRegenTimeCounter > 0)
@@ -119,6 +125,8 @@ public class AbilityAdrenalineRush : Ability
         {
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
+
+            Debug.Log("Ability AdrenalineRush Ready");
         }
     }
 }

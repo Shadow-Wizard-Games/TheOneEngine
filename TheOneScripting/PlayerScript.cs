@@ -41,7 +41,10 @@ public class PlayerScript : MonoBehaviour
     // shooting
     bool hasShot = false;
     float timeSinceLastShot = 0.0f;
-    float shootingCooldown = 0.10f;
+    public float shootingCooldown = 0.15f;
+    public float mp4ShootingCd = 0.15f;
+    public int impacienteBullets = 1000;
+    public int impacienteBulletCounter = 0;
 
     // Abilities
     IGameObject dashGO;
@@ -52,10 +55,12 @@ public class PlayerScript : MonoBehaviour
     Ability shield;
 
     public bool isDashing = false;
-    public string dashAbilityName = "Roll"; // delete
+    public string dashAbilityName = "Roll";
 
     public int shieldKillCounter = 0;
     public bool shieldIsActive = false;
+
+    public bool impacienteActivated = false;
 
     // animation states
     bool isRunning;
@@ -352,6 +357,9 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
                 hasShot = true;
                 if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+
+                if(impacienteActivated)
+                    impacienteBulletCounter++;
             }
         }
         else
@@ -363,22 +371,16 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
-        if (isDead || gameManager.godMode) return;
+        if (isDead || gameManager.godMode || shieldIsActive || isDashing) 
+            return;
 
-        if(!shieldIsActive)
-        {
-            life -= 10.0f;
-            Debug.Log("Player took damage! Current life is: " + life.ToString());
+        life -= 10.0f;
+        Debug.Log("Player took damage! Current life is: " + life.ToString());
 
-            if (life <= 0)
-            {
-                isDead = true;
-                attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
-            }
-        }
-        else
+        if (life <= 0)
         {
-            Debug.Log("Shield prevented the player from taking damage!");
+            isDead = true;
+            attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
     }
 

@@ -33,7 +33,6 @@ public class AbilityShield : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.TWO)) // change input
                 {
                     Activated();
-                    state = AbilityState.ACTIVE;
                     break;
                 }
                 // controller input
@@ -55,12 +54,18 @@ public class AbilityShield : Ability
         {
             player.shieldKillCounter = 0;
             state = AbilityState.READY;
+
+            Debug.Log("Ability Shield Ready");
         }
     }
 
     public override void Activated()
     {
         player.shieldIsActive = true;
+
+        state = AbilityState.ACTIVE;
+
+        Debug.Log("Ability Shield Activated");
     }
 
     public override void WhileActive()
@@ -74,6 +79,8 @@ public class AbilityShield : Ability
         {
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
+
+            Debug.Log("Ability Shield on Cooldown");
         }
     }
 
@@ -88,6 +95,8 @@ public class AbilityShield : Ability
         {
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.CHARGING;
+
+            Debug.Log("Ability Shield Charging");
         }
     }
 }

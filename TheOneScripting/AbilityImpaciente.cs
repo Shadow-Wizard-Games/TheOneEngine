@@ -1,27 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class AbilityHeal : Ability
+public class AbilityImpaciente : Ability
 {
     IGameObject playerGO;
     PlayerScript player;
 
-    int numHeals = 0;
-    int maxHeals = 3;
+    float slowAmount = 0.25f;
 
-    float healAmount = 0.6f; // in %
-    float slowAmount = 0.4f; // in %
-
-    float totalHeal = 0.0f;
+    float impacienteShootingCd = 0.12f;
 
     public override void Start()
     {
-        name = "Heal";
+        name = "Impaciente";
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
-        activeTime = 1.0f;
+        activeTime = 25.0f;
         activeTimeCounter = activeTime;
-        cooldownTime = 8.0f;
+        cooldownTime = 45.0f;
         cooldownTimeCounter = cooldownTime;
     }
 
@@ -33,36 +33,36 @@ public class AbilityHeal : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && numHeals > 0)
+                if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR))
                 {
-                    Activated();   
+                    Activated();
                     break;
                 }
                 // controller input
                 break;
             case AbilityState.ACTIVE:
                 WhileActive();
-                Debug.Log("Heal active time -> " + activeTimeCounter.ToString("F2"));
+                Debug.Log("Impaciente active time -> " + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
-                Debug.Log("Heal cooldown time -> " + activeTimeCounter.ToString("F2"));
+                Debug.Log("Impaciente cooldown time -> " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
 
     public override void Activated()
     {
-        // Calculate heal amount
-        totalHeal = player.maxLife * healAmount;
-        totalHeal += player.life;
-        
+        player.impacienteActivated = true;
+
+        player.shootingCooldown = impacienteShootingCd;
+
         float speedReduce = player.baseSpeed * slowAmount;
         player.speed -= speedReduce;
 
         state = AbilityState.ACTIVE;
 
-        Debug.Log("Ability Heal Activated");
+        Debug.Log("Ability Impaciente Activated");
     }
 
     public override void WhileActive()
@@ -72,28 +72,33 @@ public class AbilityHeal : Ability
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
+            Debug.LogWarning("Impaciente Bullets --> " + player.impacienteBulletCounter);
+            if (player.impacienteBulletCounter >= player.impacienteBullets)
+            {
+                player.impacienteBulletCounter = 0;
+                player.impacienteActivated = false;
+                state = AbilityState.COOLDOWN;
+
+                Debug.Log("Ability Impaciente on Cooldown");
+            }
         }
         else
         {
-            // heal
-            if (totalHeal > player.maxLife)
-                player.life = player.maxLife;
-            else
-                player.life = totalHeal;
-
             // reset stats
+            player.shootingCooldown = player.mp4ShootingCd;
             player.speed = player.baseSpeed;
 
             activeTimeCounter = activeTime;
+            player.impacienteActivated = false;
             state = AbilityState.COOLDOWN;
 
-            Debug.Log("Ability Heal on Cooldown");
+            Debug.Log("Ability Impaciente on Cooldown");
         }
     }
 
     public override void OnCooldown()
     {
-        if(cooldownTimeCounter > 0)
+        if (cooldownTimeCounter > 0)
         {
             // update time
             cooldownTimeCounter -= Time.deltaTime;
@@ -103,7 +108,9 @@ public class AbilityHeal : Ability
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
 
-            Debug.Log("Ability Heal Ready");
+            Debug.Log("Ability Impaciente Ready");
         }
+
     }
-} 
+}
+

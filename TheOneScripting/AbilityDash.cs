@@ -30,10 +30,9 @@ public class AbilityDash : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR)) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) // change input
                 {
                     Activated();
-                    state = AbilityState.ACTIVE;
                     break;
                 }
                 // controller input
@@ -52,6 +51,10 @@ public class AbilityDash : Ability
     public override void Activated()
     {
         player.isDashing = true;
+
+        state = AbilityState.ACTIVE;
+
+        Debug.Log("Ability " + player.dashAbilityName + " Activated");
     }
 
     public override void WhileActive()
@@ -74,6 +77,8 @@ public class AbilityDash : Ability
             player.isDashing = false;
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
+
+            Debug.Log("Ability " + player.dashAbilityName + " on Cooldown");
         }
     }
 
@@ -88,6 +93,8 @@ public class AbilityDash : Ability
         {
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
+
+            Debug.Log("Ability " + player.dashAbilityName + " Ready");
         }
     }
 }
