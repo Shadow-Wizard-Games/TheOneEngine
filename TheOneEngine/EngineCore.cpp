@@ -449,6 +449,11 @@ void EngineCore::InitPostLightingShader()
     textShader->addUniform("gNormal", UniformType::Sampler2D);
     textShader->addUniform("gAlbedoSpec", UniformType::Sampler2D);
     textShader->addUniform("u_ViewPos", UniformType::fVec3);
+
+    textShader->addUniform("u_DirLight.Position", UniformType::fVec3);
+    textShader->addUniform("u_DirLight.Color", UniformType::fVec3);
+    textShader->addUniform("u_DirLight.Direction", UniformType::fVec3);
+
     textShader->addUniform("u_PointLightsNum", UniformType::Int);
     for (uint i = 0; i < 32; i++)
     {

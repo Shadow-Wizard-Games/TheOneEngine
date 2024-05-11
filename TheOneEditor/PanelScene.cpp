@@ -327,6 +327,13 @@ bool PanelScene::Draw()
             engine->lightingProcess.SetUniformData("gAlbedoSpec", gAlbedoSpecData);
             engine->lightingProcess.SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
 
+            if (engine->N_sceneManager->currentScene->directionalLight)
+            {
+                engine->lightingProcess.SetUniformData("u_DirLight.Position", (glm::vec3)engine->N_sceneManager->currentScene->directionalLight->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+                engine->lightingProcess.SetUniformData("u_DirLight.Direction", (glm::vec3)engine->N_sceneManager->currentScene->directionalLight->GetContainerGO().get()->GetComponent<Transform>()->GetForward());
+                engine->lightingProcess.SetUniformData("u_DirLight.Color", engine->N_sceneManager->currentScene->directionalLight->color);
+            }
+
             engine->lightingProcess.SetUniformData("u_PointLightsNum", pointLights.size());
             for (int i = 0; i < pointLights.size(); i++)
             {

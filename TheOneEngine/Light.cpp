@@ -116,6 +116,9 @@ json Light::SaveComponent()
     lightJSON["UID"] = UID;
     lightJSON["Color"] = { color.r, color.g, color.b};
     lightJSON["Specular"] = specular;
+    lightJSON["Radius"] = radius;
+    lightJSON["Linear"] = linear;
+    lightJSON["Quadratic"] = quadratic;
     lightJSON["InnerCutOff"] = innerCutOff;
     lightJSON["OuterCutOff"] = outerCutOff;
 
@@ -145,6 +148,18 @@ void Light::LoadComponent(const json& meshJSON)
     if (meshJSON.contains("Specular"))
     {
         specular = meshJSON["Specular"];
+    }
+    if (meshJSON.contains("Radius"))
+    {
+        radius = meshJSON["Radius"];
+    }
+    if (meshJSON.contains("Linear"))
+    {
+        linear = meshJSON["Linear"];
+    }
+    if (meshJSON.contains("Quadratic"))
+    {
+        quadratic = meshJSON["Quadratic"];
     }
     if (meshJSON.contains("InnerCutOff"))
     {
