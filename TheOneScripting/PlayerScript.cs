@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
+    public enum CurrentWeapon
+    {
+        MP4,
+        IMPACIENTE,
+        GRENADE_LAUNCHER,
+        FLAME_THROWER,
+    }
+
     // managers
     ItemManager itemManager;
     IGameObject iManagerGO;
@@ -39,6 +47,8 @@ public class PlayerScript : MonoBehaviour
 
 
     // shooting
+    public CurrentWeapon currentWeapon = CurrentWeapon.MP4;
+
     bool hasShot = false;
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
@@ -59,8 +69,6 @@ public class PlayerScript : MonoBehaviour
 
     public int shieldKillCounter = 0;
     public bool shieldIsActive = false;
-
-    public bool impacienteActivated = false;
 
     // animation states
     bool isRunning;
@@ -358,7 +366,7 @@ public class PlayerScript : MonoBehaviour
                 hasShot = true;
                 if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
 
-                if(impacienteActivated)
+                if(currentWeapon == CurrentWeapon.IMPACIENTE)
                     impacienteBulletCounter++;
             }
         }

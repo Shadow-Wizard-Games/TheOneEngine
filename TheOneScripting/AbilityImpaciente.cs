@@ -53,12 +53,12 @@ public class AbilityImpaciente : Ability
 
     public override void Activated()
     {
-        player.impacienteActivated = true;
-
         player.shootingCooldown = impacienteShootingCd;
 
         float speedReduce = player.baseSpeed * slowAmount;
         player.speed -= speedReduce;
+
+        player.currentWeapon = PlayerScript.CurrentWeapon.IMPACIENTE;
 
         state = AbilityState.ACTIVE;
 
@@ -76,7 +76,7 @@ public class AbilityImpaciente : Ability
             if (player.impacienteBulletCounter >= player.impacienteBullets)
             {
                 player.impacienteBulletCounter = 0;
-                player.impacienteActivated = false;
+                player.currentWeapon = PlayerScript.CurrentWeapon.MP4;
                 state = AbilityState.COOLDOWN;
 
                 Debug.Log("Ability Impaciente on Cooldown");
@@ -89,7 +89,7 @@ public class AbilityImpaciente : Ability
             player.speed = player.baseSpeed;
 
             activeTimeCounter = activeTime;
-            player.impacienteActivated = false;
+            player.currentWeapon = PlayerScript.CurrentWeapon.MP4;
             state = AbilityState.COOLDOWN;
 
             Debug.Log("Ability Impaciente on Cooldown");
