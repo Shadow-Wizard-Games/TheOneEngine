@@ -181,7 +181,7 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3491347560" Type="User" Language="English(US)" Hash="{ECD3F786-810B-30A0-EBCA-FD446B1FF9BC}">
+		<SoundBank Id="3491347560" Type="User" Language="English(US)" Hash="{1E311FB8-AFA6-4A7D-77E7-AA371746C60F}">
 			<ShortName>TheOneEngine</ShortName>
 			<Path>English(US)/TheOneEngine.bnk</Path>
 			<Media>
@@ -217,6 +217,10 @@
 					<ShortName>2-General dialogues\2-When a room is cleared\VO_stub_clearroom1.wav</ShortName>
 					<CachePath>Voices/English(US)/2-General dialogues/2-When a room is cleared/VO_stub_clearroom1_818F3B66.wem</CachePath>
 				</File>
+				<File Id="54801444" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_health3.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_health3_818F3B66.wem</CachePath>
+				</File>
 				<File Id="57693977" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>1-Narrative intro\VO_guard1_voiceline1_v2.wav</ShortName>
 					<CachePath>Voices/English(US)/1-Narrative intro/VO_guard1_voiceline1_v2_818F3B66.wem</CachePath>
@@ -224,6 +228,10 @@
 				<File Id="70308713" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>1-Narrative intro\VO_guard1_voiceline2.wav</ShortName>
 					<CachePath>Voices/English(US)/1-Narrative intro/VO_guard1_voiceline2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="72403260" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_firstamira2.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_firstamira2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="82457123" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_UI_M_Hover.wav</ShortName>
@@ -269,6 +277,18 @@
 					<ShortName>3-Level 1 - The ship\1-After the crash\VO_stub_crash2.wav</ShortName>
 					<CachePath>Voices/English(US)/3-Level 1 - The ship/1-After the crash/VO_stub_crash2_818F3B66.wem</CachePath>
 				</File>
+				<File Id="204830590" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_health1.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_health1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="223554829" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_WakeMed5.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_WakeMed5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="237094481" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_fullhealth.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_fullhealth_818F3B66.wem</CachePath>
+				</File>
 				<File Id="247209249" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_E_Q_Jump.wav</ShortName>
 					<CachePath>SFX/SFX_E_Q_Jump_818F3B66.wem</CachePath>
@@ -281,6 +301,10 @@
 					<ShortName>2-General dialogues\5-Getting healed by a statue\VO_stub_heal3.wav</ShortName>
 					<CachePath>Voices/English(US)/2-General dialogues/5-Getting healed by a statue/VO_stub_heal3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="275645529" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_voiceline1.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_voiceline1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="283181263" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>2-General dialogues\4-Not being able to open a door\VO_stub_door1.wav</ShortName>
 					<CachePath>Voices/English(US)/2-General dialogues/4-Not being able to open a door/VO_stub_door1_818F3B66.wem</CachePath>
@@ -288,6 +312,14 @@
 				<File Id="284382344" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>3-Level 1 - The ship\6- Fight with the Xenomorph\VO_stub_xenoFight2.wav</ShortName>
 					<CachePath>Voices/English(US)/3-Level 1 - The ship/6- Fight with the Xenomorph/VO_stub_xenoFight2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="298376175" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_WakeMed3.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_WakeMed3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="298572741" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_firstnoah3.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_firstnoah3_818F3B66.wem</CachePath>
 				</File>
 				<File Id="302522919" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_A_gl_shoot.wav</ShortName>
@@ -309,6 +341,10 @@
 					<ShortName>SFX_Xenomorph_Melee_E.wav</ShortName>
 					<CachePath>SFX/SFX_Xenomorph_Melee_E_818F3B66.wem</CachePath>
 				</File>
+				<File Id="403256707" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_firstnoah1.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_firstnoah1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="414090755" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_ChestbusterDeath_E.wav</ShortName>
 					<CachePath>SFX/SFX_ChestbusterDeath_E_818F3B66.wem</CachePath>
@@ -316,6 +352,10 @@
 				<File Id="433229473" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_E_Q_TailShot.wav</ShortName>
 					<CachePath>SFX/SFX_E_Q_TailShot_818F3B66.wem</CachePath>
+				</File>
+				<File Id="441280367" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_medclear2.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_medclear2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="466064314" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>waves.wav</ShortName>
@@ -349,6 +389,10 @@
 					<ShortName>2-General dialogues\1-While fighting\VO_stub_fighting3.wav</ShortName>
 					<CachePath>Voices/English(US)/2-General dialogues/1-While fighting/VO_stub_fighting3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="547796608" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_WakeMed2.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_WakeMed2_818F3B66.wem</CachePath>
+				</File>
 				<File Id="552844014" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Xenomorph_Spit_E.wav</ShortName>
 					<CachePath>SFX/SFX_Xenomorph_Spit_E_818F3B66.wem</CachePath>
@@ -369,6 +413,10 @@
 					<ShortName>SFX_A_s_activate.wav</ShortName>
 					<CachePath>SFX/SFX_A_s_activate_818F3B66.wem</CachePath>
 				</File>
+				<File Id="586577851" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_firstamira1.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_firstamira1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="588527722" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_SpawnXenomorph_E.wav</ShortName>
 					<CachePath>SFX/SFX_SpawnXenomorph_E_818F3B66.wem</CachePath>
@@ -376,6 +424,10 @@
 				<File Id="589914555" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Player_Hit_CH.wav</ShortName>
 					<CachePath>SFX/SFX_Player_Hit_CH_818F3B66.wem</CachePath>
+				</File>
+				<File Id="594436086" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_guard2_voiceline2.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_guard2_voiceline2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="623073670" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Facehugger_Eggcrack_E.wav</ShortName>
@@ -389,13 +441,25 @@
 					<ShortName>3-Level 1 - The ship\6- Fight with the Xenomorph\VO_stub_xenoFight3.wav</ShortName>
 					<CachePath>Voices/English(US)/3-Level 1 - The ship/6- Fight with the Xenomorph/VO_stub_xenoFight3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="631456549" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_voiceline2.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_voiceline2_818F3B66.wem</CachePath>
+				</File>
 				<File Id="635286070" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Guitar.wav</ShortName>
 					<CachePath>SFX/Guitar_818F3B66.wem</CachePath>
 				</File>
+				<File Id="640342975" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_guard2_voiceline1.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_guard2_voiceline1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="649793213" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_E_FH_Crawl_Death.wav</ShortName>
 					<CachePath>SFX/SFX_E_FH_Crawl_Death_818F3B66.wem</CachePath>
+				</File>
+				<File Id="653905591" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_firstamira3.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_firstamira3_818F3B66.wem</CachePath>
 				</File>
 				<File Id="657269236" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>1-Narrative intro\VO_guard1_voiceline1_v1.wav</ShortName>
@@ -417,6 +481,10 @@
 					<ShortName>SFX_W_m4_shoot.wav</ShortName>
 					<CachePath>SFX/SFX_W_m4_shoot_818F3B66.wem</CachePath>
 				</File>
+				<File Id="690307239" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_voiceline3.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_voiceline3_818F3B66.wem</CachePath>
+				</File>
 				<File Id="692788379" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_Xenomorph_Death_E.wav</ShortName>
 					<CachePath>SFX/SFX_Xenomorph_Death_E_818F3B66.wem</CachePath>
@@ -424,6 +492,10 @@
 				<File Id="715356811" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>gunshot.wav</ShortName>
 					<CachePath>SFX/gunshot_818F3B66.wem</CachePath>
+				</File>
+				<File Id="728978860" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_health4.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_health4_818F3B66.wem</CachePath>
 				</File>
 				<File Id="730529704" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_E_A_Death.wav</ShortName>
@@ -465,6 +537,10 @@
 					<ShortName>SFX_E_Q_SpitCharge.wav</ShortName>
 					<CachePath>SFX/SFX_E_Q_SpitCharge_818F3B66.wem</CachePath>
 				</File>
+				<File Id="799599197" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_WakeMed4.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_WakeMed4_818F3B66.wem</CachePath>
+				</File>
 				<File Id="812679030" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>3-Level 1 - The ship\5- Talking to the computer\VO_stub_planetInfo3.wav</ShortName>
 					<CachePath>Voices/English(US)/3-Level 1 - The ship/5- Talking to the computer/VO_stub_planetInfo3_818F3B66.wem</CachePath>
@@ -480,6 +556,10 @@
 				<File Id="866069972" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>2-General dialogues\2-When a room is cleared\VO_stub_clearroom3.wav</ShortName>
 					<CachePath>Voices/English(US)/2-General dialogues/2-When a room is cleared/VO_stub_clearroom3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="876178903" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_voiceline4.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_voiceline4_818F3B66.wem</CachePath>
 				</File>
 				<File Id="882278297" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_E_Q_Spit.wav</ShortName>
@@ -497,13 +577,17 @@
 					<ShortName>2-General dialogues\3-When finding something\VO_stub_finding1.wav</ShortName>
 					<CachePath>Voices/English(US)/2-General dialogues/3-When finding something/VO_stub_finding1_818F3B66.wem</CachePath>
 				</File>
-				<File Id="930032878" Language="English(US)" Streaming="false" Location="Memory">
-					<ShortName>1-Narrative intro\VO_guard2_voiceline2.wav</ShortName>
-					<CachePath>Voices/English(US)/1-Narrative intro/VO_guard2_voiceline2_818F3B66.wem</CachePath>
-				</File>
 				<File Id="938632874" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>Grant_3.wav</ShortName>
 					<CachePath>Voices/English(US)/Grant_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="945440112" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_WakeMed1.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_WakeMed1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="945861757" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_isaac_health2.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_isaac_health2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="957187464" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>2-General dialogues\2-When a room is cleared\VO_stub_clearroom2.wav</ShortName>
@@ -516,6 +600,10 @@
 				<File Id="961676207" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_E_A_Shoot.wav</ShortName>
 					<CachePath>SFX/SFX_E_A_Shoot_818F3B66.wem</CachePath>
+				</File>
+				<File Id="968413704" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_firstnoah2.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_firstnoah2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="974273116" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_E_Q_AcidBomb.wav</ShortName>
@@ -537,9 +625,9 @@
 					<ShortName>Grant_4.wav</ShortName>
 					<CachePath>Voices/English(US)/Grant_4_818F3B66.wem</CachePath>
 				</File>
-				<File Id="1028885428" Language="English(US)" Streaming="false" Location="Memory">
-					<ShortName>1-Narrative intro\VO_guard2_voiceline1.wav</ShortName>
-					<CachePath>Voices/English(US)/1-Narrative intro/VO_guard2_voiceline1_818F3B66.wem</CachePath>
+				<File Id="1048092741" Language="English(US)" Streaming="false" Location="Memory">
+					<ShortName>VO_Stub_medclear1.wav</ShortName>
+					<CachePath>Voices/English(US)/VO_Stub_medclear1_818F3B66.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -847,12 +935,57 @@
 				</Event>
 				<Event Id="4164671226" Name="VO_guard2_voiceline1">
 					<MediaRefs>
-						<MediaRef Id="1028885428"/>
+						<MediaRef Id="640342975"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="4164671225" Name="VO_guard2_voiceline2">
 					<MediaRefs>
-						<MediaRef Id="930032878"/>
+						<MediaRef Id="594436086"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3566892078" Name="VO_isaac_fullhealth">
+					<MediaRefs>
+						<MediaRef Id="237094481"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3701460526" Name="VO_isaac_health1">
+					<MediaRefs>
+						<MediaRef Id="204830590"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3701460525" Name="VO_isaac_health2">
+					<MediaRefs>
+						<MediaRef Id="945861757"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3701460524" Name="VO_isaac_health3">
+					<MediaRefs>
+						<MediaRef Id="54801444"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3701460523" Name="VO_isaac_health4">
+					<MediaRefs>
+						<MediaRef Id="728978860"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2021844418" Name="VO_isaac_voiceline1">
+					<MediaRefs>
+						<MediaRef Id="275645529"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2021844417" Name="VO_isaac_voiceline2">
+					<MediaRefs>
+						<MediaRef Id="631456549"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2021844416" Name="VO_isaac_voiceline3">
+					<MediaRefs>
+						<MediaRef Id="690307239"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2021844423" Name="VO_isaac_voiceline4">
+					<MediaRefs>
+						<MediaRef Id="876178903"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="1857914381" Name="VO_stub_clearroom1">
@@ -930,6 +1063,36 @@
 						<MediaRef Id="660713026"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1225130969" Name="VO_Stub_firstamira1">
+					<MediaRefs>
+						<MediaRef Id="586577851"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1225130970" Name="VO_Stub_firstamira2">
+					<MediaRefs>
+						<MediaRef Id="72403260"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1225130971" Name="VO_Stub_firstamira3">
+					<MediaRefs>
+						<MediaRef Id="653905591"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="207909039" Name="VO_Stub_firstnoah1">
+					<MediaRefs>
+						<MediaRef Id="403256707"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="207909036" Name="VO_Stub_firstnoah2">
+					<MediaRefs>
+						<MediaRef Id="968413704"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="207909037" Name="VO_Stub_firstnoah3">
+					<MediaRefs>
+						<MediaRef Id="298572741"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2456146089" Name="VO_stub_guardWeapon">
 					<MediaRefs>
 						<MediaRef Id="883166553"/>
@@ -950,6 +1113,16 @@
 						<MediaRef Id="269135314"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="835901656" Name="VO_Stub_medclear1">
+					<MediaRefs>
+						<MediaRef Id="1048092741"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="835901659" Name="VO_Stub_medclear2">
+					<MediaRefs>
+						<MediaRef Id="441280367"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1792990868" Name="VO_stub_outShip">
 					<MediaRefs>
 						<MediaRef Id="568003396"/>
@@ -968,6 +1141,31 @@
 				<Event Id="2925042447" Name="VO_stub_planetInfo3">
 					<MediaRefs>
 						<MediaRef Id="812679030"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3513509957" Name="VO_Stub_WakeMed1">
+					<MediaRefs>
+						<MediaRef Id="945440112"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3513509958" Name="VO_Stub_WakeMed2">
+					<MediaRefs>
+						<MediaRef Id="547796608"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3513509959" Name="VO_Stub_WakeMed3">
+					<MediaRefs>
+						<MediaRef Id="298376175"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3513509952" Name="VO_Stub_WakeMed4">
+					<MediaRefs>
+						<MediaRef Id="799599197"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3513509953" Name="VO_Stub_WakeMed5">
+					<MediaRefs>
+						<MediaRef Id="223554829"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3871246353" Name="VO_stub_xenoFight1">
@@ -1027,5 +1225,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{450AA071-8C5B-99DE-81F5-EFFE10EC641C}</FileHash>
+	<FileHash>{D44BC50E-6054-1587-50C8-13F0161A0B51}</FileHash>
 </SoundBanksInfo>
