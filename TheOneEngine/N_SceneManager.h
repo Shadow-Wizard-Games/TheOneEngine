@@ -63,7 +63,7 @@ public:
 	void OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID);
 	void OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify);
 	void CreatePrefabWithName(std::string prefabName, const vec3f& position);
-	void CreatePrefabWithName(std::string prefabName);
+	void CreatePrefabWithName(std::string prefabName, const mat4& transform);
 	void CreatePrefabFromPath(std::string prefabPath, const vec3f& position);
 
 	// Get/Set

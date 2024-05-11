@@ -57,12 +57,12 @@ public class UiScriptDebug : MonoBehaviour
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
             {
-                direction = -1;
+                direction = -2;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
             {
-                direction = +1;
+                direction = +2;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
@@ -83,12 +83,12 @@ public class UiScriptDebug : MonoBehaviour
             {
                 if (movementVector.y > 0.0f)
                 {
-                    direction = +1;
+                    direction = +2;
                     toMove = true;
                 }
                 else if (movementVector.y < 0.0f)
                 {
-                    direction = -1;
+                    direction = -2;
                     toMove = true;
                 }
             }
