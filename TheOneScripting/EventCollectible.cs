@@ -61,7 +61,7 @@ public class EventCollectible : Event
     public override bool DoEvent()
     {
         //Add item
-        if(itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if (itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
             attachedGameObject.Disable();
