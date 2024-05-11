@@ -77,8 +77,8 @@ void EngineCore::SetRenderEnvironment(Camera* camera)
     GLCALL(glEnable(GL_DEPTH_TEST));
     GLCALL(glDepthFunc(GL_LEQUAL));
     GLCALL(glEnable(GL_CULL_FACE));
-    /*GLCALL(glEnable(GL_BLEND));
-    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));*/
+    GLCALL(glEnable(GL_BLEND));
+    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glEnable(GL_COLOR_MATERIAL));
 
     //glClear(GL_DEPTH_BUFFER_BIT);
@@ -428,6 +428,17 @@ void EngineCore::SetUniformBufferCamera(const glm::mat4& camMatrix)
     CameraUniformBuffer->SetData(&camMatrix, sizeof(glm::mat4));
 }
 
+void EngineCore::InitPreLightingShader()
+{
+    //Init default shaders with uniforms
+    ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PreLightingShader");
+    Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
+    textShader->Compile("Assets/Shaders/PreLightingShader");
+
+    textShader->addUniform("diffuse", UniformType::Sampler2D);
+    Resources::Import<Shader>("PreLightingShader", textShader);
+}
+
 void EngineCore::InitPostLightingShader()
 {
     //Init default shaders with uniforms
@@ -551,15 +562,4 @@ void EngineCore::InitLitMeshTextureAnimatedShaders()
     animTextShader->addUniform("u_Material.specular", UniformType::fVec3);
     animTextShader->addUniform("u_Material.shininess", UniformType::Float);
     Resources::Import<Shader>("LitMeshTextureAnimated", animTextShader);
-}
-
-void EngineCore::InitPreLightingShader()
-{
-    //Init default shaders with uniforms
-    ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PreLightingShader");
-    Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
-    textShader->Compile("Assets/Shaders/PreLightingShader");
-
-    textShader->addUniform("diffuse", UniformType::Sampler2D);
-    Resources::Import<Shader>("PreLightingShader", textShader);
 }

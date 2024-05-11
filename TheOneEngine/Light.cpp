@@ -7,6 +7,7 @@
 #include "N_SceneManager.h"
 #include "Shader.h"
 
+
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
 color(1.0f), specular(0.5f), linear(0.7f), quadratic(1.8f), innerCutOff(0.91f), outerCutOff(0.82f), recalculate(true)
 {
@@ -43,6 +44,7 @@ innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff), recalculate(true)
 
 Light::~Light() 
 {
+    //hekbas ???
     //Destory in scene vector
     switch (lightType)
     {
@@ -80,7 +82,7 @@ Light::~Light()
 void Light::DrawComponent(Camera* camera)
 {
     //Stop shaders calculus to not be each frame doing it
-    std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
+    /*std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
 
     for (uint i = 0; i < pointLights.size(); i++)
     {
@@ -97,7 +99,7 @@ void Light::DrawComponent(Camera* camera)
     spotLights.clear();
 
     if (engine->N_sceneManager->currentScene->directionalLight != nullptr && engine->N_sceneManager->currentScene->directionalLight->recalculate)
-        engine->N_sceneManager->currentScene->directionalLight->recalculate = false;
+        engine->N_sceneManager->currentScene->directionalLight->recalculate = false;*/
 }
 
 json Light::SaveComponent()

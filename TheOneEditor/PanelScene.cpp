@@ -31,7 +31,19 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     camEaseOutX = engine->easingManager->AddEasing(0.2);
     camEaseOutY = engine->easingManager->AddEasing(0.2);
 
-    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true, true, true);
+    std::vector<Attachment> gBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", 0 },
+        { Attachment::Type::RGB16F, "position", 0 },
+        { Attachment::Type::RGB16F, "normal", 0 },
+        { Attachment::Type::DEPTH, "depth", 0 }
+    };
+    std::vector<Attachment> lightBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", 0 },
+        { Attachment::Type::DEPTH, "depth", 0 }
+    };
+
+    gBuffer = std::make_shared<FrameBuffer>(1280, 720, gBuffAttachments);
+    postBuffer = std::make_shared<FrameBuffer>(1280, 720, lightBuffAttachments);
     viewportSize = { 0.0f, 0.0f };
 
     gizmoType = -1;
@@ -222,19 +234,17 @@ bool PanelScene::Draw()
         viewportSize = { availWindowSize.x, availWindowSize.y };
 
         if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-            (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+            (gBuffer->GetWidth() != viewportSize.x || gBuffer->GetHeight() != viewportSize.y))
         {
-            frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+            gBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
             sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        //GLCALL(glDisable(GL_STENCIL_TEST));
-        //GLCALL(glStencilMask(0x00));
-        // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
+        // GEOMETRY PASS - ALL DRAWING MUST HAPPEN BETWEEN BIND/UNBIND ------------------------
         {
-            frameBuffer->Bind();
-            frameBuffer->Clear({ 0.0f, 0.0f, 0.0f, 1.0f });
+            gBuffer->Bind();
+            gBuffer->Clear(/*{ 0.0f, 0.0f, 0.0f, 1.0f }*/);
 
             // Set Render Environment
             engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
@@ -267,7 +277,7 @@ bool PanelScene::Draw()
             // Draw Scene
             current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
-            frameBuffer->Unbind();
+            gBuffer->Unbind();
         }
 
         if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
@@ -276,49 +286,53 @@ bool PanelScene::Draw()
             float sizeY = viewportSize.y / 2;
 
             ImGui::Image(
-                (ImTextureID)frameBuffer->getPositionBufferTexture(),
+                (ImTextureID)gBuffer->GetAttachmentTexture("position"),
                 ImVec2{ sizeX, sizeY },
                 ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
             ImGui::Image(
-                (ImTextureID)frameBuffer->getNormalBufferTexture(),
+                (ImTextureID)gBuffer->GetAttachmentTexture("normal"),
                 ImVec2{ sizeX, sizeY },
                 ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
             ImGui::Image(
-                (ImTextureID)frameBuffer->getColorBufferTexture(),
+                (ImTextureID)gBuffer->GetAttachmentTexture("color"),
                 ImVec2{ sizeX, sizeY },
                 ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
         }
         ImGui::End();
 
-        //  POST PROCESS -------------------------------------------------------------------
+        // LIGHT PASS -------------------------------------------------------------------------
         {
-            GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
+            postBuffer->Bind();
+            postBuffer->Clear();
+
             std::vector<Light*> pointLights = engine->N_sceneManager->currentScene->pointLights;
             std::vector<Light*> spotLights = engine->N_sceneManager->currentScene->spotLights;
 
             Transform* cameraTransform = engine->N_sceneManager->currentScene->currentCamera->GetContainerGO().get()->GetComponent<Transform>();
 
             Uniform::SamplerData gPositionData;
-            gPositionData.tex_id = frameBuffer->getPositionBufferTexture();
+            gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
             Uniform::SamplerData gNormalData;
-            gNormalData.tex_id = frameBuffer->getNormalBufferTexture();
+            gNormalData.tex_id = gBuffer->GetAttachmentTexture("normal");
             Uniform::SamplerData gAlbedoSpecData;
-            gAlbedoSpecData.tex_id = frameBuffer->getColorBufferTexture();
+            gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
 
             engine->lightingProcess.SetUniformData("gPosition", gPositionData);
             engine->lightingProcess.SetUniformData("gNormal", gNormalData);
             engine->lightingProcess.SetUniformData("gAlbedoSpec", gAlbedoSpecData);
             engine->lightingProcess.SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
+
             for (int i = 0; i < pointLights.size(); i++)
             {
                 if (pointLights[i]->recalculate)
                 {
                     string iteration = to_string(i);
+                    Transform* transform = pointLights[i]->GetContainerGO().get()->GetComponent<Transform>();
 
                     //Variables need to be float not double
-                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)pointLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
+                    engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
                     engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Color", pointLights[i]->color);
                     engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Linear", pointLights[i]->linear);
                     engine->lightingProcess.SetUniformData("u_PointLights[" + iteration + "].Quadratic", pointLights[i]->quadratic);
@@ -331,10 +345,11 @@ bool PanelScene::Draw()
                 if (spotLights[i]->recalculate)
                 {
                     string iteration = to_string(i);
+                    Transform* transform = spotLights[i]->GetContainerGO().get()->GetComponent<Transform>();
 
                     //Variables need to be float not double
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetPosition());
-                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)spotLights[i]->GetContainerGO().get()->GetComponent<Transform>()->GetForward());
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+                    engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
                     engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Color", spotLights[i]->color);
                     engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Linear", pointLights[i]->linear);
                     engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].Quadratic", pointLights[i]->quadratic);
@@ -343,11 +358,44 @@ bool PanelScene::Draw()
                     engine->lightingProcess.SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", spotLights[i]->outerCutOff);
                 }
             }
-        }
 
+            Shader* shader = engine->lightingProcess.getShader();
+            shader->Bind();
+
+            unsigned int quadVAO = 0;
+            unsigned int quadVBO;
+            if (quadVAO == 0)
+            {
+                float quadVertices[] = {
+                    // positions        // texture Coords
+                    -1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+                    -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+                     1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+                     1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+                };
+                // setup plane VAO
+                glGenVertexArrays(1, &quadVAO);
+                glGenBuffers(1, &quadVBO);
+                glBindVertexArray(quadVAO);
+                glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+                glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+                glEnableVertexAttribArray(0);
+                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+                glEnableVertexAttribArray(1);
+                glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+            }
+            glBindVertexArray(quadVAO);
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+            glBindVertexArray(0);
+
+            shader->UnBind();
+
+            postBuffer->Unbind();
+        }
+        
         // Draw FrameBuffer Texture
         ImGui::Image(
-            (ImTextureID)frameBuffer->getNormalBufferTexture(),
+            (ImTextureID)postBuffer->GetAttachmentTexture("color"),
             ImVec2{ viewportSize.x, viewportSize.y },
             ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 

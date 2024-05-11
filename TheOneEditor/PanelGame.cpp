@@ -12,7 +12,11 @@ PanelGame::PanelGame(PanelType type, std::string name) : Panel(type, name)
 {
 	currentScene = nullptr;
 	gameCamera = nullptr;
-	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+	std::vector<Attachment> attachments = {
+		{ Attachment::Type::RGBA8, "color", 0 },
+		{ Attachment::Type::DEPTH, "depth", 0 }
+	};
+	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, attachments);
 	viewportSize = { 0.0f, 0.0f };
 	isHovered = false;
 	isFocused = false;
@@ -109,7 +113,7 @@ bool PanelGame::Draw()
 		viewportSize = { size.x, size.y };
 
 		if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-			(frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+			(frameBuffer->GetWidth() != viewportSize.x || frameBuffer->GetHeight() != viewportSize.y))
 		{
 			frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
 
@@ -124,7 +128,6 @@ bool PanelGame::Draw()
 		{
 			frameBuffer->Bind();
 			frameBuffer->Clear();
-			frameBuffer->ClearBuffer(-1);
 
 			// Set Render Environment
 			engine->SetRenderEnvironment(gameCamera);
@@ -144,7 +147,7 @@ bool PanelGame::Draw()
 		if (offset.x) ImGui::SameLine();
 
 		ImGui::Image(
-			(ImTextureID)frameBuffer->getColorBufferTexture(),
+			(ImTextureID)frameBuffer->GetAttachmentTexture("color"),
 			ImVec2{ viewportSize.x, viewportSize.y },
 			ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
