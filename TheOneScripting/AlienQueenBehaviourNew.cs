@@ -271,12 +271,15 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     Attacks currentAttack = Attacks.None;
     bool attackedFinished = false;
+    bool attackFirstFrame = false;
+    bool combinedFirstAttack = true;
     void DoAttack()
     {
         if (currentState != lastState)
         {
             Debug.Log("I am now entering attack");
             currentAttack = ChooseAttack();
+            attackFirstFrame = true;
             lastState = currentState;
         }
 
@@ -292,8 +295,16 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 Spawn();
                 break;
             case Attacks.TailPhase2:
-                Debug.LogCheck("Doing tail phase 2");
-                attackedFinished = true;
+
+                if (combinedFirstAttack)
+                {
+                    combinedFirstAttack = TailSweep();
+                }
+                else
+                {
+                    TailShot();
+                }
+
                 break;
             case Attacks.AcidPhase2:
                 Debug.LogCheck("Doing acid phase 2");
@@ -399,19 +410,41 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
     }
 
-    float spinDuration = 5.0f;
-    private void TailSweep()
+    private bool TailSweep()
     {
-        //float damage = 15;
-
-        attachedGameObject.transform.Rotate(Vector3.up * -180 * Time.deltaTime);
-
-        countDown += Time.deltaTime;
-        if (countDown >= spinDuration)
+        if (attackFirstFrame)
         {
-            countDown = 0.0f;
+            attachedGameObject.animator.Play("Tail_Sweep");
+            attackFirstFrame = false;
+        }
 
-            currentAttack = Attacks.None;
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            if (currentPhase == 1)
+            {
+                attackedFinished = true;
+            }
+            else
+            {
+                attackFirstFrame = true;
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void TailShot()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Tail_Shot");
+            attackFirstFrame = false;
+        }
+
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            combinedFirstAttack = true;
             attackedFinished = true;
         }
     }
