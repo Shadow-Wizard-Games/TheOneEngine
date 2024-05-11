@@ -3,14 +3,11 @@
 public class UiScriptSettings : MonoBehaviour
 {
     public ICanvas canvas;
-    ItemManager itemManager;
-    IGameObject iManagerGO;
-    UiManager menuManager;
 
     float cooldown = 0;
     bool onCooldown = false;
 
-    public bool firstFrameUpdate = false;
+    public bool firstFrameUpdate = true;
 
     int currentButton = 0;
 
@@ -23,17 +20,8 @@ public class UiScriptSettings : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("ItemManager");
-        itemManager = iManagerGO.GetComponent<ItemManager>();
-        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
         IGameObject.Find("Canvas_SettingsControls").Disable();
         IGameObject.Find("Canvas_SettingsDisplay").Disable();
-
-        if (menuManager.GetMenuState() == UiManager.MenuState.Settings)
-        {
-            IGameObject.Find("Canvas_SettingsControls").Enable();
-
-        }
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
@@ -47,11 +35,7 @@ public class UiScriptSettings : MonoBehaviour
             IGameObject.Find("Canvas_SettingsControls").Disable();
             IGameObject.Find("Canvas_SettingsDisplay").Disable();
 
-            if (menuManager.GetMenuState() == UiManager.MenuState.Settings)
-            {
-                IGameObject.Find("Canvas_SettingsControls").Enable();
-
-            }
+            IGameObject.Find("Canvas_SettingsControls").Enable();
 
             firstFrameUpdate = true;
         }
@@ -71,7 +55,7 @@ public class UiScriptSettings : MonoBehaviour
             onCooldown = false;
         }
 
-        if (editing && Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
+        if (!onCooldown && editing && Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
         {
             IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Vsync");
             IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Fullscreen");

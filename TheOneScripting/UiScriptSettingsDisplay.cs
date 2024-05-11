@@ -2,16 +2,7 @@
 
 public class UiScriptSettingsDisplay : MonoBehaviour
 {
-    public enum SettingsTab
-    {
-        CONTROLS,
-        DISPLAY
-    }
-
     public ICanvas canvas;
-    ItemManager itemManager;
-    IGameObject iManagerGO;
-    UiManager menuManager;
 
     float cooldown = 0;
     bool onCooldown = false;
@@ -32,10 +23,6 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("ItemManager");
-        itemManager = iManagerGO.GetComponent<ItemManager>();
-        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-
         currentButton = canvas.GetSelection();
 
         onCooldown = true;

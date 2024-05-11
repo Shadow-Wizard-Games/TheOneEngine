@@ -413,6 +413,7 @@ public class UiManager : MonoBehaviour
         {
             case HudPopUpMenu.SaveScene:
                 savingSceneGo.Enable();
+                if (text == "") text = "saving progress";
                 savingSceneGo.GetComponent<ICanvas>().SetTextString(text, "Text_SavingProgress");
                 saveOnCooldown = true;
                 break;
