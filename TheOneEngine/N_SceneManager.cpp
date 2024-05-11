@@ -1017,6 +1017,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	//Setting Camera for 3D Rendering
 	SetCamera(cam);
 	Renderer2D::StartBatch();//           START BATCH
+	engine->DebugDraw(mode == DrawMode::GAME ? false : true);
 	RecurseSceneDraw(rootSceneGO, cam);
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)

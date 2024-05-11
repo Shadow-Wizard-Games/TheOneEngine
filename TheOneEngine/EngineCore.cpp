@@ -98,7 +98,6 @@ void EngineCore::SetRenderEnvironment()
 
 void EngineCore::DebugDraw(bool override)
 {
-    Renderer2D::StartBatch();
     // Draw Editor / Debug
     if (drawAxis || override)
         DrawAxis();
@@ -111,7 +110,24 @@ void EngineCore::DebugDraw(bool override)
 
     if (drawScriptShapes || override)
         monoManager->RenderShapesQueue();
-    Renderer2D::Flush();
+
+    if (override)
+    {
+        for (const auto GO : engine->N_sceneManager->GetGameObjects())
+        {
+            Camera* gameCam = GO.get()->GetComponent<Camera>();
+
+            if (gameCam != nullptr && gameCam->drawFrustum)
+                engine->DrawFrustum(gameCam->frustum);
+        }
+    }
+
+    // Draw Rays
+    if (drawRaycasting || override)
+    {
+        for (auto ray : rays)
+            engine->DrawRay(ray);
+    }
 }
 
 void EngineCore::CleanUp()
@@ -175,47 +191,20 @@ void EngineCore::DrawGrid(int grid_size, int grid_step)
 
 void EngineCore::DrawFrustum(const Frustum& frustum)
 {
-    // Define vertex data
-    std::vector<GLfloat> frustumVertices;
-    for (int i = 0; i < 8; ++i) {
-        frustumVertices.push_back(frustum.vertices[i].x);
-        frustumVertices.push_back(frustum.vertices[i].y);
-        frustumVertices.push_back(frustum.vertices[i].z);
-    }
+    Renderer2D::DrawLine(frustum.vertices[0], frustum.vertices[1], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[1], frustum.vertices[2], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[2], frustum.vertices[3], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[3], frustum.vertices[0], { 1.0f, 1.0f, 1.0f, 1.0f });
 
-    // Define indices for the lines
-    GLuint frustumIndices[] = {
-        0, 1, 1, 2, 2, 3, 3, 0, // near plane
-        4, 5, 5, 6, 6, 7, 7, 4, // far plane
-        0, 4, 1, 5, 2, 6, 3, 7  // connecting lines
-    };
+    Renderer2D::DrawLine(frustum.vertices[4], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[5], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[6], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[7], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
 
-    // Create and Bind vertex array object (VAO)
-    GLuint frustumVAO;
-    GLCALL(glGenVertexArrays(1, &frustumVAO));
-    GLCALL(glBindVertexArray(frustumVAO));
-
-    // Create and Bind vertex buffer object (VBO) for vertices
-    GLuint frustumVBO;
-    GLCALL(glGenBuffers(1, &frustumVBO));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, frustumVBO));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, frustumVertices.size() * sizeof(GLfloat), frustumVertices.data(), GL_STATIC_DRAW));
-    GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr));
-    GLCALL(glEnableVertexAttribArray(0));
-
-    // Create and Bind element buffer object (EBO) for indices
-    GLuint frustumEBO;
-    GLCALL(glGenBuffers(1, &frustumEBO));
-    GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, frustumEBO));
-    GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(frustumIndices), frustumIndices, GL_STATIC_DRAW));
-
-    // Draw lines
-    GLCALL(glDrawElements(GL_LINES, sizeof(frustumIndices) / sizeof(GLuint), GL_UNSIGNED_INT, nullptr));
-
-    // Cleanup
-    GLCALL(glDeleteBuffers(1, &frustumVBO));
-    GLCALL(glDeleteBuffers(1, &frustumEBO));
-    GLCALL(glDeleteVertexArrays(1, &frustumVAO));
+    Renderer2D::DrawLine(frustum.vertices[0], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[1], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[2], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(frustum.vertices[3], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
 }
 
 void EngineCore::DrawRay(const Ray& ray)

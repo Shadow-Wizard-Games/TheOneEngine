@@ -49,7 +49,6 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     drawNormalsFaces = false;
     drawAABB = true;
     drawOBB = false;
-    drawRaycasting = false;
     drawChecker = false;
 
     snapping = false;
@@ -152,9 +151,9 @@ bool PanelScene::Draw()
                 ImGui::Checkbox("OBB", &drawOBB);
                 ImGui::Separator();
 
-                if (ImGui::Checkbox("Ray Casting", &drawRaycasting))
+                if (ImGui::Checkbox("Ray Casting", &engine->drawRaycasting))
                 {
-                    if (!drawRaycasting) rays.clear();
+                    if (!engine->drawRaycasting) engine->rays.clear();
                 }
                 
 
@@ -237,27 +236,6 @@ bool PanelScene::Draw()
             // Set Render Environment
             engine->SetRenderEnvironment();
 
-            // Debug Draw
-            engine->DebugDraw(true);
-
-            // Game cameras Frustum
-            glColor3f(0.9f, 0.9f, 0.9f);
-            for (const auto GO : engine->N_sceneManager->GetGameObjects())
-            {
-                Camera* gameCam = GO.get()->GetComponent<Camera>();
-
-                if (gameCam != nullptr && gameCam->drawFrustum)
-                    engine->DrawFrustum(gameCam->frustum);
-            }
-
-            // Draw Rays
-            if (drawRaycasting)
-            {
-                glColor3f(0.8f, 0.0f, 0.0f);
-                for (auto ray : rays)
-                    engine->DrawRay(ray);
-            }
-
             // Draw Scene
             current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
@@ -330,7 +308,7 @@ bool PanelScene::Draw()
 
 			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), viewportSize.x, viewportSize.y);
 
-            if (drawRaycasting) rays.push_back(ray);
+            if (engine->drawRaycasting) engine->rays.push_back(ray);
             
             //editor->SelectObject(ray);
         }

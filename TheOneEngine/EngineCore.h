@@ -98,10 +98,14 @@ public:
 	CollisionSolver* collisionSolver = nullptr;
 	EasingManager* easingManager = nullptr;
 
+	// Debug
 	bool drawGrid = true;
 	bool drawAxis = true;
 	bool drawCollisions = true;
 	bool drawScriptShapes = true;
+	bool drawRaycasting = false;
+
+	std::vector<Ray> rays;
 
 	ScratchBuffer scratch_buffer_;
 

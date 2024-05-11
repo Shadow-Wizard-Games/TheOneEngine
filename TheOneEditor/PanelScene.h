@@ -45,7 +45,6 @@ public:
 public:
 	bool isHovered;
 	bool isFocused;
-	std::vector<Ray> rays;
 
 private:
 	Scene* current;
@@ -84,7 +83,6 @@ private:
 	bool drawNormalsFaces;
 	bool drawAABB;
 	bool drawOBB;
-	bool drawRaycasting;
 	bool drawChecker;
 
 	bool snapping;
