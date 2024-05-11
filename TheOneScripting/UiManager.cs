@@ -50,6 +50,7 @@ public class UiManager : MonoBehaviour
     GameManager gameManager;
 
     MenuState state;
+    MenuState previousState;
 
     float cooldown = 0;
     bool onCooldown = false;
@@ -201,7 +202,7 @@ public class UiManager : MonoBehaviour
             dialogueCooldown = 0.0f;
         }
 
-        MenuState previousState = state;
+        //previousState = state;
 
         if (!onCooldown)
         {
@@ -250,13 +251,14 @@ public class UiManager : MonoBehaviour
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
                 {
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_PAUSEGAME);
-                    if (previousState == MenuState.Pause)
+                    if (state == MenuState.Pause)
                     {
                         ResumeGame();
                     }
                     else
                     {
-                        OpenMenu(MenuState.Pause);
+                        OpenMenu(previousState);
+                        previousState = MenuState.Pause;
                     }
                     onCooldown = true;
                 }
@@ -270,7 +272,7 @@ public class UiManager : MonoBehaviour
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.F3))//for the moment for debug porpuses
                 {
-                    OpenHudPopUpMenu(HudPopUpMenu.Dialogue, "Tu madre tiene una polla\n que ya la quisiera yo, me \ndio pena por tu padre el\n dia que se entero",Dialoguer.Sargeant);
+                    OpenHudPopUpMenu(HudPopUpMenu.Dialogue, "Tu madre tiene una polla\n que ya la quisiera yo, me \ndio pena por tu padre el\n dia que se entero", Dialoguer.Sargeant);
                 }
             }
 
@@ -281,48 +283,12 @@ public class UiManager : MonoBehaviour
                 playerScript.onPause = true;
                 onCooldown = true;
             }
-
-            //if (state != previousState)
-            //{
-            //    switch (previousState)
-            //    {
-            //        case MenuState.Hud:
-            //            hudGo.Disable();
-            //            break;
-            //        case MenuState.Inventory:
-            //            inventoryGo.Disable();
-            //            break;
-            //        case MenuState.Pause:
-            //            pauseMenuGo.Disable();
-            //            break;
-            //        case MenuState.Debug:
-            //            debugGo.Disable();
-            //            break;
-            //        case MenuState.Settings:
-            //            settingsGo.Disable();
-            //            break;
-            //        case MenuState.Stats:
-            //            statsGo.Disable();
-            //            break;
-            //        case MenuState.SavingScene:
-            //            savingSceneGo.Disable();
-            //            break;
-            //        case MenuState.Dialogue:
-            //            dialogueGo.Disable();
-            //            break;
-            //        case MenuState.Missions:
-            //            missionsGo.Disable();
-            //            break;
-            //        case MenuState.PickUpFeedback:
-            //            pickUpFeedbackGo.Disable();
-            //            break;
-            //    }
-            //}
         }
     }
 
     public void ResumeGame()
     {
+        this.previousState = this.state;
         switch (state)
         {
             case MenuState.Hud:
@@ -430,6 +396,7 @@ public class UiManager : MonoBehaviour
                     playerScript.onPause = true;
                     break;
             }
+            this.previousState = this.state;
             this.state = state;
         }
     }

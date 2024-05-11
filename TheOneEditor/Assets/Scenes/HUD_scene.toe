@@ -972,47 +972,16 @@
                   "Type": 1
                 },
                 {
-                  "CheckerActive": false,
-                  "ID": 3863976764,
+                  "ID": 3866724295,
                   "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.7546746730804443,
-                    0.417435884475708,
-                    0.052356019616127014,
-                    0.07179487496614456
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.6522064208984375,
-                    0.4276922941207886,
-                    0.052356019616127014,
-                    0.07179487496614456
-                  ],
-                  "ImageSectionIdle": [
-                    0.7030665874481201,
-                    0.4276922941207886,
-                    0.052356019616127014,
-                    0.07179487496614456
-                  ],
-                  "ImageSectionIdleOff": [
+                  "ImageSection": [
                     0.6073298454284668,
                     0.4276922941207886,
                     0.052356019616127014,
                     0.07179487496614456
                   ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
                   "Interactuable": false,
-                  "Name": "Checker_AbilityArrow",
+                  "Name": "Img_AbilityArrowLeft",
                   "Print": true,
                   "Rect": [
                     0.5099999904632568,
@@ -1021,7 +990,70 @@
                     0.07500000298023224
                   ],
                   "State": 0,
-                  "Type": 3
+                  "Type": 0
+                },
+                {
+                  "ID": 4064493552,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.6522064208984375,
+                    0.4276922941207886,
+                    0.052356019616127014,
+                    0.07179487496614456
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_AbilityArrowRight",
+                  "Print": true,
+                  "Rect": [
+                    0.5099999904632568,
+                    -0.2150000035762787,
+                    0.04500000178813934,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 4191828681,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7030665874481201,
+                    0.4276922941207886,
+                    0.052356019616127014,
+                    0.07179487496614456
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_AbilityArrowTop",
+                  "Print": true,
+                  "Rect": [
+                    0.5099999904632568,
+                    -0.2150000035762787,
+                    0.04500000178813934,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1404963501,
+                  "ImagePath": "Assets\\Textures\\Hud\\Inventory_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.7546746730804443,
+                    0.417435884475708,
+                    0.052356019616127014,
+                    0.07179487496614456
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_AbilityArrowBot",
+                  "Print": true,
+                  "Rect": [
+                    0.5099999904632568,
+                    -0.2150000035762787,
+                    0.04500000178813934,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 0
                 },
                 {
                   "ID": 3005355180,
@@ -6800,7 +6832,7 @@
           "UID": 472327911
         },
         {
-          "Aspect": 1.7788234949111938,
+          "Aspect": 1.7773109674453735,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
