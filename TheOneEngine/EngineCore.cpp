@@ -98,6 +98,7 @@ void EngineCore::SetRenderEnvironment()
 
 void EngineCore::DebugDraw(bool override)
 {
+    Renderer2D::StartBatch();
     // Draw Editor / Debug
     if (drawAxis || override)
         DrawAxis();
@@ -110,6 +111,7 @@ void EngineCore::DebugDraw(bool override)
 
     if (drawScriptShapes || override)
         monoManager->RenderShapesQueue();
+    Renderer2D::Flush();
 }
 
 void EngineCore::CleanUp()
@@ -134,57 +136,18 @@ void EngineCore::CleanUp()
 
 void EngineCore::DrawAxis()
 {
-    // Define vertex and color data
-    GLfloat axisVertices[] = {
-        0.0f, 0.0f, 0.0f, // origin
-        0.8f, 0.0f, 0.0f, // x-axis end
-        0.0f, 0.0f, 0.0f, // origin
-        0.0f, 0.8f, 0.0f, // y-axis end
-        0.0f, 0.0f, 0.0f, // origin
-        0.0f, 0.0f, 0.8f  // z-axis end
-    };
-    GLubyte axisColors[] = {
-        255, 0, 0, // red
-        0, 255, 0, // green
-        0, 0, 255  // blue
-    };
+    glm::vec3 origin = { 0.0f, 0.0f, 0.0f };
+    glm::vec3 xaxis = { 0.8f, 0.0f, 0.0f };
+    glm::vec3 yaxis = { 0.0f, 0.8f, 0.0f };
+    glm::vec3 zaxis = { 0.0f, 0.0f, 0.8f };
 
-    // Create and Bind vertex array object (VAO)
-    GLuint axisVAO;
-    GLCALL(glGenVertexArrays(1, &axisVAO));
-    GLCALL(glBindVertexArray(axisVAO));
-
-    // Create and Bind vertex buffer object (VBO) for vertices
-    GLuint vertexVBO;
-    GLCALL(glGenBuffers(1, &vertexVBO));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vertexVBO));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(axisVertices), axisVertices, GL_STATIC_DRAW));
-    GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr));
-    GLCALL(glEnableVertexAttribArray(0));
-
-    // Create and Bind vertex buffer object (VBO) for colors
-    GLuint colorVBO;
-    GLCALL(glGenBuffers(1, &colorVBO));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, colorVBO));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(axisColors), axisColors, GL_STATIC_DRAW));
-    GLCALL(glVertexAttribPointer(1, 3, GL_UNSIGNED_BYTE, GL_TRUE, 0, nullptr));
-    GLCALL(glEnableVertexAttribArray(1));
-
-    // Draw lines
-    GLCALL(glDrawArrays(GL_LINES, 0, 6));
-
-    // Cleanup
-    GLCALL(glDeleteBuffers(1, &vertexVBO));
-    GLCALL(glDeleteBuffers(1, &colorVBO));
-    GLCALL(glDeleteVertexArrays(1, &axisVAO));
+    Renderer2D::DrawLine(origin, xaxis, { 1.0f, 0.0f, 0.0f, 1.0f });
+    Renderer2D::DrawLine(origin, yaxis, { 0.0f, 1.0f, 0.0f, 1.0f });
+    Renderer2D::DrawLine(origin, zaxis, { 0.0f, 0.0f, 1.0f, 1.0f });
 }
 
 void EngineCore::DrawGrid(int grid_size, int grid_step)
 {
-    // Define vertex data
-    std::vector<GLfloat> gridVertices;
-    std::vector<GLfloat> gridColors;
-
     // Define maximum distance for fading
     float maxDistance = grid_size * 2; // You may adjust this value as needed
 
@@ -198,65 +161,16 @@ void EngineCore::DrawGrid(int grid_size, int grid_step)
 
         // Clamp alpha value between 0 and 1
         alpha = CLAMP(alpha, 1.0f, 0.0f);
-        //alpha = std::max(0.0f, std::min(alpha, 1.0f));
 
-        // Add vertices
-        gridVertices.push_back(i);
-        gridVertices.push_back(0.0f);
-        gridVertices.push_back(-grid_size);
+        glm::vec3 v1 = { i, 0.0f, -grid_size };
+        glm::vec3 v2 = { i, 0.0f,  grid_size };
+        glm::vec3 v3 = { -grid_size, 0.0f, i };
+        glm::vec3 v4 = {  grid_size, 0.0f, i };
+        glm::vec4 color = { 1.0f, 1.0f, 1.0f, alpha };
 
-        gridVertices.push_back(i);
-        gridVertices.push_back(0.0f);
-        gridVertices.push_back(grid_size);
-
-        gridVertices.push_back(-grid_size);
-        gridVertices.push_back(0.0f);
-        gridVertices.push_back(i);
-
-        gridVertices.push_back(grid_size);
-        gridVertices.push_back(0.0f);
-        gridVertices.push_back(i);
-
-        // Add colors with adjusted alpha
-        for (int j = 0; j < 4; ++j)
-        {
-            gridColors.push_back(128); // R
-            gridColors.push_back(0); // G
-            gridColors.push_back(128); // B
-            gridColors.push_back(static_cast<GLfloat>(alpha * 255)); // Alpha
-        }
+        Renderer2D::DrawLine(v1, v2, color);
+        Renderer2D::DrawLine(v3, v4, color);
     }
-
-    // Create and Bind vertex array object (VAO)
-    GLuint gridVAO;
-    GLCALL(glGenVertexArrays(1, &gridVAO));
-    GLCALL(glBindVertexArray(gridVAO));
-
-    // Create and Bind vertex buffer object (VBO) for vertices
-    GLuint gridVBO;
-    GLCALL(glGenBuffers(1, &gridVBO));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, gridVBO));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, gridVertices.size() * sizeof(GLfloat), gridVertices.data(), GL_STATIC_DRAW));
-    GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr));
-    GLCALL(glEnableVertexAttribArray(0));
-
-    // Create and Bind vertex buffer object (VBO) for colors
-    GLuint colorVBO;
-    GLCALL(glGenBuffers(1, &colorVBO));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, colorVBO));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, gridColors.size() * sizeof(GLfloat), gridColors.data(), GL_STATIC_DRAW));
-    GLCALL(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, nullptr));
-    GLCALL(glEnableVertexAttribArray(1));
-
-
-    // Draw lines
-    GLCALL(glColor3f(0.33f, 0.33f, 0.33f));
-    GLCALL(glDrawArrays(GL_LINES, 0, gridVertices.size() / 3));
-
-    // Cleanup
-    GLCALL(glDeleteBuffers(1, &gridVBO));
-    GLCALL(glDeleteBuffers(1, &colorVBO));
-    GLCALL(glDeleteVertexArrays(1, &gridVAO));
 }
 
 void EngineCore::DrawFrustum(const Frustum& frustum)
@@ -313,26 +227,10 @@ void EngineCore::DrawRay(const Ray& ray)
         ray.Origin.y + ray.Direction.y * 1000,
         ray.Origin.z + ray.Direction.z * 1000
     };
-
-    // Create and Bind vertex array object (VAO)
-    GLuint rayVAO;
-    GLCALL(glGenVertexArrays(1, &rayVAO));
-    GLCALL(glBindVertexArray(rayVAO));
-
-    // Create and Bind vertex buffer object (VBO) for vertices
-    GLuint rayVBO;
-    GLCALL(glGenBuffers(1, &rayVBO));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, rayVBO));
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(rayVertices), rayVertices, GL_STATIC_DRAW));
-    GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr));
-    GLCALL(glEnableVertexAttribArray(0));
-
-    // Draw line
-    GLCALL(glDrawArrays(GL_LINES, 0, 2));
-
-    // Cleanup
-    GLCALL(glDeleteBuffers(1, &rayVBO));
-    GLCALL(glDeleteVertexArrays(1, &rayVAO));
+    Renderer2D::DrawLine({ ray.Origin.x,  ray.Origin.y, ray.Origin.z },
+                          {ray.Origin.x + ray.Direction.x * 1000,
+                           ray.Origin.y + ray.Direction.y * 1000,
+                           ray.Origin.z + ray.Direction.z * 1000}, { 1.0f, 1.0f, 1.0f, 1.0f });
 }
 
 bool EngineCore::GetVSync()
