@@ -118,6 +118,9 @@ class InternalCalls
     internal extern static int GetSelectedButton(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int SetButtonState(IntPtr GOptr, int state, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]

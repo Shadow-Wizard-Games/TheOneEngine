@@ -1,7 +1,18 @@
 ﻿using System;
 
+
 public class ICanvas : IComponent
 {
+    public enum UiState
+    {
+        IDLE,
+        HOVERED,
+        SELECTED,
+        HOVEREDSELECTED,
+        DISABLED,
+        UNKNOWN
+    }
+
     public ICanvas() : base() { }
     public ICanvas(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
@@ -58,6 +69,11 @@ public class ICanvas : IComponent
     public void SetSliderValue(int value, string name)
     {
         InternalCalls.SetSliderValue(containerGOptr, value, name);
+    }
+
+    public void SetButtonState(UiState state, string name)
+    {
+        InternalCalls.SetButtonState(containerGOptr, (int)state, name);
     }
 
     public string GetTextString(string name)
