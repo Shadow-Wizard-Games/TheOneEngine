@@ -14,6 +14,16 @@ TextUI::TextUI(std::shared_ptr<GameObject> containerGO, const std::string& path,
 	SetFont(path);
 }
 
+TextUI::TextUI(TextUI* ref) : ItemUI(ref)
+{
+	this->textString = ref->textString;
+	this->fontPath = ref->fontPath;
+	this->fontID = ref->fontID;
+	this->color = ref->color;
+	this->kerning = ref->kerning;
+	this->lineSpacing = ref->lineSpacing;
+}
+
 TextUI::~TextUI() {}
 
 void TextUI::Draw2D()
@@ -65,10 +75,12 @@ json TextUI::SaveUIElement()
 	uiFontJSON["Type"] = (int)type;
 	uiFontJSON["State"] = (int)state;
 	uiFontJSON["Interactuable"] = interactuable;
+	uiFontJSON["Print"] = print;
 	uiFontJSON["FontPath"] = fontPath;
 	uiFontJSON["Color"] = { color.r, color.g, color.b, color.a };
 	uiFontJSON["Kerning"] = kerning;
 	uiFontJSON["LineSpacing"] = lineSpacing;
+	uiFontJSON["TextString"] = textString;
 
 	return uiFontJSON;
 }
@@ -87,8 +99,10 @@ void TextUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 
 	if (UIElementJSON.contains("FontPath")) fontPath = UIElementJSON["FontPath"];
+	if (UIElementJSON.contains("TextString")) textString = UIElementJSON["TextString"];
 	if (UIElementJSON.contains("Color"))
 	{
 		for (int i = 0; i < 4; i++) {

@@ -6,7 +6,7 @@
 #include "Texture.h"
 #include <string>
 #include "Renderer2D.h"
-#include <TheOneEngine/Renderer2D.h>
+#include "../TheOneEngine/Renderer2D.h"
 
 enum class UiType {
 	IMAGE,
@@ -35,6 +35,7 @@ class ItemUI
 {
 public:
 	ItemUI(std::shared_ptr<GameObject> containerGO, UiType type, std::string name = "Name", bool interactuable = false, Rect2D rect = {0,0,1,1});
+	ItemUI(ItemUI* ref);
 	virtual ~ItemUI();
 
 	virtual void Draw2D();
@@ -86,6 +87,10 @@ public:
 
 	virtual void UpdateState();
 
+	bool IsPrintable() { return print; }
+
+	void SetPrint(bool print) { this->print = print; }
+
 protected:
 
 	Rect2D imageRect;
@@ -95,6 +100,8 @@ protected:
 	UiType type;
 
 	UiState state;
+
+	bool print;
 
 	unsigned int id;
 	std::string name;

@@ -12,6 +12,7 @@ class ImageUI : public ItemUI
 public:
 	ImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = {0,0,1,1});
 	ImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Img", Rect2D rect = {0,0,1,1});
+	ImageUI(ImageUI* ref);
 	~ImageUI();
 
 	void Draw2D();

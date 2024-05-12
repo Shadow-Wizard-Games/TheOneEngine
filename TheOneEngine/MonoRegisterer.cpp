@@ -295,6 +295,20 @@ static void ToggleChecker(GameObject* containerGO, bool value, MonoString* nameM
 	}
 }
 
+static void PrintItemUI(GameObject* containerGO, bool value, MonoString* nameM)
+{
+	std::string name = MonoRegisterer::MonoStringToUTF8(nameM);
+
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetName() == name)
+		{
+			containerGO->GetComponent<Canvas>()->GetItemUI<ItemUI>(uiElements[i]->GetID())->SetPrint(value);
+		}
+	}
+}
+
 static int GetSelectedButton(GameObject* containerGO)
 {
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
@@ -692,6 +706,15 @@ static void StopAnimation(GameObject* GOptr) {
 	}
 }
 
+static bool AnimationHasFinished(GameObject* GOptr)
+{
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated() && m->getActiveAnimation()->HasFinished()) {
+		return true;
+	}
+	return false;
+}
+
 static bool GetTransitionBlend(GameObject* GOptr){
 	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
 	if (m->isAnimated()) {
@@ -770,6 +793,7 @@ void MonoRegisterer::RegisterFunctions()
 	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);
 	mono_add_internal_call("InternalCalls::ToggleChecker", ToggleChecker);
+	mono_add_internal_call("InternalCalls::PrintItemUI", PrintItemUI);
 	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
 	mono_add_internal_call("InternalCalls::GetSelected", GetSelected);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
@@ -823,9 +847,10 @@ void MonoRegisterer::RegisterFunctions()
 	//Animation
 	mono_add_internal_call("InternalCalls::PlayAnimation", PlayAnimation);
 	mono_add_internal_call("InternalCalls::StopAnimation", StopAnimation);
-	mono_add_internal_call("InternalCalls::SetTransitionBlend", GetTransitionBlend);
+	mono_add_internal_call("InternalCalls::AnimationHasFinished", AnimationHasFinished);
+	mono_add_internal_call("InternalCalls::GetTransitionBlend", GetTransitionBlend);
 	mono_add_internal_call("InternalCalls::SetTransitionBlend", SetTransitionBlend);
-	mono_add_internal_call("InternalCalls::SetTransitionTime", GetTransitionTime);
+	mono_add_internal_call("InternalCalls::GetTransitionTime", GetTransitionTime);
 	mono_add_internal_call("InternalCalls::SetTransitionTime", SetTransitionTime);
 	mono_add_internal_call("InternalCalls::UpdateAnimation", UpdateAnimation);
 }
