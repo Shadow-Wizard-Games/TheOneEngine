@@ -177,40 +177,26 @@ static inline void glVec3(const vec3& v) { glVertex3dv(&v.x); }
 
 void GameObject::DrawAABB()
 {
-	glLineWidth(1);
-	glColor4ub(255, 255, 255, 64);
+	Renderer2D::DrawLine(aabb.a(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.b(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.c(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.d(), aabb.a(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	glBegin(GL_LINE_STRIP);
-	glVec3(aabb.a());
-	glVec3(aabb.b());
-	glVec3(aabb.c());
-	glVec3(aabb.d());
-	glVec3(aabb.a());
+	Renderer2D::DrawLine(aabb.e(), aabb.f(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.f(), aabb.g(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.g(), aabb.h(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.h(), aabb.e(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	glVec3(aabb.e());
-	glVec3(aabb.f());
-	glVec3(aabb.g());
-	glVec3(aabb.h());
-	glVec3(aabb.e());
-	glEnd();
-
-	glBegin(GL_LINES);
-	glVec3(aabb.h());
-	glVec3(aabb.d());
-	glVec3(aabb.f());
-	glVec3(aabb.b());
-	glVec3(aabb.g());
-	glVec3(aabb.c());
-	glEnd();
-
-	glColor4ub(255, 255, 255, 255);
+	Renderer2D::DrawLine(aabb.h(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.f(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(aabb.g(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
 }
 
 void GameObject::DrawOBB()
 {
-	glColor3f(1, 0, 1);
+	/*glColor3f(1, 0, 1);
 	glLineWidth(2);
-	vec3f* obb_points = nullptr;
+	vec3f* obb_points = nullptr;*/
 	//obb.GetCornerPoints(obb_points);
 	//
 	//glBegin(GL_LINES);
