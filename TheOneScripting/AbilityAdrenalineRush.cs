@@ -19,7 +19,7 @@ public class AbilityAdrenalineRush : Ability
 
     public override void Start()
     {
-        name = "AdrenalineRush";
+        abilityName = "AdrenalineRush";
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 

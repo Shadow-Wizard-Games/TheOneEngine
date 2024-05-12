@@ -125,6 +125,23 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	return go;
 }
 
+static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
+{
+	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx");
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+
+	SetPosition(go, initialPosition);
+	SetRotation(go, direction);
+
+	go->AddScript("Grenade");
+	//go->AddComponent<Collider2D>();
+	//go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	//go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
+	//go->GetComponent<Collider2D>()->radius = 0.4f;
+	//engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+	return go;
+}
+
 static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction, vec3f* scale)
 {
 	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx");
@@ -739,6 +756,7 @@ void MonoRegisterer::RegisterFunctions()
 	//GameObject
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
+	mono_add_internal_call("InternalCalls::InstantiateGrenade", InstantiateGrenade);
 	mono_add_internal_call("InternalCalls::InstantiateXenomorph", InstantiateXenomorph);
 	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);

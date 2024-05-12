@@ -9,13 +9,15 @@ public class AbilityImpaciente : Ability
     IGameObject playerGO;
     PlayerScript player;
 
+    int impacienteDamage = 10;
+
     float slowAmount = 0.25f;
 
     float impacienteShootingCd = 0.12f;
 
     public override void Start()
     {
-        name = "Impaciente";
+        abilityName = "Impaciente";
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 

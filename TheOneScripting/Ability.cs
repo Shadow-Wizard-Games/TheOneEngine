@@ -10,7 +10,7 @@ public class Ability : MonoBehaviour
         COOLDOWN,
     }
 
-    public string name;
+    public string abilityName;
     public float activeTime;
     public float activeTimeCounter;
     public float cooldownTime;

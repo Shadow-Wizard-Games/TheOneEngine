@@ -53,8 +53,6 @@ public class PlayerScript : MonoBehaviour
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
     public float mp4ShootingCd = 0.15f;
-    public int impacienteBullets = 1000;
-    public int impacienteBulletCounter = 0;
 
     // Abilities
     IGameObject dashGO;
@@ -69,6 +67,11 @@ public class PlayerScript : MonoBehaviour
 
     public int shieldKillCounter = 0;
     public bool shieldIsActive = false;
+
+    public int impacienteBullets = 999;
+    public int impacienteBulletCounter = 0;
+
+    public Vector3 grenadeInitialVelocity = Vector3.zero;
 
     // animation states
     bool isRunning;
@@ -173,10 +176,14 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) 
-        { 
-            ReduceLife();
-        }
+        // Shoot grenade launcher
+
+
+        // to delete, test purposes
+        //if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
+        //{ 
+        //    ReduceLife();
+        //}
 
         // Play steps
         if (lastFrameRunned != isRunning)
@@ -361,7 +368,7 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
             {
-                //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
                 attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
                 hasShot = true;
                 if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();

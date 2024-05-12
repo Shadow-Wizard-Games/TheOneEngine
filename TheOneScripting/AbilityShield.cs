@@ -10,7 +10,7 @@ public class AbilityShield : Ability
 
     public override void Start()
     {
-        name = "Shield";
+        abilityName = "Shield";
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 

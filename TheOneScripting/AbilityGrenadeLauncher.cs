@@ -1,24 +1,22 @@
 ﻿using System;
 
-public class AbilityDash : Ability
+public class AbilityGrenadeLauncher : Ability
 {
     IGameObject playerGO;
     PlayerScript player;
 
-    float dashSpeed = 50.0f;
-    float rollPotency = 2.0f;
-    float dashPotency = 3.0f;
+    float range = 120.0f;
+    float explosionRadius = 40f;
+    Vector3 explosionCenterPos = Vector3.zero;
 
-    Vector3 moveDir = Vector3.zero;
-    
+    float grenadeVelocity = 200f;
+
     public override void Start()
     {
-        abilityName = "Roll";
+        abilityName = "GrenadeLauncher";
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
-        activeTime = 0.3f;
-        activeTimeCounter = activeTime;
         cooldownTime = 4.0f;
         cooldownTimeCounter = cooldownTime;
     }
@@ -30,7 +28,7 @@ public class AbilityDash : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE)) // change input
                 {
                     Activated();
                     break;
@@ -39,7 +37,6 @@ public class AbilityDash : Ability
                 break;
             case AbilityState.ACTIVE:
                 WhileActive();
-                Debug.Log("Dash active time" + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
@@ -50,36 +47,26 @@ public class AbilityDash : Ability
 
     public override void Activated()
     {
-        player.isDashing = true;
-
         state = AbilityState.ACTIVE;
 
-        Debug.Log("Ability " + player.dashAbilityName + " Activated");
+        Debug.Log("Ability Grenade Launcher Activated");
     }
 
     public override void WhileActive()
     {
-        if (activeTimeCounter > 0)
-        {
-            // update time
-            activeTimeCounter -= Time.deltaTime;
-            if(player.dashAbilityName == "Roll")
-            {
-                player.attachedGameObject.transform.Translate(player.lastMovementDirection * rollPotency * player.baseSpeed * Time.deltaTime);
-            }
-            else
-            {
-                player.attachedGameObject.transform.Translate(player.lastMovementDirection * dashPotency * player.baseSpeed * Time.deltaTime);
-            }
-        }
-        else
-        {
-            player.isDashing = false;
-            activeTimeCounter = activeTime;
-            state = AbilityState.COOLDOWN;
+        explosionCenterPos = player.attachedGameObject.transform.position + player.lastMovementDirection * range;
 
-            Debug.Log("Ability " + player.dashAbilityName + " on Cooldown");
+        if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE))
+        {
+            Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+            InternalCalls.InstantiateGrenade(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+            player.grenadeInitialVelocity = player.lastMovementDirection * grenadeVelocity;
+
+            state = AbilityState.COOLDOWN;
         }
+
+        Debug.DrawWireCircle(player.attachedGameObject.transform.position + Vector3.up * 4, range, new Vector3(0.0f, 0.3f, 1.0f));
+        Debug.DrawWireCircle(explosionCenterPos + Vector3.up * 4, explosionRadius, new Vector3(1.0f, 0.4f, 0.0f));
     }
 
     public override void OnCooldown()
@@ -94,7 +81,7 @@ public class AbilityDash : Ability
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
 
-            Debug.Log("Ability " + player.dashAbilityName + " Ready");
+            Debug.Log("Ability Grenade Launcher Ready");
         }
     }
 }

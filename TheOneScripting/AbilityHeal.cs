@@ -15,7 +15,7 @@ public class AbilityHeal : Ability
 
     public override void Start()
     {
-        name = "Heal";
+        abilityName = "Heal";
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
