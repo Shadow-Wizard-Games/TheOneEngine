@@ -8,7 +8,7 @@ public class Grenade : MonoBehaviour
     Vector3 velocity;
     float lifeTime = 20.0f;
     float currentTime = 0.0f;
-    Vector3 gravity = new Vector3(0f, -140f, 0f);
+    Vector3 gravity = new Vector3(0f, -110f, 0f);
 
     public override void Start()
     {

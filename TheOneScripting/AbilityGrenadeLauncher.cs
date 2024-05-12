@@ -5,11 +5,11 @@ public class AbilityGrenadeLauncher : Ability
     IGameObject playerGO;
     PlayerScript player;
 
-    float range = 120.0f;
+    float range = 200.0f;
     float explosionRadius = 40f;
     Vector3 explosionCenterPos = Vector3.zero;
 
-    float grenadeVelocity = 200f;
+    float grenadeVelocity = 250f;
 
     public override void Start()
     {
@@ -17,6 +17,8 @@ public class AbilityGrenadeLauncher : Ability
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
+        activeTime = 0.15f;
+        activeTimeCounter = activeTime;
         cooldownTime = 4.0f;
         cooldownTimeCounter = cooldownTime;
     }
@@ -56,14 +58,20 @@ public class AbilityGrenadeLauncher : Ability
     {
         explosionCenterPos = player.attachedGameObject.transform.position + player.lastMovementDirection * range;
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE))
+        if(activeTimeCounter > 0)
+        {
+            activeTimeCounter -= Time.deltaTime;
+        }
+        else if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE) && activeTimeCounter <= 0)
         {
             Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-            InternalCalls.InstantiateGrenade(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+            InternalCalls.InstantiateGrenade(player.attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
             player.grenadeInitialVelocity = player.lastMovementDirection * grenadeVelocity;
 
+            activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
         }
+        
 
         Debug.DrawWireCircle(player.attachedGameObject.transform.position + Vector3.up * 4, range, new Vector3(0.0f, 0.3f, 1.0f));
         Debug.DrawWireCircle(explosionCenterPos + Vector3.up * 4, explosionRadius, new Vector3(1.0f, 0.4f, 0.0f));
