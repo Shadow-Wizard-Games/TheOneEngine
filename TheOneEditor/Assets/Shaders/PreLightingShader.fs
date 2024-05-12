@@ -11,6 +11,9 @@ in vec3 normal;
 uniform sampler2D diffuse;
 
 void main() {
+    //Flip UV for animated meshes
+    vec2 flipUV = vec2(TexCoords.s, 1. - TexCoords.t);
+
     // store the fragment position vector in the first gbuffer texture
     gPosition = fragPos;
     // also store the per-fragment normals into the gbuffer

@@ -207,7 +207,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	// Close the file
 	file.close();
 
-	currentScene->pointLights.clear();
+	currentScene->lights.clear();
 
 	if (sceneJSON.contains("sceneName"))
 	{
@@ -774,6 +774,14 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 
 				auto particleSystem = goToModify->GetComponent<ParticleSystem>();
 				particleSystem->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Light:
+			{
+				if (goToModify->GetComponent<Light>() == nullptr) goToModify->AddComponent<Light>();
+
+				auto light = goToModify->GetComponent<Light>();
+				light->LoadComponent(componentJSON);
 				break;
 			}
 			default:

@@ -55,7 +55,7 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
-    void SetLightType(LightType type);
+    void RemoveLight();
 
 public:
     LightType lightType;
@@ -74,7 +74,5 @@ public:
     float outerCutOff;
 
     std::string lightPresetPath;
-
-    bool recalculate;
 };
 #endif //__LIGHT_H__

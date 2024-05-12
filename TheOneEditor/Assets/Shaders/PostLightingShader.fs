@@ -1,7 +1,8 @@
 #version 450 core
 
+const int MAX_DIRECTIONAL_LIGHTS = 5;
 const int MAX_POINT_LIGHTS = 32;
-const int MAX_SPOT_LIGHTS = 12;
+const int MAX_SPOT_LIGHTS = 32;
 
 // Outputs colors in RGBA
 out vec4 FragColor;
@@ -40,10 +41,9 @@ struct SpotLight {
     float OuterCutOff;
 };
 
-uniform DirLight u_DirLight;
-uniform int u_PointLightsNum;
+uniform int u_TotalLightsNum;
+uniform DirLight u_DirLight[MAX_DIRECTIONAL_LIGHTS];
 uniform PointLight u_PointLights[MAX_POINT_LIGHTS];
-uniform int u_SpotLightsNum;
 uniform SpotLight u_SpotLights[MAX_SPOT_LIGHTS];
 
 uniform vec3 u_ViewPos;
@@ -51,22 +51,18 @@ uniform vec3 u_ViewPos;
 const float PI = 3.14159265359;
 
 vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir) {
-    float distance = length(light.Position - FragPos);
     // diffuse
-    vec3 lightDir = normalize(light.Position - FragPos);
-    float r = length(lightDir);
+    vec3 lightDir = normalize(-light.Direction);
     vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * light.Color;
     // specular
     vec3 halfwayDir = normalize(lightDir + ViewDir);  
     float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
     vec3 specular = light.Color * spec * Specular;
 
-    // spotlight (soft edges)
-    float theta = dot(lightDir, normalize(-light.Direction)); 
-    //float epsilon = (0 - 0);
-    float intensity = clamp((theta - 0) / 0.0, 0.0, 1.0);
-    diffuse  *= intensity;
-    specular *= intensity;
+    //float theta = dot(lightDir, normalize(-light.Direction)); 
+    //float intensity = clamp((theta - 0) / 0.0, 0.0, 1.0);
+    // diffuse  *= intensity;
+    // specular *= intensity;
 
     return (diffuse + specular);
 }
@@ -129,14 +125,15 @@ void main()
     vec3 result = Diffuse * 0.1;
 
     // phase 1: Directional lighting
-    result += CalcDirLight(u_DirLight, Diffuse, Specular, Normal, FragPos, ViewDir);
+    for(int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++)
+    result += CalcDirLight(u_DirLight[i], Diffuse, Specular, Normal, FragPos, ViewDir);
 
     // phase 2: Point lights
-    for(int i = 0; i < u_PointLightsNum; i++)
+    for(int i = 0; i < MAX_POINT_LIGHTS; i++)
     result += CalcPointLight(u_PointLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
 
     // phase 3: Spot lights
-    for(int i = 0; i < u_SpotLightsNum; i++)
+    for(int i = 0; i < MAX_SPOT_LIGHTS; i++)
     result += CalcSpotLight(u_SpotLights[i], Diffuse, Specular, Normal, FragPos, ViewDir);
 
     FragColor = vec4(result, 1.0);

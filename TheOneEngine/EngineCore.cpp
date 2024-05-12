@@ -448,13 +448,18 @@ void EngineCore::InitPostLightingShader()
     textShader->addUniform("gPosition", UniformType::Sampler2D);
     textShader->addUniform("gNormal", UniformType::Sampler2D);
     textShader->addUniform("gAlbedoSpec", UniformType::Sampler2D);
+    textShader->addUniform("gSSAO", UniformType::Sampler2D);
     textShader->addUniform("u_ViewPos", UniformType::fVec3);
+    textShader->addUniform("u_TotalLightsNum", UniformType::Int);
 
-    textShader->addUniform("u_DirLight.Position", UniformType::fVec3);
-    textShader->addUniform("u_DirLight.Color", UniformType::fVec3);
-    textShader->addUniform("u_DirLight.Direction", UniformType::fVec3);
+    for (uint i = 0; i < 5; i++)
+    {
+        string iteration = to_string(i);
+        textShader->addUniform("u_DirLight[" + iteration + "].Position", UniformType::fVec3);
+        textShader->addUniform("u_DirLight[" + iteration + "].Color", UniformType::fVec3);
+        textShader->addUniform("u_DirLight[" + iteration + "].Direction", UniformType::fVec3);
+    }
 
-    textShader->addUniform("u_PointLightsNum", UniformType::Int);
     for (uint i = 0; i < 32; i++)
     {
         string iteration = to_string(i);
@@ -464,8 +469,8 @@ void EngineCore::InitPostLightingShader()
         textShader->addUniform("u_PointLights[" + iteration + "].Quadratic", UniformType::Float);
         textShader->addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
     }
-    textShader->addUniform("u_SpotLightsNum", UniformType::Int);
-    for (uint i = 0; i < 12; i++)
+
+    for (uint i = 0; i < 32; i++)
     {
         string iteration = to_string(i);
         textShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);
@@ -479,10 +484,11 @@ void EngineCore::InitPostLightingShader()
     }
     Resources::Import<Shader>("PostLightingShader", textShader);
 
-    lightingProcess.setShader(textShader, textShader->getPath());
-    std::string lightPath = Resources::PathToLibrary<Material>() + "lightingProcess.toematerial";
-    Resources::Import<Material>(lightPath, &lightingProcess);
-    Resources::LoadFromLibrary<Material>(lightPath);
+    Material lightinProcessMat(textShader);
+    lightinProcessMat.setShader(textShader, textShader->getPath());
+    lightingProcessPath = Resources::PathToLibrary<Material>() + "lightingProcess.toematerial";
+    Resources::Import<Material>(lightingProcessPath, &lightinProcessMat);
+    Resources::LoadFromLibrary<Material>(lightingProcessPath);
 }
 
 void EngineCore::InitLitMeshColorShaders()

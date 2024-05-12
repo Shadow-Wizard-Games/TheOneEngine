@@ -112,7 +112,7 @@ public:
 
 	ScratchBuffer scratch_buffer_;
 
-	Material lightingProcess;
+	std::string lightingProcessPath;
 
 private:
 

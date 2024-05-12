@@ -121,7 +121,7 @@ public:
 
 	~Scene() 
 	{ 
-		pointLights.clear();
+		lights.clear();
 		delete currentCamera;
 		currentCamera = nullptr;
 	}
@@ -170,9 +170,7 @@ public:
 	std::multimap<float, GameObject*> zSorting;
 
 	//Arnau: Create a lights list
-	std::vector<Light*> pointLights;
-	std::vector<Light*> spotLights;
-	Light* directionalLight;
+	std::vector<Light*> lights;
 
 	//int listenerAudioGOID = -1;
 };
