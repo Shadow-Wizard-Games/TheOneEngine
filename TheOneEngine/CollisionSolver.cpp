@@ -177,24 +177,26 @@ void CollisionSolver::DrawCollisions() {
         if (collider->colliderType == ColliderType::Rect) {
             glm::vec2 size(collider->w, collider->h);
 
+            glm::mat4 rotation = glm::rotate(glm::mat4(1), glm::radians(90.0f), glm::vec3(1, 0, 0));
             if (collider->cornerPivot) {
-                position -= glm::vec3(size.x / 2, 0.0f, size.y / 2);
-            }
 
-            glm::mat4 rotation = glm::mat4(1.0f);
-            /*switch (collider->objectOrientation) {
-            case ObjectOrientation::Right:
-                rotation = glm::rotate(rotation, glm::radians(90.0f), glm::vec3(1, 0, 0));
-                break;
-            case ObjectOrientation::Back:
-                rotation = glm::rotate(rotation, glm::radians(180.0f), glm::vec3(1, 0, 0));
-                break;
-            case ObjectOrientation::Left:
-                rotation = glm::rotate(rotation, glm::radians(270.0f), glm::vec3(1, 0, 0));
-                break;
-            default:
-                break;
-            }*/
+                switch (collider->objectOrientation) {
+                case ObjectOrientation::Front:
+                    position -= glm::vec3(-size.x / 2, 0.0f, -size.y / 2);
+                    break;
+                case ObjectOrientation::Right:
+                    position -= glm::vec3(size.x / 2, 0.0f, -size.y / 2);
+                    break;
+                case ObjectOrientation::Back:
+                    position -= glm::vec3(size.x / 2, 0.0f, size.y / 2);
+                    break;
+                case ObjectOrientation::Left:
+                    position -= glm::vec3(-size.x / 2, 0.0f, size.y / 2);
+                    break;
+                default:
+                    break;
+                }
+            }
 
             glm::mat4 model = glm::translate(glm::mat4(1.0f), position) 
                 * rotation 
