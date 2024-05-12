@@ -706,6 +706,15 @@ static void StopAnimation(GameObject* GOptr) {
 	}
 }
 
+static bool AnimationHasFinished(GameObject* GOptr)
+{
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated() && m->getActiveAnimation()->HasFinished()) {
+		return true;
+	}
+	return false;
+}
+
 static bool GetTransitionBlend(GameObject* GOptr){
 	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
 	if (m->isAnimated()) {
@@ -838,9 +847,10 @@ void MonoRegisterer::RegisterFunctions()
 	//Animation
 	mono_add_internal_call("InternalCalls::PlayAnimation", PlayAnimation);
 	mono_add_internal_call("InternalCalls::StopAnimation", StopAnimation);
-	mono_add_internal_call("InternalCalls::SetTransitionBlend", GetTransitionBlend);
+	mono_add_internal_call("InternalCalls::AnimationHasFinished", AnimationHasFinished);
+	mono_add_internal_call("InternalCalls::GetTransitionBlend", GetTransitionBlend);
 	mono_add_internal_call("InternalCalls::SetTransitionBlend", SetTransitionBlend);
-	mono_add_internal_call("InternalCalls::SetTransitionTime", GetTransitionTime);
+	mono_add_internal_call("InternalCalls::GetTransitionTime", GetTransitionTime);
 	mono_add_internal_call("InternalCalls::SetTransitionTime", SetTransitionTime);
 	mono_add_internal_call("InternalCalls::UpdateAnimation", UpdateAnimation);
 }

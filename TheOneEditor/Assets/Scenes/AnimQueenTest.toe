@@ -23,7 +23,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3177144211
+          "UID": 3268784684
         },
         {
           "Aspect": 1.777,
@@ -32,23 +32,17 @@
           "Name": "Camera",
           "ParentUID": 3452816845,
           "Pitch": 0.0,
-          "PrimaryCamera": true,
+          "PrimaryCamera": false,
           "Size": 5.0,
           "Type": 1,
-          "UID": 3550673124,
+          "UID": 3042092464,
           "Yaw": 0.0,
-          "zFar": 2114.610107421875,
+          "zFar": 1000.0,
           "zNear": 0.1
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "CameraMovement",
-          "Type": 4,
-          "UID": 2254748095
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
@@ -60,25 +54,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            20.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            1.0,
+            20.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            1.0,
+            20.0,
             0.0,
             0.0,
             0.0,
-            -400.0,
+            -8.352904319763184,
             1.0
           ],
           "Type": 0,
-          "UID": 475525498
+          "UID": 2693298383
         },
         {
           "Active": true,
@@ -88,39 +82,25 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_Queen/M_Queen.toematerial",
-          "MeshPath": "Library/Meshes/SK_Queen/SK_Queen.mesh",
+          "MaterialPath": "Library/Materials/AS_MainCharacter_Run/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/AS_MainCharacter_Run/SK_MainCharacter.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 3461662831
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 30.0,
-          "Type": 5,
-          "UID": 2293105699,
-          "Width": -1.7976931348623157e+308
+          "UID": 4119869749
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
-          "ScriptName": "AlienQueenBehaviourNew",
+          "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 2810585523
+          "UID": 1391795952
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SK_Queen",
+      "Name": "SK_MainCharacter",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -130,25 +110,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            100.0,
+            20.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            100.0,
+            20.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            100.0,
+            20.0,
             0.0,
             0.0,
             0.0,
-            400.0,
+            500.0,
             1.0
           ],
           "Type": 0,
-          "UID": 2164112949
+          "UID": 4273000699
         },
         {
           "Active": true,
@@ -158,49 +138,26 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
-          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
+          "MaterialPath": "Library/Materials/AS_Queen_TPose/Default_Material.toematerial",
+          "MeshPath": "Library/Meshes/AS_Queen_TPose/Queen1.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1372494642
+          "UID": 1810625188
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
-          "ScriptName": "PlayerScript",
+          "ScriptName": "AlienQueenBehaviourNew",
           "Type": 4,
-          "UID": 4197445285
-        },
-        {
-          "AudioID": 0,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 0,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 1944253935,
-          "Width": -1.7976931348623157e+308
+          "UID": 3176638374
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SK_MainCharacter",
+      "Name": "Queen1",
       "ParentUID": 3452816845,
-      "PrefabDirty": false,
-      "PrefabID": 2959458870,
-      "PrefabName": "SK_MainCharacter",
       "Static": false,
       "UID": 3452816845
     },
@@ -239,6 +196,7 @@
       ],
       "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "GameManager",
       "ParentUID": 3452816845,
@@ -283,6 +241,7 @@
       ],
       "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "ItemManager",
       "ParentUID": 3452816845,

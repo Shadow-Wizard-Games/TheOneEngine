@@ -246,6 +246,9 @@ class InternalCalls
     internal extern static void StopAnimation(IntPtr GOptr);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool AnimationHasFinished(IntPtr GOptr);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetTransitionBlend(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]

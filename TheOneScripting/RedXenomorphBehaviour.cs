@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class AdultXenomorphBehaviour : MonoBehaviour
+public class RedXenomorphBehaviour : MonoBehaviour
 {
     enum States
     {
@@ -11,23 +11,23 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         Dead
     }
 
-    private enum AdultXenomorphAttacks
+    private enum RedXenomorphAttacks
     {
         None,
-        AcidSpit,
-        TailAttack
+        SpikeThrow,
+        TailStab
     }
 
     IGameObject playerGO;
     Vector3 directorVector;
     float playerDistance;
 
-    // Adult Xenomorph parameters
-    float life = 200.0f;
-    float movementSpeed = 10.0f * 3;
+    // Red Xenomorph parameters
+    float life = 250.0f;
+    float movementSpeed = 40.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
-    AdultXenomorphAttacks currentAttack = AdultXenomorphAttacks.None;
+    RedXenomorphAttacks currentAttack = RedXenomorphAttacks.None;
     Vector3 initialPos;
 
     // Patrol
@@ -56,18 +56,17 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-        initialPos = attachedGameObject.transform.position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
-        attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+        //attachedGameObject.animator.Play("Idle");
+        //attachedGameObject.animator.blend = false;
+        //attachedGameObject.animator.transitionTime = 0.0f;
     }
 
     public override void Update()
     {
-        attachedGameObject.animator.UpdateAnimation();
+        //attachedGameObject.animator.UpdateAnimation();
 
         if (currentState == States.Dead) return;
 
@@ -115,14 +114,13 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 currentState = States.Patrol;
             }
 
-            if (currentAttack == AdultXenomorphAttacks.None)
+            if (currentAttack == RedXenomorphAttacks.None)
             {
                 //attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attackTimer += Time.deltaTime;
-                attachedGameObject.animator.Play("Walk");
             }
 
-            if (currentAttack == AdultXenomorphAttacks.None && attackTimer >= attackCooldown)
+            if (currentAttack == RedXenomorphAttacks.None && attackTimer >= attackCooldown)
             {
                 //Debug.Log("Attempt to attack");
                 currentState = States.Attack;
@@ -139,15 +137,16 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             case States.Attack:
                 player.isFighting = true;
 
+
                 ChooseAttack();
 
                 switch (currentAttack)
                 {
-                    case AdultXenomorphAttacks.AcidSpit:
-                        AcidSpit();
+                    case RedXenomorphAttacks.SpikeThrow:
+                        SpikeThrow();
                         break;
-                    case AdultXenomorphAttacks.TailAttack:
-                        TailAttack();
+                    case RedXenomorphAttacks.TailStab:
+                        TailStab();
                         break;
                     default:
                         break;
@@ -163,7 +162,6 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
-                attachedGameObject.animator.Play("Death");
                 break;
             default:
                 break;
@@ -172,38 +170,41 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     private void ChooseAttack()
     {
-        if (currentAttack == AdultXenomorphAttacks.None)
+        if (currentAttack == RedXenomorphAttacks.None)
         {
             if (isClose)
             {
-                currentAttack = AdultXenomorphAttacks.TailAttack;
-                attachedGameObject.animator.Play("TailAttack");
+                currentAttack = RedXenomorphAttacks.TailStab;
+                //attachedGameObject.animator.Play("TailAttack");
             }
             else
             {
-                currentAttack = AdultXenomorphAttacks.AcidSpit;
-                attachedGameObject.animator.Play("Spit");
+                currentAttack = RedXenomorphAttacks.SpikeThrow;
+                //attachedGameObject.animator.Play("AcidSpit");
             }
-            Debug.Log("AdultXenomorph current attack: " + currentAttack);
+            Debug.Log("Chestburster current attack: " + currentAttack);
         }
     }
 
-    private void AcidSpit()
+    private void SpikeThrow()
     {
-        if (attachedGameObject.animator.currentAnimHasFinished)
-        {
-            ResetState();
-        }
+        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
+        //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
+        ResetState();
+        //if (attachedGameObject.animator.currentAnimHasFinished)
+        //{
+        //    ResetState();
+        //}
     }
 
-    private void TailAttack()
+    private void TailStab()
     {
-        if (attachedGameObject.animator.currentAnimHasFinished)
-        {
-            ResetState();
-        }
+        ResetState();
+        //if (attachedGameObject.animator.currentAnimHasFinished)
+        //{
+        //    ResetState();
+        //}
     }
-
     private void Patrol()
     {
         if (currentState != lastState)
@@ -233,7 +234,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     private void ResetState()
     {
         attackTimer = 0.0f;
-        currentAttack = AdultXenomorphAttacks.None;
+        currentAttack = RedXenomorphAttacks.None;
         currentState = States.Chase;
     }
 
@@ -241,7 +242,6 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     {
         life -= 10.0f;
     }
-
     private bool MoveTo(Vector3 targetPosition)
     {
         //Return true if arrived at destination
