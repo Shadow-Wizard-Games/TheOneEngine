@@ -9,6 +9,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     float maxLife = 1500;
     float currentLife;
+    bool isDead = false;
 
     public override void Start()
     {
@@ -29,7 +30,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             Debug.Log("Current life is: " + currentLife.ToString());
         }
 
+        if (isDead) { return; }
+
         DoStateBehaviour();
+
+        if (currentLife < 0) { isDead = true; attachedGameObject.animator.Play("Death"); } 
     }
 
     #region FSM
