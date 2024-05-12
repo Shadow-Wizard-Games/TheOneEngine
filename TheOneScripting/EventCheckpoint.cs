@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-using static AudioManager;
-
 public class EventCheckpoint : Event
 {
     IGameObject playerGO;
@@ -19,8 +17,6 @@ public class EventCheckpoint : Event
 
     float tpRange = 100.0f;
     bool inRange = false;
-
-    AudioManager.EventIDs currentID = 0;    //change to correct audio ID
 
     public override void Start()
     {
