@@ -3,7 +3,7 @@
 #pragma once
 
 #include "ItemUI.h"
-#include "Texture.h"
+#include "Resources.h"
 #include <string>
 
 class ButtonImageUI : public ItemUI
@@ -11,6 +11,7 @@ class ButtonImageUI : public ItemUI
 public:
 	ButtonImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,1,1 });
 	ButtonImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "ButtonImage", Rect2D rect = { 0,0,1,1 });
+	ButtonImageUI(ButtonImageUI* ref);
 	~ButtonImageUI();
 
 	void Draw2D();
@@ -38,7 +39,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID = -1;
 
 	Rect2D* currentSection;
 	Rect2D imageIdleSection;

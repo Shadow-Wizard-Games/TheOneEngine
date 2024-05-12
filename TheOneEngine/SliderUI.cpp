@@ -1,11 +1,12 @@
 #include "SliderUI.h"
 #include "Canvas.h"
+#include "Renderer2D.h"
 
 SliderUI::SliderUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemUI(containerGO, UiType::SLIDER, name, false, rect)
 {
 	this->name = "Slider";
 	imagePath = "Assets/Meshes/HUD.png";
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 	this->sliderDesign = SliderDesign::SAMEFOREACH;
 	UpdateState();
 	currentValue = 0;
@@ -17,7 +18,7 @@ SliderUI::SliderUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemU
 
 SliderUI::SliderUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::SLIDER, name, false, rect), imagePath(path)
 {
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 	this->sliderDesign = SliderDesign::SAMEFOREACH;
 	UpdateState();
 	currentValue = 0;
@@ -25,6 +26,53 @@ SliderUI::SliderUI(std::shared_ptr<GameObject> containerGO, const std::string& p
 	offset = 0.0f;
 	additionalOffsetFirst = 0.0f;
 	additionalOffsetLast = 0.0f;
+}
+
+SliderUI::SliderUI(SliderUI* ref) : ItemUI(ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+
+	this->imageIdleSection = ref->imageIdleSection;
+	this->imageHoveredSection = ref->imageHoveredSection;
+	this->imageSelectedSection = ref->imageSelectedSection;
+	this->currentSection = ref->currentSection;
+
+	this->sliderDesign = ref->sliderDesign;
+
+	this->imageIdleFirstSection = ref->imageIdleFirstSection;
+	this->imageHoveredFirstSection = ref->imageHoveredFirstSection;
+	this->imageSelectedFirstSection = ref->imageSelectedFirstSection;
+	this->currentFirstSection = ref->currentFirstSection;
+
+	this->imageIdleLastSection = ref->imageIdleLastSection;
+	this->imageHoveredLastSection = ref->imageHoveredLastSection;
+	this->imageSelectedLastSection = ref->imageSelectedLastSection;
+	this->currentLastSection = ref->currentLastSection;
+
+
+	this->imageIdleSectionOff = ref->imageIdleSectionOff;
+	this->imageHoveredSectionOff = ref->imageHoveredSectionOff;
+	this->imageSelectedSectionOff = ref->imageSelectedSectionOff;
+	this->currentSectionOff = ref->currentSectionOff;
+
+	this->imageIdleFirstSectionOff = ref->imageIdleFirstSectionOff;
+	this->imageHoveredFirstSectionOff = ref->imageHoveredFirstSectionOff;
+	this->imageSelectedFirstSectionOff = ref->imageSelectedFirstSectionOff;
+	this->currentFirstSectionOff = ref->currentFirstSectionOff;
+
+	this->imageIdleLastSectionOff = ref->imageIdleLastSectionOff;
+	this->imageHoveredLastSectionOff = ref->imageHoveredLastSectionOff;
+	this->imageSelectedLastSectionOff = ref->imageSelectedLastSectionOff;
+	this->currentLastSectionOff = ref->currentLastSectionOff;
+
+	this->minValue = ref->minValue;
+	this->maxValue = ref->maxValue;
+	this->currentValue = ref->currentValue;
+
+	this->offset = ref->offset;
+	this->additionalOffsetFirst = ref->additionalOffsetFirst;
+	this->additionalOffsetLast = ref->additionalOffsetLast;
 }
 
 SliderUI::~SliderUI() {}
@@ -41,134 +89,55 @@ void SliderUI::Draw2D()
 	float width = (canvas->GetRect().w * imageRect.w);
 	float height = (canvas->GetRect().h * imageRect.h);
 
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	Renderer2D::TexCoordsSection texCoords;
 
-	canvas->GetTexture(this->imagePath)->Bind();
-
-	for (size_t i = minValue; i < maxValue; i++)
+	for (size_t i = minValue; i < maxValue; i++) 
 	{
-		glBegin(GL_QUADS);
-		if (i < currentValue)
+		bool isActive = (i < currentValue);
+		glm::vec2 pos;
+
+		switch (sliderDesign)
 		{
-			if (sliderDesign == SliderDesign::DIFFERENTFIRSTANDLAST && i == minValue)
-			{
-				glTexCoord2f(currentFirstSection->x, currentFirstSection->y + currentFirstSection->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2, posY + height / 2);
-
-				glTexCoord2f(currentFirstSection->x + currentFirstSection->w, currentFirstSection->y + currentFirstSection->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2, posY + height / 2);
-
-				glTexCoord2f(currentFirstSection->x + currentFirstSection->w, currentFirstSection->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2, posY - height / 2);
-
-				glTexCoord2f(currentFirstSection->x, currentFirstSection->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2, posY - height / 2);
-			}
-			else if (sliderDesign == SliderDesign::DIFFERENTFIRSTANDLAST && i == maxValue - 1)
-			{
-				glTexCoord2f(currentLastSection->x, currentLastSection->y + currentLastSection->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetLast, posY + height / 2);
-
-				glTexCoord2f(currentLastSection->x + currentLastSection->w, currentLastSection->y + currentLastSection->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetLast, posY + height / 2);
-
-				glTexCoord2f(currentLastSection->x + currentLastSection->w, currentLastSection->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetLast, posY - height / 2);
-
-				glTexCoord2f(currentLastSection->x, currentLastSection->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetLast, posY - height / 2);
-			}
-			else if (sliderDesign == SliderDesign::DIFFERENTFIRSTANDLAST)
-			{
-				glTexCoord2f(currentSection->x, currentSection->y + currentSection->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY + height / 2);
-
-				glTexCoord2f(currentSection->x + currentSection->w, currentSection->y + currentSection->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY + height / 2);
-
-				glTexCoord2f(currentSection->x + currentSection->w, currentSection->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY - height / 2);
-
-				glTexCoord2f(currentSection->x, currentSection->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY - height / 2);
-			}
-			else if (sliderDesign == SliderDesign::SAMEFOREACH)
-			{
-				glTexCoord2f(currentSection->x, currentSection->y + currentSection->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2 + currentSection->w * i + offset * (i), posY + height / 2);
-
-				glTexCoord2f(currentSection->x + currentSection->w, currentSection->y + currentSection->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2 + currentSection->w * i + offset * (i), posY + height / 2);
-
-				glTexCoord2f(currentSection->x + currentSection->w, currentSection->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2 + currentSection->w * i + offset * (i), posY - height / 2);
-
-				glTexCoord2f(currentSection->x, currentSection->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2 + currentSection->w * i + offset * (i), posY - height / 2);
-			}
-		}
-		else
+		case SliderDesign::SAMEFOREACH:
 		{
-			if (sliderDesign == SliderDesign::DIFFERENTFIRSTANDLAST && i == minValue)
-			{
-				glTexCoord2f(currentFirstSectionOff->x, currentFirstSectionOff->y + currentFirstSectionOff->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2, posY + height / 2);
+			Rect2D* section = isActive ? currentSection : currentSectionOff;
 
-				glTexCoord2f(currentFirstSectionOff->x + currentFirstSectionOff->w, currentFirstSectionOff->y + currentFirstSectionOff->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2, posY + height / 2);
+			texCoords = { {section->x, section->y},
+						 {section->x + section->w, section->y},
+						 {section->x + section->w, section->y + section->h},
+						 {section->x, section->y + section->h} };
 
-				glTexCoord2f(currentFirstSectionOff->x + currentFirstSectionOff->w, currentFirstSectionOff->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2, posY - height / 2);
-
-				glTexCoord2f(currentFirstSectionOff->x, currentFirstSectionOff->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2, posY - height / 2);
-			}
-			else if (sliderDesign == SliderDesign::DIFFERENTFIRSTANDLAST && i == maxValue - 1)
-			{
-				glTexCoord2f(currentLastSectionOff->x, currentLastSectionOff->y + currentLastSectionOff->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetLast, posY + height / 2);
-
-				glTexCoord2f(currentLastSectionOff->x + currentLastSectionOff->w, currentLastSectionOff->y + currentLastSectionOff->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetLast, posY + height / 2);
-
-				glTexCoord2f(currentLastSectionOff->x + currentLastSectionOff->w, currentLastSectionOff->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetLast, posY - height / 2);
-
-				glTexCoord2f(currentLastSectionOff->x, currentLastSectionOff->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetLast, posY - height / 2);
-			}
-			else if (sliderDesign == SliderDesign::DIFFERENTFIRSTANDLAST)
-			{
-				glTexCoord2f(currentSectionOff->x, currentSectionOff->y + currentSectionOff->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY + height / 2);
-
-				glTexCoord2f(currentSectionOff->x + currentSectionOff->w, currentSectionOff->y + currentSectionOff->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY + height / 2);
-
-				glTexCoord2f(currentSectionOff->x + currentSectionOff->w, currentSectionOff->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY - height / 2);
-
-				glTexCoord2f(currentSectionOff->x, currentSectionOff->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2 + currentFirstSectionOff->w + currentSectionOff->w * (i - 1) + offset * (i)+additionalOffsetFirst, posY - height / 2);
-			}
-			else if (sliderDesign == SliderDesign::SAMEFOREACH)
-			{
-				glTexCoord2f(currentSectionOff->x, currentSectionOff->y + currentSectionOff->h);  // Top-left corner of the texture
-				glVertex2f(posX - width / 2 + currentSectionOff->w * i + offset * (i), posY + height / 2);
-
-				glTexCoord2f(currentSectionOff->x + currentSectionOff->w, currentSectionOff->y + currentSectionOff->h);  // Top-right corner of the texture
-				glVertex2f(posX + width / 2 + currentSectionOff->w * i + offset * (i), posY + height / 2);
-
-				glTexCoord2f(currentSectionOff->x + currentSectionOff->w, currentSectionOff->y);  // Bottom-right corner of the texture
-				glVertex2f(posX + width / 2 + currentSectionOff->w * i + offset * (i), posY - height / 2);
-
-				glTexCoord2f(currentSectionOff->x, currentSectionOff->y);  // Bottom-left corner of the texture
-				glVertex2f(posX - width / 2 + currentSectionOff->w * i + offset * (i), posY - height / 2);
-			}
+			pos = { posX - width / 2 + currentSection->w * i + offset * i, posY };
+			Renderer2D::DrawQuad(pos, { width, height }, imageID, texCoords);
+			break;
 		}
-		glEnd();
+		case SliderDesign::DIFFERENTFIRSTANDLAST:
+		{
+			Rect2D* section = nullptr;
+			if (i == minValue) {
+				section = isActive ? currentFirstSection : currentFirstSectionOff;
+				pos = { posX, posY };
+			}
+			else if (i == maxValue - 1) {
+				section = isActive ? currentLastSection : currentLastSectionOff;
+				pos = { posX - width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * i + additionalOffsetLast, posY };
+			}
+			else {
+				section = isActive ? currentSection : currentSectionOff;
+				pos = { posX - width / 2 + currentFirstSection->w + currentSection->w * (i - 1) + offset * i + additionalOffsetFirst, posY };
+			}
+
+			texCoords = { {section->x, section->y},
+						 {section->x + section->w, section->y},
+						 {section->x + section->w, section->y + section->h},
+						 {section->x, section->y + section->h} };
+
+			Renderer2D::DrawQuad(pos, { width, height }, imageID, texCoords);
+			break;
+		}
+		default:
+			break;
+		}
 	}
 
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -211,6 +180,7 @@ json SliderUI::SaveUIElement()
 	uiElementJSON["AdditionalOffsetFirst"] = additionalOffsetFirst;
 	uiElementJSON["AdditionalOffsetLast"] = additionalOffsetLast;
 	uiElementJSON["Interactuable"] = interactuable;
+	uiElementJSON["Print"] = print;
 
 	uiElementJSON["ImagePath"] = imagePath;
 
@@ -364,183 +334,85 @@ void SliderUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("AdditionalOffsetFirst")) this->additionalOffsetFirst = UIElementJSON["AdditionalOffsetFirst"];
 	if (UIElementJSON.contains("AdditionalOffsetLast")) this->additionalOffsetLast = UIElementJSON["AdditionalOffsetLast"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 
 	UpdateState();
 }
 
-Rect2D SliderUI::GetSectIdle(int sectionType, bool activePart) const
+Rect2D SliderUI::GetSectIdle(int sectionType, bool activePart) const 
 {
-	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (sectionType == 0)
-		{
-			imageSect.x = (activePart ? imageIdleSection.x : imageIdleSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageIdleSection.y : imageIdleSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageIdleSection.w : imageIdleSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageIdleSection.h : imageIdleSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 1)
-		{
-			imageSect.x = (activePart ? imageIdleFirstSection.x : imageIdleFirstSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageIdleFirstSection.y : imageIdleFirstSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageIdleFirstSection.w : imageIdleFirstSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageIdleFirstSection.h : imageIdleFirstSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 2)
-		{
-			imageSect.x = (activePart ? imageIdleLastSection.x : imageIdleLastSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageIdleLastSection.y : imageIdleLastSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageIdleLastSection.w : imageIdleLastSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageIdleLastSection.h : imageIdleLastSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		switch (sectionType) {
+		case 0: return GetImageSection(imageIdleSection, imageIdleSectionOff, activePart, texture);
+		case 1: return GetImageSection(imageIdleFirstSection, imageIdleFirstSectionOff, activePart, texture);
+		case 2: return GetImageSection(imageIdleLastSection, imageIdleLastSectionOff, activePart, texture);
 		}
 	}
-	return imageSect;
+	return { 0, 0, 0, 0 };
 }
 
 void SliderUI::SetSectSizeIdle(float x, float y, float width, float height, int sectionType, bool activePart)
 {
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (sectionType == 0)
-		{
-			(activePart ? imageIdleSection.x : imageIdleSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageIdleSection.y : imageIdleSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageIdleSection.w : imageIdleSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageIdleSection.h : imageIdleSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 1)
-		{
-			(activePart ? imageIdleFirstSection.x : imageIdleFirstSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageIdleFirstSection.y : imageIdleFirstSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageIdleFirstSection.w : imageIdleFirstSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageIdleFirstSection.h : imageIdleFirstSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 2)
-		{
-			(activePart ? imageIdleLastSection.x : imageIdleLastSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageIdleLastSection.y : imageIdleLastSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageIdleLastSection.w : imageIdleLastSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageIdleLastSection.h : imageIdleLastSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		switch (sectionType) {
+		case 0: SetImageSection(imageIdleSection, imageIdleSectionOff, activePart, x, y, width, height, texture); break;
+		case 1: SetImageSection(imageIdleFirstSection, imageIdleFirstSectionOff, activePart, x, y, width, height, texture); break;
+		case 2: SetImageSection(imageIdleLastSection, imageIdleLastSectionOff, activePart, x, y, width, height, texture); break;
 		}
 	}
 }
 
 Rect2D SliderUI::GetSectHovered(int sectionType, bool activePart) const
 {
-	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (sectionType == 0)
-		{
-			imageSect.x = (activePart ? imageHoveredSection.x : imageHoveredSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageHoveredSection.y : imageHoveredSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageHoveredSection.w : imageHoveredSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageHoveredSection.h : imageHoveredSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 1)
-		{
-			imageSect.x = (activePart ? imageHoveredFirstSection.x : imageHoveredFirstSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageHoveredFirstSection.y : imageHoveredFirstSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageHoveredFirstSection.w : imageHoveredFirstSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageHoveredFirstSection.h : imageHoveredFirstSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 2)
-		{
-			imageSect.x = (activePart ? imageHoveredLastSection.x : imageHoveredLastSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageHoveredLastSection.y : imageHoveredLastSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageHoveredLastSection.w : imageHoveredLastSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageHoveredLastSection.h : imageHoveredLastSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		switch (sectionType) {
+		case 0: return GetImageSection(imageHoveredSection, imageHoveredSectionOff, activePart, texture);
+		case 1: return GetImageSection(imageHoveredFirstSection, imageHoveredFirstSectionOff, activePart, texture);
+		case 2: return GetImageSection(imageHoveredLastSection, imageHoveredLastSectionOff, activePart, texture);
 		}
 	}
-	return imageSect;
+	return { 0, 0, 0, 0 };
 }
 
-void SliderUI::SetSectSizeHovered(float x, float y, float width, float height, int sectionType, bool activePart)
+void SliderUI::SetSectSizeHovered(float x, float y, float width, float height, int sectionType, bool activePart) 
 {
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (sectionType == 0)
-		{
-			(activePart ? imageHoveredSection.x : imageHoveredSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageHoveredSection.y : imageHoveredSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageHoveredSection.w : imageHoveredSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageHoveredSection.h : imageHoveredSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 1)
-		{
-			(activePart ? imageHoveredFirstSection.x : imageHoveredFirstSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageHoveredFirstSection.y : imageHoveredFirstSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageHoveredFirstSection.w : imageHoveredFirstSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageHoveredFirstSection.h : imageHoveredFirstSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 2)
-		{
-			(activePart ? imageHoveredLastSection.x : imageHoveredLastSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageHoveredLastSection.y : imageHoveredLastSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageHoveredLastSection.w : imageHoveredLastSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageHoveredLastSection.h : imageHoveredLastSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		switch (sectionType) {
+		case 0: SetImageSection(imageHoveredSection, imageHoveredSectionOff, activePart, x, y, width, height, texture); break;
+		case 1: SetImageSection(imageHoveredFirstSection, imageHoveredFirstSectionOff, activePart, x, y, width, height, texture); break;
+		case 2: SetImageSection(imageHoveredLastSection, imageHoveredLastSectionOff, activePart, x, y, width, height, texture); break;
 		}
 	}
 }
 
-Rect2D SliderUI::GetSectSelected(int sectionType, bool activePart) const
+Rect2D SliderUI::GetSectSelected(int sectionType, bool activePart) const 
 {
-	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (sectionType == 0)
-		{
-			imageSect.x = (activePart ? imageSelectedSection.x : imageSelectedSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageSelectedSection.y : imageSelectedSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageSelectedSection.w : imageSelectedSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageSelectedSection.h : imageSelectedSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 1)
-		{
-			imageSect.x = (activePart ? imageSelectedFirstSection.x : imageSelectedFirstSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageSelectedFirstSection.y : imageSelectedFirstSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageSelectedFirstSection.w : imageSelectedFirstSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageSelectedFirstSection.h : imageSelectedFirstSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 2)
-		{
-			imageSect.x = (activePart ? imageSelectedLastSection.x : imageSelectedLastSectionOff.x) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = (activePart ? imageSelectedLastSection.y : imageSelectedLastSectionOff.y) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = (activePart ? imageSelectedLastSection.w : imageSelectedLastSectionOff.w) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = (activePart ? imageSelectedLastSection.h : imageSelectedLastSectionOff.h) * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		switch (sectionType) {
+		case 0: return GetImageSection(imageSelectedSection, imageSelectedSectionOff, activePart, texture);
+		case 1: return GetImageSection(imageSelectedFirstSection, imageSelectedFirstSectionOff, activePart, texture);
+		case 2: return GetImageSection(imageSelectedLastSection, imageSelectedLastSectionOff, activePart, texture);
 		}
 	}
-	return imageSect;
+	return { 0, 0, 0, 0 };
 }
 
-void SliderUI::SetSectSizeSelected(float x, float y, float width, float height, int sectionType, bool activePart)
+void SliderUI::SetSectSizeSelected(float x, float y, float width, float height, int sectionType, bool activePart) 
 {
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (sectionType == 0)
-		{
-			(activePart ? imageSelectedSection.x : imageSelectedSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageSelectedSection.y : imageSelectedSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageSelectedSection.w : imageSelectedSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageSelectedSection.h : imageSelectedSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 1)
-		{
-			(activePart ? imageSelectedFirstSection.x : imageSelectedFirstSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageSelectedFirstSection.y : imageSelectedFirstSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageSelectedFirstSection.w : imageSelectedFirstSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageSelectedFirstSection.h : imageSelectedFirstSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else if (sectionType == 2)
-		{
-			(activePart ? imageSelectedLastSection.x : imageSelectedLastSectionOff.x) = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageSelectedLastSection.y : imageSelectedLastSectionOff.y) = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			(activePart ? imageSelectedLastSection.w : imageSelectedLastSectionOff.w) = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			(activePart ? imageSelectedLastSection.h : imageSelectedLastSectionOff.h) = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		switch (sectionType) {
+		case 0: SetImageSection(imageSelectedSection, imageSelectedSectionOff, activePart, x, y, width, height, texture); break;
+		case 1: SetImageSection(imageSelectedFirstSection, imageSelectedFirstSectionOff, activePart, x, y, width, height, texture); break;
+		case 2: SetImageSection(imageSelectedLastSection, imageSelectedLastSectionOff, activePart, x, y, width, height, texture); break;
 		}
 	}
 }

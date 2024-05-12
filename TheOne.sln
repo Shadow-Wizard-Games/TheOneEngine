@@ -1,12 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33205.214
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34114.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheOneEditor", "TheOneEditor\TheOneEditor.vcxproj", "{4F643650-00D5-44F6-B376-1634C6583029}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheOneEngine", "TheOneEngine\TheOneEngine.vcxproj", "{0E04F5B4-D4A2-4F7B-B350-A0EDCAE8A446}"
 	ProjectSection(ProjectDependencies) = postProject
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6} = {38BD587B-248B-4C81-0D1F-BDA7F98B28E6}
 		{6CEB38E1-D500-4B35-92D4-9D7051489F29} = {6CEB38E1-D500-4B35-92D4-9D7051489F29}
 	EndProjectSection
 EndProject
@@ -14,14 +15,22 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheOneAudio", "TheOneAudio\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheOneBuilder", "TheOneBuilder\TheOneBuilder.vcxproj", "{3E741995-6B13-4752-915C-CD495EC5DC00}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0E04F5B4-D4A2-4F7B-B350-A0EDCAE8A446} = {0E04F5B4-D4A2-4F7B-B350-A0EDCAE8A446}
 		{606662A0-B707-4C97-8361-5D46FD7FD1F3} = {606662A0-B707-4C97-8361-5D46FD7FD1F3}
+		{0E04F5B4-D4A2-4F7B-B350-A0EDCAE8A446} = {0E04F5B4-D4A2-4F7B-B350-A0EDCAE8A446}
 		{6CEB38E1-D500-4B35-92D4-9D7051489F29} = {6CEB38E1-D500-4B35-92D4-9D7051489F29}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheOneScripting", "TheOneScripting\TheOneScripting.csproj", "{E3064D12-DA09-4437-920E-CFEEE63BDD82}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheOneAnimation", "TheOneAnimation\TheOneAnimation.vcxproj", "{6CEB38E1-D500-4B35-92D4-9D7051489F29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extern", "extern", "{704B3360-659A-4885-8FB4-4314C1FB8863}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "msdf-atlas-gen", "extern\msdf-atlas-gen\msdf-atlas-gen.vcxproj", "{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "msdfgen", "extern\msdf-atlas-gen\msdfgen\msdfgen.vcxproj", "{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "extern\msdf-atlas-gen\msdfgen\freetype\freetype.vcxproj", "{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,9 +110,38 @@ Global
 		{6CEB38E1-D500-4B35-92D4-9D7051489F29}.Release|x64.Build.0 = Release|x64
 		{6CEB38E1-D500-4B35-92D4-9D7051489F29}.Release|x86.ActiveCfg = Release|Win32
 		{6CEB38E1-D500-4B35-92D4-9D7051489F29}.Release|x86.Build.0 = Release|Win32
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Debug|x64.ActiveCfg = Debug|x64
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Debug|x64.Build.0 = Debug|x64
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Debug|x86.ActiveCfg = Debug|x64
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Release|Any CPU.ActiveCfg = Release|x64
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Release|x64.ActiveCfg = Release|x64
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Release|x64.Build.0 = Release|x64
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6}.Release|x86.ActiveCfg = Release|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Debug|x64.ActiveCfg = Debug|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Debug|x64.Build.0 = Debug|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Debug|x86.ActiveCfg = Debug|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Release|Any CPU.ActiveCfg = Release|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Release|x64.ActiveCfg = Release|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Release|x64.Build.0 = Release|x64
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA}.Release|x86.ActiveCfg = Release|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|x64.ActiveCfg = Debug|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|x64.Build.0 = Debug|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Debug|x86.ActiveCfg = Debug|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Release|Any CPU.ActiveCfg = Release|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Release|x64.ActiveCfg = Release|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Release|x64.Build.0 = Release|x64
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38BD587B-248B-4C81-0D1F-BDA7F98B28E6} = {704B3360-659A-4885-8FB4-4314C1FB8863}
+		{8900D8DD-F5DF-5679-FEF7-E14F6A56BDDA} = {704B3360-659A-4885-8FB4-4314C1FB8863}
+		{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71} = {704B3360-659A-4885-8FB4-4314C1FB8863}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A0F3070-F1B0-499F-BDE4-6931997F0884}

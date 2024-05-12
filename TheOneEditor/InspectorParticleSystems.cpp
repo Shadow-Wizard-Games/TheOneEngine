@@ -1,4 +1,6 @@
 #include "InspectorParticleSystems.h"
+#include "TheOneEngine/FileDialog.h"
+#include "TheOneEngine/Defs.h"
 
 #include "imgui.h"
 
@@ -542,4 +544,17 @@ void UIInspectorEmmiterUpdateModule(ScaleOverLifeUpdate* updateModule)
 void UIInspectorEmmiterRenderModule(BillboardRender* renderModule)
 {
 	ImGui::Text("Billboard Render");
+	if (ImGui::Button("Add Texture"))
+	{
+		std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open the PNG (*.png)\0*.png\0")).string();
+		if (!filePath.empty() && (filePath.ends_with(".png") || filePath.ends_with(".PNG")))
+			renderModule->SetTexture(filePath.c_str());
+	}
+
+	if (renderModule->GetTextureID() != -1)
+	{
+		Texture* tex = Resources::GetResourceById<Texture>(renderModule->GetTextureID());
+		ImVec2 size(ImGui::GetContentRegionAvail().x, tex->GetSize().y > 600 ? 300 : tex->GetSize().y / 2);
+		ImGui::Image(ImTextureID(tex->GetTextureId()), size);
+	}
 }

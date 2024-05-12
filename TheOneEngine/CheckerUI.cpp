@@ -1,20 +1,39 @@
 #include "CheckerUI.h"
 #include "Canvas.h"
+#include "Renderer2D.h"
 
 CheckerUI::CheckerUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemUI(containerGO, UiType::CHECKER, name, false, rect)
 {
 	this->name = "Checker";
 	imagePath = "Assets/Meshes/HUD.png";
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 	UpdateState();
 	checkerActive = false;
 }
 
 CheckerUI::CheckerUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::CHECKER, name, false, rect), imagePath(path)
 {
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 	UpdateState();
 	checkerActive = false;
+}
+
+CheckerUI::CheckerUI(CheckerUI* ref) : ItemUI(ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+
+	this->imageIdleSection = ref->imageIdleSection;
+	this->imageHoveredSection = ref->imageHoveredSection;
+	this->imageSelectedSection = ref->imageSelectedSection;
+
+	this->imageIdleSectionOff = ref->imageIdleSectionOff;
+	this->imageHoveredSectionOff = ref->imageHoveredSectionOff;
+	this->imageSelectedSectionOff = ref->imageSelectedSectionOff;
+
+	this->currentSection = ref->currentSection;
+
+	this->checkerActive = ref->checkerActive;
 }
 
 CheckerUI::~CheckerUI() {}
@@ -31,33 +50,7 @@ void CheckerUI::Draw2D()
 	float width = (canvas->GetRect().w * imageRect.w);
 	float height = (canvas->GetRect().h * imageRect.h);
 
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	canvas->GetTexture(this->imagePath)->Bind();
-
-	//image.get()->Bind();
-
-	glBegin(GL_QUADS);
-
-	glTexCoord2f(currentSection->x, currentSection->y + currentSection->h);  // Top-left corner of the texture
-	glVertex2f(posX - width / 2, posY + height / 2);
-
-	glTexCoord2f(currentSection->x + currentSection->w, currentSection->y + currentSection->h);  // Top-right corner of the texture
-	glVertex2f(posX + width / 2, posY + height / 2);
-
-	glTexCoord2f(currentSection->x + currentSection->w, currentSection->y);  // Bottom-right corner of the texture
-	glVertex2f(posX + width / 2, posY - height / 2);
-
-	glTexCoord2f(currentSection->x, currentSection->y);  // Bottom-left corner of the texture
-	glVertex2f(posX - width / 2, posY - height / 2);
-
-	glEnd();
-
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	glDisable(GL_TEXTURE_2D);
+	Renderer2D::DrawQuad({ posX, posY }, { width, height }, imageID, Rect2DToTexCoordsSection(*currentSection));
 }
 
 json CheckerUI::SaveUIElement()
@@ -76,6 +69,7 @@ json CheckerUI::SaveUIElement()
 	uiElementJSON["Type"] = (int)type;
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;
+	uiElementJSON["Print"] = print;
 	uiElementJSON["CheckerActive"] = checkerActive;
 
 	uiElementJSON["ImagePath"] = imagePath;
@@ -139,143 +133,57 @@ void CheckerUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 	if (UIElementJSON.contains("CheckerActive")) checkerActive = UIElementJSON["CheckerActive"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 
 	UpdateState();
 }
 
-Rect2D CheckerUI::GetSectIdle() const
-{
-	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (checkerActive)
-		{
-			imageSect.x = imageIdleSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageIdleSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageIdleSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageIdleSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else
-		{
-			imageSect.x = imageIdleSectionOff.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageIdleSectionOff.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageIdleSectionOff.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageIdleSectionOff.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
+Rect2D CheckerUI::GetSectIdle() const {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		return GetImageSection(imageIdleSection, imageIdleSectionOff, checkerActive, texture);
 	}
-	return imageSect;
+	return { 0, 0, 0, 0 };
 }
 
-void CheckerUI::SetSectSizeIdle(float x, float y, float width, float height)
-{
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (checkerActive)
-		{
-			imageIdleSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageIdleSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else
-		{
-			imageIdleSectionOff.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleSectionOff.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageIdleSectionOff.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageIdleSectionOff.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
+void CheckerUI::SetSectSizeIdle(float x, float y, float width, float height) {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		SetImageSection(imageIdleSection, imageIdleSectionOff, checkerActive, x, y, width, height, texture);
 	}
 }
 
-Rect2D CheckerUI::GetSectHovered() const
-{
-	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (checkerActive)
-		{
-			imageSect.x = imageHoveredSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageHoveredSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageHoveredSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageHoveredSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else
-		{
-			imageSect.x = imageHoveredSectionOff.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageHoveredSectionOff.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageHoveredSectionOff.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageHoveredSectionOff.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
+Rect2D CheckerUI::GetSectHovered() const {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		return GetImageSection(imageHoveredSection, imageHoveredSectionOff, checkerActive, texture);
 	}
-	return imageSect;
+	return { 0, 0, 0, 0 };
 }
 
-void CheckerUI::SetSectSizeHovered(float x, float y, float width, float height)
-{
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (checkerActive)
-		{
-			imageHoveredSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageHoveredSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else
-		{
-			imageHoveredSectionOff.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredSectionOff.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageHoveredSectionOff.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageHoveredSectionOff.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
+void CheckerUI::SetSectSizeHovered(float x, float y, float width, float height) {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		SetImageSection(imageHoveredSection, imageHoveredSectionOff, checkerActive, x, y, width, height, texture);
 	}
 }
 
-Rect2D CheckerUI::GetSectSelected() const
-{
-	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (checkerActive)
-		{
-			imageSect.x = imageSelectedSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageSelectedSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageSelectedSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageSelectedSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else
-		{
-			imageSect.x = imageSelectedSectionOff.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.y = imageSelectedSectionOff.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSect.w = imageSelectedSectionOff.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSect.h = imageSelectedSectionOff.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
+Rect2D CheckerUI::GetSectSelected() const {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		return GetImageSection(imageSelectedSection, imageSelectedSectionOff, checkerActive, texture);
 	}
-	return imageSect;
+	return { 0, 0, 0, 0 };
 }
 
-void CheckerUI::SetSectSizeSelected(float x, float y, float width, float height)
-{
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		if (checkerActive)
-		{
-			imageSelectedSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSelectedSection.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedSection.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
-		else
-		{
-			imageSelectedSectionOff.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedSectionOff.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-			imageSelectedSectionOff.w = width / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-			imageSelectedSectionOff.h = height / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		}
+void CheckerUI::SetSectSizeSelected(float x, float y, float width, float height) {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		SetImageSection(imageSelectedSection, imageSelectedSectionOff, checkerActive, x, y, width, height, texture);
 	}
 }
 

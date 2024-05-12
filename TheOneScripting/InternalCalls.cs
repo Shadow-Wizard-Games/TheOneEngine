@@ -122,6 +122,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int PrintItemUI(IntPtr GOptr, bool value, string nameM);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSelected(IntPtr GOptr);
@@ -248,6 +251,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopAnimation(IntPtr GOptr);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool AnimationHasFinished(IntPtr GOptr);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetTransitionBlend(IntPtr GOptr);

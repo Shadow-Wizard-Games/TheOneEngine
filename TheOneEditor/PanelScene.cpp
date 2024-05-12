@@ -236,7 +236,6 @@ bool PanelScene::Draw()
 
             // Set Render Environment
             engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
-            engine->SetUniformBufferCamera(sceneCamera->GetComponent<Camera>());
 
             // Debug Draw
             engine->DebugDraw(true);

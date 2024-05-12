@@ -187,7 +187,8 @@ void PanelAnimation::Viewport()
 
 		// Draw
 		engine->SetRenderEnvironment(animationCamera->GetComponent<Camera>());
-		engine->SetUniformBufferCamera(animationCamera->GetComponent<Camera>());
+		engine->SetUniformBufferCamera(animationCamera->GetComponent<Camera>()->viewProjectionMatrix);
+
 		engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Mesh>()->DrawComponent(animationCamera->GetComponent<Camera>());
 
 		frameBuffer->Unbind();

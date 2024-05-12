@@ -8,3 +8,4 @@
 #include "ResourcesMaterialImpl.h"
 #include "ResourcesImageImpl.h"
 #include "ResourcesShaderImpl.h"
+#include "ResourcesFontImpl.h"

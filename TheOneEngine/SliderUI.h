@@ -5,6 +5,7 @@
 #include "ItemUI.h"
 #include "Texture.h"
 #include <string>
+#include "Resources.h"
 
 enum class SliderDesign
 {
@@ -18,6 +19,7 @@ class SliderUI : public ItemUI
 public:
 	SliderUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,1,1 });
 	SliderUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Slider", Rect2D rect = { 0,0,1,1 });
+	SliderUI(SliderUI* ref);
 	~SliderUI();
 
 	void Draw2D();
@@ -144,7 +146,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID = -1;
 
 	//section of each slider part
 	Rect2D* currentSection;

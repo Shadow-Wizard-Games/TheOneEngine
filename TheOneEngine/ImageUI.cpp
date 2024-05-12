@@ -1,16 +1,24 @@
 #include "ImageUI.h"
 #include "Canvas.h"
+#include "Renderer2D.h"
 
 ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rect) : ItemUI(containerGO, UiType::IMAGE, name, false, rect)
 {
 	this->name = "Img";
 	imagePath = "Assets/Meshes/HUD.png";
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 }
 
 ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::IMAGE, name, false, rect), imagePath(path)
 {
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
+}
+
+ImageUI::ImageUI(ImageUI* ref) : ItemUI(ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+	this->textureSection = ref->textureSection;
 }
 
 ImageUI::~ImageUI(){}
@@ -19,7 +27,7 @@ void ImageUI::Draw2D()
 {
 	auto canvas = containerGO.get()->GetComponent<Canvas>();
 
-	if (canvas->GetTexture(this->imagePath) == nullptr) return;
+	if (imageID == -1) return;
 
 	float posX = canvas->GetRect().x + GetRect().x;
 	float posY = canvas->GetRect().y + GetRect().y;
@@ -27,42 +35,7 @@ void ImageUI::Draw2D()
 	float width = (canvas->GetRect().w * imageRect.w);
 	float height = (canvas->GetRect().h * imageRect.h);
 
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
-
-	glClear(GL_DEPTH_BUFFER_BIT);
-
-	canvas->GetTexture(this->imagePath)->Bind();
-
-	//image.get()->Bind();
-
-	glBegin(GL_QUADS);
-
-	glTexCoord2f(textureSection.x, textureSection.y + textureSection.h);  // Top-left corner of the texture
-	glVertex2f(posX - width / 2, posY + height / 2);
-	
-	glTexCoord2f(textureSection.x + textureSection.w, textureSection.y + textureSection.h);  // Top-right corner of the texture
-	glVertex2f(posX + width / 2, posY + height / 2);
-
-	glTexCoord2f(textureSection.x + textureSection.w, textureSection.y);  // Bottom-right corner of the texture
-	glVertex2f(posX + width / 2, posY - height / 2);
-
-	glTexCoord2f(textureSection.x, textureSection.y);  // Bottom-left corner of the texture
-	glVertex2f(posX - width / 2, posY - height / 2);
-
-	glEnd();
-
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	glDisable(GL_DEPTH_TEST);
-
-	glDisable(GL_BLEND);
-
-	glDisable(GL_TEXTURE_2D);
+	Renderer2D::DrawQuad({ posX, posY }, { width, height }, imageID, Rect2DToTexCoordsSection(textureSection));
 }
 
 json ImageUI::SaveUIElement()
@@ -76,6 +49,7 @@ json ImageUI::SaveUIElement()
 	uiElementJSON["Type"] = (int)type;
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;	
+	uiElementJSON["Print"] = print;
 
 
 	uiElementJSON["ImagePath"] = imagePath;
@@ -104,32 +78,24 @@ void ImageUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
-	containerGO->GetComponent<Canvas>()->AddTexture(imagePath);
+	imageID = Resources::Load<Texture>(imagePath);
 }
 
-Rect2D ImageUI::GetSect() const
-{
-	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		imageSect.x = textureSection.x * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-		imageSect.y = textureSection.y * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		imageSect.w = (textureSection.w * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x);
-		imageSect.h = (textureSection.h * this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y);
+Rect2D ImageUI::GetSect() const {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		return GetImageSection(textureSection, Rect2D{}, true, texture);
 	}
-
-	return imageSect;
+	return { 0, 0, 0, 0 };
 }
 
-void ImageUI::SetSectSize(float x, float y, float width, float height)
-{
-	if (this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath) != nullptr)
-	{
-		textureSection.x = x / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-		textureSection.y = y / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
-		textureSection.w = (width) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().x;
-		textureSection.h = (height) / this->containerGO->GetComponent<Canvas>()->GetTexture(this->imagePath)->GetSize().y;
+void ImageUI::SetSectSize(float x, float y, float width, float height) {
+	Texture* texture = Resources::GetResourceById<Texture>(imageID);
+	if (imageID != -1) {
+		Rect2D inactive;
+		SetImageSection(textureSection, inactive, true, x, y, width, height, texture);
 	}
 }

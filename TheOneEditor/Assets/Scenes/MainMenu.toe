@@ -26,7 +26,7 @@
           "UID": 997210521
         },
         {
-          "Aspect": 1.9381003379821777,
+          "Aspect": 1.7773109674453735,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -47,6 +47,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
@@ -99,15 +100,16 @@
                 0.1277424693107605,
                 0.012500000186264515,
                 0.6082192063331604,
-                0.23043477535247803
+                0.17051756381988525
               ],
               "Interactuable": false,
               "Name": "GameTitle_img",
+              "Print": true,
               "Rect": [
                 -0.20000000298023224,
                 -0.3400000035762787,
                 0.25,
-                0.1599999964237213
+                0.1550000011920929
               ],
               "State": 0,
               "Type": 0
@@ -117,15 +119,16 @@
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSection": [
                 0.7547026872634888,
-                0.3072487413883209,
+                0.24526549875736237,
                 0.2343268245458603,
-                0.17249999940395355
+                0.12084711343050003
               ],
               "Interactuable": false,
               "Name": "Version&Studio_img",
+              "Print": true,
               "Rect": [
                 0.15000000596046448,
-                0.5400000214576721,
+                0.5149999856948853,
                 0.10000000149011612,
                 0.11999999731779099
               ],
@@ -137,13 +140,13 @@
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
                 0.005138356238603592,
-                0.2717948853969574,
+                0.22014153003692627,
                 0.7452054619789124,
-                0.08589743822813034
+                0.06936880201101303
               ],
               "ImageSectionIdle": [
                 0.0051387459971010685,
-                0.6461538672447205,
+                0.5149555802345276,
                 0.7452054619789124,
                 0.08589743822813034
               ],
@@ -155,107 +158,144 @@
               ],
               "Interactuable": false,
               "Name": "StartButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
                 -0.05999999865889549,
                 0.30000001192092896,
-                0.05999999865889549
+                0.07000000029802322
               ],
               "State": 1,
               "Type": 1
             },
             {
-              "ID": 347713686,
+              "ID": 4123220773,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
                 0.005138356238603592,
-                0.36282050609588623,
+                0.2914225161075592,
                 0.7452054619789124,
-                0.08589743822813034
+                0.06936880201101303
               ],
               "ImageSectionIdle": [
-                0.005138356238603592,
-                0.735897421836853,
+                0.0051387459971010685,
+                0.5862365365028381,
                 0.7452054619789124,
                 0.08589743822813034
               ],
               "ImageSectionSelected": [
-                0.0,
-                0.2824999988079071,
+                0.0051387459971010685,
+                0.17000000178813934,
                 0.6104830503463745,
                 0.10125000029802322
               ],
               "Interactuable": false,
               "Name": "LoadGameButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
-                0.07999999821186066,
+                0.05999999865889549,
                 0.30000001192092896,
-                0.05999999865889549
+                0.07000000029802322
               ],
               "State": 0,
               "Type": 1
             },
             {
-              "ID": 2588875562,
+              "ID": 2952651374,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
                 0.005138356238603592,
-                0.4529486894607544,
+                0.36580267548561096,
                 0.7452054619789124,
-                0.08589743822813034
+                0.06936880201101303
               ],
               "ImageSectionIdle": [
-                0.005138356238603592,
-                0.8270512223243713,
+                0.0051387459971010685,
+                0.6606166958808899,
                 0.7452054619789124,
                 0.08589743822813034
               ],
               "ImageSectionSelected": [
-                0.0,
-                0.38499999046325684,
+                0.0051387459971010685,
+                0.17000000178813934,
                 0.6104830503463745,
                 0.10125000029802322
               ],
               "Interactuable": false,
               "Name": "SettingsButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
-                0.23000000417232513,
+                0.17000000178813934,
                 0.30000001192092896,
-                0.05999999865889549
+                0.07000000029802322
               ],
               "State": 0,
               "Type": 1
             },
             {
-              "ID": 58222174,
+              "ID": 2330218730,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
                 0.005138356238603592,
-                0.5424679517745972,
+                0.8317117691040039,
                 0.7452054619789124,
-                0.08589743822813034
+                0.06936880201101303
               ],
               "ImageSectionIdle": [
-                0.005138356238603592,
-                0.9174038767814636,
+                0.0051387459971010685,
+                0.9261125922203064,
                 0.7452054619789124,
                 0.08589743822813034
               ],
               "ImageSectionSelected": [
-                0.0,
-                0.4937500059604645,
+                0.0051387459971010685,
+                0.17000000178813934,
+                0.6104830503463745,
+                0.10125000029802322
+              ],
+              "Interactuable": false,
+              "Name": "CreditsButton",
+              "Print": true,
+              "Rect": [
+                -0.23999999463558197,
+                0.2800000011920929,
+                0.30000001192092896,
+                0.07000000029802322
+              ],
+              "State": 0,
+              "Type": 1
+            },
+            {
+              "ID": 224542309,
+              "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
+              "ImageSectionHovered": [
+                0.005138356238603592,
+                0.4370836615562439,
+                0.7452054619789124,
+                0.06936880201101303
+              ],
+              "ImageSectionIdle": [
+                0.0051387459971010685,
+                0.7308646440505981,
+                0.7452054619789124,
+                0.08589743822813034
+              ],
+              "ImageSectionSelected": [
+                0.0051387459971010685,
+                0.17000000178813934,
                 0.6104830503463745,
                 0.10125000029802322
               ],
               "Interactuable": false,
               "Name": "QuitButton",
+              "Print": true,
               "Rect": [
                 -0.23999999463558197,
-                0.3700000047683716,
+                0.3799999952316284,
                 0.30000001192092896,
-                0.05999999865889549
+                0.07000000029802322
               ],
               "State": 0,
               "Type": 1
@@ -271,6 +311,7 @@
               ],
               "Interactuable": false,
               "Name": "BackgroudMenu_img",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -279,17 +320,6 @@
               ],
               "State": 0,
               "Type": 0
-            }
-          ],
-          "UiTextures": [
-            {
-              "Path": "Assets/Meshes/HUD.png"
-            },
-            {
-              "Path": "Assets/Textures/Hud/MainMenu_SpriteSheet.png"
-            },
-            {
-              "Path": "Assets/Textures/Hud/Background_Sprite.png"
             }
           ]
         },
@@ -307,6 +337,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MainMenuCanvas",
       "ParentUID": 3452816845,
@@ -363,6 +394,7 @@
               ],
               "Interactuable": false,
               "Name": "Image",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -372,18 +404,11 @@
               "State": 0,
               "Type": 0
             }
-          ],
-          "UiTextures": [
-            {
-              "Path": "Assets/Meshes/HUD.png"
-            },
-            {
-              "Path": "Assets/Textures/Hud/TitleScreen.png"
-            }
           ]
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "TitleCanvas",
       "ParentUID": 3452816845,
@@ -440,6 +465,7 @@
               ],
               "Interactuable": false,
               "Name": "Image",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -449,18 +475,11 @@
               "State": 0,
               "Type": 0
             }
-          ],
-          "UiTextures": [
-            {
-              "Path": "Assets/Meshes/HUD.png"
-            },
-            {
-              "Path": "Assets/Textures/Hud/ShadowWizardGames_LogoScreen.png"
-            }
           ]
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "LogoCanvas",
       "ParentUID": 3452816845,
@@ -501,6 +520,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": true,
       "Name": "GameManager",
       "ParentUID": 3452816845,
@@ -541,8 +561,1161 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": true,
       "Name": "ItemManager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3238128576
+        },
+        {
+          "DebugDraw": true,
+          "Enabled": false,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 3266997112,
+          "UiElements": [
+            {
+              "ID": 2062566979,
+              "ImagePath": "Assets/Textures/Hud/Credits_Scene_Background.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "Img_Background",
+              "Print": true,
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 804456227,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_Producer&Lead",
+              "Print": false,
+              "Rect": [
+                -0.5299999713897705,
+                -0.10999999940395355,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "producer      Ariadna Sevcik\nlead art      Adria Pons\nlead design   Adrian Ponce\nlead code     Julia Serra",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 3692938590,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_ArtTeam",
+              "Print": false,
+              "Rect": [
+                -0.3449999988079071,
+                -0.22499999403953552,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "   art team\n\nDaniel Garcia\nSergio Garriguez\nXavier Alcaniz\nAdria Pons\nEric Regalon\nKaede Sato\nRylan Graham",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 4154705917,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_DesignTeam",
+              "Print": false,
+              "Rect": [
+                -0.3449999988079071,
+                -0.1550000011920929,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "  design team\n\nAriadna Sevcik\nJoel Chaves\nOscar Escofet\nAdrian Ponce\nPau Vivas",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 2476398111,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_CodeTeam",
+              "Print": false,
+              "Rect": [
+                -0.3449999988079071,
+                -0.3449999988079071,
+                0.03500000014901161,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "  code team\n\nHector Bascones\nJonathan Cacay\nAlex Delgado\nFrancisco Ferreros\nPau Fusco\nLuis Gonzalez\nArnau Jimenez\nEthan Martin\nJan Neto\nJulia Serra\nVictor Martin\nMiguel Tamano",
+              "Type": 4
+            }
+          ]
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "CreditsCanvas",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2526864604
+        },
+        {
+          "DebugDraw": true,
+          "Enabled": false,
+          "Name": "Canvas",
+          "ParentUID": 3452816845,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 289577509,
+          "UiElements": [
+            {
+              "ID": 2615487896,
+              "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+              "ImageSectionHovered": [
+                0.5559115409851074,
+                0.0,
+                0.054078828543424606,
+                0.39830508828163147
+              ],
+              "ImageSectionIdle": [
+                0.494958758354187,
+                0.0,
+                0.054078828543424606,
+                0.39830508828163147
+              ],
+              "ImageSectionSelected": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Interactuable": false,
+              "Name": "Button_Controls",
+              "Print": true,
+              "Rect": [
+                -0.8949999809265137,
+                -0.5350000262260437,
+                0.05999999865889549,
+                0.38499999046325684
+              ],
+              "State": 1,
+              "Type": 1
+            },
+            {
+              "ID": 293137850,
+              "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+              "ImageSectionHovered": [
+                0.494958758354187,
+                0.41148775815963745,
+                0.054078828543424606,
+                0.39830508828163147
+              ],
+              "ImageSectionIdle": [
+                0.5559120178222656,
+                0.41148775815963745,
+                0.054078828543424606,
+                0.39830508828163147
+              ],
+              "ImageSectionSelected": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Interactuable": false,
+              "Name": "Button_Display",
+              "Print": true,
+              "Rect": [
+                -0.8949999809265137,
+                0.2849999964237213,
+                0.05999999865889549,
+                0.38499999046325684
+              ],
+              "State": 0,
+              "Type": 1
+            },
+            {
+              "ID": 2516306616,
+              "ImagePath": "Assets/Textures/Hud/Settings_Screen_Backgrounds.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                0.567375898361206,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "Img_Background",
+              "Print": true,
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ]
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2664389113
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 2251431816,
+              "UiElements": [
+                {
+                  "ID": 2661435927,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.0,
+                    0.0,
+                    0.4945000112056732,
+                    0.5320150852203369
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Controls",
+                  "Print": true,
+                  "Rect": [
+                    0.06499999761581421,
+                    -0.10499999672174454,
+                    0.7850000262260437,
+                    0.7850000262260437
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SettingsCanvasControls",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3122359830
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 3969864301,
+              "UiElements": [
+                {
+                  "ID": 2748270331,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.01604033075273037,
+                    0.7325800657272339,
+                    0.1342804729938507,
+                    0.07062146812677383
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Vsync",
+                  "Print": true,
+                  "Rect": [
+                    -0.2549999952316284,
+                    -0.5,
+                    0.1850000023841858,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "CheckerActive": false,
+                  "ID": 3977511478,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.2740604877471924,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.10219981521368027,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionIdle": [
+                    0.18973419070243835,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.017873510718345642,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_Vsync",
+                  "Print": true,
+                  "Rect": [
+                    -0.5299999713897705,
+                    -0.5799999833106995,
+                    0.10499999672174454,
+                    0.15000000596046448
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "ID": 266551954,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.022456461563706398,
+                    0.8022598624229431,
+                    0.2355637103319168,
+                    0.07062146812677383
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Fullscreen",
+                  "Print": true,
+                  "Rect": [
+                    0.5400000214576721,
+                    -0.5,
+                    0.2800000011920929,
+                    0.07000000029802322
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "CheckerActive": false,
+                  "ID": 2697487097,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.2740604877471924,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.10219981521368027,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionIdle": [
+                    0.18973419070243835,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.017873510718345642,
+                    0.5630885362625122,
+                    0.08432630449533463,
+                    0.16760829091072083
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_Fullscreen",
+                  "Print": true,
+                  "Rect": [
+                    0.14499999582767487,
+                    -0.5799999833106995,
+                    0.10499999672174454,
+                    0.15000000596046448
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "ID": 3528987510,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.2717690169811249,
+                    0.7476459741592407,
+                    0.17736022174358368,
+                    0.0451977401971817
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_MainVolume",
+                  "Print": true,
+                  "Rect": [
+                    0.0,
+                    -0.11500000208616257,
+                    0.25999999046325684,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "AdditionalOffsetFirst": 0.0,
+                  "AdditionalOffsetLast": 0.0,
+                  "ID": 21305180,
+                  "ImageFirstSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionHoveredOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdle": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdleOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHoveredOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdle": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdleOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.461961954832077,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.5178735256195068,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionIdle": [
+                    0.02474793791770935,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.07836847007274628,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "MaxValue": 10,
+                  "MinValue": 0,
+                  "Name": "Slider_MainVolume",
+                  "Offset": 0.024000000208616257,
+                  "Print": true,
+                  "Rect": [
+                    -0.26499998569488525,
+                    0.07500000298023224,
+                    0.07000000029802322,
+                    0.11500000208616257
+                  ],
+                  "SliderDesign": 0,
+                  "State": 0,
+                  "Type": 2,
+                  "Value": 10
+                },
+                {
+                  "ID": 2719489207,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.30109989643096924,
+                    0.9331449866294861,
+                    0.045829515904188156,
+                    0.034839924424886703
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Minus_MainVolume",
+                  "Print": true,
+                  "Rect": [
+                    -0.4699999988079071,
+                    0.029999999329447746,
+                    0.05000000074505806,
+                    0.029999999329447746
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 538838834,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.22364802658557892,
+                    0.9209039807319641,
+                    0.045829515904188156,
+                    0.07721280306577682
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Plus_MainVolume",
+                  "Print": true,
+                  "Rect": [
+                    0.4650000035762787,
+                    0.029999999329447746,
+                    0.06499999761581421,
+                    0.08500000089406967
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 1446147639,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.2717690169811249,
+                    0.8578154444694519,
+                    0.17736022174358368,
+                    0.0451977401971817
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_SFX",
+                  "Print": true,
+                  "Rect": [
+                    -0.4350000023841858,
+                    0.29499998688697815,
+                    0.25999999046325684,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "AdditionalOffsetFirst": 0.0,
+                  "AdditionalOffsetLast": 0.0,
+                  "ID": 1719812247,
+                  "ImageFirstSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionHoveredOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdle": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdleOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHoveredOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdle": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdleOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.461961954832077,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.5178735256195068,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionIdle": [
+                    0.02474793791770935,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.07836847007274628,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "MaxValue": 10,
+                  "MinValue": 0,
+                  "Name": "Slider_SFX",
+                  "Offset": 0.006000000052154064,
+                  "Print": true,
+                  "Rect": [
+                    -0.6399999856948853,
+                    0.4749999940395355,
+                    0.054999999701976776,
+                    0.08500000089406967
+                  ],
+                  "SliderDesign": 0,
+                  "State": 0,
+                  "Type": 2,
+                  "Value": 10
+                },
+                {
+                  "ID": 3091059169,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.30109989643096924,
+                    0.9331449866294861,
+                    0.045829515904188156,
+                    0.034839924424886703
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Minus_SFX",
+                  "Print": true,
+                  "Rect": [
+                    -0.7850000262260437,
+                    0.46000000834465027,
+                    0.03500000014901161,
+                    0.019999999552965164
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3597133138,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.22364802658557892,
+                    0.9209039807319641,
+                    0.045829515904188156,
+                    0.07721280306577682
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Plus_SFX",
+                  "Print": true,
+                  "Rect": [
+                    -0.09000000357627869,
+                    0.46000000834465027,
+                    0.04500000178813934,
+                    0.05999999865889549
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 3618976250,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.2717690169811249,
+                    0.8088512420654297,
+                    0.17736022174358368,
+                    0.0451977401971817
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Music",
+                  "Print": true,
+                  "Rect": [
+                    0.4399999976158142,
+                    0.29499998688697815,
+                    0.25999999046325684,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "AdditionalOffsetFirst": 0.0,
+                  "AdditionalOffsetLast": 0.0,
+                  "ID": 669442663,
+                  "ImageFirstSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionHoveredOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdle": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionIdleOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageFirstSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHovered": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionHoveredOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdle": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionIdleOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageLastSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.461961954832077,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.5178735256195068,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionIdle": [
+                    0.02474793791770935,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.07836847007274628,
+                    0.887005627155304,
+                    0.04995417222380638,
+                    0.10546139627695084
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "MaxValue": 10,
+                  "MinValue": 0,
+                  "Name": "Slider_Music",
+                  "Offset": 0.006000000052154064,
+                  "Print": true,
+                  "Rect": [
+                    0.25,
+                    0.4749999940395355,
+                    0.054999999701976776,
+                    0.08500000089406967
+                  ],
+                  "SliderDesign": 0,
+                  "State": 0,
+                  "Type": 2,
+                  "Value": 10
+                },
+                {
+                  "ID": 2377133722,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.30109989643096924,
+                    0.9331449866294861,
+                    0.045829515904188156,
+                    0.034839924424886703
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Minus_Music",
+                  "Print": true,
+                  "Rect": [
+                    0.0949999988079071,
+                    0.46000000834465027,
+                    0.03500000014901161,
+                    0.019999999552965164
+                  ],
+                  "State": 0,
+                  "Type": 0
+                },
+                {
+                  "ID": 2742457731,
+                  "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
+                  "ImageSection": [
+                    0.22364802658557892,
+                    0.9209039807319641,
+                    0.045829515904188156,
+                    0.07721280306577682
+                  ],
+                  "Interactuable": false,
+                  "Name": "Img_Plus_Music",
+                  "Print": true,
+                  "Rect": [
+                    0.8050000071525574,
+                    0.46000000834465027,
+                    0.04500000178813934,
+                    0.05999999865889549
+                  ],
+                  "State": 0,
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SettingsCanvasDisplay",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SettingsCanvas",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845

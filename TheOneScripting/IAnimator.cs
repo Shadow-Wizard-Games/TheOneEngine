@@ -16,6 +16,14 @@ public class IAnimator : IComponent
         InternalCalls.StopAnimation(containerGOptr);
     }
 
+    public bool currentAnimHasFinished
+    {
+        get
+        {
+            return InternalCalls.AnimationHasFinished(containerGOptr);
+        }
+    }
+
     public bool blend 
     { 
         get 
@@ -28,7 +36,7 @@ public class IAnimator : IComponent
         }
     }
 
-    public float time
+    public float transitionTime
     {
         get
         {

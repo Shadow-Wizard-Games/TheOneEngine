@@ -31,6 +31,7 @@
     <ClInclude Include="Easing.h" />
     <ClInclude Include="EasingManager.h" />
     <ClInclude Include="FileDialog.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="Framebuffer.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="GameObject.h" />
@@ -45,12 +46,15 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="MonoManager.h" />
     <ClInclude Include="MonoRegisterer.h" />
+    <ClInclude Include="MSDFData.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="N_SceneManager.h" />
     <ClInclude Include="RenderEmmiterModule.h" />
+    <ClInclude Include="Renderer2D.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="ResourcesFontImpl.h" />
     <ClInclude Include="ResourcesImageImpl.h" />
     <ClInclude Include="ResourcesImpl.h" />
     <ClInclude Include="ResourcesMaterialImpl.h" />
@@ -61,6 +65,7 @@
     <ClInclude Include="SliderUI.h" />
     <ClInclude Include="SpawnEmmiterModule.h" />
     <ClInclude Include="AudioSource.h" />
+    <ClInclude Include="TextUI.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="EngineCore.h" />
     <ClInclude Include="Shader.h" />
@@ -90,6 +95,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Easing.cpp" />
     <ClCompile Include="FileDialog.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Framebuffer.cpp" />
     <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -108,6 +114,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="N_SceneManager.cpp" />
     <ClCompile Include="RenderEmmiterModule.cpp" />
+    <ClCompile Include="Renderer2D.cpp" />
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SingleOrRandom.cpp" />
@@ -116,6 +123,7 @@
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="AudioSource.cpp" />
+    <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="ImageUI.cpp" />
@@ -126,6 +134,15 @@
     <ClCompile Include="UpdateEmmiterModule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\extern\msdf-atlas-gen\msdf-atlas-gen.vcxproj">
+      <Project>{38bd587b-248b-4c81-0d1f-bda7f98b28e6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\extern\msdf-atlas-gen\msdfgen\freetype\freetype.vcxproj">
+      <Project>{89895bd8-7556-b6e3-9e6f-a48b8a9beb71}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\extern\msdf-atlas-gen\msdfgen\msdfgen.vcxproj">
+      <Project>{8900d8dd-f5df-5679-fef7-e14f6a56bdda}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\TheOneAnimation\TheOneAnimation.vcxproj">
       <Project>{6ceb38e1-d500-4b35-92d4-9d7051489f29}</Project>
     </ProjectReference>
@@ -175,7 +192,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;$(SolutionDir)extern\msdf-atlas-gen\msdf-atlas-gen;$(SolutionDir)extern\msdf-atlas-gen\msdfgen</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -207,7 +224,7 @@ $(SolutionDir)\vcpkg\vcpkg.exe install opengl glew gli stb glm assimp pcg simdjs
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AK_OPTIMIZED;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;$(SolutionDir)extern\msdf-atlas-gen\msdf-atlas-gen\;$(SolutionDir)extern\msdf-atlas-gen\msdfgen;$(SolutionDir)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>

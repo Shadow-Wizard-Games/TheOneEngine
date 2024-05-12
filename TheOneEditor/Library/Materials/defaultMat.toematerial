@@ -1,0 +1,14 @@
+{
+  "shader": "Library/Shaders/MeshColor.toeshader",
+  "uniforms": [
+    {
+      "Name": "u_Color",
+      "Vec4": {
+        "w": 1.0,
+        "x": 1.0,
+        "y": 0.0,
+        "z": 1.0
+      }
+    }
+  ]
+}
