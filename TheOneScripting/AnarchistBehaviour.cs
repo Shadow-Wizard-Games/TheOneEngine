@@ -40,7 +40,6 @@ class AnarchistBehaviour : MonoBehaviour
         attachedGameObject.animator.Play("Scan");
 
         attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.time = 0.0f;
 
         iShotPSGO = attachedGameObject.FindInChildren("ShotPS");
     }

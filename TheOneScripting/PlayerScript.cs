@@ -143,7 +143,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
         {
-            Dash();
+            // Dash();
         }
 
         // Play steps
