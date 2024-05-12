@@ -49,6 +49,11 @@ public class UiScriptStats : MonoBehaviour
         playerHealthLvl = 1;//PUT HERE TO GET REAL HEALTH LVL OF PLAYER
         playerSpeedLvl = 1;//PUT HERE TO GET REAL SPEED LVL OF PLAYER
 
+        ChangeStatLvl(StatType.DAMAGE, false, playerDamageLvl);
+        ChangeStatLvl(StatType.HEALTH, false, playerHealthLvl);
+        ChangeStatLvl(StatType.SPEED,  false, playerSpeedLvl);
+
+
         onCooldown = true;
     }
     public override void Update()
@@ -156,31 +161,40 @@ public class UiScriptStats : MonoBehaviour
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                    //this function only for canvas update, not stat
+                    //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.DAMAGE);
                     onCooldown = true;
                     currency = currency - 100;
                     //PUT HERE FUNCTION TO BUY DAMAGE STAT UPGRADE
+                    //PLAYER.CURRENCY = THIS.CURRENCY
+                    //PLAYER.DAMAGELVL = THIS.PLAYERDAMAGELVL
+                    //here i assume player has itself something like bullet.damage = player.damage + player.damagelvl * 10
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                    //this function only for canvas update, not stat
+                    //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.HEALTH);
                     onCooldown = true;
                     currency = currency - 100;
                     //PUT HERE FUNCTION TO BUY HEALTH STAT UPGRADE
+                    //PLAYER.CURRENCY = THIS.CURRENCY
+                    //PLAYER.HEALTHLVL = THIS.PLAYERHEALTHLVL
+                    //here i assume player has itself something like bullet.health = player.health + player.healthlvl * 20
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                    //this function only for canvas update, not stat
+                    //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.SPEED);
                     onCooldown = true;
                     currency = currency - 100;
                     //PUT HERE FUNCTION TO BUY SPEED STAT UPGRADE
+                    //PLAYER.CURRENCY = THIS.CURRENCY
+                    //PLAYER.SPEEDLVL = THIS.PLAYERSPEEDLVL
+                    //here i assume player has itself something like bullet.speed = player.speed + player.speedlvl * 10
                 }
             }
         }
