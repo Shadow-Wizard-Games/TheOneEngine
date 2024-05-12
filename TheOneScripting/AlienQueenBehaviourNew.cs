@@ -44,33 +44,23 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         Circle,
         Waiting,
         Attack,
+        ChangingPhase,
         None
     }
 
     States lastState = States.InitialState;
     States currentState = States.InitialState;
 
-    //bool phaseChangePending = false;  Phase3???
-    void CheckPhaseChange()
+    bool CheckPhaseChange()
     {
-        if (currentLife <= maxLife / 1.5f && currentPhase < 2) 
-        { 
-            currentPhase = 2; 
-            Debug.LogWarning("Phase 2");
-            //phaseChangePending = true;    Phase3???
+        if (currentPhase < 2 && currentLife <= maxLife / 1.5f ||
+            currentPhase < 3 && currentLife <= maxLife / 3.0f) 
+        {
+            Debug.LogWarning("Phase changing from " + currentPhase.ToString() + " to " + (currentPhase + 1).ToString());
+            currentState = States.ChangingPhase;
+            return true;
         }
-        else if (currentLife <= maxLife / 3.0f && currentPhase < 3) 
-        { 
-            currentPhase = 3; 
-            Debug.LogWarning("Phase 3");
-            //phaseChangePending = true;    Phase3???
-        }
-
-        //if (phaseChangePending && attackedFinished)
-        //{
-        //    phaseChangePending = false;
-        //    currentState = States.Scream; ???
-        //}
+        return false;
     }
 
     void DoStateBehaviour()
@@ -91,6 +81,9 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 break;
             case States.Attack:
                 DoAttack();
+                break;
+            case States.ChangingPhase:
+                DoPhaseChange();
                 break;
             default:
                 attachedGameObject.transform.LookAt2D(playerGO.transform.position);
@@ -320,6 +313,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         if (attackedFinished)
         {
+            if (CheckPhaseChange()) { return; }
+
             attackedFinished = false;
 
             if (currentPhase == 1) { currentState = States.Zigzag; }
@@ -340,6 +335,23 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                     pathPhase2 = States.Circle;
                 }
             }
+        }
+    }
+
+    void DoPhaseChange()
+    {
+        if (currentState != lastState)
+        {
+            Debug.Log("I am now entering PhaseChange");
+            lastState = currentState;
+
+            attachedGameObject.animator.Play("Facehugger_Spawn");
+        }
+
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            currentPhase++;
+            currentState = States.Attack;
         }
     }
 
