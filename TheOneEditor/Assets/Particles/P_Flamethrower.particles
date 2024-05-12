@@ -41,6 +41,7 @@
           "UsingSingleValueSpeed": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.5,
             1.5,
@@ -56,7 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 5700.86181640625,
+      "Lifetime": 5733.96484375,
       "MaxParticles": 60,
       "RenderModule": [
         {
@@ -108,6 +109,7 @@
           "UsingSingleValueSpeed": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             2.5,
             2.5,
@@ -139,7 +141,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 5700.86181640625,
+      "Lifetime": 5733.96484375,
       "MaxParticles": 50,
       "RenderModule": [
         {
@@ -153,10 +155,26 @@
           "SpawnRate": 2.0,
           "Type": 0
         }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        }
       ]
     }
   ],
   "Name": "P_Flamethrower",
+  "StartON": true,
   "Type": 9,
   "UID": 704292522
 }
