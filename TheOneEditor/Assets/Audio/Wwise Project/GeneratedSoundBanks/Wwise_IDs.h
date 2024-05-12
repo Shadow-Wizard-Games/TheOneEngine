@@ -61,10 +61,21 @@ namespace AK
         static const AkUniqueID UI_CLICK = 2249769530U;
         static const AkUniqueID UI_HOVER = 2118900976U;
         static const AkUniqueID UI_PAUSEGAME = 3783962382U;
+        static const AkUniqueID VO_COMPUTER_LOG1 = 1406454956U;
+        static const AkUniqueID VO_COMPUTER_LOG2 = 1406454959U;
+        static const AkUniqueID VO_COMPUTER_LOG3 = 1406454958U;
+        static const AkUniqueID VO_COMPUTER_LOG4 = 1406454953U;
+        static const AkUniqueID VO_COMPUTER_LOG5 = 1406454952U;
+        static const AkUniqueID VO_GRANT_BACKCAMP1 = 1236238417U;
+        static const AkUniqueID VO_GRANT_ENDMISSIONSTUB1 = 2538900238U;
+        static const AkUniqueID VO_GRANT_ENDMISSIONSTUB2 = 2538900237U;
+        static const AkUniqueID VO_GRANT_FOURTHCOMPUTER1 = 2056092986U;
+        static const AkUniqueID VO_GRANT_FOURTHCOMPUTER2 = 2056092985U;
         static const AkUniqueID VO_GRANT_NOAH1 = 1121060561U;
         static const AkUniqueID VO_GRANT_NOAH2 = 1121060562U;
         static const AkUniqueID VO_GRANT_NOAH3 = 1121060563U;
         static const AkUniqueID VO_GRANT_NOAH4 = 1121060564U;
+        static const AkUniqueID VO_GRANT_OUTSIDESTUB1 = 4061054028U;
         static const AkUniqueID VO_GUARD1_VOICELINE1_V1 = 3357592761U;
         static const AkUniqueID VO_GUARD1_VOICELINE1_V2 = 3357592762U;
         static const AkUniqueID VO_GUARD1_VOICELINE2 = 234843012U;
@@ -79,6 +90,23 @@ namespace AK
         static const AkUniqueID VO_ISAAC_VOICELINE2 = 2021844417U;
         static const AkUniqueID VO_ISAAC_VOICELINE3 = 2021844416U;
         static const AkUniqueID VO_ISAAC_VOICELINE4 = 2021844423U;
+        static const AkUniqueID VO_ISAAC_VOICELINE5 = 2021844422U;
+        static const AkUniqueID VO_ISAAC_VOICELINE6 = 2021844421U;
+        static const AkUniqueID VO_ISAAC_VOICELINE7 = 2021844420U;
+        static const AkUniqueID VO_RESCUESHIP_NARRATIVEEND = 3906700528U;
+        static const AkUniqueID VO_RESCUESHIP_RESPONSE = 2704646508U;
+        static const AkUniqueID VO_SERGEANT_FIFHTCOMPUTER1 = 3072456904U;
+        static const AkUniqueID VO_SERGEANT_GENERAL1 = 1212771736U;
+        static const AkUniqueID VO_SERGEANT_GENERAL2 = 1212771739U;
+        static const AkUniqueID VO_SERGEANT_GENERAL3 = 1212771738U;
+        static const AkUniqueID VO_SERGEANT_GENERAL4 = 1212771741U;
+        static const AkUniqueID VO_SERGEANT_WAKEMED1 = 1695989290U;
+        static const AkUniqueID VO_SERGEANT_WAKEMED2 = 1695989289U;
+        static const AkUniqueID VO_SERGEANT_WAKEMED3 = 1695989288U;
+        static const AkUniqueID VO_SERGEANT_WAKEMED4 = 1695989295U;
+        static const AkUniqueID VO_SERGEANT_WAKEMED5 = 1695989294U;
+        static const AkUniqueID VO_SERGEANT_WAKEMED6 = 1695989293U;
+        static const AkUniqueID VO_STUB_BACKCAMP1 = 2462372217U;
         static const AkUniqueID VO_STUB_CLEARROOM1 = 1857914381U;
         static const AkUniqueID VO_STUB_CLEARROOM2 = 1857914382U;
         static const AkUniqueID VO_STUB_CLEARROOM3 = 1857914383U;
@@ -86,6 +114,9 @@ namespace AK
         static const AkUniqueID VO_STUB_CRASH2 = 2621040695U;
         static const AkUniqueID VO_STUB_DOOR1 = 26695775U;
         static const AkUniqueID VO_STUB_DOOR2 = 26695772U;
+        static const AkUniqueID VO_STUB_ENDMISSIONNOAH1 = 4270907780U;
+        static const AkUniqueID VO_STUB_ENDMISSIONNOAH2 = 4270907783U;
+        static const AkUniqueID VO_STUB_FIFTHCOMPUTER1 = 485738767U;
         static const AkUniqueID VO_STUB_FIGHTING1 = 827082109U;
         static const AkUniqueID VO_STUB_FIGHTING2 = 827082110U;
         static const AkUniqueID VO_STUB_FIGHTING3 = 827082111U;
@@ -97,19 +128,32 @@ namespace AK
         static const AkUniqueID VO_STUB_FIRSTAMIRA1 = 1225130969U;
         static const AkUniqueID VO_STUB_FIRSTAMIRA2 = 1225130970U;
         static const AkUniqueID VO_STUB_FIRSTAMIRA3 = 1225130971U;
+        static const AkUniqueID VO_STUB_FIRSTCOMPUTER1 = 2306385480U;
         static const AkUniqueID VO_STUB_FIRSTNOAH1 = 207909039U;
         static const AkUniqueID VO_STUB_FIRSTNOAH2 = 207909036U;
         static const AkUniqueID VO_STUB_FIRSTNOAH3 = 207909037U;
+        static const AkUniqueID VO_STUB_FOURTHCOMPUTER1 = 633519362U;
+        static const AkUniqueID VO_STUB_FOURTHCOMPUTER2 = 633519361U;
         static const AkUniqueID VO_STUB_GUARDWEAPON = 2456146089U;
         static const AkUniqueID VO_STUB_HEAL1 = 2343389349U;
         static const AkUniqueID VO_STUB_HEAL2 = 2343389350U;
         static const AkUniqueID VO_STUB_HEAL3 = 2343389351U;
+        static const AkUniqueID VO_STUB_HURT1 = 1393191702U;
         static const AkUniqueID VO_STUB_MEDCLEAR1 = 835901656U;
         static const AkUniqueID VO_STUB_MEDCLEAR2 = 835901659U;
+        static const AkUniqueID VO_STUB_MISSIONAMIRA1 = 1255446693U;
+        static const AkUniqueID VO_STUB_MISSIONAMIRA2 = 1255446694U;
+        static const AkUniqueID VO_STUB_MISSIONAMIRA3 = 1255446695U;
+        static const AkUniqueID VO_STUB_MISSIONAMIRA4 = 1255446688U;
         static const AkUniqueID VO_STUB_OUTSHIP = 1792990868U;
+        static const AkUniqueID VO_STUB_OUTSIDENOAH1 = 2130010906U;
         static const AkUniqueID VO_STUB_PLANETINFO1 = 2925042445U;
         static const AkUniqueID VO_STUB_PLANETINFO2 = 2925042446U;
         static const AkUniqueID VO_STUB_PLANETINFO3 = 2925042447U;
+        static const AkUniqueID VO_STUB_SECONDCOMPUTER1 = 3696739954U;
+        static const AkUniqueID VO_STUB_SECONDCOMPUTER2 = 3696739953U;
+        static const AkUniqueID VO_STUB_SECONDCOMPUTER3 = 3696739952U;
+        static const AkUniqueID VO_STUB_THIRDCOMPUTER1 = 2301289131U;
         static const AkUniqueID VO_STUB_WAKEMED1 = 3513509957U;
         static const AkUniqueID VO_STUB_WAKEMED2 = 3513509958U;
         static const AkUniqueID VO_STUB_WAKEMED3 = 3513509959U;
@@ -180,6 +224,8 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID VOICES = 3313685232U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES
