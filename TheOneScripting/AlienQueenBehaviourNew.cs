@@ -303,10 +303,14 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 Debug.LogCheck("Doing acid phase 2");
                 attackedFinished = true;
                 break;
-            //case Attacks.Jump:
-            //    break;
-            //case Attacks.Charge:
-            //    break;
+            case Attacks.Jump:
+                Debug.LogCheck("Doing jump");
+                attackedFinished = true;
+                break;
+            case Attacks.Charge:
+                Debug.LogCheck("Doing charge");
+                attackedFinished = true;
+                break;
             default:
                 break;
         }
@@ -318,7 +322,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             attackedFinished = false;
 
             if (currentPhase == 1) { currentState = States.Zigzag; }
-            else
+            else if (currentPhase == 2)
             {
                 //currentState = (Convert.ToBoolean(new Random().Next(2)))
                 //? States.Zigzag
@@ -334,6 +338,12 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                     currentState = States.Circle;
                     pathPhase2 = States.Circle;
                 }
+            }
+            else
+            {
+                stagePhase3++;
+                if (stagePhase3 > 4) { stagePhase3 = 0; }
+                currentAttack = ChooseAttack();
             }
         }
     }
@@ -376,7 +386,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     };
 
     States pathPhase2 = States.Zigzag;
-
+    int stagePhase3 = 0;
     Attacks ChooseAttack()
     {
         Random rand = new Random();
@@ -413,8 +423,17 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 Debug.LogError("Queen FSM fell into unintended behaviour when choosing attack (phase 2)");
                 return Attacks.None;
             case 3:
-                Debug.LogWarning("Queen FSM phase 3 pending to implement");
-                return Attacks.None;
+                switch (stagePhase3)
+                {
+                    case 0:     return Attacks.AcidPhase2;
+                    case 1:     return Attacks.Jump;
+                    case 2:     return Attacks.TailPhase2;
+                    case 3:     return Attacks.Charge;
+                    case 4:     return Attacks.Spawn;
+                    default:
+                        Debug.LogError("Queen FSM fell into unintended behaviour when choosing attack (phase 3)");
+                        return Attacks.None;
+                }
 
             default:
                 Debug.LogError("Queen FSM current phase is invalid");
