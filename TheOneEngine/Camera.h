@@ -141,8 +141,8 @@ public:
 	vec3f lookAt;
 
     Frustum frustum;
-    mat4 viewMatrix;
-    mat4 projectionMatrix;
+    glm::mat4 viewMatrix;
+    glm::mat4 projectionMatrix;
     glm::mat4 viewProjectionMatrix;
 
     bool drawFrustum;

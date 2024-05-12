@@ -65,7 +65,7 @@ public class PlayerScript : MonoBehaviour
 
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.time = 0.0f;
+        attachedGameObject.animator.transitionTime = 0.0f;
     }
 
     public override void Update()

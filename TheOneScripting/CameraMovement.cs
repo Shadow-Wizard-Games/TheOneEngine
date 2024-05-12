@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
 		playerGO = IGameObject.Find("SK_MainCharacter");
         playerScript = playerGO.GetComponent<PlayerScript>();
         attachedGameObject.transform.position = playerGO.transform.position + camOffset;
-        attachedGameObject.transform.LookAt(playerGO.transform.position);
+        attachedGameObject.transform.CamLookAt(playerGO.transform.position);
     }
 
     public override void Update()

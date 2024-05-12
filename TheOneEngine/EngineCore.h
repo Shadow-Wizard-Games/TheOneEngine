@@ -87,7 +87,7 @@ public:
 	void CleanLogs();
 
 	void SetEditorCamera(Camera* cam);
-	void SetUniformBufferCamera(Camera* cam);
+	void SetUniformBufferCamera(const glm::mat4& cam);
 
 public:
 	

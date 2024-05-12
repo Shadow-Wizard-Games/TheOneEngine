@@ -128,9 +128,8 @@ bool PanelGame::Draw()
 
 			// Set Render Environment
 			engine->SetRenderEnvironment(gameCamera);
-			engine->SetUniformBufferCamera(gameCamera);
 
-			currentScene->Draw(DrawMode::GAME);
+			currentScene->Draw(DrawMode::GAME, gameCamera);
 
 			N_SceneManager* engineSM = engine->N_sceneManager;
 			if (engineSM->GetSceneIsChanging())

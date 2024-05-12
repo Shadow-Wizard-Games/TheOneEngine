@@ -14,9 +14,13 @@
 #include "ImageUI.h"
 
 #include "../TheOneAudio/AudioCore.h"
+#include "EngineCore.h"
+#include "Renderer2D.h"
 
 #include <fstream>
 #include <filesystem>
+#include "ImageUI.h"
+#include "TextUI.h"
 #include <unordered_set>
 
 namespace fs = std::filesystem;
@@ -162,7 +166,7 @@ void N_SceneManager::SaveScene()
 	sceneJSON["GameObjects"] = gameObjectsJSON;
 
 	std::ofstream(filename) << sceneJSON.dump(2);
-	LOG(LogType::LOG_OK, "SAVE SUCCESFUL");
+	LOG(LogType::LOG_OK, (currentScene->GetSceneName() + " SAVE SUCCESFUL at " + filename.string()).c_str());
 
 	currentScene->SetIsDirty(false);
 }
@@ -244,8 +248,31 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 
 			if (gameObjectJSON.contains("PrefabID") && gameObjectJSON["PrefabID"] != 0)
 			{
-				CreatePrefabWithName(gameObjectJSON["PrefabName"]);
-				LOG(LogType::LOG_INFO, "Loaded prefab from prefab file instead of scene file");
+				if (gameObjectJSON.contains("Components"))
+				{
+					mat4 transformationMatrix;
+					for (auto& componentJSON : gameObjectJSON["Components"])
+					{
+						if (componentJSON.contains("Name") && componentJSON["Name"] == "Transform")
+						{
+							int it = 0;
+							for (int i = 0; i < 4; i++) {
+								for (int j = 0; j < 4; j++) {
+									transformationMatrix[i][j] = componentJSON["Transformation Matrix"][it];
+									it++;
+								}
+							}
+						}
+					}
+
+					CreatePrefabWithName(gameObjectJSON["PrefabName"], transformationMatrix);
+
+					LOG(LogType::LOG_INFO, "Loaded prefab from prefab file instead of scene file");
+				}
+				else
+				{
+					LOG(LogType::LOG_ERROR, "Prefab does not contain Components in its file. File might be damaged.");
+				}
 			}
 			else
 			{
@@ -255,9 +282,10 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 				// Load the game object from JSON
 				newGameObject->LoadGameObject(gameObjectJSON);
 			}
-		}
 
-		LOG(LogType::LOG_OK, "LOAD SUCCESSFUL");
+
+			LOG(LogType::LOG_OK, "LOAD SUCCESSFUL");
+		}
 	}
 	else
 	{
@@ -458,7 +486,9 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	canvasGO.get()->AddComponent<Canvas>();
 
 	// Debug Img
-	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+	//canvasGO.get()->GetComponent<Canvas>()->AddItemUI<ImageUI>();
+
+	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<TextUI>("Assets/Fonts/ComicSansMS.ttf");
 
 	canvasGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
 
@@ -799,7 +829,7 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& p
 	newGameObject->GetComponent<Transform>()->SetPosition(position);
 }
 
-void N_SceneManager::CreatePrefabWithName(std::string prefabName)
+void N_SceneManager::CreatePrefabWithName(std::string prefabName, const mat4& transform)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -830,6 +860,8 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName)
 	file.close();
 
 	newGameObject->LoadGameObject(prefabJSON);
+
+	newGameObject->GetComponent<Transform>()->SetTransform(transform);
 }
 
 void N_SceneManager::CreatePrefabFromPath(std::string prefabPath, const vec3f& position)
@@ -965,12 +997,27 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
+inline void Scene::SetCamera(Camera* cam)
+{
+	if (cam)
+		engine->SetUniformBufferCamera(cam->viewProjectionMatrix);
+	else
+		engine->SetUniformBufferCamera(currentCamera->viewProjectionMatrix);
+}
+
+void Scene::Set2DCamera()
+{
+	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
+}
+
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	zSorting.clear();
 
+	//Setting Camera for 3D Rendering
+	SetCamera(cam);
+	Renderer2D::StartBatch();//           START BATCH
 	RecurseSceneDraw(rootSceneGO, cam);
-
 	if (cam != nullptr) {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(cam);
@@ -978,10 +1025,17 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	else {
 		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 			i->second->Draw(currentCamera);
+
 	}
+	Renderer2D::Flush();//           END BATCH
+
 
 	if (mode == DrawMode::EDITOR)
 		return;
 
+	//Setting Camera for 2D Rendering
+	Set2DCamera();
+	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
+	Renderer2D::Flush();//           END BATCH
 }

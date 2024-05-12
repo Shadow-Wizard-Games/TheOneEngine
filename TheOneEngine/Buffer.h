@@ -109,6 +109,8 @@ public:
 	void Bind() const;
 	void Unbind() const;
 
+	void Delete();
+
 	void SetData(const void* data, uint32_t size);
 
 	const BufferLayout& GetLayout() const { return m_Layout; }
@@ -126,6 +128,8 @@ public:
 
 	virtual void Bind() const;
 	virtual void Unbind() const;
+
+	void Delete();
 
 	virtual uint32_t GetCount() const { return m_Count; }
 private:

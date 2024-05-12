@@ -3,25 +3,25 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        1.0,
+        99.99996948242188,
         0.0,
         0.0,
         0.0,
         0.0,
-        1.0,
+        100.0,
         0.0,
         0.0,
         0.0,
         0.0,
-        1.0,
+        99.99996948242188,
         0.0,
         0.0,
         0.0,
-        309.2085876464844,
+        300.0,
         1.0
       ],
       "Type": 0,
-      "UID": 4107805206
+      "UID": 4032944812
     },
     {
       "Active": true,
@@ -31,24 +31,12 @@
       "DrawNormalsVerts": false,
       "DrawOBB": false,
       "DrawWireframe": false,
-      "MaterialPath": "Library/Materials/SM_Chestburster/SM_XenomorphM_Xenomorph.toematerial",
-      "MeshPath": "Library/Meshes/SM_Chestburster/Chestburster.mesh",
+      "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+      "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
       "Name": "Mesh",
       "ParentUID": 3452816845,
       "Type": 2,
-      "UID": 3433682538
-    },
-    {
-      "AudioID": 1,
-      "Name": "AudioSource",
-      "Type": 8
-    },
-    {
-      "Name": "Script",
-      "ParentUID": 3452816845,
-      "ScriptName": "ChestBusterBehaviour",
-      "Type": 4,
-      "UID": 4215861680
+      "UID": 160490637
     },
     {
       "ColliderType": 0,
@@ -62,17 +50,30 @@
       "ParentUID": 3452816845,
       "Radius": 10.0,
       "Type": 5,
-      "UID": 933198342,
+      "UID": 3320787676,
       "Width": -1.7976931348623157e+308
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "ChestbursterBehaviour",
+      "Type": 4,
+      "UID": 3278573262
+    },
+    {
+      "AudioID": 0,
+      "Name": "AudioSource",
+      "Type": 8
     }
   ],
   "EditablePrefab": true,
   "Enabled": true,
+  "HasTransparency": false,
   "Keeped": false,
   "Name": "Chestburster",
   "ParentUID": 3452816845,
   "PrefabDirty": false,
-  "PrefabID": 4213476148,
+  "PrefabID": 4037396494,
   "PrefabName": "Chestburster",
   "Static": false,
   "UID": 3452816845
