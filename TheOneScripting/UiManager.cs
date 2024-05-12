@@ -80,7 +80,7 @@ public class UiManager : MonoBehaviour
                     {
                         playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
                     }
-                    gameManager.UpdateLevel();
+
                     SceneManager.LoadScene("MainMenu");
                 }
             }

@@ -474,7 +474,7 @@ bool Gui::MainMenuFile()
 
 	if (ImGui::MenuItem("Save", "Ctrl+S", false))
 	{
-		engine->N_sceneManager->SaveScene();
+		engine->N_sceneManager->SaveScene("Assets\\Scenes", engine->N_sceneManager->currentScene->GetSceneName());
 	}
 	if (ImGui::MenuItem("Save As..", 0, false, false)) {}
 

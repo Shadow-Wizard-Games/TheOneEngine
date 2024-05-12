@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 using static AudioManager;
 
-public class EventNextRoom : Event
+public class EventCheckpoint : Event
 {
     IGameObject playerGO;
     PlayerScript player;
@@ -20,8 +20,6 @@ public class EventNextRoom : Event
     float tpRange = 100.0f;
     bool inRange = false;
 
-    string goName;
-
     AudioManager.EventIDs currentID = 0;    //change to correct audio ID
 
     public override void Start()
@@ -31,8 +29,7 @@ public class EventNextRoom : Event
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
-        eventType = EventType.NEXTROOM;
-        goName = attachedGameObject.name;
+        eventType = EventType.CHECKPOINT;
     }
 
     public override void Update()
@@ -65,24 +62,9 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if(Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
-            string sceneName = ExtractSceneName();
-
-            Debug.LogWarning(sceneName);
-            Debug.LogWarning(goName);
-
-            if (player.currentID == AudioManager.EventIDs.A_COMBAT_1)
-            {
-                playerGO.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
-            }
-            if (player.currentID == AudioManager.EventIDs.A_AMBIENT_1)
-            {
-                playerGO.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
-            }
-
-            gameManager.SaveSceneState();
-            SceneManager.LoadScene(sceneName);
+            gameManager.UpdateSave();
         }
 
         return ret;
@@ -98,30 +80,5 @@ public class EventNextRoom : Event
         {
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
         }
-    }
-
-    public string ExtractSceneName()
-    {
-        string sceneName = "";
-
-        string patternL = $"L(\\d+)";
-        string patternR = $"R(\\d+)";
-
-        Match matchL = Regex.Match(goName, patternL);
-        Match matchR = Regex.Match(goName, patternR);
-
-        if (matchL.Success)
-        {
-            sceneName += matchL.Groups[0].Value;
-        }
-        else { Debug.LogWarning("Could not find scene name in GO name"); }
-
-        if (matchR.Success)
-        {
-            sceneName += matchR.Groups[0].Value;
-        }
-        else { Debug.LogWarning("Could not find scene name in GO name"); }
-
-        return sceneName;
     }
 }

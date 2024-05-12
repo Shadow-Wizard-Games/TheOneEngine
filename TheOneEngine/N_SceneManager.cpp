@@ -44,7 +44,7 @@ bool N_SceneManager::Start()
 
 bool N_SceneManager::PreUpdate()
 {
-	if (sceneChange)
+	if (sceneChange && !sceneIsPlaying)
 	{
 		// Kiko - Here add the transition managing
 		engine->collisionSolver->ClearCollisions();
@@ -56,10 +56,13 @@ bool N_SceneManager::PreUpdate()
 		else
 			LoadSceneFromJSON(currentScene->GetPath());
 
+		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
+
 		FindCameraInScene();
 		currentScene->SetIsDirty(true);
-		sceneChange = false;
 		sceneChangeKeepGOs = false;
+		if (!previousFrameIsPlaying)
+			sceneChange = false;
 	}
 
 	return true;
@@ -75,26 +78,16 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	//this will be called when we click play
 	if (!sceneIsPlaying && isPlaying)
 	{
-		RecursiveScriptInit(currentScene->GetRootSceneGO(), !previousFrameIsPlaying);
-		//add game objects to collision solver vector
-		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
+		RecursiveScriptInit(currentScene->GetRootSceneGO(), !sceneChange);
 	}
 
-	if (!sceneChange)
-		sceneIsPlaying = isPlaying;
+	previousFrameIsPlaying = sceneIsPlaying;
+	sceneIsPlaying = isPlaying;
 
-	if (isPlaying)
-	{
+	if (sceneIsPlaying && !sceneChange)
 		currentScene->UpdateGOs(dt);
-	}
-	//this will be called when we click pause
-	else if (previousFrameIsPlaying && !sceneIsPlaying)
-	{
-		//function to clear collision solver vector
-		engine->collisionSolver->ClearCollisions();
-	}
-
-	previousFrameIsPlaying = isPlaying;
+	else if (previousFrameIsPlaying && sceneIsPlaying && sceneChange)
+		sceneChange = false;
 
 	return true;
 }
@@ -134,15 +127,29 @@ void N_SceneManager::LoadScene(std::string sceneName, bool keep)
 	sceneChangeKeepGOs = keep;
 }
 
-void N_SceneManager::SaveScene()
+void N_SceneManager::LoadSave(std::string sceneName, std::string scenePath)
+{
+	this->currentScene->SetPath(scenePath + sceneName + ".toe");
+
+	if (!fs::exists(this->currentScene->GetPath()))
+	{
+		this->currentScene->SetPath("Assets/Scenes/" + sceneName + ".toe");
+	}
+
+	this->sceneChange = true;
+	sceneIsPlaying = false;
+	sceneChangeKeepGOs = true;
+}
+
+void N_SceneManager::SaveScene(std::string directories, std::string sceneName)
 {
 	//Change to save the Scene Class
 
-	std::string fileNameExt = currentScene->GetSceneName() + ".toe";
+	std::string fileNameExt = sceneName + ".toe";
 
-	fs::path filename = fs::path(ASSETS_PATH) / "Scenes" / fileNameExt;
+	fs::path filename = fs::path(directories) / fileNameExt;
 	//string filename = "Assets/Scenes/";
-	fs::path folderName = fs::path(ASSETS_PATH) / "Scenes";
+	fs::path folderName = fs::path(directories);
 	fs::create_directories(folderName);
 
 	json sceneJSON;
@@ -173,7 +180,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	// Check if the scene file exists
 	if (!fs::exists(filename))
 	{
-		LOG(LogType::LOG_ERROR, "Scene file does not exist: {}", filename.data());
+		LOG(LogType::LOG_ERROR, "Scene file does not exist: %s", filename.data());
 		return;
 	}
 
@@ -181,7 +188,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	std::ifstream file(filename);
 	if (!file.is_open())
 	{
-		LOG(LogType::LOG_ERROR, "Failed to open scene file: {}", filename.data());
+		LOG(LogType::LOG_ERROR, "Failed to open scene file: %s", filename.data());
 		return;
 	}
 
@@ -195,7 +202,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	}
 	catch (const json::parse_error& e)
 	{
-		LOG(LogType::LOG_ERROR, "Failed to parse scene JSON: {}", e.what());
+		LOG(LogType::LOG_ERROR, "Failed to parse scene JSON: %s", e.what());
 		return;
 	}
 
@@ -237,7 +244,7 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 		{
 			if (gameObjectJSON.contains("Keeped"))
 			{
-				if (gameObjectJSON["Keeped"] == true && previousFrameIsPlaying)
+				if (gameObjectJSON["Keeped"] == true && keepGO)
 					continue;
 			}
 			
@@ -253,6 +260,206 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	else
 	{
 		LOG(LogType::LOG_ERROR, "Scene file does not contain GameObjects information");
+	}
+}
+
+void N_SceneManager::RemoveFile(std::string pathToDelete)
+{
+	fs::path pathObj(pathToDelete);
+
+	try {
+		if (fs::exists(pathObj)) {
+			if (fs::is_regular_file(pathObj)) {
+				fs::remove(pathObj);
+			}
+			else if (fs::is_directory(pathObj)) {
+				fs::remove_all(pathObj);
+			}
+			LOG(LogType::LOG_OK, "Successfully deleted: %s", pathToDelete.data());
+		}
+		else
+			LOG(LogType::LOG_WARNING, "Path does not exist: %s", pathToDelete.data());
+	}
+	catch (const fs::filesystem_error& e) {
+		LOG(LogType::LOG_ERROR, "Error deleting %s", e.what());
+	}
+}
+
+void* N_SceneManager::AccessFileDataRead(std::string filepath, DataType dataType, std::vector<std::string> dataPath, std::string dataName)
+{
+	if (!fs::exists(filepath))
+	{
+		LOG(LogType::LOG_ERROR, "File does not exist: %s", filepath.data());
+		return nullptr;
+	}
+
+	std::ifstream file(filepath);
+	if (!file.is_open())
+	{
+		LOG(LogType::LOG_ERROR, "Failed to open file: %s", filepath.data());
+		return nullptr;
+	}
+
+	json jsonData;
+	try
+	{
+		file >> jsonData;
+	}
+	catch (const std::exception& e)
+	{
+		LOG(LogType::LOG_ERROR, "Failed to parse JSON: %s", e.what());
+		return nullptr;
+	}
+
+	file.close();
+
+	for (const auto& path : dataPath)
+	{
+		if (!jsonData[path].is_object())
+		{
+			LOG(LogType::LOG_WARNING, "Object path not found in json: %s", path.data());
+			return nullptr;
+		}
+		jsonData = jsonData[path];
+	}
+
+	if (!jsonData.contains(dataName))
+	{
+		LOG(LogType::LOG_WARNING, "Data not found in json object: %s", dataName.data());
+		return nullptr;
+	}
+
+	switch (dataType)
+	{
+	case DATA_BOOL:
+		return new bool(jsonData[dataName]);
+		break;
+	case DATA_STRING:
+		return new std::string(jsonData[dataName]);
+		break;
+	case DATA_INT:
+		return new int(jsonData[dataName]);
+		break;
+	case DATA_FLOAT:
+		return new float(jsonData[dataName]);
+		break;
+	default:
+		break;
+	}
+
+	return nullptr;
+}
+
+void N_SceneManager::AccessFileDataWrite(std::string filepath, DataType dataType, std::vector<std::string> dataPath, std::string dataName, void* data)
+{
+	if (!fs::exists(filepath))
+	{
+		LOG(LogType::LOG_INFO, "File does not exist, created file: %s", filepath.data());
+
+		fs::path directory = fs::path(filepath).parent_path();
+		if (!fs::exists(directory))
+		{
+			// Create directories if they don't exist
+			fs::create_directories(directory);
+		}
+
+		std::ofstream file(filepath);
+		if (!file.is_open())
+		{
+			LOG(LogType::LOG_ERROR, "Failed to open file: %s", filepath.data());
+			return;
+		}
+
+		json jsonData;
+
+		json* currentObject = &jsonData;
+		for (const auto& path : dataPath)
+		{
+			(*currentObject)[path] = json::object();
+			currentObject = &(*currentObject)[path];
+		}
+
+		switch (dataType)
+		{
+		case DATA_BOOL:
+			(*currentObject)[dataName] = *reinterpret_cast<bool*>(data);
+			break;
+		case DATA_STRING:
+			(*currentObject)[dataName] = reinterpret_cast<char*>(data);
+			break;
+		case DATA_INT:
+			(*currentObject)[dataName] = *reinterpret_cast<int*>(data);
+			break;
+		case DATA_FLOAT:
+			(*currentObject)[dataName] = *reinterpret_cast<float*>(data);
+			break;
+		default:
+			break;
+		}
+
+		file << std::setw(4) << jsonData;
+		file.close();
+	}
+	else
+	{
+		std::ifstream file(filepath);
+		if (!file.is_open())
+		{
+			LOG(LogType::LOG_ERROR, "Failed to open file: %s", filepath.data());
+			return;
+		}
+
+		json fileJSON;
+
+		try
+		{
+			file >> fileJSON;
+		}
+		catch (const std::exception& e)
+		{
+			LOG(LogType::LOG_ERROR, "Failed to parse json file: %s",e.what());
+			file.close();
+			return;
+		}
+
+		file.close();
+
+		json* currentObject = &fileJSON;
+		for (const auto& path : dataPath)
+		{
+			if (!currentObject->contains(path))
+				(*currentObject)[path] = json::object();
+
+			currentObject = &(*currentObject)[path];
+		}
+
+		switch (dataType)
+		{
+		case DATA_BOOL:
+			(*currentObject)[dataName] = *reinterpret_cast<bool*>(data);
+			break;
+		case DATA_STRING:
+			(*currentObject)[dataName] = reinterpret_cast<char*>(data);
+			break;
+		case DATA_INT:
+			(*currentObject)[dataName] = *reinterpret_cast<int*>(data);
+			break;
+		case DATA_FLOAT:
+			(*currentObject)[dataName] = *reinterpret_cast<float*>(data);
+			break;
+		default:
+			break;
+		}
+
+		std::ofstream outFile(filepath);
+		if (!outFile.is_open())
+		{
+			LOG(LogType::LOG_ERROR, "Failed to open file to save the data: %s", filepath.data());
+			return;
+		}
+
+		outFile << std::setw(4) << fileJSON;
+		outFile.close();
 	}
 }
 
@@ -640,7 +847,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	std::ifstream file(filename);
 	if (!file.is_open())
 	{
-		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: %s", filename);
 		return;
 	}
 
@@ -651,7 +858,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	}
 	catch (const json::parse_error& e)
 	{
-		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: %s", e.what());
 		return;
 	}
 
@@ -752,7 +959,7 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	std::ifstream file(filename);
 	if (!file.is_open())
 	{
-		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
+		LOG(LogType::LOG_ERROR, "Failed to open prefab file: %s", filename);
 		return;
 	}
 
@@ -763,7 +970,7 @@ void N_SceneManager::CreatePrefabFromFile(std::string prefabName, const vec3f& p
 	}
 	catch (const json::parse_error& e)
 	{
-		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
+		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: %s", e.what());
 		return;
 	}
 

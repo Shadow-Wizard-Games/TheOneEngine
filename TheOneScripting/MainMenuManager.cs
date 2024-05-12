@@ -120,26 +120,30 @@ public class MainMenuManager : MonoBehaviour
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
             }
 
-            // Selection Executters
+            // SELECTION EXECUTERS
+            // New Game
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
             {
-                if(gameManager.resumeGame) { gameManager.ResetSave(); }
+                if(gameManager.hasSaved) { gameManager.ResetSave(); }
 
+                DataManager.RemoveFile("GameData");
                 SceneManager.LoadScene("IntroScene");
                 attachedGameObject.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
                 attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
             }
 
+            // Resume Game
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
             {
-                if (gameManager.resumeGame)
+                if (gameManager.hasSaved)
                 {
-                    SceneManager.LoadScene(gameManager.GetSavedLevel());
+                    gameManager.LoadSave();
                     attachedGameObject.source.StopAudio(AudioManager.EventIDs.UI_A_MENU);
                     attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
                 }
             }
 
+            // Quit Game
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
             {
                 InternalCalls.ExitApplication();
