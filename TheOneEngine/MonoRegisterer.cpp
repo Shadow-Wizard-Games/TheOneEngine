@@ -31,6 +31,21 @@ static bool GetKeyboardButton(int id)
 
 static bool GetControllerButton(int controllerButton, int gamePad)
 {
+	if (controllerButton == 22) //l2
+	{
+		if (engine->inputManager->pads[gamePad].l2 > 0.0f)
+		{
+			return InputManagerNamespace::KEY_DOWN;
+		}
+	}
+	else if (controllerButton == 23) //r2
+	{
+		if (engine->inputManager->pads[gamePad].r2 > 0.0f)
+		{
+			return InputManagerNamespace::KEY_DOWN;
+		}
+	}
+
 	auto inputToPass = (SDL_GameControllerButton)controllerButton;
 
 	auto result = engine->inputManager->GetGamepadButton(gamePad, inputToPass);

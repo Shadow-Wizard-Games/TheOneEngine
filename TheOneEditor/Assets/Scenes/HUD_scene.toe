@@ -1511,7 +1511,7 @@
                     0.054999999701976776
                   ],
                   "State": 0,
-                  "TextString": "mission name",
+                  "TextString": "escape the ship",
                   "Type": 4
                 },
                 {
@@ -1535,7 +1535,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "mission description",
+                  "TextString": "find a gun",
                   "Type": 4
                 },
                 {
@@ -1559,7 +1559,7 @@
                     0.054999999701976776
                   ],
                   "State": 0,
-                  "TextString": "5000",
+                  "TextString": "200",
                   "Type": 4
                 },
                 {
@@ -1583,7 +1583,7 @@
                     0.054999999701976776
                   ],
                   "State": 0,
-                  "TextString": "5000",
+                  "TextString": "0",
                   "Type": 4
                 },
                 {
@@ -1608,6 +1608,30 @@
                   ],
                   "State": 0,
                   "TextString": "20 / 20",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3506077180,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_CurrentLoadoutName",
+                  "Print": true,
+                  "Rect": [
+                    0.6949999928474426,
+                    0.9300000071525574,
+                    0.02500000037252903,
+                    0.03500000014901161
+                  ],
+                  "State": 0,
+                  "TextString": "m41a",
                   "Type": 4
                 },
                 {
@@ -1842,7 +1866,7 @@
                   "Type": 0
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 2960779948,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -1864,7 +1888,7 @@
                     0.0
                   ],
                   "Interactuable": false,
-                  "Name": "Button_HealIcon",
+                  "Name": "Button_ConsumibleIcon",
                   "Print": true,
                   "Rect": [
                     -0.8299999833106995,
@@ -1872,11 +1896,11 @@
                     0.03500000014901161,
                     0.04500000178813934
                   ],
-                  "State": 0,
+                  "State": 1,
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 2074112365,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -1898,7 +1922,7 @@
                     0.3345864713191986
                   ],
                   "Interactuable": false,
-                  "Name": "Button_HealLayout",
+                  "Name": "Button_ConsumibleLayout",
                   "Print": true,
                   "Rect": [
                     -0.8299999833106995,
@@ -1910,7 +1934,7 @@
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 2086596910,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -1940,11 +1964,11 @@
                     0.03500000014901161,
                     0.04500000178813934
                   ],
-                  "State": 0,
+                  "State": 1,
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 3544150121,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -1978,7 +2002,7 @@
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 3286532927,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -2008,11 +2032,11 @@
                     0.03500000014901161,
                     0.04500000178813934
                   ],
-                  "State": 0,
+                  "State": 1,
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 812891308,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -2046,7 +2070,7 @@
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 4200218886,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -2076,11 +2100,11 @@
                     0.03999999910593033,
                     0.04500000178813934
                   ],
-                  "State": 0,
+                  "State": 1,
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 858232316,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -2114,7 +2138,7 @@
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 719882176,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -2144,11 +2168,11 @@
                     0.04500000178813934,
                     0.04500000178813934
                   ],
-                  "State": 0,
+                  "State": 1,
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 62019211,
                   "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -2570,30 +2594,6 @@
                   "State": 0,
                   "Type": 2,
                   "Value": 10
-                },
-                {
-                  "Color": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
-                  ],
-                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
-                  "ID": 3506077180,
-                  "Interactuable": false,
-                  "Kerning": 0.0,
-                  "LineSpacing": 0.0,
-                  "Name": "Text_CurrentLoadoutName",
-                  "Print": true,
-                  "Rect": [
-                    0.6949999928474426,
-                    0.9300000071525574,
-                    0.02500000037252903,
-                    0.03500000014901161
-                  ],
-                  "State": 0,
-                  "TextString": "    m4a1",
-                  "Type": 4
                 }
               ]
             }
@@ -5957,7 +5957,7 @@
                       "Type": 0
                     },
                     {
-                      "CheckerActive": false,
+                      "CheckerActive": true,
                       "ID": 3977511478,
                       "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
                       "ImageSectionHovered": [
@@ -6986,7 +6986,7 @@
             0.0,
             1.0,
             0.0,
-            73.56257629394531,
+            71.40404510498047,
             0.0,
             245.58563232421875,
             1.0
@@ -7091,17 +7091,17 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.9946500062942505,
+            0.9968432884089338,
             0.0,
-            -0.10330235958099365,
+            -0.07939440074852133,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.10330235958099365,
+            0.07939440074852133,
             0.0,
-            0.9946500062942505,
+            0.9968432884089338,
             0.0,
             64.30357360839844,
             0.0,
