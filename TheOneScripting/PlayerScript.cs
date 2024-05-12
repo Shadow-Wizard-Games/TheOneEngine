@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    float speed = 80.0f;
+    public float speed = 40.0f;
     bool lastFrameToMove = false;
     ItemManager itemManager;
     IGameObject iManagerGO;
@@ -17,7 +17,6 @@ public class PlayerScript : MonoBehaviour
     public bool isFighting = false;
 
     // Bckg music
-    public AudioManager.EventIDs currentID = 0;
     float enemyTimer = 0;
     float combatThreshold = 5.0f;
 
@@ -41,33 +40,44 @@ public class PlayerScript : MonoBehaviour
         iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
         iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
 
+        attachedGameObject.animator.Play("Idle");
+        attachedGameObject.animator.blend = false;
+        attachedGameObject.animator.time = 0.0f;
     }
 
+    public Vector3 movement;
     public override void Update()
     {
-        if (isDead) return;
+        if (isDead)
+        {
+            attachedGameObject.animator.Play("Death");
+            return;
+        }
+      
         if (onPause) return;
 
         bool toMove = false;
-        Vector3 movement = Vector3.zero;
+        movement = Vector3.zero;
+
+        attachedGameObject.animator.UpdateAnimation();
 
         // Background music
         if (!isFighting)
         {
-            if (currentID != AudioManager.EventIDs.A_AMBIENT_1)
+            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_AMBIENT_1)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_COMBAT_1);
-                currentID = AudioManager.EventIDs.A_AMBIENT_1;
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_AMBIENT_1;
             }
         }
         else
         {
-            if (currentID != AudioManager.EventIDs.A_COMBAT_1)
+            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_COMBAT_1)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.A_AMBIENT_1);
-                currentID = AudioManager.EventIDs.A_COMBAT_1;
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_COMBAT_1);
+                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
+                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_COMBAT_1;
             }
         }
 
@@ -107,7 +117,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
-            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0); 
+            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0);
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
         {
@@ -128,16 +138,17 @@ public class PlayerScript : MonoBehaviour
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
                 {
+                    //attachedGameObject.animator.Play("ShootM4");
                     Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
                     if (currentTimer < attackCooldown)
                     {
                         currentTimer += Time.deltaTime;
                         if (!hasShot && currentTimer > attackCooldown / 2)
                         {
-                            InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+                            //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
                             hasShot = true;
-                            if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+                            //if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
                         }
                     }
                     else
@@ -145,7 +156,6 @@ public class PlayerScript : MonoBehaviour
                         currentTimer = 0.0f;
                         hasShot = false;
                     }
-                    // call particleSystem.Replay()
                 }
             }
         }
@@ -158,6 +168,11 @@ public class PlayerScript : MonoBehaviour
         if (toMove)
         {
             attachedGameObject.transform.Translate(movement.Normalize() * speed * Time.deltaTime);
+            attachedGameObject.animator.Play("Run");
+        }
+        else
+        {
+            attachedGameObject.animator.Play("Idle");
         }
 
         //Controller
@@ -189,9 +204,10 @@ public class PlayerScript : MonoBehaviour
                 currentTimer += Time.deltaTime;
                 if (!hasShot && currentTimer > attackCooldown / 2)
                 {
-                    InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.DEBUG_GUNSHOT);
+                    //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
                     hasShot = true;
+                    attachedGameObject.animator.Play("Shoot M4");
                 }
             }
             else
@@ -207,7 +223,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.P_STEP);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
                 if (iStepPSGO != null)
                 {
                     iStepPSGO.GetComponent<IParticleSystem>().Play();
@@ -215,7 +231,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                attachedGameObject.source.StopAudio(AudioManager.EventIDs.P_STEP);
+                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.P_STEP);
                 if (iStepPSGO != null)
                 {
                     iStepPSGO.GetComponent<IParticleSystem>().Stop();

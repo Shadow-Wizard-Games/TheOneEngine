@@ -1,4 +1,4 @@
-#include "PanelHierarchy.h"
+﻿#include "PanelHierarchy.h"
 #include "App.h"
 #include "Renderer3D.h"
 #include "SceneManager.h"
@@ -60,6 +60,11 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 
 		bool isOpen = ImGui::TreeNodeEx(childGO.get()->GetName().data(), treeFlags);
 		//}
+		
+		if (isPrefab)
+		{
+			ImGui::PopStyleColor();
+		}
 
 		if (ReparentDragDrop(childGO))
 		{
@@ -76,6 +81,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 				LOG(LogType::LOG_INFO, "Selected Prefab ID: %zu", engine->N_sceneManager->GetSelectedGO()->GetPrefabID());
 		}
 
+
 		ContextMenu(childGO);
 		if (duplicate)
 		{
@@ -91,7 +97,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 		}
 		if (remove)
 		{
-			//ImGui::TreePop();
+			ImGui::TreePop();
 			break;
 		}
 
@@ -103,10 +109,7 @@ void PanelHierarchy::RecurseShowChildren(std::shared_ptr<GameObject> parent)
 			ImGui::TreePop();
 		}
 
-		if (isPrefab)
-		{
-			ImGui::PopStyleColor();
-		}
+
 	}
 
 	if (remove)
@@ -243,7 +246,25 @@ bool PanelHierarchy::Draw()
 		{
 			reparent = false;
 			//ReparentDragDrop(engine->N_sceneManager->currentScene->GetRootSceneGO());
-			RecurseShowChildren(engine->N_sceneManager->currentScene->GetRootSceneGO());
+			std::shared_ptr<GameObject> parent = engine->N_sceneManager->currentScene->GetRootSceneGO();
+			if (ImGui::BeginPopupContextItem())
+			{
+				//add change name imgui
+
+				static char newNameBuffer[32]; // Buffer para el nuevo nombre
+				strcpy(newNameBuffer, parent->GetName().c_str());
+				if (ImGui::InputText("Change Scene Name", newNameBuffer, sizeof(newNameBuffer), ImGuiInputTextFlags_EnterReturnsTrue))
+				{
+					std::string newSceneName(newNameBuffer);
+					LOG(LogType::LOG_INFO, "Scene %s has been renamed to %s", parent->GetName().c_str(), newSceneName.c_str());
+					parent->SetName(newSceneName); // Establece el nuevo nombre del GameObject
+					engine->N_sceneManager->currentScene->SetSceneName(newSceneName);
+					// Limpiar el buffer despu�s de cambiar el nombre
+					newNameBuffer[0] = '\0';
+				}
+				ImGui::EndPopup();
+			}
+			RecurseShowChildren(parent);
 			ImGui::TreePop();
 		}
 	}
@@ -275,6 +296,14 @@ void PanelHierarchy::ContextMenu(std::shared_ptr<GameObject> go)
 			if (ImGui::MenuItem("Make Prefab"))
 			{
 				SaveGameobjectAsPrefab(engine->N_sceneManager->GetSelectedGO());
+			}
+		}
+
+		if (go.get()->IsPrefab())
+		{
+			if (ImGui::MenuItem("Unpack Prefab"))
+			{
+				go.get()->UnpackPrefab();
 			}
 		}
 

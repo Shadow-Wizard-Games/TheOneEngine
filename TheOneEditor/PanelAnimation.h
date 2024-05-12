@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Panel.h"
-#include "../TheOneEngine/Defs.h"
+#include "TheOneEngine/Defs.h"
 
 #include <string>
 
@@ -22,6 +22,7 @@ public:
 
 private:
 
+	void CameraControl();
 	bool AnimationAvaliable();
 	void Settings();
 	void Viewport();

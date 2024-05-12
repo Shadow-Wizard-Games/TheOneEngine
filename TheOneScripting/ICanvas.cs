@@ -1,7 +1,18 @@
 ﻿using System;
 
+
 public class ICanvas : IComponent
 {
+    public enum UiState
+    {
+        IDLE,
+        HOVERED,
+        SELECTED,
+        HOVEREDSELECTED,
+        DISABLED,
+        UNKNOWN
+    }
+
     public ICanvas() : base() { }
     public ICanvas(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
@@ -23,6 +34,11 @@ public class ICanvas : IComponent
     public void ToggleChecker(bool value, string name)
     {
         InternalCalls.ToggleChecker(containerGOptr, value, name);
+    }
+
+    public void PrintItemUI(bool value, string name)
+    {
+        InternalCalls.PrintItemUI(containerGOptr, value, name);
     }
 
     public void MoveSelectionButton(int direction)
@@ -53,5 +69,20 @@ public class ICanvas : IComponent
     public void SetSliderValue(int value, string name)
     {
         InternalCalls.SetSliderValue(containerGOptr, value, name);
+    }
+
+    public void SetUiItemState(UiState state, string name)
+    {
+        InternalCalls.SetUiItemState(containerGOptr, (int)state, name);
+    }
+
+    public string GetTextString(string name)
+    {
+        return InternalCalls.GetTextString(containerGOptr, name);
+    }
+
+    public void SetTextString(string text, string name)
+    {
+        InternalCalls.SetTextString(containerGOptr, text, name);
     }
 }

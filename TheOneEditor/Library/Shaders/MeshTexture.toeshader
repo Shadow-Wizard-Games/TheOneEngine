@@ -1,0 +1,10 @@
+{
+  "fragment": "#version 450 core\n\n// Outputs colors in RGBA\nout vec4 FragColor;\n\n// Inputs the texture coordinates from the Vertex Shader\nin vec2 v_Vertex_uv;\n\n// Gets the Texture Unit from the main function\nuniform sampler2D u_Tex;\n\n\nvoid main()\n{\n\t  FragColor = texture(u_Tex, v_Vertex_uv);\n}",
+  "uniforms": [
+    {
+      "Name": "u_Tex",
+      "Type": 10
+    }
+  ],
+  "vertex": "#version 450 core\n\n// Positions/Coordinates\nlayout (location = 0) in vec3 a_Pos;\n// Texture Coordinates\nlayout (location = 1) in vec2 a_UV;\n\n// Outputs the texture coordinates to the fragment shader\nout vec2 v_Vertex_uv;\n\nlayout(std140, binding = 0) uniform Camera\n{\n\tmat4 u_ViewProjection;\n};\n\nuniform mat4 u_Model;\n\nvoid main()\n{\n\tgl_Position = u_ViewProjection * u_Model * vec4(a_Pos, 1.0);\n\n\t// Assigns the texture coordinates from the Vertex Data to \"texCoord\"\n\tv_Vertex_uv = a_UV;\n}"
+}

@@ -5,12 +5,14 @@
 #include "ItemUI.h"
 #include "Texture.h"
 #include <string>
+#include "Resources.h"
 
 class CheckerUI : public ItemUI
 {
 public:
 	CheckerUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,1,1 });
 	CheckerUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Checker", Rect2D rect = { 0,0,1,1 });
+	CheckerUI(CheckerUI* ref);
 	~CheckerUI();
 
 	void Draw2D();
@@ -49,7 +51,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID = -1;
 
 	Rect2D* currentSection;
 

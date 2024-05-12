@@ -5,12 +5,14 @@
 #include "ItemUI.h"
 #include "Texture.h"
 #include <string>
+#include "Resources.h"
 
 class ImageUI : public ItemUI
 {
 public:
 	ImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = {0,0,1,1});
 	ImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Img", Rect2D rect = {0,0,1,1});
+	ImageUI(ImageUI* ref);
 	~ImageUI();
 
 	void Draw2D();
@@ -30,7 +32,7 @@ public:
 
 private:
 	std::string imagePath;
-	//std::unique_ptr<Texture> image;
+	ResourceId imageID = -1;
 	Rect2D textureSection = { 0,0,1,1 };
 };
 

@@ -104,13 +104,13 @@ public class ChestBusterBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 if (currentTimer < attackCooldown)
                 {
                     currentTimer += Time.deltaTime;
                     if (!hasShot && currentTimer > attackCooldown / 2)
                     {
-                        InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
+                        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
                         hasShot = true;
                     }
                     break;
@@ -121,7 +121,7 @@ public class ChestBusterBehaviour : MonoBehaviour
                 break;
             case States.Chase:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Dead:

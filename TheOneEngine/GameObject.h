@@ -157,12 +157,14 @@ public:
     bool IsPrefabDirty() const { return isPrefabDirty; }
     std::string GetPrefabName() const { return prefabName; }
 
-
 public:
     std::weak_ptr<GameObject> parent;
     std::vector<std::shared_ptr<GameObject>> children;
     bool isStatic;
     bool isKeeped;
+
+    // activate this bool if the mesh is transparent so it's rendered okay
+    bool hasTransparency;
 
 private:
     std::string name;

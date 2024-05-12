@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using static AudioManager;
+using static IAudioSource;
 using static ICamera;
 
 class InternalCalls
@@ -148,7 +148,13 @@ class InternalCalls
     internal extern static int GetSelectedButton(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int SetUiItemState(IntPtr GOptr, int state, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int PrintItemUI(IntPtr GOptr, bool value, string nameM);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSelected(IntPtr GOptr);
@@ -161,6 +167,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderValue(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTextString(IntPtr GOptr, string text, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetTextString(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
@@ -263,5 +275,28 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetPrimaryCam(IntPtr GOptr, ref bool cameraType);
+    #endregion
+
+    #region Animation
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void PlayAnimation(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void StopAnimation(IntPtr GOptr);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetTransitionBlend(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTransitionBlend(IntPtr GOptr, ref bool blend);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetTransitionTime(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTransitionTime(IntPtr GOptr, ref float time);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void UpdateAnimation(IntPtr GOptr, ref float dt);
     #endregion
 }

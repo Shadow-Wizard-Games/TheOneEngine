@@ -1,0 +1,81 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 10.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.5,
+            2.0,
+            0.5
+          ],
+          "MinDirection": [
+            -0.5,
+            1.0,
+            -0.5
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 2.0,
+          "MinSpeed": 1.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "MinColor": [
+            255.0,
+            255.0,
+            0.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 587.7140502929688,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 10.0,
+          "SpawnRate": 10.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": true,
+          "AffectG": true,
+          "AffectR": true,
+          "FinalColor": [
+            255.0,
+            0.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        }
+      ]
+    }
+  ],
+  "Name": "CoolFireTest",
+  "StartON": true,
+  "Type": 9,
+  "UID": 2684160101
+}

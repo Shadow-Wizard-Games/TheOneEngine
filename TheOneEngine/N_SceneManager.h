@@ -46,7 +46,7 @@ public:
 	void LoadScene(std::string sceneName, bool keep = false);
 	void LoadSave(std::string sceneName, std::string scenePath = "GameData/");
 
-	std::string GenerateUniqueName(const std::string& baseName);
+	std::string GenerateUniqueName(const std::string& baseName, const GameObject* parent = nullptr);
 
 	// Create GameObjects functions
 	std::shared_ptr<GameObject> DuplicateGO(std::shared_ptr<GameObject> originalGO, bool recursive = false);
@@ -70,11 +70,16 @@ public:
 	void OverrideScenePrefabs(uint32_t prefabID);
 	void OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID);
 	void OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify);
-	void CreatePrefabFromFile(std::string prefabName, const vec3f& position);
+	void CreatePrefabWithName(std::string prefabName, const vec3f& position);
+	void CreatePrefabWithName(std::string prefabName, const mat4& transform);
+	void CreatePrefabFromPath(std::string prefabPath, const vec3f& position);
 
 	// Get/Set
 	uint GetNumberGO() const;
 	std::vector<std::shared_ptr<GameObject>>GetGameObjects();
+
+	// hekbas: Either rename to IsSceneXXX
+	// or use enum > GetSceneState
 	const bool GetSceneIsPlaying() { return sceneIsPlaying; }
 	const bool GetSceneIsChanging() { return sceneChange; }
 
@@ -152,6 +157,8 @@ public:
 private:
 	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
+	inline void SetCamera(Camera* cam);
+	void Set2DCamera();
 
 private:
 	uint index;
@@ -165,6 +172,9 @@ private:
 
 public:
 	Camera* currentCamera = nullptr;
+
+	std::multimap<float, GameObject*> zSorting;
+
 	//int listenerAudioGOID = -1;
 };
 

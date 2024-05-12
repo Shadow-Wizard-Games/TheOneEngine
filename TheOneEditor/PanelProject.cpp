@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 
 #include "..\TheOneEngine\UIDGen.h"
+#include "..\TheOneEngine\N_SceneManager.h"
 
 #include <IL/il.h>
 #include <IL/ilu.h>
@@ -31,7 +32,7 @@ PanelProject::~PanelProject() {}
 
 bool PanelProject::Draw()
 {
-	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_AlwaysAutoResize;
+	ImGuiWindowFlags panelFlags = ImGuiWindowFlags_AlwaysAutoResize;
 	panelFlags |= ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 	
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0, 0 });
@@ -81,7 +82,7 @@ bool PanelProject::Draw()
 					ImGui::TreePop();
 				}
 			}
-			ImGui::EndChild();			
+			ImGui::EndChild();
 
 
 			// RIGHT - Inspector -------------------------------------
@@ -130,11 +131,14 @@ bool PanelProject::Draw()
 			ImGui::EndTable();
 		}
 
-		SaveWarning(warningScene);
+		if (saveScenePopup)
+		{
+			ImGui::OpenPopup("Scene(s) Have Been Modified");
+			SaveScenePopup();
+		}
 	}
 	ImGui::PopStyleVar(2);
 	ImGui::End();
-
 
 	return true;
 }
@@ -142,14 +146,13 @@ bool PanelProject::Draw()
 bool PanelProject::CleanUp()
 {
 	// Clean up icon textures
-	for (auto& pair : iconTextures) {
+	for (auto& pair : iconTextures)
 		glDeleteTextures(1, &pair.second);
-	}
+
 	iconTextures.clear();
-
 	UnloadImagePreviews();
-
 	ilShutDown();
+
 	return true;
 }
 
@@ -375,10 +378,9 @@ GLuint PanelProject::LoadTexture(const std::string& path, bool thumbnail)
 }
 
 void PanelProject::LoadIcons()
-{
-	// Initialize DevIL
-	ilInit();
-	iluInit(); // Initialize DevIL utilities
+{	
+	ilInit();	// Initialize DevIL
+	iluInit();	// Initialize DevIL utilities
 
 	// Load and store icon textures
 	iconTextures[FileType::FOLDER] = LoadTexture("Config\\Icons/PanelProject/folder.png");
@@ -403,45 +405,70 @@ void PanelProject::LoadImagePreviews(const FileInfo& info)
 void PanelProject::UnloadImagePreviews()
 {
 	// Clean up icon textures
-	for (auto& pair : imagePreviews) {
+	for (auto& pair : imagePreviews)
 		glDeleteTextures(1, &pair.second);
-	}
+
 	imagePreviews.clear();
 }
 
-void PanelProject::SaveWarning(bool warning)
+void PanelProject::SaveScenePopup()
 {
-	if (!warning)
-		return;
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, { 0.5, 0.5 });
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5);
 
-	ImGui::OpenPopup("WarningScene");
-
-	ImGui::SetNextWindowSize(ImVec2(415, 70));
-	ImVec2 mainViewportPos = ImGui::GetMainViewport()->GetCenter();
-	ImGui::SetNextWindowPos(ImVec2(mainViewportPos.x, mainViewportPos.y), ImGuiCond_Appearing, ImVec2(0.5, 0.9));
-
-	if (ImGui::BeginPopup("WarningScene"))
+	if (ImGui::BeginPopupModal("Scene(s) Have Been Modified", nullptr, ImGuiWindowFlags_NoResize))
 	{
-		ImGui::SetCursorPosY(10.0f);
-		ImGui::Indent();
-		ImGui::Text("You have unsaved changes in this scene. Are you sure?");
-
-		ImGui::SetCursorPosX((ImGui::GetContentRegionAvail().x - 100 * 2.0f - ImGui::GetStyle().ItemSpacing.x) / 2.0f);
-		if (ImGui::Button("Yes", { 100, 20 }))
+		ImGuiTableFlags tableFlags = ImGuiTableFlags_SizingFixedFit;
+		if (ImGui::BeginTable("##TableWarning", 2, tableFlags))
 		{
-			engine->N_sceneManager->LoadScene(fileSelected->name);
-			ImGui::CloseCurrentPopup();
-			warningScene = false;
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("No", { 100, 20 }))
-		{
-			ImGui::CloseCurrentPopup();
-			warningScene = false;
-		}
+			ImGui::TableSetupColumn("Image", ImGuiTableColumnFlags_NoHide);
+			ImGui::TableSetupColumn("Dialog", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide);
+			ImGui::TableNextRow();
 
+			ImGui::TableSetColumnIndex(0);
+			ImGui::Image((ImTextureID)iconTextures[FileType::SCENE], { 64, 64 });
+			ImGui::SameLine();
+			ImGui::Dummy({ 8, 0 });
+
+			ImGui::TableSetColumnIndex(1);
+			ImGui::TextWrapped("Do you want to save the changes you made in the scenes:");
+
+			std::string path = engine->N_sceneManager->currentScene->GetPath().empty() ?
+				"NewUntitledScene" : engine->N_sceneManager->currentScene->GetPath();
+
+			ImGui::TextWrapped(path.c_str());
+			ImGui::Dummy({ 0, 8 });
+			ImGui::TextWrapped("Your changes will be lost if you don't save them.");
+			ImGui::Dummy({ 0, 8 });
+
+			if (ImGui::Button("Save", { 90, 20 }))
+			{
+				engine->N_sceneManager->SaveScene();
+				engine->N_sceneManager->LoadScene(fileSelected->name);
+				ImGui::CloseCurrentPopup();
+				saveScenePopup = false;
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Don't Save", { 90, 20 }))
+			{
+				engine->N_sceneManager->LoadScene(fileSelected->name);
+				ImGui::CloseCurrentPopup();
+				saveScenePopup = false;
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Cancel", { 90, 20 }))
+			{
+				ImGui::CloseCurrentPopup();
+				saveScenePopup = false;
+			}
+
+			ImGui::EndTable();
+		}
 		ImGui::EndPopup();
-	}
+	}	
+	ImGui::PopStyleVar(2);
 }
 
 void PanelProject::DoubleClickFile()
@@ -461,16 +488,13 @@ void PanelProject::DoubleClickFile()
 
 	case FileType::SCENE:
 		if (engine->N_sceneManager->currentScene->IsDirty())
-			warningScene = true;
+			saveScenePopup = true;
 		else
 			engine->N_sceneManager->LoadScene(fileSelected->name);
 		break;
 
 	case FileType::PREFAB:
-		if (engine->N_sceneManager->currentScene->IsDirty())
-			warningScene = true;
-		else
-			engine->N_sceneManager->LoadScene(fileSelected->name);
+		engine->N_sceneManager->CreatePrefabFromPath(fileSelected->path.string(), (vec3)(0, 0, 0));
 		break;
 
 	default:
@@ -554,6 +578,13 @@ void PanelProject::ContextMenu()
 
 	if (ImGui::BeginPopupContextItem())
 	{		
+		if (directoryPath.ends_with("Prefabs"))
+		{
+			if (ImGui::MenuItem("Add Prefab"))
+			{
+				engine->N_sceneManager->CreatePrefabFromPath(fileSelected->path.string(), (vec3)(0, 0, 0));
+			}
+		}
 		if (ImGui::MenuItem("Delete"))
 		{
 			fs::remove(fileSelected->path);

@@ -68,7 +68,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
         if (isJumping)
         {
-            attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_JUMP);
+            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_JUMP);
             isJumping = false;
         }
     }
@@ -90,7 +90,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
                                                                         0.0f,
                                                                         attachedGameObject.transform.position.z);
 
-                    attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_FH_DEATH);
+                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_DEATH);
                     detected = false;
                 }
             }
@@ -125,7 +125,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Jump:

@@ -67,7 +67,8 @@ public class ITransform : IComponent
        InternalCalls.Rotate(containerGOptr, ref increment);
     }
 
-    public void LookAt(Vector3 targetPosition)
+
+    public void LookAt2D(Vector3 targetPosition)
     {
         Vector3 directorVector = targetPosition - position;
 
@@ -76,5 +77,20 @@ public class ITransform : IComponent
         float targetAngle = (float)Math.Atan2(directorVector.x, directorVector.z);
 
         rotation = new Vector3(0.0f, targetAngle, 0.0f);
+    }
+
+    public void CamLookAt(Vector3 targetPosition)
+    {
+        Vector3 directorVector = targetPosition - position;
+
+        if (directorVector == Vector3.zero) return;
+
+        float distanceXZ = (float)Math.Sqrt(directorVector.x * directorVector.x + directorVector.z * directorVector.z);
+
+        float angleY = -(float)Math.Atan2(directorVector.x, directorVector.z);
+        float angleX =  (float)Math.Atan2(directorVector.y, distanceXZ);
+
+        rotation = Vector3.zero;
+        Rotate(new Vector3(angleX * 180.0f / (float)Math.PI, angleY * 180.0f / (float)Math.PI, 0.0f));
     }
 }

@@ -31,6 +31,8 @@ public class UiScriptDebug : MonoBehaviour
 
         onCooldown = true;
 
+        canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
+
         UpdateCheckers();
     }
 
@@ -57,12 +59,12 @@ public class UiScriptDebug : MonoBehaviour
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
             {
-                direction = -1;
+                direction = -2;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
             {
-                direction = +1;
+                direction = +2;
                 toMove = true;
             }
             else if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
@@ -83,12 +85,12 @@ public class UiScriptDebug : MonoBehaviour
             {
                 if (movementVector.y > 0.0f)
                 {
-                    direction = +1;
+                    direction = +2;
                     toMove = true;
                 }
                 else if (movementVector.y < 0.0f)
                 {
-                    direction = -1;
+                    direction = -2;
                     toMove = true;
                 }
             }
@@ -109,7 +111,7 @@ public class UiScriptDebug : MonoBehaviour
             // Select Button
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_HOVER);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
                 onCooldown = true;
                 canvas.MoveSelection(direction);
             }
@@ -117,28 +119,28 @@ public class UiScriptDebug : MonoBehaviour
             // Selection Executters
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                 gameManager.DrawColliders();
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                 gameManager.DrawGrid();
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                 gameManager.godMode = !gameManager.godMode;
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
-                attachedGameObject.source.PlayAudio(AudioManager.EventIDs.UI_CLICK);
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                 gameManager.extraSpeed = !gameManager.extraSpeed;
                 onCooldown = true;
             }

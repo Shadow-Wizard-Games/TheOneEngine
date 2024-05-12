@@ -1,6 +1,5 @@
 #include "App.h"
 
-#include "Time.h"
 #include "Gui.h"
 #include "Window.h"
 #include "Hardware.h"
@@ -19,7 +18,7 @@
 #include "PanelSettings.h"
 #include "PanelBuild.h"
 
-#include "../TheOneEngine/Log.h"
+#include "TheOneEngine/Log.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
@@ -31,6 +30,7 @@
 #include <filesystem>
 #include <windows.h>
 #include <shellapi.h>
+#include <Time.h>
 
 namespace fs = std::filesystem;
 
@@ -51,9 +51,7 @@ Gui::Gui(App* app) :
 Gui::~Gui()
 {
 	for (auto panel : panels)
-	{
 		delete panel;
-	}
 }
 
 bool Gui::Awake()
@@ -63,57 +61,46 @@ bool Gui::Awake()
 	bool ret = true;
 
 	panelAbout = new PanelAbout(PanelType::ABOUT, "About");
+	ret *= IsInitialized(panelAbout);
 	panels.push_back(panelAbout);
-	ret *= isInitialized(panelAbout);
 
 	panelConsole = new PanelConsole(PanelType::CONSOLE, "Console");
 	panels.push_back(panelConsole);
-	ret *= isInitialized(panelConsole);
+	ret *= IsInitialized(panelConsole);
 
 	panelHierarchy = new PanelHierarchy(PanelType::HIERARCHY, "Hierarchy");
 	panels.push_back(panelHierarchy);
-	ret *= isInitialized(panelHierarchy);
+	ret *= IsInitialized(panelHierarchy);
 
 	panelInspector = new PanelInspector(PanelType::INSPECTOR, "Inspector");
 	panels.push_back(panelInspector);
-	ret *= isInitialized(panelInspector);
+	ret *= IsInitialized(panelInspector);
 
 	panelProject = new PanelProject(PanelType::PROJECT, "Project");
 	panels.push_back(panelProject);
-	ret *= isInitialized(panelProject);
+	ret *= IsInitialized(panelProject);
 
 	panelScene = new PanelScene(PanelType::SCENE, "Scene");
 	panels.push_back(panelScene);
-	ret *= isInitialized(panelScene);
+	ret *= IsInitialized(panelScene);
 
 	panelGame = new PanelGame(PanelType::GAME, "Game");
 	panels.push_back(panelGame);
-	ret *= isInitialized(panelGame);
+	ret *= IsInitialized(panelGame);
 
 	panelAnimation = new PanelAnimation(PanelType::ANIMATION, "Animation");
 	panels.push_back(panelAnimation);
-	ret *= isInitialized(panelAnimation);
+	ret *= IsInitialized(panelAnimation);
 
 	panelSettings = new PanelSettings(PanelType::SETTINGS, "Settings");
 	panels.push_back(panelSettings);
-	ret *= isInitialized(panelSettings);
+	ret *= IsInitialized(panelSettings);
 	
 	panelBuild = new PanelBuild(PanelType::BUILD, "Build");
 	panels.push_back(panelBuild);
-	ret *= isInitialized(panelBuild);
+	ret *= IsInitialized(panelBuild);
 
 	return ret;
-}
-
-bool Gui::isInitialized(Panel* panel)
-{
-	if (!panel)
-	{
-		LOG(LogType::LOG_ERROR, "-%s", panel->GetName().c_str());
-		return false;
-	}
-	LOG(LogType::LOG_OK, "-%s", panel->GetName().c_str());
-	return true;
 }
 
 bool Gui::Start()
@@ -139,9 +126,6 @@ bool Gui::Start()
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-
-	// Hekbas: Enabling viewports causes ImGui panels
-	// to disappear if not fully contained in main window
 	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
 
 	if (!&io)
@@ -160,8 +144,8 @@ bool Gui::Start()
 
 	LOG(LogType::LOG_OK, "-Setting ImGui Custom Style");
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
+	style.Colors[ImGuiCol_Text] = ImVec4(0.88f, 0.88f, 0.88f, 1.0f);
+	style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.42f, 0.42f, 0.42f, 1.00f);
 	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
 	style.Colors[ImGuiCol_ChildBg] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
 	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
@@ -211,6 +195,7 @@ bool Gui::Start()
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
 	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
 	style.GrabRounding = style.FrameRounding = 2.3f;
+	style.FramePadding = { 4, 4 };
 	style.WindowMenuButtonPosition = -1;
 	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 	{
@@ -232,9 +217,7 @@ bool Gui::Start()
 
 	// Iterate Panels & Start
 	for (const auto& panel : panels)
-	{
 		panel->Start();
-	}
 
 	return true;
 }
@@ -379,10 +362,29 @@ bool Gui::CleanUp()
 }
 
 
+bool Gui::IsInitialized(Panel* panel)
+{
+	if (!panel)
+	{
+		LOG(LogType::LOG_ERROR, "-%s", panel->GetName().c_str());
+		return false;
+	}
+	LOG(LogType::LOG_OK, "-%s", panel->GetName().c_str());
+	return true;
+}
+
+std::list<Panel*> Gui::GetPanels()
+{
+	return panels;
+}
+
 void Gui::HandleInput(SDL_Event* event)
 {
 	ImGui_ImplSDL2_ProcessEvent(event);
 }
+
+
+// Utils ------------------------------------------------------
 
 void Gui::OpenURL(const char* url) const
 {
@@ -408,6 +410,9 @@ void Gui::AssetContainer(const char* label)
 	ImGui::InputText("##label", (char*)label, 64, ImGuiInputTextFlags_ReadOnly);
 	ImGui::PopStyleVar();
 }
+
+
+// Main Dock Space ----------------------------------------------
 
 void Gui::MainWindowDockspace()
 {
@@ -454,9 +459,7 @@ void Gui::MainWindowDockspace()
 	ImGui::End();
 }
 
-
-// Main Menu Bar ----------------------------------------------
-
+// Menu Bar ------
 bool Gui::MainMenuFile()
 {
 	bool ret = true;
@@ -554,14 +557,14 @@ void Gui::MainMenuComponent()
 
 void Gui::MainMenuWindow()
 {
-	if (ImGui::MenuItem("Console"))     app->gui->panelConsole->SwitchState();
-	if (ImGui::MenuItem("Hierarchy"))   app->gui->panelHierarchy->SwitchState();
-	if (ImGui::MenuItem("Inspector"))   app->gui->panelInspector->SwitchState();
-	if (ImGui::MenuItem("Project"))     app->gui->panelProject->SwitchState();
-	if (ImGui::MenuItem("Scene"))       app->gui->panelScene->SwitchState();
-	if (ImGui::MenuItem("Game"))        app->gui->panelGame->SwitchState();
-	if (ImGui::MenuItem("Animation"))   app->gui->panelAnimation->SwitchState();
-	if (ImGui::MenuItem("Settings"))    app->gui->panelSettings->SwitchState();
+	for (auto panel : app->gui->GetPanels())
+	{
+		if (panel->GetType() == PanelType::ABOUT || panel->GetType() == PanelType::BUILD)
+			continue;
+
+		if (ImGui::MenuItem(panel->GetName().c_str(), NULL, panel->GetState()))
+			panel->SwitchState();
+	}
 }
 
 void Gui::MainMenuHelp()
@@ -627,28 +630,5 @@ void Gui::OpenSceneFileWindow()
 		}
 
 		ImGui::End();
-	}
-}
-
-
-// Utils ------------------------------------------------------
-
-void Gui::CalculateSizeAspectRatio(int maxWidth, int maxHeight, int& width, int& height)
-{
-	// Calculate the aspect ratio of the given rectangle
-	double aspectRatio = static_cast<double>(maxWidth) / static_cast<double>(maxHeight);
-
-	// Calculate the aspect ratio of a 16:9 rectangle
-	double targetAspectRatio = 16.0 / 9.0;
-
-	if (aspectRatio <= targetAspectRatio) {
-		// The given rectangle is wider, so the width is limited
-		width = maxWidth;
-		height = static_cast<int>(std::round(width / targetAspectRatio));
-	}
-	else {
-		// The given rectangle is taller, so the height is limited
-		height = maxHeight;
-		width = static_cast<int>(std::round(height * targetAspectRatio));
 	}
 }

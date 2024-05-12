@@ -136,5 +136,6 @@ public class ItemManager : MonoBehaviour
     {
         inventory.Clear();
         equipped.Clear();
+        hasInitial = false;
     }
 }

@@ -3,13 +3,17 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Texture.h"
 #include <string>
+#include "Renderer2D.h"
+#include <TheOneEngine/Renderer2D.h>
 
 enum class UiType {
 	IMAGE,
 	BUTTONIMAGE,
 	SLIDER,
 	CHECKER,
+	TEXT,
 	UNKNOWN
 };
 
@@ -31,6 +35,7 @@ class ItemUI
 {
 public:
 	ItemUI(std::shared_ptr<GameObject> containerGO, UiType type, std::string name = "Name", bool interactuable = false, Rect2D rect = {0,0,1,1});
+	ItemUI(ItemUI* ref);
 	virtual ~ItemUI();
 
 	virtual void Draw2D();
@@ -78,9 +83,14 @@ public:
 	void SetState(UiState state)
 	{
 		this->state = state;
+		UpdateState();
 	}
 
 	virtual void UpdateState();
+
+	bool IsPrintable() { return print; }
+
+	void SetPrint(bool print) { this->print = print; }
 
 protected:
 
@@ -92,8 +102,39 @@ protected:
 
 	UiState state;
 
+	bool print;
+
 	unsigned int id;
 	std::string name;
+
+	Rect2D GetImageSection(const Rect2D& activeSection, const Rect2D& inactiveSection, bool activePart, Texture* texture) const {
+		const Rect2D& section = activePart ? activeSection : inactiveSection;
+		return {
+			section.x * texture->GetSize().x,
+			section.y * texture->GetSize().y,
+			section.w * texture->GetSize().x,
+			section.h * texture->GetSize().y
+		};
+	}
+
+	void SetImageSection(Rect2D& activeSection, Rect2D& inactiveSection, bool activePart, float x, float y, float w, float h, Texture* texture) {
+		Rect2D& section = activePart ? activeSection : inactiveSection;
+		section.x = x / texture->GetSize().x;
+		section.y = y / texture->GetSize().y;
+		section.w = w / texture->GetSize().x;
+		section.h = h / texture->GetSize().y;
+	}
+
+	Renderer2D::TexCoordsSection Rect2DToTexCoordsSection(const Rect2D& rect) {
+		Renderer2D::TexCoordsSection texCoords;
+
+		texCoords.leftBottom = { rect.x, rect.y };
+		texCoords.rightBottom = { rect.x + rect.w, rect.y };
+		texCoords.rightTop = { rect.x + rect.w, rect.y + rect.h };
+		texCoords.leftTop = { rect.x, rect.y + rect.h };
+
+		return texCoords;
+	}
 };
 
 #endif // !__ITEMUI_H__
