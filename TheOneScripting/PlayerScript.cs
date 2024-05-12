@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
@@ -55,13 +56,12 @@ public class PlayerScript : MonoBehaviour
     public float mp4ShootingCd = 0.15f;
 
     // Abilities
-    IGameObject dashGO;
-    Ability dash;
-    IGameObject healGO;
-    Ability heal;
-    IGameObject shieldGO;
-    Ability shield;
+    public bool impacienteUsed;
+    public bool grenadeLauncherUsed;
+    public bool flamethrowerUsed;
+    public bool adrenalineRushUsed;
 
+    bool lastFrameDashed = false;
     public bool isDashing = false;
     public string dashAbilityName = "Roll";
 
@@ -92,7 +92,6 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.transitionTime = 0.0f;
-        attachedGameObject.animator.time = 0.0f;
 
         life = maxLife;
         speed = baseSpeed;
@@ -177,15 +176,6 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        // Shoot grenade launcher
-
-
-        // to delete, test purposes
-        //if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
-        //{ 
-        //    ReduceLife();
-        //}
-
         // Play steps
         if (lastFrameRunned != isRunning)
         {
@@ -231,6 +221,11 @@ public class PlayerScript : MonoBehaviour
             {
                 attachedGameObject.animator.Play("Idle");
             }
+        }
+
+        if (isDashing && dashAbilityName == "Roll")
+        {
+            attachedGameObject.animator.Play("Roll");
         }
     }
 
@@ -374,7 +369,7 @@ public class PlayerScript : MonoBehaviour
                 hasShot = true;
                 if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
 
-                if(currentWeapon == CurrentWeapon.IMPACIENTE)
+                if (currentWeapon == CurrentWeapon.IMPACIENTE)
                     impacienteBulletCounter++;
             }
         }
@@ -387,7 +382,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
-        if (isDead || gameManager.godMode || shieldIsActive || isDashing) 
+        if (isDead || gameManager.godMode || shieldIsActive || isDashing)
             return;
 
         life -= 10.0f;
