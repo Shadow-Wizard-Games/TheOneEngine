@@ -29,7 +29,6 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             Debug.Log("Current life is: " + currentLife.ToString());
         }
 
-        CheckPhaseChange();
         DoStateBehaviour();
     }
 
