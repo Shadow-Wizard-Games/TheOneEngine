@@ -22,6 +22,10 @@
 #include "..\TheOneEngine\ButtonImageUI.h"
 #include "..\TheOneEngine\SliderUI.h"
 #include "..\TheOneEngine\CheckerUI.h"
+#include "..\TheOneEngine\TextUI.h"
+
+#include "..\TheOneEngine\ResourcesImpl.h"
+#include "..\TheOneEngine\FileDialog.h"
 
 #include "InspectorParticleSystems.h"
 
@@ -658,7 +662,7 @@ bool PanelInspector::Draw()
                         //add change name imgui
                         static char changeUIName[32]; // Buffer para el nuevo nombre
                         strcpy(changeUIName, item->GetName().c_str());
-                        if (ImGui::InputText("Set Name", changeUIName, sizeof(changeUIName), ImGuiInputTextFlags_EnterReturnsTrue)) {
+                        if (ImGui::InputText(("Set Name##" + std::to_string(item->GetID())).c_str(), changeUIName, sizeof(changeUIName), ImGuiInputTextFlags_EnterReturnsTrue)) {
                             std::string newName(changeUIName);
                             LOG(LogType::LOG_INFO, "ItemUI %s has been renamed to %s", item->GetName().c_str(), newName.c_str());
                             item->SetName(newName);
@@ -680,6 +684,10 @@ bool PanelInspector::Draw()
                         ImGui::SameLine();
                         ImGui::Text("  Move Down");
 
+                        bool print = item->IsPrintable();
+                        ImGui::Checkbox(("Print##" + std::to_string(id)).c_str(), &print);
+                        item->SetPrint(print);
+
                         std::string idstring = "Current ItemID is: " + std::to_string(item->GetID());
                         ImGui::Text(idstring.c_str());
                         ImGui::Text("Rect section info:");
@@ -690,16 +698,16 @@ bool PanelInspector::Draw()
                         tempH = item->GetRect().h;
                         ImGui::Text("   X:");
                         ImGui::SameLine();
-                        ImGui::DragFloat(" ", &tempX, 0.005f, -2.0f, 2.0f);
+                        ImGui::DragFloat(("##RectSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX, 0.005f, -2.0f, 2.0f);
                         ImGui::Text("   Y:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("  ", &tempY, 0.005f, -2.0f, 2.0f);
+                        ImGui::DragFloat(("##RectSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY, 0.005f, -2.0f, 2.0f);
                         ImGui::Text("   W:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("   ", &tempW, 0.005f, 0.0f, 10.0f);
+                        ImGui::DragFloat(("##RectSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW, 0.005f, 0.0f, 10.0f);
                         ImGui::Text("   H:");
                         ImGui::SameLine();
-                        ImGui::DragFloat("    ", &tempH, 0.005f, 0.0f, 10.0f);
+                        ImGui::DragFloat(("##RectSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH, 0.005f, 0.0f, 10.0f);
                         ImGui::Dummy(ImVec2(0.0f, 5.0f));
 
                         item->SetRect(tempX, tempY, tempW, tempH);
@@ -718,16 +726,16 @@ bool PanelInspector::Draw()
                             tempH2 = tempImageUI->GetSect().h;
                             ImGui::Text("   X:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("     ", &tempX2, 1.0f);
+                            ImGui::DragFloat(("##ImageSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                             ImGui::Text("   Y:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("      ", &tempY2, 1.0f);
+                            ImGui::DragFloat(("##ImageSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                             ImGui::Text("   W:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("       ", &tempW2, 1.0f);
+                            ImGui::DragFloat(("##ImageSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                             ImGui::Text("   H:");
                             ImGui::SameLine();
-                            ImGui::DragFloat("        ", &tempH2, 1.0f);
+                            ImGui::DragFloat(("##ImageSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                             tempImageUI->SetSectSize(tempX2, tempY2, tempW2, tempH2);
                         }
@@ -749,16 +757,16 @@ bool PanelInspector::Draw()
                                 tempH2 = tempButtonImageUI->GetSectIdle().h;
                                 ImGui::Text("   X:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("     ", &tempX2, 1.0f);
+                                ImGui::DragFloat(("##ImageIdleSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                 ImGui::Text("   Y:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("      ", &tempY2, 1.0f);
+                                ImGui::DragFloat(("##ImageIdleSectionY of UIid" + std::to_string(item->GetID())).c_str(), & tempY2, 1.0f);
                                 ImGui::Text("   W:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("       ", &tempW2, 1.0f);
+                                ImGui::DragFloat(("##ImageIdleSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                 ImGui::Text("   H:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("        ", &tempH2, 1.0f);
+                                ImGui::DragFloat(("##ImageIdleSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                 if (tempButtonImageUI->GetState() == UiState::IDLE)
                                 {
@@ -779,16 +787,16 @@ bool PanelInspector::Draw()
                                 tempH2 = tempButtonImageUI->GetSectHovered().h;
                                 ImGui::Text("   X:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("         ", &tempX2, 1.0f);
+                                ImGui::DragFloat(("##ImageHoveredSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                 ImGui::Text("   Y:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("          ", &tempY2, 1.0f);
+                                ImGui::DragFloat(("##ImageHoveredSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                 ImGui::Text("   W:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("           ", &tempW2, 1.0f);
+                                ImGui::DragFloat(("##ImageHoveredSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                 ImGui::Text("   H:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("            ", &tempH2, 1.0f);
+                                ImGui::DragFloat(("##ImageHoveredSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                 if (tempButtonImageUI->GetState() == UiState::HOVERED)
                                 {
@@ -809,16 +817,16 @@ bool PanelInspector::Draw()
                                 tempH2 = tempButtonImageUI->GetSectSelected().h;
                                 ImGui::Text("   X:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("             ", &tempX2, 1.0f);
+                                ImGui::DragFloat(("##ImageSelectedSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                 ImGui::Text("   Y:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("              ", &tempY2, 1.0f);
+                                ImGui::DragFloat(("##ImageSelectedSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                 ImGui::Text("   W:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("               ", &tempW2, 1.0f);
+                                ImGui::DragFloat(("##ImageSelectedSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                 ImGui::Text("   H:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("                ", &tempH2, 1.0f);
+                                ImGui::DragFloat(("##ImageSelectedSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                 if (tempButtonImageUI->GetState() == UiState::SELECTED)
                                 {
@@ -896,16 +904,16 @@ bool PanelInspector::Draw()
                                     tempH2 = tempSliderUI->GetSectIdle(0, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("     ", &tempX2, 1.0f);
+                                    ImGui::DragFloat(("##SliderIdleSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                     ImGui::Text("   Y:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("      ", &tempY2, 1.0f);
+                                    ImGui::DragFloat(("##SliderIdleSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                     ImGui::Text("   W:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("       ", &tempW2, 1.0f);
+                                    ImGui::DragFloat(("##SliderIdleSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                     ImGui::Text("   H:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("        ", &tempH2, 1.0f);
+                                    ImGui::DragFloat(("##SliderIdleSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                     if (tempSliderUI->GetState() == UiState::IDLE)
                                     {
@@ -926,16 +934,16 @@ bool PanelInspector::Draw()
                                     tempH2 = tempSliderUI->GetSectHovered(0, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("         ", &tempX2, 1.0f);
+                                    ImGui::DragFloat(("##SliderHoveredSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                     ImGui::Text("   Y:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("          ", &tempY2, 1.0f);
+                                    ImGui::DragFloat(("##SliderHoveredSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                     ImGui::Text("   W:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("           ", &tempW2, 1.0f);
+                                    ImGui::DragFloat(("##SliderHoveredSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                     ImGui::Text("   H:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("            ", &tempH2, 1.0f);
+                                    ImGui::DragFloat(("##SliderHoveredSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                     if (tempSliderUI->GetState() == UiState::HOVERED)
                                     {
@@ -956,16 +964,16 @@ bool PanelInspector::Draw()
                                     tempH2 = tempSliderUI->GetSectSelected(0, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("             ", &tempX2, 1.0f);
+                                    ImGui::DragFloat(("##SliderSelectedSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                     ImGui::Text("   Y:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("              ", &tempY2, 1.0f);
+                                    ImGui::DragFloat(("##SliderSelectedSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                     ImGui::Text("   W:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("               ", &tempW2, 1.0f);
+                                    ImGui::DragFloat(("##SliderSelectedSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                     ImGui::Text("   H:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("                ", &tempH2, 1.0f);
+                                    ImGui::DragFloat(("##SliderSelectedSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                     if (tempSliderUI->GetState() == UiState::SELECTED)
                                     {
@@ -1033,16 +1041,16 @@ bool PanelInspector::Draw()
                                     tempH2 = tempSliderUI->GetSectIdle(sliderDesignOptionToModify, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("     ", &tempX2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2IdleSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                     ImGui::Text("   Y:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("      ", &tempY2, 1.0f);
+                                    ImGui::DragFloat(("##SliderIdleSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                     ImGui::Text("   W:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("       ", &tempW2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2IdleSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                     ImGui::Text("   H:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("        ", &tempH2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2IdleSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                     if (tempSliderUI->GetState() == UiState::IDLE)
                                     {
@@ -1063,16 +1071,16 @@ bool PanelInspector::Draw()
                                     tempH2 = tempSliderUI->GetSectHovered(sliderDesignOptionToModify, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("         ", &tempX2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2HoveredSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                     ImGui::Text("   Y:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("          ", &tempY2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2HoveredSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                     ImGui::Text("   W:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("           ", &tempW2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2HoveredSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                     ImGui::Text("   H:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("            ", &tempH2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2HoveredSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                     if (tempSliderUI->GetState() == UiState::HOVERED)
                                     {
@@ -1093,16 +1101,16 @@ bool PanelInspector::Draw()
                                     tempH2 = tempSliderUI->GetSectSelected(sliderDesignOptionToModify, sliderActivePart).h;
                                     ImGui::Text("   X:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("             ", &tempX2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2SelectedSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                     ImGui::Text("   Y:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("              ", &tempY2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2SelectedSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                     ImGui::Text("   W:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("               ", &tempW2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2SelectedSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                     ImGui::Text("   H:");
                                     ImGui::SameLine();
-                                    ImGui::DragFloat("                ", &tempH2, 1.0f);
+                                    ImGui::DragFloat(("##Slider2SelectedSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                     if (tempSliderUI->GetState() == UiState::SELECTED)
                                     {
@@ -1118,7 +1126,7 @@ bool PanelInspector::Draw()
                             ImGui::Text("UiType: CHECKER");
                             
                             bool checkerActive = tempCheckerUI->GetChecker();
-                            ImGui::Checkbox("Toggle Checkbox State", &checkerActive);
+                            ImGui::Checkbox(("Toggle Checkbox State##" + std::to_string(id)).c_str(), &checkerActive);
                             tempCheckerUI->SetChecker(checkerActive);
 
                             ImGui::Text("Image Path: %s", tempCheckerUI->GetPath().c_str());
@@ -1135,16 +1143,16 @@ bool PanelInspector::Draw()
                                 tempH2 = tempCheckerUI->GetSectIdle().h;
                                 ImGui::Text("   X:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("     ", &tempX2, 1.0f);
+                                ImGui::DragFloat(("##CheckerIdleSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                 ImGui::Text("   Y:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("      ", &tempY2, 1.0f);
+                                ImGui::DragFloat(("##CheckerIdleSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                 ImGui::Text("   W:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("       ", &tempW2, 1.0f);
+                                ImGui::DragFloat(("##CheckerIdleSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                 ImGui::Text("   H:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("        ", &tempH2, 1.0f);
+                                ImGui::DragFloat(("##CheckerIdleSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                 if (tempCheckerUI->GetState() == UiState::IDLE)
                                 {
@@ -1165,16 +1173,16 @@ bool PanelInspector::Draw()
                                 tempH2 = tempCheckerUI->GetSectHovered().h;
                                 ImGui::Text("   X:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("         ", &tempX2, 1.0f);
+                                ImGui::DragFloat(("##CheckerHoveredSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                 ImGui::Text("   Y:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("          ", &tempY2, 1.0f);
+                                ImGui::DragFloat(("##CheckerHoveredSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                 ImGui::Text("   W:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("           ", &tempW2, 1.0f);
+                                ImGui::DragFloat(("##CheckerHoveredSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                 ImGui::Text("   H:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("            ", &tempH2, 1.0f);
+                                ImGui::DragFloat(("##CheckerHoveredSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                 if (tempCheckerUI->GetState() == UiState::HOVERED)
                                 {
@@ -1195,16 +1203,16 @@ bool PanelInspector::Draw()
                                 tempH2 = tempCheckerUI->GetSectSelected().h;
                                 ImGui::Text("   X:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("             ", &tempX2, 1.0f);
+                                ImGui::DragFloat(("##CheckerSelectedSectionX of UIid" + std::to_string(item->GetID())).c_str(), &tempX2, 1.0f);
                                 ImGui::Text("   Y:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("              ", &tempY2, 1.0f);
+                                ImGui::DragFloat(("##CheckerSelectedSectionY of UIid" + std::to_string(item->GetID())).c_str(), &tempY2, 1.0f);
                                 ImGui::Text("   W:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("               ", &tempW2, 1.0f);
+                                ImGui::DragFloat(("##CheckerSelectedSectionW of UIid" + std::to_string(item->GetID())).c_str(), &tempW2, 1.0f);
                                 ImGui::Text("   H:");
                                 ImGui::SameLine();
-                                ImGui::DragFloat("                ", &tempH2, 1.0f);
+                                ImGui::DragFloat(("##CheckerSelectedSectionH of UIid" + std::to_string(item->GetID())).c_str(), &tempH2, 1.0f);
 
                                 if (tempCheckerUI->GetState() == UiState::SELECTED)
                                 {
@@ -1213,10 +1221,79 @@ bool PanelInspector::Draw()
                                 ImGui::Dummy(ImVec2(0.0f, 5.0f));
                             }
                         }
-                        //else if (item->GetType() == UiType::FONT)
-                        //{
+                        else if (item->GetType() == UiType::TEXT)
+                        {
+                            TextUI* tempTextUI = tempCanvas->GetItemUI<TextUI>(id);
+                            ImGui::Text("UiType: TEXT");
+                            ImGui::Text("Font Path: %s", tempTextUI->GetPath().c_str());
+                            if (ImGui::TreeNode(("Change Font##" + std::to_string(item->GetID())).c_str()))
+                            {
+                                std::vector<Resources::Resource*> tempFontResources = Resources::GetResourcesOf(Resources::RES_FONT);
 
-                        //}
+                                for (auto& item : tempFontResources)
+                                {
+                                    if (ImGui::MenuItem(item->name.c_str()))
+                                    {
+                                        tempTextUI->SetFont(item->filePath.c_str());
+                                    }
+                                }
+                                if (ImGui::MenuItem("Import Font"))
+                                {
+                                    std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Font file (*.ttf)\0*.ttf\0")).string();
+                                    if (!filePath.empty() && filePath.ends_with(".ttf"))
+                                    {
+                                        tempTextUI->SetFont(filePath.c_str());
+                                    }
+                                }
+                                ImGui::TreePop();
+                            }
+                            ImGui::Text("Text info:");
+                            static char currentTextString[512]; // Buffer para el nuevo nombre
+                            ImGui::InputTextMultiline(("##Text String chupala ticher" + std::to_string(item->GetID())).c_str(), currentTextString, sizeof(currentTextString));
+                            if (ImGui::Button("Set Text"))
+                            {
+                                std::string newName(currentTextString);
+                                tempTextUI->SetText(newName);
+                            }
+                            ImGui::SameLine();
+                            if (ImGui::Button("Recover Text"))
+                            {
+                                strcpy(currentTextString, tempTextUI->GetText().c_str());
+                            }
+                            float r, g, b, a;
+                            r = tempTextUI->GetColor().r;
+                            g = tempTextUI->GetColor().g;
+                            b = tempTextUI->GetColor().b;
+                            a = tempTextUI->GetColor().a;
+                            ImGui::Text("   R:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat(("##Text Color R" + std::to_string(item->GetID())).c_str(), &r, 0.005f, 0.0f, 1.0f);
+                            ImGui::Text("   G:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat(("##Text Color G" + std::to_string(item->GetID())).c_str(), &g, 0.005f, 0.0f, 1.0f);
+                            ImGui::Text("   B:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat(("##Text Color B" + std::to_string(item->GetID())).c_str(), &b, 0.005f, 0.0f, 1.0f);
+                            ImGui::Text("   A:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat(("##Text Color A" + std::to_string(item->GetID())).c_str(), &a, 0.005f, 0.0f, 1.0f);
+
+                            tempTextUI->SetColor({ r,g,b,a });
+
+                            float k, l;
+                            k = tempTextUI->GetKerning();
+                            l = tempTextUI->GetLineSpacing();
+
+                            ImGui::Text("   Kerning:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat(("##Text Kerning" + std::to_string(item->GetID())).c_str(), &k, 0.005f, -0.1f, 1.0f);
+                            tempTextUI->SetKerning(k);
+
+                            ImGui::Text("   LineSpacing:");
+                            ImGui::SameLine();
+                            ImGui::DragFloat(("##Text LineSpacing" + std::to_string(item->GetID())).c_str(), &l, 0.005f, -0.3f, 1.0f);
+                            tempTextUI->SetLineSpacing(l);
+                        }
                         else if (item->GetType() == UiType::UNKNOWN)
                         {
                             ImGui::Text("UiType: UNKNOWN TYPE");
@@ -1226,6 +1303,32 @@ bool PanelInspector::Draw()
                         if (ImGui::Button("Remove ItemUI"))
                         {
                             tempCanvas->RemoveItemUI(id);
+                        }
+                        ImGui::Dummy(ImVec2(0.0f, 5.0f));
+                        if (ImGui::Button("Duplicate ItemUI"))
+                        {
+                            switch (item->GetType())
+                            {
+                            case UiType::IMAGE:
+                                tempCanvas->AddCopiedItemUI<ImageUI>((ImageUI*)item);
+                                break;
+                            case UiType::BUTTONIMAGE:
+                                tempCanvas->AddCopiedItemUI<ButtonImageUI>((ButtonImageUI*)item);
+                                break;
+                            case UiType::SLIDER:
+                                tempCanvas->AddCopiedItemUI<SliderUI>((SliderUI*)item);
+                                break;
+                            case UiType::CHECKER:
+                                tempCanvas->AddCopiedItemUI<CheckerUI>((CheckerUI*)item);
+                                break;
+                            case UiType::TEXT:
+                                tempCanvas->AddCopiedItemUI<TextUI>((TextUI*)item);
+                                break;
+                            case UiType::UNKNOWN:
+                                break;
+                            default:
+                                break;
+                            }
                         }
                     }
                     counter++;
@@ -1237,77 +1340,72 @@ bool PanelInspector::Draw()
                 {
                     if (ImGui::TreeNode("ImageUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<ImageUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<ImageUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
                     if (ImGui::TreeNode("ButtonImageUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<ButtonImageUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<ButtonImageUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
                     if (ImGui::TreeNode("SliderUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name  ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<SliderUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<SliderUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
                     if (ImGui::TreeNode("CheckerUI"))
                     {
-                        static char nameRecipient[64];
-
-                        ImGui::InputText("File Name   ", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient[0] != '\0')
+                        if (ImGui::MenuItem("Import Image"))
                         {
-                            tempCanvas->AddItemUI<CheckerUI>(nameRecipient);
-                            nameRecipient[0] = '\0';
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Image file (*.png)\0*.png\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".png"))
+                            {
+                                tempCanvas->AddItemUI<CheckerUI>(filePath.c_str());
+                            }
                         }
                         ImGui::TreePop();
                     }
-                    if (ImGui::MenuItem("TextUI"))
+                    if (ImGui::TreeNode("TextUI"))
                     {
-                        //to implement
+                        std::vector<Resources::Resource*> tempFontResources = Resources::GetResourcesOf(Resources::RES_FONT);
 
-                        //static char nameRecipient[32];
-
-                        //ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
-
-                        //if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
-                        //{
-                        //    //std::string className = "ActualScriptTest2";
-                        //    if (MonoManager::IsClassInMainAssembly(nameRecipient))
-                        //    {
-                        //        tempCanvas->AddItemUI<TextUI>(nameRecipient);
-                        //    }
-                        //    else
-                        //    {
-                        //        LOG(LogType::LOG_WARNING, "Could not find image '%s'", nameRecipient);
-                        //    }
-                        //}
-                        //ImGui::TreePop();
+                        for (auto& item : tempFontResources)
+                        {
+                            if (ImGui::MenuItem(item->name.c_str()))
+                            {
+                                tempCanvas->AddItemUI<TextUI>(item->filePath.c_str());
+                            }
+                        }
+                        if (ImGui::MenuItem("Import Font"))
+                        {
+                            std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open Font file (*.ttf)\0*.ttf\0")).string();
+                            if (!filePath.empty() && filePath.ends_with(".ttf"))
+                            {
+                                tempCanvas->AddItemUI<TextUI>(filePath.c_str());
+                            }
+                        }
+                        ImGui::TreePop();
                     }
                     ImGui::TreePop();
                 }

@@ -19,6 +19,7 @@ class SliderUI : public ItemUI
 public:
 	SliderUI(std::shared_ptr<GameObject> containerGO, Rect2D rect = { 0,0,1,1 });
 	SliderUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name = "Slider", Rect2D rect = { 0,0,1,1 });
+	SliderUI(SliderUI* ref);
 	~SliderUI();
 
 	void Draw2D();

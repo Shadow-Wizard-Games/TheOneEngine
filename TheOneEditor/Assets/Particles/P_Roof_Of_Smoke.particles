@@ -41,6 +41,7 @@
           "UsingSingleValueColor": true
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             2.0,
             2.0,
@@ -56,7 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 29.117238998413086,
+      "Lifetime": 120.5511474609375,
       "MaxParticles": 500,
       "RenderModule": [
         {
@@ -79,11 +80,33 @@
             0.0
           ],
           "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            5.0,
+            5.0,
+            5.0
+          ],
+          "Type": 2
         }
       ]
     }
   ],
   "Name": "P_Roof_Of_Smoke",
+  "StartON": true,
   "Type": 9,
   "UID": 627001985
 }

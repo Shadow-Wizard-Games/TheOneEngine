@@ -23,7 +23,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 200127396
+          "UID": 3177144211
         },
         {
           "Aspect": 1.777,
@@ -32,16 +32,24 @@
           "Name": "Camera",
           "ParentUID": 3452816845,
           "Pitch": 0.0,
-          "PrimaryCamera": false,
+          "PrimaryCamera": true,
           "Size": 5.0,
           "Type": 1,
-          "UID": 2654883305,
+          "UID": 3550673124,
           "Yaw": 0.0,
-          "zFar": 1000.0,
+          "zFar": 2114.610107421875,
           "zNear": 0.1
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "CameraMovement",
+          "Type": 4,
+          "UID": 2254748095
         }
       ],
       "Enabled": true,
+      "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
       "Static": false,
@@ -64,13 +72,13 @@
             0.0,
             1.0,
             0.0,
-            16.51119613647461,
             0.0,
-            46.69047927856445,
+            0.0,
+            -400.0,
             1.0
           ],
           "Type": 0,
-          "UID": 1130903049
+          "UID": 475525498
         },
         {
           "Active": true,
@@ -80,27 +88,39 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Queen/M_Queen.toematerial",
+          "MeshPath": "Library/Meshes/SK_Queen/SK_Queen.mesh",
           "Name": "Mesh",
           "ParentUID": 3452816845,
-          "Path": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
           "Type": 2,
-          "UID": 731239869
+          "UID": 3461662831
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 2293105699,
+          "Width": -1.7976931348623157e+308
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
-          "ScriptName": "PlayerScript",
+          "ScriptName": "AlienQueenBehaviourNew",
           "Type": 4,
-          "UID": 1916593155
-        },
-        {
-          "AudioID": 0,
-          "Name": "AudioSource",
-          "Type": 8
+          "UID": 2810585523
         }
       ],
       "Enabled": true,
-      "Name": "SK_MainCharacter",
+      "Keeped": false,
+      "Name": "SK_Queen",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -110,25 +130,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -0.9993728416655359,
-            0.0,
-            0.03541078001614282,
+            100.0,
             0.0,
             0.0,
-            1.0,
             0.0,
             0.0,
-            -0.03541078001614282,
+            100.0,
             0.0,
-            -0.9993728416655359,
             0.0,
-            30.57003402709961,
             0.0,
-            443.462646484375,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            400.0,
             1.0
           ],
           "Type": 0,
-          "UID": 4090476543
+          "UID": 2164112949
         },
         {
           "Active": true,
@@ -138,40 +158,139 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
-          "Path": "Library/Meshes/SK_Queen/SK_Queen.mesh",
           "Type": 2,
-          "UID": 2460620477
+          "UID": 1372494642
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
-          "ScriptName": "AlienQueenBehaviour",
+          "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 1744955317
+          "UID": 4197445285
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
         },
         {
           "ColliderType": 0,
-          "CollisionType": 1,
+          "CollisionType": 0,
           "CornerPivot": true,
           "Height": -1.7976931348623157e+308,
-          "Name": "Specified Type was not found",
+          "Name": "Collider2D",
           "ObjectOrientation": 0,
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 3452816845,
-          "Radius": 40.0,
+          "Radius": 12.0,
           "Type": 5,
-          "UID": 3952126935,
+          "UID": 1944253935,
           "Width": -1.7976931348623157e+308
         }
       ],
+      "EditablePrefab": true,
       "Enabled": true,
-      "Name": "SK_Queen",
+      "Keeped": false,
+      "Name": "SK_MainCharacter",
       "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 2959458870,
+      "PrefabName": "SK_MainCharacter",
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 672686657
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "GameManager",
+          "Type": 4,
+          "UID": 467118552
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "GameManager",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 3294318030,
+      "PrefabName": "GameManager",
+      "Static": false,
+      "UID": 6619240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4180287200
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6619240,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 2738842466
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "Keeped": false,
+      "Name": "ItemManager",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1145673280,
+      "PrefabName": "ItemManager",
+      "Static": false,
+      "UID": 6619240
     }
   ],
   "index": 0,
