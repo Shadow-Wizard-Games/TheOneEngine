@@ -151,7 +151,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     private void AcidSpit()
     {
         //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-        attachedGameObject.source.PlayAudio(IAudioSource.Events.E_X_ADULT_SPIT);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_SPIT);
         ResetState();
     }
 

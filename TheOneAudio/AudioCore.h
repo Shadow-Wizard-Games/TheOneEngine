@@ -55,11 +55,11 @@ public:
 	void ResumeEvent(AkUniqueID event, AkGameObjectID goID);
 
 	// ----------------------- STATES ---------------------- //
-	void SetState(AkStateGroupID stategroup, AkStateID state);
-	void SetState(const char* stategroup, const char* state);
+	void SetState(AkStateGroupID stateGroup, AkStateID state);
+	void SetState(const char* stateGroup, const char* state);
 
 	// ---------------------- SWITCHES ---------------------- //
-	void SetSwitch(AkSwitchGroupID switchGroup, AkStateGroupID switchState, AkGameObjectID goID);
+	void SetSwitch(AkSwitchGroupID switchGroup, AkSwitchStateID switchState, AkGameObjectID goID);
 
 	// ------------------------ RTPC ------------------------ //
 	void SetRTPCValue(const char* name, int value);

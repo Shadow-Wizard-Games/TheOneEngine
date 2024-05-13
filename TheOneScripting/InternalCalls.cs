@@ -180,10 +180,16 @@ class InternalCalls
 
     #region Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void PlaySource(IntPtr GOptr, Events audio);
+    internal extern static void PlayAudioSource(IntPtr GOptr, AudioEvent audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void StopSource(IntPtr GOptr, Events audio);
+    internal extern static void StopAudioSource(IntPtr GOptr, AudioEvent audio);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetState(AudioStateGroup stateGroup, AudioStateID stateID);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSwitch(IntPtr GOptr, AudioSwitchGroup switchGroup, AudioSwitchID switchID);
     #endregion
 
     #region Collider2D

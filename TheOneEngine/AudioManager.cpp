@@ -59,6 +59,11 @@ void AudioManager::ResumeAudio(AudioSource* source, AkUniqueID event)
 	audio->ResumeEvent(event, source->goID);
 }
 
+void AudioManager::SetSwitch(AudioSource* source, AkSwitchGroupID switchGroup, AkSwitchStateID switchState)
+{
+	audio->SetSwitch(switchGroup, switchState, source->goID);
+}
+
 void AudioManager::AddAudioObject(std::shared_ptr<AudioComponent> audioGO)
 {
 	audioComponents.push_back(audioGO);
@@ -66,7 +71,7 @@ void AudioManager::AddAudioObject(std::shared_ptr<AudioComponent> audioGO)
 
 void AudioManager::RemoveAudioObject(std::shared_ptr<AudioComponent> audioGO)
 {
-	audioComponents.
+	//audioComponents.
 }
 
 void AudioManager::DeleteAudioComponents()

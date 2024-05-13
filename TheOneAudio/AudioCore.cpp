@@ -314,19 +314,22 @@ void AudioCore::ResumeEvent(AkUniqueID event, AkGameObjectID goID)
     LOG(LogType::LOG_AUDIO, "Resuming event from %d audiogameobject", goID);
 }
 
-void AudioCore::SetState(AkStateGroupID stategroup, AkStateID state)
+void AudioCore::SetState(AkStateGroupID stateGroup, AkStateID state)
 {
-    AK::SoundEngine::SetState(stategroup, state);
+    AK::SoundEngine::SetState(stateGroup, state);
+    LOG(LogType::LOG_AUDIO, "Setting state");
 }
 
-void AudioCore::SetState(const char* stategroup, const char* state)
+void AudioCore::SetState(const char* stateGroup, const char* state)
 {
-    AK::SoundEngine::SetState(stategroup, state);
+    AK::SoundEngine::SetState(stateGroup, state);
+    LOG(LogType::LOG_AUDIO, "Setting state");
 }
 
-void AudioCore::SetSwitch(AkSwitchGroupID switchGroup, AkStateGroupID switchState, AkGameObjectID goID)
+void AudioCore::SetSwitch(AkSwitchGroupID switchGroup, AkSwitchStateID switchState, AkGameObjectID goID)
 {
     AK::SoundEngine::SetSwitch(switchGroup, switchState, goID);
+    LOG(LogType::LOG_AUDIO, "Setting switch");
 }
 
 void AudioCore::SetRTPCValue(const char* name, int value)

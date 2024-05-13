@@ -183,7 +183,7 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3491347560" Type="User" Language="English(US)" Hash="{04979AC0-D3F7-14D8-2380-1E35774D2800}">
+		<SoundBank Id="3491347560" Type="User" Language="English(US)" Hash="{8E61A04A-E9E3-7772-115A-F7BB6819A027}">
 			<ShortName>TheOneEngine</ShortName>
 			<Path>English(US)/TheOneEngine.bnk</Path>
 			<Media>
@@ -390,6 +390,10 @@
 				<File Id="317356435" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SFX_CH_Dash.wav</ShortName>
 					<CachePath>SFX/SFX_CH_Dash_818F3B66.wem</CachePath>
+				</File>
+				<File Id="323360860" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AM_L2_Camp.wav</ShortName>
+					<CachePath>SFX/AM_L2_Camp_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="337575271" Language="English(US)" Streaming="false" Location="Memory">
 					<ShortName>VO_grant_endmissionstub6.wav</ShortName>
@@ -1053,6 +1057,12 @@
 								<MediaRef Id="527567376"/>
 							</MediaRefs>
 						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="State" GroupId="15699892" Id="3736508534"/>
+							<MediaRefs>
+								<MediaRef Id="323360860"/>
+							</MediaRefs>
+						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
 				<Event Id="1917263390" Name="StopMusic"/>
@@ -1623,5 +1633,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{272E2857-3C8B-9130-0E0C-83FFDF51EC6D}</FileHash>
+	<FileHash>{DD836D02-4A5F-3299-B7C5-0B1295A8A429}</FileHash>
 </SoundBanksInfo>

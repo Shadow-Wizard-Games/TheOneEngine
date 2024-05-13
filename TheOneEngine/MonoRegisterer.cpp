@@ -598,16 +598,28 @@ static void StopPS(GameObject* GOptr)
 }
 
 // Audio Manager
-static void PlayAudioSource(GameObject* GOptr, uint audio) {
+static void PlayAudioSource(GameObject* GOptr, uint audio)
+{
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
 	audioManager->PlayAudio(GOptr->GetComponent<AudioSource>(), audio);
 }
 
-static void StopAudioSource(GameObject* GOptr, uint audio) {
+static void StopAudioSource(GameObject* GOptr, uint audio)
+{
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
 	audioManager->StopAudio(GOptr->GetComponent<AudioSource>(), audio);
+}
+
+static void SetState(uint stateGroup, uint state)
+{
+	audioManager->audio->SetState(stateGroup, state);
+}
+
+static void SetSwitch(GameObject* GOptr, uint switchGroup, uint switchState)
+{
+	audioManager->SetSwitch(GOptr->GetComponent<AudioSource>(), switchGroup, switchState);
 }
 
 // Collider2D
@@ -821,8 +833,10 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::StopPS", StopPS);
 
 	//Audio
-	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);
-	mono_add_internal_call("InternalCalls::StopSource", StopAudioSource);
+	mono_add_internal_call("InternalCalls::PlayAudioSource", PlayAudioSource);
+	mono_add_internal_call("InternalCalls::StopAudioSource", StopAudioSource);
+	mono_add_internal_call("InternalCalls::SetState", SetState);
+	mono_add_internal_call("InternalCalls::SetSwitch", SetSwitch);
 
 	//Collider2D
 	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);
