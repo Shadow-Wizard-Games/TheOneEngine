@@ -5,60 +5,49 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -1.0,
-            -1.0738747846517072e-07,
-            4.371138473402425e-08,
-            0.0,
-            -9.154890534546212e-08,
-            0.4999999701976776,
-            -0.866025447845459,
-            0.0,
-            7.114459776857984e-08,
-            -0.866025447845459,
-            -0.4999999701976776,
+            1.0,
             0.0,
             0.0,
-            120.0,
-            60.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
             1.0
           ],
           "Type": 0,
-          "UID": 2834687253
+          "UID": 1232747834
         },
         {
           "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
-          "ParentUID": 1631739743,
+          "ParentUID": 0,
           "Pitch": 0.0,
           "PrimaryCamera": false,
-          "Size": 5.0,
+          "Size": 200.0,
           "Type": 1,
-          "UID": 2803515635,
+          "UID": 1110365301,
           "Yaw": 0.0,
-          "zFar": 1000.0,
+          "zFar": 3000.0,
           "zNear": 0.1
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 1631739743,
-          "ScriptName": "CameraMovement",
-          "Type": 4,
-          "UID": 1622275983
-        },
-        {
-          "AudioID": 9,
-          "Name": "Listener",
-          "Type": 7
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 6619240,
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 1631739743
+      "UID": 0
     },
     {
       "Components": [
@@ -83,7 +72,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 970497066
+          "UID": 2991594097
         },
         {
           "Active": true,
@@ -93,45 +82,46 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_L2R1/M_L2R1.toematerial",
-          "MeshPath": "Library/Meshes/MK_L2R1/MK_L2R1.mesh",
+          "MaterialPath": "Library/Materials/MK_L2R4/M_L2R4.toematerial",
+          "MeshPath": "Library/Meshes/MK_L2R4/MK_L2R4.mesh",
           "Name": "Mesh",
-          "ParentUID": 7602275,
+          "ParentUID": 0,
           "Type": 2,
-          "UID": 909976981
+          "UID": 1256572872
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "MK_L2R1",
-      "ParentUID": 6619240,
+      "Name": "MK_L2R4",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 7602275
+      "UID": 0
     },
     {
       "Components": [
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.007277945005227715,
-            1.748432446507481e-07,
-            -0.9999735154075183,
+            -1.3500005006790161,
+            1.1802124078030829e-07,
+            1.0317721035998841e-14,
             0.0,
-            -6.362581850712357e-10,
-            0.9999999999999847,
-            1.748432446507481e-07,
+            1.1802121946402622e-07,
+            1.350000023841858,
+            1.1802121946402622e-07,
             0.0,
-            0.9999735154075337,
-            -6.362581850712357e-10,
-            0.007277945005227715,
             0.0,
-            -95.58035278320313,
+            1.1802124078030829e-07,
+            -1.3500005006790161,
             0.0,
-            -22.75779914855957,
+            -635.4285888671875,
+            5.686325494025368e-06,
+            -465.36370849609375,
             1.0
           ],
           "Type": 0,
-          "UID": 4287952807
+          "UID": 24696871
         },
         {
           "Active": true,
@@ -141,60 +131,46 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_FountainOfLife/lambert7.toematerial",
-          "MeshPath": "Library/Meshes/SM_FountainOfLife/pCylinder10.mesh",
+          "MaterialPath": "Library/Materials/SM_CaveEntrance/M_Cave.toematerial",
+          "MeshPath": "Library/Meshes/SM_CaveEntrance/SM_CaveEntrance.mesh",
           "Name": "Mesh",
-          "ParentUID": 7602275,
+          "ParentUID": 1102577664,
           "Type": 2,
-          "UID": 8184796
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 7602275,
-          "Radius": 30.5,
-          "Type": 5,
-          "UID": 993494498,
-          "Width": -1.7976931348623157e+308
+          "UID": 2123463765
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "pCylinder10",
-      "ParentUID": 6619240,
+      "Name": "SM_CaveEntrance1",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 7602275
+      "UID": 1102577664
     },
     {
       "Components": [
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            2.66003680229187,
+            -1.8569014059721667e-07,
+            -0.5360006093978882,
             0.0,
+            2.372228635749707e-07,
+            2.7135000228881836,
+            2.372228635749707e-07,
             0.0,
+            0.5360006093978882,
+            -2.7940743052567996e-07,
+            2.66003680229187,
             0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            265.6495361328125,
-            -4.542652130126953,
-            -195.6038055419922,
+            -413.4779968261719,
+            -5.107089519500732,
+            439.1119689941406,
             1.0
           ],
           "Type": 0,
-          "UID": 485310342
+          "UID": 1809573324
         },
         {
           "Active": true,
@@ -204,35 +180,21 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_AcidPool/M_AcidPool.toematerial",
-          "MeshPath": "Library/Meshes/SM_AcidPool/SM_AcidPool.mesh",
+          "MaterialPath": "Library/Materials/SM_CaveEntrance/M_Cave.toematerial",
+          "MeshPath": "Library/Meshes/SM_CaveEntrance/SM_CaveEntrance.mesh",
           "Name": "Mesh",
-          "ParentUID": 7602275,
+          "ParentUID": 1102577664,
           "Type": 2,
-          "UID": 1889898379
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 7602275,
-          "Radius": 100.5,
-          "Type": 5,
-          "UID": 1685916957,
-          "Width": -1.7976931348623157e+308
+          "UID": 1460924814
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SM_AcidPool",
-      "ParentUID": 6619240,
+      "Name": "SM_CaveEntrance2",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 7602275
+      "UID": 1102577664
     },
     {
       "Components": [
@@ -251,13 +213,13 @@
             0.0,
             1.0,
             0.0,
-            266.24530029296875,
-            -1.3943645171821117e-07,
-            -463.673095703125,
+            -655.4147338867188,
+            0.0,
+            -26.585594177246094,
             1.0
           ],
           "Type": 0,
-          "UID": 4238179034
+          "UID": 492744918
         },
         {
           "Active": true,
@@ -272,7 +234,7 @@
           "Name": "Mesh",
           "ParentUID": 7602275,
           "Type": 2,
-          "UID": 2446095945
+          "UID": 2949790564
         },
         {
           "ColliderType": 0,
@@ -284,16 +246,17 @@
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 7602275,
-          "Radius": 20.5,
+          "Radius": 20.0,
           "Type": 5,
-          "UID": 2055662031,
+          "UID": 949797728,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SM_Plant_3_01",
-      "ParentUID": 6619240,
+      "Name": "SM_Plant_3_1",
+      "ParentUID": 1768386117,
       "Static": false,
       "UID": 7602275
     },
@@ -302,25 +265,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.9185741543769836,
+            1.0,
             0.0,
-            -0.39524924755096436,
+            0.0,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.39524924755096436,
             0.0,
-            0.9185741543769836,
             0.0,
-            389.462158203125,
-            -3.433713936829008e-05,
-            -459.63653564453125,
+            1.0,
+            0.0,
+            -540.6718139648438,
+            -0.0002457683440297842,
+            75.18136596679688,
             1.0
           ],
           "Type": 0,
-          "UID": 2812037646
+          "UID": 3884756403
         },
         {
           "Active": true,
@@ -330,12 +293,12 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_3/lambert13.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_3/SM_Plant_3.mesh",
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
           "Name": "Mesh",
-          "ParentUID": 1156579328,
+          "ParentUID": 0,
           "Type": 2,
-          "UID": 2397674868
+          "UID": 1551334056
         },
         {
           "ColliderType": 0,
@@ -346,107 +309,45 @@
           "ObjectOrientation": 0,
           "OffsetX": 0.0,
           "OffsetY": 0.0,
-          "ParentUID": 1156579328,
-          "Radius": 20.5,
+          "ParentUID": 0,
+          "Radius": 20.0,
           "Type": 5,
-          "UID": 1503762269,
+          "UID": 3630940176,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SM_Plant_3_02",
-      "ParentUID": 6619240,
+      "Name": "SM_Stone1",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 1156579328
+      "UID": 0
     },
     {
       "Components": [
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.8106086254119873,
+            1.5196305513381958,
             0.0,
-            0.5855891704559326,
-            0.0,
-            0.0,
-            1.0,
+            -1.6150776147842407,
             0.0,
             0.0,
-            -0.5855891704559326,
+            2.217600107192993,
             0.0,
-            0.8106086254119873,
             0.0,
-            454.6271057128906,
-            -6.376171222655103e-05,
-            -266.53753662109375,
+            1.6150776147842407,
+            0.0,
+            1.5196305513381958,
+            0.0,
+            -638.9627685546875,
+            -5.336244106292725,
+            39.99554443359375,
             1.0
           ],
           "Type": 0,
-          "UID": 3395280296
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_3/lambert13.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_3/SM_Plant_3.mesh",
-          "Name": "Mesh",
-          "ParentUID": 7602275,
-          "Type": 2,
-          "UID": 2342490203
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 7602275,
-          "Radius": 20.5,
-          "Type": 5,
-          "UID": 832751667,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "SM_Plant_3_03",
-      "ParentUID": 6619240,
-      "Static": false,
-      "UID": 7602275
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            0.9830600023269653,
-            0.0,
-            -0.18328434228897095,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.18328434228897095,
-            0.0,
-            0.9830600023269653,
-            0.0,
-            -91.10775756835938,
-            1.5831627024454065e-05,
-            -391.8165588378906,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 4069517250
+          "UID": 1445132635
         },
         {
           "Active": true,
@@ -461,7 +362,7 @@
           "Name": "Mesh",
           "ParentUID": 7602275,
           "Type": 2,
-          "UID": 970596035
+          "UID": 175241787
         },
         {
           "ColliderType": 0,
@@ -473,16 +374,17 @@
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 7602275,
-          "Radius": 20.5,
+          "Radius": 40.0,
           "Type": 5,
-          "UID": 1150614781,
+          "UID": 372607596,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SM_Stone_01",
-      "ParentUID": 6619240,
+      "Name": "SM_Stone2",
+      "ParentUID": 1768386117,
       "Static": false,
       "UID": 7602275
     },
@@ -491,25 +393,89 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.0492466539144516,
+            0.7535372972488403,
             0.0,
-            -0.9987868070602417,
+            0.6574052572250366,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.9987868070602417,
+            -0.6574052572250366,
             0.0,
-            0.0492466539144516,
+            0.7535372972488403,
             0.0,
-            312.534423828125,
-            1.7282276530750096e-05,
-            117.79120635986328,
+            -606.0535278320313,
+            0.00012362649431452155,
+            -11.566329956054688,
             1.0
           ],
           "Type": 0,
-          "UID": 72981091
+          "UID": 1076783317
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Small_Rocks/lambert2.toematerial",
+          "MeshPath": "Library/Meshes/SM_Small_Rocks/pSphere3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 0,
+          "Type": 2,
+          "UID": 857227110
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 0,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 676822063,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "pSphere3_1",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 0
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            2.0002434253692627,
+            0.0,
+            0.9574838876724243,
+            0.0,
+            0.0,
+            2.217600107192993,
+            0.0,
+            0.0,
+            -0.9574838876724243,
+            0.0,
+            2.0002434253692627,
+            0.0,
+            -543.9121704101563,
+            -5.336374282836914,
+            -4.316184997558594,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4240820850
         },
         {
           "Active": true,
@@ -522,9 +488,73 @@
           "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
           "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
           "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 9837400
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 40.0,
+          "Type": 5,
+          "UID": 3353696088,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Stone3",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7535372972488403,
+            0.0,
+            0.6574052572250366,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.6574052572250366,
+            0.0,
+            0.7535372972488403,
+            0.0,
+            -477.2013854980469,
+            0.0,
+            3.4287338256835938,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2345051017
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Small_Rocks/lambert2.toematerial",
+          "MeshPath": "Library/Meshes/SM_Small_Rocks/pSphere3.mesh",
+          "Name": "Mesh",
           "ParentUID": 1040384000,
           "Type": 2,
-          "UID": 2202182205
+          "UID": 1613146067
         },
         {
           "ColliderType": 0,
@@ -536,16 +566,17 @@
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 1040384000,
-          "Radius": 20.5,
+          "Radius": 25.0,
           "Type": 5,
-          "UID": 2874745113,
+          "UID": 4016969699,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SM_Stone_02",
-      "ParentUID": 6619240,
+      "Name": "pSphere3_2",
+      "ParentUID": 1768386117,
       "Static": false,
       "UID": 1040384000
     },
@@ -554,25 +585,409 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            -0.39199525117874146,
+            0.0,
+            2.182678461074829,
             0.0,
             0.0,
+            2.217600107192993,
             0.0,
             0.0,
-            1.0,
+            -2.182678461074829,
             0.0,
+            -0.39199525117874146,
             0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -79.6340560913086,
-            0.0,
-            217.99655151367188,
+            -412.279541015625,
+            -5.336374759674072,
+            -5.6338653564453125,
             1.0
           ],
           "Type": 0,
-          "UID": 3724654100
+          "UID": 521340305
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 2828359763
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 40.0,
+          "Type": 5,
+          "UID": 1112421081,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Stone4",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -2.066314220428467,
+            0.0,
+            0.8050368428230286,
+            0.0,
+            0.0,
+            2.217600107192993,
+            0.0,
+            0.0,
+            -0.8050368428230286,
+            0.0,
+            -2.066314220428467,
+            0.0,
+            -339.52703857421875,
+            -5.336379528045654,
+            32.1993408203125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1569381941
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 1739663552
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 40.0,
+          "Type": 5,
+          "UID": 2724161444,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Stone5",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -1.4210489988327026,
+            0.0,
+            1.7024565935134888,
+            0.0,
+            0.0,
+            2.217600107192993,
+            0.0,
+            0.0,
+            -1.7024565935134888,
+            0.0,
+            -1.4210489988327026,
+            0.0,
+            -444.5926208496094,
+            -5.336381435394287,
+            54.667415618896484,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1618696794
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 1020699909
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 40.0,
+          "Type": 5,
+          "UID": 1109840563,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Stone6",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.6606518626213074,
+            0.0,
+            -0.75069260597229,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.75069260597229,
+            0.0,
+            0.6606518626213074,
+            0.0,
+            -508.0603332519531,
+            -0.00010948222188744694,
+            53.91119384765625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2261068353
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Small_Rocks/lambert2.toematerial",
+          "MeshPath": "Library/Meshes/SM_Small_Rocks/pSphere3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 3923864602
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 1395289490,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "pSphere3_3",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.6606518626213074,
+            0.0,
+            -0.75069260597229,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.75069260597229,
+            0.0,
+            0.6606518626213074,
+            0.0,
+            -351.21502685546875,
+            -0.00024833084899000823,
+            -25.36736297607422,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4035178325
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Small_Rocks/lambert2.toematerial",
+          "MeshPath": "Library/Meshes/SM_Small_Rocks/pSphere3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3994917229
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 3463621541,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "pSphere3_4",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.80033940076828,
+            0.0,
+            0.5995473861694336,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.5995473861694336,
+            0.0,
+            0.80033940076828,
+            0.0,
+            -575.0741577148438,
+            -0.00010655260848579928,
+            51.288963317871094,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 254599276
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Small_Rocks/lambert2.toematerial",
+          "MeshPath": "Library/Meshes/SM_Small_Rocks/pSphere3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3106625235
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 25.0,
+          "Type": 5,
+          "UID": 1679015063,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "pSphere3_5",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -399.58428955078125,
+            -0.0001078083150787279,
+            39.36290740966797,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2013643664
         },
         {
           "Active": true,
@@ -585,9 +1000,367 @@
           "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
           "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
           "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 3408690395
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_1",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1102577664
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.8677818179130554,
+            0.0,
+            -0.49694544076919556,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.49694544076919556,
+            0.0,
+            0.8677818179130554,
+            0.0,
+            -488.45306396484375,
+            -0.00023324639187194407,
+            28.126617431640625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2015817003
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 2369288776
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_2",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1102577664
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7709311842918396,
+            0.0,
+            0.6369187831878662,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.6369187831878662,
+            0.0,
+            0.7709311842918396,
+            0.0,
+            -551.8505859375,
+            -0.00023352072457782924,
+            42.038482666015625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2803858673
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 1533563989
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_3",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7709311842918396,
+            -1.4503349632377649e-09,
+            0.6369187831878662,
+            0.0,
+            0.02158805914223194,
+            0.99942547082901,
+            -0.02613013982772827,
+            0.0,
+            -0.6365532279014587,
+            0.03389400243759155,
+            0.7704885601997375,
+            0.0,
+            -610.4826049804688,
+            0.10801076889038086,
+            71.02544403076172,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2327110253
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 1380312255
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_4",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7709311842918396,
+            -1.4503349632377649e-09,
+            0.6369187831878662,
+            0.0,
+            0.02158805914223194,
+            0.99942547082901,
+            -0.02613013982772827,
+            0.0,
+            -0.6365532279014587,
+            0.03389400243759155,
+            0.7704885601997375,
+            0.0,
+            -595.9751586914063,
+            -1.7119674682617188,
+            13.399679183959961,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2091422252
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 110947396
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_5",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7709311842918396,
+            -1.4503349632377649e-09,
+            0.6369187831878662,
+            0.0,
+            0.02158805914223194,
+            0.99942547082901,
+            -0.02613013982772827,
+            0.0,
+            -0.6365532279014587,
+            0.03389400243759155,
+            0.7704885601997375,
+            0.0,
+            -501.17486572265625,
+            -2.068270683288574,
+            78.09304809570313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2548325336
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3605837257
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_6",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -460.8443908691406,
+            0.0,
+            -23.20538330078125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 824514737
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_3/lambert13.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_3/SM_Plant_3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 3847504445
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1102577664,
+          "Radius": 20.0,
+          "Type": 5,
+          "UID": 4228521899,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Plant_3_2",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1102577664
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -536.9403076171875,
+            0.0,
+            42.413536071777344,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1419786436
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_3/lambert13.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_3/SM_Plant_3.mesh",
+          "Name": "Mesh",
           "ParentUID": 1006632960,
           "Type": 2,
-          "UID": 3471962585
+          "UID": 1067887180
         },
         {
           "ColliderType": 0,
@@ -599,16 +1372,17 @@
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 1006632960,
-          "Radius": 10.5,
+          "Radius": 20.0,
           "Type": 5,
-          "UID": 2952415685,
+          "UID": 1117884580,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "polySurface4_01",
-      "ParentUID": 6619240,
+      "Name": "SM_Plant_3_3",
+      "ParentUID": 1768386117,
       "Static": false,
       "UID": 1006632960
     },
@@ -617,25 +1391,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.6688798069953918,
+            1.0,
             0.0,
-            0.743370532989502,
+            0.0,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            -0.743370532989502,
             0.0,
-            0.6688798069953918,
             0.0,
-            -90.64337921142578,
-            2.9928349249530584e-05,
-            448.861572265625,
+            1.0,
+            0.0,
+            -187.08619689941406,
+            0.0,
+            105.8812255859375,
             1.0
           ],
           "Type": 0,
-          "UID": 2026391664
+          "UID": 2043468167
         },
         {
           "Active": true,
@@ -645,12 +1419,12 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
           "Name": "Mesh",
-          "ParentUID": 7602275,
+          "ParentUID": 1071235683,
           "Type": 2,
-          "UID": 1828133175
+          "UID": 499519160
         },
         {
           "ColliderType": 0,
@@ -661,44 +1435,45 @@
           "ObjectOrientation": 0,
           "OffsetX": 0.0,
           "OffsetY": 0.0,
-          "ParentUID": 7602275,
-          "Radius": 10.5,
+          "ParentUID": 1071235683,
+          "Radius": 10.0,
           "Type": 5,
-          "UID": 3489326218,
+          "UID": 510671188,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "polySurface4_02",
-      "ParentUID": 6619240,
+      "Name": "SM_AlienEgg1",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 7602275
+      "UID": 1071235683
     },
     {
       "Components": [
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -0.004795645363628864,
+            1.0,
             0.0,
-            -0.9999886751174927,
+            0.0,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.9999886751174927,
             0.0,
-            -0.004795645363628864,
             0.0,
-            231.86993408203125,
-            6.879566353745759e-05,
-            242.01986694335938,
+            1.0,
+            0.0,
+            -151.363037109375,
+            0.0001220703125,
+            92.56710815429688,
             1.0
           ],
           "Type": 0,
-          "UID": 1323822426
+          "UID": 3161731676
         },
         {
           "Active": true,
@@ -708,12 +1483,12 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
           "Name": "Mesh",
-          "ParentUID": 7602275,
+          "ParentUID": 1006632960,
           "Type": 2,
-          "UID": 549018476
+          "UID": 2332839315
         },
         {
           "ColliderType": 0,
@@ -724,107 +1499,45 @@
           "ObjectOrientation": 0,
           "OffsetX": 0.0,
           "OffsetY": 0.0,
-          "ParentUID": 7602275,
-          "Radius": 10.5,
+          "ParentUID": 1006632960,
+          "Radius": 10.0,
           "Type": 5,
-          "UID": 79861618,
+          "UID": 1056478629,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "polySurface4_03",
-      "ParentUID": 6619240,
+      "Name": "SM_AlienEgg2",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 7602275
+      "UID": 1006632960
     },
     {
       "Components": [
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.7391961812973022,
+            1.0,
             0.0,
-            -0.6734904646873474,
+            0.0,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.6734904646873474,
-            0.0,
-            0.7391961812973022,
-            0.0,
-            168.58517456054688,
-            8.455981151200831e-05,
-            386.75836181640625,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 494892332
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
-          "Name": "Mesh",
-          "ParentUID": 7602275,
-          "Type": 2,
-          "UID": 3099752884
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 7602275,
-          "Radius": 10.5,
-          "Type": 5,
-          "UID": 1916963040,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "polySurface4_04",
-      "ParentUID": 6619240,
-      "Static": false,
-      "UID": 7602275
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            -0.923541247844696,
-            0.0,
-            -0.38349956274032593,
             0.0,
             0.0,
             1.0,
             0.0,
-            0.0,
-            0.38349956274032593,
-            0.0,
-            -0.923541247844696,
-            0.0,
-            160.65782165527344,
-            5.216818317421712e-05,
-            553.6792602539063,
+            -117.22831726074219,
+            0.000244140625,
+            66.803955078125,
             1.0
           ],
           "Type": 0,
-          "UID": 4010949406
+          "UID": 2224939795
         },
         {
           "Active": true,
@@ -834,186 +1547,12 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
-          "Name": "Mesh",
-          "ParentUID": 7602275,
-          "Type": 2,
-          "UID": 3483002444
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 7602275,
-          "Radius": 10.5,
-          "Type": 5,
-          "UID": 3874253543,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "polySurface4_05",
-      "ParentUID": 6619240,
-      "Static": false,
-      "UID": 7602275
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            0.8290907144546509,
-            -0.05686626955866814,
-            0.5562147498130798,
-            0.0,
-            0.5591143369674683,
-            0.08432501554489136,
-            -0.8247913122177124,
-            0.0,
-            8.66616278738519e-10,
-            0.9948145747184753,
-            0.1017078310251236,
-            0.0,
-            116.333984375,
-            0.9701826572418213,
-            -410.2597961425781,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3538388271
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
-          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
-          "Name": "Mesh",
-          "ParentUID": 2888173584,
-          "Type": 2,
-          "UID": 907561371
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "SM_Corpse",
-      "ParentUID": 6619240,
-      "Static": false,
-      "UID": 2888173584
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            -0.7150025963783264,
-            0.0,
-            0.6991220712661743,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            -0.6991220712661743,
-            0.0,
-            -0.7150025963783264,
-            0.0,
-            348.3067626953125,
-            -6.0897236835444346e-05,
-            -101.41252136230469,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3711521344
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_2/lambert11.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_2/SM_Plant_2.mesh",
-          "Name": "Mesh",
-          "ParentUID": 1040384000,
-          "Type": 2,
-          "UID": 4062912814
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 2,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 1040384000,
-          "Radius": 30.5,
-          "Type": 5,
-          "UID": 4091683593,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "SM_Plant_2_01",
-      "ParentUID": 6619240,
-      "Static": false,
-      "UID": 1040384000
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            -0.6185563802719116,
-            -0.05074651539325714,
-            -0.7841001152992249,
-            0.0,
-            -0.03143005818128586,
-            0.9987115859985352,
-            -0.039841677993535995,
-            0.0,
-            0.7851119637489319,
-            -7.310843042063198e-10,
-            -0.6193540096282959,
-            0.0,
-            166.61134338378906,
-            -0.00012199261982459575,
-            68.92047882080078,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1103992694
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Plant_2/lambert11.toematerial",
-          "MeshPath": "Library/Meshes/SM_Plant_2/SM_Plant_2.mesh",
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
           "Name": "Mesh",
           "ParentUID": 1156579328,
           "Type": 2,
-          "UID": 291906457
+          "UID": 728679032
         },
         {
           "ColliderType": 0,
@@ -1025,16 +1564,17 @@
           "OffsetX": 0.0,
           "OffsetY": 0.0,
           "ParentUID": 1156579328,
-          "Radius": 30.5,
+          "Radius": 10.0,
           "Type": 5,
-          "UID": 2121429888,
+          "UID": 3107844525,
           "Width": -1.7976931348623157e+308
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SM_Plant_2_01",
-      "ParentUID": 6619240,
+      "Name": "SM_AlienEgg3",
+      "ParentUID": 1768386117,
       "Static": false,
       "UID": 1156579328
     },
@@ -1055,1943 +1595,13 @@
             0.0,
             1.0,
             0.0,
-            0.0,
-            0.0,
-            0.0,
+            -132.35423278808594,
+            0.00036434404319152236,
+            81.90699005126953,
             1.0
           ],
           "Type": 0,
-          "UID": 3560769835
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "UiManager",
-          "Type": 4,
-          "UID": 2371490470
-        }
-      ],
-      "EditablePrefab": true,
-      "Enabled": true,
-      "GameObjects": [
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 2889362756
-            },
-            {
-              "DebugDraw": false,
-              "Enabled": false,
-              "Name": "Canvas",
-              "ParentUID": 3452816845,
-              "Rect": [
-                0.0,
-                0.0,
-                2.0,
-                2.0
-              ],
-              "Type": 6,
-              "UID": 149174467,
-              "UiElements": [
-                {
-                  "ID": 2094416682,
-                  "ImagePath": "Assets/Textures/Hud/InventoryMenu_SpriteSheet.png",
-                  "ImageSection": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Weapon",
-                  "Rect": [
-                    -0.7099999785423279,
-                    -0.15000000596046448,
-                    0.20000000298023224,
-                    0.10000000149011612
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 3854027001,
-                  "ImagePath": "Assets/Textures/Hud/Inventory_HAX.png",
-                  "ImageSection": [
-                    0.0,
-                    0.0,
-                    1.0,
-                    1.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_Background",
-                  "Rect": [
-                    0.0,
-                    0.0,
-                    1.0,
-                    1.0
-                  ],
-                  "State": 0,
-                  "Type": 0
-                }
-              ],
-              "UiTextures": [
-                {
-                  "Path": "Assets/Meshes/HUD.png"
-                },
-                {
-                  "Path": "Assets/Textures/Hud/InventoryMenu_SpriteSheet.png"
-                },
-                {
-                  "Path": "Assets/Textures/Hud/Inventory_HAX.png"
-                }
-              ]
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "UiScriptInventory",
-              "Type": 4,
-              "UID": 951121546
-            }
-          ],
-          "Enabled": false,
-          "Keeped": false,
-          "Name": "Canvas_Inventory",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 595373127
-            },
-            {
-              "DebugDraw": false,
-              "Enabled": false,
-              "Name": "Canvas",
-              "ParentUID": 3452816845,
-              "Rect": [
-                0.0,
-                0.0,
-                2.0,
-                2.0
-              ],
-              "Type": 6,
-              "UID": 594365140,
-              "UiElements": [
-                {
-                  "ID": 2658540040,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
-                  "ImageSectionHovered": [
-                    0.0,
-                    0.4722598195075989,
-                    0.24569639563560486,
-                    0.46143436431884766
-                  ],
-                  "ImageSectionIdle": [
-                    0.0,
-                    0.0,
-                    0.24569639563560486,
-                    0.46143436431884766
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_Inventory",
-                  "Rect": [
-                    -0.3499999940395355,
-                    -0.33000001311302185,
-                    0.33500000834465027,
-                    0.2800000011920929
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 1751157100,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
-                  "ImageSectionHovered": [
-                    0.24687011539936066,
-                    0.4722598195075989,
-                    0.24569639563560486,
-                    0.46143436431884766
-                  ],
-                  "ImageSectionIdle": [
-                    0.24687011539936066,
-                    0.0,
-                    0.24569639563560486,
-                    0.46143436431884766
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_Missions",
-                  "Rect": [
-                    0.33000001311302185,
-                    -0.33000001311302185,
-                    0.33500000834465027,
-                    0.2800000011920929
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 2075171387,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
-                  "ImageSectionHovered": [
-                    0.5058685541152954,
-                    0.00405954010784626,
-                    0.24256651103496552,
-                    0.22598105669021606
-                  ],
-                  "ImageSectionIdle": [
-                    0.7566510438919067,
-                    0.00405954010784626,
-                    0.24256651103496552,
-                    0.22868742048740387
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_Resume",
-                  "Rect": [
-                    -0.36000001430511475,
-                    0.15000000596046448,
-                    0.3400000035762787,
-                    0.15000000596046448
-                  ],
-                  "State": 1,
-                  "Type": 1
-                },
-                {
-                  "ID": 3024552604,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
-                  "ImageSectionHovered": [
-                    0.5058685541152954,
-                    0.25033828616142273,
-                    0.24256651103496552,
-                    0.22598105669021606
-                  ],
-                  "ImageSectionIdle": [
-                    0.7566510438919067,
-                    0.25033828616142273,
-                    0.24256651103496552,
-                    0.22868742048740387
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_Settings",
-                  "Rect": [
-                    0.3400000035762787,
-                    0.15000000596046448,
-                    0.3400000035762787,
-                    0.15000000596046448
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 2405774430,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
-                  "ImageSectionHovered": [
-                    0.5058685541152954,
-                    0.49661704897880554,
-                    0.24256651103496552,
-                    0.22868742048740387
-                  ],
-                  "ImageSectionIdle": [
-                    0.7566510438919067,
-                    0.5047361254692078,
-                    0.24256651103496552,
-                    0.22868742048740387
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_Menu",
-                  "Rect": [
-                    -0.36000001430511475,
-                    0.5099999904632568,
-                    0.3400000035762787,
-                    0.15000000596046448
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 3811829014,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
-                  "ImageSectionHovered": [
-                    0.5058685541152954,
-                    0.7550744414329529,
-                    0.24256651103496552,
-                    0.22868742048740387
-                  ],
-                  "ImageSectionIdle": [
-                    0.7566510438919067,
-                    0.7618403434753418,
-                    0.24256651103496552,
-                    0.22868742048740387
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_Save&Quit",
-                  "Rect": [
-                    0.3400000035762787,
-                    0.5099999904632568,
-                    0.3400000035762787,
-                    0.15000000596046448
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 2448393211,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
-                  "ImageSection": [
-                    0.0,
-                    0.97428959608078,
-                    0.49687010049819946,
-                    0.02841677889227867
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_Slide",
-                  "Rect": [
-                    -0.009999999776482582,
-                    -0.03999999910593033,
-                    0.6899999976158142,
-                    0.019999999552965164
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 1973608398,
-                  "ImagePath": "Assets/Textures/Hud/PauseMenu_BG.png",
-                  "ImageSection": [
-                    0.0,
-                    0.0,
-                    1.0,
-                    1.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_Background",
-                  "Rect": [
-                    0.0,
-                    0.0,
-                    0.75,
-                    0.800000011920929
-                  ],
-                  "State": 0,
-                  "Type": 0
-                }
-              ],
-              "UiTextures": [
-                {
-                  "Path": "Assets/Meshes/HUD.png"
-                },
-                {
-                  "Path": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png"
-                },
-                {
-                  "Path": "Assets/Textures/Hud/PauseMenu_BG.png"
-                }
-              ]
-            },
-            {
-              "AudioID": 10,
-              "Name": "Source",
-              "Type": 8
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "UiScriptPause",
-              "Type": 4,
-              "UID": 1275044213
-            }
-          ],
-          "Enabled": false,
-          "Keeped": false,
-          "Name": "Canvas_PauseMenu",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 75598670
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "UiScriptHud",
-              "Type": 4,
-              "UID": 3891581621
-            },
-            {
-              "DebugDraw": true,
-              "Enabled": true,
-              "Name": "Canvas",
-              "ParentUID": 3452816845,
-              "Rect": [
-                0.0,
-                0.0,
-                2.0,
-                2.0
-              ],
-              "Type": 6,
-              "UID": 948763056,
-              "UiElements": [
-                {
-                  "ID": 3176509821,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.5063938498497009,
-                    0.1190476194024086,
-                    0.05797101557254791,
-                    0.0827067643404007
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_KillsIcon",
-                  "Rect": [
-                    0.07000000029802322,
-                    -0.9300000071525574,
-                    0.03700000047683716,
-                    0.05000000074505806
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 842829015,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.35720375180244446,
-                    0.1190476194024086,
-                    0.05797101557254791,
-                    0.0827067643404007
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_CoinIcon",
-                  "Rect": [
-                    -0.14000000059604645,
-                    -0.9300000071525574,
-                    0.03700000047683716,
-                    0.05000000074505806
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 35655607,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.27450981736183167,
-                    0.0,
-                    0.3682864308357239,
-                    0.11027568578720093
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_TopBar",
-                  "Rect": [
-                    0.0,
-                    -0.9300000071525574,
-                    0.25,
-                    0.07000000029802322
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 2674015246,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.8653026223182678,
-                    0.5689222812652588,
-                    0.08525149524211884,
-                    0.12531328201293945
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_UsingWeaponIcon",
-                  "Rect": [
-                    0.8550000190734863,
-                    0.7850000262260437,
-                    0.06499999761581421,
-                    0.0949999988079071
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 712819043,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.3606138229370117,
-                    0.5989974737167358,
-                    0.3375959098339081,
-                    0.15664160251617432
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_WeaponBar",
-                  "Rect": [
-                    0.7350000143051147,
-                    0.8450000286102295,
-                    0.25,
-                    0.11999999731779099
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 1379403983,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.5814151763916016,
-                    0.26817041635513306,
-                    0.1304347813129425,
-                    0.21177944540977478
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_Character",
-                  "Rect": [
-                    -0.8299999833106995,
-                    -0.7799999713897705,
-                    0.10000000149011612,
-                    0.15000000596046448
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 538784177,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.007672634441405535,
-                    0.0,
-                    0.25745949149131775,
-                    0.07769423723220825
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_LifeBar",
-                  "Rect": [
-                    -0.6100000143051147,
-                    -0.6499999761581421,
-                    0.15000000596046448,
-                    0.05000000074505806
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 1568388406,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.06564364582300186,
-                    0.08897243440151215,
-                    0.03324808180332184,
-                    0.05388471111655235
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_LifeIcon",
-                  "Rect": [
-                    -0.4399999976158142,
-                    -0.6399999856948853,
-                    0.02500000037252903,
-                    0.03400000184774399
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 470330285,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.11679454147815704,
-                    0.09273182600736618,
-                    0.03324808180332184,
-                    0.04385964944958687
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_ShieldIcon",
-                  "Rect": [
-                    -0.4300000071525574,
-                    -0.7200000286102295,
-                    0.019999999552965164,
-                    0.02500000037252903
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 2584368681,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.695652186870575,
-                    0.0,
-                    0.303495317697525,
-                    0.10025062412023544
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_MissionTitleBar",
-                  "Rect": [
-                    0.7699999809265137,
-                    -0.8899999856948853,
-                    0.20000000298023224,
-                    0.07999999821186066
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 3441965934,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSection": [
-                    0.8320545554161072,
-                    0.11403508484363556,
-                    0.15260016918182373,
-                    0.04385964944958687
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_MissionDescripionBar",
-                  "Rect": [
-                    0.800000011920929,
-                    -0.7799999713897705,
-                    0.15000000596046448,
-                    0.05000000074505806
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 2960779948,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.5933504104614258,
-                    0.7969924807548523,
-                    0.04433077573776245,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionIdle": [
-                    0.5933504104614258,
-                    0.8771929740905762,
-                    0.04433077573776245,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_HealIcon",
-                  "Rect": [
-                    -0.8299999833106995,
-                    -0.5600000023841858,
-                    0.03500000014901161,
-                    0.04500000178813934
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 2074112365,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.18414321541786194,
-                    0.2268170416355133,
-                    0.17902813851833344,
-                    0.3345864713191986
-                  ],
-                  "ImageSectionIdle": [
-                    0.0,
-                    0.2268170416355133,
-                    0.17902813851833344,
-                    0.3345864713191986
-                  ],
-                  "ImageSectionSelected": [
-                    0.3691389560699463,
-                    0.2268170416355133,
-                    0.17902813851833344,
-                    0.3345864713191986
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_HealLayout",
-                  "Rect": [
-                    -0.8299999833106995,
-                    -0.7300000190734863,
-                    0.14399999380111694,
-                    0.25
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 2086596910,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.6530264019966125,
-                    0.7969924807548523,
-                    0.04433077573776245,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionIdle": [
-                    0.6530264019966125,
-                    0.8771929740905762,
-                    0.04433077573776245,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponIcon1",
-                  "Rect": [
-                    -0.8650000095367432,
-                    -0.20999999344348907,
-                    0.03500000014901161,
-                    0.04500000178813934
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 3544150121,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.11338448524475098,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionIdle": [
-                    0.006820119451731443,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionSelected": [
-                    0.21994884312152863,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponSlot1",
-                  "Rect": [
-                    -0.8600000143051147,
-                    -0.20999999344348907,
-                    0.07000000029802322,
-                    0.10000000149011612
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 3286532927,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.7118499279022217,
-                    0.7969924807548523,
-                    0.04433077573776245,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionIdle": [
-                    0.7118499279022217,
-                    0.8771929740905762,
-                    0.04433077573776245,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponIcon2",
-                  "Rect": [
-                    -0.8650000095367432,
-                    -0.019999999552965164,
-                    0.03500000014901161,
-                    0.04500000178813934
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 812891308,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.11338448524475098,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionIdle": [
-                    0.006820119451731443,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionSelected": [
-                    0.21994884312152863,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponSlot2",
-                  "Rect": [
-                    -0.8600000143051147,
-                    -0.019999999552965164,
-                    0.07000000029802322,
-                    0.10000000149011612
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 4200218886,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.7791986465454102,
-                    0.7969924807548523,
-                    0.05456095561385155,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionIdle": [
-                    0.7791986465454102,
-                    0.8771929740905762,
-                    0.05456095561385155,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponIcon3",
-                  "Rect": [
-                    -0.8650000095367432,
-                    0.18000000715255737,
-                    0.03999999910593033,
-                    0.04500000178813934
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 858232316,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.11338448524475098,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionIdle": [
-                    0.006820119451731443,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionSelected": [
-                    0.21994884312152863,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponSlot3",
-                  "Rect": [
-                    -0.8600000143051147,
-                    0.17000000178813934,
-                    0.07000000029802322,
-                    0.10000000149011612
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 719882176,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.8559249639511108,
-                    0.7969924807548523,
-                    0.06479113548994064,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionIdle": [
-                    0.8559249639511108,
-                    0.8771929740905762,
-                    0.06479113548994064,
-                    0.06516290456056595
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponIcon4",
-                  "Rect": [
-                    -0.8650000095367432,
-                    0.36000001430511475,
-                    0.04500000178813934,
-                    0.04500000178813934
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "ID": 62019211,
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.11338448524475098,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionIdle": [
-                    0.006820119451731443,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "ImageSectionSelected": [
-                    0.21994884312152863,
-                    0.6127819418907166,
-                    0.10059676319360733,
-                    0.13533835113048553
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_WeaponSlot4",
-                  "Rect": [
-                    -0.8600000143051147,
-                    0.36000001430511475,
-                    0.07000000029802322,
-                    0.10000000149011612
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "AdditionalOffsetFirst": 0.0,
-                  "AdditionalOffsetLast": 0.0,
-                  "ID": 1812522691,
-                  "ImageFirstSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionIdle": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionIdle": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionIdle": [
-                    0.013640238903462887,
-                    0.08646616339683533,
-                    0.034100595861673355,
-                    0.05388471111655235
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "MaxValue": 10,
-                  "MinValue": 0,
-                  "Name": "Slider_HP",
-                  "Offset": -0.009999999776482582,
-                  "Rect": [
-                    -0.7170000076293945,
-                    -0.6449999809265137,
-                    0.019999999552965164,
-                    0.03999999910593033
-                  ],
-                  "SliderDesign": 0,
-                  "State": 0,
-                  "Type": 2,
-                  "Value": 10
-                },
-                {
-                  "AdditionalOffsetFirst": 0.0,
-                  "AdditionalOffsetLast": 0.0,
-                  "ID": 1464574036,
-                  "ImageFirstSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionIdle": [
-                    0.7740835547447205,
-                    0.5338345766067505,
-                    0.052855923771858215,
-                    0.033834587782621384
-                  ],
-                  "ImageFirstSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionIdle": [
-                    0.9309462904930115,
-                    0.5338345766067505,
-                    0.052855923771858215,
-                    0.033834587782621384
-                  ],
-                  "ImageLastSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionIdle": [
-                    0.8277919888496399,
-                    0.5338345766067505,
-                    0.05115089565515518,
-                    0.033834587782621384
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "MaxValue": 4,
-                  "MinValue": 0,
-                  "Name": "Slider_Shield",
-                  "Offset": 0.009999999776482582,
-                  "Rect": [
-                    -0.6800000071525574,
-                    -0.7250000238418579,
-                    0.029999999329447746,
-                    0.02500000037252903
-                  ],
-                  "SliderDesign": 1,
-                  "State": 0,
-                  "Type": 2,
-                  "Value": 4
-                },
-                {
-                  "AdditionalOffsetFirst": 0.0,
-                  "AdditionalOffsetLast": 0.0,
-                  "ID": 388535485,
-                  "ImageFirstSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionIdle": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageFirstSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionIdle": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageLastSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImagePath": "Assets/Textures/Hud/HUD_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionIdle": [
-                    0.7058823704719543,
-                    0.602756917476654,
-                    0.03069053776562214,
-                    0.04511278122663498
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "MaxValue": 10,
-                  "MinValue": 0,
-                  "Name": "Slider_Ammo",
-                  "Offset": -0.012000000104308128,
-                  "Rect": [
-                    0.4749999940395355,
-                    0.9150000214576721,
-                    0.019999999552965164,
-                    0.029999999329447746
-                  ],
-                  "SliderDesign": 0,
-                  "State": 0,
-                  "Type": 2,
-                  "Value": 10
-                }
-              ],
-              "UiTextures": [
-                {
-                  "Path": "Assets/Meshes/HUD.png"
-                },
-                {
-                  "Path": "Assets/Textures/Hud/HUD_SpriteSheet.png"
-                }
-              ]
-            }
-          ],
-          "Enabled": true,
-          "Keeped": false,
-          "Name": "Canvas_Hud",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 2450476722
-            },
-            {
-              "DebugDraw": false,
-              "Enabled": false,
-              "Name": "Canvas",
-              "ParentUID": 3452816845,
-              "Rect": [
-                0.0,
-                0.0,
-                2.0,
-                2.0
-              ],
-              "Type": 6,
-              "UID": 703908814,
-              "UiElements": [
-                {
-                  "ID": 2893125401,
-                  "ImagePath": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.746671736240387,
-                    0.1111111119389534,
-                    0.22251807153224945,
-                    0.03703703731298447
-                  ],
-                  "ImageSectionIdle": [
-                    0.746671736240387,
-                    0.1111111119389534,
-                    0.22251807153224945,
-                    0.03703703731298447
-                  ],
-                  "ImageSectionSelected": [
-                    0.746671736240387,
-                    0.14814814925193787,
-                    0.22251807153224945,
-                    0.03703703731298447
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_PressToContinue",
-                  "Rect": [
-                    0.0,
-                    0.6399999856948853,
-                    0.3499999940395355,
-                    0.03500000014901161
-                  ],
-                  "State": 2,
-                  "Type": 1
-                },
-                {
-                  "ID": 3684267540,
-                  "ImagePath": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png",
-                  "ImageSection": [
-                    0.0,
-                    0.0,
-                    0.7318372130393982,
-                    1.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_Background",
-                  "Rect": [
-                    0.0,
-                    0.0,
-                    1.0,
-                    1.0
-                  ],
-                  "State": 0,
-                  "Type": 0
-                }
-              ],
-              "UiTextures": [
-                {
-                  "Path": "Assets/Meshes/HUD.png"
-                },
-                {
-                  "Path": "Assets/Textures/Hud/DeathScreen_SpriteSheet.png"
-                }
-              ]
-            }
-          ],
-          "Enabled": false,
-          "Keeped": false,
-          "Name": "Canvas_Death",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 4226595400
-            },
-            {
-              "DebugDraw": true,
-              "Enabled": false,
-              "Name": "Canvas",
-              "ParentUID": 3452816845,
-              "Rect": [
-                0.0,
-                0.0,
-                2.0,
-                2.0
-              ],
-              "Type": 6,
-              "UID": 3703257962,
-              "UiElements": [
-                {
-                  "CheckerActive": false,
-                  "ID": 3627327478,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.8039215803146362,
-                    0.23904383182525635,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.8039215803146362,
-                    0.019920319318771362,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdle": [
-                    0.04411764815449715,
-                    0.24302789568901062,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.04411764815449715,
-                    0.007968127727508545,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Checker_ColliderRender",
-                  "Rect": [
-                    -0.23000000417232513,
-                    -0.25,
-                    0.04500000178813934,
-                    0.06499999761581421
-                  ],
-                  "State": 1,
-                  "Type": 3
-                },
-                {
-                  "ID": 2783314550,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSection": [
-                    0.3186274468898773,
-                    0.01593625545501709,
-                    0.47058823704719543,
-                    0.0717131495475769
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_ColliderRenderText",
-                  "Rect": [
-                    0.07999999821186066,
-                    -0.2549999952316284,
-                    0.20000000298023224,
-                    0.054999999701976776
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "CheckerActive": false,
-                  "ID": 1104865335,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.8039215803146362,
-                    0.23904383182525635,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.8039215803146362,
-                    0.019920319318771362,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdle": [
-                    0.04411764815449715,
-                    0.24302789568901062,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.04411764815449715,
-                    0.007968127727508545,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Checker_GridRender",
-                  "Rect": [
-                    -0.23000000417232513,
-                    -0.10499999672174454,
-                    0.04500000178813934,
-                    0.06499999761581421
-                  ],
-                  "State": 0,
-                  "Type": 3
-                },
-                {
-                  "ID": 3721305001,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSection": [
-                    0.3284313678741455,
-                    0.10358566045761108,
-                    0.45098039507865906,
-                    0.09561753273010254
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_GridRenderText",
-                  "Rect": [
-                    0.07999999821186066,
-                    -0.11500000208616257,
-                    0.20000000298023224,
-                    0.054999999701976776
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "CheckerActive": false,
-                  "ID": 2733507575,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.8039215803146362,
-                    0.23904383182525635,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.8039215803146362,
-                    0.019920319318771362,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdle": [
-                    0.04411764815449715,
-                    0.24302789568901062,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.04411764815449715,
-                    0.007968127727508545,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Checker_GodMode",
-                  "Rect": [
-                    -0.23000000417232513,
-                    0.05000000074505806,
-                    0.04500000178813934,
-                    0.06499999761581421
-                  ],
-                  "State": 0,
-                  "Type": 3
-                },
-                {
-                  "ID": 2524926483,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSection": [
-                    0.3235294222831726,
-                    0.2151394486427307,
-                    0.46568626165390015,
-                    0.07968127727508545
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_GodModeText",
-                  "Rect": [
-                    0.07999999821186066,
-                    0.029999999329447746,
-                    0.20000000298023224,
-                    0.054999999701976776
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "CheckerActive": false,
-                  "ID": 3289454944,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.8039215803146362,
-                    0.23904383182525635,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.8039215803146362,
-                    0.019920319318771362,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdle": [
-                    0.04411764815449715,
-                    0.24302789568901062,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.04411764815449715,
-                    0.007968127727508545,
-                    0.22058823704719543,
-                    0.17928287386894226
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Checker_ExtraSpeed",
-                  "Rect": [
-                    -0.23000000417232513,
-                    0.20999999344348907,
-                    0.04500000178813934,
-                    0.06499999761581421
-                  ],
-                  "State": 0,
-                  "Type": 3
-                },
-                {
-                  "ID": 2915927967,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSection": [
-                    0.3235294222831726,
-                    0.33864542841911316,
-                    0.46078431606292725,
-                    0.06374502182006836
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_ExtraSpeedText",
-                  "Rect": [
-                    0.07999999821186066,
-                    0.20999999344348907,
-                    0.20000000298023224,
-                    0.054999999701976776
-                  ],
-                  "State": 0,
-                  "Type": 0
-                },
-                {
-                  "ID": 1452984914,
-                  "ImagePath": "Assets/Textures/Hud/Debug_SpriteSheet.png",
-                  "ImageSection": [
-                    0.0,
-                    0.47011953592300415,
-                    0.9950980544090271,
-                    0.5298804640769958
-                  ],
-                  "Interactuable": false,
-                  "Name": "Img_Background",
-                  "Rect": [
-                    0.0,
-                    -0.019999999552965164,
-                    0.3449999988079071,
-                    0.4000000059604645
-                  ],
-                  "State": 0,
-                  "Type": 0
-                }
-              ],
-              "UiTextures": [
-                {
-                  "Path": "Assets/Meshes/HUD.png"
-                },
-                {
-                  "Path": "Assets/Textures/Hud/Debug_SpriteSheet.png"
-                }
-              ]
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "UiScriptDebug",
-              "Type": 4,
-              "UID": 607510851
-            },
-            {
-              "AudioID": 11,
-              "Name": "AudioSource",
-              "Type": 8
-            }
-          ],
-          "Enabled": false,
-          "Keeped": false,
-          "Name": "Canvas_Debug",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        }
-      ],
-      "Keeped": false,
-      "Name": "UI_Manager",
-      "ParentUID": 6619240,
-      "PrefabDirty": false,
-      "PrefabID": 3384124749,
-      "PrefabName": "UI_Manager",
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 47571003
+          "UID": 3768207679
         },
         {
           "Active": true,
@@ -3001,51 +1611,36 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
-          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
           "Name": "Mesh",
-          "ParentUID": 113510800,
+          "ParentUID": 1040384000,
           "Type": 2,
-          "UID": 3098960481
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 113510800,
-          "ScriptName": "PlayerScript",
-          "Type": 4,
-          "UID": 225613267
-        },
-        {
-          "AudioID": 12,
-          "Name": "AudioSource",
-          "Type": 8
+          "UID": 174635497
         },
         {
           "ColliderType": 0,
-          "CollisionType": 0,
+          "CollisionType": 2,
           "CornerPivot": true,
           "Height": -1.7976931348623157e+308,
           "Name": "Collider2D",
           "ObjectOrientation": 0,
           "OffsetX": 0.0,
           "OffsetY": 0.0,
-          "ParentUID": 113510800,
-          "Radius": 12.0,
+          "ParentUID": 1040384000,
+          "Radius": 10.0,
           "Type": 5,
-          "UID": 3282283334,
+          "UID": 4193980425,
           "Width": -1.7976931348623157e+308
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "SK_MainCharacter",
-      "ParentUID": 6619240,
-      "PrefabDirty": false,
-      "PrefabID": 186710944,
-      "PrefabName": "SK_MainCharacter",
+      "Name": "SM_AlienEgg4",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 113510800
+      "UID": 1040384000
     },
     {
       "Components": [
@@ -3064,32 +1659,52 @@
             0.0,
             1.0,
             0.0,
-            0.0,
-            0.0,
-            0.0,
+            -170.03143310546875,
+            0.00036435367655940354,
+            100.02461242675781,
             1.0
           ],
           "Type": 0,
-          "UID": 672686657
+          "UID": 148681607
         },
         {
-          "Name": "Script",
-          "ParentUID": 6619240,
-          "ScriptName": "GameManager",
-          "Type": 4,
-          "UID": 467118552
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1006632960,
+          "Type": 2,
+          "UID": 4151721168
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1006632960,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3438534255,
+          "Width": -1.7976931348623157e+308
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "GameManager",
-      "ParentUID": 6619240,
-      "PrefabDirty": false,
-      "PrefabID": 3294318030,
-      "PrefabName": "GameManager",
+      "Name": "SM_AlienEgg5",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 6619240
+      "UID": 1006632960
     },
     {
       "Components": [
@@ -3108,32 +1723,2055 @@
             0.0,
             1.0,
             0.0,
-            0.0,
-            0.0,
-            0.0,
+            -108.9261474609375,
+            0.0003643966338131577,
+            88.89948272705078,
             1.0
           ],
           "Type": 0,
-          "UID": 4180287200
+          "UID": 2023961967
         },
         {
-          "Name": "Script",
-          "ParentUID": 6619240,
-          "ScriptName": "ItemManager",
-          "Type": 4,
-          "UID": 2738842466
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 0,
+          "Type": 2,
+          "UID": 2013435319
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 0,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2403531914,
+          "Width": -1.7976931348623157e+308
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
-      "Name": "ItemManager",
-      "ParentUID": 6619240,
-      "PrefabDirty": false,
-      "PrefabID": 1145673280,
-      "PrefabName": "ItemManager",
+      "Name": "SM_AlienEgg6",
+      "ParentUID": 1768386117,
       "Static": false,
-      "UID": 6619240
+      "UID": 0
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -138.3958282470703,
+            0.00036440847907215357,
+            104.41626739501953,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2905502465
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 3501801894
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 196761107,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg7",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -163.60763549804688,
+            0.0003627403930295259,
+            115.71194458007813,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2389356160
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 1108883834
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2627570913,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg8",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            344.8538818359375,
+            0.00024210847914218903,
+            229.55364990234375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2431891792
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 2698095473
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2694465548,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg9",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            362.620849609375,
+            0.00024216948077082634,
+            246.07717895507813,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2277685423
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 812039473
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2327355772,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg10",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            384.4805603027344,
+            0.00024220862542279065,
+            256.5824279785156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3889105749
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 193236977
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1156579328,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 249407391,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg11",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            406.4764709472656,
+            0.0002422440447844565,
+            266.0655517578125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1056517502
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 3999543222
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3855742901,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg12",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            341.8621520996094,
+            0.00024219960323534906,
+            254.51828002929688,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2585640822
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 3355702217
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 168651897,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg13",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            365.7804260253906,
+            0.00024224846856668591,
+            267.6605224609375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3560876150
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 150075470
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3573293563,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg14",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            460.0415344238281,
+            0.0002426453575026244,
+            385.50714111328125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1173306324
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3798057889
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3187726550,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg15",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            485.6167297363281,
+            0.00024258064513560385,
+            390.814208984375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 748748970
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 4271997946
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 347659569,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg16",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            515.1221923828125,
+            0.00024250302521977574,
+            393.0798645019531,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3936824938
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 4029366432
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 734782761,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg17",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            617.3378295898438,
+            0.00024212001881096512,
+            252.69151306152344,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 780193980
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 1257296867
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 499881431,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg18",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            722.5289306640625,
+            0.000242715235799551,
+            -247.67884826660156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 222843789
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 180718330
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 221077607,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg19",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            726.6370849609375,
+            0.0002426781866233796,
+            -279.347900390625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3779722832
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 2952008021
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2486063379,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg20",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            697.5328979492188,
+            0.00024259844212792814,
+            -285.0349426269531,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 744437154
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1102577664,
+          "Type": 2,
+          "UID": 2100287749
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1102577664,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2609541386,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg21",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1102577664
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9793232083320618,
+            0.0,
+            0.20230308175086975,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.20230308175086975,
+            0.0,
+            0.9793232083320618,
+            0.0,
+            -232.6011962890625,
+            0.0,
+            88.91649627685547,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1647243530
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Biomech_Screen/lambert5.toematerial",
+          "MeshPath": "Library/Meshes/SM_Biomech_Screen/SM_Biomech_Screen.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1156579328,
+          "Type": 2,
+          "UID": 3258951332
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 10.0,
+          "ParentUID": 1156579328,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2345702914,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Biomech_Screen",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.8335945010185242,
+            0.0,
+            4.536653518676758,
+            0.0,
+            0.0,
+            4.612607955932617,
+            0.0,
+            0.0,
+            -4.536653518676758,
+            0.0,
+            0.8335945010185242,
+            0.0,
+            6.734991073608398,
+            -5.336274147033691,
+            9.61334228515625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3045577129
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1040384000,
+          "Type": 2,
+          "UID": 3301762976
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1040384000,
+          "Radius": 80.0,
+          "Type": 5,
+          "UID": 1641265909,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Stone7",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1040384000
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            4.330645561218262,
+            0.0,
+            -1.5879467725753784,
+            0.0,
+            0.0,
+            4.612607955932617,
+            0.0,
+            0.0,
+            1.5879467725753784,
+            0.0,
+            4.330645561218262,
+            0.0,
+            140.4963836669922,
+            -5.33617639541626,
+            49.836219787597656,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 434307595
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 2772178847
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3853182496,
+          "Radius": 80.0,
+          "Type": 5,
+          "UID": 617969971,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Stone8",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            3.2259204387664795,
+            0.0,
+            3.296898365020752,
+            0.0,
+            0.0,
+            4.612607955932617,
+            0.0,
+            0.0,
+            -3.296898365020752,
+            0.0,
+            3.2259204387664795,
+            0.0,
+            230.8065185546875,
+            -5.336174964904785,
+            -89.68788146972656,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3821752530
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
+          "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1006632960,
+          "Type": 2,
+          "UID": 417635737
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1006632960,
+          "Radius": 80.0,
+          "Type": 5,
+          "UID": 2228116611,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Stone9",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1006632960
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.5556726455688477,
+            -0.055146895349025726,
+            -0.8240285515785217,
+            0.0,
+            0.03802305459976196,
+            1.7602880001068115,
+            -0.04602299630641937,
+            0.0,
+            0.8249954581260681,
+            0.02286076731979847,
+            1.5559695959091187,
+            0.0,
+            99.17098999023438,
+            -17.893268585205078,
+            -31.196243286132813,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2891385619
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3853182496,
+          "Type": 2,
+          "UID": 1059084715
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_7",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 3853182496
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.5386039018630981,
+            -0.03220125660300255,
+            -1.6766196489334106,
+            0.0,
+            0.03802305459976196,
+            1.7602880001068115,
+            -0.04602299630641937,
+            0.0,
+            1.6764962673187256,
+            -0.05026800557971001,
+            -0.537598192691803,
+            0.0,
+            47.67530059814453,
+            -13.456890106201172,
+            95.94683837890625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 816139162
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 1850059158
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_8",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.5473587512969971,
+            -0.03193804994225502,
+            -1.6737868785858154,
+            0.0,
+            0.03802305459976196,
+            1.7602880001068115,
+            -0.04602299630641937,
+            0.0,
+            1.673657774925232,
+            -0.05043559521436691,
+            -0.5463541746139526,
+            0.0,
+            236.67822265625,
+            -19.924427032470703,
+            4.711368560791016,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1336598015
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Plant_1/lambert9.toematerial",
+          "MeshPath": "Library/Meshes/SM_Plant_1/polySurface4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3667991430
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "polySurface4_9",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -72.02291107177734,
+            0.00024336519709322602,
+            57.51873016357422,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 842941148
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1040384000,
+          "Type": 2,
+          "UID": 3145110493
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1040384000,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 487862700,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg22",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1040384000
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -48.027679443359375,
+            0.0002433917106827721,
+            83.77823638916016,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1630624786
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1985021056,
+          "Type": 2,
+          "UID": 236796580
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1985021056,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3088516294,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg23",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1985021056
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -70.16978454589844,
+            0.00024340157688129693,
+            84.75227355957031,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4176417611
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3272603152
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3602392351,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg24",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            84.2593994140625,
+            0.00024329556617885828,
+            32.196224212646484,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 374947016
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1985021056,
+          "Type": 2,
+          "UID": 3909711352
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1985021056,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 4004695705,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg25",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1985021056
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            76.47899627685547,
+            0.00024334101181011647,
+            56.74652862548828,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 496983782
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 573085767
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2961461912,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg26",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            90.85726928710938,
+            0.0003707305295392871,
+            67.15193939208984,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2256920644
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 2385194342
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1351739364,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg27",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            72.84078979492188,
+            0.00037088352837599814,
+            -328.2565002441406,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3920732719
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1040384000,
+          "Type": 2,
+          "UID": 4132944676
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1040384000,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2320106979,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg28",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1040384000
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            98.86184692382813,
+            0.00037072112900204957,
+            -345.0606689453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 664331797
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 7602275,
+          "Type": 2,
+          "UID": 3310065393
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 7602275,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2143202341,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg29",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            134.00057983398438,
+            0.00037043722113594413,
+            -350.0115051269531,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 56476994
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1985021056,
+          "Type": 2,
+          "UID": 745164983
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1985021056,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3258880849,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg30",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1985021056
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            124.82286071777344,
+            0.00037043221527710557,
+            -329.0583801269531,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3859390579
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienEgg/M_AlienEgg.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienEgg/SM_AlienEgg.mesh",
+          "Name": "Mesh",
+          "ParentUID": 1985021056,
+          "Type": 2,
+          "UID": 2413410391
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 2,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 1985021056,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1146685774,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienEgg31",
+      "ParentUID": 1768386117,
+      "Static": false,
+      "UID": 1985021056
     }
   ],
   "index": 0,

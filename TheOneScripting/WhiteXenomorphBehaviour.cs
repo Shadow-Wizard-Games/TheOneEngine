@@ -52,6 +52,11 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
+    // particles
+    IGameObject acidSpitPSGO;
+    IGameObject tailAttackPSGO;
+    IGameObject deathPSGO;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
@@ -62,6 +67,10 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         attachedGameObject.animator.Play("Walk");
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.transitionTime = 0.0f;
+
+        acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS");
+        tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS");
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
     }
 
     public override void Update()
@@ -163,6 +172,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Dead:
                 attachedGameObject.animator.Play("Death");
+                if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
                 break;
             default:
                 break;
@@ -177,11 +187,15 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
             {
                 currentAttack = WhiteXenomorphAttacks.ClawAttack;
                 attachedGameObject.animator.Play("TailAttack");
+
+                if (tailAttackPSGO != null) tailAttackPSGO.GetComponent<IParticleSystem>().Play();
             }
             else
             {
                 currentAttack = WhiteXenomorphAttacks.TailTrip;
                 attachedGameObject.animator.Play("Spit");
+
+                if (acidSpitPSGO != null) acidSpitPSGO.GetComponent<IParticleSystem>().Play();
             }
             //Debug.Log("Chestburster current attack: " + currentAttack);
         }

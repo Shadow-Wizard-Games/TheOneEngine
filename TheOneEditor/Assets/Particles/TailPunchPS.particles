@@ -1,0 +1,61 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.5,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "MinDirection": [
+            -0.5,
+            0.0,
+            1.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 100.0,
+          "MinSpeed": 80.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 20.0,
+          "Duration": 0.30000001192092896,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "TailPunchPS",
+  "StartON": false,
+  "Type": 9,
+  "UID": 3342647550
+}
