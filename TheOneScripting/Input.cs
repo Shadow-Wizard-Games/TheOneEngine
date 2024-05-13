@@ -11,8 +11,16 @@ public class Input
 		S = 22,
 		W = 26,
 		E = 8,
+		F = 9,
+		G = 10,
 		K = 14,
 		I = 12,
+		Q = 20,
+		R = 21,
+		T = 23,
+		F1 = 58,
+		F2 = 59,
+		F3 = 60,
 		RIGHT = 79,
 		LEFT = 80,
 		DOWN = 81,
@@ -39,29 +47,30 @@ public class Input
 
 	public enum ControllerButtonCode
 	{
-		A,
-		B,
-		X,
-		Y,
-		BACK,
-		GUIDE,
-		START,
-		L3,
-		R3,
-		L1,
-		R1,
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT
+		A = 0,
+		B = 1,
+		X = 2,
+		Y = 3,
+		BACK = 4,
+		GUIDE = 5,
+		START = 6,
+		L3 = 7,
+		R3 = 8,
+		L1 = 9,
+		R1 = 10,
+		UP = 11,
+		DOWN = 12,
+		LEFT = 13,
+		RIGHT = 14,
 
-		//L2,
-		//R2,
+		L2 = 22,
+		R2 = 23,
 	}
 
 	public enum ControllerJoystickCode
 	{
-		JOY_LEFT, JOY_RIGHT
+		JOY_LEFT,
+		JOY_RIGHT,
 	}
 
 	public static bool GetKeyboardButton(KeyboardCode key)

@@ -30,6 +30,8 @@ public class UiScriptPause : MonoBehaviour
         gameManager = GameManagerGO.GetComponent<GameManager>();
 
         onCooldown = true;
+
+        canvas.MoveSelectionButton(2 - canvas.GetSelectedButton());
     }
 
     public override void Update()
@@ -79,12 +81,12 @@ public class UiScriptPause : MonoBehaviour
             {
                 if (movementVector.y > 0.0f)
                 {
-                    direction = +2;
+                    direction = -2;
                     toMove = true;
                 }
                 else if (movementVector.y < 0.0f)
                 {
-                    direction = -2;
+                    direction = +2;
                     toMove = true;
                 }
             }
@@ -117,10 +119,22 @@ public class UiScriptPause : MonoBehaviour
                 menuManager.OpenMenu(UiManager.MenuState.Inventory);
             }
 
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+            {
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                menuManager.OpenMenu(UiManager.MenuState.Missions);
+            }
+
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.ResumeGame();
+            }
+
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
+            {
+                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                menuManager.OpenMenu(UiManager.MenuState.Settings);
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)

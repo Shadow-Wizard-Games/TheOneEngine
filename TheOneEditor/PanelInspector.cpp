@@ -669,14 +669,14 @@ bool PanelInspector::Draw()
                             changeUIName[0] = '\0';
                         }
                         //move up/down in hierarchy
-                        if (ImGui::ArrowButton("Move Up in uiElements vector", 2) && counter > 0)
+                        if (ImGui::ArrowButton(("Move Up in uiElements vector##" + std::to_string(item->GetID())).c_str(), 2) && counter > 0)
                         {
                             std::swap(tempCanvas->GetUiElementsPtr()[counter], tempCanvas->GetUiElementsPtr()[counter - 1]);
                             break;
                         }
                         ImGui::SameLine();
                         ImGui::Text("  Move Up");
-                        if (ImGui::ArrowButton("Move Down in uiElements vector", 3) && counter < tempCanvas->GetUiElements().size() - 1)
+                        if (ImGui::ArrowButton(("Move Down in uiElements vector##" + std::to_string(item->GetID())).c_str(), 3) && counter < tempCanvas->GetUiElements().size() - 1)
                         {
                             std::swap(tempCanvas->GetUiElementsPtr()[counter], tempCanvas->GetUiElementsPtr()[counter + 1]);
                             break;
@@ -744,6 +744,11 @@ bool PanelInspector::Draw()
                             ButtonImageUI* tempButtonImageUI = tempCanvas->GetItemUI<ButtonImageUI>(id);
                             ImGui::Text("UiType: BUTTONIMAGE");
                             ImGui::Text("Image Path: %s", tempButtonImageUI->GetPath().c_str());
+
+                            bool countAsRealButton = tempButtonImageUI->IsRealButton();
+                            ImGui::Checkbox(("Count As Real Button##" + std::to_string(item->GetID())).c_str(), &countAsRealButton);
+                            tempButtonImageUI->SetIsRealButton(countAsRealButton);
+
                             if (ImGui::CollapsingHeader("Image section IDLE info: ", treeNodeFlags))
                             {
                                 if (ImGui::Button("Set current Section ptr as idle"))
@@ -839,7 +844,7 @@ bool PanelInspector::Draw()
                         {
                             SliderUI* tempSliderUI = tempCanvas->GetItemUI<SliderUI>(id);
                             ImGui::Text("UiType: SLIDER");
-                            if (ImGui::Button("Change Slider Design"))
+                            if (ImGui::Button(("Change Slider Design##" + std::to_string(item->GetID())).c_str()))
                             {
                                 int sliderDesign = (int)tempSliderUI->GetSliderDesign() + 1;
                                 if (sliderDesign >= 2)
@@ -866,27 +871,27 @@ bool PanelInspector::Draw()
                             ImGui::Text("Image Path: %s", tempSliderUI->GetPath().c_str());
 
                             float tempOffset = tempSliderUI->GetOffset();
-                            ImGui::DragFloat("Slider Offset", &tempOffset, 0.002f, 0.0f);
+                            ImGui::DragFloat(("Slider Offset##" + std::to_string(item->GetID())).c_str(), &tempOffset, 0.002f, 0.0f);
                             tempSliderUI->SetOffset(tempOffset);
 
                             int tempCurrentValue = tempSliderUI->GetValue();
-                            ImGui::DragInt("Slider Current Value", &tempCurrentValue, 1, 0, tempSliderUI->GetMaxValue());
+                            ImGui::DragInt(("Slider Current Value##" + std::to_string(item->GetID())).c_str(), &tempCurrentValue, 1, 0, tempSliderUI->GetMaxValue());
                             tempSliderUI->SetValue(tempCurrentValue);
 
                             int tempMaxValue = tempSliderUI->GetMaxValue();
-                            ImGui::DragInt("Slider Max Value", &tempMaxValue, 1, tempSliderUI->GetValue());
+                            ImGui::DragInt(("Slider Max Value##" + std::to_string(item->GetID())).c_str(), &tempMaxValue, 1, tempSliderUI->GetValue());
                             tempSliderUI->SetMaxValue(tempMaxValue);
 
                             if (tempSliderUI->GetSliderDesign() == SliderDesign::SAMEFOREACH)
                             {
-                                if (ImGui::ArrowButton("Change Section to edit Left 1", 0))
+                                if (ImGui::ArrowButton(("Change Section to edit Left 1##" + std::to_string(item->GetID())).c_str(), 0))
                                 {
                                     sliderActivePart = !sliderActivePart;
                                 }
                                 ImGui::SameLine();
                                 ImGui::Text(sliderActivePart ? "  Activated Part  " : "  Disabled Part  ");
                                 ImGui::SameLine();
-                                if (ImGui::ArrowButton("Change Section to edit Right 1", 1))
+                                if (ImGui::ArrowButton(("Change Section to edit Right 1##" + std::to_string(item->GetID())).c_str(), 1))
                                 {
                                     sliderActivePart = !sliderActivePart;
                                 }
