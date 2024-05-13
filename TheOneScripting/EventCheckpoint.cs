@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using static UiManager;
 
 public class EventCheckpoint : Event
 {
@@ -12,6 +13,7 @@ public class EventCheckpoint : Event
     PlayerScript player;
 
     GameManager gameManager;
+    UiManager menuManager;
 
     float playerDistance;
 
@@ -24,6 +26,8 @@ public class EventCheckpoint : Event
         player = playerGO.GetComponent<PlayerScript>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
+        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
         eventType = EventType.CHECKPOINT;
     }
@@ -61,6 +65,7 @@ public class EventCheckpoint : Event
         if (Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             gameManager.UpdateSave();
+            menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
         }
 
         return ret;
