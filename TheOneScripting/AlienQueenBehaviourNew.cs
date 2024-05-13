@@ -135,6 +135,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
             lastState = currentState;
 
+            attachedGameObject.animator.Play("Run");
+
             lastPlayerPos = playerGO.transform.position;
             attachedGameObject.transform.LookAt2D(lastPlayerPos);
             chargeDirectionRightVec = attachedGameObject.transform.right;
@@ -186,8 +188,10 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         {
             Debug.Log("I am now entering circle");
             lastState = currentState;
-            countDown = 0.0f;
 
+            attachedGameObject.animator.Play("Run");
+
+            countDown = 0.0f;
             circleStarted = false;
         }
 
@@ -234,13 +238,16 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
     }
 
-    float waitingTime = 3.0f;
+    float waitingTime = 2.0f;
     void DoWait()
     {
         if (currentState != lastState)
         {
             Debug.Log("I am now entering wait");
             lastState = currentState;
+
+            attachedGameObject.animator.Play("Idle");
+
             countDown = 0.0f;
         }
 
@@ -621,6 +628,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         countDown += Time.deltaTime;
         if (countDown >= headChargeDuration)
         {
+            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
             attackedFinished = true;
         }
     }
