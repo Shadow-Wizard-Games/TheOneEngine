@@ -118,6 +118,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
             {
                 //attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attackTimer += Time.deltaTime;
+                attachedGameObject.animator.Play("Walk");
             }
 
             if (currentAttack == RedXenomorphAttacks.None && attackTimer >= attackCooldown)
