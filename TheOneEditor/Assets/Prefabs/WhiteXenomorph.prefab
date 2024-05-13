@@ -1,0 +1,80 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 4018285516
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_WhiteXenomorph_Tpose/M_Xenomorph.toematerial",
+      "MeshPath": "Library/Meshes/AS_WhiteXenomorph_Tpose/Xenomorph.animator",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 1608953504
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 3452816845,
+      "Radius": 10.0,
+      "Type": 5,
+      "UID": 326866686,
+      "Width": -1.7976931348623157e+308
+    },
+    {
+      "AudioID": 2,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "WhiteXenomorphBehaviour",
+      "Type": 4,
+      "UID": 2563827346
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "WhiteXenomorph",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 3608524157,
+  "PrefabName": "WhiteXenomorph",
+  "Static": false,
+  "UID": 3452816845
+}
