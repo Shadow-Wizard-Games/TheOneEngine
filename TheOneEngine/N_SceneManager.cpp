@@ -356,6 +356,7 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 	std::shared_ptr<GameObject> duplicatedGO = std::make_shared<GameObject>(recursive ? originalGO.get()->GetName() : GenerateUniqueName(originalGO.get()->GetName(), ref));
 	//meshGO.get()->GetComponent<Mesh>()->mesh = mesh;
 	//meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex];
+	duplicatedGO->hasTransparency = ref->hasTransparency;
 
 	for (auto& item : ref->GetAllComponents())
 	{

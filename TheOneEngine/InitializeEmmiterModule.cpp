@@ -166,6 +166,7 @@ SetScale::SetScale(Emmiter* owner, SetScale* ref)
 	this->owner = owner;
 
 	scale = ref->scale;
+	isProportional = ref->isProportional;
 }
 
 void SetScale::Initialize(Particle* particle)
