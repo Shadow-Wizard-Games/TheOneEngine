@@ -61,12 +61,15 @@ public class PlayerScript : MonoBehaviour
     public bool flamethrowerUsed;
     public bool adrenalineRushUsed;
 
-    bool lastFrameDashed = false;
     public bool isDashing = false;
     public string dashAbilityName = "Roll";
 
     public int shieldKillCounter = 0;
     public bool shieldIsActive = false;
+
+    public bool isHealing = false;
+
+    public bool isRushing = false;
 
     public int impacienteBullets = 999;
     public int impacienteBulletCounter = 0;
@@ -101,6 +104,7 @@ public class PlayerScript : MonoBehaviour
     {
         isRunning = false;
         isShooting = false;
+
 
         //to delete just test
         if (Input.GetKeyboardButton(Input.KeyboardCode.SIX))
@@ -211,21 +215,28 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Run");
             }
         }
-        else
+        else if (isShooting)
         {
-            if (isShooting)
+            attachedGameObject.animator.Play("Shoot M4");
+        }
+        else if (isDashing)
+        {
+            if (dashAbilityName == "Roll")
             {
-                attachedGameObject.animator.Play("Shoot M4");
+                attachedGameObject.animator.Play("Roll");
             }
-            else
+            else if (dashAbilityName == "Dash")
             {
-                attachedGameObject.animator.Play("Idle");
+
             }
         }
-
-        if (isDashing && dashAbilityName == "Roll")
+        else if (isRushing)
         {
-            attachedGameObject.animator.Play("Roll");
+            attachedGameObject.animator.Play("Adrenaline Rush Static");
+        }
+        else
+        {
+            attachedGameObject.animator.Play("Idle");
         }
     }
 

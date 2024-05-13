@@ -43,6 +43,7 @@ public class AbilityAdrenalineRush : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.THREE)) // change input
                 {
                     Activated();
+                    player.isRushing = true;
                     break;
                 }
                 // controller input
@@ -53,6 +54,7 @@ public class AbilityAdrenalineRush : Ability
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
+                player.isRushing = false;
                 Debug.Log("AdrenalineRush cooldown time -> " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
@@ -68,7 +70,6 @@ public class AbilityAdrenalineRush : Ability
         player.speed += speedIncrease;
 
         // increase damage
-
 
         state = AbilityState.ACTIVE;
 
@@ -90,7 +91,7 @@ public class AbilityAdrenalineRush : Ability
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
-
+            
             Debug.Log("Ability AdrenalineRush on Cooldown");
         }
 
