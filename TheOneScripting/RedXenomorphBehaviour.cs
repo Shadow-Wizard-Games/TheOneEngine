@@ -182,7 +182,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 currentAttack = RedXenomorphAttacks.SpikeThrow;
                 attachedGameObject.animator.Play("Spit");
             }
-            Debug.Log("Chestburster current attack: " + currentAttack);
+            //Debug.Log("Chestburster current attack: " + currentAttack);
         }
     }
 
@@ -206,6 +206,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
     }
     private void Patrol()
     {
+        attachedGameObject.animator.Play("Walk");
+
         if (currentState != lastState)
         {
             lastState = currentState;
@@ -241,6 +243,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     {
         life -= 10.0f;
     }
+
     private bool MoveTo(Vector3 targetPosition)
     {
         //Return true if arrived at destination
@@ -255,17 +258,17 @@ public class RedXenomorphBehaviour : MonoBehaviour
     private void DebugDraw()
     {
         //Draw debug ranges
-        //if (gameManager.colliderRender)
-        //{
-        if (!detected)
+        if (gameManager.colliderRender)
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            if (!detected)
+            {
+                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            }
+            else
+            {
+                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
+                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
+            }
         }
-        else
-        {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
-        }
-        //}
     }
 }
