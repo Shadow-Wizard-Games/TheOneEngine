@@ -33,6 +33,7 @@ public class AbilityGrenadeLauncher : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE)) // change input
                 {
                     Activated();
+
                     break;
                 }
                 // controller input
@@ -42,6 +43,7 @@ public class AbilityGrenadeLauncher : Ability
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
+
                 Debug.Log("Dash cooldown time" + cooldownTimeCounter.ToString("F2"));
                 break;
         }
@@ -50,6 +52,8 @@ public class AbilityGrenadeLauncher : Ability
     public override void Activated()
     {
         state = AbilityState.ACTIVE;
+
+        player.attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
 
         Debug.Log("Ability Grenade Launcher Activated");
     }

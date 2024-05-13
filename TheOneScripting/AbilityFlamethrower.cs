@@ -26,7 +26,7 @@ public class AbilityFlamethrower : Ability
                     if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
                     {
                         Activated();
-                        attachedGameObject.source.Play(IAudioSource.AudioEvent.A_FT);
+
                         break;
                     }
                     break;
@@ -48,6 +48,8 @@ public class AbilityFlamethrower : Ability
     {
         // Set current weapon to the flamethrower
         activeTimeCounter = activeTime;
+
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.A_FT);
 
         this.state = AbilityState.ACTIVE;
     }

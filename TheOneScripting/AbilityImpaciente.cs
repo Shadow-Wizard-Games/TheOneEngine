@@ -38,7 +38,6 @@ public class AbilityImpaciente : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR))
                 {
                     Activated();
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
                     break;
                 }
                 // controller input
@@ -67,6 +66,8 @@ public class AbilityImpaciente : Ability
         player.currentWeoponDamage = damage;
 
         state = AbilityState.ACTIVE;
+
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
 
         Debug.Log("Ability Impaciente Activated");
     }
@@ -124,4 +125,3 @@ public class AbilityImpaciente : Ability
 
     }
 }
-
