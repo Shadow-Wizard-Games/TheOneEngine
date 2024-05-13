@@ -307,8 +307,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 attackedFinished = true;
                 break;
             case Attacks.Jump:
-                Debug.LogCheck("Doing jump");
-                attackedFinished = true;
+                Jump();
                 break;
             case Attacks.Charge:
                 HeadCharge();
@@ -549,6 +548,52 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             spawned = false;
             currentAttack = Attacks.None;
             attackedFinished = true;
+        }
+    }
+
+    bool onAir = false;
+    bool posCalc = true;
+    int jumpNum = 0;
+    private void Jump()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Giant_Stomp");
+            attackFirstFrame = false;
+
+            stopCountDown = 0;
+            jumpNum = 0;
+            posCalc = true;
+        }
+
+        stopCountDown += Time.deltaTime;
+
+        if (stopCountDown > 2.43f) { onAir = false; }
+        else if (stopCountDown > 1.2f)
+        {
+            if (posCalc)
+            {
+                posCalc = false;
+                attachedGameObject.transform.position = new Vector3(playerGO.transform.position.x,
+                                                                    attachedGameObject.transform.position.y,
+                                                                    playerGO.transform.position.z);
+            }
+        }
+        else if (stopCountDown > 0.9f) { onAir = true; }
+
+        if (onAir) { attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f; }
+        else       { attachedGameObject.GetComponent<ICollider2D>().radius = 35.0f; }
+
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            if (jumpNum >= 2) { attackedFinished = true; }
+            else
+            {
+                jumpNum++;
+                posCalc = true;
+                stopCountDown = 0;
+                attachedGameObject.animator.Play("Giant_Stomp");
+            }
         }
     }
 
