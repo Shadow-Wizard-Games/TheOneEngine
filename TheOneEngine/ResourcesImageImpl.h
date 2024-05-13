@@ -64,6 +64,10 @@ inline ResourceId Resources::Load<Texture>(const std::string& file)
 {
 	std::string path = FindFileInAssets(file);
 	//Standarize needed for DevIL
+	if (path.empty())
+	{
+		return -1;
+	}
 	StandarizePath(path);
 	ResourceId position = getResourcePosition(RES_IMAGE, path.c_str());
 	size_t size = m_Resources[RES_IMAGE].size();

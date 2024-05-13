@@ -89,7 +89,7 @@ void Emmiter::Update(double dt)
 	}
 
 	if (lifetime < duration + delay || isLooping) {
-		if (spawnModule) {
+		if (spawnModule && !owner->HasToEnd()) {
 			spawnModule->Update(dt);
 		}
 	}
@@ -501,4 +501,6 @@ void Emmiter::LoadEmmiter(const json& emmiterJSON)
 		auto spawnM = AddModule((RenderEmmiterModule::RenderEmmiterModuleType)emmiterJSON["RenderModule"][0]["Type"]);
 		spawnM->LoadModule(emmiterJSON["RenderModule"][0]);
 	}
+
+	RestartParticlePool();
 }

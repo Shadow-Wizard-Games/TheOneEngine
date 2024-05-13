@@ -1,0 +1,80 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        99.99996948242188,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        99.99996948242188,
+        0.0,
+        0.0,
+        0.0,
+        300.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 4032944812
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+      "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 160490637
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 3452816845,
+      "Radius": 10.0,
+      "Type": 5,
+      "UID": 3320787676,
+      "Width": -1.7976931348623157e+308
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "ChestbursterBehaviour",
+      "Type": 4,
+      "UID": 3278573262
+    },
+    {
+      "AudioID": 0,
+      "Name": "AudioSource",
+      "Type": 8
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Chestburster",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 4037396494,
+  "PrefabName": "Chestburster",
+  "Static": false,
+  "UID": 3452816845
+}

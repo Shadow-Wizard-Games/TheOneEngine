@@ -35,8 +35,8 @@
           "UsingSingleValueDirection": true
         },
         {
-          "MaxSpeed": 100.0,
-          "MinSpeed": 50.0,
+          "MaxSpeed": 150.0,
+          "MinSpeed": 100.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -57,8 +57,8 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 12666.6923828125,
-      "MaxParticles": 80,
+      "Lifetime": 12961.60546875,
+      "MaxParticles": 200,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -67,8 +67,8 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 2.0,
-          "SpawnRate": 15.0,
+          "Duration": 1.5,
+          "SpawnRate": 50.0,
           "Type": 0
         }
       ],
@@ -77,9 +77,30 @@
           "Acceleration": [
             0.0,
             2.0,
-            -40.0
+            -60.0
           ],
           "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "Type": 2
         }
       ]
     },
@@ -88,20 +109,14 @@
       "Duration": 1.0,
       "InitializeModules": [
         {
-          "MaxSpeed": 2.0,
-          "MinSpeed": 1.0,
-          "Type": 0,
-          "UsingSingleValueSpeed": true
-        },
-        {
           "MaxSpeed": 10.0,
-          "MinSpeed": 2.0,
+          "MinSpeed": 10.0,
           "Type": 0,
           "UsingSingleValueSpeed": true
         }
       ],
       "IsLooping": true,
-      "Lifetime": 12666.6923828125,
+      "Lifetime": 12961.60546875,
       "MaxParticles": 10,
       "RenderModule": [
         {
@@ -129,6 +144,7 @@
     }
   ],
   "Name": "P_Steam",
+  "StartON": false,
   "Type": 9,
   "UID": 704292522
 }

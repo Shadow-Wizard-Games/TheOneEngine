@@ -36,7 +36,7 @@ public struct Vector2
         return new Vector2(a.x / b, a.y / b);
     }
 
-    float Magnitude()
+    public float Magnitude()
     {
         return (float)Math.Sqrt(x * x + y * y);
     }
