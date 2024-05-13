@@ -21,6 +21,7 @@ public:
 	virtual void LoadModule(const json& moduleJSON) { };
 
 	void SetTexture(const std::string& filename);
+	ResourceId GetTextureID() { return textureID; }
 
 	enum RenderEmmiterModuleType {
 		BILLBOARD

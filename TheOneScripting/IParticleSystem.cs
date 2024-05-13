@@ -25,4 +25,9 @@ public class IParticleSystem : IComponent
         InternalCalls.StopPS(containerGOptr);
     }
 
+    public void End()
+    {
+        InternalCalls.EndPS(containerGOptr);
+    }
+
 }

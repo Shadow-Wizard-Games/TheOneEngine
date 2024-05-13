@@ -14,6 +14,13 @@ ImageUI::ImageUI(std::shared_ptr<GameObject> containerGO, const std::string& pat
 	imageID = Resources::Load<Texture>(imagePath);
 }
 
+ImageUI::ImageUI(ImageUI* ref) : ItemUI(ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+	this->textureSection = ref->textureSection;
+}
+
 ImageUI::~ImageUI(){}
 
 void ImageUI::Draw2D()
@@ -42,6 +49,7 @@ json ImageUI::SaveUIElement()
 	uiElementJSON["Type"] = (int)type;
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;	
+	uiElementJSON["Print"] = print;
 
 
 	uiElementJSON["ImagePath"] = imagePath;
@@ -70,6 +78,7 @@ void ImageUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
 	imageID = Resources::Load<Texture>(imagePath);
