@@ -21791,6 +21791,986 @@
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 177975449
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -499.45355224609375,
+                0.0,
+                955.6927490234375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3767329639
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.8,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.5,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 5.0,
+                      "MinSpeed": 10.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.5,
+                        1.5,
+                        1.5
+                      ],
+                      "MinScale": [
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        250.0,
+                        100.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        225.0,
+                        0.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 73.89652252197266,
+                  "MaxParticles": 500,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.5,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        10.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        9.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        7.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 10.0,
+                      "MinSpeed": 8.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.75,
+                        1.75,
+                        1.75
+                      ],
+                      "MinScale": [
+                        1.25,
+                        1.25,
+                        1.25
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        45.0,
+                        45.0,
+                        45.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        40.0,
+                        40.0,
+                        40.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 73.89652252197266,
+                  "MaxParticles": 50,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 5.0,
+                      "SpawnRate": 5.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "P_Fire_Big\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
+              "Type": 9,
+              "UID": 2963937243
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "Fire_Particle01",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -597.3263549804688,
+                0.0,
+                1033.885498046875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 467559084
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.8,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.5,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 5.0,
+                      "MinSpeed": 10.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.5,
+                        1.5,
+                        1.5
+                      ],
+                      "MinScale": [
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        250.0,
+                        100.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        225.0,
+                        0.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 86.36143493652344,
+                  "MaxParticles": 500,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.5,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        10.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        9.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        7.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 10.0,
+                      "MinSpeed": 8.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.75,
+                        1.75,
+                        1.75
+                      ],
+                      "MinScale": [
+                        1.25,
+                        1.25,
+                        1.25
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        45.0,
+                        45.0,
+                        45.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        40.0,
+                        40.0,
+                        40.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 86.36143493652344,
+                  "MaxParticles": 50,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 5.0,
+                      "SpawnRate": 5.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
+              "Type": 9,
+              "UID": 834998104
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "Fire_Particle01 (1)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -862.1458129882813,
+                0.0,
+                870.3920288085938,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3105321075
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.8,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.5,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 5.0,
+                      "MinSpeed": 10.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.5,
+                        1.5,
+                        1.5
+                      ],
+                      "MinScale": [
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        250.0,
+                        100.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        225.0,
+                        0.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 108.3374252319336,
+                  "MaxParticles": 500,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.5,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        10.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        9.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        7.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 10.0,
+                      "MinSpeed": 8.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.75,
+                        1.75,
+                        1.75
+                      ],
+                      "MinScale": [
+                        1.25,
+                        1.25,
+                        1.25
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        45.0,
+                        45.0,
+                        45.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        40.0,
+                        40.0,
+                        40.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 108.3374252319336,
+                  "MaxParticles": 50,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 5.0,
+                      "SpawnRate": 5.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
+              "Type": 9,
+              "UID": 1145563038
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "Fire_Particle01 (2)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -868.2724609375,
+                0.0,
+                898.009033203125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2009874310
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.8,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.5,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 5.0,
+                      "MinSpeed": 10.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.5,
+                        1.5,
+                        1.5
+                      ],
+                      "MinScale": [
+                        0.5,
+                        0.5,
+                        0.5
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        250.0,
+                        100.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        225.0,
+                        0.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 150.45045471191406,
+                  "MaxParticles": 500,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.5,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        10.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        9.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        7.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 10.0,
+                      "MinSpeed": 8.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.75,
+                        1.75,
+                        1.75
+                      ],
+                      "MinScale": [
+                        1.25,
+                        1.25,
+                        1.25
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    },
+                    {
+                      "MaxColor": [
+                        45.0,
+                        45.0,
+                        45.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        40.0,
+                        40.0,
+                        40.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 150.45045471191406,
+                  "MaxParticles": 50,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 5.0,
+                      "SpawnRate": 5.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
+              "Type": 9,
+              "UID": 372919348
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "Fire_Particle01 (3)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Fire_Particles",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "index": 0,
