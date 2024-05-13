@@ -78,6 +78,7 @@ public class AbilityShield : Ability
         else
         {
             activeTimeCounter = activeTime;
+            player.shieldIsActive = false;
             state = AbilityState.COOLDOWN;
 
             Debug.Log("Ability Shield on Cooldown");
