@@ -159,7 +159,6 @@ public class ChestbursterBehaviour : MonoBehaviour
                 }
                 break;
             case States.Dead:
-                attachedGameObject.transform.Rotate(Vector3.right * 1100.0f);
                 attachedGameObject.animator.Play("Dead");
                 if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
                 break;
@@ -191,12 +190,12 @@ public class ChestbursterBehaviour : MonoBehaviour
     private void TailPunch()
     {
         //Debug.Log("Attempt to do TailPunch");
-        
+
         if (attachedGameObject.animator.currentAnimHasFinished)
         {
             ResetState();
         }
-        
+
     }
 
     private void TailTrip()
@@ -207,7 +206,7 @@ public class ChestbursterBehaviour : MonoBehaviour
         {
             ResetState();
         }
-        
+
     }
 
     private void ResetState()
@@ -230,14 +229,14 @@ public class ChestbursterBehaviour : MonoBehaviour
         if (gameManager.colliderRender)
         {
             if (!detected)
-        {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
-        }
-        else
-        {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
-        }
+            {
+                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            }
+            else
+            {
+                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+            }
         }
     }
 }
