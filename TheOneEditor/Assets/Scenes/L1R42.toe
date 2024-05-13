@@ -42,6 +42,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
@@ -90,6 +91,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor",
       "ParentUID": 3452816845,
@@ -138,6 +140,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor1",
       "ParentUID": 3452816845,
@@ -186,6 +189,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor2",
       "ParentUID": 3452816845,
@@ -234,104 +238,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor3",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2266798979
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2992705549
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor4",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -50.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1005571195
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 416292948
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor5",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -378,6 +287,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor6",
       "ParentUID": 3452816845,
@@ -426,6 +336,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor7",
       "ParentUID": 3452816845,
@@ -474,6 +385,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor8",
       "ParentUID": 3452816845,
@@ -522,6 +434,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor9",
       "ParentUID": 3452816845,
@@ -570,6 +483,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor10",
       "ParentUID": 3452816845,
@@ -618,6 +532,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor11",
       "ParentUID": 3452816845,
@@ -666,6 +581,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor12",
       "ParentUID": 3452816845,
@@ -714,104 +630,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor13",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -100.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2585267975
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2383659684
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor14",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -150.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 338120746
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2410495880
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor15",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -858,6 +679,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor16",
       "ParentUID": 3452816845,
@@ -906,6 +728,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor17",
       "ParentUID": 3452816845,
@@ -954,6 +777,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor18",
       "ParentUID": 3452816845,
@@ -1002,6 +826,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor19",
       "ParentUID": 3452816845,
@@ -1050,6 +875,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor20",
       "ParentUID": 3452816845,
@@ -1098,6 +924,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor21",
       "ParentUID": 3452816845,
@@ -1146,6 +973,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor22",
       "ParentUID": 3452816845,
@@ -1194,104 +1022,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor23",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -200.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1654755372
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2215704102
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor24",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -250.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2848934369
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 3601132580
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor25",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -1338,6 +1071,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor26",
       "ParentUID": 3452816845,
@@ -1386,6 +1120,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor27",
       "ParentUID": 3452816845,
@@ -1434,6 +1169,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor28",
       "ParentUID": 3452816845,
@@ -1482,6 +1218,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor29",
       "ParentUID": 3452816845,
@@ -1530,6 +1267,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor30",
       "ParentUID": 3452816845,
@@ -1578,6 +1316,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor31",
       "ParentUID": 3452816845,
@@ -1626,6 +1365,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor32",
       "ParentUID": 3452816845,
@@ -1674,104 +1414,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor33",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -300.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2717460709
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2231450956
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor34",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -350.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3914798196
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 252625825
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor35",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -1818,6 +1463,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor36",
       "ParentUID": 3452816845,
@@ -1866,6 +1512,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor37",
       "ParentUID": 3452816845,
@@ -1914,6 +1561,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor38",
       "ParentUID": 3452816845,
@@ -1962,6 +1610,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor39",
       "ParentUID": 3452816845,
@@ -2010,6 +1659,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor40",
       "ParentUID": 3452816845,
@@ -2058,6 +1708,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor41",
       "ParentUID": 3452816845,
@@ -2106,6 +1757,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor42",
       "ParentUID": 3452816845,
@@ -2154,6 +1806,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor43",
       "ParentUID": 3452816845,
@@ -2202,104 +1855,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor44",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -400.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 4260956483
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 3506595732
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor45",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -450.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 963768642
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 1056976032
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor46",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -2346,6 +1904,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor47",
       "ParentUID": 3452816845,
@@ -2394,6 +1953,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor48",
       "ParentUID": 3452816845,
@@ -2442,6 +2002,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor49",
       "ParentUID": 3452816845,
@@ -2490,6 +2051,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor50",
       "ParentUID": 3452816845,
@@ -2538,6 +2100,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor51",
       "ParentUID": 3452816845,
@@ -2586,6 +2149,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor52",
       "ParentUID": 3452816845,
@@ -2634,6 +2198,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor53",
       "ParentUID": 3452816845,
@@ -2682,6 +2247,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor54",
       "ParentUID": 3452816845,
@@ -2730,6 +2296,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor55",
       "ParentUID": 3452816845,
@@ -2778,6 +2345,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor56",
       "ParentUID": 3452816845,
@@ -2826,6 +2394,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor57",
       "ParentUID": 3452816845,
@@ -2874,6 +2443,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor58",
       "ParentUID": 3452816845,
@@ -2922,6 +2492,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor59",
       "ParentUID": 3452816845,
@@ -2970,6 +2541,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor60",
       "ParentUID": 3452816845,
@@ -3018,6 +2590,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor61",
       "ParentUID": 3452816845,
@@ -3066,6 +2639,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor62",
       "ParentUID": 3452816845,
@@ -3114,6 +2688,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor63",
       "ParentUID": 3452816845,
@@ -3162,6 +2737,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor64",
       "ParentUID": 3452816845,
@@ -3210,6 +2786,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor65",
       "ParentUID": 3452816845,
@@ -3258,6 +2835,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor66",
       "ParentUID": 3452816845,
@@ -3306,6 +2884,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor67",
       "ParentUID": 3452816845,
@@ -3354,6 +2933,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor68",
       "ParentUID": 3452816845,
@@ -3402,6 +2982,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor69",
       "ParentUID": 3452816845,
@@ -3450,6 +3031,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor70",
       "ParentUID": 3452816845,
@@ -3498,6 +3080,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor71",
       "ParentUID": 3452816845,
@@ -3546,6 +3129,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor72",
       "ParentUID": 3452816845,
@@ -3594,6 +3178,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor73",
       "ParentUID": 3452816845,
@@ -3642,6 +3227,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor74",
       "ParentUID": 3452816845,
@@ -3690,6 +3276,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor75",
       "ParentUID": 3452816845,
@@ -3738,6 +3325,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor76",
       "ParentUID": 3452816845,
@@ -3786,6 +3374,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor77",
       "ParentUID": 3452816845,
@@ -3834,6 +3423,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor78",
       "ParentUID": 3452816845,
@@ -3882,6 +3472,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor79",
       "ParentUID": 3452816845,
@@ -3930,6 +3521,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor80",
       "ParentUID": 3452816845,
@@ -3978,6 +3570,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor81",
       "ParentUID": 3452816845,
@@ -4026,6 +3619,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor82",
       "ParentUID": 3452816845,
@@ -4074,6 +3668,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor83",
       "ParentUID": 3452816845,
@@ -4122,6 +3717,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor84",
       "ParentUID": 3452816845,
@@ -4170,6 +3766,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor85",
       "ParentUID": 3452816845,
@@ -4218,6 +3815,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor86",
       "ParentUID": 3452816845,
@@ -4266,6 +3864,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor87",
       "ParentUID": 3452816845,
@@ -4314,6 +3913,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor88",
       "ParentUID": 3452816845,
@@ -4362,6 +3962,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor89",
       "ParentUID": 3452816845,
@@ -4410,6 +4011,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor90",
       "ParentUID": 3452816845,
@@ -4458,6 +4060,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor91",
       "ParentUID": 3452816845,
@@ -4506,6 +4109,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor92",
       "ParentUID": 3452816845,
@@ -4554,6 +4158,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor93",
       "ParentUID": 3452816845,
@@ -4602,104 +4207,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor94",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -500.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3885465664
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 3785383124
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor95",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -550.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1964094963
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 724226423
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor96",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -4746,6 +4256,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor97",
       "ParentUID": 3452816845,
@@ -4794,6 +4305,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor98",
       "ParentUID": 3452816845,
@@ -4842,6 +4354,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor99",
       "ParentUID": 3452816845,
@@ -4890,6 +4403,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor100",
       "ParentUID": 3452816845,
@@ -4938,6 +4452,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor101",
       "ParentUID": 3452816845,
@@ -4986,6 +4501,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor102",
       "ParentUID": 3452816845,
@@ -5034,6 +4550,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor103",
       "ParentUID": 3452816845,
@@ -5082,6 +4599,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor104",
       "ParentUID": 3452816845,
@@ -5130,6 +4648,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor105",
       "ParentUID": 3452816845,
@@ -5178,6 +4697,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor106",
       "ParentUID": 3452816845,
@@ -5226,6 +4746,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor107",
       "ParentUID": 3452816845,
@@ -5274,6 +4795,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor108",
       "ParentUID": 3452816845,
@@ -5322,6 +4844,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor109",
       "ParentUID": 3452816845,
@@ -5370,6 +4893,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor110",
       "ParentUID": 3452816845,
@@ -5418,6 +4942,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor111",
       "ParentUID": 3452816845,
@@ -5466,6 +4991,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor112",
       "ParentUID": 3452816845,
@@ -5514,6 +5040,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor113",
       "ParentUID": 3452816845,
@@ -5562,6 +5089,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor114",
       "ParentUID": 3452816845,
@@ -5610,6 +5138,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor115",
       "ParentUID": 3452816845,
@@ -5658,6 +5187,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor116",
       "ParentUID": 3452816845,
@@ -5706,6 +5236,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor117",
       "ParentUID": 3452816845,
@@ -5754,6 +5285,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor118",
       "ParentUID": 3452816845,
@@ -5802,6 +5334,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor119",
       "ParentUID": 3452816845,
@@ -5850,6 +5383,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor120",
       "ParentUID": 3452816845,
@@ -5898,6 +5432,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor121",
       "ParentUID": 3452816845,
@@ -5946,6 +5481,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor122",
       "ParentUID": 3452816845,
@@ -5994,6 +5530,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor123",
       "ParentUID": 3452816845,
@@ -6042,6 +5579,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor124",
       "ParentUID": 3452816845,
@@ -6090,6 +5628,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor125",
       "ParentUID": 3452816845,
@@ -6138,6 +5677,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor126",
       "ParentUID": 3452816845,
@@ -6186,6 +5726,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor127",
       "ParentUID": 3452816845,
@@ -6234,6 +5775,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor128",
       "ParentUID": 3452816845,
@@ -6282,6 +5824,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor129",
       "ParentUID": 3452816845,
@@ -6330,6 +5873,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor130",
       "ParentUID": 3452816845,
@@ -6378,6 +5922,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor131",
       "ParentUID": 3452816845,
@@ -6426,6 +5971,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor132",
       "ParentUID": 3452816845,
@@ -6474,6 +6020,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor133",
       "ParentUID": 3452816845,
@@ -6522,6 +6069,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor134",
       "ParentUID": 3452816845,
@@ -6570,6 +6118,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor135",
       "ParentUID": 3452816845,
@@ -6618,6 +6167,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor136",
       "ParentUID": 3452816845,
@@ -6666,6 +6216,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor137",
       "ParentUID": 3452816845,
@@ -6714,6 +6265,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor138",
       "ParentUID": 3452816845,
@@ -6762,6 +6314,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor139",
       "ParentUID": 3452816845,
@@ -6810,6 +6363,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor140",
       "ParentUID": 3452816845,
@@ -6858,6 +6412,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor141",
       "ParentUID": 3452816845,
@@ -6906,6 +6461,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor142",
       "ParentUID": 3452816845,
@@ -6954,6 +6510,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor143",
       "ParentUID": 3452816845,
@@ -7002,56 +6559,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor144",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -600.0,
-            0.0,
-            -100.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3442625470
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 969231020
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor145",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -7098,6 +6608,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor146",
       "ParentUID": 3452816845,
@@ -7146,6 +6657,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor147",
       "ParentUID": 3452816845,
@@ -7194,6 +6706,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor148",
       "ParentUID": 3452816845,
@@ -7242,6 +6755,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor149",
       "ParentUID": 3452816845,
@@ -7290,6 +6804,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor150",
       "ParentUID": 3452816845,
@@ -7338,6 +6853,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor151",
       "ParentUID": 3452816845,
@@ -7386,6 +6902,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor152",
       "ParentUID": 3452816845,
@@ -7434,6 +6951,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor153",
       "ParentUID": 3452816845,
@@ -7482,6 +7000,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor154",
       "ParentUID": 3452816845,
@@ -7530,6 +7049,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor155",
       "ParentUID": 3452816845,
@@ -7578,6 +7098,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor156",
       "ParentUID": 3452816845,
@@ -7626,6 +7147,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor157",
       "ParentUID": 3452816845,
@@ -7674,6 +7196,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor158",
       "ParentUID": 3452816845,
@@ -7722,6 +7245,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor159",
       "ParentUID": 3452816845,
@@ -7770,6 +7294,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor160",
       "ParentUID": 3452816845,
@@ -7818,6 +7343,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor161",
       "ParentUID": 3452816845,
@@ -7866,6 +7392,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor162",
       "ParentUID": 3452816845,
@@ -7914,6 +7441,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor163",
       "ParentUID": 3452816845,
@@ -7962,6 +7490,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor164",
       "ParentUID": 3452816845,
@@ -8010,6 +7539,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor165",
       "ParentUID": 3452816845,
@@ -8058,6 +7588,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor166",
       "ParentUID": 3452816845,
@@ -8106,6 +7637,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor167",
       "ParentUID": 3452816845,
@@ -8154,6 +7686,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor168",
       "ParentUID": 3452816845,
@@ -8202,6 +7735,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor169",
       "ParentUID": 3452816845,
@@ -8250,6 +7784,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor170",
       "ParentUID": 3452816845,
@@ -8298,6 +7833,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor171",
       "ParentUID": 3452816845,
@@ -8346,6 +7882,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor172",
       "ParentUID": 3452816845,
@@ -8394,6 +7931,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor173",
       "ParentUID": 3452816845,
@@ -8442,6 +7980,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor174",
       "ParentUID": 3452816845,
@@ -8490,6 +8029,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor175",
       "ParentUID": 3452816845,
@@ -8538,6 +8078,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor176",
       "ParentUID": 3452816845,
@@ -8586,6 +8127,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor177",
       "ParentUID": 3452816845,
@@ -8634,6 +8176,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor178",
       "ParentUID": 3452816845,
@@ -8682,6 +8225,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor179",
       "ParentUID": 3452816845,
@@ -8730,6 +8274,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor180",
       "ParentUID": 3452816845,
@@ -8778,6 +8323,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor181",
       "ParentUID": 3452816845,
@@ -8826,6 +8372,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor182",
       "ParentUID": 3452816845,
@@ -8874,6 +8421,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor183",
       "ParentUID": 3452816845,
@@ -8922,6 +8470,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor184",
       "ParentUID": 3452816845,
@@ -8970,6 +8519,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor185",
       "ParentUID": 3452816845,
@@ -9018,6 +8568,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor186",
       "ParentUID": 3452816845,
@@ -9066,6 +8617,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor187",
       "ParentUID": 3452816845,
@@ -9114,6 +8666,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor188",
       "ParentUID": 3452816845,
@@ -9162,6 +8715,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor189",
       "ParentUID": 3452816845,
@@ -9210,6 +8764,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor190",
       "ParentUID": 3452816845,
@@ -9258,6 +8813,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor191",
       "ParentUID": 3452816845,
@@ -9306,6 +8862,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor192",
       "ParentUID": 3452816845,
@@ -9354,6 +8911,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor193",
       "ParentUID": 3452816845,
@@ -9402,6 +8960,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor194",
       "ParentUID": 3452816845,
@@ -9450,6 +9009,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor195",
       "ParentUID": 3452816845,
@@ -9498,6 +9058,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor196",
       "ParentUID": 3452816845,
@@ -9546,6 +9107,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor197",
       "ParentUID": 3452816845,
@@ -9594,6 +9156,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor198",
       "ParentUID": 3452816845,
@@ -9642,6 +9205,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor199",
       "ParentUID": 3452816845,
@@ -9690,6 +9254,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor200",
       "ParentUID": 3452816845,
@@ -9738,6 +9303,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor201",
       "ParentUID": 3452816845,
@@ -9786,6 +9352,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor202",
       "ParentUID": 3452816845,
@@ -9834,6 +9401,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor203",
       "ParentUID": 3452816845,
@@ -9882,6 +9450,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor204",
       "ParentUID": 3452816845,
@@ -9930,6 +9499,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor205",
       "ParentUID": 3452816845,
@@ -9978,6 +9548,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor206",
       "ParentUID": 3452816845,
@@ -10026,6 +9597,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor207",
       "ParentUID": 3452816845,
@@ -10074,6 +9646,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor208",
       "ParentUID": 3452816845,
@@ -10122,6 +9695,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor209",
       "ParentUID": 3452816845,
@@ -10170,6 +9744,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor210",
       "ParentUID": 3452816845,
@@ -10218,6 +9793,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor211",
       "ParentUID": 3452816845,
@@ -10266,6 +9842,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor212",
       "ParentUID": 3452816845,
@@ -10314,6 +9891,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor213",
       "ParentUID": 3452816845,
@@ -10362,6 +9940,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor214",
       "ParentUID": 3452816845,
@@ -10410,6 +9989,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor215",
       "ParentUID": 3452816845,
@@ -10458,6 +10038,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor216",
       "ParentUID": 3452816845,
@@ -10506,6 +10087,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor217",
       "ParentUID": 3452816845,
@@ -10554,6 +10136,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor218",
       "ParentUID": 3452816845,
@@ -10602,6 +10185,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor219",
       "ParentUID": 3452816845,
@@ -10650,6 +10234,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor220",
       "ParentUID": 3452816845,
@@ -10698,6 +10283,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor221",
       "ParentUID": 3452816845,
@@ -10746,6 +10332,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor222",
       "ParentUID": 3452816845,
@@ -10794,6 +10381,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor223",
       "ParentUID": 3452816845,
@@ -10842,6 +10430,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor224",
       "ParentUID": 3452816845,
@@ -10890,6 +10479,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor225",
       "ParentUID": 3452816845,
@@ -10938,6 +10528,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor226",
       "ParentUID": 3452816845,
@@ -10986,6 +10577,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor227",
       "ParentUID": 3452816845,
@@ -11034,6 +10626,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor228",
       "ParentUID": 3452816845,
@@ -11082,6 +10675,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor229",
       "ParentUID": 3452816845,
@@ -11130,6 +10724,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor230",
       "ParentUID": 3452816845,
@@ -11178,6 +10773,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor231",
       "ParentUID": 3452816845,
@@ -11226,6 +10822,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor232",
       "ParentUID": 3452816845,
@@ -11274,6 +10871,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor233",
       "ParentUID": 3452816845,
@@ -11322,6 +10920,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor234",
       "ParentUID": 3452816845,
@@ -11370,6 +10969,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor235",
       "ParentUID": 3452816845,
@@ -11418,6 +11018,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor236",
       "ParentUID": 3452816845,
@@ -11466,6 +11067,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor237",
       "ParentUID": 3452816845,
@@ -11514,6 +11116,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor238",
       "ParentUID": 3452816845,
@@ -11577,6 +11180,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall01",
       "ParentUID": 3452816845,
@@ -11640,6 +11244,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall011",
       "ParentUID": 3452816845,
@@ -11703,6 +11308,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall012",
       "ParentUID": 3452816845,
@@ -11766,6 +11372,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall013",
       "ParentUID": 3452816845,
@@ -11829,6 +11436,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall014",
       "ParentUID": 3452816845,
@@ -11892,6 +11500,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall015",
       "ParentUID": 3452816845,
@@ -11955,6 +11564,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall016",
       "ParentUID": 3452816845,
@@ -12018,6 +11628,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall017",
       "ParentUID": 3452816845,
@@ -12081,6 +11692,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall018",
       "ParentUID": 3452816845,
@@ -12144,6 +11756,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall019",
       "ParentUID": 3452816845,
@@ -12207,6 +11820,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0110",
       "ParentUID": 3452816845,
@@ -12270,6 +11884,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0111",
       "ParentUID": 3452816845,
@@ -12333,6 +11948,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0112",
       "ParentUID": 3452816845,
@@ -12396,6 +12012,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0113",
       "ParentUID": 3452816845,
@@ -12459,6 +12076,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0114",
       "ParentUID": 3452816845,
@@ -12522,6 +12140,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0115",
       "ParentUID": 3452816845,
@@ -12585,6 +12204,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0116",
       "ParentUID": 3452816845,
@@ -12648,6 +12268,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0117",
       "ParentUID": 3452816845,
@@ -12711,6 +12332,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0118",
       "ParentUID": 3452816845,
@@ -12774,6 +12396,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0119",
       "ParentUID": 3452816845,
@@ -12837,6 +12460,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0120",
       "ParentUID": 3452816845,
@@ -12900,6 +12524,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0121",
       "ParentUID": 3452816845,
@@ -12963,6 +12588,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0122",
       "ParentUID": 3452816845,
@@ -13026,6 +12652,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0123",
       "ParentUID": 3452816845,
@@ -13089,6 +12716,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0124",
       "ParentUID": 3452816845,
@@ -13152,6 +12780,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0125",
       "ParentUID": 3452816845,
@@ -13215,6 +12844,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0126",
       "ParentUID": 3452816845,
@@ -13278,6 +12908,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0127",
       "ParentUID": 3452816845,
@@ -13341,6 +12972,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0128",
       "ParentUID": 3452816845,
@@ -13404,6 +13036,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0129",
       "ParentUID": 3452816845,
@@ -13467,6 +13100,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0130",
       "ParentUID": 3452816845,
@@ -13530,6 +13164,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0131",
       "ParentUID": 3452816845,
@@ -13593,6 +13228,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0132",
       "ParentUID": 3452816845,
@@ -13656,6 +13292,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0133",
       "ParentUID": 3452816845,
@@ -13719,6 +13356,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0134",
       "ParentUID": 3452816845,
@@ -13782,6 +13420,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0135",
       "ParentUID": 3452816845,
@@ -13845,6 +13484,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0136",
       "ParentUID": 3452816845,
@@ -13908,6 +13548,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0137",
       "ParentUID": 3452816845,
@@ -13971,6 +13612,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0138",
       "ParentUID": 3452816845,
@@ -14034,6 +13676,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0139",
       "ParentUID": 3452816845,
@@ -14097,6 +13740,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0140",
       "ParentUID": 3452816845,
@@ -14160,6 +13804,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0141",
       "ParentUID": 3452816845,
@@ -14223,6 +13868,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0142",
       "ParentUID": 3452816845,
@@ -14286,6 +13932,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0143",
       "ParentUID": 3452816845,
@@ -14349,6 +13996,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0144",
       "ParentUID": 3452816845,
@@ -14412,6 +14060,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0145",
       "ParentUID": 3452816845,
@@ -14475,6 +14124,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0146",
       "ParentUID": 3452816845,
@@ -14538,6 +14188,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0147",
       "ParentUID": 3452816845,
@@ -14601,6 +14252,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0148",
       "ParentUID": 3452816845,
@@ -14664,6 +14316,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0149",
       "ParentUID": 3452816845,
@@ -14727,6 +14380,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0150",
       "ParentUID": 3452816845,
@@ -14790,6 +14444,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0151",
       "ParentUID": 3452816845,
@@ -14853,6 +14508,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0152",
       "ParentUID": 3452816845,
@@ -14916,6 +14572,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0153",
       "ParentUID": 3452816845,
@@ -14979,6 +14636,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0154",
       "ParentUID": 3452816845,
@@ -15042,6 +14700,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0155",
       "ParentUID": 3452816845,
@@ -15105,6 +14764,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0156",
       "ParentUID": 3452816845,
@@ -15168,6 +14828,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0157",
       "ParentUID": 3452816845,
@@ -15231,6 +14892,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0158",
       "ParentUID": 3452816845,
@@ -15294,6 +14956,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0159",
       "ParentUID": 3452816845,
@@ -15357,6 +15020,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0160",
       "ParentUID": 3452816845,
@@ -15420,6 +15084,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0161",
       "ParentUID": 3452816845,
@@ -15483,6 +15148,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0162",
       "ParentUID": 3452816845,
@@ -15546,6 +15212,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0163",
       "ParentUID": 3452816845,
@@ -15609,6 +15276,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0164",
       "ParentUID": 3452816845,
@@ -15672,6 +15340,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0165",
       "ParentUID": 3452816845,
@@ -15735,6 +15404,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0166",
       "ParentUID": 3452816845,
@@ -15798,6 +15468,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0167",
       "ParentUID": 3452816845,
@@ -15861,6 +15532,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0168",
       "ParentUID": 3452816845,
@@ -15924,6 +15596,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0169",
       "ParentUID": 3452816845,
@@ -15987,6 +15660,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0170",
       "ParentUID": 3452816845,
@@ -16050,6 +15724,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0171",
       "ParentUID": 3452816845,
@@ -16113,6 +15788,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0172",
       "ParentUID": 3452816845,
@@ -16176,6 +15852,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0173",
       "ParentUID": 3452816845,
@@ -16239,6 +15916,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0174",
       "ParentUID": 3452816845,
@@ -16302,6 +15980,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0175",
       "ParentUID": 3452816845,
@@ -16365,6 +16044,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0176",
       "ParentUID": 3452816845,
@@ -16428,6 +16108,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0177",
       "ParentUID": 3452816845,
@@ -16491,6 +16172,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0178",
       "ParentUID": 3452816845,
@@ -16554,6 +16236,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0179",
       "ParentUID": 3452816845,
@@ -16617,6 +16300,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0180",
       "ParentUID": 3452816845,
@@ -16680,6 +16364,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0181",
       "ParentUID": 3452816845,
@@ -16743,6 +16428,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0182",
       "ParentUID": 3452816845,
@@ -16806,6 +16492,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0183",
       "ParentUID": 3452816845,
@@ -16869,6 +16556,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0184",
       "ParentUID": 3452816845,
@@ -16932,6 +16620,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0185",
       "ParentUID": 3452816845,
@@ -16995,6 +16684,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0186",
       "ParentUID": 3452816845,
@@ -17058,6 +16748,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0187",
       "ParentUID": 3452816845,
@@ -17121,6 +16812,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0188",
       "ParentUID": 3452816845,
@@ -17184,6 +16876,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0189",
       "ParentUID": 3452816845,
@@ -17247,6 +16940,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0190",
       "ParentUID": 3452816845,
@@ -17310,6 +17004,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0191",
       "ParentUID": 3452816845,
@@ -17373,6 +17068,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0192",
       "ParentUID": 3452816845,
@@ -17436,6 +17132,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0193",
       "ParentUID": 3452816845,
@@ -17499,6 +17196,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0194",
       "ParentUID": 3452816845,
@@ -17562,6 +17260,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0195",
       "ParentUID": 3452816845,
@@ -17625,6 +17324,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0196",
       "ParentUID": 3452816845,
@@ -17688,6 +17388,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0197",
       "ParentUID": 3452816845,
@@ -17751,6 +17452,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0198",
       "ParentUID": 3452816845,
@@ -17814,6 +17516,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Wall0199",
       "ParentUID": 3452816845,
@@ -17862,6 +17565,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner",
       "ParentUID": 3452816845,
@@ -17910,6 +17614,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner1",
       "ParentUID": 3452816845,
@@ -17958,6 +17663,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner2",
       "ParentUID": 3452816845,
@@ -18006,6 +17712,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner3",
       "ParentUID": 3452816845,
@@ -18054,6 +17761,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner4",
       "ParentUID": 3452816845,
@@ -18102,6 +17810,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner5",
       "ParentUID": 3452816845,
@@ -18150,6 +17859,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner6",
       "ParentUID": 3452816845,
@@ -18198,6 +17908,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner7",
       "ParentUID": 3452816845,
@@ -18246,6 +17957,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner8",
       "ParentUID": 3452816845,
@@ -18294,6 +18006,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner9",
       "ParentUID": 3452816845,
@@ -18357,6 +18070,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner_Outside",
       "ParentUID": 3452816845,
@@ -18420,6 +18134,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner_Outside1",
       "ParentUID": 3452816845,
@@ -18483,6 +18198,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner_Outside2",
       "ParentUID": 3452816845,
@@ -18546,6 +18262,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner_Outside3",
       "ParentUID": 3452816845,
@@ -18609,6 +18326,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner_Outside4",
       "ParentUID": 3452816845,
@@ -18672,6 +18390,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_WallCorner_Outside5",
       "ParentUID": 3452816845,
@@ -18720,6 +18439,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor239",
       "ParentUID": 3452816845,
@@ -18768,6 +18488,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor240",
       "ParentUID": 3452816845,
@@ -18816,6 +18537,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor241",
       "ParentUID": 3452816845,
@@ -18864,6 +18586,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor242",
       "ParentUID": 3452816845,
@@ -18912,56 +18635,9 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Floor243",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.2000000476837158,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.2000000476837158,
-            0.0,
-            -1104.88916015625,
-            0.0,
-            148.3438262939453,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 45405451
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Ship_Floor/M_Floor01.toematerial",
-          "MeshPath": "Library/Meshes/MK_Ship_Floor/MK_Ship_Floor.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2003543793
-        }
-      ],
-      "Enabled": true,
-      "Keeped": false,
-      "Name": "MK_Ship_Floor244",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -19023,6 +18699,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Elevator",
       "ParentUID": 3452816845,
@@ -19086,6 +18763,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Elevator1",
       "ParentUID": 3452816845,
@@ -19149,6 +18827,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_Ship_Elevator2",
       "ParentUID": 3452816845,
@@ -19197,6 +18876,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Pipes",
       "ParentUID": 3452816845,
@@ -19245,6 +18925,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Pipes1",
       "ParentUID": 3452816845,
@@ -19293,6 +18974,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Corpse",
       "ParentUID": 3452816845,
@@ -19341,6 +19023,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Corpse1",
       "ParentUID": 3452816845,
@@ -19389,6 +19072,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Corpse2",
       "ParentUID": 3452816845,
@@ -19452,6 +19136,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_OilDrums",
       "ParentUID": 3452816845,
@@ -19515,6 +19200,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_OilDrums1",
       "ParentUID": 3452816845,
@@ -19578,6 +19264,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_OilDrums2",
       "ParentUID": 3452816845,
@@ -19641,6 +19328,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_OilDrums3",
       "ParentUID": 3452816845,
@@ -19704,6 +19392,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_OilDrums4",
       "ParentUID": 3452816845,
@@ -19767,6 +19456,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Box",
       "ParentUID": 3452816845,
@@ -19830,6 +19520,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Box1",
       "ParentUID": 3452816845,
@@ -19893,6 +19584,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Box2",
       "ParentUID": 3452816845,
@@ -19956,6 +19648,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Box3",
       "ParentUID": 3452816845,
@@ -20019,6 +19712,7 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Box4",
       "ParentUID": 3452816845,
@@ -20082,8 +19776,2018 @@
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
       "Keeped": false,
       "Name": "SM_Box5",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -472.1982727050781,
+            0.20000000298023224,
+            408.57080078125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2402111615
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Blood1/M_Blood1.toematerial",
+          "MeshPath": "Library/Meshes/SM_Blood1/SM_Blood1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2034910491
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Blood1",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -441.3359680175781,
+            0.0,
+            299.5234069824219,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3324180444
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Blood2/M_Blood2.toematerial",
+          "MeshPath": "Library/Meshes/SM_Blood2/SM_Blood2.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 4242214019
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Blood2",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.061444420367479324,
+            0.0,
+            1.8789960145950317,
+            0.0,
+            0.0,
+            1.8799999952316284,
+            0.0,
+            0.0,
+            -1.8789960145950317,
+            0.0,
+            -0.061444420367479324,
+            0.0,
+            -480.4730529785156,
+            0.0,
+            1030.235595703125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 233616554
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Blood3/M_Blood3.toematerial",
+          "MeshPath": "Library/Meshes/SM_Blood3/SM_Blood3.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3026415216
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Blood3",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -124.89676666259766,
+            0.29998543858528137,
+            85.87527465820313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1119097223
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2257768026
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -124.90403747558594,
+            0.29998543858528137,
+            58.09163284301758,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3336869367
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2755412173
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (1)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -124.9112777709961,
+            0.29998543858528137,
+            30.401241302490234,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2247630771
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 163142350
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (2)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -124.91863250732422,
+            0.29998543858528137,
+            2.642819881439209,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2697098058
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2420318484
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (3)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -124.92591857910156,
+            0.29998543858528137,
+            -25.07537841796875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2940430780
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2091220658
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (4)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.00032039082725532353,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.00032039082725532353,
+            0.0,
+            -124.92913818359375,
+            0.3499999940395355,
+            -37.060157775878906,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2450985790
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1956151373
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (5)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0004395227297209203,
+            0.0,
+            1.679999828338623,
+            0.0,
+            0.0,
+            1.6799999475479126,
+            0.0,
+            0.0,
+            -0.6704950928688049,
+            0.0,
+            0.0001754153927322477,
+            0.0,
+            -62.47405242919922,
+            0.2999987304210663,
+            26.893226623535156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1361392940
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Dock/M_Dock.toematerial",
+          "MeshPath": "Library/Meshes/SM_Dock/SM_Dock.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1317848198
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Dock",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0006486210040748119,
+            0.0,
+            1.4974068403244019,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998807907104,
+            0.0,
+            0.00043316284427419305,
+            0.0,
+            -38.33013153076172,
+            0.29999980330467224,
+            25.7087459564209,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2568614432
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
+          "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1261323748
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Arrow",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0007928881095722318,
+            0.0,
+            3.0306763648986816,
+            0.0,
+            0.0,
+            3.030677080154419,
+            0.0,
+            0.0,
+            -3.0306763648986816,
+            0.0,
+            0.0007928881095722318,
+            0.0,
+            -706.7891845703125,
+            0.30000782012939453,
+            923.4386596679688,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3663801097
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_GameIcon/M_GameIcon.toematerial",
+          "MeshPath": "Library/Meshes/SM_GameIcon/SM_GameIcon.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3464518585
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_GameIcon",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -900.2911376953125,
+            0.30007705092430115,
+            209.74485778808594,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4212283488
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 596792216
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (6)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -900.2984008789063,
+            0.30007705092430115,
+            182.03622436523438,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1798027436
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 83744234
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (7)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0002616206475067884,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.0002616206475067884,
+            0.0,
+            -900.3055419921875,
+            0.30007705092430115,
+            154.30882263183594,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 816981548
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 999880044
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (8)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0003203908152476998,
+            0.0,
+            0.9999998294655658,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998294655658,
+            0.0,
+            0.0003203908152476998,
+            0.0,
+            -900.8226318359375,
+            0.30000001192092896,
+            126.90634155273438,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2956434234
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1332834376
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (9)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0003203908152476998,
+            0.0,
+            0.9999998294655658,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998294655658,
+            0.0,
+            0.0003203908152476998,
+            0.0,
+            -900.8302612304688,
+            0.30000001192092896,
+            99.17031860351563,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2036686202
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2853067122
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (10)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.00032039082725532353,
+            0.0,
+            0.9999998211860657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9999998211860657,
+            0.0,
+            0.00032039082725532353,
+            0.0,
+            -900.8330078125,
+            0.3499999940395355,
+            87.3238525390625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 282456035
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 489388978
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (11)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999487038038,
+            8.73947784475656e-08,
+            0.0003203004543926643,
+            0.0,
+            8.742277551926903e-08,
+            0.9999999999999923,
+            8.739477844756559e-08,
+            0.0,
+            -0.00032030045438502405,
+            8.742277551926901e-08,
+            -0.9999999487038038,
+            0.0,
+            -764.0382080078125,
+            0.30000001192092896,
+            1126.65283203125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1262011092
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3041511122
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (12)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999403953552,
+            8.739478118968691e-08,
+            0.00032030045986175537,
+            0.0,
+            8.742277657347586e-08,
+            1.0,
+            8.739478118968691e-08,
+            0.0,
+            -0.00032030045986175537,
+            8.742277657347586e-08,
+            -0.9999999403953552,
+            0.0,
+            -791.7359008789063,
+            0.30000248551368713,
+            1126.6619873046875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 23969277
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3858406351
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (13)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999403953552,
+            8.739478118968691e-08,
+            0.00032030045986175537,
+            0.0,
+            8.742277657347586e-08,
+            1.0,
+            8.739478118968691e-08,
+            0.0,
+            -0.00032030045986175537,
+            8.742277657347586e-08,
+            -0.9999999403953552,
+            0.0,
+            -819.5006103515625,
+            0.3000046908855438,
+            1126.669921875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3518376208
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3774282428
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (14)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999403953552,
+            8.739478118968691e-08,
+            0.00032030045986175537,
+            0.0,
+            8.742277657347586e-08,
+            1.0,
+            8.739478118968691e-08,
+            0.0,
+            -0.00032030045986175537,
+            8.742277657347586e-08,
+            -0.9999999403953552,
+            0.0,
+            -847.2560424804688,
+            0.30000707507133484,
+            1126.6787109375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2844058130
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 779365091
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (15)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999403953552,
+            8.739478118968691e-08,
+            0.00032030045986175537,
+            0.0,
+            8.742277657347586e-08,
+            1.0,
+            8.739478118968691e-08,
+            0.0,
+            -0.00032030045986175537,
+            8.742277657347586e-08,
+            -0.9999999403953552,
+            0.0,
+            -875.0150756835938,
+            0.30000951886177063,
+            1126.6876220703125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 654310553
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 4071418861
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (16)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.9999999403953552,
+            8.739478118968691e-08,
+            0.00032030045986175537,
+            0.0,
+            8.742277657347586e-08,
+            1.0,
+            8.739478118968691e-08,
+            0.0,
+            -0.00032030045986175537,
+            8.742277657347586e-08,
+            -0.9999999403953552,
+            0.0,
+            -886.863525390625,
+            0.3499999940395355,
+            1126.690185546875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2847895498
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionStripes/M_CautionStripes.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionStripes/SM_CautionStripes.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 599063883
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionStripes (17)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0007928881095722318,
+            0.0,
+            3.0306763648986816,
+            0.0,
+            0.0,
+            3.030677080154419,
+            0.0,
+            0.0,
+            -3.0306763648986816,
+            0.0,
+            0.0007928881095722318,
+            0.0,
+            -500.7679443359375,
+            0.3000252842903137,
+            76.92294311523438,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 382771646
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_GameIcon/M_GameIcon.toematerial",
+          "MeshPath": "Library/Meshes/SM_GameIcon/SM_GameIcon.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2271335495
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_GameIcon (1)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -6.566554588971485e-08,
+            1.502252221107483,
+            0.2653436064720154,
+            0.0,
+            -2.975996732711792,
+            -1.3008495614030835e-07,
+            6.604069720791484e-16,
+            0.0,
+            4.078986393096784e-08,
+            -0.9331649541854858,
+            5.283142566680908,
+            0.0,
+            -401.2407531738281,
+            43.53669357299805,
+            328.1858825683594,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2326360591
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienSplash/M_AlienSplash.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienSplash/SM_AlienSplash.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2075927450
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienSplash",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.539526104927063,
+            8.949017455961439e-07,
+            1.9569905996322632,
+            0.0,
+            -1.1892185369788422e-07,
+            2.0299999713897705,
+            -8.95502012099314e-07,
+            0.0,
+            -1.9569905996322632,
+            1.2335851806710707e-07,
+            0.539526104927063,
+            0.0,
+            -460.38653564453125,
+            0.30007800459861755,
+            381.6620788574219,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3796836107
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienSplash/M_AlienSplash.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienSplash/SM_AlienSplash.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3508360565
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienSplash (1)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -1.0341999530792236,
+            9.97375195765926e-08,
+            0.3634340465068817,
+            0.0,
+            -6.421782927645836e-08,
+            1.0961999893188477,
+            -4.835712843487272e-07,
+            0.0,
+            -0.3634340465068817,
+            -4.775119464284217e-07,
+            -1.0341999530792236,
+            0.0,
+            -437.91571044921875,
+            0.2996596097946167,
+            279.81109619140625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3434670418
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienSplash/M_AlienSplash.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienSplash/SM_AlienSplash.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3362120910
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienSplash (2)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.007405520882457495,
+            7.442590117534564e-07,
+            1.6881308555603027,
+            0.0,
+            -9.88954909075801e-08,
+            1.6881479024887085,
+            -7.446999461535597e-07,
+            0.0,
+            -1.6881308555603027,
+            -1.0216108847771466e-07,
+            -0.007405520882457495,
+            0.0,
+            -465.2234191894531,
+            0.2996580898761749,
+            286.4544677734375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 577453795
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienSplash/M_AlienSplash.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienSplash/SM_AlienSplash.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3725270053
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienSplash (3)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -2.055056095123282,
+            1.79658716899275e-07,
+            3.141255557864121e-14,
+            0.0,
+            1.1997989223908204e-07,
+            1.3724099397659197,
+            1.1997989223908063e-07,
+            0.0,
+            -7.653189186583395e-15,
+            8.754212825275517e-08,
+            -1.0013651847839313,
+            0.0,
+            -476.3032531738281,
+            0.30000001192092896,
+            796.1445922851563,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3214658961
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
+          "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1223428017
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Arrow (2)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -1.3357864618301392,
+            1.1677818889666014e-07,
+            2.0418169650697482e-14,
+            0.0,
+            7.798693246741095e-08,
+            0.8920664191246033,
+            7.798693246741095e-08,
+            0.0,
+            -4.974575371313565e-15,
+            5.690243654044025e-08,
+            -0.6508873701095581,
+            0.0,
+            -476.3032531738281,
+            0.29999804496765137,
+            818.4144897460938,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1788282059
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
+          "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3885793885
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Arrow (3)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0399997234344482,
+            -9.100843811893355e-08,
+            0.0005076449015177786,
+            0.0,
+            9.096407893594005e-08,
+            1.0399999618530273,
+            9.09641215685042e-08,
+            0.0,
+            -0.00023451827291864902,
+            -4.200246550567499e-08,
+            0.4804517328739166,
+            0.0,
+            -477.4251403808594,
+            0.29963919520378113,
+            768.9226684570313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3030291946
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Danger/M_Danger.toematerial",
+          "MeshPath": "Library/Meshes/SM_Danger/SM_Danger.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 265191552
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Danger",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.8281875848770142,
+            7.24024786791233e-08,
+            1.2659267385718102e-14,
+            0.0,
+            4.835192868313243e-08,
+            0.5530811548233032,
+            4.835192868313243e-08,
+            0.0,
+            -3.084237119849566e-15,
+            3.527957659343883e-08,
+            -0.4035501778125763,
+            0.0,
+            -476.3032531738281,
+            0.29999643564224243,
+            837.15673828125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 147688647
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
+          "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1068283859
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Arrow (4)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0132794159289915e-07,
+            -3.0541997375621577e-07,
+            3.4935951232910156,
+            0.0,
+            2.039658113517362e-07,
+            2.333096981048584,
+            2.039658113517362e-07,
+            0.0,
+            -1.7023204565048218,
+            1.4882120069614757e-07,
+            1.2665996962368808e-07,
+            0.0,
+            -823.7574462890625,
+            0.3002517819404602,
+            150.00306701660156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1501941032
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
+          "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 487881985
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Arrow (5)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0132794159289915e-07,
+            -3.0541997375621577e-07,
+            3.4935951232910156,
+            0.0,
+            2.039658113517362e-07,
+            2.333096981048584,
+            2.039658113517362e-07,
+            0.0,
+            -1.7023204565048218,
+            1.4882120069614757e-07,
+            1.2665996962368808e-07,
+            0.0,
+            -756.4782104492188,
+            0.3002459406852722,
+            150.00306701660156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 372867325
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
+          "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1415474087
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Arrow (6)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0132794159289915e-07,
+            -3.0541997375621577e-07,
+            3.4935951232910156,
+            0.0,
+            2.039658113517362e-07,
+            2.333096981048584,
+            2.039658113517362e-07,
+            0.0,
+            -1.7023204565048218,
+            1.4882120069614757e-07,
+            1.2665996962368808e-07,
+            0.0,
+            -688.215576171875,
+            0.3002402186393738,
+            150.00306701660156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2133978170
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
+          "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 639305378
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Arrow (7)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.0008056153892539442,
+            0.0,
+            1.649999737739563,
+            0.0,
+            0.0,
+            1.649999976158142,
+            0.0,
+            0.0,
+            -1.649999737739563,
+            0.0,
+            0.0008056153892539442,
+            0.0,
+            -920.5841674804688,
+            0.30000001192092896,
+            142.117919921875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1533663500
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionSign/M_CautionSign.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionSign/SM_CautionSign.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1361809651
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionSign",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -1.6499998569488525,
+            0.0,
+            0.000805586576461792,
+            0.0,
+            0.0,
+            1.649999976158142,
+            0.0,
+            0.0,
+            -0.000805586576461792,
+            0.0,
+            -1.6499998569488525,
+            0.0,
+            -824.8829345703125,
+            0.299979031085968,
+            1146.9776611328125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1454483822
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_CautionSign/M_CautionSign.toematerial",
+          "MeshPath": "Library/Meshes/SM_CautionSign/SM_CautionSign.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2350867982
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_CautionSign (1)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -7.46304351650906e-08,
+            1.707344651222229,
+            3.4533891677856445,
+            0.0,
+            -2.975996732711792,
+            -1.3008495614030835e-07,
+            8.969189526828424e-16,
+            0.0,
+            7.068621954431364e-08,
+            -1.617112159729004,
+            0.7994938492774963,
+            0.0,
+            -401.2405700683594,
+            37.154178619384766,
+            1076.4486083984375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3834384640
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienSplash/M_AlienSplash.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienSplash/SM_AlienSplash.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3152371263
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienSplash (4)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0958672761917114,
+            0.023524239659309387,
+            0.013176484033465385,
+            0.0,
+            0.013102008029818535,
+            0.003608509199693799,
+            -1.0961158275604248,
+            0.0,
+            -0.023565813899040222,
+            1.095941185951233,
+            0.003326254431158304,
+            0.0,
+            -475.286865234375,
+            7.14626407623291,
+            1098.2344970703125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1157657613
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienSplash/M_AlienSplash.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienSplash/SM_AlienSplash.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3402262955
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienSplash (5)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.007405520882457495,
+            7.442590117534564e-07,
+            1.6881308555603027,
+            0.0,
+            -9.88954909075801e-08,
+            1.6881479024887085,
+            -7.446999461535597e-07,
+            0.0,
+            -1.6881308555603027,
+            -1.0216108847771466e-07,
+            -0.007405520882457495,
+            0.0,
+            -456.6621398925781,
+            0.29991284012794495,
+            1041.5133056640625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3856693691
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_AlienSplash/M_AlienSplash.toematerial",
+          "MeshPath": "Library/Meshes/SM_AlienSplash/SM_AlienSplash.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3929943344
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_AlienSplash (6)",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
