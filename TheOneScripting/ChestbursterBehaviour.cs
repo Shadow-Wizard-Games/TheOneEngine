@@ -46,6 +46,11 @@ public class ChestbursterBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
+    // particles
+    IGameObject tailPunchPSGO;
+    IGameObject tailTripPSGO;
+    IGameObject deathPSGO;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
@@ -56,6 +61,10 @@ public class ChestbursterBehaviour : MonoBehaviour
         attachedGameObject.animator.Play("Move");
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.transitionTime = 0.0f;
+
+        tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS");
+        tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS");
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
     }
 
     public override void Update()
@@ -152,6 +161,7 @@ public class ChestbursterBehaviour : MonoBehaviour
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f);
                 attachedGameObject.animator.Play("Dead");
+                if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
                 break;
             default:
                 break;
@@ -166,11 +176,13 @@ public class ChestbursterBehaviour : MonoBehaviour
             {
                 currentAttack = ChestbursterAttack.TailPunch;
                 attachedGameObject.animator.Play("TailPunch");
+                if (tailPunchPSGO != null) tailPunchPSGO.GetComponent<IParticleSystem>().Play();
             }
             else
             {
                 currentAttack = ChestbursterAttack.TailTrip;
                 attachedGameObject.animator.Play("TailTrip");
+                if (tailTripPSGO != null) tailTripPSGO.GetComponent<IParticleSystem>().Play();
             }
             //Debug.Log("Chestburster current attack: " + currentAttack);
         }
