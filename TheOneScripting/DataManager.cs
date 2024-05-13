@@ -14,43 +14,43 @@ public class DataManager
         InternalCalls.RemoveFile(filepath);
     }
 
-    public static string AccessFileDataString(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName)
+    public static string AccessFileDataString(string filepath, string[] dataPath, string dataName)
     {
-        return InternalCalls.AccessFileDataString(filepath, dataPath, dataPathLenght, dataName);
+        return InternalCalls.AccessFileDataString(filepath, dataPath, dataName);
     }
 
-    public static int AccessFileDataInt(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName)
+    public static int AccessFileDataInt(string filepath, string[] dataPath, string dataName)
     {
-        return InternalCalls.AccessFileDataInt(filepath, dataPath, dataPathLenght, dataName);
+        return InternalCalls.AccessFileDataInt(filepath, dataPath, dataName);
     }
 
-    public static float AccessFileDataFloat(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName)
+    public static float AccessFileDataFloat(string filepath, string[] dataPath, string dataName)
     {
-        return InternalCalls.AccessFileDataFloat(filepath, dataPath, dataPathLenght, dataName);
+        return InternalCalls.AccessFileDataFloat(filepath, dataPath, dataName);
     }
 
-    public static bool AccessFileDataBool(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName)
+    public static bool AccessFileDataBool(string filepath, string[] dataPath, string dataName)
     {
-        return InternalCalls.AccessFileDataBool(filepath, dataPath, dataPathLenght, dataName);
+        return InternalCalls.AccessFileDataBool(filepath, dataPath, dataName);
     }
 
-    public static void WriteFileDataString(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, string data)
+    public static void WriteFileDataString(string filepath, string[] dataPath, string dataName, string data)
     {
-        InternalCalls.WriteFileDataString(filepath, dataPath, dataPathLenght, dataName, data);
+        InternalCalls.WriteFileDataString(filepath, dataPath, dataName, data);
     }
 
-    public static void WriteFileDataInt(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, int data)
+    public static void WriteFileDataInt(string filepath, string[] dataPath, string dataName, int data)
     {
-        InternalCalls.WriteFileDataInt(filepath, dataPath, dataPathLenght, dataName, data);
+        InternalCalls.WriteFileDataInt(filepath, dataPath, dataName, data);
     }
 
-    public static void WriteFileDataFloat(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, float data)
+    public static void WriteFileDataFloat(string filepath, string[] dataPath, string dataName, float data)
     {
-        InternalCalls.WriteFileDataFloat(filepath, dataPath, dataPathLenght, dataName, data);
+        InternalCalls.WriteFileDataFloat(filepath, dataPath, dataName, data);
     }
 
-    public static void WriteFileDataBool(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, bool data)
+    public static void WriteFileDataBool(string filepath, string[] dataPath, string dataName, bool data)
     {
-        InternalCalls.WriteFileDataBool(filepath, dataPath, dataPathLenght, dataName, data);
+        InternalCalls.WriteFileDataBool(filepath, dataPath, dataName, data);
     }
 }

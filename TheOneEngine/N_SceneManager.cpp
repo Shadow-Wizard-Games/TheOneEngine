@@ -422,7 +422,7 @@ void N_SceneManager::AccessFileDataWrite(std::string filepath, DataType dataType
 			(*currentObject)[dataName] = *reinterpret_cast<bool*>(data);
 			break;
 		case DATA_STRING:
-			(*currentObject)[dataName] = reinterpret_cast<char*>(data);
+			(*currentObject)[dataName] = *static_cast<std::string*>(data);
 			break;
 		case DATA_INT:
 			(*currentObject)[dataName] = *reinterpret_cast<int*>(data);
@@ -461,6 +461,13 @@ void N_SceneManager::AccessFileDataWrite(std::string filepath, DataType dataType
 
 		file.close();
 
+		file.open(filepath);
+		if (!file.is_open())
+		{
+			LOG(LogType::LOG_ERROR, "Failed to reopen file: %s", filepath.data());
+			return;
+		}
+
 		json* currentObject = &fileJSON;
 		for (const auto& path : dataPath)
 		{
@@ -476,7 +483,7 @@ void N_SceneManager::AccessFileDataWrite(std::string filepath, DataType dataType
 			(*currentObject)[dataName] = *reinterpret_cast<bool*>(data);
 			break;
 		case DATA_STRING:
-			(*currentObject)[dataName] = reinterpret_cast<char*>(data);
+			(*currentObject)[dataName] = *static_cast<std::string*>(data);
 			break;
 		case DATA_INT:
 			(*currentObject)[dataName] = *reinterpret_cast<int*>(data);

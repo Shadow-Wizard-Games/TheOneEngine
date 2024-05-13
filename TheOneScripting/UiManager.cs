@@ -16,14 +16,14 @@ public class UiManager : MonoBehaviour
 
     public enum HudPopUpMenu
     {
-        SaveScene,
+        SaveScene = 0,
         PickUpFeedback,
         Dialogue
     }
 
     public enum Dialoguer
     {
-        ShopKeeper,
+        ShopKeeper = 0,
         Medic,
         CampLeader,
         Sargeant

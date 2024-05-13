@@ -104,28 +104,28 @@ class InternalCalls
     internal extern static void RemoveFile(string filepath);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static string AccessFileDataString(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName);
+    internal extern static string AccessFileDataString(string filepath, string[] dataPath, string dataName);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static int AccessFileDataInt(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName);
+    internal extern static int AccessFileDataInt(string filepath, string[] dataPath, string dataName);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static bool AccessFileDataBool(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName);
+    internal extern static bool AccessFileDataBool(string filepath, string[] dataPath, string dataName);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static float AccessFileDataFloat(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName);
+    internal extern static float AccessFileDataFloat(string filepath, string[] dataPath, string dataName);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void WriteFileDataString(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, string data);
+    internal extern static void WriteFileDataString(string filepath, string[] dataPath, string dataName, string data);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void WriteFileDataInt(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, int data);
+    internal extern static void WriteFileDataInt(string filepath, string[] dataPath, string dataName, int data);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void WriteFileDataBool(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, bool data);
+    internal extern static void WriteFileDataBool(string filepath, string[] dataPath, string dataName, bool data);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void WriteFileDataFloat(string filepath, IntPtr[] dataPath, int dataPathLenght, string dataName, float data);
+    internal extern static void WriteFileDataFloat(string filepath, string[] dataPath, string dataName, float data);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetCurrentSceneName();

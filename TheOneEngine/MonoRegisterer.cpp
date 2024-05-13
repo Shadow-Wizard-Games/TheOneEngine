@@ -292,10 +292,10 @@ static void RemoveFile(MonoString* filepath)
 	engine->N_sceneManager->RemoveFile(path);
 }
 
-static MonoString* AccesFileDataString(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName)
+static MonoString* AccessFileDataString(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 
 	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_STRING, dPath, dName);
@@ -307,10 +307,10 @@ static MonoString* AccesFileDataString(MonoString* filepath, MonoString** dataPa
 	return mono_string_new(MonoManager::GetAppDomain(), sData.c_str());
 }
 
-static int AccesFileDataInt(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName)
+static int AccessFileDataInt(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 
 	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
@@ -323,10 +323,10 @@ static int AccesFileDataInt(MonoString* filepath, MonoString** dataPath, int dat
 	return sData;
 }
 
-static bool AccesFileDataBool(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName)
+static bool AccessFileDataBool(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 
 	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
@@ -339,10 +339,10 @@ static bool AccesFileDataBool(MonoString* filepath, MonoString** dataPath, int d
 	return sData;
 }
 
-static float AccesFileDataFloat(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName)
+static float AccessFileDataFloat(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 
 	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
@@ -355,10 +355,10 @@ static float AccesFileDataFloat(MonoString* filepath, MonoString** dataPath, int
 	return sData;
 }
 
-static void WriteFileDataString(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName, MonoString* data)
+static void WriteFileDataString(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, MonoString* data)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 	std::string dstr = MonoRegisterer::MonoStringToUTF8(data);
 	void* d = new std::string(dstr);
@@ -366,29 +366,29 @@ static void WriteFileDataString(MonoString* filepath, MonoString** dataPath, int
 	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_STRING, dPath, dName, d);
 }
 
-static void WriteFileDataInt(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName, int data)
+static void WriteFileDataInt(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, int data)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 	void* d = new int(data);
 
 	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_INT, dPath, dName, d);
 }
 
-static void WriteFileDataFloat(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName, float data)
+static void WriteFileDataFloat(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, float data)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 	void* d = new float(data);
 
 	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_FLOAT, dPath, dName, d);
 }
-static void WriteFileDataBool(MonoString* filepath, MonoString** dataPath, int dataPathLenght, MonoString* dataName, bool data)
+static void WriteFileDataBool(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, bool data)
 {
 	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
-	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath, dataPathLenght);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
 	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
 	void* d = new bool(data);
 
@@ -995,14 +995,14 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
 	mono_add_internal_call("InternalCalls::CreateSaveFromScene", CreateSaveFromScene);
 	mono_add_internal_call("InternalCalls::RemoveFile", RemoveFile);
-	mono_add_internal_call("InternalCalls::AccesFileDataString", AccesFileDataString);
-	mono_add_internal_call("InternalCalls::AccesFileDataFloat", AccesFileDataFloat);
-	mono_add_internal_call("InternalCalls::AccesFileDataInt", AccesFileDataInt);
-	mono_add_internal_call("InternalCalls::AccesFileDataBool", AccesFileDataBool);
-	mono_add_internal_call("InternalCalls::AccesFileDataString", WriteFileDataString);
-	mono_add_internal_call("InternalCalls::AccesFileDataFloat", WriteFileDataFloat);
-	mono_add_internal_call("InternalCalls::AccesFileDataInt", WriteFileDataInt);
-	mono_add_internal_call("InternalCalls::AccesFileDataBool", WriteFileDataBool);
+	mono_add_internal_call("InternalCalls::AccessFileDataString", AccessFileDataString);
+	mono_add_internal_call("InternalCalls::AccessFileDataFloat", AccessFileDataFloat);
+	mono_add_internal_call("InternalCalls::AccessFileDataInt", AccessFileDataInt);
+	mono_add_internal_call("InternalCalls::AccessFileDataBool", AccessFileDataBool);
+	mono_add_internal_call("InternalCalls::WriteFileDataString", WriteFileDataString);
+	mono_add_internal_call("InternalCalls::WriteFileDataFloat", WriteFileDataFloat);
+	mono_add_internal_call("InternalCalls::WriteFileDataInt", WriteFileDataInt);
+	mono_add_internal_call("InternalCalls::WriteFileDataBool", WriteFileDataBool);
 	mono_add_internal_call("InternalCalls::GetCurrentSceneName", GetCurrentSceneName);
 	mono_add_internal_call("InternalCalls::CreatePrefab", CreatePrefab);
 
@@ -1102,17 +1102,28 @@ std::string MonoRegisterer::MonoStringToUTF8(MonoString* monoString)
 	return result;
 }
 
-std::vector<std::string> MonoRegisterer::MonoStringArrayToUTF8(MonoString** monoStringArray, int arrayLength)
+std::vector<std::string> MonoRegisterer::MonoStringArrayToUTF8(MonoArray* monoStringArray)
 {
 	std::vector<std::string> result;
 
 	if (monoStringArray == nullptr)
 		return result;
 
-	for (int i = 0; i < arrayLength; ++i)
+	int length = mono_array_length(monoStringArray);
+	for (int i = 0; i < length; ++i)
 	{
-		MonoString* monoString = monoStringArray[i];
-		std::string utf8String = MonoStringToUTF8(monoString);
+		MonoString* monoString = reinterpret_cast<MonoString*>(mono_array_get(monoStringArray, MonoString*, i));
+
+		MonoError error;
+		char* utf8 = mono_string_to_utf8_checked(monoString, &error);
+		if (CheckMonoError(error))
+		{
+			result.push_back("");
+			continue;
+		}
+
+		std::string utf8String(utf8);
+		mono_free(utf8);
 		result.push_back(utf8String);
 	}
 

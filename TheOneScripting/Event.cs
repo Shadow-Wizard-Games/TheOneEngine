@@ -13,6 +13,7 @@ public abstract class Event : MonoBehaviour
         COLLECTIBLE,
         NEXTROOM,
         CHECKPOINT,
+        OPENPOPUP,
         //Add events
     }
     public EventType eventType {  get; set; }

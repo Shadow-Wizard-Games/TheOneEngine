@@ -6988,7 +6988,7 @@
             0.0,
             71.40404510498047,
             0.0,
-            245.58563232421875,
+            435.42144775390625,
             1.0
           ],
           "Type": 0,
@@ -7225,6 +7225,47 @@
       "HasTransparency": false,
       "Keeped": true,
       "Name": "ItemManager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            647.6279907226563,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1524612854
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "EventOpenPopUp",
+          "Type": 4,
+          "UID": 2191272949
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Trigger_Dialog1",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
