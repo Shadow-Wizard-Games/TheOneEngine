@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour
     {
         MP4,
         IMPACIENTE,
-        GRENADE_LAUNCHER,
         FLAME_THROWER,
     }
 
@@ -36,6 +35,8 @@ public class PlayerScript : MonoBehaviour
     public float maxLife = 100.0f;
     public float life;
     public bool isDead = false;
+    public float totalDamage = 0.0f;
+    public float damageIncrease = 0.0f;
 
 
     // movement
@@ -48,6 +49,8 @@ public class PlayerScript : MonoBehaviour
 
 
     // shooting
+    public float damageM4 = 10.0f;
+    public float currentWeoponDamage = 0.0f;
     public CurrentWeapon currentWeapon = CurrentWeapon.MP4;
 
     bool hasShot = false;
@@ -68,6 +71,7 @@ public class PlayerScript : MonoBehaviour
     public bool shieldIsActive = false;
 
     public bool isHealing = false;
+    public string healAbilityName = "Bandage";
 
     public bool isRushing = false;
 
@@ -78,7 +82,7 @@ public class PlayerScript : MonoBehaviour
 
     // animation states
     bool isRunning;
-    bool isShooting;
+    public bool isShooting;
 
     public override void Start()
     {
@@ -98,13 +102,13 @@ public class PlayerScript : MonoBehaviour
 
         life = maxLife;
         speed = baseSpeed;
+        currentWeoponDamage = damageM4;
     }
 
     public override void Update()
     {
         isRunning = false;
         isShooting = false;
-
 
         //to delete just test
         if (Input.GetKeyboardButton(Input.KeyboardCode.SIX))
@@ -166,6 +170,9 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
         }
 
+        // update total damage before shooting
+        totalDamage = currentWeoponDamage + damageIncrease;
+
         // set shoot direction
         SetShootDirection();
 
@@ -201,6 +208,18 @@ public class PlayerScript : MonoBehaviour
             }
             lastFrameRunned = isRunning;
 
+        }
+
+        // current weapon switch
+        switch(currentWeapon)
+        {
+            case CurrentWeapon.MP4:
+                break;
+            case CurrentWeapon.IMPACIENTE:
+                break;
+            case CurrentWeapon.FLAME_THROWER:
+
+                break;
         }
 
         // animations

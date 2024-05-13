@@ -54,8 +54,16 @@ public class AbilityHeal : Ability
     public override void Activated()
     {
         // Calculate heal amount
-        totalHeal = player.maxLife * healAmount;
-        totalHeal += player.life;
+
+        if(player.healAbilityName == "Bandage")
+        {
+            totalHeal = player.maxLife * healAmount;
+        }
+        else
+        {
+            totalHeal = player.maxLife * healAmount;
+        }
+            totalHeal += player.life;
         
         float speedReduce = player.baseSpeed * slowAmount;
         player.speed -= speedReduce;
