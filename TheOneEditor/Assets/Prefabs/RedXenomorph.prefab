@@ -1,0 +1,80 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 985319415
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_RedXenomorph_Tpose/M_Xenomorph.toematerial",
+      "MeshPath": "Library/Meshes/AS_RedXenomorph_Tpose/Xenomorph.animator",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 1334431832
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 3452816845,
+      "Radius": 10.0,
+      "Type": 5,
+      "UID": 2196806084,
+      "Width": -1.7976931348623157e+308
+    },
+    {
+      "AudioID": 3,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "RedXenomorphBehaviour",
+      "Type": 4,
+      "UID": 2126784282
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "RedXenomorph",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 1749398551,
+  "PrefabName": "RedXenomorph",
+  "Static": false,
+  "UID": 3452816845
+}

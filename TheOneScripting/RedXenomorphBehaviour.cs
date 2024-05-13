@@ -59,14 +59,14 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
-        //attachedGameObject.animator.Play("Idle");
-        //attachedGameObject.animator.blend = false;
-        //attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Play("Walk");
+        attachedGameObject.animator.blend = false;
+        attachedGameObject.animator.transitionTime = 0.0f;
     }
 
     public override void Update()
     {
-        //attachedGameObject.animator.UpdateAnimation();
+        attachedGameObject.animator.UpdateAnimation();
 
         if (currentState == States.Dead) return;
 
@@ -161,7 +161,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 Patrol();
                 break;
             case States.Dead:
-                attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
+                attachedGameObject.animator.Play("Death");
                 break;
             default:
                 break;
@@ -175,12 +175,12 @@ public class RedXenomorphBehaviour : MonoBehaviour
             if (isClose)
             {
                 currentAttack = RedXenomorphAttacks.TailStab;
-                //attachedGameObject.animator.Play("TailAttack");
+                attachedGameObject.animator.Play("TailAttack");
             }
             else
             {
                 currentAttack = RedXenomorphAttacks.SpikeThrow;
-                //attachedGameObject.animator.Play("AcidSpit");
+                attachedGameObject.animator.Play("Spit");
             }
             Debug.Log("Chestburster current attack: " + currentAttack);
         }
@@ -190,20 +190,19 @@ public class RedXenomorphBehaviour : MonoBehaviour
     {
         //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
         //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
-        ResetState();
-        //if (attachedGameObject.animator.currentAnimHasFinished)
-        //{
-        //    ResetState();
-        //}
+
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            ResetState();
+        }
     }
 
     private void TailStab()
     {
-        ResetState();
-        //if (attachedGameObject.animator.currentAnimHasFinished)
-        //{
-        //    ResetState();
-        //}
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            ResetState();
+        }
     }
     private void Patrol()
     {
