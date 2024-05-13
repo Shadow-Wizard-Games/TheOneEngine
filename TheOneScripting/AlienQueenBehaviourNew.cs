@@ -268,7 +268,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     Attacks currentAttack = Attacks.None;
     bool attackedFinished = false;
-    bool attackFirstFrame = false;
+    bool attackFirstFrame = true;
     bool combinedFirstAttack = true;
     void DoAttack()
     {
@@ -276,7 +276,6 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         {
             Debug.Log("I am now entering attack");
             currentAttack = ChooseAttack();
-            attackFirstFrame = true;
             lastState = currentState;
         }
 
@@ -312,8 +311,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 attackedFinished = true;
                 break;
             case Attacks.Charge:
-                Debug.LogCheck("Doing charge");
-                attackedFinished = true;
+                HeadCharge();
                 break;
             default:
                 break;
@@ -349,6 +347,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 if (stagePhase3 > 4) { stagePhase3 = 0; }
                 currentAttack = ChooseAttack();
             }
+
+            attackFirstFrame = true;
         }
     }
 
@@ -489,6 +489,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     bool shot = false; //Do not touch
     private void AcidBomb()
     {
+        if (attackFirstFrame)
+        {
+            attackFirstFrame = false;
+        }
+
         if (!shot)
         {
             shot = true;
@@ -516,6 +521,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     bool spawned = false; //Do not touch
     private void Spawn()
     {
+        if (attackFirstFrame)
+        {
+            attackFirstFrame = false;
+        }
+
         if (!spawned)
         {
             spawned = true;
@@ -538,6 +548,34 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
             spawned = false;
             currentAttack = Attacks.None;
+            attackedFinished = true;
+        }
+    }
+
+    float headChargeDuration = 3.0f;
+    float chargeSpeed = 250.0f;
+    float stopCountDown = 0; //Do not touch
+    private void HeadCharge()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Head_Charge");
+            attackFirstFrame = false;
+
+            countDown = 0;
+            stopCountDown = 0;
+            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+        }
+
+        stopCountDown += Time.deltaTime;
+        if (stopCountDown > 1.05f && stopCountDown < 3.15f)
+        {
+            attachedGameObject.transform.Translate(attachedGameObject.transform.forward * chargeSpeed * Time.deltaTime);
+        }
+
+        countDown += Time.deltaTime;
+        if (countDown >= headChargeDuration)
+        {
             attackedFinished = true;
         }
     }
