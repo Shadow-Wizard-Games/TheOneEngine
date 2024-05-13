@@ -1,0 +1,92 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 1.2000000476837158,
+      "Duration": 2.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.0,
+            2.0,
+            0.5
+          ],
+          "MinDirection": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": true
+        },
+        {
+          "MaxSpeed": 120.0,
+          "MinSpeed": 100.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            0.0,
+            100.0,
+            0.0,
+            0.0
+          ],
+          "MinColor": [
+            0.0,
+            200.0,
+            0.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 50.0,
+          "Duration": 0.20000000298023224,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "AcidSpitPS",
+  "StartON": false,
+  "Type": 9,
+  "UID": 1718159920
+}
