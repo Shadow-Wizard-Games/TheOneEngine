@@ -186,7 +186,6 @@ public class PlayerScript : MonoBehaviour
                 }
             }
         }
-
         // Play steps
         if (lastFrameRunned != isRunning)
         {
@@ -274,7 +273,6 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.Play("Death");
         // play sound (?)
     }
-
     private bool SetMoveDirection()
     {
         bool toMove = false;

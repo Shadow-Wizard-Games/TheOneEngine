@@ -41,6 +41,7 @@
           "UsingSingleValueColor": true
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             3.0,
             3.0,
@@ -79,11 +80,25 @@
             0.0
           ],
           "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
         }
       ]
     }
   ],
   "Name": "P_Shoot_Granade",
+  "StartON": false,
   "Type": 9,
   "UID": 1138319974
 }
