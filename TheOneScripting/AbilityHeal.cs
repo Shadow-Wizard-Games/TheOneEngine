@@ -35,7 +35,7 @@ public class AbilityHeal : Ability
             case AbilityState.READY:
                 if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && numHeals > 0)
                 {
-                    Activated();   
+                    Activated();
                     break;
                 }
                 // controller input

@@ -11,17 +11,10 @@ class AudioManager;
 
 class AudioComponent {
 public:
-	//AudioComponent(std::shared_ptr<GameObject> containerGO);
-	//virtual ~AudioComponent();
-
 	virtual void SetTransform(std::shared_ptr<GameObject> containerGO) = 0;
 	
 	// Get the associated game object
-	std::shared_ptr<GameObject> GetGameObject() {
-		return GO;
-	}
-
-	//virtual void AddAudioObjectToAudioManager() = 0;
+	std::shared_ptr<GameObject> GetGameObject() {return GO;}
 
 public:
 	std::shared_ptr<GameObject> GO;

@@ -38,6 +38,7 @@ public class AbilityImpaciente : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR))
                 {
                     Activated();
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
                     break;
                 }
                 // controller input

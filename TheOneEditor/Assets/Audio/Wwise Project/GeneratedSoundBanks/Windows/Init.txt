@@ -1,3 +1,13 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	15699892	GameplayMode			\Default Work Unit\GameplayMode	
+
+State	ID	Name	State Group			Notes
+	284967655	Ship	GameplayMode			
+	417916826	Ruins	GameplayMode			
+	748895195	None	GameplayMode			
+	2764240573	Combat	GameplayMode			
+	3736508534	Camp	GameplayMode			
+
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	504532776	Brick			\Factory Acoustic Textures\Textures\Brick	
 	513139656	Mountain			\Factory Acoustic Textures\Textures\Mountain	
@@ -15,6 +25,8 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	4262522749	Wood_Bright			\Factory Acoustic Textures\Textures\Wood_Bright	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	393239870	SFX			\Default Work Unit\SFX	
+	3313685232	Voices			\Default Work Unit\Voices	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
 Audio Devices	ID	Name	Type				Notes

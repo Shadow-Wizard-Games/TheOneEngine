@@ -72,7 +72,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
         if (isJumping)
         {
-            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_JUMP);
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_JUMP);
             isJumping = false;
         }
     }
@@ -94,7 +94,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
                                                                         0.0f,
                                                                         attachedGameObject.transform.position.z);
 
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_DEATH);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_DEATH);
                     detected = false;
                 }
             }

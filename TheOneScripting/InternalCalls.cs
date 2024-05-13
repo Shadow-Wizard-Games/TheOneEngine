@@ -121,6 +121,9 @@ class InternalCalls
     internal extern static int GetSelectedButton(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int SetUiItemState(IntPtr GOptr, int state, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -137,6 +140,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderValue(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTextString(IntPtr GOptr, string text, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetTextString(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
@@ -187,10 +196,16 @@ class InternalCalls
 
     #region Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void PlaySource(IntPtr GOptr, EventIDs audio);
+    internal extern static void PlayAudioSource(IntPtr GOptr, AudioEvent audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void StopSource(IntPtr GOptr, EventIDs audio);
+    internal extern static void StopAudioSource(IntPtr GOptr, AudioEvent audio);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetState(AudioStateGroup stateGroup, AudioStateID stateID);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSwitch(IntPtr GOptr, AudioSwitchGroup switchGroup, AudioSwitchID switchID);
     #endregion
 
     #region Collider2D

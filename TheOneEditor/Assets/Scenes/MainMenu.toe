@@ -136,6 +136,7 @@
               "Type": 0
             },
             {
+              "CountAsRealButton": true,
               "ID": 2797854607,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -169,6 +170,7 @@
               "Type": 1
             },
             {
+              "CountAsRealButton": true,
               "ID": 4123220773,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -202,6 +204,7 @@
               "Type": 1
             },
             {
+              "CountAsRealButton": true,
               "ID": 2952651374,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -235,6 +238,7 @@
               "Type": 1
             },
             {
+              "CountAsRealButton": true,
               "ID": 2330218730,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -268,6 +272,7 @@
               "Type": 1
             },
             {
+              "CountAsRealButton": true,
               "ID": 224542309,
               "ImagePath": "Assets/Textures/Hud/MainMenu_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -775,6 +780,7 @@
           "UID": 289577509,
           "UiElements": [
             {
+              "CountAsRealButton": true,
               "ID": 2615487896,
               "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -808,6 +814,7 @@
               "Type": 1
             },
             {
+              "CountAsRealButton": true,
               "ID": 293137850,
               "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -862,9 +869,16 @@
               "Type": 0
             }
           ]
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "UiScriptSettings",
+          "Type": 4,
+          "UID": 1705546812
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "GameObjects": [
         {
           "Components": [
@@ -929,10 +943,10 @@
               ]
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SettingsCanvasControls",
+          "Name": "Canvas_SettingsControls",
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
@@ -1702,12 +1716,19 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptSettingsDisplay",
+              "Type": 4,
+              "UID": 3601329373
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SettingsCanvasDisplay",
+          "Name": "Canvas_SettingsDisplay",
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
@@ -1715,7 +1736,7 @@
       ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "SettingsCanvas",
+      "Name": "Canvas_Settings",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
