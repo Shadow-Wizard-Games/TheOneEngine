@@ -32,7 +32,7 @@
             -4.0
           ],
           "Type": 4,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueDirection": false
         },
         {
           "MaxSpeed": 8.0,
@@ -41,6 +41,7 @@
           "UsingSingleValueSpeed": true
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             1.5,
             1.5,
@@ -56,8 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 2082.3828125,
+      "Lifetime": 128.3921356201172,
       "MaxParticles": 60,
       "RenderModule": [
         {
@@ -67,10 +67,9 @@
       ],
       "SpawnModule": [
         {
-          "Amount": 5.0,
-          "Duration": 1.25,
-          "SpawnRate": 10.0,
-          "Type": 2
+          "Duration": 1.0,
+          "SpawnRate": 50.0,
+          "Type": 0
         }
       ],
       "UpdateModules": [
@@ -81,6 +80,19 @@
             0.0
           ],
           "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
         }
       ]
     },
@@ -100,22 +112,23 @@
             -0.5
           ],
           "Type": 4,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 9,
-          "MinSpeed": 7,
+          "MaxSpeed": 9.0,
+          "MinSpeed": 7.0,
           "Type": 0,
           "UsingSingleValueSpeed": true
         },
         {
+          "IsProportional": true,
           "MaxScale": [
-            2.5,
+            1.0,
             2.5,
             2.5
           ],
           "MinScale": [
-            1.0,
+            0.25,
             1.0,
             1.0
           ],
@@ -140,8 +153,7 @@
         }
       ],
       "IsLooping": true,
-      "IsON": true,
-      "Lifetime": 2082.3828125,
+      "Lifetime": 128.3921356201172,
       "MaxParticles": 50,
       "RenderModule": [
         {
@@ -155,11 +167,26 @@
           "SpawnRate": 2.0,
           "Type": 0
         }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        }
       ]
     }
   ],
-  "IsON": true,
   "Name": "P_Fire_Medium",
+  "StartON": true,
   "Type": 9,
   "UID": 704292522
 }

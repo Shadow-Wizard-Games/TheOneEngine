@@ -1,0 +1,316 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 985319415
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_RedXenomorph_Tpose/M_Xenomorph.toematerial",
+      "MeshPath": "Library/Meshes/AS_RedXenomorph_Tpose/Xenomorph.animator",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 1334431832
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 3452816845,
+      "Radius": 10.0,
+      "Type": 5,
+      "UID": 2196806084,
+      "Width": -1.7976931348623157e+308
+    },
+    {
+      "AudioID": 1,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "RedXenomorphBehaviour",
+      "Type": 4,
+      "UID": 2126784282
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.4798360824584961,
+            0.11435007095336915,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 167692577
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 1.2000000476837158,
+              "Duration": 2.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    0.0,
+                    2.0,
+                    0.5
+                  ],
+                  "MinDirection": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": true
+                },
+                {
+                  "MaxSpeed": 120.0,
+                  "MinSpeed": 100.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    0.0,
+                    100.0,
+                    0.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    0.0,
+                    200.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 100,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 50.0,
+                  "Duration": 0.20000000298023224,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": false,
+          "Type": 9,
+          "UID": 393952824
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "AcidSpitPS",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2027928227
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 1.0,
+              "Duration": 0.800000011920929,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    0.0,
+                    -1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 40.0,
+                  "MinSpeed": 20.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 100,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 1.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    255.0,
+                    255.0,
+                    255.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": false,
+          "Type": 9,
+          "UID": 1443711181
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "TailAttackPS",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "RedXenomorph",
+  "ParentUID": 3452816845,
+  "PrefabDirty": true,
+  "PrefabID": 1749398551,
+  "PrefabName": "RedXenomorph",
+  "Static": false,
+  "UID": 3452816845
+}
