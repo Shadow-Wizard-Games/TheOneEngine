@@ -162,7 +162,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 2164112949
+          "UID": 47571003
         },
         {
           "Active": true,
@@ -175,16 +175,16 @@
           "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
           "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
           "Name": "Mesh",
-          "ParentUID": 3452816845,
+          "ParentUID": 113510800,
           "Type": 2,
-          "UID": 1372494642
+          "UID": 3098960481
         },
         {
           "Name": "Script",
-          "ParentUID": 3452816845,
+          "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 4197445285
+          "UID": 225613267
         },
         {
           "AudioID": 0,
@@ -200,24 +200,377 @@
           "ObjectOrientation": 0,
           "OffsetX": 0.0,
           "OffsetY": 0.0,
-          "ParentUID": 3452816845,
+          "ParentUID": 113510800,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 1944253935,
+          "UID": 3282283334,
           "Width": -1.7976931348623157e+308
         }
       ],
       "EditablePrefab": true,
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.10000000149011612,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1533776541
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        -5.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 15.0,
+                      "MinSpeed": 5.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        250.0,
+                        250.0,
+                        250.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        240.0,
+                        240.0,
+                        240.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 745.2593994140625,
+                  "MaxParticles": 20,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 0,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.800000011920929,
+                      "SpawnRate": 1.5499999523162842,
+                      "Type": 2
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        10.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "P_Run_Dust\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 402248169
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "StepsPS",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.28999999165534973,
+                0.09000000357627869,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2719197524
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.5,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        6.0,
+                        10.0,
+                        120.0
+                      ],
+                      "MinDirection": [
+                        -6.0,
+                        -2.0,
+                        75.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 75.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        210.0,
+                        128.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "MinScale": [
+                        0.2,
+                        0.1,
+                        0.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 50,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -20.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.5,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        6.0,
+                        10.0,
+                        150.0
+                      ],
+                      "MinDirection": [
+                        -6.0,
+                        -2.0,
+                        100.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 150.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        210.0,
+                        128.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.0,
+                        0.1,
+                        2.0
+                      ],
+                      "MinScale": [
+                        0.2,
+                        0.1,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 0,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -20.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    }
+                  ]
+                }
+              ],
+              "Name": "P_ShootM4\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 4200920531
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "ShotPlayerPS",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
       "ParentUID": 3452816845,
-      "PrefabDirty": false,
-      "PrefabID": 2959458870,
+      "PrefabDirty": true,
+      "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
       "Static": false,
-      "UID": 3452816845
+      "UID": 113510800
     },
     {
       "Components": [
@@ -287,11 +640,251 @@
           "UID": 2126784282
         }
       ],
+      "EditablePrefab": true,
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 167692577
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        100.0,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        200.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 393952824
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2027928227
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1443711181
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "RedXenomorph",
       "ParentUID": 3452816845,
+      "PrefabDirty": true,
+      "PrefabID": 1749398551,
+      "PrefabName": "RedXenomorph",
       "Static": false,
       "UID": 3452816845
     }
