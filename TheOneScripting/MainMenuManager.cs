@@ -28,7 +28,7 @@ public class MainMenuManager : MonoBehaviour
 
     public override void Start()
     {
-        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_A_MENU);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_A_MENU);
         canvasLogo = IGameObject.Find("LogoCanvas").GetComponent<ICanvas>();
         canvasTitle = IGameObject.Find("TitleCanvas").GetComponent<ICanvas>();
         canvasCredits = IGameObject.Find("CreditsCanvas").GetComponent<ICanvas>();
@@ -112,7 +112,7 @@ public class MainMenuManager : MonoBehaviour
                             canvasCredits.PrintItemUI(true, "Text_ArtTeam");
                             canvasCredits.PrintItemUI(false, "Text_DesignTeam");
                             canvasCredits.PrintItemUI(false, "Text_CodeTeam");
-                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                            attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                             onCooldown = true;
                             creditsView++;
                         }
@@ -122,7 +122,7 @@ public class MainMenuManager : MonoBehaviour
                             canvasCredits.PrintItemUI(false, "Text_ArtTeam");
                             canvasCredits.PrintItemUI(true, "Text_DesignTeam");
                             canvasCredits.PrintItemUI(false, "Text_CodeTeam");
-                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                            attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                             onCooldown = true;
                             creditsView++;
                         }
@@ -132,7 +132,7 @@ public class MainMenuManager : MonoBehaviour
                             canvasCredits.PrintItemUI(false, "Text_ArtTeam");
                             canvasCredits.PrintItemUI(false, "Text_DesignTeam");
                             canvasCredits.PrintItemUI(true, "Text_CodeTeam");
-                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                            attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                             onCooldown = true;
                             creditsView++;
                         }
@@ -146,7 +146,7 @@ public class MainMenuManager : MonoBehaviour
                             credits = false;
                             mainMenu = true;
                             canvasCredits.ToggleEnable();
-                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                            attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                             onCooldown = true;
                         }
                     }
@@ -198,7 +198,7 @@ public class MainMenuManager : MonoBehaviour
                 {
                     onCooldown = true;
                     canvas.MoveSelectionButton(direction);
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_HOVER);
                 }
 
                 // Selection Executters
@@ -207,8 +207,8 @@ public class MainMenuManager : MonoBehaviour
                     if (gameManager.resumeGame) { gameManager.ResetSave(); }
 
                     SceneManager.LoadScene("IntroScene");
-                    attachedGameObject.source.StopAudio(IAudioSource.EventIDs.UI_A_MENU);
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Stop(IAudioSource.AudioEvent.UI_A_MENU);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
@@ -216,8 +216,8 @@ public class MainMenuManager : MonoBehaviour
                     if (gameManager.resumeGame)
                     {
                         SceneManager.LoadScene(gameManager.GetSavedLevel());
-                        attachedGameObject.source.StopAudio(IAudioSource.EventIDs.UI_A_MENU);
-                        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                        attachedGameObject.source.Stop(IAudioSource.AudioEvent.UI_A_MENU);
+                        attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
                 }
 
@@ -225,7 +225,7 @@ public class MainMenuManager : MonoBehaviour
                 {
                     IGameObject.Find("Canvas_Settings").Enable();
                     IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>().firstFrameUpdate = false;
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     onCooldown = true;
                     mainMenu = false;
                 }
@@ -234,7 +234,7 @@ public class MainMenuManager : MonoBehaviour
                 {
                     credits = true;
                     canvasCredits.ToggleEnable();
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     onCooldown = true;
                     mainMenu = false;
                 }
@@ -242,7 +242,7 @@ public class MainMenuManager : MonoBehaviour
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
                 {
                     InternalCalls.ExitApplication();
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 }
             }
         }

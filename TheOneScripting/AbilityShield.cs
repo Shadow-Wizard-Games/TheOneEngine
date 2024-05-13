@@ -33,6 +33,7 @@ public class AbilityShield : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.TWO)) // change input
                 {
                     Activated();
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.A_S_ACTIVATE);
                     break;
                 }
                 // controller input
@@ -43,6 +44,7 @@ public class AbilityShield : Ability
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.A_S_DEACTIVATE);
                 Debug.Log("Shield cooldown time" + cooldownTimeCounter.ToString("F2"));
                 break;
         }

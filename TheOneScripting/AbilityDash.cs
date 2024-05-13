@@ -33,6 +33,7 @@ public class AbilityDash : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) // change input
                 {
                     Activated();
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.P_DASH);
                     break;
                 }
                 // controller input

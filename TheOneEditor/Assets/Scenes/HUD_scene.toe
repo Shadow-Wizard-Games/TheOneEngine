@@ -31,6 +31,11 @@
           "ScriptName": "UiManager",
           "Type": 4,
           "UID": 2371490470
+        },
+        {
+          "AudioID": 15,
+          "Name": "AudioSource",
+          "Type": 8
         }
       ],
       "Enabled": true,
@@ -1126,6 +1131,11 @@
               "ScriptName": "UiScriptInventory",
               "Type": 4,
               "UID": 951121546
+            },
+            {
+              "AudioID": 0,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -1424,7 +1434,7 @@
               ]
             },
             {
-              "AudioID": 0,
+              "AudioID": 1,
               "Name": "Source",
               "Type": 8
             },
@@ -2989,7 +2999,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 1,
+              "AudioID": 2,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -3486,6 +3496,11 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 3,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -3665,6 +3680,11 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 4,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -5886,6 +5906,11 @@
                       "Type": 0
                     }
                   ]
+                },
+                {
+                  "AudioID": 5,
+                  "Name": "AudioSource",
+                  "Type": 8
                 }
               ],
               "Enabled": false,
@@ -6668,6 +6693,11 @@
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
                   "UID": 1616070798
+                },
+                {
+                  "AudioID": 6,
+                  "Name": "AudioSource",
+                  "Type": 8
                 }
               ],
               "Enabled": false,
@@ -6771,6 +6801,11 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 7,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -6890,6 +6925,11 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 8,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -6904,7 +6944,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
     },
@@ -6949,7 +6989,7 @@
           "zNear": 0.1
         },
         {
-          "AudioID": 2,
+          "AudioID": 9,
           "Name": "Listener",
           "Type": 7
         },
@@ -6965,7 +7005,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
     },
@@ -7017,7 +7057,7 @@
           "UID": 3227234719
         },
         {
-          "AudioID": 3,
+          "AudioID": 10,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -7041,7 +7081,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
     },
@@ -7076,13 +7116,18 @@
           "ScriptName": "ItemManager",
           "Type": 4,
           "UID": 1110714302
+        },
+        {
+          "AudioID": 11,
+          "Name": "AudioSource",
+          "Type": 8
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
     },
@@ -7127,7 +7172,7 @@
           "UID": 3836625021
         },
         {
-          "AudioID": 4,
+          "AudioID": 12,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -7143,7 +7188,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Queen",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
     },
@@ -7178,13 +7223,18 @@
           "ScriptName": "GameManager",
           "Type": 4,
           "UID": 2135104260
+        },
+        {
+          "AudioID": 13,
+          "Name": "AudioSource",
+          "Type": 8
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": true,
       "Name": "GameManager",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
     },
@@ -7219,13 +7269,18 @@
           "ScriptName": "ItemManager",
           "Type": 4,
           "UID": 2581454987
+        },
+        {
+          "AudioID": 14,
+          "Name": "AudioSource",
+          "Type": 8
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": true,
       "Name": "ItemManager",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619240,
       "Static": false,
       "UID": 3452816845
     }

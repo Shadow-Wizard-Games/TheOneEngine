@@ -284,7 +284,7 @@ public class UiScriptInventory : MonoBehaviour
 
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_HOVER);
                 onCooldown = true;
                 canvas.MoveSelectionButton(direction);
                 currentButton += direction;
@@ -314,27 +314,27 @@ public class UiScriptInventory : MonoBehaviour
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Stats);
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 //FUNCTION TO USE CURRENT CONSUMIBLE ITEM
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && (canvas.GetSelectedButton() >= 3 && canvas.GetSelectedButton() <= 16))
             {
                 int itemSlot = canvas.GetSelectedButton() - 3;
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 //FUNCTION TO USE ITEM IN THE SLOT
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && (canvas.GetSelectedButton() >= 17 && canvas.GetSelectedButton() <= 20))
             {
                 int itemSlot = canvas.GetSelectedButton() - 17;
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 //FUNCTION TO SEE INFO OF CURRENT ABILITY
             }
         }

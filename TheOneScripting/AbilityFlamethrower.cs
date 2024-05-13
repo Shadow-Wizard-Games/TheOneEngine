@@ -26,6 +26,7 @@ public class AbilityFlamethrower : Ability
                     if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
                     {
                         Activated();
+                        attachedGameObject.source.Play(IAudioSource.AudioEvent.A_FT);
                         break;
                     }
                     break;

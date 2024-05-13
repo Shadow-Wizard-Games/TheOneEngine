@@ -143,7 +143,7 @@ public class UiScriptSettings : MonoBehaviour
 
                 if (toMove)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_HOVER);
                     onCooldown = true;
                     canvas.MoveSelectionButton(direction);
                     currentButton += direction;
@@ -151,14 +151,14 @@ public class UiScriptSettings : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     IGameObject.Find("Canvas_SettingsControls").Enable();
                     IGameObject.Find("Canvas_SettingsDisplay").Disable();
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     IGameObject.Find("Canvas_SettingsControls").Disable();
                     IGameObject.Find("Canvas_SettingsDisplay").Disable();
                     IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.HOVERED,"Checker_Vsync");

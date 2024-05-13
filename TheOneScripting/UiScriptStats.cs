@@ -150,7 +150,7 @@ public class UiScriptStats : MonoBehaviour
 
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_HOVER);
                 onCooldown = true;
                 canvas.MoveSelectionButton(direction);
                 currentButton += direction;
@@ -160,7 +160,7 @@ public class UiScriptStats : MonoBehaviour
             {
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.DAMAGE);
                     onCooldown = true;
@@ -173,7 +173,7 @@ public class UiScriptStats : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.HEALTH);
                     onCooldown = true;
@@ -186,7 +186,7 @@ public class UiScriptStats : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.SPEED);
                     onCooldown = true;
