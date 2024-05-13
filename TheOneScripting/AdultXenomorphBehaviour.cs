@@ -60,14 +60,14 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
-        //attachedGameObject.animator.Play("Idle");
-        //attachedGameObject.animator.blend = false;
-        //attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Play("Walk");
+        attachedGameObject.animator.blend = false;
+        attachedGameObject.animator.transitionTime = 0.0f;
     }
 
     public override void Update()
     {
-        //attachedGameObject.animator.UpdateAnimation();
+        attachedGameObject.animator.UpdateAnimation();
 
         if (currentState == States.Dead) return;
 
@@ -100,13 +100,13 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             if (playerDistance < isCloseRange && !isClose)
             {
                 isClose = true;
-                Debug.Log("Player is now CLOSE");
+                //Debug.Log("Player is now CLOSE");
             }
 
             if (playerDistance >= isCloseRange && isClose)
             {
                 isClose = false;
-                Debug.Log("Player is now FAR");
+                //Debug.Log("Player is now FAR");
             }
 
             if (playerDistance > maxChasingRange)
@@ -119,6 +119,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             {
                 //attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attackTimer += Time.deltaTime;
+                attachedGameObject.animator.Play("Walk");
             }
 
             if (currentAttack == AdultXenomorphAttacks.None && attackTimer >= attackCooldown)
@@ -162,6 +163,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
+                attachedGameObject.animator.Play("Death");
                 break;
             default:
                 break;
@@ -175,35 +177,31 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             if (isClose)
             {
                 currentAttack = AdultXenomorphAttacks.TailAttack;
-                //attachedGameObject.animator.Play("TailAttack");
+                attachedGameObject.animator.Play("TailAttack");
             }
             else
             {
                 currentAttack = AdultXenomorphAttacks.AcidSpit;
-                //attachedGameObject.animator.Play("AcidSpit");
+                attachedGameObject.animator.Play("Spit");
             }
-            Debug.Log("Chestburster current attack: " + currentAttack);
+            Debug.Log("AdultXenomorph current attack: " + currentAttack);
         }
     }
 
     private void AcidSpit()
     {
-        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-        //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
-        ResetState();
-        //if (attachedGameObject.animator.currentAnimHasFinished)
-        //{
-        //    ResetState();
-        //}
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            ResetState();
+        }
     }
 
     private void TailAttack()
     {
-        ResetState();
-        //if (attachedGameObject.animator.currentAnimHasFinished)
-        //{
-        //    ResetState();
-        //}
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            ResetState();
+        }
     }
 
     private void Patrol()

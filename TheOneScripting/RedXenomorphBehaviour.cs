@@ -99,13 +99,13 @@ public class RedXenomorphBehaviour : MonoBehaviour
             if (playerDistance < isCloseRange && !isClose)
             {
                 isClose = true;
-                Debug.Log("Player is now CLOSE");
+                //Debug.Log("Player is now CLOSE");
             }
 
             if (playerDistance >= isCloseRange && isClose)
             {
                 isClose = false;
-                Debug.Log("Player is now FAR");
+                //Debug.Log("Player is now FAR");
             }
 
             if (playerDistance > maxChasingRange)
