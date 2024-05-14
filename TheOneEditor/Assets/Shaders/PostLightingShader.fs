@@ -59,11 +59,6 @@ vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec
     float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
     vec3 specular = light.Color * spec * Specular;
 
-    //float theta = dot(lightDir, normalize(-light.Direction)); 
-    //float intensity = clamp((theta - 0) / 0.0, 0.0, 1.0);
-    // diffuse  *= intensity;
-    // specular *= intensity;
-
     return (diffuse + specular);
 }
 

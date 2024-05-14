@@ -280,8 +280,8 @@ bool PanelScene::Draw()
 
         if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
         {
-            float sizeX = viewportSize.x / 2;
-            float sizeY = viewportSize.y / 2;
+            float sizeX = viewportSize.x / 3;
+            float sizeY = viewportSize.y / 3;
 
             ImGui::Image(
                 (ImTextureID)gBuffer->GetAttachmentTexture("position"),
@@ -290,6 +290,11 @@ bool PanelScene::Draw()
 
             ImGui::Image(
                 (ImTextureID)gBuffer->GetAttachmentTexture("normal"),
+                ImVec2{ sizeX, sizeY },
+                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+            
+            ImGui::Image(
+                (ImTextureID)gBuffer->GetAttachmentTexture("depth"),
                 ImVec2{ sizeX, sizeY },
                 ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 

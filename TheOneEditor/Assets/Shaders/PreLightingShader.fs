@@ -9,17 +9,22 @@ in vec3 fragPos;
 in vec3 normal;
 
 uniform sampler2D diffuse;
+uniform bool isAnimated;
+
+vec2 FlipUV(){
+
+    if(isAnimated == true) {return vec2(TexCoords.s, 1. - TexCoords.t);}
+
+    return TexCoords;
+}
 
 void main() {
-    //Flip UV for animated meshes
-    vec2 flipUV = vec2(TexCoords.s, 1. - TexCoords.t);
-
     // store the fragment position vector in the first gbuffer texture
     gPosition = fragPos;
     // also store the per-fragment normals into the gbuffer
     gNormal = normalize(normal);
     // and the diffuse per-fragment color
-    gAlbedoSpec.rgb = texture(diffuse, TexCoords).rgb;
+    gAlbedoSpec.rgb = texture(diffuse, FlipUV()).rgb;
     // store specular intensity in gAlbedoSpec's alpha component
-    gAlbedoSpec.a = 0.5;
+    gAlbedoSpec.a = 0.1;
 }

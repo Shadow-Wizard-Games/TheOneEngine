@@ -90,9 +90,8 @@ public:
 	void SetUniformBufferCamera(const glm::mat4& cam);
 
 	void InitPostLightingShader();
-	void InitLitMeshColorShaders();
-	void InitLitMeshTextureAnimatedShaders();
 	void InitPreLightingShader();
+	void InitLitMeshColorShaders();
 
 public:
 	

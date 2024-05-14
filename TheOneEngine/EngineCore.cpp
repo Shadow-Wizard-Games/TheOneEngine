@@ -37,9 +37,9 @@ void EngineCore::Start()
     Renderer2D::Init();
 
     InitPreLightingShader();
-    InitPostLightingShader();
+    InitPostLightingShader(); 
     //InitLitMeshTextureAnimatedShaders();
-    InitLitMeshColorShaders();
+    //InitLitMeshColorShaders();
     
     CameraUniformBuffer = std::make_shared<UniformBuffer>(sizeof(glm::mat4), 0);
 }
@@ -436,6 +436,7 @@ void EngineCore::InitPreLightingShader()
     textShader->Compile("Assets/Shaders/PreLightingShader");
 
     textShader->addUniform("diffuse", UniformType::Sampler2D);
+    textShader->addUniform("isAnimated", UniformType::Bool);
     Resources::Import<Shader>("PreLightingShader", textShader);
 }
 
@@ -448,7 +449,6 @@ void EngineCore::InitPostLightingShader()
     textShader->addUniform("gPosition", UniformType::Sampler2D);
     textShader->addUniform("gNormal", UniformType::Sampler2D);
     textShader->addUniform("gAlbedoSpec", UniformType::Sampler2D);
-    textShader->addUniform("gSSAO", UniformType::Sampler2D);
     textShader->addUniform("u_ViewPos", UniformType::fVec3);
     textShader->addUniform("u_TotalLightsNum", UniformType::Int);
 
@@ -536,41 +536,4 @@ void EngineCore::InitLitMeshColorShaders()
     std::string matPath = Resources::PathToLibrary<Material>() + "defaultMat.toematerial";
     Resources::Import<Material>(matPath, &defaultMat);
     Resources::LoadFromLibrary<Material>(matPath);
-}
-
-void EngineCore::InitLitMeshTextureAnimatedShaders()
-{
-    ResourceId animTextShaderId = Resources::Load<Shader>("Assets/Shaders/LitMeshTextureAnimated");
-    Shader* animTextShader = Resources::GetResourceById<Shader>(animTextShaderId);
-    animTextShader->Compile("Assets/Shaders/LitMeshTextureAnimated");
-    animTextShader->addUniform("u_PointLightsNum", UniformType::Int);
-    for (uint i = 0; i < 32; i++)
-    {
-        string iteration = to_string(i);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].position", UniformType::fVec3);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].flux", UniformType::Float);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].ambient", UniformType::fVec3);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].diffuse", UniformType::fVec3);
-        animTextShader->addUniform("u_PointLights[" + iteration + "].specular", UniformType::fVec3);
-    }
-    animTextShader->addUniform("u_SpotLightsNum", UniformType::Int);
-    for (uint i = 0; i < 12; i++)
-    {
-        string iteration = to_string(i);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].position", UniformType::fVec3);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].direction", UniformType::fVec3);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].cutOff", UniformType::Float);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].outerCutOff", UniformType::Float);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].ambient", UniformType::fVec3);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].diffuse", UniformType::fVec3);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].specular", UniformType::fVec3);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].constant", UniformType::Float);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].linear", UniformType::Float);
-        animTextShader->addUniform("u_SpotLights[" + iteration + "].quadratic", UniformType::Float);
-    }
-    animTextShader->addUniform("u_ViewPos", UniformType::fVec3);
-    animTextShader->addUniform("u_Material.diffuse", UniformType::Sampler2D);
-    animTextShader->addUniform("u_Material.specular", UniformType::fVec3);
-    animTextShader->addUniform("u_Material.shininess", UniformType::Float);
-    Resources::Import<Shader>("LitMeshTextureAnimated", animTextShader);
 }

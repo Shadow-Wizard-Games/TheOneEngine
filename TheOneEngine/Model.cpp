@@ -162,6 +162,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             data.resource_id = imgId;
                             memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
                             material.SetUniformData("diffuse", data);
+                            material.SetUniformData("isAnimated", true);
                         }
                     }
                     else
@@ -244,6 +245,7 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             data.resource_id = imgId;
                             memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
                             material.SetUniformData("diffuse", data);
+                            material.SetUniformData("isAnimated", false);
                         }
                     }
                     else
