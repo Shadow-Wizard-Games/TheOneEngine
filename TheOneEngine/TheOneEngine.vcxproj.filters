@@ -276,6 +276,9 @@
     <ClInclude Include="ResourcesFontImpl.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer3D.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -436,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="TextUI.cpp">
       <Filter>GameObject\Components\UI\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer3D.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
