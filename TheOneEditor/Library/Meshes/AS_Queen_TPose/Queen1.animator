@@ -41,12 +41,40 @@
       "name": "Run",
       "playback_speed": 1.0,
       "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Queen_TPose\\Queen1_Take 001AS_Queen_Death.anim",
+      "loop": false,
+      "name": "Death",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Queen_TPose\\Queen1_Take 001AS_Queen_FacehuggerSpawn.anim",
+      "loop": false,
+      "name": "Facehugger_Spawn",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Queen_TPose\\Queen1_Take 001AS_Queen_GiantStomp.anim",
+      "loop": false,
+      "name": "Giant_Stomp",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Queen_TPose\\Queen1_Take 001AS_Queen_HeadCharge.anim",
+      "loop": false,
+      "name": "Head_Charge",
+      "playback_speed": 1.0,
+      "type": 0
     }
   ],
-  "material": "Library/Materials/AS_Queen_TPose/Default_Material.toematerial",
+  "material": "Library/Materials/AS_Queen_TPose/lambert2.toematerial",
   "mesh": "Library/Meshes/AS_Queen_TPose/Queen1_animatedmesh.ozzmesh",
   "name": "Queen1",
   "skeleton": "Library/Meshes/AS_Queen_TPose/Queen1_skeleton.skeleton",
-  "transition_blend": false,
-  "transition_time": 0.0
+  "transition_blend": true,
+  "transition_time": 0.2
 }
