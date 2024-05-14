@@ -232,8 +232,8 @@ class AnarchistBehaviour : MonoBehaviour
                 //                                attachedGameObject.transform.rotation);
                 timerBetweenBullets = 0.0f;
                 bulletCounter++;
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_REBEL_SHOOT);
-                if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.E_A_SHOOT);
+
             }
 
             if (bulletCounter >= burstBulletCount)

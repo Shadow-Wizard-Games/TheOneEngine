@@ -41,10 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ability.cs" />
+    <Compile Include="AbilityAdrenalineRush.cs" />
+    <Compile Include="AbilityDash.cs" />
+    <Compile Include="AbilityFlamethrower.cs" />
+    <Compile Include="AbilityGrenadeLauncher.cs" />
+    <Compile Include="AbilityHeal.cs" />
+    <Compile Include="AbilityImpaciente.cs" />
+    <Compile Include="AbilityShield.cs" />
     <Compile Include="AdultXenomorphBehaviour.cs" />
     <Compile Include="AlienQueenBehaviour.cs" />
     <Compile Include="AlienQueenBehaviourNew.cs" />
     <Compile Include="AnarchistBehaviour.cs" />
+    <Compile Include="Grenade.cs" />
     <Compile Include="IAnimator.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="CamControlTest.cs" />
@@ -90,6 +99,9 @@
     <Compile Include="GetComponentTestScript.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="MainMenuManager.cs" />
+    <Compile Include="UiScriptSettings.cs" />
+    <Compile Include="UiScriptSettingsDisplay.cs" />
+    <Compile Include="UiScriptStats.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
     <Compile Include="WhiteXenomorphBehaviour.cs" />

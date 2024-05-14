@@ -85,8 +85,8 @@ public class AlienQueenBehaviour : MonoBehaviour
         if (currentState == States.Dead)
         {
             SceneManager.LoadScene("L2R1");
-            playerGO.source.StopAudio(IAudioSource.EventIDs.UI_A_MENU);
-            playerGO.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+            playerGO.source.Stop(IAudioSource.AudioEvent.UI_A_MENU);
+            playerGO.source.Play(IAudioSource.AudioEvent.UI_CLICK);
         }
 
         if (attachedGameObject.transform.ComponentCheck())
@@ -298,7 +298,7 @@ public class AlienQueenBehaviour : MonoBehaviour
         {
             //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
             //                                attachedGameObject.transform.rotation);
-            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_SPIT);
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_SPIT);
             delayTimer = 0.0f;
             shotsCounter++;
             Debug.Log("Alien Queen has shot " + shotsCounter + " times");
@@ -325,7 +325,7 @@ public class AlienQueenBehaviour : MonoBehaviour
         //                                   scale);
         InternalCalls.CreatePrefab("SK_Facehugger",
             attachedGameObject.transform.position + attachedGameObject.transform.forward*(attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f));
-        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPAWN);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_SPAWN);
         ResetState();
     }
 
@@ -333,7 +333,7 @@ public class AlienQueenBehaviour : MonoBehaviour
     {
         //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
         //                                    attachedGameObject.transform.rotation);
-        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_BOMB);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_BOMB);
         ResetState();
     }
 
@@ -347,7 +347,7 @@ public class AlienQueenBehaviour : MonoBehaviour
             if (maxHeight >= currentHeight)
             {
                 attachedGameObject.transform.Translate(Vector3.up * currentHeight * Time.deltaTime);
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_JUMP);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_JUMP);
                 currentHeight += 10.0f;
             }
             else
@@ -364,7 +364,7 @@ public class AlienQueenBehaviour : MonoBehaviour
             else
             {
                 attachedGameObject.transform.Translate(Vector3.up * -currentHeight * Time.deltaTime);
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_JUMP);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_JUMP);
                 currentHeight -= 10.0f;
             }
         }

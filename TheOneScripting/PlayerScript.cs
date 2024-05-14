@@ -1,8 +1,16 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
+    public enum CurrentWeapon
+    {
+        MP4,
+        IMPACIENTE,
+        FLAME_THROWER,
+    }
+
     // managers
     ItemManager itemManager;
     IGameObject iManagerGO;
@@ -24,32 +32,57 @@ public class PlayerScript : MonoBehaviour
 
 
     // stats
-    float life = 100.0f;
+    public float maxLife = 100.0f;
+    public float life;
     public bool isDead = false;
+    public float totalDamage = 0.0f;
+    public float damageIncrease = 0.0f;
 
 
     // movement
-    public float speed = 80.0f;
-    Vector3 movementDirection;
-    float movementMagnitude;
+    public float baseSpeed = 80.0f;
+    public float speed;
+    public Vector3 movementDirection;
+    public Vector3 lastMovementDirection;
+    public float movementMagnitude;
     bool lastFrameRunned = false;
 
 
     // shooting
+    public float damageM4 = 10.0f;
+    public float currentWeoponDamage = 0.0f;
+    public CurrentWeapon currentWeapon = CurrentWeapon.MP4;
+
     bool hasShot = false;
     float timeSinceLastShot = 0.0f;
-    float shootingCooldown = 0.10f;
+    public float shootingCooldown = 0.15f;
+    public float mp4ShootingCd = 0.15f;
 
-    // dashing
-    bool isDashing = false;
-    float timeSinceLastDash = 0.0f;
-    float dashingCooldown = 0.10f;
+    // Abilities
+    public bool impacienteUsed;
+    public bool grenadeLauncherUsed;
+    public bool flamethrowerUsed;
+    public bool adrenalineRushUsed;
 
+    public bool isDashing = false;
+    public string dashAbilityName = "Roll";
 
+    public int shieldKillCounter = 0;
+    public bool shieldIsActive = false;
+
+    public bool isHealing = false;
+    public string healAbilityName = "Bandage";
+
+    public bool isRushing = false;
+
+    public int impacienteBullets = 999;
+    public int impacienteBulletCounter = 0;
+
+    public Vector3 grenadeInitialVelocity = Vector3.zero;
 
     // animation states
     bool isRunning;
-    bool isShooting;
+    public bool isShooting;
 
     public override void Start()
     {
@@ -66,12 +99,22 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.transitionTime = 0.0f;
+
+        life = maxLife;
+        speed = baseSpeed;
+        currentWeoponDamage = damageM4;
     }
 
     public override void Update()
     {
         isRunning = false;
         isShooting = false;
+
+        //to delete just test
+        if (Input.GetKeyboardButton(Input.KeyboardCode.SIX))
+        {
+            dashAbilityName = "Dash";
+        }
 
         if (isDead)
         {
@@ -87,21 +130,21 @@ public class PlayerScript : MonoBehaviour
         // Background music
         if (!isFighting)
         {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_AMBIENT_1)
-            {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_AMBIENT_1;
-            }
+            //if (attachedGameObject.source.currentID != IAudioSource.AudioEvent.A_AMBIENT_1)
+            //{
+            //    attachedGameObject.source.Play(IAudioSource.AudioEvent.A_AMBIENT_1);
+            //    attachedGameObject.source.Stop(IAudioSource.AudioEvent.A_COMBAT_1);
+            //    attachedGameObject.source.currentID = IAudioSource.AudioEvent.A_AMBIENT_1;
+            //}
         }
         else
         {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_COMBAT_1)
-            {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_COMBAT_1;
-            }
+            //if (attachedGameObject.source.currentID != IAudioSource.AudioEvent.A_COMBAT_1)
+            //{
+            //    attachedGameObject.source.Play(IAudioSource.AudioEvent.A_COMBAT_1);
+            //    attachedGameObject.source.Stop(IAudioSource.AudioEvent.A_AMBIENT_1);
+            //    attachedGameObject.source.currentID = IAudioSource.AudioEvent.A_COMBAT_1;
+            //}
         }
 
         if (isFighting)
@@ -127,6 +170,9 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
         }
 
+        // update total damage before shooting
+        totalDamage = currentWeoponDamage + damageIncrease;
+
         // set shoot direction
         SetShootDirection();
 
@@ -140,18 +186,12 @@ public class PlayerScript : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
-        {
-            // Dash();
-        }
-
         // Play steps
         if (lastFrameRunned != isRunning)
         {
             if (isRunning)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
                 if (iStepPSGO != null)
                 {
                     iStepPSGO.GetComponent<IParticleSystem>().Play();
@@ -159,7 +199,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.P_STEP);
+                attachedGameObject.source.Stop(IAudioSource.AudioEvent.P_STEP);
                 if (iStepPSGO != null)
                 {
                     iStepPSGO.GetComponent<IParticleSystem>().End();
@@ -167,6 +207,18 @@ public class PlayerScript : MonoBehaviour
             }
             lastFrameRunned = isRunning;
 
+        }
+
+        // current weapon switch
+        switch(currentWeapon)
+        {
+            case CurrentWeapon.MP4:
+                break;
+            case CurrentWeapon.IMPACIENTE:
+                break;
+            case CurrentWeapon.FLAME_THROWER:
+
+                break;
         }
 
         // animations
@@ -181,22 +233,34 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Run");
             }
         }
+        else if (isShooting)
+        {
+            attachedGameObject.animator.Play("Shoot M4");
+        }
+        else if (isDashing)
+        {
+            if (dashAbilityName == "Roll")
+            {
+                attachedGameObject.animator.Play("Roll");
+            }
+            else if (dashAbilityName == "Dash")
+            {
+
+            }
+        }
+        else if (isRushing)
+        {
+            attachedGameObject.animator.Play("Adrenaline Rush Static");
+        }
         else
         {
-            if (isShooting)
-            {
-                attachedGameObject.animator.Play("Shoot M4");
-            }
-            else
-            {
-                attachedGameObject.animator.Play("Idle");
-            }
+            attachedGameObject.animator.Play("Idle");
         }
     }
 
     private void Step()
     {
-        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
         if (iStepPSGO != null)
         {
             iStepPSGO.GetComponent<IParticleSystem>().Play();
@@ -209,12 +273,6 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.Play("Death");
         // play sound (?)
     }
-
-    private void Dash(Vector3 direction, float distance)
-    {
-        //isDashing;
-    }
-
     private bool SetMoveDirection()
     {
         bool toMove = false;
@@ -232,37 +290,44 @@ public class PlayerScript : MonoBehaviour
         #endregion
 
         #region KEYBOARD
-        if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+        if (!isDashing)
         {
-            movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
-        }
+            if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+            {
+                movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.A))
-        {
-            movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
-        }
+            if (Input.GetKeyboardButton(Input.KeyboardCode.A))
+            {
+                movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.S))
-        {
-            movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
-        }
+            if (Input.GetKeyboardButton(Input.KeyboardCode.S))
+            {
+                movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.D))
-        {
-            movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
-            movementMagnitude = 1.0f;
-            toMove = true;
+            if (Input.GetKeyboardButton(Input.KeyboardCode.D))
+            {
+                movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+            }
         }
-
         #endregion
 
         movementDirection = movementDirection.Normalize();
+
+        if (movementDirection != Vector3.zero)
+        {
+            lastMovementDirection = movementDirection;
+        }
 
         return toMove;
     }
@@ -327,10 +392,13 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
             {
-                //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.DEBUG_GUNSHOT);
                 hasShot = true;
                 if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+
+                if (currentWeapon == CurrentWeapon.IMPACIENTE)
+                    impacienteBulletCounter++;
             }
         }
         else
@@ -340,11 +408,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-
-
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
-        if (isDead || gameManager.godMode) return;
+        if (isDead || gameManager.godMode || shieldIsActive || isDashing)
+            return;
 
         life -= 10.0f;
         Debug.Log("Player took damage! Current life is: " + life.ToString());

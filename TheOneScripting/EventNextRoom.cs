@@ -68,14 +68,14 @@ public class EventNextRoom : Event
             Debug.LogWarning(sceneName);
             Debug.LogWarning(goName);
 
-            if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
-            {
-                playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-            }
-            if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
-            {
-                playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-            }
+            //if (playerGO.source.currentID == IAudioSource.Event.A_COMBAT_1)
+            //{
+            //    playerGO.source.Stop(IAudioSource.Events.A_COMBAT_1);
+            //}
+            //if (playerGO.source.currentID == IAudioSource.Events.A_AMBIENT_1)
+            //{
+            //    playerGO.source.StopAudio(IAudioSource.Events.A_AMBIENT_1);
+            //}
 
             SceneManager.LoadScene(sceneName);
         }
