@@ -212,14 +212,8 @@ public class UiManager : MonoBehaviour
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
-                    //if (playerGO.source.currentID == IAudioSource.AudioEvent.A_COMBAT_1)
-                    //{
-                    //    playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                    //}
-                    //if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
-                    //{
-                    //    playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                    //}
+                    playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
+
                     gameManager.UpdateLevel();
                     SceneManager.LoadScene("MainMenu");
                 }
