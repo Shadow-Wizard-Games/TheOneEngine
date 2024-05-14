@@ -48,7 +48,7 @@
           "UID": 3390928402
         },
         {
-          "AudioID": 47,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         }
@@ -30750,7 +30750,7 @@
           "UID": 2371490470
         },
         {
-          "AudioID": 23,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -31851,7 +31851,7 @@
               "UID": 951121546
             },
             {
-              "AudioID": 24,
+              "AudioID": 2,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -32152,7 +32152,7 @@
               ]
             },
             {
-              "AudioID": 25,
+              "AudioID": 3,
               "Name": "Source",
               "Type": 8
             },
@@ -33717,7 +33717,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 26,
+              "AudioID": 4,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -34216,7 +34216,7 @@
               ]
             },
             {
-              "AudioID": 27,
+              "AudioID": 5,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -34400,7 +34400,7 @@
               ]
             },
             {
-              "AudioID": 28,
+              "AudioID": 6,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -36626,7 +36626,7 @@
                   ]
                 },
                 {
-                  "AudioID": 29,
+                  "AudioID": 7,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -37413,7 +37413,7 @@
                   "UID": 1616070798
                 },
                 {
-                  "AudioID": 30,
+                  "AudioID": 8,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -37521,7 +37521,7 @@
               ]
             },
             {
-              "AudioID": 31,
+              "AudioID": 9,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -37645,7 +37645,7 @@
               ]
             },
             {
-              "AudioID": 32,
+              "AudioID": 10,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -37691,7 +37691,7 @@
               "UID": 2135104260
             },
             {
-              "AudioID": 33,
+              "AudioID": 11,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -37737,7 +37737,7 @@
               "UID": 2581454987
             },
             {
-              "AudioID": 34,
+              "AudioID": 12,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -37783,7 +37783,7 @@
               "UID": 1110714302
             },
             {
-              "AudioID": 35,
+              "AudioID": 13,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -37855,7 +37855,7 @@
           "UID": 225613267
         },
         {
-          "AudioID": 36,
+          "AudioID": 14,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -38262,7 +38262,7 @@
               "UID": 3667515160
             },
             {
-              "AudioID": 37,
+              "AudioID": 15,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38308,7 +38308,7 @@
               "UID": 1177981766
             },
             {
-              "AudioID": 38,
+              "AudioID": 16,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38354,7 +38354,7 @@
               "UID": 2174904043
             },
             {
-              "AudioID": 39,
+              "AudioID": 17,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38400,7 +38400,7 @@
               "UID": 2232833499
             },
             {
-              "AudioID": 40,
+              "AudioID": 18,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38446,7 +38446,7 @@
               "UID": 2199890485
             },
             {
-              "AudioID": 41,
+              "AudioID": 19,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38492,7 +38492,7 @@
               "UID": 3061441302
             },
             {
-              "AudioID": 42,
+              "AudioID": 20,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38538,7 +38538,7 @@
               "UID": 1809667645
             },
             {
-              "AudioID": 43,
+              "AudioID": 21,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38653,7 +38653,7 @@
               "UID": 3278573262
             },
             {
-              "AudioID": 44,
+              "AudioID": 22,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38925,7 +38925,7 @@
               "UID": 3278573262
             },
             {
-              "AudioID": 45,
+              "AudioID": 23,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39197,7 +39197,7 @@
               "UID": 3278573262
             },
             {
-              "AudioID": 46,
+              "AudioID": 24,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39411,6 +39411,1088 @@
       "Keeped": false,
       "Name": "Enemies",
       "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            782.9151611328125,
+            0.0,
+            83.30384826660156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 459998746
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 578280158
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SwapScene_L1_R1",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -26.20782470703125,
+            0.0,
+            -42.957298278808594,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3689658944
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "EventNextRoom",
+          "Type": 4,
+          "UID": 531215871
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SwapScene_L1_R3",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.37113070487976074,
+            0.0,
+            0.9285807013511658,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9285807013511658,
+            0.0,
+            0.37113070487976074,
+            0.0,
+            306.76458740234375,
+            0.0,
+            271.5882873535156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1312008848
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3770841600
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2819175529
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 2806614090,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2339676990
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.1,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 100.0,
+                      "Duration": 0.5,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "JumpPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3958680071
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger",
+      "ParentUID": 3452816845,
+      "PrefabDirty": true,
+      "PrefabID": 3055371654,
+      "PrefabName": "Facehugger",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.5026885271072388,
+            0.0,
+            -0.8644677400588989,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.8644677400588989,
+            0.0,
+            0.5026885271072388,
+            0.0,
+            224.10203552246094,
+            -6.103515625e-05,
+            759.9393310546875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1312008848
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3770841600
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2819175529
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 2806614090,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2339676990
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.1,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 100.0,
+                      "Duration": 0.5,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "JumpPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3958680071
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger",
+      "ParentUID": 3452816845,
+      "PrefabDirty": true,
+      "PrefabID": 3055371654,
+      "PrefabName": "Facehugger",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.5498684644699097,
+            0.0,
+            -0.8352513313293457,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.8352513313293457,
+            0.0,
+            -0.5498684644699097,
+            0.0,
+            249.41452026367188,
+            0.0,
+            682.038330078125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1312008848
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3770841600
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2819175529
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 2806614090,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2339676990
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.1,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 100.0,
+                      "Duration": 0.5,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "JumpPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3958680071
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger",
+      "ParentUID": 3452816845,
+      "PrefabDirty": true,
+      "PrefabID": 3055371654,
+      "PrefabName": "Facehugger",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.5275639891624451,
+            0.0,
+            0.849515438079834,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.849515438079834,
+            0.0,
+            0.5275639891624451,
+            0.0,
+            316.25396728515625,
+            0.0,
+            736.07958984375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1312008848
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3770841600
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2819175529
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 2806614090,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2339676990
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.1,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 100.0,
+                      "Duration": 0.5,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "JumpPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3958680071
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger",
+      "ParentUID": 3452816845,
+      "PrefabDirty": true,
+      "PrefabID": 3055371654,
+      "PrefabName": "Facehugger",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.08750998973846436,
+            0.0,
+            0.9961637258529663,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9961637258529663,
+            0.0,
+            -0.08750998973846436,
+            0.0,
+            545.0582275390625,
+            0.0,
+            729.5784301757813,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1312008848
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3770841600
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2819175529
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 30.0,
+          "Type": 5,
+          "UID": 2806614090,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2339676990
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        0.1,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 100.0,
+                      "Duration": 0.5,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    }
+                  ]
+                }
+              ],
+              "Name": "JumpPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3958680071
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": true,
+          "Keeped": false,
+          "Name": "JumpPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger",
+      "ParentUID": 3452816845,
+      "PrefabDirty": true,
+      "PrefabID": 3055371654,
+      "PrefabName": "Facehugger",
       "Static": false,
       "UID": 3452816845
     }
