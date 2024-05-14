@@ -26,5 +26,5 @@ void main() {
     // and the diffuse per-fragment color
     gAlbedoSpec.rgb = texture(diffuse, FlipUV()).rgb;
     // store specular intensity in gAlbedoSpec's alpha component
-    gAlbedoSpec.a = 0.1;
+    gAlbedoSpec.a = 0.5;
 }
