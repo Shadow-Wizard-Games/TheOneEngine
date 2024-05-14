@@ -17,9 +17,9 @@
             -0.8655784130096436,
             -0.3541002869606018,
             0.0,
-            37.96153259277344,
+            57.30412673950195,
             220.0,
-            38.47393035888672,
+            82.99384307861328,
             1.0
           ],
           "Type": 0,
@@ -46,6 +46,11 @@
           "ScriptName": "CameraMovement",
           "Type": 4,
           "UID": 608360335
+        },
+        {
+          "AudioID": 22,
+          "Name": "Listener",
+          "Type": 7
         }
       ],
       "Enabled": true,
@@ -168,7 +173,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 686.7018432617188,
+                  "Lifetime": 694.8267211914063,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -265,7 +270,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 686.7018432617188,
+                  "Lifetime": 694.8267211914063,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -404,7 +409,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 532.2913818359375,
+                  "Lifetime": 540.416259765625,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -501,7 +506,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 532.2913818359375,
+                  "Lifetime": 540.416259765625,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -640,7 +645,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -737,7 +742,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -876,7 +881,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -973,7 +978,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1112,7 +1117,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -1209,7 +1214,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1384,7 +1389,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 491.59039306640625,
+                  "Lifetime": 499.7156066894531,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1477,7 +1482,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 491.59039306640625,
+                  "Lifetime": 499.7156066894531,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -1612,7 +1617,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 513.6043701171875,
+                  "Lifetime": 521.729248046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1705,7 +1710,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 513.6043701171875,
+                  "Lifetime": 521.729248046875,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -25567,9 +25572,9 @@
             0.0,
             100.0,
             0.0,
-            -52.03846740722656,
+            -19.266956329345703,
             0.0,
-            -51.52606964111328,
+            6.289772987365723,
             1.0
           ],
           "Type": 0,
@@ -25690,7 +25695,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 745.2593994140625,
+                  "Lifetime": 749.9092407226563,
                   "MaxParticles": 20,
                   "RenderModule": [
                     {
@@ -33392,6 +33397,86 @@
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -42.1927614123281,
+            0.0,
+            90.6629521050487,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -90.6629521050487,
+            0.0,
+            -42.1927614123281,
+            0.0,
+            -85.45205688476563,
+            0.0,
+            309.2975769042969,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3021935714
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1485461373
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 2014633233
+        },
+        {
+          "AudioID": 21,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 2749116129,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist (1)",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1415844443,
+      "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
     }
