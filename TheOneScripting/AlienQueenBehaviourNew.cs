@@ -202,7 +202,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             MoveTo(playerGO.transform.position, alienCircleSpeed / 1.5f);
             attachedGameObject.transform.LookAt2D(playerGO.transform.position);
 
-            Debug.DrawWireCircle(playerGO.transform.position, circleSize, Color.pitufoBlue.ToVector3());
+            //Debug.DrawWireCircle(playerGO.transform.position, circleSize, Color.pitufoBlue.ToVector3());
 
             return;
         }
@@ -225,7 +225,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         progressPos += Vector3.forward * (float)Math.Sin(counterPos * Math.PI / 180.0f) * circleSize;
         progressPos += playerGO.transform.position;
 
-        Debug.DrawWireSphere(progressPos, 10.0f, Color.chernobylGreen.ToVector3());
+        //Debug.DrawWireSphere(progressPos, 10.0f, Color.chernobylGreen.ToVector3());
 
         attachedGameObject.transform.LookAt2D(progressPos);
         attachedGameObject.transform.Translate(attachedGameObject.transform.forward * alienCircleSpeed * Time.deltaTime);
@@ -310,8 +310,14 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
                 break;
             case Attacks.AcidPhase2:
-                Debug.LogCheck("Doing acid phase 2");
-                attackedFinished = true;
+                if (combinedFirstAttack)
+                {
+                    combinedFirstAttack = AcidBomb();
+                }
+                else
+                {
+                    AcidSpit();
+                }
                 break;
             case Attacks.Jump:
                 Jump();
@@ -490,37 +496,69 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
     }
 
-    float acidBombDuration = 5.0f;
-    Vector3 height = Vector3.up * 30.0f;
-    bool shot = false; //Do not touch
-    private void AcidBomb()
+    
+    private bool AcidBomb()
     {
         if (attackFirstFrame)
         {
+            attachedGameObject.animator.Play("Acid_Bombs");
             attackFirstFrame = false;
         }
 
-        if (!shot)
+        if (attachedGameObject.animator.currentAnimHasFinished)
         {
-            shot = true;
-
-            InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
-                                        attachedGameObject.transform.forward *
-                                        (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
-                                        attachedGameObject.transform.rotation);
+            if (currentPhase == 1)
+            {
+                attackedFinished = true;
+            }
+            else
+            {
+                attackFirstFrame = true;
+                return false;
+            }
         }
 
-        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+        return true;
+    }
 
-        countDown += Time.deltaTime;
-        if (countDown >= acidBombDuration)
+    //float acidBombDuration = 5.0f;
+    //Vector3 height = Vector3.up * 30.0f;
+    //bool shot = false; //Do not touch
+    private void AcidSpit()
+    {
+        if (attackFirstFrame)
         {
-            countDown = 0.0f;
+            attachedGameObject.animator.Play("Acid_Spit");
+            attackFirstFrame = false;
+        }
 
-            shot = false;
-            currentAttack = Attacks.None;
+        if (attachedGameObject.animator.currentAnimHasFinished)
+        {
+            combinedFirstAttack = true;
             attackedFinished = true;
         }
+
+        //if (!shot)
+        //{
+        //    shot = true;
+
+        //    InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
+        //                                attachedGameObject.transform.forward *
+        //                                (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
+        //                                attachedGameObject.transform.rotation);
+        //}
+
+        //attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+
+        //countDown += Time.deltaTime;
+        //if (countDown >= acidBombDuration)
+        //{
+        //    countDown = 0.0f;
+
+        //    shot = false;
+        //    currentAttack = Attacks.None;
+        //    attackedFinished = true;
+        //}
     }
 
     float spawnDuration = 5.0f;
@@ -593,7 +631,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         if (attachedGameObject.animator.currentAnimHasFinished)
         {
-            if (jumpNum >= 2) { attackedFinished = true; }
+            if (jumpNum >= 2) 
+            { 
+                attackedFinished = true; 
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position); 
+            }
             else
             {
                 jumpNum++;
