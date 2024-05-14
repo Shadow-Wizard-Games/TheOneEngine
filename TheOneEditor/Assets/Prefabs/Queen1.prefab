@@ -1,0 +1,75 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        500.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 4273000699
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_Queen_TPose/lambert2.toematerial",
+      "MeshPath": "Library/Meshes/AS_Queen_TPose/Queen1.animator",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 1810625188
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "AlienQueenBehaviourNew",
+      "Type": 4,
+      "UID": 3176638374
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 3452816845,
+      "Radius": 35.0,
+      "Type": 5,
+      "UID": 1228959219,
+      "Width": -1.7976931348623157e+308
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Queen1",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 3137073782,
+  "PrefabName": "Queen1",
+  "Static": false,
+  "UID": 3452816845
+}
