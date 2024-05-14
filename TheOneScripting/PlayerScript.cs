@@ -84,6 +84,9 @@ public class PlayerScript : MonoBehaviour
     bool isRunning;
     public bool isShooting;
 
+    // audio
+    public IAudioSource.AudioStateID currentState = 0;
+
     public override void Start()
     {
         iManagerGO = IGameObject.Find("ItemManager");
@@ -103,10 +106,14 @@ public class PlayerScript : MonoBehaviour
         life = maxLife;
         speed = baseSpeed;
         currentWeoponDamage = damageM4;
+
+        attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
     }
 
     public override void Update()
     {
+
         isRunning = false;
         isShooting = false;
 
@@ -128,23 +135,13 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.UpdateAnimation();
 
         // Background music
-        if (!isFighting)
+        if (!isFighting && currentState == IAudioSource.AudioStateID.COMBAT)
         {
-            //if (attachedGameObject.source.currentID != IAudioSource.AudioEvent.A_AMBIENT_1)
-            //{
-            //    attachedGameObject.source.Play(IAudioSource.AudioEvent.A_AMBIENT_1);
-            //    attachedGameObject.source.Stop(IAudioSource.AudioEvent.A_COMBAT_1);
-            //    attachedGameObject.source.currentID = IAudioSource.AudioEvent.A_AMBIENT_1;
-            //}
+            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
         }
-        else
+        if (isFighting && currentState == IAudioSource.AudioStateID.SHIP)
         {
-            //if (attachedGameObject.source.currentID != IAudioSource.AudioEvent.A_COMBAT_1)
-            //{
-            //    attachedGameObject.source.Play(IAudioSource.AudioEvent.A_COMBAT_1);
-            //    attachedGameObject.source.Stop(IAudioSource.AudioEvent.A_AMBIENT_1);
-            //    attachedGameObject.source.currentID = IAudioSource.AudioEvent.A_COMBAT_1;
-            //}
+            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
         }
 
         if (isFighting)
@@ -183,6 +180,7 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 {
                     Shoot();
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 }
             }
         }
@@ -217,7 +215,6 @@ public class PlayerScript : MonoBehaviour
             case CurrentWeapon.IMPACIENTE:
                 break;
             case CurrentWeapon.FLAME_THROWER:
-
                 break;
         }
 
@@ -393,7 +390,7 @@ public class PlayerScript : MonoBehaviour
             if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                attachedGameObject.source.Play(IAudioSource.AudioEvent.DEBUG_GUNSHOT);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
                 if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
 

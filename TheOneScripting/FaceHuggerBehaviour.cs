@@ -98,7 +98,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_DEATH);
                     detected = false;
-                    deathPSGO.GetComponent<IParticleSystem>().Replay();
+                    //deathPSGO.GetComponent<IParticleSystem>().Replay();
                 }
             }
             else

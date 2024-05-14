@@ -204,12 +204,10 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     private void ClawAttack()
     {
         //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-        attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_SPIT);
         if (attachedGameObject.animator.currentAnimHasFinished)
         {
             ResetState();
         }
-
     }
 
     private void TailTrip()
