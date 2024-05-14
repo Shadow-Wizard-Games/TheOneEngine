@@ -43,7 +43,6 @@ public class AbilityAdrenalineRush : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.THREE)) // change input
                 {
                     Activated();
-                    player.isRushing = true;
                     break;
                 }
                 // controller input
@@ -54,7 +53,6 @@ public class AbilityAdrenalineRush : Ability
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
-                player.isRushing = false;
                 Debug.Log("AdrenalineRush cooldown time -> " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
@@ -62,6 +60,8 @@ public class AbilityAdrenalineRush : Ability
 
     public override void Activated()
     {
+        player.isRushing = true;
+
         // Calculate heal amount
         float totalHeal = player.maxLife * healAmount;
         healingInterval = totalHeal / numÍntervals;
@@ -70,6 +70,7 @@ public class AbilityAdrenalineRush : Ability
         player.speed += speedIncrease;
 
         // increase damage
+        player.damageIncrease = player.currentWeoponDamage * damageAmount;
 
         state = AbilityState.ACTIVE;
 
@@ -81,13 +82,19 @@ public class AbilityAdrenalineRush : Ability
         if (activeTimeCounter > 0)
         {
             // update time
-            activeTimeCounter -= Time.deltaTime;  
+            activeTimeCounter -= Time.deltaTime;
+
+            // update increase 
+            player.damageIncrease = player.currentWeoponDamage * damageAmount;
         }
         else
         {
             // reset stats
+            player.isRushing = false;
             player.speed = player.baseSpeed;
             healthRegenTimeCounter = healthRegenTime;
+
+            player.damageIncrease = 0.0f;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

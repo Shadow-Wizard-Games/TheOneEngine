@@ -33,7 +33,7 @@ public class AbilityDash : Ability
                 if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) // change input
                 {
                     Activated();
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.P_DASH);
+
                     break;
                 }
                 // controller input
@@ -54,6 +54,15 @@ public class AbilityDash : Ability
         player.isDashing = true;
 
         state = AbilityState.ACTIVE;
+
+        if(player.dashAbilityName == "Roll")
+        {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_ROLL);
+        }
+        else
+        {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_DASH);
+        }
 
         Debug.Log("Ability " + player.dashAbilityName + " Activated");
     }
