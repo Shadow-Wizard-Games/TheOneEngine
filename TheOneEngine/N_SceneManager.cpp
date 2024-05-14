@@ -862,6 +862,15 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const mat4& tr
 
 	newGameObject->LoadGameObject(prefabJSON);
 
+
+	// Check name
+
+	if (newGameObject.get()->GetName() != "SK_MainCharacter" && newGameObject.get()->GetName() != "UI_Manager")
+	{
+		newGameObject.get()->SetName(GenerateUniqueName(newGameObject.get()->GetName()));
+	}
+
+
 	newGameObject->GetComponent<Transform>()->SetTransform(transform);
 }
 

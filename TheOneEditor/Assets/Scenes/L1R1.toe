@@ -17,9 +17,9 @@
             -0.8655784130096436,
             -0.3541002869606018,
             0.0,
-            37.96153259277344,
+            57.30412673950195,
             220.0,
-            38.47393035888672,
+            82.99384307861328,
             1.0
           ],
           "Type": 0,
@@ -46,6 +46,11 @@
           "ScriptName": "CameraMovement",
           "Type": 4,
           "UID": 608360335
+        },
+        {
+          "AudioID": 0,
+          "Name": "Listener",
+          "Type": 7
         }
       ],
       "Enabled": true,
@@ -168,7 +173,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 686.7018432617188,
+                  "Lifetime": 694.8267211914063,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -265,7 +270,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 686.7018432617188,
+                  "Lifetime": 694.8267211914063,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -404,7 +409,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 532.2913818359375,
+                  "Lifetime": 540.416259765625,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -501,7 +506,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 532.2913818359375,
+                  "Lifetime": 540.416259765625,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -640,7 +645,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -737,7 +742,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -876,7 +881,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -973,7 +978,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1112,7 +1117,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -1209,7 +1214,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 585.6988525390625,
+                  "Lifetime": 593.82373046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1384,7 +1389,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 491.59039306640625,
+                  "Lifetime": 499.7156066894531,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1477,7 +1482,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 491.59039306640625,
+                  "Lifetime": 499.7156066894531,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -1612,7 +1617,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 513.6043701171875,
+                  "Lifetime": 521.729248046875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1705,7 +1710,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 513.6043701171875,
+                  "Lifetime": 521.729248046875,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -25567,9 +25572,9 @@
             0.0,
             100.0,
             0.0,
-            -52.03846740722656,
+            -19.266956329345703,
             0.0,
-            -51.52606964111328,
+            6.289772987365723,
             1.0
           ],
           "Type": 0,
@@ -25598,7 +25603,7 @@
           "UID": 225613267
         },
         {
-          "AudioID": 0,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -26005,7 +26010,7 @@
               "UID": 3667515160
             },
             {
-              "AudioID": 1,
+              "AudioID": 2,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -26051,7 +26056,7 @@
               "UID": 1177981766
             },
             {
-              "AudioID": 2,
+              "AudioID": 3,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -26097,7 +26102,7 @@
               "UID": 2174904043
             },
             {
-              "AudioID": 3,
+              "AudioID": 4,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -26143,7 +26148,7 @@
               "UID": 2232833499
             },
             {
-              "AudioID": 4,
+              "AudioID": 5,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -26189,7 +26194,7 @@
               "UID": 2199890485
             },
             {
-              "AudioID": 5,
+              "AudioID": 6,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -26235,7 +26240,7 @@
               "UID": 3061441302
             },
             {
-              "AudioID": 6,
+              "AudioID": 7,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -26281,7 +26286,7 @@
               "UID": 1809667645
             },
             {
-              "AudioID": 7,
+              "AudioID": 8,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -26338,7 +26343,7 @@
           "UID": 2371490470
         },
         {
-          "AudioID": 8,
+          "AudioID": 9,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -27439,7 +27444,7 @@
               "UID": 951121546
             },
             {
-              "AudioID": 9,
+              "AudioID": 10,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -27740,7 +27745,7 @@
               ]
             },
             {
-              "AudioID": 10,
+              "AudioID": 11,
               "Name": "Source",
               "Type": 8
             },
@@ -28246,7 +28251,7 @@
                     0.14399999380111694,
                     0.25
                   ],
-                  "State": 1,
+                  "State": 0,
                   "Type": 1
                 },
                 {
@@ -29305,7 +29310,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 11,
+              "AudioID": 12,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -29804,7 +29809,7 @@
               ]
             },
             {
-              "AudioID": 12,
+              "AudioID": 13,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -29988,7 +29993,7 @@
               ]
             },
             {
-              "AudioID": 13,
+              "AudioID": 14,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -32214,7 +32219,7 @@
                   ]
                 },
                 {
-                  "AudioID": 14,
+                  "AudioID": 15,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -33001,7 +33006,7 @@
                   "UID": 1616070798
                 },
                 {
-                  "AudioID": 15,
+                  "AudioID": 16,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -33109,7 +33114,7 @@
               ]
             },
             {
-              "AudioID": 16,
+              "AudioID": 17,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -33233,7 +33238,7 @@
               ]
             },
             {
-              "AudioID": 17,
+              "AudioID": 18,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -33279,7 +33284,7 @@
               "UID": 2135104260
             },
             {
-              "AudioID": 18,
+              "AudioID": 19,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -33325,7 +33330,7 @@
               "UID": 2581454987
             },
             {
-              "AudioID": 19,
+              "AudioID": 20,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -33371,7 +33376,7 @@
               "UID": 1110714302
             },
             {
-              "AudioID": 20,
+              "AudioID": 21,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -33392,6 +33397,246 @@
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -52.95015335083008,
+            0.0,
+            -84.83088684082031,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            84.83088684082031,
+            0.0,
+            -52.95015335083008,
+            0.0,
+            690.0040283203125,
+            0.0,
+            910.3726196289063,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3021935714
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1485461373
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 2014633233
+        },
+        {
+          "AudioID": 22,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 2749116129,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist (1)",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1415844443,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            390.6927185058594,
+            0.00016150686133187264,
+            910.8427734375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3021935714
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1485461373
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 2014633233
+        },
+        {
+          "AudioID": 23,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 2749116129,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1415844443,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            532.8357543945313,
+            0.0,
+            1020.117431640625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3021935714
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1485461373
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 2014633233
+        },
+        {
+          "AudioID": 24,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 2749116129,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1415844443,
+      "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
     }
