@@ -7,51 +7,25 @@ ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rec
 	this->name = "ButtonImage";
 	imagePath = "Assets/Meshes/HUD.png";
 	imageID = Resources::Load<Texture>(imagePath);
-	switch (this->state)
-	{
-	case UiState::IDLE:
-		currentSection = &imageIdleSection;
-		break;
-	case UiState::HOVERED:
-		currentSection = &imageHoveredSection;
-		break;
-	case UiState::SELECTED:
-		currentSection = &imageSelectedSection;
-		break;
-	case UiState::HOVEREDSELECTED:
-		break;
-	case UiState::DISABLED:
-		break;
-	case UiState::UNKNOWN:
-		break;
-	default:
-		break;
-	}
+	UpdateState();
 }
 
 ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::BUTTONIMAGE, name, false, rect), imagePath(path)
 {
 	imageID = Resources::Load<Texture>(imagePath);
-	switch (this->state)
-	{
-	case UiState::IDLE:
-		currentSection = &imageIdleSection;
-		break;
-	case UiState::HOVERED:
-		currentSection = &imageHoveredSection;
-		break;
-	case UiState::SELECTED:
-		currentSection = &imageSelectedSection;
-		break;
-	case UiState::HOVEREDSELECTED:
-		break;
-	case UiState::DISABLED:
-		break;
-	case UiState::UNKNOWN:
-		break;
-	default:
-		break;
-	}
+	UpdateState();
+}
+
+ButtonImageUI::ButtonImageUI(ButtonImageUI* ref) : ItemUI(ref)
+{
+	this->imagePath = ref->imagePath;
+	this->imageID = ref->imageID;
+	this->imageIdleSection = ref->imageIdleSection;
+	this->imageHoveredSection = ref->imageHoveredSection;
+	this->imageSelectedSection = ref->imageSelectedSection;
+	this->currentSection = ref->currentSection;
+
+	UpdateState();
 }
 
 ButtonImageUI::~ButtonImageUI() {}
@@ -84,6 +58,7 @@ json ButtonImageUI::SaveUIElement()
 	uiElementJSON["Type"] = (int)type;
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;
+	uiElementJSON["Print"] = print;
 
 	uiElementJSON["ImagePath"] = imagePath;
 
@@ -125,6 +100,7 @@ void ButtonImageUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("Type")) type = (UiType)UIElementJSON["Type"];
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
+	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
 	imageID = Resources::Load<Texture>(imagePath);
@@ -154,7 +130,7 @@ void ButtonImageUI::LoadUIElement(const json& UIElementJSON)
 Rect2D ButtonImageUI::GetSectIdle() const
 {
 	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSect.x = imageIdleSection.x  * image->GetSize().x;
@@ -167,7 +143,7 @@ Rect2D ButtonImageUI::GetSectIdle() const
 
 void ButtonImageUI::SetSectSizeIdle(float x, float y, float width, float height)
 {
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageIdleSection.x = x        / image->GetSize().x;
@@ -180,7 +156,7 @@ void ButtonImageUI::SetSectSizeIdle(float x, float y, float width, float height)
 Rect2D ButtonImageUI::GetSectHovered() const
 {
 	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSect.x = imageHoveredSection.x  * image->GetSize().x;
@@ -193,7 +169,7 @@ Rect2D ButtonImageUI::GetSectHovered() const
 
 void ButtonImageUI::SetSectSizeHovered(float x, float y, float width, float height)
 {
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageHoveredSection.x = x        / image->GetSize().x;
@@ -206,7 +182,7 @@ void ButtonImageUI::SetSectSizeHovered(float x, float y, float width, float heig
 Rect2D ButtonImageUI::GetSectSelected() const
 {
 	Rect2D imageSect = { 0, 0, 0, 0 };
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSect.x = imageSelectedSection.x  * image->GetSize().x;
@@ -219,7 +195,7 @@ Rect2D ButtonImageUI::GetSectSelected() const
 
 void ButtonImageUI::SetSectSizeSelected(float x, float y, float width, float height)
 {
-	if (imageID == -1)
+	if (imageID != -1)
 	{
 		Texture* image = Resources::GetResourceById<Texture>(imageID);
 		imageSelectedSection.x = x        / image->GetSize().x;

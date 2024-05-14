@@ -166,7 +166,7 @@ void N_SceneManager::SaveScene()
 	sceneJSON["GameObjects"] = gameObjectsJSON;
 
 	std::ofstream(filename) << sceneJSON.dump(2);
-	LOG(LogType::LOG_OK, "SAVE SUCCESFUL");
+	LOG(LogType::LOG_OK, (currentScene->GetSceneName() + " SAVE SUCCESFUL at " + filename.string()).c_str());
 
 	currentScene->SetIsDirty(false);
 }
@@ -354,6 +354,7 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 	std::shared_ptr<GameObject> duplicatedGO = std::make_shared<GameObject>(recursive ? originalGO.get()->GetName() : GenerateUniqueName(originalGO.get()->GetName(), ref));
 	//meshGO.get()->GetComponent<Mesh>()->mesh = mesh;
 	//meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex];
+	duplicatedGO->hasTransparency = ref->hasTransparency;
 
 	for (auto& item : ref->GetAllComponents())
 	{

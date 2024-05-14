@@ -19,6 +19,7 @@ void Resources::PushResource(ResourceType rt, const char* file, void* rsc, bool 
 	resource->isNative = isNative;
 	resource->filePath = file;
 	resource->resource = rsc;
+	resource->name = std::filesystem::path(file).filename().replace_extension().string();
 
 	m_Resources[rt].push_back(resource);
 

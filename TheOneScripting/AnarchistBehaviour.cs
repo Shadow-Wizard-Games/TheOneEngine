@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 class AnarchistBehaviour : MonoBehaviour
 {
@@ -26,6 +26,8 @@ class AnarchistBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
+    IGameObject iShotPSGO;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
@@ -38,7 +40,8 @@ class AnarchistBehaviour : MonoBehaviour
         attachedGameObject.animator.Play("Scan");
 
         attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+
+        iShotPSGO = attachedGameObject.FindInChildren("ShotPS");
     }
 
     public override void Update()
@@ -230,6 +233,7 @@ class AnarchistBehaviour : MonoBehaviour
                 timerBetweenBullets = 0.0f;
                 bulletCounter++;
                 attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_REBEL_SHOOT);
+                if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
             }
 
             if (bulletCounter >= burstBulletCount)

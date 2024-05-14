@@ -295,6 +295,20 @@ static void ToggleChecker(GameObject* containerGO, bool value, MonoString* nameM
 	}
 }
 
+static void PrintItemUI(GameObject* containerGO, bool value, MonoString* nameM)
+{
+	std::string name = MonoRegisterer::MonoStringToUTF8(nameM);
+
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetName() == name)
+		{
+			containerGO->GetComponent<Canvas>()->GetItemUI<ItemUI>(uiElements[i]->GetID())->SetPrint(value);
+		}
+	}
+}
+
 static int GetSelectedButton(GameObject* containerGO)
 {
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
@@ -583,6 +597,11 @@ static void StopPS(GameObject* GOptr)
 	GOptr->GetComponent<ParticleSystem>()->Stop();
 }
 
+static void EndPS(GameObject* GOptr)
+{
+	GOptr->GetComponent<ParticleSystem>()->End();
+}
+
 // Audio Manager
 static void PlayAudioSource(GameObject* GOptr, uint audio) {
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
@@ -779,6 +798,7 @@ void MonoRegisterer::RegisterFunctions()
 	//User Interfaces
 	mono_add_internal_call("InternalCalls::CanvasEnableToggle", CanvasEnableToggle);
 	mono_add_internal_call("InternalCalls::ToggleChecker", ToggleChecker);
+	mono_add_internal_call("InternalCalls::PrintItemUI", PrintItemUI);
 	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
 	mono_add_internal_call("InternalCalls::GetSelected", GetSelected);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
@@ -804,6 +824,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::PausePS", PausePS);
 	mono_add_internal_call("InternalCalls::ReplayPS", ReplayPS);
 	mono_add_internal_call("InternalCalls::StopPS", StopPS);
+	mono_add_internal_call("InternalCalls::EndPS", EndPS);
 
 	//Audio
 	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);

@@ -41,6 +41,7 @@
           "UsingSingleValueColor": false
         },
         {
+          "IsProportional": true,
           "MaxScale": [
             2.0,
             2.0,
@@ -53,6 +54,20 @@
           ],
           "Type": 2,
           "UsingSingleValueScale": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            0.0,
+            100.0
+          ],
+          "MinOffset": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": false,
@@ -79,11 +94,20 @@
             1.0
           ],
           "Type": 0
+        },
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
         }
       ]
     }
   ],
   "Name": "P_ShootLaser",
+  "StartON": false,
   "Type": 9,
   "UID": 1044709403
 }
