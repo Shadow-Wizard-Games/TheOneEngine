@@ -273,6 +273,7 @@ public class PlayerScript : MonoBehaviour
     private bool SetMoveDirection()
     {
         bool toMove = false;
+        Vector2 aimingDirection = Vector2.zero;
 
         #region CONTROLLER
         Vector2 leftJoystickDirection = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
@@ -282,6 +283,8 @@ public class PlayerScript : MonoBehaviour
             movementDirection += new Vector3(-leftJoystickDirection.x, 0.0f, -leftJoystickDirection.y);
             movementMagnitude = leftJoystickDirection.Magnitude();
             toMove = true;
+
+            aimingDirection += leftJoystickDirection;
         }
 
         #endregion
@@ -291,30 +294,38 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.W))
             {
-                movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
+                movementDirection -= Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection -= Vector2.up;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.A))
             {
-                movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
+                movementDirection -= Vector3.right;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection -= Vector2.right;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.S))
             {
-                movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
+                movementDirection += Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection += Vector2.up;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.D))
             {
-                movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
+                movementDirection += Vector3.right;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection += Vector2.right;
             }
         }
         #endregion
@@ -324,6 +335,10 @@ public class PlayerScript : MonoBehaviour
         if (movementDirection != Vector3.zero)
         {
             lastMovementDirection = movementDirection;
+            aimingDirection = aimingDirection.Normalize();
+            float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
+            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+
         }
 
         return toMove;
@@ -337,25 +352,25 @@ public class PlayerScript : MonoBehaviour
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
-            aimingDirection += Vector2.zero - Vector2.right - Vector2.up;
+            aimingDirection -= Vector2.up;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
         {
-            aimingDirection += Vector2.zero - Vector2.right + Vector2.up;
+            aimingDirection -= Vector2.right;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
         {
-            aimingDirection += Vector2.zero + Vector2.right + Vector2.up;
+            aimingDirection += Vector2.up;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
         {
-            aimingDirection += Vector2.zero + Vector2.right - Vector2.up;
+            aimingDirection += Vector2.right;
             hasAimed = true;
         }
 
