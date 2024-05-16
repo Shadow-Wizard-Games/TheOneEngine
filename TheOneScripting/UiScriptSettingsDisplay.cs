@@ -46,7 +46,7 @@ public class UiScriptSettingsDisplay : MonoBehaviour
         sfxVolume = canvas.GetSliderValue("Slider_SFX");
         musicVolume = canvas.GetSliderValue("Slider_Music");
 
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 

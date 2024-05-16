@@ -38,7 +38,7 @@ public class UiScriptDebug : MonoBehaviour
 
     public override void Update()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 

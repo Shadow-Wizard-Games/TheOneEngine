@@ -45,7 +45,7 @@ public class UiScriptSettings : MonoBehaviour
         }
 
 
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 

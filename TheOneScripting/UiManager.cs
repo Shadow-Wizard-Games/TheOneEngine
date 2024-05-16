@@ -110,7 +110,7 @@ public class UiManager : MonoBehaviour
 
     public override void Update()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
 
         if (onCooldown && cooldown < 0.2f)
         {
