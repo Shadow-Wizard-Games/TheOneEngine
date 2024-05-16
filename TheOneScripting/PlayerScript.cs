@@ -86,6 +86,7 @@ public class PlayerScript : MonoBehaviour
 
     // audio
     public IAudioSource.AudioStateID currentState = 0;
+    float timeFromLastStep = 0.3f;
 
     public override void Start()
     {
@@ -108,11 +109,13 @@ public class PlayerScript : MonoBehaviour
         currentWeoponDamage = damageM4;
 
         attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+        attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
         attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
     }
 
     public override void Update()
     {
+        timeFromLastStep += Time.deltaTime;
 
         isRunning = false;
         isShooting = false;
@@ -154,7 +157,6 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-
         float currentSpeed = speed;
         if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
 
@@ -185,26 +187,21 @@ public class PlayerScript : MonoBehaviour
             }
         }
         // Play steps
-        if (lastFrameRunned != isRunning)
+        if (isRunning)
         {
-            if (isRunning)
+            if (timeFromLastStep >= 0.3f)
             {
-                attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
-                if (iStepPSGO != null)
-                {
-                    iStepPSGO.GetComponent<IParticleSystem>().Play();
-                }
+                Step();
+                timeFromLastStep = 0.0f;
             }
-            else
+        }
+        else
+        {
+            //attachedGameObject.source.Stop(IAudioSource.AudioEvent.P_STEP);
+            if (iStepPSGO != null)
             {
-                attachedGameObject.source.Stop(IAudioSource.AudioEvent.P_STEP);
-                if (iStepPSGO != null)
-                {
-                    iStepPSGO.GetComponent<IParticleSystem>().End();
-                }
+                iStepPSGO.GetComponent<IParticleSystem>().End();
             }
-            lastFrameRunned = isRunning;
-
         }
 
         // current weapon switch

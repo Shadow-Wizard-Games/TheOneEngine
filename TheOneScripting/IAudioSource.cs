@@ -176,13 +176,13 @@ public class IAudioSource : IComponent
 
     public enum AudioSwitchGroup : uint
     {
-        DIRT = 2195636714U,
-        SHIP = 284967655U
+        SURFACETYPE = 63790334U
     }
 
     public enum AudioSwitchID : uint
     {
-        SURFACETYPE = 63790334U
+        DIRT = 2195636714U,
+        SHIP = 284967655U
     }
 
     public IAudioSource() : base() { }
