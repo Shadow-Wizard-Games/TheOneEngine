@@ -31,6 +31,11 @@
           "ScriptName": "UiManager",
           "Type": 4,
           "UID": 2371490470
+        },
+        {
+          "AudioID": 7,
+          "Name": "AudioSource",
+          "Type": 8
         }
       ],
       "Enabled": true,
@@ -1126,6 +1131,11 @@
               "ScriptName": "UiScriptInventory",
               "Type": 4,
               "UID": 951121546
+            },
+            {
+              "AudioID": 8,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -1424,7 +1434,7 @@
               ]
             },
             {
-              "AudioID": 0,
+              "AudioID": 9,
               "Name": "Source",
               "Type": 8
             },
@@ -2989,7 +2999,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 1,
+              "AudioID": 10,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -3486,6 +3496,11 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 11,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -3665,6 +3680,11 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 12,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -5886,6 +5906,11 @@
                       "Type": 0
                     }
                   ]
+                },
+                {
+                  "AudioID": 13,
+                  "Name": "AudioSource",
+                  "Type": 8
                 }
               ],
               "Enabled": false,
@@ -6668,6 +6693,11 @@
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
                   "UID": 1616070798
+                },
+                {
+                  "AudioID": 14,
+                  "Name": "AudioSource",
+                  "Type": 8
                 }
               ],
               "Enabled": false,
@@ -6771,6 +6801,11 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 15,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
@@ -6890,12 +6925,155 @@
                   "Type": 0
                 }
               ]
+            },
+            {
+              "AudioID": 16,
+              "Name": "AudioSource",
+              "Type": 8
             }
           ],
           "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_PickUpFeedback",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 762181437
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "GameManager",
+              "Type": 4,
+              "UID": 2135104260
+            },
+            {
+              "AudioID": 21,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": true,
+          "Name": "GameManager",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2278715941
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "ItemManager",
+              "Type": 4,
+              "UID": 2581454987
+            },
+            {
+              "AudioID": 22,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": true,
+          "Name": "ItemManager",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4072698855
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "ItemManager",
+              "Type": 4,
+              "UID": 1110714302
+            },
+            {
+              "AudioID": 19,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Manager",
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
@@ -6949,7 +7127,7 @@
           "zNear": 0.1
         },
         {
-          "AudioID": 2,
+          "AudioID": 17,
           "Name": "Listener",
           "Type": 7
         },
@@ -7002,7 +7180,7 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_MainCharacter/M_MainCharacter.toematerial",
+          "MaterialPath": "",
           "MeshPath": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
           "Name": "Mesh",
           "ParentUID": 3452816845,
@@ -7017,7 +7195,7 @@
           "UID": 3227234719
         },
         {
-          "AudioID": 3,
+          "AudioID": 18,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -7041,47 +7219,6 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 4072698855
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "ItemManager",
-          "Type": 4,
-          "UID": 1110714302
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Manager",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
@@ -7127,7 +7264,7 @@
           "UID": 3836625021
         },
         {
-          "AudioID": 4,
+          "AudioID": 20,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -7143,129 +7280,6 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Queen",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 762181437
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "GameManager",
-          "Type": 4,
-          "UID": 2135104260
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": true,
-      "Name": "GameManager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2278715941
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "ItemManager",
-          "Type": 4,
-          "UID": 2581454987
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": true,
-      "Name": "ItemManager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            647.6279907226563,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1524612854
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "EventOpenPopUp",
-          "Type": 4,
-          "UID": 2191272949
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Trigger_Dialog1",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845

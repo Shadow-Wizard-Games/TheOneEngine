@@ -568,6 +568,7 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 	std::shared_ptr<GameObject> duplicatedGO = std::make_shared<GameObject>(recursive ? originalGO.get()->GetName() : GenerateUniqueName(originalGO.get()->GetName(), ref));
 	//meshGO.get()->GetComponent<Mesh>()->mesh = mesh;
 	//meshGO.get()->GetComponent<Mesh>()->mesh.texture = textures[mesh.materialIndex];
+	duplicatedGO->hasTransparency = ref->hasTransparency;
 
 	for (auto& item : ref->GetAllComponents())
 	{
@@ -1074,6 +1075,15 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const mat4& tr
 	file.close();
 
 	newGameObject->LoadGameObject(prefabJSON);
+
+
+	// Check name
+
+	if (newGameObject.get()->GetName() != "SK_MainCharacter" && newGameObject.get()->GetName() != "UI_Manager")
+	{
+		newGameObject.get()->SetName(GenerateUniqueName(newGameObject.get()->GetName()));
+	}
+
 
 	newGameObject->GetComponent<Transform>()->SetTransform(transform);
 }

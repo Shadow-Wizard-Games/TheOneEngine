@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Module.h"
-#include "TheOneEngine/InputManager.h"
+#include "../TheOneEngine/InputManager.h"
 
 #define MAX_MOUSE_BUTTONS 5
 

@@ -59,6 +59,9 @@ class InternalCalls
     #region GameObject
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateGrenade(Vector3 initialPosition, Vector3 direction);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);
@@ -215,14 +218,24 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopPS(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void EndPS(IntPtr GOptr);
+
     #endregion
 
     #region Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void PlaySource(IntPtr GOptr, EventIDs audio);
+    internal extern static void PlayAudioSource(IntPtr GOptr, AudioEvent audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void StopSource(IntPtr GOptr, EventIDs audio);
+    internal extern static void StopAudioSource(IntPtr GOptr, AudioEvent audio);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetState(AudioStateGroup stateGroup, AudioStateID stateID);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSwitch(IntPtr GOptr, AudioSwitchGroup switchGroup, AudioSwitchID switchID);
     #endregion
 
     #region Collider2D
@@ -283,6 +296,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopAnimation(IntPtr GOptr);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool AnimationHasFinished(IntPtr GOptr);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetTransitionBlend(IntPtr GOptr);

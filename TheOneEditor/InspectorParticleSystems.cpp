@@ -157,7 +157,7 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 	int imGuiIDUpdate = 0;
 
 	for (auto m = emmiter->updateModules.begin(); m != emmiter->updateModules.end(); ++m) {
-		ImGui::PushID("update_emmiter" + imGuiIDInit);
+		ImGui::PushID("update_emmiter" + imGuiIDUpdate);
 		
 		if (ImGui::Button("Delete Module"))
 		{

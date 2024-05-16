@@ -1,0 +1,3189 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 862431204
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 0,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 1834822783,
+          "Yaw": 0.0,
+          "zFar": 3000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "mainCamera",
+      "ParentUID": 127863589,
+      "Static": false,
+      "UID": 0
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2512047392
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.07760026305913925,
+                0.0,
+                1.5180176496505737,
+                0.0,
+                0.0,
+                1.5199999809265137,
+                0.0,
+                0.0,
+                -1.5180176496505737,
+                0.0,
+                -0.07760026305913925,
+                0.0,
+                -366.9046630859375,
+                0.0,
+                -306.2331848144531,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1143762697
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_CaveEntrance/M_Cave.toematerial",
+              "MeshPath": "Library/Meshes/SM_CaveEntrance/SM_CaveEntrance.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 3211795036
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_CaveEntrance2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.06500009447336197,
+                0.0,
+                -1.5186095237731934,
+                0.0,
+                0.0,
+                1.5199999809265137,
+                0.0,
+                0.0,
+                1.5186095237731934,
+                0.0,
+                -0.06500009447336197,
+                0.0,
+                448.9805603027344,
+                0.0,
+                253.34034729003906,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1062734737
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_CaveEntrance/M_Cave.toematerial",
+              "MeshPath": "Library/Meshes/SM_CaveEntrance/SM_CaveEntrance.mesh",
+              "Name": "Mesh",
+              "ParentUID": 0,
+              "Type": 2,
+              "UID": 1395071428
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_CaveEntrance1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 0
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.526898205280304,
+                0.0,
+                -0.8499284982681274,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.8499284982681274,
+                0.0,
+                0.526898205280304,
+                0.0,
+                -147.27264404296875,
+                0.00015355752839241177,
+                32.50188064575195,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2763581514
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1156579328,
+              "Type": 2,
+              "UID": 3195417190
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 20.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1156579328,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2611114002,
+              "Width": 20.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox19",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9123263955116272,
+                0.0,
+                -0.4094638526439667,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4094638526439667,
+                0.0,
+                0.9123263955116272,
+                0.0,
+                -187.2812957763672,
+                0.00016402019537054002,
+                -14.918365478515625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 424383410
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 3530145686
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 20.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1040384000,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 92700048,
+              "Width": 20.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox18",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.6433976888656616,
+                0.0,
+                -0.7655321359634399,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.7655321359634399,
+                0.0,
+                0.6433976888656616,
+                0.0,
+                -167.69467163085938,
+                0.00011897509830305353,
+                10.886743545532227,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2092455497
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Table/M_Table.toematerial",
+              "MeshPath": "Library/Meshes/SM_Table/SM_Table.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 2450208077
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 7602275,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2524020879,
+              "Width": 39.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Table3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -221.74136352539063,
+                -0.000244140625,
+                86.6288070678711,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1848115112
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_CampFire/M_CampFire.toematerial",
+              "MeshPath": "Library/Meshes/SM_CampFire/SM_CampFire.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 433222241
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": -1.7976931348623157e+308,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1040384000,
+              "Radius": 15.0,
+              "Type": 5,
+              "UID": 1535234240,
+              "Width": -1.7976931348623157e+308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_CampFire3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9419205188751221,
+                0.0,
+                -0.33583614230155945,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.33583614230155945,
+                0.0,
+                0.9419205188751221,
+                0.0,
+                222.04722595214844,
+                -2.9329901735763997e-05,
+                -251.01470947265625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2216909984
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Wrench/M_Wrench.toematerial",
+              "MeshPath": "Library/Meshes/SM_Wrench/SM_Wrench.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 176689140
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Wrench4",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.11796372383832932,
+                0.0,
+                -0.9930179715156555,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.9930179715156555,
+                0.0,
+                0.11796372383832932,
+                0.0,
+                165.4856414794922,
+                0.0,
+                -255.69888305664063,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2670394427
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Wrench/M_Wrench.toematerial",
+              "MeshPath": "Library/Meshes/SM_Wrench/SM_Wrench.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 3534651174
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Wrench3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.26358044147491455,
+                0.0,
+                0.9646374583244324,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9646374583244324,
+                0.0,
+                0.26358044147491455,
+                0.0,
+                238.00457763671875,
+                0.0,
+                -104.4887466430664,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3930330684
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Screwdriver/M_Screwdriver.toematerial",
+              "MeshPath": "Library/Meshes/SM_Screwdriver/SM_Screwdriver.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3867493872,
+              "Type": 2,
+              "UID": 1977651165
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Screwdriver3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 3867493872
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9651914834976196,
+                0.0,
+                0.2615445554256439,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.2615445554256439,
+                0.0,
+                0.9651914834976196,
+                0.0,
+                164.92062377929688,
+                0.0,
+                -262.4248352050781,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2967656701
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Screwdriver/M_Screwdriver.toematerial",
+              "MeshPath": "Library/Meshes/SM_Screwdriver/SM_Screwdriver.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 2418615034
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Screwdriver2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.36174750328063965,
+                0.0,
+                0.9322761297225952,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9322761297225952,
+                0.0,
+                0.36174750328063965,
+                0.0,
+                177.9362335205078,
+                0.0,
+                -259.9271240234375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1583309651
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Toolbox/M_Toolbox.toematerial",
+              "MeshPath": "Library/Meshes/SM_Toolbox/SM_Toolbox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 2874385840
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Toolbox3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9469743371009827,
+                0.0,
+                0.3213094174861908,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.3213094174861908,
+                0.0,
+                0.9469743371009827,
+                0.0,
+                231.21829223632813,
+                0.0,
+                -261.71099853515625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3412887287
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Toolbox/M_Toolbox.toematerial",
+              "MeshPath": "Library/Meshes/SM_Toolbox/SM_Toolbox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 3966633406
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Toolbox2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.11796372383832932,
+                0.0,
+                -0.9930179715156555,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.9930179715156555,
+                0.0,
+                0.11796372383832932,
+                0.0,
+                234.82139587402344,
+                0.0,
+                -112.38948059082031,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1747244659
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Wrench/M_Wrench.toematerial",
+              "MeshPath": "Library/Meshes/SM_Wrench/SM_Wrench.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1006632960,
+              "Type": 2,
+              "UID": 1321366408
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Wrench2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1006632960
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9904657602310181,
+                0.0,
+                0.13776086270809174,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.13776086270809174,
+                0.0,
+                0.9904657602310181,
+                0.0,
+                235.7657470703125,
+                0.0,
+                -122.62931060791016,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1021699264
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Wrench/M_Wrench.toematerial",
+              "MeshPath": "Library/Meshes/SM_Wrench/SM_Wrench.mesh",
+              "Name": "Mesh",
+              "ParentUID": 0,
+              "Type": 2,
+              "UID": 2812188504
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Wrench1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 0
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.8325260281562805,
+                0.0,
+                0.5539860129356384,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.5539860129356384,
+                0.0,
+                0.8325260281562805,
+                0.0,
+                226.79754638671875,
+                0.0,
+                -125.93672180175781,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2518900476
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Screwdriver/M_Screwdriver.toematerial",
+              "MeshPath": "Library/Meshes/SM_Screwdriver/SM_Screwdriver.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3869581072,
+              "Type": 2,
+              "UID": 3786670154
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Screwdriver1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 3869581072
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9123263955116272,
+                0.0,
+                -0.4094638526439667,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4094638526439667,
+                0.0,
+                0.9123263955116272,
+                0.0,
+                90.30982971191406,
+                0.0001446366950403899,
+                278.71514892578125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 925348544
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 2858842020
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 20.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1102577664,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4247349265,
+              "Width": 20.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox17",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.5204659104347229,
+                0.0,
+                0.8538825511932373,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.8538825511932373,
+                0.0,
+                0.5204659104347229,
+                0.0,
+                32.037567138671875,
+                -8.748145774006844e-05,
+                294.5321044921875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1857374735
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 53266961
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 20.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 7602275,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2939442448,
+              "Width": 20.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox16",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9475453495979309,
+                0.0,
+                -0.31962159276008606,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.31962159276008606,
+                0.0,
+                0.9475453495979309,
+                0.0,
+                33.2097053527832,
+                -8.748145774006844e-05,
+                264.9264221191406,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2859451326
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 4207174401
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 20.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 7602275,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2013503583,
+              "Width": 20.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox15",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.35816690325737,
+                0.0,
+                -0.933657705783844,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.933657705783844,
+                0.0,
+                0.35816690325737,
+                0.0,
+                60.873538970947266,
+                0.0001220703125,
+                277.54095458984375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3592970059
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Table/M_Table.toematerial",
+              "MeshPath": "Library/Meshes/SM_Table/SM_Table.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1156579328,
+              "Type": 2,
+              "UID": 3454692582
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 50.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1156579328,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 4070368431,
+              "Width": 33.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Table2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.006062852218747139,
+                0.0,
+                0.999981701374054,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.999981701374054,
+                0.0,
+                -0.006062852218747139,
+                0.0,
+                41.83415222167969,
+                -0.00021211986313574016,
+                166.37533569335938,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3164252687
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_PotsAndPans/M_PotsAndPans.toematerial",
+              "MeshPath": "Library/Meshes/SM_PotsAndPans/SM_PotsAndPans.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 1214834752
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_PotsAndPans2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                58.015663146972656,
+                -0.0002084959123749286,
+                207.14529418945313,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3215237444
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_PotsAndPans/M_PotsAndPans.toematerial",
+              "MeshPath": "Library/Meshes/SM_PotsAndPans/SM_PotsAndPans.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3199119824,
+              "Type": 2,
+              "UID": 4049648176
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_PotsAndPans1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 3199119824
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                55.654144287109375,
+                -0.0001220703125,
+                182.5359649658203,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4201366726
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_CampFire/M_CampFire.toematerial",
+              "MeshPath": "Library/Meshes/SM_CampFire/SM_CampFire.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 3238100045
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": -1.7976931348623157e+308,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1102577664,
+              "Radius": 15.0,
+              "Type": 5,
+              "UID": 386760461,
+              "Width": -1.7976931348623157e+308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_CampFire2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -14.793146133422852,
+                0.0,
+                -337.76519775390625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3452093834
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_CampFire/M_CampFire.toematerial",
+              "MeshPath": "Library/Meshes/SM_CampFire/SM_CampFire.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1058831393,
+              "Type": 2,
+              "UID": 1233550882
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": -1.7976931348623157e+308,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1058831393,
+              "Radius": 15.0,
+              "Type": 5,
+              "UID": 1472900511,
+              "Width": -1.7976931348623157e+308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_CampFire1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1058831393
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.21570807695388794,
+                0.0,
+                -0.976457953453064,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.976457953453064,
+                0.0,
+                -0.21570807695388794,
+                0.0,
+                143.10458374023438,
+                0.0,
+                -300.11590576171875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3641240495
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 1194043885
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag12",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.318191796541214,
+                0.0,
+                -0.9480263590812683,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.9480263590812683,
+                0.0,
+                0.318191796541214,
+                0.0,
+                121.02684020996094,
+                0.0,
+                -323.7134094238281,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 85749503
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 3034091244
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag11",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9891390800476074,
+                0.0,
+                -0.1469828337430954,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.1469828337430954,
+                0.0,
+                0.9891390800476074,
+                0.0,
+                238.3766326904297,
+                0.0,
+                -188.25772094726563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2540670754
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1156579328,
+              "Type": 2,
+              "UID": 2906519106
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag10",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.998724639415741,
+                0.0,
+                -0.05048995465040207,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.05048995465040207,
+                0.0,
+                0.998724639415741,
+                0.0,
+                -60.88886260986328,
+                0.0,
+                277.2033386230469,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2571528037
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 2136054179
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag9",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.8389220833778381,
+                0.0,
+                -0.544251561164856,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.544251561164856,
+                0.0,
+                0.8389220833778381,
+                0.0,
+                -78.52244567871094,
+                0.0,
+                194.4807891845703,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2560238929
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 1064601095
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag8",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9990957379341125,
+                0.0,
+                0.042521487921476364,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.042521487921476364,
+                0.0,
+                0.9990957379341125,
+                0.0,
+                -131.70823669433594,
+                0.0,
+                191.4823760986328,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2227078415
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 886846538
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag7",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9179603457450867,
+                0.0,
+                0.3966723382472992,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.3966723382472992,
+                0.0,
+                0.9179603457450867,
+                0.0,
+                -163.9589385986328,
+                0.0,
+                193.44920349121094,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3407332557
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1006632960,
+              "Type": 2,
+              "UID": 3452626607
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag6",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1006632960
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.8137487173080444,
+                0.0,
+                0.5812169909477234,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.5812169909477234,
+                0.0,
+                0.8137487173080444,
+                0.0,
+                -200.59010314941406,
+                0.0,
+                205.39585876464844,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3485651285
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 3006325764
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag5",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9876256585121155,
+                0.0,
+                0.15683062374591827,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.15683062374591827,
+                0.0,
+                0.9876256585121155,
+                0.0,
+                -223.21424865722656,
+                0.0,
+                269.8670349121094,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4187248444
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1006632960,
+              "Type": 2,
+              "UID": 4107426976
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag4",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1006632960
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9721270203590393,
+                0.0,
+                0.23445507884025574,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.23445507884025574,
+                0.0,
+                0.9721270203590393,
+                0.0,
+                -189.24240112304688,
+                0.0,
+                278.06024169921875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 842577697
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 4164372876
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -151.6491241455078,
+                0.0,
+                278.92950439453125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3502104206
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1156579328,
+              "Type": 2,
+              "UID": 2979135785
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -117.06704711914063,
+                0.0,
+                278.92950439453125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 441927358
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_SleepingBag/M_SleepingBag.toematerial",
+              "MeshPath": "Library/Meshes/SM_SleepingBag/SM_SleepingBag.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3869977456,
+              "Type": 2,
+              "UID": 3080790407
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_SleepingBag1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 3869977456
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.9768983721733093,
+                0.0,
+                -0.2137073129415512,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.2137073129415512,
+                0.0,
+                -0.9768983721733093,
+                0.0,
+                -166.07278442382813,
+                0.00025569371064193547,
+                241.05126953125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 146577114
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ShopTent/M_ShopTent.toematerial",
+              "MeshPath": "Library/Meshes/SM_ShopTent/SM_ShopTent.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 2305786612
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": -1.7976931348623157e+308,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 23.0,
+              "ParentUID": 1040384000,
+              "Radius": 80.0,
+              "Type": 5,
+              "UID": 1325394323,
+              "Width": -1.7976931348623157e+308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_ShopTent3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9992172122001648,
+                0.0,
+                0.03956068307161331,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.03956068307161331,
+                0.0,
+                0.9992172122001648,
+                0.0,
+                -14.176738739013672,
+                -9.454169048694894e-05,
+                316.6832275390625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 715315527
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 1533391604
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 20.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 7602275,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3721036282,
+              "Width": 20.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox14",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.9992172122001648,
+                0.0,
+                0.03956068307161331,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.03956068307161331,
+                0.0,
+                0.9992172122001648,
+                0.0,
+                -7.286603927612305,
+                -9.454169048694894e-05,
+                245.34292602539063,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 847447974
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1006632960,
+              "Type": 2,
+              "UID": 2136464812
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 20.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1006632960,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2978997097,
+              "Width": 20.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox13",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1006632960
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -11.476846694946289,
+                0.0,
+                279.140625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1196827903
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Table/M_Table.toematerial",
+              "MeshPath": "Library/Meshes/SM_Table/SM_Table.mesh",
+              "Name": "Mesh",
+              "ParentUID": 0,
+              "Type": 2,
+              "UID": 2820015091
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 30.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 0,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1146445644,
+              "Width": 40.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Table1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 0
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.1595948487520218,
+                0.0,
+                0.9871826767921448,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9871826767921448,
+                0.0,
+                0.1595948487520218,
+                0.0,
+                289.80426025390625,
+                0.0001220703125,
+                -169.82261657714844,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 261162342
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 872595313
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox12",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.855575442314148,
+                0.0,
+                0.5176783204078674,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.5176783204078674,
+                0.0,
+                0.855575442314148,
+                0.0,
+                267.8646545410156,
+                0.0,
+                -195.48629760742188,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1037679531
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1006632960,
+              "Type": 2,
+              "UID": 2212747208
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox11",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1006632960
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.2983512878417969,
+                0.0,
+                0.9544563293457031,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9544563293457031,
+                0.0,
+                0.2983512878417969,
+                0.0,
+                230.25328063964844,
+                0.0,
+                -225.8599395751953,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3810823230
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1156579328,
+              "Type": 2,
+              "UID": 1391135247
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox10",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.8287618160247803,
+                0.0,
+                0.5596016049385071,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.5596016049385071,
+                0.0,
+                0.8287618160247803,
+                0.0,
+                258.6119079589844,
+                0.0,
+                -224.40829467773438,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2594440848
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 3469957887
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox9",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.5523447394371033,
+                0.0,
+                0.8336159586906433,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.8336159586906433,
+                0.0,
+                0.5523447394371033,
+                0.0,
+                259.68292236328125,
+                11.65593433380127,
+                -225.1802978515625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 719279439
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 832854778
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox8",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.113925501704216,
+                0.0,
+                0.9934893846511841,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9934893846511841,
+                0.0,
+                0.113925501704216,
+                0.0,
+                292.02386474609375,
+                0.0,
+                -33.48699188232422,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 91452012
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_FountainOfLife/lambert7.toematerial",
+              "MeshPath": "Library/Meshes/SM_FountainOfLife/pCylinder10.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 3192115566
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": -1.7976931348623157e+308,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 7602275,
+              "Radius": 30.0,
+              "Type": 5,
+              "UID": 3316538184,
+              "Width": -1.7976931348623157e+308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "pCylinder10",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.6500542759895325,
+                0.0,
+                0.7598878145217896,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.7598878145217896,
+                0.0,
+                -0.6500542759895325,
+                0.0,
+                248.7644500732422,
+                0.0,
+                -115.19055938720703,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 685727589
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_Toolbox/M_Toolbox.toematerial",
+              "MeshPath": "Library/Meshes/SM_Toolbox/SM_Toolbox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 510512781
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_Toolbox1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.5523447394371033,
+                0.0,
+                0.8336159586906433,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.8336159586906433,
+                0.0,
+                0.5523447394371033,
+                0.0,
+                136.38221740722656,
+                11.65593433380127,
+                -370.5634460449219,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 679526102
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1156579328,
+              "Type": 2,
+              "UID": 325948272
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox7",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.5523447394371033,
+                0.0,
+                0.8336159586906433,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.8336159586906433,
+                0.0,
+                0.5523447394371033,
+                0.0,
+                98.03364562988281,
+                11.65593433380127,
+                -378.1368408203125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2707391506
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 1309389548
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox6",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.13685543835163116,
+                0.0,
+                0.9905911087989807,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9905911087989807,
+                0.0,
+                0.13685543835163116,
+                0.0,
+                98.03364562988281,
+                0.0,
+                -378.1368408203125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1358881056
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 1189997224
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox5",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.7026923298835754,
+                0.0,
+                0.7114939093589783,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.7114939093589783,
+                0.0,
+                0.7026923298835754,
+                0.0,
+                163.58309936523438,
+                0.0,
+                -347.0082702636719,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3740536882
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1156579328,
+              "Type": 2,
+              "UID": 2408831250
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox4",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.8287618160247803,
+                0.0,
+                0.5596016049385071,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.5596016049385071,
+                0.0,
+                0.8287618160247803,
+                0.0,
+                114.50541687011719,
+                0.0,
+                -354.981201171875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2265024777
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1006632960,
+              "Type": 2,
+              "UID": 3604363401
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox3",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1006632960
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.6352817416191101,
+                0.0,
+                0.7722803354263306,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.7722803354263306,
+                0.0,
+                0.6352817416191101,
+                0.0,
+                139.1148681640625,
+                0.0,
+                -356.71160888671875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2506099291
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1040384000,
+              "Type": 2,
+              "UID": 2617025255
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.761733889579773,
+                0.0,
+                0.6478900909423828,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.6478900909423828,
+                0.0,
+                0.761733889579773,
+                0.0,
+                129.2627410888672,
+                0.0,
+                -377.189453125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4215393013
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ChairBox/M_ChairBox.toematerial",
+              "MeshPath": "Library/Meshes/SM_ChairBox/SM_ChairBox.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3614807200,
+              "Type": 2,
+              "UID": 3535597242
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Sm_ChairBox1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 3614807200
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.3173784017562866,
+                -0.03592551872134209,
+                -0.9476184248924255,
+                0.0,
+                -0.792198896408081,
+                0.5593090057373047,
+                0.24412089586257935,
+                0.0,
+                0.5212416648864746,
+                0.8281810283660889,
+                -0.20597320795059204,
+                0.0,
+                60.68625259399414,
+                2.422625780105591,
+                -344.9354553222656,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2115651107
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_FirstAidKit/M_FirstAidKit.toematerial",
+              "MeshPath": "Library/Meshes/SM_FirstAidKit/SM_FirstAidKit.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1074865412,
+              "Type": 2,
+              "UID": 2398719318
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_FirstAidKit1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1074865412
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.7912494540214539,
+                0.0,
+                0.6114945411682129,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.6114945411682129,
+                0.0,
+                0.7912494540214539,
+                0.0,
+                120.1471939086914,
+                -0.0001006507663987577,
+                -322.891357421875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 810414910
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ShopTent/M_ShopTent.toematerial",
+              "MeshPath": "Library/Meshes/SM_ShopTent/SM_ShopTent.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1102577664,
+              "Type": 2,
+              "UID": 3491257228
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": -1.7976931348623157e+308,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 23.0,
+              "OffsetY": -25.0,
+              "ParentUID": 1102577664,
+              "Radius": 80.0,
+              "Type": 5,
+              "UID": 3852570346,
+              "Width": -1.7976931348623157e+308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_ShopTent2",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.5499767661094666,
+                0.0,
+                0.8351806402206421,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.8351806402206421,
+                0.0,
+                0.5499767661094666,
+                0.0,
+                236.56471252441406,
+                0.0,
+                -195.59373474121094,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3588509199
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_ShopTent/M_ShopTent.toematerial",
+              "MeshPath": "Library/Meshes/SM_ShopTent/SM_ShopTent.mesh",
+              "Name": "Mesh",
+              "ParentUID": 7602275,
+              "Type": 2,
+              "UID": 2200079372
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": -1.7976931348623157e+308,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 25.0,
+              "OffsetY": -15.0,
+              "ParentUID": 7602275,
+              "Radius": 80.0,
+              "Type": 5,
+              "UID": 3679285984,
+              "Width": -1.7976931348623157e+308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_ShopTent1",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 574189971
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/MK_Camp_Extended/M_Camp_Extended.toematerial",
+              "MeshPath": "Library/Meshes/MK_Camp_Extended/MK_Camp_Extended.mesh",
+              "Name": "Mesh",
+              "ParentUID": 168583328,
+              "Type": 2,
+              "UID": 2410739757
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "MK_Camp_Extended",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 168583328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2983416980
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/MK_Camp/M_Camp.toematerial",
+              "MeshPath": "Library/Meshes/MK_Camp/MK_Camp.mesh",
+              "Name": "Mesh",
+              "ParentUID": 1065353216,
+              "Type": 2,
+              "UID": 2655997958
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "MK_Camp",
+          "ParentUID": 7602275,
+          "Static": false,
+          "UID": 1065353216
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Assets",
+      "ParentUID": 127863589,
+      "Static": false,
+      "UID": 7602275
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\Camp.toe",
+  "sceneName": "Camp"
+}

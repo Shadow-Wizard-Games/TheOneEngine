@@ -29,6 +29,13 @@ public class Input
 		ESCAPE = 41,
 		RETURN = 40,
 		LSHIFT = 225,
+		//Test abilities TO DELETE when changed
+		ONE = 30,
+		TWO = 31,
+        THREE = 32,
+        FOUR = 33,
+        FIVE = 34,
+        SIX = 35,
 	}
 
 	public enum MouseButtonCode

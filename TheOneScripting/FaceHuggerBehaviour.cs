@@ -30,12 +30,18 @@ public class FaceHuggerBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
+    IGameObject jumpPSGO;
+    IGameObject deathPSGO;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
+        jumpPSGO = attachedGameObject.FindInChildren("JumpPS");
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
     }
 
     public override void Update()
@@ -68,7 +74,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
         if (isJumping)
         {
-            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_JUMP);
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_JUMP);
             isJumping = false;
         }
     }
@@ -90,8 +96,9 @@ public class FaceHuggerBehaviour : MonoBehaviour
                                                                         0.0f,
                                                                         attachedGameObject.transform.position.z);
 
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_DEATH);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_DEATH);
                     detected = false;
+                    //deathPSGO.GetComponent<IParticleSystem>().Replay();
                 }
             }
             else
@@ -99,6 +106,10 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 if (playerDistance < maxAttackRange)
                 {
                     currentState = States.Jump;
+                    if (jumpPSGO != null)
+                    {
+                        jumpPSGO.GetComponent<IParticleSystem>().Replay();
+                    }
                     isJumping = true;
                 }
                 else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)

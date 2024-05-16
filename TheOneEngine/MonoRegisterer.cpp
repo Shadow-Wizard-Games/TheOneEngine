@@ -142,6 +142,23 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	return go;
 }
 
+static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
+{
+	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx");
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+
+	SetPosition(go, initialPosition);
+	SetRotation(go, direction);
+
+	go->AddScript("Grenade");
+	//go->AddComponent<Collider2D>();
+	//go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	//go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
+	//go->GetComponent<Collider2D>()->radius = 0.4f;
+	//engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+	return go;
+}
+
 static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction, vec3f* scale)
 {
 	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx");
@@ -813,17 +830,34 @@ static void StopPS(GameObject* GOptr)
 	GOptr->GetComponent<ParticleSystem>()->Stop();
 }
 
+static void EndPS(GameObject* GOptr)
+{
+	GOptr->GetComponent<ParticleSystem>()->End();
+}
+
 // Audio Manager
-static void PlayAudioSource(GameObject* GOptr, uint audio) {
+static void PlayAudioSource(GameObject* GOptr, uint audio)
+{
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
 	audioManager->PlayAudio(GOptr->GetComponent<AudioSource>(), audio);
 }
 
-static void StopAudioSource(GameObject* GOptr, uint audio) {
+static void StopAudioSource(GameObject* GOptr, uint audio)
+{
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
 	audioManager->StopAudio(GOptr->GetComponent<AudioSource>(), audio);
+}
+
+static void SetState(uint stateGroup, uint state)
+{
+	audioManager->audio->SetState(stateGroup, state);
+}
+
+static void SetSwitch(GameObject* GOptr, uint switchGroup, uint switchState)
+{
+	audioManager->SetSwitch(GOptr->GetComponent<AudioSource>(), switchGroup, switchState);
 }
 
 // Collider2D
@@ -922,6 +956,15 @@ static void StopAnimation(GameObject* GOptr) {
 	}
 }
 
+static bool AnimationHasFinished(GameObject* GOptr)
+{
+	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	if (m->isAnimated() && m->getActiveAnimation()->HasFinished()) {
+		return true;
+	}
+	return false;
+}
+
 static bool GetTransitionBlend(GameObject* GOptr){
 	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
 	if (m->isAnimated()) {
@@ -964,6 +1007,7 @@ void MonoRegisterer::RegisterFunctions()
 	//GameObject
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
+	mono_add_internal_call("InternalCalls::InstantiateGrenade", InstantiateGrenade);
 	mono_add_internal_call("InternalCalls::InstantiateXenomorph", InstantiateXenomorph);
 	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
@@ -1039,10 +1083,13 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::PausePS", PausePS);
 	mono_add_internal_call("InternalCalls::ReplayPS", ReplayPS);
 	mono_add_internal_call("InternalCalls::StopPS", StopPS);
+	mono_add_internal_call("InternalCalls::EndPS", EndPS);
 
 	//Audio
-	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);
-	mono_add_internal_call("InternalCalls::StopSource", StopAudioSource);
+	mono_add_internal_call("InternalCalls::PlayAudioSource", PlayAudioSource);
+	mono_add_internal_call("InternalCalls::StopAudioSource", StopAudioSource);
+	mono_add_internal_call("InternalCalls::SetState", SetState);
+	mono_add_internal_call("InternalCalls::SetSwitch", SetSwitch);
 
 	//Collider2D
 	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);
@@ -1067,9 +1114,10 @@ void MonoRegisterer::RegisterFunctions()
 	//Animation
 	mono_add_internal_call("InternalCalls::PlayAnimation", PlayAnimation);
 	mono_add_internal_call("InternalCalls::StopAnimation", StopAnimation);
-	mono_add_internal_call("InternalCalls::SetTransitionBlend", GetTransitionBlend);
+	mono_add_internal_call("InternalCalls::AnimationHasFinished", AnimationHasFinished);
+	mono_add_internal_call("InternalCalls::GetTransitionBlend", GetTransitionBlend);
 	mono_add_internal_call("InternalCalls::SetTransitionBlend", SetTransitionBlend);
-	mono_add_internal_call("InternalCalls::SetTransitionTime", GetTransitionTime);
+	mono_add_internal_call("InternalCalls::GetTransitionTime", GetTransitionTime);
 	mono_add_internal_call("InternalCalls::SetTransitionTime", SetTransitionTime);
 	mono_add_internal_call("InternalCalls::UpdateAnimation", UpdateAnimation);
 }

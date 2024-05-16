@@ -68,14 +68,7 @@ public class EventNextRoom : Event
             Debug.LogWarning(sceneName);
             Debug.LogWarning(goName);
 
-            if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
-            {
-                playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-            }
-            if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
-            {
-                playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-            }
+            playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
             gameManager.SaveSceneState();
             SceneManager.LoadScene(sceneName);

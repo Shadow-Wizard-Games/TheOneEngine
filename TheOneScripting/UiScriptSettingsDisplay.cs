@@ -257,7 +257,7 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 
                 if (toMove)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_HOVER);
                     onCooldown = true;
                     canvas.MoveSelection(direction);
                     currentButton += direction;
@@ -265,7 +265,7 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     vsync = !vsync;
                     canvas.ToggleChecker(vsync, "Checker_Vsync");
                     onCooldown = true;
@@ -273,7 +273,7 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
                 {
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     fullscreen = !fullscreen;
                     canvas.ToggleChecker(fullscreen, "Checker_Fullscreen");
                     onCooldown = true;

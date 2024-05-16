@@ -6,17 +6,19 @@ Transform::Transform(std::shared_ptr<GameObject> containerGO) : Component(contai
     transformMatrix(1.0f),
     position(0.0f),
     rotation(1, 0, 0, 0),
-    scale(1.0f)
+    scale(1.0f),
+    globalTransformMatrix(1.0f)
 {}
 
 Transform::Transform(std::shared_ptr<GameObject> containerGO, Transform* ref)
     : Component(containerGO, ComponentType::Transform),
     transformMatrix(ref->transformMatrix),
-    position(ref->position), rotation(ref->rotation), scale(ref->scale)
+    position(ref->position), rotation(ref->rotation), scale(ref->scale), 
+    globalTransformMatrix(ref->globalTransformMatrix)
 {}
 
 Transform::Transform(std::shared_ptr<GameObject> containerGO, mat4 transform) : Component(containerGO, ComponentType::Transform),
-    transformMatrix(transform)
+    transformMatrix(transform), globalTransformMatrix(transform)
 {
     DecomposeTransform();
 }

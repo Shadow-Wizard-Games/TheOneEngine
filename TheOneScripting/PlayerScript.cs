@@ -1,32 +1,91 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed = 40.0f;
-    bool lastFrameToMove = false;
+    public enum CurrentWeapon
+    {
+        MP4,
+        IMPACIENTE,
+        FLAME_THROWER,
+    }
+
+    // managers
     ItemManager itemManager;
     IGameObject iManagerGO;
-
-    IGameObject iShotPSGO;
-    IGameObject iStepPSGO;
 
     GameManager gameManager;
     IGameObject gManagerGO;
 
-    public bool isFighting = false;
 
-    // Bckg music
-    float enemyTimer = 0;
-    float combatThreshold = 5.0f;
+    // particles
+    IGameObject iShotPSGO;
+    IGameObject iStepPSGO;
+
+
+    // background music
+    public bool isFighting = false;
+    public bool onPause = false;
+    float timeAfterCombat = 0;
+    float maxTimeAfterCombat = 5.0f;
+
+
+    // stats
+    public float maxLife = 100.0f;
+    public float life;
+    public bool isDead = false;
+    public float totalDamage = 0.0f;
+    public float damageIncrease = 0.0f;
+
+
+    // movement
+    public float baseSpeed = 80.0f;
+    public float speed;
+    public Vector3 movementDirection;
+    public Vector3 lastMovementDirection;
+    public float movementMagnitude;
+    bool lastFrameRunned = false;
+
+
+    // shooting
+    public float damageM4 = 10.0f;
+    public float currentWeoponDamage = 0.0f;
+    public CurrentWeapon currentWeapon = CurrentWeapon.MP4;
 
     bool hasShot = false;
-    float currentTimer = 0.0f;
-    float attackCooldown = .10f;
+    float timeSinceLastShot = 0.0f;
+    public float shootingCooldown = 0.15f;
+    public float mp4ShootingCd = 0.15f;
 
-    public bool isDead = false;
-    public bool onPause = false;
-    float life = 100.0f;
+    // Abilities
+    public bool impacienteUsed;
+    public bool grenadeLauncherUsed;
+    public bool flamethrowerUsed;
+    public bool adrenalineRushUsed;
+
+    public bool isDashing = false;
+    public string dashAbilityName = "Roll";
+
+    public int shieldKillCounter = 0;
+    public bool shieldIsActive = false;
+
+    public bool isHealing = false;
+    public string healAbilityName = "Bandage";
+
+    public bool isRushing = false;
+
+    public int impacienteBullets = 999;
+    public int impacienteBulletCounter = 0;
+
+    public Vector3 grenadeInitialVelocity = Vector3.zero;
+
+    // animation states
+    bool isRunning;
+    public bool isShooting;
+
+    // audio
+    public IAudioSource.AudioStateID currentState = 0;
 
     public override void Start()
     {
@@ -42,188 +101,95 @@ public class PlayerScript : MonoBehaviour
 
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.time = 0.0f;
+        attachedGameObject.animator.transitionTime = 0.0f;
+
+        life = maxLife;
+        speed = baseSpeed;
+        currentWeoponDamage = damageM4;
+
+        attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
     }
 
-    public Vector3 movement;
     public override void Update()
     {
+
+        isRunning = false;
+        isShooting = false;
+
+        //to delete just test
+        if (Input.GetKeyboardButton(Input.KeyboardCode.SIX))
+        {
+            dashAbilityName = "Dash";
+        }
+
         if (isDead)
         {
             attachedGameObject.animator.Play("Death");
+
             return;
         }
-      
-        if (onPause) return;
 
-        bool toMove = false;
-        movement = Vector3.zero;
+        if (onPause) return;
 
         attachedGameObject.animator.UpdateAnimation();
 
         // Background music
-        if (!isFighting)
+        if (!isFighting && currentState == IAudioSource.AudioStateID.COMBAT)
         {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_AMBIENT_1)
-            {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_AMBIENT_1;
-            }
+            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
         }
-        else
+        if (isFighting && currentState == IAudioSource.AudioStateID.SHIP)
         {
-            if (attachedGameObject.source.currentID != IAudioSource.EventIDs.A_COMBAT_1)
-            {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                attachedGameObject.source.currentID = IAudioSource.EventIDs.A_COMBAT_1;
-            }
+            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
         }
 
         if (isFighting)
         {
-            enemyTimer += Time.deltaTime;
-            if (enemyTimer >= combatThreshold)
+            timeAfterCombat += Time.deltaTime;
+            if (timeAfterCombat >= maxTimeAfterCombat)
             {
-                enemyTimer = 0;
+                timeAfterCombat = 0;
                 isFighting = false;
             }
         }
 
-        if (gameManager.extraSpeed) { speed = 200.0f; }
-        else { speed = 80.0f; }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+        float currentSpeed = speed;
+        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
+
+        // set movement
+        movementDirection = Vector3.zero;
+        movementMagnitude = 0;
+        isRunning = SetMoveDirection();
+        if (isRunning)
         {
-            movement = movement - Vector3.forward;
-            toMove = true;
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.D))
-        {
-            movement = movement + Vector3.right;
-            toMove = true;
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.S))
-        {
-            movement = movement + Vector3.forward;
-            toMove = true;
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.A))
-        {
-            movement = movement - Vector3.right;
-            toMove = true;
+            attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
-        {
-            attachedGameObject.transform.rotation = new Vector3(0, 3.14f, 0);
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
-        {
-            attachedGameObject.transform.rotation = new Vector3(0, 4.71f, 0);
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
-        {
-            attachedGameObject.transform.rotation = new Vector3(0, 1.57f, 0);
-        }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
-        {
-            attachedGameObject.transform.rotation = Vector3.zero;
-        }
+        // update total damage before shooting
+        totalDamage = currentWeoponDamage + damageIncrease;
+
+        // set shoot direction
+        SetShootDirection();
 
         if (itemManager != null)
         {
             if (itemManager.hasInitial)
             {
-                if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
+                if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 {
-                    //attachedGameObject.animator.Play("ShootM4");
-                    Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-                    if (currentTimer < attackCooldown)
-                    {
-                        currentTimer += Time.deltaTime;
-                        if (!hasShot && currentTimer > attackCooldown / 2)
-                        {
-                            //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
-                            hasShot = true;
-                            //if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
-                        }
-                    }
-                    else
-                    {
-                        currentTimer = 0.0f;
-                        hasShot = false;
-                    }
+                    Shoot();
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 }
             }
         }
-
-        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT))
-        {
-            //Here Dash
-        }
-
-        if (toMove)
-        {
-            attachedGameObject.transform.Translate(movement.Normalize() * speed * Time.deltaTime);
-            attachedGameObject.animator.Play("Run");
-        }
-        else
-        {
-            attachedGameObject.animator.Play("Idle");
-        }
-
-        //Controller
-        Vector2 movementVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
-
-        if (movementVector.x != 0.0f || movementVector.y != 0.0f)
-        {
-            movement = new Vector3(-movementVector.x, 0.0f, -movementVector.y);
-
-            attachedGameObject.transform.Translate(movement * speed * Time.deltaTime);
-
-            toMove = true;
-        }
-
-        Vector2 lookVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
-
-        if (lookVector.x != 0.0f || lookVector.y != 0.0f)
-        {
-            float characterRotation = (float)Math.Atan2(-lookVector.x, -lookVector.y);
-            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
-        }
-
-        if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
-        {
-            Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-
-            if (currentTimer < attackCooldown)
-            {
-                currentTimer += Time.deltaTime;
-                if (!hasShot && currentTimer > attackCooldown / 2)
-                {
-                    //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.DEBUG_GUNSHOT);
-                    hasShot = true;
-                    attachedGameObject.animator.Play("Shoot M4");
-                }
-            }
-            else
-            {
-                currentTimer = 0.0f;
-                hasShot = false;
-            }
-            // call particleSystem.Replay()
-        }
-
         // Play steps
-        if (lastFrameToMove != toMove)
+        if (lastFrameRunned != isRunning)
         {
-            if (toMove)
+            if (isRunning)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.P_STEP);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
                 if (iStepPSGO != null)
                 {
                     iStepPSGO.GetComponent<IParticleSystem>().Play();
@@ -231,21 +197,233 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                attachedGameObject.source.StopAudio(IAudioSource.EventIDs.P_STEP);
+                attachedGameObject.source.Stop(IAudioSource.AudioEvent.P_STEP);
                 if (iStepPSGO != null)
                 {
-                    iStepPSGO.GetComponent<IParticleSystem>().Stop();
+                    iStepPSGO.GetComponent<IParticleSystem>().End();
                 }
             }
-            lastFrameToMove = toMove;
+            lastFrameRunned = isRunning;
 
         }
 
+        // current weapon switch
+        switch(currentWeapon)
+        {
+            case CurrentWeapon.MP4:
+                break;
+            case CurrentWeapon.IMPACIENTE:
+                break;
+            case CurrentWeapon.FLAME_THROWER:
+                break;
+        }
+
+        // animations
+        if (isRunning)
+        {
+            if (isShooting)
+            {
+                attachedGameObject.animator.Play("Run M4");
+            }
+            else
+            {
+                attachedGameObject.animator.Play("Run");
+            }
+        }
+        else if (isShooting)
+        {
+            attachedGameObject.animator.Play("Shoot M4");
+        }
+        else if (isDashing)
+        {
+            if (dashAbilityName == "Roll")
+            {
+                attachedGameObject.animator.Play("Roll");
+            }
+            else if (dashAbilityName == "Dash")
+            {
+
+            }
+        }
+        else if (isRushing)
+        {
+            attachedGameObject.animator.Play("Adrenaline Rush Static");
+        }
+        else
+        {
+            attachedGameObject.animator.Play("Idle");
+        }
+    }
+
+    private void Step()
+    {
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
+        if (iStepPSGO != null)
+        {
+            iStepPSGO.GetComponent<IParticleSystem>().Play();
+        }
+    }
+
+    private void Die()
+    {
+        attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+        attachedGameObject.animator.Play("Death");
+        // play sound (?)
+    }
+    private bool SetMoveDirection()
+    {
+        bool toMove = false;
+        Vector2 aimingDirection = Vector2.zero;
+
+        #region CONTROLLER
+        Vector2 leftJoystickDirection = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
+
+        if (leftJoystickDirection.x != 0.0f || leftJoystickDirection.y != 0.0f)
+        {
+            movementDirection += new Vector3(-leftJoystickDirection.x, 0.0f, -leftJoystickDirection.y);
+            movementMagnitude = leftJoystickDirection.Magnitude();
+            toMove = true;
+
+            aimingDirection += leftJoystickDirection;
+        }
+
+        #endregion
+
+        #region KEYBOARD
+        if (!isDashing)
+        {
+            if (Input.GetKeyboardButton(Input.KeyboardCode.W))
+            {
+                movementDirection -= Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+
+                aimingDirection -= Vector2.up;
+            }
+
+            if (Input.GetKeyboardButton(Input.KeyboardCode.A))
+            {
+                movementDirection -= Vector3.right;
+                movementMagnitude = 1.0f;
+                toMove = true;
+
+                aimingDirection -= Vector2.right;
+            }
+
+            if (Input.GetKeyboardButton(Input.KeyboardCode.S))
+            {
+                movementDirection += Vector3.forward;
+                movementMagnitude = 1.0f;
+                toMove = true;
+
+                aimingDirection += Vector2.up;
+            }
+
+            if (Input.GetKeyboardButton(Input.KeyboardCode.D))
+            {
+                movementDirection += Vector3.right;
+                movementMagnitude = 1.0f;
+                toMove = true;
+
+                aimingDirection += Vector2.right;
+            }
+        }
+        #endregion
+
+        movementDirection = movementDirection.Normalize();
+
+        if (movementDirection != Vector3.zero)
+        {
+            lastMovementDirection = movementDirection;
+            aimingDirection = aimingDirection.Normalize();
+            float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
+            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+
+        }
+
+        return toMove;
+    }
+
+    private void SetShootDirection()
+    {
+        bool hasAimed = false;
+        Vector2 aimingDirection = Vector2.zero;
+
+        #region KEYBOARD
+        if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
+        {
+            aimingDirection -= Vector2.up;
+            hasAimed = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
+        {
+            aimingDirection -= Vector2.right;
+            hasAimed = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
+        {
+            aimingDirection += Vector2.up;
+            hasAimed = true;
+        }
+
+        if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
+        {
+            aimingDirection += Vector2.right;
+            hasAimed = true;
+        }
+
+        #endregion
+
+        #region CONTROLLER
+        Vector2 lookVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
+
+        if (lookVector.x != 0.0f || lookVector.y != 0.0f)
+        {
+            aimingDirection += lookVector;
+            hasAimed = true;
+        }
+
+        #endregion
+
+        if (hasAimed)
+        {
+            aimingDirection = aimingDirection.Normalize();
+            float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
+            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+        }
+    }
+
+    private void Shoot()
+    {
+        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+        isShooting = true;
+        if (timeSinceLastShot < shootingCooldown)
+        {
+            timeSinceLastShot += Time.deltaTime;
+            if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
+            {
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
+                hasShot = true;
+                if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+
+                if (currentWeapon == CurrentWeapon.IMPACIENTE)
+                    impacienteBulletCounter++;
+            }
+        }
+        else
+        {
+            timeSinceLastShot = 0.0f;
+            hasShot = false;
+        }
     }
 
     public void ReduceLife() // temporary function for the hardcoding of collisions
     {
-        if (isDead || gameManager.godMode) return;
+        if (isDead || gameManager.godMode || shieldIsActive || isDashing)
+            return;
 
         life -= 10.0f;
         Debug.Log("Player took damage! Current life is: " + life.ToString());

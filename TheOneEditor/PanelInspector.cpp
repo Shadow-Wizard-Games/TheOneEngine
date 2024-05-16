@@ -1432,40 +1432,27 @@ bool PanelInspector::Draw()
             {
                 // No properties
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                if (ImGui::Button("Remove Listener"))
+                {
+                    audioManager->audio->RemoveDefaultListener(selectedGO->GetComponent<Listener>()->goID);
+                    audioManager->audio->UnregisterGameObject(selectedGO->GetComponent<Listener>()->goID, selectedGO->GetComponent<Listener>()->GetName());
 
+                    selectedGO->RemoveComponent(ComponentType::Listener);
+                }
             }
 
             /*AudioSource Component*/
             AudioSource* audioSource = selectedGO->GetComponent<AudioSource>();
 
             if (audioSource != nullptr && ImGui::CollapsingHeader("Audio Source", ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_DefaultOpen)) {
-                // JULS: Volume not applied yet
-                //if (ImGui::SliderFloat("Volume", &zNear, 0.01, 10.0))
-                //{
-                //}
-
-                //ImGui::SeparatorText("Components");
-                //if (ImGui::Selectable("Footsteps")) {
-                //    source->event = AK::EVENTS::STEP;
-                //}if (ImGui::Selectable("Gunshot")) {
-                //    source->event = AK::EVENTS::GUNSHOT;
-                //}
-                //
-                //if (source->event != NULL) {
-                //    if (ImGui::Button("Play"))
-                //        audioManager->PlayAudio(source);
-                //    if (ImGui::Button("Stop"))
-                //        audioManager->StopAudio(source);
-                //    if (ImGui::Button("Pause"))
-                //        audioManager->PauseAudio(source);
-                //    if (ImGui::Button("Resume"))
-                //        audioManager->ResumeAudio(source);
-                //}
-                //else {
-                //    ImGui::Text("No audio event selected");
-                //}
-
+                //remover of Audio Source
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                if (ImGui::Button("Remove Audio Source"))
+                {
+                    audioManager->audio->UnregisterGameObject(selectedGO->GetComponent<AudioSource>()->goID, selectedGO->GetComponent<AudioSource>()->GetName());
+
+                    selectedGO->RemoveComponent(ComponentType::AudioSource);
+                }
             }
 
             /*Add Component*/
