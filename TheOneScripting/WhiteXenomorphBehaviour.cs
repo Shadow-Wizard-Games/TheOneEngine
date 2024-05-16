@@ -24,7 +24,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     // White Xenomorph parameters
     float life = 200.0f;
-    float movementSpeed = 40.0f * 3;
+    float movementSpeed = 20.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     WhiteXenomorphAttacks currentAttack = WhiteXenomorphAttacks.None;

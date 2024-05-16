@@ -24,7 +24,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     // Red Xenomorph parameters
     float life = 250.0f;
-    float movementSpeed = 40.0f * 3;
+    float movementSpeed = 15.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     RedXenomorphAttacks currentAttack = RedXenomorphAttacks.None;
