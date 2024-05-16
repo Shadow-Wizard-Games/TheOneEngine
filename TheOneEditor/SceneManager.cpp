@@ -52,7 +52,7 @@ bool SceneManager::Update(double dt)
 		app->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_STATE::KEY_REPEAT) &&
 		engine->N_sceneManager->currentScene->IsDirty())
 	{
-		engine->N_sceneManager->SaveScene();
+		engine->N_sceneManager->SaveScene("Assets\\Scenes", engine->N_sceneManager->currentScene->GetSceneName());
 	}
 
 	return true;

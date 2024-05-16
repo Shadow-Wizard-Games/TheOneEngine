@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using static UiManager;
 
-public class EventNextRoom : Event
+public class EventCheckpoint : Event
 {
     IGameObject playerGO;
     PlayerScript player;
 
     GameManager gameManager;
+    UiManager menuManager;
 
     float playerDistance;
 
     float tpRange = 100.0f;
     bool inRange = false;
-
-    string goName;
 
     public override void Start()
     {
@@ -27,8 +27,9 @@ public class EventNextRoom : Event
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
-        eventType = EventType.NEXTROOM;
-        goName = attachedGameObject.name;
+        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+
+        eventType = EventType.CHECKPOINT;
     }
 
     public override void Update()
@@ -61,17 +62,10 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if(Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.A))
         {
-            string sceneName = ExtractSceneName();
-
-            Debug.LogWarning(sceneName);
-            Debug.LogWarning(goName);
-
-            playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
-
-            gameManager.SaveSceneState();
-            SceneManager.LoadScene(sceneName);
+            gameManager.UpdateSave();
+            menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
         }
 
         return ret;
@@ -87,30 +81,5 @@ public class EventNextRoom : Event
         {
             Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
         }
-    }
-
-    public string ExtractSceneName()
-    {
-        string sceneName = "";
-
-        string patternL = $"L(\\d+)";
-        string patternR = $"R(\\d+)";
-
-        Match matchL = Regex.Match(goName, patternL);
-        Match matchR = Regex.Match(goName, patternR);
-
-        if (matchL.Success)
-        {
-            sceneName += matchL.Groups[0].Value;
-        }
-        else { Debug.LogWarning("Could not find scene name in GO name"); }
-
-        if (matchR.Success)
-        {
-            sceneName += matchR.Groups[0].Value;
-        }
-        else { Debug.LogWarning("Could not find scene name in GO name"); }
-
-        return sceneName;
     }
 }

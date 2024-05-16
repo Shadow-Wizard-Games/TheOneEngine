@@ -8,6 +8,8 @@ public class UiScriptSettings : MonoBehaviour
     bool onCooldown = false;
 
     public bool firstFrameUpdate = true;
+    IGameObject settingsControlsGO;
+    IGameObject settingsDisplayGO;
 
     int currentButton = 0;
 
@@ -20,28 +22,30 @@ public class UiScriptSettings : MonoBehaviour
 
     public override void Start()
     {
-        IGameObject.Find("Canvas_SettingsControls").Disable();
-        IGameObject.Find("Canvas_SettingsDisplay").Disable();
+        settingsControlsGO = IGameObject.Find("Canvas_SettingsControls");
+        settingsDisplayGO = IGameObject.Find("Canvas_SettingsDisplay");
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
 
+        settingsControlsGO.Disable();
+        settingsDisplayGO.Disable();
         onCooldown = true;
     }
     public override void Update()
     {
         if (!firstFrameUpdate)
         {
-            IGameObject.Find("Canvas_SettingsControls").Disable();
-            IGameObject.Find("Canvas_SettingsDisplay").Disable();
+            settingsControlsGO.Disable();
+            settingsDisplayGO.Disable();
 
-            IGameObject.Find("Canvas_SettingsControls").Enable();
+            settingsControlsGO.Enable();
 
             firstFrameUpdate = true;
         }
 
 
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 
@@ -57,11 +61,11 @@ public class UiScriptSettings : MonoBehaviour
 
         if (!onCooldown && editing && Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
         {
-            IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Vsync");
-            IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Fullscreen");
-            IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_MainVolume");
-            IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_SFX");
-            IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_Music");
+            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Vsync");
+            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Fullscreen");
+            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_MainVolume");
+            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_SFX");
+            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_Music");
             editing = false;
         }
 
@@ -152,17 +156,17 @@ public class UiScriptSettings : MonoBehaviour
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
-                    IGameObject.Find("Canvas_SettingsControls").Enable();
-                    IGameObject.Find("Canvas_SettingsDisplay").Disable();
+                    settingsControlsGO.Enable();
+                    settingsDisplayGO.Disable();
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
-                    IGameObject.Find("Canvas_SettingsControls").Disable();
-                    IGameObject.Find("Canvas_SettingsDisplay").Disable();
-                    IGameObject.Find("Canvas_SettingsDisplay").GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.HOVERED,"Checker_Vsync");
-                    IGameObject.Find("Canvas_SettingsDisplay").Enable();
+                    settingsControlsGO.Disable();
+                    settingsDisplayGO.Disable();
+                    settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.HOVERED, "Checker_Vsync");
+                    settingsDisplayGO.Enable();
                     editing = true;
                 }
             }

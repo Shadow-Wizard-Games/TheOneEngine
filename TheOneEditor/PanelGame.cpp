@@ -132,8 +132,6 @@ bool PanelGame::Draw()
 			currentScene->Draw(DrawMode::GAME, gameCamera);
 
 			N_SceneManager* engineSM = engine->N_sceneManager;
-			if (engineSM->GetSceneIsChanging())
-				engineSM->loadingScreen->DrawUI(engineSM->currentScene->currentCamera, DrawMode::GAME);
 
 			frameBuffer->Unbind();
 		}

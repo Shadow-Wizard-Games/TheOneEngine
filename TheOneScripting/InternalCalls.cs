@@ -98,8 +98,38 @@ class InternalCalls
 
     #region Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void LoadScene(string sceneName, bool keep = false);
-    
+    internal extern static void LoadScene(string sceneName, bool keep = false, string path = "GameData/Scenes/");
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void CreateSaveFromScene(string filepath, string sceneName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void RemoveFile(string filepath);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string AccessFileDataString(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int AccessFileDataInt(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool AccessFileDataBool(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float AccessFileDataFloat(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataString(string filepath, string[] dataPath, string dataName, string data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataInt(string filepath, string[] dataPath, string dataName, int data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataBool(string filepath, string[] dataPath, string dataName, bool data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataFloat(string filepath, string[] dataPath, string dataName, float data);
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetCurrentSceneName();
 

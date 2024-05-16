@@ -36,7 +36,7 @@ public class UiScriptPause : MonoBehaviour
 
     public override void Update()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 
@@ -149,7 +149,6 @@ public class UiScriptPause : MonoBehaviour
                 //    playerGO.source.Stop(IAudioSource.Events.A_AMBIENT_1);
                 //}
 
-                gameManager.UpdateLevel();
                 SceneManager.LoadScene("MainMenu");
             }
 
