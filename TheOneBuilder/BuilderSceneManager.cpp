@@ -46,9 +46,6 @@ bool BuilderSceneManager::PostUpdate()
 	//engine->Render(engine->N_sceneManager->currentScene->currentCamera);
 	engine->N_sceneManager->currentScene->Draw(DrawMode::GAME, engine->N_sceneManager->currentScene->currentCamera);
 
-	if (engine->N_sceneManager->GetSceneIsChanging())
-		engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);
-
 	return true;
 }
 
