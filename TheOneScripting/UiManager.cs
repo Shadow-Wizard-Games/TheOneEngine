@@ -405,17 +405,23 @@ public class UiManager : MonoBehaviour
         switch (type)
         {
             case HudPopUpMenu.SaveScene:
+                if (saveOnCooldown)
+                    break;
                 savingSceneGo.Enable();
                 if (text == "") text = "saving progress";
                 savingSceneGo.GetComponent<ICanvas>().SetTextString(text, "Text_SavingProgress");
                 saveOnCooldown = true;
                 break;
             case HudPopUpMenu.PickUpFeedback:
+                if (pickUpFeedbackOnCooldown)
+                    break;
                 pickUpFeedbackGo.Enable();
                 pickUpFeedbackGo.GetComponent<ICanvas>().SetTextString(text, "Text_PickedItem");
                 pickUpFeedbackOnCooldown = true;
                 break;
             case HudPopUpMenu.Dialogue:
+                if(dialogueOnCooldown)
+                    break;
                 dialogueGo.Enable();
                 dialogueGo.GetComponent<ICanvas>().SetTextString(text, "Text_Dialogue");
                 dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_ShopKeeper");
@@ -444,5 +450,20 @@ public class UiManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public bool IsOnCooldown(HudPopUpMenu type)
+    {
+        switch (type)
+        {
+            case HudPopUpMenu.SaveScene:
+                return saveOnCooldown;
+            case HudPopUpMenu.PickUpFeedback:
+                return pickUpFeedbackOnCooldown;
+            case HudPopUpMenu.Dialogue:
+                return dialogueOnCooldown;
+        }
+
+        return false;
     }
 }

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 public class Time
 {
-	const float maxDeltaTime = 5.0f;
+	const float maxDeltaTime = 0.5f;
 	public static float deltaTime
 	{
 		get

@@ -29,9 +29,17 @@
             "text": "Stay here and watch the prisoner,\nIll go look into it."
         }
     },
-    "Dialog1": {
-        "dialoguer": 1,
+    "Conversation1":{
         "popupType": 2,
-        "text": "Tu putisima madre me come el culo"
+        "Dialog1": {
+            "isLast": false,
+            "dialoguer": 2,
+            "text": "Tu putisima madre me come el culo"
+        },
+        "Dialog2": {
+            "isLast": false,
+            "dialoguer": 3,
+            "text": "La tuya que es mas capulla"
+        }
     }
 }
