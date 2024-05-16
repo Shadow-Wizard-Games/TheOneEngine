@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{47BEFA55-DFBB-4942-A14A-D84DB3770BC1}" SchemaVersion="119">
+	<States>
+		<WorkUnit Name="Default Work Unit" ID="{47BEFA55-DFBB-4942-A14A-D84DB3770BC1}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="GameplayMode" ID="{DF88C969-69A5-4C71-9B54-84ED72AC81BF}">
+					<ChildrenList>
+						<State Name="None" ID="{102505C3-6842-4741-ADE4-D339A4674E83}"/>
+						<State Name="Combat" ID="{DB263FE3-4AD1-4F24-9A3B-4FD99F6248FB}"/>
+						<State Name="Ship" ID="{8A0F6185-4087-44F9-AC34-DA1410A7C2A8}"/>
+						<State Name="Ruins" ID="{E96E58D6-632A-43D1-941D-356468B0DFC2}"/>
+						<State Name="Camp" ID="{195FA6AA-1C91-482A-857C-D672F3524740}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</States>
+</WwiseDocument>
