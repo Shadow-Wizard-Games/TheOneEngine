@@ -39,6 +39,11 @@
           "Yaw": 0.0,
           "zFar": 1000.0,
           "zNear": 0.1
+        },
+        {
+          "AudioID": 1,
+          "Name": "Listener",
+          "Type": 7
         }
       ],
       "Enabled": true,
@@ -186,6 +191,11 @@
               "Type": 4
             }
           ]
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
         }
       ],
       "Enabled": true,

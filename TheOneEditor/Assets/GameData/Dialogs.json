@@ -6,17 +6,20 @@
         "Dialog1":{
             "isLast": false,
             "dialoguer": "Guard 1:\n",
-            "text": "Why is she here?"
+            "text": "Why is she here?",
+            "audioEvent": "VO_GUARD1_VOICELINE1_V2"
         },
         "Dialog2":{
             "isLast": false,
             "dialoguer": "Guard 2:\n",
-            "text": "I was told its because she went crazy\nafter serving and tried to murder\nsome of her superiors."
+            "text": "I was told its because she went crazy\nafter serving and tried to murder\nsome of her superiors.",
+            "audioEvent": "VO_GUARD2_VOICELINE1"
         },
         "Dialog3":{
             "isLast": false,
             "dialoguer": "Guard 1:\n",
-            "text": "Well lets hope she behaves."
+            "text": "Well lets hope she behaves.",
+            "audioEvent": "VO_GUARD1_VOICELINE2"
         },
         "Dialog4":{
             "isLast": false,
@@ -26,7 +29,8 @@
         "Dialog5":{
             "isLast": true,
             "dialoguer": "Guard 2:\n",
-            "text": "Stay here and watch the prisoner,\nIll go look into it."
+            "text": "Stay here and watch the prisoner,\nIll go look into it.",
+            "audioEvent": "VO_GUARD2_VOICELINE2"
         }
     },
     "Conversation1":{
@@ -37,7 +41,7 @@
             "text": "Tu putisima madre me come el culo"
         },
         "Dialog2": {
-            "isLast": false,
+            "isLast": true,
             "dialoguer": 3,
             "text": "La tuya que es mas capulla"
         }
