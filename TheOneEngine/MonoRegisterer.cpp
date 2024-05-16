@@ -675,20 +675,21 @@ static void SetTextString(GameObject* containerGO, MonoString* text, MonoString*
 	}
 }
 
-static string GetTextString(GameObject* containerGO, MonoString* name)
+static MonoString* GetTextString(GameObject* containerGO, MonoString* name)
 {
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::string ret = "TextUI element not found";
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
 		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
 		{
 			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
-			return ui->GetText();
+			return mono_string_new(MonoManager::GetAppDomain(), ui->GetText().c_str());
 		}
 	}
 
-	return "TextUI element not found";
+	return mono_string_new(MonoManager::GetAppDomain(), ret.c_str());
 }
 
 //Helpers

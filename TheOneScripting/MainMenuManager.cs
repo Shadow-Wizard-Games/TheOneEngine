@@ -58,10 +58,11 @@ public class MainMenuManager : MonoBehaviour
         float dt = InternalCalls.GetAppDeltaTime();
         bool toMove = false;
         int direction = 0;
+        UiScriptSettings settingsScript = IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>();
 
-        if (wasEditing && !IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>().editing) onCooldown = true;
+        if (wasEditing && !settingsScript.editing) onCooldown = true;
 
-        wasEditing = IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>().editing;
+        wasEditing = settingsScript.editing;
 
         if (onCooldown && cooldown < 0.2f)
         {
@@ -75,14 +76,14 @@ public class MainMenuManager : MonoBehaviour
 
         if (!onCooldown && Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
         {
-            if (!IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>().editing)
+            if (!settingsScript.editing)
             {
                 IGameObject.Find("Canvas_Settings").Disable();
                 mainMenu = true;
             }
         }
 
-        if (!IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>().editing)
+        if (!settingsScript.editing)
         {
             if ((title || logo || credits) && !onCooldown)
             {
@@ -228,7 +229,7 @@ public class MainMenuManager : MonoBehaviour
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
                     IGameObject.Find("Canvas_Settings").Enable();
-                    IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>().firstFrameUpdate = false;
+                    settingsScript.firstFrameUpdate = false;
                     attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
                     onCooldown = true;
                     mainMenu = false;

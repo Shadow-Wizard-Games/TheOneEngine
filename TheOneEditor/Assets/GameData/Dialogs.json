@@ -1,4 +1,34 @@
 {
+    "Intro": {
+        "que": "es eso, eso es queso, eso es queso frances"
+    },
+    "NarrativeIntro": {
+        "Dialog1":{
+            "isLast": false,
+            "dialoguer": "Guard 1:\n",
+            "text": "Why is she here?"
+        },
+        "Dialog2":{
+            "isLast": false,
+            "dialoguer": "Guard 2:\n",
+            "text": "I was told its because she went crazy\nafter serving and tried to murder\nsome of her superiors."
+        },
+        "Dialog3":{
+            "isLast": false,
+            "dialoguer": "Guard 1:\n",
+            "text": "Well lets hope she behaves."
+        },
+        "Dialog4":{
+            "isLast": false,
+            "dialoguer": "...",
+            "text": "Alarm sounds"
+        },
+        "Dialog5":{
+            "isLast": true,
+            "dialoguer": "Guard 2:\n",
+            "text": "Stay here and watch the prisoner,\nIll go look into it."
+        }
+    },
     "Dialog1": {
         "dialoguer": 1,
         "popupType": 2,
