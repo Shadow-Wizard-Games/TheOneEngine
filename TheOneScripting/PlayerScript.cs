@@ -182,7 +182,6 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 {
                     Shoot();
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 }
             }
         }
