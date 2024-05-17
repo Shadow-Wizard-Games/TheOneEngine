@@ -88,17 +88,18 @@ public class UiScriptHud : MonoBehaviour
     }
     public override void Update()
     {
+        /*
         if (playerScript != null && canvas != null)
         {
             UpdateTimers();
 
             //setting texts
-            //canvas.SetTextString(currAmmo.ToString() + " / " + maxAmmo.ToString(), "Text_AmmoAmount");
-            //canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
-            //canvas.SetTextString(currentMissionTitle, "Text_MissionName");
-            //canvas.SetTextString(currentMissionDescription, "Text_MissionDescription");
-            //canvas.SetTextString(currencyAmount.ToString(), "Text_CurrencyAmount");
-            //canvas.SetTextString(kilsAmount.ToString(), "Text_KillsAmount");
+            canvas.SetTextString(currAmmo.ToString() + " / " + maxAmmo.ToString(), "Text_AmmoAmount");
+            canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
+            canvas.SetTextString(currentMissionTitle, "Text_MissionName");
+            canvas.SetTextString(currentMissionDescription, "Text_MissionDescription");
+            canvas.SetTextString(currencyAmount.ToString(), "Text_CurrencyAmount");
+            canvas.SetTextString(kilsAmount.ToString(), "Text_KillsAmount");
 
 
 
@@ -144,6 +145,7 @@ public class UiScriptHud : MonoBehaviour
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.HOVERED);
             }
         }
+        */
     }
 
     //for the moment, only for canvas states porpuses
