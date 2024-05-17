@@ -810,7 +810,7 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 			if (isSingleMesh)
 			{
 				meshGO.get()->parent = currentScene->GetRootSceneGO();
-				currentScene->GetRootSceneGO().get()->children.push_back(meshGO);
+				engine->N_sceneManager->objectsToAdd.push_back(meshGO);
 			}
 			else
 			{

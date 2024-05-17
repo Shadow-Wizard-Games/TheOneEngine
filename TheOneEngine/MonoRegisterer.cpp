@@ -127,7 +127,8 @@ static vec3f GetTransformRight(GameObject* GOptr)
 //GameObject
 static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx");
+	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
 	SetPosition(go, initialPosition);

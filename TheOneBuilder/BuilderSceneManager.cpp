@@ -20,6 +20,9 @@ bool BuilderSceneManager::Start()
 	engine->N_sceneManager->LoadScene("MainMenu");
 	engine->N_sceneManager->Start();
 
+	// pew pew pew :3
+	Resources::LoadFromLibrary<Model>("Library/Meshes/SM_Cube/pCube1.mesh");
+
 	return true;
 }
 
