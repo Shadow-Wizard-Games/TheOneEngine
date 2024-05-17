@@ -245,7 +245,7 @@ bool PanelScene::Draw()
         // GEOMETRY PASS - ALL DRAWING MUST HAPPEN BETWEEN BIND/UNBIND ------------------------
         {
             gBuffer->Bind();
-            gBuffer->Clear(/*{ 0.0f, 0.0f, 0.0f, 1.0f }*/);
+            gBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
             // Set Render Environment
             engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
@@ -275,13 +275,22 @@ bool PanelScene::Draw()
         
         // POST PROCESS -----------------------------------------------------------------------
         {
+            postBuffer->Bind();
+            postBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+
             // Copy gBuffer Depth to postBuffer
-            glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer.get()->GetBuffer());
-            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer.get()->GetBuffer());
-            glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+            GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer.get()->GetBuffer()));
+            GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer.get()->GetBuffer()));
+            GLCALL(glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
 
             postBuffer->Bind();
-            postBuffer->Clear(ClearBit::Color);
+            
+            // Disable writing to the depthbuffer, 
+            // otherwise DrawScreenQuad overwrites it
+            GLCALL(glDepthMask(GL_FALSE));
+            LightPass();
+            GLCALL(glDepthMask(GL_TRUE));
+
 
             // Debug / Editor Draw 
             engine->DebugDraw(true);
@@ -303,8 +312,6 @@ bool PanelScene::Draw()
                 for (auto ray : rays)
                     engine->DrawRay(ray);
             }
-
-            LightPass();
 
             postBuffer->Unbind();
         }
