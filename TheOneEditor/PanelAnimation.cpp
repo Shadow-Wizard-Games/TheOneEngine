@@ -187,7 +187,7 @@ void PanelAnimation::Viewport()
 	//ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
 	{
 		frameBuffer->Bind();
-		frameBuffer->Clear({ 0.13f, 0.14f, 0.15f, 1.00f });
+		frameBuffer->Clear(ClearBit::All, { 0.13f, 0.14f, 0.15f, 1.00f });
 
 		// Draw
 		engine->SetRenderEnvironment(animationCamera->GetComponent<Camera>());

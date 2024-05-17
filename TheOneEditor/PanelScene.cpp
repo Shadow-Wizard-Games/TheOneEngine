@@ -237,6 +237,7 @@ bool PanelScene::Draw()
             (gBuffer->GetWidth() != viewportSize.x || gBuffer->GetHeight() != viewportSize.y))
         {
             gBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+            postBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
             sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
@@ -249,7 +250,40 @@ bool PanelScene::Draw()
             // Set Render Environment
             engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
 
-            // Debug Draw
+            // Draw Scene
+            GLCALL(glDisable(GL_BLEND));
+            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
+
+            gBuffer->Unbind();
+        }
+
+        if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
+        {
+            float sizeX = viewportSize.x / 3;
+            float sizeY = viewportSize.y / 3;
+
+            for (auto attachment : gBuffer.get()->GetAllAttachments())
+            {
+                ImGui::Image(
+                    (ImTextureID)attachment.textureId,
+                    ImVec2{ sizeX, sizeY },
+                    ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+            }
+        }
+        ImGui::End();
+
+        
+        // POST PROCESS -----------------------------------------------------------------------
+        {
+            // Copy gBuffer Depth to postBuffer
+            glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer.get()->GetBuffer());
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer.get()->GetBuffer());
+            glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+
+            postBuffer->Bind();
+            postBuffer->Clear(ClearBit::Color);
+
+            // Debug / Editor Draw 
             engine->DebugDraw(true);
 
             // Game cameras Frustum
@@ -270,42 +304,11 @@ bool PanelScene::Draw()
                     engine->DrawRay(ray);
             }
 
-            GLCALL(glDisable(GL_BLEND));
+            LightPass();
 
-            // Draw Scene
-            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
-
-            gBuffer->Unbind();
+            postBuffer->Unbind();
         }
 
-        if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
-        {
-            float sizeX = viewportSize.x / 3;
-            float sizeY = viewportSize.y / 3;
-
-            ImGui::Image(
-                (ImTextureID)gBuffer->GetAttachmentTexture("position"),
-                ImVec2{ sizeX, sizeY },
-                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
-            ImGui::Image(
-                (ImTextureID)gBuffer->GetAttachmentTexture("normal"),
-                ImVec2{ sizeX, sizeY },
-                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-            
-            ImGui::Image(
-                (ImTextureID)gBuffer->GetAttachmentTexture("depth"),
-                ImVec2{ sizeX, sizeY },
-                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
-            ImGui::Image(
-                (ImTextureID)gBuffer->GetAttachmentTexture("color"),
-                ImVec2{ sizeX, sizeY },
-                ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-        }
-        ImGui::End();
-
-        LightPass();
 
         // Draw Light Pass Texture
         ImGui::Image(
@@ -689,118 +692,118 @@ void PanelScene::SetTargetSpeed()
 
 void PanelScene::LightPass()
 {
-    // LIGHT PASS -------------------------------------------------------------------------
+    std::vector<Light*> lights = engine->N_sceneManager->currentScene->lights;
+    uint directionalLightNum = 0;
+    uint pointLightNum = 0;
+    uint spotLightNum = 0;
+
+    Transform* cameraTransform = sceneCamera.get()->GetComponent<Transform>();
+
+    Uniform::SamplerData gPositionData;
+    gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
+    Uniform::SamplerData gNormalData;
+    gNormalData.tex_id = gBuffer->GetAttachmentTexture("normal");
+    Uniform::SamplerData gAlbedoSpecData;
+    gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
+
+    Material* mat = nullptr;
+    if (!engine->lightingProcessPath.empty())
+        mat = Resources::GetResourceById<Material>(Resources::LoadFromLibrary<Material>(engine->lightingProcessPath));
+
+    if (!mat)
     {
-        postBuffer->Bind();
-        postBuffer->Clear();
-
-        std::vector<Light*> lights = engine->N_sceneManager->currentScene->lights;
-        uint directionalLightNum = 0;
-        uint pointLightNum = 0;
-        uint spotLightNum = 0;
-
-        Transform* cameraTransform = sceneCamera.get()->GetComponent<Transform>();
-
-        Uniform::SamplerData gPositionData;
-        gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
-        Uniform::SamplerData gNormalData;
-        gNormalData.tex_id = gBuffer->GetAttachmentTexture("normal");
-        Uniform::SamplerData gAlbedoSpecData;
-        gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
-
-        Material* mat = nullptr;
-        if (!engine->lightingProcessPath.empty())
-            mat = Resources::GetResourceById<Material>(Resources::LoadFromLibrary<Material>(engine->lightingProcessPath));
-
-        if (mat != nullptr)
-        {
-            Shader* shader = mat->getShader();
-            shader->Bind();
-
-            mat->SetUniformData("gPosition", gPositionData);
-            mat->SetUniformData("gNormal", gNormalData);
-            mat->SetUniformData("gAlbedoSpec", gAlbedoSpecData);
-            mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
-            mat->SetUniformData("u_TotalLightsNum", engine->N_sceneManager->currentScene->lights.size());
-
-            for (int i = 0; i < lights.size(); i++)
-            {
-                Transform* transform = lights[i]->GetContainerGO().get()->GetComponent<Transform>();
-
-                switch (lights[i]->lightType)
-                {
-                case LightType::Directional:
-                {
-                    //Historn TODO: Create more Directional Lights
-                    string iteration = to_string(directionalLightNum);
-                    mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-                    mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-                    mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
-                    directionalLightNum++;
-                    break;
-                }
-                case LightType::Point:
-                {
-                    string iteration = to_string(pointLightNum);
-                    //Variables need to be float not double
-                    mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-                    mat->SetUniformData("u_PointLights[" + iteration + "].Color", lights[i]->color);
-                    mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
-                    mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
-                    mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
-                    pointLightNum++;
-                    break;
-                }
-                case LightType::Spot:
-                {
-                    string iteration = to_string(spotLightNum);
-                    //Variables need to be float not double
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].Color", lights[i]->color);
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", lights[i]->linear);
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", lights[i]->quadratic);
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", lights[i]->radius);
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
-                    mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
-                    spotLightNum++;
-                    break;
-                }
-                default:
-                    break;
-                }
-            }
-
-            mat->Bind();
-
-            unsigned int quadVAO = 0;
-            unsigned int quadVBO;
-            if (quadVAO == 0)
-            {
-                float quadVertices[] = {
-                    // positions        // texture Coords
-                    -1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
-                    -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-                     1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
-                     1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
-                };
-                // setup plane VAO
-                glGenVertexArrays(1, &quadVAO);
-                glGenBuffers(1, &quadVBO);
-                glBindVertexArray(quadVAO);
-                glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-                glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
-                glEnableVertexAttribArray(0);
-                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-                glEnableVertexAttribArray(1);
-                glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-            }
-            glBindVertexArray(quadVAO);
-            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-            glBindVertexArray(0);
-
-            mat->UnBind();
-        }
-        postBuffer->Unbind();
+        LOG(LogType::LOG_ERROR, "Lighting Pass Failed, material was nullptr.");
+        return;
     }
+
+    Shader* shader = mat->getShader();
+    shader->Bind();
+
+    mat->SetUniformData("gPosition", gPositionData);
+    mat->SetUniformData("gNormal", gNormalData);
+    mat->SetUniformData("gAlbedoSpec", gAlbedoSpecData);
+    mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
+    mat->SetUniformData("u_TotalLightsNum", engine->N_sceneManager->currentScene->lights.size());
+
+    for (int i = 0; i < lights.size(); i++)
+    {
+        Transform* transform = lights[i]->GetContainerGO().get()->GetComponent<Transform>();
+
+        switch (lights[i]->lightType)
+        {
+        case LightType::Directional:
+        {
+            //Historn TODO: Create more Directional Lights
+            string iteration = to_string(directionalLightNum);
+            mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+            mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+            mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
+            directionalLightNum++;
+            break;
+        }
+        case LightType::Point:
+        {
+            string iteration = to_string(pointLightNum);
+            //Variables need to be float not double
+            mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+            mat->SetUniformData("u_PointLights[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
+            mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
+            mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
+            pointLightNum++;
+            break;
+        }
+        case LightType::Spot:
+        {
+            string iteration = to_string(spotLightNum);
+            //Variables need to be float not double
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", lights[i]->linear);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", lights[i]->quadratic);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", lights[i]->radius);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
+            spotLightNum++;
+            break;
+        }
+        default:
+            break;
+        }
+    }
+
+    mat->Bind();
+    DrawScreenQuad();
+    mat->UnBind();
+}
+
+// hekbas: Relocate when Renderer3D is finished
+void PanelScene::DrawScreenQuad()
+{
+    unsigned int quadVAO = 0;
+    unsigned int quadVBO;
+    if (quadVAO == 0)
+    {
+        float quadVertices[] = {
+            // positions        // texture Coords
+            -1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+            -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+             1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+             1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+        };
+        // setup plane VAO
+        glGenVertexArrays(1, &quadVAO);
+        glGenBuffers(1, &quadVBO);
+        glBindVertexArray(quadVAO);
+        glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    }
+    glBindVertexArray(quadVAO);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glBindVertexArray(0);
 }

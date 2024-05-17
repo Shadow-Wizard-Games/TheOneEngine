@@ -129,11 +129,11 @@ void FrameBuffer::Resize(unsigned int newWidth, unsigned int newHeight)
     GenerateFrameBuffer();
 }
 
-void FrameBuffer::Clear(glm::vec4 color)
+void FrameBuffer::Clear(ClearBit flag, glm::vec4 color)
 {
-	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
-	GLCALL(glClearColor(color.r, color.g, color.b, color.a));
-	GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
+    GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
+    GLCALL(glClearColor(color.r, color.g, color.b, color.a));
+    GLCALL(glClear(static_cast<unsigned int>(flag)));
 }
 
 unsigned int FrameBuffer::GetAttachmentTexture(const std::string& name) const

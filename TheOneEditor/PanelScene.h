@@ -43,6 +43,7 @@ public:
 	HandlePosition GetHandlePosition() const { return handlePosition; }
 
 	void LightPass();
+	void DrawScreenQuad();
 
 public:
 	bool isHovered;
