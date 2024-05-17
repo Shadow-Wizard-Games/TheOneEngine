@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-public class EventOpenPopUp : Event
+public class EventTriggerDialog : Event
 {
     IGameObject playerGO;
     PlayerScript player;
@@ -22,11 +22,11 @@ public class EventOpenPopUp : Event
     string goName;
 
     string filepath = "Assets/GameData/Dialogs.json";
-    string popup;
+    string conversation;
+    int dialogNum = 1;
     int popupType;
+    bool isFirst = true;
     float cooldown = 0.0f;
-    float maxCooldown;
-    bool isOneTime;
 
     public override void Start()
     {
@@ -40,11 +40,9 @@ public class EventOpenPopUp : Event
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
-        popup = ExtractPopup();
-        string[] datapath = { popup };
+        conversation = ExtractConversation();
+        string[] datapath = { conversation };
         popupType = DataManager.AccessFileDataInt(filepath, datapath, "popupType");
-        isOneTime = DataManager.AccessFileDataBool(filepath, datapath, "isOneTime");
-        maxCooldown = DataManager.AccessFileDataFloat(filepath, datapath, "cooldown");
     }
 
     public override void Update()
@@ -80,14 +78,24 @@ public class EventOpenPopUp : Event
     {
         bool ret = true;
 
-        if (!menuManager.IsOnCooldown((UiManager.HudPopUpMenu)popupType) && cooldown <= 0 && !isOneTime)
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && !menuManager.IsOnCooldown((UiManager.HudPopUpMenu)popupType) && cooldown <= 0)
         {
-            string[] datapath = { popup };
+            string[] datapath = { conversation, "Dialog" + dialogNum.ToString() };
             string text = DataManager.AccessFileDataString(filepath, datapath, "text");
+            bool isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
             int dialoguer = DataManager.AccessFileDataInt(filepath, datapath, "dialoguer");
             menuManager.OpenHudPopUpMenu((UiManager.HudPopUpMenu)popupType, text, (UiManager.Dialoguer)dialoguer);
-
-            cooldown = maxCooldown;
+            if (!isLast)
+            {
+                dialogNum++;
+                isFirst = false;
+            }
+            else
+            {
+                isFirst = true;
+                dialogNum = 1;
+                cooldown = 60.0f;
+            }
         }
 
         return ret;
@@ -105,11 +113,11 @@ public class EventOpenPopUp : Event
         }
     }
 
-    public string ExtractPopup()
+    public string ExtractConversation()
     {
         string Dialog = "";
 
-        string pattern = $"Popup(\\d+)";
+        string pattern = $"Conversation(\\d+)";
 
         Match match = Regex.Match(goName, pattern);
 

@@ -1,4 +1,7 @@
-﻿class IntroScene : MonoBehaviour
+﻿using static IAudioSource;
+using System;
+
+class IntroScene : MonoBehaviour
 {
     enum IntroSceneStates
     {
@@ -9,6 +12,8 @@
 
     public ICanvas canvasText;
 
+    IGameObject gameObject;
+
     private float timerScene = 0.0f;
     private float durationScene = 5.0f;
 
@@ -17,10 +22,12 @@
     bool isLast = false;
     string filepath = "Assets/GameData/Dialogs.json";
     int dialogNum = 1;
+    string audioEventString;
 
     public override void Start()
     {
         canvasText = new ICanvas(containerGOptr);
+        gameObject = IGameObject.Find("IntroScene");
 
         state = IntroSceneStates.INTRO;
     }
@@ -61,6 +68,12 @@
                         canvasText.SetTextString(text, "SubtitlesTxt");
 
                         isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
+                        audioEventString = DataManager.AccessFileDataString(filepath, datapath, "audioEvent");
+                        Debug.LogCheck(audioEventString);
+                        if (Enum.TryParse(audioEventString, out AudioEvent audioEvent))
+                        {
+                            gameObject.source.Play(audioEvent);
+                        }
                         dialogNum++;
                         break;
                     case IntroSceneStates.END:
@@ -74,8 +87,15 @@
             }
         }
 
-        if(Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || state == IntroSceneStates.END)
+        if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || state == IntroSceneStates.END)
+        {
+            if (Enum.TryParse(audioEventString, out AudioEvent audioEvent))
+            {
+                gameObject.source.Play(audioEvent);
+            }
+            gameObject.source.Stop(audioEvent);
             SceneManager.LoadScene("L1R1");
+        }
     }
 }
 

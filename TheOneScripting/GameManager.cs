@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public bool godMode;
     public bool extraSpeed;
 
-    public List<string> savedLevels;
+    public List<string> savedLevels = new List<string>();
 
     public override void Start()
     {
@@ -41,17 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveSceneState()
     {
-        bool notFound = true;
-        foreach (var item in saveLevel)
-        {
-            if(item.ToString() == SceneManager.GetCurrentSceneName())
-            {
-                notFound = false;
-                break;
-            }
-        }
-
-        if(notFound)
+        if(!savedLevels.Contains(SceneManager.GetCurrentSceneName()))
             savedLevels.Add(SceneManager.GetCurrentSceneName());
 
         InternalCalls.CreateSaveFromScene("GameData/Scenes", SceneManager.GetCurrentSceneName());
