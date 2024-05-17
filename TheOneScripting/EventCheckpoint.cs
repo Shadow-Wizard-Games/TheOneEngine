@@ -62,7 +62,7 @@ public class EventCheckpoint : Event
     {
         bool ret = true;
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.A))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.Y))
         {
             gameManager.UpdateSave();
             menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");

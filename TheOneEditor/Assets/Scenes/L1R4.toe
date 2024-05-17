@@ -22811,6 +22811,198 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.9895401000976563,
+                0.0,
+                61.59080123901367,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2198308815
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 2005874377
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 45.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2836047367,
+              "Width": 45.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_OilDrums3 (1)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.9895401000976563,
+                0.0,
+                -16.325048446655273,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2464896521
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 3869847880
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 45.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3690445552,
+              "Width": 45.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_OilDrums3 (2)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -6.031207084655762,
+                0.0,
+                24.389753341674805,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 136686533
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 3695894171
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 45.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 1321785941,
+              "Width": 45.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_OilDrums3 (3)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
@@ -30688,7 +30880,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -30698,19 +30890,19 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
           "AudioID": 22,
@@ -30729,7 +30921,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -30740,7 +30932,7 @@
       "Name": "SK_Anarchist (1)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -30768,7 +30960,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -30778,19 +30970,19 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
           "AudioID": 23,
@@ -30809,7 +31001,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -30820,7 +31012,7 @@
       "Name": "SK_Anarchist (2)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -31099,7 +31291,7 @@
       ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Facehugger",
+      "Name": "Facehugger (1)",
       "ParentUID": 3452816845,
       "PrefabDirty": true,
       "PrefabID": 3055371654,
@@ -31299,7 +31491,7 @@
       ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Facehugger",
+      "Name": "Facehugger (2)",
       "ParentUID": 3452816845,
       "PrefabDirty": true,
       "PrefabID": 3055371654,

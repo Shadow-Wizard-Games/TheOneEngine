@@ -277,7 +277,7 @@ public class PlayerScript : MonoBehaviour
 
         if (leftJoystickDirection.x != 0.0f || leftJoystickDirection.y != 0.0f)
         {
-            movementDirection += new Vector3(-leftJoystickDirection.x, 0.0f, -leftJoystickDirection.y);
+            movementDirection += new Vector3(leftJoystickDirection.x, 0.0f, leftJoystickDirection.y);
             movementMagnitude = leftJoystickDirection.Magnitude();
             toMove = true;
 

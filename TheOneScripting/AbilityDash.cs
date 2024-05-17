@@ -30,7 +30,7 @@ public class AbilityDash : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT)) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT) || Input.GetControllerButton(Input.ControllerButtonCode.A)) // change input
                 {
                     Activated();
 
