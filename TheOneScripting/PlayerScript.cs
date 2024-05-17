@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour
     bool hasShot = false;
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
-    public float mp4ShootingCd = 0.15f;
+    public float mp4ShootingCd = 0.1f;
 
     // Abilities
     public bool impacienteUsed;
