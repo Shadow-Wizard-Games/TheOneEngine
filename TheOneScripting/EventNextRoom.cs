@@ -61,7 +61,7 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if(Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if(Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             string sceneName = ExtractSceneName();
 
@@ -70,6 +70,7 @@ public class EventNextRoom : Event
 
             playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
+            gameManager.SaveSceneState();
             SceneManager.LoadScene(sceneName);
         }
 

@@ -34,6 +34,7 @@ bool AudioCore::InitEngine()
     else LOG(LogType::LOG_ERROR, "- Failed Init Music Engine");
 
     g_lowLevelIO.SetBasePath(AKTEXT("Assets\\Audio\\Wwise Project\\GeneratedSoundBanks\\Windows"));
+    g_lowLevelIO.SetBasePath(AKTEXT("Assets\\Audio\\Wwise Project\\GeneratedSoundBanks"));
     AK::StreamMgr::SetCurrentLanguage(AKTEXT("English(us)"));
 
     //bank init
@@ -55,6 +56,16 @@ bool AudioCore::InitEngine()
     else
     {
         LOG(LogType::LOG_ERROR, "-Failed loading BANKNAME_THEONEENGINE");
+        return false;
+    }
+
+    if (AK::SoundEngine::LoadBank(BANKNAME_VOICEOVER, bankID) == AK_Success)
+    {
+        LOG(LogType::LOG_OK, "-Loaded BANKNAME_VOICEOVER");
+    }
+    else
+    {
+        LOG(LogType::LOG_ERROR, "-Failed loading BANKNAME_VOICEOVER");
         return false;
     }
 
@@ -219,6 +230,7 @@ void AudioCore::CleanUp()
 
     audioEvents.clear();
 
+    AK::SoundEngine::ClearBanks(); 
 
 #ifndef AK_OPTIMIZED
     AK::Comm::Term();

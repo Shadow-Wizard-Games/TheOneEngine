@@ -16,14 +16,14 @@ public class UiManager : MonoBehaviour
 
     public enum HudPopUpMenu
     {
-        SaveScene,
+        SaveScene = 0,
         PickUpFeedback,
         Dialogue
     }
 
     public enum Dialoguer
     {
-        ShopKeeper,
+        ShopKeeper = 0,
         Medic,
         CampLeader,
         Sargeant
@@ -110,7 +110,7 @@ public class UiManager : MonoBehaviour
 
     public override void Update()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
 
         if (onCooldown && cooldown < 0.2f)
         {
@@ -214,7 +214,6 @@ public class UiManager : MonoBehaviour
                 {
                     playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
-                    gameManager.UpdateLevel();
                     SceneManager.LoadScene("MainMenu");
                 }
             }
@@ -406,17 +405,23 @@ public class UiManager : MonoBehaviour
         switch (type)
         {
             case HudPopUpMenu.SaveScene:
+                if (saveOnCooldown)
+                    break;
                 savingSceneGo.Enable();
                 if (text == "") text = "saving progress";
                 savingSceneGo.GetComponent<ICanvas>().SetTextString(text, "Text_SavingProgress");
                 saveOnCooldown = true;
                 break;
             case HudPopUpMenu.PickUpFeedback:
+                if (pickUpFeedbackOnCooldown)
+                    break;
                 pickUpFeedbackGo.Enable();
                 pickUpFeedbackGo.GetComponent<ICanvas>().SetTextString(text, "Text_PickedItem");
                 pickUpFeedbackOnCooldown = true;
                 break;
             case HudPopUpMenu.Dialogue:
+                if(dialogueOnCooldown)
+                    break;
                 dialogueGo.Enable();
                 dialogueGo.GetComponent<ICanvas>().SetTextString(text, "Text_Dialogue");
                 dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_ShopKeeper");
@@ -445,5 +450,20 @@ public class UiManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public bool IsOnCooldown(HudPopUpMenu type)
+    {
+        switch (type)
+        {
+            case HudPopUpMenu.SaveScene:
+                return saveOnCooldown;
+            case HudPopUpMenu.PickUpFeedback:
+                return pickUpFeedbackOnCooldown;
+            case HudPopUpMenu.Dialogue:
+                return dialogueOnCooldown;
+        }
+
+        return false;
     }
 }

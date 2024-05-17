@@ -227,7 +227,7 @@ public class UiScriptHud : MonoBehaviour
 
     void UpdateTimers()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         //grenade
         if (grenadeOnCooldown && grenadeTimer < grenadeCooldown)
         {

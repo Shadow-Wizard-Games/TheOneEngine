@@ -17,16 +17,16 @@
             -0.8655784130096436,
             -0.3541002869606018,
             0.0,
-            57.30412673950195,
+            742.70654296875,
             220.0,
-            82.99384307861328,
+            1039.4495849609375,
             1.0
           ],
           "Type": 0,
           "UID": 4154963281
         },
         {
-          "Aspect": 1.7773109674453735,
+          "Aspect": 1.7775280475616455,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -173,7 +173,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 694.8267211914063,
+                  "Lifetime": 770.826171875,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -270,7 +270,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 694.8267211914063,
+                  "Lifetime": 770.826171875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -409,7 +409,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 540.416259765625,
+                  "Lifetime": 616.4157104492188,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -506,7 +506,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 540.416259765625,
+                  "Lifetime": 616.4157104492188,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -645,7 +645,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 593.82373046875,
+                  "Lifetime": 669.8231811523438,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -742,7 +742,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 593.82373046875,
+                  "Lifetime": 669.8231811523438,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -881,7 +881,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 593.82373046875,
+                  "Lifetime": 669.8231811523438,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -978,7 +978,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 593.82373046875,
+                  "Lifetime": 669.8231811523438,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1117,7 +1117,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 593.82373046875,
+                  "Lifetime": 669.8231811523438,
                   "MaxParticles": 200,
                   "RenderModule": [
                     {
@@ -1214,7 +1214,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 593.82373046875,
+                  "Lifetime": 669.8231811523438,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1389,7 +1389,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 499.7156066894531,
+                  "Lifetime": 575.7153930664063,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1482,7 +1482,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 499.7156066894531,
+                  "Lifetime": 575.7153930664063,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -1617,7 +1617,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 521.729248046875,
+                  "Lifetime": 597.7286987304688,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1710,7 +1710,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 521.729248046875,
+                  "Lifetime": 597.7286987304688,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -9694,6 +9694,13 @@
               "Type": 5,
               "UID": 4008607440,
               "Width": 45.0
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "EventCheckpoint",
+              "Type": 4,
+              "UID": 2481041877
             }
           ],
           "Enabled": true,
@@ -25546,6 +25553,198 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                646.7778930664063,
+                0.0,
+                157.3343505859375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 587450589
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 1887836123
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 40.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3936353872,
+              "Width": 40.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_OilDrums4 (1)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                685.6483764648438,
+                0.0,
+                148.5523223876953,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1004110470
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 2847992286
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 40.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 3502561403,
+              "Width": 40.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_OilDrums4 (2)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                724.261962890625,
+                0.0,
+                151.79307556152344,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3972840051
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
+              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 3275678065
+            },
+            {
+              "ColliderType": 1,
+              "CollisionType": 2,
+              "CornerPivot": false,
+              "Height": 40.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 0.5,
+              "Type": 5,
+              "UID": 2827758527,
+              "Width": 40.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_OilDrums4 (3)",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
@@ -25560,21 +25759,21 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            100.0,
+            99.95543670654297,
             0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            0.0,
+            2.9849114418029785,
             0.0,
             0.0,
             100.0,
             0.0,
-            -52.506378173828125,
             0.0,
-            -51.310359954833984,
+            -2.9849114418029785,
+            0.0,
+            99.95543670654297,
+            0.0,
+            -52.79228591918945,
+            0.0,
+            -87.06977081298828,
             1.0
           ],
           "Type": 0,
@@ -33405,25 +33604,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -52.95015335083008,
+            2.1345259731018307,
             0.0,
-            -84.83088684082031,
+            -99.97720690710776,
             0.0,
             0.0,
             100.0,
             0.0,
             0.0,
-            84.83088684082031,
+            99.97720690710776,
             0.0,
-            -52.95015335083008,
+            2.1345259731018307,
             0.0,
-            690.0040283203125,
+            653.8972778320313,
             0.0,
-            910.3726196289063,
+            951.5136108398438,
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -33433,19 +33632,19 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
           "AudioID": 47,
@@ -33464,7 +33663,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -33475,167 +33674,7 @@
       "Name": "SK_Anarchist (1)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
-      "PrefabName": "SK_Anarchist",
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            390.6927185058594,
-            0.00016150686133187264,
-            910.8427734375,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3021935714
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 1485461373
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AnarchistBehaviour",
-          "Type": 4,
-          "UID": 2014633233
-        },
-        {
-          "AudioID": 48,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 2749116129,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "EditablePrefab": true,
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "SK_Anarchist (2)",
-      "ParentUID": 3452816845,
-      "PrefabDirty": false,
-      "PrefabID": 1415844443,
-      "PrefabName": "SK_Anarchist",
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            532.8357543945313,
-            0.0,
-            1020.117431640625,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3021935714
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 1485461373
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AnarchistBehaviour",
-          "Type": 4,
-          "UID": 2014633233
-        },
-        {
-          "AudioID": 49,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 2749116129,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "EditablePrefab": true,
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "SK_Anarchist (3)",
-      "ParentUID": 3452816845,
-      "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -33680,6 +33719,77 @@
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -4.371138828673793e-08,
+            1.0,
+            4.371138828673793e-08,
+            0.0,
+            -5.551117108359253e-17,
+            -4.371140605030632e-08,
+            1.0000003576278687,
+            0.0,
+            1.0000003576278687,
+            4.371140605030632e-08,
+            1.9984020795999922e-15,
+            0.0,
+            208.38119506835938,
+            0.7510925531387329,
+            362.43798828125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 666978148
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/WP_CarabinaM4/M_CarabinaM4.toematerial",
+          "MeshPath": "Library/Meshes/WP_CarabinaM4/WP_CarabinaM4.mesh",
+          "Name": "Mesh",
+          "ParentUID": 6881399,
+          "Type": 2,
+          "UID": 2543850332
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 6881399,
+          "ScriptName": "EventCollectible",
+          "Type": 4,
+          "UID": 2730171932
+        },
+        {
+          "ColliderType": 1,
+          "CollisionType": 2,
+          "CornerPivot": false,
+          "Height": 10.0,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 7.400000095367432,
+          "OffsetY": 2.0,
+          "ParentUID": 6881399,
+          "Radius": 0.5,
+          "Type": 5,
+          "UID": 2494535315,
+          "Width": 37.0
+        }
+      ],
+      "Enabled": false,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WP_CarabinaM4",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 6881399
     }
   ],
   "index": 0,

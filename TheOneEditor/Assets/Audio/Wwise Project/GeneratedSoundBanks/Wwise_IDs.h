@@ -219,6 +219,7 @@ namespace AK
     {
         static const AkUniqueID INIT = 1355168291U;
         static const AkUniqueID THEONEENGINE = 3491347560U;
+        static const AkUniqueID VOICEOVER = 4041657371U;
     } // namespace BANKS
 
     namespace BUSSES

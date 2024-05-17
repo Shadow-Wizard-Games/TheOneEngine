@@ -127,7 +127,8 @@ static vec3f GetTransformRight(GameObject* GOptr)
 //GameObject
 static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx");
+	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
 	SetPosition(go, initialPosition);
@@ -283,11 +284,133 @@ static void Enable(GameObject* GOtoEnable)
 }
 
 //Scene Management
-static void LoadScene(MonoString* sceneName, bool keep)
+static void LoadScene(MonoString* sceneName, bool keep, MonoString* path)
 {
 	std::string name = MonoRegisterer::MonoStringToUTF8(sceneName);
+	std::string filepath = MonoRegisterer::MonoStringToUTF8(path);
 
-	engine->N_sceneManager->LoadScene(name, keep);
+	if(keep)
+		engine->N_sceneManager->LoadSave(name, filepath);
+	else
+		engine->N_sceneManager->LoadScene(name);
+}
+
+static void CreateSaveFromScene(MonoString* filepath, MonoString* sceneName)
+{
+	std::string path = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::string name = MonoRegisterer::MonoStringToUTF8(sceneName);
+
+	engine->N_sceneManager->SaveScene(path, name);
+}
+
+static void RemoveFile(MonoString* filepath)
+{
+	std::string path = MonoRegisterer::MonoStringToUTF8(filepath);
+
+	engine->N_sceneManager->RemoveFile(path);
+}
+
+static MonoString* AccessFileDataString(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_STRING, dPath, dName);
+
+	std::string sData = "Fail";
+	if (data != nullptr)
+		sData = *reinterpret_cast<std::string*>(data);
+
+	return mono_string_new(MonoManager::GetAppDomain(), sData.c_str());
+}
+
+static int AccessFileDataInt(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
+
+	if (data == nullptr)
+		return false;
+
+	int sData = *reinterpret_cast<int*>(data);
+
+	return sData;
+}
+
+static bool AccessFileDataBool(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
+
+	if (data == nullptr)
+		return false;
+
+	bool sData = *reinterpret_cast<bool*>(data);
+
+	return sData;
+}
+
+static float AccessFileDataFloat(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
+
+	if (data == nullptr)
+		return false;
+
+	float sData = *reinterpret_cast<float*>(data);
+
+	return sData;
+}
+
+static void WriteFileDataString(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, MonoString* data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	std::string dstr = MonoRegisterer::MonoStringToUTF8(data);
+	void* d = new std::string(dstr);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_STRING, dPath, dName, d);
+}
+
+static void WriteFileDataInt(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, int data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	void* d = new int(data);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_INT, dPath, dName, d);
+}
+
+static void WriteFileDataFloat(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, float data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	void* d = new float(data);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_FLOAT, dPath, dName, d);
+}
+static void WriteFileDataBool(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, bool data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	void* d = new bool(data);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_BOOL, dPath, dName, d);
 }
 
 static MonoString* GetCurrentSceneName()
@@ -570,20 +693,21 @@ static void SetTextString(GameObject* containerGO, MonoString* text, MonoString*
 	}
 }
 
-static string GetTextString(GameObject* containerGO, MonoString* name)
+static MonoString* GetTextString(GameObject* containerGO, MonoString* name)
 {
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::string ret = "TextUI element not found";
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
 		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
 		{
 			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
-			return ui->GetText();
+			return mono_string_new(MonoManager::GetAppDomain(), ui->GetText().c_str());
 		}
 	}
 
-	return "TextUI element not found";
+	return mono_string_new(MonoManager::GetAppDomain(), ret.c_str());
 }
 
 //Helpers
@@ -915,6 +1039,16 @@ void MonoRegisterer::RegisterFunctions()
 
 	//Scene Manager
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
+	mono_add_internal_call("InternalCalls::CreateSaveFromScene", CreateSaveFromScene);
+	mono_add_internal_call("InternalCalls::RemoveFile", RemoveFile);
+	mono_add_internal_call("InternalCalls::AccessFileDataString", AccessFileDataString);
+	mono_add_internal_call("InternalCalls::AccessFileDataFloat", AccessFileDataFloat);
+	mono_add_internal_call("InternalCalls::AccessFileDataInt", AccessFileDataInt);
+	mono_add_internal_call("InternalCalls::AccessFileDataBool", AccessFileDataBool);
+	mono_add_internal_call("InternalCalls::WriteFileDataString", WriteFileDataString);
+	mono_add_internal_call("InternalCalls::WriteFileDataFloat", WriteFileDataFloat);
+	mono_add_internal_call("InternalCalls::WriteFileDataInt", WriteFileDataInt);
+	mono_add_internal_call("InternalCalls::WriteFileDataBool", WriteFileDataBool);
 	mono_add_internal_call("InternalCalls::GetCurrentSceneName", GetCurrentSceneName);
 	mono_add_internal_call("InternalCalls::CreatePrefab", CreatePrefab);
 
@@ -1015,5 +1149,33 @@ std::string MonoRegisterer::MonoStringToUTF8(MonoString* monoString)
 		return "";
 	std::string result(utf8);
 	mono_free(utf8);
+	return result;
+}
+
+std::vector<std::string> MonoRegisterer::MonoStringArrayToUTF8(MonoArray* monoStringArray)
+{
+	std::vector<std::string> result;
+
+	if (monoStringArray == nullptr)
+		return result;
+
+	int length = mono_array_length(monoStringArray);
+	for (int i = 0; i < length; ++i)
+	{
+		MonoString* monoString = reinterpret_cast<MonoString*>(mono_array_get(monoStringArray, MonoString*, i));
+
+		MonoError error;
+		char* utf8 = mono_string_to_utf8_checked(monoString, &error);
+		if (CheckMonoError(error))
+		{
+			result.push_back("");
+			continue;
+		}
+
+		std::string utf8String(utf8);
+		mono_free(utf8);
+		result.push_back(utf8String);
+	}
+
 	return result;
 }

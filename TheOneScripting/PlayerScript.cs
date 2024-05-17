@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour
     bool hasShot = false;
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
-    public float mp4ShootingCd = 0.15f;
+    public float mp4ShootingCd = 0.1f;
 
     // Abilities
     public bool impacienteUsed;
@@ -86,6 +86,7 @@ public class PlayerScript : MonoBehaviour
 
     // audio
     public IAudioSource.AudioStateID currentState = 0;
+    float timeFromLastStep = 0.3f;
 
     public override void Start()
     {
@@ -108,11 +109,13 @@ public class PlayerScript : MonoBehaviour
         currentWeoponDamage = damageM4;
 
         attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+        attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
         attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
     }
 
     public override void Update()
     {
+        timeFromLastStep += Time.deltaTime;
 
         isRunning = false;
         isShooting = false;
@@ -154,7 +157,6 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-
         float currentSpeed = speed;
         if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
 
@@ -180,31 +182,25 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 {
                     Shoot();
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 }
             }
         }
         // Play steps
-        if (lastFrameRunned != isRunning)
+        if (isRunning)
         {
-            if (isRunning)
+            if (timeFromLastStep >= 0.3f)
             {
-                attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
-                if (iStepPSGO != null)
-                {
-                    iStepPSGO.GetComponent<IParticleSystem>().Play();
-                }
+                Step();
+                timeFromLastStep = 0.0f;
             }
-            else
+        }
+        else
+        {
+            //attachedGameObject.source.Stop(IAudioSource.AudioEvent.P_STEP);
+            if (iStepPSGO != null)
             {
-                attachedGameObject.source.Stop(IAudioSource.AudioEvent.P_STEP);
-                if (iStepPSGO != null)
-                {
-                    iStepPSGO.GetComponent<IParticleSystem>().End();
-                }
+                iStepPSGO.GetComponent<IParticleSystem>().End();
             }
-            lastFrameRunned = isRunning;
-
         }
 
         // current weapon switch
@@ -273,15 +269,18 @@ public class PlayerScript : MonoBehaviour
     private bool SetMoveDirection()
     {
         bool toMove = false;
+        Vector2 aimingDirection = Vector2.zero;
 
         #region CONTROLLER
         Vector2 leftJoystickDirection = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
 
         if (leftJoystickDirection.x != 0.0f || leftJoystickDirection.y != 0.0f)
         {
-            movementDirection += new Vector3(-leftJoystickDirection.x, 0.0f, -leftJoystickDirection.y);
+            movementDirection += new Vector3(leftJoystickDirection.x, 0.0f, leftJoystickDirection.y);
             movementMagnitude = leftJoystickDirection.Magnitude();
             toMove = true;
+
+            aimingDirection += leftJoystickDirection;
         }
 
         #endregion
@@ -291,30 +290,38 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.W))
             {
-                movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
+                movementDirection -= Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection -= Vector2.up;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.A))
             {
-                movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
+                movementDirection -= Vector3.right;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection -= Vector2.right;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.S))
             {
-                movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
+                movementDirection += Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection += Vector2.up;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.D))
             {
-                movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
+                movementDirection += Vector3.right;
                 movementMagnitude = 1.0f;
                 toMove = true;
+
+                aimingDirection += Vector2.right;
             }
         }
         #endregion
@@ -324,6 +331,10 @@ public class PlayerScript : MonoBehaviour
         if (movementDirection != Vector3.zero)
         {
             lastMovementDirection = movementDirection;
+            aimingDirection = aimingDirection.Normalize();
+            float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
+            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+
         }
 
         return toMove;
@@ -337,25 +348,25 @@ public class PlayerScript : MonoBehaviour
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
-            aimingDirection += Vector2.zero - Vector2.right - Vector2.up;
+            aimingDirection -= Vector2.up;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
         {
-            aimingDirection += Vector2.zero - Vector2.right + Vector2.up;
+            aimingDirection -= Vector2.right;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
         {
-            aimingDirection += Vector2.zero + Vector2.right + Vector2.up;
+            aimingDirection += Vector2.up;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
         {
-            aimingDirection += Vector2.zero + Vector2.right - Vector2.up;
+            aimingDirection += Vector2.right;
             hasAimed = true;
         }
 

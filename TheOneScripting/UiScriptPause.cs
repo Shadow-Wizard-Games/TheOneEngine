@@ -36,7 +36,7 @@ public class UiScriptPause : MonoBehaviour
 
     public override void Update()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 
@@ -140,16 +140,8 @@ public class UiScriptPause : MonoBehaviour
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
-                //if (playerGO.source.currentID == IAudioSource.AudioEvent.A_COMBAT_1)
-                //{
-                //    playerGO.source.Stop(IAudioSource.AudioEvent.A_COMBAT_1);
-                //}
-                //if (playerGO.source.currentID == IAudioSource.Events.A_AMBIENT_1)
-                //{
-                //    playerGO.source.Stop(IAudioSource.Events.A_AMBIENT_1);
-                //}
+                playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
-                gameManager.UpdateLevel();
                 SceneManager.LoadScene("MainMenu");
             }
 
