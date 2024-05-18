@@ -115,13 +115,16 @@ public:
 	PanelSettings* panelSettings;
 	PanelBuild* panelBuild;
 
+	// Import popup
+	bool overwritePopup = false;
+	std::string assetsDir;
+
 private:
 
 	std::list<Panel*> panels;
 
 	bool showImGuiDemo = false;
 	bool openSceneFileWindow = false;
-	bool overwritePopup = false;
 };
 
 #endif // !__GUI_H__

@@ -312,9 +312,11 @@ bool Gui::Update(double dt)
 
 	if (overwritePopup)
 	{
-		ImGui::OpenPopup("Asset Already Exists");
+		ImGui::OpenPopup("Overwrite or Skip");
 		overwritePopup = false;
 	}
+
+	OverwriteAsset(assetsDir);
 
     return ret;
 }
