@@ -419,6 +419,7 @@ void Model::deserializeMeshData(const std::string& filename)
     inFile.close();
 
     GenBufferData(data);
+    rendererID = data.meshVAO.GetRendererID();
 }
 
 

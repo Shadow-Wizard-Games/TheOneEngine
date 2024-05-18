@@ -22,7 +22,7 @@ VertexBuffer::VertexBuffer(float* vertices, uint32_t size)
 
 VertexBuffer::~VertexBuffer()
 {
-	Delete();
+	//Delete();
 }
 
 void VertexBuffer::Bind() const
@@ -67,7 +67,7 @@ IndexBuffer::IndexBuffer(uint32_t* indices, uint32_t count)
 
 IndexBuffer::~IndexBuffer()
 {
-	Delete();
+	//Delete();
 }
 
 void IndexBuffer::Bind() const

@@ -38,6 +38,7 @@ public:
 
 	static void AddMeshToQueue(unsigned int meshID, const glm::mat4& modelMat);
 
+	//TODO: handle the delete of the VAO's
 private:
 	static void AddInstanceCall(unsigned int meshID);
 };

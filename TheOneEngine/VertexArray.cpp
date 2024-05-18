@@ -136,7 +136,7 @@ StackVertexArray::StackVertexArray()
 
 StackVertexArray::~StackVertexArray()
 {
-	Delete();
+	//Delete();
 }
 
 void StackVertexArray::Bind() const
