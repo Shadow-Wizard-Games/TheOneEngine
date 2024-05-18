@@ -24,7 +24,7 @@ public:
 
     void Render();
 
-    std::string GetMaterialPath() { materials[materialIndex]; }
+    std::string GetMaterialPath() { return materials[materialIndex]; }
     std::string GetMeshPath() { return path; }
     std::string GetMeshName() { return meshName; }
     glm::mat4 GetMeshTransform() { return meshTransform; }
