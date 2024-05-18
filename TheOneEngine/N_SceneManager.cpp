@@ -16,6 +16,7 @@
 #include "../TheOneAudio/AudioCore.h"
 #include "EngineCore.h"
 #include "Renderer2D.h"
+#include "Renderer3D.h"
 
 #include <fstream>
 #include <filesystem>
@@ -499,75 +500,35 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 
 void N_SceneManager::CreateMeshGO(std::string path)
 {
-	std::vector<ResourceId> meshesID = Resources::LoadMultiple<Model>(path);
-
-	if (meshesID.empty())
-		return;
-
-	std::string name = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
-
-	name = GenerateUniqueName(name);
-
-	// Create emptyGO parent if meshes > 1
-	bool isSingleMesh = meshesID.size() > 1 ? false : true;
-	std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
-	if (!isSingleMesh) emptyParent.get()->SetName(name);
-
-	std::vector<std::string> fileNames;
-
-	for (auto& meshID : meshesID)
+	switch (FBXIMPORTER::FBXtype(path))
 	{
-		Model* mesh = Resources::GetResourceById<Model>(meshID);
+	case MeshType::DEFAULT:
+	{
+		std::vector<ResourceId> meshesID = Resources::LoadMultiple<Model>(path);
+		if (meshesID.empty())
+			return;
 
-		std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
+		std::string name = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
+		name = GenerateUniqueName(name);
 
-		// Transform ---------------------------------
-		meshGO.get()->AddComponent<Transform>();
+		bool isSingleMesh = meshesID.size() > 1 ? false : true;
+		std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
+		if (!isSingleMesh) emptyParent.get()->SetName(name);
 
-		// Mesh  --------------------------------------
-		meshGO.get()->AddComponent<Mesh>();
-
-		meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
-		meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
-
-		//Load MeshData from custom files
-		for (const auto& file : fileNames)
-		{
-			std::string fileName = file.substr(file.find_last_of("\\/") + 1, file.find_last_of('.') - file.find_last_of("\\/") - 1);
-			if (fileName == mesh->GetMeshName())
-			{
-				meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
-			}
-		}
-
-		// AABB
-		meshGO.get()->GenerateAABBFromMesh();
-
-		if (isSingleMesh)
-		{
-			meshGO.get()->parent = currentScene->GetRootSceneGO();
-			engine->N_sceneManager->objectsToAdd.push_back(meshGO);
-		}
-		else
-		{
-			meshGO.get()->parent = emptyParent;
-			emptyParent.get()->children.push_back(meshGO);
-		}
+		for (auto& meshID : meshesID)
+			CreateDefaultMeshGO(meshID, emptyParent, isSingleMesh);
+	}
+		break;
+	case MeshType::STATIC:
+		break;
+	case MeshType::SKELETAL:
+		CreateSkeletalMeshGO(Resources::Load<SkeletalModel>(path), nullptr, true);
+		break;
+	default:
+		break;
 	}
 
 	if (!sceneIsPlaying) AddPendingGOs();
-}
-
-void N_SceneManager::CreateDefaultMeshGO(std::string path)
-{
-}
-
-void N_SceneManager::CreateStaticMeshGO(std::string path)
-{
-}
-
-void N_SceneManager::CreateSkeletalMeshGO(std::string path)
-{
 }
 
 void N_SceneManager::CreateExistingMeshGO(std::string path)
@@ -576,45 +537,89 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
 
 	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName, ".mesh", ".animator");
-
 	if (fileNames.empty())
-		CreateMeshGO(path);
+		return;
+
+	std::string name = fbxName;
+	name = GenerateUniqueName(name);
+
+	// Create emptyGO parent if meshes >1
+	bool isSingleMesh = fileNames.size() > 1 ? false : true;
+	std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
+	if (!isSingleMesh) emptyParent.get()->SetName(name);
+
+	MeshType type = FBXIMPORTER::FBXtype(path);
+	for (const auto& file : fileNames)
+	{
+		switch (type)
+		{
+		case MeshType::DEFAULT:
+			CreateDefaultMeshGO(Resources::LoadFromLibrary<Model>(file), emptyParent, isSingleMesh);
+			break;
+		case MeshType::STATIC:
+			break;
+		case MeshType::SKELETAL:
+			CreateDefaultMeshGO(Resources::LoadFromLibrary<SkeletalModel>(file), emptyParent, isSingleMesh);
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
+{
+	Model* mesh = Resources::GetResourceById<Model>(meshID);
+
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
+	meshGO.get()->AddComponent<Transform>();
+	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
+	meshGO.get()->AddComponent<Mesh>();
+
+	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
+	meshGO.get()->GetComponent<Mesh>()->type = MeshType::DEFAULT;
+
+	Renderer3D::AddMesh(mesh->rendererID, meshGO.get()->GetComponent<Mesh>()->materialID);
+
+	if (isSingle)
+	{
+		meshGO.get()->parent = currentScene->GetRootSceneGO();
+		currentScene->GetRootSceneGO().get()->children.push_back(meshGO);
+	}
 	else
 	{
-		std::string name = fbxName;
-		name = GenerateUniqueName(name);
+		meshGO.get()->parent = emptyParent;
+		emptyParent.get()->children.push_back(meshGO);
+	}
+}
 
-		// Create emptyGO parent if meshes >1
-		bool isSingleMesh = fileNames.size() > 1 ? false : true;
-		std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
-		if (!isSingleMesh) emptyParent.get()->SetName(name);
+void N_SceneManager::CreateStaticMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
+{
+}
 
-		for (const auto& file : fileNames)
-		{
-			ResourceId meshID = Resources::LoadFromLibrary<Model>(file);
-			Model* mesh = Resources::GetResourceById<Model>(meshID);
+void N_SceneManager::CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
+{
+	SkeletalModel* mesh = Resources::GetResourceById<SkeletalModel>(meshID);
 
-			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
-			meshGO.get()->AddComponent<Transform>();
-			meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
-			meshGO.get()->AddComponent<Mesh>();
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
+	meshGO.get()->AddComponent<Transform>();
+	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
+	meshGO.get()->AddComponent<Mesh>();
 
-			meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
-			meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
+	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
+	meshGO.get()->GetComponent<Mesh>()->type = MeshType::SKELETAL;
 
-			meshGO.get()->GenerateAABBFromMesh();
-
-			if (isSingleMesh)
-			{
-				meshGO.get()->parent = currentScene->GetRootSceneGO();
-				currentScene->GetRootSceneGO().get()->children.push_back(meshGO);
-			}
-			else
-			{
-				meshGO.get()->parent = emptyParent;
-				emptyParent.get()->children.push_back(meshGO);
-			}
-		}
+	if (isSingle)
+	{
+		meshGO.get()->parent = currentScene->GetRootSceneGO();
+		currentScene->GetRootSceneGO().get()->children.push_back(meshGO);
+	}
+	else
+	{
+		meshGO.get()->parent = emptyParent;
+		emptyParent.get()->children.push_back(meshGO);
 	}
 }
 

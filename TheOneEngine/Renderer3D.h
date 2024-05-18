@@ -3,8 +3,11 @@
 
 struct DefaultMesh
 {
+	bool CheckID(unsigned int id) {
+		return id == meshID;
+	}
 	unsigned int meshID;
-	unsigned int textureID;
+	int matID;
 };
 
 class InstanceCall
@@ -31,7 +34,7 @@ class Renderer3D
 public:
 	static void Update();
 
-	static void AddMesh(unsigned int meshID, unsigned int textureID);
+	static void AddMesh(unsigned int meshID, int matID);
 
 	static void AddMeshToQueue(unsigned int meshID, const glm::mat4& modelMat);
 

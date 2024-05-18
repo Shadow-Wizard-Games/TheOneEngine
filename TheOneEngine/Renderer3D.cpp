@@ -12,9 +12,18 @@ void Renderer3D::Update()
 {
 }
 
-void Renderer3D::AddMesh(unsigned int meshID, unsigned int textureID)
+void Renderer3D::AddMesh(unsigned int meshID, int matID)
 {
-	renderer3D.meshes.emplace_back(meshID, textureID);
+	bool exists = false;
+	for (DefaultMesh mesh : renderer3D.meshes) {
+		if (!mesh.CheckID(meshID))
+			continue;
+
+		exists = true;
+		break;
+	}
+	if(!exists)
+		renderer3D.meshes.emplace_back(meshID, matID);
 }
 
 void Renderer3D::AddMeshToQueue(unsigned int meshID, const glm::mat4& modelMat)

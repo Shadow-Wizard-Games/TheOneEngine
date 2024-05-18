@@ -5,6 +5,8 @@
 #include "Camera.h"
 #include "Log.h"
 #include "Defs.h"
+#include "FbxImporter.h"
+#include "Renderer3D.h"
 
 #include "Animation/OzzAnimation.h"
 #include "../TheOneAnimation/samples/framework/internal/shader.h"
@@ -179,8 +181,6 @@ void Mesh::DrawComponent(Camera* camera)
 	default:
 		break;
 	}
-    /*if (drawNormalsVerts) DrawVertexNormals();
-    if (drawNormalsFaces) DrawFaceNormals();*/
 }
 
 bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
@@ -203,50 +203,11 @@ bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 		GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 	}
 
-	mesh->Render();
+	//mesh->Render();
 
 	material->UnBind();
 	return true;
 }
-
-//void Mesh::DrawVertexNormals()
-//{
-//    if (meshData.meshVerts.empty() || meshData.meshNorms.empty()) return;
-//
-//    GLCALL(glLineWidth(normalLineWidth);
-//    GLCALL(glColor3f(1.0f, 1.0f, 0.0f);
-//    GLCALL(glBegin(GL_LINES);
-//
-//    for (int i = 0; i < meshData.meshVerts.size(); i++)
-//    {
-//        GLCALL(glVertex3f(meshData.meshVerts[i].x, meshData.meshVerts[i].y, meshData.meshVerts[i].z);
-//        GLCALL(glVertex3f(meshData.meshVerts[i].x + meshData.meshNorms[i].x * normalLineLength,
-//            meshData.meshVerts[i].y + meshData.meshNorms[i].y * normalLineLength,
-//            meshData.meshVerts[i].z + meshData.meshNorms[i].z * normalLineLength);
-//    }
-//
-//    GLCALL(glColor3f(1.0f, 1.0f, 0.0f);
-//    GLCALL(glEnd();
-//}
-
-//void Mesh::DrawFaceNormals() 
-//{
-//    if (meshData.meshFaceCenters.empty() || meshData.meshFaceNorms.empty()) return;
-//
-//    GLCALL(glLineWidth(normalLineWidth);
-//    GLCALL(glColor3f(1.0f, 0.0f, 1.0f);
-//    GLCALL(glBegin(GL_LINES);
-//
-//    for (int i = 0; i < meshData.meshFaceCenters.size(); i++)
-//    {
-//        glm::vec3 endPoint = meshData.meshFaceCenters[i] + normalLineLength * meshData.meshFaceNorms[i];
-//        GLCALL(glVertex3f(meshData.meshFaceCenters[i].x, meshData.meshFaceCenters[i].y, meshData.meshFaceCenters[i].z);
-//        GLCALL(glVertex3f(endPoint.x, endPoint.y, endPoint.z);
-//    }
-//
-//    GLCALL(glColor3f(0.0f, 1.0f, 1.0f);
-//    GLCALL(glEnd();
-//}
 
 
 bool Mesh::RenderOzzSkinnedMesh(SkeletalModel* mesh, Material* material, const ozz::span<ozz::math::Float4x4> skinningMatrices, const mat4& transform)
@@ -536,8 +497,21 @@ json Mesh::SaveComponent()
     meshJSON["DrawNormalsVerts"] = drawNormalsVerts;
     meshJSON["DrawNormalsFaces"] = drawNormalsFaces;
 
-    Model* mesh = Resources::GetResourceById<Model>(meshID);
-    meshJSON["MeshPath"] = mesh->GetMeshPath();
+	switch (type)
+	{
+	case MeshType::DEFAULT:
+	{
+		Model* mesh = Resources::GetResourceById<Model>(meshID);
+		meshJSON["MeshPath"] = mesh->GetMeshPath();
+	}
+		break;
+	case MeshType::SKELETAL:
+	{
+		SkeletalModel* mesh = Resources::GetResourceById<SkeletalModel>(meshID);
+		meshJSON["MeshPath"] = mesh->GetMeshPath();
+	}
+		break;
+	}
 
     Material* mat = Resources::GetResourceById<Material>(materialID);
     std::string matPath = mat->getPath();
@@ -595,7 +569,12 @@ void Mesh::LoadComponent(const json& meshJSON)
         drawNormalsFaces = meshJSON["DrawNormalsFaces"];
     }
 
-    if (meshJSON.contains("Path"))
+	if (meshJSON.contains("Type"))
+	{
+		type = meshJSON["Type"];
+	}
+
+    /*if (meshJSON.contains("Path"))
     {
         std::filesystem::path legacyPath = meshJSON["Path"];
         if (!legacyPath.string().empty())
@@ -606,7 +585,7 @@ void Mesh::LoadComponent(const json& meshJSON)
             Model* model = Resources::GetResourceById<Model>(meshID);
             materialID = Resources::LoadFromLibrary<Material>(model->GetMaterialPath());
         }
-    }
+    }*/
 
     if (meshJSON.contains("MeshPath"))
     {
@@ -615,12 +594,34 @@ void Mesh::LoadComponent(const json& meshJSON)
         {
             std::filesystem::path libraryToAssets = meshPath;
             std::string assetsMesh = Resources::FindFileInAssets(libraryToAssets.parent_path().filename().string());
-            Resources::LoadMultiple<Model>(assetsMesh);
-            meshID = Resources::LoadFromLibrary<Model>(meshPath);
+			type = FBXIMPORTER::FBXtype(assetsMesh);
+			switch (type)
+			{
+			case MeshType::DEFAULT:
+				Resources::LoadMultiple<Model>(assetsMesh);
+				meshID = Resources::LoadFromLibrary<Model>(meshPath);
+				break;
+			case MeshType::SKELETAL:
+				meshID = Resources::Load<SkeletalModel>(assetsMesh);
+				break;
+			}
         }
         else
         {
-            meshID = Resources::LoadFromLibrary<Model>(meshPath);
+			if (meshPath.ends_with(".animator"))
+				type = MeshType::SKELETAL;
+			else
+				type = MeshType::DEFAULT;
+
+			switch (type)
+			{
+			case MeshType::DEFAULT:
+				meshID = Resources::LoadFromLibrary<Model>(meshPath);
+				break;
+			case MeshType::SKELETAL:
+				meshID = Resources::LoadFromLibrary<SkeletalModel>(meshPath);
+				break;
+			}
         }
     }
 
@@ -628,4 +629,7 @@ void Mesh::LoadComponent(const json& meshJSON)
     {
         materialID = Resources::LoadFromLibrary<Material>(meshJSON["MaterialPath"]);
     }
+
+	if (meshID != -1 && type == MeshType::DEFAULT)
+		Renderer3D::AddMesh(Resources::GetResourceById<Model>(meshID)->rendererID, materialID);
 }

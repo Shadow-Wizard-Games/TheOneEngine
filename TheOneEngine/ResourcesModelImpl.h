@@ -13,7 +13,7 @@ inline std::string Resources::PathToLibrary<Model>(const std::string& folderName
 		return "Library/Meshes/";
 }
 template<>
-inline bool Resources::Import<Model>(const std::string& file, Model* model)
+inline bool Resources::Import<Model>(const std::string& file, Model* model, ModelData data)
 {
 	std::filesystem::path import_path = file + ".mesh";
 
@@ -21,7 +21,7 @@ inline bool Resources::Import<Model>(const std::string& file, Model* model)
 
 	PreparePath(import_path.parent_path().string());
 
-	Model::SaveMesh(model, import_path.string().c_str());
+	Model::SaveMesh(model, import_path.string().c_str(), data);
 
 	LOG(LogType::LOG_INFO, "Model at %s imported succesfully!", import_path.string().c_str());
 	return true;

@@ -230,10 +230,7 @@ bool Input::processSDLEvents()
 					{
 						app->gui->overwritePopup = true;
 						app->gui->assetsDir = assetsDir.string();
-						//LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
-
-						//Find Meshes in Library
-						//engine->N_sceneManager->CreateExistingMeshGO(assetsDir.string());
+						LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
 					}
 					else
 					{

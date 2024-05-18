@@ -35,7 +35,7 @@ SkeletalModel::SkeletalModel(const std::string& filename) :
 {
     if (filename.ends_with(".fbx") || filename.ends_with(".FBX"))
     {
-
+        LoadMesh(filename);
     }
     else if (filename.ends_with(".animator"))
     {

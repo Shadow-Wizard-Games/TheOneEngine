@@ -48,9 +48,9 @@ public:
 
 	void CreateMeshGO(std::string path);
 	void CreateExistingMeshGO(std::string fbxName);
-	void CreateDefaultMeshGO(std::string path);
-	void CreateStaticMeshGO(std::string path);
-	void CreateSkeletalMeshGO(std::string path);
+	void CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
+	void CreateStaticMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
+	void CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
 
 	std::shared_ptr<GameObject> CreateCube();
 	std::shared_ptr<GameObject> CreateSphere();

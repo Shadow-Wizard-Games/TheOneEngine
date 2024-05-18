@@ -12,6 +12,23 @@ struct MeshVertex
     vec2f texCoords;
 };
 
+struct ModelData
+{
+    std::vector<float> vertexData;
+    std::vector<unsigned int> indexData;
+
+    BufferLayout format;
+
+    StackVertexArray meshVAO;
+    VertexBuffer meshVBO;
+    IndexBuffer meshIBO;
+
+    std::vector<vec3f> meshVerts;
+    std::vector<vec3f> meshNorms;
+    std::vector<vec3f> meshFaceCenters;
+    std::vector<vec3f> meshFaceNorms;
+};
+
 class Model
 {
 public:
@@ -20,9 +37,7 @@ public:
     ~Model(){}
 
     static std::vector<Model*> LoadMeshes(const std::string& path);
-    static void SaveMesh(Model* mesh, const std::string& path);
-
-    void Render();
+    static void SaveMesh(Model* mesh, const std::string& path, const ModelData& data);
 
     std::string GetMaterialPath() { return materials[materialIndex]; }
     std::string GetMeshPath() { return path; }
@@ -31,29 +46,17 @@ public:
 
     void SetMeshPath(const std::string& newPath) {path = newPath;}
 
-    void serializeMeshData(const std::string& filename);
+    void serializeMeshData(const std::string& filename, const ModelData& data);
     void deserializeMeshData(const std::string& filename);
 
+    uint32_t rendererID = 0;
+
 private:
-    void GenBufferData();
+    void GenBufferData(ModelData& data);
 
     std::string meshName;
 
-    std::vector<float> vertexData;
-    std::vector<unsigned int> indexData;
-
     glm::mat4 meshTransform;
-
-    BufferLayout format;
-
-    std::shared_ptr<VertexArray> meshVAO;
-    std::shared_ptr<VertexBuffer> meshVBO;
-    std::shared_ptr<IndexBuffer> meshIBO;
-
-    std::vector<vec3f> meshVerts;
-    std::vector<vec3f> meshNorms;
-    std::vector<vec3f> meshFaceCenters;
-    std::vector<vec3f> meshFaceNorms;
 
     std::string path;
 

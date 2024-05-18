@@ -670,13 +670,13 @@ void Gui::OverwriteAsset(std::string path)
 
 			if (ImGui::Button("Overwrite", { 90, 20 }))
 			{
-				// overwrite code here
+				engine->N_sceneManager->CreateMeshGO(assetsDir);
 				ImGui::CloseCurrentPopup();
 			}
 			ImGui::SameLine();
 			if (ImGui::Button("Skip", { 90, 20 }))
 			{
-				// do nothing...
+				engine->N_sceneManager->CreateExistingMeshGO(assetsDir);
 				ImGui::CloseCurrentPopup();
 			}
 
