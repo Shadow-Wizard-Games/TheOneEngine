@@ -5,11 +5,9 @@ public class AbilityHeal : Ability
     IGameObject playerGO;
     PlayerScript player;
 
-    int numHeals = 0;
-    int maxHeals = 3;
-
-    float healAmount = 0.6f; // in %
-    float slowAmount = 0.4f; // in %
+    readonly int numHeals = 0;
+    readonly float healAmount = 0.6f; // in %
+    readonly float slowAmount = 0.4f; // in %
 
     float totalHeal = 0.0f;
 
@@ -55,7 +53,7 @@ public class AbilityHeal : Ability
     {
         // Calculate heal amount
 
-        if(player.healAbilityName == "Bandage")
+        if (player.healAbilityName == "Bandage")
         {
             totalHeal = player.maxLife * healAmount;
         }
@@ -63,8 +61,8 @@ public class AbilityHeal : Ability
         {
             totalHeal = player.maxLife * healAmount;
         }
-            totalHeal += player.life;
-        
+        totalHeal += player.life;
+
         float speedReduce = player.baseSpeed * slowAmount;
         player.speed -= speedReduce;
 
@@ -101,7 +99,7 @@ public class AbilityHeal : Ability
 
     public override void OnCooldown()
     {
-        if(cooldownTimeCounter > 0)
+        if (cooldownTimeCounter > 0)
         {
             // update time
             cooldownTimeCounter -= Time.deltaTime;
@@ -114,4 +112,4 @@ public class AbilityHeal : Ability
             Debug.Log("Ability Heal Ready");
         }
     }
-} 
+}

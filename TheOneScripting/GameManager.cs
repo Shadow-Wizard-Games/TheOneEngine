@@ -36,12 +36,12 @@ public class GameManager : MonoBehaviour
 
     public override void Update()
     {
-        
+
     }
 
     public void SaveSceneState()
     {
-        if(!savedLevels.Contains(SceneManager.GetCurrentSceneName()))
+        if (!savedLevels.Contains(SceneManager.GetCurrentSceneName()))
             savedLevels.Add(SceneManager.GetCurrentSceneName());
 
         InternalCalls.CreateSaveFromScene("GameData/Scenes", SceneManager.GetCurrentSceneName());

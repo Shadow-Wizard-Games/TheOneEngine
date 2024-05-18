@@ -35,15 +35,15 @@ class IntroScene : MonoBehaviour
     public override void Update()
     {
         timerScene += Time.deltaTime;
-        
-        if(timerScene >= durationScene)
+
+        if (timerScene >= durationScene)
         {
             canvasText.PrintItemUI(true, "ContinueTxt");
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN) ||
             Input.GetControllerButton(Input.ControllerButtonCode.X))
             {
-                if(state == IntroSceneStates.INTRO)
+                if (state == IntroSceneStates.INTRO)
                 {
                     state = IntroSceneStates.DIALOG;
                     canvasText.PrintItemUI(false, "IntroImg");
@@ -62,7 +62,7 @@ class IntroScene : MonoBehaviour
                             break;
                         }
 
-                        string[] datapath = {"NarrativeIntro", "Dialog" +  dialogNum.ToString() };
+                        string[] datapath = { "NarrativeIntro", "Dialog" + dialogNum.ToString() };
                         string text = DataManager.AccessFileDataString(filepath, datapath, "dialoguer");
                         text += DataManager.AccessFileDataString(filepath, datapath, "text");
                         canvasText.SetTextString(text, "SubtitlesTxt");

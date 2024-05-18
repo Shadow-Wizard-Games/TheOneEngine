@@ -2,23 +2,23 @@
 
 public class CameraMovement : MonoBehaviour
 {
-	IGameObject playerGO;
+    IGameObject playerGO;
     PlayerScript playerScript;
-	Vector3 camOffset = new Vector3(90, 220, 90);
-	//float camJoyDisplacement = 10.0f;
+    readonly Vector3 camOffset = new Vector3(90, 220, 90);
+    //float camJoyDisplacement = 10.0f;
 
-    float cameraMargin = 15.0f;
+    readonly float cameraMargin = 15.0f;
 
-	public override void Start()
-	{
-		playerGO = IGameObject.Find("SK_MainCharacter");
+    public override void Start()
+    {
+        playerGO = IGameObject.Find("SK_MainCharacter");
         playerScript = playerGO.GetComponent<PlayerScript>();
-        attachedGameObject.transform.position = playerGO.transform.position + camOffset;
-        attachedGameObject.transform.CamLookAt(playerGO.transform.position);
+        attachedGameObject.transform.Position = playerGO.transform.Position + camOffset;
+        attachedGameObject.transform.CamLookAt(playerGO.transform.Position);
     }
 
     public override void Update()
-	{
+    {
         if (!attachedGameObject.transform.ComponentCheck()) { return; }
 
         DoCameraMovement();
@@ -26,7 +26,7 @@ public class CameraMovement : MonoBehaviour
 
     void DoCameraMovement()
     {
-        Vector3 difference = attachedGameObject.transform.position - playerGO.transform.position;
+        Vector3 difference = attachedGameObject.transform.Position - playerGO.transform.Position;
 
         Vector3 displacement = difference - camOffset;
 

@@ -9,13 +9,12 @@ using System.Text.RegularExpressions;
 public class EventNextRoom : Event
 {
     IGameObject playerGO;
-    PlayerScript player;
 
     GameManager gameManager;
 
     float playerDistance;
 
-    float tpRange = 100.0f;
+    readonly float tpRange = 100.0f;
     bool inRange = false;
 
     string goName;
@@ -23,7 +22,6 @@ public class EventNextRoom : Event
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -43,7 +41,7 @@ public class EventNextRoom : Event
 
     public override bool CheckEventIsPossible()
     {
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
         if (playerDistance < tpRange)
         {
@@ -61,7 +59,7 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if(Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             string sceneName = ExtractSceneName();
 
@@ -81,11 +79,11 @@ public class EventNextRoom : Event
     {
         if (!inRange)
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, tpRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
         }
         else
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
         }
     }
 

@@ -5,13 +5,13 @@ public class AbilityAdrenalineRush : Ability
     IGameObject playerGO;
     PlayerScript player;
 
-    float healAmount = 0.3f; // in %
-    float speedAmount = 0.5f; // in %
-    float damageAmount = 0.5f; // in %
+    readonly float healAmount = 0.3f; // in %
+    readonly float speedAmount = 0.5f; // in %
+    readonly float damageAmount = 0.5f; // in %
 
-    float healthRegenTime = 3.0f;
+    readonly float healthRegenTime = 3.0f;
     float healthRegenTimeCounter = 3.0f;
-    float intervalTime = 0.2f;
+    readonly float intervalTime = 0.2f;
     float timeSinceLastTick = 0.0f;
     float healingInterval = 0.0f;
 
@@ -98,7 +98,7 @@ public class AbilityAdrenalineRush : Ability
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
-            
+
             Debug.Log("Ability AdrenalineRush on Cooldown");
         }
 

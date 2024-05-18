@@ -4,6 +4,8 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 {
     public ICanvas canvas;
 
+    UiScriptSettings settingsScript;
+
     float cooldown = 0;
     bool onCooldown = false;
 
@@ -39,6 +41,8 @@ public class UiScriptSettingsDisplay : MonoBehaviour
         canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
         canvas.SetSliderValue(sfxVolume, "Slider_SFX");
         canvas.SetSliderValue(musicVolume, "Slider_Music");
+
+        settingsScript = IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>();
     }
     public override void Update()
     {
@@ -60,7 +64,7 @@ public class UiScriptSettingsDisplay : MonoBehaviour
             onCooldown = false;
         }
 
-        if (IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>().editing)
+        if (settingsScript.editing)
         {
             //Input Updates
             if (!onCooldown)

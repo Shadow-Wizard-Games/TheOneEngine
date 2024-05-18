@@ -23,12 +23,14 @@ public class PlayerScript : MonoBehaviour
     IGameObject iShotPSGO;
     IGameObject iStepPSGO;
 
+    IParticleSystem stepParticles;
+    IParticleSystem shotParticles;
 
     // background music
     public bool isFighting = false;
     public bool onPause = false;
     float timeAfterCombat = 0;
-    float maxTimeAfterCombat = 5.0f;
+    readonly float maxTimeAfterCombat = 5.0f;
 
 
     // stats
@@ -45,8 +47,6 @@ public class PlayerScript : MonoBehaviour
     public Vector3 movementDirection;
     public Vector3 lastMovementDirection;
     public float movementMagnitude;
-    bool lastFrameRunned = false;
-
 
     // shooting
     public float damageM4 = 10.0f;
@@ -101,8 +101,8 @@ public class PlayerScript : MonoBehaviour
         iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
 
         attachedGameObject.animator.Play("Idle");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.TransitionTime = 0.0f;
 
         life = maxLife;
         speed = baseSpeed;
@@ -111,6 +111,9 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
         attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
         attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
+
+        stepParticles = iStepPSGO?.GetComponent<IParticleSystem>();
+        shotParticles = iShotPSGO?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -197,14 +200,11 @@ public class PlayerScript : MonoBehaviour
         else
         {
             //attachedGameObject.source.Stop(IAudioSource.AudioEvent.P_STEP);
-            if (iStepPSGO != null)
-            {
-                iStepPSGO.GetComponent<IParticleSystem>().End();
-            }
+            stepParticles.End();
         }
 
         // current weapon switch
-        switch(currentWeapon)
+        switch (currentWeapon)
         {
             case CurrentWeapon.MP4:
                 break;
@@ -254,18 +254,15 @@ public class PlayerScript : MonoBehaviour
     private void Step()
     {
         attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
-        if (iStepPSGO != null)
-        {
-            iStepPSGO.GetComponent<IParticleSystem>().Play();
-        }
+        stepParticles.Play();
     }
 
-    private void Die()
-    {
-        attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
-        attachedGameObject.animator.Play("Death");
-        // play sound (?)
-    }
+    //private void Die()
+    //{
+    //    attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+    //    attachedGameObject.animator.Play("Death");
+    //    // play sound (?)
+    //}
     private bool SetMoveDirection()
     {
         bool toMove = false;
@@ -333,7 +330,7 @@ public class PlayerScript : MonoBehaviour
             lastMovementDirection = movementDirection;
             aimingDirection = aimingDirection.Normalize();
             float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
-            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+            attachedGameObject.transform.Rotation = new Vector3(0.0f, characterRotation, 0.0f);
 
         }
 
@@ -387,7 +384,7 @@ public class PlayerScript : MonoBehaviour
         {
             aimingDirection = aimingDirection.Normalize();
             float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
-            attachedGameObject.transform.rotation = new Vector3(0.0f, characterRotation, 0.0f);
+            attachedGameObject.transform.Rotation = new Vector3(0.0f, characterRotation, 0.0f);
         }
     }
 
@@ -400,10 +397,10 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 13.5f + height, attachedGameObject.transform.rotation);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
-                if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+                shotParticles.Replay();
 
                 if (currentWeapon == CurrentWeapon.IMPACIENTE)
                     impacienteBulletCounter++;

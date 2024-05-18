@@ -6,13 +6,8 @@ public class UiScriptDebug : MonoBehaviour
     float cooldown = 0;
     bool onCooldown = false;
 
-    IGameObject playerGO;
-    PlayerScript player;
-
     IGameObject GameManagerGO;
     GameManager gameManager;
-
-    UiManager menuManager;
 
     public UiScriptDebug()
     {
@@ -21,11 +16,6 @@ public class UiScriptDebug : MonoBehaviour
 
     public override void Start()
     {
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
-
-        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-
         GameManagerGO = IGameObject.Find("GameManager");
         gameManager = GameManagerGO.GetComponent<GameManager>();
 
