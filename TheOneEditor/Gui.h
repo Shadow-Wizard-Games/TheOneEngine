@@ -99,6 +99,8 @@ private:
 
 	void OpenSceneFileWindow();
 
+	void OverwriteAsset(std::string path);
+
 public:
 
 	// Panels
@@ -119,6 +121,7 @@ private:
 
 	bool showImGuiDemo = false;
 	bool openSceneFileWindow = false;
+	bool overwritePopup = false;
 };
 
 #endif // !__GUI_H__

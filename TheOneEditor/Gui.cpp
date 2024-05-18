@@ -305,12 +305,16 @@ bool Gui::Update(double dt)
 	}
 
 	if (showImGuiDemo)
-	{
 		ImGui::ShowDemoWindow();
-	}
 
 	if (openSceneFileWindow)
 		OpenSceneFileWindow();
+
+	if (overwritePopup)
+	{
+		ImGui::OpenPopup("Asset Already Exists");
+		overwritePopup = false;
+	}
 
     return ret;
 }
@@ -631,4 +635,52 @@ void Gui::OpenSceneFileWindow()
 
 		ImGui::End();
 	}
+}
+
+void Gui::OverwriteAsset(std::string path)
+{
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, { 0.5, 0.5 });
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5);
+
+	if (ImGui::BeginPopupModal("Overwrite or Skip", nullptr, ImGuiWindowFlags_NoResize))
+	{
+		ImGuiTableFlags tableFlags = ImGuiTableFlags_SizingFixedFit;
+		if (ImGui::BeginTable("##TableWarning", 2, tableFlags))
+		{
+			ImGui::TableSetupColumn("Image", ImGuiTableColumnFlags_NoHide);
+			ImGui::TableSetupColumn("Dialog", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide);
+			ImGui::TableNextRow();
+
+			ImGui::TableSetColumnIndex(0);
+			ImGui::Image((ImTextureID)app->gui->panelProject->GetIconTextures()[FileType::SCENE], { 64, 64 });
+			ImGui::SameLine();
+			ImGui::Dummy({ 8, 0 });
+
+			ImGui::TableSetColumnIndex(1);
+			ImGui::TextWrapped("Assets already has a file named:");
+
+			ImGui::TextWrapped(path.c_str());
+			ImGui::Dummy({ 0, 8 });
+			ImGui::TextWrapped("Are you sure you want to overwrite it?");
+			ImGui::Dummy({ 0, 8 });
+
+			if (ImGui::Button("Overwrite", { 90, 20 }))
+			{
+				// overwrite code here
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Skip", { 90, 20 }))
+			{
+				// do nothing...
+				ImGui::CloseCurrentPopup();
+			}
+
+			ImGui::EndTable();
+		}
+		ImGui::EndPopup();
+	}
+	ImGui::PopStyleVar(2);
 }
