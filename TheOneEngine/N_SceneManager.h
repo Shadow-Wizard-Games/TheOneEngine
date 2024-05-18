@@ -46,9 +46,11 @@ public:
 	std::shared_ptr<GameObject> CreateCameraGO(std::string name);
 	std::shared_ptr<GameObject> CreateCanvasGO(std::string name);
 
-	// Try to mix this two (CreateExistingMeshGO should be erased and CreateMeshGO has to do)
 	void CreateMeshGO(std::string path);
 	void CreateExistingMeshGO(std::string fbxName);
+	void CreateDefaultMeshGO(std::string path);
+	void CreateStaticMeshGO(std::string path);
+	void CreateSkeletalMeshGO(std::string path);
 
 	std::shared_ptr<GameObject> CreateCube();
 	std::shared_ptr<GameObject> CreateSphere();

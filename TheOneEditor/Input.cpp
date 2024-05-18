@@ -225,23 +225,34 @@ bool Input::processSDLEvents()
 
 					LOG(LogType::LOG_ASSIMP, "Importing %s from: %s", fileNameExt.data(), fileDir.data());
 
-					// Check if it already exists in Assets
-					if (std::filesystem::exists(assetsDir))
-					{
-						LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
 
-						//Find Meshes in Library
-						engine->N_sceneManager->CreateExistingMeshGO(assetsDir.string());
-					}
-					else
+					if (!std::filesystem::exists(assetsDir))
 					{
 						LOG(LogType::LOG_OK, "-%s Imported successfully into: %s", fileNameExt.data(), assetsDir.string().data());
 						std::filesystem::copy(fileDir, assetsDir, std::filesystem::copy_options::overwrite_existing);
-
-						//Creates GO and Serialize
-						engine->N_sceneManager->CreateMeshGO(assetsDir.string());
-						LOG(LogType::LOG_OK, "-Created GameObject: %s", assetsDir.string().data());
 					}
+					// Vale ahora 100% añade siempre
+					
+
+
+
+					// Check if it already exists in Assets
+					//if (std::filesystem::exists(assetsDir))
+					//{
+					//	LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
+
+					//	//Find Meshes in Library
+					//	engine->N_sceneManager->CreateExistingMeshGO(assetsDir.string());
+					//}
+					//else
+					//{
+					//	LOG(LogType::LOG_OK, "-%s Imported successfully into: %s", fileNameExt.data(), assetsDir.string().data());
+					//	std::filesystem::copy(fileDir, assetsDir, std::filesystem::copy_options::overwrite_existing);
+
+					//	//Creates GO and Serialize
+					//	engine->N_sceneManager->CreateMeshGO(assetsDir.string());
+					//	LOG(LogType::LOG_OK, "-Created GameObject: %s", assetsDir.string().data());
+					//}
 				}
 
 				// PNG / DDS

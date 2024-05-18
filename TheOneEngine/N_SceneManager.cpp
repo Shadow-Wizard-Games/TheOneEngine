@@ -519,7 +519,7 @@ void N_SceneManager::CreateMeshGO(std::string path)
 	{
 		Model* mesh = Resources::GetResourceById<Model>(meshID);
 
-		std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->meshName);
+		std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
 
 		// Transform ---------------------------------
 		meshGO.get()->AddComponent<Transform>();
@@ -534,9 +534,9 @@ void N_SceneManager::CreateMeshGO(std::string path)
 		for (const auto& file : fileNames)
 		{
 			std::string fileName = file.substr(file.find_last_of("\\/") + 1, file.find_last_of('.') - file.find_last_of("\\/") - 1);
-			if (fileName == mesh->meshName)
+			if (fileName == mesh->GetMeshName())
 			{
-				meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->meshTransform);
+				meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
 			}
 		}
 
@@ -556,6 +556,18 @@ void N_SceneManager::CreateMeshGO(std::string path)
 	}
 
 	if (!sceneIsPlaying) AddPendingGOs();
+}
+
+void N_SceneManager::CreateDefaultMeshGO(std::string path)
+{
+}
+
+void N_SceneManager::CreateStaticMeshGO(std::string path)
+{
+}
+
+void N_SceneManager::CreateSkeletalMeshGO(std::string path)
+{
 }
 
 void N_SceneManager::CreateExistingMeshGO(std::string path)
@@ -582,9 +594,9 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 			ResourceId meshID = Resources::LoadFromLibrary<Model>(file);
 			Model* mesh = Resources::GetResourceById<Model>(meshID);
 
-			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->meshName);
+			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
 			meshGO.get()->AddComponent<Transform>();
-			meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->meshTransform);
+			meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
 			meshGO.get()->AddComponent<Mesh>();
 
 			meshGO.get()->GetComponent<Mesh>()->meshID = meshID;

@@ -30,6 +30,7 @@
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Easing.h" />
     <ClInclude Include="EasingManager.h" />
+    <ClInclude Include="FbxImporter.h" />
     <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Framebuffer.h" />
@@ -61,8 +62,10 @@
     <ClInclude Include="ResourcesMaterialImpl.h" />
     <ClInclude Include="ResourcesModelImpl.h" />
     <ClInclude Include="ResourcesShaderImpl.h" />
+    <ClInclude Include="ResourcesSkeletalModelImpl.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="SingleOrRandom.h" />
+    <ClInclude Include="SkeletalModel.h" />
     <ClInclude Include="SliderUI.h" />
     <ClInclude Include="SpawnEmmiterModule.h" />
     <ClInclude Include="AudioSource.h" />
@@ -120,6 +123,7 @@
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SingleOrRandom.cpp" />
+    <ClCompile Include="SkeletalModel.cpp" />
     <ClCompile Include="SliderUI.cpp" />
     <ClCompile Include="SpawnEmmiterModule.cpp" />
     <ClCompile Include="EngineCore.cpp" />
