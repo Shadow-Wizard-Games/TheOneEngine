@@ -11,6 +11,7 @@
 #include "SliderUI.h"
 #include "Collider2D.h"
 #include "ParticleSystem.h"
+#include "SkeletalModel.h"
 #include "N_SceneManager.h"
 
 #include <glm/vec3.hpp>
@@ -697,64 +698,71 @@ static void SetPrimaryCam(GameObject* GOptr, bool* primaryCam)
 
 // Animator
 static void PlayAnimation(GameObject* GOptr, MonoString* name) {
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return;
+
 	std::string aName = MonoRegisterer::MonoStringToUTF8(name);
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(GOptr->GetComponent<Mesh>()->meshID);
 	if (m->HasAnimation(aName)) {
 		m->PlayAnimation(aName);
 	}
 }
 
 static void StopAnimation(GameObject* GOptr) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->StopAnimation();
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(GOptr->GetComponent<Mesh>()->meshID);
+	m->StopAnimation();
 }
 
 static bool AnimationHasFinished(GameObject* GOptr)
 {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated() && m->getActiveAnimation()->HasFinished()) {
-		return true;
-	}
-	return false;
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return false;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	return m->getActiveAnimation()->HasFinished();
 }
 
 static bool GetTransitionBlend(GameObject* GOptr){
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		return m->getBlendOnTransition();
-	}
-	return false;
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return false;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	return m->getBlendOnTransition();
 }
 
 static void SetTransitionBlend(GameObject* GOptr, bool* blend) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->setBlendOnTransition((bool)*blend);
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	m->setBlendOnTransition((bool)*blend);
 }
 
 static float GetTransitionTime(GameObject* GOptr) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		return m->getTransitionTime();
-	}
-	return -1.0f;
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return -1.0f;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	return m->getTransitionTime();
 }
 
 static void SetTransitionTime(GameObject* GOptr, float* time) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->setTransitionTime((float)*time);
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	m->setTransitionTime((float)*time);
 }
 
 static void UpdateAnimation(GameObject* GOptr, float* dt) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->UpdateAnim((float)*dt);
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->type != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	m->UpdateAnim((float)*dt);
 }
 
 void MonoRegisterer::RegisterFunctions()

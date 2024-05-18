@@ -12,7 +12,7 @@ enum class MeshType
 };
 
 namespace FBXIMPORTER {
-	MeshType FBXtype(const std::string& path, bool isStatic = false)
+	static MeshType FBXtype(const std::string& path, bool isStatic = false)
 	{
 		const aiScene* scene = aiImportFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals);
 

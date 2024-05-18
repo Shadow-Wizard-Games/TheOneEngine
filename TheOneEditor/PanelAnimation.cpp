@@ -8,7 +8,7 @@
 #include "TheOneEngine/FrameBuffer.h"
 #include "TheOneEngine/FileDialog.h"
 #include "TheOneEngine/Camera.h"
-#include "TheOneEngine/Model.h"
+#include "TheOneEngine/SkeletalModel.h"
 #include "TheOneEngine/Animation/animations/OzzAnimationSimple.h"
 #include "TheOneEngine/Animation/animations/OzzAnimationPartialBlending.h"
 
@@ -118,10 +118,10 @@ bool PanelAnimation::AnimationAvaliable()
 
 	auto resourceID = selectedGO->GetComponent<Mesh>()->meshID;
 
-	if (!Resources::GetResourceById<Model>(resourceID)->isAnimated())
+	if (resourceID == -1)
 		return false;
 
-	activeAnimator = Resources::GetResourceById<Model>(resourceID);
+	activeAnimator = Resources::GetResourceById<SkeletalModel>(resourceID);
 
 	if(isPlaying)
 		activeAnimator->UpdateAnim(app->GetDT());
@@ -290,7 +290,7 @@ void PanelAnimation::DrawAnimations()
 
 		for (size_t i = 0; i < anim_count; i++)
 		{
-			Model::AnimationData& a_data = activeAnimator->getAnimationAt(i);
+			SkeletalModel::AnimationData& a_data = activeAnimator->getAnimationAt(i);
 
 			if (!a_data.animation) continue;
 

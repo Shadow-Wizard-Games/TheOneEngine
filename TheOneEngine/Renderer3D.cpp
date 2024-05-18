@@ -3,7 +3,6 @@
 struct Renderer3DData
 {
 	std::vector<DefaultMesh> meshes;
-	std::vector<InstanceCall> staticInstanceCalls;
 	std::vector<InstanceCall> instanceCalls;
 };
 

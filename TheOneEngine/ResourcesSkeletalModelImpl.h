@@ -15,7 +15,7 @@ inline bool Resources::Import<SkeletalModel>(const std::string& file, SkeletalMo
 {
 	std::filesystem::path import_path = file + ".animator";
 
-	model->path = import_path.string();
+	model->SetMeshPath(import_path.string());
 
 	PreparePath(import_path.parent_path().string());
 
@@ -33,15 +33,15 @@ inline ResourceId Resources::Load<SkeletalModel>(const std::string& file)
 		return -1;
 
 
-	ResourceId position = getResourcePosition(RES_MODEL, file_path.string().c_str());
-	size_t size = m_Resources[RES_MODEL].size();
+	ResourceId position = getResourcePosition(RES_SKELETALMODEL, file_path.string().c_str());
+	size_t size = m_Resources[RES_SKELETALMODEL].size();
 
 	ResourceId resourceId;
 
 	if (position == size) {
 		SkeletalModel* model = new SkeletalModel(file_path.string());
 
-		PushResource(RES_MODEL, file_path.string().c_str(), model, true);
+		PushResource(RES_SKELETALMODEL, file_path.string().c_str(), model, true);
 
 		resourceId = size;
 	}
@@ -60,15 +60,15 @@ inline ResourceId Resources::LoadFromLibrary<SkeletalModel>(const std::string& f
 		return -1;
 
 
-	ResourceId position = getResourcePosition(RES_MODEL, file_path.string().c_str());
-	size_t size = m_Resources[RES_MODEL].size();
+	ResourceId position = getResourcePosition(RES_SKELETALMODEL, file_path.string().c_str());
+	size_t size = m_Resources[RES_SKELETALMODEL].size();
 
 	ResourceId resourceId;
 
 	if (position == size) {
 		SkeletalModel* model = new SkeletalModel(file_path.string());
 
-		PushResource(RES_MODEL, file_path.string().c_str(), model, true);
+		PushResource(RES_SKELETALMODEL, file_path.string().c_str(), model, true);
 
 		resourceId = size;
 	}
@@ -83,8 +83,8 @@ inline SkeletalModel* Resources::GetResourceById<SkeletalModel>(ResourceId id)
 {
 	SkeletalModel* model = NULL;
 
-	if (id >= 0 && id < m_Resources[RES_MODEL].size()) {
-		model = static_cast<SkeletalModel*>(m_Resources[RES_MODEL][id]->resource);
+	if (id >= 0 && id < m_Resources[RES_SKELETALMODEL].size()) {
+		model = static_cast<SkeletalModel*>(m_Resources[RES_SKELETALMODEL][id]->resource);
 	}
 
 	return model;
@@ -93,5 +93,5 @@ inline SkeletalModel* Resources::GetResourceById<SkeletalModel>(ResourceId id)
 template<>
 inline const char* Resources::getResourcePathById<SkeletalModel>(size_t id)
 {
-	return getPathById(RES_MODEL, id);
+	return getPathById(RES_SKELETALMODEL, id);
 }

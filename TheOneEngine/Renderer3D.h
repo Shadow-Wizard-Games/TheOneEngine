@@ -7,12 +7,6 @@ struct DefaultMesh
 	unsigned int textureID;
 };
 
-struct StaticMesh
-{
-	unsigned int meshID;
-	unsigned int textureID;
-};
-
 class InstanceCall
 {
 public:

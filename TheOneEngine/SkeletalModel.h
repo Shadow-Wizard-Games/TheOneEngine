@@ -19,6 +19,10 @@ public:
 
     std::string GetMaterialPath() { return auxMatPath.empty() ? materials[materialIndex] : auxMatPath; }
     std::string GetMeshPath() { return path; }
+    std::string GetMeshName() { return meshName; }
+    glm::mat4 GetMeshTransform() { return meshTransform; }
+
+    void SetMeshPath(const std::string& newPath) { path = newPath; }
 
     void ImportAnimation(const std::string& file);
 

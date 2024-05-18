@@ -154,14 +154,31 @@ void Mesh::DrawComponent(Camera* camera)
 	else
 		mat = Resources::GetResourceById<Material>(materialID);
 
-    Model* mesh = Resources::GetResourceById<Model>(meshID);
 	mat4 transform = containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform();
 
-	if (mesh->isAnimated())
-		RenderOzzSkinnedMesh(mesh, mat, ozz::make_span(mesh->getSkinningMatrices()), transform);
-	else
+	switch (type)
+	{
+	case MeshType::DEFAULT:
+	{
+		Model* mesh = Resources::GetResourceById<Model>(meshID);
 		RenderMesh(mesh, mat, transform);
-
+	}
+		break;
+	case MeshType::STATIC:
+	{
+		Model* mesh = Resources::GetResourceById<Model>(meshID);
+		RenderMesh(mesh, mat, transform);
+	}
+		break;
+	case MeshType::SKELETAL:
+	{
+		SkeletalModel* skMesh = Resources::GetResourceById<SkeletalModel>(meshID);
+		RenderOzzSkinnedMesh(skMesh, mat, ozz::make_span(skMesh->getSkinningMatrices()), transform);
+	}
+		break;
+	default:
+		break;
+	}
     /*if (drawNormalsVerts) DrawVertexNormals();
     if (drawNormalsFaces) DrawFaceNormals();*/
 }
@@ -232,7 +249,7 @@ bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 //}
 
 
-bool Mesh::RenderOzzSkinnedMesh(Model* mesh, Material* material, const ozz::span<ozz::math::Float4x4> skinningMatrices, const mat4& transform)
+bool Mesh::RenderOzzSkinnedMesh(SkeletalModel* mesh, Material* material, const ozz::span<ozz::math::Float4x4> skinningMatrices, const mat4& transform)
 {
 	ozz::sample::Mesh ozzMesh = mesh->GetOzzMesh();
 	const int vertexCount = ozzMesh.vertex_count();

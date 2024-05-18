@@ -275,12 +275,9 @@ bool PanelInspector::Draw()
                 //ImGui::Checkbox("Active", &mesh->isActive);
                 //ImGui::SameLine();  
                 ImGui::Text("Name: ");
-                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->meshName.c_str());
+                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->GetMeshName().c_str());
                 ImGui::Separator();
                 ImGui::Text("Indexes: ");
-                ImGui::SameLine();  ImGui::Text((std::to_string(model->indexData.size())).c_str());
-                ImGui::Text("Vertices: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(model->vertexData.size() / sizeof(MeshVertex)).c_str());
 
                 ImGui::Checkbox("Mesh", &mesh->active);
                 ImGui::Checkbox("Vertex normals", &mesh->drawNormalsVerts);
