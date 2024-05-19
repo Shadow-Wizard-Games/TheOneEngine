@@ -26,7 +26,7 @@ public class IObject
     {
         containerGOptr = InternalCalls.GetGameObjectPtr();
     }
-    
+
     public IObject(IntPtr gameObjectRef)
     {
         containerGOptr = gameObjectRef;

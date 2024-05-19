@@ -37,7 +37,7 @@ public class IGameObject : IObject
     {
         IntPtr foundGOptr = InternalCalls.FindGameObject(name);
 
-        if(foundGOptr == IntPtr.Zero)
+        if (foundGOptr == IntPtr.Zero)
         {
             Debug.LogError("GameObject with name '" + name + "' not found.");
 
@@ -45,7 +45,7 @@ public class IGameObject : IObject
         }
 
         IGameObject goToReturn = new IGameObject(foundGOptr);
-        
+
         return goToReturn;
     }
 
@@ -77,7 +77,7 @@ public class IGameObject : IObject
         {
             component = InternalCalls.ComponentCheck(containerGOptr, (int)type);
 
-            if (component != IntPtr.Zero) 
+            if (component != IntPtr.Zero)
             {
 
                 switch (type)
@@ -132,7 +132,7 @@ public class IGameObject : IObject
             }
         }
 
-        
+
         if (componentToReturn != null)
         {
             return componentToReturn;

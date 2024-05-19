@@ -62,13 +62,13 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-        initialPos = attachedGameObject.transform.position;
+        initialPos = attachedGameObject.transform.Position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.TransitionTime = 0.0f;
 
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
@@ -86,8 +86,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             DebugDraw();
 
             //Set the director vector and distance to the player
-            directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
-            playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+            directorVector = (playerGO.transform.Position - attachedGameObject.transform.Position).Normalize();
+            playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
             UpdateFSM();
             DoStateBehaviour();
@@ -223,7 +223,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     private void AcidSpit()
     {
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -231,7 +231,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     private void TailAttack()
     {
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -280,9 +280,9 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     private bool MoveTo(Vector3 targetPosition)
     {
         //Return true if arrived at destination
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+        if (Vector3.Distance(attachedGameObject.transform.Position, targetPosition) < 0.5f) return true;
 
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
         //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_REBEL_STEP);
         return false;
@@ -295,12 +295,12 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         {
             if (!detected)
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
             }
             else
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
             }
         }
     }

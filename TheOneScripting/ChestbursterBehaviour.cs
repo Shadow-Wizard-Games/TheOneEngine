@@ -57,8 +57,8 @@ public class ChestbursterBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Move");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.TransitionTime = 0.0f;
 
         tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS")?.GetComponent<IParticleSystem>();
         tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS")?.GetComponent<IParticleSystem>();
@@ -76,7 +76,7 @@ public class ChestbursterBehaviour : MonoBehaviour
             DebugDraw();
 
             //directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
-            playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+            playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
             UpdateFSM();
             DoStateBehaviour();
@@ -149,7 +149,7 @@ public class ChestbursterBehaviour : MonoBehaviour
         {
             case States.Idle:
                 if (currentAttack == ChestbursterAttack.None && detected)
-                    attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                    attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
                 break;
             case States.Chase:
@@ -159,7 +159,7 @@ public class ChestbursterBehaviour : MonoBehaviour
                 break;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
                 ChooseAttack();
 
@@ -210,7 +210,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         //Debug.Log("Attempt to do TailPunch");
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -221,7 +221,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         //Debug.Log("Attempt to do TailTrip");
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }

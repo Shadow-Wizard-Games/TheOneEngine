@@ -3,8 +3,7 @@
 public class UiScriptInventory : MonoBehaviour
 {
     public ICanvas canvas;
-    ItemManager itemManager;
-    IGameObject iManagerGO;
+
     UiManager menuManager;
 
     float cooldown = 0;
@@ -19,8 +18,6 @@ public class UiScriptInventory : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("ItemManager");
-        itemManager = iManagerGO.GetComponent<ItemManager>();
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());

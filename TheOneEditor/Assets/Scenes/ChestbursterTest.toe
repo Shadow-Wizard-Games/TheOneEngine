@@ -39,13 +39,20 @@
           "Yaw": 0.0,
           "zFar": 3000.0,
           "zNear": 0.1
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "CameraMovement",
+          "Type": 4,
+          "UID": 684541194
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 69993984,
       "Static": false,
       "UID": 3452816845
     },
@@ -8202,7 +8209,7 @@
           "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
           "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
           "Name": "Mesh",
-          "ParentUID": 3452816845,
+          "ParentUID": 113510800,
           "Type": 2,
           "UID": 160490637
         },

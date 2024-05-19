@@ -19,20 +19,19 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     }
 
     IGameObject playerGO;
-    Vector3 directorVector;
     float playerDistance;
 
     // White Xenomorph parameters
     float life = 200.0f;
-    float movementSpeed = 20.0f * 3;
+    readonly float movementSpeed = 20.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     WhiteXenomorphAttacks currentAttack = WhiteXenomorphAttacks.None;
-    Vector3 initialPos;
+    readonly Vector3 initialPos;
 
     // Patrol
-    float patrolRange = 100;
-    float patrolSpeed = 20.0f;
+    readonly float patrolRange = 100;
+    readonly float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
 
@@ -67,8 +66,8 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.TransitionTime = 0.0f;
 
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
@@ -84,8 +83,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         if (attachedGameObject.transform.ComponentCheck())
         {
             //Set the director vector and distance to the player
-            directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
-            playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+            playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
             UpdateFSM();
             DoStateBehaviour();
@@ -170,7 +168,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 ChooseAttack();
                 switch (currentAttack)
                 {
@@ -186,8 +184,8 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Chase:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
-                attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
+                attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Patrol:
                 Patrol();
@@ -233,7 +231,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     private void TailTrip()
     {
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -282,9 +280,9 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     private bool MoveTo(Vector3 targetPosition)
     {
         //Return true if arrived at destination
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+        if (Vector3.Distance(attachedGameObject.transform.Position, targetPosition) < 0.5f) return true;
 
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
 
         return false;
@@ -297,12 +295,12 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         {
             if (!detected)
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
             }
             else
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
             }
         }
     }

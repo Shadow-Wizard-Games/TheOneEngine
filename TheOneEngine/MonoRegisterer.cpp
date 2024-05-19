@@ -152,11 +152,7 @@ static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 	SetRotation(go, direction);
 
 	go->AddScript("Grenade");
-	//go->AddComponent<Collider2D>();
-	//go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-	//go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
-	//go->GetComponent<Collider2D>()->radius = 0.4f;
-	//engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+
 	return go;
 }
 
@@ -175,7 +171,7 @@ static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction
 	go->GetComponent<Collider2D>()->radius = 30.0f;
 
 	go->AddComponent<AudioSource>();
-	
+
 	go->AddScript("FaceHuggerBehaviour");
 
 	return go;
@@ -195,7 +191,7 @@ static GameObject* RecursiveFindGO(std::string _name, GameObject* refGO)
 {
 	GameObject* returnedGO = nullptr;
 
-	for (auto go : refGO->children)
+	for (auto& go : refGO->children)
 	{
 		if (go->GetName() == _name)
 		{
@@ -240,8 +236,8 @@ static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* sc
 	else if (scriptName != nullptr)
 	{
 		std::string scriptToFind = MonoRegisterer::MonoStringToUTF8(scriptName);
-		
-		for (auto comp: GOptr->GetAllComponents())
+
+		for (auto comp : GOptr->GetAllComponents())
 		{
 			if (comp->GetType() == ComponentType::Script)
 			{
@@ -289,7 +285,7 @@ static void LoadScene(MonoString* sceneName, bool keep, MonoString* path)
 	std::string name = MonoRegisterer::MonoStringToUTF8(sceneName);
 	std::string filepath = MonoRegisterer::MonoStringToUTF8(path);
 
-	if(keep)
+	if (keep)
 		engine->N_sceneManager->LoadSave(name, filepath);
 	else
 		engine->N_sceneManager->LoadScene(name);
@@ -440,6 +436,8 @@ static void CanvasEnableToggle(GameObject* containerGO)
 
 static void ToggleChecker(GameObject* containerGO, bool value, MonoString* nameM)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string name = MonoRegisterer::MonoStringToUTF8(nameM);
 
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
@@ -447,13 +445,15 @@ static void ToggleChecker(GameObject* containerGO, bool value, MonoString* nameM
 	{
 		if (uiElements[i]->GetType() == UiType::CHECKER && uiElements[i]->GetName() == name)
 		{
-			containerGO->GetComponent<Canvas>()->GetItemUI<CheckerUI>(uiElements[i]->GetID())->SetChecker(value);
+			canvas->GetItemUI<CheckerUI>(uiElements[i]->GetID())->SetChecker(value);
 		}
 	}
 }
 
 static void PrintItemUI(GameObject* containerGO, bool value, MonoString* nameM)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string name = MonoRegisterer::MonoStringToUTF8(nameM);
 
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
@@ -461,7 +461,7 @@ static void PrintItemUI(GameObject* containerGO, bool value, MonoString* nameM)
 	{
 		if (uiElements[i]->GetName() == name)
 		{
-			containerGO->GetComponent<Canvas>()->GetItemUI<ItemUI>(uiElements[i]->GetID())->SetPrint(value);
+			canvas->GetItemUI<ItemUI>(uiElements[i]->GetID())->SetPrint(value);
 		}
 	}
 }
@@ -619,13 +619,15 @@ static void MoveSelection(GameObject* containerGO, int direction)
 
 static void ChangeSectImg(GameObject* containerGO, MonoString* name, int x, int y, int w, int h)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
 		if (uiElements[i]->GetType() == UiType::IMAGE && uiElements[i]->GetName() == itemName)
 		{
-			ImageUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<ImageUI>(uiElements[i]->GetID());
+			ImageUI* ui = canvas->GetItemUI<ImageUI>(uiElements[i]->GetID());
 			ui->SetSectSize(x, y, w, h);
 		}
 	}
@@ -633,13 +635,15 @@ static void ChangeSectImg(GameObject* containerGO, MonoString* name, int x, int 
 
 static int GetSliderValue(GameObject* containerGO, MonoString* name)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
 		if (uiElements[i]->GetType() == UiType::SLIDER && uiElements[i]->GetName() == itemName)
 		{
-			SliderUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<SliderUI>(uiElements[i]->GetID());
+			SliderUI* ui = canvas->GetItemUI<SliderUI>(uiElements[i]->GetID());
 			return ui->GetValue();
 		}
 	}
@@ -649,13 +653,15 @@ static int GetSliderValue(GameObject* containerGO, MonoString* name)
 
 static int GetSliderMaxValue(GameObject* containerGO, MonoString* name)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
 		if (uiElements[i]->GetType() == UiType::SLIDER && uiElements[i]->GetName() == itemName)
 		{
-			SliderUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<SliderUI>(uiElements[i]->GetID());
+			SliderUI* ui = canvas->GetItemUI<SliderUI>(uiElements[i]->GetID());
 			return ui->GetMaxValue();
 		}
 	}
@@ -665,13 +671,15 @@ static int GetSliderMaxValue(GameObject* containerGO, MonoString* name)
 
 static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
 		if (uiElements[i]->GetType() == UiType::SLIDER && uiElements[i]->GetName() == itemName)
 		{
-			SliderUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<SliderUI>(uiElements[i]->GetID());
+			SliderUI* ui = canvas->GetItemUI<SliderUI>(uiElements[i]->GetID());
 			ui->SetValue(value);
 			break;
 		}
@@ -680,14 +688,19 @@ static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
 
 static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
-	for (size_t i = 0; i < uiElements.size(); i++)
+	std::string itemText = MonoRegisterer::MonoStringToUTF8(text);
+
+	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
+
+	for (auto element : uiElements)
 	{
-		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
+		if (element->GetType() == UiType::TEXT && element->GetName() == itemName)
 		{
-			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
-			ui->SetText(MonoRegisterer::MonoStringToUTF8(text));
+			TextUI* ui = canvas->GetItemUI<TextUI>(element->GetID());
+			ui->SetText(itemText);
 			break;
 		}
 	}
@@ -695,14 +708,16 @@ static void SetTextString(GameObject* containerGO, MonoString* text, MonoString*
 
 static MonoString* GetTextString(GameObject* containerGO, MonoString* name)
 {
+	Canvas* canvas = containerGO->GetComponent<Canvas>();
+
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
 	std::string ret = "TextUI element not found";
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
 		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
 		{
-			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
+			TextUI* ui = canvas->GetItemUI<TextUI>(uiElements[i]->GetID());
 			return mono_string_new(MonoManager::GetAppDomain(), ui->GetText().c_str());
 		}
 	}
@@ -769,7 +784,7 @@ static void DrawWireSphere(vec3f position, float radius, vec3f colorNormalized)
 		float y = radius * sinf(angle);
 		shapeToAdd.points.push_back(vec3f(x, y, 0));
 	}
-	
+
 	//Go to starting spot for last circle
 	for (int i = 0; i < segments / 4; ++i) {
 		float angle = 2.0f * 3.14159f * float(i) / float(segments);
@@ -966,7 +981,7 @@ static bool AnimationHasFinished(GameObject* GOptr)
 	return false;
 }
 
-static bool GetTransitionBlend(GameObject* GOptr){
+static bool GetTransitionBlend(GameObject* GOptr) {
 	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
 	if (m->isAnimated()) {
 		return m->getBlendOnTransition();

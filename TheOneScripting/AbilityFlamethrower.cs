@@ -2,16 +2,11 @@
 
 public class AbilityFlamethrower : Ability
 {
-    IGameObject playerGO;
-    PlayerScript player;
 
-    //Weapon Flamethrower;
 
     public override void Start()
     {
         name = "Flamethrower";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         activeTime = 10.0f;
         cooldownTime = 20.0f;
