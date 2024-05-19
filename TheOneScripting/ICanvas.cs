@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 public class ICanvas : IComponent
 {
     public enum UiState
@@ -16,7 +15,7 @@ public class ICanvas : IComponent
     public ICanvas() : base() { }
     public ICanvas(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
-    public void ToggleEnable() 
+    public void ToggleEnable()
     {
         InternalCalls.CanvasEnableToggle(containerGOptr);
     }

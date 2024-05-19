@@ -8,8 +8,8 @@ public class ExampleScript : MonoBehaviour
     public override void Update()
     {
         //Horizontal
-        if (attachedGameObject.transform.position.x > 5.0f) goingRight = false;
-        else if (attachedGameObject.transform.position.x < -5.0f) goingRight = true;
+        if (attachedGameObject.transform.Position.x > 5.0f) goingRight = false;
+        else if (attachedGameObject.transform.Position.x < -5.0f) goingRight = true;
 
         if (goingRight)
         {
@@ -21,8 +21,8 @@ public class ExampleScript : MonoBehaviour
         }
 
         //Vertical
-        if (attachedGameObject.transform.position.y > 5.0f) goingUp = false;
-        else if (attachedGameObject.transform.position.y < -5.0f) goingUp = true;
+        if (attachedGameObject.transform.Position.y > 5.0f) goingUp = false;
+        else if (attachedGameObject.transform.Position.y < -5.0f) goingUp = true;
 
         if (goingUp)
         {
@@ -34,4 +34,3 @@ public class ExampleScript : MonoBehaviour
         }
     }
 }
- 

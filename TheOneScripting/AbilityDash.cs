@@ -5,12 +5,9 @@ public class AbilityDash : Ability
     IGameObject playerGO;
     PlayerScript player;
 
-    float dashSpeed = 50.0f;
-    float rollPotency = 2.0f;
-    float dashPotency = 3.0f;
+    readonly float rollPotency = 2.0f;
+    readonly float dashPotency = 3.0f;
 
-    Vector3 moveDir = Vector3.zero;
-    
     public override void Start()
     {
         abilityName = "Roll";
@@ -55,7 +52,7 @@ public class AbilityDash : Ability
 
         state = AbilityState.ACTIVE;
 
-        if(player.dashAbilityName == "Roll")
+        if (player.dashAbilityName == "Roll")
         {
             attachedGameObject.source.Play(IAudioSource.AudioEvent.P_ROLL);
         }
@@ -73,7 +70,7 @@ public class AbilityDash : Ability
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
-            if(player.dashAbilityName == "Roll")
+            if (player.dashAbilityName == "Roll")
             {
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * rollPotency * player.baseSpeed * Time.deltaTime);
             }

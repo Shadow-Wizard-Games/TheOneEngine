@@ -6,6 +6,9 @@ public class MainMenuManager : MonoBehaviour
     public ICanvas canvasLogo;
     public ICanvas canvasTitle;
     public ICanvas canvasCredits;
+
+    UiScriptSettings settingsScript;
+
     float cooldown = 0;
     bool onCooldown = false;
 
@@ -33,6 +36,8 @@ public class MainMenuManager : MonoBehaviour
         canvasTitle = IGameObject.Find("TitleCanvas").GetComponent<ICanvas>();
         canvasCredits = IGameObject.Find("CreditsCanvas").GetComponent<ICanvas>();
 
+        settingsScript = IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>();
+
         IGameObject.Find("Canvas_Settings").Disable();
         IGameObject.Find("Canvas_SettingsControls").Disable();
         IGameObject.Find("Canvas_SettingsDisplay").Disable();
@@ -58,7 +63,6 @@ public class MainMenuManager : MonoBehaviour
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
-        UiScriptSettings settingsScript = IGameObject.Find("Canvas_Settings").GetComponent<UiScriptSettings>();
 
         if (wasEditing && !settingsScript.editing) onCooldown = true;
 

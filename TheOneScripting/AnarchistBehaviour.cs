@@ -23,26 +23,19 @@ class AnarchistBehaviour : MonoBehaviour
     Vector3 initialPos;
 
     float life = 100;
-    ICollider2D collider;
     PlayerScript player;
     GameManager gameManager;
-
-    IGameObject iShotPSGO;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-        initialPos = attachedGameObject.transform.position;
-
-        collider = attachedGameObject.GetComponent<ICollider2D>();
+        initialPos = attachedGameObject.transform.Position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
         attachedGameObject.animator.Play("Scan");
 
-        attachedGameObject.animator.blend = false;
-
-        iShotPSGO = attachedGameObject.FindInChildren("ShotPS");
+        attachedGameObject.animator.Blend = false;
     }
 
     public override void Update()
@@ -51,7 +44,7 @@ class AnarchistBehaviour : MonoBehaviour
 
         if (currentState == States.Dying)
         {
-            if (attachedGameObject.animator.currentAnimHasFinished)
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
             {
                 currentState = States.Dead;
                 return;
@@ -68,7 +61,7 @@ class AnarchistBehaviour : MonoBehaviour
             return;
         }
 
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
         UpdateFSMStates();
         DoStateBehaviour();
@@ -141,7 +134,7 @@ class AnarchistBehaviour : MonoBehaviour
             goingToRoundPos = !MoveTo(roundPos);
         }
 
-        if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up); }
+        if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up); }
     }
 
     enum InspctStates
@@ -162,7 +155,7 @@ class AnarchistBehaviour : MonoBehaviour
         {
             Debug.Log("StartingState");
             lastState = currentState;
-            playerLastPosition = playerGO.transform.position;
+            playerLastPosition = playerGO.transform.Position;
         }
 
         switch (currentSubstate)
@@ -174,7 +167,7 @@ class AnarchistBehaviour : MonoBehaviour
                     currentSubstate = InspctStates.Inspecting;
                 }
                 attachedGameObject.transform.LookAt2D(playerLastPosition);
-                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.3f); }
+                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.3f); }
                 break;
             case InspctStates.Inspecting:
                 attachedGameObject.animator.Play("Scan");
@@ -185,7 +178,7 @@ class AnarchistBehaviour : MonoBehaviour
                     currentSubstate = InspctStates.ComingBack;
                 }
                 attachedGameObject.transform.Rotate(Vector3.up * 150.0f * Time.deltaTime);
-                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.5f); }
+                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.5f); }
                 break;
             case InspctStates.ComingBack:
                 attachedGameObject.animator.Play("Walk");
@@ -195,14 +188,14 @@ class AnarchistBehaviour : MonoBehaviour
                     currentState = States.Patrol;
                 }
                 attachedGameObject.transform.LookAt2D(initialPos);
-                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.8f); }
+                if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 3, inspectDetectionRadius, Vector3.right + Vector3.up * 0.8f); }
                 break;
             default:
                 break;
         }
 
-        Vector3 directorVec = (attachedGameObject.transform.position - playerGO.transform.position).Normalize();
-        float dot = Vector3.Dot(attachedGameObject.transform.forward, directorVec);
+        Vector3 directorVec = (attachedGameObject.transform.Position - playerGO.transform.Position).Normalize();
+        float dot = Vector3.Dot(attachedGameObject.transform.Forward, directorVec);
 
         if (playerDistance < inspectDetectionRadius && dot > 0.7f)
         {
@@ -220,7 +213,7 @@ class AnarchistBehaviour : MonoBehaviour
 
     void AttackState()
     {
-        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
         if (playerDistance > loseRange)
         {
@@ -256,7 +249,7 @@ class AnarchistBehaviour : MonoBehaviour
             }
         }
 
-        if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, loseRange, Vector3.right); }
+        if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 3, loseRange, Vector3.right); }
     }
 
     readonly float movementSpeed = 50.0f;
@@ -264,9 +257,9 @@ class AnarchistBehaviour : MonoBehaviour
     bool MoveTo(Vector3 targetPosition)
     {
         //Return true if arrived at destination
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+        if (Vector3.Distance(attachedGameObject.transform.Position, targetPosition) < 0.5f) return true;
 
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
         return false;
     }
