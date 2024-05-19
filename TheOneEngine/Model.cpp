@@ -130,14 +130,14 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             material.SetUniformData("diffuse", data);
                             material.SetUniformData("isAnimated", false);
                         }
-                    }
-                    else
-                    {
-                        id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
-                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
+                }
+                else
+                {
+                    id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
+                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
 
-                        material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
-                    }
+                    material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
+                }
 
 
                 Resources::Import<Material>(matPath.string().c_str(), &material);
@@ -164,6 +164,16 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 vertex_data.push_back(0.0f);
                 vertex_data.push_back(0.0f);
             }
+            // Normals
+            vertex_data.push_back(mesh->mNormals[i].x);
+            vertex_data.push_back(mesh->mNormals[i].y);
+            vertex_data.push_back(mesh->mNormals[i].z);
+            //InstanceModel
+            glm::mat4 m(1);
+            vertex_data.push_back(m[i].x);
+            vertex_data.push_back(m[i].y);
+            vertex_data.push_back(m[i].z);
+            vertex_data.push_back(m[i].w);
         }
 
         ModelData data;
@@ -205,7 +215,6 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
         }
         model->GenBufferData(data);
         meshes.push_back(model);
-        model->rendererID = data.meshVAO.GetRendererID();
 
         Resources::Import<Model>(Resources::PathToLibrary<Model>(sceneName) + model->meshName, model, data);
     }
@@ -216,51 +225,25 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
 
 void Model::GenBufferData(ModelData& data)
 {
-    data.meshVAO = StackVertexArray();
+    meshVAO.Create();
 
-    if (glGetError() != 0)
-    {
-        LOG(LogType::LOG_ERROR, "Check error %s", glewGetErrorString(glGetError()));
-    }
     VertexBuffer meshVBO = VertexBuffer(data.vertexData.data(), data.vertexData.size() * sizeof(float));
 
-    if (glGetError() != 0)
-    {
-        LOG(LogType::LOG_ERROR, "Check error %s", glewGetErrorString(glGetError()));
-    }
-
-    data.meshVBO.SetLayout({
+    meshVBO.SetLayout({
         { ShaderDataType::Float3, "a_Pos"          },
         { ShaderDataType::Float2, "a_UV"           },
         { ShaderDataType::Float3, "a_Normal"       },
         { ShaderDataType::Mat4,   "a_Model"        }
         });
-    data.meshVAO.AddVertexBuffer(meshVBO);
+    meshVAO.AddVertexBuffer(meshVBO);
 
-    IndexBuffer meshIB = IndexBuffer(data.indexData.data(), data.indexData.size());
+    IndexBuffer meshIBO = IndexBuffer(data.indexData.data(), data.indexData.size());
 
-
-    if (glGetError() != 0)
-    {
-        LOG(LogType::LOG_ERROR, "Check error %s", glewGetErrorString(glGetError()));
-    }
-
-    data.meshVAO.SetIndexBuffer(meshIB);
-
-
-    if (glGetError() != 0)
-    {
-        LOG(LogType::LOG_ERROR, "Check error %s", glewGetErrorString(glGetError()));
-    }
+    meshVAO.SetIndexBuffer(meshIBO);
 
 
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
     GLCALL(glBindVertexArray(0));
-
-    if (glGetError() != 0)
-    {
-        LOG(LogType::LOG_ERROR, "Check error %s", glewGetErrorString(glGetError()));
-    }
 }
 
 void Model::serializeMeshData(const std::string& filename, const ModelData& data)
@@ -417,7 +400,6 @@ void Model::deserializeMeshData(const std::string& filename)
     inFile.close();
 
     GenBufferData(data);
-    rendererID = data.meshVAO.GetRendererID();
 }
 
 

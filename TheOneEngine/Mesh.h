@@ -43,7 +43,7 @@ private:
 
     bool RenderOzzSkinnedMesh(
         SkeletalModel* mesh,
-        Material* material,
+        int matID,
         const ozz::span<ozz::math::Float4x4> _skinning_matrices,
         const mat4& _transform);
     bool RenderMesh(Model* mesh, Material* material, const mat4& transform);

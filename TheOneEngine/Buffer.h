@@ -77,6 +77,8 @@ public:
 	uint32_t GetStride() const { return m_Stride; }
 	const std::vector<BufferElement>& GetElements() const { return m_Elements; }
 	uint32_t GetSize() const { return m_Elements.size() * sizeof(BufferElement) + sizeof(uint32_t); }
+	const BufferElement& GetElementAt(uint32_t index) const { return m_Elements.at(index); }
+	const BufferElement& GetElementByName(const std::string& name) const { for (const BufferElement& e : m_Elements) if (e.Name == name) return e; return BufferElement(); }
 
 	std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
 	std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
@@ -112,7 +114,7 @@ public:
 
 	void Delete();
 
-	void SetData(const void* data, uint32_t size);
+	void SetData(const void* data, uint32_t size, uint32_t offset = 0) const;
 
 	const BufferLayout& GetLayout() const { return m_Layout; }
 	void SetLayout(const BufferLayout& layout) { m_Layout = layout; }

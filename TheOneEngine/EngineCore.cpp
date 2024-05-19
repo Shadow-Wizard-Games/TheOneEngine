@@ -263,6 +263,7 @@ void EngineCore::SetUniformBufferCamera(const glm::mat4& camMatrix)
 
 void EngineCore::InitPreLightingShader()
 {
+    GLERR;
     //Init default shaders with uniforms
     ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PreLightingShader");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
@@ -275,6 +276,7 @@ void EngineCore::InitPreLightingShader()
 
 void EngineCore::InitPostLightingShader()
 {
+    GLERR;
     //Init default shaders with uniforms
     ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PostLightingShader");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);

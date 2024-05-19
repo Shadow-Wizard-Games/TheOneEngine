@@ -152,11 +152,6 @@ void Mesh::DrawComponent(Camera* camera)
     if (!active || meshID == -1)
         return;
 
-	Material* mat;
-	if(materialID == -1)
-		mat = Resources::GetResourceById<Material>(0);
-	else
-		mat = Resources::GetResourceById<Material>(materialID);
 
 	mat4 transform = containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform();
 
@@ -165,19 +160,19 @@ void Mesh::DrawComponent(Camera* camera)
 	case MeshType::DEFAULT:
 	{
 		Model* mesh = Resources::GetResourceById<Model>(meshID);
-		RenderMesh(mesh, mat, transform);
+		Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
 	}
 		break;
 	case MeshType::STATIC:
 	{
 		Model* mesh = Resources::GetResourceById<Model>(meshID);
-		RenderMesh(mesh, mat, transform);
+		Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
 	}
 		break;
 	case MeshType::SKELETAL:
 	{
 		SkeletalModel* skMesh = Resources::GetResourceById<SkeletalModel>(meshID);
-		RenderOzzSkinnedMesh(skMesh, mat, ozz::make_span(skMesh->getSkinningMatrices()), transform);
+		RenderOzzSkinnedMesh(skMesh, materialID, ozz::make_span(skMesh->getSkinningMatrices()), transform);
 	}
 		break;
 	default:
@@ -211,8 +206,14 @@ bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 }
 
 
-bool Mesh::RenderOzzSkinnedMesh(SkeletalModel* mesh, Material* material, const ozz::span<ozz::math::Float4x4> skinningMatrices, const mat4& transform)
+bool Mesh::RenderOzzSkinnedMesh(SkeletalModel* mesh, int matID, const ozz::span<ozz::math::Float4x4> skinningMatrices, const mat4& transform)
 {
+	Material* material;
+	if (matID == -1)
+		material = Resources::GetResourceById<Material>(0);
+	else
+		material = Resources::GetResourceById<Material>(matID);
+
 	ozz::sample::Mesh ozzMesh = mesh->GetOzzMesh();
 	const int vertexCount = ozzMesh.vertex_count();
 
@@ -628,5 +629,5 @@ void Mesh::LoadComponent(const json& meshJSON)
     }
 
 	if (meshID != -1 && type == MeshType::DEFAULT)
-		Renderer3D::AddMesh(Resources::GetResourceById<Model>(meshID)->rendererID, materialID);
+		Renderer3D::AddMesh(Resources::GetResourceById<Model>(meshID)->GetMeshID(), materialID);
 }

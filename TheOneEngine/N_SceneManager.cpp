@@ -800,7 +800,7 @@ void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<Game
 	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
 	meshGO.get()->GetComponent<Mesh>()->type = MeshType::DEFAULT;
 
-	Renderer3D::AddMesh(mesh->rendererID, meshGO.get()->GetComponent<Mesh>()->materialID);
+	Renderer3D::AddMesh(mesh->GetMeshID(), meshGO.get()->GetComponent<Mesh>()->materialID);
 
 	if (isSingle)
 	{

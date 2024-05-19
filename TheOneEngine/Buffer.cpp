@@ -44,10 +44,10 @@ void VertexBuffer::Delete()
 	}
 }
 
-void VertexBuffer::SetData(const void* data, uint32_t size)
+void VertexBuffer::SetData(const void* data, uint32_t size, uint32_t offset) const
 {
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
-	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, size, data));
+	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, offset, size, data));
 }
 
 /////////////////////////////////////////////////////////////////////////////

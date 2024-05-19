@@ -26,6 +26,7 @@ void Shader::Init(const std::string& filename)
 
 void Shader::Compile(const std::string& filename)
 {
+	GLERR;
 	std::string vertexFile = filename;
 	vertexFile += ".vs";
 

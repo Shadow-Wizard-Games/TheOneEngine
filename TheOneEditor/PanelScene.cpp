@@ -247,7 +247,7 @@ bool PanelScene::Draw()
             gBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
             // Set Render Environment
-            engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
+            engine->SetRenderEnvironment();
 
             // Draw Scene
             GLCALL(glDisable(GL_BLEND));

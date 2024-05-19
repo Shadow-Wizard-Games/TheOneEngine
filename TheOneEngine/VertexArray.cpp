@@ -22,27 +22,27 @@ static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
 	return 0;
 }
 
-VertexArray::VertexArray()
+HeapVertexArray::HeapVertexArray()
 {
 	GLCALL(glCreateVertexArrays(1, &m_RendererID));
 }
 
-VertexArray::~VertexArray()
+HeapVertexArray::~HeapVertexArray()
 {
 	Delete();
 }
 
-void VertexArray::Bind() const
+void HeapVertexArray::Bind() const
 {
 	GLCALL(glBindVertexArray(m_RendererID));
 }
 
-void VertexArray::Unbind() const
+void HeapVertexArray::Unbind() const
 {
 	GLCALL(glBindVertexArray(0));
 }
 
-void VertexArray::Delete()
+void HeapVertexArray::Delete()
 {
 	if (m_RendererID)
 	{
@@ -56,7 +56,7 @@ void VertexArray::Delete()
 	}
 }
 
-void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
+void HeapVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
 {
 
 	GLCALL(glBindVertexArray(m_RendererID));
@@ -121,7 +121,7 @@ void VertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuf
 	m_VertexBuffers.push_back(vertexBuffer);
 }
 
-void VertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
+void HeapVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer)
 {
 	GLCALL(glBindVertexArray(m_RendererID));
 	indexBuffer->Bind();
@@ -129,10 +129,7 @@ void VertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer
 	m_IndexBuffer = indexBuffer;
 }
 
-StackVertexArray::StackVertexArray()
-{
-	GLCALL(glCreateVertexArrays(1, &m_RendererID));
-}
+StackVertexArray::StackVertexArray() {}
 
 StackVertexArray::~StackVertexArray()
 {
@@ -149,6 +146,11 @@ void StackVertexArray::Unbind() const
 	GLCALL(glBindVertexArray(0));
 }
 
+void StackVertexArray::Create()
+{
+	GLCALL(glCreateVertexArrays(1, &m_RendererID));
+}
+
 void StackVertexArray::Delete()
 {
 	if (m_RendererID)
@@ -156,9 +158,7 @@ void StackVertexArray::Delete()
 		GLCALL(glDeleteVertexArrays(1, &m_RendererID));
 		m_RendererID = 0;
 
-		for (auto& vbo : m_VertexBuffers)
-			vbo.Delete();
-
+		m_VertexBuffer.Delete();
 		m_IndexBuffer.Delete();
 	}
 }
@@ -225,7 +225,7 @@ void StackVertexArray::AddVertexBuffer(const VertexBuffer& vertexBuffer)
 		}
 	}
 
-	m_VertexBuffers.push_back(vertexBuffer);
+	m_VertexBuffer = vertexBuffer;
 }
 
 void StackVertexArray::SetIndexBuffer(const IndexBuffer& indexBuffer)

@@ -49,20 +49,20 @@ struct Renderer2DData
 	static const uint32_t MaxIndices = MaxQuads * 6;
 	static const uint32_t MaxTextureSlots = 32;
 
-	std::shared_ptr<VertexArray> QuadVertexArray;
+	std::shared_ptr<HeapVertexArray> QuadVertexArray;
 	std::shared_ptr<VertexBuffer> QuadVertexBuffer;
 	std::shared_ptr<Shader> QuadShader;
 	std::shared_ptr<Texture> WhiteTexture;
 
-	std::shared_ptr<VertexArray> CircleVertexArray;
+	std::shared_ptr<HeapVertexArray> CircleVertexArray;
 	std::shared_ptr<VertexBuffer> CircleVertexBuffer;
 	std::shared_ptr<Shader> CircleShader;
 
-	std::shared_ptr<VertexArray> LineVertexArray;
+	std::shared_ptr<HeapVertexArray> LineVertexArray;
 	std::shared_ptr<VertexBuffer> LineVertexBuffer;
 	std::shared_ptr<Shader> LineShader;
 
-	std::shared_ptr<VertexArray> TextVertexArray;
+	std::shared_ptr<HeapVertexArray> TextVertexArray;
 	std::shared_ptr<VertexBuffer> TextVertexBuffer;
 	std::shared_ptr<Shader> TextShader;
 
@@ -98,14 +98,14 @@ static Renderer2DData renderer2D;
 
 
 
-static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount)
+static void DrawIndexed(const std::shared_ptr<HeapVertexArray>& vertexArray, uint32_t indexCount)
 {
 	vertexArray->Bind();
 	uint32_t count = indexCount ? indexCount : vertexArray->GetIndexBuffer()->GetCount();
 	GLCALL(glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr));
 }
 
-static void DrawLines(const std::shared_ptr<VertexArray>& vertexArray, uint32_t vertexCount)
+static void DrawLines(const std::shared_ptr<HeapVertexArray>& vertexArray, uint32_t vertexCount)
 {
 	vertexArray->Bind();
 	GLCALL(glDrawArrays(GL_LINES, 0, vertexCount));
@@ -118,7 +118,7 @@ static void SetLineWidth(float width)
 
 void Renderer2D::Init()
 {
-	renderer2D.QuadVertexArray = std::make_shared<VertexArray>();
+	renderer2D.QuadVertexArray = std::make_shared<HeapVertexArray>();
 
 	renderer2D.QuadVertexBuffer = std::make_shared<VertexBuffer>(renderer2D.MaxVertices * sizeof(QuadVertex));
 	renderer2D.QuadVertexBuffer->SetLayout({
@@ -153,7 +153,7 @@ void Renderer2D::Init()
 	delete[] quadIndices;
 
 	// Circles
-	renderer2D.CircleVertexArray = std::make_shared<VertexArray>();
+	renderer2D.CircleVertexArray = std::make_shared<HeapVertexArray>();
 
 	renderer2D.CircleVertexBuffer = std::make_shared<VertexBuffer>(renderer2D.MaxVertices * sizeof(CircleVertex));
 	renderer2D.CircleVertexBuffer->SetLayout({
@@ -168,7 +168,7 @@ void Renderer2D::Init()
 	renderer2D.CircleVertexBufferBase = new CircleVertex[renderer2D.MaxVertices];
 
 	// Lines
-	renderer2D.LineVertexArray = std::make_shared<VertexArray>();
+	renderer2D.LineVertexArray = std::make_shared<HeapVertexArray>();
 
 	renderer2D.LineVertexBuffer = std::make_shared<VertexBuffer>(renderer2D.MaxVertices * sizeof(LineVertex));
 	renderer2D.LineVertexBuffer->SetLayout({
@@ -179,7 +179,7 @@ void Renderer2D::Init()
 	renderer2D.LineVertexBufferBase = new LineVertex[renderer2D.MaxVertices];
 
 	// Text
-	renderer2D.TextVertexArray = std::make_shared<VertexArray>();
+	renderer2D.TextVertexArray = std::make_shared<HeapVertexArray>();
 
 	renderer2D.TextVertexBuffer = std::make_shared<VertexBuffer>(renderer2D.MaxVertices * sizeof(TextVertex));
 	renderer2D.TextVertexBuffer->SetLayout({

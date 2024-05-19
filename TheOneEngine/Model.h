@@ -10,6 +10,8 @@ struct MeshVertex
 {
     vec3f position;
     vec2f texCoords;
+    vec3f normal;
+    mat4f instanceModel;
 };
 
 struct ModelData
@@ -18,10 +20,6 @@ struct ModelData
     std::vector<unsigned int> indexData;
 
     BufferLayout format;
-
-    StackVertexArray meshVAO;
-    VertexBuffer meshVBO;
-    IndexBuffer meshIBO;
 
     std::vector<vec3f> meshVerts;
     std::vector<vec3f> meshNorms;
@@ -39,20 +37,21 @@ public:
     static std::vector<Model*> LoadMeshes(const std::string& path);
     static void SaveMesh(Model* mesh, const std::string& path, const ModelData& data);
 
-    std::string GetMaterialPath() { return materials[materialIndex]; }
-    std::string GetMeshPath() { return path; }
-    std::string GetMeshName() { return meshName; }
-    glm::mat4 GetMeshTransform() { return meshTransform; }
+    const StackVertexArray& GetMeshID() { return meshVAO; }
+    const std::string& GetMaterialPath() { return materials[materialIndex]; }
+    const std::string& GetMeshPath() { return path; }
+    const std::string& GetMeshName() { return meshName; }
+    const glm::mat4& GetMeshTransform() { return meshTransform; }
 
     void SetMeshPath(const std::string& newPath) {path = newPath;}
 
     void serializeMeshData(const std::string& filename, const ModelData& data);
     void deserializeMeshData(const std::string& filename);
 
-    uint32_t rendererID = 0;
-
 private:
     void GenBufferData(ModelData& data);
+
+    StackVertexArray meshVAO;
 
     std::string meshName;
 
