@@ -46,7 +46,9 @@ Gui::Gui(App* app) :
 	panelAnimation(nullptr),
 	panelSettings(nullptr),
 	panelBuild(nullptr)
-{}
+{
+	editColor = { "null", { 1.0f, 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f } };
+}
 
 Gui::~Gui()
 {
@@ -182,7 +184,7 @@ bool Gui::Start()
 	style.Colors[ImGuiCol_TabActive] = ImVec4(0.23f, 0.23f, 0.24f, 1.00f);
 	style.Colors[ImGuiCol_TabUnfocused] = ImVec4(0.08f, 0.08f, 0.09f, 1.00f);
 	style.Colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
-	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.26f, 0.59f, 0.98f, 0.70f);
+	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.70f, 0.70f, 0.70f, 0.70f);
 	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.20f, 0.20f, 0.20f, 1.00f);
 	style.Colors[ImGuiCol_PlotLines] = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
 	style.Colors[ImGuiCol_PlotLinesHovered] = ImVec4(1.00f, 0.43f, 0.35f, 1.00f);
@@ -193,7 +195,7 @@ bool Gui::Start()
 	style.Colors[ImGuiCol_NavHighlight] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
 	style.Colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.00f, 1.00f, 1.00f, 0.70f);
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
-	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
+	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.60f);
 	style.GrabRounding = style.FrameRounding = 2.3f;
 	style.FramePadding = { 4, 4 };
 	style.WindowMenuButtonPosition = -1;
@@ -305,12 +307,18 @@ bool Gui::Update(double dt)
 	}
 
 	if (showImGuiDemo)
-	{
 		ImGui::ShowDemoWindow();
-	}
 
 	if (openSceneFileWindow)
 		OpenSceneFileWindow();
+
+	if (openColorPicker)
+	{
+		ImGui::OpenPopup("ColorPicker");
+		openColorPicker = false;		
+	}
+
+	ColorPicker();
 
     return ret;
 }
@@ -587,6 +595,7 @@ void Gui::MainMenuHelp()
 	}
 }
 
+// Popups
 void Gui::OpenSceneFileWindow()
 {
 	if (ImGui::Begin("Open File", &openSceneFileWindow))
@@ -630,5 +639,71 @@ void Gui::OpenSceneFileWindow()
 		}
 
 		ImGui::End();
+	}
+}
+
+void Gui::ColorPicker()
+{
+	// Generate a default palette. The palette will persist and can be edited.
+	static bool saved_palette_init = true;
+	static ImVec4 saved_palette[32] = {};
+	if (saved_palette_init)
+	{
+		for (int n = 0; n < IM_ARRAYSIZE(saved_palette); n++)
+		{
+			ImGui::ColorConvertHSVtoRGB(n / 31.0f, 0.8f, 0.8f,
+				saved_palette[n].x, saved_palette[n].y, saved_palette[n].z);
+			saved_palette[n].w = 1.0f; // Alpha
+		}
+		saved_palette_init = false;
+	}
+
+	if (ImGui::BeginPopup("ColorPicker"))
+	{
+		ImGui::Text("Color");
+		ImGui::Separator(); ImGui::Dummy({ 0, 4 });
+
+		// Previous/New Color
+		if (ImGui::ColorButton("##previous", editColor.previousColor, ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_AlphaPreview, ImVec2(50, 20)))
+			editColor.color = editColor.previousColor;
+		ImGui::SameLine();
+		ImGui::ColorButton("##current", editColor.color, ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_AlphaPreview, ImVec2(50, 20));
+		ImGui::Dummy({ 0, 4 });
+
+		// Color Picker + Formats
+		ImGui::ColorPicker4("##picker", (float*)&editColor.color, panelSettings->GetColorFlags() | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoSmallPreview | ImGuiColorEditFlags_AlphaBar);
+
+		// Palette
+		ImGui::Dummy({ 0, 4 }); ImGui::Separator(); ImGui::Dummy({ 0, 4 });
+		ImGui::Text("Palette");
+		for (int n = 0; n < IM_ARRAYSIZE(saved_palette); n++)
+		{
+			ImGui::PushID(n);
+			if ((n % 8) != 0)
+				ImGui::SameLine(0.0f, ImGui::GetStyle().ItemSpacing.y);
+
+			ImGuiColorEditFlags palette_button_flags = ImGuiColorEditFlags_NoAlpha | ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_NoTooltip;
+			if (ImGui::ColorButton("##palette", saved_palette[n], palette_button_flags, ImVec2(20, 20)))
+				editColor.color = ImVec4(saved_palette[n].x, saved_palette[n].y, saved_palette[n].z, editColor.color.w); // Preserve alpha!
+
+			// Allow user to drop colors into each palette entry. Note that ColorButton() is already a
+			// drag source by default, unless specifying the ImGuiColorEditFlags_NoDragDrop flag.
+			if (ImGui::BeginDragDropTarget())
+			{
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(IMGUI_PAYLOAD_TYPE_COLOR_3F))
+					memcpy((float*)&saved_palette[n], payload->Data, sizeof(float) * 3);
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(IMGUI_PAYLOAD_TYPE_COLOR_4F))
+					memcpy((float*)&saved_palette[n], payload->Data, sizeof(float) * 4);
+				ImGui::EndDragDropTarget();
+			}
+
+			ImGui::PopID();
+		}
+
+		ImGui::EndPopup();
+	}
+	else
+	{
+		editColor.id = "null";
 	}
 }

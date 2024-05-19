@@ -50,7 +50,8 @@ uniform vec3 u_ViewPos;
 
 const float PI = 3.14159265359;
 
-vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir) {
+vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
+{
     // diffuse
     vec3 lightDir = normalize(-light.Direction);
     vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * light.Color;
@@ -62,13 +63,12 @@ vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec
     return (diffuse + specular);
 }
 
-vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir) {
+vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
+{
     float distance = length(light.Position - FragPos);
-    if(distance < light.Radius)
-    {
-       
-    }
-     // diffuse
+    if(distance > light.Radius) return vec3(0.0);
+
+    // diffuse
     vec3 lightDir = normalize(light.Position - FragPos);
     vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * light.Color;
     // specular
@@ -79,15 +79,14 @@ vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal,
     float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
     diffuse *= attenuation;
     specular *= attenuation;
-    return (diffuse + specular);
+    return (diffuse + specular); 
 }
 
-vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir) {
+vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
+{
     float distance = length(light.Position - FragPos);
-    if(distance < light.Radius)
-    {
-        
-    }
+    if(distance > light.Radius) return vec3(0.0);
+
     // diffuse
     vec3 lightDir = normalize(light.Position - FragPos);
     float r = length(lightDir);
@@ -108,7 +107,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
     float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
     diffuse *= attenuation;
     specular *= attenuation;
-    return (diffuse + specular);
+    return (diffuse + specular);  
 }
 
 void main()

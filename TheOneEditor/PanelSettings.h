@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Panel.h"
+#include "imgui.h"
 #include <vector>
 
 #define MAX_HISTORY_SIZE 240
@@ -13,6 +14,7 @@ enum class SelectedSetting
 	WINDOW,
 	INPUT,
 	RENDERER,
+	COLOR_PICKER,
 	HARDWARE,
 	SOFTWARE
 };
@@ -26,6 +28,7 @@ public:
 
 	bool Draw();
 	void AddFpsValue(int fps);
+	ImGuiColorEditFlags GetColorFlags() { return colorPickerFlags; }
 
 private:
 
@@ -33,6 +36,7 @@ private:
 	void Window();
 	void Input();
 	void Renderer();
+	void ColorPicker();
 	void Hardware();
 	void Software();
 	
@@ -75,6 +79,15 @@ private:
 		"240",
 		"Unlimited"
 	};
+
+	// Color Picker
+	bool alpha_preview = true;
+	bool alpha_half_preview = false;
+	bool drag_and_drop = true;
+	bool options_menu = true;
+	bool hdr = false;
+
+	ImGuiColorEditFlags colorPickerFlags;
 };
 
 #endif // !__PANEL_SETTINGS_H__

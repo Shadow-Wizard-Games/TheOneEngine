@@ -72,7 +72,6 @@ void EngineCore::SetRenderEnvironment(Camera* camera)
     GLCALL(glLoadIdentity());
 
     GLCALL(glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST));
-    //GLCALL(glClearDepth(1.0f));
 
     GLCALL(glEnable(GL_DEPTH_TEST));
     GLCALL(glDepthFunc(GL_LEQUAL));
@@ -81,7 +80,6 @@ void EngineCore::SetRenderEnvironment(Camera* camera)
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glEnable(GL_COLOR_MATERIAL));
 
-    //glClear(GL_DEPTH_BUFFER_BIT);
 
     switch (camera->cameraType)
     {

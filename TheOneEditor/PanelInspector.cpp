@@ -1,36 +1,35 @@
 #include "PanelInspector.h"
-#include "SceneManager.h"
 #include "App.h"
 #include "Gui.h"
+#include "PanelSettings.h"
 #include "SceneManager.h"
-
-#include "..\TheOneEngine\Log.h"
-#include "..\TheOneEngine\GameObject.h"
-#include "..\TheOneEngine\Transform.h"
-#include "..\TheOneEngine\Mesh.h"
-#include "..\TheOneEngine\Camera.h"
-#include "..\TheOneEngine\Script.h"
-#include "..\TheOneEngine\Collider2D.h"
-#include "..\TheOneEngine\Listener.h"
-#include "..\TheOneEngine\AudioSource.h"
-
-#include "..\TheOneEngine\MonoManager.h"
-#include "..\TheOneEngine\ParticleSystem.h"
-#include "..\TheOneEngine\Canvas.h"
-#include "..\TheOneEngine\ItemUI.h"
-#include "..\TheOneEngine\ImageUI.h"
-#include "..\TheOneEngine\ButtonImageUI.h"
-#include "..\TheOneEngine\SliderUI.h"
-#include "..\TheOneEngine\CheckerUI.h"
-#include "..\TheOneEngine\Light.h"
-#include "..\TheOneEngine\TextUI.h"
-
-#include "..\TheOneEngine\ResourcesImpl.h"
-#include "..\TheOneEngine\FileDialog.h"
-
 #include "InspectorParticleSystems.h"
 
-#include "../TheOneAudio/AudioCore.h"
+#include "TheOneEngine\Log.h"
+#include "TheOneEngine\GameObject.h"
+#include "TheOneEngine\Transform.h"
+#include "TheOneEngine\Mesh.h"
+#include "TheOneEngine\Camera.h"
+#include "TheOneEngine\Script.h"
+#include "TheOneEngine\Collider2D.h"
+#include "TheOneEngine\Listener.h"
+#include "TheOneEngine\AudioSource.h"
+#include "TheOneEngine\Light.h"
+
+#include "TheOneEngine\MonoManager.h"
+#include "TheOneEngine\ParticleSystem.h"
+#include "TheOneEngine\Canvas.h"
+#include "TheOneEngine\ItemUI.h"
+#include "TheOneEngine\ImageUI.h"
+#include "TheOneEngine\ButtonImageUI.h"
+#include "TheOneEngine\SliderUI.h"
+#include "TheOneEngine\CheckerUI.h"
+#include "TheOneEngine\TextUI.h"
+
+#include "TheOneEngine\ResourcesImpl.h"
+#include "TheOneEngine\FileDialog.h"
+
+#include "TheOneAudio\AudioCore.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
@@ -63,7 +62,6 @@ bool PanelInspector::Draw()
 
 	if (ImGui::Begin("Inspector", &enabled, settingsFlags))
 	{
-
         ImGuiIO& io = ImGui::GetIO();
         ImVec4 clear_color = ImVec4(0.55f, 0.55f, 0.55f, 1.00f);
         ImGui::SetNextWindowSize(ImVec2(250, 650), ImGuiCond_Once);
@@ -432,129 +430,68 @@ bool PanelInspector::Draw()
 
             if (light != nullptr && ImGui::CollapsingHeader("Light", treeNodeFlags))
             {
-                //ImGui::SameLine();
                 if (ImGui::Button("Delete")) 
-                {
                     selectedGO->RemoveComponent(ComponentType::Light);
-                }
-                ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
-                //ImGui::Indent(0.8f);
 
                 const char* label = nullptr;
 
                 switch (light->lightType)
                 {
-                case LightType::Point:
-                    label = "Point";
-                    break;
-                case LightType::Spot:
-                    label = "Spot";
-                    break;
-                case LightType::Directional:
-                    label = "Directional";
-                    break;
-                default:
-                    break;
+                    case LightType::Point: label = "Point"; break;
+                    case LightType::Spot: label = "Spot"; break;
+                    case LightType::Directional: label = "Directional"; break;
+                    default:break;
                 }
 
-                if (ImGui::BeginCombo("Light Type", label))
+                if (ImGui::BeginCombo("Type", label))
                 {
                     if (ImGui::Selectable("Point"))
-                    {
                         light->lightType = LightType::Point;
-                    }
 
                     if (ImGui::Selectable("Spot"))
-                    {
                         light->lightType = LightType::Spot;
-                    }
 
                     if (ImGui::Selectable("Directional"))
-                    {
                         light->lightType = LightType::Directional;
-                    }
 
                     ImGui::EndCombo();
                 }
 
-                if (ImGui::BeginTable("", 4, tableFlags))
+                // Color
+                ImVec4 color = ImVec4(light->color.r, light->color.g, light->color.b, 1.0f);
+
+                ImGui::Text("Color");
+                ImGui::SameLine();
+
+                static const char* color_id = "##lightColor3b";
+                if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetContentRegionAvail().x, 20)))
                 {
-                    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("X", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("Y", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("Z", ImGuiTableColumnFlags_WidthStretch);
+                    app->gui->openColorPicker = true;
+                    EditColor editColor = { color_id, color, color };
+                    app->gui->SetEditColor(editColor);
+                }
+                else if (app->gui->GetEditColor().id == color_id)
+                {
+                    ImVec4 color = app->gui->GetEditColor().color;
+                    light->color.r = color.x;
+                    light->color.g = color.y;
+                    light->color.b = color.z;
+                }
 
-                    ImGui::TableNextRow();
+                //...
+                if (light->lightType == LightType::Point || light->lightType == LightType::Spot)
+                {
+                    ImGui::Text("Range");
+                    ImGui::DragFloat("radius", &light->radius, 0.5F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("linear", &light->linear, 0.02F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("quadratic", &light->quadratic, 0.02F, 0, 0, "%.3f", 1);
+                }
 
-                    // Headers
-                    ImGui::TableSetColumnIndex(0);
-                    ImGui::TableHeader("##");
-                    ImGui::TableSetColumnIndex(1);
-                    ImGui::TableHeader("X");
-                    ImGui::TableSetColumnIndex(2);
-                    ImGui::TableHeader("Y");
-                    ImGui::TableSetColumnIndex(3);
-                    ImGui::TableHeader("Z");
-
-                    ImGui::TableNextRow();
-
-                    // Color
-                    ImGui::TableSetColumnIndex(0);
-                    ImGui::Text("Color");
-
-                    ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##lightX", &light->color.x, 0.5F, 0, 0, "%.3f", 1));
-
-                    ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##lightY", &light->color.y, 0.5F, 0, 0, "%.3f", 1));
-
-                    ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##lightZ", &light->color.z, 0.5F, 0, 0, "%.3f", 1));
-
-                    // Range
-                    if (light->lightType == LightType::Point || light->lightType == LightType::Spot)
-                    {
-                        ImGui::TableNextRow();
-
-                        // Headers
-                        ImGui::TableSetColumnIndex(0);
-                        ImGui::TableHeader("##");
-                        ImGui::TableSetColumnIndex(1);
-                        ImGui::TableHeader("Radius");
-                        ImGui::TableSetColumnIndex(2);
-                        ImGui::TableHeader("Linear");
-                        ImGui::TableSetColumnIndex(3);
-                        ImGui::TableHeader("Quadratic");
-
-                        ImGui::TableNextRow();
-
-                        ImGui::TableSetColumnIndex(0);
-                        ImGui::Text("Range");
-
-                        ImGui::TableSetColumnIndex(1);
-                        if (ImGui::DragFloat("##radius", &light->radius, 0.5F, 0, 0, "%.3f", 1));
-
-                        ImGui::TableSetColumnIndex(2);
-                        if (ImGui::DragFloat("##linear", &light->linear, 0.5F, 0, 0, "%.3f", 1));
-
-                        ImGui::TableSetColumnIndex(3);
-                        if (ImGui::DragFloat("##quadratic", &light->quadratic, 0.5F, 0, 0, "%.3f", 1));
-                    }
-
-                    if (light->lightType == LightType::Spot)
-                    {
-                        ImGui::TableNextRow();
-
-                        ImGui::TableSetColumnIndex(0);
-                        ImGui::Text("Cut Off");
-
-                        ImGui::TableSetColumnIndex(1);
-                        if (ImGui::DragFloat("##inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f", 1));
-
-                        ImGui::TableSetColumnIndex(2);
-                        if (ImGui::DragFloat("##outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f", 1));
-                    }
-                    ImGui::EndTable();
+                if (light->lightType == LightType::Spot)
+                {
+                    ImGui::Text("Cut Off");
+                    ImGui::DragFloat("inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f", 1);
                 }
             }
 
