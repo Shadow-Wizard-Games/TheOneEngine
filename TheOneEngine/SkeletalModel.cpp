@@ -131,8 +131,8 @@ void SkeletalModel::LoadMesh(const std::string& path)
                     fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
 
 
-                    id = Resources::LoadFromLibrary<Shader>("MeshTextureAnimated");
-                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshTextureAnimated.toeshader");
+                    id = Resources::LoadFromLibrary<Shader>("PreLightingShader");
+                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "PreLightingShader.toeshader");
                     bool imported = Resources::Import<Texture>(texPath.string());
 
                     if (imported) {
@@ -143,15 +143,16 @@ void SkeletalModel::LoadMesh(const std::string& path)
                         data.tex_id = img->GetTextureId();
                         data.resource_id = imgId;
                         memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
-                        material.SetUniformData("u_Tex", data);
+                        material.SetUniformData("diffuse", data);
+                        material.SetUniformData("isAnimated", true);
                     }
                 }
                 else
                 {
-                    id = Resources::LoadFromLibrary<Shader>("MeshColor");
-                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
+                    id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
+                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
 
-                    material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
+                    material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
                 }
 
 

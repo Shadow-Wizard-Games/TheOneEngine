@@ -449,5 +449,14 @@
     <ClCompile Include="TextUI.cpp">
       <Filter>GameObject\Components\UI\Items</Filter>
     </ClCompile>
+    <ClCompile Include="SkeletalModel.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer3D.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
