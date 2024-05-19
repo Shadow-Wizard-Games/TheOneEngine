@@ -149,7 +149,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
     if (method == nullptr)
     {
         //Used for handling virtual functions errors
-        for (auto checkFunction : functionsToIgnore)
+        for (auto& checkFunction : functionsToIgnore)
         {
             if (functionToCall == checkFunction) return nullptr;
         }
@@ -226,14 +226,14 @@ void MonoManager::RenderShapesQueue()
     if (debugShapesQueue.empty())
         return;
 
-    for (auto shape : debugShapesQueue)
+    for (auto& shape : debugShapesQueue)
     {
         glPushMatrix();
         glTranslatef(shape.center.x, shape.center.y, shape.center.z);
         glColor3f(shape.color.r, shape.color.g, shape.color.b);
         glBegin(GL_LINE_LOOP);
 
-        for (auto point : shape.points)
+        for (auto& point : shape.points)
             glVertex3f(point.x, point.y, point.z);
 
         glEnd();
