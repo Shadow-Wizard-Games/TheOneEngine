@@ -40,6 +40,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     const float detectedRange = 35.0f * 3;
     const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
+    const float maxRangeStopChasing = 25.0f;
 
     // Flags
     bool detected = false;
@@ -105,7 +106,6 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
         if (detected)
         {
-            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
             if (playerDistance < isCloseRange && !isClose)
             {
                 isClose = true;
@@ -131,6 +131,20 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 attachedGameObject.animator.Play("Walk");
             }
 
+            if (playerDistance <= maxRangeStopChasing && currentAttack == AdultXenomorphAttacks.None &&
+                currentState != States.Idle)
+            {
+                currentState = States.Idle;
+                //Debug.Log("Player is INSIDE maxRangeStopChasing");
+            }
+
+            if (playerDistance > maxRangeStopChasing && currentAttack == AdultXenomorphAttacks.None &&
+                currentState != States.Chase)
+            {
+                currentState = States.Chase;
+                //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
+            }
+
             if (currentAttack == AdultXenomorphAttacks.None && attackTimer >= attackCooldown)
             {
                 //Debug.Log("Attempt to attack");
@@ -147,9 +161,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 ChooseAttack();
-
                 switch (currentAttack)
                 {
                     case AdultXenomorphAttacks.AcidSpit:
@@ -161,11 +174,11 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                     default:
                         break;
                 }
-
                 break;
             case States.Chase:
                 player.isFighting = true;
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 break;
             case States.Patrol:
                 Patrol();

@@ -29,7 +29,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     // Ranges
     const float detectedRange = 35.0f * 1.5f;
-    const float farRangeThreshold = 60.0f;
+    const float isCloseRange = 60.0f;
     const float maxChasingRange = 150.0f;
     const float maxRangeStopChasing = 25.0f;
 
@@ -95,13 +95,13 @@ public class ChestbursterBehaviour : MonoBehaviour
 
         if (detected)
         {
-            if (playerDistance < farRangeThreshold && !isClose)
+            if (playerDistance < isCloseRange && !isClose)
             {
                 isClose = true;
                 //Debug.Log("Player is now CLOSE");
             }
 
-            if (playerDistance >= farRangeThreshold && isClose)
+            if (playerDistance >= isCloseRange && isClose)
             {
                 isClose = false;
                 //Debug.Log("Player is now FAR");
@@ -153,6 +153,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
                 break;
             case States.Chase:
+                player.isFighting = true;
                 attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 break;
@@ -253,7 +254,7 @@ public class ChestbursterBehaviour : MonoBehaviour
             else
             {
                 Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, isCloseRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
             }
         }
     }

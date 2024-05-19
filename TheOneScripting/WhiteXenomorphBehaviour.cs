@@ -40,6 +40,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     const float detectedRange = 35.0f * 3;
     const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
+    const float maxRangeStopChasing = 25.0f;
 
     // Flags
     bool detected = false;
@@ -61,6 +62,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
+        initialPos = attachedGameObject.transform.position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -130,6 +132,20 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 attachedGameObject.animator.Play("Walk");
             }
 
+            if (playerDistance <= maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
+               currentState != States.Idle)
+            {
+                currentState = States.Idle;
+                //Debug.Log("Player is INSIDE maxRangeStopChasing");
+            }
+
+            if (playerDistance > maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
+                currentState != States.Chase)
+            {
+                currentState = States.Chase;
+                //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
+            }
+
             if (currentAttack == WhiteXenomorphAttacks.None && attackTimer >= attackCooldown)
             {
                 //Debug.Log("Attempt to attack");
@@ -148,7 +164,6 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 player.isFighting = true;
                 attachedGameObject.transform.LookAt2D(playerGO.transform.position);
                 ChooseAttack();
-
                 switch (currentAttack)
                 {
                     case WhiteXenomorphAttacks.ClawAttack:
@@ -160,7 +175,6 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                     default:
                         break;
                 }
-
                 break;
             case States.Chase:
                 player.isFighting = true;
