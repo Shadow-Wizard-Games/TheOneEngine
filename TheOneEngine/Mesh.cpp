@@ -154,26 +154,16 @@ void Mesh::DrawComponent(Camera* camera)
 
 
 	mat4 transform = containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform();
-
+	Model* mesh; SkeletalModel* skMesh;
 	switch (type)
 	{
 	case MeshType::DEFAULT:
-	{
-		Model* mesh = Resources::GetResourceById<Model>(meshID);
+		mesh = Resources::GetResourceById<Model>(meshID);
 		Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
-	}
-		break;
-	case MeshType::STATIC:
-	{
-		Model* mesh = Resources::GetResourceById<Model>(meshID);
-		Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
-	}
 		break;
 	case MeshType::SKELETAL:
-	{
-		SkeletalModel* skMesh = Resources::GetResourceById<SkeletalModel>(meshID);
+		skMesh = Resources::GetResourceById<SkeletalModel>(meshID);
 		RenderOzzSkinnedMesh(skMesh, materialID, ozz::make_span(skMesh->getSkinningMatrices()), transform);
-	}
 		break;
 	default:
 		break;

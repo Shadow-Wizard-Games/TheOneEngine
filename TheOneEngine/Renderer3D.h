@@ -7,7 +7,7 @@ struct DefaultMesh
 	DefaultMesh(StackVertexArray vao, int mat) : rendererID(vao), matID(mat){}
 	~DefaultMesh() {}
 
-	bool CheckID(StackVertexArray id) const {
+	bool CheckID(const StackVertexArray& id) const {
 		return id == rendererID;
 	}
 	StackVertexArray rendererID;
@@ -25,7 +25,7 @@ public:
 		models.push_back(modelMat);
 	}
 
-	bool CheckID(StackVertexArray id) const {
+	bool CheckID(const StackVertexArray& id) const {
 		return id == mesh.rendererID;
 	}
 

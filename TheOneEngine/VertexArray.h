@@ -16,13 +16,11 @@ public:
 	void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer);
 	void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer);
 
-	uint32_t GetRendererID() const { return m_RendererID; }
-
 	const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const { return m_VertexBuffers; }
 	const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffer; }
 
 	bool operator==(const HeapVertexArray& other) const {
-		return this->GetRendererID() == other.GetRendererID();
+		return this->m_RendererID == other.m_RendererID;
 	}
 private:
 	uint32_t m_RendererID = 0;
@@ -46,13 +44,11 @@ public:
 	void AddVertexBuffer(const VertexBuffer& vertexBuffer);
 	void SetIndexBuffer(const IndexBuffer& indexBuffer);
 
-	uint32_t GetRendererID() const { return m_RendererID; }
-
 	const VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
 	const IndexBuffer& GetIndexBuffer() const { return m_IndexBuffer; }
 
 	bool operator==(const StackVertexArray& other) const {
-		return this->GetRendererID() == other.GetRendererID();
+		return this->m_RendererID == other.m_RendererID;
 	}
 private:
 	uint32_t m_RendererID = 0;

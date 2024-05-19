@@ -30,6 +30,8 @@ void Renderer3D::Update()
 		GLCALL(glDrawElementsInstanced(
 			GL_TRIANGLES, call.GetVAO().GetIndexBuffer().GetCount(), GL_UNSIGNED_INT, 0, call.GetModels().size()))
 	}
+
+	renderer3D.instanceCalls.clear();
 }
 
 void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
@@ -48,11 +50,15 @@ void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
 
 void Renderer3D::AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat)
 {
-	for (InstanceCall& call : renderer3D.instanceCalls) {
-		if (call.CheckID(meshID))
-			call.AddInstance(modelMat);
-		else
-			AddInstanceCall(meshID, matID);
+	if(renderer3D.instanceCalls.empty())
+		AddInstanceCall(meshID, matID);
+	else {
+		for (InstanceCall& call : renderer3D.instanceCalls) {
+			if (call.CheckID(meshID))
+				call.AddInstance(modelMat);
+			else
+				AddInstanceCall(meshID, matID);
+		}
 	}
 }
 
