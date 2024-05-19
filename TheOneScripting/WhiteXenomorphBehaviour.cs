@@ -53,10 +53,10 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
-    // particles
-    IGameObject acidSpitPSGO;
-    IGameObject tailAttackPSGO;
-    IGameObject deathPSGO;
+    // Particles
+    IParticleSystem acidSpitPSGO;
+    IParticleSystem tailAttackPSGO;
+    IParticleSystem deathPSGO;
 
     public override void Start()
     {
@@ -70,9 +70,9 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.transitionTime = 0.0f;
 
-        acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS");
-        tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS");
-        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
+        acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
+        tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -87,70 +87,78 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
             directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
             playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
 
-            UpdateFSMStates();
+            UpdateFSM();
             DoStateBehaviour();
         }
 
         DebugDraw();
     }
 
-    void UpdateFSMStates()
+    void UpdateFSM()
     {
         if (life <= 0) { currentState = States.Dead; return; }
 
-        if (!detected && playerDistance < detectedRange) 
+        if (!detected && playerDistance < detectedRange)
         {
             detected = true;
             currentState = States.Chase;
+            //Debug.Log("White Xenomorph switched to Chase");
         }
 
         if (detected)
         {
-            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
-            if (playerDistance < isCloseRange && !isClose)
-            {
-                isClose = true;
-                //Debug.Log("Player is now CLOSE");
-            }
-
-            if (playerDistance >= isCloseRange && isClose)
-            {
-                isClose = false;
-                //Debug.Log("Player is now FAR");
-            }
-
-            if (playerDistance > maxChasingRange)
-            {
-                detected = false;
-                currentState = States.Patrol;
-            }
+            CheckIsClose();
 
             if (currentAttack == WhiteXenomorphAttacks.None)
             {
-                //attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attackTimer += Time.deltaTime;
                 attachedGameObject.animator.Play("Walk");
             }
 
-            if (playerDistance <= maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
-               currentState != States.Idle)
-            {
-                currentState = States.Idle;
-                //Debug.Log("Player is INSIDE maxRangeStopChasing");
-            }
-
-            if (playerDistance > maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
-                currentState != States.Chase)
-            {
-                currentState = States.Chase;
-                //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
-            }
+            CheckIsMaxRangeStopChasing();
 
             if (currentAttack == WhiteXenomorphAttacks.None && attackTimer >= attackCooldown)
             {
-                //Debug.Log("Attempt to attack");
                 currentState = States.Attack;
+                //Debug.Log("White Xenomorph switched to Attack");
             }
+
+            if (playerDistance > maxChasingRange && currentState != States.Attack)
+            {
+                detected = false;
+                currentState = States.Patrol;
+                //Debug.Log("White Xenomorph switched to Patrol");
+            }
+        }
+    }
+
+    private void CheckIsClose()
+    {
+        if (playerDistance < isCloseRange && !isClose)
+        {
+            isClose = true;
+            //Debug.Log("Player is now CLOSE");
+        }
+        else if (playerDistance >= isCloseRange && isClose)
+        {
+            isClose = false;
+            //Debug.Log("Player is now FAR");
+        }
+    }
+
+    private void CheckIsMaxRangeStopChasing()
+    {
+        if (playerDistance <= maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
+            currentState != States.Idle)
+        {
+            currentState = States.Idle;
+            //Debug.Log("Player is INSIDE maxRangeStopChasing");
+        }
+        else if (playerDistance > maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
+                 currentState != States.Chase)
+        {
+            currentState = States.Chase;
+            //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
         }
     }
 
@@ -186,7 +194,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Dead:
                 attachedGameObject.animator.Play("Death");
-                if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
+                deathPSGO.Play();
                 break;
             default:
                 break;
@@ -202,22 +210,21 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 currentAttack = WhiteXenomorphAttacks.ClawAttack;
                 attachedGameObject.animator.Play("TailAttack");
 
-                if (tailAttackPSGO != null) tailAttackPSGO.GetComponent<IParticleSystem>().Play();
+                tailAttackPSGO.Play();
             }
             else
             {
                 currentAttack = WhiteXenomorphAttacks.TailTrip;
                 attachedGameObject.animator.Play("Spit");
 
-                if (acidSpitPSGO != null) acidSpitPSGO.GetComponent<IParticleSystem>().Play();
+                acidSpitPSGO.Play();
             }
-            //Debug.Log("Chestburster current attack: " + currentAttack);
+            //Debug.Log("WhiteXenomorph current attack: " + currentAttack);
         }
     }
 
     private void ClawAttack()
     {
-        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
         if (attachedGameObject.animator.currentAnimHasFinished)
         {
             ResetState();

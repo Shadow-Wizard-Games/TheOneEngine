@@ -44,10 +44,10 @@ public class ChestbursterBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
-    // particles
-    IGameObject tailPunchPSGO;
-    IGameObject tailTripPSGO;
-    IGameObject deathPSGO;
+    // Particles
+    IParticleSystem tailPunchPSGO;
+    IParticleSystem tailTripPSGO;
+    IParticleSystem deathPSGO;
 
     public override void Start()
     {
@@ -60,9 +60,9 @@ public class ChestbursterBehaviour : MonoBehaviour
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.transitionTime = 0.0f;
 
-        tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS");
-        tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS");
-        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
+        tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS")?.GetComponent<IParticleSystem>();
+        tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS")?.GetComponent<IParticleSystem>();
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -179,7 +179,7 @@ public class ChestbursterBehaviour : MonoBehaviour
                 break;
             case States.Dead:
                 attachedGameObject.animator.Play("Dead");
-                if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
+                deathPSGO.Play();
                 break;
             default:
                 break;
@@ -194,13 +194,13 @@ public class ChestbursterBehaviour : MonoBehaviour
             {
                 currentAttack = ChestbursterAttack.TailPunch;
                 attachedGameObject.animator.Play("TailPunch");
-                if (tailPunchPSGO != null) tailPunchPSGO.GetComponent<IParticleSystem>().Play();
+                tailPunchPSGO.Play();
             }
             else
             {
                 currentAttack = ChestbursterAttack.TailTrip;
                 attachedGameObject.animator.Play("TailTrip");
-                if (tailTripPSGO != null) tailTripPSGO.GetComponent<IParticleSystem>().Play();
+                tailTripPSGO.Play();
             }
             //Debug.Log("Chestburster current attack: " + currentAttack);
         }

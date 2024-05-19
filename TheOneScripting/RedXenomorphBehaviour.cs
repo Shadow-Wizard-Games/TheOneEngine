@@ -53,10 +53,10 @@ public class RedXenomorphBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
-    // particles
-    IGameObject acidSpitPSGO;
-    IGameObject tailAttackPSGO;
-    IGameObject deathPSGO;
+    // Particles
+    IParticleSystem acidSpitPSGO;
+    IParticleSystem tailAttackPSGO;
+    IParticleSystem deathPSGO;
 
     public override void Start()
     {
@@ -70,9 +70,9 @@ public class RedXenomorphBehaviour : MonoBehaviour
         attachedGameObject.animator.blend = false;
         attachedGameObject.animator.transitionTime = 0.0f;
 
-        acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS");
-        tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS");
-        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
+        acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
+        tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -102,54 +102,63 @@ public class RedXenomorphBehaviour : MonoBehaviour
         {
             detected = true;
             currentState = States.Chase;
+            //Debug.Log("Red Xenomorph switched to Chase");
         }
 
         if (detected)
         {
-            if (playerDistance < isCloseRange && !isClose)
-            {
-                isClose = true;
-                //Debug.Log("Player is now CLOSE");
-            }
-
-            if (playerDistance >= isCloseRange && isClose)
-            {
-                isClose = false;
-                //Debug.Log("Player is now FAR");
-            }
-
-            if (playerDistance > maxChasingRange)
-            {
-                detected = false;
-                currentState = States.Patrol;
-            }
+            CheckIsClose();
 
             if (currentAttack == RedXenomorphAttacks.None)
             {
-                //attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attackTimer += Time.deltaTime;
                 attachedGameObject.animator.Play("Walk");
             }
 
-            if (playerDistance <= maxRangeStopChasing && currentAttack == RedXenomorphAttacks.None &&
-               currentState != States.Idle)
-            {
-                currentState = States.Idle;
-                //Debug.Log("Player is INSIDE maxRangeStopChasing");
-            }
-
-            if (playerDistance > maxRangeStopChasing && currentAttack == RedXenomorphAttacks.None &&
-                currentState != States.Chase)
-            {
-                currentState = States.Chase;
-                //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
-            }
+            CheckIsMaxRangeStopChasing();
 
             if (currentAttack == RedXenomorphAttacks.None && attackTimer >= attackCooldown)
             {
-                //Debug.Log("Attempt to attack");
                 currentState = States.Attack;
+                //Debug.Log("Red Xenomorph switched to Attack");
             }
+
+            if (playerDistance > maxChasingRange && currentState != States.Attack)
+            {
+                detected = false;
+                currentState = States.Patrol;
+                //Debug.Log("Red Xenomorph switched to Patrol");
+            }
+        }
+    }
+
+    private void CheckIsClose()
+    {
+        if (playerDistance < isCloseRange && !isClose)
+        {
+            isClose = true;
+            //Debug.Log("Player is now CLOSE");
+        }
+        else if (playerDistance >= isCloseRange && isClose)
+        {
+            isClose = false;
+            //Debug.Log("Player is now FAR");
+        }
+    }
+
+    private void CheckIsMaxRangeStopChasing()
+    {
+        if (playerDistance <= maxRangeStopChasing && currentAttack == RedXenomorphAttacks.None &&
+            currentState != States.Idle)
+        {
+            currentState = States.Idle;
+            //Debug.Log("Player is INSIDE maxRangeStopChasing");
+        }
+        else if (playerDistance > maxRangeStopChasing && currentAttack == RedXenomorphAttacks.None &&
+                 currentState != States.Chase)
+        {
+            currentState = States.Chase;
+            //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
         }
     }
 
@@ -185,7 +194,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Dead:
                 attachedGameObject.animator.Play("Death");
-                if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
+                deathPSGO.Play();
                 break;
             default:
                 break;
@@ -200,17 +209,15 @@ public class RedXenomorphBehaviour : MonoBehaviour
             {
                 currentAttack = RedXenomorphAttacks.TailStab;
                 attachedGameObject.animator.Play("TailAttack");
-
-                if (tailAttackPSGO != null) tailAttackPSGO.GetComponent<IParticleSystem>().Play();
+                tailAttackPSGO.Play();
             }
             else
             {
                 currentAttack = RedXenomorphAttacks.SpikeThrow;
                 attachedGameObject.animator.Play("Spit");
-
-                if (acidSpitPSGO != null) acidSpitPSGO.GetComponent<IParticleSystem>().Play();
+                acidSpitPSGO.Play();
             }
-            //Debug.Log("Chestburster current attack: " + currentAttack);
+            //Debug.Log("RedXenomorph current attack: " + currentAttack);
         }
     }
 
@@ -232,6 +239,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
             ResetState();
         }
     }
+
     private void Patrol()
     {
         attachedGameObject.animator.Play("Walk");
