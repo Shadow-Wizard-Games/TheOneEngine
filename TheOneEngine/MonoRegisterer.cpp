@@ -691,6 +691,8 @@ static void SetTextString(GameObject* containerGO, MonoString* text, MonoString*
 	Canvas* canvas = containerGO->GetComponent<Canvas>();
 
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::string itemText = MonoRegisterer::MonoStringToUTF8(text);
+
 	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
 
 	for (auto element : uiElements)
@@ -698,7 +700,7 @@ static void SetTextString(GameObject* containerGO, MonoString* text, MonoString*
 		if (element->GetType() == UiType::TEXT && element->GetName() == itemName)
 		{
 			TextUI* ui = canvas->GetItemUI<TextUI>(element->GetID());
-			ui->SetText(itemName);
+			ui->SetText(itemText);
 			break;
 		}
 	}

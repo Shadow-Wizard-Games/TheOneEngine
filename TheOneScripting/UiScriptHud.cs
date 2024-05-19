@@ -29,27 +29,27 @@ public class UiScriptHud : MonoBehaviour
     string kills;
 
     string currLoadout = "m41a";
-    float currAmmo = 20;
-    float maxAmmo = 20;
+    int currAmmo = 20;
+    int maxAmmo = 20;
     string ammo;
 
-    bool  grenadeOnCooldown = false;
+    bool grenadeOnCooldown = false;
     float grenadeCooldown = 5.0f;
     float grenadeTimer = 0.0f;
 
-    bool  painlessOnCooldown = false;
+    bool painlessOnCooldown = false;
     float painlessCooldown = 5.0f;
     float painlessTimer = 0.0f;
 
-    bool  flameThrowerOnCooldown = false;
+    bool flameThrowerOnCooldown = false;
     float flameThrowerCooldown = 5.0f;
     float flameThrowerTimer = 0.0f;
 
-    bool  adrenalineOnCooldown = false;
+    bool adrenalineOnCooldown = false;
     float adrenalineCooldown = 5.0f;
     float adrenalineTimer = 0.0f;
 
-    bool  consumibleOnCooldown = false;
+    bool consumibleOnCooldown = false;
     float consumibleCooldown = 5.0f;
     float consumibleTimer = 0.0f;
 
@@ -97,9 +97,9 @@ public class UiScriptHud : MonoBehaviour
             UpdateTimers();
 
             //setting texts
-            ammo = currAmmo.ToString() + " / " + maxAmmo.ToString();
-            currency = currencyAmount.ToString();
-            kills = killsAmount.ToString();
+            //ammo = currAmmo.ToString() + " / " + maxAmmo.ToString();
+            //currency = currencyAmount.ToString();
+            //kills = killsAmount.ToString();
 
             canvas.SetTextString(ammo, "Text_AmmoAmount");
             canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
@@ -157,7 +157,8 @@ public class UiScriptHud : MonoBehaviour
     //for the moment, only for canvas states porpuses
     public void UpdateAbilityCanvas(PlayerAbility ability, ICanvas.UiState state)
     {
-        switch (ability) {
+        switch (ability)
+        {
             case PlayerAbility.GRENADE:
                 if (!grenadeOnCooldown && state == ICanvas.UiState.HOVERED)
                 {
