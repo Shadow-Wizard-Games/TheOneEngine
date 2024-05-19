@@ -16,7 +16,7 @@
     },
     {
       "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_Roll.anim",
-      "loop": true,
+      "loop": false,
       "name": "Roll",
       "playback_speed": 1.0,
       "type": 0
@@ -29,7 +29,7 @@
       "type": 0
     },
     {
-      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_RunAndShootWithM4.anim",
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_RunWithM4.anim",
       "loop": true,
       "name": "Run M4",
       "playback_speed": 1.0,
@@ -39,20 +39,118 @@
       "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_ShootM4.anim",
       "loop": true,
       "name": "Shoot M4",
-      "playback_speed": 1.0,
+      "playback_speed": 2.4,
       "type": 0
     },
     {
       "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_GrabItem.anim",
-      "loop": true,
+      "loop": false,
       "name": "Grab",
       "playback_speed": 1.0,
       "type": 0
     },
     {
       "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_Dying.anim",
-      "loop": true,
+      "loop": false,
       "name": "Death",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_AdrenalineRush_Static.anim",
+      "loop": false,
+      "name": "Adrenaline Rush Static",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_AdrenalineRush.anim",
+      "loop": false,
+      "name": "Adrenaline Rush Moving",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_DashToLeft.anim",
+      "loop": false,
+      "name": "Dash Left",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_DashToRight.anim",
+      "loop": false,
+      "name": "Dash Right",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_DeadPose.anim",
+      "loop": true,
+      "name": "Dead Pose",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_GettingHit.anim",
+      "loop": false,
+      "name": "Get Hit",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_HealingBandage_Static.anim",
+      "loop": false,
+      "name": "Healing Bandage Static",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_HealingBandage.anim",
+      "loop": false,
+      "name": "Healing Bandage Moving",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_HealingSyringe_Static.anim",
+      "loop": false,
+      "name": "Healing Syringe Static",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_HealingSyringe.anim",
+      "loop": true,
+      "name": "Healing Syringe Moving",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_RunAndShootWithM4.anim",
+      "loop": true,
+      "name": "Run Shoot M4",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_RunAndShootWithShoulderLaser.anim",
+      "loop": true,
+      "name": "Run Shoot Shoulder Laser",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_ShootShoulderLaser.anim",
+      "loop": true,
+      "name": "Shoot Shoulder Laser",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_TPose.anim",
+      "loop": true,
+      "name": "T Pose",
       "playback_speed": 1.0,
       "type": 0
     }

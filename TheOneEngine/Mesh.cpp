@@ -125,7 +125,7 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO, Mesh* ref) : Component(conta
 
 Mesh::~Mesh()
 {
-	if (dynamicVAO) {
+	/*if (dynamicVAO) {
 		GLCALL(glDeleteVertexArrays(1, &dynamicVAO));
 		dynamicVAO = 0;
 	}
@@ -138,7 +138,7 @@ Mesh::~Mesh()
 	if (dynamicIBO) {
 		GLCALL(glDeleteBuffers(1, &dynamicIBO));
 		dynamicIBO = 0;
-	}
+	}*/
 }
 
 

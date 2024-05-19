@@ -13,14 +13,17 @@ public:
 	bool CleanUp();
 
 public:
+	// EVENTS
 	void PlayAudio(AudioSource* source, AkUniqueID event);
 	void StopAudio(AudioSource* source, AkUniqueID event);
 	void PauseAudio(AudioSource* source, AkUniqueID event);
 	void ResumeAudio(AudioSource* source, AkUniqueID event);
 
-	void FadeAudio(AudioSource* source, AkUniqueID event1, AkUniqueID event2);
+	// SWITCH
+	void SetSwitch(AudioSource* source, AkSwitchGroupID switchGroup, AkSwitchStateID switchState);
 
 	void AddAudioObject(std::shared_ptr<AudioComponent> audioGO);
+	void RemoveAudioObject(std::shared_ptr<AudioComponent> audioGO);
 	void DeleteAudioComponents();
 
 	AudioCore* audio = nullptr;

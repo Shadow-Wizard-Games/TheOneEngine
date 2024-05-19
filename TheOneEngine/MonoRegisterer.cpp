@@ -7,8 +7,10 @@
 #include "Transform.h"
 #include "Canvas.h"
 #include "ImageUI.h"
+#include "ButtonImageUI.h"
 #include "CheckerUI.h"
 #include "SliderUI.h"
+#include "TextUI.h"
 #include "Collider2D.h"
 #include "ParticleSystem.h"
 #include "SkeletalModel.h"
@@ -30,6 +32,21 @@ static bool GetKeyboardButton(int id)
 
 static bool GetControllerButton(int controllerButton, int gamePad)
 {
+	if (controllerButton == 22) //l2
+	{
+		if (engine->inputManager->pads[gamePad].l2 > 0.0f)
+		{
+			return InputManagerNamespace::KEY_DOWN;
+		}
+	}
+	else if (controllerButton == 23) //r2
+	{
+		if (engine->inputManager->pads[gamePad].r2 > 0.0f)
+		{
+			return InputManagerNamespace::KEY_DOWN;
+		}
+	}
+
 	auto inputToPass = (SDL_GameControllerButton)controllerButton;
 
 	auto result = engine->inputManager->GetGamepadButton(gamePad, inputToPass);
@@ -111,7 +128,8 @@ static vec3f GetTransformRight(GameObject* GOptr)
 //GameObject
 static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx");
+	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
 	SetPosition(go, initialPosition);
@@ -123,6 +141,23 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
 	go->GetComponent<Collider2D>()->radius = 0.4f;
 	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+	return go;
+}
+
+static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
+{
+	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx");
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+
+	SetPosition(go, initialPosition);
+	SetRotation(go, direction);
+
+	go->AddScript("Grenade");
+	//go->AddComponent<Collider2D>();
+	//go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	//go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
+	//go->GetComponent<Collider2D>()->radius = 0.4f;
+	//engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
 	return go;
 }
 
@@ -250,11 +285,133 @@ static void Enable(GameObject* GOtoEnable)
 }
 
 //Scene Management
-static void LoadScene(MonoString* sceneName, bool keep)
+static void LoadScene(MonoString* sceneName, bool keep, MonoString* path)
 {
 	std::string name = MonoRegisterer::MonoStringToUTF8(sceneName);
+	std::string filepath = MonoRegisterer::MonoStringToUTF8(path);
 
-	engine->N_sceneManager->LoadScene(name, keep);
+	if(keep)
+		engine->N_sceneManager->LoadSave(name, filepath);
+	else
+		engine->N_sceneManager->LoadScene(name);
+}
+
+static void CreateSaveFromScene(MonoString* filepath, MonoString* sceneName)
+{
+	std::string path = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::string name = MonoRegisterer::MonoStringToUTF8(sceneName);
+
+	engine->N_sceneManager->SaveScene(path, name);
+}
+
+static void RemoveFile(MonoString* filepath)
+{
+	std::string path = MonoRegisterer::MonoStringToUTF8(filepath);
+
+	engine->N_sceneManager->RemoveFile(path);
+}
+
+static MonoString* AccessFileDataString(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_STRING, dPath, dName);
+
+	std::string sData = "Fail";
+	if (data != nullptr)
+		sData = *reinterpret_cast<std::string*>(data);
+
+	return mono_string_new(MonoManager::GetAppDomain(), sData.c_str());
+}
+
+static int AccessFileDataInt(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
+
+	if (data == nullptr)
+		return false;
+
+	int sData = *reinterpret_cast<int*>(data);
+
+	return sData;
+}
+
+static bool AccessFileDataBool(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
+
+	if (data == nullptr)
+		return false;
+
+	bool sData = *reinterpret_cast<bool*>(data);
+
+	return sData;
+}
+
+static float AccessFileDataFloat(MonoString* filepath, MonoArray* dataPath, MonoString* dataName)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+
+	void* data = engine->N_sceneManager->AccessFileDataRead(fPath, DATA_INT, dPath, dName);
+
+	if (data == nullptr)
+		return false;
+
+	float sData = *reinterpret_cast<float*>(data);
+
+	return sData;
+}
+
+static void WriteFileDataString(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, MonoString* data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	std::string dstr = MonoRegisterer::MonoStringToUTF8(data);
+	void* d = new std::string(dstr);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_STRING, dPath, dName, d);
+}
+
+static void WriteFileDataInt(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, int data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	void* d = new int(data);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_INT, dPath, dName, d);
+}
+
+static void WriteFileDataFloat(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, float data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	void* d = new float(data);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_FLOAT, dPath, dName, d);
+}
+static void WriteFileDataBool(MonoString* filepath, MonoArray* dataPath, MonoString* dataName, bool data)
+{
+	std::string fPath = MonoRegisterer::MonoStringToUTF8(filepath);
+	std::vector<std::string> dPath = MonoRegisterer::MonoStringArrayToUTF8(dataPath);
+	std::string dName = MonoRegisterer::MonoStringToUTF8(dataName);
+	void* d = new bool(data);
+
+	engine->N_sceneManager->AccessFileDataWrite(fPath, DATA_BOOL, dPath, dName, d);
 }
 
 static MonoString* GetCurrentSceneName()
@@ -316,7 +473,8 @@ static int GetSelectedButton(GameObject* containerGO)
 	int ret = -1;
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
-		if (uiElements[i]->GetType() == UiType::BUTTONIMAGE)
+		ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
+		if (uiElements[i]->GetType() == UiType::BUTTONIMAGE && tempButton->IsRealButton())
 		{
 			ret++;
 			if (uiElements[i]->GetState() == UiState::HOVERED)
@@ -332,86 +490,130 @@ static int GetSelected(GameObject* containerGO)
 	int ret = -1;
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
-		if (uiElements[i]->GetType() != UiType::IMAGE)
+		if (uiElements[i]->GetType() != UiType::IMAGE && uiElements[i]->GetType() != UiType::TEXT)
 		{
 			ret++;
 			if (uiElements[i]->GetState() == UiState::HOVERED)
-				return ret;
+			{
+				if (uiElements[i]->GetType() == UiType::BUTTONIMAGE)
+				{
+					ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
+					if (tempButton->IsRealButton())
+					{
+						return ret;
+					}
+				}
+				else
+				{
+					return ret;
+				}
+			}
+
 		}
 	}
 	return ret;
 }
 
-static void MoveSelectedButton(GameObject* containerGO, int direction)
+static void SetUiItemState(GameObject* containerGO, int state, MonoString* name)
 {
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
 	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
-
 	for (size_t i = 0; i < uiElements.size(); i++)
 	{
-		if (uiElements[i]->GetType() == UiType::BUTTONIMAGE && uiElements[i]->GetState() == UiState::HOVERED)
+		if ((uiElements[i]->GetType() != UiType::IMAGE && uiElements[i]->GetType() != UiType::TEXT) && uiElements[i]->GetName() == itemName)
 		{
-			int val = 1;
-			if (direction < 0)
-				val *= -1;
+			(uiElements[i]->SetState((UiState)state));
+		}
+	}
+}
 
-			for (int j = i + val; j != i; j += val)
+static void MoveSelectedButton(GameObject* containerGO, int direction)
+{
+	if (direction != 0)
+	{
+		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+
+		for (size_t i = 0; i < uiElements.size(); i++)
+		{
+			ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
+			if (uiElements[i]->GetType() == UiType::BUTTONIMAGE && tempButton->IsRealButton() && uiElements[i]->GetState() == UiState::HOVERED)
 			{
-				if (j < 0)
-					j = uiElements.size() - 1;
-				else if (j >= uiElements.size())
-					j = 0;
+				int val = 1;
+				if (direction < 0)
+					val *= -1;
 
-				if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
+				for (int j = i + val; j != i; j += val)
 				{
-					if (direction != 0)
-						direction += (val * -1);
+					if (j < 0)
+						j = uiElements.size() - 1;
+					else if (j >= uiElements.size())
+						j = 0;
 
-					if (direction == 0)
+					if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
 					{
-						uiElements[i]->SetState(UiState::IDLE);
-						uiElements[j]->SetState(UiState::HOVERED);
-						break;
+						if (direction != 0)
+							direction += (val * -1);
+
+						if (direction == 0)
+						{
+							uiElements[i]->SetState(UiState::IDLE);
+							uiElements[j]->SetState(UiState::HOVERED);
+							break;
+						}
 					}
 				}
+				break;
 			}
-			break;
 		}
 	}
 }
 
 static void MoveSelection(GameObject* containerGO, int direction)
 {
-	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
-
-	for (size_t i = 0; i < uiElements.size(); i++)
+	if (direction != 0)
 	{
-		if (uiElements[i]->GetType() != UiType::IMAGE && uiElements[i]->GetState() == UiState::HOVERED)
+		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+
+		for (size_t i = 0; i < uiElements.size(); i++)
 		{
-			int val = 1;
-			if (direction < 0)
-				val *= -1;
-
-			for (int j = i + val; j != i; j += val)
+			if ((uiElements[i]->GetType() != UiType::IMAGE && uiElements[i]->GetType() != UiType::TEXT) && uiElements[i]->GetState() == UiState::HOVERED)
 			{
-				if (j < 0)
-					j = uiElements.size() - 1;
-				else if (j >= uiElements.size())
-					j = 0;
-
-				if (uiElements[j]->GetType() != UiType::IMAGE)
+				if (uiElements[i]->GetType() == UiType::BUTTONIMAGE)
 				{
-					if (direction != 0)
-						direction += (val * -1);
+					ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[i];
+					if (!tempButton->IsRealButton()) continue;
+				}
+				int val = 1;
+				if (direction < 0)
+					val *= -1;
 
-					if (direction == 0)
+				for (int j = i + val; j != i; j += val)
+				{
+					if (j < 0)
+						j = uiElements.size() - 1;
+					else if (j >= uiElements.size())
+						j = 0;
+
+					if (uiElements[j]->GetType() != UiType::IMAGE)
 					{
-						uiElements[i]->SetState(UiState::IDLE);
-						uiElements[j]->SetState(UiState::HOVERED);
-						break;
+						if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
+						{
+							ButtonImageUI* tempButton = (ButtonImageUI*)uiElements[j];
+							if (!tempButton->IsRealButton()) continue;
+						}
+						if (direction != 0)
+							direction += (val * -1);
+
+						if (direction == 0)
+						{
+							uiElements[i]->SetState(UiState::IDLE);
+							uiElements[j]->SetState(UiState::HOVERED);
+							break;
+						}
 					}
 				}
+				break;
 			}
-			break;
 		}
 	}
 }
@@ -475,6 +677,38 @@ static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
 			break;
 		}
 	}
+}
+
+static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
+		{
+			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
+			ui->SetText(MonoRegisterer::MonoStringToUTF8(text));
+			break;
+		}
+	}
+}
+
+static MonoString* GetTextString(GameObject* containerGO, MonoString* name)
+{
+	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
+	std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+	std::string ret = "TextUI element not found";
+	for (size_t i = 0; i < uiElements.size(); i++)
+	{
+		if (uiElements[i]->GetType() == UiType::TEXT && uiElements[i]->GetName() == itemName)
+		{
+			TextUI* ui = containerGO->GetComponent<Canvas>()->GetItemUI<TextUI>(uiElements[i]->GetID());
+			return mono_string_new(MonoManager::GetAppDomain(), ui->GetText().c_str());
+		}
+	}
+
+	return mono_string_new(MonoManager::GetAppDomain(), ret.c_str());
 }
 
 //Helpers
@@ -604,16 +838,28 @@ static void EndPS(GameObject* GOptr)
 }
 
 // Audio Manager
-static void PlayAudioSource(GameObject* GOptr, uint audio) {
+static void PlayAudioSource(GameObject* GOptr, uint audio)
+{
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
 	audioManager->PlayAudio(GOptr->GetComponent<AudioSource>(), audio);
 }
 
-static void StopAudioSource(GameObject* GOptr, uint audio) {
+static void StopAudioSource(GameObject* GOptr, uint audio)
+{
 	AkUInt32 myAkUInt32 = static_cast<AkUInt32>(audio);
 
 	audioManager->StopAudio(GOptr->GetComponent<AudioSource>(), audio);
+}
+
+static void SetState(uint stateGroup, uint state)
+{
+	audioManager->audio->SetState(stateGroup, state);
+}
+
+static void SetSwitch(GameObject* GOptr, uint switchGroup, uint switchState)
+{
+	audioManager->SetSwitch(GOptr->GetComponent<AudioSource>(), switchGroup, switchState);
 }
 
 // Collider2D
@@ -770,6 +1016,7 @@ void MonoRegisterer::RegisterFunctions()
 	//GameObject
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
+	mono_add_internal_call("InternalCalls::InstantiateGrenade", InstantiateGrenade);
 	mono_add_internal_call("InternalCalls::InstantiateXenomorph", InstantiateXenomorph);
 	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
@@ -800,6 +1047,16 @@ void MonoRegisterer::RegisterFunctions()
 
 	//Scene Manager
 	mono_add_internal_call("InternalCalls::LoadScene", LoadScene);
+	mono_add_internal_call("InternalCalls::CreateSaveFromScene", CreateSaveFromScene);
+	mono_add_internal_call("InternalCalls::RemoveFile", RemoveFile);
+	mono_add_internal_call("InternalCalls::AccessFileDataString", AccessFileDataString);
+	mono_add_internal_call("InternalCalls::AccessFileDataFloat", AccessFileDataFloat);
+	mono_add_internal_call("InternalCalls::AccessFileDataInt", AccessFileDataInt);
+	mono_add_internal_call("InternalCalls::AccessFileDataBool", AccessFileDataBool);
+	mono_add_internal_call("InternalCalls::WriteFileDataString", WriteFileDataString);
+	mono_add_internal_call("InternalCalls::WriteFileDataFloat", WriteFileDataFloat);
+	mono_add_internal_call("InternalCalls::WriteFileDataInt", WriteFileDataInt);
+	mono_add_internal_call("InternalCalls::WriteFileDataBool", WriteFileDataBool);
 	mono_add_internal_call("InternalCalls::GetCurrentSceneName", GetCurrentSceneName);
 	mono_add_internal_call("InternalCalls::CreatePrefab", CreatePrefab);
 
@@ -810,11 +1067,14 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetSelectedButton", GetSelectedButton);
 	mono_add_internal_call("InternalCalls::GetSelected", GetSelected);
 	mono_add_internal_call("InternalCalls::MoveSelectedButton", MoveSelectedButton);
+	mono_add_internal_call("InternalCalls::SetUiItemState", SetUiItemState);
 	mono_add_internal_call("InternalCalls::MoveSelection", MoveSelection);
 	mono_add_internal_call("InternalCalls::ChangeSectImg", ChangeSectImg);
 	mono_add_internal_call("InternalCalls::GetSliderValue", GetSliderValue);
 	mono_add_internal_call("InternalCalls::SetSliderValue", SetSliderValue);
 	mono_add_internal_call("InternalCalls::GetSliderMaxValue", GetSliderMaxValue);
+	mono_add_internal_call("InternalCalls::SetTextString", SetTextString);
+	mono_add_internal_call("InternalCalls::GetTextString", GetTextString);
 
 	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);
@@ -835,8 +1095,10 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::EndPS", EndPS);
 
 	//Audio
-	mono_add_internal_call("InternalCalls::PlaySource", PlayAudioSource);
-	mono_add_internal_call("InternalCalls::StopSource", StopAudioSource);
+	mono_add_internal_call("InternalCalls::PlayAudioSource", PlayAudioSource);
+	mono_add_internal_call("InternalCalls::StopAudioSource", StopAudioSource);
+	mono_add_internal_call("InternalCalls::SetState", SetState);
+	mono_add_internal_call("InternalCalls::SetSwitch", SetSwitch);
 
 	//Collider2D
 	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);
@@ -895,5 +1157,33 @@ std::string MonoRegisterer::MonoStringToUTF8(MonoString* monoString)
 		return "";
 	std::string result(utf8);
 	mono_free(utf8);
+	return result;
+}
+
+std::vector<std::string> MonoRegisterer::MonoStringArrayToUTF8(MonoArray* monoStringArray)
+{
+	std::vector<std::string> result;
+
+	if (monoStringArray == nullptr)
+		return result;
+
+	int length = mono_array_length(monoStringArray);
+	for (int i = 0; i < length; ++i)
+	{
+		MonoString* monoString = reinterpret_cast<MonoString*>(mono_array_get(monoStringArray, MonoString*, i));
+
+		MonoError error;
+		char* utf8 = mono_string_to_utf8_checked(monoString, &error);
+		if (CheckMonoError(error))
+		{
+			result.push_back("");
+			continue;
+		}
+
+		std::string utf8String(utf8);
+		mono_free(utf8);
+		result.push_back(utf8String);
+	}
+
 	return result;
 }

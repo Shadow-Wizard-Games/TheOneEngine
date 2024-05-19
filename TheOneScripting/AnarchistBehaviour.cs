@@ -7,15 +7,16 @@ class AnarchistBehaviour : MonoBehaviour
         Patrol,
         Inspect,
         Attack,
+        Dying,
         Dead
     }
 
     IGameObject playerGO;
     float playerDistance;
 
-    float rangeToInspect = 200;
-    float inspectDetectionRadius = 100;
-    float loseRange = 150;
+    readonly float rangeToInspect = 200;
+    readonly float inspectDetectionRadius = 100;
+    readonly float loseRange = 150;
 
     States lastState = States.Patrol;
     States currentState = States.Patrol;
@@ -47,10 +48,24 @@ class AnarchistBehaviour : MonoBehaviour
     public override void Update()
     {
         attachedGameObject.animator.UpdateAnimation();
-        if (currentState == States.Dead)
+
+        if (currentState == States.Dying)
         {
+            if (attachedGameObject.animator.currentAnimHasFinished)
+            {
+                currentState = States.Dead;
+                return;
+            }
+
             attachedGameObject.animator.Play("Death");
-            return; 
+
+            return;
+        }
+        else if (currentState == States.Dead)
+        {
+            attachedGameObject.animator.Play("Dead Pose");
+
+            return;
         }
 
         playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
@@ -83,19 +98,21 @@ class AnarchistBehaviour : MonoBehaviour
                 player.isFighting = true;
                 AttackState();
                 break;
+            case States.Dying:
+                //attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+                break;
             case States.Dead:
-                attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
                 break;
             default:
                 break;
         }
     }
 
-
-    float patrolRange = 100;
-    float patrolSpeed = 20.0f;
+    readonly float patrolRange = 100;
+    readonly float patrolSpeed = 30.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
+
     void PatrolState()
     {
         attachedGameObject.animator.Play("Walk");
@@ -114,6 +131,7 @@ class AnarchistBehaviour : MonoBehaviour
                            Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
 
         attachedGameObject.transform.LookAt2D(roundPos);
+
         if (!goingToRoundPos)
         {
             MoveTo(roundPos);
@@ -122,10 +140,9 @@ class AnarchistBehaviour : MonoBehaviour
         {
             goingToRoundPos = !MoveTo(roundPos);
         }
-        //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
+
         if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up); }
     }
-
 
     enum InspctStates
     {
@@ -133,10 +150,12 @@ class AnarchistBehaviour : MonoBehaviour
         Inspecting,
         ComingBack
     }
+
     Vector3 playerLastPosition;
     InspctStates currentSubstate = InspctStates.Going;
-    float maxInspectTime = 5.0f;
+    readonly float maxInspectTime = 5.0f;
     float elapsedTime = 0.0f; //Do not modify
+
     void InspectState()
     {
         if (currentState != lastState)
@@ -182,29 +201,26 @@ class AnarchistBehaviour : MonoBehaviour
                 break;
         }
 
-
         Vector3 directorVec = (attachedGameObject.transform.position - playerGO.transform.position).Normalize();
         float dot = Vector3.Dot(attachedGameObject.transform.forward, directorVec);
 
-        if (playerDistance < inspectDetectionRadius
-            && dot > 0.7f)
+        if (playerDistance < inspectDetectionRadius && dot > 0.7f)
         {
             currentState = States.Attack;
         }
     }
 
-
     bool shooting = false;
     float timerBetweenBursts = 0.0f; //Do not modify
-    float timeBetweenBursts = 0.5f;
+    readonly float timeBetweenBursts = 0.5f;
     float timerBetweenBullets = 0.0f; //Do not modify
-    float timeBetweenBullets = 0.05f;
+    readonly float timeBetweenBullets = 0.05f;
     int bulletCounter = 0; //Do not modify
-    int burstBulletCount = 3;
+    readonly int burstBulletCount = 3;
+
     void AttackState()
     {
         attachedGameObject.transform.LookAt2D(playerGO.transform.position);
-        //attachedGameObject.source.StopAudio(AudioManager.EventIDs.E_REBEL_STEP);
 
         if (playerDistance > loseRange)
         {
@@ -227,13 +243,10 @@ class AnarchistBehaviour : MonoBehaviour
             if (timerBetweenBullets > timeBetweenBullets)
             {
                 attachedGameObject.animator.Play("Shoot");
-                //InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
-                //                                attachedGameObject.transform.forward * (collider.radius + 0.5f),
-                //                                attachedGameObject.transform.rotation);
+
                 timerBetweenBullets = 0.0f;
                 bulletCounter++;
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_REBEL_SHOOT);
-                if (iShotPSGO != null) iShotPSGO.GetComponent<IParticleSystem>().Replay();
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.E_A_SHOOT);
             }
 
             if (bulletCounter >= burstBulletCount)
@@ -246,8 +259,8 @@ class AnarchistBehaviour : MonoBehaviour
         if (gameManager.colliderRender) { Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 3, loseRange, Vector3.right); }
     }
 
+    readonly float movementSpeed = 50.0f;
 
-    float movementSpeed = 50.0f;
     bool MoveTo(Vector3 targetPosition)
     {
         //Return true if arrived at destination
@@ -255,7 +268,6 @@ class AnarchistBehaviour : MonoBehaviour
 
         Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
         attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
-        //attachedGameObject.source.PlayAudio(AudioManager.EventIDs.E_REBEL_STEP);
         return false;
     }
 

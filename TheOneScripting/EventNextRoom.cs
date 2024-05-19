@@ -61,22 +61,16 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if(Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if(Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             string sceneName = ExtractSceneName();
 
             Debug.LogWarning(sceneName);
             Debug.LogWarning(goName);
 
-            if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
-            {
-                playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-            }
-            if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
-            {
-                playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-            }
+            playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
+            gameManager.SaveSceneState();
             SceneManager.LoadScene(sceneName);
         }
 

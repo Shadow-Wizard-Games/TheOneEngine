@@ -9,6 +9,7 @@ public class EventCollectible : Event
     IGameObject playerGO;
     IGameObject itemManagerGO;
     ItemManager itemManager;
+    UiManager uiManager;
     Item currentItem;
     float playerDistance;
 
@@ -27,6 +28,7 @@ public class EventCollectible : Event
         itemManager = itemManagerGO.GetComponent<ItemManager>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+        uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
     }
     
     public override void Update()
@@ -59,13 +61,16 @@ public class EventCollectible : Event
     public override bool DoEvent()
     {
         //Add item
-        if(itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if (itemManager != null)
         {
-            itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
-            attachedGameObject.Disable();
-
-            //Degug
-            Debug.LogWarning("LOOTED");
+            if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
+            {
+                itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
+                attachedGameObject.Disable();
+                uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "m4a1");
+                //Degug
+                Debug.LogWarning("LOOTED");
+            }
         }
 
         return false;

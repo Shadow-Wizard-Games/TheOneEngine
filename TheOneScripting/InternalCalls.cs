@@ -59,6 +59,9 @@ class InternalCalls
     #region GameObject
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateGrenade(Vector3 initialPosition, Vector3 direction);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);
@@ -95,8 +98,38 @@ class InternalCalls
 
     #region Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void LoadScene(string sceneName, bool keep = false);
-    
+    internal extern static void LoadScene(string sceneName, bool keep = false, string path = "GameData/Scenes/");
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void CreateSaveFromScene(string filepath, string sceneName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void RemoveFile(string filepath);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string AccessFileDataString(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int AccessFileDataInt(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool AccessFileDataBool(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float AccessFileDataFloat(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataString(string filepath, string[] dataPath, string dataName, string data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataInt(string filepath, string[] dataPath, string dataName, int data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataBool(string filepath, string[] dataPath, string dataName, bool data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataFloat(string filepath, string[] dataPath, string dataName, float data);
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetCurrentSceneName();
 
@@ -118,6 +151,9 @@ class InternalCalls
     internal extern static int GetSelectedButton(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int SetUiItemState(IntPtr GOptr, int state, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
     
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -134,6 +170,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderValue(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTextString(IntPtr GOptr, string text, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetTextString(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
@@ -184,10 +226,16 @@ class InternalCalls
 
     #region Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void PlaySource(IntPtr GOptr, EventIDs audio);
+    internal extern static void PlayAudioSource(IntPtr GOptr, AudioEvent audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void StopSource(IntPtr GOptr, EventIDs audio);
+    internal extern static void StopAudioSource(IntPtr GOptr, AudioEvent audio);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetState(AudioStateGroup stateGroup, AudioStateID stateID);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSwitch(IntPtr GOptr, AudioSwitchGroup switchGroup, AudioSwitchID switchID);
     #endregion
 
     #region Collider2D

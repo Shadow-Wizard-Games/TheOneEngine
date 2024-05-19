@@ -8,12 +8,14 @@ ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, Rect2D rec
 	imagePath = "Assets/Meshes/HUD.png";
 	imageID = Resources::Load<Texture>(imagePath);
 	UpdateState();
+	countAsRealButton = true;
 }
 
 ButtonImageUI::ButtonImageUI(std::shared_ptr<GameObject> containerGO, const std::string& path, std::string name, Rect2D rect) : ItemUI(containerGO, UiType::BUTTONIMAGE, name, false, rect), imagePath(path)
 {
 	imageID = Resources::Load<Texture>(imagePath);
 	UpdateState();
+	countAsRealButton = true;
 }
 
 ButtonImageUI::ButtonImageUI(ButtonImageUI* ref) : ItemUI(ref)
@@ -24,6 +26,7 @@ ButtonImageUI::ButtonImageUI(ButtonImageUI* ref) : ItemUI(ref)
 	this->imageHoveredSection = ref->imageHoveredSection;
 	this->imageSelectedSection = ref->imageSelectedSection;
 	this->currentSection = ref->currentSection;
+	this->countAsRealButton = ref->countAsRealButton;
 
 	UpdateState();
 }
@@ -59,6 +62,7 @@ json ButtonImageUI::SaveUIElement()
 	uiElementJSON["State"] = (int)state;
 	uiElementJSON["Interactuable"] = interactuable;
 	uiElementJSON["Print"] = print;
+	uiElementJSON["CountAsRealButton"] = countAsRealButton;
 
 	uiElementJSON["ImagePath"] = imagePath;
 
@@ -101,30 +105,12 @@ void ButtonImageUI::LoadUIElement(const json& UIElementJSON)
 	if (UIElementJSON.contains("State")) state = (UiState)UIElementJSON["State"];
 	if (UIElementJSON.contains("Interactuable")) interactuable = UIElementJSON["Interactuable"];
 	if (UIElementJSON.contains("Print")) print = UIElementJSON["Print"];
+	if (UIElementJSON.contains("CountAsRealButton")) countAsRealButton = UIElementJSON["CountAsRealButton"];
 
 	if (UIElementJSON.contains("ImagePath")) imagePath = UIElementJSON["ImagePath"];
 	imageID = Resources::Load<Texture>(imagePath);
 
-	switch (this->state)
-	{
-	case UiState::IDLE:
-		currentSection = &imageIdleSection;
-		break;
-	case UiState::HOVERED:
-		currentSection = &imageHoveredSection;
-		break;
-	case UiState::SELECTED:
-		currentSection = &imageSelectedSection;
-		break;
-	case UiState::HOVEREDSELECTED:
-		break;
-	case UiState::DISABLED:
-		break;
-	case UiState::UNKNOWN:
-		break;
-	default:
-		break;
-	}
+	UpdateState();
 }
 
 Rect2D ButtonImageUI::GetSectIdle() const

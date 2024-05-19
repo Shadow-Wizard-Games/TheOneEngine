@@ -85,7 +85,10 @@ bool CollisionSolver::Update(double dt)
                         //implement any low life to player
                         if (CheckCollision(item, item2))
                         {
-                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "CheckJump");
+                            if (item->GetComponent<Script>()->scriptName == "FaceHuggerBehaviour")
+                            {
+                                MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "CheckJump");
+                            }
                         }
                         break;
                     case CollisionType::Enemy:

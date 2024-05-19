@@ -445,7 +445,7 @@ void PanelProject::SaveScenePopup()
 
 			if (ImGui::Button("Save", { 90, 20 }))
 			{
-				engine->N_sceneManager->SaveScene();
+				engine->N_sceneManager->SaveScene("Assets\\Scenes", engine->N_sceneManager->currentScene->GetSceneName());
 				engine->N_sceneManager->LoadScene(fileSelected->name);
 				ImGui::CloseCurrentPopup();
 				saveScenePopup = false;

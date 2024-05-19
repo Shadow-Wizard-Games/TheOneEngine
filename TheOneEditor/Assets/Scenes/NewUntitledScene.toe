@@ -23,7 +23,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3268784684
+          "UID": 1585752002
         },
         {
           "Aspect": 1.777,
@@ -33,63 +33,18 @@
           "ParentUID": 3452816845,
           "Pitch": 0.0,
           "PrimaryCamera": false,
-          "Size": 5.0,
+          "Size": 200.0,
           "Type": 1,
-          "UID": 3042092464,
+          "UID": 1151345913,
           "Yaw": 0.0,
-          "zFar": 1000.0,
+          "zFar": 3000.0,
           "zNear": 0.1
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            20.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            20.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            20.0,
-            0.0,
-            0.0,
-            0.0,
-            -8.352904319763184,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2693298383
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_MainCharacter_Run/M_MainCharacter.toematerial",
-          "MeshPath": "Library/Meshes/AS_MainCharacter_Run/SK_MainCharacter.animator",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 4119869749
-        }
-      ],
-      "Enabled": true,
-      "Name": "SK_MainCharacter",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845

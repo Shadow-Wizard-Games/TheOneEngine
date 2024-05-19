@@ -31,12 +31,14 @@ public class UiScriptDebug : MonoBehaviour
 
         onCooldown = true;
 
+        canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
+
         UpdateCheckers();
     }
 
     public override void Update()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 
@@ -109,7 +111,7 @@ public class UiScriptDebug : MonoBehaviour
             // Select Button
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_HOVER);
                 onCooldown = true;
                 canvas.MoveSelection(direction);
             }
@@ -117,28 +119,28 @@ public class UiScriptDebug : MonoBehaviour
             // Selection Executters
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 gameManager.DrawColliders();
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 gameManager.DrawGrid();
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 gameManager.godMode = !gameManager.godMode;
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 gameManager.extraSpeed = !gameManager.extraSpeed;
                 onCooldown = true;
             }
