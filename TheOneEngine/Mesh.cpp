@@ -416,7 +416,7 @@ bool Mesh::RenderOzzSkinnedMesh(SkeletalModel* mesh, int matID, const ozz::span<
 	//LightManager& lman = Wiwa::SceneManager::getActiveScene()->GetLightManager();
 
 	animShader->Bind();
-	animShader->SetModel(transform);
+	//animShader->SetModel(transform);
 
 	GLCALL(glBindVertexArray(dynamicVAO));
 	// Updates dynamic vertex buffer with skinned data.

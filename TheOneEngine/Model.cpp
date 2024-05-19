@@ -170,10 +170,13 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             vertex_data.push_back(mesh->mNormals[i].z);
             //InstanceModel
             glm::mat4 m(1);
-            vertex_data.push_back(m[i].x);
-            vertex_data.push_back(m[i].y);
-            vertex_data.push_back(m[i].z);
-            vertex_data.push_back(m[i].w);
+            for (int i = 0; i < 4; i++)
+            {
+                vertex_data.push_back(m[i].x);
+                vertex_data.push_back(m[i].y);
+                vertex_data.push_back(m[i].z);
+                vertex_data.push_back(m[i].w);
+            }
         }
 
         ModelData data;

@@ -1284,6 +1284,8 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	}
 	Renderer2D::Flush();//           END BATCH
 
+	Renderer3D::Update();
+
 
 	if (mode == DrawMode::EDITOR)
 		return;

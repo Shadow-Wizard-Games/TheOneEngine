@@ -15,8 +15,8 @@ layout(std140, binding = 0) uniform Camera {
 
 void main() {
 	gl_Position = u_ViewProjection * a_InstanceModel * vec4(a_Pos, 1.0);
-	fragPos = vec3(u_Model * vec4(a_Pos, 1.0));
+	fragPos = vec3(a_InstanceModel * vec4(a_Pos, 1.0));
 	//TODO: Compute at the CPU!
-	normal = mat3(transpose(inverse(u_Model))) * a_Normal;
+	normal = mat3(transpose(inverse(a_InstanceModel))) * a_Normal;
 	TexCoords = a_UV;
 }
