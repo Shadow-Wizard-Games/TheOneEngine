@@ -56,7 +56,7 @@ vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec
     vec3 lightDir = normalize(-light.Direction);
     vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * light.Color;
     // specular
-    vec3 halfwayDir = normalize(lightDir + ViewDir);  
+    vec3 halfwayDir = normalize(lightDir + ViewDir);
     float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
     vec3 specular = light.Color * spec * Specular;
 
@@ -72,14 +72,13 @@ vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal,
     vec3 lightDir = normalize(light.Position - FragPos);
     vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * light.Color;
     // specular
-    vec3 halfwayDir = normalize(lightDir + ViewDir);  
+    vec3 halfwayDir = normalize(lightDir + ViewDir);
     float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
     vec3 specular = light.Color * spec * Specular;
     // attenuation
     float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
-    diffuse *= attenuation;
-    specular *= attenuation;
-    return (diffuse + specular); 
+
+    return ((diffuse + specular) * attenuation);
 }
 
 vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
@@ -91,23 +90,21 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
     vec3 lightDir = normalize(light.Position - FragPos);
     float r = length(lightDir);
     vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * light.Color;
+    
     // specular
-    vec3 halfwayDir = normalize(lightDir + ViewDir);  
+    vec3 halfwayDir = normalize(lightDir + ViewDir);
     float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
     vec3 specular = light.Color * spec * Specular;
 
     // spotlight (soft edges)
-    float theta = dot(lightDir, normalize(-light.Direction)); 
+    float theta = dot(lightDir, normalize(-light.Direction));
     float epsilon = (light.CutOff - light.OuterCutOff);
     float intensity = clamp((theta - light.OuterCutOff) / epsilon, 0.0, 1.0);
-    diffuse  *= intensity;
-    specular *= intensity;
 
     // attenuation
     float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
-    diffuse *= attenuation;
-    specular *= attenuation;
-    return (diffuse + specular);  
+
+    return ((diffuse + specular) * intensity * attenuation);
 }
 
 void main()

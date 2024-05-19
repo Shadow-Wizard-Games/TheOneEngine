@@ -146,69 +146,61 @@ bool PanelInspector::Draw()
                 // Transform table ----------------------------------------------------------------------------------
                 ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
                 //ImGui::Indent(0.8f);
-                if (ImGui::BeginTable("", 4, tableFlags))
+                if (ImGui::BeginTable("##transformTable", 4))
                 {
-                    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("X", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("Y", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("Z", ImGuiTableColumnFlags_WidthStretch);
+                    ImGui::TableSetupColumn("##title");
+                    ImGui::TableSetupColumn("##X");
+                    ImGui::TableSetupColumn("##Y");
+                    ImGui::TableSetupColumn("##Z");
 
                     ImGui::TableNextRow();
-
-                    // Headers
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TableHeader("##");
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::TableSetColumnIndex(1);
-                    ImGui::TableHeader("X");
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::TableSetColumnIndex(2);
-                    ImGui::TableHeader("Y");
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::TableSetColumnIndex(3);
-                    ImGui::TableHeader("Z");
+                    ImGui::PushItemWidth(-FLT_MIN);
 
-                    ImGui::TableNextRow();
-
-                    // Position
+                    // Column 0: Labels
                     ImGui::TableSetColumnIndex(0);
+                    ImGui::Dummy({ 0, 1 });
                     ImGui::Text("Position");
-
-                    ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableNextRow();
-
-                    // Rotation
-                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Dummy({ 0, 4 });
                     ImGui::Text("Rotation");
-
-                    ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableNextRow();
-
-                    // Scale
-                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Dummy({ 0, 4 });
                     ImGui::Text("Scale");
 
+                    // Column 1: X Axis
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##ScaleX", &view_sca.x, 0.1F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    ImGui::PushStyleColor(ImGuiCol_FrameBg,         { 0.5f, 0.32f, 0.32f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgHovered,  { 0.6f, 0.42f, 0.42f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgActive,   { 0.5f, 0.22f, 0.22f, 1.0f });
+                    if (ImGui::DragFloat("X##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f"))       matrixDirty = true;
+                    if (ImGui::DragFloat("X##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f"))   matrixDirty = true;
+                    if (ImGui::DragFloat("X##ScaleX", &view_sca.x, 0.1F, 0, 0, "%.3f"))     matrixDirty = true;
+                    ImGui::PopStyleColor(3);
 
+                    // Column 2: Y Axis
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##ScaleY", &view_sca.y, 0.1F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    ImGui::PushStyleColor(ImGuiCol_FrameBg,         { 0.32f, 0.5f, 0.32f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgHovered,  { 0.42f, 0.6f, 0.42f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgActive,   { 0.22f, 0.5f, 0.22f, 1.0f });
+                    if (ImGui::DragFloat("Y##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f"))       matrixDirty = true;
+                    if (ImGui::DragFloat("Y##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f"))   matrixDirty = true;
+                    if (ImGui::DragFloat("Y##ScaleY", &view_sca.y, 0.1F, 0, 0, "%.3f"))     matrixDirty = true;
+                    ImGui::PopStyleColor(3);
 
+                    // Column 3: Z Axis
                     ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##ScaleZ", &view_sca.z, 0.1F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    ImGui::PushStyleColor(ImGuiCol_FrameBg,         { 0.32f, 0.32f, 0.5f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgHovered,  { 0.42f, 0.42f, 0.6f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgActive,   { 0.22f, 0.22f, 0.5f, 1.0f });
+                    if (ImGui::DragFloat("Z##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f"))       matrixDirty = true;
+                    if (ImGui::DragFloat("Z##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f"))   matrixDirty = true;
+                    if (ImGui::DragFloat("Z##ScaleZ", &view_sca.z, 0.1F, 0, 0, "%.3f"))     matrixDirty = true;
+                    ImGui::PopStyleColor(3);
 
                     ImGui::EndTable();
                 }
@@ -424,8 +416,6 @@ bool PanelInspector::Draw()
             }
             
             /*Light Component*/
-            
-            //Get Light Component to recalculate lights at any case
             Light* light = selectedGO->GetComponent<Light>();
 
             if (light != nullptr && ImGui::CollapsingHeader("Light", treeNodeFlags))
@@ -460,11 +450,8 @@ bool PanelInspector::Draw()
                 // Color
                 ImVec4 color = ImVec4(light->color.r, light->color.g, light->color.b, 1.0f);
 
-                ImGui::Text("Color");
-                ImGui::SameLine();
-
-                static const char* color_id = "##lightColor3b";
-                if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetContentRegionAvail().x, 20)))
+                static const char* color_id = "Color##lightColor3b";
+                if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
                 {
                     app->gui->openColorPicker = true;
                     EditColor editColor = { color_id, color, color };
@@ -477,21 +464,24 @@ bool PanelInspector::Draw()
                     light->color.g = color.y;
                     light->color.b = color.z;
                 }
+                ImGui::SameLine();
+                ImGui::SetCursorPos({ ImGui::GetCursorPosX() - 4, ImGui::GetCursorPosY() + 3 });
+                ImGui::Text("Color");
 
-                //...
+                // Settings
                 if (light->lightType == LightType::Point || light->lightType == LightType::Spot)
                 {
                     ImGui::Text("Range");
-                    ImGui::DragFloat("radius", &light->radius, 0.5F, 0, 0, "%.3f", 1);
-                    ImGui::DragFloat("linear", &light->linear, 0.02F, 0, 0, "%.3f", 1);
-                    ImGui::DragFloat("quadratic", &light->quadratic, 0.02F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("Radius", &light->radius, 0.5F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("Linear", &light->linear, 0.02F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("Quadratic", &light->quadratic, 0.02F, 0, 0, "%.3f", 1);
                 }
 
                 if (light->lightType == LightType::Spot)
                 {
                     ImGui::Text("Cut Off");
-                    ImGui::DragFloat("inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f", 1);
-                    ImGui::DragFloat("outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("Inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("Outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f", 1);
                 }
             }
 
