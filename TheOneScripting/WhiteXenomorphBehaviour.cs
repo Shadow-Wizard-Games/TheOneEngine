@@ -27,7 +27,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     States currentState = States.Idle;
     States lastState = States.Idle;
     WhiteXenomorphAttacks currentAttack = WhiteXenomorphAttacks.None;
-    readonly Vector3 initialPos;
+    Vector3 initialPos;
 
     // Patrol
     readonly float patrolRange = 100;
@@ -61,7 +61,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-        initialPos = attachedGameObject.transform.position;
+        initialPos = attachedGameObject.transform.Position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -223,7 +223,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     private void ClawAttack()
     {
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
