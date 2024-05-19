@@ -288,6 +288,9 @@
     <ClInclude Include="SkeletalModel.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -445,12 +448,6 @@
     </ClCompile>
     <ClCompile Include="TextUI.cpp">
       <Filter>GameObject\Components\UI\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer3D.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletalModel.cpp">
-      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

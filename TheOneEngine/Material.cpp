@@ -260,10 +260,13 @@ void Material::Load(const std::string& path)
 					sdata.resource_id = Resources::LoadFromLibrary<Texture>(sdata.tex_path);
 
 					Texture* img = Resources::GetResourceById<Texture>(sdata.resource_id);
-					sdata.tex_id = img->GetTextureId();
 
-					uniform->setData(sdata, uniform->getType());
+					if (img)
+					{
+						sdata.tex_id = img->GetTextureId();
 
+						uniform->setData(sdata, uniform->getType());
+					}
 				}
 				else
 				{

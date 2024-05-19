@@ -40,6 +40,7 @@
     <ClInclude Include="InitializeEmmiterModule.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Material.h" />
@@ -104,6 +105,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="InitializeEmmiterModule.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="InputManager.cpp" />

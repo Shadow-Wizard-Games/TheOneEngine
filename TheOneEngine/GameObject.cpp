@@ -11,6 +11,7 @@
 #include "UIDGen.h"
 #include "BBox.hpp"
 #include "Camera.h"
+#include "Light.h"
 #include "N_SceneManager.h"
 
 #include "Math.h"
@@ -100,6 +101,10 @@ void GameObject::RemoveComponent(ComponentType type)
 	{
 		if ((*it)->GetType() == type)
 		{
+			if ((*it)->GetType() == ComponentType::Light)
+			{
+				this->GetComponent<Light>()->RemoveLight();
+			}
 			it = components.erase(it);
 			break;
 		}
@@ -498,6 +503,11 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			{
 				this->AddComponent<ParticleSystem>();
 				this->GetComponent<ParticleSystem>()->LoadComponent(componentJSON);
+			}
+			else if (componentJSON["Type"] == (int)ComponentType::Light)
+			{
+				this->AddComponent<Light>();
+				this->GetComponent<Light>()->LoadComponent(componentJSON);
 			}
 		}
 	}

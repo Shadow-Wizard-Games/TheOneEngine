@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "Canvas.h"
+#include "Light.h"
 
 #include <string>
 #include <memory>
@@ -133,7 +134,12 @@ public:
 		rootSceneGO.get()->AddComponent<Transform>();
 	}
 
-	~Scene() {}
+	~Scene() 
+	{ 
+		lights.clear();
+		delete currentCamera;
+		currentCamera = nullptr;
+	}
 
 	inline std::string GetSceneName() const { return sceneName; }
 	inline void SetSceneName(std::string name) { sceneName = name; }
@@ -177,6 +183,9 @@ public:
 	Camera* currentCamera = nullptr;
 
 	std::multimap<float, GameObject*> zSorting;
+
+	//Arnau: Create a lights list
+	std::vector<Light*> lights;
 
 	//int listenerAudioGOID = -1;
 };

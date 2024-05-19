@@ -22,7 +22,11 @@ activeAnimator(nullptr),
 animationCamera(nullptr),
 isPlaying(false)
 {
-	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+	std::vector<Attachment> attachments = {
+		{ Attachment::Type::RGBA8, "color", 0 },
+		{ Attachment::Type::DEPTH, "depth", 0 }
+	};
+	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, attachments);
 
 	animationCamera = std::make_shared<GameObject>("ANIMATION CAMERA");
 	animationCamera.get()->AddComponent<Transform>();
@@ -173,7 +177,7 @@ void PanelAnimation::Viewport()
 	ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 
 	if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-		(frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+		(frameBuffer->GetWidth() != viewportSize.x || frameBuffer->GetHeight() != viewportSize.y))
 	{
 		frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
 		animationCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
@@ -183,7 +187,7 @@ void PanelAnimation::Viewport()
 	//ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
 	{
 		frameBuffer->Bind();
-		frameBuffer->Clear({ 0.13f, 0.14f, 0.15f, 1.00f });
+		frameBuffer->Clear(ClearBit::All, { 0.13f, 0.14f, 0.15f, 1.00f });
 
 		// Draw
 		engine->SetRenderEnvironment();
@@ -196,7 +200,7 @@ void PanelAnimation::Viewport()
 
 	//Draw FrameBuffer Texture
 	ImGui::Image(
-		(ImTextureID)frameBuffer->getColorBufferTexture(),
+		(ImTextureID)frameBuffer->GetAttachmentTexture("color"),
 		{ viewportSize.x, viewportSize.y },
 		{ 0, 1 }, { 1, 0 });
 }

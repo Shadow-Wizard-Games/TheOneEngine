@@ -42,6 +42,9 @@ public:
 	HandleSpace GetHandleSpace() const { return handleSpace; }
 	HandlePosition GetHandlePosition() const { return handlePosition; }
 
+	void LightPass();
+	void DrawScreenQuad();
+
 public:
 	bool isHovered;
 	bool isFocused;
@@ -62,7 +65,8 @@ private:
 	vec2 camTargetSpeed = { 0, 0 };
 	vec2 camCurrentSpeed = { 0, 0 };
 
-	std::shared_ptr<FrameBuffer> frameBuffer;
+	std::shared_ptr<FrameBuffer> gBuffer;
+	std::shared_ptr<FrameBuffer> postBuffer;
 	glm::vec2 viewportSize;
 
 	int gizmoType;

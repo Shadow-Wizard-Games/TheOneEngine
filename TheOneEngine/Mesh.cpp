@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "Light.h"
+#include "N_SceneManager.h"
 #include "Log.h"
 #include "Defs.h"
 #include "FbxImporter.h"
@@ -185,7 +187,6 @@ void Mesh::DrawComponent(Camera* camera)
 
 bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
 {
-
 	Shader* matShader = material->getShader();
 	matShader->Bind();
 	matShader->SetModel(transform);
@@ -421,10 +422,6 @@ bool Mesh::RenderOzzSkinnedMesh(SkeletalModel* mesh, Material* material, const o
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, dynamicVBO));
 	GLCALL(glBufferData(GL_ARRAY_BUFFER, vboSize, vboMap, GL_STREAM_DRAW));
 	//GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, vboSize, vboMap));
-
-
-	/*SetUpLight(animShader, camera, lman.GetDirectionalLight(), lman.GetPointLights(), lman.GetSpotLights());
-	camera->shadowBuffer->BindTexture();*/
 
 	material->Bind();
 

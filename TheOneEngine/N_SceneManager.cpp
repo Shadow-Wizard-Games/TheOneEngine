@@ -215,6 +215,8 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	// Close the file
 	file.close();
 
+	currentScene->lights.clear();
+
 	if (sceneJSON.contains("sceneName"))
 	{
 		currentScene->SetSceneName(sceneJSON["sceneName"]);
@@ -601,6 +603,9 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 			break;
 		case ComponentType::ParticleSystem:
 			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
+			break;
+		case ComponentType::Light:
+			duplicatedGO.get()->AddCopiedComponent<Light>((Light*)item);
 			break;
 		case ComponentType::Unknown:
 			break;
@@ -1001,6 +1006,14 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 
 				auto particleSystem = goToModify->GetComponent<ParticleSystem>();
 				particleSystem->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Light:
+			{
+				if (goToModify->GetComponent<Light>() == nullptr) goToModify->AddComponent<Light>();
+
+				auto light = goToModify->GetComponent<Light>();
+				light->LoadComponent(componentJSON);
 				break;
 			}
 			default:

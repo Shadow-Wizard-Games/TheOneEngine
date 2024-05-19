@@ -87,6 +87,10 @@ public:
 	void SetEditorCamera(Camera* cam);
 	void SetUniformBufferCamera(const glm::mat4& cam);
 
+	void InitPostLightingShader();
+	void InitPreLightingShader();
+	void InitLitMeshColorShaders();
+
 public:
 	
 	double dt = 0;
@@ -108,6 +112,8 @@ public:
 	std::vector<Ray> rays;
 
 	ScratchBuffer scratch_buffer_;
+
+	std::string lightingProcessPath;
 
 private:
 
