@@ -4,6 +4,7 @@
 #include "N_SceneManager.h"
 #include "Collider2D.h"
 #include "Renderer2D.h"
+#include "Renderer3D.h"
 #include <GL\glew.h>
 #include <glm\ext\matrix_transform.hpp>
 #include <IL\il.h>
@@ -112,6 +113,7 @@ void EngineCore::DebugDraw(bool override)
 void EngineCore::CleanUp()
 {
     Renderer2D::Shutdown();
+    Renderer3D::Shutdown();
 
     audioManager->CleanUp();
     audioManager = nullptr;

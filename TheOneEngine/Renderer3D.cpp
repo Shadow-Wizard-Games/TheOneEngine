@@ -29,9 +29,18 @@ void Renderer3D::Update()
 		call.GetVAO().Bind();
 		GLCALL(glDrawElementsInstanced(
 			GL_TRIANGLES, call.GetVAO().GetIndexBuffer().GetCount(), GL_UNSIGNED_INT, 0, call.GetModels().size()))
+			
+		call.GetVAO().Unbind();
+		mat->UnBind();
 	}
 
 	renderer3D.instanceCalls.clear();
+}
+
+void Renderer3D::Shutdown()
+{
+	for (DefaultMesh& mesh : renderer3D.meshes)
+		mesh.rendererID.Delete();
 }
 
 void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
@@ -51,20 +60,20 @@ void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
 void Renderer3D::AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat)
 {
 	if(renderer3D.instanceCalls.empty())
-		AddInstanceCall(meshID, matID);
+		AddInstanceCall(meshID, matID, modelMat);
 	else {
 		for (InstanceCall& call : renderer3D.instanceCalls) {
 			if (call.CheckID(meshID))
 				call.AddInstance(modelMat);
 			else
-				AddInstanceCall(meshID, matID);
+				AddInstanceCall(meshID, matID, modelMat);
 		}
 	}
 }
 
-void Renderer3D::AddInstanceCall(StackVertexArray meshID, int matID)
+void Renderer3D::AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat)
 {
-	renderer3D.instanceCalls.emplace_back(meshID, matID);
+	renderer3D.instanceCalls.emplace_back(meshID, matID, modelMat);
 }
 
 void Renderer3D::UpdateInstanceBuffer(const std::vector<InstanceCall>& calls)
@@ -73,6 +82,7 @@ void Renderer3D::UpdateInstanceBuffer(const std::vector<InstanceCall>& calls)
 	{
 		const VertexBuffer& VBO = call.GetVAO().GetVertexBuffer();
 		VBO.Bind();
-		VBO.SetData(call.GetModels().data(), call.GetModels().size() * sizeof(glm::mat4), 32);
+		size_t size = call.GetModels().size() * sizeof(glm::mat4);
+		VBO.SetData(call.GetModels().data(), size, 32);
 	}
 }

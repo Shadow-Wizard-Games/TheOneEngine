@@ -17,8 +17,7 @@ struct DefaultMesh
 class InstanceCall
 {
 public:
-	InstanceCall(StackVertexArray vao, int mat) : mesh(vao, mat) {}
-	InstanceCall(DefaultMesh id) : mesh(id) {}
+	InstanceCall(StackVertexArray vao, int mat, const glm::mat4& modelMat) : mesh(vao, mat) { AddInstance(modelMat); }
 	~InstanceCall() { models.clear(); }
 
 	void AddInstance(const glm::mat4& modelMat) {
@@ -43,13 +42,13 @@ class Renderer3D
 public:
 	static void Update();
 
+	static void Shutdown();
+
 	static void AddMesh(StackVertexArray meshID, int matID);
 
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
-
-	//TODO: handle the delete of the VAO's
 private:
-	static void AddInstanceCall(StackVertexArray meshID, int matID);
+	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
 
 	static void UpdateInstanceBuffer(const std::vector<InstanceCall>& calls);
 };
