@@ -10,8 +10,7 @@
 
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0f), intensity(1.0f), specular(0.5f), radius(60.0f), linear(0.7f), quadratic(1.8f), innerCutOff(0.91f), outerCutOff(0.82f), 
-nearPlane(1.0f), farPlane(7.5f), lightSpaceMatrix(1.0f)
+color(1.0f), intensity(1.0f), specular(0.5f), radius(60.0f), linear(0.7f), quadratic(1.8f), innerCutOff(0.91f), outerCutOff(0.82f) 
 {
     std::vector<Attachment> depthBuffAttachments = {
             { Attachment::Type::DEPTH, "depth", 0 }
@@ -19,40 +18,24 @@ nearPlane(1.0f), farPlane(7.5f), lightSpaceMatrix(1.0f)
 
     depthBuffer = std::make_shared<FrameBuffer>(1280, 720, depthBuffAttachments);
 
-    Transform* transform = containerGO.get()->GetComponent<Transform>();
-
-    if (transform)
-    {
-        glm::mat4 orthogonalProj = glm::ortho(-35.0f, 35.0f, -35.0f, 35.0f, 0.1f, 75.0f);
-        lightView = glm::lookAt((glm::vec3)transform->GetPosition(), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        lightSpaceMatrix = orthogonalProj * lightView;
-    }
-
+    containerGO->AddComponent<Camera>();
+    camera = containerGO->GetComponent<Camera>();
+    
     engine->N_sceneManager->currentScene->lights.push_back(this);
 }
 
 Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(containerGO, ComponentType::Light), lightType(ref->lightType),
 color(ref->color), intensity(ref->intensity), specular(ref->specular), radius(ref->radius), linear(ref->linear), quadratic(ref->quadratic),
-innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff), 
-nearPlane(ref->nearPlane), farPlane(ref->farPlane), lightSpaceMatrix(ref->lightSpaceMatrix)
+innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff)
 {
-    const float maxBrightness = std::fmaxf(std::fmaxf(color.r, color.g), color.b);
-    radius = (-linear + std::sqrt(linear * linear - 4 * quadratic * (1.0f - (256.0f / 5.0f) * maxBrightness))) / (2.0f * quadratic);
-
     std::vector<Attachment> depthBuffAttachments = {
             { Attachment::Type::DEPTH, "depth", 0 }
     };
 
     depthBuffer = std::make_shared<FrameBuffer>(1280, 720, depthBuffAttachments);
 
-    Transform* transform = containerGO.get()->GetComponent<Transform>();
-
-    if (transform)
-    {
-        glm::mat4 orthogonalProj = glm::ortho(-35.0f, 35.0f, -35.0f, 35.0f, 0.1f, 75.0f);
-        glm::mat4 lightView = glm::lookAt((glm::vec3)transform->GetPosition(), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        lightSpaceMatrix = orthogonalProj * lightView;
-    }
+    containerGO->AddCopiedComponent<Camera>(ref->containerGO.lock()->GetComponent<Camera>());
+    camera = containerGO->GetComponent<Camera>();
 
     engine->N_sceneManager->currentScene->lights.push_back(this);
 }
@@ -63,13 +46,6 @@ Light::~Light()
 
 void Light::DrawComponent(Camera* camera)
 {
-    Transform* transform = containerGO.lock().get()->GetComponent<Transform>();
-    if (transform)
-    {
-        glm::mat4 orthogonalProj = glm::ortho(-35.0f, 35.0f, -35.0f, 35.0f, 0.1f, 75.0f);
-        glm::mat4 lightView = glm::lookAt((glm::vec3)transform->GetPosition(), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        lightSpaceMatrix = orthogonalProj * lightView;
-    }
 }
 
 json Light::SaveComponent()
@@ -85,12 +61,14 @@ json Light::SaveComponent()
     lightJSON["LightType"] = lightType;
     lightJSON["UID"] = UID;
     lightJSON["Color"] = { color.r, color.g, color.b};
+    lightJSON["Intensity"] = intensity;
     lightJSON["Specular"] = specular;
     lightJSON["Radius"] = radius;
     lightJSON["Linear"] = linear;
     lightJSON["Quadratic"] = quadratic;
     lightJSON["InnerCutOff"] = innerCutOff;
     lightJSON["OuterCutOff"] = outerCutOff;
+    lightJSON["ActiveShadows"] = activeShadows;
 
     return lightJSON;
 }
@@ -114,6 +92,10 @@ void Light::LoadComponent(const json& meshJSON)
         color.r = meshJSON["Color"][0];
         color.g = meshJSON["Color"][1];
         color.b = meshJSON["Color"][2];
+    }
+    if (meshJSON.contains("Intensity"))
+    {
+        intensity = meshJSON["Intensity"];
     }
     if (meshJSON.contains("Specular"))
     {
@@ -139,6 +121,33 @@ void Light::LoadComponent(const json& meshJSON)
     {
         outerCutOff = meshJSON["OuterCutOff"];
     }
+    if (meshJSON.contains("ActiveShadows"))
+    {
+        activeShadows = meshJSON["ActiveShadows"];
+    }
+}
+
+void Light::CalculateShadows()
+{
+    camera->cameraType = CameraType::PERSPECTIVE;
+
+    if (lightType == LightType::Directional)
+    {
+        camera->cameraType = CameraType::ORTHOGRAPHIC;
+    }
+
+    depthBuffer->Bind();
+    depthBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+
+    // Set Render Environment
+    engine->SetRenderEnvironment(this->camera);
+
+    // Draw Scene
+    GLCALL(glDisable(GL_BLEND));
+    //GLCALL(glDepthFunc(GL_LEQUAL));
+    engine->N_sceneManager->currentScene->Draw(DrawMode::EDITOR, this->camera);
+
+    depthBuffer->Unbind();
 }
 
 void Light::RemoveLight()

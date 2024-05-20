@@ -483,8 +483,8 @@ bool PanelInspector::Draw()
                 if (light->lightType == LightType::Spot)
                 {
                     ImGui::Text("Cut Off");
-                    ImGui::DragFloat("Inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f");
-                    ImGui::DragFloat("Outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Inner", &light->innerCutOff, 0.02F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Outer", &light->outerCutOff, 0.02F, 0, 0, "%.3f");
                 }
             }
 

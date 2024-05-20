@@ -56,6 +56,8 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
+    void CalculateShadows();
+
     void RemoveLight();
 
 public:
@@ -78,10 +80,9 @@ public:
     float outerCutOff;
 
     //Shadows Vars
-    glm::mat4 lightSpaceMatrix;
-    glm::mat4 lightView;
     std::shared_ptr<FrameBuffer> depthBuffer;
-    float nearPlane, farPlane;
+    Camera* camera = nullptr;
+    bool activeShadows = true;
 
     std::string lightPresetPath;
 };

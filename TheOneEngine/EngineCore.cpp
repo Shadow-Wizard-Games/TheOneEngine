@@ -456,8 +456,7 @@ void EngineCore::InitPostLightingShader()
         textShader->addUniform("u_DirLight[" + iteration + "].Color", UniformType::fVec3);
         textShader->addUniform("u_DirLight[" + iteration + "].Intensity", UniformType::Float);
         textShader->addUniform("u_DirLight[" + iteration + "].Direction", UniformType::fVec3);
-        textShader->addUniform("u_DirLight[" + iteration + "].NearPlane", UniformType::Float);
-        textShader->addUniform("u_DirLight[" + iteration + "].FarPlane", UniformType::Float);
+        textShader->addUniform("u_DirLight[" + iteration + "].ViewProjectionMat;", UniformType::Mat4);
         textShader->addUniform("u_DirLight[" + iteration + "].Depth", UniformType::Sampler2D);
     }
 
@@ -470,8 +469,6 @@ void EngineCore::InitPostLightingShader()
         textShader->addUniform("u_PointLights[" + iteration + "].Linear", UniformType::Float);
         textShader->addUniform("u_PointLights[" + iteration + "].Quadratic", UniformType::Float);
         textShader->addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
-        textShader->addUniform("u_PointLights[" + iteration + "].NearPlane", UniformType::Float);
-        textShader->addUniform("u_PointLights[" + iteration + "].FarPlane", UniformType::Float);
         textShader->addUniform("u_PointLights[" + iteration + "].Depth", UniformType::Sampler2D);
     }
 
@@ -487,8 +484,7 @@ void EngineCore::InitPostLightingShader()
         textShader->addUniform("u_SpotLights[" + iteration + "].Radius", UniformType::Float);
         textShader->addUniform("u_SpotLights[" + iteration + "].CutOff", UniformType::Float);
         textShader->addUniform("u_SpotLights[" + iteration + "].OuterCutOff", UniformType::Float);
-        textShader->addUniform("u_SpotLights[" + iteration + "].NearPlane", UniformType::Float);
-        textShader->addUniform("u_SpotLights[" + iteration + "].FarPlane", UniformType::Float);
+        textShader->addUniform("u_SpotLights[" + iteration + "].ViewProjectionMat", UniformType::Mat4);
         textShader->addUniform("u_SpotLights[" + iteration + "].Depth", UniformType::Sampler2D);
     }
     Resources::Import<Shader>("PostLightingShader", textShader);
