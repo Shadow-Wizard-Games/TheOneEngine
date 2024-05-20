@@ -59,16 +59,20 @@ void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
 
 void Renderer3D::AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat)
 {
-	if(renderer3D.instanceCalls.empty())
+	if (renderer3D.instanceCalls.empty()) {
 		AddInstanceCall(meshID, matID, modelMat);
-	else {
-		for (InstanceCall& call : renderer3D.instanceCalls) {
-			if (call.CheckID(meshID))
-				call.AddInstance(modelMat);
-			else
-				AddInstanceCall(meshID, matID, modelMat);
+		return;
+	}
+
+	for (InstanceCall& call : renderer3D.instanceCalls) {
+		if (call.CheckID(meshID))
+		{
+			call.AddInstance(modelMat);
+			return;
 		}
 	}
+
+	AddInstanceCall(meshID, matID, modelMat);
 }
 
 void Renderer3D::AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat)

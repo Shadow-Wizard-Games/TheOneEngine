@@ -265,15 +265,20 @@ void EngineCore::SetUniformBufferCamera(const glm::mat4& camMatrix)
 
 void EngineCore::InitPreLightingShader()
 {
-    GLERR;
-    //Init default shaders with uniforms
-    ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PreLightingShader");
+    ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
     Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
-    textShader->Compile("Assets/Shaders/PreLightingShader");
+    textShader->Compile("Assets/Shaders/MeshTexture");
 
     textShader->addUniform("diffuse", UniformType::Sampler2D);
-    textShader->addUniform("isAnimated", UniformType::Bool);
-    Resources::Import<Shader>("PreLightingShader", textShader);
+    Resources::Import<Shader>("MeshTexture", textShader);
+
+
+    ResourceId skeletalTextShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimated");
+    Shader* skeletalTextShader = Resources::GetResourceById<Shader>(skeletalTextShaderId);
+    skeletalTextShader->Compile("Assets/Shaders/MeshTextureAnimated");
+
+    skeletalTextShader->addUniform("diffuse", UniformType::Sampler2D);
+    Resources::Import<Shader>("MeshTextureAnimated", skeletalTextShader);
 }
 
 void EngineCore::InitPostLightingShader()

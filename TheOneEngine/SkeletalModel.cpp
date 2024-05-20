@@ -131,8 +131,8 @@ void SkeletalModel::LoadMesh(const std::string& path)
                     fs::path texPath = fs::path(path).parent_path() / fs::path(texture_diffuse.C_Str()).filename();
 
 
-                    id = Resources::LoadFromLibrary<Shader>("PreLightingShader");
-                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "PreLightingShader.toeshader");
+                    id = Resources::LoadFromLibrary<Shader>("MeshTextureAnimated");
+                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshTextureAnimated.toeshader");
                     bool imported = Resources::Import<Texture>(texPath.string());
 
                     if (imported) {
@@ -144,7 +144,6 @@ void SkeletalModel::LoadMesh(const std::string& path)
                         data.resource_id = imgId;
                         memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
                         material.SetUniformData("diffuse", data);
-                        material.SetUniformData("isAnimated", true);
                     }
                 }
                 else

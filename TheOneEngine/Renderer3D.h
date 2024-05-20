@@ -25,7 +25,7 @@ public:
 	}
 
 	bool CheckID(const StackVertexArray& id) const {
-		return id == mesh.rendererID;
+		return mesh.rendererID == id;
 	}
 
 	const StackVertexArray& GetVAO() const { return mesh.rendererID; }
