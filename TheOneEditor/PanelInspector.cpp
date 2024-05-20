@@ -468,21 +468,23 @@ bool PanelInspector::Draw()
                 ImGui::SetCursorPos({ ImGui::GetCursorPosX() - 4, ImGui::GetCursorPosY() + 3 });
                 ImGui::Text("Color");
 
+                // Intensity
+                ImGui::DragFloat("Intensity", &light->intensity, 0.1F, 0, 0, "%.3f");
+
                 // Settings
                 if (light->lightType == LightType::Point || light->lightType == LightType::Spot)
                 {
                     ImGui::Text("Range");
-                    ImGui::DragFloat("Intensity", &light->intensity, 0.5F, 0, 0, "%.3f", 1);
-                    ImGui::DragFloat("Radius", &light->radius, 0.5F, 0, 0, "%.3f", 1);
-                    ImGui::DragFloat("Linear", &light->linear, 0.02F, 0, 0, "%.3f", 1);
-                    ImGui::DragFloat("Quadratic", &light->quadratic, 0.02F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("Radius", &light->radius, 0.5F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Linear", &light->linear, 0.02F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Quadratic", &light->quadratic, 0.02F, 0, 0, "%.3f");
                 }
 
                 if (light->lightType == LightType::Spot)
                 {
                     ImGui::Text("Cut Off");
-                    ImGui::DragFloat("Inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f", 1);
-                    ImGui::DragFloat("Outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f", 1);
+                    ImGui::DragFloat("Inner", &light->innerCutOff, 0.5F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Outer", &light->outerCutOff, 0.5F, 0, 0, "%.3f");
                 }
             }
 

@@ -13,6 +13,13 @@ CollisionSolver::CollisionSolver() {}
 
 CollisionSolver::~CollisionSolver() {}
 
+void CollisionSolver::CleanUp()
+{
+    // Free memory
+    for (auto go : goWithCollision) delete go;
+    goWithCollision.clear();
+}
+
 bool CollisionSolver::PreUpdate()
 {
     bool ret = true;

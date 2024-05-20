@@ -157,6 +157,7 @@ void EngineCore::CleanUp()
     delete inputManager;
     inputManager = nullptr;
 
+    collisionSolver->CleanUp();
     delete collisionSolver;
     collisionSolver = nullptr;
 }

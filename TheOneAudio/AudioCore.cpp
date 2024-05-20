@@ -17,6 +17,8 @@ AudioCore::AudioCore()
     nextSong = false;
 }
 
+AudioCore::~AudioCore() {}
+
 bool AudioCore::InitEngine()
 {
     LOG(LogType::LOG_INFO, "# Initializing Audio Engine...");
@@ -207,18 +209,9 @@ void AudioCore::Update(double dt)
 
 void AudioCore::CleanUp()
 {
-    //must delete vectors and stuff
-    for (size_t i = 0; i < MAX_AUDIO_EVENTS; i++)
-    {
-        //function to delete them here
-        if (audioEvents[i] != NULL)
-        {
-            delete(audioEvents[i]);
-        }
-    }
-
+    // Free audioEvents memory
+    for (auto event : audioEvents) delete event;
     audioEvents.clear();
-
 
 #ifndef AK_OPTIMIZED
     AK::Comm::Term();
