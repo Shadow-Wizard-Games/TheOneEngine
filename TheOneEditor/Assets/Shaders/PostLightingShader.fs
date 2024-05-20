@@ -16,21 +16,34 @@ uniform sampler2D gAlbedoSpec;
 struct DirLight {
     vec3 Position;
     vec3 Color;
+    float Intensity;
     vec3 Direction;
+
+    float NearPlane;
+    float FarPlane;
+
+    sampler2D Depth;
 };
 
 struct PointLight {
     vec3 Position;
     vec3 Color;
+    float Intensity;
     
     float Linear;
     float Quadratic;
     float Radius;
+
+    float NearPlane;
+    float FarPlane;
+
+    sampler2D Depth;
 }; 
 
 struct SpotLight {
     vec3 Position;
     vec3 Color;
+    float Intensity;
     vec3 Direction;
 
     float Linear;
@@ -39,6 +52,11 @@ struct SpotLight {
 
     float CutOff;
     float OuterCutOff;
+
+    float NearPlane;
+    float FarPlane;
+
+    sampler2D Depth;
 };
 
 uniform int u_TotalLightsNum;
@@ -60,7 +78,10 @@ vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec
     float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
     vec3 specular = light.Color * spec * Specular;
 
-    return (diffuse + specular);
+    float depthValue = texture(light.Depth, TexCoords).r;
+    
+
+    return ((diffuse + specular) * (light.Intensity * 200.0));
 }
 
 vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
@@ -78,7 +99,7 @@ vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal,
     // attenuation
     float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
 
-    return ((diffuse + specular) * attenuation);
+    return ((diffuse + specular) * attenuation * (light.Intensity * 200.0));
 }
 
 vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
@@ -104,7 +125,10 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
     // attenuation
     float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
 
-    return ((diffuse + specular) * intensity * attenuation);
+    float depthValue = texture(light.Depth, TexCoords).r;
+
+
+    return ((diffuse + specular) * intensity * attenuation * (light.Intensity * 200.0));
 }
 
 void main()

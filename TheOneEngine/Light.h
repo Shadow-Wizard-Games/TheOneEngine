@@ -66,6 +66,7 @@ public:
     //float range;
     //float spotAngle; //PBR
     vec3f color;
+    float intensity;
     float specular;
 
     float radius;
@@ -78,7 +79,9 @@ public:
 
     //Shadows Vars
     glm::mat4 lightSpaceMatrix;
+    glm::mat4 lightView;
     std::shared_ptr<FrameBuffer> depthBuffer;
+    float nearPlane, farPlane;
 
     std::string lightPresetPath;
 };

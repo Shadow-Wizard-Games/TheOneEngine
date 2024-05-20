@@ -89,6 +89,12 @@ void FrameBuffer::GenerateFrameBuffer()
                 GLCALL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, width, height));
                 TextureParameters();
                 glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, attachment.textureId, 0);
+                //To avoid errors/issues if there's no color buffer
+                if (drawBuffers[0] == 0)
+                {
+                    GLCALL(glDrawBuffer(GL_NONE));
+                    GLCALL(glReadBuffer(GL_NONE));
+                }
                 break;
 
             default: break;

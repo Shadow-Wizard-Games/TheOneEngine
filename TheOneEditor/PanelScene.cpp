@@ -745,6 +745,8 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
             mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
             mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", lights[i]->intensity);
+            mat->SetUniformData("u_DirLight[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
             directionalLightNum++;
             break;
         }
@@ -754,9 +756,11 @@ void PanelScene::LightPass()
             //Variables need to be float not double
             mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
             mat->SetUniformData("u_PointLights[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", lights[i]->intensity);
             mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
             mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
             mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
+            mat->SetUniformData("u_PointLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
             pointLightNum++;
             break;
         }
@@ -767,11 +771,13 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
             mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
             mat->SetUniformData("u_SpotLights[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", lights[i]->intensity);
             mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", lights[i]->linear);
             mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", lights[i]->quadratic);
             mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", lights[i]->radius);
             mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
             mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
             spotLightNum++;
             break;
         }

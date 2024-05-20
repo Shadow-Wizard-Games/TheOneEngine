@@ -472,6 +472,7 @@ bool PanelInspector::Draw()
                 if (light->lightType == LightType::Point || light->lightType == LightType::Spot)
                 {
                     ImGui::Text("Range");
+                    ImGui::DragFloat("Intensity", &light->intensity, 0.5F, 0, 0, "%.3f", 1);
                     ImGui::DragFloat("Radius", &light->radius, 0.5F, 0, 0, "%.3f", 1);
                     ImGui::DragFloat("Linear", &light->linear, 0.02F, 0, 0, "%.3f", 1);
                     ImGui::DragFloat("Quadratic", &light->quadratic, 0.02F, 0, 0, "%.3f", 1);
