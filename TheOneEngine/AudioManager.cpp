@@ -27,8 +27,8 @@ bool AudioManager::CleanUp()
 
 	audio->CleanUp();
 
-	audio = nullptr;
 	delete audio;
+	audio = nullptr;
 
 	return true;
 }

@@ -146,19 +146,19 @@ void EngineCore::CleanUp()
     Renderer2D::Shutdown();
 
     audioManager->CleanUp();
-    audioManager = nullptr;
     delete audioManager;
+    audioManager = nullptr;
     
     monoManager->ShutDownMono();
-    monoManager = nullptr;
     delete monoManager;
+    monoManager = nullptr;
 
     inputManager->CleanUp();
-    inputManager = nullptr;
     delete inputManager;
+    inputManager = nullptr;
 
-    collisionSolver = nullptr;
     delete collisionSolver;
+    collisionSolver = nullptr;
 }
 
 void EngineCore::DrawAxis()
