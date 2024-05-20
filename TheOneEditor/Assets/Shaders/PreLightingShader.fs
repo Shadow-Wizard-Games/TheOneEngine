@@ -11,9 +11,9 @@ in vec3 normal;
 uniform sampler2D diffuse;
 uniform bool isAnimated;
 
-vec2 FlipUV(){
+vec2 FlipUV(bool animated){
 
-    if(isAnimated == true) {return vec2(TexCoords.s, 1. - TexCoords.t);}
+    if(animated == true) {return vec2(TexCoords.s, 1. - TexCoords.t);}
 
     return TexCoords;
 }
@@ -24,7 +24,17 @@ void main() {
     // also store the per-fragment normals into the gbuffer
     gNormal = normalize(normal);
     // and the diffuse per-fragment color
-    gAlbedoSpec.rgb = texture(diffuse, FlipUV()).rgb;
+    vec3 textureDiffuse = texture(diffuse, FlipUV(isAnimated)).rgb;
+    //Detect if the fragment has texture binded
+    if(length(textureDiffuse) == 0.0) 
+    {
+        gAlbedoSpec.rgb = vec3(0.5, 0.5, 0.5);
+    }
+    else
+    {
+        gAlbedoSpec.rgb = textureDiffuse;
+    }
+    
     // store specular intensity in gAlbedoSpec's alpha component
     gAlbedoSpec.a = 0.5;
 }

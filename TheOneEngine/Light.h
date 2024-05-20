@@ -9,6 +9,7 @@
 
 class Material;
 class Shader;
+class FrameBuffer;
 
 //  For PBR Lighting
 struct Shadow
@@ -70,8 +71,14 @@ public:
     float radius;
     float linear;
     float quadratic;
+
+    //SpotLight Vars
     float innerCutOff;
     float outerCutOff;
+
+    //Shadows Vars
+    glm::mat4 lightSpaceMatrix;
+    std::shared_ptr<FrameBuffer> depthBuffer;
 
     std::string lightPresetPath;
 };

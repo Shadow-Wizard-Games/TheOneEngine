@@ -6,6 +6,7 @@
 #include "Material.h"
 #include "N_SceneManager.h"
 #include "Shader.h"
+#include "FrameBuffer.h"
 
 
 Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
@@ -13,6 +14,13 @@ color(1.0f), specular(0.5f), linear(0.7f), quadratic(1.8f), innerCutOff(0.91f), 
 {
     const float maxBrightness = std::fmaxf(std::fmaxf(color.r, color.g), color.b);
     radius = (-linear + std::sqrt(linear * linear - 4 * quadratic * (1.0f - (256.0f / 5.0f) * maxBrightness))) / (2.0f * quadratic);
+
+    std::vector<Attachment> depthBuffAttachments = {
+            { Attachment::Type::DEPTH, "depth", 0 }
+    };
+
+    depthBuffer = std::make_shared<FrameBuffer>(1280, 720, depthBuffAttachments);
+
     engine->N_sceneManager->currentScene->lights.push_back(this);
 }
 

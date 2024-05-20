@@ -162,15 +162,15 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             data.resource_id = imgId;
                             memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
                             material.SetUniformData("diffuse", data);
-                            material.SetUniformData("isAnimated", true);
+                            material.SetUniformData("isAnimated", 1);
                         }
                     }
                     else
                     {
-                        id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
-                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
+                        id = Resources::LoadFromLibrary<Shader>("PreLightingShader");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "PreLightingShader.toeshader");
 
-                        material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
+                        material.SetUniformData("isAnimated", 0);
                     }
 
 
@@ -245,15 +245,15 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                             data.resource_id = imgId;
                             memcpy(data.tex_path, &texPath.string()[0], texPath.string().size() + 1);
                             material.SetUniformData("diffuse", data);
-                            material.SetUniformData("isAnimated", false);
+                            material.SetUniformData("isAnimated", 0);
                         }
                     }
                     else
                     {
-                        id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
-                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
+                        id = Resources::LoadFromLibrary<Shader>("PreLightingShader");
+                        material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "PreLightingShader.toeshader");
 
-                        material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
+                        material.SetUniformData("isAnimated", 0);
                     }
 
 

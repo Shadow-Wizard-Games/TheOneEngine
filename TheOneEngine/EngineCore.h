@@ -91,7 +91,6 @@ public:
 
 	void InitPostLightingShader();
 	void InitPreLightingShader();
-	void InitLitMeshColorShaders();
 
 public:
 	
