@@ -144,6 +144,60 @@ bool CollisionSolver::Update(double dt)
                 }
             }
             break;
+        case CollisionType::Grenade:
+            for (auto& item2 : goWithCollision)
+            {
+                if (item != item2)
+                {
+                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                    {
+                    case CollisionType::Wall:
+                        if (CheckCollision(item, item2))
+                        {
+                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
+                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        }
+                        break;
+                    case CollisionType::Enemy:
+                        //if they collide
+                        if (CheckCollision(item, item2))
+                        {
+                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
+                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+            break;
+        case CollisionType::Explosion:
+            for (auto& item2 : goWithCollision)
+            {
+                if (item != item2)
+                {
+                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                    {
+                    case CollisionType::Player:
+                        if (CheckCollision(item, item2))
+                        {
+                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
+                        }
+                        break;
+                    case CollisionType::Enemy:
+                        //if they collide
+                        if (CheckCollision(item, item2))
+                        {
+                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+            break;
         default:
             break;
         }

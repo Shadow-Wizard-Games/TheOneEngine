@@ -145,13 +145,39 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 
 static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SM_Cube.fbx");
+	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
 	go->AddScript("Grenade");
+	go->AddComponent<Collider2D>();
+	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	go->GetComponent<Collider2D>()->collisionType = CollisionType::Grenade;
+	go->GetComponent<Collider2D>()->radius = 0.6f;
+	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+
+ 	return go;
+}
+
+static GameObject* InstantiateExplosion(vec3f* initialPosition, vec3f* direction, float radius)
+{
+	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+
+	SetPosition(go, initialPosition);
+	SetRotation(go, direction);
+
+	go->AddScript("Explosion");
+	go->AddComponent<Collider2D>();
+	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	go->GetComponent<Collider2D>()->collisionType = CollisionType::Explosion;
+	go->GetComponent<Collider2D>()->radius = radius;
+	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+
 
 	return go;
 }
@@ -1024,6 +1050,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
 	mono_add_internal_call("InternalCalls::InstantiateGrenade", InstantiateGrenade);
+	mono_add_internal_call("InternalCalls::InstantiateExplosion", InstantiateExplosion);
 	mono_add_internal_call("InternalCalls::InstantiateXenomorph", InstantiateXenomorph);
 	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);

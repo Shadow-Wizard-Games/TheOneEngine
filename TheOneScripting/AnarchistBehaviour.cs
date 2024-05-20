@@ -69,7 +69,12 @@ class AnarchistBehaviour : MonoBehaviour
 
     void UpdateFSMStates()
     {
-        if (life <= 0) { currentState = States.Dead; return; }
+        if (life <= 0) 
+        { 
+            currentState = States.Dead;
+            player.shieldKillCounter++;
+            return; 
+        }
 
         if (playerDistance < rangeToInspect && lastState != States.Inspect)
         {
@@ -266,6 +271,13 @@ class AnarchistBehaviour : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        life -= 10.0f;
+        life -= player.totalDamage;
+        if (life < 0) life = 0;
+    }
+
+    public void ReduceLifeExplosion()
+    {
+        life -= player.grenadeDamage;
+        if (life < 0) life = 0;
     }
 }

@@ -92,7 +92,12 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     void UpdateFSMStates()
     {
-        if (life <= 0) { currentState = States.Dead; return; }
+        if (life <= 0) 
+        { 
+            currentState = States.Dead;
+            player.shieldKillCounter++;
+            return; 
+        }
 
         if (!detected && playerDistance < detectedRange)
         {
@@ -253,7 +258,14 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        life -= 10.0f;
+        life -= player.totalDamage;
+        if (life < 0) life = 0;
+    }
+
+    public void ReduceLifeExplosion()
+    {
+        life -= player.grenadeDamage;
+        if (life < 0) life = 0;
     }
 
     private bool MoveTo(Vector3 targetPosition)

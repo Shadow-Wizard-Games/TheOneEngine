@@ -6,9 +6,11 @@ public class Grenade : MonoBehaviour
     PlayerScript player;
 
     Vector3 velocity;
-    readonly float lifeTime = 20.0f;
+    readonly float lifeTime = 10.0f;
     float currentTime = 0.0f;
     Vector3 gravity = new Vector3(0f, -110f, 0f);
+
+    bool hasCollided = false;
 
     public override void Start()
     {
@@ -21,20 +23,22 @@ public class Grenade : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if (currentTime > lifeTime || attachedGameObject.transform.Position.y <= 0)
+        if (attachedGameObject.transform.Position.y <= 0 || hasCollided || currentTime > lifeTime)
         {
-            currentTime = 0.0f;
-            velocity = player.grenadeInitialVelocity;
+            Vector3 newPos = new Vector3(attachedGameObject.transform.Position.x, 0.0f, attachedGameObject.transform.Position.z);
+            player.explosionPos = newPos;
+            InternalCalls.InstantiateExplosion(newPos + Vector3.up * 4, attachedGameObject.transform.Rotation, player.grenadeExplosionRadius);
             attachedGameObject.Destroy();
-            return;
         }
 
         Vector3 position = attachedGameObject.transform.Position + player.grenadeInitialVelocity * Time.deltaTime;
         player.grenadeInitialVelocity += gravity * Time.deltaTime;
 
         attachedGameObject.transform.SetPosition(position);
-        Debug.Log(" vel starto 3 = x> " + player.grenadeInitialVelocity.x + " z>" + player.grenadeInitialVelocity.z);
-        Debug.LogWarning("Position -> " + position.x + " " + position.y + " " + position.z);
-        Debug.LogWarning("Velocity -> " + velocity.x + " " + velocity.y + " " + velocity.z);
+    }
+
+    public void Impact()
+    {
+        hasCollided = true;
     }
 }

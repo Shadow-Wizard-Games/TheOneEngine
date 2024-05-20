@@ -48,13 +48,13 @@ public class AbilityShield : Ability
 
     public override void ChargeAbility()
     {
-        if (player.shieldKillCounter == 2)
+        if (player.shieldKillCounter == player.shieldKillsToCharge)
         {
             player.shieldKillCounter = 0;
             state = AbilityState.READY;
 
-            Debug.Log("Ability Shield Ready");
         }
+            Debug.Log("Ability Shield Ready " + player.shieldKillCounter);
     }
 
     public override void Activated()
@@ -96,6 +96,8 @@ public class AbilityShield : Ability
         }
         else
         {
+            player.shieldKillCounter = player.shieldKillsToCharge;
+
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.CHARGING;
 
