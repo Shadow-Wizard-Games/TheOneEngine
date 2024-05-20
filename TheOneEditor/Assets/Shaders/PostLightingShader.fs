@@ -112,7 +112,7 @@ vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec
     vec4 FragPosLightSpace = light.ViewProjectionMat * vec4(FragPos, 1.0);
     float shadow = ShadowCalculation(FragPosLightSpace, Normal, light.Depth, FragPos, light.Position);
 
-    return ((1.0 - shadow) * (diffuse + specular) * (light.Intensity * 200.0));
+    return ((1.0 - shadow) * (diffuse + specular) * light.Intensity * 0.1);
 }
 
 vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
@@ -130,7 +130,7 @@ vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal,
     // attenuation
     float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);
 
-    return ((diffuse + specular) * attenuation * (light.Intensity * 200.0));
+    return ((diffuse + specular) * attenuation * (light.Intensity * 500.0));
 }
 
 vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)
@@ -159,7 +159,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
     vec4 FragPosLightSpace = light.ViewProjectionMat * vec4(FragPos, 1.0);
     float shadow = ShadowCalculation(FragPosLightSpace, Normal, light.Depth, FragPos, light.Position);
 
-    return ((1.0 - shadow) * (diffuse + specular) * intensity * attenuation * (light.Intensity * 200.0));
+    return ((1.0 - shadow) * (diffuse + specular) * intensity * attenuation * (light.Intensity * 500.0));
 }
 
 void main()

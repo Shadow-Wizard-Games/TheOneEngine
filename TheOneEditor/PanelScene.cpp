@@ -291,14 +291,10 @@ bool PanelScene::Draw()
             GLCALL(glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
 
             postBuffer->Bind();
-            
-            // Disable writing to the depthbuffer, 
-            // otherwise DrawScreenQuad overwrites it
-            //GLCALL(glDepthMask(GL_FALSE));
             LightPass();
-            //GLCALL(glDepthMask(GL_TRUE));
 
             engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
+
             // Debug / Editor Draw 
             engine->DebugDraw(true);
 
@@ -811,7 +807,10 @@ void PanelScene::LightPass()
 // hekbas: Relocate when Renderer3D is finished
 void PanelScene::DrawScreenQuad()
 {
+    // Disable writing to the depthbuffer, 
+    // otherwise DrawScreenQuad overwrites it
     GLCALL(glDepthMask(GL_FALSE));
+
     unsigned int quadVAO = 0;
     unsigned int quadVBO;
     if (quadVAO == 0)
