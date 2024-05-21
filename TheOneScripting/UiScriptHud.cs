@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class UiScriptHud : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class UiScriptHud : MonoBehaviour
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
     }
+
+    float cooldown = 0.0f;
+    bool onCooldown = false;
+
 
     float currLife = 100;
     float playerMaxLife = 100;
@@ -102,13 +107,21 @@ public class UiScriptHud : MonoBehaviour
     }
     public override void Update()
     {
-        if (playerScript != null && canvas != null)
+        float dt = Time.realDeltaTime;
+
+        if (onCooldown && cooldown < 0.2f)
+        {
+            cooldown += dt;
+        }
+        else
+        {
+            cooldown = 0.0f;
+            onCooldown = false;
+        }
+
+        if (!onCooldown && (playerScript != null && canvas != null))
         {
             UpdateTimers();
-
-
-
-
 
             currLife = playerScript.CurrentLife();
             int sliderMax = canvas.GetSliderMaxValue("Slider_HP");
@@ -127,29 +140,40 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetSliderValue((int)((canvas.GetSliderMaxValue("Slider_Ammo") * currAmmo) / maxAmmo), "Slider_Ammo");
             }
 
-            if (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.R))//remember to add also keyboard button
+            if (!grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.R)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.HOVERED);
+
+                //debug text of ammo
+                currAmmo -= 1;
+                UpdateString(HudStrings.AMMOSTRING);
+
+
+                onCooldown = true;
             }
 
-            if (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.F))//remember to add also keyboard button
+            if (!painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.F)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.HOVERED);
+                onCooldown = true;
             }
 
-            if (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.T))//remember to add also keyboard button
+            if (!flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.T)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.HOVERED);
+                onCooldown = true;
             }
 
-            if (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.G))//remember to add also keyboard button
+            if (!adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.G)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.HOVERED);
+                onCooldown = true;
             }
 
             if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.HOVERED);
+                onCooldown = true;
             }
         }
     }
@@ -247,8 +271,13 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetTextString(kills, "Text_KillsAmount");
                 break;
             case HudStrings.AMMOSTRING:
-                ammo = currAmmo.ToString() + " / " + maxAmmo.ToString();
-                canvas.SetTextString(ammo, "Text_AmmoAmount");
+                ammo = "%d%d / %d%d";
+                if (currAmmo < 10 && maxAmmo > 9) ammo = "%d / %d%d";
+                else if (currAmmo < 10 && maxAmmo < 9) ammo = "%d / %d";
+                List<int> args = new List<int>();
+                args.Add(currAmmo);
+                args.Add(maxAmmo);
+                canvas.SetTextString(ammo, "Text_AmmoAmount", args);
                 break;
             case HudStrings.LOADOUTSTRING:
                 canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
