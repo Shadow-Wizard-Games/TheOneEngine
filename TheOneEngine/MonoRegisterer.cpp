@@ -16,6 +16,7 @@
 #include "N_SceneManager.h"
 
 #include <glm/vec3.hpp>
+#include <sstream>
 
 //Constructors
 static GameObject* GetGameObjectPtr()
@@ -686,7 +687,7 @@ static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
 	}
 }
 
-static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name)
+static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name, std::vector<int> args = {})
 {
 	Canvas* canvas = containerGO->GetComponent<Canvas>();
 
@@ -700,10 +701,26 @@ static void SetTextString(GameObject* containerGO, MonoString* text, MonoString*
 		if (element->GetType() == UiType::TEXT && element->GetName() == itemName)
 		{
 			TextUI* ui = canvas->GetItemUI<TextUI>(element->GetID());
+			if (!args.empty()) itemText = IntsIntoString(itemText, args);
 			ui->SetText(itemText);
 			break;
 		}
 	}
+}
+
+//replaces %d in a string with ints of a vector
+std::string IntsIntoString(std::string str, std::vector<int> args)
+{
+	std::ostringstream result;
+	size_t pos = 0;
+	size_t argIndex = 0;
+
+	while ((pos = str.find("%d")) != std::string::npos && argIndex < args.size()) {
+		result << str.substr(0, pos) << args[argIndex++];
+		str = str.substr(pos + 2); // Move past the %d
+	}
+
+	return result.str();
 }
 
 static MonoString* GetTextString(GameObject* containerGO, MonoString* name)

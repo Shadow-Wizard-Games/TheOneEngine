@@ -11,6 +11,16 @@ public class UiScriptHud : MonoBehaviour
         CONSUMIBLE
     }
 
+    public enum HudStrings
+    {
+        CURRENCYSTRING,
+        KILLSTRING,
+        AMMOSTRING,
+        LOADOUTSTRING,
+        MAINMISSIONSTRING,
+        MISSIONDESCRIPTIONSTRING
+    }
+
     public ICanvas canvas;
     PlayerScript playerScript;
 
@@ -83,7 +93,7 @@ public class UiScriptHud : MonoBehaviour
         currencyAmount = 200;
         killsAmount = 0;
 
-        currLoadout = "m41a";
+        currLoadout = "m4a1";
         currAmmo = 20;
         maxAmmo = 20;
 
@@ -96,17 +106,7 @@ public class UiScriptHud : MonoBehaviour
         {
             UpdateTimers();
 
-            //setting texts
-            //ammo = currAmmo.ToString() + " / " + maxAmmo.ToString();
-            //currency = currencyAmount.ToString();
-            //kills = killsAmount.ToString();
 
-            canvas.SetTextString(ammo, "Text_AmmoAmount");
-            canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
-            canvas.SetTextString(currentMissionTitle, "Text_MissionName");
-            canvas.SetTextString(currentMissionDescription, "Text_MissionDescription");
-            canvas.SetTextString(currency, "Text_CurrencyAmount");
-            canvas.SetTextString(kills, "Text_KillsAmount");
 
 
 
@@ -234,6 +234,34 @@ public class UiScriptHud : MonoBehaviour
         }
     }
 
+    void UpdateString(HudStrings type)
+    {
+        switch (type)
+        {
+            case HudStrings.CURRENCYSTRING:
+                currency = currencyAmount.ToString();
+                canvas.SetTextString(currency, "Text_CurrencyAmount");
+                break;
+            case HudStrings.KILLSTRING:
+                kills = killsAmount.ToString();
+                canvas.SetTextString(kills, "Text_KillsAmount");
+                break;
+            case HudStrings.AMMOSTRING:
+                ammo = currAmmo.ToString() + " / " + maxAmmo.ToString();
+                canvas.SetTextString(ammo, "Text_AmmoAmount");
+                break;
+            case HudStrings.LOADOUTSTRING:
+                canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
+                break;
+            case HudStrings.MAINMISSIONSTRING:
+                canvas.SetTextString(currentMissionTitle, "Text_MissionName");
+                break;
+            case HudStrings.MISSIONDESCRIPTIONSTRING:
+                canvas.SetTextString(currentMissionDescription, "Text_MissionDescription");
+                break;
+        }
+
+    }
     void UpdateTimers()
     {
         float dt = Time.realDeltaTime;
