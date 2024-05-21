@@ -54,6 +54,9 @@ bool PanelSettings::Draw()
 			if (ImGui::Button("Renderer", buttonSize))
 				selected = SelectedSetting::RENDERER;
 
+			if (ImGui::Button("Color Picker", buttonSize))
+				selected = SelectedSetting::COLOR_PICKER;
+
 			if (ImGui::Button("Hardware", buttonSize))
 				selected = SelectedSetting::HARDWARE;
 
@@ -77,6 +80,7 @@ bool PanelSettings::Draw()
 				case SelectedSetting::WINDOW:		Window();		break;
 				case SelectedSetting::INPUT:		Input();		break;
 				case SelectedSetting::RENDERER:		Renderer();		break;
+				case SelectedSetting::COLOR_PICKER:	ColorPicker();	break;
 				case SelectedSetting::HARDWARE:		Hardware();		break;
 				case SelectedSetting::SOFTWARE:		Software();		break;
 				default: Performance(); break;
@@ -214,6 +218,21 @@ void PanelSettings::Input()
 
 void PanelSettings::Renderer()
 {
+}
+
+void PanelSettings::ColorPicker()
+{
+	ImGui::Checkbox("Alpha Preview", &alpha_preview);
+	ImGui::Checkbox("Half Alpha Preview", &alpha_half_preview);
+	ImGui::Checkbox("Drag and Drop", &drag_and_drop);
+	ImGui::Checkbox("Options Menu (Right Click)", &options_menu);
+	ImGui::Checkbox("HDR", &hdr);
+
+	colorPickerFlags =
+		(hdr ? ImGuiColorEditFlags_HDR : 0) |
+		(drag_and_drop ? 0 : ImGuiColorEditFlags_NoDragDrop) |
+		(alpha_half_preview ? ImGuiColorEditFlags_AlphaPreviewHalf : (alpha_preview ? ImGuiColorEditFlags_AlphaPreview : 0)) |
+		(options_menu ? 0 : ImGuiColorEditFlags_NoOptions);
 }
 
 void PanelSettings::Hardware()

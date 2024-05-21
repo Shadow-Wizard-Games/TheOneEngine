@@ -29,6 +29,7 @@ class AudioCore
 {
 public:
 	AudioCore();
+	~AudioCore();
 
 	void Awake();
 

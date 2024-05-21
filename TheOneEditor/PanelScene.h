@@ -52,6 +52,7 @@ public:
 private:
 	Scene* current;
 
+	// Scene Panel Camera
 	std::shared_ptr<GameObject> sceneCamera;
 	std::shared_ptr<GameObject> cameraParent;
 	CamControlMode camControlMode;
@@ -65,6 +66,7 @@ private:
 	vec2 camTargetSpeed = { 0, 0 };
 	vec2 camCurrentSpeed = { 0, 0 };
 
+	// Viewport/Buffers
 	std::shared_ptr<FrameBuffer> gBuffer;
 	std::shared_ptr<FrameBuffer> postBuffer;
 	glm::vec2 viewportSize;

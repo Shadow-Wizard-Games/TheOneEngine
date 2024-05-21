@@ -35,6 +35,13 @@ enum class Aspect
 	A_21x9
 };
 
+struct EditColor
+{
+	std::string id;
+	ImVec4 color;
+	ImVec4 previousColor;
+};
+
 class Gui : public Module
 {
 public:
@@ -84,6 +91,9 @@ public:
 	void PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags plotFlags = 0, ImPlotAxisFlags axisFlags = 0);
 	void AssetContainer(const char* label);
 
+	EditColor GetEditColor() const { return editColor; }
+	void SetEditColor(const EditColor& editColor) { this->editColor = editColor; }
+
 private:
 
 	// Main Dockspace
@@ -98,6 +108,8 @@ private:
 	void MainMenuHelp();
 
 	void OpenSceneFileWindow();
+
+	void ColorPicker();
 
 	void OverwriteAsset(std::string path);
 
@@ -115,6 +127,8 @@ public:
 	PanelSettings* panelSettings;
 	PanelBuild* panelBuild;
 
+	bool openColorPicker = false;
+
 	// Import popup
 	bool overwritePopup = false;
 	std::string assetsDir;
@@ -125,6 +139,8 @@ private:
 
 	bool showImGuiDemo = false;
 	bool openSceneFileWindow = false;
+
+	EditColor editColor;
 };
 
 #endif // !__GUI_H__

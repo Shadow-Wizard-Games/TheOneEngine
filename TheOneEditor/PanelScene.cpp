@@ -261,10 +261,17 @@ bool PanelScene::Draw()
             float sizeX = viewportSize.x / 3;
             float sizeY = viewportSize.y / 3;
 
-            for (auto attachment : gBuffer.get()->GetAllAttachments())
+            /*for (auto attachment : gBuffer.get()->GetAllAttachments())
             {
                 ImGui::Image(
                     (ImTextureID)attachment.textureId,
+                    ImVec2{ sizeX, sizeY },
+                    ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+            }*/
+            if (!engine->N_sceneManager->currentScene->lights.empty())
+            {
+                ImGui::Image(
+                    (ImTextureID)engine->N_sceneManager->currentScene->lights.at(0)->depthBuffer.get()->GetAttachmentTexture("depth"),
                     ImVec2{ sizeX, sizeY },
                     ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
             }
@@ -283,13 +290,9 @@ bool PanelScene::Draw()
             GLCALL(glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
 
             postBuffer->Bind();
-            
-            // Disable writing to the depthbuffer, 
-            // otherwise DrawScreenQuad overwrites it
-            GLCALL(glDepthMask(GL_FALSE));
             LightPass();
-            GLCALL(glDepthMask(GL_TRUE));
 
+            engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
 
             // Debug / Editor Draw 
             engine->DebugDraw(true);
@@ -727,6 +730,14 @@ void PanelScene::LightPass()
     {
         Transform* transform = lights[i]->GetContainerGO().get()->GetComponent<Transform>();
 
+        if (lights[i]->activeShadows) lights[i]->CalculateShadows();
+        
+        postBuffer->Bind();
+        shader->Bind();
+
+        Uniform::SamplerData depthData;
+        depthData.tex_id = lights[i]->depthBuffer->GetAttachmentTexture("depth");
+
         switch (lights[i]->lightType)
         {
         case LightType::Directional:
@@ -736,6 +747,9 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
             mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
             mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", lights[i]->intensity);
+            mat->SetUniformData("u_DirLight[" + iteration + "].ViewProjectionMat", lights[i]->camera->viewProjectionMatrix);
+            mat->SetUniformData("u_DirLight[" + iteration + "].Depth", depthData);
             directionalLightNum++;
             break;
         }
@@ -745,9 +759,11 @@ void PanelScene::LightPass()
             //Variables need to be float not double
             mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
             mat->SetUniformData("u_PointLights[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", lights[i]->intensity);
             mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
             mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
             mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
+            mat->SetUniformData("u_PointLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
             pointLightNum++;
             break;
         }
@@ -758,11 +774,14 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
             mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
             mat->SetUniformData("u_SpotLights[" + iteration + "].Color", lights[i]->color);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", lights[i]->intensity);
             mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", lights[i]->linear);
             mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", lights[i]->quadratic);
             mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", lights[i]->radius);
             mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
             mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", lights[i]->camera->viewProjectionMatrix);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", depthData);
             spotLightNum++;
             break;
         }
@@ -779,6 +798,10 @@ void PanelScene::LightPass()
 // hekbas: Relocate when Renderer3D is finished
 void PanelScene::DrawScreenQuad()
 {
+    // Disable writing to the depthbuffer, 
+    // otherwise DrawScreenQuad overwrites it
+    GLCALL(glDepthMask(GL_FALSE));
+
     unsigned int quadVAO = 0;
     unsigned int quadVBO;
     if (quadVAO == 0)
@@ -804,4 +827,5 @@ void PanelScene::DrawScreenQuad()
     glBindVertexArray(quadVAO);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     glBindVertexArray(0);
+    GLCALL(glDepthMask(GL_TRUE));
 }

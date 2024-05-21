@@ -9,6 +9,7 @@
 
 class Material;
 class Shader;
+class FrameBuffer;
 
 //  For PBR Lighting
 struct Shadow
@@ -55,6 +56,8 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
+    void CalculateShadows();
+
     void RemoveLight();
 
 public:
@@ -65,13 +68,21 @@ public:
     //float range;
     //float spotAngle; //PBR
     vec3f color;
+    float intensity;
     float specular;
 
     float radius;
     float linear;
     float quadratic;
+
+    //SpotLight Vars
     float innerCutOff;
     float outerCutOff;
+
+    //Shadows Vars
+    std::shared_ptr<FrameBuffer> depthBuffer;
+    Camera* camera = nullptr;
+    bool activeShadows = true;
 
     std::string lightPresetPath;
 };
