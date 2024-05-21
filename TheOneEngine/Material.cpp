@@ -13,8 +13,8 @@ Material::Material(Shader* shader)
 {
 	if (!shader)
 	{
-		size_t id = Resources::Load<Shader>("Assets/Shaders/PreLightingShader");
-		setShader(Resources::GetResourceById<Shader>(id), "Assets/Shaders/PreLightingShader");
+		size_t id = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
+		setShader(Resources::GetResourceById<Shader>(id), "Assets/Shaders/MeshTexture");
 	}
 	else
 		setShader(shader, shader->getPath());

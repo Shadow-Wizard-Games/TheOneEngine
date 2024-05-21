@@ -148,10 +148,8 @@ void SkeletalModel::LoadMesh(const std::string& path)
                 }
                 else
                 {
-                    id = Resources::LoadFromLibrary<Shader>("LitMeshColor");
-                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "LitMeshColor.toeshader");
-
-                    material.SetUniformData("diffuse", glm::vec3(diffuse.r, diffuse.g, diffuse.b));
+                    id = Resources::LoadFromLibrary<Shader>("MeshTextureAnimated");
+                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshTextureAnimated.toeshader");
                 }
 
 

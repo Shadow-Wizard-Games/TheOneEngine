@@ -19,8 +19,6 @@ struct DirLight
     vec3 Color;
     float Intensity;
     vec3 Direction;
-    
-    mat4 ViewProjectionMat;
 };
 
 struct PointLight
@@ -108,8 +106,6 @@ vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec
     float spec = pow(max(dot(Normal, halfwayDir), 0.0), 16.0);
     vec3 specular = light.Color * spec * Specular;
 
-    vec4 FragPosLightSpace = light.ViewProjectionMat * vec4(FragPos, 1.0);
-
     return ((diffuse + specular) * light.Intensity * 0.1);
 }
 
@@ -165,7 +161,8 @@ void main()
     vec3 FragPos = texture(gPosition, TexCoords).rgb;
     vec3 Normal = texture(gNormal, TexCoords).rgb;
     vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
-    float Specular = texture(gAlbedoSpec, TexCoords).a;
+    float Specular = 0.5;
+    float Alpha = texture(gAlbedoSpec, TexCoords).a;
     vec3 ViewDir  = normalize(u_ViewPos - FragPos);
 
     vec3 result = Diffuse * 0.3;

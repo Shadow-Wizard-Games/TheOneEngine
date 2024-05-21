@@ -261,20 +261,20 @@ bool PanelScene::Draw()
             float sizeX = viewportSize.x / 3;
             float sizeY = viewportSize.y / 3;
 
-            /*for (auto attachment : gBuffer.get()->GetAllAttachments())
+            for (auto attachment : gBuffer.get()->GetAllAttachments())
             {
                 ImGui::Image(
                     (ImTextureID)attachment.textureId,
                     ImVec2{ sizeX, sizeY },
                     ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-            }*/
-            if (!engine->N_sceneManager->currentScene->lights.empty())
+            }
+            /*if (!engine->N_sceneManager->currentScene->lights.empty())
             {
                 ImGui::Image(
                     (ImTextureID)engine->N_sceneManager->currentScene->lights.at(0)->depthBuffer.get()->GetAttachmentTexture("depth"),
                     ImVec2{ sizeX, sizeY },
                     ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-            }
+            }*/
         }
         ImGui::End();
 
@@ -724,7 +724,6 @@ void PanelScene::LightPass()
     mat->SetUniformData("gNormal", gNormalData);
     mat->SetUniformData("gAlbedoSpec", gAlbedoSpecData);
     mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
-    mat->SetUniformData("u_TotalLightsNum", engine->N_sceneManager->currentScene->lights.size());
 
     for (int i = 0; i < lights.size(); i++)
     {
@@ -745,7 +744,6 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
             mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
             mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", lights[i]->intensity);
-            mat->SetUniformData("u_DirLight[" + iteration + "].ViewProjectionMat", lights[i]->camera->viewProjectionMatrix);
             directionalLightNum++;
             break;
         }
