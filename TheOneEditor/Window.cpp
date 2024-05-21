@@ -131,6 +131,7 @@ bool Window::createSdlGlContext()
 
 bool Window::initOpenGL()
 {
+    glewExperimental = GL_TRUE;
     auto glew_init_error = glewInit();
     if (glew_init_error != GLEW_OK)
     {
