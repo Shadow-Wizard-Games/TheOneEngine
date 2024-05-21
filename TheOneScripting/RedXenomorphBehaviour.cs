@@ -49,6 +49,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 2.0f;
+    float destroyTimer = 0.0f;
+    const float destroyCooldown = 3.0f;
 
     PlayerScript player;
     GameManager gameManager;
@@ -79,7 +81,14 @@ public class RedXenomorphBehaviour : MonoBehaviour
     {
         attachedGameObject.animator.UpdateAnimation();
 
-        if (currentState == States.Dead) return;
+        if (currentState == States.Dead) 
+        {
+            destroyTimer += Time.deltaTime;
+            if (destroyTimer >= destroyCooldown)
+                attachedGameObject.Destroy();
+
+            return;
+        }
 
         if (attachedGameObject.transform.ComponentCheck())
         {
