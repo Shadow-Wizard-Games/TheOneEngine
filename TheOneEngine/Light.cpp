@@ -9,8 +9,12 @@
 #include "FrameBuffer.h"
 
 
-Light::Light(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Light), lightType(LightType::Point),
-color(1.0f), intensity(1.0f), specular(0.5f), radius(60.0f), linear(0.7f), quadratic(1.8f), innerCutOff(0.91f), outerCutOff(0.82f) 
+Light::Light(std::shared_ptr<GameObject> containerGO)
+    : Component(containerGO, ComponentType::Light),
+    lightType(LightType::Point), 
+    color(1.0f), intensity(1.0f), specular(0.5f),
+    radius(60.0f), linear(0.7f), quadratic(1.8f),
+    innerCutOff(0.91f), outerCutOff(0.82f) 
 {
     std::vector<Attachment> depthBuffAttachments = {
             { Attachment::Type::DEPTH, "depth", 0 }
@@ -24,9 +28,12 @@ color(1.0f), intensity(1.0f), specular(0.5f), radius(60.0f), linear(0.7f), quadr
     engine->N_sceneManager->currentScene->lights.push_back(this);
 }
 
-Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref) : Component(containerGO, ComponentType::Light), lightType(ref->lightType),
-color(ref->color), intensity(ref->intensity), specular(ref->specular), radius(ref->radius), linear(ref->linear), quadratic(ref->quadratic),
-innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff)
+Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
+    : Component(containerGO, ComponentType::Light),
+    lightType(ref->lightType),
+    color(ref->color), intensity(ref->intensity), specular(ref->specular),
+    radius(ref->radius), linear(ref->linear), quadratic(ref->quadratic), 
+    innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff)
 {
     std::vector<Attachment> depthBuffAttachments = {
             { Attachment::Type::DEPTH, "depth", 0 }

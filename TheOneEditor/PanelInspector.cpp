@@ -397,9 +397,6 @@ bool PanelInspector::Draw()
                     isDirty = true;
                 }
                 
-                if (isDirty) camera->UpdateCamera();
-
-
                 ImGui::Checkbox("Draw Frustrum", &camera->drawFrustum);
 
                 if (ImGui::Checkbox("Primary Camera", &camera->primaryCam))
@@ -407,12 +404,14 @@ bool PanelInspector::Draw()
                     engine->N_sceneManager->currentScene->ChangePrimaryCamera(selectedGO);
                 }
 
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                if (isDirty) camera->UpdateCamera();
 
                 if (isDirty && selectedGO->IsPrefab())
                 {
                     selectedGO->SetPrefabDirty(true);
                 }
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
             
             /*Light Component*/
@@ -420,9 +419,7 @@ bool PanelInspector::Draw()
 
             if (light != nullptr && ImGui::CollapsingHeader("Light", treeNodeFlags))
             {
-                if (ImGui::Button("Delete")) 
-                    selectedGO->RemoveComponent(ComponentType::Light);
-
+                // Type
                 const char* label = nullptr;
 
                 switch (light->lightType)
@@ -450,7 +447,7 @@ bool PanelInspector::Draw()
                 // Color
                 ImVec4 color = ImVec4(light->color.r, light->color.g, light->color.b, 1.0f);
 
-                static const char* color_id = "Color##lightColor3b";
+                static const char* color_id = "##lightColor3b";
                 if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
                 {
                     app->gui->openColorPicker = true;
@@ -486,6 +483,12 @@ bool PanelInspector::Draw()
                     ImGui::DragFloat("Inner", &light->innerCutOff, 0.02F, 0, 0, "%.3f");
                     ImGui::DragFloat("Outer", &light->outerCutOff, 0.02F, 0, 0, "%.3f");
                 }
+
+                // Delete
+                if (ImGui::Button("Delete"))
+                    selectedGO->RemoveComponent(ComponentType::Light);
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
 
             /*Script Component*/
@@ -594,7 +597,6 @@ bool PanelInspector::Draw()
                     }
                 }
 
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
                 if (ImGui::Button("Remove Collider"))
                 {
                     selectedGO->RemoveComponent(ComponentType::Collider2D);
@@ -605,6 +607,8 @@ bool PanelInspector::Draw()
                 {
                     selectedGO->SetPrefabDirty(true);
                 }
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
 
 
