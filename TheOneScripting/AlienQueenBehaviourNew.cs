@@ -34,7 +34,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         DoStateBehaviour();
 
-        if (currentLife < 0) { isDead = true; attachedGameObject.animator.Play("Death"); } 
+        if (currentLife < 0) { isDead = true; attachedGameObject.animator.Play("Death"); }
     }
 
     #region FSM
@@ -58,7 +58,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     bool CheckPhaseChange()
     {
         if (currentPhase < 2 && currentLife <= maxLife / 1.5f ||
-            currentPhase < 3 && currentLife <= maxLife / 3.0f) 
+            currentPhase < 3 && currentLife <= maxLife / 3.0f)
         {
             Debug.LogWarning("Phase changing from " + currentPhase.ToString() + " to " + (currentPhase + 1).ToString());
             currentState = States.ChangingPhase;
@@ -90,7 +90,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 DoPhaseChange();
                 break;
             default:
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 Debug.LogError("Fallen out of FSM");
                 break;
         }
@@ -100,13 +100,13 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     float playerDistance; //Do not touch
     void DoIdle()
     {
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
         if (playerDistance < detectionRange)
         {
             currentState = States.Zigzag;
         }
 
-        Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up, detectionRange, Color.asianYellow.ToVector3());
+        Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up, detectionRange, Color.asianYellow.ToVector3());
     }
 
     float alienSpeed = 300;
@@ -137,11 +137,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
             attachedGameObject.animator.Play("Run");
 
-            lastPlayerPos = playerGO.transform.position;
+            lastPlayerPos = playerGO.transform.Position;
             attachedGameObject.transform.LookAt2D(lastPlayerPos);
-            chargeDirectionRightVec = attachedGameObject.transform.right;
-            chargeDirectionForwardVec = attachedGameObject.transform.forward;
-            yProgress = attachedGameObject.transform.position;
+            chargeDirectionRightVec = attachedGameObject.transform.Right;
+            chargeDirectionForwardVec = attachedGameObject.transform.Forward;
+            yProgress = attachedGameObject.transform.Position;
             zigzagPos = 270.0f;
             reachedPoint = false;
         }
@@ -157,7 +157,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         moveToTarget = xProgress + yProgress;
 
         attachedGameObject.transform.LookAt2D(moveToTarget);
-        attachedGameObject.transform.Translate(attachedGameObject.transform.forward * alienSpeed * Time.deltaTime);
+        attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * alienSpeed * Time.deltaTime);
 
         //Debug.DrawWireSphere(xProgress, 10.0f, Color.russianRed.ToVector3());
         //Debug.DrawWireSphere(yProgress, 10.0f, Color.scrumMasterBlue.ToVector3());
@@ -197,20 +197,20 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         //Moving towards the player until reaching circle size
         if (!circleStarted &&
-            Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position) > circleSize + circleSize / 2)
+            Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position) > circleSize + circleSize / 2)
         {
-            MoveTo(playerGO.transform.position, alienCircleSpeed / 1.5f);
-            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+            MoveTo(playerGO.transform.Position, alienCircleSpeed / 1.5f);
+            attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
             //Debug.DrawWireCircle(playerGO.transform.position, circleSize, Color.pitufoBlue.ToVector3());
 
             return;
         }
-        else 
-        { 
+        else
+        {
             circleStarted = true;
 
-            Vector3 directorVec = playerGO.transform.position - attachedGameObject.transform.position;
+            Vector3 directorVec = playerGO.transform.Position - attachedGameObject.transform.Position;
             counterPos = (float)Math.Atan2(directorVec.z, directorVec.x) * 180.0f / (float)Math.PI + 180.0f;
 
             if (counterPos < 0) { counterPos += 360.0f; }
@@ -223,12 +223,12 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         progressPos = Vector3.zero;
         progressPos += Vector3.right * (float)Math.Cos(-counterPos * Math.PI / 180.0f) * circleSize;
         progressPos += Vector3.forward * (float)Math.Sin(counterPos * Math.PI / 180.0f) * circleSize;
-        progressPos += playerGO.transform.position;
+        progressPos += playerGO.transform.Position;
 
         //Debug.DrawWireSphere(progressPos, 10.0f, Color.chernobylGreen.ToVector3());
 
         attachedGameObject.transform.LookAt2D(progressPos);
-        attachedGameObject.transform.Translate(attachedGameObject.transform.forward * alienCircleSpeed * Time.deltaTime);
+        attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * alienCircleSpeed * Time.deltaTime);
 
         countDown += Time.deltaTime;
         if (countDown > circleTime)
@@ -251,7 +251,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             countDown = 0.0f;
         }
 
-        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
         countDown += Time.deltaTime;
         if (countDown > waitingTime)
@@ -374,7 +374,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             attachedGameObject.animator.Play("Facehugger_Spawn");
         }
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             currentPhase++;
             currentState = States.Attack;
@@ -441,11 +441,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             case 3:
                 switch (stagePhase3)
                 {
-                    case 0:     return Attacks.AcidPhase2;
-                    case 1:     return Attacks.Jump;
-                    case 2:     return Attacks.TailPhase2;
-                    case 3:     return Attacks.Charge;
-                    case 4:     return Attacks.Spawn;
+                    case 0: return Attacks.AcidPhase2;
+                    case 1: return Attacks.Jump;
+                    case 2: return Attacks.TailPhase2;
+                    case 3: return Attacks.Charge;
+                    case 4: return Attacks.Spawn;
                     default:
                         Debug.LogError("Queen FSM fell into unintended behaviour when choosing attack (phase 3)");
                         return Attacks.None;
@@ -465,7 +465,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             attackFirstFrame = false;
         }
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             if (currentPhase == 1)
             {
@@ -489,14 +489,14 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             attackFirstFrame = false;
         }
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             combinedFirstAttack = true;
             attackedFinished = true;
         }
     }
 
-    
+
     private bool AcidBomb()
     {
         if (attackFirstFrame)
@@ -505,7 +505,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             attackFirstFrame = false;
         }
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             if (currentPhase == 1)
             {
@@ -532,7 +532,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             attackFirstFrame = false;
         }
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             combinedFirstAttack = true;
             attackedFinished = true;
@@ -576,14 +576,14 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
             Vector3 scale = new Vector3(1, 1, 1);
 
-            InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position +
-                                               attachedGameObject.transform.forward *
+            InternalCalls.InstantiateXenomorph(attachedGameObject.transform.Position +
+                                               attachedGameObject.transform.Forward *
                                                (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
-                                               attachedGameObject.transform.rotation,
+                                               attachedGameObject.transform.Rotation,
                                                scale);
         }
 
-        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
         countDown += Time.deltaTime;
         if (countDown >= spawnDuration)
@@ -619,22 +619,22 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             if (posCalc)
             {
                 posCalc = false;
-                attachedGameObject.transform.position = new Vector3(playerGO.transform.position.x,
-                                                                    attachedGameObject.transform.position.y,
-                                                                    playerGO.transform.position.z);
+                attachedGameObject.transform.Position = new Vector3(playerGO.transform.Position.x,
+                                                                    attachedGameObject.transform.Position.y,
+                                                                    playerGO.transform.Position.z);
             }
         }
         else if (stopCountDown > 0.9f) { onAir = true; }
 
         if (onAir) { attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f; }
-        else       { attachedGameObject.GetComponent<ICollider2D>().radius = 35.0f; }
+        else { attachedGameObject.GetComponent<ICollider2D>().radius = 35.0f; }
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
-            if (jumpNum >= 2) 
-            { 
-                attackedFinished = true; 
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position); 
+            if (jumpNum >= 2)
+            {
+                attackedFinished = true;
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
             }
             else
             {
@@ -658,19 +658,19 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
             countDown = 0;
             stopCountDown = 0;
-            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+            attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
         }
 
         stopCountDown += Time.deltaTime;
         if (stopCountDown > 1.05f && stopCountDown < 3.15f)
         {
-            attachedGameObject.transform.Translate(attachedGameObject.transform.forward * chargeSpeed * Time.deltaTime);
+            attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * chargeSpeed * Time.deltaTime);
         }
 
         countDown += Time.deltaTime;
         if (countDown >= headChargeDuration)
         {
-            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+            attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
             attackedFinished = true;
         }
     }
@@ -680,9 +680,9 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     bool MoveTo(Vector3 targetPosition, float speed)
     {
         //Return true if arrived at destination
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+        if (Vector3.Distance(attachedGameObject.transform.Position, targetPosition) < 0.5f) return true;
 
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * speed * Time.deltaTime);
         return false;
     }

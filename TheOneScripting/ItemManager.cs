@@ -95,7 +95,7 @@ public class ItemManager : MonoBehaviour
                 {
                     equipped.Remove(kvp.Key);
                     Debug.Log("Item id: '" + id + "' unequipped from slot " + kvp.Key + ".");
-               
+
                     break;
                 }
             }
@@ -126,8 +126,7 @@ public class ItemManager : MonoBehaviour
 
     private bool CheckItemInItemData(uint id)
     {
-        Item item;
-        if (itemData.TryGetValue(id, out item)) return true;
+        if (itemData.TryGetValue(id, out _)) return true;
 
         return false;
     }

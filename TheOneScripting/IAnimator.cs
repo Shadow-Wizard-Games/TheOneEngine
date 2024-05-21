@@ -6,7 +6,7 @@ public class IAnimator : IComponent
     public IAnimator() : base() { }
 
     public IAnimator(IntPtr gameObjectRef) : base(gameObjectRef) { }
-    
+
     public void Play(string name)
     {
         InternalCalls.PlayAnimation(containerGOptr, name);
@@ -16,7 +16,7 @@ public class IAnimator : IComponent
         InternalCalls.StopAnimation(containerGOptr);
     }
 
-    public bool currentAnimHasFinished
+    public bool CurrentAnimHasFinished
     {
         get
         {
@@ -24,19 +24,19 @@ public class IAnimator : IComponent
         }
     }
 
-    public bool blend 
-    { 
-        get 
+    public bool Blend
+    {
+        get
         {
             return InternalCalls.GetTransitionBlend(containerGOptr);
         }
-        set 
+        set
         {
             InternalCalls.SetTransitionBlend(containerGOptr, ref value);
         }
     }
 
-    public float transitionTime
+    public float TransitionTime
     {
         get
         {

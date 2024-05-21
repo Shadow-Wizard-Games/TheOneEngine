@@ -59,7 +59,7 @@ class InternalCalls
     #region GameObject
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateGrenade(Vector3 initialPosition, Vector3 direction);
 
@@ -80,7 +80,7 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr ComponentCheck(IntPtr gameObject, int componentType, string scriptName = null);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static TComponent GetScript<TComponent>(IntPtr gameObject, string scriptName);
 
@@ -155,7 +155,7 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int PrintItemUI(IntPtr GOptr, bool value, string nameM);
 
@@ -184,7 +184,7 @@ class InternalCalls
     #region Helpers
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetAppDeltaTime();
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ExitApplication();
     #endregion
@@ -192,10 +192,10 @@ class InternalCalls
     #region Debug
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ScriptingLog(string message, int logType);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DrawWireCircle(Vector3 position, float radius, Vector3 color);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DrawWireSphere(Vector3 position, float radius, Vector3 color);
 
@@ -258,31 +258,31 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetFov(IntPtr GOptr, ref double fov);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static double GetAspect(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetAspect(IntPtr GOptr, ref double aspect);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetYaw(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetYaw(IntPtr GOptr, ref float yaw);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetPitch(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetPitch(IntPtr GOptr, ref float pitch);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static CameraType GetCameraType(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetCameraType(IntPtr GOptr, ref CameraType cameraType);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetPrimaryCam(IntPtr GOptr);
 
@@ -296,10 +296,10 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopAnimation(IntPtr GOptr);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool AnimationHasFinished(IntPtr GOptr);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetTransitionBlend(IntPtr GOptr);
 

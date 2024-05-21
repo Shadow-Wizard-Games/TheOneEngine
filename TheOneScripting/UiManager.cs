@@ -43,11 +43,17 @@ public class UiManager : MonoBehaviour
     IGameObject savingSceneGo;
     IGameObject pickUpFeedbackGo;
 
+    UiScriptSettings settingsCanvas;
+
     IGameObject playerGO;
     PlayerScript playerScript;
 
     IGameObject GameManagerGO;
     GameManager gameManager;
+
+    ICanvas savingCanvas;
+    ICanvas dialogCanvas;
+    ICanvas pickupCanvas;
 
     MenuState state;
     MenuState previousState;
@@ -106,6 +112,11 @@ public class UiManager : MonoBehaviour
 
         GameManagerGO = IGameObject.Find("GameManager");
         gameManager = GameManagerGO.GetComponent<GameManager>();
+        savingCanvas = savingSceneGo.GetComponent<ICanvas>();
+        dialogCanvas = dialogueGo.GetComponent<ICanvas>();
+        pickupCanvas = pickUpFeedbackGo.GetComponent<ICanvas>();
+
+        settingsCanvas = settingsGo.GetComponent<UiScriptSettings>();
     }
 
     public override void Update()
@@ -129,20 +140,20 @@ public class UiManager : MonoBehaviour
 
             if (changeSaveTextCooldown > 2.0f)
             {
-                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress", "Text_SavingProgress");
+                savingCanvas.SetTextString("saving progress", "Text_SavingProgress");
                 changeSaveTextCooldown = 0.0f;
             }
             else if (changeSaveTextCooldown > 1.5f)
             {
-                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress...", "Text_SavingProgress");
+                savingCanvas.SetTextString("saving progress...", "Text_SavingProgress");
             }
             else if (changeSaveTextCooldown > 1.0f)
             {
-                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress..", "Text_SavingProgress");
+                savingCanvas.SetTextString("saving progress..", "Text_SavingProgress");
             }
             else if (changeSaveTextCooldown > 0.5f)
             {
-                savingSceneGo.GetComponent<ICanvas>().SetTextString("saving progress.", "Text_SavingProgress");
+                savingCanvas.SetTextString("saving progress.", "Text_SavingProgress");
             }
 
             if (state != MenuState.Hud)
@@ -231,7 +242,7 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
-                else if(Input.GetKeyboardButton(Input.KeyboardCode.K))
+                else if (Input.GetKeyboardButton(Input.KeyboardCode.K))
                 {
                     if (previousState == MenuState.Debug)
                     {
@@ -246,7 +257,7 @@ public class UiManager : MonoBehaviour
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_PAUSEGAME);
-                    if (!settingsGo.GetComponent<UiScriptSettings>().editing)
+                    if (!settingsCanvas.editing)
                     {
                         if (state == MenuState.Pause)
                         {
@@ -383,7 +394,7 @@ public class UiManager : MonoBehaviour
                     break;
                 case MenuState.Settings:
                     settingsGo.Enable();
-                    settingsGo.GetComponent<UiScriptSettings>().firstFrameUpdate = false;
+                    settingsCanvas.firstFrameUpdate = false;
                     playerScript.onPause = true;
                     break;
                 case MenuState.Missions:
@@ -409,38 +420,38 @@ public class UiManager : MonoBehaviour
                     break;
                 savingSceneGo.Enable();
                 if (text == "") text = "saving progress";
-                savingSceneGo.GetComponent<ICanvas>().SetTextString(text, "Text_SavingProgress");
+                savingCanvas.SetTextString(text, "Text_SavingProgress");
                 saveOnCooldown = true;
                 break;
             case HudPopUpMenu.PickUpFeedback:
                 if (pickUpFeedbackOnCooldown)
                     break;
                 pickUpFeedbackGo.Enable();
-                pickUpFeedbackGo.GetComponent<ICanvas>().SetTextString(text, "Text_PickedItem");
+                pickupCanvas.SetTextString(text, "Text_PickedItem");
                 pickUpFeedbackOnCooldown = true;
                 break;
             case HudPopUpMenu.Dialogue:
-                if(dialogueOnCooldown)
+                if (dialogueOnCooldown)
                     break;
                 dialogueGo.Enable();
-                dialogueGo.GetComponent<ICanvas>().SetTextString(text, "Text_Dialogue");
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_ShopKeeper");
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_Medic");
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_CampLeader");
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(false, "Img_Sargeant");
+                dialogCanvas.SetTextString(text, "Text_Dialogue");
+                dialogCanvas.PrintItemUI(false, "Img_ShopKeeper");
+                dialogCanvas.PrintItemUI(false, "Img_Medic");
+                dialogCanvas.PrintItemUI(false, "Img_CampLeader");
+                dialogCanvas.PrintItemUI(false, "Img_Sargeant");
                 switch (dialoguer)
                 {
                     case Dialoguer.ShopKeeper:
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_ShopKeeper");
+                        dialogCanvas.PrintItemUI(true, "Img_ShopKeeper");
                         break;
                     case Dialoguer.Medic:
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_Medic");
+                        dialogCanvas.PrintItemUI(true, "Img_Medic");
                         break;
                     case Dialoguer.CampLeader:
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_CampLeader");
+                        dialogCanvas.PrintItemUI(true, "Img_CampLeader");
                         break;
                     case Dialoguer.Sargeant:
-                dialogueGo.GetComponent<ICanvas>().PrintItemUI(true, "Img_Sargeant");
+                        dialogCanvas.PrintItemUI(true, "Img_Sargeant");
                         break;
                     default:
                         break;

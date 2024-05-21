@@ -150,7 +150,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
     if (method == nullptr)
     {
         //Used for handling virtual functions errors
-        for (auto checkFunction : functionsToIgnore)
+        for (auto& checkFunction : functionsToIgnore)
         {
             if (functionToCall == checkFunction) return nullptr;
         }
@@ -227,7 +227,7 @@ void MonoManager::RenderShapesQueue()
     if (debugShapesQueue.empty())
         return;
 
-    for (auto shape : debugShapesQueue)
+    for (auto& shape : debugShapesQueue)
     {
         glm::mat4 translate = glm::translate(glm::mat4(1), shape.center);
 

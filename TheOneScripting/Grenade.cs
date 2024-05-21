@@ -6,7 +6,7 @@ public class Grenade : MonoBehaviour
     PlayerScript player;
 
     Vector3 velocity;
-    float lifeTime = 20.0f;
+    readonly float lifeTime = 20.0f;
     float currentTime = 0.0f;
     Vector3 gravity = new Vector3(0f, -110f, 0f);
 
@@ -21,7 +21,7 @@ public class Grenade : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if (currentTime > lifeTime || attachedGameObject.transform.position.y <= 0)
+        if (currentTime > lifeTime || attachedGameObject.transform.Position.y <= 0)
         {
             currentTime = 0.0f;
             velocity = player.grenadeInitialVelocity;
@@ -29,12 +29,12 @@ public class Grenade : MonoBehaviour
             return;
         }
 
-        Vector3 position = attachedGameObject.transform.position + player.grenadeInitialVelocity * Time.deltaTime;
-        player.grenadeInitialVelocity = player.grenadeInitialVelocity + gravity * Time.deltaTime;
-        
+        Vector3 position = attachedGameObject.transform.Position + player.grenadeInitialVelocity * Time.deltaTime;
+        player.grenadeInitialVelocity += gravity * Time.deltaTime;
+
         attachedGameObject.transform.SetPosition(position);
         Debug.Log(" vel starto 3 = x> " + player.grenadeInitialVelocity.x + " z>" + player.grenadeInitialVelocity.z);
         Debug.LogWarning("Position -> " + position.x + " " + position.y + " " + position.z);
-        Debug.LogWarning("Velocity -> " + velocity.x + " " + velocity.y + " " + velocity.z);      
+        Debug.LogWarning("Velocity -> " + velocity.x + " " + velocity.y + " " + velocity.z);
     }
 }

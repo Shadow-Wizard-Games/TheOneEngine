@@ -60,7 +60,7 @@ public class EventTriggerDialog : Event
 
     public override bool CheckEventIsPossible()
     {
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
         if (playerDistance < tpRange)
         {
@@ -105,11 +105,11 @@ public class EventTriggerDialog : Event
     {
         if (!inRange)
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, tpRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
         }
         else
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
         }
     }
 

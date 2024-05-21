@@ -59,8 +59,8 @@ public class ChestbursterBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Move");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.TransitionTime = 0.0f;
 
         tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS");
         tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS");
@@ -79,7 +79,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
             //Set the director vector and distance to the player
             //directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
-            playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+            playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
             UpdateFSM();
             DoStateBehaviour();
@@ -94,7 +94,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
         if (detected)
         {
-            attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
+            attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
 
             if (playerDistance < farRangeThreshold && !isClose)
             {
@@ -135,12 +135,12 @@ public class ChestbursterBehaviour : MonoBehaviour
         {
             case States.Idle:
                 if (currentAttack == ChestbursterAttack.None && detected)
-                    attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                    attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
                 break;
             case States.ChaseAttack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
                 ChooseAttack();
 
@@ -191,7 +191,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         //Debug.Log("Attempt to do TailPunch");
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -202,7 +202,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         //Debug.Log("Attempt to do TailTrip");
 
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -230,12 +230,12 @@ public class ChestbursterBehaviour : MonoBehaviour
         {
             if (!detected)
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
             }
             else
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
             }
         }
     }

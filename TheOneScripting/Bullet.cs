@@ -21,6 +21,6 @@ class Bullet : MonoBehaviour
             return;
         }
 
-        attachedGameObject.transform.Translate(attachedGameObject.transform.forward * bulletSpeed * Time.deltaTime);
+        attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * bulletSpeed * Time.deltaTime);
     }
 }

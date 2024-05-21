@@ -9,11 +9,11 @@ public class AbilityImpaciente : Ability
     IGameObject playerGO;
     PlayerScript player;
 
-    int damage = 10;
+    readonly int damage = 10;
 
-    float slowAmount = 0.25f;
-    float impacienteShootingCd = 0.12f;
-    float knockbackPotency = -3f;
+    readonly float slowAmount = 0.25f;
+    readonly float impacienteShootingCd = 0.12f;
+    readonly float knockbackPotency = -3f;
 
     public override void Start()
     {
@@ -80,7 +80,7 @@ public class AbilityImpaciente : Ability
             // update time
             activeTimeCounter -= Time.deltaTime;
 
-            if(player.isShooting)
+            if (player.isShooting)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
 
             Debug.LogWarning("Impaciente Bullets --> " + player.impacienteBulletCounter);

@@ -187,7 +187,7 @@ public class IAudioSource : IComponent
 
     public IAudioSource() : base() { }
     public IAudioSource(IntPtr GOptr) : base(GOptr) { }
-    
+
     public AudioEvent currentID = 0;
     public void Play(AudioEvent audio)
     {

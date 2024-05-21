@@ -10,20 +10,18 @@ using static UiManager;
 public class EventCheckpoint : Event
 {
     IGameObject playerGO;
-    PlayerScript player;
 
     GameManager gameManager;
     UiManager menuManager;
 
     float playerDistance;
 
-    float tpRange = 100.0f;
+    readonly float tpRange = 100.0f;
     bool inRange = false;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -44,7 +42,7 @@ public class EventCheckpoint : Event
 
     public override bool CheckEventIsPossible()
     {
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
         if (playerDistance < tpRange)
         {
@@ -75,11 +73,11 @@ public class EventCheckpoint : Event
     {
         if (!inRange)
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, tpRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
         }
         else
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, tpRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
         }
     }
 }

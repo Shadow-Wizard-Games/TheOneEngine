@@ -11,6 +11,8 @@ public class UiScriptSettings : MonoBehaviour
     IGameObject settingsControlsGO;
     IGameObject settingsDisplayGO;
 
+    ICanvas settingsDisCanvas;
+
     int currentButton = 0;
 
     public bool editing = false;
@@ -27,6 +29,8 @@ public class UiScriptSettings : MonoBehaviour
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
+
+        settingsDisCanvas = settingsDisplayGO.GetComponent<ICanvas>();
 
         settingsControlsGO.Disable();
         settingsDisplayGO.Disable();
@@ -61,11 +65,11 @@ public class UiScriptSettings : MonoBehaviour
 
         if (!onCooldown && editing && Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
         {
-            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Vsync");
-            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Checker_Fullscreen");
-            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_MainVolume");
-            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_SFX");
-            settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.IDLE,"Slider_Music");
+            settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_Vsync");
+            settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_Fullscreen");
+            settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Slider_MainVolume");
+            settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Slider_SFX");
+            settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Slider_Music");
             editing = false;
         }
 
@@ -165,7 +169,7 @@ public class UiScriptSettings : MonoBehaviour
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     settingsControlsGO.Disable();
                     settingsDisplayGO.Disable();
-                    settingsDisplayGO.GetComponent<ICanvas>().SetUiItemState(ICanvas.UiState.HOVERED, "Checker_Vsync");
+                    settingsDisCanvas.SetUiItemState(ICanvas.UiState.HOVERED, "Checker_Vsync");
                     settingsDisplayGO.Enable();
                     editing = true;
                 }

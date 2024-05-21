@@ -7,10 +7,6 @@ public class UiScriptPause : MonoBehaviour
     bool onCooldown = false;
 
     IGameObject playerGO;
-    PlayerScript player;
-
-    IGameObject GameManagerGO;
-    GameManager gameManager;
 
     UiManager menuManager;
 
@@ -22,12 +18,8 @@ public class UiScriptPause : MonoBehaviour
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-
-        GameManagerGO = IGameObject.Find("GameManager");
-        gameManager = GameManagerGO.GetComponent<GameManager>();
 
         onCooldown = true;
 

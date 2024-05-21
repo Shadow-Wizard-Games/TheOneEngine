@@ -10,9 +10,6 @@ public class UiScriptStats : MonoBehaviour
     }
 
     public ICanvas canvas;
-    ItemManager itemManager;
-    IGameObject iManagerGO;
-    UiManager menuManager;
 
     int currency = 0;
 
@@ -37,10 +34,6 @@ public class UiScriptStats : MonoBehaviour
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("ItemManager");
-        itemManager = iManagerGO.GetComponent<ItemManager>();
-        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
 
@@ -51,7 +44,7 @@ public class UiScriptStats : MonoBehaviour
 
         ChangeStatLvl(StatType.DAMAGE, false, playerDamageLvl);
         ChangeStatLvl(StatType.HEALTH, false, playerHealthLvl);
-        ChangeStatLvl(StatType.SPEED,  false, playerSpeedLvl);
+        ChangeStatLvl(StatType.SPEED, false, playerSpeedLvl);
 
 
         onCooldown = true;
@@ -164,7 +157,7 @@ public class UiScriptStats : MonoBehaviour
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.DAMAGE);
                     onCooldown = true;
-                    currency = currency - 100;
+                    currency -= 100;
                     //PUT HERE FUNCTION TO BUY DAMAGE STAT UPGRADE
                     //PLAYER.CURRENCY = THIS.CURRENCY
                     //PLAYER.DAMAGELVL = THIS.PLAYERDAMAGELVL
@@ -177,7 +170,7 @@ public class UiScriptStats : MonoBehaviour
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.HEALTH);
                     onCooldown = true;
-                    currency = currency - 100;
+                    currency -= 100;
                     //PUT HERE FUNCTION TO BUY HEALTH STAT UPGRADE
                     //PLAYER.CURRENCY = THIS.CURRENCY
                     //PLAYER.HEALTHLVL = THIS.PLAYERHEALTHLVL
@@ -190,7 +183,7 @@ public class UiScriptStats : MonoBehaviour
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.SPEED);
                     onCooldown = true;
-                    currency = currency - 100;
+                    currency -= 100;
                     //PUT HERE FUNCTION TO BUY SPEED STAT UPGRADE
                     //PLAYER.CURRENCY = THIS.CURRENCY
                     //PLAYER.SPEEDLVL = THIS.PLAYERSPEEDLVL
@@ -211,26 +204,26 @@ public class UiScriptStats : MonoBehaviour
                 switch (newLvl)
                 {
                     case 1:
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,   "Button_DamageIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,   "Button_DamageLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,   "Button_DamageArrowsLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageIconLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageLayerLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageArrowsLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageIconLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageLayerLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageArrowsLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageIconLvl4");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageLayerLvl4");
-                        canvas.SetUiItemState(ICanvas.UiState.HOVERED,"Button_DamageArrowsLvl4");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageIconLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageLayerLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageArrowsLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageIconLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageLayerLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageArrowsLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageIconLvl4");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageLayerLvl4");
+                        canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageArrowsLvl4");
                         break;
                     case 2:
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageArrowsLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageIconLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageLayerLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageArrowsLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageIconLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageLayerLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageArrowsLvl2");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageIconLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageLayerLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageArrowsLvl3");
@@ -239,15 +232,15 @@ public class UiScriptStats : MonoBehaviour
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageArrowsLvl4");
                         break;
                     case 3:
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageArrowsLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageIconLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageLayerLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageArrowsLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageIconLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageLayerLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_DamageArrowsLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageIconLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageLayerLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageArrowsLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageIconLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageLayerLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_DamageArrowsLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageIconLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageLayerLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_DamageArrowsLvl4");
@@ -276,9 +269,9 @@ public class UiScriptStats : MonoBehaviour
                 switch (newLvl)
                 {
                     case 1:
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthArrowsLvl1");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthIconLvl2");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthLayerLvl2");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthArrowsLvl2");
@@ -290,12 +283,12 @@ public class UiScriptStats : MonoBehaviour
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthArrowsLvl4");
                         break;
                     case 2:
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthArrowsLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthIconLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthLayerLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthArrowsLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthIconLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthLayerLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthArrowsLvl2");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthIconLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthLayerLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthArrowsLvl3");
@@ -304,15 +297,15 @@ public class UiScriptStats : MonoBehaviour
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthArrowsLvl4");
                         break;
                     case 3:
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthArrowsLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthIconLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthLayerLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthArrowsLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthIconLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthLayerLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_HealthArrowsLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthIconLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthLayerLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthArrowsLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthIconLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthLayerLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_HealthArrowsLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthIconLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthLayerLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_HealthArrowsLvl4");
@@ -341,9 +334,9 @@ public class UiScriptStats : MonoBehaviour
                 switch (newLvl)
                 {
                     case 1:
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedArrowsLvl1");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedIconLvl2");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedLayerLvl2");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedArrowsLvl2");
@@ -353,36 +346,36 @@ public class UiScriptStats : MonoBehaviour
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedIconLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedLayerLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedArrowsLvl4");
-                        break; 
-                    case 2:    
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedArrowsLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedIconLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedLayerLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedArrowsLvl2");
+                        break;
+                    case 2:
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedIconLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedLayerLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedArrowsLvl2");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedIconLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedLayerLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedArrowsLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedIconLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedLayerLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedArrowsLvl4");
-                        break; 
-                    case 3:    
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedIconLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedLayerLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedArrowsLvl1");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedIconLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedLayerLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedArrowsLvl2");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedIconLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedLayerLvl3");
-                        canvas.SetUiItemState(ICanvas.UiState.IDLE,    "Button_SpeedArrowsLvl3");
+                        break;
+                    case 3:
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedIconLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedLayerLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedArrowsLvl1");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedIconLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedLayerLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedArrowsLvl2");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedIconLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedLayerLvl3");
+                        canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedArrowsLvl3");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedIconLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedLayerLvl4");
                         canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_SpeedArrowsLvl4");
                         break;
-                    case 4:   
+                    case 4:
                         canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedIconLvl1");
                         canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedLayerLvl1");
                         canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_SpeedArrowsLvl1");
