@@ -173,7 +173,7 @@ class InternalCalls
     internal extern static int GetSliderValue(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void SetTextString(IntPtr GOptr, string text, string name);
+    internal extern static void SetTextString(IntPtr GOptr, string text, string name, int num = -1);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetTextString(IntPtr GOptr, string name);

@@ -43,10 +43,9 @@ public class UiScriptHud : MonoBehaviour
     int killsAmount = 0;
     string kills;
 
-    string currLoadout = "m41a";
+    string currLoadout = "m4a1";
     int currAmmo = 20;
     int maxAmmo = 20;
-    string ammo;
 
     bool grenadeOnCooldown = false;
     float grenadeCooldown = 5.0f;
@@ -109,6 +108,9 @@ public class UiScriptHud : MonoBehaviour
     {
         float dt = Time.realDeltaTime;
 
+
+        onCooldown = true;
+
         if (onCooldown && cooldown < 0.2f)
         {
             cooldown += dt;
@@ -147,7 +149,6 @@ public class UiScriptHud : MonoBehaviour
                 //debug text of ammo
                 currAmmo -= 1;
                 UpdateString(HudStrings.AMMOSTRING);
-
 
                 onCooldown = true;
             }
@@ -271,13 +272,8 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetTextString(kills, "Text_KillsAmount");
                 break;
             case HudStrings.AMMOSTRING:
-                ammo = "%d%d / %d%d";
-                if (currAmmo < 10 && maxAmmo > 9) ammo = "%d / %d%d";
-                else if (currAmmo < 10 && maxAmmo < 9) ammo = "%d / %d";
-                List<int> args = new List<int>();
-                args.Add(currAmmo);
-                args.Add(maxAmmo);
-                canvas.SetTextString(ammo, "Text_AmmoAmount", args);
+                canvas.SetTextString("", "Text_AmmoAmount", currAmmo);
+                canvas.SetTextString("", "Text_MaxAmmo", maxAmmo);
                 break;
             case HudStrings.LOADOUTSTRING:
                 canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");

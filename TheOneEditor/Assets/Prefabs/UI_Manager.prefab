@@ -31,7 +31,7 @@
       "UID": 2371490470
     },
     {
-      "AudioID": 24,
+      "AudioID": 23,
       "Name": "AudioSource",
       "Type": 8
     }
@@ -1132,7 +1132,7 @@
           "UID": 951121546
         },
         {
-          "AudioID": 25,
+          "AudioID": 24,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -1433,7 +1433,7 @@
           ]
         },
         {
-          "AudioID": 26,
+          "AudioID": 25,
           "Name": "Source",
           "Type": 8
         },
@@ -1616,7 +1616,55 @@
                 0.07500000298023224
               ],
               "State": 0,
-              "TextString": "20 / 20",
+              "TextString": "20",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets/Fonts/AlienInvader.ttf",
+              "ID": 2269493107,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_AmmoSlash",
+              "Print": true,
+              "Rect": [
+                0.6399999856948853,
+                0.824999988079071,
+                0.03500000014901161,
+                0.07500000298023224
+              ],
+              "State": 0,
+              "TextString": "/",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets/Fonts/AlienInvader.ttf",
+              "ID": 1991825613,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_MaxAmmo",
+              "Print": true,
+              "Rect": [
+                0.6850000023841858,
+                0.824999988079071,
+                0.03500000014901161,
+                0.07500000298023224
+              ],
+              "State": 0,
+              "TextString": "20",
               "Type": 4
             },
             {
@@ -1640,7 +1688,7 @@
                 0.03500000014901161
               ],
               "State": 0,
-              "TextString": "m41a",
+              "TextString": "m4a1",
               "Type": 4
             },
             {
@@ -2998,7 +3046,7 @@
           "UID": 607510851
         },
         {
-          "AudioID": 27,
+          "AudioID": 26,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -3497,7 +3545,7 @@
           ]
         },
         {
-          "AudioID": 28,
+          "AudioID": 27,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -3681,7 +3729,7 @@
           ]
         },
         {
-          "AudioID": 29,
+          "AudioID": 28,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -5907,7 +5955,7 @@
               ]
             },
             {
-              "AudioID": 30,
+              "AudioID": 29,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6694,7 +6742,7 @@
               "UID": 1616070798
             },
             {
-              "AudioID": 31,
+              "AudioID": 30,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6802,7 +6850,7 @@
           ]
         },
         {
-          "AudioID": 32,
+          "AudioID": 31,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -6926,7 +6974,7 @@
           ]
         },
         {
-          "AudioID": 33,
+          "AudioID": 32,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -6972,7 +7020,7 @@
           "UID": 2135104260
         },
         {
-          "AudioID": 34,
+          "AudioID": 33,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -7018,7 +7066,7 @@
           "UID": 2581454987
         },
         {
-          "AudioID": 35,
+          "AudioID": 34,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -7035,7 +7083,7 @@
   "HasTransparency": false,
   "Keeped": false,
   "Name": "UI_Manager",
-  "ParentUID": 6619207,
+  "ParentUID": 3452816845,
   "PrefabDirty": false,
   "PrefabID": 2472160759,
   "PrefabName": "UI_Manager",

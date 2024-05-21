@@ -687,7 +687,7 @@ static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
 	}
 }
 
-static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name)
+static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name, int num = -1)
 {
 	Canvas* canvas = containerGO->GetComponent<Canvas>();
 
@@ -695,13 +695,13 @@ static void SetTextString(GameObject* containerGO, MonoString* text, MonoString*
 	std::string itemText = MonoRegisterer::MonoStringToUTF8(text);
 	
 	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
-
+	
 	for (auto element : uiElements)
 	{
 		if (element->GetType() == UiType::TEXT && element->GetName() == itemName)
 		{
 			TextUI* ui = canvas->GetItemUI<TextUI>(element->GetID());
-			ui->SetText(itemText);
+			ui->SetText((num == -1 ? itemText : std::to_string(num)));
 			break;
 		}
 	}
