@@ -73,6 +73,9 @@ class InternalCalls
     internal extern static IntPtr FindGameObject(string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IntPtr GetParent(IntPtr currentGameObject);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr FindGameObjectInChildren(IntPtr gameObject, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]

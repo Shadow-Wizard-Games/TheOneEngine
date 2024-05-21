@@ -1,0 +1,96 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 2564928214
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            10.000003814697266,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            9.999998092651367,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            9.99999713897705,
+            0.0,
+            0.0,
+            150.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4255556573
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Cube/lambert1.toematerial",
+          "MeshPath": "Library/Meshes/SM_Cube/pCube1.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 4022298623
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "Raindrop",
+          "Type": 4,
+          "UID": 1301680868
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Raindrop",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Acid_Raindrop",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 701278701,
+  "PrefabName": "Acid_Raindrop",
+  "Static": false,
+  "UID": 3452816845
+}

@@ -24,11 +24,16 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         attachedGameObject.animator.UpdateAnimation();
 
         //THIS IF IS DEBUG ONLY. DELETE ON COMPLETION
+        //if (Input.GetKeyboardButton(Input.KeyboardCode.K))
+        //{
+        //    currentLife -= 10;
+        //    Debug.Log("Current life is: " + currentLife.ToString());
+        //}
         if (Input.GetKeyboardButton(Input.KeyboardCode.K))
         {
-            currentLife -= 10;
-            Debug.Log("Current life is: " + currentLife.ToString());
+            AcidRain(2.0f);
         }
+
 
         if (isDead) { return; }
 
@@ -559,6 +564,21 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         //    currentAttack = Attacks.None;
         //    attackedFinished = true;
         //}
+    }
+
+    bool rainActive = false;
+    float rainTimeCounter = 0.0f;
+    private void AcidRain(float timeBetweenRaindrops)
+    {
+        rainTimeCounter += Time.deltaTime;
+        if (rainTimeCounter >= timeBetweenRaindrops)
+        {
+            rainTimeCounter -= timeBetweenRaindrops;
+
+            Vector3 position = playerGO.transform.position;
+
+            InternalCalls.CreatePrefab("Acid_Raindrop", position, Vector3.zero);
+        }
     }
 
     float spawnDuration = 5.0f;

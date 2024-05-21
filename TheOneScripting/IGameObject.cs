@@ -8,6 +8,25 @@ public class IGameObject : IObject
     public ITransform transform;
     public IAudioSource source;
     public IAnimator animator;
+    public IGameObject parent
+    {
+        get
+        {
+            IntPtr foundGOptr = InternalCalls.GetParent(containerGOptr);
+
+            if (foundGOptr == IntPtr.Zero)
+            {
+                Debug.LogError("Did not find parent to the GameObject");
+
+                return null;
+            }
+
+            IGameObject goToReturn = new IGameObject(foundGOptr);
+
+            return goToReturn;
+        }
+    }
+
 
     public IGameObject() : base()
     {

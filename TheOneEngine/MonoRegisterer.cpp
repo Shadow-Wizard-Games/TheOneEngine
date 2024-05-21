@@ -188,6 +188,11 @@ static GameObject* FindGameObjectInChildren(GameObject* refGO, MonoString* monoS
 	return RecursiveFindGO(name, refGO);
 }
 
+static GameObject* GetGameObjectParent(GameObject* originalGO)
+{
+	return originalGO->parent.lock().get();
+}
+
 static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* scriptName = nullptr)
 {
 	ComponentType type = (ComponentType)componentType;
@@ -767,6 +772,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObjectInChildren", FindGameObjectInChildren);
+	mono_add_internal_call("InternalCalls::GetParent", GetGameObjectParent);
 	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);
