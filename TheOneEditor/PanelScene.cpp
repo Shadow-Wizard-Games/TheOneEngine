@@ -35,11 +35,11 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
         { Attachment::Type::RGBA8, "color", 0 },
         { Attachment::Type::RGB16F, "position", 0 },
         { Attachment::Type::RGB16F, "normal", 0 },
-        { Attachment::Type::DEPTH, "depth", 0 }
+        { Attachment::Type::DEPTH_STENCIL, "depth", 0 }
     };
     std::vector<Attachment> lightBuffAttachments = {
         { Attachment::Type::RGBA8, "color", 0 },
-        { Attachment::Type::DEPTH, "depth", 0 }
+        { Attachment::Type::DEPTH_STENCIL, "depth", 0 }
     };
 
     gBuffer = std::make_shared<FrameBuffer>(1280, 720, gBuffAttachments);
@@ -735,9 +735,6 @@ void PanelScene::LightPass()
         postBuffer->Bind();
         shader->Bind();
 
-        Uniform::SamplerData depthData;
-        depthData.tex_id = lights[i]->depthBuffer->GetAttachmentTexture("depth");
-
         switch (lights[i]->lightType)
         {
         case LightType::Directional:
@@ -749,7 +746,6 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
             mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", lights[i]->intensity);
             mat->SetUniformData("u_DirLight[" + iteration + "].ViewProjectionMat", lights[i]->camera->viewProjectionMatrix);
-            mat->SetUniformData("u_DirLight[" + iteration + "].Depth", depthData);
             directionalLightNum++;
             break;
         }
@@ -763,7 +759,6 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
             mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
             mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
-            mat->SetUniformData("u_PointLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
             pointLightNum++;
             break;
         }
@@ -781,7 +776,7 @@ void PanelScene::LightPass()
             mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
             mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
             mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", lights[i]->camera->viewProjectionMatrix);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", depthData);
+            mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
             spotLightNum++;
             break;
         }

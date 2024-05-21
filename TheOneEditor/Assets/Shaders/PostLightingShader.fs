@@ -1,8 +1,8 @@
 #version 450 core
 
-const int MAX_DIRECTIONAL_LIGHTS = 5;
+const int MAX_DIRECTIONAL_LIGHTS = 4;
 const int MAX_POINT_LIGHTS = 32;
-const int MAX_SPOT_LIGHTS = 32;
+const int MAX_SPOT_LIGHTS = 16;
 
 // Outputs colors in RGBA
 out vec4 FragColor;
@@ -13,18 +13,18 @@ uniform sampler2D gPosition;
 uniform sampler2D gNormal;
 uniform sampler2D gAlbedoSpec;
 
-struct DirLight {
+struct DirLight
+{
     vec3 Position;
     vec3 Color;
     float Intensity;
     vec3 Direction;
     
     mat4 ViewProjectionMat;
-
-    sampler2D Depth;
 };
 
-struct PointLight {
+struct PointLight
+{
     vec3 Position;
     vec3 Color;
     float Intensity;
@@ -32,11 +32,10 @@ struct PointLight {
     float Linear;
     float Quadratic;
     float Radius;
-
-    sampler2D Depth;
 }; 
 
-struct SpotLight {
+struct SpotLight
+{
     vec3 Position;
     vec3 Color;
     float Intensity;
@@ -110,9 +109,8 @@ vec3 CalcDirLight(DirLight light, vec3 Diffuse, float Specular, vec3 Normal, vec
     vec3 specular = light.Color * spec * Specular;
 
     vec4 FragPosLightSpace = light.ViewProjectionMat * vec4(FragPos, 1.0);
-    float shadow = ShadowCalculation(FragPosLightSpace, Normal, light.Depth, FragPos, light.Position);
 
-    return ((1.0 - shadow) * (diffuse + specular) * light.Intensity * 0.1);
+    return ((diffuse + specular) * light.Intensity * 0.1);
 }
 
 vec3 CalcPointLight(PointLight light, vec3 Diffuse, float Specular, vec3 Normal, vec3 FragPos, vec3 ViewDir)

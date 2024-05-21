@@ -292,7 +292,7 @@ void EngineCore::InitPostLightingShader()
     textShader->addUniform("u_ViewPos", UniformType::fVec3);
     textShader->addUniform("u_TotalLightsNum", UniformType::Int);
 
-    for (uint i = 0; i < 5; i++)
+    for (uint i = 0; i < 4; i++)
     {
         string iteration = to_string(i);
         textShader->addUniform("u_DirLight[" + iteration + "].Position", UniformType::fVec3);
@@ -300,7 +300,6 @@ void EngineCore::InitPostLightingShader()
         textShader->addUniform("u_DirLight[" + iteration + "].Intensity", UniformType::Float);
         textShader->addUniform("u_DirLight[" + iteration + "].Direction", UniformType::fVec3);
         textShader->addUniform("u_DirLight[" + iteration + "].ViewProjectionMat;", UniformType::Mat4);
-        textShader->addUniform("u_DirLight[" + iteration + "].Depth", UniformType::Sampler2D);
     }
 
     for (uint i = 0; i < 32; i++)
@@ -311,11 +310,10 @@ void EngineCore::InitPostLightingShader()
         textShader->addUniform("u_PointLights[" + iteration + "].Intensity", UniformType::Float);
         textShader->addUniform("u_PointLights[" + iteration + "].Linear", UniformType::Float);
         textShader->addUniform("u_PointLights[" + iteration + "].Quadratic", UniformType::Float);
-        textShader->addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
-        textShader->addUniform("u_PointLights[" + iteration + "].Depth", UniformType::Sampler2D);
+        textShader-> addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
     }
 
-    for (uint i = 0; i < 32; i++)
+    for (uint i = 0; i < 16; i++)
     {
         string iteration = to_string(i);
         textShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);

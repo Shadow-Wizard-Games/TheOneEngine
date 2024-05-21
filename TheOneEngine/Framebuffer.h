@@ -10,7 +10,7 @@
 
 struct Attachment
 {
-	enum class Type { RGBA8, RGB16F, DEPTH };
+	enum class Type { RGBA8, RGB16F, DEPTH, DEPTH_STENCIL };
 
 	Type type;
 	std::string name;

@@ -24,7 +24,7 @@ isPlaying(false)
 {
 	std::vector<Attachment> attachments = {
 		{ Attachment::Type::RGBA8, "color", 0 },
-		{ Attachment::Type::DEPTH, "depth", 0 }
+		{ Attachment::Type::DEPTH_STENCIL, "depth", 0 }
 	};
 	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, attachments);
 
