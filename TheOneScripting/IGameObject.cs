@@ -150,4 +150,9 @@ public class IGameObject : IObject
     {
         InternalCalls.Enable(containerGOptr);
     }
+
+    static public void InstanciatePrefab(string name, Vector3 position, Vector3 rotation)
+    {
+        InternalCalls.CreatePrefab(name, position, rotation);
+    }
 }

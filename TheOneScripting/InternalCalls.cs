@@ -101,7 +101,7 @@ class InternalCalls
     internal extern static string GetCurrentSceneName();
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void CreatePrefab(string prefabName, Vector3 position);
+    internal extern static void CreatePrefab(string prefabName, Vector3 position, Vector3 rotation);
     #endregion
 
     #region User Interfaces

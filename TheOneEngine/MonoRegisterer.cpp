@@ -261,11 +261,11 @@ static MonoString* GetCurrentSceneName()
 	return mono_string_new(MonoManager::GetAppDomain(), engine->N_sceneManager->currentScene->GetSceneName().c_str());
 }
 
-static void CreatePrefab(MonoString* prefabName, vec3f* position)
+static void CreatePrefab(MonoString* prefabName, vec3f* position, vec3f* rotation)
 {
 	std::string MprefabName = MonoRegisterer::MonoStringToUTF8(prefabName);
 
-	engine->N_sceneManager->CreatePrefabWithName(MprefabName, *position);
+	engine->N_sceneManager->CreatePrefabWithName(MprefabName, *position, *rotation);
 }
 
 //User Interface
