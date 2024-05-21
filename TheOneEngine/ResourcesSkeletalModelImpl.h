@@ -32,24 +32,14 @@ inline ResourceId Resources::Load<SkeletalModel>(const std::string& file)
 	if (file_path.empty())
 		return -1;
 
-
 	ResourceId position = getResourcePosition(RES_SKELETALMODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_SKELETALMODEL].size();
 
-	ResourceId resourceId;
+	SkeletalModel* model = new SkeletalModel(file_path.string());
 
-	if (position == size) {
-		SkeletalModel* model = new SkeletalModel(file_path.string());
+	PushResource(RES_SKELETALMODEL, file_path.string().c_str(), model, true);
 
-		PushResource(RES_SKELETALMODEL, file_path.string().c_str(), model, true);
-
-		resourceId = size;
-	}
-	else {
-		resourceId = position;
-	}
-
-	return resourceId;
+	return size;
 }
 template<>
 inline ResourceId Resources::LoadFromLibrary<SkeletalModel>(const std::string& file)
@@ -59,24 +49,14 @@ inline ResourceId Resources::LoadFromLibrary<SkeletalModel>(const std::string& f
 	if (file_path.empty())
 		return -1;
 
-
 	ResourceId position = getResourcePosition(RES_SKELETALMODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_SKELETALMODEL].size();
 
-	ResourceId resourceId;
+	SkeletalModel* model = new SkeletalModel(file_path.string());
 
-	if (position == size) {
-		SkeletalModel* model = new SkeletalModel(file_path.string());
+	PushResource(RES_SKELETALMODEL, file_path.string().c_str(), model, true);
 
-		PushResource(RES_SKELETALMODEL, file_path.string().c_str(), model, true);
-
-		resourceId = size;
-	}
-	else {
-		resourceId = position;
-	}
-
-	return resourceId;
+	return size;
 }
 template<>
 inline SkeletalModel* Resources::GetResourceById<SkeletalModel>(ResourceId id)
