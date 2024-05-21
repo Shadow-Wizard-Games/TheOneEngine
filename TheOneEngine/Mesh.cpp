@@ -170,31 +170,6 @@ void Mesh::DrawComponent(Camera* camera)
 	}
 }
 
-bool Mesh::RenderMesh(Model* mesh, Material* material, const mat4& transform)
-{
-	Shader* matShader = material->getShader();
-	matShader->Bind();
-	matShader->SetModel(transform);
-
-	material->Bind();
-
-	if (drawWireframe)
-	{
-		GLCALL(glDisable(GL_TEXTURE_2D));
-		GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
-	}
-	else
-	{
-		GLCALL(glEnable(GL_TEXTURE_2D));
-		GLCALL(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
-	}
-
-	//mesh->Render();
-
-	material->UnBind();
-	return true;
-}
-
 
 bool Mesh::RenderOzzSkinnedMesh(SkeletalModel* mesh, int matID, const ozz::span<ozz::math::Float4x4> skinningMatrices, const mat4& transform)
 {

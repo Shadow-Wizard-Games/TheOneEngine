@@ -86,7 +86,6 @@ void Renderer3D::UpdateInstanceBuffer(const std::vector<InstanceCall>& calls)
 	{
 		const VertexBuffer& VBO = call.GetVAO().GetVertexBuffer();
 		VBO.Bind();
-		size_t size = call.GetModels().size() * sizeof(glm::mat4);
-		VBO.SetData(call.GetModels().data(), size, 32);
+		VBO.SetData(call.GetModels().data(), call.GetModels().size() * sizeof(glm::mat4), 32);
 	}
 }
