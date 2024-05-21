@@ -715,7 +715,6 @@ void Gui::ColorPicker()
 		editColor.id = "null";
 	}
 }
-}
 
 void Gui::OverwriteAsset(std::string path)
 {

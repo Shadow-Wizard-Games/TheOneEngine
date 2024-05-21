@@ -292,7 +292,7 @@ bool PanelScene::Draw()
             postBuffer->Bind();
             LightPass();
 
-            engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
+            engine->SetRenderEnvironment();
 
             // Debug / Editor Draw 
             engine->DebugDraw(true);

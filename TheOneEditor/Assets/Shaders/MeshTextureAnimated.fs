@@ -16,7 +16,16 @@ void main() {
     // also store the per-fragment normals into the gbuffer
     gNormal = normalize(normal);
     // and the diffuse per-fragment color
-    gAlbedoSpec.rgb = texture(diffuse, vec2(TexCoords.s, 1. - TexCoords.t)).rgb;
+    vec3 textureDiffuse = texture(diffuse, vec2(TexCoords.s, 1. - TexCoords.t)).rgb;
+    //Detect if the fragment has texture binded
+    if(length(textureDiffuse) == 0.0) 
+    {
+        gAlbedoSpec.rgb = vec3(0.5, 0.5, 0.5);
+    }
+    else
+    {
+        gAlbedoSpec.rgb = textureDiffuse;
+    }
     // store specular intensity in gAlbedoSpec's alpha component
     gAlbedoSpec.a = 0.5;
 }

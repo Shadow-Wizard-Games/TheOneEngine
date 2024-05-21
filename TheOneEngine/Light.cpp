@@ -147,7 +147,7 @@ void Light::CalculateShadows()
     depthBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
     // Set Render Environment
-    engine->SetRenderEnvironment(this->camera);
+    engine->SetRenderEnvironment();
 
     // Draw Scene
     GLCALL(glDisable(GL_BLEND));

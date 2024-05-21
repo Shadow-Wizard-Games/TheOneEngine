@@ -1,0 +1,10 @@
+{
+  "fragment": "#version 450 core\n\nlayout(location = 0) out vec4 gAlbedoSpec;\nlayout(location = 1) out vec3 gPosition;\nlayout(location = 2) out vec3 gNormal;\n\nin vec2 TexCoords;\nin vec3 fragPos;\nin vec3 normal;\n\nuniform sampler2D diffuse;\n\nvoid main() {\n    // store the fragment position vector in the first gbuffer texture\n    gPosition = fragPos;\n    // also store the per-fragment normals into the gbuffer\n    gNormal = normalize(normal);\n    // and the diffuse per-fragment color\n    vec3 textureDiffuse = texture(diffuse, TexCoords).rgb;\n    //Detect if the fragment has texture binded\n    if(length(textureDiffuse) == 0.0) \n    {\n        gAlbedoSpec.rgb = vec3(0.5, 0.5, 0.5);\n    }\n    else\n    {\n        gAlbedoSpec.rgb = textureDiffuse;\n    }\n    // store specular intensity in gAlbedoSpec's alpha component\n    gAlbedoSpec.a = 0.5;\n}",
+  "uniforms": [
+    {
+      "Name": "diffuse",
+      "Type": 10
+    }
+  ],
+  "vertex": "#version 450 core\n\nlayout(location = 0) in vec3 a_Pos;\nlayout(location = 1) in vec2 a_UV;\nlayout(location = 2) in vec3 a_Normal;\nlayout(location = 3) in mat4 a_InstanceModel;\n\nout vec3 normal;\nout vec3 fragPos;\nout vec2 TexCoords;\n\nlayout(std140, binding = 0) uniform Camera {\n\tmat4 u_ViewProjection;\n};\n\nvoid main() {\n\tgl_Position = u_ViewProjection * a_InstanceModel * vec4(a_Pos, 1.0);\n\tfragPos = vec3(a_InstanceModel * vec4(a_Pos, 1.0));\n\t//TODO: Compute at the CPU!\n\tnormal = mat3(transpose(inverse(a_InstanceModel))) * a_Normal;\n\tTexCoords = a_UV;\n}"
+}
