@@ -44,7 +44,7 @@ public:
 	void AddVertexBuffer(const VertexBuffer& vertexBuffer);
 	void SetIndexBuffer(const IndexBuffer& indexBuffer);
 
-	const VertexBuffer& GetVertexBuffer() const { return m_VertexBuffer; }
+	const std::vector<VertexBuffer>& GetVertexBuffer() const { return m_VertexBuffers; }
 	const IndexBuffer& GetIndexBuffer() const { return m_IndexBuffer; }
 
 	bool operator==(const StackVertexArray& other) const {
@@ -53,6 +53,6 @@ public:
 private:
 	uint32_t m_RendererID = 0;
 	uint32_t m_VertexBufferIndex = 0;
-	VertexBuffer m_VertexBuffer;
+	std::vector<VertexBuffer> m_VertexBuffers;
 	IndexBuffer m_IndexBuffer;
 };

@@ -22,19 +22,26 @@ void Renderer3D::Update()
 			mat = Resources::GetResourceById<Material>(call.GetMatID());
 
 		Shader* matShader = mat->getShader();
+
 		matShader->Bind();
-
 		mat->Bind();
-
 		call.GetVAO().Bind();
+		call.GetInstanceBuffer().Bind();
+
 		GLCALL(glDrawElementsInstanced(
-			GL_TRIANGLES, call.GetVAO().GetIndexBuffer().GetCount(), GL_UNSIGNED_INT, 0, call.GetModels().size()))
-			
+			GL_TRIANGLES, call.GetVAO().GetIndexBuffer().GetCount(), GL_UNSIGNED_INT, 0, call.GetModels().size()));
+
 		call.GetVAO().Unbind();
 		mat->UnBind();
+		matShader->UnBind();
 	}
 
 	renderer3D.instanceCalls.clear();
+}
+
+void Renderer3D::Init()
+{
+
 }
 
 void Renderer3D::Shutdown()
@@ -84,8 +91,7 @@ void Renderer3D::UpdateInstanceBuffer(const std::vector<InstanceCall>& calls)
 {
 	for (const InstanceCall& call : calls)
 	{
-		const VertexBuffer& VBO = call.GetVAO().GetVertexBuffer();
-		VBO.Bind();
-		VBO.SetData(call.GetModels().data(), call.GetModels().size() * sizeof(glm::mat4), 32);
+		call.GetInstanceBuffer().Bind();
+		call.GetInstanceBuffer().AllocateData(call.GetModels().data(), call.GetModels().size() * sizeof(glm::mat4));
 	}
 }

@@ -50,6 +50,12 @@ void VertexBuffer::SetData(const void* data, uint32_t size, uint32_t offset) con
 	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, offset, size, data));
 }
 
+void VertexBuffer::AllocateData(const void* data, uint32_t size) const
+{
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
+	GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // IndexBuffer //////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////

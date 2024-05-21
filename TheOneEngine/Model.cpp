@@ -167,15 +167,6 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             vertex_data.push_back(mesh->mNormals[i].x);
             vertex_data.push_back(mesh->mNormals[i].y);
             vertex_data.push_back(mesh->mNormals[i].z);
-            //InstanceModel
-            glm::mat4 m(1);
-            for (int i = 0; i < 4; i++)
-            {
-                vertex_data.push_back(m[i].x);
-                vertex_data.push_back(m[i].y);
-                vertex_data.push_back(m[i].z);
-                vertex_data.push_back(m[i].w);
-            }
         }
 
         ModelData data;
@@ -234,8 +225,7 @@ void Model::GenBufferData(ModelData& data)
     meshVBO.SetLayout({
         { ShaderDataType::Float3, "a_Pos"          },
         { ShaderDataType::Float2, "a_UV"           },
-        { ShaderDataType::Float3, "a_Normal"       },
-        { ShaderDataType::Mat4,   "a_Model"        }
+        { ShaderDataType::Float3, "a_Normal"       }
         });
     meshVAO.AddVertexBuffer(meshVBO);
 

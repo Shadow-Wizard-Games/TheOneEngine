@@ -158,14 +158,14 @@ void StackVertexArray::Delete()
 		GLCALL(glDeleteVertexArrays(1, &m_RendererID));
 		m_RendererID = 0;
 
-		m_VertexBuffer.Delete();
+		for (auto& vbo : m_VertexBuffers)
+			vbo.Delete();
 		m_IndexBuffer.Delete();
 	}
 }
 
 void StackVertexArray::AddVertexBuffer(const VertexBuffer& vertexBuffer)
 {
-
 	GLCALL(glBindVertexArray(m_RendererID));
 	vertexBuffer.Bind();
 
@@ -225,7 +225,7 @@ void StackVertexArray::AddVertexBuffer(const VertexBuffer& vertexBuffer)
 		}
 	}
 
-	m_VertexBuffer = vertexBuffer;
+	m_VertexBuffers.push_back(vertexBuffer);
 }
 
 void StackVertexArray::SetIndexBuffer(const IndexBuffer& indexBuffer)

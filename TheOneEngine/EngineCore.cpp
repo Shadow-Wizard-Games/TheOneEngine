@@ -36,6 +36,7 @@ void EngineCore::Awake()
 void EngineCore::Start()
 {
     Renderer2D::Init();
+    Renderer3D::Init();
 
     InitPreLightingShader();
     InitPostLightingShader(); 

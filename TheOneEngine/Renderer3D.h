@@ -2,6 +2,8 @@
 #include "Defs.h"
 #include "VertexArray.h"
 
+#define MAX_INSTANCES 1000
+
 struct DefaultMesh
 {
 	DefaultMesh(StackVertexArray vao, int mat) : rendererID(vao), matID(mat){}
@@ -17,7 +19,15 @@ struct DefaultMesh
 class InstanceCall
 {
 public:
-	InstanceCall(StackVertexArray vao, int mat, const glm::mat4& modelMat) : mesh(vao, mat) { AddInstance(modelMat); }
+	InstanceCall(StackVertexArray vao, int mat, const glm::mat4& modelMat) :
+		mesh(vao, mat), 
+		instanceBuffer(MAX_INSTANCES)
+	{ 
+		AddInstance(modelMat);
+		instanceBuffer.SetLayout({{ ShaderDataType::Mat4,"a_Model" }});
+		mesh.rendererID.AddVertexBuffer(instanceBuffer);
+	}
+
 	~InstanceCall() { models.clear(); }
 
 	void AddInstance(const glm::mat4& modelMat) {
@@ -29,18 +39,22 @@ public:
 	}
 
 	const StackVertexArray& GetVAO() const { return mesh.rendererID; }
+	const VertexBuffer& GetInstanceBuffer() const { return instanceBuffer; }
 	const int& GetMatID() const { return mesh.matID; }
 	const std::vector<glm::mat4>& GetModels() const { return models; }
 
 private:
 	DefaultMesh mesh;
 	std::vector<glm::mat4> models;
+	VertexBuffer instanceBuffer;
 };
 
 class Renderer3D
 {
 public:
 	static void Update();
+
+	static void Init();
 
 	static void Shutdown();
 
