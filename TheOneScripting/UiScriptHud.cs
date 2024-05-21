@@ -48,22 +48,27 @@ public class UiScriptHud : MonoBehaviour
     int maxAmmo = 20;
 
     bool grenadeOnCooldown = false;
+    bool grenadeHoveredOnCooldown = false;
     float grenadeCooldown = 5.0f;
     float grenadeTimer = 0.0f;
 
     bool painlessOnCooldown = false;
+    bool painlessHoveredOnCooldown = false;
     float painlessCooldown = 5.0f;
     float painlessTimer = 0.0f;
 
     bool flameThrowerOnCooldown = false;
+    bool flameThrowerHoveredOnCooldown = false;
     float flameThrowerCooldown = 5.0f;
     float flameThrowerTimer = 0.0f;
 
     bool adrenalineOnCooldown = false;
+    bool adrenalineHoveredOnCooldown = false;
     float adrenalineCooldown = 5.0f;
     float adrenalineTimer = 0.0f;
 
     bool consumibleOnCooldown = false;
+    bool consumibleHoveredOnCooldown = false;
     float consumibleCooldown = 5.0f;
     float consumibleTimer = 0.0f;
 
@@ -121,9 +126,10 @@ public class UiScriptHud : MonoBehaviour
             onCooldown = false;
         }
 
+        UpdateTimers(dt);
+
         if (!onCooldown && (playerScript != null && canvas != null))
         {
-            UpdateTimers();
 
             currLife = playerScript.CurrentLife();
             int sliderMax = canvas.GetSliderMaxValue("Slider_HP");
@@ -144,7 +150,7 @@ public class UiScriptHud : MonoBehaviour
 
             if (!grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.R)))//remember to add also keyboard button
             {
-                UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.HOVERED);
+                UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.SELECTED);
 
                 //debug text of ammo
                 currAmmo -= 1;
@@ -155,25 +161,25 @@ public class UiScriptHud : MonoBehaviour
 
             if (!painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.F)))//remember to add also keyboard button
             {
-                UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.HOVERED);
+                UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
             if (!flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.T)))//remember to add also keyboard button
             {
-                UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.HOVERED);
+                UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
             if (!adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.G)))//remember to add also keyboard button
             {
-                UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.HOVERED);
+                UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
-            if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))//remember to add also keyboard button
+            if (!consumibleOnCooldown && Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))//remember to add also keyboard button
             {
-                UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.HOVERED);
+                UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
         }
@@ -185,11 +191,11 @@ public class UiScriptHud : MonoBehaviour
         switch (ability)
         {
             case PlayerAbility.GRENADE:
-                if (!grenadeOnCooldown && state == ICanvas.UiState.HOVERED)
+                if (state == ICanvas.UiState.HOVERED)
                 {
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponIcon2");
                     canvas.SetUiItemState(ICanvas.UiState.SELECTED, "Button_WeaponSlot2");
-                    grenadeOnCooldown = true;
+                    grenadeHoveredOnCooldown = false;
                 }
                 else if (state == ICanvas.UiState.IDLE)
                 {
@@ -197,13 +203,20 @@ public class UiScriptHud : MonoBehaviour
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponSlot2");
                     grenadeOnCooldown = false;
                 }
+                else if (state == ICanvas.UiState.SELECTED)
+                {
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponIcon2");
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponSlot2");
+                    grenadeHoveredOnCooldown = true;
+                    grenadeOnCooldown = true;
+                }
                 break;
             case PlayerAbility.PAINLESS:
-                if (!painlessOnCooldown && state == ICanvas.UiState.HOVERED)
+                if (state == ICanvas.UiState.HOVERED)
                 {
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponIcon4");
                     canvas.SetUiItemState(ICanvas.UiState.SELECTED, "Button_WeaponSlot4");
-                    painlessOnCooldown = true;
+                    painlessHoveredOnCooldown = false;
                 }
                 else if (state == ICanvas.UiState.IDLE)
                 {
@@ -211,13 +224,20 @@ public class UiScriptHud : MonoBehaviour
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponSlot4");
                     painlessOnCooldown = false;
                 }
+                else if (state == ICanvas.UiState.SELECTED)
+                {
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponIcon4");
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponSlot4");
+                    painlessHoveredOnCooldown = true;
+                    painlessOnCooldown = true;
+                }
                 break;
             case PlayerAbility.FLAMETHROWER:
-                if (!flameThrowerOnCooldown && state == ICanvas.UiState.HOVERED)
+                if (state == ICanvas.UiState.HOVERED)
                 {
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponIcon3");
                     canvas.SetUiItemState(ICanvas.UiState.SELECTED, "Button_WeaponSlot3");
-                    flameThrowerOnCooldown = true;
+                    flameThrowerHoveredOnCooldown = false;
                 }
                 else if (state == ICanvas.UiState.IDLE)
                 {
@@ -225,13 +245,20 @@ public class UiScriptHud : MonoBehaviour
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponSlot3");
                     flameThrowerOnCooldown = false;
                 }
+                else if (state == ICanvas.UiState.SELECTED)
+                {
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponIcon3");
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponSlot3");
+                    flameThrowerHoveredOnCooldown = true;
+                    flameThrowerOnCooldown = true;
+                }
                 break;
             case PlayerAbility.ADRENALINE:
-                if (!adrenalineOnCooldown && state == ICanvas.UiState.HOVERED)
+                if (state == ICanvas.UiState.HOVERED)
                 {
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponIcon1");
                     canvas.SetUiItemState(ICanvas.UiState.SELECTED, "Button_WeaponSlot1");
-                    adrenalineOnCooldown = true;
+                    adrenalineHoveredOnCooldown = false;
                 }
                 else if (state == ICanvas.UiState.IDLE)
                 {
@@ -239,19 +266,33 @@ public class UiScriptHud : MonoBehaviour
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_WeaponSlot1");
                     adrenalineOnCooldown = false;
                 }
+                else if (state == ICanvas.UiState.SELECTED)
+                {
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponIcon1");
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_WeaponSlot1");
+                    adrenalineHoveredOnCooldown = true;
+                    adrenalineOnCooldown = true;
+                }
                 break;
             case PlayerAbility.CONSUMIBLE:
-                if (!consumibleOnCooldown && state == ICanvas.UiState.HOVERED)
+                if (state == ICanvas.UiState.HOVERED)
                 {
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_ConsumibleIcon");
                     canvas.SetUiItemState(ICanvas.UiState.IDLE, "Button_ConsumibleLayout");
-                    consumibleOnCooldown = true;
+                    consumibleHoveredOnCooldown = false;
                 }
                 else if (state == ICanvas.UiState.IDLE)
                 {
                     canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_ConsumibleIcon");
                     canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_ConsumibleLayout");
                     consumibleOnCooldown = false;
+                }
+                else if (state == ICanvas.UiState.SELECTED)
+                {
+                    canvas.SetUiItemState(ICanvas.UiState.HOVERED, "Button_ConsumibleIcon");
+                    canvas.SetUiItemState(ICanvas.UiState.SELECTED, "Button_ConsumibleLayout");
+                    consumibleHoveredOnCooldown = true;
+                    consumibleOnCooldown = true;
                 }
                 break;
             default:
@@ -287,10 +328,14 @@ public class UiScriptHud : MonoBehaviour
         }
 
     }
-    void UpdateTimers()
+    void UpdateTimers(float dt)
     {
-        float dt = Time.realDeltaTime;
         //grenade
+        if (grenadeHoveredOnCooldown && grenadeTimer >= 0.5f)
+        {
+            UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.HOVERED);
+        }
+
         if (grenadeOnCooldown && grenadeTimer < grenadeCooldown)
         {
             grenadeTimer += dt;
@@ -301,6 +346,11 @@ public class UiScriptHud : MonoBehaviour
             UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.IDLE);
         }
         //painless
+        if (painlessHoveredOnCooldown && painlessTimer >= 0.5f)
+        {
+            UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.HOVERED);
+        }
+
         if (painlessOnCooldown && painlessTimer < painlessCooldown)
         {
             painlessTimer += dt;
@@ -311,6 +361,11 @@ public class UiScriptHud : MonoBehaviour
             UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.IDLE);
         }
         //flamethrower
+        if (flameThrowerHoveredOnCooldown && flameThrowerTimer >= 0.5f)
+        {
+            UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.HOVERED);
+        }
+
         if (flameThrowerOnCooldown && flameThrowerTimer < flameThrowerCooldown)
         {
             flameThrowerTimer += dt;
@@ -321,6 +376,11 @@ public class UiScriptHud : MonoBehaviour
             UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.IDLE);
         }
         //adrenaline
+        if (adrenalineHoveredOnCooldown && adrenalineTimer >= 0.5f)
+        {
+            UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.HOVERED);
+        }
+
         if (adrenalineOnCooldown && adrenalineTimer < adrenalineCooldown)
         {
             adrenalineTimer += dt;
@@ -331,6 +391,11 @@ public class UiScriptHud : MonoBehaviour
             UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.IDLE);
         }
         //consumible
+        if (consumibleHoveredOnCooldown && consumibleTimer >= 0.5f)
+        {
+            UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.HOVERED);
+        }
+
         if (consumibleOnCooldown && consumibleTimer < consumibleCooldown)
         {
             consumibleTimer += dt;
