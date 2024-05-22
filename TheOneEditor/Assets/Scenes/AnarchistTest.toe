@@ -10,32 +10,32 @@
             0.0,
             0.0,
             0.0,
-            0.6427876063037709,
-            0.7660444459574578,
+            1.0,
             0.0,
             0.0,
-            -0.7660444459574578,
-            0.6427876063037709,
             0.0,
             0.0,
-            200.0,
-            -70.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
             1.0
           ],
           "Type": 0,
-          "UID": 2112940422
+          "UID": 1764192858
         },
         {
-          "Aspect": 1.7771084308624268,
+          "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
           "ParentUID": 3452816845,
           "Pitch": 0.0,
-          "PrimaryCamera": true,
+          "PrimaryCamera": false,
           "Size": 200.0,
           "Type": 1,
-          "UID": 128580374,
+          "UID": 2724437109,
           "Yaw": 0.0,
           "zFar": 3000.0,
           "zNear": 0.1
@@ -46,6 +46,86 @@
       "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            90.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4133741564
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 66151348
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 3318160678
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3318942504,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 3633985190,
+      "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
     },
@@ -68,7 +148,7 @@
             0.0,
             0.0,
             0.0,
-            200.0,
+            300.0,
             1.0
           ],
           "Type": 0,
@@ -97,7 +177,7 @@
           "UID": 225613267
         },
         {
-          "AudioID": 0,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -504,7 +584,7 @@
               "UID": 3667515160
             },
             {
-              "AudioID": 1,
+              "AudioID": 2,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -550,7 +630,7 @@
               "UID": 1177981766
             },
             {
-              "AudioID": 2,
+              "AudioID": 3,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -596,7 +676,7 @@
               "UID": 2174904043
             },
             {
-              "AudioID": 3,
+              "AudioID": 4,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -642,7 +722,7 @@
               "UID": 2232833499
             },
             {
-              "AudioID": 4,
+              "AudioID": 5,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -688,7 +768,7 @@
               "UID": 2199890485
             },
             {
-              "AudioID": 5,
+              "AudioID": 6,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -734,7 +814,7 @@
               "UID": 3061441302
             },
             {
-              "AudioID": 6,
+              "AudioID": 7,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -780,7 +860,7 @@
               "UID": 1809667645
             },
             {
-              "AudioID": 7,
+              "AudioID": 8,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -803,322 +883,6 @@
       "PrefabName": "SK_MainCharacter",
       "Static": false,
       "UID": 113510800
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            100.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 272006132
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Xenomorph_TPose/M_Xenomorph.toematerial",
-          "MeshPath": "Library/Meshes/AS_Xenomorph_TPose/Xenomorph.animator",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2057598763
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AdultXenomorphBehaviour",
-          "Type": 4,
-          "UID": 2666514190
-        },
-        {
-          "AudioID": 8,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 10.0,
-          "Type": 5,
-          "UID": 2189140278,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "EditablePrefab": true,
-      "Enabled": true,
-      "GameObjects": [
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.4798360824584961,
-                0.11435007095336915,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 1712445284
-            },
-            {
-              "Emmiters": [
-                {
-                  "Delay": 1.2000000476837158,
-                  "Duration": 2.0,
-                  "InitializeModules": [
-                    {
-                      "MaxDirection": [
-                        0.0,
-                        2.0,
-                        0.5
-                      ],
-                      "MinDirection": [
-                        0.0,
-                        0.0,
-                        1.0
-                      ],
-                      "Type": 4,
-                      "UsingSingleValueDirection": true
-                    },
-                    {
-                      "MaxSpeed": 120.0,
-                      "MinSpeed": 100.0,
-                      "Type": 0,
-                      "UsingSingleValueSpeed": false
-                    },
-                    {
-                      "MaxColor": [
-                        0.0,
-                        100.0,
-                        0.0,
-                        0.0
-                      ],
-                      "MinColor": [
-                        0.0,
-                        200.0,
-                        0.0,
-                        255.0
-                      ],
-                      "Type": 1,
-                      "UsingSingleValueColor": false
-                    },
-                    {
-                      "IsProportional": true,
-                      "MaxScale": [
-                        2.0,
-                        2.0,
-                        2.0
-                      ],
-                      "MinScale": [
-                        1.0,
-                        1.0,
-                        1.0
-                      ],
-                      "Type": 2,
-                      "UsingSingleValueScale": false
-                    }
-                  ],
-                  "IsLooping": false,
-                  "Lifetime": 0.0,
-                  "MaxParticles": 100,
-                  "RenderModule": [
-                    {
-                      "BillboardType": 1,
-                      "TexturePath": "",
-                      "Type": 0
-                    }
-                  ],
-                  "SpawnModule": [
-                    {
-                      "Amount": 50.0,
-                      "Duration": 0.20000000298023224,
-                      "Type": 1
-                    }
-                  ],
-                  "UpdateModules": [
-                    {
-                      "FinalScale": [
-                        0.0,
-                        0.0,
-                        0.0
-                      ],
-                      "Type": 2
-                    }
-                  ]
-                }
-              ],
-              "Name": "AcidSpitPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
-              "StartON": false,
-              "Type": 9,
-              "UID": 1718159920
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "AcidSpitPS",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 3383502000
-            },
-            {
-              "Emmiters": [
-                {
-                  "Delay": 1.0,
-                  "Duration": 0.800000011920929,
-                  "InitializeModules": [
-                    {
-                      "MaxDirection": [
-                        1.0,
-                        1.0,
-                        1.0
-                      ],
-                      "MinDirection": [
-                        -1.0,
-                        0.0,
-                        -1.0
-                      ],
-                      "Type": 4,
-                      "UsingSingleValueDirection": false
-                    },
-                    {
-                      "MaxSpeed": 40.0,
-                      "MinSpeed": 20.0,
-                      "Type": 0,
-                      "UsingSingleValueSpeed": false
-                    }
-                  ],
-                  "IsLooping": false,
-                  "Lifetime": 0.0,
-                  "MaxParticles": 100,
-                  "RenderModule": [
-                    {
-                      "BillboardType": 1,
-                      "TexturePath": "",
-                      "Type": 0
-                    }
-                  ],
-                  "SpawnModule": [
-                    {
-                      "Duration": 1.0,
-                      "SpawnRate": 100.0,
-                      "Type": 0
-                    }
-                  ],
-                  "UpdateModules": [
-                    {
-                      "AffectA": true,
-                      "AffectB": false,
-                      "AffectG": false,
-                      "AffectR": false,
-                      "FinalColor": [
-                        255.0,
-                        255.0,
-                        255.0,
-                        0.0
-                      ],
-                      "Type": 1
-                    },
-                    {
-                      "FinalScale": [
-                        0.0,
-                        0.0,
-                        0.0
-                      ],
-                      "Type": 2
-                    }
-                  ]
-                }
-              ],
-              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
-              "StartON": false,
-              "Type": 9,
-              "UID": 2644513895
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "TailAttackPS",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        }
-      ],
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "AdultXenomorph (1)",
-      "ParentUID": 3452816845,
-      "PrefabDirty": false,
-      "PrefabID": 1030944986,
-      "PrefabName": "AdultXenomorph",
-      "Static": false,
-      "UID": 3452816845
     },
     {
       "Components": [
@@ -8152,52 +7916,6 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 4072698855
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "ItemManager",
-              "Type": 4,
-              "UID": 1110714302
-            },
-            {
-              "AudioID": 21,
-              "Name": "AudioSource",
-              "Type": 8
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "Manager",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
@@ -8212,6 +7930,6 @@
     }
   ],
   "index": 0,
-  "path": "Assets\\Scenes\\AdultXenomorphTest.toe",
-  "sceneName": "AdultXenomorphTest"
+  "path": "Assets\\Scenes\\AnarchistTest.toe",
+  "sceneName": "AnarchistTest"
 }
