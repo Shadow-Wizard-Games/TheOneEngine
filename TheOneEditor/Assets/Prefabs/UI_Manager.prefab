@@ -3146,14 +3146,14 @@
               "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
                 0.0,
-                0.26006191968917847,
-                0.4236760139465332,
+                0.14757481217384338,
+                0.23364485800266266,
                 0.11042311787605286
               ],
               "ImageSectionIdle": [
                 0.0,
-                0.14757481217384338,
-                0.4236752390861511,
+                0.26006191968917847,
+                0.23364485800266266,
                 0.11042311787605286
               ],
               "ImageSectionSelected": [
@@ -3163,19 +3163,53 @@
                 0.0
               ],
               "Interactuable": false,
-              "Name": "Button_ToDo_Done",
+              "Name": "Button_ToDo",
               "Print": true,
               "Rect": [
-                -0.35499998927116394,
+                -0.4699999988079071,
                 -0.5799999833106995,
-                0.27000001072883606,
+                0.1550000011920929,
+                0.07999999821186066
+              ],
+              "State": 1,
+              "Type": 1
+            },
+            {
+              "CountAsRealButton": true,
+              "ID": 1537710954,
+              "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+              "ImageSectionHovered": [
+                0.25934579968452454,
+                0.26006191968917847,
+                0.23364485800266266,
+                0.11042311787605286
+              ],
+              "ImageSectionIdle": [
+                0.25934579968452454,
+                0.14757481217384338,
+                0.23364485800266266,
+                0.11042311787605286
+              ],
+              "ImageSectionSelected": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Interactuable": false,
+              "Name": "Button_Done",
+              "Print": true,
+              "Rect": [
+                -0.23000000417232513,
+                -0.5799999833106995,
+                0.1550000011920929,
                 0.07999999821186066
               ],
               "State": 0,
               "Type": 1
             },
             {
-              "CountAsRealButton": true,
+              "CountAsRealButton": false,
               "ID": 171599070,
               "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -3272,7 +3306,7 @@
               "Type": 0
             },
             {
-              "CountAsRealButton": true,
+              "CountAsRealButton": false,
               "ID": 932965676,
               "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -3404,6 +3438,13 @@
           "AudioID": 14,
           "Name": "AudioSource",
           "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "UiScriptMissions",
+          "Type": 4,
+          "UID": 1552041312
         }
       ],
       "Enabled": false,

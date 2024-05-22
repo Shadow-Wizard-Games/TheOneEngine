@@ -41,14 +41,14 @@ public class ICanvas : IComponent
         InternalCalls.PrintItemUI(containerGOptr, value, name);
     }
 
-    public void MoveSelectionButton(int direction)
+    public void MoveSelectionButton(int direction, bool children = false)
     {
-        InternalCalls.MoveSelectedButton(containerGOptr, direction);
+        InternalCalls.MoveSelectedButton(containerGOptr, direction, children);
     }
 
-    public void MoveSelection(int direction)
+    public void MoveSelection(int direction, bool children = false)
     {
-        InternalCalls.MoveSelection(containerGOptr, direction);
+        InternalCalls.MoveSelection(containerGOptr, direction, children);
     }
 
     public void ChangeSectImg(string name, int x, int y, int w, int h)

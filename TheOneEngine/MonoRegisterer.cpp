@@ -527,11 +527,28 @@ static void SetUiItemState(GameObject* containerGO, int state, MonoString* name)
 	}
 }
 
-static void MoveSelectedButton(GameObject* containerGO, int direction)
+static void MoveSelectedButton(GameObject* containerGO, int direction, bool children = false)
 {
 	if (direction != 0)
 	{
 		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+		if (children)
+		{
+			for (auto& child : containerGO->children)
+			{
+				if (child->GetComponent<Canvas>())
+				{
+					for (auto& itemUI : child->GetComponent<Canvas>()->GetUiElements())
+					{
+						if (itemUI->GetType() == UiType::BUTTONIMAGE)
+						{
+							ButtonImageUI* tempButton = (ButtonImageUI*)itemUI;
+							if (tempButton->IsRealButton()) uiElements.push_back(itemUI);
+						}
+					}
+				}
+			}
+		}
 
 		for (size_t i = 0; i < uiElements.size(); i++)
 		{
@@ -548,8 +565,8 @@ static void MoveSelectedButton(GameObject* containerGO, int direction)
 						j = uiElements.size() - 1;
 					else if (j >= uiElements.size())
 						j = 0;
-
-					if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
+					ButtonImageUI* tempButton2 = (ButtonImageUI*)uiElements[j];
+					if (uiElements[j]->GetType() == UiType::BUTTONIMAGE && tempButton2->IsRealButton())
 					{
 						if (direction != 0)
 							direction += (val * -1);
@@ -568,11 +585,24 @@ static void MoveSelectedButton(GameObject* containerGO, int direction)
 	}
 }
 
-static void MoveSelection(GameObject* containerGO, int direction)
+static void MoveSelection(GameObject* containerGO, int direction, bool children = false)
 {
 	if (direction != 0)
 	{
 		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+		if (children)
+		{
+			for (auto& child : containerGO->children)
+			{
+				if (child->GetComponent<Canvas>())
+				{
+					for (auto& itemUI : child->GetComponent<Canvas>()->GetUiElements())
+					{
+						if (itemUI->GetType() != UiType::IMAGE && itemUI->GetType() != UiType::TEXT) uiElements.push_back(itemUI);
+					}
+				}
+			}
+		}
 
 		for (size_t i = 0; i < uiElements.size(); i++)
 		{
