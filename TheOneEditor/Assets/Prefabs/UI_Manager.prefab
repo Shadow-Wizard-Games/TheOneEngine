@@ -3306,150 +3306,6 @@
               "Type": 1
             },
             {
-              "CountAsRealButton": true,
-              "ID": 3339058309,
-              "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
-              "ImageSectionHovered": [
-                0.007788162212818861,
-                0.017543859779834747,
-                0.07788161933422089,
-                0.04540763795375824
-              ],
-              "ImageSectionIdle": [
-                0.1059190034866333,
-                0.017543859779834747,
-                0.07788161933422089,
-                0.04540763795375824
-              ],
-              "ImageSectionSelected": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "Interactuable": false,
-              "Name": "Button_MissionTypeLeftPanel",
-              "Print": true,
-              "Rect": [
-                -0.550000011920929,
-                -0.3400000035762787,
-                0.05999999865889549,
-                0.04500000178813934
-              ],
-              "State": 0,
-              "Type": 1
-            },
-            {
-              "CheckerActive": true,
-              "ID": 3017230494,
-              "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
-              "ImageSectionHovered": [
-                0.4322429895401001,
-                0.8720329999923706,
-                0.08644859492778778,
-                0.11558307707309723
-              ],
-              "ImageSectionHoveredOff": [
-                0.4322429895401001,
-                0.5820433497428894,
-                0.08644859492778778,
-                0.11558307707309723
-              ],
-              "ImageSectionIdle": [
-                0.4322429895401001,
-                0.7254902124404907,
-                0.08644859492778778,
-                0.11558307707309723
-              ],
-              "ImageSectionIdleOff": [
-                0.4322429895401001,
-                0.43550050258636475,
-                0.08644859492778778,
-                0.11558307707309723
-              ],
-              "ImageSectionSelected": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "ImageSectionSelectedOff": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "Interactuable": false,
-              "Name": "Checker_MissionActive",
-              "Print": true,
-              "Rect": [
-                -0.14499999582767487,
-                -0.3400000035762787,
-                0.03999999910593033,
-                0.07500000298023224
-              ],
-              "State": 0,
-              "Type": 3
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                0.9399999976158142,
-                1.0
-              ],
-              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
-              "ID": 1702456573,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_MissionTitleRightPanel",
-              "Print": true,
-              "Rect": [
-                -0.48500001430511475,
-                -0.32499998807907104,
-                0.02500000037252903,
-                0.054999999701976776
-              ],
-              "State": 0,
-              "TextString": "escape the ship",
-              "Type": 4
-            },
-            {
-              "CountAsRealButton": true,
-              "ID": 3468629696,
-              "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
-              "ImageSectionHovered": [
-                0.0,
-                0.8586171269416809,
-                0.4236760139465332,
-                0.1413828730583191
-              ],
-              "ImageSectionIdle": [
-                0.0,
-                0.7089783549308777,
-                0.4236760139465332,
-                0.1413828730583191
-              ],
-              "ImageSectionSelected": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "Interactuable": false,
-              "Name": "Button_MissionLayer",
-              "Print": true,
-              "Rect": [
-                -0.35499998927116394,
-                -0.3400000035762787,
-                0.27000001072883606,
-                0.12999999523162842
-              ],
-              "State": 0,
-              "Type": 1
-            },
-            {
               "Color": [
                 1.0,
                 0.75,
@@ -3551,6 +3407,804 @@
         }
       ],
       "Enabled": false,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1200610143
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 910068447,
+              "UiElements": [
+                {
+                  "CountAsRealButton": false,
+                  "ID": 3339058309,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.007788162212818861,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionIdle": [
+                    0.1059190034866333,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionTypeLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.550000011920929,
+                    -0.3400000035762787,
+                    0.05999999865889549,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "CheckerActive": true,
+                  "ID": 3017230494,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4322429895401001,
+                    0.8720329999923706,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.4322429895401001,
+                    0.5820433497428894,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdle": [
+                    0.4322429895401001,
+                    0.7254902124404907,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.4322429895401001,
+                    0.43550050258636475,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_MissionActive",
+                  "Print": true,
+                  "Rect": [
+                    -0.14499999582767487,
+                    -0.3400000035762787,
+                    0.03999999910593033,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    0.9399999976158142,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 1702456573,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionTitleLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.48500001430511475,
+                    -0.32499998807907104,
+                    0.02500000037252903,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "escape the ship",
+                  "Type": 4
+                },
+                {
+                  "CountAsRealButton": true,
+                  "ID": 3468629696,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.8586171269416809,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.7089783549308777,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionLayer",
+                  "Print": true,
+                  "Rect": [
+                    -0.35499998927116394,
+                    -0.3400000035762787,
+                    0.27000001072883606,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "AudioID": 15,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": false,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_MissionsSlot1",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4081141601
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 384323741,
+              "UiElements": [
+                {
+                  "CountAsRealButton": false,
+                  "ID": 3339058309,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.007788162212818861,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionIdle": [
+                    0.1059190034866333,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionTypeLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.550000011920929,
+                    -0.05000000074505806,
+                    0.05999999865889549,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "CheckerActive": true,
+                  "ID": 3017230494,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4322429895401001,
+                    0.8720329999923706,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.4322429895401001,
+                    0.5820433497428894,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdle": [
+                    0.4322429895401001,
+                    0.7254902124404907,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.4322429895401001,
+                    0.43550050258636475,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_MissionActive",
+                  "Print": true,
+                  "Rect": [
+                    -0.14499999582767487,
+                    -0.03999999910593033,
+                    0.03999999910593033,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    0.9399999976158142,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 1702456573,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionTitleLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.48500001430511475,
+                    -0.029999999329447746,
+                    0.02500000037252903,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "escape the ship",
+                  "Type": 4
+                },
+                {
+                  "CountAsRealButton": true,
+                  "ID": 3468629696,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.8586171269416809,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.7089783549308777,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionLayer",
+                  "Print": true,
+                  "Rect": [
+                    -0.35499998927116394,
+                    -0.03999999910593033,
+                    0.27000001072883606,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "AudioID": 16,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": false,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_MissionsSlot2",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 924724846
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 3691023744,
+              "UiElements": [
+                {
+                  "CountAsRealButton": false,
+                  "ID": 3339058309,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.007788162212818861,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionIdle": [
+                    0.1059190034866333,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionTypeLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.550000011920929,
+                    0.25999999046325684,
+                    0.05999999865889549,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "CheckerActive": true,
+                  "ID": 3017230494,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4322429895401001,
+                    0.8720329999923706,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.4322429895401001,
+                    0.5820433497428894,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdle": [
+                    0.4322429895401001,
+                    0.7254902124404907,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.4322429895401001,
+                    0.43550050258636475,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_MissionActive",
+                  "Print": true,
+                  "Rect": [
+                    -0.14499999582767487,
+                    0.27000001072883606,
+                    0.03999999910593033,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    0.9399999976158142,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 1702456573,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionTitleLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.48500001430511475,
+                    0.2800000011920929,
+                    0.02500000037252903,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "escape the ship",
+                  "Type": 4
+                },
+                {
+                  "CountAsRealButton": true,
+                  "ID": 3468629696,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.8586171269416809,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.7089783549308777,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionLayer",
+                  "Print": true,
+                  "Rect": [
+                    -0.35499998927116394,
+                    0.2750000059604645,
+                    0.27000001072883606,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "AudioID": 17,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": false,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_MissionsSlot3",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1514964719
+            },
+            {
+              "DebugDraw": true,
+              "Enabled": false,
+              "Name": "Canvas",
+              "ParentUID": 3452816845,
+              "Rect": [
+                0.0,
+                0.0,
+                2.0,
+                2.0
+              ],
+              "Type": 6,
+              "UID": 4275132480,
+              "UiElements": [
+                {
+                  "CountAsRealButton": false,
+                  "ID": 3339058309,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.007788162212818861,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionIdle": [
+                    0.1059190034866333,
+                    0.017543859779834747,
+                    0.07788161933422089,
+                    0.04540763795375824
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionTypeLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.550000011920929,
+                    0.574999988079071,
+                    0.05999999865889549,
+                    0.04500000178813934
+                  ],
+                  "State": 0,
+                  "Type": 1
+                },
+                {
+                  "CheckerActive": true,
+                  "ID": 3017230494,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.4322429895401001,
+                    0.8720329999923706,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionHoveredOff": [
+                    0.4322429895401001,
+                    0.5820433497428894,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdle": [
+                    0.4322429895401001,
+                    0.7254902124404907,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionIdleOff": [
+                    0.4322429895401001,
+                    0.43550050258636475,
+                    0.08644859492778778,
+                    0.11558307707309723
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "ImageSectionSelectedOff": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Checker_MissionActive",
+                  "Print": true,
+                  "Rect": [
+                    -0.14499999582767487,
+                    0.5849999785423279,
+                    0.03999999910593033,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "Type": 3
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    0.9399999976158142,
+                    1.0
+                  ],
+                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                  "ID": 1702456573,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MissionTitleLeftPanel",
+                  "Print": true,
+                  "Rect": [
+                    -0.48500001430511475,
+                    0.5950000286102295,
+                    0.02500000037252903,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "escape the ship",
+                  "Type": 4
+                },
+                {
+                  "CountAsRealButton": true,
+                  "ID": 3468629696,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.0,
+                    0.8586171269416809,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionIdle": [
+                    0.0,
+                    0.7089783549308777,
+                    0.4236760139465332,
+                    0.1413828730583191
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_MissionLayer",
+                  "Print": true,
+                  "Rect": [
+                    -0.35499998927116394,
+                    0.5849999785423279,
+                    0.27000001072883606,
+                    0.12999999523162842
+                  ],
+                  "State": 0,
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "AudioID": 18,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": false,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Canvas_MissionsSlot4",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Canvas_Missions",
@@ -3729,7 +4383,7 @@
           ]
         },
         {
-          "AudioID": 15,
+          "AudioID": 19,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -5955,7 +6609,7 @@
               ]
             },
             {
-              "AudioID": 16,
+              "AudioID": 20,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6742,7 +7396,7 @@
               "UID": 1616070798
             },
             {
-              "AudioID": 17,
+              "AudioID": 21,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6850,7 +7504,7 @@
           ]
         },
         {
-          "AudioID": 18,
+          "AudioID": 22,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -6974,7 +7628,7 @@
           ]
         },
         {
-          "AudioID": 19,
+          "AudioID": 23,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -7020,7 +7674,7 @@
           "UID": 2135104260
         },
         {
-          "AudioID": 20,
+          "AudioID": 24,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -7066,7 +7720,7 @@
           "UID": 2581454987
         },
         {
-          "AudioID": 21,
+          "AudioID": 25,
           "Name": "AudioSource",
           "Type": 8
         }
