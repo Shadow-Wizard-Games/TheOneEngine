@@ -11,12 +11,29 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     float currentLife;
     bool isDead = false;
 
+    IParticleSystem giantStompPS;
+    IParticleSystem headChargePS;
+    IParticleSystem runPS;
+    IParticleSystem tailShotPS;
+
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         currentLife = maxLife;
 
         attachedGameObject.animator.Play("Idle");
+
+        IGameObject giantStompPSGO = attachedGameObject.FindInChildren("GiantStompPS");
+        if (giantStompPSGO != null) giantStompPS = giantStompPSGO.GetComponent<IParticleSystem>();
+
+        IGameObject headChargePSGO = attachedGameObject.FindInChildren("HeadChargePS");
+        if (headChargePSGO != null) headChargePS = headChargePSGO.GetComponent<IParticleSystem>();
+
+        IGameObject runPSGO = attachedGameObject.FindInChildren("RunPS");
+        if (runPSGO != null) runPS = runPSGO.GetComponent<IParticleSystem>();
+
+        IGameObject tailShotPSGO = attachedGameObject.FindInChildren("TailShotPS");
+        if (tailShotPSGO != null) tailShotPS = tailShotPSGO.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
