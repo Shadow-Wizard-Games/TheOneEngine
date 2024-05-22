@@ -268,12 +268,6 @@ public class PlayerScript : MonoBehaviour
         stepParticles.Play();
     }
 
-    //private void Die()
-    //{
-    //    attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
-    //    attachedGameObject.animator.Play("Death");
-    //    // play sound (?)
-    //}
     private bool SetMoveDirection()
     {
         bool toMove = false;
