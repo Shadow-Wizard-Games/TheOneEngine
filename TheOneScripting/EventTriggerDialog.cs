@@ -100,9 +100,8 @@ public class EventTriggerDialog : Event
                 dialogueGo.Disable();
                 if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
                 {
-                    attachedGameObject.source.Play(aEvent);
+                    attachedGameObject.source.Stop(aEvent);
                 }
-                attachedGameObject.source.Stop(aEvent);
                 attachedGameObject.Destroy();
                 return ret;
             }

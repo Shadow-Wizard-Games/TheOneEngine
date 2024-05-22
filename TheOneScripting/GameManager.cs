@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     string saveLevel;
 
     ItemManager itemManager;
+    QuestManager questManager;
 
     public bool colliderRender;
     public bool gridRender;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         DrawGrid();
 
         itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
+        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
     }
 
     public override void Update()
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
     public void ResetSave()
     {
         itemManager.ResetInventory();
+        questManager.ResetQuests();
     }
 
     public void DrawColliders()

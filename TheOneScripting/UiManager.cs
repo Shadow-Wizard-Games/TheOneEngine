@@ -177,44 +177,34 @@ public class UiManager : MonoBehaviour
             changeSaveTextCooldown = 0.0f;
         }
 
-        if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown < 4.5f)
+        if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown > 0.0f)
         {
-            pickUpFeedbackCooldown += dt;
+            pickUpFeedbackCooldown -= dt;
             if (state != MenuState.Hud)
             {
                 pickUpFeedbackOnCooldown = false;
-                pickUpFeedbackCooldown = 0.0f;
                 pickUpFeedbackGo.Disable();
             }
         }
-        else if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown >= 4.5f)
+        else if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown <= 0.0f)
         {
             pickUpFeedbackGo.Disable();
             pickUpFeedbackOnCooldown = false;
         }
-        else
-        {
-            pickUpFeedbackCooldown = 0.0f;
-        }
 
-        if (dialogueOnCooldown && dialogueCooldown < 4.5f)
+        if (dialogueOnCooldown && dialogueCooldown > 0.0f)
         {
-            dialogueCooldown += dt;
+            dialogueCooldown -= dt;
             if (state != MenuState.Hud)
             {
                 dialogueOnCooldown = false;
-                dialogueCooldown = 0.0f;
                 dialogueGo.Disable();
             }
         }
-        else if (dialogueOnCooldown && dialogueCooldown >= 4.5f)
+        else if (dialogueOnCooldown && dialogueCooldown <= 0.0f)
         {
             dialogueGo.Disable();
             dialogueOnCooldown = false;
-        }
-        else
-        {
-            dialogueCooldown = 0.0f;
         }
 
         //previousState = state;
@@ -392,7 +382,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void OpenHudPopUpMenu(HudPopUpMenu type, string text1 = "", string text = "", Dialoguer dialoguer = Dialoguer.None)
+    public void OpenHudPopUpMenu(HudPopUpMenu type, string text1 = "", string text = "", Dialoguer dialoguer = Dialoguer.None, float cooldown = 4.5f)
     {
         switch (type)
         {
@@ -411,6 +401,7 @@ public class UiManager : MonoBehaviour
                 pickupCanvas.SetTextString(text, "Text_PickedItem");
                 pickupCanvas.SetTextString(text1, "Text_TitleNewItem");
                 pickUpFeedbackOnCooldown = true;
+                pickUpFeedbackCooldown = cooldown;
                 break;
             case HudPopUpMenu.Dialogue:
                 if (dialogueOnCooldown)
@@ -443,6 +434,7 @@ public class UiManager : MonoBehaviour
                         break;
                 }
                 dialogueOnCooldown = true;
+                dialogueCooldown = cooldown;
                 break;
             default:
                 break;

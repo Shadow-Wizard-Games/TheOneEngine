@@ -179,7 +179,7 @@ public class PlayerScript : MonoBehaviour
 
         if (itemManager != null)
         {
-            if (itemManager.hasInitial)
+            if (itemManager.hasWeapon)
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 {

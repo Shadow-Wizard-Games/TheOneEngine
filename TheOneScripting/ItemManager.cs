@@ -8,7 +8,8 @@ public class ItemManager : MonoBehaviour
     private Dictionary<uint, Item> itemData = new Dictionary<uint, Item>(); // id, Item
     public Dictionary<uint, uint> inventory = new Dictionary<uint, uint>(); // id, quantity
     public Dictionary<uint, Item> equipped = new Dictionary<uint, Item>(); // slot (1 ~ 6), Item
-    public bool hasInitial = false;
+    public bool hasWeapon = false;
+    public bool hasKey = false;
 
     public override void Start()
     {
@@ -29,11 +30,15 @@ public class ItemManager : MonoBehaviour
 
     public override void Update()
     {
-        if (!hasInitial)
+        if (!hasWeapon)
         {
             if (CheckItemInInventory(1))
             {
-                hasInitial = true;
+                hasWeapon = true;
+            }
+            if (CheckItemInInventory(2))
+            {
+                hasKey = true;
             }
         }
     }
@@ -135,6 +140,7 @@ public class ItemManager : MonoBehaviour
     {
         inventory.Clear();
         equipped.Clear();
-        hasInitial = false;
+        hasWeapon = false;
+        hasKey = false;
     }
 }
