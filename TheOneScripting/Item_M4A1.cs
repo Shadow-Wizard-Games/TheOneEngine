@@ -8,7 +8,7 @@ class Item_M4A1 : Item
 {
     uint damage = 6;
 
-    public Item_M4A1() 
+    public Item_M4A1()
     {
         this.id = 1;
         this.name = "M4A1";
@@ -23,4 +23,3 @@ class Item_M4A1 : Item
 
     }
 }
-

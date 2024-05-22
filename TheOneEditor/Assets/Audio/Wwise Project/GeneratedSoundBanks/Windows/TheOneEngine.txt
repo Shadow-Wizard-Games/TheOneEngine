@@ -1,92 +1,126 @@
 Event	ID	Name			Wwise Object Path	Notes
-	319492235	E_REBEL_SHOOT			\Default Work Unit\Game\Characters\Enemies\Rebel\E_REBEL_SHOOT	
+	323248236	A_GL_SHOOT			\Default Work Unit\Game\Abilities\Grenade Launcher\A_GL_SHOOT	
+	337852012	A_GL_EXPLOSION			\Default Work Unit\Game\Abilities\Grenade Launcher\A_GL_EXPLOSION	
+	417627684	PlayMusic			\Default Work Unit\Game\Ambience\PlayMusic	
 	464895987	UI_A_MENU			\Default Work Unit\UI\Menu\UI_A_MENU	
-	587747760	E_QUEEN_CHANGE			\Default Work Unit\Game\Characters\Enemies\Queen\E_QUEEN_CHANGE	
+	610103877	E_Q_DEATH			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_DEATH	
+	692574897	E_Q_BOMB			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_BOMB	
 	830312572	DEBUG_MUSIC2			\Default Work Unit\Debug\DEBUG_MUSIC2	
 	830312575	DEBUG_MUSIC1			\Default Work Unit\Debug\DEBUG_MUSIC1	
-	895381461	A_CAMP_2			\Default Work Unit\Game\Ambience\Level 2\A_CAMP_2	
 	933371860	W_M4_SHOOT			\Default Work Unit\Game\Weapons\M4\W_M4_SHOOT	
 	947529532	P_DEATH			\Default Work Unit\Game\Characters\Player\P_DEATH	
-	975078008	E_QUEEN_BOMB			\Default Work Unit\Game\Characters\Enemies\Queen\E_QUEEN_BOMB	
+	1015701557	E_A_DEATH			\Default Work Unit\Game\Characters\Enemies\Anarchist\E_A_DEATH	
 	1073763149	P_HIT			\Default Work Unit\Game\Characters\Player\P_HIT	
-	1098830151	VO_GUARD2_VL1_0			\Default Work Unit\Voice Over\0-Narrative Intro\VO_GUARD2_VL1_0	
-	1479922750	E_QUEEN_DEATH			\Default Work Unit\Game\Characters\Enemies\Queen\E_QUEEN_DEATH	
+	1176085861	A_S_DEACTIVATE			\Default Work Unit\Game\Abilities\Shield\A_S_DEACTIVATE	
 	1535709413	DEBUG_GUNSHOT			\Default Work Unit\Debug\DEBUG_GUNSHOT	
-	1547765315	A_AMBIENT_1			\Default Work Unit\Game\Ambience\Level 1\A_AMBIENT_1	
+	1589784596	A_S_ACTIVATE			\Default Work Unit\Game\Abilities\Shield\A_S_ACTIVATE	
+	1606613397	E_Q_TAILSWEEP			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_TAILSWEEP	
 	1644504899	E_X_ADULT_STEP			\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\E_X_ADULT_STEP	
+	1828976739	E_A_STEP			\Default Work Unit\Game\Characters\Enemies\Anarchist\E_A_STEP	
+	1917263390	StopMusic			\Default Work Unit\Game\Ambience\StopMusic	
 	1941667005	P_PICK			\Default Work Unit\Game\Characters\Player\P_PICK	
+	2084671035	E_Q_TAILSHOT			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_TAILSHOT	
 	2100764501	E_CB_DEATH			\Default Work Unit\Game\Characters\Enemies\Chest buster\E_CB_DEATH	
 	2118900976	UI_HOVER			\Default Work Unit\UI\Menu\UI_HOVER	
 	2147632472	W_M4_RELOAD			\Default Work Unit\Game\Weapons\M4\W_M4_RELOAD	
-	2172450704	VO_GUARD2_VL2_0			\Default Work Unit\Voice Over\0-Narrative Intro\VO_GUARD2_VL2_0	
 	2206507859	P_ROLL			\Default Work Unit\Game\Characters\Player\P_ROLL	
 	2247807735	E_X_ADULT_SPIT			\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\E_X_ADULT_SPIT	
 	2249769530	UI_CLICK			\Default Work Unit\UI\Menu\UI_CLICK	
-	2489932272	E_REBEL_STEP			\Default Work Unit\Game\Characters\Enemies\Rebel\E_REBEL_STEP	
+	2254856839	E_Q_SPIT			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_SPIT	
+	2650455497	A_BANDAGE			\Default Work Unit\Game\Abilities\Bandage\A_BANDAGE	
 	2711568226	E_FH_JUMP			\Default Work Unit\Game\Characters\Enemies\Facehugger\E_FH_JUMP	
+	2725321747	E_Q_STEP			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_STEP	
+	2923735218	E_A_SHOOT			\Default Work Unit\Game\Characters\Enemies\Anarchist\E_A_SHOOT	
+	2965692658	A_S_HIT			\Default Work Unit\Game\Abilities\Shield\A_S_HIT	
 	3010972734	W_SL_SHOOT			\Default Work Unit\Game\Weapons\Shoulder laser\W_SL_SHOOT	
+	3169029109	E_Q_CHANGE			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_CHANGE	
 	3271687631	E_X_ADULT_MELEE			\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\E_X_ADULT_MELEE	
 	3286329979	E_EGG_CRACK			\Default Work Unit\Game\Characters\Enemies\Egg\E_EGG_CRACK	
-	3480783404	E_QUEEN_JUMP			\Default Work Unit\Game\Characters\Enemies\Queen\E_QUEEN_JUMP	
-	3486252281	A_COMBAT_1			\Default Work Unit\Game\Ambience\Level 1\A_COMBAT_1	
-	3576793690	E_QUEEN_SPIT			\Default Work Unit\Game\Characters\Enemies\Queen\E_QUEEN_SPIT	
+	3547019691	E_Q_SPITCHARGE			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_SPITCHARGE	
+	3630142368	A_LI			\Default Work Unit\Game\Abilities\La Impaciente\A_LI	
 	3632435752	DEBUG_SPATIAL1			\Default Work Unit\Debug\DEBUG_SPATIAL1	
 	3632435755	DEBUG_SPATIAL2			\Default Work Unit\Debug\DEBUG_SPATIAL2	
-	3778713374	E_QUEEN_STEP			\Default Work Unit\Game\Characters\Enemies\Queen\E_QUEEN_STEP	
+	3730808143	A_FT			\Default Work Unit\Game\Abilities\Flamethrower\A_FT	
 	3783962382	UI_PAUSEGAME			\Default Work Unit\UI\UI_PAUSEGAME	
+	3814696296	A_AR			\Default Work Unit\Game\Abilities\Adrenaline Rush\A_AR	
 	3828971157	E_X_ADULT_DEATH			\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\E_X_ADULT_DEATH	
+	3869385341	E_Q_JUMP			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_JUMP	
 	3875642140	P_STEP			\Default Work Unit\Game\Characters\Player\P_STEP	
 	3919743498	P_DASH			\Default Work Unit\Game\Characters\Player\P_DASH	
 	3938483819	E_FH_CRAWL			\Default Work Unit\Game\Characters\Enemies\Facehugger\E_FH_CRAWL	
-	3949582022	W_M4_AIM			\Default Work Unit\Game\Weapons\M4\W_M4_AIM	
 	3991779178	E_X_ADULT_SPAWN			\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\E_X_ADULT_SPAWN	
-	4009974304	E_REBEL_DEATH			\Default Work Unit\Game\Characters\Enemies\Rebel\E_REBEL_DEATH	
-	4189504465	A_RUINS_2			\Default Work Unit\Game\Ambience\Level 2\A_RUINS_2	
 	4203716004	E_FH_DEATH			\Default Work Unit\Game\Characters\Enemies\Facehugger\E_FH_DEATH	
 
+Switch Group	ID	Name			Wwise Object Path	Notes
+	63790334	SurfaceType			\Default Work Unit\SurfaceType	
+
+Switch	ID	Name	Switch Group			Notes
+	284967655	Ship	SurfaceType			
+	2195636714	Dirt	SurfaceType			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	15699892	GameplayMode			\Default Work Unit\GameplayMode	
+
+State	ID	Name	State Group			Notes
+	284967655	Ship	GameplayMode			
+	417916826	Ruins	GameplayMode			
+	748895195	None	GameplayMode			
+	2764240573	Combat	GameplayMode			
+	3736508534	Camp	GameplayMode			
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	52880726	SFX_Queen_Death_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_QueenDeath_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_Queen_Death_E		421022
-	92885057	SFX_Facehugger_Jump_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Facehugger_Jump_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\SFX_Facehugger_Jump_E		158576
-	102266085	spatial2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Bass160Fight_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\spatial2		1058496
-	140181390	SFX_Xenomorph_Footsetps_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Footsetps_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Footsetps_E		215368
-	155174684	UI_Menu_Click_SFX	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\UI_Menu_Click_SFX_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Menu\UI_Menu_Click_SFX		374632
-	180490151	SFX_Queen_AcidSpit_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_AcidSpit_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_Queen_AcidSpit_E		32864
-	188792581	SFX_Rebel_death_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Rebel_death_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Rebel\SFX_Rebel_death_E		257604
-	221057048	SFX_Player_Dash_CH	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_playerdash_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Dash_CH		195524
-	224668572	AM_Ambient_Level_2_Camp	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_camp_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Ambience\Level 2\AM_Ambient_Level_2_Camp		16690056
-	257220973	SFX_Player_Roll_CH	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_playerroll_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Roll_CH		148252
-	260252503	SFX_CH_m4_aim	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_m4_aim_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_CH_m4_aim		83220
-	261288475	VO_Guard2_voiceline2_0	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\VO_guard2_voiceline2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Voice Over\0-Narrative Intro\VO_Guard2_voiceline2_0		470288
-	303888556	AM_Combat_Level_1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\AM_Combat_Level_1_F6FDDA4C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Ambience\Level 1\AM_Combat_Level_1		1843648
-	358062072	SFX_Facehugger_Crawl_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Facehugger_Crawl_E_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\SFX_Facehugger_Crawl_E		184352
-	364825977	SFX_CH_m4_reload	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_m4_reload_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_CH_m4_reload		232244
-	365237862	SFX_Xenomorph_Melee_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Melee_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Melee_E		275412
-	369657722	SFX_Queen_Jump_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Jump_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_Queen_Jump_E		88938
-	414090755	SFX_Chestburster_Death_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_ChestbusterDeath_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Chest burster\SFX_Chestburster_Death_E		98400
-	419397976	SFX_Item_Pickup_CH	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Item_Pickup_CH_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Item_Pickup_CH		392096
-	437230071	AM_Ambient_Level_2_Ruins	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_ruins_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Ambience\Level 2\AM_Ambient_Level_2_Ruins		17082344
-	466064314	spatial1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\waves_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\spatial1		1288036
-	498493897	SFX_Rebel_steps_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Rebel_steps_E_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Rebel\SFX_Rebel_steps_E		193028
-	552844014	SFX_Xenomorph_Spit_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Spit_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Spit_E		369936
-	558968172	UI_Menu_Music_AM	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\UI_Menu_Music_AM_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Menu\UI_Menu_Music_AM		4517676
-	588527722	SFX_Xenomorph_Spawn_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_SpawnXenomorph_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Spawn_E		322758
-	589914555	SFX_Player_Hit_CH	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Player_Hit_CH_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Hit_CH		99452
-	623073670	SFX_Facehugger_Eggcrack_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Facehugger_Eggcrack_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Egg\SFX_Facehugger_Eggcrack_E		290736
-	635286070	music2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Guitar_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\music2		6336096
-	635432014	SFX_Queen_ChangePhase_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_QueenChangePhase_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_Queen_ChangePhase_E		108594
-	657823762	music1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\seagull1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\music1		668922
-	665738146	VO_Guard2_voiceline1_0	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\VO_guard2_voiceline1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Voice Over\0-Narrative Intro\VO_Guard2_voiceline1_0		788576
-	692788379	SFX_Xenomorph_Death_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Death_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Death_E		515280
-	695855090	SFX_Player_Step_CH	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Player_Step_CH_FBC78EF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Step_CH		226672
-	715356811	gunshot	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\gunshot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\gunshot		108384
-	737475653	SFX_Queen_Movement_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_QueenMovement_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_Queen_Movement_E		840744
-	809215257	SFX_CH_m4_shoot	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_m4_shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_CH_m4_shoot		69364
-	842622820	SFX_CH_sl_shoot	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_sl_shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\Shoulder laser\SFX_CH_sl_shoot		278004
-	852480059	UI_Menu_Hover_SFX	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\UI_Menu_Hover_SFX_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Menu\UI_Menu_Hover_SFX		164388
-	938926544	SFX_Rebel_shooting_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Rebel_shooting_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Rebel\SFX_Rebel_shooting_E		439420
-	958004585	SFX_Player_Death_CH	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Player_Death_CH_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Death_CH		128004
-	959111577	UI_Pause_Game_SFX	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_UI_pausegame_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI_Pause_Game_SFX		267464
-	994093999	AM_Ambient_Level_1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\AM_Ambient_Level_1_4CE279A8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Ambience\Level 1\AM_Ambient_Level_1		20537536
-	1013643951	SFX_Facehugger_Death_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Facehugger_Death_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\SFX_Facehugger_Death_E		262852
-	1033752204	SFX_Queen_AcidBomb_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_AcidBomb_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_Queen_AcidBomb_E		43104
+	33415099	SFX_CH_Item_Pickup	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Item_Pickup_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_CH_Item_Pickup		253776
+	35231276	SFX_E_FH_Crawl_Ship	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_FH_Crawl_Ship_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\FH Crawl\Crawl Ship\SFX_E_FH_Crawl_Ship		184352
+	48884840	SFX_E_Q_TailSweep	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_TailSweep_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_TailSweep		200988
+	82457123	SFX_UI_M_Hover	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_UI_M_Hover_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Menu\SFX_UI_M_Hover		66608
+	95073101	SFX_A_li	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_li_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\La Impaciente\SFX_A_li		232180
+	102266085	spatial2	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Bass160Fight_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\spatial2		1058496
+	127837337	SFX_CH_Step_Dirt_02	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Step_Dirt_2721A251.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\P Steps\Footsteps Dirt\SFX_CH_Step_Dirt_02		54228
+	152312475	SFX_A_bandage	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_bandage_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Bandage\SFX_A_bandage		329756
+	159622919	SFX_E_FH_Crawl_Dirt	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_FH_Crawl_Dirt_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\FH Crawl\Crawl Dirt\SFX_E_FH_Crawl_Dirt		184352
+	175393927	SFX_A_gl_explosion	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_gl_explosion_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Grenade Launcher\SFX_A_gl_explosion		524028
+	247209249	SFX_E_Q_Jump	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_Jump_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_Jump		155744
+	247422101	SFX_W_sl_shoot	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_sl_shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\Shoulder laser\SFX_W_sl_shoot		72668
+	302522919	SFX_A_gl_shoot	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_gl_shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Grenade Launcher\SFX_A_gl_shoot		155072
+	317356435	SFX_CH_Dash	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Dash_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_CH_Dash		195524
+	323360860	AM_L2_Camp	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\AM_L2_Camp_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Ambience\Music\Camp\AM_L2_Camp\AM_L2_Camp		5449380
+	357960555	SFX_CH_Step_Ship_03	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Step_Ship_C07D27F2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\P Steps\Footsteps Ship\SFX_CH_Step_Ship_03		51052
+	365237862	SFX_Xenomorph_Melee_E	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Melee_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Melee_E		275412
+	414090755	SFX_Chestburster_Death_E	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_ChestbusterDeath_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Chest burster\SFX_Chestburster_Death_E		98400
+	433229473	SFX_E_Q_TailShot	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_TailShot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_TailShot		180608
+	466064314	spatial1	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\waves_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\spatial1		1288036
+	476179393	AM_Ambient_Level_1	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\AM_Ambient_Level_1_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Ambience\Music\Ship\AM_Ambient_Level_1\AM_Ambient_Level_1		21176768
+	495645106	SFX_A_s_hit	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_s_hit_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Shield\SFX_A_s_hit		86952
+	517462623	SFX_E_FH_Jump	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_FH_Jump_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\SFX_E_FH_Jump		158576
+	527567376	AM_L3_Explore	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\AM_L3_Explore_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Ambience\Music\Ruins\AM_L3_Explore\AM_L3_Explore		7690860
+	552844014	SFX_Xenomorph_Spit_E	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Spit_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Spit_E		369936
+	558968172	UI_Menu_Music_AM	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\UI_Menu_Music_AM_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Menu\UI_Menu_Music_AM		4517676
+	571921851	SFX_A_AdrenalineRush	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_AdrenalineRush_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Adrenaline Rush\SFX_A_AdrenalineRush		483636
+	575004325	SFX_A_s_activate	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_s_activate_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Shield\SFX_A_s_activate		328512
+	588527722	SFX_Xenomorph_Spawn_E	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_SpawnXenomorph_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Spawn_E		322758
+	589914555	SFX_Player_Hit_CH	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Player_Hit_CH_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Hit_CH		99452
+	623073670	SFX_Facehugger_Eggcrack_E	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Facehugger_Eggcrack_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Egg\SFX_Facehugger_Eggcrack_E		290736
+	624497162	SFX_UI_M_Click	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_UI_M_Click_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Menu\SFX_UI_M_Click		192848
+	635286070	music2	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\Guitar_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\music2		6336096
+	649793213	SFX_E_FH_Crawl_Death	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_FH_Crawl_Death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\SFX_E_FH_Crawl_Death		262852
+	657823762	music1	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\seagull1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\music1		668922
+	678013479	SFX_W_m4_shoot	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_m4_shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_W_m4_shoot		16780
+	692788379	SFX_Xenomorph_Death_E	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Death_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\Adult\SFX_Xenomorph_Death_E		515280
+	715356811	gunshot	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\gunshot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\gunshot		108384
+	730529704	SFX_E_A_Death	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_A_Death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Anarchist\SFX_E_A_Death		257604
+	732584561	SFX_CH_Roll	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Roll_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_CH_Roll		135800
+	757988013	AM_Combat_Level_1	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\AM_Combat_Level_1_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Ambience\Music\Combat\AM_Combat_Level_1\AM_Combat_Level_1		1843648
+	758485825	SFX_UI_Pause	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_UI_Pause_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\SFX_UI_Pause		134172
+	760076921	SFX_W_m4_reload	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_m4_reload_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_W_m4_reload		271156
+	765790919	SFX_A_flamethrower	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_flamethrower_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Flamethrower\SFX_A_flamethrower		391112
+	774355553	SFX_CH_Step_Dirt_03	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Step_Dirt_D93A4C3A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\P Steps\Footsteps Dirt\SFX_CH_Step_Dirt_03		45940
+	797598712	SFX_E_Q_SpitCharge	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_SpitCharge_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_SpitCharge		120500
+	842763712	SFX_E_Q_PhaseChange	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_PhaseChange_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_PhaseChange		582988
+	882278297	SFX_E_Q_Spit	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_Spit_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_Spit		145226
+	895675887	SFX_A_s_deactivate	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_s_deactivate_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Shield\SFX_A_s_deactivate		187284
+	958004585	SFX_Player_Death_CH	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Player_Death_CH_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Death_CH		128004
+	961676207	SFX_E_A_Shoot	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_A_Shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Anarchist\SFX_E_A_Shoot		16780
+	974273116	SFX_E_Q_AcidBomb	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_AcidBomb_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_AcidBomb		239744
+	980670709	SFX_E_Q_Death	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_Death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_Death		421022
+	988114368	SFX_CH_Step_Ship_02	C:\Users\juliast1\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Step_Ship_9917CDBB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\P Steps\Footsteps Ship\SFX_CH_Step_Ship_02		61280
 

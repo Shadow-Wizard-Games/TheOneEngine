@@ -22,18 +22,19 @@ bool AudioCore::InitEngine()
     LOG(LogType::LOG_INFO, "# Initializing Audio Engine...");
 
     if (InitMemoryManager())  LOG(LogType::LOG_OK, "-Init Memory Manager");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Memory Manager");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Memory Manager");
 
     if (InitStreamingManager()) LOG(LogType::LOG_OK, "-Init Streaming Manager");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Streaming Manager");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Streaming Manager");
 
     if (InitSoundEngine()) LOG(LogType::LOG_OK, "-Init Sound Engine");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Sound Engine");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Sound Engine");
 
     if (InitMusicEngine()) LOG(LogType::LOG_OK, "-Init Music Engine");
-    else LOG(LogType::LOG_ERROR, "-Failed Init Music Engine");
+    else LOG(LogType::LOG_ERROR, "- Failed Init Music Engine");
 
     g_lowLevelIO.SetBasePath(AKTEXT("Assets\\Audio\\Wwise Project\\GeneratedSoundBanks\\Windows"));
+    g_lowLevelIO.SetBasePath(AKTEXT("Assets\\Audio\\Wwise Project\\GeneratedSoundBanks"));
     AK::StreamMgr::SetCurrentLanguage(AKTEXT("English(us)"));
 
     //bank init
@@ -55,6 +56,16 @@ bool AudioCore::InitEngine()
     else
     {
         LOG(LogType::LOG_ERROR, "-Failed loading BANKNAME_THEONEENGINE");
+        return false;
+    }
+
+    if (AK::SoundEngine::LoadBank(BANKNAME_VOICEOVER, bankID) == AK_Success)
+    {
+        LOG(LogType::LOG_OK, "-Loaded BANKNAME_VOICEOVER");
+    }
+    else
+    {
+        LOG(LogType::LOG_ERROR, "-Failed loading BANKNAME_VOICEOVER");
         return false;
     }
 
@@ -219,6 +230,7 @@ void AudioCore::CleanUp()
 
     audioEvents.clear();
 
+    AK::SoundEngine::ClearBanks(); 
 
 #ifndef AK_OPTIMIZED
     AK::Comm::Term();
@@ -242,6 +254,12 @@ void AudioCore::SetDefaultListener(AkGameObjectID goID)
 {
     AK::SoundEngine::SetDefaultListeners(&goID, 1);
     LOG(LogType::LOG_AUDIO, "Set default listener: %d audiogameobject", goID);
+}
+
+void AudioCore::RemoveDefaultListener(AkGameObjectID goID)
+{
+    AK::SoundEngine::RemoveDefaultListener(goID);
+    LOG(LogType::LOG_AUDIO, "Remove default listener: %d audiogameobject", goID);
 }
 
 AkGameObjectID AudioCore::RegisterGameObject(std::string name)
@@ -306,6 +324,29 @@ void AudioCore::ResumeEvent(AkUniqueID event, AkGameObjectID goID)
 {
     AK::SoundEngine::ExecuteActionOnEvent(event, AK::SoundEngine::AkActionOnEventType::AkActionOnEventType_Resume, gameObjectIDs[goID]);
     LOG(LogType::LOG_AUDIO, "Resuming event from %d audiogameobject", goID);
+}
+
+void AudioCore::SetState(AkStateGroupID stateGroup, AkStateID state)
+{
+    AK::SoundEngine::SetState(stateGroup, state);
+    LOG(LogType::LOG_AUDIO, "Setting state");
+}
+
+void AudioCore::SetState(const char* stateGroup, const char* state)
+{
+    AK::SoundEngine::SetState(stateGroup, state);
+    LOG(LogType::LOG_AUDIO, "Setting state");
+}
+
+void AudioCore::SetSwitch(AkSwitchGroupID switchGroup, AkSwitchStateID switchState, AkGameObjectID goID)
+{
+    AK::SoundEngine::SetSwitch(switchGroup, switchState, goID);
+    LOG(LogType::LOG_AUDIO, "Setting switch");
+}
+
+void AudioCore::SetRTPCValue(const char* name, int value)
+{
+    AK::SoundEngine::SetRTPCValue(name, value);
 }
 
 // JULS: Probably not necessary actually

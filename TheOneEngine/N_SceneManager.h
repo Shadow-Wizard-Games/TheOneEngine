@@ -14,6 +14,14 @@
 class Scene;
 class Transform;
 
+enum DataType
+{
+	DATA_BOOL,
+	DATA_STRING,
+	DATA_INT,
+	DATA_FLOAT
+};
+
 class N_SceneManager
 {
 public:
@@ -36,6 +44,7 @@ public:
 	// Change between scenes
 	void LoadScene(uint index);
 	void LoadScene(std::string sceneName, bool keep = false);
+	void LoadSave(std::string sceneName, std::string scenePath = "GameData/");
 
 	std::string GenerateUniqueName(const std::string& baseName, const GameObject* parent = nullptr);
 
@@ -63,6 +72,7 @@ public:
 	void OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify);
 	void CreatePrefabWithName(std::string prefabName, const vec3f& position);
 	void CreatePrefabWithName(std::string prefabName, const mat4& transform);
+	std::string ReturnLastGOName(std::string toCompare, std::shared_ptr<GameObject> parent);
 	void CreatePrefabFromPath(std::string prefabPath, const vec3f& position);
 
 	// Get/Set
@@ -81,8 +91,11 @@ public:
 	void FindCameraInScene();
 
 	/*SCENE SERIALIZATION*/
-	void SaveScene();
+	void SaveScene(std::string directories, std::string sceneName);
 	void LoadSceneFromJSON(const std::string& filename, bool keepGO = false);
+	void RemoveFile(std::string pathToDelete);
+	void* AccessFileDataRead(std::string filepath, DataType dataType, std::vector<std::string> dataPath, std::string dataName);
+	void AccessFileDataWrite(std::string filepath, DataType dataType, std::vector<std::string> dataPath, std::string dataName, void* data);
 
 private:
 

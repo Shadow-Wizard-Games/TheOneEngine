@@ -26,7 +26,7 @@
           "UID": 4132926587
         },
         {
-          "Aspect": 1.777,
+          "Aspect": 1.7788234949111938,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -39,9 +39,16 @@
           "Yaw": 0.0,
           "zFar": 1000.0,
           "zNear": 0.1
+        },
+        {
+          "AudioID": 1,
+          "Name": "Listener",
+          "Type": 7
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
       "Name": "mainCamera",
       "ParentUID": 3452816845,
       "Static": false,
@@ -94,8 +101,8 @@
           "UID": 686362909,
           "UiElements": [
             {
-              "ID": 3746357633,
-              "ImagePath": "Assets/Textures/Hud/Placeholder2.png",
+              "ID": 2239027784,
+              "ImagePath": "Assets\\Textures\\Hud\\Introduction_Scene_DEMO.png",
               "ImageSection": [
                 0.0,
                 0.0,
@@ -103,7 +110,8 @@
                 1.0
               ],
               "Interactuable": false,
-              "Name": "Image",
+              "Name": "IntroImg",
+              "Print": true,
               "Rect": [
                 0.0,
                 0.0,
@@ -112,16 +120,87 @@
               ],
               "State": 0,
               "Type": 0
-            }
-          ],
-          "UiTextures": [
+            },
             {
-              "Path": "Assets/Textures/Hud/Placeholder2.png"
+              "ID": 2525075569,
+              "ImagePath": "Assets\\Textures\\Hud\\NarrativeIntroduction_Screen2.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "NarrativeImg",
+              "Print": true,
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            },
+            {
+              "Color": [
+                1.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+              "ID": 465592644,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "ContinueTxt",
+              "Print": false,
+              "Rect": [
+                -0.7200000286102295,
+                0.925000011920929,
+                0.0949999988079071,
+                0.10000000149011612
+              ],
+              "State": 0,
+              "TextString": "Press (X) to continue",
+              "Type": 4
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets/Fonts/AlienInvader.ttf",
+              "ID": 2570780767,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "SubtitlesTxt",
+              "Print": false,
+              "Rect": [
+                -0.8899999856948853,
+                0.6499999761581421,
+                0.05000000074505806,
+                0.05999999865889549
+              ],
+              "State": 0,
+              "TextString": "Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id velit ut tortor pretium viverra. Duis at tellus at urna condimentum. Aenean pharetra magna ac placerat. Dolor morbi non arcu risus quis varius quam quisque. Quam viverra orci sagittis eu volutpat odio facilisis. Ut porttitor leo a diam sollicitudin tempor id eu. Netus et malesuada fames ac turpis egestas integer. Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum. Cras tincidunt lobortis feugiat vivamus at augue eget. Et netus et malesuada fames ac turpis egestas.",
+              "Type": 4
             }
           ]
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
         }
       ],
       "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
       "Name": "IntroScene",
       "ParentUID": 3452816845,
       "Static": false,

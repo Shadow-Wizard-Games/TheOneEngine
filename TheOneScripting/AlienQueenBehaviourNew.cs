@@ -9,6 +9,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     float maxLife = 1500;
     float currentLife;
+    bool isDead = false;
 
     public override void Start()
     {
@@ -29,8 +30,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             Debug.Log("Current life is: " + currentLife.ToString());
         }
 
-        CheckPhaseChange();
+        if (isDead) { return; }
+
         DoStateBehaviour();
+
+        if (currentLife < 0) { isDead = true; attachedGameObject.animator.Play("Death"); }
     }
 
     #region FSM
@@ -44,33 +48,23 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         Circle,
         Waiting,
         Attack,
+        ChangingPhase,
         None
     }
 
     States lastState = States.InitialState;
     States currentState = States.InitialState;
 
-    //bool phaseChangePending = false;  Phase3???
-    void CheckPhaseChange()
+    bool CheckPhaseChange()
     {
-        if (currentLife <= maxLife / 1.5f && currentPhase < 2) 
-        { 
-            currentPhase = 2; 
-            Debug.LogWarning("Phase 2");
-            //phaseChangePending = true;    Phase3???
+        if (currentPhase < 2 && currentLife <= maxLife / 1.5f ||
+            currentPhase < 3 && currentLife <= maxLife / 3.0f)
+        {
+            Debug.LogWarning("Phase changing from " + currentPhase.ToString() + " to " + (currentPhase + 1).ToString());
+            currentState = States.ChangingPhase;
+            return true;
         }
-        else if (currentLife <= maxLife / 3.0f && currentPhase < 3) 
-        { 
-            currentPhase = 3; 
-            Debug.LogWarning("Phase 3");
-            //phaseChangePending = true;    Phase3???
-        }
-
-        //if (phaseChangePending && attackedFinished)
-        //{
-        //    phaseChangePending = false;
-        //    currentState = States.Scream; ???
-        //}
+        return false;
     }
 
     void DoStateBehaviour()
@@ -92,8 +86,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             case States.Attack:
                 DoAttack();
                 break;
+            case States.ChangingPhase:
+                DoPhaseChange();
+                break;
             default:
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 Debug.LogError("Fallen out of FSM");
                 break;
         }
@@ -103,13 +100,13 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     float playerDistance; //Do not touch
     void DoIdle()
     {
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+        playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
         if (playerDistance < detectionRange)
         {
             currentState = States.Zigzag;
         }
 
-        Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up, detectionRange, Color.asianYellow.ToVector3());
+        Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up, detectionRange, Color.asianYellow.ToVector3());
     }
 
     float alienSpeed = 300;
@@ -138,11 +135,13 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
             lastState = currentState;
 
-            lastPlayerPos = playerGO.transform.position;
+            attachedGameObject.animator.Play("Run");
+
+            lastPlayerPos = playerGO.transform.Position;
             attachedGameObject.transform.LookAt2D(lastPlayerPos);
-            chargeDirectionRightVec = attachedGameObject.transform.right;
-            chargeDirectionForwardVec = attachedGameObject.transform.forward;
-            yProgress = attachedGameObject.transform.position;
+            chargeDirectionRightVec = attachedGameObject.transform.Right;
+            chargeDirectionForwardVec = attachedGameObject.transform.Forward;
+            yProgress = attachedGameObject.transform.Position;
             zigzagPos = 270.0f;
             reachedPoint = false;
         }
@@ -158,7 +157,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         moveToTarget = xProgress + yProgress;
 
         attachedGameObject.transform.LookAt2D(moveToTarget);
-        attachedGameObject.transform.Translate(attachedGameObject.transform.forward * alienSpeed * Time.deltaTime);
+        attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * alienSpeed * Time.deltaTime);
 
         //Debug.DrawWireSphere(xProgress, 10.0f, Color.russianRed.ToVector3());
         //Debug.DrawWireSphere(yProgress, 10.0f, Color.scrumMasterBlue.ToVector3());
@@ -189,27 +188,29 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         {
             Debug.Log("I am now entering circle");
             lastState = currentState;
-            countDown = 0.0f;
 
+            attachedGameObject.animator.Play("Run");
+
+            countDown = 0.0f;
             circleStarted = false;
         }
 
         //Moving towards the player until reaching circle size
         if (!circleStarted &&
-            Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position) > circleSize + circleSize / 2)
+            Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position) > circleSize + circleSize / 2)
         {
-            MoveTo(playerGO.transform.position, alienCircleSpeed / 1.5f);
-            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+            MoveTo(playerGO.transform.Position, alienCircleSpeed / 1.5f);
+            attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
-            Debug.DrawWireCircle(playerGO.transform.position, circleSize, Color.pitufoBlue.ToVector3());
+            //Debug.DrawWireCircle(playerGO.transform.position, circleSize, Color.pitufoBlue.ToVector3());
 
             return;
         }
-        else 
-        { 
+        else
+        {
             circleStarted = true;
 
-            Vector3 directorVec = playerGO.transform.position - attachedGameObject.transform.position;
+            Vector3 directorVec = playerGO.transform.Position - attachedGameObject.transform.Position;
             counterPos = (float)Math.Atan2(directorVec.z, directorVec.x) * 180.0f / (float)Math.PI + 180.0f;
 
             if (counterPos < 0) { counterPos += 360.0f; }
@@ -222,12 +223,12 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         progressPos = Vector3.zero;
         progressPos += Vector3.right * (float)Math.Cos(-counterPos * Math.PI / 180.0f) * circleSize;
         progressPos += Vector3.forward * (float)Math.Sin(counterPos * Math.PI / 180.0f) * circleSize;
-        progressPos += playerGO.transform.position;
+        progressPos += playerGO.transform.Position;
 
-        Debug.DrawWireSphere(progressPos, 10.0f, Color.chernobylGreen.ToVector3());
+        //Debug.DrawWireSphere(progressPos, 10.0f, Color.chernobylGreen.ToVector3());
 
         attachedGameObject.transform.LookAt2D(progressPos);
-        attachedGameObject.transform.Translate(attachedGameObject.transform.forward * alienCircleSpeed * Time.deltaTime);
+        attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * alienCircleSpeed * Time.deltaTime);
 
         countDown += Time.deltaTime;
         if (countDown > circleTime)
@@ -237,17 +238,20 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
     }
 
-    float waitingTime = 3.0f;
+    float waitingTime = 2.0f;
     void DoWait()
     {
         if (currentState != lastState)
         {
             Debug.Log("I am now entering wait");
             lastState = currentState;
+
+            attachedGameObject.animator.Play("Idle");
+
             countDown = 0.0f;
         }
 
-        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
         countDown += Time.deltaTime;
         if (countDown > waitingTime)
@@ -271,6 +275,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     Attacks currentAttack = Attacks.None;
     bool attackedFinished = false;
+    bool attackFirstFrame = true;
+    bool combinedFirstAttack = true;
     void DoAttack()
     {
         if (currentState != lastState)
@@ -292,27 +298,45 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 Spawn();
                 break;
             case Attacks.TailPhase2:
-                Debug.LogCheck("Doing tail phase 2");
-                attackedFinished = true;
+
+                if (combinedFirstAttack)
+                {
+                    combinedFirstAttack = TailSweep();
+                }
+                else
+                {
+                    TailShot();
+                }
+
                 break;
             case Attacks.AcidPhase2:
-                Debug.LogCheck("Doing acid phase 2");
-                attackedFinished = true;
+                if (combinedFirstAttack)
+                {
+                    combinedFirstAttack = AcidBomb();
+                }
+                else
+                {
+                    AcidSpit();
+                }
                 break;
-            //case Attacks.Jump:
-            //    break;
-            //case Attacks.Charge:
-            //    break;
+            case Attacks.Jump:
+                Jump();
+                break;
+            case Attacks.Charge:
+                HeadCharge();
+                break;
             default:
                 break;
         }
 
         if (attackedFinished)
         {
+            if (CheckPhaseChange()) { return; }
+
             attackedFinished = false;
 
             if (currentPhase == 1) { currentState = States.Zigzag; }
-            else
+            else if (currentPhase == 2)
             {
                 //currentState = (Convert.ToBoolean(new Random().Next(2)))
                 //? States.Zigzag
@@ -329,6 +353,31 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                     pathPhase2 = States.Circle;
                 }
             }
+            else
+            {
+                stagePhase3++;
+                if (stagePhase3 > 4) { stagePhase3 = 0; }
+                currentAttack = ChooseAttack();
+            }
+
+            attackFirstFrame = true;
+        }
+    }
+
+    void DoPhaseChange()
+    {
+        if (currentState != lastState)
+        {
+            Debug.Log("I am now entering PhaseChange");
+            lastState = currentState;
+
+            attachedGameObject.animator.Play("Facehugger_Spawn");
+        }
+
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            currentPhase++;
+            currentState = States.Attack;
         }
     }
 
@@ -353,7 +402,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     };
 
     States pathPhase2 = States.Zigzag;
-
+    int stagePhase3 = 0;
     Attacks ChooseAttack()
     {
         Random rand = new Random();
@@ -390,8 +439,17 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 Debug.LogError("Queen FSM fell into unintended behaviour when choosing attack (phase 2)");
                 return Attacks.None;
             case 3:
-                Debug.LogWarning("Queen FSM phase 3 pending to implement");
-                return Attacks.None;
+                switch (stagePhase3)
+                {
+                    case 0: return Attacks.AcidPhase2;
+                    case 1: return Attacks.Jump;
+                    case 2: return Attacks.TailPhase2;
+                    case 3: return Attacks.Charge;
+                    case 4: return Attacks.Spawn;
+                    default:
+                        Debug.LogError("Queen FSM fell into unintended behaviour when choosing attack (phase 3)");
+                        return Attacks.None;
+                }
 
             default:
                 Debug.LogError("Queen FSM current phase is invalid");
@@ -399,69 +457,133 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
     }
 
-    float spinDuration = 5.0f;
-    private void TailSweep()
+    private bool TailSweep()
     {
-        //float damage = 15;
-
-        attachedGameObject.transform.Rotate(Vector3.up * -180 * Time.deltaTime);
-
-        countDown += Time.deltaTime;
-        if (countDown >= spinDuration)
+        if (attackFirstFrame)
         {
-            countDown = 0.0f;
+            attachedGameObject.animator.Play("Tail_Sweep");
+            attackFirstFrame = false;
+        }
 
-            currentAttack = Attacks.None;
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            if (currentPhase == 1)
+            {
+                attackedFinished = true;
+            }
+            else
+            {
+                attackFirstFrame = true;
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void TailShot()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Tail_Shot");
+            attackFirstFrame = false;
+        }
+
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            combinedFirstAttack = true;
             attackedFinished = true;
         }
     }
 
-    float acidBombDuration = 5.0f;
-    Vector3 height = Vector3.up * 30.0f;
-    bool shot = false; //Do not touch
-    private void AcidBomb()
-    {
-        if (!shot)
-        {
-            shot = true;
 
-            InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
-                                        attachedGameObject.transform.forward *
-                                        (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
-                                        attachedGameObject.transform.rotation);
+    private bool AcidBomb()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Acid_Bombs");
+            attackFirstFrame = false;
         }
 
-        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
-
-        countDown += Time.deltaTime;
-        if (countDown >= acidBombDuration)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
-            countDown = 0.0f;
+            if (currentPhase == 1)
+            {
+                attackedFinished = true;
+            }
+            else
+            {
+                attackFirstFrame = true;
+                return false;
+            }
+        }
 
-            shot = false;
-            currentAttack = Attacks.None;
+        return true;
+    }
+
+    //float acidBombDuration = 5.0f;
+    //Vector3 height = Vector3.up * 30.0f;
+    //bool shot = false; //Do not touch
+    private void AcidSpit()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Acid_Spit");
+            attackFirstFrame = false;
+        }
+
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            combinedFirstAttack = true;
             attackedFinished = true;
         }
+
+        //if (!shot)
+        //{
+        //    shot = true;
+
+        //    InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
+        //                                attachedGameObject.transform.forward *
+        //                                (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
+        //                                attachedGameObject.transform.rotation);
+        //}
+
+        //attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+
+        //countDown += Time.deltaTime;
+        //if (countDown >= acidBombDuration)
+        //{
+        //    countDown = 0.0f;
+
+        //    shot = false;
+        //    currentAttack = Attacks.None;
+        //    attackedFinished = true;
+        //}
     }
 
     float spawnDuration = 5.0f;
     bool spawned = false; //Do not touch
     private void Spawn()
     {
+        if (attackFirstFrame)
+        {
+            attackFirstFrame = false;
+        }
+
         if (!spawned)
         {
             spawned = true;
 
             Vector3 scale = new Vector3(1, 1, 1);
 
-            InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position +
-                                               attachedGameObject.transform.forward *
+            InternalCalls.InstantiateXenomorph(attachedGameObject.transform.Position +
+                                               attachedGameObject.transform.Forward *
                                                (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
-                                               attachedGameObject.transform.rotation,
+                                               attachedGameObject.transform.Rotation,
                                                scale);
         }
 
-        attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+        attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
         countDown += Time.deltaTime;
         if (countDown >= spawnDuration)
@@ -474,14 +596,93 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
     }
 
+    bool onAir = false;
+    bool posCalc = true;
+    int jumpNum = 0;
+    private void Jump()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Giant_Stomp");
+            attackFirstFrame = false;
+
+            stopCountDown = 0;
+            jumpNum = 0;
+            posCalc = true;
+        }
+
+        stopCountDown += Time.deltaTime;
+
+        if (stopCountDown > 2.43f) { onAir = false; }
+        else if (stopCountDown > 1.2f)
+        {
+            if (posCalc)
+            {
+                posCalc = false;
+                attachedGameObject.transform.Position = new Vector3(playerGO.transform.Position.x,
+                                                                    attachedGameObject.transform.Position.y,
+                                                                    playerGO.transform.Position.z);
+            }
+        }
+        else if (stopCountDown > 0.9f) { onAir = true; }
+
+        if (onAir) { attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f; }
+        else { attachedGameObject.GetComponent<ICollider2D>().radius = 35.0f; }
+
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            if (jumpNum >= 2)
+            {
+                attackedFinished = true;
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
+            }
+            else
+            {
+                jumpNum++;
+                posCalc = true;
+                stopCountDown = 0;
+                attachedGameObject.animator.Play("Giant_Stomp");
+            }
+        }
+    }
+
+    float headChargeDuration = 3.0f;
+    float chargeSpeed = 250.0f;
+    float stopCountDown = 0; //Do not touch
+    private void HeadCharge()
+    {
+        if (attackFirstFrame)
+        {
+            attachedGameObject.animator.Play("Head_Charge");
+            attackFirstFrame = false;
+
+            countDown = 0;
+            stopCountDown = 0;
+            attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
+        }
+
+        stopCountDown += Time.deltaTime;
+        if (stopCountDown > 1.05f && stopCountDown < 3.15f)
+        {
+            attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * chargeSpeed * Time.deltaTime);
+        }
+
+        countDown += Time.deltaTime;
+        if (countDown >= headChargeDuration)
+        {
+            attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
+            attackedFinished = true;
+        }
+    }
+
     #endregion
 
     bool MoveTo(Vector3 targetPosition, float speed)
     {
         //Return true if arrived at destination
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+        if (Vector3.Distance(attachedGameObject.transform.Position, targetPosition) < 0.5f) return true;
 
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * speed * Time.deltaTime);
         return false;
     }

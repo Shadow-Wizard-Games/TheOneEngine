@@ -38,7 +38,9 @@ public:
 
 	// Set default listener
 	void SetDefaultListener(AkGameObjectID goID);
+	void RemoveDefaultListener(AkGameObjectID goID);
 
+	// ---------------------- EVENTS ---------------------- //
 	// Register a Wwise game object and return its id or return -1 if failed
 	AkGameObjectID RegisterGameObject(std::string name);
 	// Unregister a Wwise game object
@@ -51,6 +53,16 @@ public:
 	void PauseEvent(AkUniqueID event, AkGameObjectID goID);
 	// Function to resume the event if it has been paused
 	void ResumeEvent(AkUniqueID event, AkGameObjectID goID);
+
+	// ----------------------- STATES ---------------------- //
+	void SetState(AkStateGroupID stateGroup, AkStateID state);
+	void SetState(const char* stateGroup, const char* state);
+
+	// ---------------------- SWITCHES ---------------------- //
+	void SetSwitch(AkSwitchGroupID switchGroup, AkSwitchStateID switchState, AkGameObjectID goID);
+
+	// ------------------------ RTPC ------------------------ //
+	void SetRTPCValue(const char* name, int value);
 
 	//audio engine functions
 	void PlayEngine();

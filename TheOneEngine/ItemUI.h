@@ -83,6 +83,7 @@ public:
 	void SetState(UiState state)
 	{
 		this->state = state;
+		UpdateState();
 	}
 
 	virtual void UpdateState();

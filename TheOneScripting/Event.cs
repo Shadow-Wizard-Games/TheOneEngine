@@ -12,9 +12,11 @@ public abstract class Event : MonoBehaviour
         UNKNOWN = 0,
         COLLECTIBLE,
         NEXTROOM,
+        CHECKPOINT,
+        OPENPOPUP,
         //Add events
     }
-    public EventType eventType {  get; set; }
+    public EventType eventType { get; set; }
 
     public abstract bool CheckEventIsPossible();
     public abstract bool DoEvent();
