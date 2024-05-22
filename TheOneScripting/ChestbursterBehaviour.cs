@@ -36,10 +36,13 @@ public class ChestbursterBehaviour : MonoBehaviour
     // Flags
     bool isClose = false;
     bool detected = false;
+    bool isDead = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 4.0f;
+    float destroyTimer = 0.0f;
+    const float destroyCooldown = 3.0f;
 
     PlayerScript player;
     GameManager gameManager;
@@ -69,7 +72,14 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         attachedGameObject.animator.UpdateAnimation();
 
-        if (currentState == States.Dead) return;
+        if (currentState == States.Dead)
+        {
+            destroyTimer += Time.deltaTime;
+            if (destroyTimer >= destroyCooldown)
+                attachedGameObject.Destroy();
+
+            return;
+        }
 
         if (attachedGameObject.transform.ComponentCheck())
         {
@@ -178,8 +188,7 @@ public class ChestbursterBehaviour : MonoBehaviour
                 }
                 break;
             case States.Dead:
-                attachedGameObject.animator.Play("Dead");
-                deathPSGO.Play();
+                Dead();
                 break;
             default:
                 break;
@@ -226,6 +235,20 @@ public class ChestbursterBehaviour : MonoBehaviour
             ResetState();
         }
 
+    }
+
+    private void Dead()
+    {
+        if (!isDead)
+        {
+            attachedGameObject.animator.Play("Dead");
+
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
+            {
+                isDead = true;
+                deathPSGO.Play();
+            }
+        }
     }
 
     private void ResetState()
