@@ -262,14 +262,16 @@ bool PanelInspector::Draw()
 
             if (mesh != nullptr && ImGui::CollapsingHeader("Mesh", treeNodeFlags))
             {
-                Model* model = Resources::GetResourceById<Model>(mesh->meshID);
                 ImGui::SetItemTooltip("Displays and sets mesh data");
                 //ImGui::Checkbox("Active", &mesh->isActive);
                 //ImGui::SameLine();  
                 ImGui::Text("Name: ");
-                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->GetMeshName().c_str());
+                ImGui::SameLine();
+                if (mesh->type == MeshType::DEFAULT) {
+                    Model* model = Resources::GetResourceById<Model>(mesh->meshID);
+                    ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->GetMeshName().c_str());
+                }
                 ImGui::Separator();
-                ImGui::Text("Indexes: ");
 
                 ImGui::Checkbox("Mesh", &mesh->active);
                 ImGui::Checkbox("Vertex normals", &mesh->drawNormalsVerts);

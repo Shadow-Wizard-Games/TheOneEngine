@@ -32,7 +32,6 @@ inline ResourceId Resources::Load<SkeletalModel>(const std::string& file)
 	if (file_path.empty())
 		return -1;
 
-	ResourceId position = getResourcePosition(RES_SKELETALMODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_SKELETALMODEL].size();
 
 	SkeletalModel* model = new SkeletalModel(file_path.string());
@@ -49,7 +48,6 @@ inline ResourceId Resources::LoadFromLibrary<SkeletalModel>(const std::string& f
 	if (file_path.empty())
 		return -1;
 
-	ResourceId position = getResourcePosition(RES_SKELETALMODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_SKELETALMODEL].size();
 
 	SkeletalModel* model = new SkeletalModel(file_path.string());

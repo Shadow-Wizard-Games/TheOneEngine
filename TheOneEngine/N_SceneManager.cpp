@@ -739,8 +739,6 @@ void N_SceneManager::CreateMeshGO(std::string path)
 			CreateDefaultMeshGO(meshID, emptyParent, isSingleMesh);
 	}
 		break;
-	case MeshType::STATIC:
-		break;
 	case MeshType::SKELETAL:
 		CreateSkeletalMeshGO(Resources::Load<SkeletalModel>(path), nullptr, true);
 		break;
@@ -776,15 +774,16 @@ void N_SceneManager::CreateExistingMeshGO(std::string path)
 		case MeshType::DEFAULT:
 			CreateDefaultMeshGO(Resources::LoadFromLibrary<Model>(file), emptyParent, isSingleMesh);
 			break;
-		case MeshType::STATIC:
-			break;
 		case MeshType::SKELETAL:
-			CreateDefaultMeshGO(Resources::LoadFromLibrary<SkeletalModel>(file), emptyParent, isSingleMesh);
-			break;
+			CreateSkeletalMeshGO(Resources::LoadFromLibrary<SkeletalModel>(file), nullptr, true);
+			if (!sceneIsPlaying) AddPendingGOs();
+			return;
 		default:
 			break;
 		}
 	}
+
+	if (!sceneIsPlaying) AddPendingGOs();
 }
 
 void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
@@ -812,10 +811,6 @@ void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<Game
 		meshGO.get()->parent = emptyParent;
 		emptyParent.get()->children.push_back(meshGO);
 	}
-}
-
-void N_SceneManager::CreateStaticMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
-{
 }
 
 void N_SceneManager::CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
