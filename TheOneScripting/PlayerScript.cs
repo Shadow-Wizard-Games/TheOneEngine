@@ -18,7 +18,6 @@ public class PlayerScript : MonoBehaviour
     GameManager gameManager;
     IGameObject gManagerGO;
 
-
     // particles
     IGameObject iShotPSGO;
     IGameObject iStepPSGO;
@@ -96,9 +95,6 @@ public class PlayerScript : MonoBehaviour
         gameManager = gManagerGO.GetComponent<GameManager>();
         //itemManager.AddItem(1, 1);
 
-        iShotPSGO = attachedGameObject.FindInChildren("ShotPlayerPS");
-        iStepPSGO = attachedGameObject.FindInChildren("StepsPS");
-
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.Blend = false;
         attachedGameObject.animator.TransitionTime = 0.0f;
@@ -111,8 +107,8 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
         attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
 
-        stepParticles = iStepPSGO?.GetComponent<IParticleSystem>();
-        shotParticles = iShotPSGO?.GetComponent<IParticleSystem>();
+        stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
+        shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
