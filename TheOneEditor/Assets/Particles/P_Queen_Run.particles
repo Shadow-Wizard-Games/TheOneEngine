@@ -1,0 +1,248 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.1,
+            0.1,
+            0.0
+          ],
+          "MinDirection": [
+            -0.1,
+            0.0,
+            -2.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 50.0,
+          "MinSpeed": 40.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "MinOffset": [
+            -12.5,
+            0.0,
+            -18.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": true
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            5.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            2.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        },
+        {
+          "MaxColor": [
+            205.0,
+            168.0,
+            121.0,
+            255.0
+          ],
+          "MinColor": [
+            195.0,
+            158.0,
+            111.0,
+            204.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 184.07711791992188,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 10.0,
+          "Duration": 1.0,
+          "SpawnRate": 1.0,
+          "Type": 2
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            20.0,
+            20.0
+          ],
+          "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            15.0,
+            15.0,
+            15.0
+          ],
+          "Type": 2
+        }
+      ]
+    },
+    {
+      "Delay": 0.5,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.1,
+            0.1,
+            0.0
+          ],
+          "MinDirection": [
+            -0.1,
+            0.0,
+            -2.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 50.0,
+          "MinSpeed": 40.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "MinOffset": [
+            12.5,
+            0.0,
+            -18.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": true
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            5.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            3.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        },
+        {
+          "MaxColor": [
+            205.0,
+            168.0,
+            121.0,
+            255.0
+          ],
+          "MinColor": [
+            195.0,
+            158.0,
+            111.0,
+            204.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 184.07711791992188,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 10.0,
+          "Duration": 1.0,
+          "SpawnRate": 1.0,
+          "Type": 2
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            20.0,
+            20.0
+          ],
+          "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            15.0,
+            15.0,
+            10.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "P_Queen_Run",
+  "StartON": true,
+  "Type": 9,
+  "UID": 3798552612
+}

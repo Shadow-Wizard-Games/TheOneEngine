@@ -1,0 +1,188 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 1.0,
+      "Duration": 0.20000000298023224,
+      "InitializeModules": [
+        {
+          "MaxOffset": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "MinOffset": [
+            18.0,
+            35.0,
+            30.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": true
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 0.20000000298023224,
+          "SpawnRate": 30.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "Type": 2
+        }
+      ]
+    },
+    {
+      "Delay": 1.0,
+      "Duration": 0.20000000298023224,
+      "InitializeModules": [
+        {
+          "MaxOffset": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "MinOffset": [
+            30.0,
+            40.0,
+            25.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": true
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 0.20000000298023224,
+          "SpawnRate": 30.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "Type": 2
+        }
+      ]
+    },
+    {
+      "Delay": 1.0,
+      "Duration": 0.20000000298023224,
+      "InitializeModules": [
+        {
+          "MaxOffset": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "MinOffset": [
+            25.0,
+            25.0,
+            32.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": true
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 0.20000000298023224,
+          "SpawnRate": 30.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "P_Queen_TailShot",
+  "StartON": true,
+  "Type": 9,
+  "UID": 1267432445
+}
