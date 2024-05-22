@@ -55,7 +55,7 @@ private:
 
     std::string meshName;
 
-    glm::mat4 meshTransform;
+    glm::mat4 meshTransform = glm::mat4(1);
 
     std::string path;
 

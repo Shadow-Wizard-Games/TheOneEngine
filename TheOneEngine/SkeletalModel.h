@@ -107,7 +107,7 @@ private:
         US_LAST
     };
 
-    glm::mat4 meshTransform;
+    glm::mat4 meshTransform = glm::mat4(1);
 
     UpdateState m_UpdateState;
 

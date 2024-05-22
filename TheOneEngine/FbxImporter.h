@@ -16,11 +16,11 @@ namespace FBXIMPORTER {
 	{
 		const aiScene* scene = aiImportFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals);
 
-		if (scene->hasSkeletons())
-			return MeshType::SKELETAL;
-		if (isStatic)
-			return MeshType::STATIC;
-		else
-			return MeshType::DEFAULT;
+		for (int i = 0; i < scene->mNumMeshes; i++) {
+			aiMesh* mesh = scene->mMeshes[i];
+			if (mesh->HasBones())
+				return MeshType::SKELETAL;
+		}
+		return MeshType::DEFAULT;
 	}
 }

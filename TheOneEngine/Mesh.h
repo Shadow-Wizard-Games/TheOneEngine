@@ -36,17 +36,6 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
-private:
-    //void DrawVertexNormals();
-    //void DrawFaceNormals();
-    //void DrawWireframe();
-
-    bool RenderOzzSkinnedMesh(
-        SkeletalModel* mesh,
-        int matID,
-        const ozz::span<ozz::math::Float4x4> _skinning_matrices,
-        const mat4& _transform);
-
 public:
     ResourceId meshID = -1;
     ResourceId materialID = -1;

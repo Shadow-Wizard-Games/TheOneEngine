@@ -294,6 +294,9 @@
     <ClInclude Include="RenderTarget.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="SkeletalUtilities.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">

@@ -23,6 +23,28 @@ struct DefaultMesh
 	int matID;
 };
 
+class SkeletalCall
+{
+public:
+	SkeletalCall(int meshID, int mat, const glm::mat4& modelMat) :
+		resourceID(meshID), matID(mat), model(modelMat) {}
+
+	~SkeletalCall() = default;
+
+	bool CheckID(const int& id) const {
+		resourceID == id;
+	}
+
+	const int& GetMeshResourceID() const { return resourceID; }
+	const int& GetMatID() const { return matID; }
+	const glm::mat4& GetModel() const { return model; }
+
+private:
+	int resourceID;
+	int matID;
+	glm::mat4 model;
+};
+
 class InstanceCall
 {
 public:
@@ -70,7 +92,14 @@ public:
 	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
 
+	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
+
+	static void AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat);
 private:
 	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
 	static void UpdateInstanceBuffer(const std::vector<InstanceCall>& calls);
+
+	static void DrawInstanced(const InstanceCall& call);
+
+	static void DrawSkeletal(const SkeletalCall& call);
 };
