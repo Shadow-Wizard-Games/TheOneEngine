@@ -91,15 +91,12 @@ public:
 
 	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
-
-	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
-
 	static void AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat);
+
 private:
 	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
 	static void UpdateInstanceBuffer(const std::vector<InstanceCall>& calls);
 
 	static void DrawInstanced(const InstanceCall& call);
-
 	static void DrawSkeletal(const SkeletalCall& call);
 };

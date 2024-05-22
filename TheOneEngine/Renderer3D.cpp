@@ -14,9 +14,10 @@
 
 struct Renderer3DData
 {
+	std::vector<RenderTarget> renderTargets;
+
 	std::vector<DefaultMesh> meshes;
 	std::vector<InstanceCall> instanceCalls;
-	std::vector<RenderTarget> renderTargets;
 	std::vector<SkeletalCall> skeletalCalls;
 
 	uint dynamicVAO = 0;
@@ -25,6 +26,21 @@ struct Renderer3DData
 };
 
 static Renderer3DData renderer3D;
+
+void Renderer3D::Init()
+{
+	if (renderer3D.dynamicVAO == 0) {
+		GLCALL(glGenVertexArrays(1, &renderer3D.dynamicVAO));
+	}
+
+	if (renderer3D.dynamicVBO == 0) {
+		GLCALL(glGenBuffers(1, &renderer3D.dynamicVBO));
+	}
+
+	if (renderer3D.dynamicIBO == 0) {
+		GLCALL(glGenBuffers(1, &renderer3D.dynamicIBO));
+	}
+}
 
 void Renderer3D::Update()
 {
@@ -38,23 +54,6 @@ void Renderer3D::Update()
 	for (const SkeletalCall& call : renderer3D.skeletalCalls)
 		DrawSkeletal(call);
 	renderer3D.skeletalCalls.clear();
-}
-
-void Renderer3D::Init()
-{
-
-	if (renderer3D.dynamicVAO == 0) {
-		GLCALL(glGenVertexArrays(1, &renderer3D.dynamicVAO));
-	}
-
-	if (renderer3D.dynamicVBO == 0) {
-		GLCALL(glGenBuffers(1, &renderer3D.dynamicVBO));
-	}
-
-	if (renderer3D.dynamicIBO == 0) {
-		GLCALL(glGenBuffers(1, &renderer3D.dynamicIBO));
-	}
-
 }
 
 void Renderer3D::Shutdown()
