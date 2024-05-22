@@ -57,7 +57,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -1273,7 +1273,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Fire_Particles",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -1765,7 +1765,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Sparks_Particles",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -25745,12 +25745,257 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                -0.00034530460834503174,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.00023915643396321684,
+                0.0,
+                0.6925954222679138,
+                0.0,
+                -52.14474868774414,
+                0.30000749230384827,
+                27.533662796020508,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2215731147
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_MovementControl/M_MovementControl.toematerial",
+              "MeshPath": "Library/Meshes/SM_MovementControl/SM_MovementControl.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 4000276727
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_MovementControl",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                5.960464477539063e-08,
+                0.0,
+                0.9999998807907104,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.7053247690200806,
+                0.0,
+                -2.2351741790771484e-08,
+                0.0,
+                83.24662780761719,
+                0.2999965250492096,
+                583.4747314453125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2890989238
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_InteractControl/M_InteractCotrol.toematerial",
+              "MeshPath": "Library/Meshes/SM_InteractControl/SM_InteractControl.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 1880644056
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_InteractControl",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.0002616206475067884,
+                0.0,
+                0.9999998211860657,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.6799641847610474,
+                0.0,
+                0.00017789269622880965,
+                0.0,
+                247.79891967773438,
+                0.2999930679798126,
+                448.5787048339844,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 277537424
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_UseWeaponControl/M_UseWeaponControl.toematerial",
+              "MeshPath": "Library/Meshes/SM_UseWeaponControl/SM_UseWeaponControl.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 2627552590
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_UseWeaponControl",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -1.0430824204377132e-07,
+                0.0,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.7027587294578552,
+                0.0,
+                -8.195638656616211e-08,
+                0.0,
+                493.24627685546875,
+                0.3000088930130005,
+                516.6734619140625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2080189953
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_DashRoll/M_DashRollControl.toematerial",
+              "MeshPath": "Library/Meshes/SM_DashRoll/SM_DashRollControl.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 1743961413
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_DashRollControl",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.0006054131663404405,
+                0.0,
+                1.2399998903274536,
+                0.0,
+                0.0,
+                1.2400000095367432,
+                0.0,
+                0.0,
+                -0.7766349911689758,
+                0.0,
+                0.00037918181624263525,
+                0.0,
+                299.9302062988281,
+                0.3000001311302185,
+                975.7488403320313,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1472131987
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/SM_PauseControl/M_PauseControl.toematerial",
+              "MeshPath": "Library/Meshes/SM_PauseControl/SM_PauseControl.mesh",
+              "Name": "Mesh",
+              "ParentUID": 3452816845,
+              "Type": 2,
+              "UID": 2083043185
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SM_PauseControl",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R1",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -26502,7 +26747,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "PrefabDirty": true,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -33546,7 +33791,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
@@ -33626,7 +33871,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (1)",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -33670,7 +33915,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R2",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -33741,7 +33986,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_CarabinaM4",
-      "ParentUID": 5374032,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 6881399
     }
