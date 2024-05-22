@@ -79,7 +79,7 @@ json Mesh::SaveComponent()
     json meshJSON;
 
     meshJSON["Name"] = name;
-    meshJSON["Type"] = type;
+    meshJSON["MeshType"] = type;
     if (auto pGO = containerGO.lock())
     {
         meshJSON["ParentUID"] = pGO.get()->GetUID();
@@ -165,9 +165,9 @@ void Mesh::LoadComponent(const json& meshJSON)
         drawNormalsFaces = meshJSON["DrawNormalsFaces"];
     }
 
-	if (meshJSON.contains("Type"))
+	if (meshJSON.contains("MeshType"))
 	{
-		type = meshJSON["Type"];
+		type = meshJSON["MeshType"];
 	}
 
     /*if (meshJSON.contains("Path"))
