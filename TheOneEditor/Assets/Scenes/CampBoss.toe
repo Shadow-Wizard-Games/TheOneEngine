@@ -23,6 +23,104 @@
             1.0
           ],
           "Type": 0,
+          "UID": 3043718316
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_Camp_Extended/M_Camp_Extended.toematerial",
+          "MeshPath": "Library/Meshes/MK_Camp_Extended/MK_Camp_Extended.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1094066398
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_Camp_Extended",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -4.371138828673793e-08,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -1.0,
+            0.0,
+            -4.371138828673793e-08,
+            0.0,
+            488.63519287109375,
+            0.0,
+            173.66180419921875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 431005401
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_CampWall_Door/M_CampWall_Door.toematerial",
+          "MeshPath": "Library/Meshes/MK_CampWall_Door/MK_CampWall_Door.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2431557806
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_CampWall_Door",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
           "UID": 1728557865
         },
         {
@@ -54,55 +152,6 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1017509214
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_Camp_Extended/M_Camp_Extended.toematerial",
-          "MeshPath": "Library/Meshes/MK_Camp_Extended/MK_Camp_Extended.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 14094411
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "MK_Camp_Extended",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
             0.977030873298645,
             -9.314826243667085e-09,
             -0.21309834718704224,
@@ -115,9 +164,9 @@
             1.0,
             -4.371138828673793e-08,
             0.0,
-            0.0,
-            0.0,
-            0.0,
+            -18.600204467773438,
+            1.7733067636527267e-07,
+            4.0568528175354,
             1.0
           ],
           "Type": 0,
@@ -691,55 +740,6 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            45.134765625,
-            0.0,
-            -263.7013244628906,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3153471821
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/MK_CampWall_WallWithPillar/M_CampWall_WallWithPillar.toematerial",
-          "MeshPath": "Library/Meshes/MK_CampWall_WallWithPillar/MK_CampWall_WallWithPillar.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 1640082684
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "MK_CampWall_WallWithPillar",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
             0.20285119116306305,
             0.0,
             0.9792097806930542,
@@ -878,6 +878,55 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "MK_CampWall_Pillar (1)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -4.371138828673793e-08,
+            0.0,
+            -1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -4.371138828673793e-08,
+            0.0,
+            -400.01678466796875,
+            0.0,
+            -254.77420043945313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2008371594
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_CampWall_Door/M_CampWall_Door.toematerial",
+          "MeshPath": "Library/Meshes/MK_CampWall_Door/MK_CampWall_Door.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2865582379
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_CampWall_Door (1)",
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
