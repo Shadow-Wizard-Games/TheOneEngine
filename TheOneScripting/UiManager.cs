@@ -271,18 +271,6 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.F1))//for the moment for debug porpuses
-                {
-                    OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
-                }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.F2))//for the moment for debug porpuses
-                {
-                    OpenHudPopUpMenu(HudPopUpMenu.PickUpFeedback, "shoulder laser");
-                }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.F3))//for the moment for debug porpuses
-                {
-                    OpenHudPopUpMenu(HudPopUpMenu.Dialogue, "Tu madre tiene una polla\n que ya la quisiera yo, me \ndio pena por tu padre el\n dia que se entero", Dialoguer.Sargeant);
-                }
             }
 
             if (playerScript.isDead && previousState != MenuState.Death)

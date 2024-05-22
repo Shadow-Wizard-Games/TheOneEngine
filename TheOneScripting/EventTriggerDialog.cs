@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using static UiManager;
+using static IAudioSource;
 
 public class EventTriggerDialog : Event
 {
@@ -24,9 +26,14 @@ public class EventTriggerDialog : Event
     string filepath = "Assets/GameData/Dialogs.json";
     string conversation;
     int dialogNum = 1;
-    int popupType;
     bool isFirst = true;
+    bool isLast = false;
     float cooldown = 0.0f;
+
+    IGameObject dialogueGo;
+    ICanvas dialogCanvas;
+
+    string audioEventString;
 
     public override void Start()
     {
@@ -42,7 +49,9 @@ public class EventTriggerDialog : Event
 
         conversation = ExtractConversation();
         string[] datapath = { conversation };
-        popupType = DataManager.AccessFileDataInt(filepath, datapath, "popupType");
+
+        dialogueGo = IGameObject.Find("Canvas_Dialogue");
+        dialogCanvas = dialogueGo.GetComponent<ICanvas>();
     }
 
     public override void Update()
@@ -78,23 +87,66 @@ public class EventTriggerDialog : Event
     {
         bool ret = true;
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && !menuManager.IsOnCooldown((UiManager.HudPopUpMenu)popupType) && cooldown <= 0)
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && cooldown <= 0) //&& No esta en pause)
         {
+            if(isFirst)
+            {
+                dialogueGo.Enable();
+                // Pausar
+            }
+            else if (isLast)
+            {
+                // Resumear
+                dialogueGo.Disable();
+                if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
+                {
+                    attachedGameObject.source.Play(aEvent);
+                }
+                attachedGameObject.source.Stop(aEvent);
+                attachedGameObject.Destroy();
+                return ret;
+            }
+
             string[] datapath = { conversation, "Dialog" + dialogNum.ToString() };
             string text = DataManager.AccessFileDataString(filepath, datapath, "text");
-            bool isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
+            isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
             int dialoguer = DataManager.AccessFileDataInt(filepath, datapath, "dialoguer");
-            menuManager.OpenHudPopUpMenu((UiManager.HudPopUpMenu)popupType, text, (UiManager.Dialoguer)dialoguer);
+            cooldown = DataManager.AccessFileDataInt(filepath, datapath, "cooldown");
+
+            audioEventString = DataManager.AccessFileDataString(filepath, datapath, "audioEvent");
+            if (Enum.TryParse(audioEventString, out AudioEvent audioEvent))
+            {
+                attachedGameObject.source.Play(audioEvent);
+            }
+
+            dialogCanvas.SetTextString(text, "Text_Dialogue");
+            dialogCanvas.PrintItemUI(false, "Img_ShopKeeper");
+            dialogCanvas.PrintItemUI(false, "Img_Medic");
+            dialogCanvas.PrintItemUI(false, "Img_CampLeader");
+            dialogCanvas.PrintItemUI(false, "Img_Sargeant");
+
+            switch ((UiManager.Dialoguer)dialoguer)
+            {
+                case Dialoguer.ShopKeeper:
+                    dialogCanvas.PrintItemUI(true, "Img_ShopKeeper");
+                    break;
+                case Dialoguer.Medic:
+                    dialogCanvas.PrintItemUI(true, "Img_Medic");
+                    break;
+                case Dialoguer.CampLeader:
+                    dialogCanvas.PrintItemUI(true, "Img_CampLeader");
+                    break;
+                case Dialoguer.Sargeant:
+                    dialogCanvas.PrintItemUI(true, "Img_Sargeant");
+                    break;
+                default:
+                    break;
+            }
+
             if (!isLast)
             {
                 dialogNum++;
                 isFirst = false;
-            }
-            else
-            {
-                isFirst = true;
-                dialogNum = 1;
-                cooldown = 60.0f;
             }
         }
 
