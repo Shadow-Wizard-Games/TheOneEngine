@@ -7,7 +7,11 @@ public class CameraMovement : MonoBehaviour
     readonly Vector3 camOffset = new Vector3(90, 220, 90);
     //float camJoyDisplacement = 10.0f;
 
-    readonly float cameraMargin = 15.0f;
+    readonly float cameraMargin = 10.0f;
+
+    bool isCameraMoving = false;
+
+    Easing cameraMovementEasing;
 
     public override void Start()
     {
@@ -15,6 +19,9 @@ public class CameraMovement : MonoBehaviour
         playerScript = playerGO.GetComponent<PlayerScript>();
         attachedGameObject.transform.Position = playerGO.transform.Position + camOffset;
         attachedGameObject.transform.CamLookAt(playerGO.transform.Position);
+
+        cameraMovementEasing = new Easing(0.2, 0, false);
+        cameraMovementEasing.Play();
     }
 
     public override void Update()
@@ -32,6 +39,13 @@ public class CameraMovement : MonoBehaviour
 
         Vector3 camMovement = Vector3.zero;
 
+        bool hasMoved = false;
+
+        if (Math.Abs(displacement.x) > cameraMargin || Math.Abs(displacement.y) > cameraMargin || Math.Abs(displacement.z) > cameraMargin)
+        {
+            hasMoved = true;
+        }
+
         if (displacement.x > cameraMargin)
         {
             camMovement -= Vector3.right;
@@ -40,6 +54,7 @@ public class CameraMovement : MonoBehaviour
         {
             camMovement += Vector3.right;
         }
+
         if (displacement.z > cameraMargin)
         {
             camMovement -= Vector3.forward;
@@ -49,7 +64,22 @@ public class CameraMovement : MonoBehaviour
             camMovement += Vector3.forward;
         }
 
-        attachedGameObject.transform.Translate(camMovement.Normalize() * playerScript.speed * Time.deltaTime);
+        if (hasMoved != isCameraMoving)
+        {
+            cameraMovementEasing.Replay();
+        }
+
+        if (hasMoved)
+        {
+            attachedGameObject.transform.Translate(camMovement.Normalize() * (playerScript.speed * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_IN_SIN)) * Time.deltaTime);
+        }
+        else {
+            attachedGameObject.transform.Translate(camMovement.Normalize() * (playerScript.speed * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_OUT_SIN)) * Time.deltaTime);
+        }
+        
+        //attachedGameObject.transform.Translate(camMovement.Normalize() * (playerScript.speed * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_IN_SIN)) * Time.deltaTime);
+
+        isCameraMoving = hasMoved;
 
         //Debug.Log("X: " + displacement.x + " | " + " Z: " + displacement.z);
 

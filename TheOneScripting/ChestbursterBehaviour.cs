@@ -5,7 +5,8 @@ public class ChestbursterBehaviour : MonoBehaviour
     enum States
     {
         Idle,
-        ChaseAttack,
+        Chase,
+        Attack,
         Dead
     }
 
@@ -26,30 +27,30 @@ public class ChestbursterBehaviour : MonoBehaviour
     States currentState = States.Idle;
     ChestbursterAttack currentAttack = ChestbursterAttack.None;
 
-    // Tail Trip, might remove this variables due to the animations
-    private float spinElapsed = 0.0f;
-    private const float spinTime = 2.0f;
-
     // Ranges
-    const float enemyDetectedRange = 35.0f * 1.5f;
-    const float farRangeThreshold = 60.0f;
+    const float detectedRange = 35.0f * 1.5f;
+    const float isCloseRange = 60.0f;
     const float maxChasingRange = 150.0f;
+    const float maxRangeStopChasing = 25.0f;
 
     // Flags
     bool isClose = false;
     bool detected = false;
+    bool isDead = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 4.0f;
+    float destroyTimer = 0.0f;
+    const float destroyCooldown = 3.0f;
 
     PlayerScript player;
     GameManager gameManager;
 
-    // particles
-    IGameObject tailPunchPSGO;
-    IGameObject tailTripPSGO;
-    IGameObject deathPSGO;
+    // Particles
+    IParticleSystem tailPunchPSGO;
+    IParticleSystem tailTripPSGO;
+    IParticleSystem deathPSGO;
 
     public override void Start()
     {
@@ -62,22 +63,28 @@ public class ChestbursterBehaviour : MonoBehaviour
         attachedGameObject.animator.Blend = false;
         attachedGameObject.animator.TransitionTime = 0.0f;
 
-        tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS");
-        tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS");
-        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
+        tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS")?.GetComponent<IParticleSystem>();
+        tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS")?.GetComponent<IParticleSystem>();
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
     {
         attachedGameObject.animator.UpdateAnimation();
 
-        if (currentState == States.Dead) return;
+        if (currentState == States.Dead)
+        {
+            destroyTimer += Time.deltaTime;
+            if (destroyTimer >= destroyCooldown)
+                attachedGameObject.Destroy();
+
+            return;
+        }
 
         if (attachedGameObject.transform.ComponentCheck())
         {
             DebugDraw();
 
-            //Set the director vector and distance to the player
             //directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
             playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
@@ -90,19 +97,21 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         if (life <= 0) { currentState = States.Dead; return; }
 
-        if (!detected && playerDistance < enemyDetectedRange) detected = true;
+        if (!detected && playerDistance < detectedRange)
+        {
+            detected = true;
+            currentState = States.Chase;
+        }
 
         if (detected)
         {
-            attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
-
-            if (playerDistance < farRangeThreshold && !isClose)
+            if (playerDistance < isCloseRange && !isClose)
             {
                 isClose = true;
                 //Debug.Log("Player is now CLOSE");
             }
 
-            if (playerDistance >= farRangeThreshold && isClose)
+            if (playerDistance >= isCloseRange && isClose)
             {
                 isClose = false;
                 //Debug.Log("Player is now FAR");
@@ -121,10 +130,25 @@ public class ChestbursterBehaviour : MonoBehaviour
                 attachedGameObject.animator.Play("Run");
             }
 
+
+            if (playerDistance <= maxRangeStopChasing && currentAttack == ChestbursterAttack.None &&
+                currentState != States.Idle)
+            {
+                currentState = States.Idle;
+                //Debug.Log("Player is INSIDE maxRangeStopChasing");
+            }
+
+            if (playerDistance > maxRangeStopChasing && currentAttack == ChestbursterAttack.None &&
+                currentState != States.Chase)
+            {
+                currentState = States.Chase;
+                //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
+            }
+
             if (currentAttack == ChestbursterAttack.None && attackTimer >= attackCooldown)
             {
-                //Debug.Log("Attempt to attack");
-                currentState = States.ChaseAttack;
+                currentState = States.Attack;
+                //Debug.Log("Chestburster attempt to attack");
             }
         }
     }
@@ -138,7 +162,12 @@ public class ChestbursterBehaviour : MonoBehaviour
                     attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
                 break;
-            case States.ChaseAttack:
+            case States.Chase:
+                player.isFighting = true;
+                attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
+                break;
+            case States.Attack:
                 player.isFighting = true;
                 attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
 
@@ -147,20 +176,19 @@ public class ChestbursterBehaviour : MonoBehaviour
                 switch (currentAttack)
                 {
                     case ChestbursterAttack.TailPunch:
-                        //Debug.Log("TAIL PUNCH");
                         TailPunch();
+                        //Debug.Log("TAIL PUNCH");
                         break;
                     case ChestbursterAttack.TailTrip:
-                        //Debug.Log("TAIL TRIP");
                         TailTrip();
+                        //Debug.Log("TAIL TRIP");
                         break;
                     default:
                         break;
                 }
                 break;
             case States.Dead:
-                attachedGameObject.animator.Play("Dead");
-                if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
+                Dead();
                 break;
             default:
                 break;
@@ -175,13 +203,13 @@ public class ChestbursterBehaviour : MonoBehaviour
             {
                 currentAttack = ChestbursterAttack.TailPunch;
                 attachedGameObject.animator.Play("TailPunch");
-                if (tailPunchPSGO != null) tailPunchPSGO.GetComponent<IParticleSystem>().Play();
+                tailPunchPSGO.Play();
             }
             else
             {
                 currentAttack = ChestbursterAttack.TailTrip;
                 attachedGameObject.animator.Play("TailTrip");
-                if (tailTripPSGO != null) tailTripPSGO.GetComponent<IParticleSystem>().Play();
+                tailTripPSGO.Play();
             }
             //Debug.Log("Chestburster current attack: " + currentAttack);
         }
@@ -209,12 +237,26 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     }
 
+    private void Dead()
+    {
+        if (!isDead)
+        {
+            attachedGameObject.animator.Play("Dead");
+
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
+            {
+                isDead = true;
+                deathPSGO.Play();
+            }
+        }
+    }
+
     private void ResetState()
     {
         //Debug.Log("Reset State");
         attackTimer = 0.0f;
         currentAttack = ChestbursterAttack.None;
-        currentState = States.Idle;
+        currentState = States.Chase;
         attachedGameObject.animator.Play("Run");
     }
 
@@ -230,12 +272,12 @@ public class ChestbursterBehaviour : MonoBehaviour
         {
             if (!detected)
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
             }
             else
             {
                 Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, farRangeThreshold, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, isCloseRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
             }
         }
     }

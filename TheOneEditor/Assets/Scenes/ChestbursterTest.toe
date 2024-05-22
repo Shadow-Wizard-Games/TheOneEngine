@@ -321,7 +321,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (1)",
-      "ParentUID": 69993984,
+      "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -345,7 +345,7 @@
             0.0,
             100.0,
             0.0,
-            -7.352831840515137,
+            0.0,
             0.0,
             0.0,
             1.0
@@ -1076,7 +1076,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 69993984,
+      "ParentUID": 3452816845,
       "PrefabDirty": true,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -8115,15 +8115,605 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4072698855
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "ItemManager",
+              "Type": 4,
+              "UID": 1110714302
+            },
+            {
+              "AudioID": 21,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Manager",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 69993984,
+      "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            99.99996948242188,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            99.99996948242188,
+            0.0,
+            -50.0,
+            0.0,
+            300.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "Name": "Mesh",
+          "ParentUID": 113510800,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 3278573262
+        },
+        {
+          "AudioID": 22,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            99.99996948242188,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            99.99996948242188,
+            0.0,
+            50.0,
+            0.0,
+            300.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 3278573262
+        },
+        {
+          "AudioID": 23,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
       "Static": false,
       "UID": 3452816845
     }
