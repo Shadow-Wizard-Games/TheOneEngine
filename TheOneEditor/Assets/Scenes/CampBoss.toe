@@ -1,0 +1,889 @@
+{
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1728557865
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 4223515595,
+          "Yaw": 0.0,
+          "zFar": 3000.0,
+          "zNear": 0.1
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "mainCamera",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1017509214
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_Camp_Extended/M_Camp_Extended.toematerial",
+          "MeshPath": "Library/Meshes/MK_Camp_Extended/MK_Camp_Extended.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 14094411
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_Camp_Extended",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.977030873298645,
+            -9.314826243667085e-09,
+            -0.21309834718704224,
+            0.0,
+            -0.21309834718704224,
+            -4.270737719025419e-08,
+            -0.977030873298645,
+            0.0,
+            -8.403105496777554e-17,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1313200797
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 243374370
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9463323950767517,
+            -1.4127317982115528e-08,
+            -0.32319533824920654,
+            0.0,
+            -0.32319533824920654,
+            -4.1365506575630206e-08,
+            -0.9463323950767517,
+            0.0,
+            -2.343237239240217e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            -111.52945709228516,
+            -1.2888189303339459e-05,
+            -294.84747314453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4273254976
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 524497276
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (1)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.7197118401527405,
+            3.0347678148245905e-08,
+            0.6942727565765381,
+            0.0,
+            0.6942727565765381,
+            3.14596206862916e-08,
+            0.7197118401527405,
+            0.0,
+            9.517230431613797e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            -172.288818359375,
+            -1.2888189303339459e-05,
+            -294.84747314453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3299120829
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 26750386
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (2)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.8628243207931519,
+            -2.2096287466411013e-08,
+            -0.5055040717124939,
+            0.0,
+            -0.5055040717124939,
+            -3.7715256695491917e-08,
+            -0.8628243207931519,
+            0.0,
+            -2.5681528094004074e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            -242.2156982421875,
+            -1.2888189303339459e-05,
+            -294.84747314453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3241524073
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3897288183
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (3)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.885166347026825,
+            2.0337806105885647e-08,
+            0.46527475118637085,
+            0.0,
+            0.46527475118637085,
+            -3.869185505323003e-08,
+            -0.885166347026825,
+            0.0,
+            1.430666970576687e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            -242.2156982421875,
+            -8.411222438553523e-07,
+            -19.242713928222656,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 214302492
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1431846064
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (4)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7819225192070007,
+            2.7248622913589315e-08,
+            0.6233757138252258,
+            0.0,
+            0.6233757138252258,
+            -3.4178949448460116e-08,
+            -0.7819225192070007,
+            0.0,
+            2.410283867482335e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            -180.657958984375,
+            1.1388056009309366e-05,
+            260.5282897949219,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2253645063
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 839891634
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (5)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.5904984474182129,
+            -3.5276816134910405e-08,
+            -0.8070387840270996,
+            0.0,
+            -0.8070387840270996,
+            2.581150404523669e-08,
+            0.5904984474182129,
+            0.0,
+            -1.0406241272942836e-15,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            -134.9095458984375,
+            1.3128744285495486e-05,
+            300.3505859375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2876496914
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3826869908
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (6)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.5072793364524841,
+            -3.7669707353416015e-08,
+            -0.8617817759513855,
+            0.0,
+            -0.8617817759513855,
+            -2.2173889391297052e-08,
+            -0.5072793364524841,
+            0.0,
+            -2.9806745306744007e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            -113.77815246582031,
+            9.259296348318458e-06,
+            211.82794189453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3846312021
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2887527692
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (7)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.4663696587085724,
+            3.866666986596101e-08,
+            0.8845903873443604,
+            0.0,
+            0.8845903873443604,
+            -2.0385652277354893e-08,
+            -0.4663696587085724,
+            0.0,
+            6.708315653796847e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            286.78814697265625,
+            -3.656113847227971e-07,
+            -8.364280700683594,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3509506084
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1955245353
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (8)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.892706573009491,
+            -1.9698035202964093e-08,
+            -0.4506385922431946,
+            0.0,
+            -0.4506385922431946,
+            -3.902144385392603e-08,
+            -0.892706573009491,
+            0.0,
+            -3.634561466642059e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            286.78814697265625,
+            -6.379960268532159e-06,
+            -145.95655822753906,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2806760630
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2045331060
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (9)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.850170910358429,
+            -2.301434598450669e-08,
+            -0.5265069007873535,
+            0.0,
+            -0.5265069007873535,
+            -3.716215601912154e-08,
+            -0.850170910358429,
+            0.0,
+            -3.84335402934906e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            146.33642578125,
+            -9.249602953786962e-06,
+            -211.60635375976563,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1879146145
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3396623684
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (10)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.6163722276687622,
+            3.442075069415296e-08,
+            0.7874550223350525,
+            0.0,
+            0.7874550223350525,
+            -2.6942490904957594e-08,
+            -0.6163722276687622,
+            0.0,
+            2.027346227729076e-16,
+            1.0,
+            -4.371138828673793e-08,
+            0.0,
+            146.33642578125,
+            6.697516255371738e-06,
+            153.22120666503906,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 500388641
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 4219107909
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse (11)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            45.134765625,
+            0.0,
+            -263.7013244628906,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3153471821
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_CampWall_WallWithPillar/M_CampWall_WallWithPillar.toematerial",
+          "MeshPath": "Library/Meshes/MK_CampWall_WallWithPillar/MK_CampWall_WallWithPillar.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1640082684
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_CampWall_WallWithPillar",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.20285119116306305,
+            0.0,
+            0.9792097806930542,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.9792097806930542,
+            0.0,
+            0.20285119116306305,
+            0.0,
+            -72.61565399169922,
+            0.0,
+            125.11396026611328,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 326155831
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_CampWall_Wall/M_CampWall_Wall.toematerial",
+          "MeshPath": "Library/Meshes/MK_CampWall_Wall/MK_CampWall_Wall.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1131182222
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_CampWall_Wall",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            106.3240966796875,
+            0.0,
+            238.1796875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2753129932
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_CampWall_Pillar/M_CampWall_Pillar.toematerial",
+          "MeshPath": "Library/Meshes/MK_CampWall_Pillar/MK_CampWall_Pillar.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2133022118
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_CampWall_Pillar",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            187.75924682617188,
+            0.0,
+            -263.4226989746094,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2353304301
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/MK_CampWall_Pillar/M_CampWall_Pillar.toematerial",
+          "MeshPath": "Library/Meshes/MK_CampWall_Pillar/MK_CampWall_Pillar.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 4181500791
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "MK_CampWall_Pillar (1)",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    }
+  ],
+  "index": 0,
+  "path": "Assets\\Scenes\\CampBoss.toe",
+  "sceneName": "CampBoss"
+}
