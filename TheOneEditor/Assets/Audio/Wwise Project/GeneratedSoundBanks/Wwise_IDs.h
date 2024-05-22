@@ -163,6 +163,7 @@ namespace AK
         static const AkUniqueID VO_STUB_XENOFIGHT2 = 3871246354U;
         static const AkUniqueID VO_STUB_XENOFIGHT3 = 3871246355U;
         static const AkUniqueID VO_STUB_XENOFIGHTEND1 = 3353530420U;
+        static const AkUniqueID VO_TTS = 1278196794U;
         static const AkUniqueID W_M4_RELOAD = 2147632472U;
         static const AkUniqueID W_M4_SHOOT = 933371860U;
         static const AkUniqueID W_SL_SHOOT = 3010972734U;

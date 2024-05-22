@@ -10,11 +10,14 @@ public class GameManager : MonoBehaviour
     string saveLevel;
 
     ItemManager itemManager;
+    QuestManager questManager;
 
     public bool colliderRender;
     public bool gridRender;
     public bool godMode;
     public bool extraSpeed;
+
+    bool gamePaused = false;
 
     public List<string> savedLevels = new List<string>();
 
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
         DrawGrid();
 
         itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
+        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
     }
 
     public override void Update()
@@ -79,6 +83,7 @@ public class GameManager : MonoBehaviour
     public void ResetSave()
     {
         itemManager.ResetInventory();
+        questManager.ResetQuests();
     }
 
     public void DrawColliders()
@@ -91,5 +96,15 @@ public class GameManager : MonoBehaviour
     {
         gridRender = !gridRender;
         InternalCalls.ToggleGridDraw();
+    }
+
+    public void TooglePause()
+    {
+        gamePaused = !gamePaused;
+    }
+
+    public bool GetGameState()
+    {
+        return gamePaused;
     }
 }

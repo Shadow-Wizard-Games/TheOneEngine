@@ -1260,8 +1260,11 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	//Setting Camera for 2D Rendering
 	Set2DCamera();
 	Renderer2D::StartBatch();//           START BATCH
-	RecurseUIDraw(rootSceneGO, mode);
+
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
+	else
+		RecurseUIDraw(rootSceneGO, mode);
+
 	Renderer2D::Flush();//           END BATCH
 }

@@ -26,7 +26,9 @@ public class UiManager : MonoBehaviour
         ShopKeeper = 0,
         Medic,
         CampLeader,
-        Sargeant
+        Sargeant,
+        Default,
+        None
     }
 
     IGameObject inventoryGo;
@@ -108,7 +110,7 @@ public class UiManager : MonoBehaviour
         pickUpFeedbackGo.Disable();
 
         state = MenuState.Hud;
-        playerScript.onPause = false;
+        if (gameManager.GetGameState()) { gameManager.TooglePause(); }
 
         GameManagerGO = IGameObject.Find("GameManager");
         gameManager = GameManagerGO.GetComponent<GameManager>();
@@ -175,44 +177,34 @@ public class UiManager : MonoBehaviour
             changeSaveTextCooldown = 0.0f;
         }
 
-        if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown < 4.5f)
+        if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown > 0.0f)
         {
-            pickUpFeedbackCooldown += dt;
+            pickUpFeedbackCooldown -= dt;
             if (state != MenuState.Hud)
             {
                 pickUpFeedbackOnCooldown = false;
-                pickUpFeedbackCooldown = 0.0f;
                 pickUpFeedbackGo.Disable();
             }
         }
-        else if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown >= 4.5f)
+        else if (pickUpFeedbackOnCooldown && pickUpFeedbackCooldown <= 0.0f)
         {
             pickUpFeedbackGo.Disable();
             pickUpFeedbackOnCooldown = false;
         }
-        else
-        {
-            pickUpFeedbackCooldown = 0.0f;
-        }
 
-        if (dialogueOnCooldown && dialogueCooldown < 4.5f)
+        if (dialogueOnCooldown && dialogueCooldown > 0.0f)
         {
-            dialogueCooldown += dt;
+            dialogueCooldown -= dt;
             if (state != MenuState.Hud)
             {
                 dialogueOnCooldown = false;
-                dialogueCooldown = 0.0f;
                 dialogueGo.Disable();
             }
         }
-        else if (dialogueOnCooldown && dialogueCooldown >= 4.5f)
+        else if (dialogueOnCooldown && dialogueCooldown <= 0.0f)
         {
             dialogueGo.Disable();
             dialogueOnCooldown = false;
-        }
-        else
-        {
-            dialogueCooldown = 0.0f;
         }
 
         //previousState = state;
@@ -224,7 +216,7 @@ public class UiManager : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
                     playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
-
+                    gameManager.TooglePause();
                     SceneManager.LoadScene("MainMenu");
                 }
             }
@@ -271,25 +263,13 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.F1))//for the moment for debug porpuses
-                {
-                    OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
-                }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.F2))//for the moment for debug porpuses
-                {
-                    OpenHudPopUpMenu(HudPopUpMenu.PickUpFeedback, "shoulder laser");
-                }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.F3))//for the moment for debug porpuses
-                {
-                    OpenHudPopUpMenu(HudPopUpMenu.Dialogue, "Tu madre tiene una polla\n que ya la quisiera yo, me \ndio pena por tu padre el\n dia que se entero", Dialoguer.Sargeant);
-                }
             }
 
             if (playerScript.isDead && previousState != MenuState.Death)
             {
                 deathScreenGo.Enable();
                 state = MenuState.Death;
-                playerScript.onPause = true;
+                gameManager.TooglePause();
                 onCooldown = true;
             }
         }
@@ -306,39 +286,35 @@ public class UiManager : MonoBehaviour
                 inventoryGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Pause:
                 pauseMenuGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Debug:
                 debugGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Settings:
                 settingsGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Stats:
                 statsGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Missions:
                 missionsGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
         }
+
+        if(state != MenuState.Hud) { gameManager.TooglePause(); }
     }
 
     public void OpenMenu(MenuState state)
@@ -348,6 +324,7 @@ public class UiManager : MonoBehaviour
             switch (this.state)
             {
                 case MenuState.Hud:
+                    gameManager.TooglePause();
                     hudGo.Disable();
                     break;
                 case MenuState.Inventory:
@@ -373,37 +350,31 @@ public class UiManager : MonoBehaviour
             switch (state)
             {
                 case MenuState.Hud:
+                    gameManager.TooglePause();
                     hudGo.Enable();
                     state = MenuState.Hud;
-                    playerScript.onPause = false;
                     break;
                 case MenuState.Inventory:
                     inventoryGo.Enable();
                     state = MenuState.Inventory;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Pause:
                     pauseMenuGo.Enable();
                     state = MenuState.Pause;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Debug:
                     debugGo.Enable();
                     state = MenuState.Debug;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Settings:
                     settingsGo.Enable();
                     settingsCanvas.firstFrameUpdate = false;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Missions:
                     missionsGo.Enable();
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Stats:
                     statsGo.Enable();
-                    playerScript.onPause = true;
                     break;
             }
             this.previousState = this.state;
@@ -411,7 +382,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void OpenHudPopUpMenu(HudPopUpMenu type, string text = "", Dialoguer dialoguer = Dialoguer.ShopKeeper)
+    public void OpenHudPopUpMenu(HudPopUpMenu type, string text1 = "", string text = "", Dialoguer dialoguer = Dialoguer.None, float cooldown = 4.5f)
     {
         switch (type)
         {
@@ -428,7 +399,9 @@ public class UiManager : MonoBehaviour
                     break;
                 pickUpFeedbackGo.Enable();
                 pickupCanvas.SetTextString(text, "Text_PickedItem");
+                pickupCanvas.SetTextString(text1, "Text_TitleNewItem");
                 pickUpFeedbackOnCooldown = true;
+                pickUpFeedbackCooldown = cooldown;
                 break;
             case HudPopUpMenu.Dialogue:
                 if (dialogueOnCooldown)
@@ -439,6 +412,7 @@ public class UiManager : MonoBehaviour
                 dialogCanvas.PrintItemUI(false, "Img_Medic");
                 dialogCanvas.PrintItemUI(false, "Img_CampLeader");
                 dialogCanvas.PrintItemUI(false, "Img_Sargeant");
+                dialogCanvas.PrintItemUI(false, "Img_Default");
                 switch (dialoguer)
                 {
                     case Dialoguer.ShopKeeper:
@@ -453,10 +427,14 @@ public class UiManager : MonoBehaviour
                     case Dialoguer.Sargeant:
                         dialogCanvas.PrintItemUI(true, "Img_Sargeant");
                         break;
+                    case Dialoguer.Default:
+                        dialogCanvas.PrintItemUI(true, "Img_Default");
+                        break;
                     default:
                         break;
                 }
                 dialogueOnCooldown = true;
+                dialogueCooldown = cooldown;
                 break;
             default:
                 break;

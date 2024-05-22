@@ -11,6 +11,8 @@ public class EventNextRoom : Event
     IGameObject playerGO;
 
     GameManager gameManager;
+    ItemManager itemManager;
+    UiManager uiManager;
 
     float playerDistance;
 
@@ -24,6 +26,8 @@ public class EventNextRoom : Event
         playerGO = IGameObject.Find("SK_MainCharacter");
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
+        uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
         eventType = EventType.NEXTROOM;
         goName = attachedGameObject.name;
@@ -63,8 +67,14 @@ public class EventNextRoom : Event
         {
             string sceneName = ExtractSceneName();
 
-            Debug.LogWarning(sceneName);
-            Debug.LogWarning(goName);
+            if(sceneName == "L1R5")
+            {
+                if (!itemManager.hasKey)
+                {
+                    uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Error:", "Missing Key");
+                    return ret;
+                }
+            }
 
             playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
