@@ -2,7 +2,7 @@
 
 public class Raindrop : MonoBehaviour
 {
-    float bulletSpeed = 50.0f;
+    float bulletSpeed = 200.0f;
     float lifeTime = 2.0f;
     float currentTime = 0.0f;
 

@@ -24,16 +24,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         attachedGameObject.animator.UpdateAnimation();
 
         //THIS IF IS DEBUG ONLY. DELETE ON COMPLETION
-        //if (Input.GetKeyboardButton(Input.KeyboardCode.K))
-        //{
-        //    currentLife -= 10;
-        //    Debug.Log("Current life is: " + currentLife.ToString());
-        //}
         if (Input.GetKeyboardButton(Input.KeyboardCode.K))
         {
-            AcidRain(2.0f);
+            currentLife -= 10;
+            Debug.Log("Current life is: " + currentLife.ToString());
         }
-
 
         if (isDead) { return; }
 
@@ -99,6 +94,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 Debug.LogError("Fallen out of FSM");
                 break;
         }
+        if (rainActive) { AcidRain(); }
     }
 
     float detectionRange = 400.0f;
@@ -512,6 +508,9 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         if (attachedGameObject.animator.currentAnimHasFinished)
         {
+            rainActive = true;
+            acidRainCenter = playerGO.transform.position;
+
             if (currentPhase == 1)
             {
                 attackedFinished = true;
@@ -566,19 +565,39 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         //}
     }
 
+
+    float rainArea = 170.0f;
+    float timeBetweenRaindrops = 0.4f;
+    float rainDuration = 5.0f;
+    #region Do not touch variables
     bool rainActive = false;
+    float dropsCounter = 0.0f;
     float rainTimeCounter = 0.0f;
-    private void AcidRain(float timeBetweenRaindrops)
+    Vector3 acidRainCenter;
+    #endregion
+    private void AcidRain()
     {
-        rainTimeCounter += Time.deltaTime;
-        if (rainTimeCounter >= timeBetweenRaindrops)
+        dropsCounter += Time.deltaTime;
+        if (dropsCounter >= timeBetweenRaindrops)
         {
-            rainTimeCounter -= timeBetweenRaindrops;
+            dropsCounter -= timeBetweenRaindrops;
 
-            Vector3 position = playerGO.transform.position;
+            Random rand = new Random();
+            float angle = (float)(rand.NextDouble() * 2 * Math.PI);
 
-            InternalCalls.CreatePrefab("Acid_Raindrop", position, Vector3.zero);
+            float radius = rainArea * (float)Math.Sqrt(rand.NextDouble());
+
+            Vector3 localPos = new Vector3(radius * (float)Math.Cos(angle),
+                                           0.0f,
+                                           radius * (float)Math.Sin(angle));
+
+            InternalCalls.CreatePrefab("Acid_Raindrop", acidRainCenter + localPos, Vector3.zero);
         }
+
+        rainTimeCounter += Time.deltaTime;
+        if (rainTimeCounter >= rainDuration) { rainTimeCounter = 0.0f; rainActive = false; }
+
+        Debug.DrawWireCircle(acidRainCenter, rainArea, Color.chernobylGreen.ToVector3());
     }
 
     float spawnDuration = 5.0f;
