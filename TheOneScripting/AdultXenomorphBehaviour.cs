@@ -45,6 +45,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     // Flags
     bool detected = false;
     bool isClose = false;
+    bool isDead = false;
 
     // Timers
     float attackTimer = 0.0f;
@@ -202,8 +203,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                 Patrol();
                 break;
             case States.Dead:
-                attachedGameObject.animator.Play("Death");
-                deathPSGO.Play();
+                Dead();
                 break;
             default:
                 break;
@@ -264,13 +264,27 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                            Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
 
         attachedGameObject.transform.LookAt2D(roundPos);
-        if (!goingToRoundPos)
+        if (!goingToRoundPos) 
         {
             MoveTo(roundPos);
         }
         else
         {
             goingToRoundPos = !MoveTo(roundPos);
+        }
+    }
+
+    private void Dead()
+    {
+        if (!isDead)
+        {
+            attachedGameObject.animator.Play("Death");
+
+            if (attachedGameObject.animator.CurrentAnimHasFinished) 
+            { 
+                isDead = true;
+                deathPSGO.Play();
+            }
         }
     }
 

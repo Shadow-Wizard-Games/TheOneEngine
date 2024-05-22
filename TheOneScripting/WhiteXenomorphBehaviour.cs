@@ -44,6 +44,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     // Flags
     bool detected = false;
     bool isClose = false;
+    bool isDead = false;
 
     // Timers
     float attackTimer = 0.0f;
@@ -200,8 +201,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 Patrol();
                 break;
             case States.Dead:
-                attachedGameObject.animator.Play("Death");
-                deathPSGO.Play();
+                Dead();
                 break;
             default:
                 break;
@@ -271,6 +271,20 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         else
         {
             goingToRoundPos = !MoveTo(roundPos);
+        }
+    }
+
+    private void Dead()
+    {
+        if (!isDead)
+        {
+            attachedGameObject.animator.Play("Death");
+
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
+            {
+                isDead = true;
+                deathPSGO.Play();
+            }
         }
     }
 
