@@ -13,6 +13,7 @@ public:
 	~RenderTarget();
 
 	std::vector<FrameBuffer>* GetFrameBuffers();
+	FrameBuffer* GetFrameBuffer(std::string name);
 
 private:
 	uint id;

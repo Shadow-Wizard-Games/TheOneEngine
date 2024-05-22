@@ -215,7 +215,8 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	// Close the file
 	file.close();
 
-	currentScene->lights.clear();
+	//clear lights
+	Renderer3D::CleanLights();
 
 	if (sceneJSON.contains("sceneName"))
 	{

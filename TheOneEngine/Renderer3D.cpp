@@ -2,11 +2,9 @@
 #include "Resources.h"
 #include "EngineCore.h"
 #include "SkeletalUtilities.h"
-#include "Camera.h"
-#include "FrameBuffer.h"
 
 #include "Animation/OzzAnimation.h"
-#include "../TheOneAnimation/samples/framework/internal/shader.h"
+#include "TheOneAnimation/samples/framework/internal/shader.h"
 
 #include "ozz/geometry/runtime/skinning_job.h"
 #include "ozz/base/maths/internal/simd_math_config.h"
@@ -15,6 +13,7 @@
 struct Renderer3DData
 {
 	std::vector<RenderTarget> renderTargets;
+	std::vector<std::shared_ptr<GameObject>> lights;
 
 	std::vector<DefaultMesh> meshes;
 	std::vector<InstanceCall> instanceCalls;
@@ -47,13 +46,11 @@ void Renderer3D::Update()
 	//Update Instances
 	UpdateInstanceBuffer(renderer3D.instanceCalls);
 
-	for (const InstanceCall& call : renderer3D.instanceCalls)
-		DrawInstanced(call);
-	renderer3D.instanceCalls.clear();
-
-	for (const SkeletalCall& call : renderer3D.skeletalCalls)
-		DrawSkeletal(call);
-	renderer3D.skeletalCalls.clear();
+	for (auto target : renderer3D.renderTargets)
+	{
+		GeometryPass(target);
+		PostProcess(target);
+	}
 }
 
 void Renderer3D::Shutdown()
@@ -87,6 +84,16 @@ unsigned int Renderer3D::AddRenderTarget(DrawMode mode, Camera* camera, glm::vec
 std::vector<FrameBuffer>* Renderer3D::GetFrameBuffers(unsigned int targetID)
 {
 	return renderer3D.renderTargets[targetID].GetFrameBuffers();
+}
+
+void Renderer3D::AddLight(std::shared_ptr<GameObject> container)
+{
+	renderer3D.lights.push_back(container);
+}
+
+void Renderer3D::CleanLights()
+{
+	renderer3D.lights.clear();
 }
 
 void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
@@ -418,4 +425,220 @@ void Renderer3D::DrawSkeletal(const SkeletalCall& call)
 	GLCALL(glBindVertexArray(0));
 
 	material->UnBind();
+}
+
+void Renderer3D::GeometryPass(RenderTarget target)
+{
+	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
+
+	gBuffer->Bind();
+	gBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+
+	// Set Render Environment
+	engine->SetRenderEnvironment();
+
+	// Draw Scene
+	GLCALL(glDisable(GL_BLEND));
+	for (const InstanceCall& call : renderer3D.instanceCalls)
+		DrawInstanced(call);
+	renderer3D.instanceCalls.clear();
+
+	for (const SkeletalCall& call : renderer3D.skeletalCalls)
+		DrawSkeletal(call);
+	renderer3D.skeletalCalls.clear();
+
+	gBuffer->Unbind();
+}
+
+void Renderer3D::PostProcess(RenderTarget target)
+{
+	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
+	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
+
+	postBuffer->Bind();
+	postBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+
+	// Copy gBuffer Depth to postBuffer
+	GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer->GetBuffer()));
+	GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer->GetBuffer()));
+	int width = target.GetFrameBuffer("lightBuffer")->GetWidth();
+	int height = target.GetFrameBuffer("lightBuffer")->GetHeight();
+	GLCALL(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
+
+	postBuffer->Bind();
+	LightPass(target);
+
+	engine->SetRenderEnvironment();
+
+	//// Debug / Editor Draw 
+	//engine->DebugDraw(true);
+
+	postBuffer->Unbind();
+}
+
+void Renderer3D::ShadowPass(RenderTarget target)
+{
+	std::vector<std::shared_ptr<GameObject>> lights = renderer3D.lights;
+
+	for (int i = 0; i < lights.size(); i++)
+	{
+		Light* light = lights[i]->GetComponent<Light>();
+
+		if (!light->castShadows) continue;
+
+		FrameBuffer* shadowBuffer = target.GetFrameBuffer("shadowBuffer");
+		shadowBuffer->Bind();
+		shadowBuffer->Clear(ClearBit::Depth, { 0.0f, 0.0f, 0.0f, 1.0f });
+
+		// Set Render Environment
+		engine->SetRenderEnvironment();
+
+		GLCALL(glDisable(GL_BLEND));
+
+		// Draw Scene
+		GLCALL(glDisable(GL_BLEND));
+		for (const InstanceCall& call : renderer3D.instanceCalls)
+			DrawInstanced(call);
+		renderer3D.instanceCalls.clear();
+
+		for (const SkeletalCall& call : renderer3D.skeletalCalls)
+			DrawSkeletal(call);
+		renderer3D.skeletalCalls.clear();
+
+		//engine->N_sceneManager->currentScene->Draw(DrawMode::EDITOR, this->camera);
+
+		shadowBuffer->Unbind();
+	}
+}
+
+void Renderer3D::LightPass(RenderTarget target)
+{
+	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
+	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
+
+	std::vector<Light*> lights = renderer3D.lights;
+	uint directionalLightNum = 0;
+	uint pointLightNum = 0;
+	uint spotLightNum = 0;
+
+	Transform* cameraTransform = sceneCamera.get()->GetComponent<Transform>();
+
+	Uniform::SamplerData gPositionData;
+	gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
+	Uniform::SamplerData gNormalData;
+	gNormalData.tex_id = gBuffer->GetAttachmentTexture("normal");
+	Uniform::SamplerData gAlbedoSpecData;
+	gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
+
+	Material* mat = nullptr;
+	if (!engine->lightingProcessPath.empty())
+		mat = Resources::GetResourceById<Material>(Resources::LoadFromLibrary<Material>(engine->lightingProcessPath));
+
+	if (!mat)
+	{
+		LOG(LogType::LOG_ERROR, "Lighting Pass Failed, material was nullptr.");
+		return;
+	}
+
+	Shader* shader = mat->getShader();
+	shader->Bind();
+
+	mat->SetUniformData("gPosition", gPositionData);
+	mat->SetUniformData("gNormal", gNormalData);
+	mat->SetUniformData("gAlbedoSpec", gAlbedoSpecData);
+	mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
+
+	for (int i = 0; i < lights.size(); i++)
+	{
+		Transform* transform = lights[i]->GetContainerGO().get()->GetComponent<Transform>();
+
+		postBuffer->Bind();
+		shader->Bind();
+
+		switch (lights[i]->lightType)
+		{
+		case LightType::Directional:
+		{
+			//Historn TODO: Create more Directional Lights
+			string iteration = to_string(directionalLightNum);
+			mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+			mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+			mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
+			mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", lights[i]->intensity);
+			directionalLightNum++;
+			break;
+		}
+		case LightType::Point:
+		{
+			string iteration = to_string(pointLightNum);
+			//Variables need to be float not double
+			mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+			mat->SetUniformData("u_PointLights[" + iteration + "].Color", lights[i]->color);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", lights[i]->intensity);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
+			pointLightNum++;
+			break;
+		}
+		case LightType::Spot:
+		{
+			string iteration = to_string(spotLightNum);
+			//Variables need to be float not double
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Color", lights[i]->color);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", lights[i]->intensity);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", lights[i]->linear);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", lights[i]->quadratic);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", lights[i]->radius);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", renderer3D.lights[i]->GetComponent<Camera>()->viewProjectionMatrix);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
+			spotLightNum++;
+			break;
+		}
+		default:
+			break;
+		}
+	}
+
+	mat->Bind();
+	DrawScreenQuad();
+	mat->UnBind();
+}
+
+void Renderer3D::DrawScreenQuad()
+{
+	// Disable writing to the depthbuffer, 
+	// otherwise DrawScreenQuad overwrites it
+	GLCALL(glDepthMask(GL_FALSE));
+
+	unsigned int quadVAO = 0;
+	unsigned int quadVBO;
+	if (quadVAO == 0)
+	{
+		float quadVertices[] = {
+			// positions        // texture Coords
+			-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+			-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+			 1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+			 1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+		};
+		// setup plane VAO
+		glGenVertexArrays(1, &quadVAO);
+		glGenBuffers(1, &quadVBO);
+		glBindVertexArray(quadVAO);
+		glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	}
+	glBindVertexArray(quadVAO);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	glBindVertexArray(0);
+	GLCALL(glDepthMask(GL_TRUE));
 }

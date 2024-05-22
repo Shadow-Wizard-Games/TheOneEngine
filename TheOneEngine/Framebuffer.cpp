@@ -7,7 +7,7 @@
 
 static const unsigned int s_MaxFramebufferSize = 8192;
 
-FrameBuffer::FrameBuffer(int width, int height, std::vector<Attachment> attachments)
+FrameBuffer::FrameBuffer(std::string name, int width, int height, std::vector<Attachment> attachments)
 {
 	this->width = width;
 	this->height = height;

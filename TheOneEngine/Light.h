@@ -56,10 +56,6 @@ public:
     json SaveComponent();
     void LoadComponent(const json& meshJSON);
 
-    void CalculateShadows();
-
-    void RemoveLight();
-
 public:
     LightType lightType;
     //ModeType modeType;  //PBR
@@ -81,8 +77,7 @@ public:
 
     //Shadows Vars
     std::shared_ptr<FrameBuffer> depthBuffer;
-    Camera* camera = nullptr;
-    bool activeShadows = true;
+    bool castShadows;
 
     std::string lightPresetPath;
 };

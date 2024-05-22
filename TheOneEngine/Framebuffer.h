@@ -28,7 +28,7 @@ enum class ClearBit : unsigned int
 class FrameBuffer
 {
 public:
-	FrameBuffer(int width, int height, std::vector<Attachment> attachments);
+	FrameBuffer(std::string name, int width, int height, std::vector<Attachment> attachments);
 	~FrameBuffer();
 
 	void Bind(bool clear = false);
@@ -38,6 +38,8 @@ public:
 	void TextureParameters();
 
 	void Clear(ClearBit flag = ClearBit::All, glm::vec4 color = { 0.22, 0.22, 0.22, 1.0 });
+
+	inline std::string GetName() { return name; }
 
 	inline int GetWidth() { return width; }
 	inline int GetHeight() { return height; }
@@ -51,10 +53,12 @@ private:
 	void GenerateFrameBuffer();
 
 private:
-	std::vector<Attachment> attachments;
-
 	unsigned int FBO = 0;
+	std::string name;
+
 	unsigned int width, height;
+
+	std::vector<Attachment> attachments;
 };
 
 inline ClearBit operator|(ClearBit lhs, ClearBit rhs)

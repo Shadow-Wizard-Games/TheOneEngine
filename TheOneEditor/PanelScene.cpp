@@ -242,19 +242,19 @@ bool PanelScene::Draw()
         }
 
         // GEOMETRY PASS - ALL DRAWING MUST HAPPEN BETWEEN BIND/UNBIND ------------------------
-        {
-            gBuffer->Bind();
-            gBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+        //{
+        //    gBuffer->Bind();
+        //    gBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
-            // Set Render Environment
-            engine->SetRenderEnvironment();
+        //    // Set Render Environment
+        //    engine->SetRenderEnvironment();
 
-            // Draw Scene
-            GLCALL(glDisable(GL_BLEND));
-            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
+        //    // Draw Scene
+        //    GLCALL(glDisable(GL_BLEND));
+        //    current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
-            gBuffer->Unbind();
-        }
+        //    gBuffer->Unbind();
+        //}
 
         if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
         {

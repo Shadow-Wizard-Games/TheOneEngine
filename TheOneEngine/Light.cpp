@@ -7,6 +7,7 @@
 #include "N_SceneManager.h"
 #include "Shader.h"
 #include "FrameBuffer.h"
+#include "Renderer3D.h"
 
 
 Light::Light(std::shared_ptr<GameObject> containerGO)
@@ -16,21 +17,22 @@ Light::Light(std::shared_ptr<GameObject> containerGO)
     radius(60.0f), linear(0.7f), quadratic(1.8f),
     innerCutOff(0.91f), outerCutOff(0.82f) 
 {
+    castShadows = lightType == LightType::Spot ? true : false;
+
     std::vector<Attachment> depthBuffAttachments = {
             { Attachment::Type::DEPTH, "depth", 0 }
     };
-
-    depthBuffer = std::make_shared<FrameBuffer>(1280, 720, depthBuffAttachments);
+    depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
 
     containerGO->AddComponent<Camera>();
-    camera = containerGO->GetComponent<Camera>();
+    containerGO->GetComponent<Camera>()->zNear = 10.0f;
     
-    engine->N_sceneManager->currentScene->lights.push_back(this);
+    Renderer3D::AddLight(containerGO);
 }
 
 Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     : Component(containerGO, ComponentType::Light),
-    lightType(ref->lightType),
+    lightType(ref->lightType), castShadows(ref->castShadows),
     color(ref->color), intensity(ref->intensity), specular(ref->specular),
     radius(ref->radius), linear(ref->linear), quadratic(ref->quadratic), 
     innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff)
@@ -38,13 +40,11 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     std::vector<Attachment> depthBuffAttachments = {
             { Attachment::Type::DEPTH, "depth", 0 }
     };
-
-    depthBuffer = std::make_shared<FrameBuffer>(1280, 720, depthBuffAttachments);
+    depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
 
     containerGO->AddCopiedComponent<Camera>(ref->containerGO.lock()->GetComponent<Camera>());
-    camera = containerGO->GetComponent<Camera>();
 
-    engine->N_sceneManager->currentScene->lights.push_back(this);
+    Renderer3D::AddLight(containerGO);
 }
 
 Light::~Light() 
@@ -133,41 +133,3 @@ void Light::LoadComponent(const json& meshJSON)
         activeShadows = meshJSON["ActiveShadows"];
     }
 }
-
-void Light::CalculateShadows()
-{
-    camera->cameraType = CameraType::PERSPECTIVE;
-
-    if (lightType == LightType::Directional)
-    {
-        camera->cameraType = CameraType::ORTHOGRAPHIC;
-    }
-
-    depthBuffer->Bind();
-    depthBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
-
-    // Set Render Environment
-    engine->SetRenderEnvironment();
-
-    // Draw Scene
-    GLCALL(glDisable(GL_BLEND));
-    //GLCALL(glDepthFunc(GL_LEQUAL));
-    engine->N_sceneManager->currentScene->Draw(DrawMode::EDITOR, this->camera);
-
-    depthBuffer->Unbind();
-}
-
-void Light::RemoveLight()
-{
-    auto it = std::find(engine->N_sceneManager->currentScene->lights.begin(), engine->N_sceneManager->currentScene->lights.end(), this);
-    if (!engine->N_sceneManager->currentScene->lights.empty())
-    {
-        if (it == engine->N_sceneManager->currentScene->lights.end())
-        {
-            engine->N_sceneManager->currentScene->lights.pop_back();
-            return;
-        }
-        engine->N_sceneManager->currentScene->lights.erase(it);
-    }
-}
-

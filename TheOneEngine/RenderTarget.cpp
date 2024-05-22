@@ -17,3 +17,13 @@ std::vector<FrameBuffer>* RenderTarget::GetFrameBuffers()
 {
     return &frameBuffers;
 }
+
+FrameBuffer* RenderTarget::GetFrameBuffer(std::string name)
+{
+    for (auto fb : frameBuffers)
+    {
+        if (fb.GetName() == name)
+            return &fb;
+    }
+    return nullptr;
+}

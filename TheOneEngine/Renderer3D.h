@@ -4,8 +4,11 @@
 #include "VertexArray.h"
 #include "GameObject.h"
 #include "Camera.h"
+#include "Light.h"
 #include "RenderTarget.h"
 #include "FrameBuffer.h"
+
+#include <memory>
 
 
 #define MAX_INSTANCES 1000
@@ -89,6 +92,9 @@ public:
 	static unsigned int AddRenderTarget(DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
 	static std::vector<FrameBuffer>* GetFrameBuffers(unsigned int targetID);
 
+	static void AddLight(std::shared_ptr<GameObject> container);
+	static void CleanLights();
+
 	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
 	static void AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat);
@@ -99,4 +105,10 @@ private:
 
 	static void DrawInstanced(const InstanceCall& call);
 	static void DrawSkeletal(const SkeletalCall& call);
+
+	static void GeometryPass(RenderTarget target);
+	static void PostProcess(RenderTarget target);
+	static void ShadowPass(RenderTarget target);
+	static void LightPass(RenderTarget target);
+	static void DrawScreenQuad();
 };
