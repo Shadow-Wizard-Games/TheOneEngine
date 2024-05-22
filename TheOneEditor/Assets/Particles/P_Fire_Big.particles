@@ -20,19 +20,19 @@
         },
         {
           "MaxSpeed": 5.0,
-          "MinSpeed": 10.0,
+          "MinSpeed": 12.0,
           "Type": 0,
           "UsingSingleValueSpeed": true
         },
         {
           "IsProportional": true,
           "MaxScale": [
-            1.5,
+            3.0,
             1.5,
             1.5
           ],
           "MinScale": [
-            0.5,
+            2.0,
             0.5,
             0.5
           ],
@@ -54,21 +54,36 @@
           ],
           "Type": 1,
           "UsingSingleValueColor": false
+        },
+        {
+          "MaxOffset": [
+            10.0,
+            -1.0,
+            10.0
+          ],
+          "MinOffset": [
+            -10.0,
+            1.0,
+            -10.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 46.80640411376953,
-      "MaxParticles": 500,
+      "Lifetime": 1042.85498046875,
+      "MaxParticles": 750,
       "RenderModule": [
         {
           "BillboardType": 1,
+          "TexturePath": "",
           "Type": 0
         }
       ],
       "SpawnModule": [
         {
           "Duration": 1.5,
-          "SpawnRate": 100.0,
+          "SpawnRate": 500.0,
           "Type": 0
         }
       ],
@@ -123,12 +138,12 @@
         {
           "IsProportional": true,
           "MaxScale": [
-            1.75,
+            3.0,
             1.75,
             1.75
           ],
           "MinScale": [
-            1.25,
+            2.0,
             1.25,
             1.25
           ],
@@ -150,21 +165,36 @@
           ],
           "Type": 1,
           "UsingSingleValueColor": true
+        },
+        {
+          "MaxOffset": [
+            8.0,
+            5.0,
+            8.0
+          ],
+          "MinOffset": [
+            -8.0,
+            3.0,
+            -8.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 46.80640411376953,
+      "Lifetime": 1042.85498046875,
       "MaxParticles": 50,
       "RenderModule": [
         {
           "BillboardType": 1,
+          "TexturePath": "",
           "Type": 0
         }
       ],
       "SpawnModule": [
         {
           "Duration": 5.0,
-          "SpawnRate": 5.0,
+          "SpawnRate": 10.0,
           "Type": 0
         }
       ],
