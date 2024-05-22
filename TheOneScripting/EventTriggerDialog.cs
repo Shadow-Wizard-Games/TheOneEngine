@@ -87,16 +87,16 @@ public class EventTriggerDialog : Event
     {
         bool ret = true;
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && cooldown <= 0) //&& No esta en pause)
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && cooldown <= 0 && !gameManager.GetGameState())
         {
             if(isFirst)
             {
                 dialogueGo.Enable();
-                // Pausar
+                gameManager.TooglePause();
             }
             else if (isLast)
             {
-                // Resumear
+                gameManager.TooglePause();
                 dialogueGo.Disable();
                 if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
                 {
@@ -124,6 +124,7 @@ public class EventTriggerDialog : Event
             dialogCanvas.PrintItemUI(false, "Img_Medic");
             dialogCanvas.PrintItemUI(false, "Img_CampLeader");
             dialogCanvas.PrintItemUI(false, "Img_Sargeant");
+            dialogCanvas.PrintItemUI(false, "Img_Default");
 
             switch ((UiManager.Dialoguer)dialoguer)
             {
@@ -138,6 +139,9 @@ public class EventTriggerDialog : Event
                     break;
                 case Dialoguer.Sargeant:
                     dialogCanvas.PrintItemUI(true, "Img_Sargeant");
+                    break;
+                case Dialoguer.Default:
+                    dialogCanvas.PrintItemUI(true, "Img_Default");
                     break;
                 default:
                     break;

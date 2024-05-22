@@ -28,7 +28,6 @@ public class PlayerScript : MonoBehaviour
 
     // background music
     public bool isFighting = false;
-    public bool onPause = false;
     float timeAfterCombat = 0;
     readonly float maxTimeAfterCombat = 5.0f;
 
@@ -136,7 +135,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        if (onPause) return;
+        if (gameManager.GetGameState()) { return; }
 
         attachedGameObject.animator.UpdateAnimation();
 

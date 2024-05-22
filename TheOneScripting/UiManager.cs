@@ -26,7 +26,9 @@ public class UiManager : MonoBehaviour
         ShopKeeper = 0,
         Medic,
         CampLeader,
-        Sargeant
+        Sargeant,
+        Default,
+        None
     }
 
     IGameObject inventoryGo;
@@ -108,7 +110,7 @@ public class UiManager : MonoBehaviour
         pickUpFeedbackGo.Disable();
 
         state = MenuState.Hud;
-        playerScript.onPause = false;
+        if (gameManager.GetGameState()) { gameManager.TooglePause(); }
 
         GameManagerGO = IGameObject.Find("GameManager");
         gameManager = GameManagerGO.GetComponent<GameManager>();
@@ -224,7 +226,7 @@ public class UiManager : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
                     playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
-
+                    gameManager.TooglePause();
                     SceneManager.LoadScene("MainMenu");
                 }
             }
@@ -277,7 +279,7 @@ public class UiManager : MonoBehaviour
             {
                 deathScreenGo.Enable();
                 state = MenuState.Death;
-                playerScript.onPause = true;
+                gameManager.TooglePause();
                 onCooldown = true;
             }
         }
@@ -294,39 +296,35 @@ public class UiManager : MonoBehaviour
                 inventoryGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Pause:
                 pauseMenuGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Debug:
                 debugGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Settings:
                 settingsGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Stats:
                 statsGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
             case MenuState.Missions:
                 missionsGo.Disable();
                 hudGo.Enable();
                 state = MenuState.Hud;
-                playerScript.onPause = false;
                 break;
         }
+
+        if(state != MenuState.Hud) { gameManager.TooglePause(); }
     }
 
     public void OpenMenu(MenuState state)
@@ -336,6 +334,7 @@ public class UiManager : MonoBehaviour
             switch (this.state)
             {
                 case MenuState.Hud:
+                    gameManager.TooglePause();
                     hudGo.Disable();
                     break;
                 case MenuState.Inventory:
@@ -361,37 +360,31 @@ public class UiManager : MonoBehaviour
             switch (state)
             {
                 case MenuState.Hud:
+                    gameManager.TooglePause();
                     hudGo.Enable();
                     state = MenuState.Hud;
-                    playerScript.onPause = false;
                     break;
                 case MenuState.Inventory:
                     inventoryGo.Enable();
                     state = MenuState.Inventory;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Pause:
                     pauseMenuGo.Enable();
                     state = MenuState.Pause;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Debug:
                     debugGo.Enable();
                     state = MenuState.Debug;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Settings:
                     settingsGo.Enable();
                     settingsCanvas.firstFrameUpdate = false;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Missions:
                     missionsGo.Enable();
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Stats:
                     statsGo.Enable();
-                    playerScript.onPause = true;
                     break;
             }
             this.previousState = this.state;
@@ -399,7 +392,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    public void OpenHudPopUpMenu(HudPopUpMenu type, string text = "", Dialoguer dialoguer = Dialoguer.ShopKeeper)
+    public void OpenHudPopUpMenu(HudPopUpMenu type, string text1 = "", string text = "", Dialoguer dialoguer = Dialoguer.None)
     {
         switch (type)
         {
@@ -416,6 +409,7 @@ public class UiManager : MonoBehaviour
                     break;
                 pickUpFeedbackGo.Enable();
                 pickupCanvas.SetTextString(text, "Text_PickedItem");
+                pickupCanvas.SetTextString(text1, "Text_TitleNewItem");
                 pickUpFeedbackOnCooldown = true;
                 break;
             case HudPopUpMenu.Dialogue:
@@ -427,6 +421,7 @@ public class UiManager : MonoBehaviour
                 dialogCanvas.PrintItemUI(false, "Img_Medic");
                 dialogCanvas.PrintItemUI(false, "Img_CampLeader");
                 dialogCanvas.PrintItemUI(false, "Img_Sargeant");
+                dialogCanvas.PrintItemUI(false, "Img_Default");
                 switch (dialoguer)
                 {
                     case Dialoguer.ShopKeeper:
@@ -440,6 +435,9 @@ public class UiManager : MonoBehaviour
                         break;
                     case Dialoguer.Sargeant:
                         dialogCanvas.PrintItemUI(true, "Img_Sargeant");
+                        break;
+                    case Dialoguer.Default:
+                        dialogCanvas.PrintItemUI(true, "Img_Default");
                         break;
                     default:
                         break;

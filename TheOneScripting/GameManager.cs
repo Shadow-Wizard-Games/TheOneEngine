@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public bool godMode;
     public bool extraSpeed;
 
+    bool gamePaused = false;
+
     public List<string> savedLevels = new List<string>();
 
     public override void Start()
@@ -91,5 +93,15 @@ public class GameManager : MonoBehaviour
     {
         gridRender = !gridRender;
         InternalCalls.ToggleGridDraw();
+    }
+
+    public void TooglePause()
+    {
+        gamePaused = !gamePaused;
+    }
+
+    public bool GetGameState()
+    {
+        return gamePaused;
     }
 }

@@ -80,14 +80,17 @@ public class EventOpenPopUp : Event
     {
         bool ret = true;
 
-        if (!menuManager.IsOnCooldown((UiManager.HudPopUpMenu)popupType) && cooldown <= 0 && !isOneTime)
+        if (!menuManager.IsOnCooldown((UiManager.HudPopUpMenu)popupType) && cooldown <= 0)
         {
             string[] datapath = { popup };
             string text = DataManager.AccessFileDataString(filepath, datapath, "text");
+            string text1 = DataManager.AccessFileDataString(filepath, datapath, "titleText");
             int dialoguer = DataManager.AccessFileDataInt(filepath, datapath, "dialoguer");
-            menuManager.OpenHudPopUpMenu((UiManager.HudPopUpMenu)popupType, text, (UiManager.Dialoguer)dialoguer);
+            menuManager.OpenHudPopUpMenu((UiManager.HudPopUpMenu)popupType, text1, text, (UiManager.Dialoguer)dialoguer);
 
             cooldown = maxCooldown;
+
+            if(isOneTime) { attachedGameObject.Destroy(); }
         }
 
         return ret;
