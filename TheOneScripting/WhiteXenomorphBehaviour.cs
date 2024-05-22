@@ -19,20 +19,19 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     }
 
     IGameObject playerGO;
-    Vector3 directorVector;
     float playerDistance;
 
     // White Xenomorph parameters
     float life = 200.0f;
-    float movementSpeed = 40.0f * 3;
+    readonly float movementSpeed = 20.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     WhiteXenomorphAttacks currentAttack = WhiteXenomorphAttacks.None;
     Vector3 initialPos;
 
     // Patrol
-    float patrolRange = 100;
-    float patrolSpeed = 20.0f;
+    readonly float patrolRange = 100;
+    readonly float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
 
@@ -40,101 +39,134 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     const float detectedRange = 35.0f * 3;
     const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
+    const float maxRangeStopChasing = 25.0f;
 
     // Flags
     bool detected = false;
     bool isClose = false;
+    bool isDead = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 2.0f;
+    float destroyTimer = 0.0f;
+    const float destroyCooldown = 3.0f;
 
     PlayerScript player;
     GameManager gameManager;
 
-    // particles
-    IGameObject acidSpitPSGO;
-    IGameObject tailAttackPSGO;
-    IGameObject deathPSGO;
+    // Particles
+    IParticleSystem acidSpitPSGO;
+    IParticleSystem tailAttackPSGO;
+    IParticleSystem deathPSGO;
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
+        initialPos = attachedGameObject.transform.Position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.blend = false;
-        attachedGameObject.animator.transitionTime = 0.0f;
+        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.TransitionTime = 0.0f;
 
-        acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS");
-        tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS");
-        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
+        acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
+        tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
     {
         attachedGameObject.animator.UpdateAnimation();
 
-        if (currentState == States.Dead) return;
+        if (currentState == States.Dead)
+        {
+            destroyTimer += Time.deltaTime;
+            if (destroyTimer >= destroyCooldown)
+                attachedGameObject.Destroy();
+
+            return;
+        }
 
         if (attachedGameObject.transform.ComponentCheck())
         {
             //Set the director vector and distance to the player
-            directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
-            playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+            playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
-            UpdateFSMStates();
+            UpdateFSM();
             DoStateBehaviour();
         }
 
         DebugDraw();
     }
 
-    void UpdateFSMStates()
+    void UpdateFSM()
     {
         if (life <= 0) { currentState = States.Dead; return; }
 
-        if (!detected && playerDistance < detectedRange) 
+        if (!detected && playerDistance < detectedRange)
         {
             detected = true;
             currentState = States.Chase;
+            //Debug.Log("White Xenomorph switched to Chase");
         }
 
         if (detected)
         {
-            attachedGameObject.transform.LookAt2D(playerGO.transform.position);
-            if (playerDistance < isCloseRange && !isClose)
-            {
-                isClose = true;
-                //Debug.Log("Player is now CLOSE");
-            }
-
-            if (playerDistance >= isCloseRange && isClose)
-            {
-                isClose = false;
-                //Debug.Log("Player is now FAR");
-            }
-
-            if (playerDistance > maxChasingRange)
-            {
-                detected = false;
-                currentState = States.Patrol;
-            }
+            CheckIsClose();
 
             if (currentAttack == WhiteXenomorphAttacks.None)
             {
-                //attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
                 attackTimer += Time.deltaTime;
                 attachedGameObject.animator.Play("Walk");
             }
 
+            CheckIsMaxRangeStopChasing();
+
             if (currentAttack == WhiteXenomorphAttacks.None && attackTimer >= attackCooldown)
             {
-                //Debug.Log("Attempt to attack");
                 currentState = States.Attack;
+                //Debug.Log("White Xenomorph switched to Attack");
             }
+
+            if (playerDistance > maxChasingRange && currentState != States.Attack)
+            {
+                detected = false;
+                currentState = States.Patrol;
+                //Debug.Log("White Xenomorph switched to Patrol");
+            }
+        }
+    }
+
+    private void CheckIsClose()
+    {
+        if (playerDistance < isCloseRange && !isClose)
+        {
+            isClose = true;
+            //Debug.Log("Player is now CLOSE");
+        }
+        else if (playerDistance >= isCloseRange && isClose)
+        {
+            isClose = false;
+            //Debug.Log("Player is now FAR");
+        }
+    }
+
+    private void CheckIsMaxRangeStopChasing()
+    {
+        if (playerDistance <= maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
+            currentState != States.Idle)
+        {
+            currentState = States.Idle;
+            //Debug.Log("Player is INSIDE maxRangeStopChasing");
+        }
+        else if (playerDistance > maxRangeStopChasing && currentAttack == WhiteXenomorphAttacks.None &&
+                 currentState != States.Chase)
+        {
+            currentState = States.Chase;
+            //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
         }
     }
 
@@ -146,9 +178,8 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 ChooseAttack();
-
                 switch (currentAttack)
                 {
                     case WhiteXenomorphAttacks.ClawAttack:
@@ -160,19 +191,17 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                     default:
                         break;
                 }
-
                 break;
             case States.Chase:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
-                attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
+                attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Patrol:
                 Patrol();
                 break;
             case States.Dead:
-                attachedGameObject.animator.Play("Death");
-                if (deathPSGO != null) deathPSGO.GetComponent<IParticleSystem>().Play();
+                Dead();
                 break;
             default:
                 break;
@@ -188,23 +217,22 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 currentAttack = WhiteXenomorphAttacks.ClawAttack;
                 attachedGameObject.animator.Play("TailAttack");
 
-                if (tailAttackPSGO != null) tailAttackPSGO.GetComponent<IParticleSystem>().Play();
+                tailAttackPSGO.Play();
             }
             else
             {
                 currentAttack = WhiteXenomorphAttacks.TailTrip;
                 attachedGameObject.animator.Play("Spit");
 
-                if (acidSpitPSGO != null) acidSpitPSGO.GetComponent<IParticleSystem>().Play();
+                acidSpitPSGO.Play();
             }
-            //Debug.Log("Chestburster current attack: " + currentAttack);
+            //Debug.Log("WhiteXenomorph current attack: " + currentAttack);
         }
     }
 
     private void ClawAttack()
     {
-        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -212,7 +240,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     private void TailTrip()
     {
-        if (attachedGameObject.animator.currentAnimHasFinished)
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
         }
@@ -246,6 +274,20 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         }
     }
 
+    private void Dead()
+    {
+        if (!isDead)
+        {
+            attachedGameObject.animator.Play("Death");
+
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
+            {
+                isDead = true;
+                deathPSGO.Play();
+            }
+        }
+    }
+
     private void ResetState()
     {
         attackTimer = 0.0f;
@@ -261,9 +303,9 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     private bool MoveTo(Vector3 targetPosition)
     {
         //Return true if arrived at destination
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+        if (Vector3.Distance(attachedGameObject.transform.Position, targetPosition) < 0.5f) return true;
 
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * movementSpeed * Time.deltaTime);
 
         return false;
@@ -276,12 +318,12 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         {
             if (!detected)
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
             }
             else
             {
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
-                Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, isCloseRange, new Vector3(1.0f, 0.0f, 0.0f)); //Red
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(1.0f, 0.0f, 1.0f)); //Purple
             }
         }
     }

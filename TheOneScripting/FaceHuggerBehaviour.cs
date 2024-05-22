@@ -14,16 +14,16 @@ public class FaceHuggerBehaviour : MonoBehaviour
     Vector3 directorVector;
     float playerDistance;
 
-    float life = 50;
+    readonly float life = 50;
 
     float movementSpeed = 35.0f * 2;
 
     States currentState = States.Idle;
     bool detected = false;
 
-    float enemyDetectedRange = 180.0f;
-    float maxAttackRange = 90.0f;
-    float maxChasingRange = 180.0f;
+    readonly float enemyDetectedRange = 180.0f;
+    readonly float maxAttackRange = 90.0f;
+    readonly float maxChasingRange = 180.0f;
 
     bool isJumping = false;
 
@@ -55,18 +55,18 @@ public class FaceHuggerBehaviour : MonoBehaviour
             {
                 if (!detected)
                 {
-                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+                    Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
                 }
                 else
                 {
-                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                    Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+                    Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+                    Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
                 }
             }
 
             //Set the director vector and distance to the player
-            directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
-            playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+            directorVector = (playerGO.transform.Position - attachedGameObject.transform.Position).Normalize();
+            playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
             UpdateFSMStates();
             DoStateBehaviour();
@@ -74,7 +74,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
         if (isJumping)
         {
-            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_JUMP);
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_JUMP);
             isJumping = false;
         }
     }
@@ -84,7 +84,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         if (life <= 0) { currentState = States.Dead; return; }
 
         if (!detected && playerDistance < enemyDetectedRange) detected = true;
-        
+
         if (detected)
         {
             if (currentState == States.Jump)
@@ -92,13 +92,13 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
                 {
                     currentState = States.Dead;
-                    attachedGameObject.transform.position = new Vector3(attachedGameObject.transform.position.x,
+                    attachedGameObject.transform.Position = new Vector3(attachedGameObject.transform.Position.x,
                                                                         0.0f,
-                                                                        attachedGameObject.transform.position.z);
+                                                                        attachedGameObject.transform.Position.z);
 
-                    attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_FH_DEATH);
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_DEATH);
                     detected = false;
-                    deathPSGO.GetComponent<IParticleSystem>().Replay();
+                    //deathPSGO.GetComponent<IParticleSystem>().Replay();
                 }
             }
             else
@@ -125,7 +125,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         }
     }
 
-    float maxHeight = 275.0f;
+    readonly float maxHeight = 275.0f;
     float height = 0.0f;
     bool up = true;
     void DoStateBehaviour()
@@ -136,12 +136,12 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 return;
             case States.Attack:
                 player.isFighting = true;
-                attachedGameObject.transform.LookAt2D(playerGO.transform.position);
-                attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * Time.deltaTime);
+                attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
+                attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Jump:
                 player.isFighting = true;
-                attachedGameObject.transform.Translate(attachedGameObject.transform.forward * movementSpeed * 3.0f * Time.deltaTime);
+                attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * 3.0f * Time.deltaTime);
                 if (up)
                 {
                     if (maxHeight > height)
@@ -159,9 +159,10 @@ public class FaceHuggerBehaviour : MonoBehaviour
                     if (height <= 0)
                     {
                         height = 0.0f;
-                        
+
                     }
-                    else {
+                    else
+                    {
                         attachedGameObject.transform.Translate(Vector3.up * -height * Time.deltaTime);
                         height = height - 20.0f;
                     }
@@ -170,7 +171,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             case States.Dead:
                 attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
                 attachedGameObject.transform.Translate(Vector3.up * -1.0f * Time.deltaTime);
-                
+
                 break;
             default:
                 break;
@@ -180,10 +181,10 @@ public class FaceHuggerBehaviour : MonoBehaviour
     bool hitPlayer = false;
     public void CheckJump() //temporary function for the hardcoding of collisions
     {
-        if(!hitPlayer)
+        if (!hitPlayer)
         {
-        playerGO.GetComponent<PlayerScript>().ReduceLife();
-        hitPlayer = true;
+            playerGO.GetComponent<PlayerScript>().ReduceLife();
+            hitPlayer = true;
         }
     }
 }

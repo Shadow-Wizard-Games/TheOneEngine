@@ -2,10 +2,20 @@
 
 public class ICanvas : IComponent
 {
+    public enum UiState
+    {
+        IDLE,
+        HOVERED,
+        SELECTED,
+        HOVEREDSELECTED,
+        DISABLED,
+        UNKNOWN
+    }
+
     public ICanvas() : base() { }
     public ICanvas(IntPtr gameObjectRef) : base(gameObjectRef) { }
 
-    public void ToggleEnable() 
+    public void ToggleEnable()
     {
         InternalCalls.CanvasEnableToggle(containerGOptr);
     }
@@ -58,5 +68,20 @@ public class ICanvas : IComponent
     public void SetSliderValue(int value, string name)
     {
         InternalCalls.SetSliderValue(containerGOptr, value, name);
+    }
+
+    public void SetUiItemState(UiState state, string name)
+    {
+        InternalCalls.SetUiItemState(containerGOptr, (int)state, name);
+    }
+
+    public string GetTextString(string name)
+    {
+        return InternalCalls.GetTextString(containerGOptr, name);
+    }
+
+    public void SetTextString(string text, string name)
+    {
+        InternalCalls.SetTextString(containerGOptr, text, name);
     }
 }

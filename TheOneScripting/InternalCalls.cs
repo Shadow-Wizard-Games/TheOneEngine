@@ -61,6 +61,9 @@ class InternalCalls
     internal extern static IGameObject InstantiateBullet(Vector3 initialPosition, Vector3 direction);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateGrenade(Vector3 initialPosition, Vector3 direction);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -80,7 +83,7 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr ComponentCheck(IntPtr gameObject, int componentType, string scriptName = null);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static TComponent GetScript<TComponent>(IntPtr gameObject, string scriptName);
 
@@ -98,8 +101,38 @@ class InternalCalls
 
     #region Scene Manager
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void LoadScene(string sceneName, bool keep = false);
-    
+    internal extern static void LoadScene(string sceneName, bool keep = false, string path = "GameData/Scenes/");
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void CreateSaveFromScene(string filepath, string sceneName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void RemoveFile(string filepath);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string AccessFileDataString(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int AccessFileDataInt(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool AccessFileDataBool(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float AccessFileDataFloat(string filepath, string[] dataPath, string dataName);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataString(string filepath, string[] dataPath, string dataName, string data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataInt(string filepath, string[] dataPath, string dataName, int data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataBool(string filepath, string[] dataPath, string dataName, bool data);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void WriteFileDataFloat(string filepath, string[] dataPath, string dataName, float data);
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetCurrentSceneName();
 
@@ -121,8 +154,11 @@ class InternalCalls
     internal extern static int GetSelectedButton(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int SetUiItemState(IntPtr GOptr, int state, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int ToggleChecker(IntPtr GOptr, bool value, string nameM);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int PrintItemUI(IntPtr GOptr, bool value, string nameM);
 
@@ -139,13 +175,19 @@ class InternalCalls
     internal extern static int GetSliderValue(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTextString(IntPtr GOptr, string text, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static string GetTextString(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
     #endregion
 
     #region Helpers
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetAppDeltaTime();
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ExitApplication();
     #endregion
@@ -153,10 +195,10 @@ class InternalCalls
     #region Debug
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ScriptingLog(string message, int logType);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DrawWireCircle(Vector3 position, float radius, Vector3 color);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void DrawWireSphere(Vector3 position, float radius, Vector3 color);
 
@@ -187,10 +229,16 @@ class InternalCalls
 
     #region Audio
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void PlaySource(IntPtr GOptr, EventIDs audio);
+    internal extern static void PlayAudioSource(IntPtr GOptr, AudioEvent audio);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void StopSource(IntPtr GOptr, EventIDs audio);
+    internal extern static void StopAudioSource(IntPtr GOptr, AudioEvent audio);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetState(AudioStateGroup stateGroup, AudioStateID stateID);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSwitch(IntPtr GOptr, AudioSwitchGroup switchGroup, AudioSwitchID switchID);
     #endregion
 
     #region Collider2D
@@ -213,31 +261,31 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetFov(IntPtr GOptr, ref double fov);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static double GetAspect(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetAspect(IntPtr GOptr, ref double aspect);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetYaw(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetYaw(IntPtr GOptr, ref float yaw);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetPitch(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetPitch(IntPtr GOptr, ref float pitch);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static CameraType GetCameraType(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetCameraType(IntPtr GOptr, ref CameraType cameraType);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetPrimaryCam(IntPtr GOptr);
 
@@ -251,10 +299,10 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void StopAnimation(IntPtr GOptr);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool AnimationHasFinished(IntPtr GOptr);
-    
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetTransitionBlend(IntPtr GOptr);
 

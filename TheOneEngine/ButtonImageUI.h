@@ -37,6 +37,9 @@ public:
 
 	void UpdateState() override;
 
+	bool IsRealButton() { return this->countAsRealButton; }
+	void SetIsRealButton(bool countAsRealButton) { this->countAsRealButton = countAsRealButton; }
+
 private:
 	std::string imagePath;
 	ResourceId imageID = -1;
@@ -45,6 +48,8 @@ private:
 	Rect2D imageIdleSection;
 	Rect2D imageHoveredSection;
 	Rect2D imageSelectedSection;
+
+	bool countAsRealButton = true;
 };
 
 #endif // !__BUTTONIMAGEUI_H__

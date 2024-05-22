@@ -85,8 +85,8 @@ public class AlienQueenBehaviour : MonoBehaviour
         if (currentState == States.Dead)
         {
             SceneManager.LoadScene("L2R1");
-            playerGO.source.StopAudio(IAudioSource.EventIDs.UI_A_MENU);
-            playerGO.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+            playerGO.source.Stop(IAudioSource.AudioEvent.UI_A_MENU);
+            playerGO.source.Play(IAudioSource.AudioEvent.UI_CLICK);
         }
 
         if (attachedGameObject.transform.ComponentCheck())
@@ -94,8 +94,8 @@ public class AlienQueenBehaviour : MonoBehaviour
             if (gameManager.colliderRender) { DebugDraw(); }
 
             //Set the director vector and distance to the player
-            directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
-            playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
+            directorVector = (playerGO.transform.Position - attachedGameObject.transform.Position).Normalize();
+            playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
             UpdateFSM();
             DoStateBehaviour();
@@ -104,10 +104,12 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) { 
+        if (life <= 0)
+        {
             currentState = States.Dead;
             //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_DEATH);
-            return; }
+            return;
+        }
 
         if (playerDistance < farRangeThreshold && !isClose)
         {
@@ -151,7 +153,7 @@ public class AlienQueenBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    attachedGameObject.transform.LookAt2D(playerGO.transform.position);
+                    attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 }
                 return;
             case States.Attack:
@@ -254,9 +256,9 @@ public class AlienQueenBehaviour : MonoBehaviour
     private bool MoveTo(Vector3 targetPosition)
     {
 
-        if (Vector3.Distance(attachedGameObject.transform.position, targetPosition) < 0.5f) return true;
+        if (Vector3.Distance(attachedGameObject.transform.Position, targetPosition) < 0.5f) return true;
 
-        Vector3 dirVector = (targetPosition - attachedGameObject.transform.position).Normalize();
+        Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * dashSpeed * Time.deltaTime);
 
         return false;
@@ -267,7 +269,7 @@ public class AlienQueenBehaviour : MonoBehaviour
         Debug.Log("HeadCharge() init");
         if (coordinatesToDash == Vector3.zero)
         {
-            coordinatesToDash = playerGO.transform.position;
+            coordinatesToDash = playerGO.transform.Position;
         }
         if (MoveTo(coordinatesToDash))
         {
@@ -298,7 +300,7 @@ public class AlienQueenBehaviour : MonoBehaviour
         {
             //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
             //                                attachedGameObject.transform.rotation);
-            attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_SPIT);
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_SPIT);
             delayTimer = 0.0f;
             shotsCounter++;
             Debug.Log("Alien Queen has shot " + shotsCounter + " times");
@@ -317,12 +319,15 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     private void XenoSpawn()
     {
-        IGameObject.InstanciatePrefab("SK_Facehugger",
-            attachedGameObject.transform.position + attachedGameObject.transform.forward*(attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
-            attachedGameObject.transform.rotation);
 
-        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPAWN);
+        Vector3 scale = new Vector3(1, 1, 1);
 
+        //InternalCalls.InstantiateXenomorph(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+        //                                   attachedGameObject.transform.rotation,
+        //                                   scale);
+        InternalCalls.CreatePrefab("SK_Facehugger",
+            attachedGameObject.transform.Position + attachedGameObject.transform.Forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f));
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_SPAWN);
         ResetState();
     }
 
@@ -330,21 +335,21 @@ public class AlienQueenBehaviour : MonoBehaviour
     {
         //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
         //                                    attachedGameObject.transform.rotation);
-        attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_BOMB);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_BOMB);
         ResetState();
     }
 
     private void GiantJump(bool isJumpingForward)
     {
         float directionMultiplier = isJumpingForward ? -1.0f : 1.0f;
-        attachedGameObject.transform.Translate(attachedGameObject.transform.forward * directionMultiplier * jumpSpeed * Time.deltaTime);
+        attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * directionMultiplier * jumpSpeed * Time.deltaTime);
 
         if (up)
         {
             if (maxHeight >= currentHeight)
             {
                 attachedGameObject.transform.Translate(Vector3.up * currentHeight * Time.deltaTime);
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_JUMP);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_JUMP);
                 currentHeight += 10.0f;
             }
             else
@@ -361,7 +366,7 @@ public class AlienQueenBehaviour : MonoBehaviour
             else
             {
                 attachedGameObject.transform.Translate(Vector3.up * -currentHeight * Time.deltaTime);
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_JUMP);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_JUMP);
                 currentHeight -= 10.0f;
             }
         }
@@ -370,9 +375,9 @@ public class AlienQueenBehaviour : MonoBehaviour
         {
             ResetState();
 
-            attachedGameObject.transform.position = new Vector3(attachedGameObject.transform.position.x,
+            attachedGameObject.transform.Position = new Vector3(attachedGameObject.transform.Position.x,
                                                                 0.0f,
-                                                                attachedGameObject.transform.position.z);
+                                                                attachedGameObject.transform.Position.z);
             currentHeight = 0.0f;
             up = true;
         }
@@ -387,6 +392,6 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     private void DebugDraw()
     {
-        Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, farRangeThreshold, new Vector3(1.0f, 0.0f, 1.0f)); //Purpul jiji
+        Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, farRangeThreshold, new Vector3(1.0f, 0.0f, 1.0f)); //Purpul jiji
     }
 }

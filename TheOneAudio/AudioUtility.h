@@ -29,6 +29,7 @@
 
 #define BANKNAME_INIT L"Init.bnk"
 #define BANKNAME_THEONEENGINE L"TheOneEngine.bnk"
+#define BANKNAME_VOICEOVER L"VoiceOver.bnk"
 
 #include "../TheOneEditor/Assets/Audio/Wwise Project/GeneratedSoundBanks/Wwise_IDs.h"
 

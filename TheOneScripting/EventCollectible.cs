@@ -9,12 +9,12 @@ public class EventCollectible : Event
     IGameObject playerGO;
     IGameObject itemManagerGO;
     ItemManager itemManager;
-    Item currentItem;
+    UiManager uiManager;
     float playerDistance;
 
     GameManager gameManager;
 
-    float collectibleRange = 100.0f;
+    readonly float collectibleRange = 100.0f;
 
     //debug
     bool inRange = false;
@@ -27,8 +27,9 @@ public class EventCollectible : Event
         itemManager = itemManagerGO.GetComponent<ItemManager>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+        uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
     }
-    
+
     public override void Update()
     {
 
@@ -43,8 +44,8 @@ public class EventCollectible : Event
     public override bool CheckEventIsPossible()
     {
         //Set the distance to the player
-        playerDistance = Vector3.Distance(playerGO.transform.position, attachedGameObject.transform.position);
-        
+        playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
+
         if (playerDistance < collectibleRange)
         {
             inRange = true;
@@ -59,13 +60,16 @@ public class EventCollectible : Event
     public override bool DoEvent()
     {
         //Add item
-        if(itemManager != null && Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if (itemManager != null)
         {
-            itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
-            attachedGameObject.Disable();
-
-            //Degug
-            Debug.LogWarning("LOOTED");
+            if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
+            {
+                itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
+                attachedGameObject.Disable();
+                uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "m4a1");
+                //Degug
+                Debug.LogWarning("LOOTED");
+            }
         }
 
         return false;
@@ -75,11 +79,11 @@ public class EventCollectible : Event
     {
         if (!inRange)
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, collectibleRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, collectibleRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
         }
         else
         {
-            Debug.DrawWireCircle(attachedGameObject.transform.position + Vector3.up * 4, collectibleRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+            Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, collectibleRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
         }
     }
 }

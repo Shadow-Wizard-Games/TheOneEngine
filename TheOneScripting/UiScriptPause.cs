@@ -7,10 +7,6 @@ public class UiScriptPause : MonoBehaviour
     bool onCooldown = false;
 
     IGameObject playerGO;
-    PlayerScript player;
-
-    IGameObject GameManagerGO;
-    GameManager gameManager;
 
     UiManager menuManager;
 
@@ -22,19 +18,17 @@ public class UiScriptPause : MonoBehaviour
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
-        GameManagerGO = IGameObject.Find("GameManager");
-        gameManager = GameManagerGO.GetComponent<GameManager>();
-
         onCooldown = true;
+
+        canvas.MoveSelectionButton(2 - canvas.GetSelectedButton());
     }
 
     public override void Update()
     {
-        float dt = InternalCalls.GetAppDeltaTime();
+        float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
 
@@ -79,12 +73,12 @@ public class UiScriptPause : MonoBehaviour
             {
                 if (movementVector.y > 0.0f)
                 {
-                    direction = +2;
+                    direction = -2;
                     toMove = true;
                 }
                 else if (movementVector.y < 0.0f)
                 {
-                    direction = -2;
+                    direction = +2;
                     toMove = true;
                 }
             }
@@ -105,7 +99,7 @@ public class UiScriptPause : MonoBehaviour
             // Select Button
             if (toMove)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_HOVER);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_HOVER);
                 onCooldown = true;
                 canvas.MoveSelectionButton(direction);
             }
@@ -113,35 +107,39 @@ public class UiScriptPause : MonoBehaviour
             // Selection Executters
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Inventory);
+            }
+
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+            {
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                menuManager.OpenMenu(UiManager.MenuState.Missions);
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.ResumeGame();
+            }
+
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
+            {
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                menuManager.OpenMenu(UiManager.MenuState.Settings);
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
-                if (playerGO.source.currentID == IAudioSource.EventIDs.A_COMBAT_1)
-                {
-                    playerGO.source.StopAudio(IAudioSource.EventIDs.A_COMBAT_1);
-                }
-                if (playerGO.source.currentID == IAudioSource.EventIDs.A_AMBIENT_1)
-                {
-                    playerGO.source.StopAudio(IAudioSource.EventIDs.A_AMBIENT_1);
-                }
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
-                gameManager.UpdateLevel();
                 SceneManager.LoadScene("MainMenu");
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 5)
             {
-                attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.UI_CLICK);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 InternalCalls.ExitApplication();
             }
         }
