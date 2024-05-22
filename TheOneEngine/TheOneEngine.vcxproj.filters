@@ -291,6 +291,9 @@
     <ClInclude Include="Light.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -457,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTarget.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

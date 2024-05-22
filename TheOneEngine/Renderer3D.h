@@ -1,8 +1,15 @@
 #pragma once
+
 #include "Defs.h"
 #include "VertexArray.h"
+#include "GameObject.h"
+#include "Camera.h"
+#include "RenderTarget.h"
+#include "FrameBuffer.h"
+
 
 #define MAX_INSTANCES 1000
+
 
 struct DefaultMesh
 {
@@ -49,20 +56,21 @@ private:
 	VertexBuffer instanceBuffer;
 };
 
+
 class Renderer3D
 {
 public:
-	static void Update();
-
 	static void Init();
-
+	static void Update();
 	static void Shutdown();
 
-	static void AddMesh(StackVertexArray meshID, int matID);
+	static unsigned int AddRenderTarget(DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
+	static std::vector<FrameBuffer>* GetFrameBuffers(unsigned int targetID);
 
+	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
+
 private:
 	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
-
 	static void UpdateInstanceBuffer(const std::vector<InstanceCall>& calls);
 };

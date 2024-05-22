@@ -28,7 +28,7 @@ enum class ClearBit : unsigned int
 class FrameBuffer
 {
 public:
-	FrameBuffer(int newWidth, int newHeight, std::vector<Attachment> attachments);
+	FrameBuffer(int width, int height, std::vector<Attachment> attachments);
 	~FrameBuffer();
 
 	void Bind(bool clear = false);

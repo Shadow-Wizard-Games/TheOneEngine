@@ -56,6 +56,7 @@
     <ClInclude Include="RenderEmmiterModule.h" />
     <ClInclude Include="Renderer2D.h" />
     <ClInclude Include="Renderer3D.h" />
+    <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesFontImpl.h" />
     <ClInclude Include="ResourcesImageImpl.h" />
@@ -121,6 +122,7 @@
     <ClCompile Include="RenderEmmiterModule.cpp" />
     <ClCompile Include="Renderer2D.cpp" />
     <ClCompile Include="Renderer3D.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SingleOrRandom.cpp" />

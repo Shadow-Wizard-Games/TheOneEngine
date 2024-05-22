@@ -1,10 +1,13 @@
 #include "Renderer3D.h"
 #include "Resources.h"
+#include "Camera.h"
+#include "FrameBuffer.h"
 
 struct Renderer3DData
 {
 	std::vector<DefaultMesh> meshes;
 	std::vector<InstanceCall> instanceCalls;
+	std::vector<RenderTarget> renderTargets;
 };
 
 static Renderer3DData renderer3D;
@@ -37,6 +40,8 @@ void Renderer3D::Update()
 	}
 
 	renderer3D.instanceCalls.clear();
+
+
 }
 
 void Renderer3D::Init()
@@ -48,6 +53,18 @@ void Renderer3D::Shutdown()
 {
 	for (DefaultMesh& mesh : renderer3D.meshes)
 		mesh.rendererID.Delete();
+}
+
+unsigned int Renderer3D::AddRenderTarget(DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
+{
+	unsigned int id = renderer3D.renderTargets.size();
+	renderer3D.renderTargets.emplace_back(id, mode, camera, viewportSize, frameBuffers);
+	return id;
+}
+
+std::vector<FrameBuffer>* Renderer3D::GetFrameBuffers(unsigned int targetID)
+{
+	return renderer3D.renderTargets[targetID].GetFrameBuffers();
 }
 
 void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
