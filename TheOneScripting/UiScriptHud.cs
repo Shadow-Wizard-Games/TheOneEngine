@@ -38,10 +38,8 @@ public class UiScriptHud : MonoBehaviour
     float playerMaxLife = 100;
 
     int currencyAmount = 200;
-    string currency;
 
     int killsAmount = 0;
-    string kills;
 
     string currLoadout = "m4a1";
     int currAmmo = 20;
@@ -305,12 +303,10 @@ public class UiScriptHud : MonoBehaviour
         switch (type)
         {
             case HudStrings.CURRENCYSTRING:
-                currency = currencyAmount.ToString();
-                canvas.SetTextString(currency, "Text_CurrencyAmount");
+                canvas.SetTextString("", "Text_CurrencyAmount", currencyAmount);
                 break;
             case HudStrings.KILLSTRING:
-                kills = killsAmount.ToString();
-                canvas.SetTextString(kills, "Text_KillsAmount");
+                canvas.SetTextString("", "Text_KillsAmount", killsAmount);
                 break;
             case HudStrings.AMMOSTRING:
                 canvas.SetTextString("", "Text_AmmoAmount", currAmmo);
