@@ -236,6 +236,15 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetSwitch(IntPtr GOptr, AudioSwitchGroup switchGroup, AudioSwitchID switchID);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetMasterVolume(int volume);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSFXVolume(int volume);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetMusicVolume(int volume);
     #endregion
 
     #region Collider2D
