@@ -60,10 +60,14 @@ public:
 		mesh.rendererID.AddVertexBuffer(instanceBuffer);
 	}
 
-	~InstanceCall() { models.clear(); instanceBuffer.Delete(); }
+	~InstanceCall() { models.clear(); }
 
 	void AddInstance(const glm::mat4& modelMat) {
 		models.push_back(modelMat);
+	}
+
+	void DeleteInstance() {
+		instanceBuffer.Delete();
 	}
 
 	bool CheckID(const StackVertexArray& id) const {

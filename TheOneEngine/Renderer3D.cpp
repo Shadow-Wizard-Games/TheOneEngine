@@ -58,6 +58,9 @@ void Renderer3D::Update()
 		PostProcess(target);
 	}
 
+	for (auto &instance : renderer3D.instanceCalls)
+		instance.DeleteInstance();
+
 	renderer3D.instanceCalls.clear();
 	renderer3D.skeletalCalls.clear();
 }
