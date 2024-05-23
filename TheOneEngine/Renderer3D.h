@@ -51,7 +51,7 @@ private:
 class InstanceCall
 {
 public:
-	InstanceCall(StackVertexArray vao, int mat, const glm::mat4& modelMat) :
+	InstanceCall(const StackVertexArray& vao, int mat, const glm::mat4& modelMat) :
 		mesh(vao, mat), 
 		instanceBuffer(MAX_INSTANCES)
 	{ 
