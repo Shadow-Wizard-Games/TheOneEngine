@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 public class EventCollectible : Event
 {
     IGameObject playerGO;
+    PlayerScript player;
     IGameObject itemManagerGO;
     ItemManager itemManager;
     UiManager uiManager;
@@ -22,9 +23,12 @@ public class EventCollectible : Event
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
+        player = playerGO.GetComponent<PlayerScript>();
         eventType = EventType.COLLECTIBLE;
         itemManagerGO = IGameObject.Find("ItemManager");
         itemManager = itemManagerGO.GetComponent<ItemManager>();
+
+        itemManager.Start();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
         uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
@@ -65,9 +69,14 @@ public class EventCollectible : Event
             if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
             {
                 itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
+
+                IGameObject.InstanciatePrefab("WP_CarabinaM4", playerGO.transform.Position, playerGO.transform.Rotation);
+                player.currentWeapon = PlayerScript.CurrentWeapon.M4;
+
                 attachedGameObject.Disable();
+
                 uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "m4a1");
-                //Degug
+
                 Debug.LogWarning("LOOTED");
             }
         }

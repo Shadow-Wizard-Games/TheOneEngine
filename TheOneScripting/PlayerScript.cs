@@ -6,9 +6,19 @@ public class PlayerScript : MonoBehaviour
 {
     public enum CurrentWeapon
     {
-        MP4,
+        NONE,
+        M4,
         IMPACIENTE,
         FLAME_THROWER,
+    }
+
+    public enum CurrentAction
+    {
+        IDLE,
+        RUN,
+        SHOOT,
+        RUNSHOOT,
+        DEAD
     }
 
     // managers
@@ -51,9 +61,10 @@ public class PlayerScript : MonoBehaviour
     // shooting
     public float damageM4 = 10.0f;
     public float currentWeoponDamage = 0.0f;
-    public CurrentWeapon currentWeapon = CurrentWeapon.MP4;
+    public CurrentWeapon currentWeapon;
+    public CurrentAction currentAction;
 
-    bool hasShot = false;
+    public bool hasShot = false;
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
     public float mp4ShootingCd = 0.1f;
@@ -67,11 +78,14 @@ public class PlayerScript : MonoBehaviour
     public bool isDashing = false;
     public string dashAbilityName = "Roll";
 
-    public int shieldKillCounter = 0;
+    readonly public uint shieldKillsToCharge = 2;
+    public uint shieldKillCounter = 0;
     public bool shieldIsActive = false;
 
     public bool isHealing = false;
     public string healAbilityName = "Bandage";
+    readonly public uint maxHeals = 3;
+    public uint numHeals = 3;
 
     public bool isRushing = false;
 
@@ -79,6 +93,9 @@ public class PlayerScript : MonoBehaviour
     public int impacienteBulletCounter = 0;
 
     public Vector3 grenadeInitialVelocity = Vector3.zero;
+    public Vector3 explosionPos = Vector3.zero;
+    public float grenadeExplosionRadius = 50.0f;
+    readonly public float grenadeDamage = 50.0f;
 
     // animation states
     bool isRunning;
@@ -114,6 +131,9 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles = iStepPSGO?.GetComponent<IParticleSystem>();
         shotParticles = iShotPSGO?.GetComponent<IParticleSystem>();
+
+        currentWeapon = CurrentWeapon.NONE;
+        currentAction = CurrentAction.IDLE;
     }
 
     public override void Update()
@@ -123,14 +143,9 @@ public class PlayerScript : MonoBehaviour
         isRunning = false;
         isShooting = false;
 
-        //to delete just test
-        if (Input.GetKeyboardButton(Input.KeyboardCode.SIX))
-        {
-            dashAbilityName = "Dash";
-        }
-
         if (isDead)
         {
+            currentAction = CurrentAction.DEAD;
             attachedGameObject.animator.Play("Death");
 
             return;
@@ -209,7 +224,11 @@ public class PlayerScript : MonoBehaviour
         // current weapon switch
         switch (currentWeapon)
         {
-            case CurrentWeapon.MP4:
+            case CurrentWeapon.NONE:
+                if (itemManager.hasInitial)
+                    currentWeapon = CurrentWeapon.M4;
+                break;
+            case CurrentWeapon.M4:
                 break;
             case CurrentWeapon.IMPACIENTE:
                 break;
@@ -218,10 +237,12 @@ public class PlayerScript : MonoBehaviour
         }
 
         // animations
-        if (isRunning)
+        if (isRunning && !isShooting)
         {
-            if (isShooting)
-            {
+            currentAction = CurrentAction.RUN;
+
+            if (currentWeapon == CurrentWeapon.M4)
+            { 
                 attachedGameObject.animator.Play("Run M4");
             }
             else
@@ -229,8 +250,18 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Run");
             }
         }
-        else if (isShooting)
+        else if (isShooting && isRunning)
         {
+            currentAction = CurrentAction.RUNSHOOT;
+            
+            if (currentWeapon == CurrentWeapon.M4)
+            {            
+                attachedGameObject.animator.Play("Run and Shoot M4");
+            }
+        }
+        else if (isShooting && !isRunning)
+        {
+            currentAction = CurrentAction.SHOOT;
             attachedGameObject.animator.Play("Shoot M4");
         }
         else if (isDashing)
@@ -248,8 +279,16 @@ public class PlayerScript : MonoBehaviour
         {
             attachedGameObject.animator.Play("Adrenaline Rush Static");
         }
+        else if (currentWeapon == CurrentWeapon.M4)
+        {
+            currentAction = CurrentAction.IDLE;
+
+            attachedGameObject.animator.Play("Idle M4");
+        }
         else
         {
+            currentAction = CurrentAction.IDLE;
+
             attachedGameObject.animator.Play("Idle");
         }
     }
@@ -260,12 +299,6 @@ public class PlayerScript : MonoBehaviour
         stepParticles.Play();
     }
 
-    //private void Die()
-    //{
-    //    attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
-    //    attachedGameObject.animator.Play("Death");
-    //    // play sound (?)
-    //}
     private bool SetMoveDirection()
     {
         bool toMove = false;
@@ -339,7 +372,6 @@ public class PlayerScript : MonoBehaviour
             aimingDirection = aimingDirection.Normalize();
             float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
             attachedGameObject.transform.Rotation = new Vector3(0.0f, characterRotation, 0.0f);
-
         }
 
         return toMove;
@@ -438,6 +470,23 @@ public class PlayerScript : MonoBehaviour
 
         if (life <= 0)
         {
+            life = 0;
+            isDead = true;
+            attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+        }
+    }
+
+    public void ReduceLifeExplosion() // temporary function for the hardcoding of collisions
+    {
+        if (isDead || gameManager.godMode || shieldIsActive || isDashing)
+            return;
+
+        life -= grenadeDamage;
+        Debug.Log("Player took explosion damage! Current life is: " + life.ToString());
+
+        if (life <= 0)
+        {
+            life = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
