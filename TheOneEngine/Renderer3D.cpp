@@ -468,8 +468,8 @@ void Renderer3D::PostProcess(RenderTarget target)
 	// Copy gBuffer Depth to postBuffer
 	GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer->GetBuffer()));
 	GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer->GetBuffer()));
-	int width = target.GetFrameBuffer("lightBuffer")->GetWidth();
-	int height = target.GetFrameBuffer("lightBuffer")->GetHeight();
+	int width = postBuffer->GetWidth();
+	int height = postBuffer->GetHeight();
 	GLCALL(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
 
 	postBuffer->Bind();

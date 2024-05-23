@@ -42,9 +42,6 @@ public:
 	HandleSpace GetHandleSpace() const { return handleSpace; }
 	HandlePosition GetHandlePosition() const { return handlePosition; }
 
-	void LightPass();
-	void DrawScreenQuad();
-
 public:
 	bool isHovered;
 	bool isFocused;

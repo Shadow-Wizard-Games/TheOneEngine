@@ -249,91 +249,13 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        FrameBuffer* framebuffer = Renderer3D::GetFrameBuffer(renderTarget, "postBuffer");
+        current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
         ImGui::Image(
             (ImTextureID)Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
             ImVec2{ viewportSize.x, viewportSize.y },
             ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
-
-        // GEOMETRY PASS - ALL DRAWING MUST HAPPEN BETWEEN BIND/UNBIND ------------------------
-        //{
-        //    gBuffer->Bind();
-        //    gBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
-        //
-        //    // Set Render Environment
-        //    engine->SetRenderEnvironment();
-        //
-        //    // Draw Scene
-        //    GLCALL(glDisable(GL_BLEND));
-        //    current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
-        //
-        //    gBuffer->Unbind();
-        //}
-
-        if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
-        {
-            float sizeX = viewportSize.x;
-            float sizeY = viewportSize.y;
-
-            /*for (auto attachment : gBuffer.get()->GetAllAttachments())
-            {
-                ImGui::Image(
-                    (ImTextureID)attachment.textureId,
-                    ImVec2{ sizeX, sizeY },
-                    ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-            }*/
-            /*if (!engine->N_sceneManager->currentScene->lights.empty())
-            {
-                ImGui::Image(
-                    (ImTextureID)Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
-                    ImVec2{ sizeX, sizeY },
-                    ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-            }*/
-        }
-        ImGui::End();
-
-        
-        //// POST PROCESS -----------------------------------------------------------------------
-        //{
-        //    postBuffer->Bind();
-        //    postBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
-        //
-        //    // Copy gBuffer Depth to postBuffer
-        //    GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer.get()->GetBuffer()));
-        //    GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer.get()->GetBuffer()));
-        //    GLCALL(glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
-        //
-        //    postBuffer->Bind();
-        //    LightPass();
-        //
-        //    engine->SetRenderEnvironment();
-        //
-        //    // Debug / Editor Draw 
-        //    engine->DebugDraw(true);
-        //
-        //    // Game cameras Frustum
-        //    glColor3f(0.9f, 0.9f, 0.9f);
-        //    for (const auto GO : engine->N_sceneManager->GetGameObjects())
-        //    {
-        //        Camera* gameCam = GO.get()->GetComponent<Camera>();
-        //
-        //        if (gameCam != nullptr && gameCam->drawFrustum)
-        //            engine->DrawFrustum(gameCam->frustum);
-        //    }
-        //
-        //    postBuffer->Unbind();
-        //}
-
-
-
-        // Draw Light Pass Texture
-        /*ImGui::Image(
-            (ImTextureID)postBuffer->GetAttachmentTexture("color"),
-            ImVec2{ viewportSize.x, viewportSize.y },
-            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });*/
-
+       
 
         // ImGuizmo ------------------------------------------------------------------------
         // Handle Input
