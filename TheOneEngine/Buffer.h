@@ -74,6 +74,8 @@ public:
 		CalculateOffsetsAndStride();
 	}
 
+	~BufferLayout() { m_Elements.clear(); }
+
 	uint32_t GetStride() const { return m_Stride; }
 	const std::vector<BufferElement>& GetElements() const { return m_Elements; }
 	uint32_t GetSize() const { return m_Elements.size() * sizeof(BufferElement) + sizeof(uint32_t); }

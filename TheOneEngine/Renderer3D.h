@@ -60,7 +60,7 @@ public:
 		mesh.rendererID.AddVertexBuffer(instanceBuffer);
 	}
 
-	~InstanceCall() { models.clear(); }
+	~InstanceCall() { models.clear(); instanceBuffer.Delete(); }
 
 	void AddInstance(const glm::mat4& modelMat) {
 		models.push_back(modelMat);
