@@ -72,10 +72,10 @@ public:
 	//volume functions
 	//percentage, from 0 (mute) to 100 (max)
 	void SetGlobalVolume(float volume);
-	void SetMasterVolume(int volume);
-	void SetDialogVolume(int volume);
-	void SetSFXVolume(int volume);
-	void SetMusicVolume(int volume);
+	void SetMaster(int volume);
+	void SetDialog(int volume);
+	void SetSFX(int volume);
+	void SetMusic(int volume);
 
 	EngineState state = EngineState::STOPPED;
 

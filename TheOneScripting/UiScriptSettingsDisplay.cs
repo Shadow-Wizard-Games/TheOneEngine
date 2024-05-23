@@ -35,6 +35,9 @@ public class UiScriptSettingsDisplay : MonoBehaviour
         sfxVolume = 10;     //PUT HERE TO GET SFX VOLUME
         musicVolume = 10;   //PUT HERE TO GET MUSIC VOLUME
 
+        InternalCalls.SetMasterVolume(globalVolume);
+        InternalCalls.SetSFXVolume(sfxVolume);
+        InternalCalls.SetMusicVolume(musicVolume);
 
         canvas.ToggleChecker(vsync, "Checker_Vsync");
         canvas.ToggleChecker(fullscreen, "Checker_Fullscreen");
@@ -114,16 +117,19 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     {
                         globalVolume--;
                         canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
+                        InternalCalls.SetMasterVolume(globalVolume);
                     }
                     if (currentButton == 3)
                     {
                         sfxVolume--;
                         canvas.SetSliderValue(sfxVolume, "Slider_SFX");
+                        InternalCalls.SetSFXVolume(sfxVolume);
                     }
                     if (currentButton == 4)
                     {
                         musicVolume--;
                         canvas.SetSliderValue(musicVolume, "Slider_Music");
+                        InternalCalls.SetMusicVolume(musicVolume);
                     }
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
@@ -143,16 +149,19 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     {
                         globalVolume++;
                         canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
+                        InternalCalls.SetMasterVolume(globalVolume);
                     }
                     if (currentButton == 3)
                     {
                         sfxVolume++;
                         canvas.SetSliderValue(sfxVolume, "Slider_SFX");
+                        InternalCalls.SetSFXVolume(sfxVolume);
                     }
                     if (currentButton == 4)
                     {
                         musicVolume++;
                         canvas.SetSliderValue(musicVolume, "Slider_Music");
+                        InternalCalls.SetMusicVolume(musicVolume);
                     }
                 }
 
@@ -216,16 +225,19 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                         {
                             globalVolume--;
                             canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
+                            InternalCalls.SetMasterVolume(globalVolume);
                         }
                         if (currentButton == 3)
                         {
                             sfxVolume--;
                             canvas.SetSliderValue(sfxVolume, "Slider_SFX");
+                            InternalCalls.SetSFXVolume(sfxVolume);
                         }
                         if (currentButton == 4)
                         {
                             musicVolume--;
                             canvas.SetSliderValue(musicVolume, "Slider_Music");
+                            InternalCalls.SetMusicVolume(musicVolume);
                         }
                     }
                     else if (movementVector.x < 0.0f)
@@ -245,16 +257,19 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                         {
                             globalVolume++;
                             canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
+                            InternalCalls.SetMasterVolume(globalVolume);
                         }
                         if (currentButton == 3)
                         {
                             sfxVolume++;
                             canvas.SetSliderValue(sfxVolume, "Slider_SFX");
+                            InternalCalls.SetSFXVolume(sfxVolume);
                         }
                         if (currentButton == 4)
                         {
                             musicVolume++;
                             canvas.SetSliderValue(musicVolume, "Slider_Music");
+                            InternalCalls.SetMusicVolume(musicVolume);
                         }
                     }
                 }
