@@ -2,13 +2,14 @@
 #include "App.h"
 #include "Gui.h"
 #include "PanelInspector.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
 #include "Window.h"
 #include "imgui.h"
 #include "imGuizmo.h"
 
 #include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Renderer3D.h"
+#include "TheOneEngine/RenderTarget.h"
 #include "TheOneEngine/Ray.h"
 #include "TheOneEngine/Log.h"
 #include "TheOneEngine/Easing.h"
@@ -31,19 +32,8 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     camEaseOutX = engine->easingManager->AddEasing(0.2);
     camEaseOutY = engine->easingManager->AddEasing(0.2);
 
-    std::vector<Attachment> gBuffAttachments = {
-        { Attachment::Type::RGBA8, "color", 0 },
-        { Attachment::Type::RGB16F, "position", 0 },
-        { Attachment::Type::RGB16F, "normal", 0 },
-        { Attachment::Type::DEPTH_STENCIL, "depth", 0 }
-    };
-    std::vector<Attachment> lightBuffAttachments = {
-        { Attachment::Type::RGBA8, "color", 0 },
-        { Attachment::Type::DEPTH_STENCIL, "depth", 0 }
-    };
-
-    gBuffer = std::make_shared<FrameBuffer>(1280, 720, gBuffAttachments);
-    postBuffer = std::make_shared<FrameBuffer>(1280, 720, lightBuffAttachments);
+    //gBuffer = std::make_shared<FrameBuffer>(1280, 720, gBuffAttachments);
+    //postBuffer = std::make_shared<FrameBuffer>(1280, 720, lightBuffAttachments);
     viewportSize = { 0.0f, 0.0f };
 
     gizmoType = -1;
@@ -85,6 +75,23 @@ void PanelScene::Start()
 
     current = engine->N_sceneManager->currentScene;
     engine->SetEditorCamera(sceneCamera->GetComponent<Camera>());
+
+    // Create Render Target
+    std::vector<Attachment> gBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", "gBuffer", 0 },
+        { Attachment::Type::RGB16F, "position", "gBuffer", 0 },
+        { Attachment::Type::RGB16F, "normal", "gBuffer", 0 },
+        { Attachment::Type::DEPTH_STENCIL, "depth", "gBuffer", 0 }
+    };
+    std::vector<Attachment> postBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", "postBuffer", 0 },
+        { Attachment::Type::DEPTH_STENCIL, "depth", "postBuffer", 0 }
+    };
+
+    std::vector<vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments };
+
+    viewportSize = { 680, 360 };
+    renderTarget = Renderer3D::AddRenderTarget(DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
 }
 
 bool PanelScene::Draw()
@@ -231,47 +238,56 @@ bool PanelScene::Draw()
 
         // Viewport resize check
         viewportSize = { availWindowSize.x, availWindowSize.y };
-
-        if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-            (gBuffer->GetWidth() != viewportSize.x || gBuffer->GetHeight() != viewportSize.y))
+        
+        if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && 
+            (Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->GetWidth() != viewportSize.x || 
+                Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->GetHeight() != viewportSize.y))
         {
-            gBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
-            postBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+            Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
+            Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
             sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
+
+        FrameBuffer* framebuffer = Renderer3D::GetFrameBuffer(renderTarget, "postBuffer");
+
+        ImGui::Image(
+            (ImTextureID)Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
+            ImVec2{ viewportSize.x, viewportSize.y },
+            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
 
         // GEOMETRY PASS - ALL DRAWING MUST HAPPEN BETWEEN BIND/UNBIND ------------------------
         //{
         //    gBuffer->Bind();
         //    gBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
-
+        //
         //    // Set Render Environment
         //    engine->SetRenderEnvironment();
-
+        //
         //    // Draw Scene
         //    GLCALL(glDisable(GL_BLEND));
         //    current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
-
+        //
         //    gBuffer->Unbind();
         //}
 
         if (ImGui::Begin("Debug Lighting", &enabled, settingsFlags))
         {
-            float sizeX = viewportSize.x / 3;
-            float sizeY = viewportSize.y / 3;
+            float sizeX = viewportSize.x;
+            float sizeY = viewportSize.y;
 
-            for (auto attachment : gBuffer.get()->GetAllAttachments())
+            /*for (auto attachment : gBuffer.get()->GetAllAttachments())
             {
                 ImGui::Image(
                     (ImTextureID)attachment.textureId,
                     ImVec2{ sizeX, sizeY },
                     ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-            }
+            }*/
             /*if (!engine->N_sceneManager->currentScene->lights.empty())
             {
                 ImGui::Image(
-                    (ImTextureID)engine->N_sceneManager->currentScene->lights.at(0)->depthBuffer.get()->GetAttachmentTexture("depth"),
+                    (ImTextureID)Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
                     ImVec2{ sizeX, sizeY },
                     ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
             }*/
@@ -279,43 +295,44 @@ bool PanelScene::Draw()
         ImGui::End();
 
         
-        // POST PROCESS -----------------------------------------------------------------------
-        {
-            postBuffer->Bind();
-            postBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+        //// POST PROCESS -----------------------------------------------------------------------
+        //{
+        //    postBuffer->Bind();
+        //    postBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+        //
+        //    // Copy gBuffer Depth to postBuffer
+        //    GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer.get()->GetBuffer()));
+        //    GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer.get()->GetBuffer()));
+        //    GLCALL(glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
+        //
+        //    postBuffer->Bind();
+        //    LightPass();
+        //
+        //    engine->SetRenderEnvironment();
+        //
+        //    // Debug / Editor Draw 
+        //    engine->DebugDraw(true);
+        //
+        //    // Game cameras Frustum
+        //    glColor3f(0.9f, 0.9f, 0.9f);
+        //    for (const auto GO : engine->N_sceneManager->GetGameObjects())
+        //    {
+        //        Camera* gameCam = GO.get()->GetComponent<Camera>();
+        //
+        //        if (gameCam != nullptr && gameCam->drawFrustum)
+        //            engine->DrawFrustum(gameCam->frustum);
+        //    }
+        //
+        //    postBuffer->Unbind();
+        //}
 
-            // Copy gBuffer Depth to postBuffer
-            GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, gBuffer.get()->GetBuffer()));
-            GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postBuffer.get()->GetBuffer()));
-            GLCALL(glBlitFramebuffer(0, 0, viewportSize.x, viewportSize.y, 0, 0, viewportSize.x, viewportSize.y, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
-
-            postBuffer->Bind();
-            LightPass();
-
-            engine->SetRenderEnvironment();
-
-            // Debug / Editor Draw 
-            engine->DebugDraw(true);
-
-            // Game cameras Frustum
-            glColor3f(0.9f, 0.9f, 0.9f);
-            for (const auto GO : engine->N_sceneManager->GetGameObjects())
-            {
-                Camera* gameCam = GO.get()->GetComponent<Camera>();
-
-                if (gameCam != nullptr && gameCam->drawFrustum)
-                    engine->DrawFrustum(gameCam->frustum);
-            }
-
-            postBuffer->Unbind();
-        }
 
 
         // Draw Light Pass Texture
-        ImGui::Image(
+        /*ImGui::Image(
             (ImTextureID)postBuffer->GetAttachmentTexture("color"),
             ImVec2{ viewportSize.x, viewportSize.y },
-            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });*/
 
 
         // ImGuizmo ------------------------------------------------------------------------
@@ -689,136 +706,4 @@ void PanelScene::SetTargetSpeed()
 
     if (zeroX) camTargetSpeed.x = 0;
     if (zeroY) camTargetSpeed.y = 0;
-}
-
-void PanelScene::LightPass()
-{
-    std::vector<Light*> lights = engine->N_sceneManager->currentScene->lights;
-    uint directionalLightNum = 0;
-    uint pointLightNum = 0;
-    uint spotLightNum = 0;
-
-    Transform* cameraTransform = sceneCamera.get()->GetComponent<Transform>();
-
-    Uniform::SamplerData gPositionData;
-    gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
-    Uniform::SamplerData gNormalData;
-    gNormalData.tex_id = gBuffer->GetAttachmentTexture("normal");
-    Uniform::SamplerData gAlbedoSpecData;
-    gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
-
-    Material* mat = nullptr;
-    if (!engine->lightingProcessPath.empty())
-        mat = Resources::GetResourceById<Material>(Resources::LoadFromLibrary<Material>(engine->lightingProcessPath));
-
-    if (!mat)
-    {
-        LOG(LogType::LOG_ERROR, "Lighting Pass Failed, material was nullptr.");
-        return;
-    }
-
-    Shader* shader = mat->getShader();
-    shader->Bind();
-
-    mat->SetUniformData("gPosition", gPositionData);
-    mat->SetUniformData("gNormal", gNormalData);
-    mat->SetUniformData("gAlbedoSpec", gAlbedoSpecData);
-    mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
-
-    for (int i = 0; i < lights.size(); i++)
-    {
-        Transform* transform = lights[i]->GetContainerGO().get()->GetComponent<Transform>();
-
-        if (lights[i]->activeShadows) lights[i]->CalculateShadows();
-        
-        postBuffer->Bind();
-        shader->Bind();
-
-        switch (lights[i]->lightType)
-        {
-        case LightType::Directional:
-        {
-            //Historn TODO: Create more Directional Lights
-            string iteration = to_string(directionalLightNum);
-            mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-            mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-            mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
-            mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", lights[i]->intensity);
-            directionalLightNum++;
-            break;
-        }
-        case LightType::Point:
-        {
-            string iteration = to_string(pointLightNum);
-            //Variables need to be float not double
-            mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-            mat->SetUniformData("u_PointLights[" + iteration + "].Color", lights[i]->color);
-            mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", lights[i]->intensity);
-            mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
-            mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
-            mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
-            pointLightNum++;
-            break;
-        }
-        case LightType::Spot:
-        {
-            string iteration = to_string(spotLightNum);
-            //Variables need to be float not double
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Color", lights[i]->color);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", lights[i]->intensity);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", lights[i]->linear);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", lights[i]->quadratic);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", lights[i]->radius);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", lights[i]->camera->viewProjectionMatrix);
-            mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
-            spotLightNum++;
-            break;
-        }
-        default:
-            break;
-        }
-    }
-
-    mat->Bind();
-    DrawScreenQuad();
-    mat->UnBind();
-}
-
-// hekbas: Relocate when Renderer3D is finished
-void PanelScene::DrawScreenQuad()
-{
-    // Disable writing to the depthbuffer, 
-    // otherwise DrawScreenQuad overwrites it
-    GLCALL(glDepthMask(GL_FALSE));
-
-    unsigned int quadVAO = 0;
-    unsigned int quadVBO;
-    if (quadVAO == 0)
-    {
-        float quadVertices[] = {
-            // positions        // texture Coords
-            -1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
-            -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-             1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
-             1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
-        };
-        // setup plane VAO
-        glGenVertexArrays(1, &quadVAO);
-        glGenBuffers(1, &quadVBO);
-        glBindVertexArray(quadVAO);
-        glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    }
-    glBindVertexArray(quadVAO);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    glBindVertexArray(0);
-    GLCALL(glDepthMask(GL_TRUE));
 }

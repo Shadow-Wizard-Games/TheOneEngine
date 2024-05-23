@@ -91,6 +91,8 @@ public:
 
 	static unsigned int AddRenderTarget(DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
 	static std::vector<FrameBuffer>* GetFrameBuffers(unsigned int targetID);
+	static FrameBuffer* GetFrameBuffer(unsigned int targetID, std::string name);
+
 
 	static void AddLight(std::shared_ptr<GameObject> container);
 	static void CleanLights();

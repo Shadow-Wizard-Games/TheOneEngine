@@ -9,6 +9,7 @@ static const unsigned int s_MaxFramebufferSize = 8192;
 
 FrameBuffer::FrameBuffer(std::string name, int width, int height, std::vector<Attachment> attachments)
 {
+    this->name = name;
 	this->width = width;
 	this->height = height;
     this->attachments = attachments;
@@ -17,10 +18,10 @@ FrameBuffer::FrameBuffer(std::string name, int width, int height, std::vector<At
 
 FrameBuffer::~FrameBuffer()
 {
-    for (const auto& attachment : attachments)
+    /*for (const auto& attachment : attachments)
         glDeleteTextures(1, &attachment.textureId);
 
-    GLCALL(glDeleteFramebuffers(1, &FBO));
+    GLCALL(glDeleteFramebuffers(1, &FBO));*/
 }
 
 void FrameBuffer::Bind(bool clear)

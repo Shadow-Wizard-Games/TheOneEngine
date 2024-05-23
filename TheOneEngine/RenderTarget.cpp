@@ -7,8 +7,10 @@ RenderTarget::RenderTarget(unsigned int id, DrawMode mode, Camera* camera, glm::
     camera(camera),
     viewportSize(viewportSize)
 {
-    for (auto fb : frameBuffers)
-        this->frameBuffers.emplace_back(viewportSize.x, viewportSize.y, fb);
+    for (auto& fb : frameBuffers)
+    {
+        this->frameBuffers.emplace_back(fb[0].frameBufferName, viewportSize.x, viewportSize.y, fb);
+    }
 }
 
 RenderTarget::~RenderTarget() {}
@@ -20,7 +22,7 @@ std::vector<FrameBuffer>* RenderTarget::GetFrameBuffers()
 
 FrameBuffer* RenderTarget::GetFrameBuffer(std::string name)
 {
-    for (auto fb : frameBuffers)
+    for (auto &fb : frameBuffers)
     {
         if (fb.GetName() == name)
             return &fb;

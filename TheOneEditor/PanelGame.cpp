@@ -13,10 +13,10 @@ PanelGame::PanelGame(PanelType type, std::string name) : Panel(type, name)
 	currentScene = nullptr;
 	gameCamera = nullptr;
 	std::vector<Attachment> attachments = {
-		{ Attachment::Type::RGBA8, "color", 0 },
-		{ Attachment::Type::DEPTH_STENCIL, "depth", 0 }
+		{ Attachment::Type::RGBA8, "color", "buffer", 0 },
+		{ Attachment::Type::DEPTH_STENCIL, "depth", "buffer", 0 }
 	};
-	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, attachments);
+	frameBuffer = std::make_shared<FrameBuffer>("game", 1280, 720, attachments);
 	viewportSize = { 0.0f, 0.0f };
 	isHovered = false;
 	isFocused = false;

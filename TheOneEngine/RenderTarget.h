@@ -14,6 +14,7 @@ public:
 
 	std::vector<FrameBuffer>* GetFrameBuffers();
 	FrameBuffer* GetFrameBuffer(std::string name);
+	Camera* GetCamera() { return camera; }
 
 private:
 	uint id;

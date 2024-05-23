@@ -47,13 +47,9 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     Renderer3D::AddLight(containerGO);
 }
 
-Light::~Light() 
-{
-}
+Light::~Light() {}
 
-void Light::DrawComponent(Camera* camera)
-{
-}
+void Light::DrawComponent(Camera* camera) {}
 
 json Light::SaveComponent()
 {
@@ -75,7 +71,7 @@ json Light::SaveComponent()
     lightJSON["Quadratic"] = quadratic;
     lightJSON["InnerCutOff"] = innerCutOff;
     lightJSON["OuterCutOff"] = outerCutOff;
-    lightJSON["ActiveShadows"] = activeShadows;
+    lightJSON["ActiveShadows"] = castShadows;
 
     return lightJSON;
 }
@@ -130,6 +126,6 @@ void Light::LoadComponent(const json& meshJSON)
     }
     if (meshJSON.contains("ActiveShadows"))
     {
-        activeShadows = meshJSON["ActiveShadows"];
+        castShadows = meshJSON["ActiveShadows"];
     }
 }

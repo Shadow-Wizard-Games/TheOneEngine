@@ -14,6 +14,7 @@ struct Attachment
 
 	Type type;
 	std::string name;
+	std::string frameBufferName;
 	GLuint textureId;
 };
 

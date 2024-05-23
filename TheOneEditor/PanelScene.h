@@ -67,8 +67,9 @@ private:
 	vec2 camCurrentSpeed = { 0, 0 };
 
 	// Viewport/Buffers
-	std::shared_ptr<FrameBuffer> gBuffer;
-	std::shared_ptr<FrameBuffer> postBuffer;
+	//std::shared_ptr<FrameBuffer> gBuffer;
+	//std::shared_ptr<FrameBuffer> postBuffer;
+	unsigned int renderTarget;
 	glm::vec2 viewportSize;
 
 	int gizmoType;

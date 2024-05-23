@@ -49,8 +49,12 @@ void Renderer3D::Update()
 	for (auto target : renderer3D.renderTargets)
 	{
 		GeometryPass(target);
+		ShadowPass(target);
 		PostProcess(target);
 	}
+
+	renderer3D.instanceCalls.clear();
+	renderer3D.skeletalCalls.clear();
 }
 
 void Renderer3D::Shutdown()
@@ -84,6 +88,11 @@ unsigned int Renderer3D::AddRenderTarget(DrawMode mode, Camera* camera, glm::vec
 std::vector<FrameBuffer>* Renderer3D::GetFrameBuffers(unsigned int targetID)
 {
 	return renderer3D.renderTargets[targetID].GetFrameBuffers();
+}
+
+FrameBuffer* Renderer3D::GetFrameBuffer(unsigned int targetID, std::string name)
+{
+	return renderer3D.renderTargets[targetID].GetFrameBuffer(name);
 }
 
 void Renderer3D::AddLight(std::shared_ptr<GameObject> container)
@@ -441,11 +450,9 @@ void Renderer3D::GeometryPass(RenderTarget target)
 	GLCALL(glDisable(GL_BLEND));
 	for (const InstanceCall& call : renderer3D.instanceCalls)
 		DrawInstanced(call);
-	renderer3D.instanceCalls.clear();
 
 	for (const SkeletalCall& call : renderer3D.skeletalCalls)
 		DrawSkeletal(call);
-	renderer3D.skeletalCalls.clear();
 
 	gBuffer->Unbind();
 }
@@ -483,29 +490,24 @@ void Renderer3D::ShadowPass(RenderTarget target)
 	for (int i = 0; i < lights.size(); i++)
 	{
 		Light* light = lights[i]->GetComponent<Light>();
-
 		if (!light->castShadows) continue;
 
+		// Shadow Buffer
 		FrameBuffer* shadowBuffer = target.GetFrameBuffer("shadowBuffer");
 		shadowBuffer->Bind();
 		shadowBuffer->Clear(ClearBit::Depth, { 0.0f, 0.0f, 0.0f, 1.0f });
 
 		// Set Render Environment
 		engine->SetRenderEnvironment();
-
-		GLCALL(glDisable(GL_BLEND));
+		engine->SetUniformBufferCamera(lights[i]->GetComponent<Camera>()->viewProjectionMatrix);
 
 		// Draw Scene
 		GLCALL(glDisable(GL_BLEND));
 		for (const InstanceCall& call : renderer3D.instanceCalls)
 			DrawInstanced(call);
-		renderer3D.instanceCalls.clear();
 
 		for (const SkeletalCall& call : renderer3D.skeletalCalls)
 			DrawSkeletal(call);
-		renderer3D.skeletalCalls.clear();
-
-		//engine->N_sceneManager->currentScene->Draw(DrawMode::EDITOR, this->camera);
 
 		shadowBuffer->Unbind();
 	}
@@ -516,12 +518,11 @@ void Renderer3D::LightPass(RenderTarget target)
 	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
 	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
 
-	std::vector<Light*> lights = renderer3D.lights;
 	uint directionalLightNum = 0;
 	uint pointLightNum = 0;
 	uint spotLightNum = 0;
 
-	Transform* cameraTransform = sceneCamera.get()->GetComponent<Transform>();
+	Transform* cameraTransform = target.GetCamera()->GetContainerGO()->GetComponent<Transform>();
 
 	Uniform::SamplerData gPositionData;
 	gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
@@ -548,14 +549,15 @@ void Renderer3D::LightPass(RenderTarget target)
 	mat->SetUniformData("gAlbedoSpec", gAlbedoSpecData);
 	mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
 
-	for (int i = 0; i < lights.size(); i++)
+	for (int i = 0; i < renderer3D.lights.size(); i++)
 	{
-		Transform* transform = lights[i]->GetContainerGO().get()->GetComponent<Transform>();
+		Light* light = renderer3D.lights[i]->GetComponent<Light>();
+		Transform* transform = renderer3D.lights[i]->GetComponent<Transform>();
 
 		postBuffer->Bind();
 		shader->Bind();
 
-		switch (lights[i]->lightType)
+		switch (light->lightType)
 		{
 		case LightType::Directional:
 		{
@@ -563,8 +565,8 @@ void Renderer3D::LightPass(RenderTarget target)
 			string iteration = to_string(directionalLightNum);
 			mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
 			mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-			mat->SetUniformData("u_DirLight[" + iteration + "].Color", lights[i]->color);
-			mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", lights[i]->intensity);
+			mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
+			mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", light->intensity);
 			directionalLightNum++;
 			break;
 		}
@@ -573,11 +575,11 @@ void Renderer3D::LightPass(RenderTarget target)
 			string iteration = to_string(pointLightNum);
 			//Variables need to be float not double
 			mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-			mat->SetUniformData("u_PointLights[" + iteration + "].Color", lights[i]->color);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", lights[i]->intensity);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Linear", lights[i]->linear);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", lights[i]->quadratic);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Radius", lights[i]->radius);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Linear", light->linear);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", light->quadratic);
+			mat->SetUniformData("u_PointLights[" + iteration + "].Radius", light->radius);
 			pointLightNum++;
 			break;
 		}
@@ -587,15 +589,15 @@ void Renderer3D::LightPass(RenderTarget target)
 			//Variables need to be float not double
 			mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
 			mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Color", lights[i]->color);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", lights[i]->intensity);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", lights[i]->linear);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", lights[i]->quadratic);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", lights[i]->radius);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", lights[i]->innerCutOff);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", lights[i]->outerCutOff);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", light->intensity);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", light->linear);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", light->quadratic);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", light->radius);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", light->innerCutOff);
+			mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", light->outerCutOff);
 			mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", renderer3D.lights[i]->GetComponent<Camera>()->viewProjectionMatrix);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", lights[i]->depthBuffer->GetAttachmentTexture("depth"));
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", light->depthBuffer->GetAttachmentTexture("depth"));
 			spotLightNum++;
 			break;
 		}

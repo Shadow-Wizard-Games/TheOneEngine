@@ -23,10 +23,10 @@ animationCamera(nullptr),
 isPlaying(false)
 {
 	std::vector<Attachment> attachments = {
-		{ Attachment::Type::RGBA8, "color", 0 },
-		{ Attachment::Type::DEPTH_STENCIL, "depth", 0 }
+		{ Attachment::Type::RGBA8, "color", "animation", 0 },
+		{ Attachment::Type::DEPTH_STENCIL, "depth", "animation", 0 }
 	};
-	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, attachments);
+	frameBuffer = std::make_shared<FrameBuffer>("animation", 1280, 720, attachments);
 
 	animationCamera = std::make_shared<GameObject>("ANIMATION CAMERA");
 	animationCamera.get()->AddComponent<Transform>();
