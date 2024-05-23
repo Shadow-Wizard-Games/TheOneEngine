@@ -876,6 +876,21 @@ static void SetSwitch(GameObject* GOptr, uint switchGroup, uint switchState)
 	audioManager->SetSwitch(GOptr->GetComponent<AudioSource>(), switchGroup, switchState);
 }
 
+static void SetMaster(int volume) 
+{
+	audioManager->audio->SetMaster(volume);
+}
+
+static void SetSFX(int volume) 
+{
+	audioManager->audio->SetSFX(volume);
+}
+
+static void SetMusic(int volume) 
+{
+	audioManager->audio->SetMusic(volume);
+}
+
 // Collider2D
 static float GetColliderRadius(GameObject* GOptr)
 {
@@ -1106,6 +1121,9 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::StopAudioSource", StopAudioSource);
 	mono_add_internal_call("InternalCalls::SetState", SetState);
 	mono_add_internal_call("InternalCalls::SetSwitch", SetSwitch);
+	mono_add_internal_call("InternalCalls::SetMasterVolume", SetMaster);
+	mono_add_internal_call("InternalCalls::SetSFXVolume", SetSFX);
+	mono_add_internal_call("InternalCalls::SetMusicVolume", SetMusic);
 
 	//Collider2D
 	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);
