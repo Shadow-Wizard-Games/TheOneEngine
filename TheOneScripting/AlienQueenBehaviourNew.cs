@@ -94,6 +94,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                 Debug.LogError("Fallen out of FSM");
                 break;
         }
+        if (rainActive) { AcidRain(); }
     }
 
     float detectionRange = 400.0f;
@@ -507,6 +508,9 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            rainActive = true;
+            acidRainCenter = playerGO.transform.Position;
+
             if (currentPhase == 1)
             {
                 attackedFinished = true;
@@ -559,6 +563,41 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         //    currentAttack = Attacks.None;
         //    attackedFinished = true;
         //}
+    }
+
+
+    float rainArea = 170.0f;
+    float timeBetweenRaindrops = 0.4f;
+    float rainDuration = 5.0f;
+    #region Do not touch variables
+    bool rainActive = false;
+    float dropsCounter = 0.0f;
+    float rainTimeCounter = 0.0f;
+    Vector3 acidRainCenter;
+    #endregion
+    private void AcidRain()
+    {
+        dropsCounter += Time.deltaTime;
+        if (dropsCounter >= timeBetweenRaindrops)
+        {
+            dropsCounter -= timeBetweenRaindrops;
+
+            Random rand = new Random();
+            float angle = (float)(rand.NextDouble() * 2 * Math.PI);
+
+            float radius = rainArea * (float)Math.Sqrt(rand.NextDouble());
+
+            Vector3 localPos = new Vector3(radius * (float)Math.Cos(angle),
+                                           0.0f,
+                                           radius * (float)Math.Sin(angle));
+
+            InternalCalls.CreatePrefab("Acid_Raindrop", acidRainCenter + localPos, Vector3.zero);
+        }
+
+        rainTimeCounter += Time.deltaTime;
+        if (rainTimeCounter >= rainDuration) { rainTimeCounter = 0.0f; rainActive = false; }
+
+        Debug.DrawWireCircle(acidRainCenter, rainArea, Color.chernobylGreen.ToVector3());
     }
 
     float spawnDuration = 5.0f;

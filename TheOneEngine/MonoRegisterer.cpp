@@ -219,6 +219,11 @@ static GameObject* FindGameObjectInChildren(GameObject* refGO, MonoString* monoS
 	return RecursiveFindGO(name, refGO);
 }
 
+static GameObject* GetGameObjectParent(GameObject* originalGO)
+{
+	return originalGO->parent.lock().get();
+}
+
 static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* scriptName = nullptr)
 {
 	ComponentType type = (ComponentType)componentType;
@@ -414,11 +419,11 @@ static MonoString* GetCurrentSceneName()
 	return mono_string_new(MonoManager::GetAppDomain(), engine->N_sceneManager->currentScene->GetSceneName().c_str());
 }
 
-static void CreatePrefab(MonoString* prefabName, vec3f* position)
+static void CreatePrefab(MonoString* prefabName, vec3f* position, vec3f* rotation)
 {
 	std::string MprefabName = MonoRegisterer::MonoStringToUTF8(prefabName);
 
-	engine->N_sceneManager->CreatePrefabWithName(MprefabName, *position);
+	engine->N_sceneManager->CreatePrefabWithName(MprefabName, *position, *rotation);
 }
 
 //User Interface
@@ -1044,6 +1049,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObjectInChildren", FindGameObjectInChildren);
+	mono_add_internal_call("InternalCalls::GetParent", GetGameObjectParent);
 	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);

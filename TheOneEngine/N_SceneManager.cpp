@@ -1009,7 +1009,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& position)
+void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& position, vec3f& rotation)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -1041,7 +1041,10 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& p
 
 	newGameObject->LoadGameObject(prefabJSON);
 
-	newGameObject->GetComponent<Transform>()->SetPosition(position);
+	Transform* goTransform = newGameObject->GetComponent<Transform>();
+
+	goTransform->SetPosition(position);
+	goTransform->SetRotation(rotation);
 }
 
 void N_SceneManager::CreatePrefabWithName(std::string prefabName, const mat4& transform)
