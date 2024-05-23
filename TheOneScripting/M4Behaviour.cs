@@ -25,6 +25,8 @@ internal class M4Behaviour : MonoBehaviour
         player = IGameObject.Find("SK_MainCharacter").GetComponent<PlayerScript>();
 
         playerTransform = player.attachedGameObject.GetComponent<ITransform>();
+
+        M4State = State.NOTM4;
     }
 
     public override void Update()

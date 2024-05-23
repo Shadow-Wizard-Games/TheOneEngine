@@ -28,6 +28,8 @@ public class EventCollectible : Event
         itemManagerGO = IGameObject.Find("ItemManager");
         itemManager = itemManagerGO.GetComponent<ItemManager>();
 
+        itemManager.Start();
+
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
         uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
     }
@@ -66,12 +68,15 @@ public class EventCollectible : Event
         {
             if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
             {
-                player.currentWeapon = PlayerScript.CurrentWeapon.M4;
                 itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
-                //IGameObject.InstanciatePrefab("WP_CarabinaM4");
+
+                IGameObject.InstanciatePrefab("WP_CarabinaM4", playerGO.transform.Position, playerGO.transform.Rotation);
+                player.currentWeapon = PlayerScript.CurrentWeapon.M4;
+
                 attachedGameObject.Disable();
+
                 uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "m4a1");
-                //Degug
+
                 Debug.LogWarning("LOOTED");
             }
         }

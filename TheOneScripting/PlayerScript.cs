@@ -242,7 +242,7 @@ public class PlayerScript : MonoBehaviour
             currentAction = CurrentAction.RUN;
 
             if (currentWeapon == CurrentWeapon.M4)
-            {            currentAction = CurrentAction.RUN;
+            { 
                 attachedGameObject.animator.Play("Run M4");
             }
             else
@@ -259,7 +259,7 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Run and Shoot M4");
             }
         }
-        else if (isShooting)
+        else if (isShooting && !isRunning)
         {
             currentAction = CurrentAction.SHOOT;
             attachedGameObject.animator.Play("Shoot M4");
@@ -281,10 +281,14 @@ public class PlayerScript : MonoBehaviour
         }
         else if (currentWeapon == CurrentWeapon.M4)
         {
+            currentAction = CurrentAction.IDLE;
+
             attachedGameObject.animator.Play("Idle M4");
         }
         else
         {
+            currentAction = CurrentAction.IDLE;
+
             attachedGameObject.animator.Play("Idle");
         }
     }
