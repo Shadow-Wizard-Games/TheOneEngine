@@ -29,8 +29,7 @@ internal class M4Behaviour : MonoBehaviour
 
     public override void Update()
     {
-        attachedGameObject.transform.Position = playerTransform.Position;
-        attachedGameObject.transform.Rotation = playerTransform.Rotation;
+        attachedGameObject.transform = playerTransform;
 
         ChangeWeaponState();
 

@@ -34,7 +34,7 @@ public class Grenade : MonoBehaviour
         Vector3 position = attachedGameObject.transform.Position + player.grenadeInitialVelocity * Time.deltaTime;
         player.grenadeInitialVelocity += gravity * Time.deltaTime;
 
-        attachedGameObject.transform.Position = position;
+        attachedGameObject.transform.SetPosition(position);
     }
 
     public void Impact()

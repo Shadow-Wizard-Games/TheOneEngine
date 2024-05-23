@@ -57,6 +57,11 @@ public class ITransform : IComponent
         InternalCalls.Translate(containerGOptr, ref finalPos);
     }
 
+    public void SetPosition(Vector3 setPos)
+    {
+        Position = setPos;
+    }
+
     public void Rotate(Vector3 increment)
     {
         InternalCalls.Rotate(containerGOptr, ref increment);
