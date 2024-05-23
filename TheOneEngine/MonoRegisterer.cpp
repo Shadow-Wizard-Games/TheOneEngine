@@ -245,6 +245,11 @@ static GameObject* FindGameObjectInChildren(GameObject* refGO, MonoString* monoS
 	return RecursiveFindGO(name, refGO);
 }
 
+static GameObject* GetGameObjectParent(GameObject* originalGO)
+{
+	return originalGO->parent.lock().get();
+}
+
 static void* ComponentCheck(GameObject* GOptr, int componentType, MonoString* scriptName = nullptr)
 {
 	ComponentType type = (ComponentType)componentType;
@@ -440,11 +445,11 @@ static MonoString* GetCurrentSceneName()
 	return mono_string_new(MonoManager::GetAppDomain(), engine->N_sceneManager->currentScene->GetSceneName().c_str());
 }
 
-static void CreatePrefab(MonoString* prefabName, vec3f* position)
+static void CreatePrefab(MonoString* prefabName, vec3f* position, vec3f* rotation)
 {
 	std::string MprefabName = MonoRegisterer::MonoStringToUTF8(prefabName);
 
-	engine->N_sceneManager->CreatePrefabWithName(MprefabName, *position);
+	engine->N_sceneManager->CreatePrefabWithName(MprefabName, *position, *rotation);
 }
 
 //User Interface
@@ -902,6 +907,21 @@ static void SetSwitch(GameObject* GOptr, uint switchGroup, uint switchState)
 	audioManager->SetSwitch(GOptr->GetComponent<AudioSource>(), switchGroup, switchState);
 }
 
+static void SetMaster(int volume) 
+{
+	audioManager->audio->SetMaster(volume);
+}
+
+static void SetSFX(int volume) 
+{
+	audioManager->audio->SetSFX(volume);
+}
+
+static void SetMusic(int volume) 
+{
+	audioManager->audio->SetMusic(volume);
+}
+
 // Collider2D
 static float GetColliderRadius(GameObject* GOptr)
 {
@@ -1056,6 +1076,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObject", FindGameObject);
 	mono_add_internal_call("InternalCalls::FindGameObjectInChildren", FindGameObjectInChildren);
+	mono_add_internal_call("InternalCalls::GetParent", GetGameObjectParent);
 	mono_add_internal_call("InternalCalls::ComponentCheck", ComponentCheck);
 	mono_add_internal_call("InternalCalls::GetScript", GetScript);
 	mono_add_internal_call("InternalCalls::Disable", Disable);
@@ -1133,6 +1154,9 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::StopAudioSource", StopAudioSource);
 	mono_add_internal_call("InternalCalls::SetState", SetState);
 	mono_add_internal_call("InternalCalls::SetSwitch", SetSwitch);
+	mono_add_internal_call("InternalCalls::SetMasterVolume", SetMaster);
+	mono_add_internal_call("InternalCalls::SetSFXVolume", SetSFX);
+	mono_add_internal_call("InternalCalls::SetMusicVolume", SetMusic);
 
 	//Collider2D
 	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);

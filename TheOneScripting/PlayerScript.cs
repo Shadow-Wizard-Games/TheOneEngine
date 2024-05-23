@@ -182,6 +182,11 @@ public class PlayerScript : MonoBehaviour
         movementDirection = Vector3.zero;
         movementMagnitude = 0;
         isRunning = SetMoveDirection();
+
+        // set shoot direction
+        SetShootDirection();
+        //bool hasAimed = SetShootDirection();
+
         if (isRunning)
         {
             attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
@@ -190,8 +195,6 @@ public class PlayerScript : MonoBehaviour
         // update total damage before shooting
         totalDamage = currentWeoponDamage + damageIncrease;
 
-        // set shoot direction
-        SetShootDirection();
 
         if (itemManager != null)
         {
@@ -302,11 +305,16 @@ public class PlayerScript : MonoBehaviour
 
         if (leftJoystickDirection.x != 0.0f || leftJoystickDirection.y != 0.0f)
         {
-            movementDirection += new Vector3(leftJoystickDirection.x, 0.0f, leftJoystickDirection.y);
+            // 0.7071f = 1 / sqrt(2)
+            Vector2 rotatedDirection = new Vector2(
+                leftJoystickDirection.x * 0.7071f + leftJoystickDirection.y * 0.7071f, 
+                -leftJoystickDirection.x * 0.7071f + leftJoystickDirection.y * 0.7071f);
+
+            movementDirection += new Vector3(rotatedDirection.x, 0.0f, rotatedDirection.y);
             movementMagnitude = leftJoystickDirection.Magnitude();
             toMove = true;
 
-            aimingDirection += leftJoystickDirection;
+            aimingDirection += rotatedDirection;
         }
 
         #endregion
@@ -316,38 +324,38 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKeyboardButton(Input.KeyboardCode.W))
             {
-                movementDirection -= Vector3.forward;
+                movementDirection += Vector3.zero - Vector3.right - Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
 
-                aimingDirection -= Vector2.up;
+                aimingDirection += Vector2.zero - Vector2.right - Vector2.up;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.A))
             {
-                movementDirection -= Vector3.right;
+                movementDirection += Vector3.zero - Vector3.right + Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
 
-                aimingDirection -= Vector2.right;
+                aimingDirection += Vector2.zero - Vector2.right + Vector2.up;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.S))
             {
-                movementDirection += Vector3.forward;
+                movementDirection += Vector3.zero + Vector3.right + Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
 
-                aimingDirection += Vector2.up;
+                aimingDirection += Vector2.zero + Vector2.right + Vector2.up;
             }
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.D))
             {
-                movementDirection += Vector3.right;
+                movementDirection += Vector3.zero + Vector3.right - Vector3.forward;
                 movementMagnitude = 1.0f;
                 toMove = true;
 
-                aimingDirection += Vector2.right;
+                aimingDirection += Vector2.zero + Vector2.right - Vector2.up;
             }
         }
         #endregion
@@ -365,7 +373,7 @@ public class PlayerScript : MonoBehaviour
         return toMove;
     }
 
-    private void SetShootDirection()
+    private bool SetShootDirection()
     {
         bool hasAimed = false;
         Vector2 aimingDirection = Vector2.zero;
@@ -373,36 +381,41 @@ public class PlayerScript : MonoBehaviour
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
-            aimingDirection -= Vector2.up;
+            aimingDirection += Vector2.zero - Vector2.right - Vector2.up;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.LEFT))
         {
-            aimingDirection -= Vector2.right;
+            aimingDirection += Vector2.zero - Vector2.right + Vector2.up;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
         {
-            aimingDirection += Vector2.up;
+            aimingDirection += Vector2.zero + Vector2.right + Vector2.up;
             hasAimed = true;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
         {
-            aimingDirection += Vector2.right;
+            aimingDirection += Vector2.zero + Vector2.right - Vector2.up;
             hasAimed = true;
         }
 
         #endregion
 
         #region CONTROLLER
-        Vector2 lookVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
+        Vector2 rightJoystickVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
 
-        if (lookVector.x != 0.0f || lookVector.y != 0.0f)
+        if (rightJoystickVector.x != 0.0f || rightJoystickVector.y != 0.0f)
         {
-            aimingDirection += lookVector;
+            // 0.7071f = 1 / sqrt(2)
+            Vector2 rotatedDirection = new Vector2(
+                rightJoystickVector.x * 0.7071f + rightJoystickVector.y * 0.7071f,
+                -rightJoystickVector.x * 0.7071f + rightJoystickVector.y * 0.7071f);
+
+            aimingDirection += rotatedDirection;
             hasAimed = true;
         }
 
@@ -414,6 +427,8 @@ public class PlayerScript : MonoBehaviour
             float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
             attachedGameObject.transform.Rotation = new Vector3(0.0f, characterRotation, 0.0f);
         }
+
+        return hasAimed;
     }
 
     private void Shoot()
