@@ -96,6 +96,7 @@ void PanelScene::Start()
 
 bool PanelScene::Draw()
 {
+    isHovered = false;
 	ImGuiWindowFlags settingsFlags = 0;
 	settingsFlags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
 

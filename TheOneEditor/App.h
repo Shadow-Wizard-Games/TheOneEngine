@@ -23,7 +23,6 @@ class Input;
 class Hardware;
 class SceneManager;
 class Gui;
-class Renderer3D;
 
 enum class GameState
 {
@@ -91,7 +90,6 @@ public:
 	Input* input = nullptr;
 	Hardware* hardware = nullptr;
 	Gui* gui = nullptr;
-	Renderer3D* renderer3D = nullptr;
 	SceneManager* scenemanager = nullptr;
 
 private:
