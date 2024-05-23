@@ -20,7 +20,7 @@ Light::Light(std::shared_ptr<GameObject> containerGO)
     castShadows = lightType == LightType::Spot ? true : false;
 
     std::vector<Attachment> depthBuffAttachments = {
-            { Attachment::Type::DEPTH, "depth", 0 }
+        { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0}
     };
     depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
 
@@ -38,7 +38,7 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff)
 {
     std::vector<Attachment> depthBuffAttachments = {
-            { Attachment::Type::DEPTH, "depth", 0 }
+            { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
     };
     depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
 
