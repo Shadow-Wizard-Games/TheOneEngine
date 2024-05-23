@@ -70,9 +70,6 @@ public class EventCollectible : Event
             {
                 itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
 
-                IGameObject.InstanciatePrefab("WP_CarabinaM4", playerGO.transform.Position, playerGO.transform.Rotation);
-                player.currentWeapon = PlayerScript.CurrentWeapon.M4;
-
                 attachedGameObject.Disable();
 
                 uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "m4a1");

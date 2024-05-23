@@ -138,6 +138,12 @@ public class PlayerScript : MonoBehaviour
 
     public override void Update()
     {
+        if(itemManager.hasInitial && currentWeapon == CurrentWeapon.NONE)
+        {
+            IGameObject.InstanciatePrefab("WP_CarabinaM4", attachedGameObject.transform.Position, attachedGameObject.transform.Rotation);
+            currentWeapon = CurrentWeapon.M4;
+        }
+
         timeFromLastStep += Time.deltaTime;
 
         isRunning = false;
