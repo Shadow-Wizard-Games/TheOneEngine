@@ -87,7 +87,7 @@ public class EventTriggerDialog : Event
     {
         bool ret = true;
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && cooldown <= 0 && !gameManager.GetGameState())
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && cooldown <= 0)
         {
             if(isFirst)
             {
@@ -98,12 +98,14 @@ public class EventTriggerDialog : Event
             {
                 gameManager.TooglePause();
                 dialogueGo.Disable();
-                if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
-                {
-                    attachedGameObject.source.Stop(aEvent);
-                }
+                
                 attachedGameObject.Destroy();
                 return ret;
+            }
+
+            if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
+            {
+                attachedGameObject.source.Stop(aEvent);
             }
 
             string[] datapath = { conversation, "Dialog" + dialogNum.ToString() };

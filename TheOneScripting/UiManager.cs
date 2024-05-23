@@ -110,7 +110,6 @@ public class UiManager : MonoBehaviour
         pickUpFeedbackGo.Disable();
 
         state = MenuState.Hud;
-        if (gameManager.GetGameState()) { gameManager.TooglePause(); }
 
         GameManagerGO = IGameObject.Find("GameManager");
         gameManager = GameManagerGO.GetComponent<GameManager>();
@@ -119,6 +118,8 @@ public class UiManager : MonoBehaviour
         pickupCanvas = pickUpFeedbackGo.GetComponent<ICanvas>();
 
         settingsCanvas = settingsGo.GetComponent<UiScriptSettings>();
+
+        if (gameManager.GetGameState()) { gameManager.TooglePause(); }
     }
 
     public override void Update()

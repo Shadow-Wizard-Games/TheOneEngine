@@ -156,5 +156,21 @@
             "cooldown": 6,
             "audioEvent": "VO_SERGEANT_WAKEMED6"
         }
+    },
+    "Popup1":{
+        "popupType": 1,
+        "isOneTime": false,
+        "cooldown": 2.0,
+        "text": "Goated esto va",
+        "dialoguer": 2,
+        "duration": 5,
+        "audioEvent": "VO_STUB_WAKEMED5"
+    },
+    "Popup2":{
+        "popupType": 1,
+        "isOneTime": true,
+        "text": "Goated esto va",
+        "titleText": "QUE?",
+        "duration": 5
     }
 }

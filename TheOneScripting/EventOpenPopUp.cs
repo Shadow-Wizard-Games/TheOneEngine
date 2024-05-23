@@ -54,12 +54,12 @@ public class EventOpenPopUp : Event
         }
 
         isOneTime = DataManager.AccessFileDataBool(filepath, datapath, "isOneTime");
-        maxCooldown = DataManager.AccessFileDataFloat(filepath, datapath, "cooldown");
+        maxCooldown = DataManager.AccessFileDataInt(filepath, datapath, "cooldown");
     }
 
     public override void Update()
     {
-        if (cooldown > 0)
+        if (!menuManager.IsOnCooldown(popupType) && cooldown > 0)
             cooldown -= Time.realDeltaTime;
 
         if (CheckEventIsPossible())
@@ -104,7 +104,7 @@ public class EventOpenPopUp : Event
             }
 
             float duration = DataManager.AccessFileDataInt(filepath, datapath, "duration");
-            menuManager.OpenHudPopUpMenu(popupType, text1, text, dialoguerEnum, cooldown);
+            menuManager.OpenHudPopUpMenu(popupType, text1, text, dialoguerEnum, duration);
 
             audioEventString = DataManager.AccessFileDataString(filepath, datapath, "audioEvent");
             if (Enum.TryParse(audioEventString, out AudioEvent audioEvent))
