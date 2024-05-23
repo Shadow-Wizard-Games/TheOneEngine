@@ -87,9 +87,6 @@ public:
 	void SetEditorCamera(Camera* cam);
 	void SetUniformBufferCamera(const glm::mat4& cam);
 
-	void InitPostLightingShader();
-	void InitPreLightingShader();
-
 public:
 	
 	double dt = 0;

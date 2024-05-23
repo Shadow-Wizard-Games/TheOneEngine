@@ -113,4 +113,7 @@ private:
 	static void ShadowPass(RenderTarget target);
 	static void LightPass(RenderTarget target);
 	static void DrawScreenQuad();
+
+	static void InitPreLightingShader();
+	static void InitPostLightingShader();
 };

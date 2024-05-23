@@ -19,6 +19,8 @@ struct Renderer3DData
 	std::vector<InstanceCall> instanceCalls;
 	std::vector<SkeletalCall> skeletalCalls;
 
+	ResourceId lightingMatID = -1;
+
 	uint dynamicVAO = 0;
 	uint dynamicVBO = 0;
 	uint dynamicIBO = 0;
@@ -39,6 +41,9 @@ void Renderer3D::Init()
 	if (renderer3D.dynamicIBO == 0) {
 		GLCALL(glGenBuffers(1, &renderer3D.dynamicIBO));
 	}
+
+	InitPreLightingShader();
+	InitPostLightingShader();
 }
 
 void Renderer3D::Update()
@@ -46,7 +51,7 @@ void Renderer3D::Update()
 	//Update Instances
 	UpdateInstanceBuffer(renderer3D.instanceCalls);
 
-	for (auto target : renderer3D.renderTargets)
+	for (auto& target : renderer3D.renderTargets)
 	{
 		GeometryPass(target);
 		ShadowPass(target);
@@ -531,16 +536,13 @@ void Renderer3D::LightPass(RenderTarget target)
 	Uniform::SamplerData gAlbedoSpecData;
 	gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
 
-	Material* mat = nullptr;
-	if (!engine->lightingProcessPath.empty())
-		mat = Resources::GetResourceById<Material>(Resources::LoadFromLibrary<Material>(engine->lightingProcessPath));
-
-	if (!mat)
+	if (!renderer3D.lightingMatID == -1)
 	{
 		LOG(LogType::LOG_ERROR, "Lighting Pass Failed, material was nullptr.");
 		return;
 	}
 
+	Material *mat = Resources::GetResourceById<Material>(renderer3D.lightingMatID);
 	Shader* shader = mat->getShader();
 	shader->Bind();
 
@@ -643,4 +645,80 @@ void Renderer3D::DrawScreenQuad()
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	glBindVertexArray(0);
 	GLCALL(glDepthMask(GL_TRUE));
+}
+
+void Renderer3D::InitPreLightingShader()
+{
+	ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
+	Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
+	textShader->Compile("Assets/Shaders/MeshTexture");
+
+	textShader->addUniform("diffuse", UniformType::Sampler2D);
+	Resources::Import<Shader>("MeshTexture", textShader);
+
+
+	ResourceId skeletalTextShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimated");
+	Shader* skeletalTextShader = Resources::GetResourceById<Shader>(skeletalTextShaderId);
+	skeletalTextShader->Compile("Assets/Shaders/MeshTextureAnimated");
+
+	skeletalTextShader->addUniform("diffuse", UniformType::Sampler2D);
+	Resources::Import<Shader>("MeshTextureAnimated", skeletalTextShader);
+}
+
+void Renderer3D::InitPostLightingShader()
+{
+	GLERR;
+	//Init default shaders with uniforms
+	ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PostLightingShader");
+	Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
+	textShader->Compile("Assets/Shaders/PostLightingShader");
+	textShader->addUniform("gPosition", UniformType::Sampler2D);
+	textShader->addUniform("gNormal", UniformType::Sampler2D);
+	textShader->addUniform("gAlbedoSpec", UniformType::Sampler2D);
+	textShader->addUniform("u_ViewPos", UniformType::fVec3);
+	textShader->addUniform("u_TotalLightsNum", UniformType::Int);
+
+	for (uint i = 0; i < 4; i++)
+	{
+		string iteration = to_string(i);
+		textShader->addUniform("u_DirLight[" + iteration + "].Position", UniformType::fVec3);
+		textShader->addUniform("u_DirLight[" + iteration + "].Color", UniformType::fVec3);
+		textShader->addUniform("u_DirLight[" + iteration + "].Intensity", UniformType::Float);
+		textShader->addUniform("u_DirLight[" + iteration + "].Direction", UniformType::fVec3);
+		textShader->addUniform("u_DirLight[" + iteration + "].ViewProjectionMat;", UniformType::Mat4);
+	}
+
+	for (uint i = 0; i < 32; i++)
+	{
+		string iteration = to_string(i);
+		textShader->addUniform("u_PointLights[" + iteration + "].Position", UniformType::fVec3);
+		textShader->addUniform("u_PointLights[" + iteration + "].Color", UniformType::fVec3);
+		textShader->addUniform("u_PointLights[" + iteration + "].Intensity", UniformType::Float);
+		textShader->addUniform("u_PointLights[" + iteration + "].Linear", UniformType::Float);
+		textShader->addUniform("u_PointLights[" + iteration + "].Quadratic", UniformType::Float);
+		textShader->addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
+	}
+
+	for (uint i = 0; i < 16; i++)
+	{
+		string iteration = to_string(i);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Color", UniformType::fVec3);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Intensity", UniformType::Float);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Direction", UniformType::fVec3);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Linear", UniformType::Float);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Quadratic", UniformType::Float);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Radius", UniformType::Float);
+		textShader->addUniform("u_SpotLights[" + iteration + "].CutOff", UniformType::Float);
+		textShader->addUniform("u_SpotLights[" + iteration + "].OuterCutOff", UniformType::Float);
+		textShader->addUniform("u_SpotLights[" + iteration + "].ViewProjectionMat", UniformType::Mat4);
+		textShader->addUniform("u_SpotLights[" + iteration + "].Depth", UniformType::Sampler2D);
+	}
+	Resources::Import<Shader>("PostLightingShader", textShader);
+
+	Material lightinProcessMat(textShader);
+	lightinProcessMat.setShader(textShader, textShader->getPath());
+	std::string lightingProcessPath = Resources::PathToLibrary<Material>() + "lightingProcess.toematerial";
+	Resources::Import<Material>(lightingProcessPath, &lightinProcessMat);
+	renderer3D.lightingMatID = Resources::LoadFromLibrary<Material>(lightingProcessPath);
 }
