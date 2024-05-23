@@ -326,7 +326,8 @@ public class AlienQueenBehaviour : MonoBehaviour
         //                                   attachedGameObject.transform.rotation,
         //                                   scale);
         InternalCalls.CreatePrefab("SK_Facehugger",
-            attachedGameObject.transform.Position + attachedGameObject.transform.Forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f));
+                                   attachedGameObject.transform.Position + attachedGameObject.transform.Forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+                                   attachedGameObject.transform.Rotation);
         attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_SPAWN);
         ResetState();
     }

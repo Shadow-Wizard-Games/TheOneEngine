@@ -17,6 +17,6 @@ public class Raindrop : MonoBehaviour
             return;
         }
 
-        attachedGameObject.transform.position += Vector3.up * -bulletSpeed * Time.deltaTime;
+        attachedGameObject.transform.Position += Vector3.up * -bulletSpeed * Time.deltaTime;
     }
 }

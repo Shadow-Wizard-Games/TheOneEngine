@@ -509,7 +509,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             rainActive = true;
-            acidRainCenter = playerGO.transform.position;
+            acidRainCenter = playerGO.transform.Position;
 
             if (currentPhase == 1)
             {
