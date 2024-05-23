@@ -57,6 +57,7 @@
     <Compile Include="Easing.cs" />
     <Compile Include="EventCompleteQuest.cs" />
     <Compile Include="EventTriggerDialog.cs" />
+    <Compile Include="Explosion.cs" />
     <Compile Include="Grenade.cs" />
     <Compile Include="EventOpenPopUp.cs" />
     <Compile Include="IAnimator.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Item_DoorKey.cs" />
     <Compile Include="Quest.cs" />
     <Compile Include="QuestManager.cs" />
+    <Compile Include="M4Behaviour.cs" />
     <Compile Include="Raindrop.cs" />
     <Compile Include="RedXenomorphBehaviour.cs" />
     <Compile Include="UiScriptDebug.cs" />

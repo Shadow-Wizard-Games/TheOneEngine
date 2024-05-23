@@ -62,6 +62,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateGrenade(Vector3 initialPosition, Vector3 direction);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateExplosion(Vector3 initialPosition, Vector3 direction, float radius);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);

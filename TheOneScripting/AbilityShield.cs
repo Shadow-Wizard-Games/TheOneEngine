@@ -35,26 +35,26 @@ public class AbilityShield : Ability
                 // controller input
                 break;
             case AbilityState.ACTIVE:
-                Debug.Log("Shield active time" + activeTimeCounter.ToString("F2"));
+                //Debug.Log("Shield active time" + activeTimeCounter.ToString("F2"));
                 WhileActive();
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
 
-                Debug.Log("Shield cooldown time" + cooldownTimeCounter.ToString("F2"));
+                //Debug.Log("Shield cooldown time" + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
 
     public override void ChargeAbility()
     {
-        if (player.shieldKillCounter == 2)
+        if (player.shieldKillCounter == player.shieldKillsToCharge)
         {
             player.shieldKillCounter = 0;
             state = AbilityState.READY;
 
-            Debug.Log("Ability Shield Ready");
         }
+        //Debug.Log("Ability Shield Ready " + player.shieldKillCounter);
     }
 
     public override void Activated()
@@ -65,7 +65,7 @@ public class AbilityShield : Ability
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_S_ACTIVATE);
 
-        Debug.Log("Ability Shield Activated");
+        //Debug.Log("Ability Shield Activated");
     }
 
     public override void WhileActive()
@@ -83,7 +83,7 @@ public class AbilityShield : Ability
 
             attachedGameObject.source.Play(IAudioSource.AudioEvent.A_S_DEACTIVATE);
 
-            Debug.Log("Ability Shield on Cooldown");
+            //Debug.Log("Ability Shield on Cooldown");
         }
     }
 
@@ -96,10 +96,12 @@ public class AbilityShield : Ability
         }
         else
         {
+            player.shieldKillCounter = player.shieldKillsToCharge;
+
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.CHARGING;
 
-            Debug.Log("Ability Shield Charging");
+            //Debug.Log("Ability Shield Charging");
         }
     }
 }

@@ -81,7 +81,12 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
     void UpdateFSMStates()
     {
-        if (life <= 0) { currentState = States.Dead; return; }
+        if (life <= 0) 
+        { 
+            currentState = States.Dead;
+            player.shieldKillCounter++;
+            return; 
+        }
 
         if (!detected && playerDistance < enemyDetectedRange) detected = true;
 
