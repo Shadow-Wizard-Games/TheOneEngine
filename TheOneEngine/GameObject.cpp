@@ -461,7 +461,7 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Script)
 			{
-				this->AddScript(componentJSON["ScriptName"]);
+				this->AddComponent<Script>(componentJSON["ScriptName"]);
 				this->GetComponent<Script>()->LoadComponent(componentJSON);
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Listener)

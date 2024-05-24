@@ -19,6 +19,7 @@
 #include "PanelBuild.h"
 
 #include "TheOneEngine/Log.h"
+#include "TheOneEngine/Light.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
@@ -561,9 +562,20 @@ void Gui::MainMenuGameObject()
 		}
 		ImGui::EndMenu();
 	}
+
 	if (ImGui::MenuItem("Camera")) { engine->N_sceneManager->CreateCameraGO("newCamera"); }
+
 	//Alex: this is just for debug
 	if (ImGui::MenuItem("Canvas")) { engine->N_sceneManager->CreateCanvasGO("newCanvas"); }
+
+	if (ImGui::BeginMenu("Light"))
+	{
+		if (ImGui::MenuItem("Directional Light")) { engine->N_sceneManager->CreateLightGO(LightType::Directional); }
+		if (ImGui::MenuItem("Point Light")) { engine->N_sceneManager->CreateLightGO(LightType::Point); }
+		if (ImGui::MenuItem("Spot Light")) { engine->N_sceneManager->CreateLightGO(LightType::Spot); }
+		if (ImGui::MenuItem("Area Light", 0, false, false)) {}
+		ImGui::EndMenu();
+	}
 }
 
 void Gui::MainMenuComponent()

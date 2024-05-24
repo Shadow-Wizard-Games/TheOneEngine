@@ -12,6 +12,7 @@
 #include <vector>
 #include <list>
 #include <memory>
+#include <utility>
 
 class Camera;
 
@@ -45,8 +46,8 @@ public:
         return nullptr;
     }
 
-    template <typename TComponent>
-    bool AddComponent()
+    template <typename TComponent, typename... Args>
+    bool AddComponent(Args&&... args)
     {
         Component* component = this->GetComponent<TComponent>();
 
@@ -60,7 +61,7 @@ public:
             return false;
         }
 
-        std::unique_ptr<Component> newComponent = std::make_unique<TComponent>(shared_from_this());
+        std::unique_ptr<Component> newComponent = std::make_unique<TComponent>(shared_from_this(), std::forward<Args>(args)...);
         newComponent->Enable(); // hekbas: Enable the component if necessary?
         components.push_back(std::move(newComponent));
 
@@ -83,27 +84,6 @@ public:
         }
 
         std::unique_ptr<Component> newComponent = std::make_unique<TComponent>(shared_from_this(), ref);
-        newComponent->Enable(); // hekbas: Enable the component if necessary?
-        components.push_back(std::move(newComponent));
-
-        return true;
-    }
-    
-    bool AddScript(std::string name)
-    {
-        Component* component = this->GetComponent<Script>();
-
-        // Check for already existing Component
-        if (component != nullptr && this->GetComponent<Script>()->scriptName == name)
-        {
-            LOG(LogType::LOG_WARNING, "Component already applied");
-            LOG(LogType::LOG_INFO, "-GameObject [Name: %s] ", name.data());
-            LOG(LogType::LOG_INFO, "-Component  [Type: Script] ");
-
-            return false;
-        }
-
-        std::unique_ptr<Component> newComponent = std::make_unique<Script>(shared_from_this(), name);
         newComponent->Enable(); // hekbas: Enable the component if necessary?
         components.push_back(std::move(newComponent));
 

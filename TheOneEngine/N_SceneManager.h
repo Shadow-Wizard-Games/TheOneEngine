@@ -53,8 +53,10 @@ public:
 	std::shared_ptr<GameObject> DuplicateGO(std::shared_ptr<GameObject> originalGO, bool recursive = false);
 	std::shared_ptr<GameObject> CreateEmptyGO(std::string name = "Empty GameObject", bool isRoot = true);
 	void ReparentGO(std::shared_ptr<GameObject> go, std::shared_ptr<GameObject> newParentGO);
+
 	std::shared_ptr<GameObject> CreateCameraGO(std::string name);
 	std::shared_ptr<GameObject> CreateCanvasGO(std::string name);
+	std::shared_ptr<GameObject> CreateLightGO(LightType type);
 
 	void CreateMeshGO(std::string path);
 	void CreateExistingMeshGO(std::string fbxName);

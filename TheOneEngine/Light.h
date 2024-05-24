@@ -30,8 +30,8 @@ struct Shadow
 
 enum LightType
 {
-    Point = 0,
-    Directional,
+    Directional = 0,
+    Point,
     Spot,
     Area, //Only in Baked mode? PBR
 };
@@ -47,7 +47,7 @@ enum ModeType
 class Light : public Component
 {
 public:
-    Light(std::shared_ptr<GameObject> containerGO);
+    Light(std::shared_ptr<GameObject> containerGO, LightType type = LightType::Point);
     Light(std::shared_ptr<GameObject> containerGO, Light* ref);
     virtual ~Light();
 

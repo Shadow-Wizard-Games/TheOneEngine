@@ -135,7 +135,7 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
-	go->AddScript("Bullet");
+	go->AddComponent<Script>("Bullet");
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
@@ -152,7 +152,7 @@ static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
-	go->AddScript("Grenade");
+	go->AddComponent<Script>("Grenade");
 
 	return go;
 }
@@ -173,7 +173,7 @@ static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction
 
 	go->AddComponent<AudioSource>();
 
-	go->AddScript("FaceHuggerBehaviour");
+	go->AddComponent<Script>("FaceHuggerBehaviour");
 
 	return go;
 }

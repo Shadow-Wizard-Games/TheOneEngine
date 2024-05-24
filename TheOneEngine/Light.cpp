@@ -10,17 +10,17 @@
 #include "Renderer3D.h"
 
 
-Light::Light(std::shared_ptr<GameObject> containerGO)
+Light::Light(std::shared_ptr<GameObject> containerGO, LightType type)
     : Component(containerGO, ComponentType::Light),
-    lightType(LightType::Point), 
+    lightType(type),
     color(1.0f), intensity(1.0f), specular(0.5f),
     radius(60.0f), linear(0.7f), quadratic(1.8f),
-    innerCutOff(0.91f), outerCutOff(0.82f) 
+    innerCutOff(0.91f), outerCutOff(0.82f)
 {
     castShadows = lightType == LightType::Spot ? true : false;
 
     std::vector<Attachment> depthBuffAttachments = {
-        { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0}
+        { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
     };
     depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
 
@@ -38,7 +38,7 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff)
 {
     std::vector<Attachment> depthBuffAttachments = {
-            { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
+        { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
     };
     depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
 

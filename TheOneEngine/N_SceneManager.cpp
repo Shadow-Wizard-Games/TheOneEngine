@@ -695,9 +695,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCameraGO(std::string name)
 	cameraGO.get()->GetComponent<Camera>()->UpdateCamera();
 
 	cameraGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
-
 	currentScene->GetRootSceneGO().get()->children.emplace_back(cameraGO);
-
 	return cameraGO;
 }
 
@@ -713,10 +711,30 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<TextUI>("Assets/Fonts/ComicSansMS.ttf");
 
 	canvasGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
-
 	currentScene->GetRootSceneGO().get()->children.emplace_back(canvasGO);
-
 	return canvasGO;
+}
+
+std::shared_ptr<GameObject> N_SceneManager::CreateLightGO(LightType type)
+{
+	std::string name;
+
+	switch (type)
+	{
+		case Directional: name = "Directional Light"; break;
+		case Point: name = "Point Light"; break;
+		case Spot: name = "Spot  Light"; break;
+		case Area: name = "Area Light"; break;
+		default: name = "error_type"; break;
+	}
+
+	std::shared_ptr<GameObject> lightGO = std::make_shared<GameObject>(name);
+	lightGO.get()->AddComponent<Transform>();
+	lightGO.get()->AddComponent<Light>(type);
+
+	lightGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
+	currentScene->GetRootSceneGO().get()->children.emplace_back(lightGO);
+	return lightGO;
 }
 
 void N_SceneManager::CreateMeshGO(std::string path)

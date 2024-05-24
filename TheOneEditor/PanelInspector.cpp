@@ -1665,7 +1665,7 @@ void PanelInspector::ChooseScriptNameWindow()
         //std::string className = "ActualScriptTest2";
         if (MonoManager::IsClassInMainAssembly(nameRecipient))
         {
-            selectedGO->AddScript(nameRecipient);
+            selectedGO->AddComponent<Script>(nameRecipient);
             ImGui::CloseCurrentPopup();
         }
         else
