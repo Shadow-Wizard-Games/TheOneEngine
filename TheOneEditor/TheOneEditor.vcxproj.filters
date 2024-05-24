@@ -13,9 +13,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer3D.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer3D.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">

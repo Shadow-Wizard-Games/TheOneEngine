@@ -5,7 +5,6 @@
 #include "Hardware.h"
 #include "Gui.h"
 #include "SceneManager.h"
-#include "Renderer3D.h"
 
 #include "PanelAbout.h"
 #include "PanelConsole.h"
@@ -29,7 +28,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	hardware = new Hardware(this);
 	gui = new Gui(this);
 	scenemanager = new SceneManager(this);
-	renderer3D = new Renderer3D(this);
 
 	// Ordered for awake / Start / Update
 	// Reverse order for CleanUp
@@ -89,6 +87,7 @@ bool App::Awake()
 
 			item->Awake();
 		}
+		engine->Awake();
 	}
 
 	//LOG("---------------- Time Awake: %f/n", timer.ReadMSec());
@@ -111,6 +110,7 @@ bool App::Start()
 		if (module->Start() == false)
 			return false;
 	}
+	engine->Start();
 
 	//LOG("----------------- Time Start(): %f", timer.ReadMSec());
 
@@ -165,6 +165,8 @@ bool App::PreUpdate()
 		if (module->PreUpdate() == false)
 			return false;
 	}
+	if (engine->PreUpdate() == false)
+		return false;
 
 	return true;
 }
@@ -181,6 +183,7 @@ bool App::DoUpdate()
 		if (module->Update(dt) == false)
 			return false;
 	}
+	engine->Update(dt);
 
 	return true;
 }
@@ -246,6 +249,7 @@ bool App::CleanUp()
 		Module* module = *item;
 		module->CleanUp();
 	}
+	engine->CleanUp();
 
 	return ret;
 }
