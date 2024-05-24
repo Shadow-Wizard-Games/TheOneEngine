@@ -1284,7 +1284,6 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 
 	//Setting Camera for 3D Rendering
 	SetCamera(cam);
-	Renderer2D::StartBatch();//           START BATCH
 	engine->DebugDraw(mode == DrawMode::GAME ? false : true);
 	RecurseSceneDraw(rootSceneGO, cam);
 	if (cam != nullptr) {
@@ -1296,8 +1295,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 			i->second->Draw(currentCamera);
 
 	}
-	Renderer2D::Flush();//           END BATCH
-
+	Renderer2D::Update();
 	Renderer3D::Update();
 
 
@@ -1306,9 +1304,8 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 
 	//Setting Camera for 2D Rendering
 	Set2DCamera();
-	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
-	Renderer2D::Flush();//           END BATCH
+	Renderer2D::Update();
 }

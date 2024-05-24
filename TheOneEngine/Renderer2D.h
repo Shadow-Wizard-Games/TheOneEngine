@@ -8,10 +8,8 @@ class Renderer2D
 {
 public:
 	static void Init();
+	static void Update();
 	static void Shutdown();
-
-	static void StartBatch();
-	static void Flush();
 
 	// Primitives
 	static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
@@ -71,5 +69,16 @@ public:
 	static Statistics GetStats();
 
 private:
-	static void NextBatch();
+	static void NextQuadBatch();
+
+	static void DrawQuadCall();
+	static void DrawCircleCall();
+	static void DrawLineCall();
+	static void DrawTextCall();
+
+	static void ResetQuadCall();
+	static void ResetCircleCall();
+	static void ResetLineCall();
+	static void ResetTextCall();
+
 };

@@ -244,26 +244,34 @@ void Renderer2D::Shutdown()
 	delete[] renderer2D.QuadVertexBufferBase;
 }
 
-void Renderer2D::StartBatch()
-{
-	renderer2D.QuadIndexCount = 0;
-	renderer2D.QuadVertexBufferPtr = renderer2D.QuadVertexBufferBase;
-
-	renderer2D.CircleIndexCount = 0;
-	renderer2D.CircleVertexBufferPtr = renderer2D.CircleVertexBufferBase;
-
-	renderer2D.LineVertexCount = 0;
-	renderer2D.LineVertexBufferPtr = renderer2D.LineVertexBufferBase;
-
-	renderer2D.TextIndexCount = 0;
-	renderer2D.TextVertexBufferPtr = renderer2D.TextVertexBufferBase;
-
-	renderer2D.TextureSlotIndex = 1;
-}
-
-void Renderer2D::Flush()
+void Renderer2D::Update()
 {
 	GLCALL(glDisable(GL_CULL_FACE));
+
+	DrawQuadCall();
+
+	DrawCircleCall();
+
+	DrawLineCall();
+
+	DrawTextCall();
+
+	GLCALL(glEnable(GL_CULL_FACE));
+
+	ResetQuadCall();
+	ResetCircleCall();
+	ResetLineCall();
+	ResetTextCall();
+}
+
+void Renderer2D::NextQuadBatch()
+{
+	DrawQuadCall();
+	ResetQuadCall();
+}
+
+void Renderer2D::DrawQuadCall()
+{
 	if (renderer2D.QuadIndexCount)
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)renderer2D.QuadVertexBufferPtr - (uint8_t*)renderer2D.QuadVertexBufferBase);
@@ -278,7 +286,10 @@ void Renderer2D::Flush()
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.QuadShader->UnBind();
 	}
+}
 
+void Renderer2D::DrawCircleCall()
+{
 	if (renderer2D.CircleIndexCount)
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)renderer2D.CircleVertexBufferPtr - (uint8_t*)renderer2D.CircleVertexBufferBase);
@@ -289,7 +300,10 @@ void Renderer2D::Flush()
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.CircleShader->UnBind();
 	}
+}
 
+void Renderer2D::DrawLineCall()
+{
 	if (renderer2D.LineVertexCount)
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)renderer2D.LineVertexBufferPtr - (uint8_t*)renderer2D.LineVertexBufferBase);
@@ -301,7 +315,10 @@ void Renderer2D::Flush()
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.LineShader->UnBind();
 	}
+}
 
+void Renderer2D::DrawTextCall()
+{
 	if (renderer2D.TextIndexCount)
 	{
 		uint32_t dataSize = (uint32_t)((uint8_t*)renderer2D.TextVertexBufferPtr - (uint8_t*)renderer2D.TextVertexBufferBase);
@@ -314,13 +331,31 @@ void Renderer2D::Flush()
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.TextShader->UnBind();
 	}
-	GLCALL(glEnable(GL_CULL_FACE));
 }
 
-void Renderer2D::NextBatch()
+void Renderer2D::ResetQuadCall()
 {
-	Flush();
-	StartBatch();
+	renderer2D.QuadIndexCount = 0;
+	renderer2D.QuadVertexBufferPtr = renderer2D.QuadVertexBufferBase;
+	renderer2D.TextureSlotIndex = 1;
+}
+
+void Renderer2D::ResetCircleCall()
+{
+	renderer2D.CircleIndexCount = 0;
+	renderer2D.CircleVertexBufferPtr = renderer2D.CircleVertexBufferBase;
+}
+
+void Renderer2D::ResetLineCall()
+{
+	renderer2D.LineVertexCount = 0;
+	renderer2D.LineVertexBufferPtr = renderer2D.LineVertexBufferBase;
+}
+
+void Renderer2D::ResetTextCall()
+{
+	renderer2D.TextIndexCount = 0;
+	renderer2D.TextVertexBufferPtr = renderer2D.TextVertexBufferBase;
 }
 
 void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -370,7 +405,7 @@ void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color)
 	const float tilingFactor = 1.0f;
 
 	if (renderer2D.QuadIndexCount >= Renderer2DData::MaxIndices)
-		NextBatch();
+		NextQuadBatch();
 
 	for (size_t i = 0; i < quadVertexCount; i++)
 	{
@@ -395,7 +430,7 @@ void Renderer2D::DrawQuad(const glm::mat4& transform, ResourceId spriteID, const
 	Texture* sprite = Resources::GetResourceById<Texture>(spriteID);
 
 	if (renderer2D.QuadIndexCount >= Renderer2DData::MaxIndices)
-		NextBatch();
+		NextQuadBatch();
 
 	float textureIndex = 0.0f;
 	for (uint32_t i = 1; i < renderer2D.TextureSlotIndex; i++)
@@ -410,7 +445,7 @@ void Renderer2D::DrawQuad(const glm::mat4& transform, ResourceId spriteID, const
 	if (textureIndex == 0.0f)
 	{
 		if (renderer2D.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
-			NextBatch();
+			NextQuadBatch();
 
 		textureIndex = (float)renderer2D.TextureSlotIndex;
 		renderer2D.TextureSlots[renderer2D.TextureSlotIndex] = sprite;
@@ -440,7 +475,7 @@ void Renderer2D::DrawQuad(const glm::mat4& transform, ResourceId imageID, const 
 	Texture* sprite = Resources::GetResourceById<Texture>(imageID);
 
 	if (renderer2D.QuadIndexCount >= Renderer2DData::MaxIndices)
-		NextBatch();
+		NextQuadBatch();
 
 	float textureIndex = 0.0f;
 	for (uint32_t i = 1; i < renderer2D.TextureSlotIndex; i++)
@@ -455,7 +490,7 @@ void Renderer2D::DrawQuad(const glm::mat4& transform, ResourceId imageID, const 
 	if (textureIndex == 0.0f)
 	{
 		if (renderer2D.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
-			NextBatch();
+			NextQuadBatch();
 
 		textureIndex = (float)renderer2D.TextureSlotIndex;
 		renderer2D.TextureSlots[renderer2D.TextureSlotIndex] = sprite;
