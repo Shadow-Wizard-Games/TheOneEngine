@@ -3,7 +3,6 @@
 #include "Gui.h"
 #include "Window.h"
 #include "Hardware.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
 
 #include "Panel.h"

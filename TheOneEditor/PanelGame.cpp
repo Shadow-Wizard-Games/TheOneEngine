@@ -1,7 +1,6 @@
 #include "PanelGame.h"
 #include "App.h"
 #include "Gui.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
 #include "Window.h"
 #include "imgui.h"

@@ -2,7 +2,6 @@
 #include "Input.h"
 #include "Gui.h"
 #include "Window.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
 
 #include "../TheOneEngine/Log.h"

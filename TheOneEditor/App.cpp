@@ -38,7 +38,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scenemanager, true);
 
 	// Render last to swap buffer
-	AddModule(renderer3D, true);
 	AddModule(gui, true);
 
 	state = GameState::NONE;
@@ -244,12 +243,12 @@ bool App::CleanUp()
 
 	bool ret = true;
 
+	engine->CleanUp();
 	for (auto item = modules.rbegin(); item != modules.rend(); ++item)
 	{
 		Module* module = *item;
 		module->CleanUp();
 	}
-	engine->CleanUp();
 
 	return ret;
 }
