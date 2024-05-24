@@ -30,6 +30,8 @@ static Renderer3DData renderer3D;
 
 void Renderer3D::Init()
 {
+	renderer3D.renderTargets.reserve(8 * sizeof(RenderTarget));
+
 	if (renderer3D.dynamicVAO == 0) {
 		GLCALL(glGenVertexArrays(1, &renderer3D.dynamicVAO));
 	}
@@ -539,7 +541,7 @@ void Renderer3D::LightPass(RenderTarget target)
 	Uniform::SamplerData gAlbedoSpecData;
 	gAlbedoSpecData.tex_id = gBuffer->GetAttachmentTexture("color");
 
-	if (!renderer3D.lightingMatID == -1)
+	if (renderer3D.lightingMatID == -1)
 	{
 		LOG(LogType::LOG_ERROR, "Lighting Pass Failed, material was nullptr.");
 		return;
@@ -602,7 +604,7 @@ void Renderer3D::LightPass(RenderTarget target)
 			mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", light->innerCutOff);
 			mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", light->outerCutOff);
 			mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", renderer3D.lights[i]->GetComponent<Camera>()->viewProjectionMatrix);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", light->depthBuffer->GetAttachmentTexture("depth"));
+			mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", light->shadowBuffer->GetAttachmentTexture("depth"));
 			spotLightNum++;
 			break;
 		}

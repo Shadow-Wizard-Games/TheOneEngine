@@ -7,10 +7,10 @@ RenderTarget::RenderTarget(unsigned int id, DrawMode mode, Camera* camera, glm::
     camera(camera),
     viewportSize(viewportSize)
 {
+    frameBuffers.reserve(frameBuffers.size() * sizeof(FrameBuffer));
+
     for (auto& fb : frameBuffers)
-    {
         this->frameBuffers.emplace_back(fb[0].frameBufferName, viewportSize.x, viewportSize.y, fb);
-    }
 }
 
 RenderTarget::~RenderTarget() {}

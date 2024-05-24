@@ -76,7 +76,7 @@ public:
     float outerCutOff;
 
     //Shadows Vars
-    std::shared_ptr<FrameBuffer> depthBuffer;
+    std::shared_ptr<FrameBuffer> shadowBuffer;
     bool castShadows;
 
     std::string lightPresetPath;

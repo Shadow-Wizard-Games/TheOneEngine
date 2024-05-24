@@ -723,7 +723,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateLightGO(LightType type)
 	{
 		case Directional: name = "Directional Light"; break;
 		case Point: name = "Point Light"; break;
-		case Spot: name = "Spot  Light"; break;
+		case Spot: name = "Spot Light"; break;
 		case Area: name = "Area Light"; break;
 		default: name = "error_type"; break;
 	}

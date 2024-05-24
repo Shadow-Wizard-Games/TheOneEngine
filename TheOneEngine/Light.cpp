@@ -19,13 +19,16 @@ Light::Light(std::shared_ptr<GameObject> containerGO, LightType type)
 {
     castShadows = lightType == LightType::Spot ? true : false;
 
-    std::vector<Attachment> depthBuffAttachments = {
+    std::vector<Attachment> shadowBuffAttachments = {
         { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
     };
-    depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
+    shadowBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, shadowBuffAttachments);
 
     containerGO->AddComponent<Camera>();
     containerGO->GetComponent<Camera>()->zNear = 10.0f;
+
+    if (lightType == Directional)
+        containerGO->GetComponent<Camera>()->cameraType = CameraType::ORTHOGRAPHIC;
     
     Renderer3D::AddLight(containerGO);
 }
@@ -37,10 +40,10 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     radius(ref->radius), linear(ref->linear), quadratic(ref->quadratic), 
     innerCutOff(ref->innerCutOff), outerCutOff(ref->outerCutOff)
 {
-    std::vector<Attachment> depthBuffAttachments = {
+    std::vector<Attachment> shadowBuffAttachments = {
         { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
     };
-    depthBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, depthBuffAttachments);
+    shadowBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, shadowBuffAttachments);
 
     containerGO->AddCopiedComponent<Camera>(ref->containerGO.lock()->GetComponent<Camera>());
 
