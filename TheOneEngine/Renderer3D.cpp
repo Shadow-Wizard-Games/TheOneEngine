@@ -503,9 +503,8 @@ void Renderer3D::ShadowPass(RenderTarget target)
 		if (!light->castShadows) continue;
 
 		// Shadow Buffer
-		FrameBuffer* shadowBuffer = target.GetFrameBuffer("shadowBuffer");
-		shadowBuffer->Bind();
-		shadowBuffer->Clear(ClearBit::Depth, { 0.0f, 0.0f, 0.0f, 1.0f });
+		light->shadowBuffer->Bind();
+		light->shadowBuffer->Clear(ClearBit::Depth, { 0.0f, 0.0f, 0.0f, 1.0f });
 
 		// Set Render Environment
 		engine->SetRenderEnvironment();
@@ -519,7 +518,7 @@ void Renderer3D::ShadowPass(RenderTarget target)
 		for (const SkeletalCall& call : renderer3D.skeletalCalls)
 			DrawSkeletal(call);
 
-		shadowBuffer->Unbind();
+		light->shadowBuffer->Unbind();
 	}
 }
 
