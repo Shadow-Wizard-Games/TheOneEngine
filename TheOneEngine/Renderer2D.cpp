@@ -232,6 +232,11 @@ void Renderer2D::Init()
 	renderer2D.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
+
+	ResetQuadCall();
+	ResetCircleCall();
+	ResetLineCall();
+	ResetTextCall();
 }
 
 void Renderer2D::Shutdown()
