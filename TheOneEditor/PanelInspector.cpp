@@ -267,7 +267,7 @@ bool PanelInspector::Draw()
                 //ImGui::SameLine();  
                 ImGui::Text("Name: ");
                 ImGui::SameLine();
-                if (mesh->type == MeshType::DEFAULT) {
+                if (mesh->meshType == MeshType::DEFAULT) {
                     Model* model = Resources::GetResourceById<Model>(mesh->meshID);
                     ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->GetMeshName().c_str());
                 }

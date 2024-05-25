@@ -51,7 +51,7 @@ public:
     int normalLineWidth;
     float normalLineLength;
 
-    MeshType type;
+    MeshType meshType;
 };
 
 #endif // !__MESH_H__

@@ -442,8 +442,6 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 
 		for (const auto& componentJSON : componentsJSON)
 		{
-
-			// Assuming each component has a LoadComponent function
 			if (componentJSON["Type"] == (int)ComponentType::Transform)
 			{
 				this->AddComponent<Transform>();

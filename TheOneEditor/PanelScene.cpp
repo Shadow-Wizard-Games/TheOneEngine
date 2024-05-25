@@ -32,8 +32,7 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     camEaseOutX = engine->easingManager->AddEasing(0.2);
     camEaseOutY = engine->easingManager->AddEasing(0.2);
 
-    //gBuffer = std::make_shared<FrameBuffer>(1280, 720, gBuffAttachments);
-    //postBuffer = std::make_shared<FrameBuffer>(1280, 720, lightBuffAttachments);
+    renderTarget = -1;
     viewportSize = { 0.0f, 0.0f };
 
     gizmoType = -1;
@@ -61,7 +60,7 @@ PanelScene::~PanelScene() {}
 
 void PanelScene::Start()
 {
-    // Creating Editor Camera GO (Outside hierarchy)
+    // Create Editor Camera GO (Outside hierarchy)
     sceneCamera = std::make_shared<GameObject>("EDITOR CAMERA");
     sceneCamera.get()->AddComponent<Transform>();
     sceneCamera.get()->GetComponent<Transform>()->SetPosition(vec3f(0, 3, -10));
@@ -87,8 +86,11 @@ void PanelScene::Start()
         { Attachment::Type::RGBA8, "color", "postBuffer", 0 },
         { Attachment::Type::DEPTH_STENCIL, "depth", "postBuffer", 0 }
     };
+    std::vector<Attachment> uiBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", "uiBuffer", 0 }
+    };
 
-    std::vector<vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments };
+    std::vector<std::vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
     viewportSize = { 680, 360 };
     renderTarget = Renderer3D::AddRenderTarget(DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
@@ -250,7 +252,7 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
+        //current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
         ImGui::Image(
             (ImTextureID)Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),

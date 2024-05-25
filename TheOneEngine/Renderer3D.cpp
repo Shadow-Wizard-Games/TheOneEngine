@@ -50,7 +50,7 @@ void Renderer3D::Init()
 
 void Renderer3D::Update()
 {
-	//Update Instances
+	// Update Instances
 	UpdateInstanceBuffer(renderer3D.instanceCalls);
 
 	for (auto& target : renderer3D.renderTargets)
@@ -563,52 +563,48 @@ void Renderer3D::LightPass(RenderTarget target)
 		postBuffer->Bind();
 		shader->Bind();
 
+		// Uniform data MUST be float!!!
 		switch (light->lightType)
 		{
-		case LightType::Directional:
-		{
-			//Historn TODO: Create more Directional Lights
-			string iteration = to_string(directionalLightNum);
-			mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-			mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-			mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
-			mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", light->intensity);
-			directionalLightNum++;
-			break;
-		}
-		case LightType::Point:
-		{
-			string iteration = to_string(pointLightNum);
-			//Variables need to be float not double
-			mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-			mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Linear", light->linear);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", light->quadratic);
-			mat->SetUniformData("u_PointLights[" + iteration + "].Radius", light->radius);
-			pointLightNum++;
-			break;
-		}
-		case LightType::Spot:
-		{
-			string iteration = to_string(spotLightNum);
-			//Variables need to be float not double
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", light->intensity);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", light->linear);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", light->quadratic);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", light->radius);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", light->innerCutOff);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", light->outerCutOff);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", renderer3D.lights[i]->GetComponent<Camera>()->viewProjectionMatrix);
-			mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", light->shadowBuffer->GetAttachmentTexture("depth"));
-			spotLightNum++;
-			break;
-		}
-		default:
-			break;
+			case LightType::Directional:
+			{
+				string iteration = to_string(directionalLightNum);
+				mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+				mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+				mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", light->intensity);
+				directionalLightNum++;
+				break;
+			}
+			case LightType::Point:
+			{
+				string iteration = to_string(pointLightNum);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+				mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Linear", light->linear);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", light->quadratic);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Radius", light->radius);
+				pointLightNum++;
+				break;
+			}
+			case LightType::Spot:
+			{
+				string iteration = to_string(spotLightNum);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", light->intensity);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", light->linear);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", light->quadratic);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", light->radius);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", light->innerCutOff);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", light->outerCutOff);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", renderer3D.lights[i]->GetComponent<Camera>()->viewProjectionMatrix);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", light->shadowBuffer->GetAttachmentTexture("depth"));
+				spotLightNum++;
+				break;
+			}
 		}
 	}
 
