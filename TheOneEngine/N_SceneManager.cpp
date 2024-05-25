@@ -1216,26 +1216,6 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* camera)
-{
-	for (const auto& gameObject : parentGO.get()->children)
-	{
-		if (!gameObject->hasTransparency) {
-			gameObject->Draw(camera);
-		}
-		else
-		{
-			float distance = glm::length(
-				(vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] -
-				camera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-
-			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-		}
-
-		RecurseSceneDraw(gameObject, camera);
-	}
-}
-
 void Scene::UpdateGOs(double dt)
 {
 	engine->N_sceneManager->AddPendingGOs();
@@ -1277,12 +1257,13 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	Camera* camera = cam ? cam : currentCamera;
 	SetCamera(camera);
 
-	engine->DebugDraw(mode == DrawMode::GAME ? false : true);
+	zSorting.clear();
 	RecurseSceneDraw(rootSceneGO, camera);
 	
-	zSorting.clear();
 	for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 		i->second->Draw(camera);
+
+	engine->DebugDraw(mode == DrawMode::GAME ? false : true);
 
 	Renderer2D::Update();
 	Renderer3D::Update();
@@ -1296,4 +1277,24 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
 	Renderer2D::Update();
+}
+
+inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* camera)
+{
+	for (const auto& gameObject : parentGO.get()->children)
+	{
+		if (!gameObject->hasTransparency) {
+			gameObject->Draw(camera);
+		}
+		else
+		{
+			float distance = glm::length(
+				(vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] -
+				camera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+
+			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+		}
+
+		RecurseSceneDraw(gameObject, camera);
+	}
 }

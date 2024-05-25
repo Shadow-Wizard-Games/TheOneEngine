@@ -28,7 +28,9 @@ void PanelGame::Start()
 
 	// Set Game Camera
 	std::vector<GameObject*> gameCameras = GetGameCameras();
-	if (gameCameras.front()) gameCamera = gameCameras.front()->GetComponent<Camera>();
+
+	gameCamera = gameCameras.empty() ?
+		engine->N_sceneManager->currentScene->currentCamera : gameCameras.front()->GetComponent<Camera>();
 	
 	// Create Render Target
 	std::vector<Attachment> gBuffAttachments = {

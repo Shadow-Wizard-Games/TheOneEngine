@@ -46,7 +46,6 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO, Mesh* ref) : Component(conta
 
 Mesh::~Mesh() {}
 
-
 // Draw
 void Mesh::DrawComponent(Camera* camera)
 {
@@ -55,23 +54,22 @@ void Mesh::DrawComponent(Camera* camera)
     if (!active || meshID == -1)
         return;
 
-
 	mat4 transform = containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform();
 	Model* mesh; SkeletalModel* skMesh;
 	switch (meshType)
 	{
-	case MeshType::DEFAULT:
-		mesh = Resources::GetResourceById<Model>(meshID);
-		Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
-		break;
-	case MeshType::SKELETAL:
-        Renderer3D::AddSkeletalMeshToQueue(meshID, materialID, transform);
-		break;
-	default:
-		break;
+	    case MeshType::DEFAULT:
+	    	mesh = Resources::GetResourceById<Model>(meshID);
+	    	Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
+	    	break;
+
+	    case MeshType::SKELETAL:
+            Renderer3D::AddSkeletalMeshToQueue(meshID, materialID, transform);
+	    	break;
+
+	    default: break;
 	}
 }
-
 
 // Load/Save
 json Mesh::SaveComponent()
