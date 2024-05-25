@@ -108,7 +108,7 @@ void SliderUI::Draw2D()
 						 {section->x, section->y + section->h} };
 
 			pos = { posX - width / 2 + currentSection->w * i + offset * i, posY };
-			Renderer2D::DrawQuad(pos, { width, height }, imageID, texCoords);
+			Renderer2D::DrawQuad(BT::UI, pos, { width, height }, imageID, texCoords);
 			break;
 		}
 		case SliderDesign::DIFFERENTFIRSTANDLAST:
@@ -132,7 +132,7 @@ void SliderUI::Draw2D()
 						 {section->x + section->w, section->y + section->h},
 						 {section->x, section->y + section->h} };
 
-			Renderer2D::DrawQuad(pos, { width, height }, imageID, texCoords);
+			Renderer2D::DrawQuad(BT::UI, pos, { width, height }, imageID, texCoords);
 			break;
 		}
 		default:

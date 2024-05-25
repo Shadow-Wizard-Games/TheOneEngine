@@ -33,7 +33,7 @@ void TextUI::Draw2D()
 	params.Kerning = kerning;
 	params.LineSpacing = lineSpacing;
 
-	Renderer2D::DrawString(textString, Resources::GetResourceById<Font>(fontID), { imageRect.x, imageRect.y }, {imageRect.w, imageRect.h}, params);
+	Renderer2D::DrawString(BT::UI, textString, Resources::GetResourceById<Font>(fontID), { imageRect.x, imageRect.y }, {imageRect.w, imageRect.h}, params);
 }
 
 void TextUI::SetText(const std::string& newText)

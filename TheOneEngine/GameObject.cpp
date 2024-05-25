@@ -183,19 +183,19 @@ static inline void glVec3(const vec3& v) { glVertex3dv(&v.x); }
 
 void GameObject::DrawAABB()
 {
-	Renderer2D::DrawLine(aabb.a(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.b(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.c(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.d(), aabb.a(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.a(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.b(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.c(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.d(), aabb.a(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	Renderer2D::DrawLine(aabb.e(), aabb.f(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.f(), aabb.g(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.g(), aabb.h(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.h(), aabb.e(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.e(), aabb.f(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.f(), aabb.g(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.g(), aabb.h(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.h(), aabb.e(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	Renderer2D::DrawLine(aabb.h(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.f(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(aabb.g(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.h(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.f(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.g(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
 }
 
 void GameObject::DrawOBB()

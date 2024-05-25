@@ -133,9 +133,9 @@ void EngineCore::DrawAxis()
     glm::vec3 yaxis = { 0.0f, 0.8f, 0.0f };
     glm::vec3 zaxis = { 0.0f, 0.0f, 0.8f };
 
-    Renderer2D::DrawLine(origin, xaxis, { 1.0f, 0.0f, 0.0f, 1.0f });
-    Renderer2D::DrawLine(origin, yaxis, { 0.0f, 1.0f, 0.0f, 1.0f });
-    Renderer2D::DrawLine(origin, zaxis, { 0.0f, 0.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, origin, xaxis, { 1.0f, 0.0f, 0.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, origin, yaxis, { 0.0f, 1.0f, 0.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, origin, zaxis, { 0.0f, 0.0f, 1.0f, 1.0f });
 }
 
 void EngineCore::DrawGrid(int grid_size, int grid_step)
@@ -160,27 +160,27 @@ void EngineCore::DrawGrid(int grid_size, int grid_step)
         glm::vec3 v4 = {  grid_size, 0.0f, i };
         glm::vec4 color = { 1.0f, 1.0f, 1.0f, alpha };
 
-        Renderer2D::DrawLine(v1, v2, color);
-        Renderer2D::DrawLine(v3, v4, color);
+        Renderer2D::DrawLine(BT::WORLD, v1, v2, color);
+        Renderer2D::DrawLine(BT::WORLD, v3, v4, color);
     }
 }
 
 void EngineCore::DrawFrustum(const Frustum& frustum)
 {
-    Renderer2D::DrawLine(frustum.vertices[0], frustum.vertices[1], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[1], frustum.vertices[2], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[2], frustum.vertices[3], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[3], frustum.vertices[0], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[0], frustum.vertices[1], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[1], frustum.vertices[2], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[2], frustum.vertices[3], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[3], frustum.vertices[0], { 1.0f, 1.0f, 1.0f, 1.0f });
 
-    Renderer2D::DrawLine(frustum.vertices[4], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[5], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[6], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[7], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[4], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[5], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[6], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[7], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
 
-    Renderer2D::DrawLine(frustum.vertices[0], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[1], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[2], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(frustum.vertices[3], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[0], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[1], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[2], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[3], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
 }
 
 void EngineCore::DrawRay(const Ray& ray)
@@ -192,7 +192,7 @@ void EngineCore::DrawRay(const Ray& ray)
         ray.Origin.y + ray.Direction.y * 1000,
         ray.Origin.z + ray.Direction.z * 1000
     };
-    Renderer2D::DrawLine({ ray.Origin.x,  ray.Origin.y, ray.Origin.z },
+    Renderer2D::DrawLine(BT::WORLD, { ray.Origin.x,  ray.Origin.y, ray.Origin.z },
                           {ray.Origin.x + ray.Direction.x * 1000,
                            ray.Origin.y + ray.Direction.y * 1000,
                            ray.Origin.z + ray.Direction.z * 1000}, { 1.0f, 1.0f, 1.0f, 1.0f });
