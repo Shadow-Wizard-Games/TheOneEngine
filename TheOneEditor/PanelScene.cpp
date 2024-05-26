@@ -8,6 +8,7 @@
 #include "imGuizmo.h"
 
 #include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Renderer.h"
 #include "TheOneEngine/Renderer3D.h"
 #include "TheOneEngine/RenderTarget.h"
 #include "TheOneEngine/Ray.h"
@@ -93,7 +94,7 @@ void PanelScene::Start()
     std::vector<std::vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
     viewportSize = { 680, 360 };
-    renderTarget = Renderer3D::AddRenderTarget(DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
+    renderTarget = Renderer::AddRenderTarget(DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
 }
 
 bool PanelScene::Draw()
@@ -173,9 +174,12 @@ bool PanelScene::Draw()
                 ImGui::Checkbox("OBB", &drawOBB);
                 ImGui::Separator();
 
-                if (ImGui::Checkbox("Ray Casting", &engine->drawRaycasting))
+                bool drawRayCasting = Renderer::GetDrawRaycasting();
+
+                if (ImGui::Checkbox("Ray Casting", &drawRayCasting))
                 {
-                    if (!engine->drawRaycasting) engine->rays.clear();
+                    Renderer::SetDrawRaycasting(drawRayCasting);
+                    if (!Renderer::GetDrawRaycasting()) Renderer::ClearRays();
                 }
                 
 
@@ -243,11 +247,11 @@ bool PanelScene::Draw()
         viewportSize = { availWindowSize.x, availWindowSize.y };
         
         if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && 
-            (Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->GetWidth() != viewportSize.x || 
-                Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->GetHeight() != viewportSize.y))
+            (Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetWidth() != viewportSize.x || 
+                Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetHeight() != viewportSize.y))
         {
-            Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
-            Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
+            Renderer::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
+            Renderer::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
             sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
@@ -255,7 +259,7 @@ bool PanelScene::Draw()
         //current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
         ImGui::Image(
-            (ImTextureID)Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
             ImVec2{ viewportSize.x, viewportSize.y },
             ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
        
@@ -315,7 +319,7 @@ bool PanelScene::Draw()
 
 			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), viewportSize.x, viewportSize.y);
 
-            if (engine->drawRaycasting) engine->rays.push_back(ray);
+            if (Renderer::GetDrawRaycasting()) Renderer::AddRay(ray);
             
             //editor->SelectObject(ray);
         }

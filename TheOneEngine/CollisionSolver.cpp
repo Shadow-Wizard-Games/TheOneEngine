@@ -1,8 +1,9 @@
 #include "CollisionSolver.h"
 #include "Defs.h"
+#include "EngineCore.h"
 #include "Collider2D.h"
 #include "Transform.h"
-#include "EngineCore.h"
+#include "Script.h"
 #include "N_SceneManager.h"
 #include "MonoManager.h"
 

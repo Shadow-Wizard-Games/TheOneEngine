@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Script.h"
 #include "Collider2D.h"
 #include "Listener.h"
 #include "AudioSource.h"

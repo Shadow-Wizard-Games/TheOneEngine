@@ -5,7 +5,6 @@
 #include "Defs.h"
 #include "Component.h"
 #include "BBox.hpp"
-#include "Script.h"
 #include "Log.h"
 
 #include <string>

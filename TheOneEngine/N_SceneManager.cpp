@@ -6,12 +6,14 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Script.h"
 #include "Collider2D.h"
 #include "Listener.h"
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "ImageUI.h"
+#include "Renderer.h"
 #include "Renderer2D.h"
 #include "Renderer3D.h"
 
@@ -1237,19 +1239,10 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
-// Do in renderer3D, from RenderTarget
-inline void Scene::SetCamera(Camera* cam)
-{
-	if (cam)
-		engine->SetUniformBufferCamera(cam->viewProjectionMatrix);
-	else
-		engine->SetUniformBufferCamera(currentCamera->viewProjectionMatrix);
-}
-
-void Scene::Set2DCamera()
-{
-	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
-}
+//void Scene::Set2DCamera()
+//{
+//	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
+//}
 
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
@@ -1263,7 +1256,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 		i->second->Draw(camera);
 
-	engine->DebugDraw(mode == DrawMode::GAME ? false : true);
+	Renderer::DebugDraw(mode == DrawMode::GAME ? false : true);
 
 	Renderer2D::Update();
 	Renderer3D::Update();
@@ -1271,7 +1264,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	if (mode == DrawMode::EDITOR)
 		return;
 
-	//Set Camera for 2D Rendering
+	// Set Camera for 2D Rendering
 	Set2DCamera();
 	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())

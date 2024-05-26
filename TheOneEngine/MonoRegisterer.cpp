@@ -5,6 +5,7 @@
 #include "EngineCore.h"
 #include "Component.h"
 #include "Transform.h"
+#include "Script.h"
 #include "Canvas.h"
 #include "ImageUI.h"
 #include "ButtonImageUI.h"
@@ -15,6 +16,7 @@
 #include "ParticleSystem.h"
 #include "SkeletalModel.h"
 #include "N_SceneManager.h"
+#include "Renderer.h"
 
 #include <glm/vec3.hpp>
 
@@ -818,12 +820,12 @@ static void DrawWireCube()
 
 static void ToggleCollidersDraw()
 {
-	engine->drawCollisions = !engine->drawCollisions;
+	Renderer::SetDrawCollisions(!Renderer::GetDrawCollisions());
 }
 
 static void ToggleGridDraw()
 {
-	engine->drawGrid = !engine->drawGrid;
+	Renderer::SetDrawGrid(!Renderer::GetDrawGrid());
 }
 
 // Particle System

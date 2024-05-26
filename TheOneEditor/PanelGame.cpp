@@ -6,6 +6,7 @@
 #include "imgui.h"
 
 #include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Renderer.h"
 #include "TheOneEngine/Renderer3D.h"
 #include "TheOneEngine/RenderTarget.h"
 
@@ -123,11 +124,11 @@ bool PanelGame::Draw()
 		viewportSize = { size.x, size.y };
 
 		if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-			(Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->GetWidth() != viewportSize.x ||
-				Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->GetHeight() != viewportSize.y))
+			(Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetWidth() != viewportSize.x ||
+				Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetHeight() != viewportSize.y))
 		{
-			Renderer3D::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
-			Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
+			Renderer::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
+			Renderer::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
 
 			if (gameCamera)
 			{
@@ -142,7 +143,7 @@ bool PanelGame::Draw()
 		if (offset.x) ImGui::SameLine();
 
 		ImGui::Image(
-			(ImTextureID)Renderer3D::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
 			ImVec2{ viewportSize.x, viewportSize.y },
 			ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 

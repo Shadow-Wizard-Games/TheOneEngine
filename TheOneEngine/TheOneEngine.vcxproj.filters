@@ -76,6 +76,9 @@
     <Filter Include="Animation\animations">
       <UniqueIdentifier>{35e8665e-8ad5-42bf-95c0-bce29902e91e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render\Renderer">
+      <UniqueIdentifier>{7debd458-e3af-44ab-8524-d58ccd02bc37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -261,9 +264,6 @@
     <ClInclude Include="EasingManager.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer2D.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -275,9 +275,6 @@
     </ClInclude>
     <ClInclude Include="ResourcesFontImpl.h">
       <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer3D.h">
-      <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="ResourcesSkeletalModelImpl.h">
       <Filter>Resources</Filter>
@@ -291,11 +288,20 @@
     <ClInclude Include="Light.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
-    <ClInclude Include="RenderTarget.h">
-      <Filter>Render</Filter>
-    </ClInclude>
     <ClInclude Include="SkeletalUtilities.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer2D.h">
+      <Filter>Render\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer3D.h">
+      <Filter>Render\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTarget.h">
+      <Filter>Render\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Render\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,9 +452,6 @@
     <ClCompile Include="Easing.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer2D.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -458,14 +461,20 @@
     <ClCompile Include="SkeletalModel.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer3D.cpp">
-      <Filter>Render</Filter>
-    </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer2D.cpp">
+      <Filter>Render\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer3D.cpp">
+      <Filter>Render\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="RenderTarget.cpp">
-      <Filter>Render</Filter>
+      <Filter>Render\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Render\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

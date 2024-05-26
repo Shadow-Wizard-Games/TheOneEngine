@@ -3,8 +3,6 @@
 #pragma once
 
 
-// hekbas: Include here all headers needed in Editor
-// Include in Editor when needed: #include "TheOneEngine/EngineCore.h"
 #include "Defs.h"
 #include "Camera.h"
 #include "Transform.h"
@@ -67,15 +65,7 @@ public:
 	bool PreUpdate();
 	void Update(double dt);
 
-	void SetRenderEnvironment();
-	void DebugDraw(bool override = false);
-
 	void CleanUp();
-
-	void DrawAxis();
-	void DrawGrid(int grid_size, int grid_step);
-	void DrawFrustum(const Frustum& frustum);
-	void DrawRay(const Ray& ray);
 
 	bool GetVSync();
 	bool SetVSync(bool vsync);
@@ -85,7 +75,6 @@ public:
 	void CleanLogs();
 
 	void SetEditorCamera(Camera* cam);
-	void SetUniformBufferCamera(const glm::mat4& cam);
 
 public:
 	
@@ -98,14 +87,6 @@ public:
 	CollisionSolver* collisionSolver = nullptr;
 	EasingManager* easingManager = nullptr;
 
-	// Debug
-	bool drawGrid = true;
-	bool drawAxis = true;
-	bool drawCollisions = true;
-	bool drawScriptShapes = true;
-	bool drawRaycasting = false;
-
-	std::vector<Ray> rays;
 
 	ScratchBuffer scratch_buffer_;
 
@@ -117,8 +98,6 @@ private:
 	LogInfo logInfo;
 	std::vector<LogInfo> logs;
 	Camera* editorCamReference;
-	std::shared_ptr<UniformBuffer> CameraUniformBuffer;
-
 };
 
 extern EngineCore* engine;
