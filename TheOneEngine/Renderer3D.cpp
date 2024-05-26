@@ -56,7 +56,7 @@ void Renderer3D::Update(RenderTarget target)
 	// Update Instances
 	UpdateInstanceBuffer(renderer3D.instanceCalls);
 
-	SetCamera(target.GetCamera());
+	//SetCamera(target.GetCamera());
 
 	GeometryPass(target);
 	ShadowPass(target);

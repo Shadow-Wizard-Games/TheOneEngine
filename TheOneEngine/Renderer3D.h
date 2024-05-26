@@ -107,8 +107,8 @@ private:
 	static void DrawInstanced(const InstanceCall& call);
 	static void DrawSkeletal(const SkeletalCall& call);
 	
-	static void DrawSceneOpaque(std::shared_ptr<GameObject> parentGO, Camera* camera);
-	static void DrawSceneTransparent(std::shared_ptr<GameObject> parentGO, Camera* camera);
+	//static void DrawSceneOpaque(std::shared_ptr<GameObject> parentGO, Camera* camera);
+	//static void DrawSceneTransparent(std::shared_ptr<GameObject> parentGO, Camera* camera);
 
 	static void GeometryPass(RenderTarget target);
 	static void PostProcess(RenderTarget target);
