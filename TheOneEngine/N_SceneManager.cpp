@@ -1258,7 +1258,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 
 	Renderer::DebugDraw(mode == DrawMode::GAME ? false : true);
 
-	Renderer2D::Update();
+	Renderer2D::Update(BT::WORLD);
 	Renderer3D::Update();
 
 	if (mode == DrawMode::EDITOR)
@@ -1269,7 +1269,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
-	Renderer2D::Update();
+	Renderer2D::Update(BT::UI);
 }
 
 inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* camera)
