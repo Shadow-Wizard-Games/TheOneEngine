@@ -17,8 +17,9 @@ class Renderer2D
 {
 public:
 	static void Init();
-	static void Update();
+	static void Update(BT type);
 	static void Shutdown();
+	static void ResetBatches();
 
 	// Primitives
 	static void DrawQuad(BT type, const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);

@@ -263,28 +263,36 @@ void Renderer2D::Shutdown()
 		batch.Delete();
 }
 
-void Renderer2D::Update()
+void Renderer2D::Update(BT type)
 {
+	Batch& batch = renderer2D.batches[type];
+
+	// Aqui todo el dibujado, esta funcion solo debería tener el dibujado, nada de logica de pases
 	GLCALL(glDisable(GL_CULL_FACE));
 
-	for (Batch& batch : renderer2D.batches)
-	{
-		DrawQuadBatch(batch);
-		DrawCircleBatch(batch);
-		DrawLineBatch(batch);
-		DrawTextBatch(batch);
+	DrawQuadBatch(batch);
+	DrawCircleBatch(batch);
+	DrawLineBatch(batch);
+	DrawTextBatch(batch);
 
+	GLCALL(glEnable(GL_CULL_FACE));
+
+	//Acordarse de resetar los batches despues de cada frame, no tiene pq ser en esta funcion
+}
+
+void Renderer2D::ResetBatches()
+{
+	for (Batch& batch : renderer2D.batches) {
 		ResetQuadBatch(batch);
 		ResetCircleBatch(batch);
 		ResetLineBatch(batch);
 		ResetTextBatch(batch);
 	}
-
-	GLCALL(glEnable(GL_CULL_FACE));
 }
 
 void Renderer2D::NextQuadBatch(Batch& batch)
 {
+	//TODO: Cambiar esta funcion, tal y como está no va a funcionar
 	DrawQuadBatch(batch);
 	ResetQuadBatch(batch);
 }

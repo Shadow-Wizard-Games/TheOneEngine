@@ -1295,7 +1295,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 			i->second->Draw(currentCamera);
 
 	}
-	Renderer2D::Update();
+	Renderer2D::Update(BT::WORLD);
 	Renderer3D::Update();
 
 
@@ -1307,5 +1307,5 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
-	Renderer2D::Update();
+	Renderer2D::Update(BT::UI);
 }
