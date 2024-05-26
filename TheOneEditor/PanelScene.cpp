@@ -259,7 +259,7 @@ bool PanelScene::Draw()
         //current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
 
         ImGui::Image(
-            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("normal"),
             ImVec2{ viewportSize.x, viewportSize.y },
             ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
        

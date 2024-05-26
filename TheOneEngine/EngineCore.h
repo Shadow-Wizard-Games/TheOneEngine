@@ -16,6 +16,7 @@
 #include "MonoManager.h"
 #include "InputManager.h"
 #include "AudioManager.h"
+#include "EasingManager.h"
 
 #include "ozz/base/memory/allocator.h"
 
@@ -24,7 +25,6 @@
 #include <string>
 
 class N_SceneManager;
-class EasingManager;
 
 
 // Volatile memory buffer that can be used within function scope.
@@ -58,6 +58,7 @@ class EngineCore
 public:
 
 	EngineCore();
+	~EngineCore();
 
 	void Awake();
 	void Start();

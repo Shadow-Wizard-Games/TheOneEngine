@@ -2,9 +2,6 @@
 #include "Log.h"
 #include "Defs.h"
 #include "N_SceneManager.h"
-#include "MonoManager.h"
-#include "InputManager.h"
-#include "EasingManager.h"
 #include "Collider2D.h"
 #include "Renderer.h"
 #include "Renderer2D.h"
@@ -26,6 +23,8 @@ EngineCore::EngineCore()
     N_sceneManager = new N_SceneManager();
     easingManager = new EasingManager();
 }
+
+EngineCore::~EngineCore() {}
 
 void EngineCore::Awake()
 {
@@ -51,6 +50,7 @@ void EngineCore::Update(double dt)
     audioManager->Update(dt);
     collisionSolver->Update(dt);
     //easingManager->Update(dt);
+    Renderer::Update();
 
     this->dt = dt;
 }

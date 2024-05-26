@@ -15,6 +15,9 @@ public:
 
 	std::vector<FrameBuffer>* GetFrameBuffers();
 	FrameBuffer* GetFrameBuffer(std::string name);
+
+	unsigned int GetId() { return id; }
+	DrawMode GetMode() { return mode; }
 	Camera* GetCamera() { return camera; }
 
 private:

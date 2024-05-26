@@ -39,9 +39,10 @@ void Renderer::Update()
 {
 	for (auto& target : renderer.renderTargets)
 	{
+        SetUniformBufferCamera(target.GetCamera()->viewProjectionMatrix);
+        engine->N_sceneManager->currentScene->Draw(target.GetMode(), target.GetCamera());
 		Renderer3D::Update(target);
 
-        SetUniformBufferCamera(target.GetCamera()->viewProjectionMatrix);
         Renderer3D::GeometryPass(target);
         Renderer3D::ShadowPass(target);
         Renderer2D::Update(BT::WORLD, target);
