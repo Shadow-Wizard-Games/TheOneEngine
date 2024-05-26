@@ -55,18 +55,6 @@ void Renderer3D::Update(RenderTarget target)
 {
 	// Update Instances
 	UpdateInstanceBuffer(renderer3D.instanceCalls);
-
-	//SetCamera(target.GetCamera());
-
-	GeometryPass(target);
-	ShadowPass(target);
-	PostProcess(target);
-
-	for (auto &instance : renderer3D.instanceCalls)
-		instance.DeleteInstance();
-
-	renderer3D.instanceCalls.clear();
-	renderer3D.skeletalCalls.clear();
 }
 
 void Renderer3D::Shutdown()
@@ -88,6 +76,15 @@ void Renderer3D::Shutdown()
 		GLCALL(glDeleteBuffers(1, &renderer3D.dynamicIBO));
 		renderer3D.dynamicIBO = 0;
 	}
+}
+
+void Renderer3D::ResetCalls()
+{
+	for (auto& instance : renderer3D.instanceCalls)
+		instance.DeleteInstance();
+
+	renderer3D.instanceCalls.clear();
+	renderer3D.skeletalCalls.clear();
 }
 
 void Renderer3D::AddLight(std::shared_ptr<GameObject> container)

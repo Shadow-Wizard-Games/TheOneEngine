@@ -5,6 +5,7 @@
 #include "Font.h"
 
 class Batch;
+class RenderTarget;
 
 // Batch Type
 enum BT {
@@ -17,7 +18,7 @@ class Renderer2D
 {
 public:
 	static void Init();
-	static void Update(BT type);
+	static void Update(BT type, RenderTarget target);
 	static void Shutdown();
 	static void ResetBatches();
 

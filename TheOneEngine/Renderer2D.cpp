@@ -5,6 +5,7 @@
 #include "UniformBuffer.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "RenderTarget.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -265,11 +266,20 @@ void Renderer2D::Shutdown()
 		batch.Delete();
 }
 
-void Renderer2D::Update(BT type)
+void Renderer2D::Update(BT type, RenderTarget target)
 {
 	Batch& batch = renderer2D.batches[type];
 
-	// Aqui todo el dibujado, esta funcion solo debería tener el dibujado, nada de logica de pases
+	FrameBuffer* buffer;
+	if(type == BT::WORLD)
+		buffer = target.GetFrameBuffer("gBuffer");
+	else
+		buffer = target.GetFrameBuffer("uiBuffer");
+
+	buffer->Bind();
+	//TODO: no se si hace falta este clear?
+	//buffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+
 	GLCALL(glDisable(GL_CULL_FACE));
 
 	DrawQuadBatch(batch);
@@ -279,7 +289,8 @@ void Renderer2D::Update(BT type)
 
 	GLCALL(glEnable(GL_CULL_FACE));
 
-	//Acordarse de resetar los batches despues de cada frame, no tiene pq ser en esta funcion
+
+	buffer->Unbind();
 }
 
 void Renderer2D::ResetBatches()

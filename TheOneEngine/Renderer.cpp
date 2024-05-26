@@ -8,6 +8,7 @@
 #include "RenderTarget.h"
 #include "Ray.h"
 
+static const glm::mat4 cameraUI = glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f);
 
 struct RendererData
 {
@@ -40,8 +41,18 @@ void Renderer::Update()
 	{
 		Renderer3D::Update(target);
 
-		//Renderer2D::Update();
+        SetUniformBufferCamera(target.GetCamera()->viewProjectionMatrix);
+        Renderer3D::GeometryPass(target);
+        Renderer3D::ShadowPass(target);
+        Renderer2D::Update(BT::WORLD, target);
+        Renderer3D::PostProcess(target);
+
+        SetUniformBufferCamera(cameraUI);
+        Renderer2D::Update(BT::UI, target);
 	}
+
+    Renderer2D::ResetBatches();
+    Renderer3D::ResetCalls();
 }
 
 void Renderer::Shutdown()

@@ -93,6 +93,12 @@ public:
 	static void Update(RenderTarget target);
 	static void Shutdown();
 
+	static void ResetCalls();
+
+	static void GeometryPass(RenderTarget target);
+	static void PostProcess(RenderTarget target);
+	static void ShadowPass(RenderTarget target);
+
 	static void AddLight(std::shared_ptr<GameObject> container);
 	static void CleanLights();
 
@@ -110,9 +116,6 @@ private:
 	//static void DrawSceneOpaque(std::shared_ptr<GameObject> parentGO, Camera* camera);
 	//static void DrawSceneTransparent(std::shared_ptr<GameObject> parentGO, Camera* camera);
 
-	static void GeometryPass(RenderTarget target);
-	static void PostProcess(RenderTarget target);
-	static void ShadowPass(RenderTarget target);
 	static void LightPass(RenderTarget target);
 	static void DrawScreenQuad();
 
