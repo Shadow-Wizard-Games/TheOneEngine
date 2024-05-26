@@ -1,5 +1,4 @@
 #include "RenderTarget.h"
-#include "FrameBuffer.h"
 
 RenderTarget::RenderTarget(unsigned int id, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
     : id(id),

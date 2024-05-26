@@ -4,6 +4,7 @@
 #include "Window.h"
 
 #include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Renderer.h"
 #include "TheOneEngine/N_SceneManager.h"
 #include "TheOneEngine/FrameBuffer.h"
 #include "TheOneEngine/FileDialog.h"
@@ -190,8 +191,8 @@ void PanelAnimation::Viewport()
 		frameBuffer->Clear(ClearBit::All, { 0.13f, 0.14f, 0.15f, 1.00f });
 
 		// Draw
-		engine->SetRenderEnvironment();
-		engine->SetUniformBufferCamera(animationCamera->GetComponent<Camera>()->viewProjectionMatrix);
+		Renderer::SetRenderEnvironment();
+		Renderer::SetUniformBufferCamera(animationCamera->GetComponent<Camera>()->viewProjectionMatrix);
 
 		engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Mesh>()->DrawComponent(animationCamera->GetComponent<Camera>());
 

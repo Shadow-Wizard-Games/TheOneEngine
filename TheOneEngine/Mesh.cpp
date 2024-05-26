@@ -46,7 +46,6 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO, Mesh* ref) : Component(conta
 
 Mesh::~Mesh() {}
 
-
 // Draw
 void Mesh::DrawComponent(Camera* camera)
 {
@@ -55,23 +54,22 @@ void Mesh::DrawComponent(Camera* camera)
     if (!active || meshID == -1)
         return;
 
-
 	mat4 transform = containerGO.get()->GetComponent<Transform>()->CalculateWorldTransform();
 	Model* mesh; SkeletalModel* skMesh;
-	switch (type)
+	switch (meshType)
 	{
-	case MeshType::DEFAULT:
-		mesh = Resources::GetResourceById<Model>(meshID);
-		Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
-		break;
-	case MeshType::SKELETAL:
-        Renderer3D::AddSkeletalMeshToQueue(meshID, materialID, transform);
-		break;
-	default:
-		break;
+	    case MeshType::DEFAULT:
+	    	mesh = Resources::GetResourceById<Model>(meshID);
+	    	Renderer3D::AddMeshToQueue(mesh->GetMeshID(), materialID, transform);
+	    	break;
+
+	    case MeshType::SKELETAL:
+            Renderer3D::AddSkeletalMeshToQueue(meshID, materialID, transform);
+	    	break;
+
+	    default: break;
 	}
 }
-
 
 // Load/Save
 json Mesh::SaveComponent()
@@ -79,7 +77,8 @@ json Mesh::SaveComponent()
     json meshJSON;
 
     meshJSON["Name"] = name;
-    meshJSON["MeshType"] = type;
+    meshJSON["Type"] = type;
+    meshJSON["MeshType"] = meshType;
     if (auto pGO = containerGO.lock())
     {
         meshJSON["ParentUID"] = pGO.get()->GetUID();
@@ -93,7 +92,7 @@ json Mesh::SaveComponent()
     meshJSON["DrawNormalsVerts"] = drawNormalsVerts;
     meshJSON["DrawNormalsFaces"] = drawNormalsFaces;
 
-	switch (type)
+	switch (meshType)
 	{
 	case MeshType::DEFAULT:
 	{
@@ -167,7 +166,7 @@ void Mesh::LoadComponent(const json& meshJSON)
 
 	if (meshJSON.contains("MeshType"))
 	{
-		type = meshJSON["MeshType"];
+		meshType = meshJSON["MeshType"];
 	}
 
     /*if (meshJSON.contains("Path"))
@@ -190,8 +189,8 @@ void Mesh::LoadComponent(const json& meshJSON)
         {
             std::filesystem::path libraryToAssets = meshPath;
             std::string assetsMesh = Resources::FindFileInAssets(libraryToAssets.parent_path().filename().string());
-			type = FBXIMPORTER::FBXtype(assetsMesh);
-			switch (type)
+			meshType = FBXIMPORTER::FBXtype(assetsMesh);
+			switch (meshType)
 			{
 			case MeshType::DEFAULT:
 				Resources::LoadMultiple<Model>(assetsMesh);
@@ -205,11 +204,11 @@ void Mesh::LoadComponent(const json& meshJSON)
         else
         {
 			if (meshPath.ends_with(".animator"))
-				type = MeshType::SKELETAL;
+				meshType = MeshType::SKELETAL;
 			else
-				type = MeshType::DEFAULT;
+				meshType = MeshType::DEFAULT;
 
-			switch (type)
+			switch (meshType)
 			{
 			case MeshType::DEFAULT:
 				meshID = Resources::LoadFromLibrary<Model>(meshPath);
@@ -226,6 +225,6 @@ void Mesh::LoadComponent(const json& meshJSON)
         materialID = Resources::LoadFromLibrary<Material>(meshJSON["MaterialPath"]);
     }
 
-	if (meshID != -1 && type == MeshType::DEFAULT)
+	if (meshID != -1 && meshType == MeshType::DEFAULT)
 		Renderer3D::AddMesh(Resources::GetResourceById<Model>(meshID)->GetMeshID(), materialID);
 }

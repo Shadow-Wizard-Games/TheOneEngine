@@ -168,7 +168,6 @@ public:
 private:
 	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
-	inline void SetCamera(Camera* cam);
 	void Set2DCamera();
 
 private:
@@ -186,7 +185,6 @@ public:
 
 	std::multimap<float, GameObject*> zSorting;
 
-	//Arnau: Create a lights list
 	std::vector<Light*> lights;
 
 	//int listenerAudioGOID = -1;

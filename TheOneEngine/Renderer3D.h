@@ -90,13 +90,8 @@ class Renderer3D
 {
 public:
 	static void Init();
-	static void Update();
+	static void Update(RenderTarget target);
 	static void Shutdown();
-
-	static unsigned int AddRenderTarget(DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
-	static std::vector<FrameBuffer>* GetFrameBuffers(unsigned int targetID);
-	static FrameBuffer* GetFrameBuffer(unsigned int targetID, std::string name);
-
 
 	static void AddLight(std::shared_ptr<GameObject> container);
 	static void CleanLights();
@@ -111,6 +106,9 @@ private:
 
 	static void DrawInstanced(const InstanceCall& call);
 	static void DrawSkeletal(const SkeletalCall& call);
+	
+	static void DrawSceneOpaque(std::shared_ptr<GameObject> parentGO, Camera* camera);
+	static void DrawSceneTransparent(std::shared_ptr<GameObject> parentGO, Camera* camera);
 
 	static void GeometryPass(RenderTarget target);
 	static void PostProcess(RenderTarget target);

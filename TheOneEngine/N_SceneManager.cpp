@@ -6,17 +6,18 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Script.h"
 #include "Collider2D.h"
 #include "Listener.h"
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "ImageUI.h"
-
-#include "../TheOneAudio/AudioCore.h"
-#include "EngineCore.h"
+#include "Renderer.h"
 #include "Renderer2D.h"
 #include "Renderer3D.h"
+
+#include "TheOneAudio/AudioCore.h"
 
 #include <fstream>
 #include <filesystem>
@@ -100,6 +101,7 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 
 bool N_SceneManager::PostUpdate()
 {
+	currentScene->Draw();
 
 	return true;
 }
@@ -816,7 +818,7 @@ void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<Game
 
 	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
 	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
-	meshGO.get()->GetComponent<Mesh>()->type = MeshType::DEFAULT;
+	meshGO.get()->GetComponent<Mesh>()->meshType = MeshType::DEFAULT;
 
 	Renderer3D::AddMesh(mesh->GetMeshID(), meshGO.get()->GetComponent<Mesh>()->materialID);
 
@@ -843,7 +845,7 @@ void N_SceneManager::CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<Gam
 
 	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
 	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
-	meshGO.get()->GetComponent<Mesh>()->type = MeshType::SKELETAL;
+	meshGO.get()->GetComponent<Mesh>()->meshType = MeshType::SKELETAL;
 
 	if (isSingle)
 	{
@@ -976,7 +978,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			{
 			case ComponentType::Collider2D:
 			{
-				if (goToModify->GetComponent<Collider2D>() == nullptr) goToModify->AddComponent<Collider2D>();
+				if (goToModify->GetComponent<Collider2D>() == nullptr)
+					goToModify->AddComponent<Collider2D>();
 
 				auto collider = goToModify->GetComponent<Collider2D>();
 				collider->LoadComponent(componentJSON);
@@ -984,7 +987,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::Camera:
 			{
-				if (goToModify->GetComponent<Camera>() == nullptr) goToModify->AddComponent<Camera>();
+				if (goToModify->GetComponent<Camera>() == nullptr) 
+					goToModify->AddComponent<Camera>();
 
 				auto camera = goToModify->GetComponent<Camera>();
 				camera->LoadComponent(componentJSON);
@@ -992,7 +996,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::Canvas:
 			{
-				if (goToModify->GetComponent<Canvas>() == nullptr) goToModify->AddComponent<Canvas>();
+				if (goToModify->GetComponent<Canvas>() == nullptr)
+					goToModify->AddComponent<Canvas>();
 
 				auto canvas = goToModify->GetComponent<Canvas>();
 				canvas->LoadComponent(componentJSON);
@@ -1000,7 +1005,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::AudioSource:
 			{
-				if (goToModify->GetComponent<AudioSource>() == nullptr) goToModify->AddComponent<AudioSource>();
+				if (goToModify->GetComponent<AudioSource>() == nullptr)
+					goToModify->AddComponent<AudioSource>();
 
 				auto audioSource = goToModify->GetComponent<AudioSource>();
 				audioSource->LoadComponent(componentJSON);
@@ -1008,7 +1014,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::Listener:
 			{
-				if (goToModify->GetComponent<Listener>() == nullptr) goToModify->AddComponent<Listener>();
+				if (goToModify->GetComponent<Listener>() == nullptr)
+					goToModify->AddComponent<Listener>();
 
 				auto listener = goToModify->GetComponent<Listener>();
 				listener->LoadComponent(componentJSON);
@@ -1016,7 +1023,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::ParticleSystem:
 			{
-				if (goToModify->GetComponent<ParticleSystem>() == nullptr) goToModify->AddComponent<ParticleSystem>();
+				if (goToModify->GetComponent<ParticleSystem>() == nullptr)
+					goToModify->AddComponent<ParticleSystem>();
 
 				auto particleSystem = goToModify->GetComponent<ParticleSystem>();
 				particleSystem->LoadComponent(componentJSON);
@@ -1024,7 +1032,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::Light:
 			{
-				if (goToModify->GetComponent<Light>() == nullptr) goToModify->AddComponent<Light>();
+				if (goToModify->GetComponent<Light>() == nullptr)
+					goToModify->AddComponent<Light>();
 
 				auto light = goToModify->GetComponent<Light>();
 				light->LoadComponent(componentJSON);
@@ -1209,41 +1218,6 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
-{
-	if (cam != nullptr) {
-		for (const auto& gameObject : parentGO.get()->children)
-		{
-			if (!gameObject->hasTransparency) {
-				gameObject->Draw(cam);
-			}
-			else {
-				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			}
-
-			RecurseSceneDraw(gameObject, cam);
-		}
-
-	}
-	else {
-		for (const auto& gameObject : parentGO.get()->children)
-		{
-			if (!gameObject->hasTransparency) {
-				gameObject->Draw(currentCamera);
-			}
-			else {
-				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - currentCamera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			}
-
-			RecurseSceneDraw(gameObject, currentCamera);
-		}
-
-	}
-
-}
-
 void Scene::UpdateGOs(double dt)
 {
 	engine->N_sceneManager->AddPendingGOs();
@@ -1265,47 +1239,55 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
-inline void Scene::SetCamera(Camera* cam)
-{
-	if (cam)
-		engine->SetUniformBufferCamera(cam->viewProjectionMatrix);
-	else
-		engine->SetUniformBufferCamera(currentCamera->viewProjectionMatrix);
-}
-
-void Scene::Set2DCamera()
-{
-	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
-}
+//void Scene::Set2DCamera()
+//{
+//	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
+//}
 
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
+	// Set Camera for 3D rendering
+	Camera* camera = cam ? cam : currentCamera;
+	SetCamera(camera);
+
 	zSorting.clear();
+	RecurseSceneDraw(rootSceneGO, camera);
+	
+	for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
+		i->second->Draw(camera);
 
-	//Setting Camera for 3D Rendering
-	SetCamera(cam);
-	engine->DebugDraw(mode == DrawMode::GAME ? false : true);
-	RecurseSceneDraw(rootSceneGO, cam);
-	if (cam != nullptr) {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
-			i->second->Draw(cam);
-	}
-	else {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
-			i->second->Draw(currentCamera);
+	Renderer::DebugDraw(mode == DrawMode::GAME ? false : true);
 
-	}
-	Renderer2D::Update(BT::WORLD);
+	Renderer2D::Update();
 	Renderer3D::Update();
-
 
 	if (mode == DrawMode::EDITOR)
 		return;
 
-	//Setting Camera for 2D Rendering
+	// Set Camera for 2D Rendering
 	Set2DCamera();
 	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
-	Renderer2D::Update(BT::UI);
+	Renderer2D::Update();
+}
+
+inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* camera)
+{
+	for (const auto& gameObject : parentGO.get()->children)
+	{
+		if (!gameObject->hasTransparency) {
+			gameObject->Draw(camera);
+		}
+		else
+		{
+			float distance = glm::length(
+				(vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] -
+				camera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+
+			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+		}
+
+		RecurseSceneDraw(gameObject, camera);
+	}
 }

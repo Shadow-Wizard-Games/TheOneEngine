@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Defs.h"
+#include "FrameBuffer.h"
 #include "GameObject.h"
-#include "Framebuffer.h"
 
 #include <vector>
+#include <string>
 
 class RenderTarget
 {
@@ -17,7 +18,7 @@ public:
 	Camera* GetCamera() { return camera; }
 
 private:
-	uint id;
+	unsigned int id;
 	DrawMode mode;
 	Camera* camera;
 

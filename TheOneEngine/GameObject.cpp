@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Script.h"
 #include "Collider2D.h"
 #include "Listener.h"
 #include "AudioSource.h"
@@ -442,8 +443,6 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 
 		for (const auto& componentJSON : componentsJSON)
 		{
-
-			// Assuming each component has a LoadComponent function
 			if (componentJSON["Type"] == (int)ComponentType::Transform)
 			{
 				this->AddComponent<Transform>();

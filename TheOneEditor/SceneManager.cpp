@@ -3,7 +3,8 @@
 #include "Gui.h"
 #include "PanelInspector.h"
 #include "Input.h"
-#include "../TheOneEngine/Log.h"
+
+#include "TheOneEngine/Log.h"
 
 #include <fstream>
 #include <filesystem>
@@ -23,8 +24,8 @@ bool SceneManager::Awake()
 bool SceneManager::Start()
 {
 	engine->N_sceneManager->currentScene = new Scene(0, "NewUntitledScene");
-	engine->N_sceneManager->CreateCameraGO("mainCamera");
-	//engine->N_sceneManager->LoadScene("NewUntitledScene");
+	//engine->N_sceneManager->CreateCameraGO("mainCamera");
+	engine->N_sceneManager->LoadScene("AA_RenderTest");
 
 	engine->N_sceneManager->Start();
 

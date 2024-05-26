@@ -47,8 +47,10 @@ struct TextVertex
 	glm::vec2 TexCoord;
 };
 
-struct Batch {
-	void Init() {
+struct Batch
+{
+	void Init()
+	{
 		QuadVertexArray = std::make_shared<HeapVertexArray>();
 
 		QuadVertexBuffer = std::make_shared<VertexBuffer>(MaxVertices * sizeof(QuadVertex));

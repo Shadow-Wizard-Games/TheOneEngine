@@ -5,6 +5,7 @@
 #include "EngineCore.h"
 #include "Component.h"
 #include "Transform.h"
+#include "Script.h"
 #include "Canvas.h"
 #include "ImageUI.h"
 #include "ButtonImageUI.h"
@@ -15,6 +16,7 @@
 #include "ParticleSystem.h"
 #include "SkeletalModel.h"
 #include "N_SceneManager.h"
+#include "Renderer.h"
 
 #include <glm/vec3.hpp>
 
@@ -818,12 +820,12 @@ static void DrawWireCube()
 
 static void ToggleCollidersDraw()
 {
-	engine->drawCollisions = !engine->drawCollisions;
+	Renderer::SetDrawCollisions(!Renderer::GetDrawCollisions());
 }
 
 static void ToggleGridDraw()
 {
-	engine->drawGrid = !engine->drawGrid;
+	Renderer::SetDrawGrid(!Renderer::GetDrawGrid());
 }
 
 // Particle System
@@ -960,7 +962,7 @@ static void SetPrimaryCam(GameObject* GOptr, bool* primaryCam)
 // Animator
 static void PlayAnimation(GameObject* GOptr, MonoString* name) {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return;
+	if (mesh->meshType != MeshType::SKELETAL) return;
 
 	std::string aName = MonoRegisterer::MonoStringToUTF8(name);
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(GOptr->GetComponent<Mesh>()->meshID);
@@ -971,7 +973,7 @@ static void PlayAnimation(GameObject* GOptr, MonoString* name) {
 
 static void StopAnimation(GameObject* GOptr) {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return;
+	if (mesh->meshType != MeshType::SKELETAL) return;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(GOptr->GetComponent<Mesh>()->meshID);
 	m->StopAnimation();
@@ -980,7 +982,7 @@ static void StopAnimation(GameObject* GOptr) {
 static bool AnimationHasFinished(GameObject* GOptr)
 {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return false;
+	if (mesh->meshType != MeshType::SKELETAL) return false;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
 	return m->getActiveAnimation()->HasFinished();
@@ -988,7 +990,7 @@ static bool AnimationHasFinished(GameObject* GOptr)
 
 static bool GetTransitionBlend(GameObject* GOptr){
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return false;
+	if (mesh->meshType != MeshType::SKELETAL) return false;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
 	return m->getBlendOnTransition();
@@ -996,7 +998,7 @@ static bool GetTransitionBlend(GameObject* GOptr){
 
 static void SetTransitionBlend(GameObject* GOptr, bool* blend) {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return;
+	if (mesh->meshType != MeshType::SKELETAL) return;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
 	m->setBlendOnTransition((bool)*blend);
@@ -1004,7 +1006,7 @@ static void SetTransitionBlend(GameObject* GOptr, bool* blend) {
 
 static float GetTransitionTime(GameObject* GOptr) {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return -1.0f;
+	if (mesh->meshType != MeshType::SKELETAL) return -1.0f;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
 	return m->getTransitionTime();
@@ -1012,7 +1014,7 @@ static float GetTransitionTime(GameObject* GOptr) {
 
 static void SetTransitionTime(GameObject* GOptr, float* time) {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return;
+	if (mesh->meshType != MeshType::SKELETAL) return;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
 	m->setTransitionTime((float)*time);
@@ -1020,7 +1022,7 @@ static void SetTransitionTime(GameObject* GOptr, float* time) {
 
 static void UpdateAnimation(GameObject* GOptr, float* dt) {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
-	if (mesh->type != MeshType::SKELETAL) return;
+	if (mesh->meshType != MeshType::SKELETAL) return;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
 	m->UpdateAnim((float)*dt);
