@@ -48,7 +48,7 @@
           "UID": 2925835854
         },
         {
-          "AudioID": 29,
+          "AudioID": 119,
           "Name": "Listener",
           "Type": 7
         }
@@ -7181,104 +7181,6 @@
                 {
                   "Name": "Transform",
                   "Transformation Matrix": [
-                    0.9024637937545776,
-                    0.0,
-                    2.4794986248016357,
-                    0.0,
-                    0.0,
-                    1.3111997842788696,
-                    0.0,
-                    0.0,
-                    -1.1784486770629883,
-                    0.0,
-                    0.42892012000083923,
-                    0.0,
-                    213.5089569091797,
-                    0.30000901222229004,
-                    -419.3230895996094,
-                    1.0
-                  ],
-                  "Type": 0,
-                  "UID": 2994267866
-                },
-                {
-                  "Active": true,
-                  "DrawAABB": true,
-                  "DrawChecker": false,
-                  "DrawNormalsFaces": false,
-                  "DrawNormalsVerts": false,
-                  "DrawOBB": false,
-                  "DrawWireframe": false,
-                  "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
-                  "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
-                  "Name": "Mesh",
-                  "ParentUID": 3452816845,
-                  "Type": 2,
-                  "UID": 1140614895
-                }
-              ],
-              "Enabled": true,
-              "HasTransparency": true,
-              "Keeped": false,
-              "Name": "SM_Arrow (5)",
-              "ParentUID": 6619240,
-              "Static": false,
-              "UID": 3452816845
-            },
-            {
-              "Components": [
-                {
-                  "Name": "Transform",
-                  "Transformation Matrix": [
-                    0.9024637937545776,
-                    0.0,
-                    2.4794986248016357,
-                    0.0,
-                    0.0,
-                    1.3111997842788696,
-                    0.0,
-                    0.0,
-                    -1.1784486770629883,
-                    0.0,
-                    0.42892012000083923,
-                    0.0,
-                    166.52432250976563,
-                    0.30000901222229004,
-                    -402.2220764160156,
-                    1.0
-                  ],
-                  "Type": 0,
-                  "UID": 3370414813
-                },
-                {
-                  "Active": true,
-                  "DrawAABB": true,
-                  "DrawChecker": false,
-                  "DrawNormalsFaces": false,
-                  "DrawNormalsVerts": false,
-                  "DrawOBB": false,
-                  "DrawWireframe": false,
-                  "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
-                  "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
-                  "Name": "Mesh",
-                  "ParentUID": 3452816845,
-                  "Type": 2,
-                  "UID": 1462486786
-                }
-              ],
-              "Enabled": true,
-              "HasTransparency": true,
-              "Keeped": false,
-              "Name": "SM_Arrow (4)",
-              "ParentUID": 6619240,
-              "Static": false,
-              "UID": 3452816845
-            },
-            {
-              "Components": [
-                {
-                  "Name": "Transform",
-                  "Transformation Matrix": [
                     0.0011992778163403273,
                     0.0,
                     2.458743095397949,
@@ -8299,55 +8201,6 @@
               "HasTransparency": true,
               "Keeped": false,
               "Name": "SM_CautionStripes (7)",
-              "ParentUID": 6619240,
-              "Static": false,
-              "UID": 3452816845
-            },
-            {
-              "Components": [
-                {
-                  "Name": "Transform",
-                  "Transformation Matrix": [
-                    0.9024637937545776,
-                    0.0,
-                    2.4794986248016357,
-                    0.0,
-                    0.0,
-                    1.3111997842788696,
-                    0.0,
-                    0.0,
-                    -1.1784486770629883,
-                    0.0,
-                    0.42892012000083923,
-                    0.0,
-                    119.53968048095703,
-                    0.30000901222229004,
-                    -385.1210632324219,
-                    1.0
-                  ],
-                  "Type": 0,
-                  "UID": 3489573552
-                },
-                {
-                  "Active": true,
-                  "DrawAABB": true,
-                  "DrawChecker": false,
-                  "DrawNormalsFaces": false,
-                  "DrawNormalsVerts": false,
-                  "DrawOBB": false,
-                  "DrawWireframe": false,
-                  "MaterialPath": "Library/Materials/SM_Arrow/M_Arrow.toematerial",
-                  "MeshPath": "Library/Meshes/SM_Arrow/SM_Arrow.mesh",
-                  "Name": "Mesh",
-                  "ParentUID": 3452816845,
-                  "Type": 2,
-                  "UID": 3276710199
-                }
-              ],
-              "Enabled": true,
-              "HasTransparency": true,
-              "Keeped": false,
-              "Name": "SM_Arrow (3)",
               "ParentUID": 6619240,
               "Static": false,
               "UID": 3452816845
@@ -31488,7 +31341,7 @@
           "UID": 2371490470
         },
         {
-          "AudioID": 30,
+          "AudioID": 120,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -32589,7 +32442,7 @@
               "UID": 951121546
             },
             {
-              "AudioID": 31,
+              "AudioID": 121,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -32890,7 +32743,7 @@
               ]
             },
             {
-              "AudioID": 32,
+              "AudioID": 122,
               "Name": "Source",
               "Type": 8
             },
@@ -34455,7 +34308,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 33,
+              "AudioID": 123,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -34954,7 +34807,7 @@
               ]
             },
             {
-              "AudioID": 34,
+              "AudioID": 124,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -35138,7 +34991,7 @@
               ]
             },
             {
-              "AudioID": 35,
+              "AudioID": 125,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -37364,7 +37217,7 @@
                   ]
                 },
                 {
-                  "AudioID": 36,
+                  "AudioID": 126,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -38151,7 +38004,7 @@
                   "UID": 1616070798
                 },
                 {
-                  "AudioID": 37,
+                  "AudioID": 127,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -38259,7 +38112,7 @@
               ]
             },
             {
-              "AudioID": 38,
+              "AudioID": 128,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38383,7 +38236,7 @@
               ]
             },
             {
-              "AudioID": 39,
+              "AudioID": 129,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38429,7 +38282,7 @@
               "UID": 2135104260
             },
             {
-              "AudioID": 40,
+              "AudioID": 130,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38475,7 +38328,7 @@
               "UID": 2581454987
             },
             {
-              "AudioID": 41,
+              "AudioID": 131,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -38484,52 +38337,6 @@
           "HasTransparency": false,
           "Keeped": true,
           "Name": "ItemManager",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 4072698855
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "ItemManager",
-              "Type": 4,
-              "UID": 1110714302
-            },
-            {
-              "AudioID": 42,
-              "Name": "AudioSource",
-              "Type": 8
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "Manager",
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
@@ -38593,7 +38400,7 @@
           "UID": 225613267
         },
         {
-          "AudioID": 43,
+          "AudioID": 132,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -39000,7 +38807,7 @@
               "UID": 3667515160
             },
             {
-              "AudioID": 44,
+              "AudioID": 133,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39046,7 +38853,7 @@
               "UID": 1177981766
             },
             {
-              "AudioID": 45,
+              "AudioID": 134,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39092,7 +38899,7 @@
               "UID": 2174904043
             },
             {
-              "AudioID": 46,
+              "AudioID": 135,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39138,7 +38945,7 @@
               "UID": 2232833499
             },
             {
-              "AudioID": 47,
+              "AudioID": 136,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39184,7 +38991,7 @@
               "UID": 2199890485
             },
             {
-              "AudioID": 48,
+              "AudioID": 137,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39230,7 +39037,7 @@
               "UID": 3061441302
             },
             {
-              "AudioID": 49,
+              "AudioID": 138,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39276,7 +39083,7 @@
               "UID": 1809667645
             },
             {
-              "AudioID": 50,
+              "AudioID": 139,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -39348,7 +39155,7 @@
           "UID": 2666514190
         },
         {
-          "AudioID": 51,
+          "AudioID": 140,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -39664,7 +39471,7 @@
           "UID": 2666514190
         },
         {
-          "AudioID": 52,
+          "AudioID": 141,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -39999,7 +39806,7 @@
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Queen1",
+      "Name": "Queen1 (1)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 3137073782,
