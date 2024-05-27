@@ -243,6 +243,7 @@ bool PanelScene::Draw()
         ImGui::PopStyleVar();
 
 
+        // Render --------------------------------------------------------------------------
         // Viewport resize check
         viewportSize = { availWindowSize.x, availWindowSize.y };
         
@@ -256,10 +257,8 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        //current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
-
         ImGui::Image(
-            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("normal"),
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
             ImVec2{ viewportSize.x, viewportSize.y },
             ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
        

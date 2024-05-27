@@ -51,7 +51,7 @@ void PanelGame::Start()
 	std::vector<std::vector<Attachment>> gameBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
 	viewportSize = { 680, 360 };
-	//renderTarget = Renderer::AddRenderTarget("Panel Game", DrawMode::GAME, gameCamera, viewportSize, gameBuffers);
+	renderTarget = Renderer::AddRenderTarget("Panel Game", DrawMode::GAME, gameCamera, viewportSize, gameBuffers);
 }
 
 bool PanelGame::Draw()
@@ -64,7 +64,7 @@ bool PanelGame::Draw()
 
 	if (ImGui::Begin("Game", &enabled, settingsFlags))
 	{
-		if (!gameCamera)
+		if (!gameCamera && !GetGameCameras().empty())
 		{
 			std::vector<GameObject*> gameCameras = GetGameCameras();
 			if (gameCameras.front()) gameCamera = gameCameras.front()->GetComponent<Camera>();
@@ -75,7 +75,7 @@ bool PanelGame::Draw()
 
 		ImVec2 availWindowSize = ImGui::GetContentRegionAvail();
 
-		// Top Bar -----------------------------------------------------------------
+		// Top Bar -------------------------------------------------------------------------
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
 		if (ImGui::BeginMenuBar())
 		{
@@ -117,6 +117,7 @@ bool PanelGame::Draw()
 		ImGui::PopStyleVar();
 
 
+		// Render --------------------------------------------------------------------------
 		// Viewport resize check
 		ImVec2 size;		
 		app->gui->ApplyAspectRatio(availWindowSize.x, availWindowSize.y, &size.x, &size.y, aspect);

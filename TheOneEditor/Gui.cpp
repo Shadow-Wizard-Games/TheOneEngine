@@ -222,6 +222,7 @@ bool Gui::Start()
 	app->gui->panelScene->SetState(active);
 	app->gui->panelGame->SetState(active);
 	app->gui->panelAnimation->SetState(active);
+	app->gui->panelRenderer->SetState(active);
 
 	// Iterate Panels & Start
 	for (const auto& panel : panels)
