@@ -58,7 +58,11 @@ bool PanelRenderer::Draw()
 				{
 					bool selected = false;
 					if (ImGui::Selectable(target.GetName().c_str(), &selected))
+					{
 						selectedTarget = &target;
+						selectedBuffer = selectedTarget->GetFrameBuffer(selectedBuffer->GetName());
+						attachments = selectedBuffer->GetAllAttachments();
+					}
 				}
 				ImGui::EndCombo();
 			}
