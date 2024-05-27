@@ -131,10 +131,7 @@ void HeapVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBu
 
 StackVertexArray::StackVertexArray() {}
 
-StackVertexArray::~StackVertexArray()
-{
-	//Delete();
-}
+StackVertexArray::~StackVertexArray() {}
 
 void StackVertexArray::Bind() const
 {

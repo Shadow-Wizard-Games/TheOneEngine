@@ -1246,9 +1246,7 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
-	// Set Camera for 3D rendering
 	Camera* camera = cam ? cam : currentCamera;
-	//Renderer::SetUniformBufferCamera(camera);
 
 	zSorting.clear();
 	RecurseSceneDraw(rootSceneGO, camera);
@@ -1258,18 +1256,12 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 
 	//Renderer::DebugDraw(mode == DrawMode::GAME ? false : true);
 
-	//Renderer2D::Update(BT::WORLD);
-	//Renderer3D::Update();
-
 	if (mode == DrawMode::EDITOR)
 		return;
 
-	// Set Camera for 2D Rendering
-	//Set2DCamera();
 	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
-	//Renderer2D::Update(BT::UI);
 }
 
 inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* camera)

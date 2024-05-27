@@ -63,6 +63,7 @@ void Renderer::Shutdown()
 {
 	Renderer2D::Shutdown();
 	Renderer3D::Shutdown();
+    renderer.cameraUniformBuffer->Delete();
 }
 
 unsigned int Renderer::AddRenderTarget(std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)

@@ -57,6 +57,8 @@ void EngineCore::Update(double dt)
 
 void EngineCore::CleanUp()
 {
+    Renderer::Shutdown();
+
     audioManager->CleanUp();
     delete audioManager;
     audioManager = nullptr;
