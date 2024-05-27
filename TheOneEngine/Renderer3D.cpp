@@ -14,7 +14,6 @@
 
 struct Renderer3DData
 {
-	//std::vector<RenderTarget> renderTargets;
 	std::vector<std::shared_ptr<GameObject>> lights;
 	std::vector<std::shared_ptr<GameObject>> transparentObjects;
 
@@ -33,8 +32,6 @@ static Renderer3DData renderer3D;
 
 void Renderer3D::Init()
 {
-	//renderer3D.renderTargets.reserve(8 * sizeof(RenderTarget));
-
 	if (renderer3D.dynamicVAO == 0) {
 		GLCALL(glGenVertexArrays(1, &renderer3D.dynamicVAO));
 	}

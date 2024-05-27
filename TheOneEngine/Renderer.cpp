@@ -77,6 +77,16 @@ std::vector<RenderTarget>* Renderer::GetRenderTargets()
     return &renderer.renderTargets;
 }
 
+RenderTarget* Renderer::GetRenderTarget(unsigned int targetID)
+{
+    for (auto& target : renderer.renderTargets)
+    {
+        if (target.GetId() == targetID)
+            return &target;
+    }
+    return nullptr;
+}
+
 std::vector<FrameBuffer>* Renderer::GetFrameBuffers(unsigned int targetID)
 {
 	return renderer.renderTargets[targetID].GetFrameBuffers();

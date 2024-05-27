@@ -21,6 +21,8 @@ public:
 	static unsigned int AddRenderTarget(std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
 
 	static std::vector<RenderTarget>* GetRenderTargets();
+	static RenderTarget* GetRenderTarget(unsigned int targetID);
+
 	static std::vector<FrameBuffer>* GetFrameBuffers(unsigned int targetID);
 	static FrameBuffer* GetFrameBuffer(unsigned int targetID, std::string name);
 

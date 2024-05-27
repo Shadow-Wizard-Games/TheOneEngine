@@ -66,8 +66,8 @@ bool PanelGame::Draw()
 	{
 		if (!gameCamera && !GetGameCameras().empty())
 		{
-			std::vector<GameObject*> gameCameras = GetGameCameras();
-			if (gameCameras.front()) gameCamera = gameCameras.front()->GetComponent<Camera>();
+			gameCamera = GetGameCameras().front()->GetComponent<Camera>();
+			Renderer::GetRenderTarget(renderTarget)->SetCamera(gameCamera);
 		}
 
 		isHovered = ImGui::IsWindowHovered();
