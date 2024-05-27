@@ -29,8 +29,8 @@ class PanelScene : public Panel
 public:
 	PanelScene(PanelType type, std::string name);
 	~PanelScene();
-	void Start();
 
+	void Start();
 	bool Draw();
 
 	Ray GetScreenRay(int x, int y, Camera* camera, int width, int height);

@@ -48,7 +48,7 @@ public:
 	unsigned int GetBuffer() const { return FBO; }
 
 	unsigned int GetAttachmentTexture(const std::string& name) const;
-	std::vector<Attachment> GetAllAttachments() const { return attachments; }
+	std::vector<Attachment>* GetAllAttachments() { return &attachments; }
 
 private:
 	void GenerateFrameBuffer();

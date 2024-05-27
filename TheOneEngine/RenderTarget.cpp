@@ -1,7 +1,8 @@
 #include "RenderTarget.h"
 
-RenderTarget::RenderTarget(unsigned int id, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
+RenderTarget::RenderTarget(unsigned int id, std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
     : id(id),
+    name(name),
     mode(mode),
     camera(camera),
     viewportSize(viewportSize)

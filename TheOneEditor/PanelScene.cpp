@@ -94,7 +94,7 @@ void PanelScene::Start()
     std::vector<std::vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
     viewportSize = { 680, 360 };
-    renderTarget = Renderer::AddRenderTarget(DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
+    renderTarget = Renderer::AddRenderTarget("Panel Scene", DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
 }
 
 bool PanelScene::Draw()

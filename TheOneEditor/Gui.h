@@ -25,6 +25,7 @@ class PanelProject;
 class PanelScene;
 class PanelGame;
 class PanelAnimation;
+class PanelRenderer;
 class PanelSettings;
 class PanelBuild;
 
@@ -124,6 +125,7 @@ public:
 	PanelScene* panelScene;
 	PanelGame* panelGame;
 	PanelAnimation* panelAnimation;
+	PanelRenderer* panelRenderer;
 	PanelSettings* panelSettings;
 	PanelBuild* panelBuild;
 

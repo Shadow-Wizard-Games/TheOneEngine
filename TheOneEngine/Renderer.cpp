@@ -62,11 +62,16 @@ void Renderer::Shutdown()
 	Renderer3D::Shutdown();
 }
 
-unsigned int Renderer::AddRenderTarget(DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
+unsigned int Renderer::AddRenderTarget(std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
 {
 	unsigned int id = renderer.renderTargets.size();
-	renderer.renderTargets.emplace_back(id, mode, camera, viewportSize, frameBuffers);
+	renderer.renderTargets.emplace_back(id, name, mode, camera, viewportSize, frameBuffers);
 	return id;
+}
+
+std::vector<RenderTarget>* Renderer::GetRenderTargets()
+{
+    return &renderer.renderTargets;
 }
 
 std::vector<FrameBuffer>* Renderer::GetFrameBuffers(unsigned int targetID)

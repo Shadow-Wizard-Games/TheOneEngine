@@ -51,7 +51,7 @@ void PanelGame::Start()
 	std::vector<std::vector<Attachment>> gameBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
 	viewportSize = { 680, 360 };
-	//renderTarget = Renderer3D::AddRenderTarget(DrawMode::GAME, gameCamera, viewportSize, gameBuffers);
+	//renderTarget = Renderer::AddRenderTarget("Panel Game", DrawMode::GAME, gameCamera, viewportSize, gameBuffers);
 }
 
 bool PanelGame::Draw()

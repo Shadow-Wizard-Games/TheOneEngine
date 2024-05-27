@@ -18,7 +18,9 @@ public:
 	static void Update();
 	static void Shutdown();
 
-	static unsigned int AddRenderTarget(DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
+	static unsigned int AddRenderTarget(std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
+
+	static std::vector<RenderTarget>* GetRenderTargets();
 	static std::vector<FrameBuffer>* GetFrameBuffers(unsigned int targetID);
 	static FrameBuffer* GetFrameBuffer(unsigned int targetID, std::string name);
 

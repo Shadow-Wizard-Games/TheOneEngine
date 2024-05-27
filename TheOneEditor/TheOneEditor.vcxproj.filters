@@ -64,6 +64,9 @@
     <ClCompile Include="PanelSettings.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
+    <ClCompile Include="PanelRenderer.cpp">
+      <Filter>Panels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -122,6 +125,9 @@
       <Filter>Panels</Filter>
     </ClInclude>
     <ClInclude Include="Panel.h">
+      <Filter>Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelRenderer.h">
       <Filter>Panels</Filter>
     </ClInclude>
   </ItemGroup>

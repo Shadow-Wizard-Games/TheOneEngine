@@ -14,6 +14,7 @@
 #include "PanelScene.h"
 #include "PanelGame.h"
 #include "PanelAnimation.h"
+#include "PanelRenderer.h"
 #include "PanelSettings.h"
 #include "PanelBuild.h"
 
@@ -44,6 +45,7 @@ Gui::Gui(App* app) :
 	panelScene(nullptr),
 	panelGame(nullptr),
 	panelAnimation(nullptr),
+	panelRenderer(nullptr),
 	panelSettings(nullptr),
 	panelBuild(nullptr)
 {
@@ -93,6 +95,10 @@ bool Gui::Awake()
 	panelAnimation = new PanelAnimation(PanelType::ANIMATION, "Animation");
 	panels.push_back(panelAnimation);
 	ret *= IsInitialized(panelAnimation);
+
+	panelRenderer = new PanelRenderer(PanelType::RENDERER, "Renderer");
+	panels.push_back(panelRenderer);
+	ret *= IsInitialized(panelRenderer);
 
 	panelSettings = new PanelSettings(PanelType::SETTINGS, "Settings");
 	panels.push_back(panelSettings);

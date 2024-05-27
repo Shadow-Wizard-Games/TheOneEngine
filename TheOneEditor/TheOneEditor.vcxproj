@@ -125,6 +125,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClCompile Include="PanelHierarchy.cpp" />
     <ClCompile Include="PanelInspector.cpp" />
     <ClCompile Include="PanelProject.cpp" />
+    <ClCompile Include="PanelRenderer.cpp" />
     <ClCompile Include="PanelScene.cpp" />
     <ClCompile Include="PanelSettings.cpp" />
     <ClCompile Include="PanelAbout.cpp" />
@@ -155,6 +156,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClInclude Include="PanelHierarchy.h" />
     <ClInclude Include="PanelInspector.h" />
     <ClInclude Include="PanelProject.h" />
+    <ClInclude Include="PanelRenderer.h" />
     <ClInclude Include="PanelScene.h" />
     <ClInclude Include="PanelSettings.h" />
     <ClInclude Include="Panel.h" />
