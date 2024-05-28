@@ -108,6 +108,7 @@ public class UiManager : MonoBehaviour
         pickUpFeedbackGo.Disable();
 
         state = MenuState.Hud;
+        previousState = MenuState.Pause;
         playerScript.onPause = false;
 
         GameManagerGO = IGameObject.Find("GameManager");
