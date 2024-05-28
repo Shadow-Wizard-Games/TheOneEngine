@@ -24,7 +24,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     // Adult Xenomorph parameters
     float life = 200.0f;
-    float movementSpeed = 10.0f * 3;
+    float movementSpeed = 15.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     AdultXenomorphAttacks currentAttack = AdultXenomorphAttacks.None;
@@ -84,9 +84,9 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
         if (currentState == States.Dead)
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }

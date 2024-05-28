@@ -74,9 +74,9 @@ public class ChestbursterBehaviour : MonoBehaviour
 
         if (currentState == States.Dead)
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }
