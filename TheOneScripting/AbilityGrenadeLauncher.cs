@@ -28,7 +28,7 @@ public class AbilityGrenadeLauncher : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE) && player.currentWeapon == PlayerScript.CurrentWeapon.M4) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE) && player.currentWeaponType == PlayerScript.CurrentWeapon.M4) // change input
                 {
                     Activated();
                     break;

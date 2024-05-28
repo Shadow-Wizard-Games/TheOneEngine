@@ -24,15 +24,15 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     // Adult Xenomorph parameters
     float life = 200.0f;
-    float movementSpeed = 10.0f * 3;
+    readonly float movementSpeed = 10.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     AdultXenomorphAttacks currentAttack = AdultXenomorphAttacks.None;
     Vector3 initialPos;
 
     // Patrol
-    float patrolRange = 100;
-    float patrolSpeed = 20.0f;
+    readonly float patrolRange = 100;
+    readonly float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
 
@@ -106,11 +106,11 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) 
-        { 
-            currentState = States.Dead; 
-            player.shieldKillCounter++;  
-            return; 
+        if (life <= 0)
+        {
+            currentState = States.Dead;
+            player.shieldKillCounter++;
+            return;
         }
 
         if (!detected && playerDistance < detectedRange)
@@ -269,7 +269,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                            Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
 
         attachedGameObject.transform.LookAt2D(roundPos);
-        if (!goingToRoundPos) 
+        if (!goingToRoundPos)
         {
             MoveTo(roundPos);
         }
@@ -285,8 +285,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         {
             attachedGameObject.animator.Play("Death");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished) 
-            { 
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
+            {
                 isDead = true;
                 deathPSGO.Play();
             }

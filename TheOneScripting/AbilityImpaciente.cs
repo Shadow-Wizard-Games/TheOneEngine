@@ -55,7 +55,7 @@ public class AbilityImpaciente : Ability
 
     public override void Activated()
     {
-        player.currentWeapon = PlayerScript.CurrentWeapon.IMPACIENTE;
+        player.currentWeaponType = PlayerScript.CurrentWeapon.IMPACIENTE;
 
         // rpm
         player.shootingCooldown = impacienteShootingCd;
@@ -63,7 +63,7 @@ public class AbilityImpaciente : Ability
         float speedReduce = player.baseSpeed * slowAmount;
         player.speed -= speedReduce;
 
-        player.currentWeoponDamage = damage;
+        player.currentWeaponDamage = damage;
 
         state = AbilityState.ACTIVE;
 
@@ -80,17 +80,17 @@ public class AbilityImpaciente : Ability
             // update time
             activeTimeCounter -= Time.deltaTime;
 
-            if (player.isShooting)
+            if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
 
-            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || player.currentWeapon != PlayerScript.CurrentWeapon.IMPACIENTE || player.impacienteBulletCounter >= player.impacienteBullets)
+            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || player.currentWeaponType != PlayerScript.CurrentWeapon.IMPACIENTE /*|| player.impacienteBulletCounter >= player.impacienteBullets*/)
             {
                 // reset stats
-                player.shootingCooldown = player.mp4ShootingCd;
+                //player.shootingCooldown = player.mp4ShootingCd;
                 player.speed = player.baseSpeed;
-                player.currentWeapon = PlayerScript.CurrentWeapon.M4;
-                player.currentWeoponDamage = damage;
-                player.impacienteBulletCounter = 0;
+                player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+                player.currentWeaponDamage = damage;
+                //player.impacienteBulletCounter = 0;
                 
                 activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
@@ -101,12 +101,12 @@ public class AbilityImpaciente : Ability
         else
         {
             // reset stats
-            player.shootingCooldown = player.mp4ShootingCd;
+            //player.shootingCooldown = player.mp4ShootingCd;
             player.speed = player.baseSpeed;
-            player.currentWeapon = PlayerScript.CurrentWeapon.M4;
-            player.currentWeoponDamage = damage;
+            player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+            player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;
-            player.impacienteBulletCounter = 0;
+            /*player.impacienteBulletCounter = 0*/;
 
             state = AbilityState.COOLDOWN;
 

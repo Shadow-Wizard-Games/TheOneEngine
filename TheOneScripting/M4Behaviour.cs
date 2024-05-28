@@ -57,7 +57,7 @@ internal class M4Behaviour : MonoBehaviour
 
     private void ChangeWeaponState()
     {
-        if (player.currentWeapon == PlayerScript.CurrentWeapon.M4)
+        if (player.currentWeaponType == PlayerScript.CurrentWeapon.M4)
         {
             switch (player.currentAction)
             {

@@ -10,6 +10,8 @@ public class AbilityHeal : Ability
 
     float totalHeal = 0.0f;
 
+    int numHeals;
+
     public override void Start()
     {
         abilityName = "Heal";
@@ -20,6 +22,8 @@ public class AbilityHeal : Ability
         activeTimeCounter = activeTime;
         cooldownTime = 8.0f;
         cooldownTimeCounter = cooldownTime;
+
+        numHeals = 2;
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -30,7 +34,7 @@ public class AbilityHeal : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && player.numHeals > 0)
+                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && numHeals > 0)
                 {
                     Activated();
                     break;
@@ -39,11 +43,9 @@ public class AbilityHeal : Ability
                 break;
             case AbilityState.ACTIVE:
                 WhileActive();
-                Debug.Log("Heal active time -> " + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
-                Debug.Log("Heal cooldown time -> " + activeTimeCounter.ToString("F2"));
                 break;
         }
     }
@@ -79,10 +81,9 @@ public class AbilityHeal : Ability
             activeTimeCounter -= Time.deltaTime;
 
             // cancel healing
-            if(player.isDashing || player.impacienteUsed || player.grenadeLauncherUsed || player.isShooting)
+            if(player.currentAction == PlayerScript.CurrentAction.DASH || player.currentWeaponType == PlayerScript.CurrentWeapon.IMPACIENTE)
             {
                 player.speed = player.baseSpeed;
-                player.isHealing = false;
                 state = AbilityState.READY;
             }
         }
@@ -94,7 +95,7 @@ public class AbilityHeal : Ability
             else
                 player.life = totalHeal;
 
-            player.numHeals--;
+            numHeals--;
 
             // reset stats
             player.speed = player.baseSpeed;

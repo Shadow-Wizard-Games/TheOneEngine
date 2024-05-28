@@ -60,7 +60,7 @@ public class AbilityAdrenalineRush : Ability
 
     public override void Activated()
     {
-        player.isRushing = true;
+        player.currentAction = PlayerScript.CurrentAction.ADRENALINERUSH;
 
         // Calculate heal amount
         float totalHeal = player.maxLife * healAmount;
@@ -70,7 +70,7 @@ public class AbilityAdrenalineRush : Ability
         player.speed += speedIncrease;
 
         // increase damage
-        player.damageIncrease = player.currentWeoponDamage * damageAmount;
+        player.damageIncrease = player.currentWeaponDamage * damageAmount;
 
         state = AbilityState.ACTIVE;
 
@@ -85,12 +85,11 @@ public class AbilityAdrenalineRush : Ability
             activeTimeCounter -= Time.deltaTime;
 
             // update increase 
-            player.damageIncrease = player.currentWeoponDamage * damageAmount;
+            player.damageIncrease = player.currentWeaponDamage * damageAmount;
         }
         else
         {
             // reset stats
-            player.isRushing = false;
             player.speed = player.baseSpeed;
             healthRegenTimeCounter = healthRegenTime;
 

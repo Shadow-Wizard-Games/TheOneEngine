@@ -5,6 +5,8 @@ public class AbilityShield : Ability
     IGameObject playerGO;
     PlayerScript player;
 
+    int shieldKillsToCharge;
+
     public override void Start()
     {
         abilityName = "Shield";
@@ -17,6 +19,8 @@ public class AbilityShield : Ability
         activeTimeCounter = activeTime;
         cooldownTime = 3.0f;
         cooldownTimeCounter = cooldownTime;
+
+        shieldKillsToCharge = 5;
     }
 
     public override void Update()
@@ -48,7 +52,7 @@ public class AbilityShield : Ability
 
     public override void ChargeAbility()
     {
-        if (player.shieldKillCounter == player.shieldKillsToCharge)
+        if (player.shieldKillCounter == shieldKillsToCharge)
         {
             player.shieldKillCounter = 0;
             state = AbilityState.READY;
@@ -96,7 +100,7 @@ public class AbilityShield : Ability
         }
         else
         {
-            player.shieldKillCounter = player.shieldKillsToCharge;
+            player.shieldKillCounter = shieldKillsToCharge;
 
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.CHARGING;

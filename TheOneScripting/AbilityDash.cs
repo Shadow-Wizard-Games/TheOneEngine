@@ -48,7 +48,7 @@ public class AbilityDash : Ability
 
     public override void Activated()
     {
-        player.isDashing = true;
+        player.currentAction = PlayerScript.CurrentAction.DASH;
 
         state = AbilityState.ACTIVE;
 
@@ -81,7 +81,6 @@ public class AbilityDash : Ability
         }
         else
         {
-            player.isDashing = false;
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
 
