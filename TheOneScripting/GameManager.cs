@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     public List<string> savedLevels = new List<string>();
 
+    //Historn: Shortcuts hardcoded
+    public bool activeShortcutL1R1 = false;
+
     public override void Start()
     {
         hasSaved = false;
@@ -36,7 +39,18 @@ public class GameManager : MonoBehaviour
 
     public override void Update()
     {
-
+        if (SceneManager.GetCurrentSceneName() == "L1R1" && savedLevels.Contains("L1R4") && !activeShortcutL1R1)
+        {
+            //shortcutToL1R4 = IGameObject.Find("S");
+            Debug.Log("Shortcut L1R1 To L1R4 available");
+            IGameObject.Find("SwapScene_L1_R4").Enable();
+            activeShortcutL1R1 = true;
+        }
+        if (SceneManager.GetCurrentSceneName() == "L1R1" && !savedLevels.Contains("L1R4"))
+        {
+            IGameObject.Find("SwapScene_L1_R4").Disable();
+        }
+        //Debug.Log("Num of scenes saved " + savedLevels.Count); 
     }
 
     public void SaveSceneState()
