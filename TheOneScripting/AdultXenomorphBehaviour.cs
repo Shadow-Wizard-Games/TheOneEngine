@@ -109,7 +109,6 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         if (life <= 0) 
         { 
             currentState = States.Dead; 
-            player.shieldKillCounter++;  
             return; 
         }
 
@@ -288,6 +287,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             if (attachedGameObject.animator.CurrentAnimHasFinished) 
             { 
                 isDead = true;
+                player.shieldKillCounter++;
                 deathPSGO.Play();
             }
         }
