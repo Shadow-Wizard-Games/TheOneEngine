@@ -24,7 +24,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     // Adult Xenomorph parameters
     float life = 200.0f;
-    float movementSpeed = 10.0f * 3;
+    float biomass = 20.0f;
+    float movementSpeed = 15.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     AdultXenomorphAttacks currentAttack = AdultXenomorphAttacks.None;
@@ -70,8 +71,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.Blend = false;
-        attachedGameObject.animator.TransitionTime = 0.0f;
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
 
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
@@ -84,9 +85,9 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
         if (currentState == States.Dead)
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }
@@ -109,7 +110,6 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         if (life <= 0) 
         { 
             currentState = States.Dead; 
-            player.shieldKillCounter++;  
             return; 
         }
 
@@ -288,6 +288,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             if (attachedGameObject.animator.CurrentAnimHasFinished) 
             { 
                 isDead = true;
+                player.shieldKillCounter++;
+                // add player biomass
                 deathPSGO.Play();
             }
         }
