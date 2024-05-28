@@ -188,7 +188,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
     {
         if (!hitPlayer)
         {
-            playerGO.GetComponent<PlayerScript>().ReduceLife();
+            playerGO.GetComponent<PlayerScript>().ReduceLife(10);
             hitPlayer = true;
         }
     }

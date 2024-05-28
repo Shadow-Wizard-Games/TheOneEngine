@@ -31,18 +31,15 @@ public class PlayerScript : MonoBehaviour
 
     // managers
     ItemManager itemManager;
-    IGameObject iManagerGO;
-
     GameManager gameManager;
-    IGameObject gManagerGO;
 
     // particles
     IParticleSystem stepParticles;
     IParticleSystem shotParticles;
 
     // background music
-    public bool isFighting = false;
-    public bool onPause = false;
+    public bool isFighting;
+    public bool onPause;
 
     // stats
     public float maxLife = 100.0f;
@@ -59,40 +56,40 @@ public class PlayerScript : MonoBehaviour
     public float movementMagnitude;
 
     public Item currentWeapon;
-    public float currentWeaponDamage;
     public CurrentWeapon currentWeaponType;
     public CurrentAction currentAction;
+
+    // CHANGE WHEN INVENTORY OVERHAUL
+    public float currentWeaponDamage;
+    //
 
     public bool hasShot = false;
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
 
+    // DEFINED IN ABILITY / ITEM SCRIPT
     public string dashAbilityName = "Roll";
-
     public bool shieldIsActive = false;
-
     public string healAbilityName = "Bandage";
-
     public Vector3 grenadeInitialVelocity = Vector3.zero;
     public Vector3 explosionPos = Vector3.zero;
     public float grenadeExplosionRadius = 50.0f;
     readonly public float grenadeDamage = 50.0f;
-
     public int shieldKillCounter;
+    //
 
     // audio
-    public IAudioSource.AudioStateID currentAudioState = 0;
-    float timeFromLastStep = 0.3f;
+    public IAudioSource.AudioStateID currentAudioState;
+    float timeFromLastStep;
 
     public override void Start()
     {
-        iManagerGO = IGameObject.Find("ItemManager");
-        itemManager = iManagerGO?.GetComponent<ItemManager>();
+        itemManager = IGameObject.Find("ItemManager")?.GetComponent<ItemManager>();
+        gameManager = IGameObject.Find("GameManager")?.GetComponent<GameManager>();
 
-        gManagerGO = IGameObject.Find("GameManager");
-        gameManager = gManagerGO.GetComponent<GameManager>();
+        stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
+        shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
 
-        attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.1f;
 
@@ -100,22 +97,30 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
         attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
 
-        stepParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
-        shotParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
+        currentAudioState = 0;
+        isFighting = false;
+        onPause = false;
 
         currentWeaponType = CurrentWeapon.NONE;
         currentAction = CurrentAction.IDLE;
+
+        timeFromLastStep = 0.3f;
+        speed = 100.0f;
     }
 
     public override void Update()
     {
         if (onPause) return;
 
-        if (itemManager.hasInitial && currentWeaponType == CurrentWeapon.NONE)
+        // CHANGE WHEN INVENTORY OVERHAUL
+        if (itemManager.hasM4 && currentWeaponType == CurrentWeapon.NONE)
         {
             IGameObject.InstanciatePrefab("WP_CarabinaM4", attachedGameObject.transform.Position, attachedGameObject.transform.Rotation);
             currentWeaponType = CurrentWeapon.M4;
         }
+        //
+
+        UpdatePlayerState();
 
         #region PLAYERSTATESWITCH
         switch (currentAction)
@@ -158,8 +163,6 @@ public class PlayerScript : MonoBehaviour
                 break;
         }
         #endregion
-
-        UpdatePlayerState();
     }
 
     private void UpdatePlayerState()
@@ -176,7 +179,8 @@ public class PlayerScript : MonoBehaviour
         {
             currentAction = CurrentAction.RUN;
 
-            if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            if (currentWeaponType != CurrentWeapon.NONE &&
+                (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1)))
             {
                 currentAction = CurrentAction.RUNSHOOT;
             }
@@ -184,9 +188,23 @@ public class PlayerScript : MonoBehaviour
         else
         {
             currentAction = CurrentAction.IDLE;
+
+            if (currentWeaponType != CurrentWeapon.NONE &&
+                (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1)))
+            {
+                currentAction = CurrentAction.SHOOT;
+            }
         }
 
-        // totalDamage = currentweapondamage + damageIncrease;
+
+        // ABILITY STATES
+
+
+
+
+        //totalDamage = currentweapondamage + damageIncrease;
+        //
+
 
         // background music
         if (!isFighting && currentAudioState == IAudioSource.AudioStateID.COMBAT)
@@ -196,20 +214,6 @@ public class PlayerScript : MonoBehaviour
         if (isFighting && currentAudioState == IAudioSource.AudioStateID.SHIP)
         {
             attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
-        }
-
-        switch (currentWeaponType)
-        {
-            case CurrentWeapon.NONE:
-                if (itemManager.hasInitial)
-                    currentWeaponType = CurrentWeapon.M4;
-                break;
-            case CurrentWeapon.M4:
-                break;
-            case CurrentWeapon.IMPACIENTE:
-                break;
-            case CurrentWeapon.FLAMETHROWER:
-                break;
         }
     }
 
@@ -285,20 +289,59 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootAction()
     {
-        attachedGameObject.animator.Play("Shoot M4");
-
         Shoot();
 
-        stepParticles.End();
+        switch (currentWeaponType)
+        {
+            case CurrentWeapon.M4:
+                attachedGameObject.animator.Play("Shoot M4");
+                break;
+            case CurrentWeapon.IMPACIENTE:
+                attachedGameObject.animator.Play("Shoot Impaciente");
+                break;
+            case CurrentWeapon.FLAMETHROWER:
+                attachedGameObject.animator.Play("Shoot Flamethrower");
+                break;
+            case CurrentWeapon.GRENADELAUNCHER:
+                attachedGameObject.animator.Play("Shoot Grenade Launcher");
+                break;
+        }
+
     }
     private void RunAndShootAction()
     {
-        if (currentWeaponType == CurrentWeapon.M4)
+        timeFromLastStep += Time.deltaTime;
+
+        float currentSpeed = speed;
+        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
+
+        attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
+
+        if (timeFromLastStep >= 0.3f)
         {
-            attachedGameObject.animator.Play("Run and Shoot M4");
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
+            stepParticles.Play();
+
+            timeFromLastStep = 0.0f;
         }
 
-        stepParticles.End();
+        Shoot();
+
+        switch (currentWeaponType)
+        {
+            case CurrentWeapon.M4:
+                attachedGameObject.animator.Play("Run and Shoot M4");
+                break;
+            case CurrentWeapon.IMPACIENTE:
+                attachedGameObject.animator.Play("Run and Shoot Impaciente");
+                break;
+            case CurrentWeapon.FLAMETHROWER:
+                attachedGameObject.animator.Play("Run and Shoot Flamethrower");
+                break;
+            case CurrentWeapon.GRENADELAUNCHER:
+                attachedGameObject.animator.Play("Run and Shoot Grenade Launcher");
+                break;
+        }
     }
     private void DeadAction()
     {
@@ -438,7 +481,27 @@ public class PlayerScript : MonoBehaviour
         return hasAimed;
     }
 
+    // MAKE IT DEPEND ON CURRENT WEAPON
     private void Shoot()
+    {
+        switch(currentWeaponType)
+        {
+            case CurrentWeapon.M4:
+                ShootM4();
+                break;
+            case CurrentWeapon.IMPACIENTE:
+                ShootImpaciente();
+                break;
+            case CurrentWeapon.FLAMETHROWER:
+                ShootFlamethrower();
+                break;
+            case CurrentWeapon.GRENADELAUNCHER:
+                ShootGrenadeLauncher();
+                break;
+        }
+    }
+
+    private void ShootM4()
     {
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
@@ -459,13 +522,16 @@ public class PlayerScript : MonoBehaviour
             hasShot = false;
         }
     }
+    private void ShootImpaciente() { }
+    private void ShootFlamethrower() { }
+    private void ShootGrenadeLauncher() { }
 
-    public void ReduceLife() // temporary function for the hardcoding of collisions
+    public void ReduceLife(int damage) // temporary function for the hardcoding of collisions
     {
         if (isDead || gameManager.godMode || shieldIsActive || currentAction == CurrentAction.DASH)
             return;
 
-        life -= 10.0f;
+        life -= damage;
         Debug.Log("Player took damage! Current life is: " + life.ToString());
 
         if (life <= 0)
