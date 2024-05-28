@@ -67,8 +67,16 @@ public class PlayerScript : MonoBehaviour
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
 
+    // abilities
+    AbilityGrenadeLauncher GrenadeLauncher;
+    AbilityAdrenalineRush AdrenalineRush;
+    AbilityFlamethrower Flamethrower;
+    AbilityImpaciente Impaciente;
+    AbilityShield Shield;
+    AbilityHeal Heal;
+    AbilityDash Dash;
+
     // DEFINED IN ABILITY / ITEM SCRIPT
-    public string dashAbilityName = "Roll";
     public bool shieldIsActive = false;
     public string healAbilityName = "Bandage";
     public Vector3 grenadeInitialVelocity = Vector3.zero;
@@ -89,6 +97,15 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
+
+        IGameObject abilitiesGO = attachedGameObject.FindInChildren("Abilities");
+        //GrenadeLauncher = abilitiesGO.GetComponent<AbilityGrenadeLauncher>();
+        //AdrenalineRush = abilitiesGO.GetComponent<AbilityAdrenalineRush>();
+        //Flamethrower = abilitiesGO.GetComponent<AbilityFlamethrower>();
+        //Impaciente = abilitiesGO.GetComponent<AbilityImpaciente>();
+        //Shield = abilitiesGO.GetComponent<AbilityShield>();
+        Dash = abilitiesGO?.GetComponent<AbilityDash>();
+        Heal = abilitiesGO?.GetComponent<AbilityHeal>();
 
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.1f;
@@ -196,14 +213,10 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-
-        // ABILITY STATES
-
-
-
-
-        //totalDamage = currentweapondamage + damageIncrease;
-        //
+        if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT) || Input.GetControllerButton(Input.ControllerButtonCode.A))
+        {
+            if (Dash.state == AbilityDash.AbilityState.READY) currentAction = CurrentAction.DASH;
+        }
 
 
         // background music
@@ -278,13 +291,21 @@ public class PlayerScript : MonoBehaviour
     }
     private void DashAction()
     {
-        if (dashAbilityName == "Roll")
+        if (Dash.state != Ability.AbilityState.READY) return;
+
+        Dash.state = Ability.AbilityState.ACTIVE;
+
+        if (Dash.abilityName == "Roll")
         {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_ROLL);
+
             attachedGameObject.animator.Play("Roll");
         }
-        else if (dashAbilityName == "Dash")
+        else if (Dash.abilityName == "Dash")
         {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_DASH);
 
+            attachedGameObject.animator.Play("Roll");
         }
     }
     private void ShootAction()
@@ -484,7 +505,7 @@ public class PlayerScript : MonoBehaviour
     // MAKE IT DEPEND ON CURRENT WEAPON
     private void Shoot()
     {
-        switch(currentWeaponType)
+        switch (currentWeaponType)
         {
             case CurrentWeapon.M4:
                 ShootM4();

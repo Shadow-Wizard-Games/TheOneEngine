@@ -1,17 +1,28 @@
 ﻿using System;
 
-public class AbilityShield : Ability
+public class AbilityShield : MonoBehaviour
 {
-    IGameObject playerGO;
     PlayerScript player;
+
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+    public AbilityState state;
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
 
     int shieldKillsToCharge;
 
     public override void Start()
     {
         abilityName = "Shield";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         state = AbilityState.CHARGING;
 
@@ -50,7 +61,7 @@ public class AbilityShield : Ability
         }
     }
 
-    public override void ChargeAbility()
+    public void ChargeAbility()
     {
         if (player.shieldKillCounter == shieldKillsToCharge)
         {
@@ -61,7 +72,7 @@ public class AbilityShield : Ability
         //Debug.Log("Ability Shield Ready " + player.shieldKillCounter);
     }
 
-    public override void Activated()
+    public void Activated()
     {
         player.shieldIsActive = true;
 
@@ -72,7 +83,7 @@ public class AbilityShield : Ability
         //Debug.Log("Ability Shield Activated");
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0)
         {
@@ -91,7 +102,7 @@ public class AbilityShield : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {

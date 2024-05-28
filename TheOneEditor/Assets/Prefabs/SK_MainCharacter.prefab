@@ -3,21 +3,21 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        100.0,
+        99.95543670654297,
         0.0,
-        0.0,
-        0.0,
-        0.0,
-        100.0,
-        0.0,
-        0.0,
+        2.9849114418029785,
         0.0,
         0.0,
         100.0,
         0.0,
         0.0,
+        -2.9849114418029785,
         0.0,
+        99.95543670654297,
         0.0,
+        -52.79228591918945,
+        0.0,
+        -87.06977081298828,
         1.0
       ],
       "Type": 0,
@@ -46,7 +46,7 @@
       "UID": 225613267
     },
     {
-      "AudioID": 0,
+      "AudioID": 1,
       "Name": "AudioSource",
       "Type": 8
     },
@@ -443,311 +443,37 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3630276037
+          "UID": 2335980278
         },
         {
           "Name": "Script",
-          "ParentUID": 3452816845,
+          "ParentUID": 1046265010,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 3667515160
-        },
-        {
-          "AudioID": 1,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Dash Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3610690573
+          "UID": 3287235041
         },
         {
           "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityAdrenalineRush",
-          "Type": 4,
-          "UID": 1177981766
-        },
-        {
-          "AudioID": 2,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Adrenaline Rush Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 714224593
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityFlamethrower",
-          "Type": 4,
-          "UID": 2174904043
-        },
-        {
-          "AudioID": 3,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Flamethrower Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2980399194
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityGrenadeLauncher",
-          "Type": 4,
-          "UID": 2232833499
-        },
-        {
-          "AudioID": 4,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Grenade Launcher Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 788044230
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
+          "ParentUID": 1046265010,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 2199890485
-        },
-        {
-          "AudioID": 5,
-          "Name": "AudioSource",
-          "Type": 8
+          "UID": 2177595243
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Heal Ability",
+      "Name": "Abilities",
       "ParentUID": 113510800,
       "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 361457508
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityImpaciente",
-          "Type": 4,
-          "UID": 3061441302
-        },
-        {
-          "AudioID": 6,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Impaciente Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2910740634
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityShield",
-          "Type": 4,
-          "UID": 1809667645
-        },
-        {
-          "AudioID": 7,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Shield Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
+      "UID": 1046265010
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
   "ParentUID": 3452816845,
-  "PrefabDirty": true,
+  "PrefabDirty": false,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,

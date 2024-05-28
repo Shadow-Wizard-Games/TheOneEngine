@@ -1,9 +1,22 @@
 ﻿using System;
 
-public class AbilityGrenadeLauncher : Ability
+public class AbilityGrenadeLauncher : MonoBehaviour
 {
-    IGameObject playerGO;
     PlayerScript player;
+
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+    public AbilityState state;
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
 
     readonly float range = 200.0f;
     readonly float explosionRadius = 40f;
@@ -14,11 +27,11 @@ public class AbilityGrenadeLauncher : Ability
     public override void Start()
     {
         abilityName = "GrenadeLauncher";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         cooldownTime = 4.0f;
         cooldownTimeCounter = cooldownTime;
+
+        player = attachedGameObject.parent?.GetComponent<PlayerScript>();
     }
 
     public override void Update()
@@ -45,7 +58,7 @@ public class AbilityGrenadeLauncher : Ability
         }
     }
 
-    public override void Activated()
+    public void Activated()
     {
         state = AbilityState.ACTIVE;
 
@@ -62,7 +75,7 @@ public class AbilityGrenadeLauncher : Ability
         Debug.Log("Ability Grenade Launcher Activated");
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {

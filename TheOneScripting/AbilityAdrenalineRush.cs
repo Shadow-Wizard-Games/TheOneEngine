@@ -1,9 +1,22 @@
 ﻿using System.Collections;
 
-public class AbilityAdrenalineRush : Ability
+public class AbilityAdrenalineRush : MonoBehaviour
 {
-    IGameObject playerGO;
     PlayerScript player;
+
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+    public AbilityState state;
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
 
     readonly float healAmount = 0.3f; // in %
     readonly float speedAmount = 0.5f; // in %
@@ -15,13 +28,11 @@ public class AbilityAdrenalineRush : Ability
     float timeSinceLastTick = 0.0f;
     float healingInterval = 0.0f;
 
-    int numÍntervals = 0;
+    int numIntervals = 0;
 
     public override void Start()
     {
         abilityName = "AdrenalineRush";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         activeTime = 8.0f;
         activeTimeCounter = activeTime;
@@ -30,7 +41,9 @@ public class AbilityAdrenalineRush : Ability
 
         healthRegenTimeCounter = healthRegenTime;
 
-        numÍntervals = (int)(healthRegenTime / intervalTime);
+        numIntervals = (int)(healthRegenTime / intervalTime);
+
+        player = attachedGameObject.parent?.GetComponent<PlayerScript>();
     }
 
     public override void Update()
@@ -58,13 +71,13 @@ public class AbilityAdrenalineRush : Ability
         }
     }
 
-    public override void Activated()
+    public void Activated()
     {
         player.currentAction = PlayerScript.CurrentAction.ADRENALINERUSH;
 
         // Calculate heal amount
         float totalHeal = player.maxLife * healAmount;
-        healingInterval = totalHeal / numÍntervals;
+        healingInterval = totalHeal / numIntervals;
 
         float speedIncrease = player.baseSpeed * speedAmount;
         player.speed += speedIncrease;
@@ -77,7 +90,7 @@ public class AbilityAdrenalineRush : Ability
         Debug.Log("Ability AdrenalineRush Activated");
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0)
         {
@@ -121,7 +134,7 @@ public class AbilityAdrenalineRush : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {

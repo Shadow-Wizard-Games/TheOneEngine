@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public class AbilityImpaciente : Ability
+﻿public class AbilityImpaciente : MonoBehaviour
 {
-    IGameObject playerGO;
     PlayerScript player;
+
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+    public AbilityState state;
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
 
     readonly int damage = 10;
 
@@ -18,8 +25,6 @@ public class AbilityImpaciente : Ability
     public override void Start()
     {
         abilityName = "Impaciente";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         activeTime = 25.0f;
         activeTimeCounter = activeTime;
@@ -53,7 +58,7 @@ public class AbilityImpaciente : Ability
         }
     }
 
-    public override void Activated()
+    public void Activated()
     {
         player.currentWeaponType = PlayerScript.CurrentWeapon.IMPACIENTE;
 
@@ -72,7 +77,7 @@ public class AbilityImpaciente : Ability
         Debug.Log("Ability Impaciente Activated");
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
 
         if (activeTimeCounter > 0)
@@ -91,7 +96,7 @@ public class AbilityImpaciente : Ability
                 player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
                 player.currentWeaponDamage = damage;
                 //player.impacienteBulletCounter = 0;
-                
+
                 activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
 
@@ -106,7 +111,8 @@ public class AbilityImpaciente : Ability
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;
-            /*player.impacienteBulletCounter = 0*/;
+            /*player.impacienteBulletCounter = 0*/
+            ;
 
             state = AbilityState.COOLDOWN;
 
@@ -114,7 +120,7 @@ public class AbilityImpaciente : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {

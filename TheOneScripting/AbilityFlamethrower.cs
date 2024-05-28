@@ -1,8 +1,18 @@
-﻿using System;
-
-public class AbilityFlamethrower : Ability
-{
-
+﻿public class AbilityFlamethrower : MonoBehaviour
+{ 
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+    public AbilityState state;
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
 
     public override void Start()
     {
@@ -39,7 +49,7 @@ public class AbilityFlamethrower : Ability
         }
     }
 
-    public override void Activated()
+    public void Activated()
     {
         // Set current weapon to the flamethrower
         activeTimeCounter = activeTime;
@@ -49,7 +59,7 @@ public class AbilityFlamethrower : Ability
         this.state = AbilityState.ACTIVE;
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0.0f)
         {
@@ -64,7 +74,7 @@ public class AbilityFlamethrower : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTime > 0.0f)
         {

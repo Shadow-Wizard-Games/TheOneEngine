@@ -1,8 +1,5 @@
-﻿using System;
-
-public class AbilityHeal : Ability
+﻿public class AbilityHeal : Ability
 {
-    IGameObject playerGO;
     PlayerScript player;
 
     readonly float healAmount = 0.6f; // in %
@@ -15,8 +12,6 @@ public class AbilityHeal : Ability
     public override void Start()
     {
         abilityName = "Heal";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         activeTime = 1.0f;
         activeTimeCounter = activeTime;
@@ -24,6 +19,8 @@ public class AbilityHeal : Ability
         cooldownTimeCounter = cooldownTime;
 
         numHeals = 2;
+
+        player = attachedGameObject.parent?.GetComponent<PlayerScript>();
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -81,7 +78,7 @@ public class AbilityHeal : Ability
             activeTimeCounter -= Time.deltaTime;
 
             // cancel healing
-            if(player.currentAction == PlayerScript.CurrentAction.DASH || player.currentWeaponType == PlayerScript.CurrentWeapon.IMPACIENTE)
+            if (player.currentAction == PlayerScript.CurrentAction.DASH || player.currentWeaponType == PlayerScript.CurrentWeapon.IMPACIENTE)
             {
                 player.speed = player.baseSpeed;
                 state = AbilityState.READY;
