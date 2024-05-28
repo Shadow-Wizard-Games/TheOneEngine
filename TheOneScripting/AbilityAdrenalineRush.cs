@@ -76,7 +76,7 @@ public class AbilityAdrenalineRush : MonoBehaviour
         player.currentAction = PlayerScript.CurrentAction.ADRENALINERUSH;
 
         // Calculate heal amount
-        float totalHeal = player.maxLife * healAmount;
+        float totalHeal = player.HP * healAmount;
         healingInterval = totalHeal / numIntervals;
 
         float speedIncrease = player.baseSpeed * speedAmount;
@@ -124,10 +124,10 @@ public class AbilityAdrenalineRush : MonoBehaviour
             // Regeneration tick
             if (timeSinceLastTick >= intervalTime)
             {
-                if ((player.life + healingInterval) < player.maxLife)
-                    player.life += healingInterval;
+                if ((player.HP + healingInterval) < player.maxHP)
+                    player.HP += healingInterval;
                 else
-                    player.life = player.maxLife;
+                    player.HP = player.maxHP;
 
                 timeSinceLastTick = 0.0f;
             }

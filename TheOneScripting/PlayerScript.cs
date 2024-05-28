@@ -20,10 +20,8 @@ public class PlayerScript : MonoBehaviour
         #region CONSUMABLES
         ADRENALINERUSH,
         RUNADRENALINERUSH,
-        BANDAGE,
-        RUNBANDAGE,
-        SYRINGE,
-        RUNSYRINGE,
+        HEAL,
+        RUNHEAL,
         #endregion
         DASH,
         DEAD,
@@ -42,8 +40,8 @@ public class PlayerScript : MonoBehaviour
     public bool onPause;
 
     // stats
-    public float maxLife = 100.0f;
-    public float life;
+    public float maxHP;
+    public float HP;
     public bool isDead = false;
     public float totalDamage = 0.0f;
     public float damageIncrease = 0.0f;
@@ -78,13 +76,11 @@ public class PlayerScript : MonoBehaviour
 
     // DEFINED IN ABILITY / ITEM SCRIPT
     public bool shieldIsActive = false;
-    public string healAbilityName = "Bandage";
     public Vector3 grenadeInitialVelocity = Vector3.zero;
     public Vector3 explosionPos = Vector3.zero;
     public float grenadeExplosionRadius = 50.0f;
     readonly public float grenadeDamage = 50.0f;
     public int shieldKillCounter;
-    //
 
     // audio
     public IAudioSource.AudioStateID currentAudioState;
@@ -98,14 +94,14 @@ public class PlayerScript : MonoBehaviour
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
 
-        IGameObject abilitiesGO = attachedGameObject.FindInChildren("Abilities");
+        IGameObject abilitiesGO = IGameObject.Find("Abilities");
         //GrenadeLauncher = abilitiesGO.GetComponent<AbilityGrenadeLauncher>();
         //AdrenalineRush = abilitiesGO.GetComponent<AbilityAdrenalineRush>();
         //Flamethrower = abilitiesGO.GetComponent<AbilityFlamethrower>();
         //Impaciente = abilitiesGO.GetComponent<AbilityImpaciente>();
         //Shield = abilitiesGO.GetComponent<AbilityShield>();
-        Dash = abilitiesGO?.GetComponent<AbilityDash>();
-        Heal = abilitiesGO?.GetComponent<AbilityHeal>();
+        Heal = abilitiesGO.GetComponent<AbilityHeal>();
+        Dash = abilitiesGO.GetComponent<AbilityDash>();
 
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.1f;
@@ -123,6 +119,8 @@ public class PlayerScript : MonoBehaviour
 
         timeFromLastStep = 0.3f;
         speed = 100.0f;
+        maxHP = 100.0f;
+        HP = maxHP;
     }
 
     public override void Update()
@@ -152,7 +150,7 @@ public class PlayerScript : MonoBehaviour
                 ShootAction();
                 break;
             case CurrentAction.RUNSHOOT:
-                RunAndShootAction();
+                ShootRunAction();
                 break;
             case CurrentAction.ADRENALINERUSH:
 
@@ -160,17 +158,11 @@ public class PlayerScript : MonoBehaviour
             case CurrentAction.RUNADRENALINERUSH:
 
                 break;
-            case CurrentAction.BANDAGE:
-
+            case CurrentAction.HEAL:
+                HealAction();
                 break;
-            case CurrentAction.RUNBANDAGE:
-
-                break;
-            case CurrentAction.SYRINGE:
-
-                break;
-            case CurrentAction.RUNSYRINGE:
-
+            case CurrentAction.RUNHEAL:
+                HealRunAction();
                 break;
             case CurrentAction.DASH:
                 DashAction();
@@ -192,7 +184,7 @@ public class PlayerScript : MonoBehaviour
 
         SetAimDirection();
 
-        if (SetMoveDirection())
+        if (SetMoveDirection() && Dash.state != Ability.AbilityState.ACTIVE && Heal.state != Ability.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.RUN;
 
@@ -218,6 +210,10 @@ public class PlayerScript : MonoBehaviour
             if (Dash.state == AbilityDash.AbilityState.READY) currentAction = CurrentAction.DASH;
         }
 
+        if (Input.GetKeyboardButton(Input.KeyboardCode.E) && Heal.numHeals > 0)
+        {
+            if (Heal.state == AbilityDash.AbilityState.READY) currentAction = CurrentAction.HEAL;
+        }
 
         // background music
         if (!isFighting && currentAudioState == IAudioSource.AudioStateID.COMBAT)
@@ -255,20 +251,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void RunAction()
     {
-        timeFromLastStep += Time.deltaTime;
-
-        float currentSpeed = speed;
-        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
-
-        attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
-
-        if (timeFromLastStep >= 0.3f)
-        {
-            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
-            stepParticles.Play();
-
-            timeFromLastStep = 0.0f;
-        }
+        Move();
 
         switch (currentWeaponType)
         {
@@ -329,22 +312,9 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
-    private void RunAndShootAction()
+    private void ShootRunAction()
     {
-        timeFromLastStep += Time.deltaTime;
-
-        float currentSpeed = speed;
-        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
-
-        attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
-
-        if (timeFromLastStep >= 0.3f)
-        {
-            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
-            stepParticles.Play();
-
-            timeFromLastStep = 0.0f;
-        }
+        Move();
 
         Shoot();
 
@@ -370,7 +340,26 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles.End();
     }
+    private void HealAction()
+    {
+        float speedReduce = baseSpeed * Heal.slowAmount;
+        speed -= speedReduce;
+        
+        Heal.state = Ability.AbilityState.ACTIVE;
 
+        Debug.Log("Ability Heal Activated");
+    }
+    private void HealRunAction()
+    {
+        Move();
+
+        float speedReduce = baseSpeed * Heal.slowAmount;
+        speed -= speedReduce;
+
+        Heal.state = Ability.AbilityState.ACTIVE;
+
+        Debug.Log("Ability Heal Activated");
+    }
     private bool SetMoveDirection()
     {
         bool toMove = false;
@@ -502,6 +491,24 @@ public class PlayerScript : MonoBehaviour
         return hasAimed;
     }
 
+    private void Move()
+    {
+        timeFromLastStep += Time.deltaTime;
+
+        float currentSpeed = speed;
+        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
+
+        attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
+
+        if (timeFromLastStep >= 0.3f)
+        {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
+            stepParticles.Play();
+
+            timeFromLastStep = 0.0f;
+        }
+    }
+
     // MAKE IT DEPEND ON CURRENT WEAPON
     private void Shoot()
     {
@@ -552,12 +559,12 @@ public class PlayerScript : MonoBehaviour
         if (isDead || gameManager.godMode || shieldIsActive || currentAction == CurrentAction.DASH)
             return;
 
-        life -= damage;
-        Debug.Log("Player took damage! Current life is: " + life.ToString());
+        HP -= damage;
+        Debug.Log("Player took damage! Current life is: " + HP.ToString());
 
-        if (life <= 0)
+        if (HP <= 0)
         {
-            life = 0;
+            HP = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -568,12 +575,12 @@ public class PlayerScript : MonoBehaviour
         if (isDead || gameManager.godMode || shieldIsActive || currentAction == CurrentAction.DASH)
             return;
 
-        life -= grenadeDamage;
-        Debug.Log("Player took explosion damage! Current life is: " + life.ToString());
+        HP -= grenadeDamage;
+        Debug.Log("Player took explosion damage! Current life is: " + HP.ToString());
 
-        if (life <= 0)
+        if (HP <= 0)
         {
-            life = 0;
+            HP = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -583,6 +590,6 @@ public class PlayerScript : MonoBehaviour
     {
         if (isDead) return 0;
 
-        return life;
+        return HP;
     }
 }

@@ -1,17 +1,17 @@
-﻿public class AbilityHeal : Ability
+﻿using System;
+
+public class AbilityHeal : Ability
 {
     PlayerScript player;
 
-    readonly float healAmount = 0.6f; // in %
-    readonly float slowAmount = 0.4f; // in %
+    public readonly float healAmount = 0.6f; // in %
+    public readonly float slowAmount = 0.4f; // in %
 
-    float totalHeal = 0.0f;
-
-    int numHeals;
+    public int numHeals;
 
     public override void Start()
     {
-        abilityName = "Heal";
+        abilityName = "Bandage";
 
         activeTime = 1.0f;
         activeTimeCounter = activeTime;
@@ -20,7 +20,7 @@
 
         numHeals = 2;
 
-        player = attachedGameObject.parent?.GetComponent<PlayerScript>();
+        player = IGameObject.Find("SK_MainCharacter")?.GetComponent<PlayerScript>();
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -28,16 +28,6 @@
     {
         switch (state)
         {
-            case AbilityState.CHARGING:
-                break;
-            case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && numHeals > 0)
-                {
-                    Activated();
-                    break;
-                }
-                // controller input
-                break;
             case AbilityState.ACTIVE:
                 WhileActive();
                 break;
@@ -47,31 +37,8 @@
         }
     }
 
-    public override void Activated()
-    {
-        // Calculate heal amount
-
-        if (player.healAbilityName == "Bandage")
-        {
-            totalHeal = player.maxLife * healAmount;
-        }
-        else
-        {
-            totalHeal = player.maxLife * healAmount;
-        }
-        totalHeal += player.life;
-
-        float speedReduce = player.baseSpeed * slowAmount;
-        player.speed -= speedReduce;
-
-        state = AbilityState.ACTIVE;
-
-        Debug.Log("Ability Heal Activated");
-    }
-
     public override void WhileActive()
     {
-
         if (activeTimeCounter > 0)
         {
             // update time
@@ -86,11 +53,23 @@
         }
         else
         {
-            // heal
-            if (totalHeal > player.maxLife)
-                player.life = player.maxLife;
+            float totalHeal;
+
+            if (abilityName == "Bandage")
+            {
+                totalHeal = player.maxHP * healAmount;
+
+                attachedGameObject.animator.Play("Bandage");
+            }
             else
-                player.life = totalHeal;
+            {
+                totalHeal = player.maxHP * healAmount;
+            }
+
+            player.HP += totalHeal;
+
+            if (player.HP > player.maxHP)
+                player.HP = player.maxHP;
 
             numHeals--;
 
