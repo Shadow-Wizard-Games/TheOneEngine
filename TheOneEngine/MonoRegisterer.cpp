@@ -1028,6 +1028,38 @@ static void UpdateAnimation(GameObject* GOptr, float* dt) {
 	m->UpdateAnim((float)*dt);
 }
 
+//	Light
+
+static vec3f GetLightColor(GameObject* GOptr)
+{
+	return GOptr->GetComponent<Light>()->color;
+}
+
+static void SetLightColor(GameObject* GOptr, vec3f color)
+{
+	GOptr->GetComponent<Light>()->color = color;
+}
+
+static float GetLightIntensity(GameObject* GOptr)
+{
+	return GOptr->GetComponent<Light>()->intensity;
+}
+
+static void SetLightIntensity(GameObject* GOptr, float intensity)
+{
+	GOptr->GetComponent<Light>()->intensity = intensity;
+}
+
+static float GetLightRadius(GameObject* GOptr)
+{
+	return GOptr->GetComponent<Light>()->radius;
+}
+
+static void SetLightRadius(GameObject* GOptr, float radius)
+{
+	GOptr->GetComponent<Light>()->radius = radius;
+}
+
 void MonoRegisterer::RegisterFunctions()
 {
 	//GameObject
@@ -1146,6 +1178,14 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetTransitionTime", GetTransitionTime);
 	mono_add_internal_call("InternalCalls::SetTransitionTime", SetTransitionTime);
 	mono_add_internal_call("InternalCalls::UpdateAnimation", UpdateAnimation);
+
+	//Light
+	mono_add_internal_call("InternalCalls::GetLightColor", GetLightColor);
+	mono_add_internal_call("InternalCalls::SetLightColor", SetLightColor);
+	mono_add_internal_call("InternalCalls::GetLightIntensity", GetLightIntensity);
+	mono_add_internal_call("InternalCalls::SetLightIntensity", SetLightIntensity);
+	mono_add_internal_call("InternalCalls::GetLightRadius", GetLightRadius);
+	mono_add_internal_call("InternalCalls::SetLightRadius", SetLightRadius);
 }
 
 bool MonoRegisterer::CheckMonoError(MonoError& error)

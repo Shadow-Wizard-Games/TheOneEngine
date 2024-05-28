@@ -315,4 +315,24 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void UpdateAnimation(IntPtr GOptr, ref float dt);
     #endregion
+
+    #region Light
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static Vector3 GetLightColor(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetLightColor(IntPtr GOptr, ref Vector3 color);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetLightIntensity(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetLightIntensity(IntPtr GOptr, ref float intensity);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetLightRadius(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetLightRadius(IntPtr GOptr, ref float radius);
+    #endregion
 }
