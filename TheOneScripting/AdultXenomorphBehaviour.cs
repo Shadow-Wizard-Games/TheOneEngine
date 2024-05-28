@@ -24,6 +24,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     // Adult Xenomorph parameters
     float life = 200.0f;
+    float biomass = 20.0f;
     float movementSpeed = 15.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
@@ -288,6 +289,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             { 
                 isDead = true;
                 player.shieldKillCounter++;
+                // add player biomass
                 deathPSGO.Play();
             }
         }

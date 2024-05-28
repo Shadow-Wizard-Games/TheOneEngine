@@ -22,6 +22,7 @@ class AnarchistBehaviour : MonoBehaviour
 
     // Anarchist parameters
     float life = 100.0f;
+    float biomass = 0.0f;
     float movementSpeed = 50.0f;
     States currentState = States.Patrol;
     States lastState = States.Patrol;
@@ -102,11 +103,10 @@ class AnarchistBehaviour : MonoBehaviour
 
     void UpdateFSMStates()
     {
-        if (life <= 0) 
-        { 
+        if (life <= 0)
+        {
             currentState = States.Dead;
-            player.shieldKillCounter++;
-            return; 
+            return;
         }
 
         if (playerDistance < rangeToInspect && lastState != States.Inspect)
@@ -264,7 +264,12 @@ class AnarchistBehaviour : MonoBehaviour
         {
             attachedGameObject.animator.Play("Death");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished) isDead = true;
+            if (attachedGameObject.animator.CurrentAnimHasFinished) 
+            { 
+                isDead = true;
+                player.shieldKillCounter++;
+                // add player biomass
+            }
 
         }
     }

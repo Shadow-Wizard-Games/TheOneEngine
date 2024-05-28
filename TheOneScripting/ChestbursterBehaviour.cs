@@ -23,6 +23,7 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     // Chestburster parameters
     float life = 80.0f;
+    float biomass = 10.0f;
     float movementSpeed = 30.0f * 2;
     States currentState = States.Idle;
     ChestbursterAttack currentAttack = ChestbursterAttack.None;
@@ -258,6 +259,7 @@ public class ChestbursterBehaviour : MonoBehaviour
             {
                 isDead = true;
                 player.shieldKillCounter++;
+                // add player biomass
                 deathPSGO.Play();
             }
         }

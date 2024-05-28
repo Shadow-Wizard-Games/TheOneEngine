@@ -24,6 +24,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     // Red Xenomorph parameters
     float life = 250.0f;
+    float biomass = 25.0f;
     float movementSpeed = 15.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
@@ -109,7 +110,6 @@ public class RedXenomorphBehaviour : MonoBehaviour
         if (life <= 0) 
         { 
             currentState = States.Dead;
-            player.shieldKillCounter++;
             return; 
         }
 
@@ -291,6 +291,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
             if (attachedGameObject.animator.CurrentAnimHasFinished)
             {
                 isDead = true;
+                player.shieldKillCounter++;
+                // add player biomass
                 deathPSGO.Play();
             }
         }
