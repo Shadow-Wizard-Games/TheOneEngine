@@ -66,7 +66,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
     public override void Update()
     {
         attachedGameObject.animator.UpdateAnimation();
-        Debug.Log(currentState.ToString());
+
         if (currentState == States.Dead) return;
 
         if (attachedGameObject.transform.ComponentCheck())
@@ -95,7 +95,6 @@ public class FaceHuggerBehaviour : MonoBehaviour
         if (!detected && playerDistance < detectedRange)
         {
             detected = true;
-            Debug.Log("En el detected");
             currentState = States.Chase;
             //Debug.Log("Facehugger switched to Chase");
         }
