@@ -70,9 +70,10 @@ class AnarchistBehaviour : MonoBehaviour
         initialPos = attachedGameObject.transform.Position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-        attachedGameObject.animator.Play("Scan");
 
-        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.Play("Scan");
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
     }
 
     public override void Update()

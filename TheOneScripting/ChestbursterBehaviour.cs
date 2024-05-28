@@ -60,8 +60,8 @@ public class ChestbursterBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Move");
-        attachedGameObject.animator.Blend = false;
-        attachedGameObject.animator.TransitionTime = 0.0f;
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
 
         tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS")?.GetComponent<IParticleSystem>();
         tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS")?.GetComponent<IParticleSystem>();
