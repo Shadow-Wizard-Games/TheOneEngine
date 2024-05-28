@@ -26,7 +26,7 @@
           "UID": 472327911
         },
         {
-          "Aspect": 1.7771084308624268,
+          "Aspect": 1.7773109674453735,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -57,7 +57,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 4290536493,
       "Static": false,
       "UID": 3452816845
     },
@@ -118,7 +118,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Queen",
-      "ParentUID": 3452816845,
+      "ParentUID": 4290536493,
       "Static": false,
       "UID": 3452816845
     },
@@ -870,7 +870,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
+      "ParentUID": 4290536493,
       "PrefabDirty": true,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -2568,6 +2568,126 @@
                   ],
                   "State": 0,
                   "TextString": "m4a1",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2147178018,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet1",
+                  "Print": true,
+                  "Rect": [
+                    -0.9399999976158142,
+                    -0.17000000178813934,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "1\n x",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 4065829671,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet2",
+                  "Print": true,
+                  "Rect": [
+                    -0.949999988079071,
+                    0.019999999552965164,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "2\n l1",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1578350538,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet3",
+                  "Print": true,
+                  "Rect": [
+                    -0.949999988079071,
+                    0.2150000035762787,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "3\n l2",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 517245262,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet4",
+                  "Print": true,
+                  "Rect": [
+                    -0.949999988079071,
+                    0.4000000059604645,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "4\n r2",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3660121420,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheetConsumible",
+                  "Print": true,
+                  "Rect": [
+                    -0.9150000214576721,
+                    -0.5,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "Q\n  y",
                   "Type": 4
                 },
                 {
@@ -8657,7 +8777,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 4290536493,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",

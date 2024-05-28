@@ -146,7 +146,7 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetSliderValue((int)((canvas.GetSliderMaxValue("Slider_Ammo") * currAmmo) / maxAmmo), "Slider_Ammo");
             }
 
-            if (!grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.R)))//remember to add also keyboard button
+            if (!grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.TWO)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.SELECTED);
 
@@ -157,25 +157,25 @@ public class UiScriptHud : MonoBehaviour
                 onCooldown = true;
             }
 
-            if (!painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.F)))//remember to add also keyboard button
+            if (!painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.FOUR)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
-            if (!flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.T)))//remember to add also keyboard button
+            if (!flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.THREE)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
-            if (!adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.G)))//remember to add also keyboard button
+            if (!adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.ONE)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
-            if (!consumibleOnCooldown && Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))//remember to add also keyboard button
+            if (!consumibleOnCooldown && Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.Q))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
