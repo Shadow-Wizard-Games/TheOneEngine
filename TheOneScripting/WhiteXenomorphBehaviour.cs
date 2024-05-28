@@ -220,14 +220,14 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
             if (isClose)
             {
                 currentAttack = WhiteXenomorphAttacks.ClawAttack;
-                attachedGameObject.animator.Play("TailAttack");
+                attachedGameObject.animator.Play("ClawAttack");
 
                 tailAttackPSGO.Play();
             }
             else
             {
                 currentAttack = WhiteXenomorphAttacks.TailTrip;
-                attachedGameObject.animator.Play("Spit");
+                attachedGameObject.animator.Play("TailTrip");
 
                 acidSpitPSGO.Play();
             }

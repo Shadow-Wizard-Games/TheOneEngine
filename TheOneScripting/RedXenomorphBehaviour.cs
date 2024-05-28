@@ -222,13 +222,13 @@ public class RedXenomorphBehaviour : MonoBehaviour
             if (isClose)
             {
                 currentAttack = RedXenomorphAttacks.TailStab;
-                attachedGameObject.animator.Play("TailAttack");
+                attachedGameObject.animator.Play("TailStab");
                 tailAttackPSGO.Play();
             }
             else
             {
                 currentAttack = RedXenomorphAttacks.SpikeThrow;
-                attachedGameObject.animator.Play("Spit");
+                attachedGameObject.animator.Play("SpikeThrow");
                 acidSpitPSGO.Play();
             }
             //Debug.Log("RedXenomorph current attack: " + currentAttack);
