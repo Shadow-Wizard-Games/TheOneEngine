@@ -2,17 +2,7 @@
 #include "VertexArray.h"
 #include "Animation/animations/OzzAnimationPartialBlending.h"
 
-
-class Texture;
-struct aiMesh;
-
-struct MeshVertex
-{
-    vec3f position;
-    vec2f texCoords;
-    vec3f normal;
-    mat4f instanceModel;
-};
+struct AABBox;
 
 struct ModelData
 {
@@ -42,6 +32,7 @@ public:
     const std::string& GetMeshPath() { return path; }
     const std::string& GetMeshName() { return meshName; }
     const glm::mat4& GetMeshTransform() { return meshTransform; }
+    const AABBox& GetMeshAABB() { return initialAABB; }
 
     void SetMeshPath(const std::string& newPath) {path = newPath;}
 
@@ -61,4 +52,6 @@ private:
 
     std::vector<std::string> materials;
     uint materialIndex = INVALID_INDEX;
+
+    AABBox initialAABB;
 };

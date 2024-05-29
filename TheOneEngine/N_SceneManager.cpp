@@ -814,6 +814,7 @@ void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<Game
 	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
 	meshGO.get()->AddComponent<Transform>();
 	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
+	meshGO.get()->SetAABBox(mesh->GetMeshAABB());
 	meshGO.get()->AddComponent<Mesh>();
 
 	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;

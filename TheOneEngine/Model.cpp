@@ -1,5 +1,6 @@
 #include "Model.h"
 #include "Defs.h"
+#include "BBox.hpp"
 
 #include <assimp/postprocess.h>
 #include <assimp/cimport.h>
@@ -56,6 +57,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
             index++;
         }
         model->meshName = standarizedName;
+
+        // AABB
+        model->initialAABB = AABBox(vec3(mesh->mAABB.mMin.x, mesh->mAABB.mMin.y, mesh->mAABB.mMin.z), 
+                                    vec3(mesh->mAABB.mMax.x, mesh->mAABB.mMax.y, mesh->mAABB.mMax.z));
 
 
         // Transform
@@ -296,6 +301,10 @@ void Model::serializeMeshData(const std::string& filename, const ModelData& data
     // Write transform
     outFile.write(reinterpret_cast<const char*>(&meshTransform), sizeof(glm::mat4));
 
+    // Write AABB
+    outFile.write(reinterpret_cast<const char*>(&initialAABB.min), sizeof(vec3));
+    outFile.write(reinterpret_cast<const char*>(&initialAABB.max), sizeof(vec3));
+
 
     LOG(LogType::LOG_OK, "-%s created", filename.data());
 
@@ -384,6 +393,10 @@ void Model::deserializeMeshData(const std::string& filename)
 
     // Read transform
     inFile.read(reinterpret_cast<char*>(&meshTransform[0]), sizeof(glm::mat4));
+
+    // Read AABB
+    inFile.read(reinterpret_cast<char*>(&initialAABB.min), sizeof(vec3));
+    inFile.read(reinterpret_cast<char*>(&initialAABB.max), sizeof(vec3));
 
 
     LOG(LogType::LOG_INFO, "-%s loaded", filename.data());

@@ -94,7 +94,6 @@ public:
     std::vector<Component*> GetAllComponents(bool tunometecabrasalamambiche = true);
 
     // AABB
-    void GenerateAABBFromMesh();
     AABBox CalculateAABB();
     AABBox CalculateAABBWithChildren();
     void DrawAABB();
@@ -121,6 +120,7 @@ public:
     uint32 GetUID() { return UID; }
 
     AABBox GetAABBox() { return aabb; }
+    void SetAABBox(AABBox newAABB) { aabb = newAABB; }
 
     json SaveGameObject();
     void LoadGameObject(const json& gameObjectJSON);
