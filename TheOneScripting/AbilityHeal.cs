@@ -2,6 +2,7 @@
 
 public class AbilityHeal : Ability
 {
+    IGameObject playerGO;
     PlayerScript player;
 
     public readonly float healAmount = 0.6f; // in %
@@ -20,7 +21,8 @@ public class AbilityHeal : Ability
 
         numHeals = 2;
 
-        player = IGameObject.Find("SK_MainCharacter")?.GetComponent<PlayerScript>();
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -58,8 +60,6 @@ public class AbilityHeal : Ability
             if (abilityName == "Bandage")
             {
                 totalHeal = player.maxHP * healAmount;
-
-                attachedGameObject.animator.Play("Bandage");
             }
             else
             {

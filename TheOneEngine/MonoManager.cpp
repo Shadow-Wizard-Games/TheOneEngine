@@ -166,7 +166,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
     //Handle the exception
     if (exception != nullptr)
     {
-        LOG(LogType::LOG_ERROR, "Exception occurred");
+        LOG(LogType::LOG_ERROR, "Exception occurred with %s from %s", functionToCall.c_str(), mono_class_get_name(instanceClass));
         return nullptr;
     }
 

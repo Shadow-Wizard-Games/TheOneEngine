@@ -66,12 +66,12 @@ public class PlayerScript : MonoBehaviour
     public float shootingCooldown = 0.15f;
 
     // abilities
-    AbilityGrenadeLauncher GrenadeLauncher;
-    AbilityAdrenalineRush AdrenalineRush;
-    AbilityFlamethrower Flamethrower;
-    AbilityImpaciente Impaciente;
-    AbilityShield Shield;
-    AbilityHeal Heal;
+    //AbilityGrenadeLauncher GrenadeLauncher;
+    //AbilityAdrenalineRush AdrenalineRush;
+    //AbilityFlamethrower Flamethrower;
+    //AbilityImpaciente Impaciente;
+    //AbilityShield Shield;
+    //AbilityHeal Heal;
     AbilityDash Dash;
 
     // DEFINED IN ABILITY / ITEM SCRIPT
@@ -94,14 +94,19 @@ public class PlayerScript : MonoBehaviour
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
 
-        IGameObject abilitiesGO = IGameObject.Find("Abilities");
-        //GrenadeLauncher = abilitiesGO.GetComponent<AbilityGrenadeLauncher>();
-        //AdrenalineRush = abilitiesGO.GetComponent<AbilityAdrenalineRush>();
-        //Flamethrower = abilitiesGO.GetComponent<AbilityFlamethrower>();
-        //Impaciente = abilitiesGO.GetComponent<AbilityImpaciente>();
-        //Shield = abilitiesGO.GetComponent<AbilityShield>();
-        Heal = abilitiesGO.GetComponent<AbilityHeal>();
-        Dash = abilitiesGO.GetComponent<AbilityDash>();
+        IGameObject Abilities = attachedGameObject.FindInChildren("Abilities");
+        //GrenadeLauncher = Abilities.GetComponent<AbilityGrenadeLauncher>();
+        //AdrenalineRush = Abilities.GetComponent<AbilityAdrenalineRush>();
+        //Flamethrower = Abilities.GetComponent<AbilityFlamethrower>();
+        //Impaciente = Abilities.GetComponent<AbilityImpaciente>();
+        //Shield = Abilities.GetComponent<AbilityShield>();
+        //Heal = Abilities.GetComponent<AbilityHeal>();
+        Dash = Abilities?.GetComponent<AbilityDash>();
+
+        if (Dash == null)
+        {
+            Debug.Log("PUTA dash");
+        }
 
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.1f;
@@ -159,10 +164,10 @@ public class PlayerScript : MonoBehaviour
 
                 break;
             case CurrentAction.HEAL:
-                HealAction();
+                //HealAction();
                 break;
             case CurrentAction.RUNHEAL:
-                HealRunAction();
+                //HealRunAction();
                 break;
             case CurrentAction.DASH:
                 DashAction();
@@ -184,7 +189,7 @@ public class PlayerScript : MonoBehaviour
 
         SetAimDirection();
 
-        if (SetMoveDirection() && Dash.state != Ability.AbilityState.ACTIVE && Heal.state != Ability.AbilityState.ACTIVE)
+        if (SetMoveDirection() /*&& Dash.state != Ability.AbilityState.ACTIVE && Heal.state != Ability.AbilityState.ACTIVE*/)
         {
             currentAction = CurrentAction.RUN;
 
@@ -207,13 +212,13 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT) || Input.GetControllerButton(Input.ControllerButtonCode.A))
         {
-            if (Dash.state == AbilityDash.AbilityState.READY) currentAction = CurrentAction.DASH;
+            if (Dash.state == Ability.AbilityState.READY) currentAction = CurrentAction.DASH;
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.E) && Heal.numHeals > 0)
-        {
-            if (Heal.state == AbilityDash.AbilityState.READY) currentAction = CurrentAction.HEAL;
-        }
+        //if (Input.GetKeyboardButton(Input.KeyboardCode.E) && Heal.numHeals > 0)
+        //{
+        //    if (Heal.state == Ability.AbilityState.READY) currentAction = CurrentAction.HEAL;
+        //}
 
         // background music
         if (!isFighting && currentAudioState == IAudioSource.AudioStateID.COMBAT)
@@ -321,16 +326,16 @@ public class PlayerScript : MonoBehaviour
         switch (currentWeaponType)
         {
             case CurrentWeapon.M4:
-                attachedGameObject.animator.Play("Run and Shoot M4");
+                attachedGameObject.animator.Play("Run Shoot M4");
                 break;
             case CurrentWeapon.IMPACIENTE:
-                attachedGameObject.animator.Play("Run and Shoot Impaciente");
+                attachedGameObject.animator.Play("Run Shoot Impaciente");
                 break;
             case CurrentWeapon.FLAMETHROWER:
-                attachedGameObject.animator.Play("Run and Shoot Flamethrower");
+                attachedGameObject.animator.Play("Run Shoot Flamethrower");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-                attachedGameObject.animator.Play("Run and Shoot Grenade Launcher");
+                attachedGameObject.animator.Play("Run Shoot Grenade Launcher");
                 break;
         }
     }
@@ -340,26 +345,26 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles.End();
     }
-    private void HealAction()
-    {
-        float speedReduce = baseSpeed * Heal.slowAmount;
-        speed -= speedReduce;
-        
-        Heal.state = Ability.AbilityState.ACTIVE;
-
-        Debug.Log("Ability Heal Activated");
-    }
-    private void HealRunAction()
-    {
-        Move();
-
-        float speedReduce = baseSpeed * Heal.slowAmount;
-        speed -= speedReduce;
-
-        Heal.state = Ability.AbilityState.ACTIVE;
-
-        Debug.Log("Ability Heal Activated");
-    }
+    //private void HealAction()
+    //{
+    //    float speedReduce = baseSpeed * Heal.slowAmount;
+    //    speed -= speedReduce;
+    //    
+    //    Heal.state = Ability.AbilityState.ACTIVE;
+    //
+    //    Debug.Log("Ability Heal Activated");
+    //}
+    //private void HealRunAction()
+    //{
+    //    Move();
+    //
+    //    float speedReduce = baseSpeed * Heal.slowAmount;
+    //    speed -= speedReduce;
+    //
+    //    Heal.state = Ability.AbilityState.ACTIVE;
+    //
+    //    Debug.Log("Ability Heal Activated");
+    //}
     private bool SetMoveDirection()
     {
         bool toMove = false;
