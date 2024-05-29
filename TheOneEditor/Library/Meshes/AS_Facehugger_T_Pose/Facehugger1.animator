@@ -1,0 +1,59 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_Facehugger_T_Pose\\Facehugger1_Take 001AS_Facehugger_Jump.anim",
+      "loop": false,
+      "name": "Jump",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Facehugger_T_Pose\\Facehugger1_Take 001AS_Facehugger_Walk.anim",
+      "loop": true,
+      "name": "Walk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Facehugger_T_Pose\\Facehugger1_Take 001AS_Facehugger_Land.anim",
+      "loop": false,
+      "name": "Land",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Facehugger_T_Pose\\Facehugger1_Take 001AS_Facehugger_Idle.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Facehugger_T_Pose\\Facehugger1_Take 001AS_Facehugger_Hug.anim",
+      "loop": false,
+      "name": "Hug",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Facehugger_T_Pose\\Facehugger1_Take 001AS_Facehugger_FallAndDie.anim",
+      "loop": false,
+      "name": "FallAndDie",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Facehugger_T_Pose\\Facehugger1_Take 001AS_Facehugger_ShotAndDie.anim",
+      "loop": false,
+      "name": "ShotAndDie",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_Facehugger_T_Pose/M_Facehugger.toematerial",
+  "mesh": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1_animatedmesh.ozzmesh",
+  "name": "Facehugger1",
+  "skeleton": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1_skeleton.skeleton",
+  "transition_blend": false,
+  "transition_time": 0.0
+}

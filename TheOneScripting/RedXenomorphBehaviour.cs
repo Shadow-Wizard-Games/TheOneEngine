@@ -24,6 +24,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     // Red Xenomorph parameters
     float life = 250.0f;
+    float biomass = 25.0f;
     float movementSpeed = 15.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
@@ -70,8 +71,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.Blend = false;
-        attachedGameObject.animator.TransitionTime = 0.0f;
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
 
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
@@ -84,9 +85,9 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
         if (currentState == States.Dead) 
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }
@@ -109,7 +110,6 @@ public class RedXenomorphBehaviour : MonoBehaviour
         if (life <= 0) 
         { 
             currentState = States.Dead;
-            player.shieldKillCounter++;
             return; 
         }
 
@@ -222,13 +222,13 @@ public class RedXenomorphBehaviour : MonoBehaviour
             if (isClose)
             {
                 currentAttack = RedXenomorphAttacks.TailStab;
-                attachedGameObject.animator.Play("TailAttack");
+                attachedGameObject.animator.Play("TailStab");
                 tailAttackPSGO.Play();
             }
             else
             {
                 currentAttack = RedXenomorphAttacks.SpikeThrow;
-                attachedGameObject.animator.Play("Spit");
+                attachedGameObject.animator.Play("SpikeThrow");
                 acidSpitPSGO.Play();
             }
             //Debug.Log("RedXenomorph current attack: " + currentAttack);
@@ -291,6 +291,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
             if (attachedGameObject.animator.CurrentAnimHasFinished)
             {
                 isDead = true;
+                player.shieldKillCounter++;
+                // add player biomass
                 deathPSGO.Play();
             }
         }

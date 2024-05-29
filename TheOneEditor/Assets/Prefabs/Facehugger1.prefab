@@ -1,0 +1,80 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 565314416
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_Facehugger_T_Pose/M_Facehugger.toematerial",
+      "MeshPath": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1.animator",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 3161710859
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "FaceHuggerBehaviour",
+      "Type": 4,
+      "UID": 4088545158
+    },
+    {
+      "AudioID": 0,
+      "Name": "AudioSource",
+      "Type": 8
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 1,
+      "CornerPivot": true,
+      "Height": -1.7976931348623157e+308,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 3452816845,
+      "Radius": 10.0,
+      "Type": 5,
+      "UID": 1406986783,
+      "Width": -1.7976931348623157e+308
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Facehugger1",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 3138940538,
+  "PrefabName": "Facehugger1",
+  "Static": false,
+  "UID": 3452816845
+}
