@@ -462,7 +462,7 @@ void Renderer3D::IndexPass(RenderTarget target)
 	FrameBuffer* indexBuffer = target.GetFrameBuffer("indexBuffer");
 
 	indexBuffer->Bind();
-	indexBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+	indexBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 0.0f });
 
 	// Set Render Environment
 	Renderer::SetRenderEnvironment();
