@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public List<string> savedLevels = new List<string>();
 
     //Historn: Shortcuts hardcoded
-    public bool activeShortcutL1R1 = false;
+    public bool activeShortcutL1R1;
 
     public override void Start()
     {
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
         godMode = false;
         extraSpeed = false;
 
+        activeShortcutL1R1 = true;
+
         DrawColliders();
         DrawGrid();
 
@@ -39,18 +41,7 @@ public class GameManager : MonoBehaviour
 
     public override void Update()
     {
-        if (SceneManager.GetCurrentSceneName() == "L1R1" && savedLevels.Contains("L1R4") && !activeShortcutL1R1)
-        {
-            //shortcutToL1R4 = IGameObject.Find("S");
-            Debug.Log("Shortcut L1R1 To L1R4 available");
-            IGameObject.Find("SwapScene_L1_R4").Enable();
-            activeShortcutL1R1 = true;
-        }
-        if (SceneManager.GetCurrentSceneName() == "L1R1" && !savedLevels.Contains("L1R4"))
-        {
-            IGameObject.Find("SwapScene_L1_R4").Disable();
-        }
-        //Debug.Log("Num of scenes saved " + savedLevels.Count); 
+        ShortcutsConditions();
     }
 
     public void SaveSceneState()
@@ -106,4 +97,26 @@ public class GameManager : MonoBehaviour
         gridRender = !gridRender;
         InternalCalls.ToggleGridDraw();
     }
+
+    private void ShortcutsConditions() 
+    {
+        switch (SceneManager.GetCurrentSceneName())
+        {
+            case "L1R1":
+                if (savedLevels.Contains("L1R4") && !activeShortcutL1R1)
+                {
+                    IGameObject.Find("SwapScene_L1_R4").Enable();
+                    activeShortcutL1R1 = true;
+                }
+                else if (!savedLevels.Contains("L1R4") && activeShortcutL1R1)
+                {
+                    IGameObject.Find("SwapScene_L1_R4").Disable();
+                    activeShortcutL1R1 = false;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 }
