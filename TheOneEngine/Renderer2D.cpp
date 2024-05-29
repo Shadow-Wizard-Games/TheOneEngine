@@ -17,6 +17,8 @@ static const uint32_t MaxVertices = MaxQuads * 4;
 static const uint32_t MaxIndices = MaxQuads * 6;
 static const uint32_t MaxTextureSlots = 32;
 
+static std::shared_ptr<Texture> WhiteTexture;
+
 struct QuadVertex
 {
 	glm::vec3 Position;
@@ -144,27 +146,16 @@ struct Batch
 		TextVertexArray->SetIndexBuffer(quadIB);
 		delete[] textIndices;
 
-		// White Texture
-		WhiteTexture = std::make_shared<Texture>();
-		uint32_t whiteTextureData = 0xffffffff;
-		WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
-
 		int32_t samplers[MaxTextureSlots];
 		for (uint32_t i = 0; i < MaxTextureSlots; i++)
 			samplers[i] = i;
 
-		// Shaders
-		QuadShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuad");
-		CircleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DCircle");
-		LineShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DLine");
-		TextShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DText");
 
 		// Set first texture slot to 0
 		TextureSlots[0] = WhiteTexture.get();
 	}
 
 	void Delete() {
-		WhiteTexture->Delete();
 		QuadVertexArray->Delete();
 		CircleVertexArray->Delete();
 		LineVertexArray->Delete();
@@ -173,20 +164,15 @@ struct Batch
 	}
 	std::shared_ptr<HeapVertexArray> QuadVertexArray;
 	std::shared_ptr<VertexBuffer> QuadVertexBuffer;
-	std::shared_ptr<Shader> QuadShader;
-	std::shared_ptr<Texture> WhiteTexture;
 
 	std::shared_ptr<HeapVertexArray> CircleVertexArray;
 	std::shared_ptr<VertexBuffer> CircleVertexBuffer;
-	std::shared_ptr<Shader> CircleShader;
 
 	std::shared_ptr<HeapVertexArray> LineVertexArray;
 	std::shared_ptr<VertexBuffer> LineVertexBuffer;
-	std::shared_ptr<Shader> LineShader;
 
 	std::shared_ptr<HeapVertexArray> TextVertexArray;
 	std::shared_ptr<VertexBuffer> TextVertexBuffer;
-	std::shared_ptr<Shader> TextShader;
 
 	uint32_t QuadIndexCount = 0;
 	QuadVertex* QuadVertexBufferBase = nullptr;
@@ -211,6 +197,12 @@ struct Batch
 
 struct Renderer2DData
 {
+	std::shared_ptr<Shader> QuadShader;
+	std::shared_ptr<Shader> QuadIndexShader;
+	std::shared_ptr<Shader> CircleShader;
+	std::shared_ptr<Shader> LineShader;
+	std::shared_ptr<Shader> TextShader;
+
 	std::array<Batch, BT::MAX> batches;
 
 	std::shared_ptr<Texture> FontAtlasTexture;
@@ -244,6 +236,18 @@ static void SetLineWidth(float width)
 
 void Renderer2D::Init()
 {
+	// Shaders
+	renderer2D.QuadShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuad");
+	renderer2D.QuadIndexShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuadIndex");
+	renderer2D.CircleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DCircle");
+	renderer2D.LineShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DLine");
+	renderer2D.TextShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DText");
+
+	// White Texture
+	WhiteTexture = std::make_shared<Texture>();
+	uint32_t whiteTextureData = 0xffffffff;
+	WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
 	for (Batch& batch : renderer2D.batches)
 	{
 		batch.Init();
@@ -254,6 +258,7 @@ void Renderer2D::Init()
 		ResetTextBatch(batch);
 	}
 
+
 	renderer2D.QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
@@ -262,6 +267,8 @@ void Renderer2D::Init()
 
 void Renderer2D::Shutdown()
 {
+	WhiteTexture->Delete();
+
 	for (Batch& batch : renderer2D.batches)
 		batch.Delete();
 }
@@ -293,6 +300,25 @@ void Renderer2D::Update(BT type, RenderTarget target)
 	buffer->Unbind();
 }
 
+void Renderer2D::UpdateIndexed(BT type, RenderTarget target)
+{
+	Batch& batch = renderer2D.batches[type];
+
+	FrameBuffer* buffer = target.GetFrameBuffer("indexBuffer");
+
+	buffer->Bind();
+	buffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+
+	GLCALL(glDisable(GL_CULL_FACE));
+
+	DrawQuadIndexedBatch(batch);
+
+	GLCALL(glEnable(GL_CULL_FACE));
+
+
+	buffer->Unbind();
+}
+
 void Renderer2D::ResetBatches()
 {
 	for (Batch& batch : renderer2D.batches) {
@@ -306,8 +332,8 @@ void Renderer2D::ResetBatches()
 void Renderer2D::NextQuadBatch(Batch& batch)
 {
 	//TODO: Cambiar esta funcion, tal y como está no va a funcionar
-	DrawQuadBatch(batch);
-	ResetQuadBatch(batch);
+	/*DrawQuadBatch(batch);
+	ResetQuadBatch(batch);*/
 }
 
 void Renderer2D::DrawQuadBatch(const Batch& batch)
@@ -321,10 +347,24 @@ void Renderer2D::DrawQuadBatch(const Batch& batch)
 		for (uint32_t i = 0; i < batch.TextureSlotIndex; i++)
 			batch.TextureSlots[i]->Bind(i);
 
-		batch.QuadShader->Bind();
+		renderer2D.QuadShader->Bind();
 		DrawIndexed(batch.QuadVertexArray, batch.QuadIndexCount);
 		renderer2D.Stats.DrawCalls++;
-		batch.QuadShader->UnBind();
+		renderer2D.QuadShader->UnBind();
+	}
+}
+
+void Renderer2D::DrawQuadIndexedBatch(const Batch& batch)
+{
+	if (batch.QuadIndexCount)
+	{
+		uint32_t dataSize = (uint32_t)((uint8_t*)batch.QuadVertexBufferPtr - (uint8_t*)batch.QuadVertexBufferBase);
+		batch.QuadVertexBuffer->SetData(batch.QuadVertexBufferBase, dataSize);
+
+		renderer2D.QuadIndexShader->Bind();
+		DrawIndexed(batch.QuadVertexArray, batch.QuadIndexCount);
+		renderer2D.Stats.DrawCalls++;
+		renderer2D.QuadIndexShader->UnBind();
 	}
 }
 
@@ -335,10 +375,10 @@ void Renderer2D::DrawCircleBatch(const Batch& batch)
 		uint32_t dataSize = (uint32_t)((uint8_t*)batch.CircleVertexBufferPtr - (uint8_t*)batch.CircleVertexBufferBase);
 		batch.CircleVertexBuffer->SetData(batch.CircleVertexBufferBase, dataSize);
 
-		batch.CircleShader->Bind();
+		renderer2D.CircleShader->Bind();
 		DrawIndexed(batch.CircleVertexArray, batch.CircleIndexCount);
 		renderer2D.Stats.DrawCalls++;
-		batch.CircleShader->UnBind();
+		renderer2D.CircleShader->UnBind();
 	}
 }
 
@@ -349,11 +389,11 @@ void Renderer2D::DrawLineBatch(const Batch& batch)
 		uint32_t dataSize = (uint32_t)((uint8_t*)batch.LineVertexBufferPtr - (uint8_t*)batch.LineVertexBufferBase);
 		batch.LineVertexBuffer->SetData(batch.LineVertexBufferBase, dataSize);
 
-		batch.LineShader->Bind();
+		renderer2D.LineShader->Bind();
 		SetLineWidth(renderer2D.LineWidth);
 		DrawLines(batch.LineVertexArray, batch.LineVertexCount);
 		renderer2D.Stats.DrawCalls++;
-		batch.LineShader->UnBind();
+		renderer2D.LineShader->UnBind();
 	}
 }
 
@@ -366,10 +406,10 @@ void Renderer2D::DrawTextBatch(const Batch& batch)
 
 		renderer2D.FontAtlasTexture->Bind();
 
-		batch.TextShader->Bind();
+		renderer2D.TextShader->Bind();
 		DrawIndexed(batch.TextVertexArray, batch.TextIndexCount);
 		renderer2D.Stats.DrawCalls++;
-		batch.TextShader->UnBind();
+		renderer2D.TextShader->UnBind();
 	}
 }
 

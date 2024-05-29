@@ -19,6 +19,7 @@ class Renderer2D
 public:
 	static void Init();
 	static void Update(BT type, RenderTarget target);
+	static void UpdateIndexed(BT type, RenderTarget target);
 	static void Shutdown();
 	static void ResetBatches();
 
@@ -83,6 +84,7 @@ private:
 	static void NextQuadBatch(Batch& batch);
 
 	static void DrawQuadBatch(const Batch& batch);
+	static void DrawQuadIndexedBatch(const Batch& batch);
 	static void DrawCircleBatch(const Batch& batch);
 	static void DrawLineBatch(const Batch& batch);
 	static void DrawTextBatch(const Batch& batch);

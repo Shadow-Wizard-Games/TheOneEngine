@@ -57,7 +57,10 @@ void Renderer::Update()
         Renderer3D::IndexPass(target);
 
         if (renderer.renderParticles)
+        {
             Renderer2D::Update(BT::WORLD, target);
+            Renderer2D::UpdateIndexed(BT::WORLD, target);
+        }
 
         // index buffer -> geometry pass of objects with effects
 
