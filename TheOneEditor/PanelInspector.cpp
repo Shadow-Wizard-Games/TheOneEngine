@@ -490,13 +490,24 @@ bool PanelInspector::Draw()
                 ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
 
+
             /*Script Component*/
-            Script* script = selectedGO->GetComponent<Script>();
-            ImGuiTreeNodeFlags scriptTreeNodeFlags = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_Leaf;
-            if (script != nullptr && ImGui::CollapsingHeader("Script", scriptTreeNodeFlags))
+            int id = 0;
+            for (auto& script : selectedGO->GetComponents<Script>())
             {
-                ImGui::TextColored({ 0.0f, 0.7f, 0.3f, 1.0f }, script->scriptName.c_str());
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                ImGuiTreeNodeFlags scriptTreeNodeFlags = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_Leaf;
+                if (script != nullptr && ImGui::CollapsingHeader("Script", scriptTreeNodeFlags))
+                {
+                    ImGui::TextColored({ 0.0f, 0.7f, 0.3f, 1.0f }, script->scriptName.c_str());
+                    ImGui::SameLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
+                    ImGui::PushID(id);
+                    if (ImGui::Button("Remove"))
+                        selectedGO->RemoveComponent(script);
+                    ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                    ImGui::PopID();
+                    id++;
+                }
             }
 
 

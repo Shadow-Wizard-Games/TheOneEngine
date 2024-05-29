@@ -45,13 +45,26 @@ public:
         return nullptr;
     }
 
+    template <typename TComponent>
+    std::vector<TComponent*> GetComponents() const
+    {
+        std::vector<TComponent*> matchingComponents;
+        for (const auto& component : components)
+        {
+            if (TComponent* castedComponent = dynamic_cast<TComponent*>(component.get())) {
+                matchingComponents.push_back(castedComponent);
+            }
+        }
+        return matchingComponents;
+    }
+
     template <typename TComponent, typename... Args>
     bool AddComponent(Args&&... args)
     {
         Component* component = this->GetComponent<TComponent>();
 
         // Check for already existing Component
-        if (component != nullptr)
+        if (component && component->GetType() != ComponentType::Script)
         {
             LOG(LogType::LOG_WARNING, "Component already applied");
             LOG(LogType::LOG_INFO, "-GameObject [Name: %s] ", name.data());
@@ -90,6 +103,18 @@ public:
     }
 
     void RemoveComponent(ComponentType type);
+
+    template <typename TComponent>
+    void RemoveComponent(TComponent* compToRemove)
+    {
+        auto it = std::find_if(components.begin(), components.end(),
+            [compToRemove](const std::unique_ptr<Component>& comp) {
+                return comp.get() == compToRemove;
+            });
+
+        if (it != components.end())
+            components.erase(it);
+    }
 
     std::vector<Component*> GetAllComponents(bool tunometecabrasalamambiche = true);
 

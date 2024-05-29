@@ -113,11 +113,6 @@ void GameObject::RemoveComponent(ComponentType type)
 	}
 }
 
-//std::vector<std::shared_ptr<Component>>& GameObject::GetComponents()
-//{
-//	return components;
-//}
-
 
 // AABB -------------------------------------
 AABBox GameObject::CalculateAABB()
