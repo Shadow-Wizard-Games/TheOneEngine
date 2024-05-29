@@ -1,5 +1,5 @@
 {
-  "fragment": "#version 450 core\n\nconst vec4 SKELETAL_INDEX_COLOR = vec4(0.537, 1.0, 0.298, 1.0);\n\nlayout(location = 0) out vec4 gIndex;\n\nvoid main() {\n    // store the index of the type of 3D element in the gbuffer\n    gIndex = SKELETAL_INDEX_COLOR;\n}",
+  "fragment": "#version 450 core\n\nconst vec4 SKELETAL_INDEX_COLOR = vec4(1.0, 0.0, 0.0, 1.0);\n\nlayout(location = 0) out vec4 gIndex;\n\nvoid main() {\n    // store the index of the type of 3D element in the gbuffer\n    gIndex = SKELETAL_INDEX_COLOR;\n}",
   "uniforms": null,
   "vertex": "#version 450 core\n\nlayout(location = 0) in vec3 a_Pos;\nlayout(location = 1) in vec2 a_UV;\nlayout(location = 2) in vec3 a_Normal;\n\nout vec3 normal;\nout vec3 fragPos;\nout vec2 TexCoords;\n\nlayout(std140, binding = 0) uniform Camera {\n\tmat4 u_ViewProjection;\n};\n\nuniform mat4 u_Model;\n\nvoid main() {\n\tgl_Position = u_ViewProjection * u_Model * vec4(a_Pos, 1.0);\n\tfragPos = vec3(u_Model * vec4(a_Pos, 1.0));\n\t//TODO: Compute at the CPU!\n\tnormal = mat3(transpose(inverse(u_Model))) * a_Normal;\n\tTexCoords = a_UV;\n}"
 }

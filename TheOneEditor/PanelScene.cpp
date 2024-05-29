@@ -93,11 +93,8 @@ void PanelScene::Start()
     std::vector<Attachment> uiBuffAttachments = {
         { Attachment::Type::RGBA8, "color", "uiBuffer", 0 }
     };
-    std::vector<Attachment> indexAttachments = {
-        { Attachment::Type::RGBA8, "color", "indexBuffer", 0 }
-    };
 
-    std::vector<std::vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments, indexAttachments };
+    std::vector<std::vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
     viewportSize = { 640, 360 };
     renderTarget = Renderer::AddRenderTarget("Panel Scene", DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);

@@ -29,7 +29,7 @@ struct DefaultMesh
 class SkeletalCall
 {
 public:
-	SkeletalCall(int meshID, int mat, const glm::mat4& modelMat, bool fx = false) :
+	SkeletalCall(int meshID, int mat, const glm::mat4& modelMat, bool fx = true) :
 		resourceID(meshID), matID(mat), model(modelMat), hasEffect(fx) {}
 
 	~SkeletalCall() = default;
@@ -114,7 +114,7 @@ private:
 	static void UpdateInstanceBuffer(const std::vector<InstanceCall>& calls);
 
 	static void DrawInstanced(const InstanceCall& call);
-	static void DrawSkeletal(const SkeletalCall& call);
+	static void DrawSkeletal(const SkeletalCall& call, bool overrideEffects = false);
 	
 	//static void DrawSceneOpaque(std::shared_ptr<GameObject> parentGO, Camera* camera);
 	//static void DrawSceneTransparent(std::shared_ptr<GameObject> parentGO, Camera* camera);

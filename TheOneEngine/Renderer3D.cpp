@@ -170,7 +170,7 @@ void Renderer3D::DrawInstanced(const InstanceCall& call)
 	matShader->UnBind();
 }
 
-void Renderer3D::DrawSkeletal(const SkeletalCall& call)
+void Renderer3D::DrawSkeletal(const SkeletalCall& call, bool overrideEffects)
 {
 	SkeletalModel* mesh = Resources::GetResourceById<SkeletalModel>(call.GetMeshResourceID());
 
@@ -372,7 +372,7 @@ void Renderer3D::DrawSkeletal(const SkeletalCall& call)
 
 	Shader* animShader;
 
-	if (!call.HasEffect())
+	if (overrideEffects || !call.HasEffect())
 	{
 		animShader = material->getShader();
 		animShader->Bind();
@@ -452,30 +452,9 @@ void Renderer3D::GeometryPass(RenderTarget target)
 		DrawInstanced(call);
 
 	for (const SkeletalCall& call : renderer3D.skeletalCalls)
-		DrawSkeletal(call);
+		DrawSkeletal(call, true);
 
 	gBuffer->Unbind();
-}
-
-void Renderer3D::IndexPass(RenderTarget target)
-{
-	FrameBuffer* indexBuffer = target.GetFrameBuffer("indexBuffer");
-
-	indexBuffer->Bind();
-	indexBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 0.0f });
-
-	// Set Render Environment
-	Renderer::SetRenderEnvironment();
-
-	// Draw Scene
-	GLCALL(glDisable(GL_BLEND));
-	for (const SkeletalCall& call : renderer3D.skeletalCalls)
-	{
-		if (call.HasEffect())
-			DrawSkeletal(call);
-	}
-
-	indexBuffer->Unbind();
 }
 
 void Renderer3D::PostProcess(RenderTarget target)
@@ -494,8 +473,10 @@ void Renderer3D::PostProcess(RenderTarget target)
 	GLCALL(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
 
 	postBuffer->Bind();
-	LightPass(target);
 
+	LightPass(target);
+	IndexPass(target);
+	
 	//// Debug / Editor Draw 
 	//engine->DebugDraw(true);
 
@@ -524,7 +505,7 @@ void Renderer3D::ShadowPass(RenderTarget target)
 			DrawInstanced(call);
 
 		for (const SkeletalCall& call : renderer3D.skeletalCalls)
-			DrawSkeletal(call);
+			DrawSkeletal(call, true);
 
 		light->shadowBuffer->Unbind();
 	}
@@ -621,6 +602,19 @@ void Renderer3D::LightPass(RenderTarget target)
 	mat->UnBind();
 }
 
+void Renderer3D::IndexPass(RenderTarget target)
+{
+	Renderer::SetUniformBufferCamera(target.GetCamera()->viewProjectionMatrix);
+
+	GLCALL(glEnable(GL_BLEND));
+	for (const SkeletalCall& call : renderer3D.skeletalCalls)
+	{
+		if (call.HasEffect())
+			DrawSkeletal(call);
+	}
+}
+
+// Utils
 void Renderer3D::DrawScreenQuad()
 {
 	// Disable writing to the depthbuffer, 
@@ -656,6 +650,7 @@ void Renderer3D::DrawScreenQuad()
 	GLCALL(glDepthMask(GL_TRUE));
 }
 
+// Init Shaders
 void Renderer3D::InitPreLightingShader()
 {
 	ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
