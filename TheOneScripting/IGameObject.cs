@@ -141,7 +141,7 @@ public class IGameObject : IObject
                 }
             }
         }
-        else if (typeof(TComponent).BaseType == typeof(MonoBehaviour))
+        else if (typeof(TComponent).IsSubclassOf(typeof(MonoBehaviour)))
         {
             component = InternalCalls.ComponentCheck(containerGOptr, (int)IComponent.ComponentType.MonoBehaviour, typeof(TComponent).ToString());
 
