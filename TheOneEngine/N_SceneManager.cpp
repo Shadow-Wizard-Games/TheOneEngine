@@ -101,7 +101,6 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 
 bool N_SceneManager::PostUpdate()
 {
-	currentScene->Draw();
 
 	return true;
 }

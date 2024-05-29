@@ -67,7 +67,7 @@ bool PanelGame::Draw()
 		if (!gameCamera && !GetGameCameras().empty())
 		{
 			gameCamera = GetGameCameras().front()->GetComponent<Camera>();
-			Renderer::GetRenderTarget(renderTarget)->SetCamera(gameCamera);
+			if (renderTarget) Renderer::GetRenderTarget(renderTarget)->SetCamera(gameCamera);				
 		}
 
 		isHovered = ImGui::IsWindowHovered();

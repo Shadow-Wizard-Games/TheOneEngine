@@ -464,8 +464,6 @@ void Renderer3D::PostProcess(RenderTarget target)
 	postBuffer->Bind();
 	LightPass(target);
 
-	Renderer::SetRenderEnvironment();
-
 	//// Debug / Editor Draw 
 	//engine->DebugDraw(true);
 
@@ -485,8 +483,7 @@ void Renderer3D::ShadowPass(RenderTarget target)
 		light->shadowBuffer->Bind();
 		light->shadowBuffer->Clear(ClearBit::Depth, { 0.0f, 0.0f, 0.0f, 1.0f });
 
-		// Set Render Environment
-		Renderer::SetRenderEnvironment();
+		// Set Light Camera
 		Renderer::SetUniformBufferCamera(lights[i]->GetComponent<Camera>()->viewProjectionMatrix);
 
 		// Draw Scene
