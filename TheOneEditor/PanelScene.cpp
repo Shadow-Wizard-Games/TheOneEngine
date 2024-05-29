@@ -81,6 +81,7 @@ void PanelScene::Start()
         { Attachment::Type::RGBA8, "color", "gBuffer", 0 },
         { Attachment::Type::RGB16F, "position", "gBuffer", 0 },
         { Attachment::Type::RGB16F, "normal", "gBuffer", 0 },
+        { Attachment::Type::RGBA8, "index", "gBuffer", 0 },
         { Attachment::Type::DEPTH_STENCIL, "depth", "gBuffer", 0 }
     };
     std::vector<Attachment> postBuffAttachments = {

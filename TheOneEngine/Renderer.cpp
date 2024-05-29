@@ -42,8 +42,6 @@ void Renderer::Update()
         if (!target.GetCamera())
             continue;
 
-        if (target.GetId() > 0) continue;
-
         Renderer::SetRenderEnvironment();
         SetUniformBufferCamera(target.GetCamera()->viewProjectionMatrix);
         engine->N_sceneManager->currentScene->Draw(target.GetMode(), target.GetCamera());
@@ -51,6 +49,7 @@ void Renderer::Update()
 
         Renderer3D::GeometryPass(target);
         Renderer2D::Update(BT::WORLD, target);
+
         Renderer3D::ShadowPass(target);
         Renderer3D::PostProcess(target);
 
