@@ -270,6 +270,10 @@ public class PlayerScript : MonoBehaviour
 
     private void IdleAction()
     {
+        if (Dash.state == AbilityDash.AbilityState.ACTIVE
+            || AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE
+            || Heal.state == AbilityHeal.AbilityState.ACTIVE) return;
+
         switch (currentWeaponType)
         {
             case CurrentWeapon.NONE:
@@ -294,6 +298,10 @@ public class PlayerScript : MonoBehaviour
     private void RunAction()
     {
         Move();
+
+        if (Dash.state == AbilityDash.AbilityState.ACTIVE
+            || AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE
+            || Heal.state == AbilityHeal.AbilityState.ACTIVE) return;
 
         switch (currentWeaponType)
         {
@@ -393,8 +401,8 @@ public class PlayerScript : MonoBehaviour
         float totalHeal = HP * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = baseSpeed * AdrenalineRush.speedAmount;
-        currentSpeed += speedIncrease;
+        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
+        currentSpeed = speedIncrease;
 
         // increase damage
         damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
@@ -411,12 +419,12 @@ public class PlayerScript : MonoBehaviour
 
         if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
 
-        // Calculate heal amount
+        // calculate heal amount
         float totalHeal = HP * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = baseSpeed * AdrenalineRush.speedAmount;
-        currentSpeed += speedIncrease;
+        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
+        currentSpeed = speedIncrease;
 
         // increase damage
         damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
