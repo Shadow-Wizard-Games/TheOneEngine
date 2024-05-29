@@ -118,6 +118,9 @@ bool PanelGame::Draw()
 
 
 		// Render --------------------------------------------------------------------------
+		
+		Renderer::GetRenderTarget(renderTarget)->SetActive(true);
+		
 		// Viewport resize check
 		ImVec2 size;		
 		app->gui->ApplyAspectRatio(availWindowSize.x, availWindowSize.y, &size.x, &size.y, aspect);
@@ -143,13 +146,18 @@ bool PanelGame::Draw()
 		ImGui::Dummy(offset);
 		if (offset.x) ImGui::SameLine();
 
-		ImGui::Image(
-			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
-			ImVec2{ viewportSize.x, viewportSize.y },
-			ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImTextureID textureID = Renderer::GetRenderLights() ?
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color") :
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
+
+		ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 		ImGui::PopStyleVar();
     }
+	else
+	{
+		Renderer::GetRenderTarget(renderTarget)->SetActive(false);
+	}
 	ImGui::End();
 
 	ImGui::PopStyleVar();

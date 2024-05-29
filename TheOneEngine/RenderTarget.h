@@ -10,7 +10,7 @@
 class RenderTarget
 {
 public:
-	RenderTarget(unsigned int id, std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers);
+	RenderTarget(unsigned int id, std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers, bool active = false);
 	~RenderTarget();
 
 	std::vector<FrameBuffer>* GetFrameBuffers();
