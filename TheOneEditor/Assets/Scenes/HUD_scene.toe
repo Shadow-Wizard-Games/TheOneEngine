@@ -57,7 +57,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 4290536493,
+      "ParentUID": 16712704,
       "Static": false,
       "UID": 3452816845
     },
@@ -118,7 +118,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Queen",
-      "ParentUID": 4290536493,
+      "ParentUID": 16712704,
       "Static": false,
       "UID": 3452816845
     },
@@ -870,7 +870,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 4290536493,
+      "ParentUID": 16712704,
       "PrefabDirty": true,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -2688,6 +2688,126 @@
                   ],
                   "State": 0,
                   "TextString": "Q\n  y",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3662513925,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd1",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    -0.18000000715255737,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3702058846,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd2",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    0.004999999888241291,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2428870307,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd3",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    0.19499999284744263,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2011812829,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd4",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    0.38499999046325684,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2759080148,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_ConsumibleCd",
+                  "Print": true,
+                  "Rect": [
+                    -0.847000002861023,
+                    -0.5299999713897705,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
                   "Type": 4
                 },
                 {
@@ -8777,7 +8897,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 4290536493,
+      "ParentUID": 16712704,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
