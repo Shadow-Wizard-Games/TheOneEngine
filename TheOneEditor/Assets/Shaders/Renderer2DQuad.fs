@@ -1,6 +1,9 @@
 #version 450 core
 
+const vec4 PARTICLE_INDEX_COLOR = vec4(1.0, 0.282, 0.282, 1.0);
+
 layout(location = 0) out vec4 o_Color;
+layout(location = 3) out vec4 gIndex;
 
 struct VertexOutput
 {
@@ -16,6 +19,9 @@ layout (binding = 0) uniform sampler2D u_Textures[32];
 
 void main()
 {
+    // store the index of the type of 3D element in the gbuffer
+    gIndex = PARTICLE_INDEX_COLOR;
+
 	vec4 texColor = Input.Color;
 
 	switch(int(v_TexIndex))
