@@ -68,7 +68,7 @@ public class PlayerScript : MonoBehaviour
     //
 
     // abilities
-    //AbilityGrenadeLauncher GrenadeLauncher;
+    AbilityGrenadeLauncher GrenadeLauncher;
     AbilityAdrenalineRush AdrenalineRush;
     //AbilityFlamethrower Flamethrower;
     //AbilityImpaciente Impaciente;
@@ -97,7 +97,7 @@ public class PlayerScript : MonoBehaviour
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
 
         IGameObject Abilities = attachedGameObject.FindInChildren("Abilities");
-        //GrenadeLauncher = Abilities.GetComponent<AbilityGrenadeLauncher>();
+        GrenadeLauncher = Abilities.GetComponent<AbilityGrenadeLauncher>();
         AdrenalineRush = Abilities.GetComponent<AbilityAdrenalineRush>();
         //Flamethrower = Abilities.GetComponent<AbilityFlamethrower>();
         //Impaciente = Abilities.GetComponent<AbilityImpaciente>();
@@ -655,7 +655,10 @@ public class PlayerScript : MonoBehaviour
     private void ShootShoulderLaser() { }
     private void ShootImpaciente() { }
     private void ShootFlamethrower() { }
-    private void ShootGrenadeLauncher() { }
+    private void ShootGrenadeLauncher()
+    {
+
+    }
 
     public void ReduceLife(int damage)
     {
