@@ -14,7 +14,7 @@ public class ItemManager : MonoBehaviour
     {
         //LoadData();
         itemData.Add(1, new Item_M4A1());
-        itemData.Add(2, new Item_Healing(false));
+        itemData.Add(2, new Item_Healing());
     }
 
     private void SaveData()

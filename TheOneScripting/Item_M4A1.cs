@@ -1,21 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 class Item_M4A1 : Item
 {
-    uint damage = 6;
+    public readonly uint damage = 5;
+    public readonly uint maxAmmoPerLoader = 100;
+    public readonly float fireRate = 0.15f;
+
+    // Grenade Launcher
+    public readonly uint damageGrenade = 50;
+    public readonly float grenadeVelocity = 250f;
+
+    public readonly float grenadeCooldownTime = 8f;
 
     public Item_M4A1()
     {
         this.id = 1;
         this.name = "M4A1";
         this.description = "This is the main weapon. You have found the item in a guard's corpse.";
-        this.price = 1;
-        this.type = ItemType.M4A1;
-        this.texturePath = "";
+        this.type = ItemType.WEAPON;
     }
 
     public override void ApplyEffect(IGameObject player)
