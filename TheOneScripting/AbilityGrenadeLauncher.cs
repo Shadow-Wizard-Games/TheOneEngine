@@ -17,8 +17,6 @@ public class AbilityGrenadeLauncher : Ability
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
 
-        activeTime = 0.15f;
-        activeTimeCounter = activeTime;
         cooldownTime = 4.0f;
         cooldownTimeCounter = cooldownTime;
     }
@@ -30,16 +28,14 @@ public class AbilityGrenadeLauncher : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE)) // change input
+                if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE) && player.currentWeapon == PlayerScript.CurrentWeapon.M4) // change input
                 {
                     Activated();
-
                     break;
                 }
                 // controller input
                 break;
             case AbilityState.ACTIVE:
-                WhileActive();
                 break;
             case AbilityState.COOLDOWN:
                 OnCooldown();
@@ -53,32 +49,17 @@ public class AbilityGrenadeLauncher : Ability
     {
         state = AbilityState.ACTIVE;
 
+        explosionCenterPos = player.attachedGameObject.transform.Position + player.lastMovementDirection * range;
+
+        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+        InternalCalls.InstantiateGrenade(player.attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+        player.grenadeInitialVelocity = player.lastMovementDirection * grenadeVelocity;
+
+        state = AbilityState.COOLDOWN;
+
         player.attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
 
         Debug.Log("Ability Grenade Launcher Activated");
-    }
-
-    public override void WhileActive()
-    {
-        explosionCenterPos = player.attachedGameObject.transform.Position + player.lastMovementDirection * range;
-
-        if (activeTimeCounter > 0)
-        {
-            activeTimeCounter -= Time.deltaTime;
-        }
-        else if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE) && activeTimeCounter <= 0)
-        {
-            Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-            InternalCalls.InstantiateGrenade(player.attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-            player.grenadeInitialVelocity = player.lastMovementDirection * grenadeVelocity;
-
-            activeTimeCounter = activeTime;
-            state = AbilityState.COOLDOWN;
-        }
-
-
-        Debug.DrawWireCircle(player.attachedGameObject.transform.Position + Vector3.up * 4, range, new Vector3(0.0f, 0.3f, 1.0f));
-        Debug.DrawWireCircle(explosionCenterPos + Vector3.up * 4, explosionRadius, new Vector3(1.0f, 0.4f, 0.0f));
     }
 
     public override void OnCooldown()

@@ -1841,6 +1841,21 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="TTS" ID="{C67AEDB5-5C16-4943-B9DE-03CFE5B05DBF}" ShortID="968270134">
+							<ChildrenList>
+								<Event Name="VO_tts" ID="{7CA9BDAE-B93E-4237-B294-BD7F58682A38}">
+									<ChildrenList>
+										<Action Name="" ID="{D3787DFD-F454-4DDF-BAB6-36A6BEF14409}" ShortID="234607298">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_tts" ID="{A9DDDF46-DF12-4CF5-A3CE-AF83ABD6F597}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

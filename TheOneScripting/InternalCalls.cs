@@ -62,6 +62,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateGrenade(Vector3 initialPosition, Vector3 direction);
+    
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateExplosion(Vector3 initialPosition, Vector3 direction, float radius);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);
@@ -75,6 +78,9 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr FindGameObject(string name);
 
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IntPtr GetParent(IntPtr currentGameObject);
+    
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IntPtr FindGameObjectInChildren(IntPtr gameObject, string name);
 
@@ -134,7 +140,7 @@ class InternalCalls
     internal extern static string GetCurrentSceneName();
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void CreatePrefab(string prefabName, Vector3 position);
+    internal extern static void CreatePrefab(string prefabName, Vector3 position, Vector3 rotation);
     #endregion
 
     #region User Interfaces
@@ -236,6 +242,15 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetSwitch(IntPtr GOptr, AudioSwitchGroup switchGroup, AudioSwitchID switchID);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetMasterVolume(int volume);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetSFXVolume(int volume);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetMusicVolume(int volume);
     #endregion
 
     #region Collider2D

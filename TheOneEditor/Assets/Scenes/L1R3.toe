@@ -26,7 +26,7 @@
           "UID": 2584539049
         },
         {
-          "Aspect": 1.7778818607330322,
+          "Aspect": 1.778425693511963,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -10774,21 +10774,21 @@
                     {
                       "Name": "Transform",
                       "Transformation Matrix": [
-                        3.049999952316284,
+                        -3.0499987602233887,
                         0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        3.049999952316284,
-                        0.0,
-                        0.0,
+                        0.0014894604682922363,
                         0.0,
                         0.0,
                         3.049999952316284,
+                        0.0,
+                        0.0,
+                        -0.0014894604682922363,
+                        0.0,
+                        -3.0499987602233887,
                         0.0,
                         97.04762268066406,
                         0.30000001192092896,
-                        394.7149353027344,
+                        372.65625,
                         1.0
                       ],
                       "Type": 0,
@@ -11901,17 +11901,17 @@
                     {
                       "Name": "Transform",
                       "Transformation Matrix": [
-                        1.4569997787475586,
+                        -1.456998586654663,
+                        0.0,
+                        -0.0008714496507309377,
                         0.0,
                         0.0,
+                        1.456999659538269,
                         0.0,
                         0.0,
-                        1.4569997787475586,
+                        0.0003745481080841273,
                         0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.6263025403022766,
+                        -0.6263024210929871,
                         0.0,
                         823.111328125,
                         0.29999929666519165,
@@ -11950,17 +11950,17 @@
                     {
                       "Name": "Transform",
                       "Transformation Matrix": [
-                        2.682209014892578e-07,
+                        -5.031351975048892e-07,
                         0.0,
-                        1.3699990510940552,
+                        -1.3699990510940552,
                         0.0,
                         0.0,
                         1.3700000047683716,
                         0.0,
                         0.0,
-                        -0.48667702078819275,
+                        0.4866769313812256,
                         0.0,
-                        1.4156113081753574e-07,
+                        -2.2147816025608336e-07,
                         0.0,
                         271.41693115234375,
                         0.2999943494796753,
@@ -12636,17 +12636,17 @@
                     {
                       "Name": "Transform",
                       "Transformation Matrix": [
-                        0.0015347914304584265,
+                        -0.0037041595205664635,
+                        0.0,
+                        -4.444996356964111,
+                        0.0,
                         0.0,
                         4.444999694824219,
                         0.0,
                         0.0,
-                        4.444999694824219,
+                        4.444996356964111,
                         0.0,
-                        0.0,
-                        -4.444999694824219,
-                        0.0,
-                        0.0015347914304584265,
+                        -0.0037041595205664635,
                         0.0,
                         685.4515380859375,
                         0.29988962411880493,
@@ -51326,52 +51326,6 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 4072698855
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "ItemManager",
-              "Type": 4,
-              "UID": 1110714302
-            },
-            {
-              "AudioID": 21,
-              "Name": "AudioSource",
-              "Type": 8
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "Manager",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
@@ -51407,7 +51361,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -51417,22 +51371,22 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
-          "AudioID": 22,
+          "AudioID": 21,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -51448,7 +51402,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -51459,7 +51413,7 @@
       "Name": "SK_Anarchist (1)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -51487,7 +51441,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -51497,22 +51451,22 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
-          "AudioID": 23,
+          "AudioID": 22,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -51528,7 +51482,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -51539,7 +51493,7 @@
       "Name": "SK_Anarchist (2)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -51567,7 +51521,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -51577,22 +51531,22 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
-          "AudioID": 24,
+          "AudioID": 23,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -51608,7 +51562,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -51619,7 +51573,7 @@
       "Name": "SK_Anarchist (3)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -51647,7 +51601,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -51657,22 +51611,22 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
-          "AudioID": 25,
+          "AudioID": 24,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -51688,7 +51642,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -51699,7 +51653,7 @@
       "Name": "SK_Anarchist (4)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -51727,7 +51681,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -51737,22 +51691,22 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
-          "AudioID": 26,
+          "AudioID": 25,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -51768,7 +51722,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -51779,7 +51733,7 @@
       "Name": "SK_Anarchist (5)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -51807,7 +51761,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3021935714
+          "UID": 4133741564
         },
         {
           "Active": true,
@@ -51817,22 +51771,22 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_Walk/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_Walk/SK_Anarchist.animator",
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
           "Name": "Mesh",
           "ParentUID": 3452816845,
           "Type": 2,
-          "UID": 1485461373
+          "UID": 66151348
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2014633233
+          "UID": 3318160678
         },
         {
-          "AudioID": 27,
+          "AudioID": 26,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -51848,7 +51802,7 @@
           "ParentUID": 3452816845,
           "Radius": 12.0,
           "Type": 5,
-          "UID": 2749116129,
+          "UID": 3318942504,
           "Width": -1.7976931348623157e+308
         }
       ],
@@ -51859,7 +51813,7 @@
       "Name": "SK_Anarchist (6)",
       "ParentUID": 3452816845,
       "PrefabDirty": false,
-      "PrefabID": 1415844443,
+      "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
       "Static": false,
       "UID": 3452816845
@@ -51927,7 +51881,7 @@
           "UID": 3278573262
         },
         {
-          "AudioID": 28,
+          "AudioID": 27,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -52410,7 +52364,7 @@
       ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Facehugger",
+      "Name": "Facehugger (1)",
       "ParentUID": 3452816845,
       "PrefabDirty": true,
       "PrefabID": 3055371654,
@@ -52610,7 +52564,7 @@
       ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Facehugger",
+      "Name": "Facehugger (2)",
       "ParentUID": 3452816845,
       "PrefabDirty": true,
       "PrefabID": 3055371654,
@@ -52810,11 +52764,109 @@
       ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Facehugger",
+      "Name": "Facehugger (3)",
       "ParentUID": 3452816845,
       "PrefabDirty": true,
       "PrefabID": 3055371654,
       "PrefabName": "Facehugger",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -0.0003901273012161255,
+            0.0,
+            -1.1300002336502075,
+            0.0,
+            0.0,
+            1.1299999952316284,
+            0.0,
+            0.0,
+            0.8135510087013245,
+            0.0,
+            -0.0002808570861816406,
+            0.0,
+            92.43138885498047,
+            0.2999982237815857,
+            550.6402587890625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1136051140
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_UseWeaponControl/M_UseWeaponControl.toematerial",
+          "MeshPath": "Library/Meshes/SM_UseWeaponControl/SM_UseWeaponControl.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3928108050
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_UseWeaponControl",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -1.2830989360809326,
+            0.0,
+            7.445089522661874e-08,
+            0.0,
+            0.0,
+            1.2831000089645386,
+            0.0,
+            0.0,
+            4.2362643171145464e-08,
+            0.0,
+            -0.8804219961166382,
+            0.0,
+            772.5901489257813,
+            0.2998693585395813,
+            626.0476684570313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1037073715
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Skill1Control/M_Skill1Control.toematerial",
+          "MeshPath": "Library/Meshes/SM_Skill1Control/SM_Skill1Control.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1573649570
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Skill1Control",
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     }

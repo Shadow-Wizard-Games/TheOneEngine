@@ -13,8 +13,8 @@ public class SceneManager
         return InternalCalls.GetCurrentSceneName();
     }
 
-    public static void CreatePrefab(string prefabName, Vector3 position)
+    public static void CreatePrefab(string prefabName, Vector3 position, Vector3 rotation)
     {
-        InternalCalls.CreatePrefab(prefabName, position);
+        InternalCalls.CreatePrefab(prefabName, position, rotation);
     }
 }

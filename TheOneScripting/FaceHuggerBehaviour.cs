@@ -5,8 +5,10 @@ public class FaceHuggerBehaviour : MonoBehaviour
     enum States
     {
         Idle,
-        Attack,
-        Jump,
+        Chase,
+        JumpAttack,
+        Hug,
+        Land,
         Dead
     }
 
@@ -14,24 +16,37 @@ public class FaceHuggerBehaviour : MonoBehaviour
     Vector3 directorVector;
     float playerDistance;
 
-    readonly float life = 50;
-
+    // Facehugger parameters
+    float life = 40.0f;
+    float biomass = 0.0f;
     float movementSpeed = 35.0f * 2;
-
     States currentState = States.Idle;
+
+    // Ranges
+    const float detectedRange = 180.0f;
+    const float maxAttackRange = 90.0f;
+    const float maxChasingRange = 180.0f;
+    const float maxRangeStopChasing = 60.0f;
+
+    // Flags
     bool detected = false;
-
-    readonly float enemyDetectedRange = 180.0f;
-    readonly float maxAttackRange = 90.0f;
-    readonly float maxChasingRange = 180.0f;
-
+    bool hitPlayer = false;
+    bool isDead = false;
     bool isJumping = false;
+    bool isHugging = false;
+    bool isLanding = false;
+    bool fallDead = false;
+    bool shotDead = false;
+
+    // Timers
+    float jumpAttackTimer = 0.0f;
+    const float jumpAttackCooldown = 3.0f;
 
     PlayerScript player;
     GameManager gameManager;
 
-    IGameObject jumpPSGO;
-    IGameObject deathPSGO;
+    IParticleSystem jumpPSGO;
+    IParticleSystem deathPSGO;
 
     public override void Start()
     {
@@ -40,151 +55,239 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
-        jumpPSGO = attachedGameObject.FindInChildren("JumpPS");
-        deathPSGO = attachedGameObject.FindInChildren("DeathPS");
+        attachedGameObject.animator.Play("Idle");
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
+
+        jumpPSGO = attachedGameObject.FindInChildren("JumpPS")?.GetComponent<IParticleSystem>();
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
     {
+        attachedGameObject.animator.UpdateAnimation();
+
         if (currentState == States.Dead) return;
 
         if (attachedGameObject.transform.ComponentCheck())
         {
-            //Draw debug ranges
-            if (gameManager.colliderRender)
-            {
-                if (!detected)
-                {
-                    Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, enemyDetectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
-                }
-                else
-                {
-                    Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
-                    Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
-                }
-            }
+            DebugDraw();
 
-            //Set the director vector and distance to the player
+            // Set the director vector and distance to the player
             directorVector = (playerGO.transform.Position - attachedGameObject.transform.Position).Normalize();
             playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
-            UpdateFSMStates();
+            UpdateFSM();
             DoStateBehaviour();
-        }
-
-        if (isJumping)
-        {
-            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_JUMP);
-            isJumping = false;
         }
     }
 
-    void UpdateFSMStates()
+    void UpdateFSM()
     {
-        if (life <= 0) { currentState = States.Dead; return; }
+        if (life <= 0 || fallDead)
+        {
+            if (attachedGameObject.animator.CurrentAnimHasFinished || shotDead)
+                currentState = States.Dead;
+            //Debug.Log("Facehugger switched to Dead");
+            return;
+        }
 
-        if (!detected && playerDistance < enemyDetectedRange) detected = true;
+        if (!detected && playerDistance < detectedRange)
+        {
+            detected = true;
+            currentState = States.Chase;
+            //Debug.Log("Facehugger switched to Chase");
+        }
 
         if (detected)
         {
-            if (currentState == States.Jump)
+            if (currentState != States.JumpAttack &&
+                currentState != States.Hug && currentState != States.Land)
             {
-                if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
-                {
-                    currentState = States.Dead;
-                    attachedGameObject.transform.Position = new Vector3(attachedGameObject.transform.Position.x,
-                                                                        0.0f,
-                                                                        attachedGameObject.transform.Position.z);
-
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_DEATH);
-                    detected = false;
-                    //deathPSGO.GetComponent<IParticleSystem>().Replay();
-                }
+                jumpAttackTimer += Time.deltaTime;
+                if (currentState != States.Idle)
+                    attachedGameObject.animator.Play("Walk");
             }
-            else
+
+            CheckIsMaxRangeStopChasing();
+
+            if (jumpAttackTimer >= jumpAttackCooldown && currentState != States.JumpAttack)
             {
-                if (playerDistance < maxAttackRange)
-                {
-                    currentState = States.Jump;
-                    if (jumpPSGO != null)
-                    {
-                        jumpPSGO.GetComponent<IParticleSystem>().Replay();
-                    }
-                    isJumping = true;
-                }
-                else if (playerDistance > maxAttackRange && playerDistance < maxChasingRange)
-                {
-                    currentState = States.Attack;
-                }
-                else if (playerDistance > maxChasingRange)
-                {
-                    detected = false;
-                    currentState = States.Idle;
-                }
+                currentState = States.JumpAttack;
+                //Debug.Log("Facehugger switched to JumpAttack");
+            }
+
+            if (playerDistance > maxChasingRange && currentState != States.JumpAttack &&
+                currentState != States.Hug && currentState != States.Land)
+            {
+                detected = false;
+                currentState = States.Idle;
+                //Debug.Log("Facehugger switched to Idle");
             }
         }
     }
 
-    readonly float maxHeight = 275.0f;
-    float height = 0.0f;
-    bool up = true;
+    private void CheckIsMaxRangeStopChasing()
+    {
+        if (playerDistance <= maxRangeStopChasing && currentState != States.Idle)
+        {
+            currentState = States.Idle;
+            //Debug.Log("Player is INSIDE maxRangeStopChasing");
+        }
+        else if (playerDistance > maxRangeStopChasing && currentState != States.Chase &&
+                 currentState != States.Hug)
+        {
+
+            currentState = States.Chase;
+            //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
+        }
+    }
+
     void DoStateBehaviour()
     {
         switch (currentState)
         {
             case States.Idle:
+                attachedGameObject.animator.Play("Idle");
                 return;
-            case States.Attack:
+            case States.Chase:
                 player.isFighting = true;
                 attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
                 break;
-            case States.Jump:
+            case States.JumpAttack:
                 player.isFighting = true;
-                attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * 3.0f * Time.deltaTime);
-                if (up)
-                {
-                    if (maxHeight > height)
-                    {
-                        attachedGameObject.transform.Translate(Vector3.up * height * Time.deltaTime);
-                        height = height + 10.0f;
-                    }
-                    else if (maxHeight <= height)
-                    {
-                        up = false;
-                    }
-                }
-                else
-                {
-                    if (height <= 0)
-                    {
-                        height = 0.0f;
-
-                    }
-                    else
-                    {
-                        attachedGameObject.transform.Translate(Vector3.up * -height * Time.deltaTime);
-                        height = height - 20.0f;
-                    }
-                }
+                attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
+                JumpAttack();
+                break;
+            case States.Hug:
+                Hug();
+                break;
+            case States.Land:
+                Land();
                 break;
             case States.Dead:
-                attachedGameObject.transform.Rotate(Vector3.right * 1100.0f); //80 degrees??
-                attachedGameObject.transform.Translate(Vector3.up * -1.0f * Time.deltaTime);
-
+                Dead();
                 break;
             default:
                 break;
         }
     }
 
-    bool hitPlayer = false;
+    private void JumpAttack()
+    {
+        if (!isJumping)
+        {
+            isJumping = true;
+            attachedGameObject.animator.Play("Jump");
+        }
+
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            CheckIsHugging();
+        }
+    }
+
+    private void CheckIsHugging()
+    {
+        jumpAttackTimer = 0.0f;
+        isJumping = false;
+        if (hitPlayer)
+        {
+            currentState = States.Hug;
+        }
+        else
+        {
+            currentState = States.Land;
+        }
+    }
+
+    private void Hug()
+    {
+        if (!isHugging)
+        {
+            attachedGameObject.animator.Play("Hug");
+            isHugging = true;
+        }
+
+        fallDead = true;
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            isHugging = false;
+            fallDead = true;
+        }
+    }
+
+    private void Land()
+    {
+        if (!isLanding)
+        {
+            attachedGameObject.animator.Play("Land");
+            isLanding = true;
+        }
+
+        if (attachedGameObject.animator.CurrentAnimHasFinished)
+        {
+            currentState = States.Chase;
+            isLanding = false;
+        }
+    }
+
+    private void Dead()
+    {
+        if (!isDead)
+        {
+            if (fallDead) attachedGameObject.animator.Play("FallAndDie");
+
+            if (shotDead) attachedGameObject.animator.Play("ShotAndDie");
+
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
+            {
+                isDead = true;
+                player.shieldKillCounter++;
+                // add player biomass
+                deathPSGO.Play();
+            }
+        }
+    }
+
     public void CheckJump() //temporary function for the hardcoding of collisions
     {
         if (!hitPlayer)
         {
-            playerGO.GetComponent<PlayerScript>().ReduceLife();
-            hitPlayer = true;
+            if (isJumping)
+            {
+                playerGO.GetComponent<PlayerScript>().ReduceLife();
+                hitPlayer = true;
+                fallDead = true;
+            }
+        }
+    }
+
+    public void ReduceLife() //temporary function for the hardcoding of collisions
+    {
+        life -= player.totalDamage;
+        if (life < 0)
+        {
+            life = 0;
+            shotDead = true;
+        }
+    }
+
+    private void DebugDraw()
+    {
+        //Draw debug ranges
+        if (gameManager.colliderRender)
+        {
+            if (!detected)
+            {
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, detectedRange, new Vector3(1.0f, 0.8f, 0.0f)); //Yellow
+            }
+            else
+            {
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxChasingRange, new Vector3(0.9f, 0.0f, 0.9f)); //Purple
+                Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 4, maxAttackRange, new Vector3(0.0f, 0.8f, 1.0f)); //Blue
+            }
         }
     }
 }

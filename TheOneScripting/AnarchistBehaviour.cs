@@ -22,6 +22,7 @@ class AnarchistBehaviour : MonoBehaviour
 
     // Anarchist parameters
     float life = 100.0f;
+    float biomass = 0.0f;
     float movementSpeed = 50.0f;
     States currentState = States.Patrol;
     States lastState = States.Patrol;
@@ -70,9 +71,10 @@ class AnarchistBehaviour : MonoBehaviour
         initialPos = attachedGameObject.transform.Position;
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-        attachedGameObject.animator.Play("Scan");
 
-        attachedGameObject.animator.Blend = false;
+        attachedGameObject.animator.Play("Scan");
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
     }
 
     public override void Update()
@@ -81,9 +83,9 @@ class AnarchistBehaviour : MonoBehaviour
 
         if (currentState == States.Dead)
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }
@@ -101,7 +103,11 @@ class AnarchistBehaviour : MonoBehaviour
 
     void UpdateFSMStates()
     {
-        if (life <= 0) { currentState = States.Dead; return; }
+        if (life <= 0)
+        {
+            currentState = States.Dead;
+            return;
+        }
 
         if (playerDistance < rangeToInspect && lastState != States.Inspect)
         {
@@ -258,7 +264,12 @@ class AnarchistBehaviour : MonoBehaviour
         {
             attachedGameObject.animator.Play("Death");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished) isDead = true;
+            if (attachedGameObject.animator.CurrentAnimHasFinished) 
+            { 
+                isDead = true;
+                player.shieldKillCounter++;
+                // add player biomass
+            }
 
         }
     }
@@ -275,7 +286,14 @@ class AnarchistBehaviour : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        life -= 10.0f;
+        life -= player.totalDamage;
+        if (life < 0) life = 0;
+    }
+
+    public void ReduceLifeExplosion()
+    {
+        life -= player.grenadeDamage;
+        if (life < 0) life = 0;
     }
 
     private void DebugDraw()

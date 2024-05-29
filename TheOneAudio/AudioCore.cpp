@@ -413,6 +413,26 @@ void AudioCore::SetGlobalVolume(float volume)
     AK::SoundEngine::SetOutputVolume(AK::SoundEngine::GetOutputID(AK_INVALID_UNIQUE_ID, 0.0f), (AkReal32)(volume * 0.01f));
 }
 
+void AudioCore::SetMaster(int volume)
+{
+    AK::SoundEngine::SetRTPCValue(AK::GAME_PARAMETERS::MASTERVOLUME, (AkRtpcValue)volume);
+}
+
+void AudioCore::SetDialog(int volume)
+{
+    AK::SoundEngine::SetRTPCValue(AK::GAME_PARAMETERS::VOICESVOLUME, (AkRtpcValue)volume);
+}
+
+void AudioCore::SetSFX(int volume)
+{
+    AK::SoundEngine::SetRTPCValue(AK::GAME_PARAMETERS::SFXVOLUME, (AkRtpcValue)volume);
+}
+
+void AudioCore::SetMusic(int volume)
+{
+    AK::SoundEngine::SetRTPCValue(AK::GAME_PARAMETERS::MUSICVOLUME, (AkRtpcValue)volume);
+}
+
 void AudioCore::EventCallBack(AkCallbackType in_eType, AkCallbackInfo* in_pCallbackInfo)
 {
     AudioEvent* a_event = (AudioEvent*)in_pCallbackInfo->pCookie;
