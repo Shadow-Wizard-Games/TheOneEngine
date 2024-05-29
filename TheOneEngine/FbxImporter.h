@@ -25,7 +25,7 @@ namespace FBXIMPORTER {
 		return MeshType::DEFAULT;
 	}
 
-	static std::vector<AABBox> GetAABBfromFBX(const std::string& path)
+	/*static std::vector<AABBox> GetAABBfromFBX(const std::string& path)
 	{
 		std::vector<AABBox> AABBvector;
 		const aiScene* scene = aiImportFile(path.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_ForceGenNormals);
@@ -36,5 +36,5 @@ namespace FBXIMPORTER {
 		}
 
 		return AABBvector;
-	}
+	}*/
 }

@@ -1,8 +1,8 @@
 #pragma once
+
 #include "VertexArray.h"
 #include "Animation/animations/OzzAnimationPartialBlending.h"
-
-struct AABBox;
+#include "TheOneEngine/BBox.hpp"
 
 struct ModelData
 {

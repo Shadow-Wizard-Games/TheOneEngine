@@ -697,8 +697,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCameraGO(std::string name)
 	cameraGO.get()->GetComponent<Camera>()->UpdateCamera();
 
 	cameraGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
-	currentScene->GetRootSceneGO().get()->children.emplace_back(cameraGO);
-	return cameraGO;
+	return currentScene->GetRootSceneGO().get()->children.emplace_back(cameraGO);
 }
 
 std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
@@ -735,8 +734,8 @@ std::shared_ptr<GameObject> N_SceneManager::CreateLightGO(LightType type)
 	lightGO.get()->AddComponent<Light>(type);
 
 	lightGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
-	currentScene->GetRootSceneGO().get()->children.emplace_back(lightGO);
-	return lightGO;
+	
+	return currentScene->GetRootSceneGO().get()->children.emplace_back(lightGO);
 }
 
 void N_SceneManager::CreateMeshGO(std::string path)

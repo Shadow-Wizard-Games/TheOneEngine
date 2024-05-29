@@ -510,7 +510,7 @@ void Renderer3D::LightPass(RenderTarget target)
 	uint pointLightNum = 0;
 	uint spotLightNum = 0;
 
-	Transform* cameraTransform = target.GetCamera()->GetContainerGO()->GetComponent<Transform>();
+	Transform* cameraTransform = target.GetCamera()->GetContainerGO().get()->GetComponent<Transform>();
 
 	Uniform::SamplerData gPositionData;
 	gPositionData.tex_id = gBuffer->GetAttachmentTexture("position");
