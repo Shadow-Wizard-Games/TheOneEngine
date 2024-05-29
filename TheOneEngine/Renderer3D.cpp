@@ -47,6 +47,7 @@ void Renderer3D::Init()
 
 	InitPreLightingShader();
 	InitPostLightingShader();
+	InitIndexShaders();
 }
 
 void Renderer3D::Update(RenderTarget target)
