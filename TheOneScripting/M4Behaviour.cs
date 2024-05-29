@@ -22,7 +22,7 @@ internal class M4Behaviour : MonoBehaviour
 
     public override void Start()
     {
-        player = IGameObject.Find("SK_MainCharacter").GetComponent<PlayerScript>();
+        player = IGameObject.Find("SK_MainCharacter")?.GetComponent<PlayerScript>();
         playerTransform = player.attachedGameObject.GetComponent<ITransform>();
 
         attachedGameObject.animator.Blend = true;

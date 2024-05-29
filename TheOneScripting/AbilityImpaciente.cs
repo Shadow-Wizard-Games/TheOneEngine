@@ -72,7 +72,7 @@
         player.shootingCooldown = impacienteShootingCd;
 
         float speedReduce = player.baseSpeed * slowAmount;
-        player.speed -= speedReduce;
+        player.currentSpeed -= speedReduce;
 
         player.currentWeaponDamage = damage;
 
@@ -98,7 +98,7 @@
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
-                player.speed = player.baseSpeed;
+                player.currentSpeed = player.baseSpeed;
                 player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
                 player.currentWeaponDamage = damage;
                 //player.impacienteBulletCounter = 0;
@@ -113,7 +113,7 @@
         {
             // reset stats
             //player.shootingCooldown = player.mp4ShootingCd;
-            player.speed = player.baseSpeed;
+            player.currentSpeed = player.baseSpeed;
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;

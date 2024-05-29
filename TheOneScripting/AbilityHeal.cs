@@ -89,7 +89,7 @@ public class AbilityHeal : MonoBehaviour
             numHeals--;
 
             // reset stats
-            player.speed = player.baseSpeed;
+            player.currentSpeed = player.baseSpeed;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

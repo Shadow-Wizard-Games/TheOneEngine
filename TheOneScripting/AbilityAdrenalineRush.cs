@@ -57,12 +57,12 @@ public class AbilityAdrenalineRush : MonoBehaviour
             case AbilityState.ACTIVE:
 
                 WhileActive();
-                
+
                 break;
             case AbilityState.COOLDOWN:
 
                 OnCooldown();
-                
+
                 break;
         }
     }
@@ -73,11 +73,30 @@ public class AbilityAdrenalineRush : MonoBehaviour
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
+
+            if (healthRegenTimeCounter > 0)
+            {
+                // update time
+                healthRegenTimeCounter -= Time.deltaTime;
+
+                timeSinceLastTick += Time.deltaTime;
+
+                // Regeneration tick
+                if (timeSinceLastTick >= intervalTime)
+                {
+                    if ((player.HP + healingInterval) < player.maxHP)
+                        player.HP += healingInterval;
+                    else
+                        player.HP = player.maxHP;
+
+                    timeSinceLastTick = 0.0f;
+                }
+            }
         }
         else
         {
             // reset stats
-            player.speed = player.baseSpeed;
+            player.currentSpeed = player.baseSpeed;
             healthRegenTimeCounter = healthRegenTime;
 
             player.damageIncrease = 0.0f;
@@ -86,25 +105,6 @@ public class AbilityAdrenalineRush : MonoBehaviour
             state = AbilityState.COOLDOWN;
 
             Debug.Log("Resetted player stats");
-        }
-
-        if (healthRegenTimeCounter > 0)
-        {
-            // update time
-            healthRegenTimeCounter -= Time.deltaTime;
-
-            timeSinceLastTick += Time.deltaTime;
-
-            // Regeneration tick
-            if (timeSinceLastTick >= intervalTime)
-            {
-                if ((player.HP + healingInterval) < player.maxHP)
-                    player.HP += healingInterval;
-                else
-                    player.HP = player.maxHP;
-
-                timeSinceLastTick = 0.0f;
-            }
         }
     }
 

@@ -49,12 +49,11 @@ public class PlayerScript : MonoBehaviour
 
     // movement
     public float baseSpeed = 80.0f;
-    public float speed;
+    public float currentSpeed;
     public Vector3 movementDirection;
     public Vector3 lastMovementDirection;
     public float movementMagnitude;
 
-    public Item currentWeapon;
     public CurrentWeapon currentWeaponType;
     public CurrentAction currentAction;
 
@@ -121,7 +120,7 @@ public class PlayerScript : MonoBehaviour
         currentAction = CurrentAction.IDLE;
 
         timeFromLastStep = 0.3f;
-        speed = baseSpeed;
+        currentSpeed = baseSpeed;
         maxHP = 100.0f;
         HP = maxHP;
     }
@@ -137,6 +136,17 @@ public class PlayerScript : MonoBehaviour
             currentWeaponType = CurrentWeapon.M4;
         }
         //
+
+        // background music
+        if (!isFighting && currentAudioState == IAudioSource.AudioStateID.COMBAT)
+        {
+            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+        }
+
+        if (isFighting && currentAudioState == IAudioSource.AudioStateID.SHIP)
+        {
+            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
+        }
 
         UpdatePlayerState();
 
@@ -185,78 +195,76 @@ public class PlayerScript : MonoBehaviour
         movementDirection = Vector3.zero;
         movementMagnitude = 0;
 
+        currentAction = CurrentAction.IDLE;
+
         SetAimDirection();
 
         if (SetMoveDirection()
-            && Dash.state != AbilityDash.AbilityState.ACTIVE
-            && Heal.state != AbilityHeal.AbilityState.ACTIVE)
+            && Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.RUN;
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
-                && currentWeaponType != CurrentWeapon.NONE)
+                && currentWeaponType != CurrentWeapon.NONE
+                && Dash.state != AbilityDash.AbilityState.ACTIVE
+                && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
                 currentAction = CurrentAction.RUNSHOOT;
+                return;
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-                && Heal.state == AbilityHeal.AbilityState.READY
                 && currentAction != CurrentAction.DASH)
             {
                 currentAction = CurrentAction.RUNHEAL;
+                return;
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
-                && AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.READY
                 && currentAction != CurrentAction.HEAL
                 && currentAction != CurrentAction.DASH)
             {
                 currentAction = CurrentAction.RUNADRENALINERUSH;
+                return;
             }
         }
         else if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE
-            && Dash.state != AbilityDash.AbilityState.ACTIVE)
+            && Dash.state != AbilityDash.AbilityState.ACTIVE
+            && Heal.state != AbilityHeal.AbilityState.ACTIVE)
         {
 
             currentAction = CurrentAction.IDLE;
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
-                && currentWeaponType != CurrentWeapon.NONE)
+                && currentWeaponType != CurrentWeapon.NONE
+                && Dash.state != AbilityDash.AbilityState.ACTIVE
+                && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
                 currentAction = CurrentAction.SHOOT;
+                return;
             }
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.B))
-            && Dash.state == AbilityDash.AbilityState.READY)
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.B)))
         {
             currentAction = CurrentAction.DASH;
+            return;
         }
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-            && Heal.state == AbilityHeal.AbilityState.READY
-            && currentAction != CurrentAction.DASH)
+            && Dash.state != AbilityDash.AbilityState.ACTIVE
+            && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.HEAL;
+            return;
         }
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
-            && AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.READY
-            && currentAction != CurrentAction.HEAL
-            && currentAction != CurrentAction.DASH)
+            && Heal.state != AbilityHeal.AbilityState.ACTIVE
+            && Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.ADRENALINERUSH;
-        }
-
-        // background music
-        if (!isFighting && currentAudioState == IAudioSource.AudioStateID.COMBAT)
-        {
-            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
-        }
-
-        if (isFighting && currentAudioState == IAudioSource.AudioStateID.SHIP)
-        {
-            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
+            return;
         }
     }
 
@@ -322,8 +330,11 @@ public class PlayerScript : MonoBehaviour
         {
             attachedGameObject.source.Play(IAudioSource.AudioEvent.P_DASH);
 
-            attachedGameObject.animator.Play("Roll");
+            attachedGameObject.animator.Play("Dash");
         }
+
+        // Cancel heal when dash
+        if (Heal.state == AbilityHeal.AbilityState.ACTIVE) Heal.state = AbilityHeal.AbilityState.READY;
     }
     private void ShootAction()
     {
@@ -376,12 +387,14 @@ public class PlayerScript : MonoBehaviour
     }
     private void AdrenalineRushAction()
     {
+        if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
+
         // Calculate heal amount
         float totalHeal = HP * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
         float speedIncrease = baseSpeed * AdrenalineRush.speedAmount;
-        speed += speedIncrease;
+        currentSpeed += speedIncrease;
 
         // increase damage
         damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
@@ -389,15 +402,21 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
         attachedGameObject.animator.Play("Adrenaline Rush Static");
+
+        Debug.Log("Activated Adrenaline Rush");
     }
     private void RunAdrenalineRushAction()
     {
+        Move();
+
+        if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
+
         // Calculate heal amount
         float totalHeal = HP * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
         float speedIncrease = baseSpeed * AdrenalineRush.speedAmount;
-        speed += speedIncrease;
+        currentSpeed += speedIncrease;
 
         // increase damage
         damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
@@ -405,11 +424,15 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
         attachedGameObject.animator.Play("Adrenaline Rush Moving");
+
+        Debug.Log("Activated Adrenaline Rush");
     }
     private void HealAction()
     {
+        if (Heal.state != AbilityHeal.AbilityState.READY) return;
+
         float speedReduce = baseSpeed * Heal.slowAmount;
-        speed -= speedReduce;
+        currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
 
@@ -419,13 +442,16 @@ public class PlayerScript : MonoBehaviour
     {
         Move();
 
+        if (Heal.state != AbilityHeal.AbilityState.READY) return;
+
         float speedReduce = baseSpeed * Heal.slowAmount;
-        speed -= speedReduce;
+        currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
 
         Debug.Log("Ability Heal Activated");
     }
+
     private bool SetMoveDirection()
     {
         bool toMove = false;
@@ -561,7 +587,7 @@ public class PlayerScript : MonoBehaviour
     {
         timeFromLastStep += Time.deltaTime;
 
-        float currentSpeed = speed;
+        float currentSpeed = this.currentSpeed;
         if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
 
         attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
