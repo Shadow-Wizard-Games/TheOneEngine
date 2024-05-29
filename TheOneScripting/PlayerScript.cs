@@ -2,6 +2,13 @@
 
 public class PlayerScript : MonoBehaviour
 {
+    public enum SkillSet
+    {
+        NONE,
+        SHOULDERLASERSET,
+        M4A1SET,
+    }
+
     public enum CurrentWeapon
     {
         NONE,
@@ -48,7 +55,7 @@ public class PlayerScript : MonoBehaviour
     public float damageIncrease = 0.0f;
 
     // movement
-    public float baseSpeed = 80.0f;
+    public float baseSpeed;
     public float currentSpeed;
     public Vector3 movementDirection;
     public Vector3 lastMovementDirection;
@@ -56,12 +63,15 @@ public class PlayerScript : MonoBehaviour
 
     public CurrentWeapon currentWeaponType;
     public CurrentAction currentAction;
+    public SkillSet currentSkillSet;
+    float skillSetChangeBaseCD;
+    float skillSetChangeTime;
 
     // CHANGE WHEN INVENTORY OVERHAUL
     public float currentWeaponDamage;
     //
 
-    // DEPENDS ON WEAPON TYPE
+    // DEPENDS ON WEAPON ITEM TYPE
     public bool hasShot = false;
     float timeSinceLastShot = 0.0f;
     public float shootingCooldown = 0.15f;
@@ -70,8 +80,8 @@ public class PlayerScript : MonoBehaviour
     // abilities
     AbilityGrenadeLauncher GrenadeLauncher;
     AbilityAdrenalineRush AdrenalineRush;
-    //AbilityFlamethrower Flamethrower;
-    //AbilityImpaciente Impaciente;
+    AbilityFlamethrower Flamethrower;
+    AbilityImpaciente Impaciente;
     //AbilityShield Shield;
     AbilityDash Dash;
     AbilityHeal Heal;
@@ -99,8 +109,8 @@ public class PlayerScript : MonoBehaviour
         IGameObject Abilities = attachedGameObject.FindInChildren("Abilities");
         GrenadeLauncher = Abilities.GetComponent<AbilityGrenadeLauncher>();
         AdrenalineRush = Abilities.GetComponent<AbilityAdrenalineRush>();
-        //Flamethrower = Abilities.GetComponent<AbilityFlamethrower>();
-        //Impaciente = Abilities.GetComponent<AbilityImpaciente>();
+        Flamethrower = Abilities.GetComponent<AbilityFlamethrower>();
+        Impaciente = Abilities.GetComponent<AbilityImpaciente>();
         //Shield = Abilities.GetComponent<AbilityShield>();
         Heal = Abilities?.GetComponent<AbilityHeal>();
         Dash = Abilities?.GetComponent<AbilityDash>();
@@ -118,11 +128,18 @@ public class PlayerScript : MonoBehaviour
 
         currentWeaponType = CurrentWeapon.NONE;
         currentAction = CurrentAction.IDLE;
+        currentSkillSet = SkillSet.NONE;
 
         timeFromLastStep = 0.3f;
+
+        baseSpeed = 90.0f;
         currentSpeed = baseSpeed;
+
         maxHP = 100.0f;
         HP = maxHP;
+
+        skillSetChangeBaseCD = 10.0f;
+        skillSetChangeTime = 0.0f;
     }
 
     public override void Update()
@@ -133,6 +150,7 @@ public class PlayerScript : MonoBehaviour
         if (itemManager.hasM4 && currentWeaponType == CurrentWeapon.NONE)
         {
             IGameObject.InstanciatePrefab("WP_CarabinaM4", attachedGameObject.transform.Position, attachedGameObject.transform.Rotation);
+            currentSkillSet = SkillSet.M4A1SET;
             currentWeaponType = CurrentWeapon.M4;
         }
         //
@@ -195,6 +213,39 @@ public class PlayerScript : MonoBehaviour
         movementDirection = Vector3.zero;
         movementMagnitude = 0;
 
+        // CHANGE CURRENT WEAPON (DEPENDS ON SKILLSET)
+        if (skillSetChangeTime > 0.0f)
+        {
+            skillSetChangeTime -= Time.deltaTime;
+        }
+        else if (Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT))
+        {
+            if (currentSkillSet == SkillSet.M4A1SET) currentSkillSet = SkillSet.SHOULDERLASERSET;
+            else if (currentSkillSet == SkillSet.SHOULDERLASERSET) currentSkillSet = SkillSet.M4A1SET;
+
+            skillSetChangeTime = skillSetChangeBaseCD;
+        }
+
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            && currentSkillSet == SkillSet.M4A1SET
+            && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+        {
+            currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+        }
+
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            && currentSkillSet == SkillSet.SHOULDERLASERSET
+            && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
+        {
+            currentWeaponType = CurrentWeapon.FLAMETHROWER;
+        }
+
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
+            && Impaciente.state == AbilityImpaciente.AbilityState.READY)
+        {
+            currentWeaponType = CurrentWeapon.IMPACIENTE;
+        }
+
         currentAction = CurrentAction.IDLE;
 
         SetAimDirection();
@@ -204,7 +255,7 @@ public class PlayerScript : MonoBehaviour
         {
             currentAction = CurrentAction.RUN;
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R2))
                 && currentWeaponType != CurrentWeapon.NONE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
@@ -652,12 +703,37 @@ public class PlayerScript : MonoBehaviour
             hasShot = false;
         }
     }
-    private void ShootShoulderLaser() { }
-    private void ShootImpaciente() { }
-    private void ShootFlamethrower() { }
-    private void ShootGrenadeLauncher()
+    private void ShootShoulderLaser()
     {
 
+    }
+    private void ShootImpaciente()
+    {
+
+    }
+    private void ShootFlamethrower()
+    {
+
+    }
+    private void ShootGrenadeLauncher()
+    {
+        GrenadeLauncher.explosionCenterPos = attachedGameObject.transform.Position + lastMovementDirection * GrenadeLauncher.range;
+
+        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+
+        // CHANGE TO A PREFAB OF GRENADE
+        InternalCalls.InstantiateGrenade(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+        //
+
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
+
+        grenadeInitialVelocity = lastMovementDirection * GrenadeLauncher.grenadeVelocity;
+
+        currentWeaponType = CurrentWeapon.M4;
+
+        GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.COOLDOWN;
+
+        Debug.Log("Ability Grenade Launcher Activated");
     }
 
     public void ReduceLife(int damage)

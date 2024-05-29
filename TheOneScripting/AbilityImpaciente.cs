@@ -36,6 +36,8 @@
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     // put update and call the abilityStatUpdate from there or 

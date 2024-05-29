@@ -20,12 +20,12 @@ public class AbilityGrenadeLauncher : MonoBehaviour
 
     IGameObject playerGO;
     PlayerScript player;
-    
-    readonly float range = 200.0f;
-    readonly float explosionRadius = 40f;
-    Vector3 explosionCenterPos = Vector3.zero;
 
-    readonly float grenadeVelocity = 250f;
+    public readonly float range = 200.0f;
+    public readonly float explosionRadius = 40f;
+    public Vector3 explosionCenterPos = Vector3.zero;
+
+    public readonly float grenadeVelocity = 250f;
 
     public override void Start()
     {
@@ -36,47 +36,20 @@ public class AbilityGrenadeLauncher : MonoBehaviour
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     public override void Update()
     {
         switch (state)
         {
-            case AbilityState.CHARGING:
-                break;
-            case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.FIVE) && player.currentWeaponType == PlayerScript.CurrentWeapon.M4) // change input
-                {
-                    Activated();
-                    break;
-                }
-                // controller input
-                break;
-            case AbilityState.ACTIVE:
-                break;
             case AbilityState.COOLDOWN:
+
                 OnCooldown();
 
-                Debug.Log("Dash cooldown time" + cooldownTimeCounter.ToString("F2"));
                 break;
         }
-    }
-
-    public void Activated()
-    {
-        state = AbilityState.ACTIVE;
-
-        explosionCenterPos = player.attachedGameObject.transform.Position + player.lastMovementDirection * range;
-
-        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
-        InternalCalls.InstantiateGrenade(player.attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-        player.grenadeInitialVelocity = player.lastMovementDirection * grenadeVelocity;
-
-        state = AbilityState.COOLDOWN;
-
-        player.attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
-
-        Debug.Log("Ability Grenade Launcher Activated");
     }
 
     public void OnCooldown()
@@ -90,8 +63,6 @@ public class AbilityGrenadeLauncher : MonoBehaviour
         {
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
-
-            Debug.Log("Ability Grenade Launcher Ready");
         }
     }
 }
