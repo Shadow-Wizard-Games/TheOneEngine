@@ -45,6 +45,9 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     easing = true;
     camSpeedMult = 4;
 
+    renderLights = true;
+    renderShadows = true;
+
     drawMesh = true;
     drawWireframe = false;
     drawNormalsVerts = false;
@@ -163,6 +166,14 @@ bool PanelScene::Draw()
 
             if (ImGui::BeginMenu("Render"))
             {
+                if (ImGui::Checkbox("Lights", &renderLights))
+                    Renderer::SetRenderLights(renderLights);
+
+                if (ImGui::Checkbox("Shadows", &renderShadows))
+                    Renderer::SetRenderShadows(renderShadows);
+                
+                ImGui::Separator();
+
                 ImGui::Checkbox("Mesh", &drawMesh);
                 ImGui::Checkbox("Wireframe", &drawWireframe);
                 ImGui::Separator();
@@ -245,6 +256,9 @@ bool PanelScene::Draw()
 
 
         // Render --------------------------------------------------------------------------
+        
+        Renderer::GetRenderTarget(renderTarget)->SetActive(true);
+
         // Viewport resize check
         viewportSize = { availWindowSize.x, availWindowSize.y };
         
@@ -327,7 +341,7 @@ bool PanelScene::Draw()
 	}
     else
     {
-        //Renderer::GetRenderTarget(renderTarget)
+        Renderer::GetRenderTarget(renderTarget)->SetActive(false);
     }
 	ImGui::End();
 	ImGui::PopStyleVar();

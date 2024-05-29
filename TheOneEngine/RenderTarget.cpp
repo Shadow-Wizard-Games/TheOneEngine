@@ -1,12 +1,12 @@
 #include "RenderTarget.h"
 
-RenderTarget::RenderTarget(unsigned int id, std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
+RenderTarget::RenderTarget(unsigned int id, std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers, bool active)
     : id(id),
     name(name),
     mode(mode),
     camera(camera),
     viewportSize(viewportSize),
-    active(true)
+    active(active)
 {
     frameBuffers.reserve(frameBuffers.size() * sizeof(FrameBuffer));
 

@@ -79,6 +79,9 @@ private:
 	bool easing;
 	float camSpeedMult;
 
+	bool renderLights;
+	bool renderShadows;
+
 	bool drawMesh;
 	bool drawWireframe;
 	bool drawNormalsVerts;

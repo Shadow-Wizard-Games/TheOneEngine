@@ -80,7 +80,7 @@ void Renderer::Shutdown()
     renderer.cameraUniformBuffer->Delete();
 }
 
-unsigned int Renderer::AddRenderTarget(std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers)
+unsigned int Renderer::AddRenderTarget(std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers, bool active)
 {
 	unsigned int id = renderer.renderTargets.size();
 	renderer.renderTargets.emplace_back(id, name, mode, camera, viewportSize, frameBuffers);
