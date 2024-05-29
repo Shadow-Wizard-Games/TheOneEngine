@@ -32,7 +32,14 @@ public:
 	static void AddRay(Ray ray);
 	static void ClearRays();
 
-	// Draw State
+	// Render Settings
+	static bool GetRenderLights();
+	static void SetRenderLights(bool render);
+
+	static bool GetRenderShadows();
+	static void SetRenderShadows(bool render);
+
+	// Draw Settings
 	static bool GetDrawGrid();
 	static void SetDrawGrid(bool draw);
 

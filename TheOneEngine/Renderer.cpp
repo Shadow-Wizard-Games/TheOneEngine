@@ -15,6 +15,11 @@ struct RendererData
 	std::vector<RenderTarget> renderTargets;
 	std::shared_ptr<UniformBuffer> cameraUniformBuffer;
 
+    // Render Settings
+    bool renderParticles = true;
+    bool renderLights = true;
+    bool renderShadows = true;
+
     // Debug
     bool drawGrid = true;
     bool drawAxis = true;
@@ -39,7 +44,7 @@ void Renderer::Update()
 {
 	for (auto& target : renderer.renderTargets)
 	{
-        if (!target.GetCamera())
+        if (!target.GetCamera() || !target.IsActive())
             continue;
 
         Renderer::SetRenderEnvironment();
@@ -48,10 +53,17 @@ void Renderer::Update()
 		Renderer3D::Update(target);
 
         Renderer3D::GeometryPass(target);
-        Renderer2D::Update(BT::WORLD, target);
 
-        Renderer3D::ShadowPass(target);
-        Renderer3D::PostProcess(target);
+        if (renderer.renderParticles)
+            Renderer2D::Update(BT::WORLD, target);
+
+        // index buffer -> geometry pass of objects with effects
+
+        if (renderer.renderShadows)
+            Renderer3D::ShadowPass(target);
+
+        if (renderer.renderLights)
+            Renderer3D::PostProcess(target);
 
         SetUniformBufferCamera(cameraUI);
         Renderer2D::Update(BT::UI, target);
@@ -129,6 +141,15 @@ void Renderer::ClearRays()
 
 
 //@Get/Set -------------------------------------------------------------------
+
+//@Render
+bool Renderer::GetRenderLights() { return renderer.renderLights; }
+void Renderer::SetRenderLights(bool render) { renderer.renderLights = render; }
+
+bool Renderer::GetRenderShadows() { return renderer.renderShadows; }
+void Renderer::SetRenderShadows(bool render) { renderer.renderShadows = render; }
+
+//@Draw
 bool Renderer::GetDrawGrid() { return renderer.drawGrid; }
 void Renderer::SetDrawGrid(bool draw) { renderer.drawGrid = draw; }
 

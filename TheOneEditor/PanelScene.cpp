@@ -94,7 +94,7 @@ void PanelScene::Start()
 
     std::vector<std::vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
-    viewportSize = { 680, 360 };
+    viewportSize = { 640, 360 };
     renderTarget = Renderer::AddRenderTarget("Panel Scene", DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
 }
 
@@ -258,11 +258,12 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        ImGui::Image(
-            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color"),
-            ImVec2{ viewportSize.x, viewportSize.y },
-            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-       
+        ImTextureID textureID = Renderer::GetRenderLights() ?
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color") :
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
+        
+        ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
 
         // ImGuizmo ------------------------------------------------------------------------
         // Handle Input
@@ -324,6 +325,10 @@ bool PanelScene::Draw()
             //editor->SelectObject(ray);
         }
 	}
+    else
+    {
+        //Renderer::GetRenderTarget(renderTarget)
+    }
 	ImGui::End();
 	ImGui::PopStyleVar();
 
@@ -421,7 +426,7 @@ void PanelScene::CameraMovement(GameObject* cam)
 {
     Camera* camera = cam->GetComponent<Camera>();
     Transform* transform = cam->GetComponent<Transform>();
-    double dt = app->GetDT();
+    double dt = MIN(app->GetDT(), 0.016);
     double mouseSensitivity = 28.0;
 
     switch (camControlMode)

@@ -5,7 +5,8 @@ RenderTarget::RenderTarget(unsigned int id, std::string name, DrawMode mode, Cam
     name(name),
     mode(mode),
     camera(camera),
-    viewportSize(viewportSize)
+    viewportSize(viewportSize),
+    active(true)
 {
     frameBuffers.reserve(frameBuffers.size() * sizeof(FrameBuffer));
 

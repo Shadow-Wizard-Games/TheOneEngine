@@ -45,8 +45,8 @@ bool BuilderSceneManager::Start()
 
 	std::vector<std::vector<Attachment>> buildBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
-	viewportSize = { 680, 360 };
-	renderTarget = Renderer::AddRenderTarget("Build", DrawMode::EDITOR, cameraGO->GetComponent<Camera>(), viewportSize, buildBuffers);
+	viewportSize = { 640, 360 };
+	renderTarget = Renderer::AddRenderTarget("Build", DrawMode::GAME, cameraGO->GetComponent<Camera>(), viewportSize, buildBuffers);
 
 	return true;
 }

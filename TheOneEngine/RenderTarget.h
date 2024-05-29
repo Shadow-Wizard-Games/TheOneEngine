@@ -27,6 +27,9 @@ public:
 	Camera* GetCamera() { return camera; }
 	void SetCamera(Camera* camera) { this->camera = camera; }
 
+	bool IsActive() { return active; }
+	void SetActive(bool active) { this->active = active; }
+
 private:
 	unsigned int id;
 	std::string name;
@@ -35,4 +38,6 @@ private:
 
 	glm::vec2 viewportSize;
 	std::vector<FrameBuffer> frameBuffers;
+
+	bool active;
 };
