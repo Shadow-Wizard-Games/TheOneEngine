@@ -1,5 +1,7 @@
-﻿public class AbilityFlamethrower : MonoBehaviour
-{ 
+﻿using System.Security.AccessControl;
+
+public class AbilityFlamethrower : MonoBehaviour
+{
     public enum AbilityState
     {
         CHARGING,
@@ -7,12 +9,17 @@
         ACTIVE,
         COOLDOWN,
     }
-    public AbilityState state;
+
     public string abilityName;
     public float activeTime;
     public float activeTimeCounter;
     public float cooldownTime;
     public float cooldownTimeCounter;
+
+    public AbilityState state;
+
+    IGameObject playerGO;
+    PlayerScript player;
 
     public override void Start()
     {
@@ -20,6 +27,9 @@
 
         activeTime = 10.0f;
         cooldownTime = 20.0f;
+
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     public override void Update()
@@ -27,25 +37,25 @@
         switch (state)
         {
             case AbilityState.READY:
-                {
-                    if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
-                    {
-                        Activated();
 
-                        break;
-                    }
+                if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
+                {
+                    Activated();
+
                     break;
                 }
+                break;
+
             case AbilityState.ACTIVE:
-                {
-                    WhileActive();
-                    break;
-                }
+
+                WhileActive();
+                break;
+
             case AbilityState.COOLDOWN:
-                {
-                    OnCooldown();
-                    break;
-                }
+
+                OnCooldown();
+                break;
+
         }
     }
 
@@ -56,7 +66,7 @@
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_FT);
 
-        this.state = AbilityState.ACTIVE;
+        state = AbilityState.ACTIVE;
     }
 
     public void WhileActive()
@@ -70,7 +80,7 @@
         {
             cooldownTimeCounter = cooldownTime;
 
-            this.state = AbilityState.COOLDOWN;
+            state = AbilityState.COOLDOWN;
         }
     }
 
@@ -83,7 +93,7 @@
         }
         else
         {
-            this.state = AbilityState.READY;
+            state = AbilityState.READY;
         }
     }
 }

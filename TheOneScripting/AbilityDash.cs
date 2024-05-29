@@ -1,12 +1,29 @@
 ﻿using System;
 
-public class AbilityDash : Ability
+public class AbilityDash : MonoBehaviour
 {
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
+
+    public AbilityState state;
+
     IGameObject playerGO;
     PlayerScript player;
 
     readonly float rollPotency = 2.0f;
     readonly float dashPotency = 3.0f;
+
 
     public override void Start()
     {
@@ -19,6 +36,8 @@ public class AbilityDash : Ability
 
         playerGO = attachedGameObject.parent;
         player = playerGO?.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     public override void Update()
@@ -38,7 +57,7 @@ public class AbilityDash : Ability
         }
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0)
         {
@@ -63,7 +82,7 @@ public class AbilityDash : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {

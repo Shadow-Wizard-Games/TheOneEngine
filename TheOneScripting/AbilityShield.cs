@@ -2,8 +2,6 @@
 
 public class AbilityShield : MonoBehaviour
 {
-    PlayerScript player;
-
     public enum AbilityState
     {
         CHARGING,
@@ -11,12 +9,17 @@ public class AbilityShield : MonoBehaviour
         ACTIVE,
         COOLDOWN,
     }
-    public AbilityState state;
+
     public string abilityName;
     public float activeTime;
     public float activeTimeCounter;
     public float cooldownTime;
     public float cooldownTimeCounter;
+
+    public AbilityState state;
+
+    IGameObject playerGO;
+    PlayerScript player;
 
     int shieldKillsToCharge;
 
@@ -32,6 +35,9 @@ public class AbilityShield : MonoBehaviour
         cooldownTimeCounter = cooldownTime;
 
         shieldKillsToCharge = 5;
+
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     public override void Update()

@@ -2,8 +2,6 @@
 
 public class AbilityGrenadeLauncher : MonoBehaviour
 {
-    PlayerScript player;
-
     public enum AbilityState
     {
         CHARGING,
@@ -11,13 +9,18 @@ public class AbilityGrenadeLauncher : MonoBehaviour
         ACTIVE,
         COOLDOWN,
     }
-    public AbilityState state;
+
     public string abilityName;
     public float activeTime;
     public float activeTimeCounter;
     public float cooldownTime;
     public float cooldownTimeCounter;
 
+    public AbilityState state;
+
+    IGameObject playerGO;
+    PlayerScript player;
+    
     readonly float range = 200.0f;
     readonly float explosionRadius = 40f;
     Vector3 explosionCenterPos = Vector3.zero;
@@ -31,7 +34,8 @@ public class AbilityGrenadeLauncher : MonoBehaviour
         cooldownTime = 4.0f;
         cooldownTimeCounter = cooldownTime;
 
-        player = attachedGameObject.parent?.GetComponent<PlayerScript>();
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     public override void Update()

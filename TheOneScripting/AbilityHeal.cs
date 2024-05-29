@@ -1,7 +1,23 @@
 ﻿using System;
 
-public class AbilityHeal : Ability
+public class AbilityHeal : MonoBehaviour
 {
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
+
+    public AbilityState state;
+
     IGameObject playerGO;
     PlayerScript player;
 
@@ -23,6 +39,8 @@ public class AbilityHeal : Ability
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -31,27 +49,24 @@ public class AbilityHeal : Ability
         switch (state)
         {
             case AbilityState.ACTIVE:
+                
                 WhileActive();
+                
                 break;
             case AbilityState.COOLDOWN:
+                
                 OnCooldown();
+                
                 break;
         }
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0)
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
-
-            // cancel healing
-            if (player.currentAction == PlayerScript.CurrentAction.DASH || player.currentWeaponType == PlayerScript.CurrentWeapon.IMPACIENTE)
-            {
-                player.speed = player.baseSpeed;
-                state = AbilityState.READY;
-            }
         }
         else
         {
@@ -83,7 +98,7 @@ public class AbilityHeal : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {
@@ -93,7 +108,11 @@ public class AbilityHeal : Ability
         else
         {
             cooldownTimeCounter = cooldownTime;
-            state = AbilityState.READY;
+
+            if (numHeals > 0)
+            {
+                state = AbilityState.READY;
+            }
 
             Debug.Log("Ability Heal Ready");
         }

@@ -1,7 +1,5 @@
 ﻿public class AbilityImpaciente : MonoBehaviour
 {
-    PlayerScript player;
-
     public enum AbilityState
     {
         CHARGING,
@@ -9,12 +7,17 @@
         ACTIVE,
         COOLDOWN,
     }
-    public AbilityState state;
+
     public string abilityName;
     public float activeTime;
     public float activeTimeCounter;
     public float cooldownTime;
     public float cooldownTimeCounter;
+
+    public AbilityState state;
+
+    IGameObject playerGO;
+    PlayerScript player;
 
     readonly int damage = 10;
 
@@ -30,6 +33,9 @@
         activeTimeCounter = activeTime;
         cooldownTime = 45.0f;
         cooldownTimeCounter = cooldownTime;
+
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
     }
 
     // put update and call the abilityStatUpdate from there or 
