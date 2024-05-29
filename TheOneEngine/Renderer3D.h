@@ -29,8 +29,8 @@ struct DefaultMesh
 class SkeletalCall
 {
 public:
-	SkeletalCall(int meshID, int mat, const glm::mat4& modelMat) :
-		resourceID(meshID), matID(mat), model(modelMat) {}
+	SkeletalCall(int meshID, int mat, const glm::mat4& modelMat, bool fx = false) :
+		resourceID(meshID), matID(mat), model(modelMat), hasEffect(fx) {}
 
 	~SkeletalCall() = default;
 
@@ -41,11 +41,13 @@ public:
 	const int& GetMeshResourceID() const { return resourceID; }
 	const int& GetMatID() const { return matID; }
 	const glm::mat4& GetModel() const { return model; }
+	bool HasEffect() const { return hasEffect; }
 
 private:
 	int resourceID;
 	int matID;
 	glm::mat4 model;
+	bool hasEffect;
 };
 
 class InstanceCall
@@ -96,6 +98,7 @@ public:
 	static void ResetCalls();
 
 	static void GeometryPass(RenderTarget target);
+	static void IndexPass(RenderTarget target);
 	static void PostProcess(RenderTarget target);
 	static void ShadowPass(RenderTarget target);
 
@@ -121,4 +124,6 @@ private:
 
 	static void InitPreLightingShader();
 	static void InitPostLightingShader();
+	static void InitIndexShaders();
+
 };

@@ -54,6 +54,8 @@ void Renderer::Update()
 
         Renderer3D::GeometryPass(target);
 
+        Renderer3D::IndexPass(target);
+
         if (renderer.renderParticles)
             Renderer2D::Update(BT::WORLD, target);
 

@@ -22,6 +22,7 @@ struct Renderer3DData
 	std::vector<SkeletalCall> skeletalCalls;
 
 	ResourceId lightingMatID = -1;
+	ResourceId indexSkeletalShaderID = -1;
 
 	uint dynamicVAO = 0;
 	uint dynamicVBO = 0;
@@ -368,17 +369,26 @@ void Renderer3D::DrawSkeletal(const SkeletalCall& call)
 
 	// ========================= RENDERING =====================================
 
-	Shader* animShader = material->getShader();
+	Shader* animShader;
 
-	animShader->Bind();
-	animShader->SetModel(call.GetModel());
+	if (!call.HasEffect())
+	{
+		animShader = material->getShader();
+		animShader->Bind();
+		animShader->SetModel(call.GetModel());
+		material->Bind();
+	}
+	else
+	{
+		animShader = Resources::GetResourceById<Shader>(renderer3D.indexSkeletalShaderID);
+		animShader->Bind();
+		animShader->SetModel(call.GetModel());
+	}
 
 	GLCALL(glBindVertexArray(renderer3D.dynamicVAO));
 	// Updates dynamic vertex buffer with skinned data.
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderer3D.dynamicVBO));
 	GLCALL(glBufferData(GL_ARRAY_BUFFER, vboSize, vboMap, GL_STREAM_DRAW));
-
-	material->Bind();
 
 	GLCALL(glEnableVertexAttribArray(0));
 	GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, positionsVertexDataStride,
@@ -444,6 +454,27 @@ void Renderer3D::GeometryPass(RenderTarget target)
 		DrawSkeletal(call);
 
 	gBuffer->Unbind();
+}
+
+void Renderer3D::IndexPass(RenderTarget target)
+{
+	FrameBuffer* indexBuffer = target.GetFrameBuffer("indexBuffer");
+
+	indexBuffer->Bind();
+	indexBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
+
+	// Set Render Environment
+	Renderer::SetRenderEnvironment();
+
+	// Draw Scene
+	GLCALL(glDisable(GL_BLEND));
+	for (const SkeletalCall& call : renderer3D.skeletalCalls)
+	{
+		if (call.HasEffect())
+			DrawSkeletal(call);
+	}
+
+	indexBuffer->Unbind();
 }
 
 void Renderer3D::PostProcess(RenderTarget target)
@@ -698,4 +729,13 @@ void Renderer3D::InitPostLightingShader()
 	std::string lightingProcessPath = Resources::PathToLibrary<Material>() + "lightingProcess.toematerial";
 	Resources::Import<Material>(lightingProcessPath, &lightinProcessMat);
 	renderer3D.lightingMatID = Resources::LoadFromLibrary<Material>(lightingProcessPath);
+}
+
+void Renderer3D::InitIndexShaders()
+{
+	renderer3D.indexSkeletalShaderID = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimatedIndex");
+	Shader* skeletalTextShader = Resources::GetResourceById<Shader>(renderer3D.indexSkeletalShaderID);
+	skeletalTextShader->Compile("Assets/Shaders/MeshTextureAnimatedIndex");
+
+	Resources::Import<Shader>("MeshTextureAnimatedIndex", skeletalTextShader);
 }
