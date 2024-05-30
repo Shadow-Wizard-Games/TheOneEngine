@@ -24,6 +24,7 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO) : Component(containerGO, Com
     drawNormalsVerts = false;
     drawAABB = true;
     drawChecker = false;
+    hasEffect = false;
 
     normalLineWidth = 1;
     normalLineLength = 0.1f;
@@ -36,6 +37,7 @@ Mesh::Mesh(std::shared_ptr<GameObject> containerGO, Mesh* ref) : Component(conta
     drawNormalsVerts = ref->drawNormalsVerts;
     drawAABB = ref->drawAABB;
     drawChecker = ref->drawChecker;
+    hasEffect = false;
 
     meshID = ref->meshID;
     materialID = ref->materialID;
@@ -64,7 +66,7 @@ void Mesh::DrawComponent(Camera* camera)
 	    	break;
 
 	    case MeshType::SKELETAL:
-            Renderer3D::AddSkeletalMeshToQueue(meshID, materialID, transform);
+            Renderer3D::AddSkeletalMeshToQueue(meshID, materialID, transform, hasEffect);
 	    	break;
 
 	    default: break;

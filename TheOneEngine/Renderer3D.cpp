@@ -132,9 +132,9 @@ void Renderer3D::AddMeshToQueue(StackVertexArray meshID, int matID, const glm::m
 	AddInstanceCall(meshID, matID, modelMat);
 }
 
-void Renderer3D::AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat)
+void Renderer3D::AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat, bool hasEffect)
 {
-	renderer3D.skeletalCalls.emplace_back(meshID, matID, modelMat);
+	renderer3D.skeletalCalls.emplace_back(meshID, matID, modelMat, hasEffect);
 }
 
 void Renderer3D::AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat)

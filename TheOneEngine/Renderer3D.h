@@ -109,7 +109,7 @@ public:
 
 	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
-	static void AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat);
+	static void AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat, bool hasEffect = false);
 
 private:
 	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);

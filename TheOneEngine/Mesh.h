@@ -52,6 +52,8 @@ public:
     float normalLineLength;
 
     MeshType meshType;
+
+    bool hasEffect;
 };
 
 #endif // !__MESH_H__
