@@ -147,7 +147,7 @@ bool PanelGame::Draw()
 		if (offset.x) ImGui::SameLine();
 
 		ImTextureID textureID = Renderer::GetRenderLights() ?
-			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color") :
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color") :
 			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
 
 		ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });

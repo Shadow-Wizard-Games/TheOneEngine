@@ -101,6 +101,8 @@ public:
 	static void IndexPass(RenderTarget target);
 	static void PostProcess(RenderTarget target);
 	static void ShadowPass(RenderTarget target);
+	static void LightPass(RenderTarget target);
+	static void UIComposition(RenderTarget target);
 
 	static void AddLight(std::shared_ptr<GameObject> container);
 	static void CleanLights();
@@ -115,14 +117,8 @@ private:
 
 	static void DrawInstanced(const InstanceCall& call);
 	static void DrawSkeletal(const SkeletalCall& call, bool overrideEffects = false);
-	
-	//static void DrawSceneOpaque(std::shared_ptr<GameObject> parentGO, Camera* camera);
-	//static void DrawSceneTransparent(std::shared_ptr<GameObject> parentGO, Camera* camera);
-
-	static void LightPass(RenderTarget target);
 
 	static void InitPreLightingShader();
 	static void InitPostLightingShader();
 	static void InitIndexShaders();
-
 };

@@ -8,8 +8,6 @@
 #include "RenderTarget.h"
 #include "Ray.h"
 
-static const glm::mat4 cameraUI = glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f);
-
 struct RendererData
 {
 	std::vector<RenderTarget> renderTargets;
@@ -54,15 +52,8 @@ void Renderer::Update()
 
         Renderer3D::GeometryPass(target);
 
-        //Renderer3D::IndexPass(target);
-
         if (renderer.renderParticles)
-        {
             Renderer2D::Update(BT::WORLD, target);
-            
-        }
-
-        // index buffer -> geometry pass of objects with effects
 
         if (renderer.renderShadows)
             Renderer3D::ShadowPass(target);
@@ -70,8 +61,7 @@ void Renderer::Update()
         if (renderer.renderLights)
             Renderer3D::PostProcess(target);
 
-        SetUniformBufferCamera(cameraUI);
-        Renderer2D::Update(BT::UI, target);
+        Renderer3D::UIComposition(target);
 	}
 
     Renderer2D::ResetBatches();
@@ -88,7 +78,7 @@ void Renderer::Shutdown()
 unsigned int Renderer::AddRenderTarget(std::string name, DrawMode mode, Camera* camera, glm::vec2 viewportSize, std::vector<std::vector<Attachment>> frameBuffers, bool active)
 {
 	unsigned int id = renderer.renderTargets.size();
-	renderer.renderTargets.emplace_back(id, name, mode, camera, viewportSize, frameBuffers);
+	renderer.renderTargets.emplace_back(id, name, mode, camera, viewportSize, frameBuffers, active);
 	return id;
 }
 
