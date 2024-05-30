@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using static Item;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +16,8 @@ public class GameManager : MonoBehaviour
 
     public List<string> savedLevels = new List<string>();
 
-    //Historn: Shortcuts hardcoded
+    //Shortcuts logic
+    public string lastLevel;
     public bool activeShortcutL1R1;
 
     public override void Start()
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
         godMode = false;
         extraSpeed = false;
 
+        lastLevel = " ";
         activeShortcutL1R1 = true;
 
         DrawColliders();
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         if (!savedLevels.Contains(SceneManager.GetCurrentSceneName()))
             savedLevels.Add(SceneManager.GetCurrentSceneName());
 
+        lastLevel = SceneManager.GetCurrentSceneName();
         InternalCalls.CreateSaveFromScene("GameData/Scenes", SceneManager.GetCurrentSceneName());
     }
 
