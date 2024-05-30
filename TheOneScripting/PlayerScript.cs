@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -134,6 +135,8 @@ public class PlayerScript : MonoBehaviour
 
         currentWeapon = CurrentWeapon.NONE;
         currentAction = CurrentAction.IDLE;
+
+        SetInitPosInScene();
     }
 
     public override void Update()
@@ -503,5 +506,27 @@ public class PlayerScript : MonoBehaviour
         if (isDead) return 0;
 
         return life;
+    }
+
+    private void SetInitPosInScene()
+    {
+        if (gameManager.lastLevel == " ") { return; }
+
+        string patternL = $"L(\\d+)";
+        string patternR = $"R(\\d+)";
+
+        Match matchL = Regex.Match(gameManager.lastLevel, patternL);
+        Match matchR = Regex.Match(gameManager.lastLevel, patternR);
+        IGameObject swapGO = IGameObject.Find("SwapScene_" + matchL.Groups[0].Value + "_" + matchR.Groups[0].Value);
+
+        ITransform spawnTransform = swapGO?.GetComponent<ITransform>();
+        Vector3 spawnPos = spawnTransform.Position;
+
+        Debug.Log("Found door: SwapScene_" + matchL.Groups[0].Value + "_" + matchR.Groups[0].Value);
+        if (spawnTransform == null)
+        {
+            spawnPos = Vector3.zero;
+        }
+        attachedGameObject.transform.Position = spawnPos;
     }
 }
