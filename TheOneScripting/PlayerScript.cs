@@ -25,12 +25,10 @@ public class PlayerScript : MonoBehaviour
         RUN,
         SHOOT,
         RUNSHOOT,
-        #region CONSUMABLES
         ADRENALINERUSH,
         RUNADRENALINERUSH,
         HEAL,
         RUNHEAL,
-        #endregion
         DASH,
         DEAD,
     }
@@ -705,7 +703,26 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootShoulderLaser()
     {
+        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
+        // CHANGE WITH REAL STATS, M4 PLACEHOLDER
+
+        if (timeSinceLastShot < shootingCooldown)
+        {
+            timeSinceLastShot += Time.deltaTime;
+            if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
+            {
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
+                hasShot = true;
+                shotParticles.Replay();
+            }
+        }
+        else
+        {
+            timeSinceLastShot = 0.0f;
+            hasShot = false;
+        }
     }
     private void ShootImpaciente()
     {

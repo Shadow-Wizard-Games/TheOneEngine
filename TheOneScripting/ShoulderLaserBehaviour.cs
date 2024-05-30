@@ -1,6 +1,6 @@
-﻿internal class M4Behaviour : MonoBehaviour
+internal class ShoulderLaserBehaviour : MonoBehaviour
 {
-    State M4State;
+    State SLState;
     PlayerScript player;
     ITransform playerTransform;
 
@@ -21,7 +21,7 @@
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.1f;
 
-        M4State = State.NOTM4;
+        SLState = State.NOTM4;
     }
 
     public override void Update()
@@ -31,7 +31,7 @@
 
         ChangeWeaponState();
 
-        switch (M4State)
+        switch (SLState)
         {
             case State.IDLE:
                 attachedGameObject.animator.Play("Idle");
@@ -52,21 +52,21 @@
 
     private void ChangeWeaponState()
     {
-        if (player.currentWeaponType == PlayerScript.CurrentWeapon.M4)
+        if (player.currentWeaponType == PlayerScript.CurrentWeapon.SHOULDERLASER)
         {
             switch (player.currentAction)
             {
                 case PlayerScript.CurrentAction.IDLE:
-                    M4State = State.IDLE;
+                    SLState = State.IDLE;
                     break;
                 case PlayerScript.CurrentAction.RUN:
-                    M4State = State.RUN;
+                    SLState = State.RUN;
                     break;
                 case PlayerScript.CurrentAction.SHOOT:
-                    M4State = State.SHOOT;
+                    SLState = State.SHOOT;
                     break;
                 case PlayerScript.CurrentAction.RUNSHOOT:
-                    M4State = State.RUNSHOOT;
+                    SLState = State.RUNSHOOT;
                     break;
             }
         }
