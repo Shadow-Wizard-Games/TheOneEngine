@@ -14,6 +14,8 @@ public class EventCheckpoint : Event
     GameManager gameManager;
     UiManager menuManager;
 
+    IParticleSystem saveParticles;
+
     float playerDistance;
 
     readonly float tpRange = 100.0f;
@@ -26,6 +28,8 @@ public class EventCheckpoint : Event
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+
+        saveParticles = IGameObject.Find("SaveParticles").GetComponent<IParticleSystem>();
 
         eventType = EventType.CHECKPOINT;
     }
@@ -62,6 +66,8 @@ public class EventCheckpoint : Event
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.Y))
         {
+            if (saveParticles != null) saveParticles.Replay();
+            
             gameManager.UpdateSave();
             menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
         }
