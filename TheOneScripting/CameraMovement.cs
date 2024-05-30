@@ -3,11 +3,10 @@
 public class CameraMovement : MonoBehaviour
 {
     IGameObject playerGO;
-    PlayerScript playerScript;
-    readonly Vector3 camOffset = new Vector3(90, 220, 90);
+    readonly Vector3 cameraOffset = new Vector3(90, 220, 90);
     //float camJoyDisplacement = 10.0f;
 
-    readonly float cameraMargin = 10.0f;
+    readonly Vector3 cameraMargins = new Vector3(10, 999, 10);
 
     bool isCameraMoving = false;
 
@@ -17,10 +16,10 @@ public class CameraMovement : MonoBehaviour
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
         playerScript = playerGO.GetComponent<PlayerScript>();
-        attachedGameObject.transform.Position = playerGO.transform.Position + camOffset;
+        attachedGameObject.transform.Position = playerGO.transform.Position + cameraOffset;
         attachedGameObject.transform.CamLookAt(playerGO.transform.Position);
 
-        cameraMovementEasing = new Easing(0.2, 0, false);
+        cameraMovementEasing = new Easing(1, 0, false);
         cameraMovementEasing.Play();
     }
 
@@ -33,36 +32,73 @@ public class CameraMovement : MonoBehaviour
 
     void DoCameraMovement()
     {
-        Vector3 difference = attachedGameObject.transform.Position - playerGO.transform.Position;
+        Vector3 distanceCameraToPlayer = attachedGameObject.transform.Position - playerGO.transform.Position;
 
-        Vector3 displacement = difference - camOffset;
+        Vector3 distanceDifferenceThanIdle = distanceCameraToPlayer - cameraOffset;
 
-        Vector3 camMovement = Vector3.zero;
+        Vector3 cameraMovement = Vector3.zero;
 
         bool hasMoved = false;
 
-        if (Math.Abs(displacement.x) > cameraMargin || Math.Abs(displacement.y) > cameraMargin || Math.Abs(displacement.z) > cameraMargin)
+        if (Math.Abs(distanceDifferenceThanIdle.x) > cameraMargins.x)
         {
             hasMoved = true;
+
+            if (distanceDifferenceThanIdle.x > 0)
+            {
+                cameraMovement = new Vector3(-(Math.Abs(distanceDifferenceThanIdle.x) - cameraMargins.x), cameraMovement.y, cameraMovement.z);
+            }
+            else
+            {
+                cameraMovement = new Vector3(Math.Abs(distanceDifferenceThanIdle.x) - cameraMargins.x, cameraMovement.y, cameraMovement.z);
+            }
+        }
+        if (Math.Abs(distanceDifferenceThanIdle.y) > cameraMargins.y)
+        {
+            hasMoved = true;
+
+            if (distanceDifferenceThanIdle.y > 0)
+            {
+                cameraMovement = new Vector3(cameraMovement.x, -(Math.Abs(distanceDifferenceThanIdle.y) - cameraMargins.y), cameraMovement.z);
+            }
+            else
+            {
+                cameraMovement = new Vector3(cameraMovement.x, Math.Abs(distanceDifferenceThanIdle.y) - cameraMargins.y, cameraMovement.z);
+            }
+
+        }
+        if (Math.Abs(distanceDifferenceThanIdle.z) > cameraMargins.z)
+        {
+            hasMoved = true;
+
+            if (distanceDifferenceThanIdle.z > 0)
+            {
+                cameraMovement = new Vector3(cameraMovement.x, cameraMovement.y, -(Math.Abs(distanceDifferenceThanIdle.z) - cameraMargins.z));
+            }
+            else
+            {
+                cameraMovement = new Vector3(cameraMovement.x, cameraMovement.y, Math.Abs(distanceDifferenceThanIdle.z) - cameraMargins.z);
+            }
+
         }
 
-        if (displacement.x > cameraMargin)
-        {
-            camMovement -= Vector3.right;
-        }
-        else if (displacement.x < -cameraMargin)
-        {
-            camMovement += Vector3.right;
-        }
+        //if (distanceDifferenceThanIdle.x > cameraMargins.x)
+        //{
+        //    cameraMovement -= Vector3.right;
+        //}
+        //else if (distanceDifferenceThanIdle.x < -cameraMargins.x)
+        //{
+        //    cameraMovement += Vector3.right;
+        //}
 
-        if (displacement.z > cameraMargin)
-        {
-            camMovement -= Vector3.forward;
-        }
-        else if (displacement.z < -cameraMargin)
-        {
-            camMovement += Vector3.forward;
-        }
+        //if (distanceDifferenceThanIdle.z > cameraMargins.z)
+        //{
+        //    cameraMovement -= Vector3.forward;
+        //}
+        //else if (distanceDifferenceThanIdle.z < -cameraMargins.z)
+        //{
+        //    cameraMovement += Vector3.forward;
+        //}
 
         if (hasMoved != isCameraMoving)
         {
@@ -71,10 +107,10 @@ public class CameraMovement : MonoBehaviour
 
         if (hasMoved)
         {
-            attachedGameObject.transform.Translate(camMovement.Normalize() * (playerScript.speed * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_IN_SIN)) * Time.deltaTime);
+            attachedGameObject.transform.Translate(cameraMovement * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_IN_SIN));
         }
         else {
-            attachedGameObject.transform.Translate(camMovement.Normalize() * (playerScript.speed * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_OUT_SIN)) * Time.deltaTime);
+            attachedGameObject.transform.Translate(cameraMovement * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_OUT_SIN));
         }
         
         //attachedGameObject.transform.Translate(camMovement.Normalize() * (playerScript.speed * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_IN_SIN)) * Time.deltaTime);
