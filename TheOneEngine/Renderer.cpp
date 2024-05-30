@@ -62,6 +62,19 @@ void Renderer::Update()
             Renderer3D::PostProcess(target);
 
         Renderer3D::UIComposition(target);
+
+        if (target.GetMode() == DrawMode::BUILD)
+        {
+            FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
+
+            // Copy final composition to 0 Buffer
+            GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, uiBuffer->GetBuffer()));
+            GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0));
+            GLCALL(glBlitFramebuffer(
+                0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
+                0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
+                GL_COLOR_BUFFER_BIT, GL_NEAREST));
+        }
 	}
 
     Renderer2D::ResetBatches();

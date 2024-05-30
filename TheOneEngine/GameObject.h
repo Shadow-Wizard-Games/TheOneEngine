@@ -17,8 +17,9 @@ class Camera;
 
 enum class DrawMode
 {
+    EDITOR,
     GAME,
-    EDITOR
+    BUILD
 };
 
 class GameObject : public std::enable_shared_from_this<GameObject>
