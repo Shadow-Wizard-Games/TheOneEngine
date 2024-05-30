@@ -107,7 +107,7 @@ public class ItemManager : MonoBehaviour
     }
 
     // Private functions, to check certain things in the ItemManager
-    private bool CheckItemInInventory(uint id)
+    public bool CheckItemInInventory(uint id)
     {
         return inventory.ContainsKey(id) && inventory[id] > 0;
     }
