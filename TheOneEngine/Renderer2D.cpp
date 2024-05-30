@@ -304,19 +304,9 @@ void Renderer2D::UpdateIndexed(BT type, RenderTarget target)
 {
 	Batch& batch = renderer2D.batches[type];
 
-	FrameBuffer* buffer = target.GetFrameBuffer("indexBuffer");
-
-	buffer->Bind();
-	buffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
-
 	GLCALL(glDisable(GL_CULL_FACE));
-
 	DrawQuadIndexedBatch(batch);
-
 	GLCALL(glEnable(GL_CULL_FACE));
-
-
-	buffer->Unbind();
 }
 
 void Renderer2D::ResetBatches()

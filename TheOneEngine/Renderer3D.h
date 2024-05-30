@@ -120,7 +120,6 @@ private:
 	//static void DrawSceneTransparent(std::shared_ptr<GameObject> parentGO, Camera* camera);
 
 	static void LightPass(RenderTarget target);
-	static void DrawScreenQuad();
 
 	static void InitPreLightingShader();
 	static void InitPostLightingShader();
