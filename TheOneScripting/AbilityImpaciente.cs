@@ -12,7 +12,7 @@ public class AbilityImpaciente : Ability
     readonly int damage = 10;
 
     readonly float slowAmount = 0.25f;
-    readonly float impacienteShootingCd = 0.12f;
+    readonly float impacienteShootingCd = 0.05f;
     readonly float knockbackPotency = -3f;
 
     public override void Start()
@@ -57,12 +57,12 @@ public class AbilityImpaciente : Ability
     {
         player.currentWeapon = PlayerScript.CurrentWeapon.IMPACIENTE;
 
+        // rpm
         player.shootingCooldown = impacienteShootingCd;
 
         float speedReduce = player.baseSpeed * slowAmount;
         player.speed -= speedReduce;
 
-        player.currentWeapon = PlayerScript.CurrentWeapon.IMPACIENTE;
         player.currentWeoponDamage = damage;
 
         state = AbilityState.ACTIVE;
@@ -83,11 +83,16 @@ public class AbilityImpaciente : Ability
             if (player.isShooting)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
 
-            Debug.LogWarning("Impaciente Bullets --> " + player.impacienteBulletCounter);
-            if (player.impacienteBulletCounter >= player.impacienteBullets)
+            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || player.currentWeapon != PlayerScript.CurrentWeapon.IMPACIENTE || player.impacienteBulletCounter >= player.impacienteBullets)
             {
+                // reset stats
+                player.shootingCooldown = player.mp4ShootingCd;
+                player.speed = player.baseSpeed;
+                player.currentWeapon = PlayerScript.CurrentWeapon.M4;
+                player.currentWeoponDamage = damage;
                 player.impacienteBulletCounter = 0;
-                player.currentWeapon = PlayerScript.CurrentWeapon.MP4;
+                
+                activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
 
                 Debug.Log("Ability Impaciente on Cooldown");
@@ -98,10 +103,11 @@ public class AbilityImpaciente : Ability
             // reset stats
             player.shootingCooldown = player.mp4ShootingCd;
             player.speed = player.baseSpeed;
-
-            player.currentWeapon = PlayerScript.CurrentWeapon.MP4;
+            player.currentWeapon = PlayerScript.CurrentWeapon.M4;
             player.currentWeoponDamage = damage;
             activeTimeCounter = activeTime;
+            player.impacienteBulletCounter = 0;
+
             state = AbilityState.COOLDOWN;
 
             Debug.Log("Ability Impaciente on Cooldown");

@@ -5,7 +5,6 @@ public class AbilityHeal : Ability
     IGameObject playerGO;
     PlayerScript player;
 
-    readonly int numHeals = 0;
     readonly float healAmount = 0.6f; // in %
     readonly float slowAmount = 0.4f; // in %
 
@@ -31,7 +30,7 @@ public class AbilityHeal : Ability
             case AbilityState.CHARGING:
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && numHeals > 0)
+                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && player.numHeals > 0)
                 {
                     Activated();
                     break;
@@ -78,6 +77,14 @@ public class AbilityHeal : Ability
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
+
+            // cancel healing
+            if(player.isDashing || player.impacienteUsed || player.grenadeLauncherUsed || player.isShooting)
+            {
+                player.speed = player.baseSpeed;
+                player.isHealing = false;
+                state = AbilityState.READY;
+            }
         }
         else
         {
@@ -86,6 +93,8 @@ public class AbilityHeal : Ability
                 player.life = player.maxLife;
             else
                 player.life = totalHeal;
+
+            player.numHeals--;
 
             // reset stats
             player.speed = player.baseSpeed;

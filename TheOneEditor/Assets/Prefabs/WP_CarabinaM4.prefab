@@ -1,0 +1,60 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1979127205
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_M4_Idle/M_CarabinaM4.toematerial",
+      "MeshPath": "Library/Meshes/AS_M4_Idle/WP_CarabinaM4.animator",
+      "Name": "Mesh",
+      "ParentUID": 4259932,
+      "Type": 2,
+      "UID": 274631616
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 4259932,
+      "ScriptName": "M4Behaviour",
+      "Type": 4,
+      "UID": 2000554560
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "WP_CarabinaM4",
+  "ParentUID": 4290536493,
+  "PrefabDirty": false,
+  "PrefabID": 1418752008,
+  "PrefabName": "WP_CarabinaM4",
+  "Static": false,
+  "UID": 4259932
+}
