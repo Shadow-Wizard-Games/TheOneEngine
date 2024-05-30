@@ -73,7 +73,6 @@ public class PlayerScript : MonoBehaviour
 
     // CHANGE WHEN INVENTORY OVERHAUL
     public float currentWeaponDamage;
-    //
 
     // DEPENDS ON WEAPON ITEM TYPE
     public bool hasShot = false;
@@ -86,9 +85,9 @@ public class PlayerScript : MonoBehaviour
     AbilityAdrenalineRush AdrenalineRush;
     AbilityFlamethrower Flamethrower;
     AbilityImpaciente Impaciente;
-    //AbilityShield Shield;
     AbilityDash Dash;
     AbilityHeal Heal;
+    //AbilityShield Shield;
 
     // DEFINED IN ABILITY / ITEM SCRIPT
     public bool shieldIsActive = false;
@@ -275,7 +274,8 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT) || Input.GetControllerButton(Input.ControllerButtonCode.B)))
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT) || Input.GetControllerButton(Input.ControllerButtonCode.B))
+            && Dash.state == AbilityDash.AbilityState.READY)
         {
             currentAction = CurrentAction.DASH;
             return;
@@ -354,6 +354,8 @@ public class PlayerScript : MonoBehaviour
         {
             currentWeaponType = CurrentWeapon.IMPACIENTE;
         }
+
+        // SET WEAPON STATS AND VARIABLES HERE ?
 
         if (currentWeaponType != currentEquippedWeapon)
         {
@@ -838,7 +840,26 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootImpaciente()
     {
+        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
+        // CHANGE WITH REAL STATS, M4 PLACEHOLDER
+
+        if (timeSinceLastShot < shootingCooldown)
+        {
+            timeSinceLastShot += Time.deltaTime;
+            if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
+            {
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
+                hasShot = true;
+                shotParticles.Replay();
+            }
+        }
+        else
+        {
+            timeSinceLastShot = 0.0f;
+            hasShot = false;
+        }
     }
     private void ShootFlamethrower()
     {
@@ -850,7 +871,7 @@ public class PlayerScript : MonoBehaviour
 
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
-        // CHANGE TO A PREFAB OF GRENADE
+        // CHANGE TO A PREFAB OF GRENADE ?
         InternalCalls.InstantiateGrenade(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
         //
 
