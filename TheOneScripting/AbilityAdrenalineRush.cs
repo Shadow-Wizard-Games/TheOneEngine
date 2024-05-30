@@ -48,6 +48,8 @@ public class AbilityAdrenalineRush : MonoBehaviour
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     public override void Update()

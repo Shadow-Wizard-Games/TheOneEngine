@@ -111,7 +111,7 @@ public class PlayerScript : MonoBehaviour
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
 
-        M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4"); 
+        M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
         M4GO.Disable();
         ShoulderLaserGO = attachedGameObject.FindInChildren("WP_ShoulderLaser");
         ShoulderLaserGO.Disable();
@@ -296,7 +296,7 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.X))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
                 && currentAction != CurrentAction.DASH)
             {
                 currentAction = CurrentAction.RUNHEAL;
@@ -328,13 +328,13 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.B)))
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT) || Input.GetControllerButton(Input.ControllerButtonCode.B)))
         {
             currentAction = CurrentAction.DASH;
             return;
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.X))
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
             && Dash.state != AbilityDash.AbilityState.ACTIVE
             && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
         {
@@ -347,6 +347,7 @@ public class PlayerScript : MonoBehaviour
             && Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.ADRENALINERUSH;
+
             return;
         }
     }
@@ -354,8 +355,9 @@ public class PlayerScript : MonoBehaviour
     private void IdleAction()
     {
         if (Dash.state == AbilityDash.AbilityState.ACTIVE
-            || AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE
-            || Heal.state == AbilityHeal.AbilityState.ACTIVE) return;
+            || Heal.state == AbilityHeal.AbilityState.ACTIVE
+            || (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE
+                && !attachedGameObject.animator.CurrentAnimHasFinished)) return;
 
         switch (currentWeaponType)
         {
@@ -388,7 +390,6 @@ public class PlayerScript : MonoBehaviour
         Move();
 
         if (Dash.state == AbilityDash.AbilityState.ACTIVE
-            || AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE
             || Heal.state == AbilityHeal.AbilityState.ACTIVE) return;
 
         switch (currentWeaponType)
@@ -398,9 +399,11 @@ public class PlayerScript : MonoBehaviour
                 break;
             case CurrentWeapon.M4:
                 attachedGameObject.animator.Play("Run M4");
+                M4GO.animator.Play("Run");
                 break;
             case CurrentWeapon.SHOULDERLASER:
                 attachedGameObject.animator.Play("Run");
+                ShoulderLaserGO.animator.Play("Run");
                 break;
             case CurrentWeapon.IMPACIENTE:
                 attachedGameObject.animator.Play("Run Impaciente");
@@ -815,15 +818,15 @@ public class PlayerScript : MonoBehaviour
                 ShoulderLaserGO.animator.UpdateAnimation();
                 break;
             case CurrentWeapon.IMPACIENTE:
-                
+
                 break;
             case CurrentWeapon.FLAMETHROWER:
-                
+
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-                
+
                 break;
-        }    
+        }
     }
 
     public void ReduceLife(int damage)
