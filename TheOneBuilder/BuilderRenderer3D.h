@@ -29,9 +29,6 @@ public:
 public:
 
     double dtSum = 0;
-
-    std::shared_ptr<GameObject> sceneCamera;
-    std::shared_ptr<GameObject> cameraParent;
 };
 
 #endif // !__BUILDER_RENDERER_3D_H__

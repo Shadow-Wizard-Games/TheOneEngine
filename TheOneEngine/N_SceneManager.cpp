@@ -66,6 +66,7 @@ bool N_SceneManager::PreUpdate()
 		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
 
 		FindCameraInScene();
+
 		currentScene->SetIsDirty(true);
 		sceneChangeKeepGOs = false;
 		if (!previousFrameIsPlaying)

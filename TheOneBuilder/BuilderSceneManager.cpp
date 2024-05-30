@@ -3,11 +3,17 @@
 
 #include "TheOneEngine/GameObject.h"
 #include "TheOneEngine/Renderer.h"
+#include "TheOneEngine/RenderTarget.h"
 #include "TheOneEngine/Framebuffer.h"
 
 #include <vector>
 
-BuilderSceneManager::BuilderSceneManager(BuilderApp* app) : BuilderModule(app) {}
+BuilderSceneManager::BuilderSceneManager(BuilderApp* app)
+	: BuilderModule(app),
+	renderTarget(0),
+	viewportSize(640, 360),
+	changeRenderTargetCamera(true)
+{}
 
 BuilderSceneManager::~BuilderSceneManager() {}
 
@@ -20,8 +26,9 @@ bool BuilderSceneManager::Awake()
 
 bool BuilderSceneManager::Start()
 {
+	// Scene
 	engine->N_sceneManager->currentScene = new Scene(0, "NewUntitledScene");
-	cameraGO = engine->N_sceneManager->CreateCameraGO("mainCamera");
+	//cameraGO = engine->N_sceneManager->CreateCameraGO("mainCamera");
 	engine->N_sceneManager->LoadScene("MainMenu");
 	engine->N_sceneManager->Start();
 
@@ -46,33 +53,38 @@ bool BuilderSceneManager::Start()
 	std::vector<std::vector<Attachment>> buildBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
 	viewportSize = { 640, 360 };
-	renderTarget = Renderer::AddRenderTarget("Build", DrawMode::BUILD, cameraGO->GetComponent<Camera>(), viewportSize, buildBuffers, true);
+	renderTarget = Renderer::AddRenderTarget("Build", DrawMode::BUILD, engine->N_sceneManager->currentScene->currentCamera, viewportSize, buildBuffers, true);
 
 	return true;
 }
 
+// Scene is changed here!!!
 bool BuilderSceneManager::PreUpdate()
 {
 	engine->N_sceneManager->PreUpdate();
 
+	if (changeRenderTargetCamera)
+	{
+		Renderer::GetRenderTarget(renderTarget)->SetCamera(engine->N_sceneManager->currentScene->currentCamera);
+		changeRenderTargetCamera = false;
+	}
+
 	return true;
 }
 
+// Scene change is SET here!!!
 bool BuilderSceneManager::Update(double dt)
 {
 	engine->N_sceneManager->Update(dt, app->IsPlaying());
+
+	if (engine->N_sceneManager->GetSceneIsChanging())
+		changeRenderTargetCamera = true;
 
 	return true;
 }
 
 bool BuilderSceneManager::PostUpdate()
 {
-	//engine->SetRenderEnvironment(engine->N_sceneManager->currentScene->currentCamera);
-	
-	//hekbas: add here engine->DebugDraw
-
-	//engine->Render(engine->N_sceneManager->currentScene->currentCamera);
-	//engine->N_sceneManager->currentScene->Draw(DrawMode::GAME, engine->N_sceneManager->currentScene->currentCamera);
 
 	return true;
 }

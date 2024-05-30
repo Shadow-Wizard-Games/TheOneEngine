@@ -26,17 +26,6 @@ bool BuilderRenderer3D::Start()
 {
     engine->Start();
 
-    sceneCamera = std::make_shared<GameObject>("EDITOR CAMERA");
-    sceneCamera.get()->AddComponent<Transform>();
-    sceneCamera.get()->GetComponent<Transform>()->SetPosition(vec3f(0, 3, -10));
-    sceneCamera.get()->AddComponent<Camera>();
-    sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
-
-    cameraParent = std::make_shared<GameObject>("CameraParent");
-    cameraParent.get()->AddComponent<Transform>();
-    cameraParent.get()->children.push_back(sceneCamera);
-    sceneCamera.get()->parent = cameraParent;
-
     return true;
 }
 

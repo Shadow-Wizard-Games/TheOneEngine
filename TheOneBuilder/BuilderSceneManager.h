@@ -32,6 +32,10 @@ private:
 	glm::vec2 viewportSize;
 	unsigned int renderTarget;
 	shared_ptr<GameObject> cameraGO;
+	bool changeRenderTargetCamera;
+
+	std::shared_ptr<GameObject> sceneCamera;
+	std::shared_ptr<GameObject> cameraParent;
 };
 
 #endif // !__BUILDER_SCENE_MANAGER_H__
