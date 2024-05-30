@@ -141,7 +141,7 @@ public class PlayerScript : MonoBehaviour
         currentSkillSet = SkillSet.NONE;
 
         timeFromLastStep = 0.3f;
-        
+
         baseSpeed = 90.0f;
         currentSpeed = baseSpeed;
 
@@ -243,6 +243,7 @@ public class PlayerScript : MonoBehaviour
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
+                && Heal.state == AbilityHeal.AbilityState.READY
                 && currentAction != CurrentAction.DASH)
             {
                 currentAction = CurrentAction.RUNHEAL;
@@ -250,6 +251,7 @@ public class PlayerScript : MonoBehaviour
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
+                && AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.READY
                 && currentAction != CurrentAction.HEAL
                 && currentAction != CurrentAction.DASH)
             {
@@ -257,8 +259,7 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
         }
-        else if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE
-            && Dash.state != AbilityDash.AbilityState.ACTIVE
+        else if (Dash.state != AbilityDash.AbilityState.ACTIVE
             && Heal.state != AbilityHeal.AbilityState.ACTIVE)
         {
 
@@ -282,6 +283,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
+            && Heal.state == AbilityHeal.AbilityState.READY
             && Dash.state != AbilityDash.AbilityState.ACTIVE
             && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
         {
@@ -290,11 +292,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
+            && AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.READY
             && Heal.state != AbilityHeal.AbilityState.ACTIVE
             && Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.ADRENALINERUSH;
-
             return;
         }
     }
@@ -317,7 +319,7 @@ public class PlayerScript : MonoBehaviour
             else if (currentSkillSet == SkillSet.SHOULDERLASERSET)
             {
                 currentSkillSet = SkillSet.M4A1SET;
-                currentWeaponType = CurrentWeapon.M4; 
+                currentWeaponType = CurrentWeapon.M4;
             }
 
             skillSetChangeTime = skillSetChangeBaseCD;
@@ -387,6 +389,7 @@ public class PlayerScript : MonoBehaviour
             switch (currentWeaponType)
             {
                 case CurrentWeapon.M4:
+                    // CHANGE DEPENDING ON GRENADE LAUNCHER
                     M4GO.Enable();
                     break;
                 case CurrentWeapon.SHOULDERLASER:
@@ -401,7 +404,8 @@ public class PlayerScript : MonoBehaviour
                     Debug.Log("Flamethrower Activated");
                     break;
                 case CurrentWeapon.GRENADELAUNCHER:
-                    GrenadeLauncherGO.Enable();
+                    // CHANGE DEPENDING ON GRENADE LAUNCHER
+                    M4GO.Enable();
                     Debug.Log("Grenade Launcher Activated");
                     break;
             }
@@ -410,10 +414,9 @@ public class PlayerScript : MonoBehaviour
 
     private void IdleAction()
     {
+        // CHECK ADRENALINE RUSH ANIMATION FINISH
         if (Dash.state == AbilityDash.AbilityState.ACTIVE
-            || Heal.state == AbilityHeal.AbilityState.ACTIVE
-            || (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE
-                && !attachedGameObject.animator.CurrentAnimHasFinished)) return;
+            || Heal.state == AbilityHeal.AbilityState.ACTIVE) return;
 
         switch (currentWeaponType)
         {
@@ -558,8 +561,6 @@ public class PlayerScript : MonoBehaviour
     }
     private void AdrenalineRushAction()
     {
-        if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
-
         // Calculate heal amount
         float totalHeal = HP * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
@@ -600,8 +601,6 @@ public class PlayerScript : MonoBehaviour
     }
     private void HealAction()
     {
-        if (Heal.state != AbilityHeal.AbilityState.READY) return;
-
         float speedReduce = baseSpeed * Heal.slowAmount;
         currentSpeed -= speedReduce;
 
