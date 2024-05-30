@@ -29,7 +29,8 @@ public class EventCheckpoint : Event
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
-        saveParticles = IGameObject.Find("SaveParticles").GetComponent<IParticleSystem>();
+        IGameObject saveParticlesGO = IGameObject.Find("SaveParticles");
+        if (saveParticlesGO != null) saveParticles = saveParticlesGO.GetComponent<IParticleSystem>();
 
         eventType = EventType.CHECKPOINT;
     }
