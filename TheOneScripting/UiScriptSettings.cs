@@ -11,12 +11,9 @@ public class UiScriptSettings : MonoBehaviour
     IGameObject settingsDisplayGO;
 
     ICanvas settingsDisCanvas;
-    ICanvas settingsControlsCanvas;
 
     int currentButton = 0;
 
-    float flickerCooldown = 0;
-    bool flickerOnCooldown = false;
     bool firstFrame = true;
 
     public bool editing = false;
@@ -35,15 +32,12 @@ public class UiScriptSettings : MonoBehaviour
         currentButton = canvas.GetSelectedButton();
 
         settingsDisCanvas = settingsDisplayGO.GetComponent<ICanvas>();
-        settingsControlsCanvas = settingsControlsGO.GetComponent<ICanvas>();
 
         settingsControlsGO.Disable();
         settingsDisplayGO.Disable();
         onCooldown = true;
 
         firstFrame = true;
-        flickerCooldown = 0;
-        flickerOnCooldown = false;
     }
     public override void Update()
     {
@@ -56,26 +50,8 @@ public class UiScriptSettings : MonoBehaviour
             settingsControlsGO.Disable();
             settingsDisplayGO.Disable();
             settingsControlsGO.Enable();
-            canvas.CanvasFlicker(true);
-            settingsDisCanvas.CanvasFlicker(true);
-            settingsControlsCanvas.CanvasFlicker(true);
-            flickerOnCooldown = true;
             firstFrame = false;
         }
-
-        if (flickerOnCooldown && flickerCooldown < 0.6f)
-        {
-            flickerCooldown += dt;
-        }
-        else
-        {
-            canvas.CanvasFlicker(false);
-            settingsDisCanvas.CanvasFlicker(false);
-            settingsControlsCanvas.CanvasFlicker(false);
-            flickerCooldown = 0.0f;
-            flickerOnCooldown = false;
-        }
-
 
         if (onCooldown && cooldown < 0.2f)
         {

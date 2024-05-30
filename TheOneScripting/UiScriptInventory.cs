@@ -11,7 +11,7 @@ public class UiScriptInventory : MonoBehaviour
 
     float flickerCooldown = 0;
     bool flickerOnCooldown = false;
-    bool firstFrame = true;
+    public bool firstFrame = true;
 
     int currentButton = 0;
 

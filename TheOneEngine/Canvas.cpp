@@ -45,30 +45,28 @@ void Canvas::Update(double dt)
 	if (this->flicker)
 	{
 		this->flickerCd += dt;
-
-		if (this->flickeringBackground)
+		if (this->flickerCounter >= 5)
 		{
-			this->uiElements[uiElements.size() - 1]->SetPrint(dist(gen));
-			if (this->flickerCd > 0.2f)
+			if (this->flickeringBackground)
 			{
-				this->uiElements[uiElements.size() - 1]->SetPrint(true);
-				this->flickeringBackground = false;
+				this->uiElements[uiElements.size() - 1]->SetPrint(dist(gen));
+				if (this->flickerCd > 0.2f)
+				{
+					this->uiElements[uiElements.size() - 1]->SetPrint(true);
+					this->flickeringBackground = false;
+				}
 			}
-		}
-		else
-		{
-			for (size_t i = 0; i < this->uiElements.size() - 1; i++)
+			else
 			{
-				this->uiElements[i]->SetPrint(dist(gen));
-			}			
-			this->flickerOrder++;
-			//for (size_t i = 0; i < 4; i++)
-			//{
-			//	if (this->flickerOrder >= this->uiElements.size() - 1) this->flickerOrder = 0;
-			//	this->uiElements[this->flickerOrder + i]->SetPrint(dist(gen));
-			//}
-			//this->flickerOrder += 4;
+				for (size_t i = 0; i < this->uiElements.size() - 1; i++)
+				{
+					this->uiElements[i]->SetPrint(dist(gen));
+				}
+				this->flickerOrder++;
+			}
+			this->flickerCounter = 0;
 		}
+		this->flickerCounter++;
 	}
 }
 

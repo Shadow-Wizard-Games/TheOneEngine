@@ -97,6 +97,7 @@ private:
     bool flicker = false;
     double flickerCd = 0.0f;
     int flickerOrder = 0;
+    int flickerCounter = 0;
     bool flickeringBackground = true;
 
     //random stuff
