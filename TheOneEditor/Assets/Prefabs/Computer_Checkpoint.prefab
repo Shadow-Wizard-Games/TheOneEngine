@@ -1,0 +1,210 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 3766290794
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/SM_ComputerDesk/M_ComputerDesk_GREEN.toematerial",
+      "MeshPath": "Library/Meshes/SM_ComputerDesk/SM_ComputerDesk.mesh",
+      "Name": "Mesh",
+      "ParentUID": 4522085,
+      "Type": 2,
+      "UID": 3877256780
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 4522085,
+      "ScriptName": "EventCheckpoint",
+      "Type": 4,
+      "UID": 4017434732
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0000001192092896,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0000001192092896,
+            0.0,
+            0.0,
+            25.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1905119717
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 3.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    0.0,
+                    2.0,
+                    0.0
+                  ],
+                  "MinDirection": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": true
+                },
+                {
+                  "MaxSpeed": 30.0,
+                  "MinSpeed": 10.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxOffset": [
+                    20.0,
+                    0.0,
+                    10.0
+                  ],
+                  "MinOffset": [
+                    -20.0,
+                    0.0,
+                    -10.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                },
+                {
+                  "MaxColor": [
+                    255.0,
+                    255.0,
+                    0.0,
+                    255.0
+                  ],
+                  "MinColor": [
+                    255.0,
+                    100.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    3.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 50,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 50.0,
+                  "Duration": 1.0,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystemw\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 1919705469
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SaveParticles",
+      "ParentUID": 4522085,
+      "Static": false,
+      "UID": 4522085
+    }
+  ],
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Computer_Checkpoint",
+  "ParentUID": 155,
+  "PrefabDirty": true,
+  "PrefabID": 284020148,
+  "PrefabName": "Computer_Checkpoint",
+  "Static": false,
+  "UID": 4522085
+}
