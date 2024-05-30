@@ -7,6 +7,8 @@
 
 #include "Texture.h"
 
+#include <random>
+
 class Canvas : public Component
 {
 
@@ -15,6 +17,8 @@ public:
     Canvas(std::shared_ptr<GameObject> containerGO);
     Canvas(std::shared_ptr<GameObject> containerGO, Canvas* ref);
     virtual ~Canvas();
+
+    void Update(double dt) override;
 
     template <typename TUI>
     unsigned int AddItemUI()
@@ -66,6 +70,8 @@ public:
 
     void DrawComponent(Camera* camera);
 
+    void CanvasFlicker(bool flicker);
+
     // @Get / Set --------------------------------
     Rect2D GetRect() const;
 
@@ -86,6 +92,17 @@ public:
 private:
     Rect2D rect = { 0,0,2,2 };
     std::vector<std::unique_ptr<ItemUI>> uiElements;
+    std::vector<bool> uiPrintables;
+
+    bool flicker = false;
+    double flickerCd = 0.0f;
+    int flickerOrder = 0;
+    bool flickeringBackground = true;
+
+    //random stuff
+    std::random_device rd;
+    std::mt19937 gen;
+    std::bernoulli_distribution dist;
 };
 
 #endif //  !__CANVAS_H__

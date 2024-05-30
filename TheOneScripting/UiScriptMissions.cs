@@ -26,6 +26,10 @@ public class UiScriptMissions : MonoBehaviour
     ICanvas missionCanvas3;
     ICanvas missionCanvas4;
 
+    float flickerCooldown = 0;
+    bool flickerOnCooldown = false;
+    bool firstFrame = true;
+
     public MissionStatus missionStatus;
 
     public UiScriptMissions()
@@ -54,6 +58,10 @@ public class UiScriptMissions : MonoBehaviour
 
         onCooldown = true;
 
+        firstFrame = true;
+        flickerCooldown = 0;
+        flickerOnCooldown = false;
+
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton(), true);
     }
 
@@ -62,6 +70,32 @@ public class UiScriptMissions : MonoBehaviour
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
+
+        if (firstFrame)
+        {
+            canvas.CanvasFlicker(true);
+            missionCanvas1.CanvasFlicker(true);
+            missionCanvas2.CanvasFlicker(true);
+            missionCanvas3.CanvasFlicker(true);
+            missionCanvas4.CanvasFlicker(true);
+            flickerOnCooldown = true;
+            firstFrame = false;
+        }
+
+        if (flickerOnCooldown && flickerCooldown < 0.6f)
+        {
+            flickerCooldown += dt;
+        }
+        else
+        {
+            canvas.CanvasFlicker(false);
+            missionCanvas1.CanvasFlicker(false);
+            missionCanvas2.CanvasFlicker(false);
+            missionCanvas3.CanvasFlicker(false);
+            missionCanvas4.CanvasFlicker(false);
+            flickerCooldown = 0.0f;
+            flickerOnCooldown = false;
+        }
 
         if (onCooldown && cooldown < 0.2f)
         {

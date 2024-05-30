@@ -83,45 +83,11 @@ public class ICanvas : IComponent
 
     public void SetTextString(string text, string name, int num = -1)
     {
-        //List<int> toAdd = new List<int>();
-        //List<int> whereToAdd = new List<int>();
-
-        ////first, lets split numbers above 10 since char conversion are from 0 to 9
-        ////limit of 99
-        //for (int i = 0; i < args.Count; i++)
-        //{
-        //    if (args[i] >= 10)
-        //    {
-        //        toAdd.Add(args[i] - (10 * (int)(args[i] / 10)));
-        //        args[i] /= 10;
-        //        whereToAdd.Add(i + 1 + whereToAdd.Count);
-        //    }
-        //}
-        //for (int i = 0; i < toAdd.Count; i++)
-        //{
-        //    args.Insert(whereToAdd[i], toAdd[i]);
-        //}
-        //whereToAdd.Clear();
-        //toAdd.Clear();
-
-        ////now that we have it splitted, lets place the splitted numbers into the text string
-        //if (args != null)
-        //{
-        //    for (int i = 0; i < args.Count; i++)
-        //    {
-        //        text = ReplaceFirst(text, "%d", ("" + (char)(args[i] + 48)));
-        //    }
-        //}
         InternalCalls.SetTextString(containerGOptr, text, name, num);
     }
 
-    //public static string ReplaceFirst(string text, string search, string replace)
-    //{
-    //    int pos = text.IndexOf(search);
-    //    if (pos < 0)
-    //    {
-    //        return text;
-    //    }
-    //    return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
-    //}
+    public void CanvasFlicker(bool flicker)
+    {
+        InternalCalls.CanvasFlicker(containerGOptr, flicker);
+    }
 }

@@ -22,7 +22,7 @@ public:
     void Start();
 
     void Enable() override;
-    void Update() override;
+    void Update(double dt) override;
 
     json SaveComponent();
     void LoadComponent(const json& scriptJSON);

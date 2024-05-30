@@ -756,6 +756,11 @@ static MonoString* GetTextString(GameObject* containerGO, MonoString* name)
 	return mono_string_new(MonoManager::GetAppDomain(), ret.c_str());
 }
 
+static void CanvasFlicker(GameObject* containerGO, bool flicker)
+{
+	containerGO->GetComponent<Canvas>()->CanvasFlicker(flicker);
+}
+
 //Helpers
 static float GetAppDeltaTime()
 {
@@ -1113,6 +1118,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetSliderMaxValue", GetSliderMaxValue);
 	mono_add_internal_call("InternalCalls::SetTextString", SetTextString);
 	mono_add_internal_call("InternalCalls::GetTextString", GetTextString);
+	mono_add_internal_call("InternalCalls::CanvasFlicker", CanvasFlicker);
 
 	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);

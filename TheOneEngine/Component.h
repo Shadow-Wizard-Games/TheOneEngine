@@ -38,7 +38,7 @@ public:
 
     virtual void Enable();
     virtual void Disable();
-    virtual void Update() {};
+    virtual void Update(double dt) {};
 
     std::string GetName();
     std::string* GetNameToEdit();

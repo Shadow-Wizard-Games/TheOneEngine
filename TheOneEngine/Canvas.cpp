@@ -10,8 +10,14 @@
 #include "TextUI.h"
 #include "Renderer2D.h"
 
+#include <random>
+
 Canvas::Canvas(std::shared_ptr<GameObject> containerGO) : Component(containerGO, ComponentType::Canvas)
-{}
+{
+	rd;
+	gen = std::mt19937(rd());
+	dist = std::bernoulli_distribution(0.5);
+}
 
 Canvas::Canvas(std::shared_ptr<GameObject> containerGO, Canvas* ref) : Component(containerGO, ComponentType::Canvas)
 {
@@ -23,11 +29,47 @@ Canvas::Canvas(std::shared_ptr<GameObject> containerGO, Canvas* ref) : Component
 	}
 	this->debugDraw = ref->debugDraw;
 	this->rect = ref->rect;
+
+	rd;
+	gen = std::mt19937(rd());
+	dist = std::bernoulli_distribution(0.5);
 }
 
 Canvas::~Canvas() 
 {
 	uiElements.clear();
+}
+
+void Canvas::Update(double dt)
+{
+	if (this->flicker)
+	{
+		this->flickerCd += dt;
+
+		if (this->flickeringBackground)
+		{
+			this->uiElements[uiElements.size() - 1]->SetPrint(dist(gen));
+			if (this->flickerCd > 0.2f)
+			{
+				this->uiElements[uiElements.size() - 1]->SetPrint(true);
+				this->flickeringBackground = false;
+			}
+		}
+		else
+		{
+			for (size_t i = 0; i < this->uiElements.size() - 1; i++)
+			{
+				this->uiElements[i]->SetPrint(dist(gen));
+			}			
+			this->flickerOrder++;
+			//for (size_t i = 0; i < 4; i++)
+			//{
+			//	if (this->flickerOrder >= this->uiElements.size() - 1) this->flickerOrder = 0;
+			//	this->uiElements[this->flickerOrder + i]->SetPrint(dist(gen));
+			//}
+			//this->flickerOrder += 4;
+		}
+	}
 }
 
 void Canvas::DrawComponent(Camera* camera)
@@ -44,6 +86,37 @@ void Canvas::DrawComponent(Camera* camera)
 	{
 		if ((*element)->IsPrintable())
 			(*element)->Draw2D();
+	}
+}
+
+void Canvas::CanvasFlicker(bool flicker)
+{
+	if (this->flicker && !flicker) //turn flicker off
+	{
+		//move uielements print bools into the original ones
+		for (size_t i = 0; i < this->uiElements.size(); i++)
+			this->uiElements[i]->SetPrint(this->uiPrintables[i]);
+
+		this->uiPrintables.clear();
+
+		this->flickerCd = 0.0f;
+		this->flickeringBackground = true;
+		this->flickerOrder = 0;
+		this->flicker = false;
+	}
+	else if (!this->flicker && flicker) //turn flicker on
+	{
+		//move uielements original print bools into the temporary ones
+		for (size_t i = 0; i < this->uiElements.size(); i++)
+		{
+			this->uiPrintables.push_back(this->uiElements[i]->IsPrintable());
+			this->uiElements[i]->SetPrint(false);
+		}
+
+		this->flickerCd = 0.0f;
+		this->flickeringBackground = true;
+		this->flickerOrder = 0;
+		this->flicker = true;
 	}
 }
 
@@ -68,6 +141,7 @@ json Canvas::SaveComponent()
 	canvasJSON["Enabled"] = enabled;
 	canvasJSON["Rect"] = { rect.x, rect.y, rect.w, rect.h };
 	canvasJSON["DebugDraw"] = debugDraw;
+	canvasJSON["Flicker"] = flicker;
 
 	if (auto pGO = containerGO.lock())
 		canvasJSON["ParentUID"] = pGO.get()->GetUID();
@@ -99,6 +173,7 @@ void Canvas::LoadComponent(const json& canvasJSON)
 		rect.h = canvasJSON["Rect"][3];
 	}
 	if (canvasJSON.contains("DebugDraw")) debugDraw = canvasJSON["DebugDraw"];
+	if (canvasJSON.contains("Flicker")) flicker = canvasJSON["Flicker"];
 
 	if (canvasJSON.contains("UiElements"))
 	{

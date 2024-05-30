@@ -49,7 +49,7 @@ ParticleSystem::~ParticleSystem()
 {
 }
 
-void ParticleSystem::Update()
+void ParticleSystem::Update(double dt)
 {
 	bool allEmmitersOFF = true;
 
