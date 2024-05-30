@@ -19,11 +19,13 @@
     IGameObject playerGO;
     PlayerScript player;
 
-    readonly int damage = 10;
+    public int damage = 10;
 
-    readonly float slowAmount = 0.25f;
-    readonly float impacienteShootingCd = 0.05f;
-    readonly float knockbackPotency = -3f;
+    public float slowAmount = 0.25f;
+    public float impacienteShootingCd = 0.05f;
+    public float knockbackPotency = -3f;
+
+    public int ammo = 100;
 
     public override void Start()
     {
@@ -31,7 +33,7 @@
 
         activeTime = 25.0f;
         activeTimeCounter = activeTime;
-        cooldownTime = 45.0f;
+        cooldownTime = 5.0f;
         cooldownTimeCounter = cooldownTime;
 
         playerGO = attachedGameObject.parent;
@@ -45,31 +47,21 @@
     {
         switch (state)
         {
-            case AbilityState.CHARGING:
-                break;
-            case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR))
-                {
-                    Activated();
-                    break;
-                }
-                // controller input
-                break;
             case AbilityState.ACTIVE:
+
                 WhileActive();
-                Debug.Log("Impaciente active time -> " + activeTimeCounter.ToString("F2"));
+
                 break;
             case AbilityState.COOLDOWN:
+
                 OnCooldown();
-                Debug.Log("Impaciente cooldown time -> " + cooldownTimeCounter.ToString("F2"));
+
                 break;
         }
     }
 
     public void Activated()
     {
-        player.currentWeaponType = PlayerScript.CurrentWeapon.IMPACIENTE;
-
         // rpm
         player.shootingCooldown = impacienteShootingCd;
 
@@ -80,14 +72,13 @@
 
         state = AbilityState.ACTIVE;
 
-        attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
+        //attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
 
         Debug.Log("Ability Impaciente Activated");
     }
 
     public void WhileActive()
     {
-
         if (activeTimeCounter > 0)
         {
             // update time
@@ -96,14 +87,13 @@
             if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
 
-            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || player.currentWeaponType != PlayerScript.CurrentWeapon.IMPACIENTE /*|| player.impacienteBulletCounter >= player.impacienteBullets*/)
+            if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
                 player.currentSpeed = player.baseSpeed;
                 player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
                 player.currentWeaponDamage = damage;
-                //player.impacienteBulletCounter = 0;
 
                 activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
@@ -114,13 +104,10 @@
         else
         {
             // reset stats
-            //player.shootingCooldown = player.mp4ShootingCd;
             player.currentSpeed = player.baseSpeed;
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;
-            /*player.impacienteBulletCounter = 0*/
-            ;
 
             state = AbilityState.COOLDOWN;
 
@@ -142,6 +129,5 @@
 
             Debug.Log("Ability Impaciente Ready");
         }
-
     }
 }

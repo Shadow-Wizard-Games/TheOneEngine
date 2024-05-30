@@ -148,9 +148,23 @@
       "type": 0
     },
     {
-      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_TPose.anim",
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_IdleLaImpaciente.anim",
       "loop": true,
-      "name": "T Pose",
+      "name": "Idle Impaciente",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_ShootLaImpaciente.anim",
+      "loop": true,
+      "name": "Shoot Impaciente",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_RunAndShootLaImpaciente.anim",
+      "loop": true,
+      "name": "Run Shoot Impaciente",
       "playback_speed": 1.0,
       "type": 0
     }

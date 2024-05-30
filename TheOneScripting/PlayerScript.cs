@@ -18,7 +18,6 @@ public class PlayerScript : MonoBehaviour
         FLAMETHROWER,
         GRENADELAUNCHER,
     }
-
     public enum CurrentAction
     {
         IDLE,
@@ -115,6 +114,8 @@ public class PlayerScript : MonoBehaviour
         M4GO.Disable();
         ShoulderLaserGO = attachedGameObject.FindInChildren("WP_ShoulderLaser");
         ShoulderLaserGO.Disable();
+        ImpacienteGO = attachedGameObject.FindInChildren("WP_OlPainless");
+        ImpacienteGO.Disable();
 
         IGameObject Abilities = attachedGameObject.FindInChildren("Abilities");
         GrenadeLauncher = Abilities?.GetComponent<AbilityGrenadeLauncher>();
@@ -141,7 +142,7 @@ public class PlayerScript : MonoBehaviour
         currentSkillSet = SkillSet.NONE;
 
         timeFromLastStep = 0.3f;
-
+        
         baseSpeed = 90.0f;
         currentSpeed = baseSpeed;
 
@@ -151,7 +152,6 @@ public class PlayerScript : MonoBehaviour
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
     }
-
     public override void Update()
     {
         if (onPause) return;
@@ -161,8 +161,8 @@ public class PlayerScript : MonoBehaviour
         {
             M4GO.Enable();
             currentSkillSet = SkillSet.M4A1SET;
+            currentWeaponType = CurrentWeapon.M4;
         }
-        //
 
         // background music
         if (!isFighting && currentAudioState == IAudioSource.AudioStateID.COMBAT)
@@ -219,64 +219,11 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.UpdateAnimation();
         UpdateWeaponAnimation();
 
+        WeaponAbilityStates();
+
         // set movement
         movementDirection = Vector3.zero;
         movementMagnitude = 0;
-
-        // CHANGE CURRENT WEAPON (DEPENDS ON SKILLSET)
-        if (skillSetChangeTime > 0.0f)
-        {
-            skillSetChangeTime -= Time.deltaTime;
-        }
-        else if (Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT))
-        {
-            if (currentSkillSet == SkillSet.M4A1SET)
-            {
-                currentSkillSet = SkillSet.SHOULDERLASERSET;
-                ShoulderLaserGO.Enable();
-                M4GO.Disable();
-            }
-            else if (currentSkillSet == SkillSet.SHOULDERLASERSET)
-            {
-                currentSkillSet = SkillSet.M4A1SET;
-
-                // DEPENDS IF USER HAS GRENADELAUNCHER
-                M4GO.Enable();
-
-                ShoulderLaserGO.Disable();
-            }
-
-            skillSetChangeTime = skillSetChangeBaseCD;
-        }
-
-        if (currentSkillSet == SkillSet.SHOULDERLASERSET)
-        {
-            currentWeaponType = CurrentWeapon.SHOULDERLASER;
-        }
-        else if (currentSkillSet == SkillSet.M4A1SET)
-        {
-            currentWeaponType = CurrentWeapon.M4;
-        }
-
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
-            && currentSkillSet == SkillSet.M4A1SET
-            && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
-        {
-            currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
-        }
-
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
-            && currentSkillSet == SkillSet.SHOULDERLASERSET
-            && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
-        {
-            currentWeaponType = CurrentWeapon.FLAMETHROWER;
-        }
-
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
-            && Impaciente.state == AbilityImpaciente.AbilityState.READY)
-        {
-            currentWeaponType = CurrentWeapon.IMPACIENTE;
-        }
 
         currentAction = CurrentAction.IDLE;
 
@@ -351,6 +298,113 @@ public class PlayerScript : MonoBehaviour
             return;
         }
     }
+    private void WeaponAbilityStates()
+    {
+        CurrentWeapon currentEquippedWeapon = currentWeaponType;
+
+        #region SKILL SET CHANGE
+        if (skillSetChangeTime > 0.0f)
+        {
+            skillSetChangeTime -= Time.deltaTime;
+        }
+        else if (Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT))
+        {
+            if (currentSkillSet == SkillSet.M4A1SET)
+            {
+                currentSkillSet = SkillSet.SHOULDERLASERSET;
+                currentWeaponType = CurrentWeapon.SHOULDERLASER;
+            }
+            else if (currentSkillSet == SkillSet.SHOULDERLASERSET)
+            {
+                currentSkillSet = SkillSet.M4A1SET;
+                currentWeaponType = CurrentWeapon.M4; 
+            }
+
+            skillSetChangeTime = skillSetChangeBaseCD;
+        }
+
+        // SET WHEN FINISH ABILITIES
+        //if (currentSkillSet == SkillSet.SHOULDERLASERSET)
+        //{
+        //    currentWeaponType = CurrentWeapon.SHOULDERLASER;
+        //}
+        //else if (currentSkillSet == SkillSet.M4A1SET)
+        //{
+        //    currentWeaponType = CurrentWeapon.M4;
+        //}
+        #endregion
+
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            && currentSkillSet == SkillSet.M4A1SET
+            && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+        {
+            currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+        }
+
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            && currentSkillSet == SkillSet.SHOULDERLASERSET
+            && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
+        {
+            currentWeaponType = CurrentWeapon.FLAMETHROWER;
+        }
+
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
+            && currentSkillSet != SkillSet.NONE
+            && Impaciente.state == AbilityImpaciente.AbilityState.READY)
+        {
+            currentWeaponType = CurrentWeapon.IMPACIENTE;
+        }
+
+        if (currentWeaponType != currentEquippedWeapon)
+        {
+            switch (currentEquippedWeapon)
+            {
+                case CurrentWeapon.M4:
+                    M4GO.Disable();
+                    break;
+                case CurrentWeapon.SHOULDERLASER:
+                    ShoulderLaserGO.Disable();
+                    break;
+                case CurrentWeapon.IMPACIENTE:
+                    ImpacienteGO.Disable();
+                    Impaciente.state = AbilityImpaciente.AbilityState.COOLDOWN;
+                    Debug.Log("Impaciente on Cooldown");
+                    break;
+                case CurrentWeapon.FLAMETHROWER:
+                    FlamethrowerGO.Disable();
+                    Flamethrower.state = AbilityFlamethrower.AbilityState.COOLDOWN;
+                    Debug.Log("Flamethrower on Cooldown");
+                    break;
+                case CurrentWeapon.GRENADELAUNCHER:
+                    GrenadeLauncherGO.Disable();
+                    GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.COOLDOWN;
+                    Debug.Log("Grenade Launcher on Cooldown");
+                    break;
+            }
+
+            switch (currentWeaponType)
+            {
+                case CurrentWeapon.M4:
+                    M4GO.Enable();
+                    break;
+                case CurrentWeapon.SHOULDERLASER:
+                    ShoulderLaserGO.Enable();
+                    break;
+                case CurrentWeapon.IMPACIENTE:
+                    ImpacienteGO.Enable();
+                    Debug.Log("Impaciente Activated");
+                    break;
+                case CurrentWeapon.FLAMETHROWER:
+                    FlamethrowerGO.Enable();
+                    Debug.Log("Flamethrower Activated");
+                    break;
+                case CurrentWeapon.GRENADELAUNCHER:
+                    GrenadeLauncherGO.Enable();
+                    Debug.Log("Grenade Launcher Activated");
+                    break;
+            }
+        }
+    }
 
     private void IdleAction()
     {
@@ -374,12 +428,13 @@ public class PlayerScript : MonoBehaviour
                 break;
             case CurrentWeapon.IMPACIENTE:
                 attachedGameObject.animator.Play("Idle Impaciente");
+                ImpacienteGO.animator.Play("Idle");
                 break;
             case CurrentWeapon.FLAMETHROWER:
                 attachedGameObject.animator.Play("Idle Flamethrower");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-                attachedGameObject.animator.Play("Idle Flamethrower");
+                attachedGameObject.animator.Play("Idle M4");
                 break;
         }
 
@@ -406,7 +461,8 @@ public class PlayerScript : MonoBehaviour
                 ShoulderLaserGO.animator.Play("Run");
                 break;
             case CurrentWeapon.IMPACIENTE:
-                attachedGameObject.animator.Play("Run Impaciente");
+                attachedGameObject.animator.Play("Run M4");
+                ImpacienteGO.animator.Play("Run");
                 break;
             case CurrentWeapon.FLAMETHROWER:
                 attachedGameObject.animator.Play("Run Flamethrower");
@@ -454,6 +510,7 @@ public class PlayerScript : MonoBehaviour
                 break;
             case CurrentWeapon.IMPACIENTE:
                 attachedGameObject.animator.Play("Shoot Impaciente");
+                ImpacienteGO.animator.Play("Shoot");
                 break;
             case CurrentWeapon.FLAMETHROWER:
                 attachedGameObject.animator.Play("Shoot Flamethrower");
@@ -481,6 +538,7 @@ public class PlayerScript : MonoBehaviour
                 break;
             case CurrentWeapon.IMPACIENTE:
                 attachedGameObject.animator.Play("Run Shoot Impaciente");
+                ImpacienteGO.animator.Play("Run and Shoot");
                 break;
             case CurrentWeapon.FLAMETHROWER:
                 attachedGameObject.animator.Play("Run Shoot Flamethrower");
@@ -818,7 +876,7 @@ public class PlayerScript : MonoBehaviour
                 ShoulderLaserGO.animator.UpdateAnimation();
                 break;
             case CurrentWeapon.IMPACIENTE:
-
+                ImpacienteGO.animator.UpdateAnimation();
                 break;
             case CurrentWeapon.FLAMETHROWER:
 
@@ -829,7 +887,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void ReduceLife(int damage)
+    public void ReduceLife(uint damage)
     {
         if (isDead || gameManager.godMode || shieldIsActive || currentAction == CurrentAction.DASH)
             return;

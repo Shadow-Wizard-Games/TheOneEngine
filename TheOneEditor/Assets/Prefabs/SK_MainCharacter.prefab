@@ -46,7 +46,7 @@
       "UID": 225613267
     },
     {
-      "AudioID": 1,
+      "AudioID": 0,
       "Name": "AudioSource",
       "Type": 8
     },
@@ -450,63 +450,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2092710554
+          "UID": 102455414
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 3770078397
+          "UID": 2811378905
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 1013382353
+          "UID": 713945005
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 2077299756
+          "UID": 3664913608
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 4138971068
+          "UID": 2450669626
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 1791862567
+          "UID": 3831832023
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 618857082
+          "UID": 2391996674
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 2416821153
+          "UID": 1632654108
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 4003144714
+          "UID": 3572526842
         }
       ],
       "Enabled": true,
@@ -614,13 +614,62 @@
       "ParentUID": 113510800,
       "Static": false,
       "UID": 4259932
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1936523887
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_LaImpaciente_Idle/M_OlPainless.toematerial",
+          "MeshPath": "Library/Meshes/AS_LaImpaciente_Idle/WP_OlPainless.animator",
+          "Name": "Mesh",
+          "ParentUID": 6881399,
+          "Type": 2,
+          "UID": 3882981545
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WP_OlPainless",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 6881399
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
-  "ParentUID": 0,
-  "PrefabDirty": false,
+  "ParentUID": 252051458,
+  "PrefabDirty": true,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,

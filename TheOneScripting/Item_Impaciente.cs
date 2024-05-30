@@ -8,8 +8,8 @@ class Item_Impaciente : Item
     public readonly float knockBackPotency = -3.0f;
     public readonly float slowAmount = 0.25f;
 
-    public readonly float activeTime = 25f;
-    public readonly float cooldownTime = 45f;
+    public readonly float activeTime = 25.0f;
+    public readonly float cooldownTime = 45.0f;
 
     public Item_Impaciente()
     {

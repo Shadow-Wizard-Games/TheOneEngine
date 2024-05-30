@@ -1,0 +1,38 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_LaImpaciente_Idle\\WP_OlPainless_Take 001AS_LaImpaciente_Idle.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_LaImpaciente_Idle\\WP_OlPainless_Take 001AS_LaImpaciente_Run.anim",
+      "loop": true,
+      "name": "Run",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_LaImpaciente_Idle\\WP_OlPainless_Take 001AS_LaImpaciente_Shoot.anim",
+      "loop": true,
+      "name": "Shoot",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_LaImpaciente_Idle\\WP_OlPainless_Take 001AS_LaImpaciente_RunAndShoot.anim",
+      "loop": true,
+      "name": "Run and Shoot",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_LaImpaciente_Idle/M_OlPainless.toematerial",
+  "mesh": "Library/Meshes/AS_LaImpaciente_Idle/WP_OlPainless_animatedmesh.ozzmesh",
+  "name": "WP_OlPainless",
+  "skeleton": "Library/Meshes/AS_LaImpaciente_Idle/WP_OlPainless_skeleton.skeleton",
+  "transition_blend": false,
+  "transition_time": 0.0
+}
