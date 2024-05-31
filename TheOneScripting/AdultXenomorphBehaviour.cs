@@ -107,10 +107,10 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) 
-        { 
-            currentState = States.Dead; 
-            return; 
+        if (life <= 0)
+        {
+            currentState = States.Dead;
+            return;
         }
 
         if (!detected && playerDistance < detectedRange)
@@ -269,7 +269,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                            Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
 
         attachedGameObject.transform.LookAt2D(roundPos);
-        if (!goingToRoundPos) 
+        if (!goingToRoundPos)
         {
             MoveTo(roundPos);
         }
@@ -285,13 +285,10 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         {
             attachedGameObject.animator.Play("Death");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished) 
-            { 
-                isDead = true;
-                player.shieldKillCounter++;
-                // add player biomass
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 

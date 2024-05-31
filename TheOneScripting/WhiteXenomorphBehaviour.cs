@@ -23,7 +23,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     // White Xenomorph parameters
     float life = 350.0f;
-    float biomass = 0.0f;
+    float biomass = 30.0f;
     float movementSpeed = 20.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
@@ -105,10 +105,10 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) 
-        { 
+        if (life <= 0)
+        {
             currentState = States.Dead;
-            return; 
+            return;
         }
 
         if (!detected && playerDistance < detectedRange)
@@ -284,14 +284,10 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         if (!isDead)
         {
             attachedGameObject.animator.Play("Death");
-
-            if (attachedGameObject.animator.CurrentAnimHasFinished)
-            {
-                isDead = true;
-                player.shieldKillCounter++;
-                // add player biomass
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 

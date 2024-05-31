@@ -32,7 +32,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     Vector3 initialPos;
 
     // Patrol
-    float patrolRange = 100;
+    const float patrolRange = 100.0f;
     float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
@@ -83,7 +83,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     {
         attachedGameObject.animator.UpdateAnimation();
 
-        if (currentState == States.Dead) 
+        if (currentState == States.Dead)
         {
             //destroyTimer += Time.deltaTime;
             //if (destroyTimer >= destroyCooldown)
@@ -107,10 +107,10 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) 
-        { 
+        if (life <= 0)
+        {
             currentState = States.Dead;
-            return; 
+            return;
         }
 
         if (!detected && playerDistance < detectedRange)
@@ -287,14 +287,10 @@ public class RedXenomorphBehaviour : MonoBehaviour
         if (!isDead)
         {
             attachedGameObject.animator.Play("Death");
-
-            if (attachedGameObject.animator.CurrentAnimHasFinished)
-            {
-                isDead = true;
-                player.shieldKillCounter++;
-                // add player biomass
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 
