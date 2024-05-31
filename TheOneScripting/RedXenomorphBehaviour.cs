@@ -47,12 +47,15 @@ public class RedXenomorphBehaviour : MonoBehaviour
     bool detected = false;
     bool isClose = false;
     bool isDead = false;
+    bool hasShot = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 2.0f;
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
+    float delayTimer = 0.0f;
+    const float delayCooldown = 1.2f;
 
     PlayerScript player;
     GameManager gameManager;
@@ -237,11 +240,20 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     private void SpikeThrow()
     {
-        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-        //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
+        delayTimer += Time.deltaTime;
+
+        if (!hasShot && delayTimer >= delayCooldown)
+        {
+            hasShot = true;
+            Vector3 height = new Vector3(0.0f, 38.0f, 0.0f);
+            InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+            // SFX Goes here
+        }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            hasShot = false;
+            delayTimer = 0.0f;
             ResetState();
         }
     }
