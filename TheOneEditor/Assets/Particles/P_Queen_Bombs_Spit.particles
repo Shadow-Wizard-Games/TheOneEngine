@@ -1,13 +1,13 @@
 {
   "Emmiters": [
     {
-      "Delay": 0.0,
-      "Duration": 10.0,
+      "Delay": 1.2999999523162842,
+      "Duration": 0.5,
       "InitializeModules": [
         {
           "MaxColor": [
             255.0,
-            255.0,
+            250.0,
             162.0,
             255.0
           ],
@@ -23,12 +23,12 @@
         {
           "IsProportional": true,
           "MaxScale": [
-            15.0,
+            5.0,
             2.0,
             2.0
           ],
           "MinScale": [
-            8.0,
+            2.0,
             1.0,
             1.0
           ],
@@ -38,26 +38,40 @@
         {
           "MaxDirection": [
             1.0,
-            1.0,
-            -100.0
+            10.0,
+            1.5
           ],
           "MinDirection": [
             -1.0,
-            -1.0,
-            -1.0
+            5.0,
+            1.2
           ],
           "Type": 4,
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 300.0,
-          "MinSpeed": 5.0,
+          "MaxSpeed": 100.0,
+          "MinSpeed": 300.0,
           "Type": 0,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueSpeed": true
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "MinOffset": [
+            2.3,
+            84.0,
+            25.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": true
         }
       ],
-      "IsLooping": true,
-      "Lifetime": 9615.1103515625,
+      "IsLooping": false,
+      "Lifetime": 0.0,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -68,45 +82,15 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 0.5,
+          "Amount": 5.0,
+          "Duration": 1.0,
           "SpawnRate": 30.0,
-          "Type": 0
-        }
-      ],
-      "UpdateModules": [
-        {
-          "FinalScale": [
-            4.0,
-            4.0,
-            4.0
-          ],
           "Type": 2
-        },
-        {
-          "AffectA": true,
-          "AffectB": false,
-          "AffectG": false,
-          "AffectR": false,
-          "FinalColor": [
-            255.0,
-            255.0,
-            255.0,
-            0.0
-          ],
-          "Type": 1
-        },
-        {
-          "Acceleration": [
-            0.0,
-            -50.0,
-            0.0
-          ],
-          "Type": 0
         }
       ]
     }
   ],
-  "Name": "P_Queen_AcidSpit",
+  "Name": "P_Queen_Bombs_Spit",
   "StartON": true,
   "Type": 9,
   "UID": 3562238069

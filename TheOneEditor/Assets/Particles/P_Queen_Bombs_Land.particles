@@ -2,12 +2,12 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 0.30000001192092896,
       "InitializeModules": [
         {
           "MaxColor": [
             255.0,
-            255.0,
+            250.0,
             162.0,
             255.0
           ],
@@ -23,12 +23,12 @@
         {
           "IsProportional": true,
           "MaxScale": [
-            15.0,
+            10.0,
             2.0,
             2.0
           ],
           "MinScale": [
-            8.0,
+            2.0,
             1.0,
             1.0
           ],
@@ -38,26 +38,26 @@
         {
           "MaxDirection": [
             1.0,
-            1.0,
-            -100.0
+            10.0,
+            1.0
           ],
           "MinDirection": [
             -1.0,
-            -1.0,
+            1.0,
             -1.0
           ],
           "Type": 4,
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 300.0,
-          "MinSpeed": 5.0,
+          "MaxSpeed": 100.0,
+          "MinSpeed": 120.0,
           "Type": 0,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueSpeed": true
         }
       ],
-      "IsLooping": true,
-      "Lifetime": 9615.1103515625,
+      "IsLooping": false,
+      "Lifetime": 0.0,
       "MaxParticles": 100,
       "RenderModule": [
         {
@@ -68,9 +68,10 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 0.5,
-          "SpawnRate": 30.0,
-          "Type": 0
+          "Amount": 10.0,
+          "Duration": 1.0,
+          "SpawnRate": 20.0,
+          "Type": 2
         }
       ],
       "UpdateModules": [
@@ -98,7 +99,7 @@
         {
           "Acceleration": [
             0.0,
-            -50.0,
+            -300.0,
             0.0
           ],
           "Type": 0
@@ -106,7 +107,7 @@
       ]
     }
   ],
-  "Name": "P_Queen_AcidSpit",
+  "Name": "P_Queen_Bombs_Land",
   "StartON": true,
   "Type": 9,
   "UID": 3562238069

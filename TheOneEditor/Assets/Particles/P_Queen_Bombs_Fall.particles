@@ -7,7 +7,7 @@
         {
           "MaxColor": [
             255.0,
-            255.0,
+            250.0,
             162.0,
             255.0
           ],
@@ -23,12 +23,12 @@
         {
           "IsProportional": true,
           "MaxScale": [
-            15.0,
+            20.0,
             2.0,
             2.0
           ],
           "MinScale": [
-            8.0,
+            10.0,
             1.0,
             1.0
           ],
@@ -38,31 +38,30 @@
         {
           "MaxDirection": [
             1.0,
-            1.0,
-            -100.0
+            10.0,
+            1.0
           ],
           "MinDirection": [
             -1.0,
-            -1.0,
+            1.0,
             -1.0
           ],
           "Type": 4,
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 300.0,
-          "MinSpeed": 5.0,
+          "MaxSpeed": 100.0,
+          "MinSpeed": 50.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 9615.1103515625,
+      "Lifetime": 10303.345703125,
       "MaxParticles": 100,
       "RenderModule": [
         {
           "BillboardType": 1,
-          "TexturePath": "",
           "Type": 0
         }
       ],
@@ -106,7 +105,7 @@
       ]
     }
   ],
-  "Name": "P_Queen_AcidSpit",
+  "Name": "P_Queen_Bombs_Fall",
   "StartON": true,
   "Type": 9,
   "UID": 3562238069
