@@ -8,7 +8,7 @@ public class Item_Shield : Item
 
     public Item_Shield()
     {
-        this.id = 4;
+        this.id = 5;
         this.name = "Shield";
         this.description = "It charges by killing enemies. Use it and you'll be invincible for " + (int)activeTime + " seconds";
         this.type = ItemType.ABILITY;

@@ -12,7 +12,7 @@ class Item_AdrenalineRush : Item
 
     public Item_AdrenalineRush()
     {
-        this.id = 3;
+        this.id = 6;
         this.name = "AdrenalineRush";
         this.description = "Special medicine which boosts velocity and damage and heals for a short duration of time";
         this.type = ItemType.CONSUMABLE;
