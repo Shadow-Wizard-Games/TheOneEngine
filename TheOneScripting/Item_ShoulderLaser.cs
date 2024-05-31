@@ -7,7 +7,7 @@ class Item_ShoulderLaser : Item
 
     public Item_ShoulderLaser()
     {
-        this.id = 6;
+        this.id = 7;
         this.name = "ShoulderLaser";
         this.description = "Shoulder attachement which shoots automatically and pierces through enemies";
         this.type = ItemType.WEAPON;

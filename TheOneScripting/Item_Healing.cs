@@ -11,7 +11,7 @@
 
     public Item_Healing()
     {
-        this.id = 2;
+        this.id = 3;
         this.name = "Bandage";
         this.description = "A healing bandage. Upon use, you recover 60% of your Health.";
         type = ItemType.CONSUMABLE;

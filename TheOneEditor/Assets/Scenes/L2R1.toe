@@ -3808,6 +3808,115 @@
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 1040384000
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7427490949630737,
+            0.1000729352235794,
+            0.6620494723320007,
+            0.0,
+            -0.16274991631507874,
+            0.986097514629364,
+            0.0335322842001915,
+            0.0,
+            -0.6494895219802856,
+            -0.13265375792980194,
+            0.748710036277771,
+            0.0,
+            -321.051513671875,
+            5.8057861328125,
+            252.21546936035156,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3646135443
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/WP_OlPainless/M_OlPainless.toematerial",
+          "MeshPath": "Library/Meshes/WP_OlPainless/WP_OlPainless.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 605143878
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "EventCollectible",
+          "Type": 4,
+          "UID": 3615380550
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WP_OlPainless (1)",
+      "ParentUID": 3452816845,
+      "PrefabDirty": false,
+      "PrefabID": 1504802218,
+      "PrefabName": "WP_OlPainless",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.973207950592041,
+            0.007022601552307606,
+            -0.2298199087381363,
+            0.0,
+            -0.2291991412639618,
+            0.10934379696846008,
+            -0.9672324657440186,
+            0.0,
+            0.01833672635257244,
+            0.9939793348312378,
+            0.10802241414785385,
+            0.0,
+            -318.324462890625,
+            -2.4499456882476807,
+            278.8555908203125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2857611990
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SM_Corpse/M_Corpse.toematerial",
+          "MeshPath": "Library/Meshes/SM_Corpse/SM_Corpse.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 933209939
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SM_Corpse",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "index": 0,
