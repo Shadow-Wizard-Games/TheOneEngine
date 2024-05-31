@@ -27,7 +27,7 @@ public class Grenade : MonoBehaviour
         {
             Vector3 newPos = new Vector3(attachedGameObject.transform.Position.x, 0.0f, attachedGameObject.transform.Position.z);
             player.explosionPos = newPos;
-            InternalCalls.InstantiateExplosion(newPos + Vector3.up * 4, attachedGameObject.transform.Rotation, player.grenadeExplosionRadius);
+            InternalCalls.InstantiateExplosion(newPos + Vector3.up * 4, attachedGameObject.transform.Rotation, player.GrenadeLauncher.explosionRadius);
             attachedGameObject.Destroy();
         }
 

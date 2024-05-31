@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using static Item;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +16,10 @@ public class GameManager : MonoBehaviour
 
     public List<string> savedLevels = new List<string>();
 
+    //Shortcuts logic
+    public string lastLevel;
+    public bool activeShortcutL1R1;
+
     public override void Start()
     {
         hasSaved = false;
@@ -28,6 +30,9 @@ public class GameManager : MonoBehaviour
         godMode = false;
         extraSpeed = false;
 
+        lastLevel = " ";
+        activeShortcutL1R1 = true;
+
         DrawColliders();
         DrawGrid();
 
@@ -36,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public override void Update()
     {
-
+        ShortcutsConditions();
     }
 
     public void SaveSceneState()
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviour
         if (!savedLevels.Contains(SceneManager.GetCurrentSceneName()))
             savedLevels.Add(SceneManager.GetCurrentSceneName());
 
+        lastLevel = SceneManager.GetCurrentSceneName();
         InternalCalls.CreateSaveFromScene("GameData/Scenes", SceneManager.GetCurrentSceneName());
     }
 
@@ -92,4 +98,26 @@ public class GameManager : MonoBehaviour
         gridRender = !gridRender;
         InternalCalls.ToggleGridDraw();
     }
+
+    private void ShortcutsConditions() 
+    {
+        switch (SceneManager.GetCurrentSceneName())
+        {
+            case "L1R1":
+                if (savedLevels.Contains("L1R4") && !activeShortcutL1R1)
+                {
+                    IGameObject.Find("SwapScene_L1_R4").Enable();
+                    activeShortcutL1R1 = true;
+                }
+                else if (!savedLevels.Contains("L1R4") && activeShortcutL1R1)
+                {
+                    IGameObject.Find("SwapScene_L1_R4").Disable();
+                    activeShortcutL1R1 = false;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 }

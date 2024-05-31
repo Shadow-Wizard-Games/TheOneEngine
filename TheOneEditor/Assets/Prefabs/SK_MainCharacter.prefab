@@ -3,17 +3,17 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        100.0,
+        -70.71067508785328,
         0.0,
-        0.0,
-        0.0,
-        0.0,
-        100.0,
-        0.0,
-        0.0,
+        70.71067424463696,
         0.0,
         0.0,
         100.0,
+        0.0,
+        0.0,
+        -70.71067424463696,
+        0.0,
+        -70.71067508785328,
         0.0,
         0.0,
         0.0,
@@ -46,7 +46,7 @@
       "UID": 225613267
     },
     {
-      "AudioID": 0,
+      "AudioID": 1,
       "Name": "AudioSource",
       "Type": 8
     },
@@ -443,258 +443,79 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3630276037
+          "UID": 3239508024
         },
         {
           "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityDash",
-          "Type": 4,
-          "UID": 3667515160
-        },
-        {
-          "AudioID": 1,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Dash Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3610690573
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityAdrenalineRush",
-          "Type": 4,
-          "UID": 1177981766
-        },
-        {
-          "AudioID": 2,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Adrenaline Rush Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 714224593
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityFlamethrower",
-          "Type": 4,
-          "UID": 2174904043
-        },
-        {
-          "AudioID": 3,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Flamethrower Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2980399194
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityGrenadeLauncher",
-          "Type": 4,
-          "UID": 2232833499
-        },
-        {
-          "AudioID": 4,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Grenade Launcher Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 788044230
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityHeal",
-          "Type": 4,
-          "UID": 2199890485
-        },
-        {
-          "AudioID": 5,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Heal Ability",
-      "ParentUID": 113510800,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 361457508
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
+          "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 3061441302
+          "UID": 3572526842
         },
         {
-          "AudioID": 6,
-          "Name": "AudioSource",
-          "Type": 8
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityDash",
+          "Type": 4,
+          "UID": 3729842799
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityHeal",
+          "Type": 4,
+          "UID": 2763364458
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityAdrenalineRush",
+          "Type": 4,
+          "UID": 2474281391
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityDash",
+          "Type": 4,
+          "UID": 2031189824
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityFlamethrower",
+          "Type": 4,
+          "UID": 2296928116
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityGrenadeLauncher",
+          "Type": 4,
+          "UID": 2513585518
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityHeal",
+          "Type": 4,
+          "UID": 1790330668
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 2260469184,
+          "ScriptName": "AbilityImpaciente",
+          "Type": 4,
+          "UID": 2481116818
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Impaciente Ability",
+      "Name": "Abilities",
       "ParentUID": 113510800,
       "Static": false,
-      "UID": 3452816845
+      "UID": 2260469184
     },
     {
       "Components": [
@@ -719,34 +540,184 @@
             1.0
           ],
           "Type": 0,
-          "UID": 2910740634
+          "UID": 965919356
         },
         {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AbilityShield",
-          "Type": 4,
-          "UID": 1809667645
-        },
-        {
-          "AudioID": 7,
-          "Name": "AudioSource",
-          "Type": 8
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_M4_Idle/M_CarabinaM4.toematerial",
+          "MeshPath": "Library/Meshes/AS_M4_Idle/WP_CarabinaM4.animator",
+          "Name": "Mesh",
+          "ParentUID": 4259932,
+          "Type": 2,
+          "UID": 3121206272
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Shield Ability",
+      "Name": "WP_CarabinaM4",
       "ParentUID": 113510800,
       "Static": false,
-      "UID": 3452816845
+      "UID": 4259932
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 793695612
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_ShoulderLaser_Idle/M_ShoulderLaser.toematerial",
+          "MeshPath": "Library/Meshes/AS_ShoulderLaser_Idle/WP_ShoulderLaser.animator",
+          "Name": "Mesh",
+          "ParentUID": 4259932,
+          "Type": 2,
+          "UID": 3830396329
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WP_ShoulderLaser",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 4259932
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1936523887
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_LaImpaciente_Idle/M_OlPainless.toematerial",
+          "MeshPath": "Library/Meshes/AS_LaImpaciente_Idle/WP_OlPainless.animator",
+          "Name": "Mesh",
+          "ParentUID": 6881399,
+          "Type": 2,
+          "UID": 3882981545
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WP_OlPainless",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 6881399
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2559578244
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_FlameThrower_Idle/M_Flamethrower3.toematerial",
+          "MeshPath": "Library/Meshes/AS_FlameThrower_Idle/WP_Flamethrower.animator",
+          "Name": "Mesh",
+          "ParentUID": 6881399,
+          "Type": 2,
+          "UID": 2918350885
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WP_Flamethrower",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 6881399
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
-  "ParentUID": 3452816845,
+  "ParentUID": 4784208,
   "PrefabDirty": true,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",

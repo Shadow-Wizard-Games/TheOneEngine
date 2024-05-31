@@ -26,14 +26,15 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     float life = 200.0f;
     float biomass = 20.0f;
     float movementSpeed = 15.0f * 3;
+    
     States currentState = States.Idle;
     States lastState = States.Idle;
     AdultXenomorphAttacks currentAttack = AdultXenomorphAttacks.None;
     Vector3 initialPos;
 
     // Patrol
-    float patrolRange = 100;
-    float patrolSpeed = 20.0f;
+    readonly float patrolRange = 100;
+    readonly float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
 
@@ -322,7 +323,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     public void ReduceLifeExplosion()
     {
-        life -= player.grenadeDamage;
+        life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
     }
 
