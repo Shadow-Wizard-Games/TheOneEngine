@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -141,10 +142,6 @@ public class PlayerScript : MonoBehaviour
         currentAction = CurrentAction.IDLE;
         currentSkillSet = SkillSet.NONE;
 
-        SetInitPosInScene();
-    }
-
-
         ItemM4 = new Item_M4A1();
 
         timeFromLastStep = 0.3f;
@@ -157,6 +154,9 @@ public class PlayerScript : MonoBehaviour
 
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
+
+        // THIS ALWAYS LAST IN START
+        SetInitPosInScene();
     }
     public override void Update()
     {
@@ -341,7 +341,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
-            
+
             else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
         }
