@@ -24,6 +24,7 @@ struct RendererData
     bool drawCollisions = true;
     bool drawScriptShapes = true;
     bool drawRaycasting = false;
+    bool drawAABB = false;
 
     std::vector<Ray> rays;
 };
@@ -172,6 +173,9 @@ void Renderer::SetDrawScriptShapes(bool draw) { renderer.drawScriptShapes = draw
 
 bool Renderer::GetDrawRaycasting() { return renderer.drawRaycasting; }
 void Renderer::SetDrawRaycasting(bool draw) { renderer.drawRaycasting = draw; }
+
+bool Renderer::GetDrawAABB() { return renderer.drawAABB; }
+void Renderer::SetDrawAABB(bool draw) { renderer.drawAABB = draw; }
 
 
 //@Draw Utils ----------------------------------------------------------------

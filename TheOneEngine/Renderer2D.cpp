@@ -296,7 +296,6 @@ void Renderer2D::Update(BT type, RenderTarget target)
 
 	GLCALL(glEnable(GL_CULL_FACE));
 
-
 	buffer->Unbind();
 }
 

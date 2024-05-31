@@ -17,6 +17,7 @@
 
 #include "Math.h"
 #include "EngineCore.h"
+#include "Renderer.h"
 
 GameObject::GameObject(std::string name) :
 	name(name),
@@ -82,7 +83,7 @@ void GameObject::Draw(Camera* camera)
 			component->DrawComponent(camera);
 	}
 
-	//if (drawAABB)
+	if (Renderer::GetDrawAABB())
 		DrawAABB();
 }
 

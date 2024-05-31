@@ -55,6 +55,9 @@ public:
 	static bool GetDrawRaycasting();
 	static void SetDrawRaycasting(bool draw);
 
+	static bool GetDrawAABB();
+	static void SetDrawAABB(bool draw);
+
 	// Draw Utils
 	static void DrawScreenQuad();
 	static void DebugDraw(bool override = false);
