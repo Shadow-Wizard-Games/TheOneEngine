@@ -10,26 +10,31 @@ public class AbilityFlamethrower : MonoBehaviour
         COOLDOWN,
     }
 
+    Item_FlameThrower FlamethrowerItem;
+
     public string abilityName;
     public float activeTime;
-    public float activeTimeCounter;
     public float cooldownTime;
+    public float activeTimeCounter;
     public float cooldownTimeCounter;
+
+    public uint damage;
+    public float slowAmount;
 
     public AbilityState state;
 
-    IGameObject playerGO;
-    PlayerScript player;
-
     public override void Start()
     {
-        name = "Flamethrower";
+        FlamethrowerItem = new Item_FlameThrower();
 
-        activeTime = 10.0f;
-        cooldownTime = 20.0f;
+        name = FlamethrowerItem.name;
 
-        playerGO = attachedGameObject.parent;
-        player = playerGO.GetComponent<PlayerScript>();
+        activeTime = FlamethrowerItem.activeTime;
+        activeTimeCounter = activeTime;
+        cooldownTime = FlamethrowerItem.cooldownTime;
+        cooldownTimeCounter = cooldownTime;
+
+        damage = FlamethrowerItem.damage;
 
         state = AbilityState.READY;
     }

@@ -11,7 +11,7 @@ class Item_FlameThrower : Item
     public Item_FlameThrower()
     {
         this.id = 5;
-        this.name = "FlameThrower";
+        this.name = "Flamethrower";
         this.description = "Carbonize all enemies that stand in front of you";
         this.type = ItemType.ABILITY;
     }

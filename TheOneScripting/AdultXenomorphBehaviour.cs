@@ -312,7 +312,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     public void ReduceLifeExplosion()
     {
-        life -= player.grenadeDamage;
+        life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
     }
 

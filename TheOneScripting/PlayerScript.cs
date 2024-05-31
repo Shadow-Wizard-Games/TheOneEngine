@@ -48,6 +48,7 @@ public class PlayerScript : MonoBehaviour
     public float maxHP;
     public float HP;
     public bool isDead = false;
+    public uint baseDamage;
     public float totalDamage = 0.0f;
     public float damageIncrease = 0.0f;
 
@@ -65,7 +66,7 @@ public class PlayerScript : MonoBehaviour
     IGameObject ShoulderLaserGO;
     IGameObject ImpacienteGO;
     IGameObject FlamethrowerGO;
-    IGameObject GrenadeLauncherGO;
+    //IGameObject GrenadeLauncherGO;
 
     public SkillSet currentSkillSet;
     float skillSetChangeBaseCD;
@@ -77,24 +78,20 @@ public class PlayerScript : MonoBehaviour
     // DEPENDS ON WEAPON ITEM TYPE
     public bool hasShot = false;
     float timeSinceLastShot = 0.0f;
-    public float shootingCooldown = 0.15f;
-    //
 
     // abilities
-    AbilityGrenadeLauncher GrenadeLauncher;
-    AbilityAdrenalineRush AdrenalineRush;
-    AbilityFlamethrower Flamethrower;
-    AbilityImpaciente Impaciente;
-    AbilityDash Dash;
-    AbilityHeal Heal;
+    public AbilityGrenadeLauncher GrenadeLauncher;
+    public AbilityAdrenalineRush AdrenalineRush;
+    public AbilityFlamethrower Flamethrower;
+    public AbilityImpaciente Impaciente;
     //AbilityShield Shield;
+    public AbilityDash Dash;
+    public AbilityHeal Heal;
 
     // DEFINED IN ABILITY / ITEM SCRIPT
-    public bool shieldIsActive = false;
-    public Vector3 grenadeInitialVelocity = Vector3.zero;
-    public Vector3 explosionPos = Vector3.zero;
-    public float grenadeExplosionRadius = 50.0f;
-    readonly public float grenadeDamage = 50.0f;
+    public bool shieldIsActive;
+    public Vector3 grenadeInitialVelocity;
+    public Vector3 explosionPos;
     public int shieldKillCounter;
 
     // audio
@@ -115,6 +112,8 @@ public class PlayerScript : MonoBehaviour
         ShoulderLaserGO.Disable();
         ImpacienteGO = attachedGameObject.FindInChildren("WP_OlPainless");
         ImpacienteGO.Disable();
+        FlamethrowerGO = attachedGameObject.FindInChildren("WP_Flamethrower");
+        FlamethrowerGO.Disable();
 
         IGameObject Abilities = attachedGameObject.FindInChildren("Abilities");
         GrenadeLauncher = Abilities?.GetComponent<AbilityGrenadeLauncher>();
@@ -161,6 +160,11 @@ public class PlayerScript : MonoBehaviour
             M4GO.Enable();
             currentSkillSet = SkillSet.M4A1SET;
             currentWeaponType = CurrentWeapon.M4;
+            baseDamage = 5;
+
+            Impaciente.state = AbilityImpaciente.AbilityState.READY;
+            GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.READY;
+            Flamethrower.state = AbilityFlamethrower.AbilityState.READY;
         }
 
         // background music
@@ -228,6 +232,7 @@ public class PlayerScript : MonoBehaviour
 
         SetAimDirection();
 
+        #region IDLE / MOVING STATES
         if (SetMoveDirection()
             && Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
@@ -299,6 +304,8 @@ public class PlayerScript : MonoBehaviour
             currentAction = CurrentAction.ADRENALINERUSH;
             return;
         }
+        #endregion
+
     }
     private void WeaponAbilityStates()
     {
@@ -324,16 +331,6 @@ public class PlayerScript : MonoBehaviour
 
             skillSetChangeTime = skillSetChangeBaseCD;
         }
-
-        // SET WHEN FINISH ABILITIES
-        //if (currentSkillSet == SkillSet.SHOULDERLASERSET)
-        //{
-        //    currentWeaponType = CurrentWeapon.SHOULDERLASER;
-        //}
-        //else if (currentSkillSet == SkillSet.M4A1SET)
-        //{
-        //    currentWeaponType = CurrentWeapon.M4;
-        //}
         #endregion
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
@@ -357,8 +354,7 @@ public class PlayerScript : MonoBehaviour
             currentWeaponType = CurrentWeapon.IMPACIENTE;
         }
 
-        // SET WEAPON STATS AND VARIABLES HERE ?
-
+        #region ENABLE / DISABLE WEAPONS
         if (currentWeaponType != currentEquippedWeapon)
         {
             switch (currentEquippedWeapon)
@@ -380,27 +376,30 @@ public class PlayerScript : MonoBehaviour
                     Debug.Log("Flamethrower on Cooldown");
                     break;
                 case CurrentWeapon.GRENADELAUNCHER:
-                    GrenadeLauncherGO.Disable();
+                    //GrenadeLauncherGO.Disable();
                     GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.COOLDOWN;
                     Debug.Log("Grenade Launcher on Cooldown");
                     break;
             }
-
             switch (currentWeaponType)
             {
                 case CurrentWeapon.M4:
                     // CHANGE DEPENDING ON GRENADE LAUNCHER
                     M4GO.Enable();
+                    baseDamage = 5;
                     break;
                 case CurrentWeapon.SHOULDERLASER:
                     ShoulderLaserGO.Enable();
+                    baseDamage = 5;
                     break;
                 case CurrentWeapon.IMPACIENTE:
                     ImpacienteGO.Enable();
+                    baseDamage = Impaciente.damage;
                     Debug.Log("Impaciente Activated");
                     break;
                 case CurrentWeapon.FLAMETHROWER:
                     FlamethrowerGO.Enable();
+                    baseDamage = Flamethrower.damage;
                     Debug.Log("Flamethrower Activated");
                     break;
                 case CurrentWeapon.GRENADELAUNCHER:
@@ -410,6 +409,8 @@ public class PlayerScript : MonoBehaviour
                     break;
             }
         }
+        #endregion
+
     }
 
     private void IdleAction()
@@ -436,7 +437,8 @@ public class PlayerScript : MonoBehaviour
                 ImpacienteGO.animator.Play("Idle");
                 break;
             case CurrentWeapon.FLAMETHROWER:
-                attachedGameObject.animator.Play("Idle Flamethrower");
+                attachedGameObject.animator.Play("Idle M4");
+                FlamethrowerGO.animator.Play("Idle");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
                 attachedGameObject.animator.Play("Idle M4");
@@ -470,7 +472,8 @@ public class PlayerScript : MonoBehaviour
                 ImpacienteGO.animator.Play("Run");
                 break;
             case CurrentWeapon.FLAMETHROWER:
-                attachedGameObject.animator.Play("Run Flamethrower");
+                attachedGameObject.animator.Play("Run M4");
+                FlamethrowerGO.animator.Play("Run");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
                 attachedGameObject.animator.Play("Run Grenade Launcher");
@@ -518,7 +521,8 @@ public class PlayerScript : MonoBehaviour
                 ImpacienteGO.animator.Play("Shoot");
                 break;
             case CurrentWeapon.FLAMETHROWER:
-                attachedGameObject.animator.Play("Shoot Flamethrower");
+                attachedGameObject.animator.Play("Shoot M4");
+                FlamethrowerGO.animator.Play("Shoot");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
                 attachedGameObject.animator.Play("Shoot Grenade Launcher");
@@ -546,7 +550,8 @@ public class PlayerScript : MonoBehaviour
                 ImpacienteGO.animator.Play("Run and Shoot");
                 break;
             case CurrentWeapon.FLAMETHROWER:
-                attachedGameObject.animator.Play("Run Shoot Flamethrower");
+                attachedGameObject.animator.Play("Run Shoot M4");
+                FlamethrowerGO.animator.Play("Run and Shoot");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
                 attachedGameObject.animator.Play("Run Shoot Grenade Launcher");
@@ -797,10 +802,10 @@ public class PlayerScript : MonoBehaviour
     {
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
-        if (timeSinceLastShot < shootingCooldown)
+        if (timeSinceLastShot < 0.15f)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
+            if (!hasShot && timeSinceLastShot > 0.15f / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
@@ -820,13 +825,13 @@ public class PlayerScript : MonoBehaviour
 
         // CHANGE WITH REAL STATS, M4 PLACEHOLDER
 
-        if (timeSinceLastShot < shootingCooldown)
+        if (timeSinceLastShot < 0.15f)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
+            if (!hasShot && timeSinceLastShot > 0.15f / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-                attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
                 hasShot = true;
                 shotParticles.Replay();
             }
@@ -843,13 +848,13 @@ public class PlayerScript : MonoBehaviour
 
         // CHANGE WITH REAL STATS, M4 PLACEHOLDER
 
-        if (timeSinceLastShot < shootingCooldown)
+        if (timeSinceLastShot < Impaciente.fireRate)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > shootingCooldown / 2)
+            if (!hasShot && timeSinceLastShot > Impaciente.fireRate / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-                attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
                 hasShot = true;
                 shotParticles.Replay();
             }
@@ -862,7 +867,26 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootFlamethrower()
     {
+        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
+        // CHANGE WITH REAL STATS, M4 PLACEHOLDER, LET IT BURRRRRN
+
+        if (timeSinceLastShot < 0.15f)
+        {
+            timeSinceLastShot += Time.deltaTime;
+            if (!hasShot && timeSinceLastShot > 0.15f / 2)
+            {
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
+                hasShot = true;
+                shotParticles.Replay();
+            }
+        }
+        else
+        {
+            timeSinceLastShot = 0.0f;
+            hasShot = false;
+        }
     }
     private void ShootGrenadeLauncher()
     {
@@ -899,7 +923,7 @@ public class PlayerScript : MonoBehaviour
                 ImpacienteGO.animator.UpdateAnimation();
                 break;
             case CurrentWeapon.FLAMETHROWER:
-
+                FlamethrowerGO.animator.UpdateAnimation();
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
 
@@ -909,7 +933,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife(uint damage)
     {
-        if (isDead || gameManager.godMode || shieldIsActive || currentAction == CurrentAction.DASH)
+        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
         HP -= damage;
@@ -925,10 +949,10 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLifeExplosion()
     {
-        if (isDead || gameManager.godMode || shieldIsActive || currentAction == CurrentAction.DASH)
+        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        HP -= grenadeDamage;
+        HP -= 50;
         Debug.Log("Player took explosion damage! Current life is: " + HP.ToString());
 
         if (HP <= 0)

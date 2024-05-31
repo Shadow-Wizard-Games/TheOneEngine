@@ -8,10 +8,13 @@
         COOLDOWN,
     }
 
+    Item_Impaciente ImpacienteItem;
+
     public string abilityName;
+
     public float activeTime;
-    public float activeTimeCounter;
     public float cooldownTime;
+    public float activeTimeCounter;
     public float cooldownTimeCounter;
 
     public AbilityState state;
@@ -19,21 +22,30 @@
     IGameObject playerGO;
     PlayerScript player;
 
-    public int damage = 10;
+    public uint damage;
 
-    public float slowAmount = 0.25f;
-    public float impacienteShootingCd = 0.05f;
-    public float knockbackPotency = -3f;
+    public float slowAmount;
+    public float fireRate;
+    public float knockbackPotency;
 
     public int ammo = 100;
 
     public override void Start()
     {
-        abilityName = "Impaciente";
+        ImpacienteItem = new Item_Impaciente();
+
+        abilityName = ImpacienteItem.name;
+
+        damage = 10;
+        fireRate = 0.05f;
 
         activeTime = 25.0f;
+        cooldownTime = 45.0f;
+
+        slowAmount = 0.25f;
+        knockbackPotency = -3.0f;
+
         activeTimeCounter = activeTime;
-        cooldownTime = 5.0f;
         cooldownTimeCounter = cooldownTime;
 
         playerGO = attachedGameObject.parent;
@@ -62,9 +74,6 @@
 
     public void Activated()
     {
-        // rpm
-        player.shootingCooldown = impacienteShootingCd;
-
         float speedReduce = player.baseSpeed * slowAmount;
         player.currentSpeed -= speedReduce;
 
