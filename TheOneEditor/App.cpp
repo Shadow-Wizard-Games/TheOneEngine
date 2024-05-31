@@ -171,8 +171,6 @@ bool App::DoUpdate()
 {
 	//OPTICK_CATEGORY("DoUpdate", Optick::Category::GameLogic);
 	
-	engine->Update(dt);
-
 	for (const auto& module : modules)
 	{
 		if (module->active == false)
@@ -181,6 +179,8 @@ bool App::DoUpdate()
 		if (module->Update(dt) == false)
 			return false;
 	}
+
+	engine->Update(dt);
 
 	return true;
 }
