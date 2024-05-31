@@ -16,6 +16,7 @@
 #include "N_SceneManager.h"
 
 #include <glm/vec3.hpp>
+#include <sstream>
 
 //Constructors
 static GameObject* GetGameObjectPtr()
@@ -557,11 +558,28 @@ static void SetUiItemState(GameObject* containerGO, int state, MonoString* name)
 	}
 }
 
-static void MoveSelectedButton(GameObject* containerGO, int direction)
+static void MoveSelectedButton(GameObject* containerGO, int direction, bool children = false)
 {
 	if (direction != 0)
 	{
 		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+		if (children)
+		{
+			for (auto& child : containerGO->children)
+			{
+				if (child->GetComponent<Canvas>())
+				{
+					for (auto& itemUI : child->GetComponent<Canvas>()->GetUiElements())
+					{
+						if (itemUI->GetType() == UiType::BUTTONIMAGE)
+						{
+							ButtonImageUI* tempButton = (ButtonImageUI*)itemUI;
+							if (tempButton->IsRealButton()) uiElements.push_back(itemUI);
+						}
+					}
+				}
+			}
+		}
 
 		for (size_t i = 0; i < uiElements.size(); i++)
 		{
@@ -578,8 +596,8 @@ static void MoveSelectedButton(GameObject* containerGO, int direction)
 						j = uiElements.size() - 1;
 					else if (j >= uiElements.size())
 						j = 0;
-
-					if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
+					ButtonImageUI* tempButton2 = (ButtonImageUI*)uiElements[j];
+					if (uiElements[j]->GetType() == UiType::BUTTONIMAGE && tempButton2->IsRealButton())
 					{
 						if (direction != 0)
 							direction += (val * -1);
@@ -598,11 +616,24 @@ static void MoveSelectedButton(GameObject* containerGO, int direction)
 	}
 }
 
-static void MoveSelection(GameObject* containerGO, int direction)
+static void MoveSelection(GameObject* containerGO, int direction, bool children = false)
 {
 	if (direction != 0)
 	{
 		std::vector<ItemUI*> uiElements = containerGO->GetComponent<Canvas>()->GetUiElements();
+		if (children)
+		{
+			for (auto& child : containerGO->children)
+			{
+				if (child->GetComponent<Canvas>())
+				{
+					for (auto& itemUI : child->GetComponent<Canvas>()->GetUiElements())
+					{
+						if (itemUI->GetType() != UiType::IMAGE && itemUI->GetType() != UiType::TEXT) uiElements.push_back(itemUI);
+					}
+				}
+			}
+		}
 
 		for (size_t i = 0; i < uiElements.size(); i++)
 		{
@@ -717,21 +748,21 @@ static void SetSliderValue(GameObject* containerGO, int value, MonoString* name)
 	}
 }
 
-static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name)
+static void SetTextString(GameObject* containerGO, MonoString* text, MonoString* name, int num = -1)
 {
 	Canvas* canvas = containerGO->GetComponent<Canvas>();
 
 	std::string itemName = MonoRegisterer::MonoStringToUTF8(name);
 	std::string itemText = MonoRegisterer::MonoStringToUTF8(text);
-
+	
 	std::vector<ItemUI*> uiElements = canvas->GetUiElements();
-
+	
 	for (auto element : uiElements)
 	{
 		if (element->GetType() == UiType::TEXT && element->GetName() == itemName)
 		{
 			TextUI* ui = canvas->GetItemUI<TextUI>(element->GetID());
-			ui->SetText(itemText);
+			ui->SetText((num == -1 ? itemText : std::to_string(num)));
 			break;
 		}
 	}
@@ -754,6 +785,11 @@ static MonoString* GetTextString(GameObject* containerGO, MonoString* name)
 	}
 
 	return mono_string_new(MonoManager::GetAppDomain(), ret.c_str());
+}
+
+static void CanvasFlicker(GameObject* containerGO, bool flicker)
+{
+	containerGO->GetComponent<Canvas>()->CanvasFlicker(flicker);
 }
 
 //Helpers
@@ -1130,6 +1166,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetSliderMaxValue", GetSliderMaxValue);
 	mono_add_internal_call("InternalCalls::SetTextString", SetTextString);
 	mono_add_internal_call("InternalCalls::GetTextString", GetTextString);
+	mono_add_internal_call("InternalCalls::CanvasFlicker", CanvasFlicker);
 
 	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);

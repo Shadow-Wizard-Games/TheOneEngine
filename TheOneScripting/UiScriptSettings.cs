@@ -7,13 +7,14 @@ public class UiScriptSettings : MonoBehaviour
     float cooldown = 0;
     bool onCooldown = false;
 
-    public bool firstFrameUpdate = true;
     IGameObject settingsControlsGO;
     IGameObject settingsDisplayGO;
 
     ICanvas settingsDisCanvas;
 
     int currentButton = 0;
+
+    bool firstFrame = true;
 
     public bool editing = false;
 
@@ -35,23 +36,22 @@ public class UiScriptSettings : MonoBehaviour
         settingsControlsGO.Disable();
         settingsDisplayGO.Disable();
         onCooldown = true;
+
+        firstFrame = true;
     }
     public override void Update()
     {
-        if (!firstFrameUpdate)
-        {
-            settingsControlsGO.Disable();
-            settingsDisplayGO.Disable();
-
-            settingsControlsGO.Enable();
-
-            firstFrameUpdate = true;
-        }
-
-
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
+
+        if (firstFrame)
+        {
+            settingsControlsGO.Disable();
+            settingsDisplayGO.Disable();
+            settingsControlsGO.Enable();
+            firstFrame = false;
+        }
 
         if (onCooldown && cooldown < 0.2f)
         {

@@ -9,6 +9,10 @@ public class UiScriptInventory : MonoBehaviour
     float cooldown = 0;
     bool onCooldown = false;
 
+    float flickerCooldown = 0;
+    bool flickerOnCooldown = false;
+    public bool firstFrame = true;
+
     int currentButton = 0;
 
     public UiScriptInventory()
@@ -23,6 +27,10 @@ public class UiScriptInventory : MonoBehaviour
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
 
+        firstFrame = true;
+        flickerCooldown = 0;
+        flickerOnCooldown = false;
+
         onCooldown = true;
     }
     public override void Update()
@@ -30,6 +38,24 @@ public class UiScriptInventory : MonoBehaviour
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
+
+        if (firstFrame)
+        {
+            canvas.CanvasFlicker(true);
+            flickerOnCooldown = true;
+            firstFrame = false;
+        }
+
+        if (flickerOnCooldown && flickerCooldown < 0.6f)
+        {
+            flickerCooldown += dt;
+        }
+        else
+        {
+            canvas.CanvasFlicker(false);
+            flickerCooldown = 0.0f;
+            flickerOnCooldown = false;
+        }
 
         if (onCooldown && cooldown < 0.2f)
         {

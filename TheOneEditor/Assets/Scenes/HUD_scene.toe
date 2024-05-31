@@ -5,6 +5,883 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
+            -1.0000001192092896,
+            8.742279078433057e-08,
+            5.1255268069096485e-15,
+            0.0,
+            4.3731482435305224e-08,
+            0.5002297163009644,
+            -0.8658930659294128,
+            0.0,
+            -7.56988214334342e-08,
+            -0.8658930659294128,
+            -0.5002297163009644,
+            0.0,
+            163.5625762939453,
+            245.38815307617188,
+            391.41070556640625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 472327911
+        },
+        {
+          "Aspect": 1.7773109674453735,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": true,
+          "Size": 5.0,
+          "Type": 1,
+          "UID": 251324433,
+          "Yaw": 0.0,
+          "zFar": 1000.0,
+          "zNear": 0.1
+        },
+        {
+          "AudioID": 0,
+          "Name": "Listener",
+          "Type": 7
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "CameraMovement",
+          "Type": 4,
+          "UID": 3876888715
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "mainCamera",
+      "ParentUID": 16712704,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9968432884089338,
+            0.0,
+            -0.07939440074852133,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.07939440074852133,
+            0.0,
+            0.9968432884089338,
+            0.0,
+            64.30357360839844,
+            0.0,
+            156.43504333496094,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2517446926
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/SK_Queen/M_Queen.toematerial",
+          "MeshPath": "Library/Meshes/SK_Queen/SK_Queen.mesh",
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3836625021
+        },
+        {
+          "AudioID": 1,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AdultXenomorphBehaviour",
+          "Type": 4,
+          "UID": 3144860782
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Queen",
+      "ParentUID": 16712704,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            103.5984115600586,
+            0.00022389554942492396,
+            381.6773986816406,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 47571003
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",
+          "MeshPath": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter.animator",
+          "Name": "Mesh",
+          "ParentUID": 113510800,
+          "Type": 2,
+          "UID": 3098960481
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 113510800,
+          "ScriptName": "PlayerScript",
+          "Type": 4,
+          "UID": 225613267
+        },
+        {
+          "AudioID": 2,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 0,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 113510800,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3282283334,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.10000000149011612,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1533776541
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        -5.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 15.0,
+                      "MinSpeed": 5.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        250.0,
+                        250.0,
+                        250.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        240.0,
+                        240.0,
+                        240.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 745.2593994140625,
+                  "MaxParticles": 20,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 0,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.800000011920929,
+                      "SpawnRate": 1.5499999523162842,
+                      "Type": 2
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        10.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        255.0,
+                        255.0,
+                        255.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "P_Run_Dust\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 402248169
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "StepsPS",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.28999999165534973,
+                0.09000000357627869,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2719197524
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.5,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        6.0,
+                        10.0,
+                        120.0
+                      ],
+                      "MinDirection": [
+                        -6.0,
+                        -2.0,
+                        75.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 75.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        210.0,
+                        128.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "MinScale": [
+                        0.2,
+                        0.1,
+                        0.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 50,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -20.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 0.5,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        6.0,
+                        10.0,
+                        150.0
+                      ],
+                      "MinDirection": [
+                        -6.0,
+                        -2.0,
+                        100.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 150.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        255.0,
+                        255.0,
+                        0.0,
+                        255.0
+                      ],
+                      "MinColor": [
+                        210.0,
+                        128.0,
+                        0.0,
+                        255.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        1.0,
+                        0.1,
+                        2.0
+                      ],
+                      "MinScale": [
+                        0.2,
+                        0.1,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 0,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 10.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -20.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    }
+                  ]
+                }
+              ],
+              "Name": "P_ShootM4\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 4200920531
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "ShotPlayerPS",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3630276037
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "AbilityDash",
+              "Type": 4,
+              "UID": 3667515160
+            },
+            {
+              "AudioID": 3,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Dash Ability",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3610690573
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "AbilityAdrenalineRush",
+              "Type": 4,
+              "UID": 1177981766
+            },
+            {
+              "AudioID": 4,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Adrenaline Rush Ability",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 714224593
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "AbilityFlamethrower",
+              "Type": 4,
+              "UID": 2174904043
+            },
+            {
+              "AudioID": 5,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Flamethrower Ability",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2980399194
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "AbilityGrenadeLauncher",
+              "Type": 4,
+              "UID": 2232833499
+            },
+            {
+              "AudioID": 6,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Grenade Launcher Ability",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 788044230
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "AbilityHeal",
+              "Type": 4,
+              "UID": 2199890485
+            },
+            {
+              "AudioID": 7,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Heal Ability",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 361457508
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "AbilityImpaciente",
+              "Type": 4,
+              "UID": 3061441302
+            },
+            {
+              "AudioID": 8,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Impaciente Ability",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2910740634
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "AbilityShield",
+              "Type": 4,
+              "UID": 1809667645
+            },
+            {
+              "AudioID": 9,
+              "Name": "AudioSource",
+              "Type": 8
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Shield Ability",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_MainCharacter",
+      "ParentUID": 16712704,
+      "PrefabDirty": true,
+      "PrefabID": 186710944,
+      "PrefabName": "SK_MainCharacter",
+      "Static": false,
+      "UID": 113510800
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
             1.0,
             0.0,
             0.0,
@@ -33,11 +910,12 @@
           "UID": 2371490470
         },
         {
-          "AudioID": 7,
+          "AudioID": 10,
           "Name": "AudioSource",
           "Type": 8
         }
       ],
+      "EditablePrefab": true,
       "Enabled": true,
       "GameObjects": [
         {
@@ -1133,7 +2011,7 @@
               "UID": 951121546
             },
             {
-              "AudioID": 8,
+              "AudioID": 11,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -1434,7 +2312,7 @@
               ]
             },
             {
-              "AudioID": 9,
+              "AudioID": 12,
               "Name": "Source",
               "Type": 8
             },
@@ -1617,7 +2495,55 @@
                     0.07500000298023224
                   ],
                   "State": 0,
-                  "TextString": "20 / 20",
+                  "TextString": "20",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2269493107,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AmmoSlash",
+                  "Print": true,
+                  "Rect": [
+                    0.6399999856948853,
+                    0.824999988079071,
+                    0.03500000014901161,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "TextString": "/",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1991825613,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_MaxAmmo",
+                  "Print": true,
+                  "Rect": [
+                    0.6850000023841858,
+                    0.824999988079071,
+                    0.03500000014901161,
+                    0.07500000298023224
+                  ],
+                  "State": 0,
+                  "TextString": "20",
                   "Type": 4
                 },
                 {
@@ -1641,7 +2567,247 @@
                     0.03500000014901161
                   ],
                   "State": 0,
-                  "TextString": "m41a",
+                  "TextString": "m4a1",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2147178018,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet1",
+                  "Print": true,
+                  "Rect": [
+                    -0.9399999976158142,
+                    -0.17000000178813934,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "1\n x",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 4065829671,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet2",
+                  "Print": true,
+                  "Rect": [
+                    -0.949999988079071,
+                    0.019999999552965164,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "2\n l1",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 1578350538,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet3",
+                  "Print": true,
+                  "Rect": [
+                    -0.949999988079071,
+                    0.2150000035762787,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "3\n l2",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 517245262,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheet4",
+                  "Print": true,
+                  "Rect": [
+                    -0.949999988079071,
+                    0.4000000059604645,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "4\n r2",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3660121420,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_AbilitySheetConsumible",
+                  "Print": true,
+                  "Rect": [
+                    -0.9150000214576721,
+                    -0.5,
+                    0.019999999552965164,
+                    0.03999999910593033
+                  ],
+                  "State": 0,
+                  "TextString": "Q\n  y",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3662513925,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd1",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    -0.18000000715255737,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 3702058846,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd2",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    0.004999999888241291,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2428870307,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd3",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    0.19499999284744263,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2011812829,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_WeaponCd4",
+                  "Print": true,
+                  "Rect": [
+                    -0.8820000290870667,
+                    0.38499999046325684,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 2759080148,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_ConsumibleCd",
+                  "Print": true,
+                  "Rect": [
+                    -0.847000002861023,
+                    -0.5299999713897705,
+                    0.03999999910593033,
+                    0.0949999988079071
+                  ],
+                  "State": 0,
+                  "TextString": "0",
                   "Type": 4
                 },
                 {
@@ -2999,7 +4165,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 10,
+              "AudioID": 13,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -3099,14 +4265,14 @@
                   "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
                   "ImageSectionHovered": [
                     0.0,
-                    0.26006191968917847,
-                    0.4236760139465332,
+                    0.14757481217384338,
+                    0.23364485800266266,
                     0.11042311787605286
                   ],
                   "ImageSectionIdle": [
                     0.0,
-                    0.14757481217384338,
-                    0.4236752390861511,
+                    0.26006191968917847,
+                    0.23364485800266266,
                     0.11042311787605286
                   ],
                   "ImageSectionSelected": [
@@ -3116,19 +4282,53 @@
                     0.0
                   ],
                   "Interactuable": false,
-                  "Name": "Button_ToDo_Done",
+                  "Name": "Button_ToDo",
                   "Print": true,
                   "Rect": [
-                    -0.35499998927116394,
+                    -0.4699999988079071,
                     -0.5799999833106995,
-                    0.27000001072883606,
+                    0.1550000011920929,
+                    0.07999999821186066
+                  ],
+                  "State": 1,
+                  "Type": 1
+                },
+                {
+                  "CountAsRealButton": true,
+                  "ID": 1537710954,
+                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                  "ImageSectionHovered": [
+                    0.25934579968452454,
+                    0.26006191968917847,
+                    0.23364485800266266,
+                    0.11042311787605286
+                  ],
+                  "ImageSectionIdle": [
+                    0.25934579968452454,
+                    0.14757481217384338,
+                    0.23364485800266266,
+                    0.11042311787605286
+                  ],
+                  "ImageSectionSelected": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Interactuable": false,
+                  "Name": "Button_Done",
+                  "Print": true,
+                  "Rect": [
+                    -0.23000000417232513,
+                    -0.5799999833106995,
+                    0.1550000011920929,
                     0.07999999821186066
                   ],
                   "State": 0,
                   "Type": 1
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 171599070,
                   "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -3225,7 +4425,7 @@
                   "Type": 0
                 },
                 {
-                  "CountAsRealButton": true,
+                  "CountAsRealButton": false,
                   "ID": 932965676,
                   "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
                   "ImageSectionHovered": [
@@ -3254,150 +4454,6 @@
                     0.6150000095367432,
                     0.10499999672174454,
                     0.029999999329447746
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "CountAsRealButton": true,
-                  "ID": 3339058309,
-                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.007788162212818861,
-                    0.017543859779834747,
-                    0.07788161933422089,
-                    0.04540763795375824
-                  ],
-                  "ImageSectionIdle": [
-                    0.1059190034866333,
-                    0.017543859779834747,
-                    0.07788161933422089,
-                    0.04540763795375824
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_MissionTypeLeftPanel",
-                  "Print": true,
-                  "Rect": [
-                    -0.550000011920929,
-                    -0.3400000035762787,
-                    0.05999999865889549,
-                    0.04500000178813934
-                  ],
-                  "State": 0,
-                  "Type": 1
-                },
-                {
-                  "CheckerActive": true,
-                  "ID": 3017230494,
-                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.4322429895401001,
-                    0.8720329999923706,
-                    0.08644859492778778,
-                    0.11558307707309723
-                  ],
-                  "ImageSectionHoveredOff": [
-                    0.4322429895401001,
-                    0.5820433497428894,
-                    0.08644859492778778,
-                    0.11558307707309723
-                  ],
-                  "ImageSectionIdle": [
-                    0.4322429895401001,
-                    0.7254902124404907,
-                    0.08644859492778778,
-                    0.11558307707309723
-                  ],
-                  "ImageSectionIdleOff": [
-                    0.4322429895401001,
-                    0.43550050258636475,
-                    0.08644859492778778,
-                    0.11558307707309723
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "ImageSectionSelectedOff": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Checker_MissionActive",
-                  "Print": true,
-                  "Rect": [
-                    -0.14499999582767487,
-                    -0.3400000035762787,
-                    0.03999999910593033,
-                    0.07500000298023224
-                  ],
-                  "State": 0,
-                  "Type": 3
-                },
-                {
-                  "Color": [
-                    1.0,
-                    1.0,
-                    0.9399999976158142,
-                    1.0
-                  ],
-                  "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
-                  "ID": 1702456573,
-                  "Interactuable": false,
-                  "Kerning": 0.0,
-                  "LineSpacing": 0.0,
-                  "Name": "Text_MissionTitleRightPanel",
-                  "Print": true,
-                  "Rect": [
-                    -0.48500001430511475,
-                    -0.32499998807907104,
-                    0.02500000037252903,
-                    0.054999999701976776
-                  ],
-                  "State": 0,
-                  "TextString": "escape the ship",
-                  "Type": 4
-                },
-                {
-                  "CountAsRealButton": true,
-                  "ID": 3468629696,
-                  "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
-                  "ImageSectionHovered": [
-                    0.0,
-                    0.8586171269416809,
-                    0.4236760139465332,
-                    0.1413828730583191
-                  ],
-                  "ImageSectionIdle": [
-                    0.0,
-                    0.7089783549308777,
-                    0.4236760139465332,
-                    0.1413828730583191
-                  ],
-                  "ImageSectionSelected": [
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0
-                  ],
-                  "Interactuable": false,
-                  "Name": "Button_MissionLayer",
-                  "Print": true,
-                  "Rect": [
-                    -0.35499998927116394,
-                    -0.3400000035762787,
-                    0.27000001072883606,
-                    0.12999999523162842
                   ],
                   "State": 0,
                   "Type": 1
@@ -3498,12 +4554,817 @@
               ]
             },
             {
-              "AudioID": 11,
+              "AudioID": 14,
               "Name": "AudioSource",
               "Type": 8
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 3452816845,
+              "ScriptName": "UiScriptMissions",
+              "Type": 4,
+              "UID": 1552041312
             }
           ],
           "Enabled": false,
+          "GameObjects": [
+            {
+              "Components": [
+                {
+                  "Name": "Transform",
+                  "Transformation Matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "Type": 0,
+                  "UID": 1200610143
+                },
+                {
+                  "DebugDraw": true,
+                  "Enabled": false,
+                  "Name": "Canvas",
+                  "ParentUID": 3452816845,
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    2.0,
+                    2.0
+                  ],
+                  "Type": 6,
+                  "UID": 910068447,
+                  "UiElements": [
+                    {
+                      "CountAsRealButton": false,
+                      "ID": 3339058309,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.007788162212818861,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionIdle": [
+                        0.1059190034866333,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionTypeLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.550000011920929,
+                        -0.3400000035762787,
+                        0.05999999865889549,
+                        0.04500000178813934
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    },
+                    {
+                      "CheckerActive": true,
+                      "ID": 3017230494,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.4322429895401001,
+                        0.8720329999923706,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionHoveredOff": [
+                        0.4322429895401001,
+                        0.5820433497428894,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdle": [
+                        0.4322429895401001,
+                        0.7254902124404907,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdleOff": [
+                        0.4322429895401001,
+                        0.43550050258636475,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "ImageSectionSelectedOff": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Checker_MissionActive",
+                      "Print": true,
+                      "Rect": [
+                        -0.14499999582767487,
+                        -0.3400000035762787,
+                        0.03999999910593033,
+                        0.07500000298023224
+                      ],
+                      "State": 0,
+                      "Type": 3
+                    },
+                    {
+                      "Color": [
+                        1.0,
+                        1.0,
+                        0.9399999976158142,
+                        1.0
+                      ],
+                      "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                      "ID": 1702456573,
+                      "Interactuable": false,
+                      "Kerning": 0.0,
+                      "LineSpacing": 0.0,
+                      "Name": "Text_MissionTitleLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.48500001430511475,
+                        -0.32499998807907104,
+                        0.02500000037252903,
+                        0.054999999701976776
+                      ],
+                      "State": 0,
+                      "TextString": "escape the ship",
+                      "Type": 4
+                    },
+                    {
+                      "CountAsRealButton": true,
+                      "ID": 3468629696,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.0,
+                        0.8586171269416809,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionIdle": [
+                        0.0,
+                        0.7089783549308777,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionLayer",
+                      "Print": true,
+                      "Rect": [
+                        -0.35499998927116394,
+                        -0.3400000035762787,
+                        0.27000001072883606,
+                        0.12999999523162842
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "AudioID": 15,
+                  "Name": "AudioSource",
+                  "Type": 8
+                }
+              ],
+              "Enabled": false,
+              "HasTransparency": false,
+              "Keeped": false,
+              "Name": "Canvas_MissionsSlot1",
+              "ParentUID": 3452816845,
+              "Static": false,
+              "UID": 3452816845
+            },
+            {
+              "Components": [
+                {
+                  "Name": "Transform",
+                  "Transformation Matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "Type": 0,
+                  "UID": 4081141601
+                },
+                {
+                  "DebugDraw": true,
+                  "Enabled": false,
+                  "Name": "Canvas",
+                  "ParentUID": 3452816845,
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    2.0,
+                    2.0
+                  ],
+                  "Type": 6,
+                  "UID": 384323741,
+                  "UiElements": [
+                    {
+                      "CountAsRealButton": false,
+                      "ID": 3339058309,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.007788162212818861,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionIdle": [
+                        0.1059190034866333,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionTypeLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.550000011920929,
+                        -0.05000000074505806,
+                        0.05999999865889549,
+                        0.04500000178813934
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    },
+                    {
+                      "CheckerActive": true,
+                      "ID": 3017230494,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.4322429895401001,
+                        0.8720329999923706,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionHoveredOff": [
+                        0.4322429895401001,
+                        0.5820433497428894,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdle": [
+                        0.4322429895401001,
+                        0.7254902124404907,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdleOff": [
+                        0.4322429895401001,
+                        0.43550050258636475,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "ImageSectionSelectedOff": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Checker_MissionActive",
+                      "Print": true,
+                      "Rect": [
+                        -0.14499999582767487,
+                        -0.03999999910593033,
+                        0.03999999910593033,
+                        0.07500000298023224
+                      ],
+                      "State": 0,
+                      "Type": 3
+                    },
+                    {
+                      "Color": [
+                        1.0,
+                        1.0,
+                        0.9399999976158142,
+                        1.0
+                      ],
+                      "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                      "ID": 1702456573,
+                      "Interactuable": false,
+                      "Kerning": 0.0,
+                      "LineSpacing": 0.0,
+                      "Name": "Text_MissionTitleLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.48500001430511475,
+                        -0.029999999329447746,
+                        0.02500000037252903,
+                        0.054999999701976776
+                      ],
+                      "State": 0,
+                      "TextString": "escape the ship",
+                      "Type": 4
+                    },
+                    {
+                      "CountAsRealButton": true,
+                      "ID": 3468629696,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.0,
+                        0.8586171269416809,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionIdle": [
+                        0.0,
+                        0.7089783549308777,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionLayer",
+                      "Print": true,
+                      "Rect": [
+                        -0.35499998927116394,
+                        -0.03999999910593033,
+                        0.27000001072883606,
+                        0.12999999523162842
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "AudioID": 16,
+                  "Name": "AudioSource",
+                  "Type": 8
+                }
+              ],
+              "Enabled": false,
+              "HasTransparency": false,
+              "Keeped": false,
+              "Name": "Canvas_MissionsSlot2",
+              "ParentUID": 3452816845,
+              "Static": false,
+              "UID": 3452816845
+            },
+            {
+              "Components": [
+                {
+                  "Name": "Transform",
+                  "Transformation Matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "Type": 0,
+                  "UID": 924724846
+                },
+                {
+                  "DebugDraw": true,
+                  "Enabled": false,
+                  "Name": "Canvas",
+                  "ParentUID": 3452816845,
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    2.0,
+                    2.0
+                  ],
+                  "Type": 6,
+                  "UID": 3691023744,
+                  "UiElements": [
+                    {
+                      "CountAsRealButton": false,
+                      "ID": 3339058309,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.007788162212818861,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionIdle": [
+                        0.1059190034866333,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionTypeLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.550000011920929,
+                        0.25999999046325684,
+                        0.05999999865889549,
+                        0.04500000178813934
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    },
+                    {
+                      "CheckerActive": true,
+                      "ID": 3017230494,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.4322429895401001,
+                        0.8720329999923706,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionHoveredOff": [
+                        0.4322429895401001,
+                        0.5820433497428894,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdle": [
+                        0.4322429895401001,
+                        0.7254902124404907,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdleOff": [
+                        0.4322429895401001,
+                        0.43550050258636475,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "ImageSectionSelectedOff": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Checker_MissionActive",
+                      "Print": true,
+                      "Rect": [
+                        -0.14499999582767487,
+                        0.27000001072883606,
+                        0.03999999910593033,
+                        0.07500000298023224
+                      ],
+                      "State": 0,
+                      "Type": 3
+                    },
+                    {
+                      "Color": [
+                        1.0,
+                        1.0,
+                        0.9399999976158142,
+                        1.0
+                      ],
+                      "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                      "ID": 1702456573,
+                      "Interactuable": false,
+                      "Kerning": 0.0,
+                      "LineSpacing": 0.0,
+                      "Name": "Text_MissionTitleLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.48500001430511475,
+                        0.2800000011920929,
+                        0.02500000037252903,
+                        0.054999999701976776
+                      ],
+                      "State": 0,
+                      "TextString": "escape the ship",
+                      "Type": 4
+                    },
+                    {
+                      "CountAsRealButton": true,
+                      "ID": 3468629696,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.0,
+                        0.8586171269416809,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionIdle": [
+                        0.0,
+                        0.7089783549308777,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionLayer",
+                      "Print": true,
+                      "Rect": [
+                        -0.35499998927116394,
+                        0.2750000059604645,
+                        0.27000001072883606,
+                        0.12999999523162842
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "AudioID": 17,
+                  "Name": "AudioSource",
+                  "Type": 8
+                }
+              ],
+              "Enabled": false,
+              "HasTransparency": false,
+              "Keeped": false,
+              "Name": "Canvas_MissionsSlot3",
+              "ParentUID": 3452816845,
+              "Static": false,
+              "UID": 3452816845
+            },
+            {
+              "Components": [
+                {
+                  "Name": "Transform",
+                  "Transformation Matrix": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "Type": 0,
+                  "UID": 1514964719
+                },
+                {
+                  "DebugDraw": true,
+                  "Enabled": false,
+                  "Name": "Canvas",
+                  "ParentUID": 3452816845,
+                  "Rect": [
+                    0.0,
+                    0.0,
+                    2.0,
+                    2.0
+                  ],
+                  "Type": 6,
+                  "UID": 4275132480,
+                  "UiElements": [
+                    {
+                      "CountAsRealButton": false,
+                      "ID": 3339058309,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.007788162212818861,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionIdle": [
+                        0.1059190034866333,
+                        0.017543859779834747,
+                        0.07788161933422089,
+                        0.04540763795375824
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionTypeLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.550000011920929,
+                        0.574999988079071,
+                        0.05999999865889549,
+                        0.04500000178813934
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    },
+                    {
+                      "CheckerActive": true,
+                      "ID": 3017230494,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.4322429895401001,
+                        0.8720329999923706,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionHoveredOff": [
+                        0.4322429895401001,
+                        0.5820433497428894,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdle": [
+                        0.4322429895401001,
+                        0.7254902124404907,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionIdleOff": [
+                        0.4322429895401001,
+                        0.43550050258636475,
+                        0.08644859492778778,
+                        0.11558307707309723
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "ImageSectionSelectedOff": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Checker_MissionActive",
+                      "Print": true,
+                      "Rect": [
+                        -0.14499999582767487,
+                        0.5849999785423279,
+                        0.03999999910593033,
+                        0.07500000298023224
+                      ],
+                      "State": 0,
+                      "Type": 3
+                    },
+                    {
+                      "Color": [
+                        1.0,
+                        1.0,
+                        0.9399999976158142,
+                        1.0
+                      ],
+                      "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+                      "ID": 1702456573,
+                      "Interactuable": false,
+                      "Kerning": 0.0,
+                      "LineSpacing": 0.0,
+                      "Name": "Text_MissionTitleLeftPanel",
+                      "Print": true,
+                      "Rect": [
+                        -0.48500001430511475,
+                        0.5950000286102295,
+                        0.02500000037252903,
+                        0.054999999701976776
+                      ],
+                      "State": 0,
+                      "TextString": "escape the ship",
+                      "Type": 4
+                    },
+                    {
+                      "CountAsRealButton": true,
+                      "ID": 3468629696,
+                      "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
+                      "ImageSectionHovered": [
+                        0.0,
+                        0.8586171269416809,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionIdle": [
+                        0.0,
+                        0.7089783549308777,
+                        0.4236760139465332,
+                        0.1413828730583191
+                      ],
+                      "ImageSectionSelected": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Interactuable": false,
+                      "Name": "Button_MissionLayer",
+                      "Print": true,
+                      "Rect": [
+                        -0.35499998927116394,
+                        0.5849999785423279,
+                        0.27000001072883606,
+                        0.12999999523162842
+                      ],
+                      "State": 0,
+                      "Type": 1
+                    }
+                  ]
+                },
+                {
+                  "AudioID": 18,
+                  "Name": "AudioSource",
+                  "Type": 8
+                }
+              ],
+              "Enabled": false,
+              "HasTransparency": false,
+              "Keeped": false,
+              "Name": "Canvas_MissionsSlot4",
+              "ParentUID": 3452816845,
+              "Static": false,
+              "UID": 3452816845
+            }
+          ],
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_Missions",
@@ -3682,7 +5543,7 @@
               ]
             },
             {
-              "AudioID": 12,
+              "AudioID": 19,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -5908,7 +7769,7 @@
                   ]
                 },
                 {
-                  "AudioID": 13,
+                  "AudioID": 20,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -6695,7 +8556,7 @@
                   "UID": 1616070798
                 },
                 {
-                  "AudioID": 14,
+                  "AudioID": 21,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -6803,7 +8664,7 @@
               ]
             },
             {
-              "AudioID": 15,
+              "AudioID": 22,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6927,7 +8788,7 @@
               ]
             },
             {
-              "AudioID": 16,
+              "AudioID": 23,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6973,7 +8834,7 @@
               "UID": 2135104260
             },
             {
-              "AudioID": 21,
+              "AudioID": 24,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -7019,7 +8880,7 @@
               "UID": 2581454987
             },
             {
-              "AudioID": 22,
+              "AudioID": 25,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -7031,256 +8892,15 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 4072698855
-            },
-            {
-              "Name": "Script",
-              "ParentUID": 3452816845,
-              "ScriptName": "ItemManager",
-              "Type": 4,
-              "UID": 1110714302
-            },
-            {
-              "AudioID": 19,
-              "Name": "AudioSource",
-              "Type": 8
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "Manager",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            -0.7071067690849304,
-            0.0,
-            0.7071067690849304,
-            0.0,
-            -0.6120563745498657,
-            0.5007734298706055,
-            -0.6120563745498657,
-            0.0,
-            -0.3541002869606018,
-            -0.8655784130096436,
-            -0.3541002869606018,
-            0.0,
-            163.5625762939453,
-            220.0,
-            335.58563232421875,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 472327911
-        },
-        {
-          "Aspect": 1.7773109674453735,
-          "CameraType": 0,
-          "FOV": 65.0,
-          "Name": "Camera",
-          "ParentUID": 3452816845,
-          "Pitch": 0.0,
-          "PrimaryCamera": true,
-          "Size": 5.0,
-          "Type": 1,
-          "UID": 251324433,
-          "Yaw": 0.0,
-          "zFar": 1000.0,
-          "zNear": 0.1
-        },
-        {
-          "AudioID": 17,
-          "Name": "Listener",
-          "Type": 7
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "CameraMovement",
-          "Type": 4,
-          "UID": 3876888715
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "mainCamera",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            71.40404510498047,
-            0.0,
-            435.42144775390625,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2679091023
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "",
-          "MeshPath": "Library/Meshes/SK_MainCharacter/SK_MainCharacter.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 2422676639
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "PlayerScript",
-          "Type": 4,
-          "UID": 3227234719
-        },
-        {
-          "AudioID": 18,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 0,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 20.0,
-          "Type": 5,
-          "UID": 3660759441,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            0.9968432884089338,
-            0.0,
-            -0.07939440074852133,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.07939440074852133,
-            0.0,
-            0.9968432884089338,
-            0.0,
-            64.30357360839844,
-            0.0,
-            156.43504333496094,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2517446926
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_Queen/M_Queen.toematerial",
-          "MeshPath": "Library/Meshes/SK_Queen/SK_Queen.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 3836625021
-        },
-        {
-          "AudioID": 20,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AdultXenomorphBehaviour",
-          "Type": 4,
-          "UID": 3144860782
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "SK_Queen",
-      "ParentUID": 3452816845,
+      "ParentUID": 16712704,
+      "PrefabDirty": false,
+      "PrefabID": 2472160759,
+      "PrefabName": "UI_Manager",
       "Static": false,
       "UID": 3452816845
     }
