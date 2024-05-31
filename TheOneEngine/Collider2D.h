@@ -19,6 +19,8 @@ enum class CollisionType
     Enemy,
     Wall,
     Bullet,
+    Grenade,
+    Explosion,
 };
 
 enum class ObjectOrientation

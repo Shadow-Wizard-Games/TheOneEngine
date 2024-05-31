@@ -1,26 +1,46 @@
 ﻿using System;
 
-public class AbilityHeal : Ability
+public class AbilityHeal : MonoBehaviour
 {
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
+
+    public AbilityState state;
+
     IGameObject playerGO;
     PlayerScript player;
 
-    readonly int numHeals = 0;
-    readonly float healAmount = 0.6f; // in %
-    readonly float slowAmount = 0.4f; // in %
+    public readonly float healAmount = 0.6f; // in %
+    public readonly float slowAmount = 0.4f; // in %
 
-    float totalHeal = 0.0f;
+    public int numHeals;
 
     public override void Start()
     {
-        abilityName = "Heal";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
+        abilityName = "Bandage";
 
         activeTime = 1.0f;
         activeTimeCounter = activeTime;
         cooldownTime = 8.0f;
         cooldownTimeCounter = cooldownTime;
+
+        numHeals = 2;
+
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -28,52 +48,21 @@ public class AbilityHeal : Ability
     {
         switch (state)
         {
-            case AbilityState.CHARGING:
-                break;
-            case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.ONE) && numHeals > 0)
-                {
-                    Activated();
-                    break;
-                }
-                // controller input
-                break;
             case AbilityState.ACTIVE:
+                
                 WhileActive();
-                Debug.Log("Heal active time -> " + activeTimeCounter.ToString("F2"));
+                
                 break;
             case AbilityState.COOLDOWN:
+                
                 OnCooldown();
-                Debug.Log("Heal cooldown time -> " + activeTimeCounter.ToString("F2"));
+                
                 break;
         }
     }
 
-    public override void Activated()
+    public void WhileActive()
     {
-        // Calculate heal amount
-
-        if (player.healAbilityName == "Bandage")
-        {
-            totalHeal = player.maxLife * healAmount;
-        }
-        else
-        {
-            totalHeal = player.maxLife * healAmount;
-        }
-        totalHeal += player.life;
-
-        float speedReduce = player.baseSpeed * slowAmount;
-        player.speed -= speedReduce;
-
-        state = AbilityState.ACTIVE;
-
-        Debug.Log("Ability Heal Activated");
-    }
-
-    public override void WhileActive()
-    {
-
         if (activeTimeCounter > 0)
         {
             // update time
@@ -81,14 +70,26 @@ public class AbilityHeal : Ability
         }
         else
         {
-            // heal
-            if (totalHeal > player.maxLife)
-                player.life = player.maxLife;
+            float totalHeal;
+
+            if (abilityName == "Bandage")
+            {
+                totalHeal = player.maxHP * healAmount;
+            }
             else
-                player.life = totalHeal;
+            {
+                totalHeal = player.maxHP * healAmount;
+            }
+
+            player.HP += totalHeal;
+
+            if (player.HP > player.maxHP)
+                player.HP = player.maxHP;
+
+            numHeals--;
 
             // reset stats
-            player.speed = player.baseSpeed;
+            player.currentSpeed = player.baseSpeed;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
@@ -97,7 +98,7 @@ public class AbilityHeal : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {
@@ -107,7 +108,11 @@ public class AbilityHeal : Ability
         else
         {
             cooldownTimeCounter = cooldownTime;
-            state = AbilityState.READY;
+
+            if (numHeals > 0)
+            {
+                state = AbilityState.READY;
+            }
 
             Debug.Log("Ability Heal Ready");
         }

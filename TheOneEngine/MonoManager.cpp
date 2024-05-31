@@ -135,16 +135,21 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
 {
     // Get the MonoClass pointer from the instance
     MonoClass* instanceClass = mono_object_get_class(monoBehaviourInstance);
+    MonoClass* currentClass = instanceClass;
 
-    // Get a reference to the method in the class
-    MonoMethod* method = mono_class_get_method_from_name(instanceClass, functionToCall.c_str(), 0);
+    MonoMethod* method = nullptr;
 
-    if (method == nullptr)
+    // Traverse the class hierarchy to find the method
+    while (currentClass != nullptr && method == nullptr)
     {
-        // Get the parent class (MonoBehaviour's base class)
-        MonoClass* parentClass = mono_class_get_parent(instanceClass);
+        // Get a reference to the method in the current class
+        method = mono_class_get_method_from_name(currentClass, functionToCall.c_str(), 0);
 
-        method = mono_class_get_method_from_name(parentClass, functionToCall.c_str(), 0);
+        if (method == nullptr)
+        {
+            // Move to the parent class
+            currentClass = mono_class_get_parent(currentClass);
+        }
     }
 
     if (method == nullptr)
@@ -155,7 +160,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
             if (functionToCall == checkFunction) return nullptr;
         }
 
-        LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall.c_str());
+        LOG(LogType::LOG_ERROR, "Could not find method %s in %s", functionToCall.c_str(), mono_class_get_name(instanceClass));
         return nullptr;
     }
 
@@ -167,7 +172,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
     //Handle the exception
     if (exception != nullptr)
     {
-        LOG(LogType::LOG_ERROR, "Exception occurred");
+        LOG(LogType::LOG_ERROR, "Exception occurred with %s from %s", functionToCall.c_str(), mono_class_get_name(instanceClass));
         return nullptr;
     }
 

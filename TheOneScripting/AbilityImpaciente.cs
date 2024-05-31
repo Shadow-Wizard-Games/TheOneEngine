@@ -1,30 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public class AbilityImpaciente : Ability
+﻿public class AbilityImpaciente : MonoBehaviour
 {
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+
+    Item_Impaciente ImpacienteItem;
+
+    public string abilityName;
+
+    public float activeTime;
+    public float cooldownTime;
+    public float activeTimeCounter;
+    public float cooldownTimeCounter;
+
+    public AbilityState state;
+
     IGameObject playerGO;
     PlayerScript player;
 
-    readonly int damage = 10;
+    public uint damage;
 
-    readonly float slowAmount = 0.25f;
-    readonly float impacienteShootingCd = 0.12f;
-    readonly float knockbackPotency = -3f;
+    public float slowAmount;
+    public float fireRate;
+    public float knockbackPotency;
+
+    public int ammo = 100;
 
     public override void Start()
     {
-        abilityName = "Impaciente";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
+        ImpacienteItem = new Item_Impaciente();
+
+        abilityName = ImpacienteItem.name;
+
+        damage = 10;
+        fireRate = 0.05f;
 
         activeTime = 25.0f;
-        activeTimeCounter = activeTime;
         cooldownTime = 45.0f;
+
+        slowAmount = 0.25f;
+        knockbackPotency = -3.0f;
+
+        activeTimeCounter = activeTime;
         cooldownTimeCounter = cooldownTime;
+
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     // put update and call the abilityStatUpdate from there or 
@@ -32,62 +59,52 @@ public class AbilityImpaciente : Ability
     {
         switch (state)
         {
-            case AbilityState.CHARGING:
-                break;
-            case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR))
-                {
-                    Activated();
-                    break;
-                }
-                // controller input
-                break;
             case AbilityState.ACTIVE:
+
                 WhileActive();
-                Debug.Log("Impaciente active time -> " + activeTimeCounter.ToString("F2"));
+
                 break;
             case AbilityState.COOLDOWN:
+
                 OnCooldown();
-                Debug.Log("Impaciente cooldown time -> " + cooldownTimeCounter.ToString("F2"));
+
                 break;
         }
     }
 
-    public override void Activated()
+    public void Activated()
     {
-        player.currentWeapon = PlayerScript.CurrentWeapon.IMPACIENTE;
-
-        player.shootingCooldown = impacienteShootingCd;
-
         float speedReduce = player.baseSpeed * slowAmount;
-        player.speed -= speedReduce;
+        player.currentSpeed -= speedReduce;
 
-        player.currentWeapon = PlayerScript.CurrentWeapon.IMPACIENTE;
-        player.currentWeoponDamage = damage;
+        player.currentWeaponDamage = damage;
 
         state = AbilityState.ACTIVE;
 
-        attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
+        //attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
 
         Debug.Log("Ability Impaciente Activated");
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
-
         if (activeTimeCounter > 0)
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
 
-            if (player.isShooting)
+            if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
 
-            Debug.LogWarning("Impaciente Bullets --> " + player.impacienteBulletCounter);
-            if (player.impacienteBulletCounter >= player.impacienteBullets)
+            if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
             {
-                player.impacienteBulletCounter = 0;
-                player.currentWeapon = PlayerScript.CurrentWeapon.MP4;
+                // reset stats
+                //player.shootingCooldown = player.mp4ShootingCd;
+                player.currentSpeed = player.baseSpeed;
+                player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+                player.currentWeaponDamage = damage;
+
+                activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
 
                 Debug.Log("Ability Impaciente on Cooldown");
@@ -96,19 +113,18 @@ public class AbilityImpaciente : Ability
         else
         {
             // reset stats
-            player.shootingCooldown = player.mp4ShootingCd;
-            player.speed = player.baseSpeed;
-
-            player.currentWeapon = PlayerScript.CurrentWeapon.MP4;
-            player.currentWeoponDamage = damage;
+            player.currentSpeed = player.baseSpeed;
+            player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+            player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;
+
             state = AbilityState.COOLDOWN;
 
             Debug.Log("Ability Impaciente on Cooldown");
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {
@@ -122,6 +138,5 @@ public class AbilityImpaciente : Ability
 
             Debug.Log("Ability Impaciente Ready");
         }
-
     }
 }

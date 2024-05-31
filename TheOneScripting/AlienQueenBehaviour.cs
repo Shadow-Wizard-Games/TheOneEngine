@@ -107,6 +107,7 @@ public class AlienQueenBehaviour : MonoBehaviour
         if (life <= 0)
         {
             currentState = States.Dead;
+            player.shieldKillCounter++;
             //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_QUEEN_DEATH);
             return;
         }
@@ -200,7 +201,13 @@ public class AlienQueenBehaviour : MonoBehaviour
 
     public void ReduceLife(float damage) //temporary function for the hardcoding of collisions
     {
-        life -= damage;
+        life -= player.totalDamage;
+        if (life < 0) life = 0;
+    }
+
+    public void ReduceLifeExplosion()
+    {
+        life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
     }
 
@@ -326,7 +333,8 @@ public class AlienQueenBehaviour : MonoBehaviour
         //                                   attachedGameObject.transform.rotation,
         //                                   scale);
         InternalCalls.CreatePrefab("SK_Facehugger",
-            attachedGameObject.transform.Position + attachedGameObject.transform.Forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f));
+                                   attachedGameObject.transform.Position + attachedGameObject.transform.Forward * (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+                                   attachedGameObject.transform.Rotation);
         attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_SPAWN);
         ResetState();
     }
