@@ -19,9 +19,10 @@ BuilderSceneManager::~BuilderSceneManager() {}
 
 bool BuilderSceneManager::Awake()
 {
-	engine->N_sceneManager->Awake();
+	bool ret = true;
+	ret = engine->N_sceneManager->Awake();
 
-	return true;
+	return ret;
 }
 
 bool BuilderSceneManager::Start()

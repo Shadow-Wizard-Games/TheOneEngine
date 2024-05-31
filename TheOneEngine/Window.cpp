@@ -38,10 +38,6 @@ bool Window::Awake()
 
 bool Window::Start()
 {
-    displayMode = DisplayMode::WINDOWED;
-    resolution = Resolution::R_1280x720;
-
-    SetResolution(resolution);
 
     return true;
 }

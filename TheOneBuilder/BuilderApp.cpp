@@ -43,35 +43,24 @@ void BuilderApp::AddModule(BuilderModule* module, bool activate)
 // Called before render is available
 bool BuilderApp::Awake()
 {
-	bool ret = false;
-
 	targetFrameDuration = (std::chrono::duration<double>)1 / frameRate;
 
-	//Load config from XML
-	//ret = LoadConfig();
-	ret = true;
+	engine->Awake();
+	engine->window->SetDisplayMode(DisplayMode::FULLSCREEN_DESKTOP);
+	engine->window->SetResolution(Resolution::R_NATIVE);
 
-	if (ret == true)
+	for (const auto& item : modules)
 	{
-		//title = configNode.child("app").child("title").child_value();
-		//maxFrameDuration = configNode.child("app").child("frcap").attribute("value").as_int();
+		if (!item->active)
+			continue;
 
-		engine->Awake();
-		engine->window->SetDisplayMode(DisplayMode::FULLSCREEN_DESKTOP);
-		engine->window->SetResolution(Resolution::R_NATIVE);
-
-		for (const auto& item : modules)
-		{
-			if (item->active == false)
-				continue;
-
-			item->Awake();
-		}
+		if (!item->Awake())
+			return false;
 	}
 
 	//LOG("---------------- Time Awake: %f/n", timer.ReadMSec());
 
-	return ret;
+	return true;
 }
 
 // Called before the first frame
@@ -84,10 +73,10 @@ bool BuilderApp::Start()
 
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->Start() == false)
+		if (!module->Start())
 			return false;
 	}
 
@@ -100,27 +89,19 @@ bool BuilderApp::Start()
 bool BuilderApp::Update()
 {
 	bool ret = true;
+
 	PrepareUpdate();
 
-	/*if (input->GetWindowEvent(WE_QUIT) == true)
-		ret = false;*/
-
-	if (ret == true)
-		ret = PreUpdate();
-
-	if (ret == true)
-		ret = DoUpdate();
-
-	if (ret == true)
-		ret = PostUpdate();
+	if (ret) ret = PreUpdate();
+	if (ret) ret = DoUpdate();
+	if (ret) ret = PostUpdate();
 
 	FinishUpdate();
 
 	time_since_start = start_timer->ReadSec();
 
-	if (state == GameState::PLAY || state == GameState::PLAY_ONCE) {
+	if (state == GameState::PLAY || state == GameState::PLAY_ONCE)
 		game_time = game_timer->ReadSec(scale_time);
-	}
 
 	return ret;
 }
@@ -139,10 +120,10 @@ bool BuilderApp::PreUpdate()
 
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->PreUpdate() == false)
+		if (!module->PreUpdate())
 			return false;
 	}
 
@@ -155,10 +136,10 @@ bool BuilderApp::DoUpdate()
 
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->Update(dt) == false)
+		if (!module->Update(dt))
 			return false;
 	}
 
@@ -169,10 +150,10 @@ bool BuilderApp::PostUpdate()
 {
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->PostUpdate() == false)
+		if (!module->PostUpdate())
 			return false;
 	}
 
