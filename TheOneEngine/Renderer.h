@@ -60,7 +60,7 @@ public:
 
 	// Draw Utils
 	static void DrawScreenQuad();
-	static void DebugDraw(bool override = false);
+	static void DrawDebug(bool override = false);
 	static void DrawAxis();
 	static void DrawGrid(int grid_size, int grid_step);
 	static void DrawFrustum(const Frustum& frustum);

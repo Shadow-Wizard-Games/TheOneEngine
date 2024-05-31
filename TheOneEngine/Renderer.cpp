@@ -53,6 +53,9 @@ void Renderer::Update()
 
         Renderer3D::GeometryPass(target);
 
+        //// Debug / Editor Draw
+        //Renderer::DrawDebug(true);
+
         if (renderer.renderParticles)
             Renderer2D::Update(BT::WORLD, target);
 
@@ -215,7 +218,7 @@ void Renderer::DrawScreenQuad()
     GLCALL(glDepthMask(GL_TRUE));
 }
 
-void Renderer::DebugDraw(bool override)
+void Renderer::DrawDebug(bool override)
 {
     // Draw Editor / Debug
     if (renderer.drawAxis || override)

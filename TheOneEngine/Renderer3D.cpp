@@ -480,9 +480,6 @@ void Renderer3D::PostProcess(RenderTarget target)
 
 	LightPass(target);
 	IndexPass(target);
-	
-	//// Debug / Editor Draw 
-	//engine->DebugDraw(true);
 
 	postBuffer->Unbind();
 }

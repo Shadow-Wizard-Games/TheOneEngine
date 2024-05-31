@@ -155,7 +155,7 @@ static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
-	go->AddScript("Grenade");
+	go->AddComponent<Script>("Grenade");
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Grenade;
@@ -174,7 +174,7 @@ static GameObject* InstantiateExplosion(vec3f* initialPosition, vec3f* direction
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
-	go->AddScript("Explosion");
+	go->AddComponent<Script>("Explosion");
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Explosion;
