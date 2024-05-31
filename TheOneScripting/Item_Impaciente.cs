@@ -4,7 +4,7 @@ class Item_Impaciente : Item
 {
     public readonly uint damage = 10;
     public readonly uint maxAmmo = 999;
-    public readonly float fireRate = 0.05f;
+    public readonly float fireRate = 0.5f;
     public readonly float knockBackPotency = -3.0f;
     public readonly float slowAmount = 0.25f;
 

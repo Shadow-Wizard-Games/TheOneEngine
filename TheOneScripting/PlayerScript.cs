@@ -62,6 +62,8 @@ public class PlayerScript : MonoBehaviour
     public CurrentWeapon currentWeaponType;
     public CurrentAction currentAction;
 
+    Item_M4A1 ItemM4;
+
     IGameObject M4GO;
     IGameObject ShoulderLaserGO;
     IGameObject ImpacienteGO;
@@ -139,6 +141,8 @@ public class PlayerScript : MonoBehaviour
         currentAction = CurrentAction.IDLE;
         currentSkillSet = SkillSet.NONE;
 
+        ItemM4 = new Item_M4A1();
+
         timeFromLastStep = 0.3f;
 
         baseSpeed = 90.0f;
@@ -160,11 +164,7 @@ public class PlayerScript : MonoBehaviour
             M4GO.Enable();
             currentSkillSet = SkillSet.M4A1SET;
             currentWeaponType = CurrentWeapon.M4;
-            baseDamage = 5;
-
-            Impaciente.state = AbilityImpaciente.AbilityState.READY;
-            GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.READY;
-            Flamethrower.state = AbilityFlamethrower.AbilityState.READY;
+            baseDamage = ItemM4.damage;
         }
 
         // background music
@@ -802,10 +802,10 @@ public class PlayerScript : MonoBehaviour
     {
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
-        if (timeSinceLastShot < 0.15f)
+        if (timeSinceLastShot < ItemM4.fireRate)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > 0.15f / 2)
+            if (!hasShot && timeSinceLastShot > ItemM4.fireRate / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
