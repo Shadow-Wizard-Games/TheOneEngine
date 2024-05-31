@@ -37,7 +37,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     bool goingToRoundPos = false;
 
     // Ranges
-    const float detectedRange = 35.0f * 3;
+    const float detectedRange = 180.0f;
     const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
     const float maxRangeStopChasing = 25.0f;

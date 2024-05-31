@@ -23,7 +23,7 @@ class AnarchistBehaviour : MonoBehaviour
     // Anarchist parameters
     float life = 100.0f;
     float biomass = 15.0f;
-    float movementSpeed = 50.0f;
+    float movementSpeed = 13.0f * 3;
     States currentState = States.Patrol;
     States lastState = States.Patrol;
     Vector3 initialPos;

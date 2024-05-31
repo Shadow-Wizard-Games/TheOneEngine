@@ -25,7 +25,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     // Adult Xenomorph parameters
     float life = 200.0f;
     float biomass = 20.0f;
-    float movementSpeed = 15.0f * 3;
+    float movementSpeed = 18.0f * 3;
     
     States currentState = States.Idle;
     States lastState = States.Idle;
@@ -39,7 +39,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     bool goingToRoundPos = false;
 
     // Ranges
-    const float detectedRange = 35.0f * 3;
+    const float detectedRange = 180.0f;
     const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
     const float maxRangeStopChasing = 25.0f;
