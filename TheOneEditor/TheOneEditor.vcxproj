@@ -115,7 +115,6 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClCompile Include="Hardware.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="imgui_demo.cpp" />
-    <ClCompile Include="Input.cpp" />
     <ClCompile Include="InspectorParticleSystems.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PanelAnimation.cpp" />
@@ -131,8 +130,6 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClCompile Include="PanelAbout.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheOneAudio\TheOneAudio.vcxproj">
@@ -146,7 +143,6 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClInclude Include="App.h" />
     <ClInclude Include="Hardware.h" />
     <ClInclude Include="Gui.h" />
-    <ClInclude Include="Input.h" />
     <ClInclude Include="InspectorParticleSystems.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="PanelAnimation.h" />

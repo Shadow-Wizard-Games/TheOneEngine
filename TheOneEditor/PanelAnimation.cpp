@@ -1,9 +1,9 @@
 #include "PanelAnimation.h"
 #include "App.h"
 #include "Gui.h"
-#include "Window.h"
 
 #include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
 #include "TheOneEngine/Renderer.h"
 #include "TheOneEngine/N_SceneManager.h"
 #include "TheOneEngine/FrameBuffer.h"
@@ -85,23 +85,23 @@ void PanelAnimation::CameraControl()
 		double dt = app->GetDT();
 
 		// (Alt + LMB) Orbit
-		if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+		if (engine->inputManager->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 		{
-			app->window->InfiniteScroll();
+			engine->window->InfiniteScroll();
 
 			vec3 cameraPos = transform->GetPosition();
 			vec3 targetPos = selectedGO->GetComponent<Transform>()->GetPosition() + vec3(0, 20.0, 0);
 
-			camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
-			camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+			camera->yaw = engine->inputManager->GetMouseXMotion() * mouseSensitivity * dt;
+			camera->pitch = -engine->inputManager->GetMouseYMotion() * mouseSensitivity * dt;
 			transform->SetPosition(camera->lookAt);
 			transform->Rotate(vec3(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
 			transform->Rotate(vec3(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
 		}
 
 		// (Wheel) Zoom
-		if (app->input->GetMouseZ() != 0)
-			orbitDistance -= app->input->GetMouseZ() * 2;
+		if (engine->inputManager->GetMouseZ() != 0)
+			orbitDistance -= engine->inputManager->GetMouseZ() * 2;
 	}	
 
 	// Set position

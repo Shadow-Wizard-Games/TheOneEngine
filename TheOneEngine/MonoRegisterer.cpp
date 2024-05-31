@@ -38,14 +38,14 @@ static bool GetControllerButton(int controllerButton, int gamePad)
 	{
 		if (engine->inputManager->pads[gamePad].l2 > 0.0f)
 		{
-			return InputManagerNamespace::KEY_DOWN;
+			return KEY_DOWN;
 		}
 	}
 	else if (controllerButton == 23) //r2
 	{
 		if (engine->inputManager->pads[gamePad].r2 > 0.0f)
 		{
-			return InputManagerNamespace::KEY_DOWN;
+			return KEY_DOWN;
 		}
 	}
 
@@ -53,7 +53,7 @@ static bool GetControllerButton(int controllerButton, int gamePad)
 
 	auto result = engine->inputManager->GetGamepadButton(gamePad, inputToPass);
 
-	return result == InputManagerNamespace::KEY_DOWN;
+	return result == KEY_DOWN;
 }
 static void GetControllerJoystick(int joystick, vec2f* joyResult, int gamePad)
 {
@@ -735,7 +735,7 @@ static float GetAppDeltaTime()
 }
 static void ExitApplication()
 {
-	engine->inputManager->shutDownEngine = true;
+	engine->inputManager->EngineShutDown();
 }
 
 //Debug

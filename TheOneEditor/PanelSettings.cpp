@@ -1,13 +1,14 @@
 #include "PanelSettings.h"
 #include "App.h"
 #include "Gui.h"
-#include "Window.h"
-#include "Input.h"
 #include "Hardware.h"
 
-#include "imgui.h"
-#include "implot.h"
-#include "implot_internal.h"
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+
+#include <imgui.h>
+#include <implot.h>
+#include <implot_internal.h>
 
 
 PanelSettings::PanelSettings(PanelType type, std::string name) : Panel(type, name), fpsHistory(MAX_HISTORY_SIZE), delayHistory(MAX_HISTORY_SIZE) {}
@@ -102,7 +103,7 @@ void PanelSettings::Performance()
 	int frameRate = app->GetFrameRate();
 	ImGui::Text("Frame Rate");
 	ImGui::SameLine();
-	if (ImGui::SliderInt("##Frame Rate", &frameRate, 0, app->window->GetDisplayRefreshRate()))
+	if (ImGui::SliderInt("##Frame Rate", &frameRate, 0, engine->window->GetDisplayRefreshRate()))
 		app->SetFrameRate(frameRate);
 
 	ImGui::Separator();
@@ -119,18 +120,18 @@ void PanelSettings::Performance()
 void PanelSettings::Window()
 {
 	// Display Mode
-	int displayMode = (int)app->window->GetDisplayMode();	
+	int displayMode = (int)engine->window->GetDisplayMode();	
 	ImGui::Text("Display Mode");
 	ImGui::SameLine();
 	if (ImGui::Combo("##Display Mode", &displayMode, displayModes, 4))
-		app->window->SetDisplayMode((DisplayMode)displayMode);
+		engine->window->SetDisplayMode((DisplayMode)displayMode);
 
 	// Resolution
-	int resolution = (int)app->window->GetResolution();
+	int resolution = (int)engine->window->GetResolution();
 	ImGui::Text("Resolution");
 	ImGui::SameLine();
 	if (ImGui::Combo("##Resolution", &resolution, resolutions, 8))
-		app->window->SetResolution((Resolution)resolution);
+		engine->window->SetResolution((Resolution)resolution);
 
 	// Vsync
 	bool vsync = engine->GetVSync();

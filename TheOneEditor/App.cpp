@@ -1,7 +1,5 @@
 #include "App.h"
 
-#include "Window.h"
-#include "Input.h"
 #include "Hardware.h"
 #include "Gui.h"
 #include "SceneManager.h"
@@ -14,17 +12,17 @@
 #include "PanelScene.h"
 #include "PanelSettings.h"
 #include "Timer.h"
-#include "../TheOneEngine/Transform.h"
-#include "../TheOneEngine/Log.h"
+
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+#include "TheOneEngine/Transform.h"
+#include "TheOneEngine/Log.h"
 
 EngineCore* engine = NULL;
 
 App::App(int argc, char* args[]) : argc(argc), args(args)
 {
 	engine = new EngineCore();
-	
-	window = new Window(this);
-	input = new Input(this);
 	hardware = new Hardware(this);
 	gui = new Gui(this);
 	scenemanager = new SceneManager(this);
@@ -32,8 +30,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	// Ordered for awake / Start / Update
 	// Reverse order for CleanUp
 
-	AddModule(window, true);
-	AddModule(input, true);
 	AddModule(hardware, true);
 	AddModule(scenemanager, true);
 
@@ -76,8 +72,9 @@ bool App::Awake()
 	if (ret == true)
 	{
 		//title = configNode.child("app").child("title").child_value();
-
 		//maxFrameDuration = configNode.child("app").child("frcap").attribute("value").as_int();
+
+		engine->Awake();
 
 		for (const auto& item : modules)
 		{
@@ -86,7 +83,6 @@ bool App::Awake()
 
 			item->Awake();
 		}
-		engine->Awake();
 	}
 
 	//LOG("---------------- Time Awake: %f/n", timer.ReadMSec());
@@ -100,6 +96,7 @@ bool App::Start()
 	dt = 0;
 
 	start_timer->Start();
+	engine->Start();
 
 	for (const auto& module : modules)
 	{
@@ -109,7 +106,6 @@ bool App::Start()
 		if (module->Start() == false)
 			return false;
 	}
-	engine->Start();
 
 	//LOG("----------------- Time Start(): %f", timer.ReadMSec());
 
@@ -275,7 +271,7 @@ int App::GetFrameRate() const
 
 void App::SetFrameRate(int frameRate)
 {
-	this->frameRate = frameRate == 0 ? app->window->GetDisplayRefreshRate() : frameRate;
+	this->frameRate = frameRate == 0 ? engine->window->GetDisplayRefreshRate() : frameRate;
 	targetFrameDuration = (std::chrono::duration<double>)1 / this->frameRate;
 }
 

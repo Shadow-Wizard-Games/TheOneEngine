@@ -18,8 +18,6 @@
 
 // Forward declaration
 class Module;
-class Window;
-class Input;
 class Hardware;
 class SceneManager;
 class Gui;
@@ -83,14 +81,10 @@ private:
 	float scale_time;
 public:
 
-	//EngineCore* engine = nullptr;
-
 	// Modules
-	Window* window = nullptr;
-	Input* input = nullptr;
 	Hardware* hardware = nullptr;
-	Gui* gui = nullptr;
 	SceneManager* scenemanager = nullptr;
+	Gui* gui = nullptr;
 
 private:
 

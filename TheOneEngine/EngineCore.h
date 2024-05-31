@@ -2,7 +2,6 @@
 #define __ENGINE_CORE_H__
 #pragma once
 
-
 #include "Defs.h"
 #include "Camera.h"
 #include "Transform.h"
@@ -25,6 +24,7 @@
 #include <string>
 
 class N_SceneManager;
+class Window;
 
 
 // Volatile memory buffer that can be used within function scope.
@@ -82,8 +82,9 @@ public:
 	double dt = 0;
 	bool vsync = false;
 
-	MonoManager* monoManager = nullptr;
+	Window* window = nullptr;
 	InputManager* inputManager = nullptr;
+	MonoManager* monoManager = nullptr;
 	N_SceneManager* N_sceneManager = nullptr;
 	CollisionSolver* collisionSolver = nullptr;
 	EasingManager* easingManager = nullptr;
@@ -98,6 +99,7 @@ private:
 	// Logs
 	LogInfo logInfo;
 	std::vector<LogInfo> logs;
+
 	Camera* editorCamReference;
 };
 

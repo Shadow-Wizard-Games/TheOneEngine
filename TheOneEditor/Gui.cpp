@@ -1,7 +1,6 @@
 #include "App.h"
 
 #include "Gui.h"
-#include "Window.h"
 #include "Hardware.h"
 #include "SceneManager.h"
 
@@ -18,6 +17,8 @@
 #include "PanelSettings.h"
 #include "PanelBuild.h"
 
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
 #include "TheOneEngine/Log.h"
 #include "TheOneEngine/Light.h"
 
@@ -141,7 +142,7 @@ bool Gui::Start()
 	LOG(LogType::LOG_OK, "-Enabling I/O");
 
 	// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForOpenGL(app->window->window, app->window->glContext);
+	ImGui_ImplSDL2_InitForOpenGL(engine->window->window, engine->window->glContext);
 	ImGui_ImplOpenGL3_Init("#version 450");
 
 	// Setup Dear ImGui style
@@ -235,9 +236,14 @@ bool Gui::PreUpdate()
 {
 	bool ret = true;
 
+	HandleInput();
+	
+	if (engine->inputManager->IsFileDropped())
+		ProcessEvent();
+
     // Clears GUI
     ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplSDL2_NewFrame(app->window->window);
+    ImGui_ImplSDL2_NewFrame(engine->window->window);
     ImGui::NewFrame();
     ImGuizmo::BeginFrame();
 
@@ -343,7 +349,7 @@ bool Gui::PostUpdate()
 	bool ret = true;
 
 	ImGuiIO& io = ImGui::GetIO();
-	io.DisplaySize = ImVec2((float)app->window->GetWidth(), (float)app->window->GetHeight());
+	io.DisplaySize = ImVec2((float)engine->window->GetWidth(), (float)engine->window->GetHeight());
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -360,7 +366,7 @@ bool Gui::PostUpdate()
 		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
 	}
 
-	SDL_GL_SwapWindow(app->window->window);
+	SDL_GL_SwapWindow(engine->window->window);
 
 	return ret;
 }
@@ -401,14 +407,52 @@ std::list<Panel*> Gui::GetPanels()
 	return panels;
 }
 
-void Gui::HandleInput(SDL_Event* event)
+void Gui::HandleInput()
 {
-	ImGui_ImplSDL2_ProcessEvent(event);
+	for (auto &event : engine->inputManager->GetSDLEvents())
+		ImGui_ImplSDL2_ProcessEvent(&event);
+}
+
+void Gui::ProcessEvent()
+{
+	std::string fileDir = engine->inputManager->GetDropFile();
+	std::string fileNameExt = fileDir.substr(fileDir.find_last_of('\\') + 1);
+	std::string fbxName = fileDir.substr(fileDir.find_last_of("\\/") + 1, fileDir.find_last_of('.') - fileDir.find_last_of("\\/") - 1);
+
+	// FBX
+	if (fileDir.ends_with(".fbx") || fileDir.ends_with(".FBX"))
+	{
+		fs::path assetsDir = fs::path(ASSETS_PATH) / "Meshes" / fileNameExt;
+
+		LOG(LogType::LOG_ASSIMP, "Importing %s from: %s", fileNameExt.data(), fileDir.data());
+
+		// Check if it already exists in Assets
+		if (std::filesystem::exists(assetsDir))
+		{
+			app->gui->overwritePopup = true;
+			app->gui->assetsDir = assetsDir.string();
+			LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
+		}
+		else
+		{
+			LOG(LogType::LOG_OK, "-%s Imported successfully into: %s", fileNameExt.data(), assetsDir.string().data());
+			std::filesystem::copy(fileDir, assetsDir, std::filesystem::copy_options::overwrite_existing);
+
+			//Creates GO and Serialize
+			engine->N_sceneManager->CreateMeshGO(assetsDir.string());
+			LOG(LogType::LOG_OK, "-Created GameObject: %s", assetsDir.string().data());
+		}
+	}
+
+	// PNG / DDS
+	else if (fileDir.ends_with(".png") || fileDir.ends_with(".dds"))
+	{
+		std::filesystem::copy(fileDir, "Assets", std::filesystem::copy_options::overwrite_existing);
+	}
 }
 
 
-// Utils ------------------------------------------------------
-
+// Utils -------------------------------------------------------
 void Gui::OpenURL(const char* url) const
 {
 	ShellExecuteA(0, 0, url, 0, 0, SW_SHOW);
@@ -435,8 +479,7 @@ void Gui::AssetContainer(const char* label)
 }
 
 
-// Main Dock Space ----------------------------------------------
-
+// Main Dock Space ---------------------------------------------
 void Gui::MainWindowDockspace()
 {
 	// Flags
@@ -482,7 +525,8 @@ void Gui::MainWindowDockspace()
 	ImGui::End();
 }
 
-// Menu Bar ------
+
+// Menu Bar ----------------------------------------------------
 bool Gui::MainMenuFile()
 {
 	bool ret = true;
@@ -621,7 +665,8 @@ void Gui::MainMenuHelp()
 	}
 }
 
-// Popups
+
+// Popups ------------------------------------------------------
 void Gui::OpenSceneFileWindow()
 {
 	if (ImGui::Begin("Open File", &openSceneFileWindow))
@@ -635,7 +680,7 @@ void Gui::OpenSceneFileWindow()
 		std::string nameScene = nameSceneBuffer;
 		std::string file = "Assets/Scenes/" + nameScene + ".toe";
 
-		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
+		if (engine->inputManager->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
 		{
 			if (engine->N_sceneManager->currentScene->IsDirty())
 			{

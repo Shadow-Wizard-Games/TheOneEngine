@@ -1671,7 +1671,7 @@ void PanelInspector::ChooseScriptNameWindow()
 
     ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
 
-    if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
+    if (engine->inputManager->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
     {
         //std::string className = "ActualScriptTest2";
         if (MonoManager::IsClassInMainAssembly(nameRecipient))
@@ -1705,7 +1705,7 @@ void PanelInspector::ChooseParticlesToImportWindow()
 
     fs::path assetsDir = fs::path(ASSETS_PATH) / "Particles" / nameFile;
 
-    if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
+    if (engine->inputManager->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
     {
         //std::string className = "ActualScriptTest2";
         if (std::filesystem::exists(assetsDir))

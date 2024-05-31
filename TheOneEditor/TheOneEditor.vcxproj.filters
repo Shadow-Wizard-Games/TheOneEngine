@@ -7,19 +7,10 @@
     <ClCompile Include="Hardware.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.h">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
@@ -74,9 +65,6 @@
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="Hardware.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">

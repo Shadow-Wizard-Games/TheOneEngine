@@ -79,6 +79,9 @@
     <Filter Include="Render\Renderer">
       <UniqueIdentifier>{7debd458-e3af-44ab-8524-d58ccd02bc37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{fa412a8d-8eb2-4c14-bb16-212c7f2b4874}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -303,6 +306,9 @@
     <ClInclude Include="Renderer.h">
       <Filter>Render\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -475,6 +481,9 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Render\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

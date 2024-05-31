@@ -1,10 +1,9 @@
-#include "App.h"
 #include "Window.h"
-#include "../TheOneEngine/Log.h"
+#include "Log.h"
+#include "EngineCore.h"
 
 
-Window::Window(App* app) :
-    Module(app), 
+Window::Window() :
     window(nullptr),
     glContext(),
     displayMode(DisplayMode::WINDOWED),
@@ -32,7 +31,7 @@ bool Window::Awake()
         return false;
 
     if (!initOpenGL())
-        return false;   
+        return false;
 
     return true;
 }
@@ -174,41 +173,41 @@ void Window::SetDisplayMode(DisplayMode mode)
 {
     switch (mode)
     {
-        case DisplayMode::WINDOWED:
-        {
-            if (SDL_SetWindowFullscreen(window, 0) != 0)
-                LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Windowed", SDL_GetError());
+    case DisplayMode::WINDOWED:
+    {
+        if (SDL_SetWindowFullscreen(window, 0) != 0)
+            LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Windowed", SDL_GetError());
 
-            OnResizeWindow(width, height);
+        OnResizeWindow(width, height);
 
-            displayMode = DisplayMode::WINDOWED;
-            break;
-        }
-        
-        case DisplayMode::FULLSCREEN:
-        {
-            if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
-                LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Fullscreen Desktop", SDL_GetError());
+        displayMode = DisplayMode::WINDOWED;
+        break;
+    }
 
-            displayMode = DisplayMode::FULLSCREEN;
-            break;
-        }
+    case DisplayMode::FULLSCREEN:
+    {
+        if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+            LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Fullscreen Desktop", SDL_GetError());
 
-        case DisplayMode::FULLSCREEN_DESKTOP:
-        {
-            if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN) != 0)
-                LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Fullscreen", SDL_GetError());
+        displayMode = DisplayMode::FULLSCREEN;
+        break;
+    }
 
-            displayMode = DisplayMode::FULLSCREEN_DESKTOP;
-            break;
-        }
+    case DisplayMode::FULLSCREEN_DESKTOP:
+    {
+        if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN) != 0)
+            LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Fullscreen", SDL_GetError());
 
-        case DisplayMode::BORDERLESS:
-        {
-            SDL_SetWindowBordered(window, (SDL_bool)!borderless);
-            displayMode = DisplayMode::BORDERLESS;
-            break;
-        }
+        displayMode = DisplayMode::FULLSCREEN_DESKTOP;
+        break;
+    }
+
+    case DisplayMode::BORDERLESS:
+    {
+        SDL_SetWindowBordered(window, (SDL_bool)!borderless);
+        displayMode = DisplayMode::BORDERLESS;
+        break;
+    }
     }
 }
 
@@ -226,14 +225,14 @@ void Window::SetResolution(Resolution res)
 {
     switch (res)
     {
-        case Resolution::R_3840x2160: width = 3840; height = 2160; resolution = Resolution::R_3840x2160; break;
-        case Resolution::R_2560x1440: width = 2560; height = 1440; resolution = Resolution::R_2560x1440; break;
-        case Resolution::R_1920x1080: width = 1920; height = 1080; resolution = Resolution::R_1920x1080; break;
-        case Resolution::R_1280x720: width = 1280; height = 720; resolution = Resolution::R_1280x720; break;
-        case Resolution::R_854x480: width = 854; height = 480; resolution = Resolution::R_854x480; break;
-        case Resolution::R_640x360: width = 640; height = 360; resolution = Resolution::R_640x360; break;
-        case Resolution::R_426x240: width = 426; height = 240; resolution = Resolution::R_426x240; break;
-        case Resolution::R_NATIVE: /* Get native resolution */ resolution = Resolution::R_NATIVE; break;
+    case Resolution::R_3840x2160: width = 3840; height = 2160; resolution = Resolution::R_3840x2160; break;
+    case Resolution::R_2560x1440: width = 2560; height = 1440; resolution = Resolution::R_2560x1440; break;
+    case Resolution::R_1920x1080: width = 1920; height = 1080; resolution = Resolution::R_1920x1080; break;
+    case Resolution::R_1280x720: width = 1280; height = 720; resolution = Resolution::R_1280x720; break;
+    case Resolution::R_854x480: width = 854; height = 480; resolution = Resolution::R_854x480; break;
+    case Resolution::R_640x360: width = 640; height = 360; resolution = Resolution::R_640x360; break;
+    case Resolution::R_426x240: width = 426; height = 240; resolution = Resolution::R_426x240; break;
+    case Resolution::R_NATIVE: /* Get native resolution */ resolution = Resolution::R_NATIVE; break;
     }
 
     OnResizeWindow(width, height);
@@ -255,10 +254,11 @@ void Window::InfiniteScroll(bool global)
     else
     {
         int width, height;
-        app->window->GetSDLWindowSize(&width, &height);
+        GetSDLWindowSize(&width, &height);
 
-        int mouseX = app->input->GetMouseX();
-        int mouseY = app->input->GetMouseY();
+        int mouseX = engine->inputManager->GetMouseX();
+        int mouseY = engine->inputManager->GetMouseY();
+
         int warpToX = -1;
         int warpToY = -1;
 
@@ -273,6 +273,6 @@ void Window::InfiniteScroll(bool global)
         if (warpToX == -1) warpToX = mouseX;
         if (warpToY == -1) warpToY = mouseY;
 
-        SDL_WarpMouseInWindow(app->window->window, warpToX, warpToY);
+        SDL_WarpMouseInWindow(window, warpToX, warpToY);
     }
 }

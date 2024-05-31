@@ -59,7 +59,9 @@ public:
 
 	bool IsInitialized(Panel* panel);
 	std::list<Panel*> GetPanels();
-	void HandleInput(SDL_Event* event);
+
+	void HandleInput();
+	void ProcessEvent();
 
 	// Utils
 	template <typename T>

@@ -6,6 +6,7 @@
 #include "Renderer.h"
 #include "Renderer2D.h"
 #include "Renderer3D.h"
+#include "Window.h"
 
 #include <GL\glew.h>
 #include <glm\ext\matrix_transform.hpp>
@@ -16,10 +17,11 @@ AudioManager* audioManager = NULL;
 
 EngineCore::EngineCore()
 {
+    window = new Window();
+    inputManager = new InputManager();
     audioManager = new AudioManager();
     monoManager = new MonoManager();
     collisionSolver = new CollisionSolver();
-    inputManager = new InputManager();
     N_sceneManager = new N_SceneManager();
     easingManager = new EasingManager();
 }
@@ -30,13 +32,17 @@ void EngineCore::Awake()
 {
     LOG(LogType::LOG_OK, "Initializing DevIL");
     ilInit();
+    window->Awake();
+    inputManager->Init();
     audioManager->Awake();
     monoManager->InitMono();
-    inputManager->Init();
     Renderer::Init();
 }
 
-void EngineCore::Start() {}
+void EngineCore::Start()
+{
+    window->Start();
+}
 
 bool EngineCore::PreUpdate()
 {

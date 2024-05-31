@@ -6,8 +6,6 @@
 #include "GameObject.h"
 #include "Log.h"
 
-#include "..\TheOneEditor\Input.h"
-
 
 enum class ColliderType
 {

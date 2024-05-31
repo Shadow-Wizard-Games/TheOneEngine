@@ -248,7 +248,7 @@ int BuilderApp::GetFrameRate() const
 
 void BuilderApp::SetFrameRate(int frameRate)
 {
-	this->frameRate = frameRate == 0 ? bApp->window->GetDisplayRefreshRate() : frameRate;
+	this->frameRate = frameRate == 0 ? bengine->window->GetDisplayRefreshRate() : frameRate;
 	targetFrameDuration = (std::chrono::duration<double>)1 / this->frameRate;
 }
 

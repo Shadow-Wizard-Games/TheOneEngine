@@ -2,8 +2,7 @@
 #define __WINDOW_H__
 #pragma once
 
-#include "Module.h"
-#include "../TheOneEngine/Defs.h"
+#include "Defs.h"
 
 #include <SDL2/SDL.h>
 
@@ -32,10 +31,10 @@ enum class Resolution
     R_NATIVE
 };
 
-class Window : public Module
+class Window
 {
 public:
-    Window(App* app);
+    Window();
     virtual ~Window();
 
     bool Awake();

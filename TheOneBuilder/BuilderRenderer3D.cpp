@@ -45,7 +45,7 @@ bool BuilderRenderer3D::Update(double dt)
 
 bool BuilderRenderer3D::PostUpdate()
 {
-    SDL_GL_SwapWindow(app->window->window);
+    SDL_GL_SwapWindow(engine->window->window);
     
     return true;
 }
