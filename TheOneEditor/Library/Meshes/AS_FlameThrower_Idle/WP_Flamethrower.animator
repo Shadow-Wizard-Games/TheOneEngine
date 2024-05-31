@@ -1,0 +1,38 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_FlameThrower_Idle\\WP_Flamethrower_Take 001AS_FlameThrower_Idle.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_FlameThrower_Idle\\WP_Flamethrower_Take 001AS_FlameThrower_Run.anim",
+      "loop": true,
+      "name": "Run",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_FlameThrower_Idle\\WP_Flamethrower_Take 001AS_FlameThrower_Shoot.anim",
+      "loop": true,
+      "name": "Shoot",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_FlameThrower_Idle\\WP_Flamethrower_Take 001AS_FlameThrower_RunAndShoot.anim",
+      "loop": true,
+      "name": "Run and Shoot",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_FlameThrower_Idle/M_Flamethrower3.toematerial",
+  "mesh": "Library/Meshes/AS_FlameThrower_Idle/WP_Flamethrower_animatedmesh.ozzmesh",
+  "name": "WP_Flamethrower",
+  "skeleton": "Library/Meshes/AS_FlameThrower_Idle/WP_Flamethrower_skeleton.skeleton",
+  "transition_blend": true,
+  "transition_time": 0.10000000149011612
+}

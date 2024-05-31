@@ -108,8 +108,10 @@ public class CameraMovement : MonoBehaviour
         {
             attachedGameObject.transform.Translate(cameraMovement * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_IN_SIN));
         }
-        else {
+        else
+        {
             attachedGameObject.transform.Translate(cameraMovement * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_OUT_SIN));
+
         }
         
         //attachedGameObject.transform.Translate(camMovement.Normalize() * (playerScript.speed * (float)cameraMovementEasing.UpdateEasing(0, 1, Time.deltaTime, Easing.EasingType.EASE_IN_SIN)) * Time.deltaTime);

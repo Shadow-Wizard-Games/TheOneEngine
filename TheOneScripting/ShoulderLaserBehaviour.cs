@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-internal class M4Behaviour : MonoBehaviour
+internal class ShoulderLaserBehaviour : MonoBehaviour
 {
-    State M4State;
+    State SLState;
     PlayerScript player;
     ITransform playerTransform;
 
@@ -22,11 +15,13 @@ internal class M4Behaviour : MonoBehaviour
 
     public override void Start()
     {
-        player = IGameObject.Find("SK_MainCharacter").GetComponent<PlayerScript>();
-
+        player = IGameObject.Find("SK_MainCharacter")?.GetComponent<PlayerScript>();
         playerTransform = player.attachedGameObject.GetComponent<ITransform>();
 
-        M4State = State.NOTM4;
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.1f;
+
+        SLState = State.NOTM4;
     }
 
     public override void Update()
@@ -36,7 +31,7 @@ internal class M4Behaviour : MonoBehaviour
 
         ChangeWeaponState();
 
-        switch (M4State)
+        switch (SLState)
         {
             case State.IDLE:
                 attachedGameObject.animator.Play("Idle");
@@ -57,21 +52,21 @@ internal class M4Behaviour : MonoBehaviour
 
     private void ChangeWeaponState()
     {
-        if (player.currentWeapon == PlayerScript.CurrentWeapon.M4)
+        if (player.currentWeaponType == PlayerScript.CurrentWeapon.SHOULDERLASER)
         {
             switch (player.currentAction)
             {
                 case PlayerScript.CurrentAction.IDLE:
-                    M4State = State.IDLE;
+                    SLState = State.IDLE;
                     break;
                 case PlayerScript.CurrentAction.RUN:
-                    M4State = State.RUN;
+                    SLState = State.RUN;
                     break;
                 case PlayerScript.CurrentAction.SHOOT:
-                    M4State = State.SHOOT;
+                    SLState = State.SHOOT;
                     break;
                 case PlayerScript.CurrentAction.RUNSHOOT:
-                    M4State = State.RUNSHOOT;
+                    SLState = State.RUNSHOOT;
                     break;
             }
         }
