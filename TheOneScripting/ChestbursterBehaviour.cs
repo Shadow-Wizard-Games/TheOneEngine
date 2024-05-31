@@ -255,13 +255,10 @@ public class ChestbursterBehaviour : MonoBehaviour
         {
             attachedGameObject.animator.Play("Die");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished)
-            {
-                isDead = true;
-                player.shieldKillCounter++;
-                // add player biomass
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 

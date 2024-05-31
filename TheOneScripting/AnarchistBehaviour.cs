@@ -22,35 +22,35 @@ class AnarchistBehaviour : MonoBehaviour
 
     // Anarchist parameters
     float life = 100.0f;
-    float biomass = 0.0f;
-    float movementSpeed = 50.0f;
+    float biomass = 15.0f;
+    float movementSpeed = 13.0f * 3;
     States currentState = States.Patrol;
     States lastState = States.Patrol;
     Vector3 initialPos;
 
     // Ranges
-    private const float rangeToInspect = 200.0f;
-    private const float inspectDetectionRadius = 100.0f;
-    private const float loseRange = 150.0f;
+    const float rangeToInspect = 200.0f;
+    const float inspectDetectionRadius = 100.0f;
+    const float loseRange = 150.0f;
 
     // Inspect
     float elapsedTime = 0.0f; //Do not modify
-    private const float maxInspectTime = 5.0f;
+    const float maxInspectTime = 5.0f;
     InspctStates currentSubstate = InspctStates.Going;
     Vector3 playerLastPosition;
 
     // Attack
     bool shooting = false;
     float timerBetweenBursts = 0.0f; //Do not modify
-    readonly float timeBetweenBursts = 0.5f;
+    const float timeBetweenBursts = 0.5f;
     float timerBetweenBullets = 0.0f; //Do not modify
-    readonly float timeBetweenBullets = 0.05f;
+    const float timeBetweenBullets = 0.05f;
     int bulletCounter = 0; //Do not modify
-    readonly int burstBulletCount = 3;
+    const int burstBulletCount = 3;
 
     // Patrol
-    readonly float patrolRange = 100.0f;
-    readonly float patrolSpeed = 30.0f;
+    const float patrolRange = 100.0f;
+    const float patrolSpeed = 30.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
 
@@ -192,7 +192,8 @@ class AnarchistBehaviour : MonoBehaviour
             if (timerBetweenBullets > timeBetweenBullets)
             {
                 attachedGameObject.animator.Play("Shoot");
-
+                Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 timerBetweenBullets = 0.0f;
                 bulletCounter++;
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.E_A_SHOOT);
@@ -212,7 +213,7 @@ class AnarchistBehaviour : MonoBehaviour
     {
         if (currentState != lastState)
         {
-            Debug.Log("Anarchist starting state");
+            //Debug.Log("Anarchist starting state");
             lastState = currentState;
             playerLastPosition = playerGO.transform.Position;
         }
@@ -263,14 +264,9 @@ class AnarchistBehaviour : MonoBehaviour
         if (!isDead)
         {
             attachedGameObject.animator.Play("Death");
-
-            if (attachedGameObject.animator.CurrentAnimHasFinished) 
-            { 
-                isDead = true;
-                player.shieldKillCounter++;
-                // add player biomass
-            }
-
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
         }
     }
 
