@@ -141,6 +141,10 @@ public class PlayerScript : MonoBehaviour
         currentAction = CurrentAction.IDLE;
         currentSkillSet = SkillSet.NONE;
 
+        SetInitPosInScene();
+    }
+
+
         ItemM4 = new Item_M4A1();
 
         timeFromLastStep = 0.3f;
@@ -963,5 +967,27 @@ public class PlayerScript : MonoBehaviour
         if (isDead) return 0;
 
         return HP;
+    }
+
+    private void SetInitPosInScene()
+    {
+        if (gameManager.lastLevel == " ") { return; }
+
+        string patternL = $"L(\\d+)";
+        string patternR = $"R(\\d+)";
+
+        Match matchL = Regex.Match(gameManager.lastLevel, patternL);
+        Match matchR = Regex.Match(gameManager.lastLevel, patternR);
+        IGameObject swapGO = IGameObject.Find("SwapScene_" + matchL.Groups[0].Value + "_" + matchR.Groups[0].Value);
+
+        ITransform spawnTransform = swapGO?.GetComponent<ITransform>();
+        Vector3 spawnPos = spawnTransform.Position;
+
+        Debug.Log("Found door: SwapScene_" + matchL.Groups[0].Value + "_" + matchR.Groups[0].Value);
+        if (spawnTransform == null)
+        {
+            spawnPos = Vector3.zero;
+        }
+        attachedGameObject.transform.Position = spawnPos;
     }
 }

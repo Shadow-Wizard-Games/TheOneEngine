@@ -48,7 +48,7 @@
           "UID": 3180578416
         },
         {
-          "AudioID": 75,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         }
@@ -2936,20 +2936,20 @@
             {
               "Name": "Transform",
               "Transformation Matrix": [
-                -0.061444420367479324,
+                -0.07311884313821793,
                 0.0,
-                1.8789960145950317,
-                0.0,
-                0.0,
-                1.8799999952316284,
+                2.2360053062438965,
                 0.0,
                 0.0,
-                -1.8789960145950317,
+                2.2372000217437744,
                 0.0,
-                -0.061444420367479324,
+                0.0,
+                -2.2360053062438965,
+                0.0,
+                -0.07311884313821793,
                 0.0,
                 -480.4730529785156,
-                0.0,
+                0.8715736865997314,
                 1030.235595703125,
                 1.0
               ],
@@ -3095,9 +3095,9 @@
                 0.0,
                 1.0,
                 0.0,
-                -633.902099609375,
+                -614.4332275390625,
                 0.0,
-                1009.49072265625,
+                1057.9581298828125,
                 1.0
               ],
               "Type": 0,
@@ -3159,9 +3159,9 @@
                 0.0,
                 1.0,
                 0.0,
-                -533.902099609375,
+                -572.7950439453125,
                 0.0,
-                1069.49072265625,
+                1058.247802734375,
                 1.0
               ],
               "Type": 0,
@@ -3287,9 +3287,9 @@
                 0.0,
                 1.0,
                 0.0,
-                -523.902099609375,
+                -593.045654296875,
                 0.0,
-                857.10986328125,
+                1033.6915283203125,
                 1.0
               ],
               "Type": 0,
@@ -3351,9 +3351,9 @@
                 0.0,
                 1.0,
                 0.0,
-                -457.24859619140625,
-                0.0,
-                897.10986328125,
+                -590.9197998046875,
+                26.241106033325195,
+                1053.32275390625,
                 1.0
               ],
               "Type": 0,
@@ -3415,9 +3415,9 @@
                 0.0,
                 1.0,
                 0.0,
-                -472.37738037109375,
+                -596.0667724609375,
                 0.0,
-                977.10986328125,
+                1073.6407470703125,
                 1.0
               ],
               "Type": 0,
@@ -3479,9 +3479,9 @@
                 0.0,
                 1.0,
                 0.0,
-                -551.9013671875,
+                -449.1376647949219,
                 0.0,
-                937.7244262695313,
+                959.065673828125,
                 1.0
               ],
               "Type": 0,
@@ -3531,21 +3531,21 @@
             {
               "Name": "Transform",
               "Transformation Matrix": [
-                1.0,
+                0.6080431938171387,
                 0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
+                0.7939039468765259,
                 0.0,
                 0.0,
                 1.0,
                 0.0,
-                -861.9013671875,
                 0.0,
-                937.7244262695313,
+                -0.7939039468765259,
+                0.0,
+                0.6080431938171387,
+                0.0,
+                -440.1063232421875,
+                0.0,
+                930.1629028320313,
                 1.0
               ],
               "Type": 0,
@@ -3595,21 +3595,21 @@
             {
               "Name": "Transform",
               "Transformation Matrix": [
-                1.0,
+                0.8576069474220276,
+                0.0,
+                -0.27296531200408936,
                 0.0,
                 0.0,
+                0.8999998569488525,
                 0.0,
                 0.0,
-                1.0,
+                0.27296531200408936,
                 0.0,
+                0.8576069474220276,
                 0.0,
+                -467.8611755371094,
                 0.0,
-                0.0,
-                1.0,
-                0.0,
-                -821.9013671875,
-                0.0,
-                887.7244262695313,
+                908.2159423828125,
                 1.0
               ],
               "Type": 0,
@@ -3659,21 +3659,21 @@
             {
               "Name": "Transform",
               "Transformation Matrix": [
-                1.0,
+                0.5938248038291931,
                 0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
+                -0.8045944571495056,
                 0.0,
                 0.0,
                 1.0,
                 0.0,
-                -791.9013671875,
                 0.0,
-                827.7244262695313,
+                0.8045944571495056,
+                0.0,
+                0.5938248038291931,
+                0.0,
+                -443.2723388671875,
+                0.0,
+                884.2957763671875,
                 1.0
               ],
               "Type": 0,
@@ -3799,9 +3799,9 @@
                 0.9913658499717712,
                 -0.13064992427825928,
                 0.0,
-                -505.8040466308594,
-                1.1435155868530273,
-                1008.0040283203125,
+                -497.58380126953125,
+                1.8287028074264526,
+                1013.90576171875,
                 1.0
               ],
               "Type": 0,
@@ -3836,13 +3836,13 @@
             {
               "Name": "Transform",
               "Transformation Matrix": [
-                -0.6997602581977844,
-                0.10107959061861038,
-                0.7071909308433533,
+                -0.7213752865791321,
+                0.09846563637256622,
+                0.685509443283081,
                 0.0,
-                0.7142909169197083,
-                0.08352813124656677,
-                0.6948463916778564,
+                0.6924551129341125,
+                0.08659420907497406,
+                0.7162455916404724,
                 0.0,
                 0.011164465919137001,
                 0.9913658499717712,
@@ -3934,21 +3934,21 @@
             {
               "Name": "Transform",
               "Transformation Matrix": [
-                1.0,
+                0.27016302943229675,
+                0.0,
+                -0.3345325291156769,
                 0.0,
                 0.0,
+                0.4300000071525574,
                 0.0,
                 0.0,
-                1.0,
+                0.3345325291156769,
                 0.0,
+                0.27016302943229675,
                 0.0,
+                -604.1742553710938,
                 0.0,
-                0.0,
-                1.0,
-                0.0,
-                -559.0736083984375,
-                0.0,
-                464.50946044921875,
+                66.93524932861328,
                 1.0
               ],
               "Type": 0,
@@ -22811,198 +22811,6 @@
           "ParentUID": 3452816845,
           "Static": false,
           "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                1.9895401000976563,
-                0.0,
-                61.59080123901367,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 2198308815
-            },
-            {
-              "Active": true,
-              "DrawAABB": true,
-              "DrawChecker": false,
-              "DrawNormalsFaces": false,
-              "DrawNormalsVerts": false,
-              "DrawOBB": false,
-              "DrawWireframe": false,
-              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
-              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
-              "Name": "Mesh",
-              "ParentUID": 3452816845,
-              "Type": 2,
-              "UID": 2005874377
-            },
-            {
-              "ColliderType": 1,
-              "CollisionType": 2,
-              "CornerPivot": false,
-              "Height": 45.0,
-              "Name": "Collider2D",
-              "ObjectOrientation": 0,
-              "OffsetX": 0.0,
-              "OffsetY": 0.0,
-              "ParentUID": 3452816845,
-              "Radius": 0.5,
-              "Type": 5,
-              "UID": 2836047367,
-              "Width": 45.0
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "SM_OilDrums3 (1)",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                1.9895401000976563,
-                0.0,
-                -16.325048446655273,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 2464896521
-            },
-            {
-              "Active": true,
-              "DrawAABB": true,
-              "DrawChecker": false,
-              "DrawNormalsFaces": false,
-              "DrawNormalsVerts": false,
-              "DrawOBB": false,
-              "DrawWireframe": false,
-              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
-              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
-              "Name": "Mesh",
-              "ParentUID": 3452816845,
-              "Type": 2,
-              "UID": 3869847880
-            },
-            {
-              "ColliderType": 1,
-              "CollisionType": 2,
-              "CornerPivot": false,
-              "Height": 45.0,
-              "Name": "Collider2D",
-              "ObjectOrientation": 0,
-              "OffsetX": 0.0,
-              "OffsetY": 0.0,
-              "ParentUID": 3452816845,
-              "Radius": 0.5,
-              "Type": 5,
-              "UID": 3690445552,
-              "Width": 45.0
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "SM_OilDrums3 (2)",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                -6.031207084655762,
-                0.0,
-                24.389753341674805,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 136686533
-            },
-            {
-              "Active": true,
-              "DrawAABB": true,
-              "DrawChecker": false,
-              "DrawNormalsFaces": false,
-              "DrawNormalsVerts": false,
-              "DrawOBB": false,
-              "DrawWireframe": false,
-              "MaterialPath": "Library/Materials/SM_OilDrums/M_OilDrums.toematerial",
-              "MeshPath": "Library/Meshes/SM_OilDrums/SM_OilDrums.mesh",
-              "Name": "Mesh",
-              "ParentUID": 3452816845,
-              "Type": 2,
-              "UID": 3695894171
-            },
-            {
-              "ColliderType": 1,
-              "CollisionType": 2,
-              "CornerPivot": false,
-              "Height": 45.0,
-              "Name": "Collider2D",
-              "ObjectOrientation": 0,
-              "OffsetX": 0.0,
-              "OffsetY": 0.0,
-              "ParentUID": 3452816845,
-              "Radius": 0.5,
-              "Type": 5,
-              "UID": 1321785941,
-              "Width": 45.0
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "SM_OilDrums3 (3)",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
         }
       ],
       "HasTransparency": false,
@@ -23060,7 +22868,7 @@
           "UID": 225613267
         },
         {
-          "AudioID": 76,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -23467,7 +23275,7 @@
               "UID": 3667515160
             },
             {
-              "AudioID": 77,
+              "AudioID": 2,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -23513,7 +23321,7 @@
               "UID": 1177981766
             },
             {
-              "AudioID": 78,
+              "AudioID": 3,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -23559,7 +23367,7 @@
               "UID": 2174904043
             },
             {
-              "AudioID": 79,
+              "AudioID": 4,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -23605,7 +23413,7 @@
               "UID": 2232833499
             },
             {
-              "AudioID": 80,
+              "AudioID": 5,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -23651,7 +23459,7 @@
               "UID": 2199890485
             },
             {
-              "AudioID": 81,
+              "AudioID": 6,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -23697,7 +23505,7 @@
               "UID": 3061441302
             },
             {
-              "AudioID": 82,
+              "AudioID": 7,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -23743,7 +23551,7 @@
               "UID": 1809667645
             },
             {
-              "AudioID": 83,
+              "AudioID": 8,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -23800,7 +23608,7 @@
           "UID": 2371490470
         },
         {
-          "AudioID": 84,
+          "AudioID": 9,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -24901,7 +24709,7 @@
               "UID": 951121546
             },
             {
-              "AudioID": 85,
+              "AudioID": 10,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -25202,7 +25010,7 @@
               ]
             },
             {
-              "AudioID": 86,
+              "AudioID": 11,
               "Name": "Source",
               "Type": 8
             },
@@ -26767,7 +26575,7 @@
               "UID": 607510851
             },
             {
-              "AudioID": 87,
+              "AudioID": 12,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -27266,7 +27074,7 @@
               ]
             },
             {
-              "AudioID": 88,
+              "AudioID": 13,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -27450,7 +27258,7 @@
               ]
             },
             {
-              "AudioID": 89,
+              "AudioID": 14,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -29676,7 +29484,7 @@
                   ]
                 },
                 {
-                  "AudioID": 90,
+                  "AudioID": 15,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -30463,7 +30271,7 @@
                   "UID": 1616070798
                 },
                 {
-                  "AudioID": 91,
+                  "AudioID": 16,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -30571,7 +30379,7 @@
               ]
             },
             {
-              "AudioID": 92,
+              "AudioID": 17,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -30695,7 +30503,7 @@
               ]
             },
             {
-              "AudioID": 93,
+              "AudioID": 18,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -30741,7 +30549,7 @@
               "UID": 2135104260
             },
             {
-              "AudioID": 94,
+              "AudioID": 19,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -30787,7 +30595,7 @@
               "UID": 2581454987
             },
             {
-              "AudioID": 95,
+              "AudioID": 20,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -30859,7 +30667,7 @@
           "UID": 3318160678
         },
         {
-          "AudioID": 96,
+          "AudioID": 21,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -30939,7 +30747,7 @@
           "UID": 3318160678
         },
         {
-          "AudioID": 97,
+          "AudioID": 22,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -30988,9 +30796,9 @@
             0.0,
             1.0,
             0.0,
-            -1058.2147216796875,
+            -1007.329833984375,
             0.0,
-            153.09779357910156,
+            148.38494873046875,
             1.0
           ],
           "Type": 0,
@@ -31031,7 +30839,7 @@
             0.0,
             -825.1688842773438,
             0.0,
-            1285.07568359375,
+            1224.5948486328125,
             1.0
           ],
           "Type": 0,
@@ -31058,198 +30866,32 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -0.42555540800094604,
+            1.0,
             0.0,
-            -0.90493243932724,
+            0.0,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.90493243932724,
             0.0,
-            -0.42555540800094604,
             0.0,
-            -634.384033203125,
+            1.0,
             0.0,
-            860.319091796875,
+            0.0,
+            0.0,
+            0.0,
             1.0
           ],
           "Type": 0,
-          "UID": 1312008848
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
-          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 3770841600
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "FaceHuggerBehaviour",
-          "Type": 4,
-          "UID": 2819175529
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 30.0,
-          "Type": 5,
-          "UID": 2806614090,
-          "Width": -1.7976931348623157e+308
+          "UID": 3965074521
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
-      "GameObjects": [
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 2339676990
-            },
-            {
-              "Emmiters": [
-                {
-                  "Delay": 0.0,
-                  "Duration": 0.800000011920929,
-                  "InitializeModules": [
-                    {
-                      "MaxDirection": [
-                        1.0,
-                        0.1,
-                        1.0
-                      ],
-                      "MinDirection": [
-                        -1.0,
-                        0.0,
-                        -1.0
-                      ],
-                      "Type": 4,
-                      "UsingSingleValueDirection": false
-                    },
-                    {
-                      "MaxSpeed": 120.0,
-                      "MinSpeed": 100.0,
-                      "Type": 0,
-                      "UsingSingleValueSpeed": false
-                    },
-                    {
-                      "IsProportional": true,
-                      "MaxScale": [
-                        2.0,
-                        2.0,
-                        2.0
-                      ],
-                      "MinScale": [
-                        1.0,
-                        1.0,
-                        1.0
-                      ],
-                      "Type": 2,
-                      "UsingSingleValueScale": false
-                    }
-                  ],
-                  "IsLooping": false,
-                  "Lifetime": 0.0,
-                  "MaxParticles": 100,
-                  "RenderModule": [
-                    {
-                      "BillboardType": 1,
-                      "TexturePath": "",
-                      "Type": 0
-                    }
-                  ],
-                  "SpawnModule": [
-                    {
-                      "Amount": 100.0,
-                      "Duration": 0.5,
-                      "Type": 1
-                    }
-                  ],
-                  "UpdateModules": [
-                    {
-                      "Acceleration": [
-                        0.0,
-                        1.0,
-                        0.0
-                      ],
-                      "Type": 0
-                    },
-                    {
-                      "AffectA": true,
-                      "AffectB": false,
-                      "AffectG": false,
-                      "AffectR": false,
-                      "FinalColor": [
-                        255.0,
-                        255.0,
-                        255.0,
-                        0.0
-                      ],
-                      "Type": 1
-                    }
-                  ]
-                }
-              ],
-              "Name": "JumpPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
-              "StartON": false,
-              "Type": 9,
-              "UID": 3958680071
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": true,
-          "Keeped": false,
-          "Name": "JumpPS",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        }
-      ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Facehugger (1)",
+      "Name": "L1R4",
       "ParentUID": 3452816845,
-      "PrefabDirty": true,
-      "PrefabID": 3055371654,
-      "PrefabName": "Facehugger",
       "Static": false,
       "UID": 3452816845
     },
@@ -31258,198 +30900,73 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.6851893067359924,
+            1.0,
             0.0,
-            -0.7283653020858765,
+            0.0,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.7283653020858765,
             0.0,
-            0.6851893067359924,
             0.0,
-            -782.0836791992188,
-            -9.816601232159883e-05,
-            985.73046875,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
             1.0
           ],
           "Type": 0,
-          "UID": 1312008848
-        },
+          "UID": 3688148523
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "L1R4",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
         {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SK_Facehugger/M_Facehugger.toematerial",
-          "MeshPath": "Library/Meshes/SK_Facehugger/Facehugger1.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 3770841600
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -34.5560302734375,
+            0.0,
+            25.35437774658203,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2431514592
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
-          "ScriptName": "FaceHuggerBehaviour",
+          "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 2819175529
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 30.0,
-          "Type": 5,
-          "UID": 2806614090,
-          "Width": -1.7976931348623157e+308
+          "UID": 518552365
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
-      "GameObjects": [
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 2339676990
-            },
-            {
-              "Emmiters": [
-                {
-                  "Delay": 0.0,
-                  "Duration": 0.800000011920929,
-                  "InitializeModules": [
-                    {
-                      "MaxDirection": [
-                        1.0,
-                        0.1,
-                        1.0
-                      ],
-                      "MinDirection": [
-                        -1.0,
-                        0.0,
-                        -1.0
-                      ],
-                      "Type": 4,
-                      "UsingSingleValueDirection": false
-                    },
-                    {
-                      "MaxSpeed": 120.0,
-                      "MinSpeed": 100.0,
-                      "Type": 0,
-                      "UsingSingleValueSpeed": false
-                    },
-                    {
-                      "IsProportional": true,
-                      "MaxScale": [
-                        2.0,
-                        2.0,
-                        2.0
-                      ],
-                      "MinScale": [
-                        1.0,
-                        1.0,
-                        1.0
-                      ],
-                      "Type": 2,
-                      "UsingSingleValueScale": false
-                    }
-                  ],
-                  "IsLooping": false,
-                  "Lifetime": 0.0,
-                  "MaxParticles": 100,
-                  "RenderModule": [
-                    {
-                      "BillboardType": 1,
-                      "TexturePath": "",
-                      "Type": 0
-                    }
-                  ],
-                  "SpawnModule": [
-                    {
-                      "Amount": 100.0,
-                      "Duration": 0.5,
-                      "Type": 1
-                    }
-                  ],
-                  "UpdateModules": [
-                    {
-                      "Acceleration": [
-                        0.0,
-                        1.0,
-                        0.0
-                      ],
-                      "Type": 0
-                    },
-                    {
-                      "AffectA": true,
-                      "AffectB": false,
-                      "AffectG": false,
-                      "AffectR": false,
-                      "FinalColor": [
-                        255.0,
-                        255.0,
-                        255.0,
-                        0.0
-                      ],
-                      "Type": 1
-                    }
-                  ]
-                }
-              ],
-              "Name": "JumpPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
-              "StartON": false,
-              "Type": 9,
-              "UID": 3958680071
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": true,
-          "Keeped": false,
-          "Name": "JumpPS",
-          "ParentUID": 3452816845,
-          "Static": false,
-          "UID": 3452816845
-        }
-      ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Facehugger (2)",
+      "Name": "SwapScene_L1_R1",
       "ParentUID": 3452816845,
-      "PrefabDirty": true,
-      "PrefabID": 3055371654,
-      "PrefabName": "Facehugger",
       "Static": false,
       "UID": 3452816845
     }

@@ -265,8 +265,11 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 							int it = 0;
 							for (int i = 0; i < 4; i++) {
 								for (int j = 0; j < 4; j++) {
-									transformationMatrix[i][j] = componentJSON["Transformation Matrix"][it];
-									it++;
+									if (componentJSON.contains("Transformation Matrix"))
+									{
+										transformationMatrix[i][j] = componentJSON["Transformation Matrix"][it];
+										it++;
+									}
 								}
 							}
 						}
