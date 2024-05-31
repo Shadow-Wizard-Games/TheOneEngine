@@ -86,8 +86,6 @@ public class AbilityFlamethrower : MonoBehaviour
         else
         {
             cooldownTimeCounter = cooldownTime;
-
-            state = AbilityState.COOLDOWN;
         }
     }
 
@@ -97,6 +95,8 @@ public class AbilityFlamethrower : MonoBehaviour
         {
             // update time
             cooldownTimeCounter -= Time.deltaTime;
+
+            Debug.Log("Flamethrower on cooldown");
         }
         else
         {

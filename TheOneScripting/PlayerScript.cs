@@ -333,18 +333,13 @@ public class PlayerScript : MonoBehaviour
         }
         #endregion
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
-            && currentSkillSet == SkillSet.M4A1SET
-            && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1)))
         {
-            currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
-        }
-
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
-            && currentSkillSet == SkillSet.SHOULDERLASERSET
-            && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
-        {
-            currentWeaponType = CurrentWeapon.FLAMETHROWER;
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+                currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+            
+            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
+                currentWeaponType = CurrentWeapon.FLAMETHROWER;
         }
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
