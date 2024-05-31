@@ -186,7 +186,7 @@ void Window::SetDisplayMode(DisplayMode mode)
 
     case DisplayMode::FULLSCREEN:
     {
-        if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+        if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN) != 0)
             LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Fullscreen Desktop", SDL_GetError());
 
         displayMode = DisplayMode::FULLSCREEN;
@@ -195,7 +195,7 @@ void Window::SetDisplayMode(DisplayMode mode)
 
     case DisplayMode::FULLSCREEN_DESKTOP:
     {
-        if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN) != 0)
+        if (SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
             LOG(LogType::LOG_ERROR, "Unable to set Display Mode to Fullscreen", SDL_GetError());
 
         displayMode = DisplayMode::FULLSCREEN_DESKTOP;
@@ -225,14 +225,26 @@ void Window::SetResolution(Resolution res)
 {
     switch (res)
     {
-    case Resolution::R_3840x2160: width = 3840; height = 2160; resolution = Resolution::R_3840x2160; break;
-    case Resolution::R_2560x1440: width = 2560; height = 1440; resolution = Resolution::R_2560x1440; break;
-    case Resolution::R_1920x1080: width = 1920; height = 1080; resolution = Resolution::R_1920x1080; break;
-    case Resolution::R_1280x720: width = 1280; height = 720; resolution = Resolution::R_1280x720; break;
-    case Resolution::R_854x480: width = 854; height = 480; resolution = Resolution::R_854x480; break;
-    case Resolution::R_640x360: width = 640; height = 360; resolution = Resolution::R_640x360; break;
-    case Resolution::R_426x240: width = 426; height = 240; resolution = Resolution::R_426x240; break;
-    case Resolution::R_NATIVE: /* Get native resolution */ resolution = Resolution::R_NATIVE; break;
+        case Resolution::R_3840x2160: width = 3840; height = 2160; resolution = Resolution::R_3840x2160; break;
+        case Resolution::R_2560x1440: width = 2560; height = 1440; resolution = Resolution::R_2560x1440; break;
+        case Resolution::R_1920x1080: width = 1920; height = 1080; resolution = Resolution::R_1920x1080; break;
+        case Resolution::R_1280x720:  width = 1280; height = 720;  resolution = Resolution::R_1280x720;  break;
+        case Resolution::R_854x480:   width = 854;  height = 480;  resolution = Resolution::R_854x480;   break;
+        case Resolution::R_640x360:   width = 640;  height = 360;  resolution = Resolution::R_640x360;   break;
+        case Resolution::R_426x240:   width = 426;  height = 240;  resolution = Resolution::R_426x240;   break;
+        case Resolution::R_NATIVE:
+        {
+            SDL_DisplayMode dm;
+
+            if (SDL_GetDesktopDisplayMode(0, &dm) != 0)
+            {
+                LOG(LogType::LOG_ERROR, "SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
+                LOG(LogType::LOG_INFO, "-Setting Resolution to Default");
+                width = 1280; height = 720;  resolution = Resolution::R_1280x720;  break;
+            }
+
+            width = dm.w; height = dm.h; resolution = Resolution::R_NATIVE; break;
+        }           
     }
 
     OnResizeWindow(width, height);

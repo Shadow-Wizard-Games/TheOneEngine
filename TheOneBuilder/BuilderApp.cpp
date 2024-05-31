@@ -1,28 +1,22 @@
 #include "BuilderApp.h"
 
-#include "BuilderWindow.h"
-#include "BuilderRenderer3D.h"
 #include "BuilderSceneManager.h"
 #include "Timer.h"
-#include "../TheOneEngine/Log.h"
+
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+#include "TheOneEngine/Log.h"
 
 EngineCore* engine = NULL;
 
 BuilderApp::BuilderApp(int argc, char* args[]) : argc(argc), args(args)
 {
 	engine = new EngineCore();
-
-	window = new BuilderWindow(this);
-	renderer3D = new BuilderRenderer3D(this);
 	sceneManager = new BuilderSceneManager(this);
 	
 	// Ordered for awake / Start / Update
 	// Reverse order for CleanUp
-	AddModule(window, true);
 	AddModule(sceneManager, true);
-	
-	// Render last to swap buffer
-	AddModule(renderer3D, true);
 	
 	state = GameState::NONE;
 	time_since_start = 0.0F;
@@ -60,8 +54,11 @@ bool BuilderApp::Awake()
 	if (ret == true)
 	{
 		//title = configNode.child("app").child("title").child_value();
-
 		//maxFrameDuration = configNode.child("app").child("frcap").attribute("value").as_int();
+
+		engine->Awake();
+		engine->window->SetDisplayMode(DisplayMode::FULLSCREEN_DESKTOP);
+		engine->window->SetResolution(Resolution::R_NATIVE);
 
 		for (const auto& item : modules)
 		{
@@ -81,8 +78,9 @@ bool BuilderApp::Awake()
 bool BuilderApp::Start()
 {
 	dt = 0;
-
 	start_timer->Start();
+
+	engine->Start();
 
 	for (const auto& module : modules)
 	{
@@ -136,7 +134,8 @@ void BuilderApp::PrepareUpdate()
 
 bool BuilderApp::PreUpdate()
 {
-	bool ret = true;
+	if (!engine->PreUpdate())
+		return false;
 
 	for (const auto& module : modules)
 	{
@@ -152,6 +151,8 @@ bool BuilderApp::PreUpdate()
 
 bool BuilderApp::DoUpdate()
 {
+	engine->Update(dt);
+
 	for (const auto& module : modules)
 	{
 		if (module->active == false)
@@ -174,6 +175,8 @@ bool BuilderApp::PostUpdate()
 		if (module->PostUpdate() == false)
 			return false;
 	}
+
+	SDL_GL_SwapWindow(engine->window->window);
 
 	return true;
 }
@@ -223,6 +226,8 @@ bool BuilderApp::CleanUp()
 		module->CleanUp();
 	}
 
+	engine->CleanUp();
+
 	return ret;
 }
 
@@ -248,7 +253,7 @@ int BuilderApp::GetFrameRate() const
 
 void BuilderApp::SetFrameRate(int frameRate)
 {
-	this->frameRate = frameRate == 0 ? bengine->window->GetDisplayRefreshRate() : frameRate;
+	this->frameRate = frameRate == 0 ? engine->window->GetDisplayRefreshRate() : frameRate;
 	targetFrameDuration = (std::chrono::duration<double>)1 / this->frameRate;
 }
 

@@ -152,6 +152,9 @@ bool App::PreUpdate()
 	//OPTICK_CATEGORY("PreUpdate", Optick::Category::GameLogic);
 	bool ret = true;
 
+	if (engine->PreUpdate() == false)
+		return false;
+	
 	for (const auto& module : modules)
 	{
 		if (module->active == false)
@@ -160,8 +163,6 @@ bool App::PreUpdate()
 		if (module->PreUpdate() == false)
 			return false;
 	}
-	if (engine->PreUpdate() == false)
-		return false;
 
 	return true;
 }
@@ -169,6 +170,8 @@ bool App::PreUpdate()
 bool App::DoUpdate()
 {
 	//OPTICK_CATEGORY("DoUpdate", Optick::Category::GameLogic);
+	
+	engine->Update(dt);
 
 	for (const auto& module : modules)
 	{
@@ -178,7 +181,6 @@ bool App::DoUpdate()
 		if (module->Update(dt) == false)
 			return false;
 	}
-	engine->Update(dt);
 
 	return true;
 }
