@@ -54,7 +54,7 @@ void Renderer::Update()
         Renderer3D::GeometryPass(target);
 
         //// Debug / Editor Draw
-        //Renderer::DrawDebug(true);
+        Renderer::DrawDebug(target.GetMode() == DrawMode::GAME || target.GetMode() == DrawMode::BUILD ? false : true);
 
         if (renderer.renderParticles)
             Renderer2D::Update(BT::WORLD, target);

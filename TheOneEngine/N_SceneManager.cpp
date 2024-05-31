@@ -1245,11 +1245,6 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
-//void Scene::Set2DCamera()
-//{
-//	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
-//}
-
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
 	Camera* camera = cam ? cam : currentCamera;
@@ -1259,8 +1254,6 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	
 	for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
 		i->second->Draw(camera);
-
-	//Renderer::DebugDraw(mode == DrawMode::GAME ? false : true);
 
 	if (mode == DrawMode::EDITOR)
 		return;
