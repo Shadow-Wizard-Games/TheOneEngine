@@ -92,4 +92,15 @@ public class QuestManager : MonoBehaviour
 
         return false;
     }
+
+    public bool IsQuestComplete(int id)
+    {
+        foreach (var item in completedQuests)
+        {
+            if (item.id == id)
+                return true;
+        }
+
+        return false;
+    }
 }

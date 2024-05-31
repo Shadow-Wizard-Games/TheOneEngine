@@ -69,7 +69,7 @@ public class EventNextRoom : Event
 
             if(sceneName == "L1R5")
             {
-                if (!itemManager.hasKey)
+                if (!itemManager.CheckItemInInventory(2))
                 {
                     uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Error:", "Missing Key");
                     return ret;

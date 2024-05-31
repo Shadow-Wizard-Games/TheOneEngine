@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
 
     public override void Update()
     {
-        if(itemManager.hasInitial && currentWeapon == CurrentWeapon.NONE)
+        if(itemManager.CheckItemInInventory(1) && currentWeapon == CurrentWeapon.NONE)
         {
             IGameObject.InstanciatePrefab("WP_CarabinaM4", attachedGameObject.transform.Position, attachedGameObject.transform.Rotation);
             currentWeapon = CurrentWeapon.M4;
@@ -203,7 +203,7 @@ public class PlayerScript : MonoBehaviour
 
         if (itemManager != null)
         {
-            if (itemManager.hasWeapon)
+            if (itemManager.CheckItemInInventory(1))
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 {
@@ -230,7 +230,7 @@ public class PlayerScript : MonoBehaviour
         switch (currentWeapon)
         {
             case CurrentWeapon.NONE:
-                if (itemManager.hasInitial)
+                if (itemManager.CheckItemInInventory(1))
                     currentWeapon = CurrentWeapon.M4;
                 break;
             case CurrentWeapon.M4:

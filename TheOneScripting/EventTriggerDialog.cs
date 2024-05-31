@@ -14,7 +14,7 @@ public class EventTriggerDialog : Event
     PlayerScript player;
 
     GameManager gameManager;
-    UiManager menuManager;
+    QuestManager questManager;
 
     float playerDistance;
 
@@ -24,8 +24,10 @@ public class EventTriggerDialog : Event
     string goName;
 
     string filepath = "Assets/GameData/Dialogs.json";
-    string conversation;
+    string charachter;
     int dialogNum = 1;
+    int conversationNum = 1;
+    int neededQuestId = -1;
     bool isFirst = true;
     bool isLast = false;
     float cooldown = 0.0f;
@@ -41,14 +43,16 @@ public class EventTriggerDialog : Event
         player = playerGO.GetComponent<PlayerScript>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
 
         eventType = EventType.OPENPOPUP;
         goName = attachedGameObject.name;
 
-        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-
-        conversation = ExtractConversation();
-        string[] datapath = { conversation };
+        charachter = ExtractCharacter();
+        //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
+        //conversationNum = DataManager.AccessFileDataInt(filepath, characterPath, "conversationNum");
+        string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
+        neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
 
         dialogueGo = IGameObject.Find("Canvas_Dialogue");
         dialogCanvas = dialogueGo.GetComponent<ICanvas>();
@@ -59,7 +63,7 @@ public class EventTriggerDialog : Event
         if (cooldown > 0)
             cooldown -= Time.realDeltaTime;
 
-        if (CheckEventIsPossible())
+        if (CheckEventIsPossible() && questManager.IsQuestComplete(neededQuestId))
         {
             DoEvent();
         }
@@ -96,10 +100,20 @@ public class EventTriggerDialog : Event
             }
             else if (isLast)
             {
+                conversationNum++;
+                //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
+                //DataManager.WriteFileDataInt(filepath, characterPath, "conversationNum", conversationNum);
+
                 gameManager.TooglePause();
                 dialogueGo.Disable();
-                
-                attachedGameObject.Destroy();
+
+                string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
+                neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
+                int completeQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "completeQuestId");
+                questManager.CompleteQuest(completeQuestId);
+                int triggerQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "triggerQuestId");
+                questManager.ActivateQuest(triggerQuestId);
+
                 return ret;
             }
 
@@ -108,7 +122,7 @@ public class EventTriggerDialog : Event
                 attachedGameObject.source.Stop(aEvent);
             }
 
-            string[] datapath = { conversation, "Dialog" + dialogNum.ToString() };
+            string[] datapath = { charachter, "Conversation" + conversationNum.ToString(), "Dialog" + dialogNum.ToString() };
             string text = DataManager.AccessFileDataString(filepath, datapath, "text");
             isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
             int dialoguer = DataManager.AccessFileDataInt(filepath, datapath, "dialoguer");
@@ -170,11 +184,11 @@ public class EventTriggerDialog : Event
         }
     }
 
-    public string ExtractConversation()
+    public string ExtractCharacter()
     {
         string Dialog = "";
 
-        string pattern = $"Conversation(\\d+)";
+        string pattern = $"Character(\\d+)";
 
         Match match = Regex.Match(goName, pattern);
 
@@ -182,7 +196,7 @@ public class EventTriggerDialog : Event
         {
             Dialog += match.Groups[0].Value;
         }
-        else { Debug.LogWarning("Could not find conversation in GO name"); }
+        else { Debug.LogWarning("Could not find character in GO name"); }
 
         return Dialog;
     }

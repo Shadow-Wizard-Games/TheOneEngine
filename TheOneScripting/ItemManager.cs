@@ -8,8 +8,6 @@ public class ItemManager : MonoBehaviour
     private Dictionary<uint, Item> itemData = new Dictionary<uint, Item>(); // id, Item
     public Dictionary<uint, uint> inventory = new Dictionary<uint, uint>(); // id, quantity
     public Dictionary<uint, Item> equipped = new Dictionary<uint, Item>(); // slot (1 ~ 6), Item
-    public bool hasWeapon = false;
-    public bool hasKey = false;
 
     public override void Start()
     {
@@ -30,17 +28,7 @@ public class ItemManager : MonoBehaviour
 
     public override void Update()
     {
-        if (!hasWeapon)
-        {
-            if (CheckItemInInventory(1))
-            {
-                hasWeapon = true;
-            }
-            if (CheckItemInInventory(2))
-            {
-                hasKey = true;
-            }
-        }
+        
     }
 
     public void AddItem(uint id, uint quantity)
@@ -112,7 +100,7 @@ public class ItemManager : MonoBehaviour
     }
 
     // Private functions, to check certain things in the ItemManager
-    private bool CheckItemInInventory(uint id)
+    public bool CheckItemInInventory(uint id)
     {
         return inventory.ContainsKey(id) && inventory[id] > 0;
     }
@@ -140,7 +128,5 @@ public class ItemManager : MonoBehaviour
     {
         inventory.Clear();
         equipped.Clear();
-        hasWeapon = false;
-        hasKey = false;
     }
 }
