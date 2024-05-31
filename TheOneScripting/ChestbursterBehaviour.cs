@@ -18,11 +18,12 @@ public class ChestbursterBehaviour : MonoBehaviour
     }
 
     IGameObject playerGO;
-    //Vector3 directorVector;
+    Vector3 directorVector;
     float playerDistance;
 
     // Chestburster parameters
     float life = 80.0f;
+    float biomass = 10.0f;
     float movementSpeed = 30.0f * 2;
     States currentState = States.Idle;
     ChestbursterAttack currentAttack = ChestbursterAttack.None;
@@ -60,8 +61,8 @@ public class ChestbursterBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Move");
-        attachedGameObject.animator.Blend = false;
-        attachedGameObject.animator.TransitionTime = 0.0f;
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
 
         tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS")?.GetComponent<IParticleSystem>();
         tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS")?.GetComponent<IParticleSystem>();
@@ -74,9 +75,9 @@ public class ChestbursterBehaviour : MonoBehaviour
 
         if (currentState == States.Dead)
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }
@@ -85,7 +86,7 @@ public class ChestbursterBehaviour : MonoBehaviour
         {
             DebugDraw();
 
-            //directorVector = (playerGO.transform.position - attachedGameObject.transform.position).Normalize();
+            directorVector = (playerGO.transform.Position - attachedGameObject.transform.Position).Normalize();
             playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
             UpdateFSM();
@@ -95,39 +96,23 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) 
-        { 
+        if (life <= 0)
+        {
             currentState = States.Dead;
-            player.shieldKillCounter++;
-            return; 
+            //Debug.Log("Chestburster switched to Dead");
+            return;
         }
 
         if (!detected && playerDistance < detectedRange)
         {
             detected = true;
             currentState = States.Chase;
+            //Debug.Log("Chestburster switched to Chase");
         }
 
         if (detected)
         {
-            if (playerDistance < isCloseRange && !isClose)
-            {
-                isClose = true;
-                //Debug.Log("Player is now CLOSE");
-            }
-
-            if (playerDistance >= isCloseRange && isClose)
-            {
-                isClose = false;
-                //Debug.Log("Player is now FAR");
-            }
-
-            if (playerDistance > maxChasingRange && detected)
-            {
-                detected = false;
-                currentState = States.Idle;
-                //Debug.Log("Player is NOT DETECTED ANYMORE");
-            }
+            CheckIsClose();
 
             if (currentAttack == ChestbursterAttack.None)
             {
@@ -135,26 +120,52 @@ public class ChestbursterBehaviour : MonoBehaviour
                 attachedGameObject.animator.Play("Run");
             }
 
-
-            if (playerDistance <= maxRangeStopChasing && currentAttack == ChestbursterAttack.None &&
-                currentState != States.Idle)
-            {
-                currentState = States.Idle;
-                //Debug.Log("Player is INSIDE maxRangeStopChasing");
-            }
-
-            if (playerDistance > maxRangeStopChasing && currentAttack == ChestbursterAttack.None &&
-                currentState != States.Chase)
-            {
-                currentState = States.Chase;
-                //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
-            }
+            CheckIsMaxRangeStopChasing();
 
             if (currentAttack == ChestbursterAttack.None && attackTimer >= attackCooldown)
             {
                 currentState = States.Attack;
-                //Debug.Log("Chestburster attempt to attack");
+                //Debug.Log("Chestburster switched to Attack");
             }
+
+            if (playerDistance > maxChasingRange && currentState != States.Attack)
+            {
+                detected = false;
+                currentState = States.Idle;
+                //Debug.Log("Chestburster switched to Idle");
+            }
+        }
+    }
+
+    private void CheckIsClose()
+    {
+        if (playerDistance < isCloseRange && !isClose)
+        {
+            isClose = true;
+            //Debug.Log("Player is now CLOSE");
+        }
+
+        if (playerDistance >= isCloseRange && isClose)
+        {
+            isClose = false;
+            //Debug.Log("Player is now FAR");
+        }
+    }
+
+    private void CheckIsMaxRangeStopChasing()
+    {
+        if (playerDistance <= maxRangeStopChasing && currentAttack == ChestbursterAttack.None &&
+               currentState != States.Idle)
+        {
+            currentState = States.Idle;
+            //Debug.Log("Player is INSIDE maxRangeStopChasing");
+        }
+
+        if (playerDistance > maxRangeStopChasing && currentAttack == ChestbursterAttack.None &&
+            currentState != States.Chase)
+        {
+            currentState = States.Chase;
+            //Debug.Log("Player is OUTSIDE maxRangeStopChasing");
         }
     }
 
@@ -175,18 +186,14 @@ public class ChestbursterBehaviour : MonoBehaviour
             case States.Attack:
                 player.isFighting = true;
                 attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
-
                 ChooseAttack();
-
                 switch (currentAttack)
                 {
                     case ChestbursterAttack.TailPunch:
                         TailPunch();
-                        //Debug.Log("TAIL PUNCH");
                         break;
                     case ChestbursterAttack.TailTrip:
                         TailTrip();
-                        //Debug.Log("TAIL TRIP");
                         break;
                     default:
                         break;
@@ -246,13 +253,12 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         if (!isDead)
         {
-            attachedGameObject.animator.Play("Dead");
+            attachedGameObject.animator.Play("Die");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished)
-            {
-                isDead = true;
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 
@@ -265,15 +271,16 @@ public class ChestbursterBehaviour : MonoBehaviour
         attachedGameObject.animator.Play("Run");
     }
 
-    public void ReduceLife(float damage) //temporary function for the hardcoding of collisions
+    public void ReduceLife() //temporary function for the hardcoding of collisions
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
+        Debug.Log("Chestburster health: " + life.ToString());
     }
 
     public void ReduceLifeExplosion()
     {
-        life -= player.grenadeDamage;
+        life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
     }
 

@@ -24,20 +24,21 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     // Red Xenomorph parameters
     float life = 250.0f;
-    float movementSpeed = 15.0f * 3;
+    float biomass = 25.0f;
+    float movementSpeed = 18.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     RedXenomorphAttacks currentAttack = RedXenomorphAttacks.None;
     Vector3 initialPos;
 
     // Patrol
-    float patrolRange = 100;
+    const float patrolRange = 100.0f;
     float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
 
     // Ranges
-    const float detectedRange = 35.0f * 3;
+    const float detectedRange = 180.0f;
     const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
     const float maxRangeStopChasing = 25.0f;
@@ -46,12 +47,15 @@ public class RedXenomorphBehaviour : MonoBehaviour
     bool detected = false;
     bool isClose = false;
     bool isDead = false;
+    bool hasShot = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 2.0f;
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
+    float delayTimer = 0.0f;
+    const float delayCooldown = 1.2f;
 
     PlayerScript player;
     GameManager gameManager;
@@ -70,8 +74,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.Blend = false;
-        attachedGameObject.animator.TransitionTime = 0.0f;
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
 
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
@@ -82,11 +86,11 @@ public class RedXenomorphBehaviour : MonoBehaviour
     {
         attachedGameObject.animator.UpdateAnimation();
 
-        if (currentState == States.Dead) 
+        if (currentState == States.Dead)
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }
@@ -106,11 +110,10 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) 
-        { 
+        if (life <= 0)
+        {
             currentState = States.Dead;
-            player.shieldKillCounter++;
-            return; 
+            return;
         }
 
         if (!detected && playerDistance < detectedRange)
@@ -222,13 +225,13 @@ public class RedXenomorphBehaviour : MonoBehaviour
             if (isClose)
             {
                 currentAttack = RedXenomorphAttacks.TailStab;
-                attachedGameObject.animator.Play("TailAttack");
+                attachedGameObject.animator.Play("TailStab");
                 tailAttackPSGO.Play();
             }
             else
             {
                 currentAttack = RedXenomorphAttacks.SpikeThrow;
-                attachedGameObject.animator.Play("Spit");
+                attachedGameObject.animator.Play("SpikeThrow");
                 acidSpitPSGO.Play();
             }
             //Debug.Log("RedXenomorph current attack: " + currentAttack);
@@ -237,11 +240,20 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     private void SpikeThrow()
     {
-        //InternalCalls.InstantiateBullet(attachedGameObject.transform.position + attachedGameObject.transform.forward * 12.5f, attachedGameObject.transform.rotation);
-        //attachedGameObject.source.PlayAudio(IAudioSource.EventIDs.E_X_ADULT_SPIT);
+        delayTimer += Time.deltaTime;
+
+        if (!hasShot && delayTimer >= delayCooldown)
+        {
+            hasShot = true;
+            Vector3 height = new Vector3(0.0f, 38.0f, 0.0f);
+            InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+            // SFX Goes here
+        }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            hasShot = false;
+            delayTimer = 0.0f;
             ResetState();
         }
     }
@@ -287,12 +299,10 @@ public class RedXenomorphBehaviour : MonoBehaviour
         if (!isDead)
         {
             attachedGameObject.animator.Play("Death");
-
-            if (attachedGameObject.animator.CurrentAnimHasFinished)
-            {
-                isDead = true;
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 
@@ -310,7 +320,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     }
     public void ReduceLifeExplosion()
     {
-        life -= player.grenadeDamage;
+        life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
     }
 

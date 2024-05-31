@@ -24,20 +24,22 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     // Adult Xenomorph parameters
     float life = 200.0f;
-    float movementSpeed = 10.0f * 3;
+    float biomass = 20.0f;
+    float movementSpeed = 18.0f * 3;
+    
     States currentState = States.Idle;
     States lastState = States.Idle;
     AdultXenomorphAttacks currentAttack = AdultXenomorphAttacks.None;
     Vector3 initialPos;
 
     // Patrol
-    float patrolRange = 100;
-    float patrolSpeed = 20.0f;
+    readonly float patrolRange = 100;
+    readonly float patrolSpeed = 20.0f;
     float roundProgress = 0.0f; //Do not modify
     bool goingToRoundPos = false;
 
     // Ranges
-    const float detectedRange = 35.0f * 3;
+    const float detectedRange = 180.0f;
     const float isCloseRange = 20.0f * 3;
     const float maxChasingRange = 180.0f;
     const float maxRangeStopChasing = 25.0f;
@@ -46,12 +48,15 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     bool detected = false;
     bool isClose = false;
     bool isDead = false;
+    bool hasShot = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 2.0f;
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
+    float delayTimer = 0.0f;
+    const float delayCooldown = 1.2f;
 
     PlayerScript player;
     GameManager gameManager;
@@ -70,8 +75,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
-        attachedGameObject.animator.Blend = false;
-        attachedGameObject.animator.TransitionTime = 0.0f;
+        attachedGameObject.animator.Blend = true;
+        attachedGameObject.animator.TransitionTime = 0.3f;
 
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
@@ -84,9 +89,9 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
         if (currentState == States.Dead)
         {
-            destroyTimer += Time.deltaTime;
-            if (destroyTimer >= destroyCooldown)
-                attachedGameObject.Destroy();
+            //destroyTimer += Time.deltaTime;
+            //if (destroyTimer >= destroyCooldown)
+            //    attachedGameObject.Destroy();
 
             return;
         }
@@ -106,11 +111,10 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     void UpdateFSM()
     {
-        if (life <= 0) 
-        { 
-            currentState = States.Dead; 
-            player.shieldKillCounter++;  
-            return; 
+        if (life <= 0)
+        {
+            currentState = States.Dead;
+            return;
         }
 
         if (!detected && playerDistance < detectedRange)
@@ -237,8 +241,20 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     private void AcidSpit()
     {
+        delayTimer += Time.deltaTime;
+
+        if (!hasShot && delayTimer >= delayCooldown)
+        {
+            hasShot = true;
+            Vector3 height = new Vector3(0.0f, 38.0f, 0.0f);
+            InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+            // SFX Goes here
+        }
+
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            hasShot = false;
+            delayTimer = 0.0f;
             ResetState();
         }
     }
@@ -269,7 +285,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
                            Vector3.forward * (float)Math.Sin(roundProgress * Math.PI / 180.0f) * patrolRange;
 
         attachedGameObject.transform.LookAt2D(roundPos);
-        if (!goingToRoundPos) 
+        if (!goingToRoundPos)
         {
             MoveTo(roundPos);
         }
@@ -285,11 +301,10 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         {
             attachedGameObject.animator.Play("Death");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished) 
-            { 
-                isDead = true;
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 
@@ -308,7 +323,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     public void ReduceLifeExplosion()
     {
-        life -= player.grenadeDamage;
+        life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
     }
 
