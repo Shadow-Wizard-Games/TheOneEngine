@@ -60,11 +60,11 @@ json Light::SaveComponent()
 
     lightJSON["Name"] = name;
     lightJSON["Type"] = type;
+    lightJSON["LightType"] = lightType;
     if (auto pGO = containerGO.lock())
     {
         lightJSON["ParentUID"] = pGO.get()->GetUID();
     }
-    lightJSON["LightType"] = lightType;
     lightJSON["UID"] = UID;
     lightJSON["Color"] = { color.r, color.g, color.b};
     lightJSON["Intensity"] = intensity;
@@ -74,7 +74,6 @@ json Light::SaveComponent()
     lightJSON["Quadratic"] = quadratic;
     lightJSON["InnerCutOff"] = innerCutOff;
     lightJSON["OuterCutOff"] = outerCutOff;
-    lightJSON["ActiveShadows"] = castShadows;
 
     return lightJSON;
 }
@@ -126,9 +125,5 @@ void Light::LoadComponent(const json& meshJSON)
     if (meshJSON.contains("OuterCutOff"))
     {
         outerCutOff = meshJSON["OuterCutOff"];
-    }
-    if (meshJSON.contains("ActiveShadows"))
-    {
-        castShadows = meshJSON["ActiveShadows"];
     }
 }

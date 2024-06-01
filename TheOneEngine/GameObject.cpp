@@ -465,7 +465,7 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Light)
 			{
-				this->AddComponent<Light>();
+				this->AddComponent<Light>((LightType)componentJSON["LightType"]);
 				this->GetComponent<Light>()->LoadComponent(componentJSON);
 			}
 		}
