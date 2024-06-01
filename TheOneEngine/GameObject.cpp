@@ -14,6 +14,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "N_SceneManager.h"
+#include "Renderer3D.h"
 
 #include "Math.h"
 #include "EngineCore.h"
@@ -233,6 +234,8 @@ void GameObject::Disable()
 
 void GameObject::Delete()
 {
+	if (GetComponent<Light>()) Renderer3D::RemoveLight(shared_from_this());
+
 	auto it = std::find(parent.lock()->children.begin(), parent.lock()->children.end(), shared_from_this());
 
 	if (it != parent.lock()->children.end())
