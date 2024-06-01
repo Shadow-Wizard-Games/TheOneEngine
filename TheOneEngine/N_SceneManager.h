@@ -58,10 +58,10 @@ public:
 	std::shared_ptr<GameObject> CreateCanvasGO(std::string name);
 	std::shared_ptr<GameObject> CreateLightGO(LightType type);
 
-	void CreateMeshGO(std::string path);
-	void CreateExistingMeshGO(std::string fbxName);
+	void CreateMeshGO(const std::string& path);
+	void CreateExistingMeshGO(const std::string& fbxName);
+	void CreateLibMeshGO(const std::string& path);
 	void CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
-	void CreateStaticMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
 	void CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
 
 	std::shared_ptr<GameObject> CreateCube();

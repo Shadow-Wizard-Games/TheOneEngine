@@ -741,7 +741,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateLightGO(LightType type)
 	return currentScene->GetRootSceneGO().get()->children.emplace_back(lightGO);
 }
 
-void N_SceneManager::CreateMeshGO(std::string path)
+void N_SceneManager::CreateMeshGO(const std::string& path)
 {
 	switch (FBXIMPORTER::FBXtype(path))
 	{
@@ -772,7 +772,7 @@ void N_SceneManager::CreateMeshGO(std::string path)
 	if (!sceneIsPlaying) AddPendingGOs();
 }
 
-void N_SceneManager::CreateExistingMeshGO(std::string path)
+void N_SceneManager::CreateExistingMeshGO(const std::string& path)
 {
 	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
 	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
@@ -813,7 +813,7 @@ void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<Game
 {
 	Model* mesh = Resources::GetResourceById<Model>(meshID);
 
-	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(GenerateUniqueName(mesh->GetMeshName()));
 	meshGO.get()->AddComponent<Transform>();
 	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
 	meshGO.get()->SetAABBox(mesh->GetMeshAABB());
@@ -841,7 +841,7 @@ void N_SceneManager::CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<Gam
 {
 	SkeletalModel* mesh = Resources::GetResourceById<SkeletalModel>(meshID);
 
-	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->GetMeshName());
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(GenerateUniqueName(mesh->GetMeshName()));
 	meshGO.get()->AddComponent<Transform>();
 	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
 	meshGO.get()->AddComponent<Mesh>();
@@ -860,6 +860,36 @@ void N_SceneManager::CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<Gam
 		meshGO.get()->parent = emptyParent;
 		emptyParent.get()->children.push_back(meshGO);
 	}
+}
+
+void N_SceneManager::CreateLibMeshGO(const std::string& path)
+{
+	if (path.empty())
+		return;
+
+	std::filesystem::path fbxName = path;
+	std::string name = fbxName.filename().replace_extension().string();
+	name = GenerateUniqueName(name);
+	ResourceId meshID = Resources::LoadFromLibrary<Model>(path);
+
+	Model* mesh = Resources::GetResourceById<Model>(meshID);
+
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(name);
+	meshGO.get()->AddComponent<Transform>();
+	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
+	meshGO.get()->SetAABBox(mesh->GetMeshAABB());
+	meshGO.get()->AddComponent<Mesh>();
+
+	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
+	meshGO.get()->GetComponent<Mesh>()->meshType = MeshType::DEFAULT;
+
+	Renderer3D::AddMesh(mesh->GetMeshID(), meshGO.get()->GetComponent<Mesh>()->materialID);
+
+	meshGO.get()->parent = currentScene->GetRootSceneGO();
+	engine->N_sceneManager->objectsToAdd.push_back(meshGO);
+
+	if (!sceneIsPlaying) AddPendingGOs();
 }
 
 std::shared_ptr<GameObject> N_SceneManager::CreateCube()
