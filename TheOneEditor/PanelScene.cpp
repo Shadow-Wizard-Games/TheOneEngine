@@ -439,6 +439,7 @@ void PanelScene::CameraMovement(GameObject* cam)
 {
     Camera* camera = cam->GetComponent<Camera>();
     Transform* transform = cam->GetComponent<Transform>();
+    transform->Update();
     double dt = MIN(app->GetDT(), 0.016);
     double mouseSensitivity = 28.0;
 
