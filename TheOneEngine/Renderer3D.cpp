@@ -543,7 +543,7 @@ void Renderer3D::LightPass(RenderTarget target)
 	mat->SetUniformData("gPosition", gPositionData);
 	mat->SetUniformData("gNormal", gNormalData);
 	mat->SetUniformData("gAlbedoSpec", gAlbedoSpecData);
-	mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetPosition());
+	mat->SetUniformData("u_ViewPos", (glm::vec3)cameraTransform->GetGlobalPosition());
 
 	for (int i = 0; i < renderer3D.lights.size(); i++)
 	{
@@ -559,8 +559,8 @@ void Renderer3D::LightPass(RenderTarget target)
 			case LightType::Directional:
 			{
 				string iteration = to_string(directionalLightNum);
-				mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-				mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+				mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
+				mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
 				mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
 				mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", light->intensity);
 				directionalLightNum++;
@@ -569,7 +569,7 @@ void Renderer3D::LightPass(RenderTarget target)
 			case LightType::Point:
 			{
 				string iteration = to_string(pointLightNum);
-				mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
+				mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
 				mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
 				mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
 				mat->SetUniformData("u_PointLights[" + iteration + "].Linear", light->linear);
@@ -581,8 +581,8 @@ void Renderer3D::LightPass(RenderTarget target)
 			case LightType::Spot:
 			{
 				string iteration = to_string(spotLightNum);
-				mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetPosition());
-				mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetForward());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", light->intensity);
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", light->linear);

@@ -27,12 +27,9 @@ Transform::~Transform() {}
 
 void Transform::Update()
 {
-    globalTransformMatrix = transformMatrix;
-    if (containerGO.lock()->parent.lock()) {
-        globalTransformMatrix = containerGO.lock()->parent.lock()->GetComponent<Transform>()->GetGlobalTransform() * globalTransformMatrix;
-    }
+    CalculateWorldTransform();
 
-    DecomposeTransform();
+    DecomposeGlobalTransform();
 }
 
 
@@ -231,6 +228,21 @@ void Transform::DecomposeTransform()
     rotation = glm::quat_cast(rotMtx);
 }
 
+void Transform::DecomposeGlobalTransform()
+{
+    globalPosition = globalTransformMatrix[3];
+
+    for (int i = 0; i < 3; i++)
+        globalScale[i] = glm::length(vec3(globalTransformMatrix[i]));
+
+    const glm::mat3 rotMtx(
+        vec3(globalTransformMatrix[0]) / globalScale[0],
+        vec3(globalTransformMatrix[1]) / globalScale[1],
+        vec3(globalTransformMatrix[2]) / globalScale[2]);
+
+    globalRotation = glm::quat_cast(rotMtx);
+}
+
 mat4 Transform::CalculateWorldTransform()
 {
     mat4 worldTransform = transformMatrix;
@@ -302,6 +314,21 @@ void Transform::SetUp(vec3 newUp)
     transformMatrix[1] = vec4(newUp, 0.0f);
 }
 
+vec3 Transform::GetGlobalForward() const
+{
+    return glm::normalize(globalTransformMatrix[2]);
+}
+
+vec3 Transform::GetGlobalUp() const
+{
+    return glm::normalize(globalTransformMatrix[1]);
+}
+
+vec3 Transform::GetGlobalRight() const
+{
+    return glm::normalize(globalTransformMatrix[0]);
+}
+
 vec3 Transform::GetForward() const
 {
 	return glm::normalize(transformMatrix[2]);
@@ -310,6 +337,21 @@ vec3 Transform::GetForward() const
 void Transform::SetForward(vec3 newForward)
 {
     transformMatrix[2] = vec4(newForward, 0.0f);
+}
+
+vec3 Transform::GetGlobalPosition() const
+{
+    return globalPosition;
+}
+
+quat Transform::GetGlobalRotation() const
+{
+    return globalRotation;
+}
+
+vec3 Transform::GetGlobalScale() const
+{
+    return globalScale;
 }
 
 vec3 Transform::GetPosition() const

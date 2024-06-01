@@ -89,6 +89,9 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 		RecursiveScriptInit(currentScene->GetRootSceneGO(), !sceneChange);
 	}
 
+	if (!sceneIsPlaying)
+		UpdateTransforms(currentScene->GetRootSceneGO());
+
 	previousFrameIsPlaying = sceneIsPlaying;
 	sceneIsPlaying = isPlaying;
 
@@ -514,6 +517,14 @@ void N_SceneManager::AccessFileDataWrite(std::string filepath, DataType dataType
 		outFile << std::setw(4) << fileJSON;
 		outFile.close();
 	}
+}
+
+void N_SceneManager::UpdateTransforms(std::shared_ptr<GameObject> go)
+{
+	go->GetComponent<Transform>()->Update();
+
+	for (auto& child : go->children)
+		UpdateTransforms(child);
 }
 
 void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go, bool firstInit)

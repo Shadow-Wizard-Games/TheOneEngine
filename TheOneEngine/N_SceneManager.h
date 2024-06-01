@@ -103,7 +103,7 @@ public:
 	void AccessFileDataWrite(std::string filepath, DataType dataType, std::vector<std::string> dataPath, std::string dataName, void* data);
 
 private:
-
+	void UpdateTransforms(std::shared_ptr<GameObject> go);
 	void RecursiveScriptInit(std::shared_ptr<GameObject> go, bool firstInit = false);
 
 public:

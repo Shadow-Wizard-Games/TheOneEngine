@@ -234,7 +234,7 @@ void CollisionSolver::DrawCollisions() {
             continue;
         }
 
-        glm::vec3 position = glm::vec3(transform->GetPosition()) + glm::vec3(collider->offset.x, 0.0f, collider->offset.y);
+        glm::vec3 position = glm::vec3(transform->GetGlobalPosition()) + glm::vec3(collider->offset.x, 0.0f, collider->offset.y);
         glm::vec4 color(0.0f, 0.8f, 0.0f, 1.0f);
 
         if (collider->colliderType == ColliderType::Rect) {
