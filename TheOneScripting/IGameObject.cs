@@ -136,6 +136,9 @@ public class IGameObject : IObject
                     case IComponent.ComponentType.IAnimator:
                         componentToReturn = new IAnimator(containerGOptr) as TComponent;
                         break;
+                    case IComponent.ComponentType.ILight:
+                        componentToReturn = new ILight(containerGOptr) as TComponent;
+                        break;
                     default:
                         break;
                 }

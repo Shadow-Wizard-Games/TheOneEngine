@@ -29,8 +29,8 @@ class PanelScene : public Panel
 public:
 	PanelScene(PanelType type, std::string name);
 	~PanelScene();
-	void Start();
 
+	void Start();
 	bool Draw();
 
 	Ray GetScreenRay(int x, int y, Camera* camera, int width, int height);
@@ -45,11 +45,11 @@ public:
 public:
 	bool isHovered;
 	bool isFocused;
-	std::vector<Ray> rays;
 
 private:
 	Scene* current;
 
+	// Scene Panel Camera
 	std::shared_ptr<GameObject> sceneCamera;
 	std::shared_ptr<GameObject> cameraParent;
 	CamControlMode camControlMode;
@@ -63,8 +63,9 @@ private:
 	vec2 camTargetSpeed = { 0, 0 };
 	vec2 camCurrentSpeed = { 0, 0 };
 
-	std::shared_ptr<FrameBuffer> frameBuffer;
+	// Render Target
 	glm::vec2 viewportSize;
+	unsigned int renderTarget;
 
 	int gizmoType;
 	int gizmoMode;
@@ -78,13 +79,15 @@ private:
 	bool easing;
 	float camSpeedMult;
 
+	bool renderLights;
+	bool renderShadows;
+
 	bool drawMesh;
 	bool drawWireframe;
 	bool drawNormalsVerts;
 	bool drawNormalsFaces;
 	bool drawAABB;
 	bool drawOBB;
-	bool drawRaycasting;
 	bool drawChecker;
 
 	bool snapping;

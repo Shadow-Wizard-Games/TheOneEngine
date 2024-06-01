@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 public class EventCollectible : Event
 {
     IGameObject playerGO;
-    PlayerScript player;
-    IGameObject itemManagerGO;
     ItemManager itemManager;
     UiManager uiManager;
     float playerDistance;
@@ -23,13 +21,8 @@ public class EventCollectible : Event
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
         eventType = EventType.COLLECTIBLE;
-        itemManagerGO = IGameObject.Find("ItemManager");
-        itemManager = itemManagerGO.GetComponent<ItemManager>();
-
-        itemManager.Start();
-
+        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
         uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
     }

@@ -1,8 +1,9 @@
 #include "CollisionSolver.h"
 #include "Defs.h"
+#include "EngineCore.h"
 #include "Collider2D.h"
 #include "Transform.h"
-#include "EngineCore.h"
+#include "Script.h"
 #include "N_SceneManager.h"
 #include "MonoManager.h"
 
@@ -12,6 +13,11 @@
 CollisionSolver::CollisionSolver() {}
 
 CollisionSolver::~CollisionSolver() {}
+
+void CollisionSolver::CleanUp()
+{
+    goWithCollision.clear();
+}
 
 bool CollisionSolver::PreUpdate()
 {
@@ -216,114 +222,57 @@ vec2 CollisionSolver::Clamp(vec2 origin, vec2 min, vec2 max)
     return origin;
 }
 
-void CollisionSolver::DrawCollisions()
-{
+void CollisionSolver::DrawCollisions() {
     std::vector<GameObject*> temp = SceneRootToCollisionVector(engine->N_sceneManager->currentScene->GetRootSceneGO());
 
-    // Iterar sobre las colisiones y dibujarlas
     for (const auto& collision : temp) {
-        glPushMatrix();
+        Transform* transform = collision->GetComponent<Transform>();
+        Collider2D* collider = collision->GetComponent<Collider2D>();
 
-        // Obtener la posición del objeto con colisión
-        auto transform = collision->GetComponent<Transform>();
-        if (transform == nullptr) {
-            LOG(LogType::LOG_ERROR, "Transform component not found for collision object");
+        if (!transform || !collider) {
+            LOG(LogType::LOG_ERROR, "Missing required component for collision object");
             continue;
         }
 
-        auto collider = collision->GetComponent<Collider2D>();
+        glm::vec3 position = glm::vec3(transform->GetGlobalPosition()) + glm::vec3(collider->offset.x, 0.0f, collider->offset.y);
+        glm::vec4 color(0.0f, 0.8f, 0.0f, 1.0f);
 
-        //Calculate position of collider
-        float x_, y_, z_ = 0;
-        x_ = transform->GetPosition().x + collider->offset.x;
-        y_ = 1;
-        z_ = transform->GetPosition().z + collider->offset.y;
+        if (collider->colliderType == ColliderType::Rect) {
+            glm::vec2 size(collider->w, collider->h);
 
-        glTranslatef(x_, y_, z_);
+            glm::mat4 rotation = glm::rotate(glm::mat4(1), glm::radians(90.0f), glm::vec3(1, 0, 0));
+            if (collider->cornerPivot) {
 
-        // Draw every collision in green, less confusing
-        glColor3f(0.0f, 0.8f, 0.0f);
-
-        // Dibujar la colisión según su tipo y configuración
-        //switch (collider->collisionType) {
-        //case CollisionType::Player:
-        //    glColor3f(0.0f, 1.0f, 0.0f); // Verde para jugador
-        //    break;
-        //case CollisionType::Enemy:
-        //    glColor3f(1.0f, 0.0f, 0.0f); // Rojo para enemigo
-        //    break;
-        //case CollisionType::Wall:
-        //    glColor3f(0.0f, 0.0f, 1.0f); // Azul para muro
-        //    break;
-        //case CollisionType::Bullet:
-        //    glColor3f(1.0f, 0.7f, 0.0f); // Naranja para bala
-        //    break;
-        //default:
-        //    glColor3f(1.0f, 1.0f, 1.0f); // Blanco para otros tipos
-        //    break;
-        //}
-
-        glBegin(GL_LINE_LOOP);
-        if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Rect) {
-            // Dibujar rectángulo
-            if (!collision->GetComponent<Collider2D>()->cornerPivot)
-            {
-                float halfW = collision->GetComponent<Collider2D>()->w / 2.0f;
-                float halfH = collision->GetComponent<Collider2D>()->h / 2.0f;
-                glVertex3f(-halfW, 0.0f, -halfH);
-                glVertex3f(halfW, 0.0f, -halfH);
-                glVertex3f(halfW, 0.0f, halfH);
-                glVertex3f(-halfW, 0.0f, halfH);
-            }
-            else
-            {
-                float w = collision->GetComponent<Collider2D>()->w;
-                float h = collision->GetComponent<Collider2D>()->h;
-
-                switch (collision->GetComponent<Collider2D>()->objectOrientation)
-                {
+                switch (collider->objectOrientation) {
                 case ObjectOrientation::Front:
-                    glVertex3f(0.0f, 0.0f, h);
-                    glVertex3f(w, 0.0f, h);
-                    glVertex3f(w, 0.0f, 0.0f);
-                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    position -= glm::vec3(-size.x / 2, 0.0f, -size.y / 2);
                     break;
                 case ObjectOrientation::Right:
-                    glVertex3f(0.0f, 0.0f, h);
-                    glVertex3f(-w, 0.0f, h);
-                    glVertex3f(-w, 0.0f, 0.0f);
-                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    position -= glm::vec3(size.x / 2, 0.0f, -size.y / 2);
                     break;
                 case ObjectOrientation::Back:
-                    glVertex3f(0.0f, 0.0f, -h);
-                    glVertex3f(-w, 0.0f, -h);
-                    glVertex3f(-w, 0.0f, 0.0f);
-                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    position -= glm::vec3(size.x / 2, 0.0f, size.y / 2);
                     break;
                 case ObjectOrientation::Left:
-                    glVertex3f(0.0f, 0.0f, -h);
-                    glVertex3f(w, 0.0f, -h);
-                    glVertex3f(w, 0.0f, 0.0f);
-                    glVertex3f(0.0f, 0.0f, 0.0f);
+                    position -= glm::vec3(-size.x / 2, 0.0f, size.y / 2);
                     break;
                 default:
                     break;
                 }
             }
-        }
-        else if (collision->GetComponent<Collider2D>()->colliderType == ColliderType::Circle) {
-            // Dibujar círculo
-            const int segments = 30;
-            for (int i = 0; i < segments; ++i) {
-                float angle = 2.0f * 3.14159f * float(i) / float(segments);
-                float x = collision->GetComponent<Collider2D>()->radius * cosf(angle);
-                float y = collision->GetComponent<Collider2D>()->radius * sinf(angle);
-                glVertex3f(x, 0.0f, y); // Usar y como la altura en perspectiva
-            }
-        }
-        glEnd();
 
-        glPopMatrix();
+            glm::mat4 model = glm::translate(glm::mat4(1.0f), position) 
+                * rotation 
+                * glm::scale(glm::mat4(1.0f), glm::vec3(size.x, size.y, 1.0f));
+            Renderer2D::DrawRect(BT::WORLD, model, color);
+        }
+        else if (collider->colliderType == ColliderType::Circle) {
+            float radius = collider->radius;
+            glm::mat4 circleTransform = glm::translate(glm::mat4(1.0f), position)
+                * glm::rotate(glm::mat4(1), glm::radians(90.0f), glm::vec3(1, 0, 0))
+                * glm::scale(glm::mat4(1.0f), glm::vec3(radius, radius, radius));
+            Renderer2D::DrawCircle(BT::WORLD, circleTransform, color, 0.1f);
+        }
     }
 }
 

@@ -1,14 +1,15 @@
 #include "PanelAnimation.h"
 #include "App.h"
 #include "Gui.h"
-#include "Window.h"
 
 #include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+#include "TheOneEngine/Renderer.h"
 #include "TheOneEngine/N_SceneManager.h"
 #include "TheOneEngine/FrameBuffer.h"
 #include "TheOneEngine/FileDialog.h"
 #include "TheOneEngine/Camera.h"
-#include "TheOneEngine/Model.h"
+#include "TheOneEngine/SkeletalModel.h"
 #include "TheOneEngine/Animation/animations/OzzAnimationSimple.h"
 #include "TheOneEngine/Animation/animations/OzzAnimationPartialBlending.h"
 
@@ -22,7 +23,11 @@ activeAnimator(nullptr),
 animationCamera(nullptr),
 isPlaying(false)
 {
-	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+	std::vector<Attachment> attachments = {
+		{ Attachment::Type::RGBA8, "color", "animation", 0 },
+		{ Attachment::Type::DEPTH_STENCIL, "depth", "animation", 0 }
+	};
+	frameBuffer = std::make_shared<FrameBuffer>("animation", 1280, 720, attachments);
 
 	animationCamera = std::make_shared<GameObject>("ANIMATION CAMERA");
 	animationCamera.get()->AddComponent<Transform>();
@@ -80,23 +85,23 @@ void PanelAnimation::CameraControl()
 		double dt = app->GetDT();
 
 		// (Alt + LMB) Orbit
-		if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+		if (engine->inputManager->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 		{
-			app->window->InfiniteScroll();
+			engine->window->InfiniteScroll();
 
 			vec3 cameraPos = transform->GetPosition();
 			vec3 targetPos = selectedGO->GetComponent<Transform>()->GetPosition() + vec3(0, 20.0, 0);
 
-			camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
-			camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+			camera->yaw = engine->inputManager->GetMouseXMotion() * mouseSensitivity * dt;
+			camera->pitch = -engine->inputManager->GetMouseYMotion() * mouseSensitivity * dt;
 			transform->SetPosition(camera->lookAt);
 			transform->Rotate(vec3(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
 			transform->Rotate(vec3(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
 		}
 
 		// (Wheel) Zoom
-		if (app->input->GetMouseZ() != 0)
-			orbitDistance -= app->input->GetMouseZ() * 2;
+		if (engine->inputManager->GetMouseZ() != 0)
+			orbitDistance -= engine->inputManager->GetMouseZ() * 2;
 	}	
 
 	// Set position
@@ -118,10 +123,10 @@ bool PanelAnimation::AnimationAvaliable()
 
 	auto resourceID = selectedGO->GetComponent<Mesh>()->meshID;
 
-	if (!Resources::GetResourceById<Model>(resourceID)->isAnimated())
+	if (resourceID == -1)
 		return false;
 
-	activeAnimator = Resources::GetResourceById<Model>(resourceID);
+	activeAnimator = Resources::GetResourceById<SkeletalModel>(resourceID);
 
 	if(isPlaying)
 		activeAnimator->UpdateAnim(app->GetDT());
@@ -173,7 +178,7 @@ void PanelAnimation::Viewport()
 	ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 
 	if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-		(frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+		(frameBuffer->GetWidth() != viewportSize.x || frameBuffer->GetHeight() != viewportSize.y))
 	{
 		frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
 		animationCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
@@ -183,11 +188,11 @@ void PanelAnimation::Viewport()
 	//ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND
 	{
 		frameBuffer->Bind();
-		frameBuffer->Clear({ 0.13f, 0.14f, 0.15f, 1.00f });
+		frameBuffer->Clear(ClearBit::All, { 0.13f, 0.14f, 0.15f, 1.00f });
 
 		// Draw
-		engine->SetRenderEnvironment(animationCamera->GetComponent<Camera>());
-		engine->SetUniformBufferCamera(animationCamera->GetComponent<Camera>()->viewProjectionMatrix);
+		Renderer::SetRenderEnvironment();
+		Renderer::SetUniformBufferCamera(animationCamera->GetComponent<Camera>()->viewProjectionMatrix);
 
 		engine->N_sceneManager->GetSelectedGO().get()->GetComponent<Mesh>()->DrawComponent(animationCamera->GetComponent<Camera>());
 
@@ -196,7 +201,7 @@ void PanelAnimation::Viewport()
 
 	//Draw FrameBuffer Texture
 	ImGui::Image(
-		(ImTextureID)frameBuffer->getColorBufferTexture(),
+		(ImTextureID)frameBuffer->GetAttachmentTexture("color"),
 		{ viewportSize.x, viewportSize.y },
 		{ 0, 1 }, { 1, 0 });
 }
@@ -290,7 +295,7 @@ void PanelAnimation::DrawAnimations()
 
 		for (size_t i = 0; i < anim_count; i++)
 		{
-			Model::AnimationData& a_data = activeAnimator->getAnimationAt(i);
+			SkeletalModel::AnimationData& a_data = activeAnimator->getAnimationAt(i);
 
 			if (!a_data.animation) continue;
 

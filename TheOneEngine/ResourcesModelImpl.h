@@ -13,19 +13,15 @@ inline std::string Resources::PathToLibrary<Model>(const std::string& folderName
 		return "Library/Meshes/";
 }
 template<>
-inline bool Resources::Import<Model>(const std::string& file, Model* model)
+inline bool Resources::Import<Model>(const std::string& file, Model* model, ModelData data)
 {
-	std::filesystem::path import_path;
-	if(model->isAnimated())
-		import_path = file + ".animator";
-	else
-		import_path = file + ".mesh";
+	std::filesystem::path import_path = file + ".mesh";
 
-	model->path = import_path.string();
+	model->SetMeshPath(import_path.string());
 
 	PreparePath(import_path.parent_path().string());
 
-	Model::SaveMesh(model, import_path.string().c_str());
+	Model::SaveMesh(model, import_path.string().c_str(), data);
 
 	LOG(LogType::LOG_INFO, "Model at %s imported succesfully!", import_path.string().c_str());
 	return true;
@@ -79,6 +75,7 @@ inline ResourceId Resources::LoadFromLibrary<Model>(const std::string& file)
 	if (file_path.empty())
 		return -1;
 
+	file_path.replace_extension(".mesh");
 
 	ResourceId position = getResourcePosition(RES_MODEL, file_path.string().c_str());
 	size_t size = m_Resources[RES_MODEL].size();

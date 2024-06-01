@@ -1,9 +1,7 @@
 #include "App.h"
 
 #include "Gui.h"
-#include "Window.h"
 #include "Hardware.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
 
 #include "Panel.h"
@@ -15,10 +13,14 @@
 #include "PanelScene.h"
 #include "PanelGame.h"
 #include "PanelAnimation.h"
+#include "PanelRenderer.h"
 #include "PanelSettings.h"
 #include "PanelBuild.h"
 
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
 #include "TheOneEngine/Log.h"
+#include "TheOneEngine/Light.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
@@ -44,9 +46,12 @@ Gui::Gui(App* app) :
 	panelScene(nullptr),
 	panelGame(nullptr),
 	panelAnimation(nullptr),
+	panelRenderer(nullptr),
 	panelSettings(nullptr),
 	panelBuild(nullptr)
-{}
+{
+	editColor = { "null", { 1.0f, 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f } };
+}
 
 Gui::~Gui()
 {
@@ -92,6 +97,10 @@ bool Gui::Awake()
 	panels.push_back(panelAnimation);
 	ret *= IsInitialized(panelAnimation);
 
+	panelRenderer = new PanelRenderer(PanelType::RENDERER, "Renderer");
+	panels.push_back(panelRenderer);
+	ret *= IsInitialized(panelRenderer);
+
 	panelSettings = new PanelSettings(PanelType::SETTINGS, "Settings");
 	panels.push_back(panelSettings);
 	ret *= IsInitialized(panelSettings);
@@ -133,7 +142,7 @@ bool Gui::Start()
 	LOG(LogType::LOG_OK, "-Enabling I/O");
 
 	// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForOpenGL(app->window->window, app->window->glContext);
+	ImGui_ImplSDL2_InitForOpenGL(engine->window->window, engine->window->glContext);
 	ImGui_ImplOpenGL3_Init("#version 450");
 
 	// Setup Dear ImGui style
@@ -182,7 +191,7 @@ bool Gui::Start()
 	style.Colors[ImGuiCol_TabActive] = ImVec4(0.23f, 0.23f, 0.24f, 1.00f);
 	style.Colors[ImGuiCol_TabUnfocused] = ImVec4(0.08f, 0.08f, 0.09f, 1.00f);
 	style.Colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.13f, 0.14f, 0.15f, 1.00f);
-	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.26f, 0.59f, 0.98f, 0.70f);
+	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.70f, 0.70f, 0.70f, 0.70f);
 	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.20f, 0.20f, 0.20f, 1.00f);
 	style.Colors[ImGuiCol_PlotLines] = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
 	style.Colors[ImGuiCol_PlotLinesHovered] = ImVec4(1.00f, 0.43f, 0.35f, 1.00f);
@@ -193,7 +202,7 @@ bool Gui::Start()
 	style.Colors[ImGuiCol_NavHighlight] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
 	style.Colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.00f, 1.00f, 1.00f, 0.70f);
 	style.Colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
-	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
+	style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.60f);
 	style.GrabRounding = style.FrameRounding = 2.3f;
 	style.FramePadding = { 4, 4 };
 	style.WindowMenuButtonPosition = -1;
@@ -214,6 +223,7 @@ bool Gui::Start()
 	app->gui->panelScene->SetState(active);
 	app->gui->panelGame->SetState(active);
 	app->gui->panelAnimation->SetState(active);
+	app->gui->panelRenderer->SetState(active);
 
 	// Iterate Panels & Start
 	for (const auto& panel : panels)
@@ -226,9 +236,14 @@ bool Gui::PreUpdate()
 {
 	bool ret = true;
 
+	HandleInput();
+	
+	if (engine->inputManager->IsFileDropped())
+		ProcessEvent();
+
     // Clears GUI
     ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplSDL2_NewFrame(app->window->window);
+    ImGui_ImplSDL2_NewFrame(engine->window->window);
     ImGui::NewFrame();
     ImGuizmo::BeginFrame();
 
@@ -305,12 +320,26 @@ bool Gui::Update(double dt)
 	}
 
 	if (showImGuiDemo)
-	{
 		ImGui::ShowDemoWindow();
-	}
 
 	if (openSceneFileWindow)
 		OpenSceneFileWindow();
+
+	if (openColorPicker)
+	{
+		ImGui::OpenPopup("ColorPicker");
+		openColorPicker = false;		
+	}
+
+	ColorPicker();
+
+	if (overwritePopup)
+	{
+		ImGui::OpenPopup("Overwrite or Skip");
+		overwritePopup = false;
+	}
+
+	OverwriteAsset(assetsDir);
 
     return ret;
 }
@@ -320,7 +349,7 @@ bool Gui::PostUpdate()
 	bool ret = true;
 
 	ImGuiIO& io = ImGui::GetIO();
-	io.DisplaySize = ImVec2((float)app->window->GetWidth(), (float)app->window->GetHeight());
+	io.DisplaySize = ImVec2((float)engine->window->GetWidth(), (float)engine->window->GetHeight());
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -337,7 +366,7 @@ bool Gui::PostUpdate()
 		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
 	}
 
-	SDL_GL_SwapWindow(app->window->window);
+	SDL_GL_SwapWindow(engine->window->window);
 
 	return ret;
 }
@@ -378,14 +407,52 @@ std::list<Panel*> Gui::GetPanels()
 	return panels;
 }
 
-void Gui::HandleInput(SDL_Event* event)
+void Gui::HandleInput()
 {
-	ImGui_ImplSDL2_ProcessEvent(event);
+	for (auto &event : engine->inputManager->GetSDLEvents())
+		ImGui_ImplSDL2_ProcessEvent(&event);
+}
+
+void Gui::ProcessEvent()
+{
+	std::string fileDir = engine->inputManager->GetDropFile();
+	std::string fileNameExt = fileDir.substr(fileDir.find_last_of('\\') + 1);
+	std::string fbxName = fileDir.substr(fileDir.find_last_of("\\/") + 1, fileDir.find_last_of('.') - fileDir.find_last_of("\\/") - 1);
+
+	// FBX
+	if (fileDir.ends_with(".fbx") || fileDir.ends_with(".FBX"))
+	{
+		fs::path assetsDir = fs::path(ASSETS_PATH) / "Meshes" / fileNameExt;
+
+		LOG(LogType::LOG_ASSIMP, "Importing %s from: %s", fileNameExt.data(), fileDir.data());
+
+		// Check if it already exists in Assets
+		if (std::filesystem::exists(assetsDir))
+		{
+			app->gui->overwritePopup = true;
+			app->gui->assetsDir = assetsDir.string();
+			LOG(LogType::LOG_WARNING, "-%s already exists in %s", fileNameExt.data(), assetsDir.string().data());
+		}
+		else
+		{
+			LOG(LogType::LOG_OK, "-%s Imported successfully into: %s", fileNameExt.data(), assetsDir.string().data());
+			std::filesystem::copy(fileDir, assetsDir, std::filesystem::copy_options::overwrite_existing);
+
+			//Creates GO and Serialize
+			engine->N_sceneManager->CreateMeshGO(assetsDir.string());
+			LOG(LogType::LOG_OK, "-Created GameObject: %s", assetsDir.string().data());
+		}
+	}
+
+	// PNG / DDS
+	else if (fileDir.ends_with(".png") || fileDir.ends_with(".dds"))
+	{
+		std::filesystem::copy(fileDir, "Assets", std::filesystem::copy_options::overwrite_existing);
+	}
 }
 
 
-// Utils ------------------------------------------------------
-
+// Utils -------------------------------------------------------
 void Gui::OpenURL(const char* url) const
 {
 	ShellExecuteA(0, 0, url, 0, 0, SW_SHOW);
@@ -412,8 +479,7 @@ void Gui::AssetContainer(const char* label)
 }
 
 
-// Main Dock Space ----------------------------------------------
-
+// Main Dock Space ---------------------------------------------
 void Gui::MainWindowDockspace()
 {
 	// Flags
@@ -459,7 +525,8 @@ void Gui::MainWindowDockspace()
 	ImGui::End();
 }
 
-// Menu Bar ------
+
+// Menu Bar ----------------------------------------------------
 bool Gui::MainMenuFile()
 {
 	bool ret = true;
@@ -545,9 +612,20 @@ void Gui::MainMenuGameObject()
 		}
 		ImGui::EndMenu();
 	}
+
 	if (ImGui::MenuItem("Camera")) { engine->N_sceneManager->CreateCameraGO("newCamera"); }
+
 	//Alex: this is just for debug
 	if (ImGui::MenuItem("Canvas")) { engine->N_sceneManager->CreateCanvasGO("newCanvas"); }
+
+	if (ImGui::BeginMenu("Light"))
+	{
+		if (ImGui::MenuItem("Directional Light")) { engine->N_sceneManager->CreateLightGO(LightType::Directional); }
+		if (ImGui::MenuItem("Point Light")) { engine->N_sceneManager->CreateLightGO(LightType::Point); }
+		if (ImGui::MenuItem("Spot Light")) { engine->N_sceneManager->CreateLightGO(LightType::Spot); }
+		if (ImGui::MenuItem("Area Light", 0, false, false)) {}
+		ImGui::EndMenu();
+	}
 }
 
 void Gui::MainMenuComponent()
@@ -587,6 +665,8 @@ void Gui::MainMenuHelp()
 	}
 }
 
+
+// Popups ------------------------------------------------------
 void Gui::OpenSceneFileWindow()
 {
 	if (ImGui::Begin("Open File", &openSceneFileWindow))
@@ -600,7 +680,7 @@ void Gui::OpenSceneFileWindow()
 		std::string nameScene = nameSceneBuffer;
 		std::string file = "Assets/Scenes/" + nameScene + ".toe";
 
-		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
+		if (engine->inputManager->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameSceneBuffer != "")
 		{
 			if (engine->N_sceneManager->currentScene->IsDirty())
 			{
@@ -631,4 +711,118 @@ void Gui::OpenSceneFileWindow()
 
 		ImGui::End();
 	}
+}
+
+void Gui::ColorPicker()
+{
+	// Generate a default palette. The palette will persist and can be edited.
+	static bool saved_palette_init = true;
+	static ImVec4 saved_palette[32] = {};
+	if (saved_palette_init)
+	{
+		for (int n = 0; n < IM_ARRAYSIZE(saved_palette); n++)
+		{
+			ImGui::ColorConvertHSVtoRGB(n / 31.0f, 0.8f, 0.8f,
+				saved_palette[n].x, saved_palette[n].y, saved_palette[n].z);
+			saved_palette[n].w = 1.0f; // Alpha
+		}
+		saved_palette_init = false;
+	}
+
+	if (ImGui::BeginPopup("ColorPicker"))
+	{
+		ImGui::Text("Color");
+		ImGui::Separator(); ImGui::Dummy({ 0, 4 });
+
+		// Previous/New Color
+		if (ImGui::ColorButton("##previous", editColor.previousColor, ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_AlphaPreview, ImVec2(50, 20)))
+			editColor.color = editColor.previousColor;
+		ImGui::SameLine();
+		ImGui::ColorButton("##current", editColor.color, ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_AlphaPreview, ImVec2(50, 20));
+		ImGui::Dummy({ 0, 4 });
+
+		// Color Picker + Formats
+		ImGui::ColorPicker4("##picker", (float*)&editColor.color, panelSettings->GetColorFlags() | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoSmallPreview | ImGuiColorEditFlags_AlphaBar);
+
+		// Palette
+		ImGui::Dummy({ 0, 4 }); ImGui::Separator(); ImGui::Dummy({ 0, 4 });
+		ImGui::Text("Palette");
+		for (int n = 0; n < IM_ARRAYSIZE(saved_palette); n++)
+		{
+			ImGui::PushID(n);
+			if ((n % 8) != 0)
+				ImGui::SameLine(0.0f, ImGui::GetStyle().ItemSpacing.y);
+
+			ImGuiColorEditFlags palette_button_flags = ImGuiColorEditFlags_NoAlpha | ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_NoTooltip;
+			if (ImGui::ColorButton("##palette", saved_palette[n], palette_button_flags, ImVec2(20, 20)))
+				editColor.color = ImVec4(saved_palette[n].x, saved_palette[n].y, saved_palette[n].z, editColor.color.w); // Preserve alpha!
+
+			// Allow user to drop colors into each palette entry. Note that ColorButton() is already a
+			// drag source by default, unless specifying the ImGuiColorEditFlags_NoDragDrop flag.
+			if (ImGui::BeginDragDropTarget())
+			{
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(IMGUI_PAYLOAD_TYPE_COLOR_3F))
+					memcpy((float*)&saved_palette[n], payload->Data, sizeof(float) * 3);
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(IMGUI_PAYLOAD_TYPE_COLOR_4F))
+					memcpy((float*)&saved_palette[n], payload->Data, sizeof(float) * 4);
+				ImGui::EndDragDropTarget();
+			}
+
+			ImGui::PopID();
+		}
+
+		ImGui::EndPopup();
+	}
+	else
+	{
+		editColor.id = "null";
+	}
+}
+
+void Gui::OverwriteAsset(std::string path)
+{
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, { 0.5, 0.5 });
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5);
+
+	if (ImGui::BeginPopupModal("Overwrite or Skip", nullptr, ImGuiWindowFlags_NoResize))
+	{
+		ImGuiTableFlags tableFlags = ImGuiTableFlags_SizingFixedFit;
+		if (ImGui::BeginTable("##TableWarning", 2, tableFlags))
+		{
+			ImGui::TableSetupColumn("Image", ImGuiTableColumnFlags_NoHide);
+			ImGui::TableSetupColumn("Dialog", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide);
+			ImGui::TableNextRow();
+
+			ImGui::TableSetColumnIndex(0);
+			ImGui::Image((ImTextureID)app->gui->panelProject->GetIconTextures()[FileType::SCENE], { 64, 64 });
+			ImGui::SameLine();
+			ImGui::Dummy({ 8, 0 });
+
+			ImGui::TableSetColumnIndex(1);
+			ImGui::TextWrapped("Assets already has a file named:");
+
+			ImGui::TextWrapped(path.c_str());
+			ImGui::Dummy({ 0, 8 });
+			ImGui::TextWrapped("Are you sure you want to overwrite it?");
+			ImGui::Dummy({ 0, 8 });
+
+			if (ImGui::Button("Overwrite", { 90, 20 }))
+			{
+				engine->N_sceneManager->CreateMeshGO(assetsDir);
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Skip", { 90, 20 }))
+			{
+				engine->N_sceneManager->CreateExistingMeshGO(assetsDir);
+				ImGui::CloseCurrentPopup();
+			}
+
+			ImGui::EndTable();
+		}
+		ImGui::EndPopup();
+	}
+	ImGui::PopStyleVar(2);
 }

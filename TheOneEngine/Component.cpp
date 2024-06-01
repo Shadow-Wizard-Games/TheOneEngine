@@ -67,6 +67,7 @@ void Component::CreateNameFromType(ComponentType type)
 		case ComponentType::Canvas: name = "Canvas"; break;
 		case ComponentType::ParticleSystem: name = "ParticleSystem"; break;
 		case ComponentType::Collider2D: name = "Collider2D"; break;
+		case ComponentType::Light: name = "Light"; break;
 		case ComponentType::Unknown: name = "Unknown"; break;
 		default: name = "Specified Type was not found"; break;
 	}

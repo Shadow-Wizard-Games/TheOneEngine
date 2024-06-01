@@ -22,7 +22,7 @@ VertexBuffer::VertexBuffer(float* vertices, uint32_t size)
 
 VertexBuffer::~VertexBuffer()
 {
-	Delete();
+	//Delete();
 }
 
 void VertexBuffer::Bind() const
@@ -44,10 +44,16 @@ void VertexBuffer::Delete()
 	}
 }
 
-void VertexBuffer::SetData(const void* data, uint32_t size)
+void VertexBuffer::SetData(const void* data, uint32_t size, uint32_t offset) const
 {
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
-	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, size, data));
+	GLCALL(glBufferSubData(GL_ARRAY_BUFFER, offset, size, data));
+}
+
+void VertexBuffer::AllocateData(const void* data, uint32_t size) const
+{
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
+	GLCALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +73,7 @@ IndexBuffer::IndexBuffer(uint32_t* indices, uint32_t count)
 
 IndexBuffer::~IndexBuffer()
 {
-	Delete();
+	//Delete();
 }
 
 void IndexBuffer::Bind() const

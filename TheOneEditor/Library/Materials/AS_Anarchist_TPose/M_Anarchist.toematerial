@@ -2,7 +2,7 @@
   "shader": "Library/Shaders/MeshTextureAnimated.toeshader",
   "uniforms": [
     {
-      "Name": "u_Tex",
+      "Name": "diffuse",
       "Value": "Library/Images/T_Anarchist_BC.dds"
     }
   ]

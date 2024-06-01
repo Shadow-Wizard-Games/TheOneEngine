@@ -22,6 +22,7 @@
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CheckerUI.h" />
+    <ClInclude Include="Window.h" />
     <ClInclude Include="Collider2D.h" />
     <ClInclude Include="CollisionSolver.h" />
     <ClInclude Include="Canvas.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Easing.h" />
     <ClInclude Include="EasingManager.h" />
+    <ClInclude Include="FbxImporter.h" />
     <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Framebuffer.h" />
@@ -39,6 +41,7 @@
     <ClInclude Include="InitializeEmmiterModule.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Material.h" />
@@ -52,7 +55,10 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="N_SceneManager.h" />
     <ClInclude Include="RenderEmmiterModule.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderer2D.h" />
+    <ClInclude Include="Renderer3D.h" />
+    <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesFontImpl.h" />
     <ClInclude Include="ResourcesImageImpl.h" />
@@ -60,8 +66,11 @@
     <ClInclude Include="ResourcesMaterialImpl.h" />
     <ClInclude Include="ResourcesModelImpl.h" />
     <ClInclude Include="ResourcesShaderImpl.h" />
+    <ClInclude Include="ResourcesSkeletalModelImpl.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="SingleOrRandom.h" />
+    <ClInclude Include="SkeletalModel.h" />
+    <ClInclude Include="SkeletalUtilities.h" />
     <ClInclude Include="SliderUI.h" />
     <ClInclude Include="SpawnEmmiterModule.h" />
     <ClInclude Include="AudioSource.h" />
@@ -88,6 +97,7 @@
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CheckerUI.cpp" />
+    <ClCompile Include="Window.cpp" />
     <ClCompile Include="Collider2D.cpp" />
     <ClCompile Include="CollisionSolver.cpp" />
     <ClCompile Include="Canvas.cpp" />
@@ -100,6 +110,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="InitializeEmmiterModule.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -113,10 +124,14 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="N_SceneManager.cpp" />
     <ClCompile Include="RenderEmmiterModule.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderer2D.cpp" />
+    <ClCompile Include="Renderer3D.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="ResourcesImpl.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="SingleOrRandom.cpp" />
+    <ClCompile Include="SkeletalModel.cpp" />
     <ClCompile Include="SliderUI.cpp" />
     <ClCompile Include="SpawnEmmiterModule.cpp" />
     <ClCompile Include="EngineCore.cpp" />

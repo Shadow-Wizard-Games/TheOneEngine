@@ -19,7 +19,7 @@ Camera::Camera(std::shared_ptr<GameObject> containerGO) : Component(containerGO,
 
     if (transform)
     {
-        lookAt = transform->GetPosition() + transform->GetForward();
+        lookAt = transform->GetGlobalPosition() + transform->GetGlobalForward();
     }
     else
     {
@@ -67,7 +67,7 @@ void Camera::UpdateCameraVectors()
     if (GO)
     {
         Transform* transform = GO->GetComponent<Transform>();
-        lookAt = transform->GetPosition() + transform->GetForward();
+        lookAt = transform->GetGlobalPosition() + transform->GetGlobalForward();
     }
     else
     {
@@ -83,8 +83,8 @@ void Camera::UpdateViewMatrix()
     {
 		Transform* transform = GO->GetComponent<Transform>();
         Camera* camera = GO->GetComponent<Camera>();
-        glm::vec3 tempPosition = transform->GetPosition();
-        glm::vec3 tempUp = transform->GetUp();
+        glm::vec3 tempPosition = transform->GetGlobalPosition();
+        glm::vec3 tempUp = transform->GetGlobalUp();
 
         viewMatrix = glm::lookAt(tempPosition, camera->lookAt, tempUp);
     }
@@ -139,7 +139,7 @@ Ray Camera::ComputeCameraRay(float x, float y)
 	if (GO)
 	{
 		Transform* transform = GO->GetComponent<Transform>();
-        return Ray(transform->GetPosition(), glm::normalize(worldDirection));
+        return Ray(transform->GetGlobalPosition(), glm::normalize(worldDirection));
 	}
 	else
 	{
