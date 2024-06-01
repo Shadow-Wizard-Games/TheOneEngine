@@ -10,12 +10,10 @@ class Item_DoorKey : Item
 
     public Item_DoorKey()
     {
-        this.id = 2;
+        this.id = 9;
         this.name = "Ship Key";
         this.description = "This is the KeyPass to open the ship. You have found the item in an alien corpse.";
-        this.price = 1;
         this.type = ItemType.QUEST_ITEM;
-        this.texturePath = "";
     }
 
     public override void ApplyEffect(IGameObject player)

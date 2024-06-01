@@ -369,8 +369,6 @@ public class UiManager : MonoBehaviour
                     break;
                 case MenuState.Settings:
                     settingsGo.Enable();
-                    settingsCanvas.firstFrameUpdate = false;
-                    playerScript.onPause = true;
                     break;
                 case MenuState.Missions:
                     missionsGo.Enable();

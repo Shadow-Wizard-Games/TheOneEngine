@@ -43,7 +43,6 @@ public class PlayerScript : MonoBehaviour
 
     // background music
     public bool isFighting;
-    public bool onPause;
 
     // stats
     public float maxHP;
@@ -136,7 +135,6 @@ public class PlayerScript : MonoBehaviour
 
         currentAudioState = 0;
         isFighting = false;
-        onPause = false;
 
         currentWeaponType = CurrentWeapon.NONE;
         currentAction = CurrentAction.IDLE;
@@ -160,7 +158,10 @@ public class PlayerScript : MonoBehaviour
     }
     public override void Update()
     {
-        if (onPause) return;
+        if (gameManager.GetGameState())
+        {
+            currentAction = CurrentAction.IDLE;
+        }
 
         // CHANGE WHEN INVENTORY OVERHAUL
         if (itemManager.CheckItemInInventory(1) && currentWeaponType == CurrentWeapon.NONE)
