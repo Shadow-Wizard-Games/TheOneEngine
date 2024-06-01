@@ -95,9 +95,74 @@ void Renderer3D::AddLight(std::shared_ptr<GameObject> container)
 	renderer3D.lights.push_back(container);
 }
 
+void Renderer3D::RemoveLight(std::shared_ptr<GameObject> container)
+{
+	auto it = std::find_if(renderer3D.lights.begin(), renderer3D.lights.end(),
+		[container](const std::shared_ptr<GameObject>& comp) {
+			return comp.get() == container.get();
+		});
+
+	LightType lightType = container.get()->GetComponent<Light>()->lightType;
+
+	if (it != renderer3D.lights.end())
+		renderer3D.lights.erase(it);
+
+	Renderer3D::ResetUniforms(lightType);
+}
+
 void Renderer3D::CleanLights()
 {
 	renderer3D.lights.clear();
+}
+
+void Renderer3D::ResetUniforms(LightType lightType)
+{
+	for (auto &light : renderer3D.lights)
+	{
+		if (lightType == light.get()->GetComponent<Light>()->lightType)
+			return;
+	}
+
+	Material* mat = Resources::GetResourceById<Material>(renderer3D.lightingMatID);
+	Shader* shader = mat->getShader();
+	shader->Bind();
+
+	switch (lightType)
+	{
+		case LightType::Directional:
+		{
+			mat->SetUniformData("u_DirLight[0].Position", (glm::vec3)(0));
+			mat->SetUniformData("u_DirLight[0].Direction", (glm::vec3)(0));
+			mat->SetUniformData("u_DirLight[0].Color", 0);
+			mat->SetUniformData("u_DirLight[0].Intensity", 0);
+			break;
+		}
+		case LightType::Point:
+		{
+			mat->SetUniformData("u_PointLights[0].Position", (glm::vec3)(0));
+			mat->SetUniformData("u_PointLights[0].Color", 0);
+			mat->SetUniformData("u_PointLights[0].Intensity", 0);
+			mat->SetUniformData("u_PointLights[0].Linear", 0);
+			mat->SetUniformData("u_PointLights[0].Quadratic", 0);
+			mat->SetUniformData("u_PointLights[0].Radius", 0);
+			break;
+		}
+		case LightType::Spot:
+		{
+			mat->SetUniformData("u_SpotLights[0].Position", (glm::vec3)(0));
+			mat->SetUniformData("u_SpotLights[0].Direction", (glm::vec3)(0));
+			mat->SetUniformData("u_SpotLights[0].Color", 0);
+			mat->SetUniformData("u_SpotLights[0].Intensity", 0);
+			mat->SetUniformData("u_SpotLights[0].Linear", 0);
+			mat->SetUniformData("u_SpotLights[0].Quadratic", 0);
+			mat->SetUniformData("u_SpotLights[0].Radius", 0);
+			mat->SetUniformData("u_SpotLights[0].CutOff", 0);
+			mat->SetUniformData("u_SpotLights[0].OuterCutOff", 0);
+			mat->SetUniformData("u_SpotLights[0].ViewProjectionMat", glm::mat4(0));
+			mat->SetUniformData("u_SpotLights[0].Depth", 0);
+			break;
+		}
+	}
 }
 
 void Renderer3D::AddMesh(StackVertexArray meshID, int matID)

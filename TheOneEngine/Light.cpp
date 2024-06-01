@@ -7,6 +7,7 @@
 #include "N_SceneManager.h"
 #include "Shader.h"
 #include "FrameBuffer.h"
+#include "Renderer.h"
 #include "Renderer3D.h"
 
 
@@ -50,7 +51,10 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     Renderer3D::AddLight(containerGO);
 }
 
-Light::~Light() {}
+Light::~Light()
+{
+    Renderer3D::RemoveLight(containerGO.lock());
+}
 
 void Light::DrawComponent(Camera* camera) {}
 

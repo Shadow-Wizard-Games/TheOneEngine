@@ -105,7 +105,9 @@ public:
 	static void UIComposition(RenderTarget target);
 
 	static void AddLight(std::shared_ptr<GameObject> container);
+	static void RemoveLight(std::shared_ptr<GameObject> container);
 	static void CleanLights();
+	static void ResetUniforms(LightType lightType);
 
 	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
