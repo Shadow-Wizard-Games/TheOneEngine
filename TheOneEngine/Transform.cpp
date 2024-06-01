@@ -28,8 +28,8 @@ Transform::~Transform() {}
 void Transform::Update()
 {
     CalculateWorldTransform();
-
     DecomposeGlobalTransform();
+    UpdateCameraIfPresent();
 }
 
 
