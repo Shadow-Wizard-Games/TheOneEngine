@@ -1,0 +1,45 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_Chestburster_Tpose\\Chestburster_Take 001AS_Chestburster_Run.anim",
+      "loop": true,
+      "name": "Run",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Chestburster_Tpose\\Chestburster_Take 001AS_Chestburster_Die.anim",
+      "loop": false,
+      "name": "Die",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Chestburster_Tpose\\Chestburster_Take 001AS_Chestburster_Move.anim",
+      "loop": true,
+      "name": "Move",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Chestburster_Tpose\\Chestburster_Take 001AS_Chestburster_TailTrip.anim",
+      "loop": false,
+      "name": "TailTrip",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Chestburster_Tpose\\Chestburster_Take 001AS_Chestburster_Attack.anim",
+      "loop": false,
+      "name": "TailPunch",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+  "mesh": "Library/Meshes/AS_Chestburster_Tpose/Chestburster_animatedmesh.ozzmesh",
+  "name": "Chestburster",
+  "skeleton": "Library/Meshes/AS_Chestburster_Tpose/Chestburster_skeleton.skeleton",
+  "transition_blend": false,
+  "transition_time": 0.0
+}

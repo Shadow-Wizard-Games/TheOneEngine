@@ -34,143 +34,16 @@
         }
     },
     "Conversation1":{
+        "popupType": 2,
         "Dialog1": {
             "isLast": false,
-            "dialoguer": 4,
-            "text": "What the hell just happened?",
-            "cooldown": 1,
-            "audioEvent": "VO_STUB_CRASH1"
+            "dialoguer": 2,
+            "text": "Tu putisima madre me come el culo"
         },
         "Dialog2": {
             "isLast": true,
-            "dialoguer": 4,
-            "text": "No-one around... Better find myself a weapon or something...",
-            "cooldown": 1,
-            "audioEvent": "VO_STUB_CRASH2"
+            "dialoguer": 3,
+            "text": "La tuya que es mas capulla"
         }
-    },
-    "Conversation2":{
-        "Dialog1": {
-            "isLast": false,
-            "dialoguer": 4,
-            "text": "Planet information.",
-            "cooldown": 1,
-            "audioEvent": "VO_STUB_PLANETINFO2"
-        },
-        "Dialog2": {
-            "isLast": false,
-            "dialoguer": 4,
-            "text": "Earth-like atmosphere\n Possibly dangerous plant-life\n Proceed with caution",
-            "cooldown": 5,
-            "audioEvent": "VO_TTS"
-        },
-        "Dialog3": {
-            "isLast": true,
-            "dialoguer": 4,
-            "text": "I can breathe, that’s all I need to know",
-            "cooldown": 3,
-            "audioEvent": "VO_STUB_PLANETINFO3"
-        }
-    },
-    "Conversation3":{
-        "Dialog1": {
-            "isLast": false,
-            "dialoguer": 4,
-            "text": "Ugh, wha- where?",
-            "cooldown": 3,
-            "audioEvent": "VO_STUB_WAKEMED1"
-        },
-        "Dialog2": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "Ah, you’re awake.",
-            "cooldown": 3,
-            "audioEvent": "VO_SERGEANT_WAKEMED1"
-        },
-        "Dialog3": {
-            "isLast": false,
-            "dialoguer": 4,
-            "text": "Sergeant Jackson!",
-            "cooldown": 1,
-            "audioEvent": "VO_STUB_WAKEMED2"
-        },
-        "Dialog4": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "Of all the people to survive the crash, it had to be you. huh?",
-            "cooldown": 5,
-            "audioEvent": "VO_SERGEANT_WAKEMED2"
-        },
-        "Dialog5": {
-            "isLast": false,
-            "dialoguer": 4,
-            "text": "Guess I’m just unlucky like that",
-            "cooldown": 2,
-            "audioEvent": "VO_STUB_WAKEMED3"
-        },
-        "Dialog6": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "All my men are dead, and yet you’re still here, like a cockroach",
-            "cooldown": 5,
-            "audioEvent": "VO_SERGEANT_WAKEMED3"
-        },
-        "Dialog7": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "Well, I don’t seem to be the only one here, so what does that say about you?",
-            "cooldown": 5,
-            "audioEvent": "VO_STUB_WAKEMED4"
-        },
-        "Dialog8": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "You know, I wanted to leave you out there for the aliens to take, but… I was outvoted.",
-            "cooldown": 5,
-            "audioEvent": "VO_SERGEANT_WAKEMED4"
-        },
-        "Dialog9": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "...",
-            "cooldown": 1
-        },
-        "Dialog10": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "You better pull your weight around here, Morgan. One wrong move and I’ll make sure you don’t come back this time, understood?",
-            "cooldown": 7,
-            "audioEvent": "VO_SERGEANT_WAKEMED5"
-        },
-        "Dialog11": {
-            "isLast": false,
-            "dialoguer": 3,
-            "text": "Yes sir.",
-            "cooldown": 2,
-            "audioEvent": "VO_STUB_WAKEMED5"
-        },
-        "Dialog12": {
-            "isLast": true,
-            "dialoguer": 3,
-            "text": "Go talk to the android, he runs the medicing thing around here, and wouldn’t be happy if you just went around without him knowing.",
-            "cooldown": 6,
-            "audioEvent": "VO_SERGEANT_WAKEMED6"
-        }
-    },
-    "Popup1":{
-        "popupType": 1,
-        "isOneTime": false,
-        "cooldown": 2.0,
-        "text": "Goated esto va",
-        "dialoguer": 2,
-        "duration": 5,
-        "audioEvent": "VO_STUB_WAKEMED5"
-    },
-    "Popup2":{
-        "popupType": 1,
-        "isOneTime": true,
-        "text": "Goated esto va",
-        "titleText": "QUE?",
-        "duration": 5
     }
 }
