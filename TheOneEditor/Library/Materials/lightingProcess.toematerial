@@ -1,0 +1,2417 @@
+{
+  "shader": "Library/Shaders/PostLightingShader.toeshader",
+  "uniforms": [
+    {
+      "Name": "gPosition",
+      "Value": ""
+    },
+    {
+      "Name": "gNormal",
+      "Value": ""
+    },
+    {
+      "Name": "gAlbedoSpec",
+      "Value": ""
+    },
+    {
+      "Name": "u_ViewPos",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_TotalLightsNum",
+      "Value": 0
+    },
+    {
+      "Name": "u_DirLight[0].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[0].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[0].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_DirLight[0].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_DirLight[0].ViewProjectionMat;"
+    },
+    {
+      "Name": "u_DirLight[1].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[1].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[1].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_DirLight[1].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_DirLight[1].ViewProjectionMat;"
+    },
+    {
+      "Name": "u_DirLight[2].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[2].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[2].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_DirLight[2].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_DirLight[2].ViewProjectionMat;"
+    },
+    {
+      "Name": "u_DirLight[3].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[3].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_DirLight[3].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_DirLight[3].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_DirLight[3].ViewProjectionMat;"
+    },
+    {
+      "Name": "u_PointLights[0].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[0].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[0].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[0].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[0].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[0].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[1].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[1].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[1].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[1].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[1].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[1].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[2].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[2].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[2].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[2].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[2].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[2].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[3].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[3].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[3].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[3].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[3].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[3].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[4].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[4].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[4].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[4].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[4].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[4].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[5].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[5].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[5].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[5].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[5].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[5].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[6].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[6].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[6].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[6].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[6].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[6].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[7].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[7].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[7].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[7].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[7].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[7].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[8].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[8].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[8].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[8].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[8].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[8].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[9].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[9].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[9].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[9].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[9].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[9].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[10].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[10].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[10].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[10].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[10].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[10].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[11].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[11].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[11].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[11].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[11].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[11].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[12].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[12].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[12].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[12].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[12].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[12].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[13].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[13].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[13].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[13].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[13].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[13].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[14].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[14].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[14].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[14].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[14].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[14].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[15].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[15].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[15].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[15].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[15].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[15].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[16].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[16].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[16].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[16].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[16].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[16].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[17].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[17].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[17].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[17].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[17].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[17].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[18].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[18].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[18].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[18].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[18].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[18].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[19].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[19].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[19].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[19].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[19].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[19].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[20].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[20].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[20].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[20].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[20].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[20].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[21].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[21].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[21].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[21].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[21].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[21].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[22].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[22].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[22].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[22].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[22].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[22].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[23].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[23].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[23].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[23].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[23].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[23].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[24].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[24].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[24].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[24].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[24].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[24].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[25].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[25].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[25].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[25].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[25].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[25].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[26].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[26].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[26].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[26].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[26].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[26].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[27].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[27].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[27].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[27].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[27].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[27].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[28].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[28].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[28].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[28].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[28].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[28].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[29].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[29].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[29].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[29].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[29].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[29].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[30].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[30].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[30].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[30].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[30].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[30].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[31].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[31].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_PointLights[31].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[31].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[31].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_PointLights[31].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[0].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[0].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[0].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[0].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[0].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[0].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[0].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[0].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[0].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[0].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[0].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[1].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[1].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[1].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[1].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[1].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[1].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[1].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[1].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[1].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[1].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[1].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[2].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[2].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[2].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[2].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[2].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[2].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[2].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[2].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[2].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[2].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[2].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[3].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[3].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[3].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[3].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[3].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[3].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[3].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[3].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[3].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[3].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[3].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[4].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[4].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[4].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[4].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[4].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[4].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[4].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[4].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[4].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[4].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[4].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[5].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[5].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[5].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[5].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[5].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[5].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[5].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[5].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[5].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[5].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[5].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[6].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[6].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[6].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[6].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[6].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[6].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[6].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[6].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[6].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[6].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[6].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[7].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[7].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[7].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[7].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[7].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[7].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[7].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[7].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[7].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[7].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[7].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[8].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[8].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[8].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[8].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[8].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[8].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[8].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[8].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[8].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[8].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[8].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[9].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[9].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[9].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[9].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[9].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[9].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[9].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[9].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[9].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[9].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[9].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[10].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[10].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[10].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[10].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[10].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[10].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[10].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[10].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[10].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[10].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[10].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[11].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[11].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[11].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[11].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[11].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[11].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[11].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[11].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[11].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[11].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[11].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[12].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[12].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[12].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[12].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[12].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[12].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[12].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[12].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[12].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[12].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[12].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[13].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[13].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[13].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[13].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[13].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[13].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[13].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[13].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[13].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[13].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[13].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[14].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[14].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[14].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[14].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[14].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[14].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[14].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[14].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[14].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[14].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[14].Depth",
+      "Value": ""
+    },
+    {
+      "Name": "u_SpotLights[15].Position",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[15].Color",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[15].Intensity",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[15].Direction",
+      "Vec3": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Name": "u_SpotLights[15].Linear",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[15].Quadratic",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[15].Radius",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[15].CutOff",
+      "Value": 1.0
+    },
+    {
+      "Name": "u_SpotLights[15].OuterCutOff",
+      "Value": 1.0
+    },
+    {
+      "Mat4": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Name": "u_SpotLights[15].ViewProjectionMat"
+    },
+    {
+      "Name": "u_SpotLights[15].Depth",
+      "Value": ""
+    }
+  ]
+}

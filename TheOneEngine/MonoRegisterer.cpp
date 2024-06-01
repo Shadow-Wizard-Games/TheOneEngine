@@ -5,6 +5,7 @@
 #include "EngineCore.h"
 #include "Component.h"
 #include "Transform.h"
+#include "Script.h"
 #include "Canvas.h"
 #include "ImageUI.h"
 #include "ButtonImageUI.h"
@@ -13,7 +14,9 @@
 #include "TextUI.h"
 #include "Collider2D.h"
 #include "ParticleSystem.h"
+#include "SkeletalModel.h"
 #include "N_SceneManager.h"
+#include "Renderer.h"
 
 #include <glm/vec3.hpp>
 
@@ -35,14 +38,14 @@ static bool GetControllerButton(int controllerButton, int gamePad)
 	{
 		if (engine->inputManager->pads[gamePad].l2 > 0.0f)
 		{
-			return InputManagerNamespace::KEY_DOWN;
+			return KEY_DOWN;
 		}
 	}
 	else if (controllerButton == 23) //r2
 	{
 		if (engine->inputManager->pads[gamePad].r2 > 0.0f)
 		{
-			return InputManagerNamespace::KEY_DOWN;
+			return KEY_DOWN;
 		}
 	}
 
@@ -50,7 +53,7 @@ static bool GetControllerButton(int controllerButton, int gamePad)
 
 	auto result = engine->inputManager->GetGamepadButton(gamePad, inputToPass);
 
-	return result == InputManagerNamespace::KEY_DOWN;
+	return result == KEY_DOWN;
 }
 static void GetControllerJoystick(int joystick, vec2f* joyResult, int gamePad)
 {
@@ -127,14 +130,14 @@ static vec3f GetTransformRight(GameObject* GOptr)
 //GameObject
 static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+	engine->N_sceneManager->CreateLibMeshGO("pCube1");
 
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
-	go->AddScript("Bullet");
+	go->AddComponent<Script>("Bullet");
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
@@ -145,14 +148,14 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 
 static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+	engine->N_sceneManager->CreateLibMeshGO("pCube1");
 
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
-	go->AddScript("Grenade");
+	go->AddComponent<Script>("Grenade");
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Grenade;
@@ -164,14 +167,14 @@ static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 
 static GameObject* InstantiateExplosion(vec3f* initialPosition, vec3f* direction, float radius)
 {
-	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+	engine->N_sceneManager->CreateLibMeshGO("pCube1");
 
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
 	SetPosition(go, initialPosition);
 	SetRotation(go, direction);
 
-	go->AddScript("Explosion");
+	go->AddComponent<Script>("Explosion");
 	go->AddComponent<Collider2D>();
 	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
 	go->GetComponent<Collider2D>()->collisionType = CollisionType::Explosion;
@@ -198,7 +201,7 @@ static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction
 
 	go->AddComponent<AudioSource>();
 
-	go->AddScript("FaceHuggerBehaviour");
+	go->AddComponent<Script>("FaceHuggerBehaviour");
 
 	return go;
 }
@@ -763,7 +766,7 @@ static float GetAppDeltaTime()
 }
 static void ExitApplication()
 {
-	engine->inputManager->shutDownEngine = true;
+	engine->inputManager->EngineShutDown();
 }
 
 //Debug
@@ -848,12 +851,12 @@ static void DrawWireCube()
 
 static void ToggleCollidersDraw()
 {
-	engine->drawCollisions = !engine->drawCollisions;
+	Renderer::SetDrawCollisions(!Renderer::GetDrawCollisions());
 }
 
 static void ToggleGridDraw()
 {
-	engine->drawGrid = !engine->drawGrid;
+	Renderer::SetDrawGrid(!Renderer::GetDrawGrid());
 }
 
 // Particle System
@@ -1004,64 +1007,103 @@ static void SetPrimaryCam(GameObject* GOptr, bool* primaryCam)
 
 // Animator
 static void PlayAnimation(GameObject* GOptr, MonoString* name) {
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return;
+
 	std::string aName = MonoRegisterer::MonoStringToUTF8(name);
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(GOptr->GetComponent<Mesh>()->meshID);
 	if (m->HasAnimation(aName)) {
 		m->PlayAnimation(aName);
 	}
 }
 
 static void StopAnimation(GameObject* GOptr) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->StopAnimation();
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(GOptr->GetComponent<Mesh>()->meshID);
+	m->StopAnimation();
 }
 
 static bool AnimationHasFinished(GameObject* GOptr)
 {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated() && m->getActiveAnimation()->HasFinished()) {
-		return true;
-	}
-	return false;
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return false;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	return m->getActiveAnimation()->HasFinished();
 }
 
-static bool GetTransitionBlend(GameObject* GOptr) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		return m->getBlendOnTransition();
-	}
-	return false;
+static bool GetTransitionBlend(GameObject* GOptr){
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return false;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	return m->getBlendOnTransition();
 }
 
 static void SetTransitionBlend(GameObject* GOptr, bool* blend) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->setBlendOnTransition((bool)*blend);
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	m->setBlendOnTransition((bool)*blend);
 }
 
 static float GetTransitionTime(GameObject* GOptr) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		return m->getTransitionTime();
-	}
-	return -1.0f;
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return -1.0f;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	return m->getTransitionTime();
 }
 
 static void SetTransitionTime(GameObject* GOptr, float* time) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->setTransitionTime((float)*time);
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	m->setTransitionTime((float)*time);
 }
 
 static void UpdateAnimation(GameObject* GOptr, float* dt) {
-	Model* m = Resources::GetResourceById<Model>(GOptr->GetComponent<Mesh>()->meshID);
-	if (m->isAnimated()) {
-		m->UpdateAnim((float)*dt);
-	}
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	m->UpdateAnim((float)*dt);
+}
+
+//	Light
+
+static vec3f GetLightColor(GameObject* GOptr)
+{
+	return GOptr->GetComponent<Light>()->color;
+}
+
+static void SetLightColor(GameObject* GOptr, vec3f color)
+{
+	GOptr->GetComponent<Light>()->color = color;
+}
+
+static float GetLightIntensity(GameObject* GOptr)
+{
+	return GOptr->GetComponent<Light>()->intensity;
+}
+
+static void SetLightIntensity(GameObject* GOptr, float intensity)
+{
+	GOptr->GetComponent<Light>()->intensity = intensity;
+}
+
+static float GetLightRadius(GameObject* GOptr)
+{
+	return GOptr->GetComponent<Light>()->radius;
+}
+
+static void SetLightRadius(GameObject* GOptr, float radius)
+{
+	GOptr->GetComponent<Light>()->radius = radius;
 }
 
 void MonoRegisterer::RegisterFunctions()
@@ -1187,6 +1229,14 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetTransitionTime", GetTransitionTime);
 	mono_add_internal_call("InternalCalls::SetTransitionTime", SetTransitionTime);
 	mono_add_internal_call("InternalCalls::UpdateAnimation", UpdateAnimation);
+
+	//Light
+	mono_add_internal_call("InternalCalls::GetLightColor", GetLightColor);
+	mono_add_internal_call("InternalCalls::SetLightColor", SetLightColor);
+	mono_add_internal_call("InternalCalls::GetLightIntensity", GetLightIntensity);
+	mono_add_internal_call("InternalCalls::SetLightIntensity", SetLightIntensity);
+	mono_add_internal_call("InternalCalls::GetLightRadius", GetLightRadius);
+	mono_add_internal_call("InternalCalls::SetLightRadius", SetLightRadius);
 }
 
 bool MonoRegisterer::CheckMonoError(MonoError& error)

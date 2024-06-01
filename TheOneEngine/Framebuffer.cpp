@@ -7,21 +7,21 @@
 
 static const unsigned int s_MaxFramebufferSize = 8192;
 
-FrameBuffer::FrameBuffer(int newWidth, int newHeight, bool depth) : initialized(true), depthActive(depth)
+FrameBuffer::FrameBuffer(std::string name, int width, int height, std::vector<Attachment> attachments)
 {
-	width = newWidth;
-	height = newHeight;
-
-	Reset(depth);
+    this->name = name;
+	this->width = width;
+	this->height = height;
+    this->attachments = attachments;
+    GenerateFrameBuffer();
 }
 
 FrameBuffer::~FrameBuffer()
 {
-	if (initialized) {
-		GLCALL(glDeleteTextures(1, &colorAttachment));
-		GLCALL(glDeleteTextures(1, &depthAttachment));
-		GLCALL(glDeleteFramebuffers(1, &FBO));
-	}
+    /*for (const auto& attachment : attachments)
+        glDeleteTextures(1, &attachment.textureId);
+
+    GLCALL(glDeleteFramebuffers(1, &FBO));*/
 }
 
 void FrameBuffer::Bind(bool clear)
@@ -29,7 +29,7 @@ void FrameBuffer::Bind(bool clear)
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
 	GLCALL(glViewport(0, 0, width, height));
 	if (clear) {
-		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 0.0f));
+		GLCALL(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 		GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
 	}
 }
@@ -39,62 +39,98 @@ void FrameBuffer::Unbind()
 	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 }
 
-void FrameBuffer::Reset(bool depth)
+void FrameBuffer::GenerateFrameBuffer()
 {
-	if (FBO)
-	{
-		GLCALL(glDeleteTextures(1, &colorAttachment));
-		GLCALL(glDeleteTextures(1, &depthAttachment));
-		GLCALL(glDeleteFramebuffers(1, &FBO));
+    // Delete previous attachments and framebuffer
+    // Reset id
+    if (FBO)
+    {       
+        for (const auto& attachment : attachments)
+            GLCALL(glDeleteTextures(1, &attachment.textureId));
 
-		colorAttachment = 0;
-		depthAttachment = 0;
-	}
+        GLCALL(glDeleteFramebuffers(1, &FBO));
 
-	// FRAMEBUFFER
-	GLCALL(glCreateFramebuffers(1, &FBO));
-	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
+        for (auto& attachment : attachments)
+            attachment.textureId = 0;
+    }
 
-	// Color texture
-	GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &colorAttachment));
-	GLCALL(glBindTexture(GL_TEXTURE_2D, colorAttachment));
+    // Create and bind framebuffer
+    GLCALL(glGenFramebuffers(1, &FBO));
+    GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
 
-	GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
-	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
-	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+    // Create and attach attachments
+    GLenum drawBuffers[MAX_ATTACHMENTS];
+    unsigned int drawBufferIndex = 0;
 
-	GLCALL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorAttachment, 0));
+    for (auto& attachment : attachments)
+    {
+        switch (attachment.type)
+        {
+            case Attachment::Type::RGBA8:
+                GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &attachment.textureId));
+                GLCALL(glBindTexture(GL_TEXTURE_2D, attachment.textureId));
+                GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr));
+                TextureParameters();
+                glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + drawBufferIndex, GL_TEXTURE_2D, attachment.textureId, 0);
+                drawBuffers[drawBufferIndex++] = GL_COLOR_ATTACHMENT0 + drawBufferIndex;
+                break;
 
-	if (depth) {
-		// Depth attachment
-		GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &depthAttachment));
-		GLCALL(glBindTexture(GL_TEXTURE_2D, depthAttachment));
+            case Attachment::Type::RGB16F:
+                GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &attachment.textureId));
+                GLCALL(glBindTexture(GL_TEXTURE_2D, attachment.textureId));
+                GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0, GL_RGB, GL_FLOAT, nullptr));
+                TextureParameters();
+                glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + drawBufferIndex, GL_TEXTURE_2D, attachment.textureId, 0);
+                drawBuffers[drawBufferIndex++] = GL_COLOR_ATTACHMENT0 + drawBufferIndex;
+                break;
 
-		GLCALL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, width, height));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-		GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+            case Attachment::Type::DEPTH:
+                GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &attachment.textureId));
+                GLCALL(glBindTexture(GL_TEXTURE_2D, attachment.textureId));
+                GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr));
+                TextureParameters();
+                glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, attachment.textureId, 0);
+                break;
 
-		GLCALL(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, depthAttachment, 0));
-	}
+            case Attachment::Type::DEPTH_STENCIL:
+                GLCALL(glCreateTextures(GL_TEXTURE_2D, 1, &attachment.textureId));
+                GLCALL(glBindTexture(GL_TEXTURE_2D, attachment.textureId));
+                GLCALL(glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, width, height));
+                TextureParameters();
+                glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, attachment.textureId, 0);
+                break;
 
-	// Check framebuffer status
-	/*if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	{
-		LOG(LogType::LOG_WARNING, "Framebuffer not completed");
-	}
-	else
-		LOG(LogType::LOG_OK, "Framebuffer completed");*/
+            default: break;
+        }
+    }
 
-	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+    // Set draw buffers
+    if (drawBufferIndex)
+    {
+        GLCALL(glDrawBuffers(drawBufferIndex, drawBuffers));
+    }
+    else
+    {
+        GLCALL(glDrawBuffer(GL_NONE));
+        GLCALL(glReadBuffer(GL_NONE));
+    }
 
-	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	assert(status == GL_FRAMEBUFFER_COMPLETE); //36053
+    // Check framebuffer completeness
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    assert(status == GL_FRAMEBUFFER_COMPLETE);
+
+    // Unbind framebuffer
+    GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+}
+
+void FrameBuffer::TextureParameters()
+{   
+    // hekbas TODO: set filtering type on choice
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+    GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 }
 
 void FrameBuffer::Resize(unsigned int newWidth, unsigned int newHeight)
@@ -107,20 +143,22 @@ void FrameBuffer::Resize(unsigned int newWidth, unsigned int newHeight)
 	width = newWidth;
 	height = newHeight;
 
-	Reset(depthActive);
+    GenerateFrameBuffer();
 }
 
-void FrameBuffer::Clear(glm::vec4 color)
+void FrameBuffer::Clear(ClearBit flag, glm::vec4 color)
 {
-	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
-	GLCALL(glClearColor(color.r, color.g, color.b, color.a));
-	GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
+    GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
+    GLCALL(glClearColor(color.r, color.g, color.b, color.a));
+    GLCALL(glClear(static_cast<unsigned int>(flag)));
 }
 
-void FrameBuffer::ClearBuffer(int value)
+unsigned int FrameBuffer::GetAttachmentTexture(const std::string& name) const
 {
-	GLCALL(glBindFramebuffer(GL_FRAMEBUFFER, FBO));
-	//GLCALL(glClearTexImage(colorAttachment, 0, GL_RGBA8, GL_INT, &value));
-	GLCALL(glGetString(GL_VERSION));
+    for (const auto& attachment : attachments)
+    {
+        if (attachment.name == name)
+            return attachment.textureId;
+    }
+    return 0;
 }
-

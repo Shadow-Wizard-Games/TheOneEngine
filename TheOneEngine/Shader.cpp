@@ -26,6 +26,7 @@ void Shader::Init(const std::string& filename)
 
 void Shader::Compile(const std::string& filename)
 {
+	GLERR;
 	std::string vertexFile = filename;
 	vertexFile += ".vs";
 
@@ -147,6 +148,10 @@ void Shader::CompileFiles(const char* vertexShaderSource, const char* fragmentSh
 	GLCALL(glGetProgramiv(ProgramID, GL_LINK_STATUS, &success));
 
 	if (!success) {
+		GLint maxTextureUnits;
+		glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &maxTextureUnits);
+		LOG(LogType::LOG_ERROR, "Maximum supported texture image units: %d", maxTextureUnits);
+
 		GLCALL(glGetProgramInfoLog(ProgramID, 512, NULL, infoLog));
 		std::string msg = "Shader program link error: ";
 		msg += infoLog;

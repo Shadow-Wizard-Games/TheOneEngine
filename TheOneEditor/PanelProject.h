@@ -69,6 +69,8 @@ public:
 	
 	void FileDropping(const FileInfo& info);
 
+	std::unordered_map<FileType, GLuint> GetIconTextures() { return iconTextures; }
+
 private:
 
 	void DoubleClickFile();

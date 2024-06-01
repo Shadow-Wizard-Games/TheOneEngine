@@ -1,35 +1,35 @@
 #include "PanelInspector.h"
-#include "SceneManager.h"
 #include "App.h"
 #include "Gui.h"
+#include "PanelSettings.h"
 #include "SceneManager.h"
-
-#include "..\TheOneEngine\Log.h"
-#include "..\TheOneEngine\GameObject.h"
-#include "..\TheOneEngine\Transform.h"
-#include "..\TheOneEngine\Mesh.h"
-#include "..\TheOneEngine\Camera.h"
-#include "..\TheOneEngine\Script.h"
-#include "..\TheOneEngine\Collider2D.h"
-#include "..\TheOneEngine\Listener.h"
-#include "..\TheOneEngine\AudioSource.h"
-
-#include "..\TheOneEngine\MonoManager.h"
-#include "..\TheOneEngine\ParticleSystem.h"
-#include "..\TheOneEngine\Canvas.h"
-#include "..\TheOneEngine\ItemUI.h"
-#include "..\TheOneEngine\ImageUI.h"
-#include "..\TheOneEngine\ButtonImageUI.h"
-#include "..\TheOneEngine\SliderUI.h"
-#include "..\TheOneEngine\CheckerUI.h"
-#include "..\TheOneEngine\TextUI.h"
-
-#include "..\TheOneEngine\ResourcesImpl.h"
-#include "..\TheOneEngine\FileDialog.h"
-
 #include "InspectorParticleSystems.h"
 
-#include "../TheOneAudio/AudioCore.h"
+#include "TheOneEngine\Log.h"
+#include "TheOneEngine\GameObject.h"
+#include "TheOneEngine\Transform.h"
+#include "TheOneEngine\Mesh.h"
+#include "TheOneEngine\Camera.h"
+#include "TheOneEngine\Script.h"
+#include "TheOneEngine\Collider2D.h"
+#include "TheOneEngine\Listener.h"
+#include "TheOneEngine\AudioSource.h"
+#include "TheOneEngine\Light.h"
+
+#include "TheOneEngine\MonoManager.h"
+#include "TheOneEngine\ParticleSystem.h"
+#include "TheOneEngine\Canvas.h"
+#include "TheOneEngine\ItemUI.h"
+#include "TheOneEngine\ImageUI.h"
+#include "TheOneEngine\ButtonImageUI.h"
+#include "TheOneEngine\SliderUI.h"
+#include "TheOneEngine\CheckerUI.h"
+#include "TheOneEngine\TextUI.h"
+
+#include "TheOneEngine\ResourcesImpl.h"
+#include "TheOneEngine\FileDialog.h"
+
+#include "TheOneAudio\AudioCore.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
@@ -62,7 +62,6 @@ bool PanelInspector::Draw()
 
 	if (ImGui::Begin("Inspector", &enabled, settingsFlags))
 	{
-
         ImGuiIO& io = ImGui::GetIO();
         ImVec4 clear_color = ImVec4(0.55f, 0.55f, 0.55f, 1.00f);
         ImGui::SetNextWindowSize(ImVec2(250, 650), ImGuiCond_Once);
@@ -128,6 +127,7 @@ bool PanelInspector::Draw()
 
             ImGui::Checkbox("Has Transparency", &selectedGO->hasTransparency);
 
+            
             /*Transform Component*/
             Transform* transform = selectedGO->GetComponent<Transform>();
 
@@ -146,76 +146,68 @@ bool PanelInspector::Draw()
                 // Transform table ----------------------------------------------------------------------------------
                 ImGuiTableFlags tableFlags = ImGuiTableFlags_Resizable;// | ImGuiTableFlags_SizingFixedFit;
                 //ImGui::Indent(0.8f);
-                if (ImGui::BeginTable("", 4, tableFlags))
+                if (ImGui::BeginTable("##transformTable", 4))
                 {
-                    ImGui::TableSetupColumn("##", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("X", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("Y", ImGuiTableColumnFlags_WidthStretch);
-                    ImGui::TableSetupColumn("Z", ImGuiTableColumnFlags_WidthStretch);
+                    ImGui::TableSetupColumn("##title");
+                    ImGui::TableSetupColumn("##X");
+                    ImGui::TableSetupColumn("##Y");
+                    ImGui::TableSetupColumn("##Z");
 
                     ImGui::TableNextRow();
-
-                    // Headers
                     ImGui::TableSetColumnIndex(0);
-                    ImGui::TableHeader("##");
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::TableSetColumnIndex(1);
-                    ImGui::TableHeader("X");
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::TableSetColumnIndex(2);
-                    ImGui::TableHeader("Y");
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::TableSetColumnIndex(3);
-                    ImGui::TableHeader("Z");
+                    ImGui::PushItemWidth(-FLT_MIN);
 
-                    ImGui::TableNextRow();
-
-                    // Position
+                    // Column 0: Labels
                     ImGui::TableSetColumnIndex(0);
+                    ImGui::Dummy({ 0, 1 });
                     ImGui::Text("Position");
-
-                    ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableNextRow();
-
-                    // Rotation
-                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Dummy({ 0, 4 });
                     ImGui::Text("Rotation");
-
-                    ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f", 1)) matrixDirty = true;
-
-                    ImGui::TableNextRow();
-
-                    // Scale
-                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Dummy({ 0, 4 });
                     ImGui::Text("Scale");
 
+                    // Column 1: X Axis
                     ImGui::TableSetColumnIndex(1);
-                    if (ImGui::DragFloat("##ScaleX", &view_sca.x, 0.1F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    ImGui::PushStyleColor(ImGuiCol_FrameBg,         { 0.5f, 0.32f, 0.32f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgHovered,  { 0.6f, 0.42f, 0.42f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgActive,   { 0.5f, 0.22f, 0.22f, 1.0f });
+                    if (ImGui::DragFloat("X##PosX", &view_pos.x, 0.5F, 0, 0, "%.3f"))       matrixDirty = true;
+                    if (ImGui::DragFloat("X##RotX", &view_rot_deg.x, 0.2f, 0, 0, "%.3f"))   matrixDirty = true;
+                    if (ImGui::DragFloat("X##ScaleX", &view_sca.x, 0.1F, 0, 0, "%.3f"))     matrixDirty = true;
+                    ImGui::PopStyleColor(3);
 
+                    // Column 2: Y Axis
                     ImGui::TableSetColumnIndex(2);
-                    if (ImGui::DragFloat("##ScaleY", &view_sca.y, 0.1F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    ImGui::PushStyleColor(ImGuiCol_FrameBg,         { 0.32f, 0.5f, 0.32f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgHovered,  { 0.42f, 0.6f, 0.42f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgActive,   { 0.22f, 0.5f, 0.22f, 1.0f });
+                    if (ImGui::DragFloat("Y##PosY", &view_pos.y, 0.5F, 0, 0, "%.3f"))       matrixDirty = true;
+                    if (ImGui::DragFloat("Y##RotY", &view_rot_deg.y, 0.2f, 0, 0, "%.3f"))   matrixDirty = true;
+                    if (ImGui::DragFloat("Y##ScaleY", &view_sca.y, 0.1F, 0, 0, "%.3f"))     matrixDirty = true;
+                    ImGui::PopStyleColor(3);
 
+                    // Column 3: Z Axis
                     ImGui::TableSetColumnIndex(3);
-                    if (ImGui::DragFloat("##ScaleZ", &view_sca.z, 0.1F, 0, 0, "%.3f", 1)) matrixDirty = true;
+                    ImGui::PushStyleColor(ImGuiCol_FrameBg,         { 0.32f, 0.32f, 0.5f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgHovered,  { 0.42f, 0.42f, 0.6f, 1.0f });
+                    ImGui::PushStyleColor(ImGuiCol_FrameBgActive,   { 0.22f, 0.22f, 0.5f, 1.0f });
+                    if (ImGui::DragFloat("Z##PosZ", &view_pos.z, 0.5F, 0, 0, "%.3f"))       matrixDirty = true;
+                    if (ImGui::DragFloat("Z##RotZ", &view_rot_deg.z, 0.2f, 0, 0, "%.3f"))   matrixDirty = true;
+                    if (ImGui::DragFloat("Z##ScaleZ", &view_sca.z, 0.1F, 0, 0, "%.3f"))     matrixDirty = true;
+                    ImGui::PopStyleColor(3);
 
                     ImGui::EndTable();
                 }
 
                 if (matrixDirty)
                 {
-                    // translate > rotate > scale
+                    // translate -> rotate -> scale
 
                     transform->SetPosition(view_pos, HandleSpace::LOCAL);
                     //vec3f deltaRot = view_rot_deg - initialRotation;
@@ -270,17 +262,16 @@ bool PanelInspector::Draw()
 
             if (mesh != nullptr && ImGui::CollapsingHeader("Mesh", treeNodeFlags))
             {
-                Model* model = Resources::GetResourceById<Model>(mesh->meshID);
                 ImGui::SetItemTooltip("Displays and sets mesh data");
                 //ImGui::Checkbox("Active", &mesh->isActive);
                 //ImGui::SameLine();  
                 ImGui::Text("Name: ");
-                ImGui::SameLine();  ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->meshName.c_str());
+                ImGui::SameLine();
+                if (mesh->meshType == MeshType::DEFAULT) {
+                    Model* model = Resources::GetResourceById<Model>(mesh->meshID);
+                    ImGui::TextColored({ 0.920f, 0.845f, 0.0184f, 1.0f }, model->GetMeshName().c_str());
+                }
                 ImGui::Separator();
-                ImGui::Text("Indexes: ");
-                ImGui::SameLine();  ImGui::Text((std::to_string(model->indexData.size())).c_str());
-                ImGui::Text("Vertices: ");
-                ImGui::SameLine();  ImGui::Text(std::to_string(model->vertexData.size() / sizeof(MeshVertex)).c_str());
 
                 ImGui::Checkbox("Mesh", &mesh->active);
                 ImGui::Checkbox("Vertex normals", &mesh->drawNormalsVerts);
@@ -349,7 +340,6 @@ bool PanelInspector::Draw()
                 float size = static_cast<float>(camera->size);
                 float zNear = static_cast<float>(camera->zNear);
                 float zFar = static_cast<float>(camera->zFar);
-
                 if (ImGui::BeginCombo("Camera Type", camera->cameraType == CameraType::PERSPECTIVE ? "Perspective" : "Orthographic"))
                 {
                     if (ImGui::Selectable("Perspective", camera->cameraType == CameraType::PERSPECTIVE))
@@ -406,9 +396,6 @@ bool PanelInspector::Draw()
                     isDirty = true;
                 }
                 
-                if (isDirty) camera->UpdateCamera();
-
-
                 ImGui::Checkbox("Draw Frustrum", &camera->drawFrustum);
 
                 if (ImGui::Checkbox("Primary Camera", &camera->primaryCam))
@@ -416,22 +403,111 @@ bool PanelInspector::Draw()
                     engine->N_sceneManager->currentScene->ChangePrimaryCamera(selectedGO);
                 }
 
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                if (isDirty) camera->UpdateCamera();
 
                 if (isDirty && selectedGO->IsPrefab())
                 {
                     selectedGO->SetPrefabDirty(true);
                 }
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
             
+            /*Light Component*/
+            Light* light = selectedGO->GetComponent<Light>();
+
+            if (light != nullptr && ImGui::CollapsingHeader("Light", treeNodeFlags))
+            {
+                // Type
+                const char* label = nullptr;
+
+                switch (light->lightType)
+                {
+                    case LightType::Point: label = "Point"; break;
+                    case LightType::Spot: label = "Spot"; break;
+                    case LightType::Directional: label = "Directional"; break;
+                    default:break;
+                }
+
+                if (ImGui::BeginCombo("Type", label))
+                {
+                    if (ImGui::Selectable("Point"))
+                        light->lightType = LightType::Point;
+
+                    if (ImGui::Selectable("Spot"))
+                        light->lightType = LightType::Spot;
+
+                    if (ImGui::Selectable("Directional"))
+                        light->lightType = LightType::Directional;
+
+                    ImGui::EndCombo();
+                }
+
+                // Color
+                ImVec4 color = ImVec4(light->color.r, light->color.g, light->color.b, 1.0f);
+
+                static const char* color_id = "##lightColor3b";
+                if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+                {
+                    app->gui->openColorPicker = true;
+                    EditColor editColor = { color_id, color, color };
+                    app->gui->SetEditColor(editColor);
+                }
+                else if (app->gui->GetEditColor().id == color_id)
+                {
+                    ImVec4 color = app->gui->GetEditColor().color;
+                    light->color.r = color.x;
+                    light->color.g = color.y;
+                    light->color.b = color.z;
+                }
+                ImGui::SameLine();
+                ImGui::SetCursorPos({ ImGui::GetCursorPosX() - 4, ImGui::GetCursorPosY() + 3 });
+                ImGui::Text("Color");
+
+                // Intensity
+                ImGui::DragFloat("Intensity", &light->intensity, 0.1F, 0, 0, "%.3f");
+
+                // Settings
+                if (light->lightType == LightType::Point || light->lightType == LightType::Spot)
+                {
+                    ImGui::Text("Range");
+                    ImGui::DragFloat("Radius", &light->radius, 0.5F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Linear", &light->linear, 0.02F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Quadratic", &light->quadratic, 0.02F, 0, 0, "%.3f");
+                }
+
+                if (light->lightType == LightType::Spot)
+                {
+                    ImGui::Text("Cut Off");
+                    ImGui::DragFloat("Inner", &light->innerCutOff, 0.02F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Outer", &light->outerCutOff, 0.02F, 0, 0, "%.3f");
+                }
+
+                // Delete
+                if (ImGui::Button("Delete"))
+                    selectedGO->RemoveComponent(ComponentType::Light);
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+            }
+
 
             /*Script Component*/
-            Script* script = selectedGO->GetComponent<Script>();
-            ImGuiTreeNodeFlags scriptTreeNodeFlags = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_Leaf;
-            if (script != nullptr && ImGui::CollapsingHeader("Script", scriptTreeNodeFlags))
+            int id = 0;
+            for (auto& script : selectedGO->GetComponents<Script>())
             {
-                ImGui::TextColored({ 0.0f, 0.7f, 0.3f, 1.0f }, script->scriptName.c_str());
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                ImGuiTreeNodeFlags scriptTreeNodeFlags = ImGuiTreeNodeFlags_None | ImGuiTreeNodeFlags_Leaf;
+                if (script != nullptr && ImGui::CollapsingHeader("Script", scriptTreeNodeFlags))
+                {
+                    ImGui::TextColored({ 0.0f, 0.7f, 0.3f, 1.0f }, script->scriptName.c_str());
+                    ImGui::SameLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
+                    ImGui::PushID(id);
+                    if (ImGui::Button("Remove"))
+                        selectedGO->RemoveComponent(script);
+                    ImGui::Dummy(ImVec2(0.0f, 10.0f));
+                    ImGui::PopID();
+                    id++;
+                }
             }
 
 
@@ -531,7 +607,6 @@ bool PanelInspector::Draw()
                     }
                 }
 
-                ImGui::Dummy(ImVec2(0.0f, 10.0f));
                 if (ImGui::Button("Remove Collider"))
                 {
                     selectedGO->RemoveComponent(ComponentType::Collider2D);
@@ -542,6 +617,8 @@ bool PanelInspector::Draw()
                 {
                     selectedGO->SetPrefabDirty(true);
                 }
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
             }
 
 
@@ -1466,6 +1543,11 @@ bool PanelInspector::Draw()
                     selectedGO->AddComponent<ParticleSystem>();
                 }
                 
+                if (ImGui::MenuItem("Light"))
+                {
+                    selectedGO->AddComponent<Light>();
+                }
+                
                 if (ImGui::MenuItem("Listener"))
                 {
                     selectedGO->AddComponent<Listener>();
@@ -1589,12 +1671,12 @@ void PanelInspector::ChooseScriptNameWindow()
 
     ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
 
-    if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
+    if (engine->inputManager->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
     {
         //std::string className = "ActualScriptTest2";
         if (MonoManager::IsClassInMainAssembly(nameRecipient))
         {
-            selectedGO->AddScript(nameRecipient);
+            selectedGO->AddComponent<Script>(nameRecipient);
             ImGui::CloseCurrentPopup();
         }
         else
@@ -1623,7 +1705,7 @@ void PanelInspector::ChooseParticlesToImportWindow()
 
     fs::path assetsDir = fs::path(ASSETS_PATH) / "Particles" / nameFile;
 
-    if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
+    if (engine->inputManager->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
     {
         //std::string className = "ActualScriptTest2";
         if (std::filesystem::exists(assetsDir))

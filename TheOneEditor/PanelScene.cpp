@@ -2,13 +2,15 @@
 #include "App.h"
 #include "Gui.h"
 #include "PanelInspector.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
-#include "Window.h"
 #include "imgui.h"
 #include "imGuizmo.h"
 
 #include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+#include "TheOneEngine/Renderer.h"
+#include "TheOneEngine/Renderer3D.h"
+#include "TheOneEngine/RenderTarget.h"
 #include "TheOneEngine/Ray.h"
 #include "TheOneEngine/Log.h"
 #include "TheOneEngine/Easing.h"
@@ -31,7 +33,7 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     camEaseOutX = engine->easingManager->AddEasing(0.2);
     camEaseOutY = engine->easingManager->AddEasing(0.2);
 
-    frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
+    renderTarget = -1;
     viewportSize = { 0.0f, 0.0f };
 
     gizmoType = -1;
@@ -43,13 +45,15 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     easing = true;
     camSpeedMult = 4;
 
+    renderLights = true;
+    renderShadows = true;
+
     drawMesh = true;
     drawWireframe = false;
     drawNormalsVerts = false;
     drawNormalsFaces = false;
     drawAABB = true;
     drawOBB = false;
-    drawRaycasting = false;
     drawChecker = false;
 
     snapping = false;
@@ -60,7 +64,7 @@ PanelScene::~PanelScene() {}
 
 void PanelScene::Start()
 {
-    // Creating Editor Camera GO (Outside hierarchy)
+    // Create Editor Camera GO (Outside hierarchy)
     sceneCamera = std::make_shared<GameObject>("EDITOR CAMERA");
     sceneCamera.get()->AddComponent<Transform>();
     sceneCamera.get()->GetComponent<Transform>()->SetPosition(vec3f(0, 3, -10));
@@ -74,10 +78,31 @@ void PanelScene::Start()
 
     current = engine->N_sceneManager->currentScene;
     engine->SetEditorCamera(sceneCamera->GetComponent<Camera>());
+
+    // Create Render Target
+    std::vector<Attachment> gBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", "gBuffer", 0 },
+        { Attachment::Type::RGB16F, "position", "gBuffer", 0 },
+        { Attachment::Type::RGB16F, "normal", "gBuffer", 0 },
+        { Attachment::Type::DEPTH_STENCIL, "depth", "gBuffer", 0 }
+    };
+    std::vector<Attachment> postBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", "postBuffer", 0 },
+        { Attachment::Type::DEPTH_STENCIL, "depth", "postBuffer", 0 }
+    };
+    std::vector<Attachment> uiBuffAttachments = {
+        { Attachment::Type::RGBA8, "color", "uiBuffer", 0 }
+    };
+
+    std::vector<std::vector<Attachment>> sceneBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
+
+    viewportSize = { 640, 360 };
+    renderTarget = Renderer::AddRenderTarget("Panel Scene", DrawMode::EDITOR, sceneCamera.get()->GetComponent<Camera>(), viewportSize, sceneBuffers);
 }
 
 bool PanelScene::Draw()
 {
+    isHovered = false;
 	ImGuiWindowFlags settingsFlags = 0;
 	settingsFlags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_MenuBar;
 
@@ -97,7 +122,7 @@ bool PanelScene::Draw()
 
         // SDL Window
         int SDLWindowWidth, SDLWindowHeight;
-        app->window->GetSDLWindowSize(&SDLWindowWidth, &SDLWindowHeight);
+        engine->window->GetSDLWindowSize(&SDLWindowWidth, &SDLWindowHeight);
 
         // ImGui Panel
         ImVec2 windowPos = ImGui::GetWindowPos();
@@ -140,6 +165,14 @@ bool PanelScene::Draw()
 
             if (ImGui::BeginMenu("Render"))
             {
+                if (ImGui::Checkbox("Lights", &renderLights))
+                    Renderer::SetRenderLights(renderLights);
+
+                if (ImGui::Checkbox("Shadows", &renderShadows))
+                    Renderer::SetRenderShadows(renderShadows);
+                
+                ImGui::Separator();
+
                 ImGui::Checkbox("Mesh", &drawMesh);
                 ImGui::Checkbox("Wireframe", &drawWireframe);
                 ImGui::Separator();
@@ -152,9 +185,12 @@ bool PanelScene::Draw()
                 ImGui::Checkbox("OBB", &drawOBB);
                 ImGui::Separator();
 
-                if (ImGui::Checkbox("Ray Casting", &drawRaycasting))
+                bool drawRayCasting = Renderer::GetDrawRaycasting();
+
+                if (ImGui::Checkbox("Ray Casting", &drawRayCasting))
                 {
-                    if (!drawRaycasting) rays.clear();
+                    Renderer::SetDrawRaycasting(drawRayCasting);
+                    if (!Renderer::GetDrawRaycasting()) Renderer::ClearRays();
                 }
                 
 
@@ -218,71 +254,38 @@ bool PanelScene::Draw()
         ImGui::PopStyleVar();
 
 
+        // Render --------------------------------------------------------------------------
+        
+        Renderer::GetRenderTarget(renderTarget)->SetActive(true);
+
         // Viewport resize check
         viewportSize = { availWindowSize.x, availWindowSize.y };
-
-        if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-            (frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+        
+        if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && 
+            (Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetWidth() != viewportSize.x || 
+                Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetHeight() != viewportSize.y))
         {
-            frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+            Renderer::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
+            Renderer::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
             sceneCamera.get()->GetComponent<Camera>()->aspect = viewportSize.x / viewportSize.y;
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        // ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND ----------------------------------
-        {
-            frameBuffer->Bind();
-            frameBuffer->Clear();
-
-            // Set Render Environment
-            engine->SetRenderEnvironment(sceneCamera->GetComponent<Camera>());
-
-            // Debug Draw
-            engine->DebugDraw(true);
-
-            // Game cameras Frustum
-            glColor3f(0.9f, 0.9f, 0.9f);
-            for (const auto GO : engine->N_sceneManager->GetGameObjects())
-            {
-                Camera* gameCam = GO.get()->GetComponent<Camera>();
-
-                if (gameCam != nullptr && gameCam->drawFrustum)
-                    engine->DrawFrustum(gameCam->frustum);
-            }
-
-            // Draw Rays
-            if (drawRaycasting)
-            {
-                glColor3f(0.8f, 0.0f, 0.0f);
-                for (auto ray : rays)
-                    engine->DrawRay(ray);
-            }
-
-            // Draw Scene
-            current->Draw(DrawMode::EDITOR, sceneCamera->GetComponent<Camera>());
-
-            // Draw Loading Screen - only on panel game
-            /*if (engine->N_sceneManager->GetSceneIsChanging())
-                engine->N_sceneManager->loadingScreen->DrawUI(engine->N_sceneManager->currentScene->currentCamera, DrawMode::GAME);*/
-
-            frameBuffer->Unbind();
-        }
-
-        // Draw FrameBuffer Texture
-        ImGui::Image(
-            (ImTextureID)frameBuffer->getColorBufferTexture(),
-            ImVec2{ viewportSize.x, viewportSize.y },
-            ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+        ImTextureID textureID = Renderer::GetRenderLights() ?
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color") :
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
+        
+        ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 
         // ImGuizmo ------------------------------------------------------------------------
         // Handle Input
-        if (!app->input->GetMouseButton(SDL_BUTTON_RIGHT))
+        if (!engine->inputManager->GetMouseButton(SDL_BUTTON_RIGHT))
         {
-            if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) gizmoType = (ImGuizmo::OPERATION)-1;
-            if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) gizmoType = ImGuizmo::OPERATION::TRANSLATE;
-            if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) gizmoType = ImGuizmo::OPERATION::ROTATE;
-            if (app->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN) gizmoType = ImGuizmo::OPERATION::SCALE;
+            if (engine->inputManager->GetKey(SDL_SCANCODE_Q) == KEY_DOWN) gizmoType = (ImGuizmo::OPERATION)-1;
+            if (engine->inputManager->GetKey(SDL_SCANCODE_W) == KEY_DOWN) gizmoType = ImGuizmo::OPERATION::TRANSLATE;
+            if (engine->inputManager->GetKey(SDL_SCANCODE_E) == KEY_DOWN) gizmoType = ImGuizmo::OPERATION::ROTATE;
+            if (engine->inputManager->GetKey(SDL_SCANCODE_R) == KEY_DOWN) gizmoType = ImGuizmo::OPERATION::SCALE;
         }       
 
         // Gizmo
@@ -304,7 +307,7 @@ bool PanelScene::Draw()
             glm::mat4 transform = tc->CalculateWorldTransform();
 
             // Snap
-            bool snappingSC = app->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT ? true : false;            
+            bool snappingSC = engine->inputManager->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT ? true : false;            
             vec3f snapSize = vec3f(snapAmount, snapAmount, snapAmount);
 
             ImGuizmo::Manipulate(
@@ -323,18 +326,22 @@ bool PanelScene::Draw()
 
 
         // Mouse Picking -------------------------------------------------------------------
-        if (isHovered && app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) //hekbas need to chek if using imguizmo?
+        if (isHovered && engine->inputManager->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) //hekbas need to chek if using imguizmo?
         {
             int sdlY = SDLWindowHeight - y - viewportSize.y;
-            auto clickPos = glm::vec2(app->input->GetMouseX() - x, app->input->GetMouseY() - sdlY);
+            auto clickPos = glm::vec2(engine->inputManager->GetMouseX() - x, engine->inputManager->GetMouseY() - sdlY);
 
 			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), viewportSize.x, viewportSize.y);
 
-            if (drawRaycasting) rays.push_back(ray);
+            if (Renderer::GetDrawRaycasting()) Renderer::AddRay(ray);
             
             //editor->SelectObject(ray);
         }
 	}
+    else
+    {
+        Renderer::GetRenderTarget(renderTarget)->SetActive(false);
+    }
 	ImGui::End();
 	ImGui::PopStyleVar();
 
@@ -364,41 +371,41 @@ void PanelScene::CameraMode()
     {
         case CamControlMode::ENABLED:
         {
-            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
+            if (engine->inputManager->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
                 disable = true;
 
-            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+            if (engine->inputManager->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
                 camControlMode = CamControlMode::PANNING;
 
-            if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
-                app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+            if (engine->inputManager->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                engine->inputManager->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
                 camControlMode = CamControlMode::ORBIT;
         }
         break;
 
         case CamControlMode::PANNING:
         {
-            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_UP)
+            if (engine->inputManager->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_UP)
                 camControlMode = CamControlMode::DISABLED;
 
-            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+            if (engine->inputManager->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
                 camControlMode = CamControlMode::ENABLED;
 
-            if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
-                app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+            if (engine->inputManager->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                engine->inputManager->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
                 camControlMode = CamControlMode::ORBIT;
         }
         break;
 
         case CamControlMode::ORBIT:
         {
-            if (app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_UP)
+            if (engine->inputManager->GetMouseButton(SDL_BUTTON_LEFT) == KEY_UP)
                 camControlMode = CamControlMode::DISABLED;
 
-            if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+            if (engine->inputManager->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
                 camControlMode = CamControlMode::PANNING;
 
-            if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+            if (engine->inputManager->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
                 camControlMode = CamControlMode::ENABLED;
         }
         break;
@@ -407,14 +414,14 @@ void PanelScene::CameraMode()
         {
             if (isHovered)
             {
-                if (app->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
+                if (engine->inputManager->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_DOWN)
                     camControlMode = CamControlMode::ENABLED;
 
-                if (app->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
+                if (engine->inputManager->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_DOWN)
                     camControlMode = CamControlMode::PANNING;
 
-                if (app->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
-                    app->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+                if (engine->inputManager->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT &&
+                    engine->inputManager->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
                     camControlMode = CamControlMode::ORBIT;
             }
         }
@@ -432,7 +439,7 @@ void PanelScene::CameraMovement(GameObject* cam)
 {
     Camera* camera = cam->GetComponent<Camera>();
     Transform* transform = cam->GetComponent<Transform>();
-    double dt = app->GetDT();
+    double dt = MIN(app->GetDT(), 0.016);
     double mouseSensitivity = 28.0;
 
     switch (camControlMode)
@@ -440,10 +447,10 @@ void PanelScene::CameraMovement(GameObject* cam)
         // (RMB)
         case CamControlMode::ENABLED:
         {
-            app->window->InfiniteScroll();
+            engine->window->InfiniteScroll();
 
-            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
-            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+            camera->yaw = engine->inputManager->GetMouseXMotion() * mouseSensitivity * dt;
+            camera->pitch = -engine->inputManager->GetMouseYMotion() * mouseSensitivity * dt;
             transform->Rotate(vec3f(0.0f, camera->yaw, 0.0f), HandleSpace::GLOBAL);
             transform->Rotate(vec3f(camera->pitch, 0.0f, 0.0f), HandleSpace::LOCAL);
 
@@ -459,10 +466,10 @@ void PanelScene::CameraMovement(GameObject* cam)
         // (MMB)
         case CamControlMode::PANNING:
         {
-            app->window->InfiniteScroll();
+            engine->window->InfiniteScroll();
 
-            double deltaX = app->input->GetMouseXMotion();
-            double deltaY = app->input->GetMouseYMotion();
+            double deltaX = engine->inputManager->GetMouseXMotion();
+            double deltaY = engine->inputManager->GetMouseYMotion();
             float panSpeed = 10 * dt;
             transform->Translate(vec3(deltaX * panSpeed, 0, 0), HandleSpace::GLOBAL);
             transform->Translate(vec3(0, deltaY * panSpeed, 0), HandleSpace::GLOBAL);
@@ -472,10 +479,10 @@ void PanelScene::CameraMovement(GameObject* cam)
         // (Alt + LMB)
         case CamControlMode::ORBIT:
         {
-            app->window->InfiniteScroll();
+            engine->window->InfiniteScroll();
 
-            camera->yaw = app->input->GetMouseXMotion() * mouseSensitivity * dt;
-            camera->pitch = -app->input->GetMouseYMotion() * mouseSensitivity * dt;
+            camera->yaw = engine->inputManager->GetMouseXMotion() * mouseSensitivity * dt;
+            camera->pitch = -engine->inputManager->GetMouseYMotion() * mouseSensitivity * dt;
 
             transform->SetPosition(camera->lookAt);
 
@@ -537,7 +544,7 @@ void PanelScene::CameraMovement(GameObject* cam)
             camInitSpeed.y, camTargetSpeed.y, dt, EasingType::EASE_OUT_SIN, false);
     }
 
-    double shift = app->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT ? 2 : 1;
+    double shift = engine->inputManager->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT ? 2 : 1;
     double speedX = camCurrentSpeed.x * camSpeedMult * shift * dt;
     double speedY = camCurrentSpeed.y * camSpeedMult * shift * dt;
 
@@ -546,11 +553,11 @@ void PanelScene::CameraMovement(GameObject* cam)
     transform->Translate(speedY * transform->GetForward(), HandleSpace::LOCAL);
 
     // (Wheel) Zoom
-    if (isHovered && app->input->GetMouseZ() != 0)
-        transform->Translate(transform->GetForward() * (double)app->input->GetMouseZ() * 4.0, HandleSpace::LOCAL);
+    if (isHovered && engine->inputManager->GetMouseZ() != 0)
+        transform->Translate(transform->GetForward() * (double)engine->inputManager->GetMouseZ() * 4.0, HandleSpace::LOCAL);
 
     // (F) Focus Selection
-    if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN && engine->N_sceneManager->GetSelectedGO())
+    if (engine->inputManager->GetKey(SDL_SCANCODE_F) == KEY_DOWN && engine->N_sceneManager->GetSelectedGO())
     {
         transform->SetPosition(camera->lookAt);
         vec3f finalPos;
@@ -563,11 +570,11 @@ void PanelScene::CameraMovement(GameObject* cam)
 
 void PanelScene::HandleInput(SDL_Scancode key)
 {
-    if (app->input->GetKey(key) == KEY_DOWN)
+    if (engine->inputManager->GetKey(key) == KEY_DOWN)
     {
         inputStack.push(key);
     }
-    else if (app->input->GetKey(key) == KEY_UP)
+    else if (engine->inputManager->GetKey(key) == KEY_UP)
     {
         std::stack<SDL_Scancode> tempStack;
 
@@ -584,8 +591,8 @@ void PanelScene::HandleInput(SDL_Scancode key)
         }
     }
 
-    if (app->input->GetKey(key) == KEY_UP ||
-        app->input->GetKey(key) == KEY_DOWN)
+    if (engine->inputManager->GetKey(key) == KEY_UP ||
+        engine->inputManager->GetKey(key) == KEY_DOWN)
     {
         switch (key)
         {
