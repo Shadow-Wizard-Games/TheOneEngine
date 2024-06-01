@@ -46,6 +46,8 @@ public:
         return nullptr;
     }
 
+    std::vector<Component*> GetAllComponents();
+
     template <typename TComponent>
     std::vector<TComponent*> GetComponents() const
     {
@@ -117,7 +119,6 @@ public:
             components.erase(it);
     }
 
-    std::vector<Component*> GetAllComponents(bool tunometecabrasalamambiche = true);
 
     // AABB
     AABBox CalculateAABB();

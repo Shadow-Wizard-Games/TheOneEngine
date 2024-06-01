@@ -207,7 +207,7 @@ bool PanelInspector::Draw()
 
                 if (matrixDirty)
                 {
-                    // translate > rotate > scale
+                    // translate -> rotate -> scale
 
                     transform->SetPosition(view_pos, HandleSpace::LOCAL);
                     //vec3f deltaRot = view_rot_deg - initialRotation;

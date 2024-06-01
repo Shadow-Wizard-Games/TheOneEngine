@@ -252,7 +252,7 @@ void GameObject::AddToDelete(std::vector<GameObject*>& objectsToDelete)
 	objectsToDelete.push_back(this);
 }
 
-std::vector<Component*> GameObject::GetAllComponents(bool tunometecabrasalamambiche)
+std::vector<Component*> GameObject::GetAllComponents()
 {
 	std::vector<Component*> tempComponents;
 	for (const auto& item : components)

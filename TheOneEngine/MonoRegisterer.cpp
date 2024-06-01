@@ -130,7 +130,7 @@ static vec3f GetTransformRight(GameObject* GOptr)
 //GameObject
 static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+	engine->N_sceneManager->CreateLibMeshGO("pCube1");
 
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
@@ -148,7 +148,7 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 
 static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+	engine->N_sceneManager->CreateLibMeshGO("pCube1");
 
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 
@@ -167,7 +167,7 @@ static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 
 static GameObject* InstantiateExplosion(vec3f* initialPosition, vec3f* direction, float radius)
 {
-	engine->N_sceneManager->CreateExistingMeshGO("Library/Meshes/pCube1/pCube1.mesh");
+	engine->N_sceneManager->CreateLibMeshGO("pCube1");
 
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
 

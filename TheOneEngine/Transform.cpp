@@ -31,6 +31,8 @@ void Transform::Update()
     if (containerGO.lock()->parent.lock()) {
         globalTransformMatrix = containerGO.lock()->parent.lock()->GetComponent<Transform>()->GetGlobalTransform() * globalTransformMatrix;
     }
+
+    DecomposeTransform();
 }
 
 

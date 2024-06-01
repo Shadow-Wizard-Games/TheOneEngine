@@ -86,12 +86,13 @@ public:
 private:
 
     mat4 transformMatrix;
-
     vec3 position;
     quat rotation;
     vec3 scale;
 
     mat4 globalTransformMatrix;
+    vec3 globalPosition;
+    quat globalRotation;
 };
 
 #endif //__TRANSFORM_H__
