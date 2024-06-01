@@ -647,17 +647,20 @@ void Renderer3D::InitPreLightingShader()
 	ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
 	Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
 	textShader->Compile("Assets/Shaders/MeshTexture");
-
 	textShader->addUniform("diffuse", UniformType::Sampler2D);
 	Resources::Import<Shader>("MeshTexture", textShader);
-
 
 	ResourceId skeletalTextShaderId = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimated");
 	Shader* skeletalTextShader = Resources::GetResourceById<Shader>(skeletalTextShaderId);
 	skeletalTextShader->Compile("Assets/Shaders/MeshTextureAnimated");
-
 	skeletalTextShader->addUniform("diffuse", UniformType::Sampler2D);
 	Resources::Import<Shader>("MeshTextureAnimated", skeletalTextShader);
+
+	ResourceId colorShaderId = Resources::Load<Shader>("Assets/Shaders/MeshColor");
+	Shader* colorShader = Resources::GetResourceById<Shader>(colorShaderId);
+	colorShader->Compile("Assets/Shaders/MeshColor");
+	colorShader->addUniform("u_Color", UniformType::fVec4);
+	Resources::Import<Shader>("MeshColor", colorShader);
 }
 
 void Renderer3D::InitPostLightingShader()

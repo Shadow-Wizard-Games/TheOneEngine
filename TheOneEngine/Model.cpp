@@ -137,8 +137,10 @@ std::vector<Model*> Model::LoadMeshes(const std::string& path)
                 }
                 else
                 {
-                    id = Resources::LoadFromLibrary<Shader>("MeshTexture");
-                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshTexture.toeshader");
+                    id = Resources::LoadFromLibrary<Shader>("MeshColor");
+                    material.setShader(Resources::GetResourceById<Shader>(id), Resources::PathToLibrary<Shader>() + "MeshColor.toeshader");
+
+                    material.SetUniformData("u_Color", glm::vec4(diffuse.r, diffuse.g, diffuse.b, diffuse.a));
                 }
 
 
