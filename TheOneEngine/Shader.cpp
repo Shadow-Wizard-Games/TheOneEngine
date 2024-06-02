@@ -380,46 +380,37 @@ UniformField* Shader::getUniform(const char* name)
 }
 
 
-template<>
-inline void Shader::setUniform<int>(unsigned int uniform_id, int value) 
+template<> void Shader::setUniform<int>(unsigned int uniform_id, int value) 
 {
 	GLCALL(glUseProgram(ProgramID));
 	GLCALL(glUniform1i(uniform_id, value));
 }
-template<>
-inline void Shader::setUniform<unsigned int>(unsigned int uniform_id, unsigned int value) 
+template<> void Shader::setUniform<unsigned int>(unsigned int uniform_id, unsigned int value)
 {
 	GLCALL(glUseProgram(ProgramID));
 	GLCALL(glUniform1ui(uniform_id, value));
 }
-template<>
-inline void Shader::setUniform<glm::mat4>(unsigned int uniform_id, glm::mat4 value) 
+template<> void Shader::setUniform<glm::mat4>(unsigned int uniform_id, glm::mat4 value) 
 {
 	GLCALL(glUseProgram(ProgramID));
 	GLCALL(glUniformMatrix4fv(uniform_id, 1, GL_FALSE, glm::value_ptr(value)));
 }
-
-template<>
-inline void Shader::setUniform<float>(unsigned int uniform_id, float value) 
+template<> void Shader::setUniform<float>(unsigned int uniform_id, float value) 
 {
 	GLCALL(glUseProgram(ProgramID));
 	GLCALL(glUniform1f(uniform_id, value));
 }
-template<>
-inline void Shader::setUniform<glm::vec2>(unsigned int uniform_id, glm::vec2 value)
+template<> void Shader::setUniform<glm::vec2>(unsigned int uniform_id, glm::vec2 value)
 {
 	GLCALL(glUseProgram(ProgramID));
 	GLCALL(glUniform2f(uniform_id, value.x, value.y));
 }
-template<>
-inline void Shader::setUniform<glm::vec3>(unsigned int uniform_id, glm::vec3 value) 
+template<> void Shader::setUniform<glm::vec3>(unsigned int uniform_id, glm::vec3 value) 
 {
 	GLCALL(glUseProgram(ProgramID));
 	GLCALL(glUniform3f(uniform_id, value.x, value.y, value.z));
 }
-
-template<>
-inline void Shader::setUniform<glm::vec4>(unsigned int uniform_id, glm::vec4 value)
+template<> void Shader::setUniform<glm::vec4>(unsigned int uniform_id, glm::vec4 value)
 {
 	GLCALL(glUseProgram(ProgramID));
 	GLCALL(glUniform4f(uniform_id, value.r, value.g, value.b, value.a));

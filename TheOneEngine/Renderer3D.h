@@ -103,6 +103,7 @@ public:
 	static void ShadowPass(RenderTarget target);
 	static void LightPass(RenderTarget target);
 	static void UIComposition(RenderTarget target);
+	static void CRTShader(RenderTarget target);
 
 	static void AddLight(std::shared_ptr<GameObject> container);
 	static void RemoveLight(std::shared_ptr<GameObject> container);
@@ -123,4 +124,5 @@ private:
 	static void InitPreLightingShader();
 	static void InitPostLightingShader();
 	static void InitIndexShaders();
+	static void InitCRTShader();
 };

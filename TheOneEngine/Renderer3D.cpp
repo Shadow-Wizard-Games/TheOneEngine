@@ -1,12 +1,11 @@
 #include "Renderer3D.h"
 #include "Renderer.h"
 #include "Resources.h"
+#include "Shader.h"
 #include "EngineCore.h"
 #include "N_SceneManager.h"
 #include "SkeletalUtilities.h"
 #include "Animation/OzzAnimation.h"
-
-#include "TheOneEngine/Renderer.h"
 
 #include "TheOneAnimation/samples/framework/internal/shader.h"
 
@@ -26,7 +25,8 @@ struct Renderer3DData
 	std::vector<SkeletalCall> skeletalCalls;
 
 	ResourceId lightingMatID = -1;
-	ResourceId indexSkeletalShaderID = -1;
+	ResourceId skeletalShaderID = -1;
+	ResourceId crtMatID = -1;
 
 	uint dynamicVAO = 0;
 	uint dynamicVBO = 0;
@@ -52,6 +52,7 @@ void Renderer3D::Init()
 	InitPreLightingShader();
 	InitPostLightingShader();
 	InitIndexShaders();
+	InitCRTShader();
 }
 
 void Renderer3D::Update(RenderTarget target)
@@ -450,7 +451,7 @@ void Renderer3D::DrawSkeletal(const SkeletalCall& call, bool overrideEffects)
 	}
 	else
 	{
-		animShader = Resources::GetResourceById<Shader>(renderer3D.indexSkeletalShaderID);
+		animShader = Resources::GetResourceById<Shader>(renderer3D.skeletalShaderID);
 		animShader->Bind();
 		animShader->SetModel(call.GetModel());
 	}
@@ -581,6 +582,7 @@ void Renderer3D::LightPass(RenderTarget target)
 {
 	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
 	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
+	postBuffer->Bind();
 
 	uint directionalLightNum = 0;
 	uint pointLightNum = 0;
@@ -614,9 +616,6 @@ void Renderer3D::LightPass(RenderTarget target)
 	{
 		Light* light = renderer3D.lights[i]->GetComponent<Light>();
 		Transform* transform = renderer3D.lights[i]->GetComponent<Transform>();
-
-		postBuffer->Bind();
-		shader->Bind();
 
 		// Uniform data MUST be float!!!
 		switch (light->lightType)
@@ -690,7 +689,7 @@ void Renderer3D::UIComposition(RenderTarget target)
 	uiBuffer->Bind();
 	uiBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
-	// Copy gBuffer Depth to postBuffer
+	// Copy postBuffer Color to uiBuffer, Upscale to Nearest
 	GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, postBuffer->GetBuffer()));
 	GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, uiBuffer->GetBuffer()));
 	GLCALL(glBlitFramebuffer(
@@ -702,6 +701,30 @@ void Renderer3D::UIComposition(RenderTarget target)
 
 	Renderer::SetUniformBufferCamera(cameraUI);
 	Renderer2D::Update(BT::UI, target);
+
+	uiBuffer->Unbind();
+}
+
+void Renderer3D::CRTShader(RenderTarget target)
+{
+	//GLCALL(glEnable(GL_BLEND));
+
+	FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
+	uiBuffer->Bind();
+
+	Material* crtMat = Resources::GetResourceById<Material>(renderer3D.crtMatID);
+	Shader* crtShader = crtMat->getShader();
+	crtShader->Bind();
+
+	glm::vec2 resolution = { uiBuffer->GetWidth(), uiBuffer->GetHeight() };
+
+	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color"));
+	crtMat->SetUniformData("resolution", resolution);
+	crtMat->SetUniformData("time", (float)engine->dt); //this should be changed to total run time
+
+	crtMat->Bind();
+	Renderer::DrawScreenQuad();
+	crtMat->UnBind();
 
 	uiBuffer->Unbind();
 }
@@ -731,7 +754,6 @@ void Renderer3D::InitPreLightingShader()
 void Renderer3D::InitPostLightingShader()
 {
 	GLERR;
-	//Init default shaders with uniforms
 	ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PostLightingShader");
 	Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
 	textShader->Compile("Assets/Shaders/PostLightingShader");
@@ -777,6 +799,7 @@ void Renderer3D::InitPostLightingShader()
 		textShader->addUniform("u_SpotLights[" + iteration + "].ViewProjectionMat", UniformType::Mat4);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Depth", UniformType::Sampler2D);
 	}
+
 	Resources::Import<Shader>("PostLightingShader", textShader);
 
 	Material lightinProcessMat(textShader);
@@ -788,9 +811,26 @@ void Renderer3D::InitPostLightingShader()
 
 void Renderer3D::InitIndexShaders()
 {
-	renderer3D.indexSkeletalShaderID = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimatedIndex");
-	Shader* skeletalTextShader = Resources::GetResourceById<Shader>(renderer3D.indexSkeletalShaderID);
+	renderer3D.skeletalShaderID = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimatedIndex");
+	Shader* skeletalTextShader = Resources::GetResourceById<Shader>(renderer3D.skeletalShaderID);
 	skeletalTextShader->Compile("Assets/Shaders/MeshTextureAnimatedIndex");
 
 	Resources::Import<Shader>("MeshTextureAnimatedIndex", skeletalTextShader);
+}
+
+void Renderer3D::InitCRTShader()
+{
+	ResourceId crtShaderId = Resources::Load<Shader>("Assets/Shaders/CRTShader");
+	Shader* crtShader = Resources::GetResourceById<Shader>(crtShaderId);
+	crtShader->Compile("Assets/Shaders/CRTShader");
+	crtShader->addUniform("albedo", UniformType::Sampler2D);
+	crtShader->addUniform("resolution", UniformType::fVec2);
+	crtShader->addUniform("time", UniformType::Float);
+	Resources::Import<Shader>("CRTShader", crtShader);
+
+	Material crtMat(crtShader);
+	crtMat.setShader(crtShader, crtShader->getPath());
+	std::string CRTPath = Resources::PathToLibrary<Material>() + "CRTShader.toematerial";
+	Resources::Import<Material>(CRTPath, &crtMat);
+	renderer3D.crtMatID = Resources::LoadFromLibrary<Material>(CRTPath);
 }

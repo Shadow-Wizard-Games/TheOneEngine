@@ -2,6 +2,9 @@
 
 #include "Uniform.h"
 #include "glm/glm.hpp"
+#include "Log.h"
+
+#include <string>
 
 
 #define SHADER_TEST
@@ -36,7 +39,6 @@ public:
 	void Bind();
 	void UnBind();
 	void Delete();
-
 
 	template<class T> void setUniform(unsigned int uniform_id, T value);
 
