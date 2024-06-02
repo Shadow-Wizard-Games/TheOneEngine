@@ -78,6 +78,7 @@ void Renderer::Update()
 
             GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, uiBuffer->GetBuffer()));
             GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0));
+            GLCALL(glReadBuffer(GL_COLOR_ATTACHMENT1));
             GLCALL(glBlitFramebuffer(
                 0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
                 0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),

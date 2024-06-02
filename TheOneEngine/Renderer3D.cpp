@@ -707,8 +707,6 @@ void Renderer3D::UIComposition(RenderTarget target)
 
 void Renderer3D::CRTShader(RenderTarget target)
 {
-	//GLCALL(glEnable(GL_BLEND));
-
 	FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
 	uiBuffer->Bind();
 
@@ -716,11 +714,9 @@ void Renderer3D::CRTShader(RenderTarget target)
 	Shader* crtShader = crtMat->getShader();
 	crtShader->Bind();
 
-	glm::vec2 resolution = { uiBuffer->GetWidth(), uiBuffer->GetHeight() };
-
-	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color"));
-	crtMat->SetUniformData("resolution", resolution);
-	crtMat->SetUniformData("time", (float)engine->dt); //this should be changed to total run time
+	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color_ui"));
+	crtMat->SetUniformData("warp", glm::vec2(12, 8));
+	crtMat->SetUniformData("time", (float)engine->upTime);
 
 	crtMat->Bind();
 	Renderer::DrawScreenQuad();
@@ -824,7 +820,7 @@ void Renderer3D::InitCRTShader()
 	Shader* crtShader = Resources::GetResourceById<Shader>(crtShaderId);
 	crtShader->Compile("Assets/Shaders/CRTShader");
 	crtShader->addUniform("albedo", UniformType::Sampler2D);
-	crtShader->addUniform("resolution", UniformType::fVec2);
+	crtShader->addUniform("warp", UniformType::fVec2);
 	crtShader->addUniform("time", UniformType::Float);
 	Resources::Import<Shader>("CRTShader", crtShader);
 

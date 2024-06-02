@@ -59,6 +59,7 @@ void EngineCore::Update(double dt)
     Renderer::Update();
 
     this->dt = dt;
+    upTime += dt;
 }
 
 void EngineCore::CleanUp()

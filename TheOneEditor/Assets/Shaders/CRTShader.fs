@@ -5,17 +5,14 @@
 #version 450 core
 precision highp float;
 
-#define RGB(r, g, b) vec3(float(r)/255.0, float(g)/255.0, float(b)/255.0)
-
 uniform sampler2D albedo;
-uniform vec2 resolution;
+uniform vec2 warp;
 uniform float time;
 
 in vec2 fragCoord;
-out vec4 fragColor;
+layout(location = 1) out vec4 fragColor;
 
-
-const vec2 kWarp = vec2(1.0 / 12.0, 1.0 / 8.0);
+const vec2 kWarp = vec2(1.0 / warp.x, 1.0 / warp.y);
 
 vec2 WarpUV(vec2 uv)
 {
@@ -25,27 +22,6 @@ vec2 WarpUV(vec2 uv)
 		1.0 + (uv.x * uv.x) * kWarp.y
 	);
 	return uv * 0.5 + 0.5;
-}
-
-vec2 CurveUV(vec2 uv)
-{
-    uv = uv * 2.0 - 1.0;
-    vec2 offset = abs(uv.yx) / vec2(3.0, 2.0);
-    uv = uv + uv * offset * offset;
-    uv = uv * 0.5 + 0.5;
-    return uv;
-    //return clamp(uv, 0.0, 1.0);
-}
-
-vec2 SmoothWarpUV(vec2 uv)
-{
-    uv = uv * 2.0 - 1.0;
-    uv *= vec2(
-        1.0 + (uv.y * uv.y) * kWarp.x,
-        1.0 + (uv.x * uv.x) * kWarp.y
-    );
-    uv = uv * 0.5 + 0.5;
-    return clamp(uv, 0.0, 1.0);
 }
 
 void DrawVignette(inout vec3 color, vec2 uv)
@@ -66,7 +42,7 @@ void main()
 {
     // Curve UV
     vec2 uv = fragCoord.xy;
-    vec2 crtUV = SmoothWarpUV(uv);
+    vec2 crtUV = WarpUV(uv);
 
     // Color
     vec3 color = texture(albedo, crtUV).rgb;
@@ -82,7 +58,7 @@ void main()
     DrawVignette(color, crtUV);
 
     // ScanLine
-    DrawScanLine(color, uv);
+    DrawScanLine(color, crtUV);
 
     // Fragcolor OUT
     fragColor.xyz = color;

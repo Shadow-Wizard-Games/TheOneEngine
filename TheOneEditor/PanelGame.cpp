@@ -33,7 +33,7 @@ void PanelGame::Start()
 	gameCamera = gameCameras.empty() ?
 		engine->N_sceneManager->currentScene->currentCamera : gameCameras.front()->GetComponent<Camera>();
 	
-	// Create Render Target
+	// Create Render Target For Game View
 	std::vector<Attachment> gBuffAttachments = {
 		{ Attachment::Type::RGBA8, "color", "gBuffer", 0 },
 		{ Attachment::Type::RGB16F, "position", "gBuffer", 0 },
@@ -45,13 +45,26 @@ void PanelGame::Start()
 		{ Attachment::Type::DEPTH_STENCIL, "depth", "postBuffer", 0 }
 	};
 	std::vector<Attachment> uiBuffAttachments = {
-		{ Attachment::Type::RGBA8, "color", "uiBuffer", 0 }
+		{ Attachment::Type::RGBA8, "color_ui", "uiBuffer", 0 },
+		{ Attachment::Type::RGBA8, "color_crt", "uiBuffer", 0 }
 	};
 
 	std::vector<std::vector<Attachment>> gameBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
 
 	viewportSize = { 640, 360 };
 	renderTarget = Renderer::AddRenderTarget("Panel Game", DrawMode::GAME, gameCamera, viewportSize, gameBuffers);
+
+
+	// Create Render Target for Minimap
+	/*std::vector<Attachment> minimapBuffAttachments = {
+		{ Attachment::Type::RGBA8, "color", "minimapBuffer", 0 },
+		{ Attachment::Type::DEPTH_STENCIL, "depth", "minimapBuffer", 0 }
+	};
+
+	std::vector<std::vector<Attachment>> minimapBuffers{ minimapBuffAttachments };
+
+	viewportSize = { 640, 360 };
+	renderTarget = Renderer::AddRenderTarget("Minimap", DrawMode::GAME, gameCamera, viewportSize, minimapBuffers);*/
 }
 
 bool PanelGame::Draw()
@@ -148,7 +161,7 @@ bool PanelGame::Draw()
 		if (offset.x) ImGui::SameLine();
 
 		ImTextureID textureID = Renderer::GetRenderLights() ?
-			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color") :
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color_crt") :
 			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
 
 		ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });

@@ -80,6 +80,7 @@ public:
 public:
 	
 	double dt = 0;
+	double upTime = 0;
 	bool vsync = false;
 
 	Window* window = nullptr;

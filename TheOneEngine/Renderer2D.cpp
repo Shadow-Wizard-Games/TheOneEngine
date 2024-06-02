@@ -288,6 +288,7 @@ void Renderer2D::Update(BT type, RenderTarget target)
 	//buffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
 	GLCALL(glDisable(GL_CULL_FACE));
+	GLCALL(glEnable(GL_BLEND));
 
 	DrawQuadBatch(batch);
 	DrawCircleBatch(batch);
