@@ -54,7 +54,8 @@ void Renderer::Update()
         Renderer3D::GeometryPass(target);
 
         //// Debug / Editor Draw
-        Renderer::DrawDebug(target.GetMode() == DrawMode::GAME || target.GetMode() == DrawMode::BUILD ? false : true);
+        if (target.GetMode() == DrawMode::EDITOR)
+            Renderer::DrawDebug();
 
         if (renderer.renderParticles)
             Renderer2D::Update(BT::WORLD, target);
@@ -67,11 +68,14 @@ void Renderer::Update()
 
         Renderer3D::UIComposition(target);
 
+        if (target.GetMode() != DrawMode::EDITOR)
+            Renderer3D::CRTShader(target);
+
+        //// Blit final composition to 0 Buffer
         if (target.GetMode() == DrawMode::BUILD)
         {
             FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
 
-            // Copy final composition to 0 Buffer
             GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, uiBuffer->GetBuffer()));
             GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0));
             GLCALL(glBlitFramebuffer(

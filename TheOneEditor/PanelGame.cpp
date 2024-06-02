@@ -133,6 +133,7 @@ bool PanelGame::Draw()
 		{
 			Renderer::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
 			Renderer::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
+			Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->Resize(viewportSize.x, viewportSize.y);
 
 			if (gameCamera)
 			{
