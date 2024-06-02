@@ -876,7 +876,7 @@ public class PlayerScript : MonoBehaviour
             if (!hasShot && timeSinceLastShot > 0.15f / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-                //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.A_FT);
                 hasShot = true;
                 shotParticles.Replay();
             }
