@@ -41,6 +41,7 @@ public class PlayerScript : MonoBehaviour
     IParticleSystem stepParticles;
     IParticleSystem shotParticles;
     IParticleSystem shotExplosion;
+    IParticleSystem bulletShell;
 
     // background music
     public bool isFighting;
@@ -117,6 +118,7 @@ public class PlayerScript : MonoBehaviour
         shotParticlesGO = attachedGameObject.FindInChildren("ShotPlayerPS");
         shotExplosion = attachedGameObject.FindInChildren("ShotExplosion")?.GetComponent<IParticleSystem>();
         shotExplosionGO = attachedGameObject.FindInChildren("ShotExplosion");
+        bulletShell = attachedGameObject.FindInChildren("BulletShellDrop")?.GetComponent<IParticleSystem>();
         shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
 
         M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
@@ -457,6 +459,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         stepParticles.End();
+        bulletShell.End();
     }
     private void RunAction()
     {
@@ -490,6 +493,8 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Run Grenade Launcher");
                 break;
         }
+
+        bulletShell.End();
     }
     private void DashAction()
     {
@@ -574,6 +579,7 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.Play("Death");
 
         stepParticles.End();
+        bulletShell.End();
     }
     private void AdrenalineRushAction()
     {
@@ -825,6 +831,7 @@ public class PlayerScript : MonoBehaviour
                 shotParticlesGO.transform.Position = new Vector3(0.0f, 0.29f, 0.252f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
+                bulletShell.Play();
                 shotLight.SwitchOn();
             }
         }
@@ -878,6 +885,7 @@ public class PlayerScript : MonoBehaviour
                 shotParticlesGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
+                bulletShell.Play();
                 shotLight.SwitchOn();
             }
         }

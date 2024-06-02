@@ -5,19 +5,19 @@
       "Transformation Matrix": [
         70.71066444722956,
         0.0,
-        70.71066753809106,
+        -70.71066753809106,
         0.0,
         0.0,
         100.0,
         0.0,
         0.0,
-        -70.71066753809106,
+        70.71066753809106,
         0.0,
         70.71066444722956,
         0.0,
-        -98.64492797851563,
+        -52.522239685058594,
         0.0,
-        501.3685607910156,
+        -7.929845809936523,
         1.0
       ],
       "Type": 0,
@@ -154,7 +154,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 11.200445175170898,
+              "Lifetime": 4.185000896453857,
               "MaxParticles": 20,
               "RenderModule": [
                 {
@@ -234,9 +234,9 @@
             0.0,
             0.9999999999999999,
             0.0,
-            8.929605388452444e-09,
-            0.29,
-            0.2521674231489842,
+            0.0,
+            0.28999999165534973,
+            0.25200000405311584,
             1.0
           ],
           "Type": 0,
@@ -465,63 +465,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2862017093
+          "UID": 68422123
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 2245562527
+          "UID": 2237968424
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 3404679413
+          "UID": 2548788104
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 3953972285
+          "UID": 2741334279
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1419848222
+          "UID": 3078338355
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 3796741632
+          "UID": 4293966328
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 755973769
+          "UID": 1784939177
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 2511252408
+          "UID": 3765872960
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2042384563
+          "UID": 1794555758
         }
       ],
       "Enabled": true,
@@ -574,7 +574,7 @@
           "UID": 3121206272
         }
       ],
-      "Enabled": false,
+      "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_CarabinaM4",
@@ -885,10 +885,10 @@
             0.0,
             1.0000000093880292,
             0.0,
-            -0.008386996826022841,
-            0.3030443954467773,
-            0.3040611739816139,
-            0.9999999999999999
+            0.0,
+            0.30000001192092896,
+            0.30000001192092896,
+            1.0
           ],
           "Type": 0,
           "UID": 4126076258
@@ -983,13 +983,140 @@
       "ParentUID": 113510800,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.2505727333124925,
+            0.0,
+            0.9680977917515716,
+            0.0,
+            0.0,
+            0.9999999999999999,
+            -0.0,
+            0.0,
+            -0.9680977917515716,
+            0.0,
+            0.2505727333124925,
+            0.0,
+            -0.06021176969523806,
+            0.22550418853759763,
+            0.09111257744758555,
+            0.9999999999999999
+          ],
+          "Type": 0,
+          "UID": 460848752
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 1.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    0.0,
+                    2.0,
+                    0.0
+                  ],
+                  "MinDirection": [
+                    0.0,
+                    10.0,
+                    2.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": true
+                },
+                {
+                  "MaxSpeed": 100.0,
+                  "MinSpeed": 50.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    255.0,
+                    255.0,
+                    255.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    255.0,
+                    179.0,
+                    0.0,
+                    255.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "IsProportional": false,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 183.35118103027344,
+              "MaxParticles": 100,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 2.0,
+                  "Duration": 1.0,
+                  "SpawnRate": 4.0,
+                  "Type": 2
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -200.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Name": "BulletShellDrop\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 222546276
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "BulletShellDrop",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
   "ParentUID": 3452816845,
-  "PrefabDirty": true,
+  "PrefabDirty": false,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,
