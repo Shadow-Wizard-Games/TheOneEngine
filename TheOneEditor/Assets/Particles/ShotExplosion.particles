@@ -1,0 +1,82 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 0.05000000074505806,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            -20.0,
+            -20.0,
+            -20.0
+          ],
+          "MinDirection": [
+            20.0,
+            20.0,
+            20.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 2.0,
+          "MinSpeed": 80.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
+        },
+        {
+          "MaxColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "MinColor": [
+            255.0,
+            230.0,
+            70.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            3.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 50.0,
+          "Duration": 0.05000000074505806,
+          "Type": 1
+        }
+      ]
+    }
+  ],
+  "Name": "ShotExplosion",
+  "StartON": true,
+  "Type": 9,
+  "UID": 1220694851
+}

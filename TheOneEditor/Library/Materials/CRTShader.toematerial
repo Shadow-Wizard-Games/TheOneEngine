@@ -1,0 +1,20 @@
+{
+  "shader": "Library/Shaders/CRTShader.toeshader",
+  "uniforms": [
+    {
+      "Name": "albedo",
+      "Value": ""
+    },
+    {
+      "Name": "resolution",
+      "Vec2": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "Name": "time",
+      "Value": 1.0
+    }
+  ]
+}

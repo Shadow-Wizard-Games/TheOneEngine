@@ -1,0 +1,18 @@
+{
+  "fragment": "//------------------------\n// Smol CRT Shader ~hekbas\n//------------------------\n\n#version 450 core\nprecision highp float;\n\n#define RGB(r, g, b) vec3(float(r)/255.0, float(g)/255.0, float(b)/255.0)\n\nuniform sampler2D albedo;\nuniform vec2 resolution;\nuniform float time;\n\nin vec2 fragCoord;\nout vec4 fragColor;\n\n\nconst vec2 kWarp = vec2(1.0 / 12.0, 1.0 / 8.0);\n\nvec2 WarpUV(vec2 uv)\n{\n\tuv = uv * 2.0 - 1.0;\n\tuv *= vec2(\n\t\t1.0 + (uv.y * uv.y) * kWarp.x,\n\t\t1.0 + (uv.x * uv.x) * kWarp.y\n\t);\n\treturn uv * 0.5 + 0.5;\n}\n\nvec2 CurveUV(vec2 uv)\n{\n    uv = uv * 2.0 - 1.0;\n    vec2 offset = abs(uv.yx) / vec2(3.0, 2.0);\n    uv = uv + uv * offset * offset;\n    uv = uv * 0.5 + 0.5;\n    return uv;\n    //return clamp(uv, 0.0, 1.0);\n}\n\nvec2 SmoothWarpUV(vec2 uv)\n{\n    uv = uv * 2.0 - 1.0;\n    uv *= vec2(\n        1.0 + (uv.y * uv.y) * kWarp.x,\n        1.0 + (uv.x * uv.x) * kWarp.y\n    );\n    uv = uv * 0.5 + 0.5;\n    return clamp(uv, 0.0, 1.0);\n}\n\nvoid DrawVignette(inout vec3 color, vec2 uv)\n{\n    float vignette = uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);\n    vignette = clamp(pow(16.0 * vignette, 0.3), 0.0, 1.0);\n    color *= vignette;\n}\n\nvoid DrawScanLine(inout vec3 color, vec2 uv)\n{\n    float scanline = clamp(0.95 + 0.05 * cos(3.14 * (uv.y + 0.008 * time) * 240.0 * 1.0), 0.0, 1.0);\n    float grille = 0.85 + 0.15 * clamp(1.5 * cos(3.14 * uv.x * 640.0 * 1.0), 0.0, 1.0);\n    color *= scanline * grille * 1.2;\n}\n\nvoid main()\n{\n    // Curve UV\n    vec2 uv = fragCoord.xy;\n    vec2 crtUV = SmoothWarpUV(uv);\n\n    // Color\n    vec3 color = texture(albedo, crtUV).rgb;\n    //vec3 color = vec3(crtUV, 0.0).rgb;\n\n    // Set color\n    if(crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0)\n    {\n        color = vec3(0.0, 0.0, 0.0);\n    }\n\n    // Vignette\n    DrawVignette(color, crtUV);\n\n    // ScanLine\n    DrawScanLine(color, uv);\n\n    // Fragcolor OUT\n    fragColor.xyz = color;\n    fragColor.w = 1.0;\n}",
+  "uniforms": [
+    {
+      "Name": "albedo",
+      "Type": 10
+    },
+    {
+      "Name": "resolution",
+      "Type": 4
+    },
+    {
+      "Name": "time",
+      "Type": 3
+    }
+  ],
+  "vertex": "//------------------------\n// Smol CRT Shader ~hekbas\n//------------------------\n\n#version 450 core\n\nlayout(location = 0) in vec3 aPos;\nlayout(location = 1) in vec2 aTexCoords;\n\nout vec2 fragCoord;\n\nvoid main()\n{\n    fragCoord = aTexCoords;\n    gl_Position = vec4(aPos, 1.0);\n}"
+}

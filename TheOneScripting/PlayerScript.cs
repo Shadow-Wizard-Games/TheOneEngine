@@ -40,6 +40,7 @@ public class PlayerScript : MonoBehaviour
     // particles
     IParticleSystem stepParticles;
     IParticleSystem shotParticles;
+    IParticleSystem shotExplosion;
 
     // background music
     public bool isFighting;
@@ -111,6 +112,7 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
+        shotExplosion = attachedGameObject.FindInChildren("ShotExplosion")?.GetComponent<IParticleSystem>();
         shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
 
         M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
@@ -815,6 +817,7 @@ public class PlayerScript : MonoBehaviour
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
+                shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
             }
@@ -839,6 +842,7 @@ public class PlayerScript : MonoBehaviour
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
                 hasShot = true;
+                shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
             }
@@ -863,6 +867,7 @@ public class PlayerScript : MonoBehaviour
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
                 hasShot = true;
+                shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
             }
@@ -887,6 +892,7 @@ public class PlayerScript : MonoBehaviour
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
+                shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
             }
