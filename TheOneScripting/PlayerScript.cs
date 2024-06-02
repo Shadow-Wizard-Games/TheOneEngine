@@ -777,7 +777,7 @@ public class PlayerScript : MonoBehaviour
         if (timeFromLastStep >= 0.3f)
         {
             attachedGameObject.source.Play(IAudioSource.AudioEvent.P_STEP);
-            stepParticles.Play();
+            stepParticles.Replay();
 
             timeFromLastStep = 0.0f;
         }

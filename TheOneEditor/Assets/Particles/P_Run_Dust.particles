@@ -39,23 +39,38 @@
           ],
           "Type": 1,
           "UsingSingleValueColor": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            3.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
         }
       ],
       "IsLooping": true,
-      "Lifetime": 743.7128295898438,
+      "Lifetime": 14.299391746520996,
       "MaxParticles": 20,
       "RenderModule": [
         {
           "BillboardType": 0,
+          "TexturePath": "",
           "Type": 0
         }
       ],
       "SpawnModule": [
         {
           "Amount": 10.0,
-          "Duration": 0.800000011920929,
-          "SpawnRate": 1.5499999523162842,
-          "Type": 2
+          "Duration": 0.30000001192092896,
+          "Type": 1
         }
       ],
       "UpdateModules": [

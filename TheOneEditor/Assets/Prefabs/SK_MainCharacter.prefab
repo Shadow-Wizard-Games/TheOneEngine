@@ -3,21 +3,21 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        -4.371138256713962e-06,
+        70.71066444722956,
         0.0,
-        -99.99998285125413,
+        70.71066753809106,
         0.0,
         0.0,
         100.0,
         0.0,
         0.0,
-        99.99998285125413,
+        -70.71066753809106,
         0.0,
-        -4.371138256713962e-06,
+        70.71066444722956,
         0.0,
-        137.9758758544922,
+        -98.64492797851563,
         0.0,
-        496.5670166015625,
+        501.3685607910156,
         1.0
       ],
       "Type": 0,
@@ -136,10 +136,25 @@
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1215.0333251953125,
+              "Lifetime": 11.200445175170898,
               "MaxParticles": 20,
               "RenderModule": [
                 {
@@ -151,9 +166,8 @@
               "SpawnModule": [
                 {
                   "Amount": 10.0,
-                  "Duration": 0.800000011920929,
-                  "SpawnRate": 1.5499999523162842,
-                  "Type": 2
+                  "Duration": 0.30000001192092896,
+                  "Type": 1
                 }
               ],
               "UpdateModules": [
@@ -451,63 +465,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 185287154
+          "UID": 2862017093
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1549990936
+          "UID": 2245562527
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 2486193917
+          "UID": 3404679413
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 2163760984
+          "UID": 3953972285
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 509485332
+          "UID": 1419848222
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 12224900
+          "UID": 3796741632
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 570851610
+          "UID": 755973769
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 3984731874
+          "UID": 2511252408
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 283578308
+          "UID": 2042384563
         }
       ],
       "Enabled": true,
@@ -560,7 +574,7 @@
           "UID": 3121206272
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_CarabinaM4",
