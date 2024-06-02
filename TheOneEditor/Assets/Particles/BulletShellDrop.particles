@@ -1,0 +1,93 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "MinDirection": [
+            0.0,
+            10.0,
+            2.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": true
+        },
+        {
+          "MaxSpeed": 100.0,
+          "MinSpeed": 50.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            255.0,
+            255.0,
+            255.0,
+            0.0
+          ],
+          "MinColor": [
+            255.0,
+            179.0,
+            0.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "IsProportional": false,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            3.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 188.5371856689453,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 2.0,
+          "Duration": 1.0,
+          "SpawnRate": 4.0,
+          "Type": 2
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            -200.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "BulletShellDrop",
+  "StartON": true,
+  "Type": 9,
+  "UID": 222546276
+}

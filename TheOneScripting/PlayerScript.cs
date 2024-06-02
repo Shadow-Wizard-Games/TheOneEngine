@@ -41,6 +41,7 @@ public class PlayerScript : MonoBehaviour
     IParticleSystem stepParticles;
     IParticleSystem shotParticles;
     IParticleSystem shotExplosion;
+    IParticleSystem bulletShell;
 
     // background music
     public bool isFighting;
@@ -71,6 +72,8 @@ public class PlayerScript : MonoBehaviour
     IGameObject ImpacienteGO;
     IGameObject FlamethrowerGO;
     //IGameObject GrenadeLauncherGO;
+    IGameObject shotParticlesGO;
+    IGameObject shotExplosionGO;
 
     public SkillSet currentSkillSet;
     float skillSetChangeBaseCD;
@@ -112,7 +115,10 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
+        shotParticlesGO = attachedGameObject.FindInChildren("ShotPlayerPS");
         shotExplosion = attachedGameObject.FindInChildren("ShotExplosion")?.GetComponent<IParticleSystem>();
+        shotExplosionGO = attachedGameObject.FindInChildren("ShotExplosion");
+        bulletShell = attachedGameObject.FindInChildren("BulletShellDrop")?.GetComponent<IParticleSystem>();
         shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
 
         M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
@@ -453,6 +459,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         stepParticles.End();
+        bulletShell.End();
     }
     private void RunAction()
     {
@@ -486,6 +493,8 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Run Grenade Launcher");
                 break;
         }
+
+        bulletShell.End();
     }
     private void DashAction()
     {
@@ -570,6 +579,7 @@ public class PlayerScript : MonoBehaviour
         attachedGameObject.animator.Play("Death");
 
         stepParticles.End();
+        bulletShell.End();
     }
     private void AdrenalineRushAction()
     {
@@ -817,8 +827,11 @@ public class PlayerScript : MonoBehaviour
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
+                shotExplosionGO.transform.Position = new Vector3(0.0f, 0.3f, 0.3f);
+                shotParticlesGO.transform.Position = new Vector3(0.0f, 0.29f, 0.252f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
+                bulletShell.Play();
                 shotLight.SwitchOn();
             }
         }
@@ -855,7 +868,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootImpaciente()
     {
-        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+        Vector3 height = new Vector3(0.0f, 13.0f, 0.0f);
 
         // CHANGE WITH REAL STATS, M4 PLACEHOLDER
 
@@ -864,11 +877,15 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > Impaciente.fireRate / 2)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                Vector3 offset = new Vector3(-10.0f, 23.5f, -10.0f);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + (attachedGameObject.transform.Forward * -2.7f + attachedGameObject.transform.Right) * offset + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
                 hasShot = true;
+                shotExplosionGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
+                shotParticlesGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
+                bulletShell.Play();
                 shotLight.SwitchOn();
             }
         }
