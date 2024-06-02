@@ -101,6 +101,9 @@ public class PlayerScript : MonoBehaviour
     public IAudioSource.AudioStateID currentAudioState;
     float timeFromLastStep;
 
+    // Lights
+    public ILight shotLight;
+
     public override void Start()
     {
         itemManager = IGameObject.Find("ItemManager")?.GetComponent<ItemManager>();
@@ -108,6 +111,7 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
+        shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
 
         M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
         M4GO.Disable();
@@ -235,6 +239,8 @@ public class PlayerScript : MonoBehaviour
         currentAction = CurrentAction.IDLE;
 
         SetAimDirection();
+
+        shotLight.SwitchOff();
 
         #region IDLE / MOVING STATES
         if (SetMoveDirection()
@@ -810,6 +816,7 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
                 shotParticles.Replay();
+                shotLight.SwitchOn();
             }
         }
         else
@@ -833,6 +840,7 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
                 hasShot = true;
                 shotParticles.Replay();
+                shotLight.SwitchOn();
             }
         }
         else
@@ -856,6 +864,7 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
                 hasShot = true;
                 shotParticles.Replay();
+                shotLight.SwitchOn();
             }
         }
         else
@@ -879,6 +888,7 @@ public class PlayerScript : MonoBehaviour
                 //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
                 shotParticles.Replay();
+                shotLight.SwitchOn();
             }
         }
         else

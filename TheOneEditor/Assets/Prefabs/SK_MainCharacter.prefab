@@ -3,21 +3,21 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        99.61945343017578,
+        -70.71066641426842,
         0.0,
-        8.715564727783203,
+        70.7106655710522,
         0.0,
         0.0,
         100.0,
         0.0,
         0.0,
-        -8.715564727783203,
+        -70.7106655710522,
         0.0,
-        99.61945343017578,
+        -70.71066641426842,
         0.0,
-        -51.821102142333984,
+        485.49261474609375,
         0.0,
-        -46.02009582519531,
+        425.44281005859375,
         1.0
       ],
       "Type": 0,
@@ -139,7 +139,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 745.2593994140625,
+              "Lifetime": 917.1748657226563,
               "MaxParticles": 20,
               "RenderModule": [
                 {
@@ -451,63 +451,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2481116818
+          "UID": 4124781498
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 3693716587
+          "UID": 3563147724
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 3174485273
+          "UID": 593307698
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 3150286111
+          "UID": 83272623
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1617850911
+          "UID": 3717751194
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 2821408942
+          "UID": 4157316562
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 2960815957
+          "UID": 1682022302
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 43181240
+          "UID": 565733101
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 1717719160
+          "UID": 219176302
         }
       ],
       "Enabled": true,
@@ -610,7 +610,7 @@
           "UID": 3830396329
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_ShoulderLaser",
@@ -660,7 +660,7 @@
           "UID": 3882981545
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_OlPainless",
@@ -710,7 +710,7 @@
           "UID": 2918350885
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_Flamethrower",
@@ -781,7 +781,75 @@
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Spot Light",
+      "Name": "Flashlight",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9999999999999999,
+            1.0475122991238095e-09,
+            0.0,
+            0.0,
+            1.5746360967905382e-07,
+            -0.07057900905609131,
+            0.9975062128072708,
+            0.0,
+            1.2868707428663473e-08,
+            -0.9975060272216797,
+            -0.07057896981323965,
+            0.0,
+            0.006610645137312576,
+            0.35459922790527343,
+            0.2190867077903458,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 286708544
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 3625171500,
+          "Yaw": 0.0,
+          "zFar": 3000.0,
+          "zNear": 10.0
+        },
+        {
+          "Color": [
+            1.0,
+            0.9741571545600891,
+            0.42038214206695557
+          ],
+          "InnerCutOff": -0.07000000029802322,
+          "Intensity": 0.0,
+          "LightType": 2,
+          "Linear": 0.5600000023841858,
+          "Name": "Light",
+          "OuterCutOff": 1.1399999856948853,
+          "ParentUID": 3452816845,
+          "Quadratic": 1.659999966621399,
+          "Radius": 194.5,
+          "Specular": 0.5,
+          "Type": 11,
+          "UID": 1806633428
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ShotLight",
       "ParentUID": 113510800,
       "Static": false,
       "UID": 3452816845
@@ -791,7 +859,7 @@
   "Keeped": false,
   "Name": "SK_MainCharacter",
   "ParentUID": 3452816845,
-  "PrefabDirty": true,
+  "PrefabDirty": false,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,
