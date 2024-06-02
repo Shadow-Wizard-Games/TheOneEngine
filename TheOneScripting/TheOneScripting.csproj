@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ability.cs" />
     <Compile Include="AbilityAdrenalineRush.cs" />
     <Compile Include="AbilityDash.cs" />
     <Compile Include="AbilityFlamethrower.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="EventCheckpoint.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="ILight.cs" />
     <Compile Include="IntroScene.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Debug.cs" />
@@ -82,9 +82,11 @@
     <Compile Include="IGameObject.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="InternalCalls.cs" />
-    <Compile Include="M4Behaviour.cs" />
+    <Compile Include="Item_FlameThrower.cs" />
+    <Compile Include="Item_Impaciente.cs" />
     <Compile Include="Raindrop.cs" />
     <Compile Include="RedXenomorphBehaviour.cs" />
+    <Compile Include="ShoulderLaserBehaviour.cs" />
     <Compile Include="UiScriptDebug.cs" />
     <Compile Include="UiManager.cs" />
     <Compile Include="UiScriptHud.cs" />
@@ -94,7 +96,6 @@
     <Compile Include="IParticleSystem.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
-    <Compile Include="Item_GrenadeLauncher.cs" />
     <Compile Include="Item_Healing.cs" />
     <Compile Include="Item_M4A1.cs" />
     <Compile Include="Item_Shield.cs" />

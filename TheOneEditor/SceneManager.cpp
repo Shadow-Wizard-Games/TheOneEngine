@@ -2,8 +2,9 @@
 #include "SceneManager.h"
 #include "Gui.h"
 #include "PanelInspector.h"
-#include "Input.h"
-#include "../TheOneEngine/Log.h"
+
+#include "TheOneEngine/InputManager.h"
+#include "TheOneEngine/Log.h"
 
 #include <fstream>
 #include <filesystem>
@@ -24,7 +25,7 @@ bool SceneManager::Start()
 {
 	engine->N_sceneManager->currentScene = new Scene(0, "NewUntitledScene");
 	engine->N_sceneManager->CreateCameraGO("mainCamera");
-	//engine->N_sceneManager->LoadScene("NewUntitledScene");
+	//engine->N_sceneManager->LoadScene("AA_RenderTest");
 
 	engine->N_sceneManager->Start();
 
@@ -48,8 +49,8 @@ bool SceneManager::Update(double dt)
 {
 	engine->N_sceneManager->Update(dt, app->IsPlaying());
 
-	if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_STATE::KEY_DOWN &&
-		app->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_STATE::KEY_REPEAT) &&
+	if ((engine->inputManager->GetKey(SDL_SCANCODE_S) == KEY_DOWN &&
+		engine->inputManager->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT) &&
 		engine->N_sceneManager->currentScene->IsDirty())
 	{
 		engine->N_sceneManager->SaveScene("Assets\\Scenes", engine->N_sceneManager->currentScene->GetSceneName());

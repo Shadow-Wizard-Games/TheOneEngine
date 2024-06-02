@@ -39,7 +39,7 @@
       "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_ShootM4.anim",
       "loop": true,
       "name": "Shoot M4",
-      "playback_speed": 2.4,
+      "playback_speed": 2.4000000953674316,
       "type": 0
     },
     {
@@ -142,15 +142,29 @@
     },
     {
       "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_ShootShoulderLaser.anim",
-      "loop": true,
+      "loop": false,
       "name": "Shoot Shoulder Laser",
       "playback_speed": 1.0,
       "type": 0
     },
     {
-      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_TPose.anim",
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_IdleLaImpaciente.anim",
       "loop": true,
-      "name": "T Pose",
+      "name": "Idle Impaciente",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_ShootLaImpaciente.anim",
+      "loop": true,
+      "name": "Shoot Impaciente",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_MainCharacter_TPose\\SK_MainCharacter_Take 001AS_MainCharacter_RunAndShootLaImpaciente.anim",
+      "loop": true,
+      "name": "Run Shoot Impaciente",
       "playback_speed": 1.0,
       "type": 0
     }
@@ -159,6 +173,6 @@
   "mesh": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter_animatedmesh.ozzmesh",
   "name": "SK_MainCharacter",
   "skeleton": "Library/Meshes/AS_MainCharacter_TPose/SK_MainCharacter_skeleton.skeleton",
-  "transition_blend": false,
-  "transition_time": 0.0
+  "transition_blend": true,
+  "transition_time": 0.10000000149011612
 }

@@ -54,7 +54,7 @@ void Uniform::sendToShader(uint16_t shaderProgram, int& textureId)
 		{
 			GLCALL(glActiveTexture(textureId));
 			GLCALL(glBindTexture(GL_TEXTURE_2D, ((SamplerData*)data)->tex_id));
-			//GLCALL(glUniform1i(uniformID, textureId - GL_TEXTURE0));
+			GLCALL(glUniform1i(uniformID, textureId - GL_TEXTURE0));
 			textureId++;
 		}
 	}break;

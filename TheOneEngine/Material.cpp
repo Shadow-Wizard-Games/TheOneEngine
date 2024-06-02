@@ -13,8 +13,8 @@ Material::Material(Shader* shader)
 {
 	if (!shader)
 	{
-		size_t id = Resources::Load<Shader>("Assets/Shaders/MeshColor");
-		setShader(Resources::GetResourceById<Shader>(id), "Assets/Shaders/MeshColor");
+		size_t id = Resources::Load<Shader>("Assets/Shaders/MeshTexture");
+		setShader(Resources::GetResourceById<Shader>(id), "Assets/Shaders/MeshTexture");
 	}
 	else
 		setShader(shader, shader->getPath());
@@ -260,10 +260,13 @@ void Material::Load(const std::string& path)
 					sdata.resource_id = Resources::LoadFromLibrary<Texture>(sdata.tex_path);
 
 					Texture* img = Resources::GetResourceById<Texture>(sdata.resource_id);
-					sdata.tex_id = img->GetTextureId();
 
-					uniform->setData(sdata, uniform->getType());
+					if (img)
+					{
+						sdata.tex_id = img->GetTextureId();
 
+						uniform->setData(sdata, uniform->getType());
+					}
 				}
 				else
 				{

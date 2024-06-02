@@ -5,6 +5,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Model.h"
+#include "SkeletalModel.h"
 #include "Material.h"
 #include "Font.h"
 
@@ -30,6 +31,7 @@ public:
 	enum ResourceType {
 		RES_IMAGE,
 		RES_MODEL,
+		RES_SKELETALMODEL,
 		RES_SHADER,
 		RES_MATERIAL,
 		RES_FONT,

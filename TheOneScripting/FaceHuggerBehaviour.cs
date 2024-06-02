@@ -18,7 +18,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
     // Facehugger parameters
     float life = 40.0f;
-    float biomass = 0.0f;
+    float biomass = 10.0f;
     float movementSpeed = 35.0f * 2;
     States currentState = States.Idle;
 
@@ -241,13 +241,10 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
             if (shotDead) attachedGameObject.animator.Play("ShotAndDie");
 
-            if (attachedGameObject.animator.CurrentAnimHasFinished)
-            {
-                isDead = true;
-                player.shieldKillCounter++;
-                // add player biomass
-                deathPSGO.Play();
-            }
+            isDead = true;
+            player.shieldKillCounter++;
+            // add player biomass
+            deathPSGO.Play();
         }
     }
 
@@ -257,7 +254,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         {
             if (isJumping)
             {
-                playerGO.GetComponent<PlayerScript>().ReduceLife();
+                playerGO.GetComponent<PlayerScript>().ReduceLife(10);
                 hitPlayer = true;
                 fallDead = true;
             }

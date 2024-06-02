@@ -31,7 +31,7 @@
       "UID": 2371490470
     },
     {
-      "AudioID": 24,
+      "AudioID": 2,
       "Name": "AudioSource",
       "Type": 8
     }
@@ -1132,7 +1132,7 @@
           "UID": 951121546
         },
         {
-          "AudioID": 25,
+          "AudioID": 3,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -1433,7 +1433,7 @@
           ]
         },
         {
-          "AudioID": 26,
+          "AudioID": 4,
           "Name": "Source",
           "Type": 8
         },
@@ -2998,7 +2998,7 @@
           "UID": 607510851
         },
         {
-          "AudioID": 27,
+          "AudioID": 5,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -3497,7 +3497,7 @@
           ]
         },
         {
-          "AudioID": 28,
+          "AudioID": 6,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -3681,7 +3681,7 @@
           ]
         },
         {
-          "AudioID": 29,
+          "AudioID": 7,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -5907,7 +5907,7 @@
               ]
             },
             {
-              "AudioID": 30,
+              "AudioID": 8,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6694,7 +6694,7 @@
               "UID": 1616070798
             },
             {
-              "AudioID": 31,
+              "AudioID": 9,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -6802,7 +6802,7 @@
           ]
         },
         {
-          "AudioID": 32,
+          "AudioID": 10,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -6926,7 +6926,7 @@
           ]
         },
         {
-          "AudioID": 33,
+          "AudioID": 11,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -6938,104 +6938,12 @@
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 762181437
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "GameManager",
-          "Type": 4,
-          "UID": 2135104260
-        },
-        {
-          "AudioID": 34,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": true,
-      "Name": "GameManager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2278715941
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "ItemManager",
-          "Type": 4,
-          "UID": 2581454987
-        },
-        {
-          "AudioID": 35,
-          "Name": "AudioSource",
-          "Type": 8
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": true,
-      "Name": "ItemManager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "UI_Manager",
-  "ParentUID": 6619207,
+  "ParentUID": 3452816845,
   "PrefabDirty": false,
   "PrefabID": 2472160759,
   "PrefabName": "UI_Manager",

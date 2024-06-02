@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "Canvas.h"
+#include "Light.h"
 
 #include <string>
 #include <memory>
@@ -52,12 +53,16 @@ public:
 	std::shared_ptr<GameObject> DuplicateGO(std::shared_ptr<GameObject> originalGO, bool recursive = false);
 	std::shared_ptr<GameObject> CreateEmptyGO(std::string name = "Empty GameObject", bool isRoot = true);
 	void ReparentGO(std::shared_ptr<GameObject> go, std::shared_ptr<GameObject> newParentGO);
+
 	std::shared_ptr<GameObject> CreateCameraGO(std::string name);
 	std::shared_ptr<GameObject> CreateCanvasGO(std::string name);
+	std::shared_ptr<GameObject> CreateLightGO(LightType type);
 
-	// Try to mix this two (CreateExistingMeshGO should be erased and CreateMeshGO has to do)
-	void CreateMeshGO(std::string path);
-	void CreateExistingMeshGO(std::string fbxName);
+	void CreateMeshGO(const std::string& path);
+	void CreateExistingMeshGO(const std::string& fbxName);
+	void CreateLibMeshGO(const std::string& path);
+	void CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
+	void CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle);
 
 	std::shared_ptr<GameObject> CreateCube();
 	std::shared_ptr<GameObject> CreateSphere();
@@ -98,7 +103,7 @@ public:
 	void AccessFileDataWrite(std::string filepath, DataType dataType, std::vector<std::string> dataPath, std::string dataName, void* data);
 
 private:
-
+	void UpdateTransforms(std::shared_ptr<GameObject> go);
 	void RecursiveScriptInit(std::shared_ptr<GameObject> go, bool firstInit = false);
 
 public:
@@ -131,7 +136,12 @@ public:
 		rootSceneGO.get()->AddComponent<Transform>();
 	}
 
-	~Scene() {}
+	~Scene() 
+	{ 
+		lights.clear();
+		delete currentCamera;
+		currentCamera = nullptr;
+	}
 
 	inline std::string GetSceneName() const { return sceneName; }
 	inline void SetSceneName(std::string name) { sceneName = name; }
@@ -158,8 +168,7 @@ public:
 private:
 	inline void RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam = nullptr);
 	inline void RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode = DrawMode::GAME);
-	inline void SetCamera(Camera* cam);
-	void Set2DCamera();
+	//void Set2DCamera();
 
 private:
 	uint index;
@@ -175,6 +184,8 @@ public:
 	Camera* currentCamera = nullptr;
 
 	std::multimap<float, GameObject*> zSorting;
+
+	std::vector<Light*> lights;
 
 	//int listenerAudioGOID = -1;
 };

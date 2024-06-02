@@ -1,95 +1,88 @@
 ﻿using System;
 
-public class AbilityDash : Ability
+public class AbilityDash : MonoBehaviour
 {
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
+
+    public AbilityState state;
+
     IGameObject playerGO;
     PlayerScript player;
 
     readonly float rollPotency = 2.0f;
     readonly float dashPotency = 3.0f;
 
+
     public override void Start()
     {
         abilityName = "Roll";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         activeTime = 0.3f;
         activeTimeCounter = activeTime;
         cooldownTime = 4.0f;
         cooldownTimeCounter = cooldownTime;
+
+        playerGO = attachedGameObject.parent;
+        player = playerGO?.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     public override void Update()
     {
         switch (state)
         {
-            case AbilityState.CHARGING:
-                break;
-            case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.LSHIFT) || Input.GetControllerButton(Input.ControllerButtonCode.A)) // change input
-                {
-                    Activated();
-
-                    break;
-                }
-                // controller input
-                break;
             case AbilityState.ACTIVE:
+
                 WhileActive();
-                Debug.Log("Dash active time" + activeTimeCounter.ToString("F2"));
+
                 break;
             case AbilityState.COOLDOWN:
+
                 OnCooldown();
-                Debug.Log("Dash cooldown time" + cooldownTimeCounter.ToString("F2"));
+
                 break;
         }
     }
 
-    public override void Activated()
-    {
-        player.isDashing = true;
-
-        state = AbilityState.ACTIVE;
-
-        if (player.dashAbilityName == "Roll")
-        {
-            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_ROLL);
-        }
-        else
-        {
-            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_DASH);
-        }
-
-        Debug.Log("Ability " + player.dashAbilityName + " Activated");
-    }
-
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0)
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
-            if (player.dashAbilityName == "Roll")
+            if (abilityName == "Roll")
             {
-                player.attachedGameObject.transform.Translate(player.lastMovementDirection * rollPotency * player.baseSpeed * Time.deltaTime);
+                playerGO.transform.Translate(player.lastMovementDirection * rollPotency * player.baseSpeed * Time.deltaTime);
             }
             else
             {
-                player.attachedGameObject.transform.Translate(player.lastMovementDirection * dashPotency * player.baseSpeed * Time.deltaTime);
+                playerGO.transform.Translate(player.lastMovementDirection * dashPotency * player.baseSpeed * Time.deltaTime);
             }
         }
         else
         {
-            player.isDashing = false;
             activeTimeCounter = activeTime;
+
             state = AbilityState.COOLDOWN;
 
-            Debug.Log("Ability " + player.dashAbilityName + " on Cooldown");
+            Debug.Log("Ability " + abilityName + " on Cooldown");
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {
@@ -101,7 +94,7 @@ public class AbilityDash : Ability
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
 
-            Debug.Log("Ability " + player.dashAbilityName + " Ready");
+            Debug.Log("Ability " + abilityName + " Ready");
         }
     }
 }

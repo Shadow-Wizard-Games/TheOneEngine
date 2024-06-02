@@ -4,17 +4,29 @@
     <ClCompile Include="App.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Gui.cpp">
-      <Filter>Panels</Filter>
-    </ClCompile>
     <ClCompile Include="Hardware.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelInspector.cpp">
+      <Filter>Panels\Inspector</Filter>
+    </ClCompile>
+    <ClCompile Include="InspectorParticleSystems.cpp">
+      <Filter>Panels\Inspector</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="PanelAbout.cpp">
       <Filter>Panels</Filter>
@@ -43,29 +55,8 @@
     <ClCompile Include="PanelSettings.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer3D.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.h">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_demo.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="PanelInspector.cpp">
-      <Filter>Panels\Inspector</Filter>
-    </ClCompile>
-    <ClCompile Include="InspectorParticleSystems.cpp">
-      <Filter>Panels\Inspector</Filter>
+    <ClCompile Include="PanelRenderer.cpp">
+      <Filter>Panels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,23 +64,26 @@
     <ClInclude Include="App.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Gui.h">
-      <Filter>Panels</Filter>
-    </ClInclude>
     <ClInclude Include="Hardware.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Panel.h">
-      <Filter>Panels</Filter>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="PanelSettings.h">
-      <Filter>Panels</Filter>
+    <ClInclude Include="Timer.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelInspector.h">
+      <Filter>Panels\Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="InspectorParticleSystems.h">
+      <Filter>Panels\Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="PanelAbout.h">
       <Filter>Panels</Filter>
@@ -115,20 +109,14 @@
     <ClInclude Include="PanelScene.h">
       <Filter>Panels</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer3D.h">
-      <Filter>Modules</Filter>
+    <ClInclude Include="PanelSettings.h">
+      <Filter>Panels</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Modules</Filter>
+    <ClInclude Include="Panel.h">
+      <Filter>Panels</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="PanelInspector.h">
-      <Filter>Panels\Inspector</Filter>
-    </ClInclude>
-    <ClInclude Include="InspectorParticleSystems.h">
-      <Filter>Panels\Inspector</Filter>
+    <ClInclude Include="PanelRenderer.h">
+      <Filter>Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -144,11 +132,11 @@
     <Filter Include="Modules">
       <UniqueIdentifier>{b5a3a618-254d-4818-bff6-af18aea90f74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Panels">
-      <UniqueIdentifier>{4305796a-bf2b-4aac-87c2-5cdbf564d316}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{706a58bd-5250-407b-8e5c-507a98b85e36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Panels">
+      <UniqueIdentifier>{4305796a-bf2b-4aac-87c2-5cdbf564d316}</UniqueIdentifier>
     </Filter>
     <Filter Include="Panels\Inspector">
       <UniqueIdentifier>{bf058981-691b-4392-a2c3-5d3202c6f052}</UniqueIdentifier>

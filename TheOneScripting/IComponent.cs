@@ -19,6 +19,7 @@ public class IComponent : IObject
         IAudioSource,
         IParticleSystem,
         IAnimator,
+        ILight,
         Unknown
     }
 
