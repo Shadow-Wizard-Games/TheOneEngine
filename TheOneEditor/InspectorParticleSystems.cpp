@@ -6,6 +6,7 @@
 
 void UIEmmiterWriteNode(Emmiter* emmiter)
 {
+	ImGui::Separator();
 	ImGui::InputInt("maxParticles", &emmiter->maxParticles);
 
 	if (ImGui::Button("Reset Pool")) emmiter->RestartParticlePool();
@@ -216,6 +217,8 @@ void UIEmmiterWriteNode(Emmiter* emmiter)
 	}
 
 	ImGui::Separator();
+	ImGui::Separator();
+
 }
 
 // spawn modules ---------------------------------------------------------------------------------------------------------------
@@ -318,7 +321,7 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 
 	ImGui::Checkbox("Single Value", &initModule->scale.usingSingleValue);
 
-	ImGui::PushItemWidth(60);
+//	ImGui::PushItemWidth(60);
 
 	if (initModule->scale.usingSingleValue) {
 
