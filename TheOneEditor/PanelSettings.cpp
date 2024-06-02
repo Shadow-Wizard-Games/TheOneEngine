@@ -1,13 +1,14 @@
 #include "PanelSettings.h"
 #include "App.h"
 #include "Gui.h"
-#include "Window.h"
-#include "Input.h"
 #include "Hardware.h"
 
-#include "imgui.h"
-#include "implot.h"
-#include "implot_internal.h"
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+
+#include <imgui.h>
+#include <implot.h>
+#include <implot_internal.h>
 
 
 PanelSettings::PanelSettings(PanelType type, std::string name) : Panel(type, name), fpsHistory(MAX_HISTORY_SIZE), delayHistory(MAX_HISTORY_SIZE) {}
@@ -54,6 +55,9 @@ bool PanelSettings::Draw()
 			if (ImGui::Button("Renderer", buttonSize))
 				selected = SelectedSetting::RENDERER;
 
+			if (ImGui::Button("Color Picker", buttonSize))
+				selected = SelectedSetting::COLOR_PICKER;
+
 			if (ImGui::Button("Hardware", buttonSize))
 				selected = SelectedSetting::HARDWARE;
 
@@ -77,6 +81,7 @@ bool PanelSettings::Draw()
 				case SelectedSetting::WINDOW:		Window();		break;
 				case SelectedSetting::INPUT:		Input();		break;
 				case SelectedSetting::RENDERER:		Renderer();		break;
+				case SelectedSetting::COLOR_PICKER:	ColorPicker();	break;
 				case SelectedSetting::HARDWARE:		Hardware();		break;
 				case SelectedSetting::SOFTWARE:		Software();		break;
 				default: Performance(); break;
@@ -98,7 +103,7 @@ void PanelSettings::Performance()
 	int frameRate = app->GetFrameRate();
 	ImGui::Text("Frame Rate");
 	ImGui::SameLine();
-	if (ImGui::SliderInt("##Frame Rate", &frameRate, 0, app->window->GetDisplayRefreshRate()))
+	if (ImGui::SliderInt("##Frame Rate", &frameRate, 0, engine->window->GetDisplayRefreshRate()))
 		app->SetFrameRate(frameRate);
 
 	ImGui::Separator();
@@ -115,18 +120,18 @@ void PanelSettings::Performance()
 void PanelSettings::Window()
 {
 	// Display Mode
-	int displayMode = (int)app->window->GetDisplayMode();	
+	int displayMode = (int)engine->window->GetDisplayMode();	
 	ImGui::Text("Display Mode");
 	ImGui::SameLine();
 	if (ImGui::Combo("##Display Mode", &displayMode, displayModes, 4))
-		app->window->SetDisplayMode((DisplayMode)displayMode);
+		engine->window->SetDisplayMode((DisplayMode)displayMode);
 
 	// Resolution
-	int resolution = (int)app->window->GetResolution();
+	int resolution = (int)engine->window->GetResolution();
 	ImGui::Text("Resolution");
 	ImGui::SameLine();
 	if (ImGui::Combo("##Resolution", &resolution, resolutions, 8))
-		app->window->SetResolution((Resolution)resolution);
+		engine->window->SetResolution((Resolution)resolution);
 
 	// Vsync
 	bool vsync = engine->GetVSync();
@@ -214,6 +219,21 @@ void PanelSettings::Input()
 
 void PanelSettings::Renderer()
 {
+}
+
+void PanelSettings::ColorPicker()
+{
+	ImGui::Checkbox("Alpha Preview", &alpha_preview);
+	ImGui::Checkbox("Half Alpha Preview", &alpha_half_preview);
+	ImGui::Checkbox("Drag and Drop", &drag_and_drop);
+	ImGui::Checkbox("Options Menu (Right Click)", &options_menu);
+	ImGui::Checkbox("HDR", &hdr);
+
+	colorPickerFlags =
+		(hdr ? ImGuiColorEditFlags_HDR : 0) |
+		(drag_and_drop ? 0 : ImGuiColorEditFlags_NoDragDrop) |
+		(alpha_half_preview ? ImGuiColorEditFlags_AlphaPreviewHalf : (alpha_preview ? ImGuiColorEditFlags_AlphaPreview : 0)) |
+		(options_menu ? 0 : ImGuiColorEditFlags_NoOptions);
 }
 
 void PanelSettings::Hardware()

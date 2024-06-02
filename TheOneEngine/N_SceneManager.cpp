@@ -6,16 +6,18 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Script.h"
 #include "Collider2D.h"
 #include "Listener.h"
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
 #include "ImageUI.h"
-
-#include "../TheOneAudio/AudioCore.h"
-#include "EngineCore.h"
+#include "Renderer.h"
 #include "Renderer2D.h"
+#include "Renderer3D.h"
+
+#include "TheOneAudio/AudioCore.h"
 
 #include <fstream>
 #include <filesystem>
@@ -64,6 +66,7 @@ bool N_SceneManager::PreUpdate()
 		engine->collisionSolver->LoadCollisions(currentScene->GetRootSceneGO());
 
 		FindCameraInScene();
+
 		currentScene->SetIsDirty(true);
 		sceneChangeKeepGOs = false;
 		if (!previousFrameIsPlaying)
@@ -85,6 +88,9 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	{
 		RecursiveScriptInit(currentScene->GetRootSceneGO(), !sceneChange);
 	}
+
+	if (!sceneIsPlaying)
+		UpdateTransforms(currentScene->GetRootSceneGO());
 
 	previousFrameIsPlaying = sceneIsPlaying;
 	sceneIsPlaying = isPlaying;
@@ -214,6 +220,9 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	// Close the file
 	file.close();
 
+	//clear lights
+	Renderer3D::CleanLights();
+
 	if (sceneJSON.contains("sceneName"))
 	{
 		currentScene->SetSceneName(sceneJSON["sceneName"]);
@@ -265,8 +274,11 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 							int it = 0;
 							for (int i = 0; i < 4; i++) {
 								for (int j = 0; j < 4; j++) {
-									transformationMatrix[i][j] = componentJSON["Transformation Matrix"][it];
-									it++;
+									if (componentJSON.contains("Transformation Matrix"))
+									{
+										transformationMatrix[i][j] = componentJSON["Transformation Matrix"][it];
+										it++;
+									}
 								}
 							}
 						}
@@ -507,6 +519,14 @@ void N_SceneManager::AccessFileDataWrite(std::string filepath, DataType dataType
 	}
 }
 
+void N_SceneManager::UpdateTransforms(std::shared_ptr<GameObject> go)
+{
+	go->GetComponent<Transform>()->Update();
+
+	for (auto& child : go->children)
+		UpdateTransforms(child);
+}
+
 void N_SceneManager::RecursiveScriptInit(std::shared_ptr<GameObject> go, bool firstInit)
 {
 	for (const auto gameObject : go.get()->children)
@@ -601,6 +621,9 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::ParticleSystem:
 			duplicatedGO.get()->AddCopiedComponent<ParticleSystem>((ParticleSystem*)item);
 			break;
+		case ComponentType::Light:
+			duplicatedGO.get()->AddCopiedComponent<Light>((Light*)item);
+			break;
 		case ComponentType::Unknown:
 			break;
 		default:
@@ -688,10 +711,7 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCameraGO(std::string name)
 	cameraGO.get()->GetComponent<Camera>()->UpdateCamera();
 
 	cameraGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
-
-	currentScene->GetRootSceneGO().get()->children.emplace_back(cameraGO);
-
-	return cameraGO;
+	return currentScene->GetRootSceneGO().get()->children.emplace_back(cameraGO);
 }
 
 std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
@@ -706,119 +726,181 @@ std::shared_ptr<GameObject> N_SceneManager::CreateCanvasGO(std::string name)
 	canvasGO.get()->GetComponent<Canvas>()->AddItemUI<TextUI>("Assets/Fonts/ComicSansMS.ttf");
 
 	canvasGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
-
 	currentScene->GetRootSceneGO().get()->children.emplace_back(canvasGO);
-
 	return canvasGO;
 }
 
-void N_SceneManager::CreateMeshGO(std::string path)
+std::shared_ptr<GameObject> N_SceneManager::CreateLightGO(LightType type)
 {
-	std::vector<ResourceId> meshesID = Resources::LoadMultiple<Model>(path);
+	std::string name;
 
-	if (meshesID.empty())
+	switch (type)
+	{
+		case Directional: name = "Directional Light"; break;
+		case Point: name = "Point Light"; break;
+		case Spot: name = "Spot Light"; break;
+		case Area: name = "Area Light"; break;
+		default: name = "error_type"; break;
+	}
+
+	std::shared_ptr<GameObject> lightGO = std::make_shared<GameObject>(name);
+	lightGO.get()->AddComponent<Transform>();
+	lightGO.get()->AddComponent<Light>(type);
+
+	lightGO.get()->parent = currentScene->GetRootSceneGO().get()->weak_from_this();
+	
+	return currentScene->GetRootSceneGO().get()->children.emplace_back(lightGO);
+}
+
+void N_SceneManager::CreateMeshGO(const std::string& path)
+{
+	switch (FBXIMPORTER::FBXtype(path))
+	{
+	case MeshType::DEFAULT:
+	{
+		std::vector<ResourceId> meshesID = Resources::LoadMultiple<Model>(path);
+		if (meshesID.empty())
+			return;
+
+		std::string name = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
+		name = GenerateUniqueName(name);
+
+		bool isSingleMesh = meshesID.size() > 1 ? false : true;
+		std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
+		if (!isSingleMesh) emptyParent.get()->SetName(name);
+
+		for (auto& meshID : meshesID)
+			CreateDefaultMeshGO(meshID, emptyParent, isSingleMesh);
+	}
+		break;
+	case MeshType::SKELETAL:
+		CreateSkeletalMeshGO(Resources::Load<SkeletalModel>(path), nullptr, true);
+		break;
+	default:
+		break;
+	}
+
+	if (!sceneIsPlaying) AddPendingGOs();
+}
+
+void N_SceneManager::CreateExistingMeshGO(const std::string& path)
+{
+	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
+	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
+
+	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName, ".mesh", ".animator");
+	if (fileNames.empty())
 		return;
 
-	std::string name = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
-
+	std::string name = fbxName;
 	name = GenerateUniqueName(name);
 
-	// Create emptyGO parent if meshes > 1
-	bool isSingleMesh = meshesID.size() > 1 ? false : true;
+	// Create emptyGO parent if meshes >1
+	bool isSingleMesh = fileNames.size() > 1 ? false : true;
 	std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
 	if (!isSingleMesh) emptyParent.get()->SetName(name);
 
-	std::vector<std::string> fileNames;
-
-	for (auto& meshID : meshesID)
+	MeshType type = FBXIMPORTER::FBXtype(path);
+	for (const auto& file : fileNames)
 	{
-		Model* mesh = Resources::GetResourceById<Model>(meshID);
-
-		std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->meshName);
-
-		// Transform ---------------------------------
-		meshGO.get()->AddComponent<Transform>();
-
-		// Mesh  --------------------------------------
-		meshGO.get()->AddComponent<Mesh>();
-
-		meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
-		meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
-
-		//Load MeshData from custom files
-		for (const auto& file : fileNames)
+		switch (type)
 		{
-			std::string fileName = file.substr(file.find_last_of("\\/") + 1, file.find_last_of('.') - file.find_last_of("\\/") - 1);
-			if (fileName == mesh->meshName)
-			{
-				meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->meshTransform);
-			}
-		}
-
-		// AABB
-		meshGO.get()->GenerateAABBFromMesh();
-
-		if (isSingleMesh)
-		{
-			meshGO.get()->parent = currentScene->GetRootSceneGO();
-			engine->N_sceneManager->objectsToAdd.push_back(meshGO);
-		}
-		else
-		{
-			meshGO.get()->parent = emptyParent;
-			emptyParent.get()->children.push_back(meshGO);
+		case MeshType::DEFAULT:
+			CreateDefaultMeshGO(Resources::LoadFromLibrary<Model>(file), emptyParent, isSingleMesh);
+			break;
+		case MeshType::SKELETAL:
+			CreateSkeletalMeshGO(Resources::LoadFromLibrary<SkeletalModel>(file), nullptr, true);
+			if (!sceneIsPlaying) AddPendingGOs();
+			return;
+		default:
+			break;
 		}
 	}
 
 	if (!sceneIsPlaying) AddPendingGOs();
 }
 
-void N_SceneManager::CreateExistingMeshGO(std::string path)
+void N_SceneManager::CreateDefaultMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
 {
-	std::string fbxName = path.substr(path.find_last_of("\\/") + 1, path.find_last_of('.') - path.find_last_of("\\/") - 1);
-	std::string folderName = Resources::PathToLibrary<Model>(fbxName);
+	Model* mesh = Resources::GetResourceById<Model>(meshID);
 
-	std::vector<std::string> fileNames = Resources::GetAllFilesFromFolder(folderName, ".mesh", ".animator");
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(GenerateUniqueName(mesh->GetMeshName()));
+	meshGO.get()->AddComponent<Transform>();
+	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
+	meshGO.get()->SetAABBox(mesh->GetMeshAABB());
+	meshGO.get()->AddComponent<Mesh>();
 
-	if (fileNames.empty())
-		CreateMeshGO(path);
+	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
+	meshGO.get()->GetComponent<Mesh>()->meshType = MeshType::DEFAULT;
+
+	Renderer3D::AddMesh(mesh->GetMeshID(), meshGO.get()->GetComponent<Mesh>()->materialID);
+
+	if (isSingle)
+	{
+		meshGO.get()->parent = currentScene->GetRootSceneGO();
+		engine->N_sceneManager->objectsToAdd.push_back(meshGO);
+	}
 	else
 	{
-		std::string name = fbxName;
-		name = GenerateUniqueName(name);
-
-		// Create emptyGO parent if meshes >1
-		bool isSingleMesh = fileNames.size() > 1 ? false : true;
-		std::shared_ptr<GameObject> emptyParent = isSingleMesh ? nullptr : CreateEmptyGO();
-		if (!isSingleMesh) emptyParent.get()->SetName(name);
-
-		for (const auto& file : fileNames)
-		{
-			ResourceId meshID = Resources::LoadFromLibrary<Model>(file);
-			Model* mesh = Resources::GetResourceById<Model>(meshID);
-
-			std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(mesh->meshName);
-			meshGO.get()->AddComponent<Transform>();
-			meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->meshTransform);
-			meshGO.get()->AddComponent<Mesh>();
-
-			meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
-			meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
-
-			meshGO.get()->GenerateAABBFromMesh();
-
-			if (isSingleMesh)
-			{
-				meshGO.get()->parent = currentScene->GetRootSceneGO();
-				engine->N_sceneManager->objectsToAdd.push_back(meshGO);
-			}
-			else
-			{
-				meshGO.get()->parent = emptyParent;
-				emptyParent.get()->children.push_back(meshGO);
-			}
-		}
+		meshGO.get()->parent = emptyParent;
+		emptyParent.get()->children.push_back(meshGO);
 	}
+}
+
+void N_SceneManager::CreateSkeletalMeshGO(ResourceId meshID, std::shared_ptr<GameObject> emptyParent, bool isSingle)
+{
+	SkeletalModel* mesh = Resources::GetResourceById<SkeletalModel>(meshID);
+
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(GenerateUniqueName(mesh->GetMeshName()));
+	meshGO.get()->AddComponent<Transform>();
+	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
+	meshGO.get()->AddComponent<Mesh>();
+
+	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
+	meshGO.get()->GetComponent<Mesh>()->meshType = MeshType::SKELETAL;
+
+	if (isSingle)
+	{
+		meshGO.get()->parent = currentScene->GetRootSceneGO();
+		engine->N_sceneManager->objectsToAdd.push_back(meshGO);
+	}
+	else
+	{
+		meshGO.get()->parent = emptyParent;
+		emptyParent.get()->children.push_back(meshGO);
+	}
+}
+
+void N_SceneManager::CreateLibMeshGO(const std::string& path)
+{
+	if (path.empty())
+		return;
+
+	std::filesystem::path fbxName = path;
+	std::string name = fbxName.filename().replace_extension().string();
+	name = GenerateUniqueName(name);
+	ResourceId meshID = Resources::LoadFromLibrary<Model>(path);
+
+	Model* mesh = Resources::GetResourceById<Model>(meshID);
+
+	std::shared_ptr<GameObject> meshGO = std::make_shared<GameObject>(name);
+	meshGO.get()->AddComponent<Transform>();
+	meshGO.get()->GetComponent<Transform>()->SetTransform(mesh->GetMeshTransform());
+	meshGO.get()->SetAABBox(mesh->GetMeshAABB());
+	meshGO.get()->AddComponent<Mesh>();
+
+	meshGO.get()->GetComponent<Mesh>()->meshID = meshID;
+	meshGO.get()->GetComponent<Mesh>()->materialID = Resources::LoadFromLibrary<Material>(mesh->GetMaterialPath());
+	meshGO.get()->GetComponent<Mesh>()->meshType = MeshType::DEFAULT;
+
+	Renderer3D::AddMesh(mesh->GetMeshID(), meshGO.get()->GetComponent<Mesh>()->materialID);
+
+	meshGO.get()->parent = currentScene->GetRootSceneGO();
+	engine->N_sceneManager->objectsToAdd.push_back(meshGO);
+
+	if (!sceneIsPlaying) AddPendingGOs();
 }
 
 std::shared_ptr<GameObject> N_SceneManager::CreateCube()
@@ -940,7 +1022,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			{
 			case ComponentType::Collider2D:
 			{
-				if (goToModify->GetComponent<Collider2D>() == nullptr) goToModify->AddComponent<Collider2D>();
+				if (goToModify->GetComponent<Collider2D>() == nullptr)
+					goToModify->AddComponent<Collider2D>();
 
 				auto collider = goToModify->GetComponent<Collider2D>();
 				collider->LoadComponent(componentJSON);
@@ -948,7 +1031,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::Camera:
 			{
-				if (goToModify->GetComponent<Camera>() == nullptr) goToModify->AddComponent<Camera>();
+				if (goToModify->GetComponent<Camera>() == nullptr) 
+					goToModify->AddComponent<Camera>();
 
 				auto camera = goToModify->GetComponent<Camera>();
 				camera->LoadComponent(componentJSON);
@@ -956,7 +1040,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::Canvas:
 			{
-				if (goToModify->GetComponent<Canvas>() == nullptr) goToModify->AddComponent<Canvas>();
+				if (goToModify->GetComponent<Canvas>() == nullptr)
+					goToModify->AddComponent<Canvas>();
 
 				auto canvas = goToModify->GetComponent<Canvas>();
 				canvas->LoadComponent(componentJSON);
@@ -964,7 +1049,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::AudioSource:
 			{
-				if (goToModify->GetComponent<AudioSource>() == nullptr) goToModify->AddComponent<AudioSource>();
+				if (goToModify->GetComponent<AudioSource>() == nullptr)
+					goToModify->AddComponent<AudioSource>();
 
 				auto audioSource = goToModify->GetComponent<AudioSource>();
 				audioSource->LoadComponent(componentJSON);
@@ -972,7 +1058,8 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::Listener:
 			{
-				if (goToModify->GetComponent<Listener>() == nullptr) goToModify->AddComponent<Listener>();
+				if (goToModify->GetComponent<Listener>() == nullptr)
+					goToModify->AddComponent<Listener>();
 
 				auto listener = goToModify->GetComponent<Listener>();
 				listener->LoadComponent(componentJSON);
@@ -980,10 +1067,20 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 			}
 			case ComponentType::ParticleSystem:
 			{
-				if (goToModify->GetComponent<ParticleSystem>() == nullptr) goToModify->AddComponent<ParticleSystem>();
+				if (goToModify->GetComponent<ParticleSystem>() == nullptr)
+					goToModify->AddComponent<ParticleSystem>();
 
 				auto particleSystem = goToModify->GetComponent<ParticleSystem>();
 				particleSystem->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Light:
+			{
+				if (goToModify->GetComponent<Light>() == nullptr)
+					goToModify->AddComponent<Light>();
+
+				auto light = goToModify->GetComponent<Light>();
+				light->LoadComponent(componentJSON);
 				break;
 			}
 			default:
@@ -1168,41 +1265,6 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 	currentCamera = newPrimaryCam->GetComponent<Camera>();
 }
 
-inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* cam)
-{
-	if (cam != nullptr) {
-		for (const auto& gameObject : parentGO.get()->children)
-		{
-			if (!gameObject->hasTransparency) {
-				gameObject->Draw(cam);
-			}
-			else {
-				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - cam->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			}
-
-			RecurseSceneDraw(gameObject, cam);
-		}
-
-	}
-	else {
-		for (const auto& gameObject : parentGO.get()->children)
-		{
-			if (!gameObject->hasTransparency) {
-				gameObject->Draw(currentCamera);
-			}
-			else {
-				float distance = glm::length((vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] - currentCamera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
-				zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
-			}
-
-			RecurseSceneDraw(gameObject, currentCamera);
-		}
-
-	}
-
-}
-
 void Scene::UpdateGOs(double dt)
 {
 	engine->N_sceneManager->AddPendingGOs();
@@ -1224,47 +1286,40 @@ void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)
 	}
 }
 
-inline void Scene::SetCamera(Camera* cam)
-{
-	if (cam)
-		engine->SetUniformBufferCamera(cam->viewProjectionMatrix);
-	else
-		engine->SetUniformBufferCamera(currentCamera->viewProjectionMatrix);
-}
-
-void Scene::Set2DCamera()
-{
-	engine->SetUniformBufferCamera(glm::mat4(glm::ortho(-1.0f, 1.0f, 1.0f, -1.0f)));
-}
-
 void Scene::Draw(DrawMode mode, Camera* cam)
 {
+	Camera* camera = cam ? cam : currentCamera;
+
 	zSorting.clear();
-
-	//Setting Camera for 3D Rendering
-	SetCamera(cam);
-	Renderer2D::StartBatch();//           START BATCH
-	RecurseSceneDraw(rootSceneGO, cam);
-	if (cam != nullptr) {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
-			i->second->Draw(cam);
-	}
-	else {
-		for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
-			i->second->Draw(currentCamera);
-
-	}
-	Renderer2D::Flush();//           END BATCH
-
+	RecurseSceneDraw(rootSceneGO, camera);
+	
+	for (auto i = zSorting.rbegin(); i != zSorting.rend(); ++i)
+		i->second->Draw(camera);
 
 	if (mode == DrawMode::EDITOR)
 		return;
 
-	//Setting Camera for 2D Rendering
-	Set2DCamera();
-	Renderer2D::StartBatch();//           START BATCH
 	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
-	Renderer2D::Flush();//           END BATCH
+}
+
+inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* camera)
+{
+	for (const auto& gameObject : parentGO.get()->children)
+	{
+		if (!gameObject->hasTransparency) {
+			gameObject->Draw(camera);
+		}
+		else
+		{
+			float distance = glm::length(
+				(vec3)gameObject->GetComponent<Transform>()->GetGlobalTransform()[3] -
+				camera->GetContainerGO()->GetComponent<Transform>()->GetPosition());
+
+			zSorting.insert(std::pair<float, GameObject*>(distance, gameObject.get()));
+		}
+
+		RecurseSceneDraw(gameObject, camera);
+	}
 }

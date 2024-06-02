@@ -30,8 +30,9 @@ public:
 	Scene* currentScene;
 	Camera* gameCamera;
 
-	std::shared_ptr<FrameBuffer> frameBuffer;
-	vec2f viewportSize;
+	// Render Target
+	glm::vec2 viewportSize;
+	unsigned int renderTarget;
 
 private:
 

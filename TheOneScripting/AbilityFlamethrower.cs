@@ -1,15 +1,42 @@
-﻿using System;
+﻿using System.Security.AccessControl;
 
-public class AbilityFlamethrower : Ability
+public class AbilityFlamethrower : MonoBehaviour
 {
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
 
+    Item_FlameThrower FlamethrowerItem;
+
+    public string abilityName;
+    public float activeTime;
+    public float cooldownTime;
+    public float activeTimeCounter;
+    public float cooldownTimeCounter;
+
+    public uint damage;
+    public float slowAmount;
+
+    public AbilityState state;
 
     public override void Start()
     {
-        name = "Flamethrower";
+        FlamethrowerItem = new Item_FlameThrower();
 
-        activeTime = 10.0f;
-        cooldownTime = 20.0f;
+        name = FlamethrowerItem.name;
+
+        activeTime = FlamethrowerItem.activeTime;
+        activeTimeCounter = activeTime;
+        cooldownTime = FlamethrowerItem.cooldownTime;
+        cooldownTimeCounter = cooldownTime;
+
+        damage = FlamethrowerItem.damage;
+
+        state = AbilityState.READY;
     }
 
     public override void Update()
@@ -17,39 +44,39 @@ public class AbilityFlamethrower : Ability
         switch (state)
         {
             case AbilityState.READY:
-                {
-                    if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
-                    {
-                        Activated();
 
-                        break;
-                    }
+                if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
+                {
+                    Activated();
+
                     break;
                 }
+                break;
+
             case AbilityState.ACTIVE:
-                {
-                    WhileActive();
-                    break;
-                }
+
+                WhileActive();
+                break;
+
             case AbilityState.COOLDOWN:
-                {
-                    OnCooldown();
-                    break;
-                }
+
+                OnCooldown();
+                break;
+
         }
     }
 
-    public override void Activated()
+    public void Activated()
     {
         // Set current weapon to the flamethrower
         activeTimeCounter = activeTime;
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_FT);
 
-        this.state = AbilityState.ACTIVE;
+        state = AbilityState.ACTIVE;
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0.0f)
         {
@@ -59,21 +86,21 @@ public class AbilityFlamethrower : Ability
         else
         {
             cooldownTimeCounter = cooldownTime;
-
-            this.state = AbilityState.COOLDOWN;
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTime > 0.0f)
         {
             // update time
             cooldownTimeCounter -= Time.deltaTime;
+
+            Debug.Log("Flamethrower on cooldown");
         }
         else
         {
-            this.state = AbilityState.READY;
+            state = AbilityState.READY;
         }
     }
 }

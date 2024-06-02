@@ -2,11 +2,44 @@
 
 #include <array>
 #include "types.h"
+#include "Defs.h"
 
 struct AABBox
 {
 	vec3 min{std::numeric_limits<double>::max()};
 	vec3 max{std::numeric_limits<double>::min()};
+
+	AABBox(vec3 newmin, vec3 newmax) : min(newmin), max(newmax){}
+
+	AABBox()
+	{
+		std::vector<vec3> verts = { {50.0, 50.0, 50.0}, {-50.0, -50.0, -50.0} };
+		for (const auto& vert : verts)
+		{
+			min.x = MIN(min.x, vert.x);
+			min.y = MIN(min.y, vert.y);
+			min.z = MIN(min.z, vert.z);
+
+			max.x = MAX(max.x, vert.x);
+			max.y = MAX(max.y, vert.y);
+			max.z = MAX(max.z, vert.z);
+		}
+	}
+
+	AABBox(std::vector<vec3> verts)
+	{
+		for (const auto& vert : verts)
+		{
+			min.x = MIN(min.x, vert.x);
+			min.y = MIN(min.y, vert.y);
+			min.z = MIN(min.z, vert.z);
+
+			max.x = MAX(max.x, vert.x);
+			max.y = MAX(max.y, vert.y);
+			max.z = MAX(max.z, vert.z);
+		}
+	}
+
 	inline vec3 center() const { return (min + max) * 0.5; }
 	inline vec3 sizes() const { return max - min; }
 

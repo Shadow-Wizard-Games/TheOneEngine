@@ -3,9 +3,12 @@
 #pragma once
 
 #include "BuilderModule.h"
-#include "..\TheOneEngine\N_SceneManager.h"
 
-class Camera;
+#include "TheOneEngine\N_SceneManager.h"
+
+#include <memory>
+
+class GameObject;
 
 class BuilderSceneManager : public BuilderModule
 {
@@ -23,7 +26,16 @@ public:
 
 	bool CleanUp();
 
-public:
+private:
+
+	// Render Target
+	glm::vec2 viewportSize;
+	unsigned int renderTarget;
+	shared_ptr<GameObject> cameraGO;
+	bool changeRenderTargetCamera;
+
+	std::shared_ptr<GameObject> sceneCamera;
+	std::shared_ptr<GameObject> cameraParent;
 };
 
 #endif // !__BUILDER_SCENE_MANAGER_H__

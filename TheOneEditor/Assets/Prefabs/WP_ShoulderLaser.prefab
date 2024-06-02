@@ -1,0 +1,60 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1144121127
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_ShoulderLaser_Idle/M_ShoulderLaser.toematerial",
+      "MeshPath": "Library/Meshes/AS_ShoulderLaser_Idle/WP_ShoulderLaser.animator",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 3216244270
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "ShoulderLaserBehaviour",
+      "Type": 4,
+      "UID": 811440790
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "WP_ShoulderLaser",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 4152681877,
+  "PrefabName": "WP_ShoulderLaser",
+  "Static": false,
+  "UID": 3452816845
+}

@@ -1,15 +1,31 @@
 ﻿using System;
 
-public class AbilityShield : Ability
+public class AbilityShield : MonoBehaviour
 {
+    public enum AbilityState
+    {
+        CHARGING,
+        READY,
+        ACTIVE,
+        COOLDOWN,
+    }
+
+    public string abilityName;
+    public float activeTime;
+    public float activeTimeCounter;
+    public float cooldownTime;
+    public float cooldownTimeCounter;
+
+    public AbilityState state;
+
     IGameObject playerGO;
     PlayerScript player;
+
+    int shieldKillsToCharge;
 
     public override void Start()
     {
         abilityName = "Shield";
-        playerGO = IGameObject.Find("SK_MainCharacter");
-        player = playerGO.GetComponent<PlayerScript>();
 
         state = AbilityState.CHARGING;
 
@@ -17,6 +33,13 @@ public class AbilityShield : Ability
         activeTimeCounter = activeTime;
         cooldownTime = 3.0f;
         cooldownTimeCounter = cooldownTime;
+
+        shieldKillsToCharge = 5;
+
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
+
+        state = AbilityState.READY;
     }
 
     public override void Update()
@@ -46,9 +69,9 @@ public class AbilityShield : Ability
         }
     }
 
-    public override void ChargeAbility()
+    public void ChargeAbility()
     {
-        if (player.shieldKillCounter == player.shieldKillsToCharge)
+        if (player.shieldKillCounter == shieldKillsToCharge)
         {
             player.shieldKillCounter = 0;
             state = AbilityState.READY;
@@ -57,7 +80,7 @@ public class AbilityShield : Ability
         //Debug.Log("Ability Shield Ready " + player.shieldKillCounter);
     }
 
-    public override void Activated()
+    public void Activated()
     {
         player.shieldIsActive = true;
 
@@ -68,7 +91,7 @@ public class AbilityShield : Ability
         //Debug.Log("Ability Shield Activated");
     }
 
-    public override void WhileActive()
+    public void WhileActive()
     {
         if (activeTimeCounter > 0)
         {
@@ -87,7 +110,7 @@ public class AbilityShield : Ability
         }
     }
 
-    public override void OnCooldown()
+    public void OnCooldown()
     {
         if (cooldownTimeCounter > 0)
         {
@@ -96,7 +119,7 @@ public class AbilityShield : Ability
         }
         else
         {
-            player.shieldKillCounter = player.shieldKillsToCharge;
+            player.shieldKillCounter = shieldKillsToCharge;
 
             cooldownTimeCounter = cooldownTime;
             state = AbilityState.CHARGING;

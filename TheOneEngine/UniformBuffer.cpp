@@ -11,11 +11,20 @@ UniformBuffer::UniformBuffer(uint size, uint binding)
 
 UniformBuffer::~UniformBuffer()
 {
-	GLCALL(glDeleteBuffers(1, &m_RendererID));
+	Delete();
 }
 
 
 void UniformBuffer::SetData(const void* data, uint size, uint offset)
 {
 	GLCALL(glNamedBufferSubData(m_RendererID, offset, size, data));
+}
+
+void UniformBuffer::Delete()
+{
+	if (m_RendererID)
+	{
+		GLCALL(glDeleteBuffers(1, &m_RendererID));
+		m_RendererID = 0;
+	}
 }

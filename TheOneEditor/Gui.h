@@ -25,6 +25,7 @@ class PanelProject;
 class PanelScene;
 class PanelGame;
 class PanelAnimation;
+class PanelRenderer;
 class PanelSettings;
 class PanelBuild;
 
@@ -33,6 +34,13 @@ enum class Aspect
 	A_FREE,
 	A_16x9,
 	A_21x9
+};
+
+struct EditColor
+{
+	std::string id;
+	ImVec4 color;
+	ImVec4 previousColor;
 };
 
 class Gui : public Module
@@ -51,7 +59,9 @@ public:
 
 	bool IsInitialized(Panel* panel);
 	std::list<Panel*> GetPanels();
-	void HandleInput(SDL_Event* event);
+
+	void HandleInput();
+	void ProcessEvent();
 
 	// Utils
 	template <typename T>
@@ -84,6 +94,9 @@ public:
 	void PlotChart(const char* label, const std::vector<int>& data, ImPlotFlags plotFlags = 0, ImPlotAxisFlags axisFlags = 0);
 	void AssetContainer(const char* label);
 
+	EditColor GetEditColor() const { return editColor; }
+	void SetEditColor(const EditColor& editColor) { this->editColor = editColor; }
+
 private:
 
 	// Main Dockspace
@@ -99,6 +112,10 @@ private:
 
 	void OpenSceneFileWindow();
 
+	void ColorPicker();
+
+	void OverwriteAsset(std::string path);
+
 public:
 
 	// Panels
@@ -110,8 +127,15 @@ public:
 	PanelScene* panelScene;
 	PanelGame* panelGame;
 	PanelAnimation* panelAnimation;
+	PanelRenderer* panelRenderer;
 	PanelSettings* panelSettings;
 	PanelBuild* panelBuild;
+
+	bool openColorPicker = false;
+
+	// Import popup
+	bool overwritePopup = false;
+	std::string assetsDir;
 
 private:
 
@@ -119,6 +143,8 @@ private:
 
 	bool showImGuiDemo = false;
 	bool openSceneFileWindow = false;
+
+	EditColor editColor;
 };
 
 #endif // !__GUI_H__

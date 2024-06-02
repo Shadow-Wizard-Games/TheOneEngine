@@ -1,11 +1,8 @@
 #include "App.h"
 
-#include "Window.h"
-#include "Input.h"
 #include "Hardware.h"
 #include "Gui.h"
 #include "SceneManager.h"
-#include "Renderer3D.h"
 
 #include "PanelAbout.h"
 #include "PanelConsole.h"
@@ -15,32 +12,28 @@
 #include "PanelScene.h"
 #include "PanelSettings.h"
 #include "Timer.h"
-#include "../TheOneEngine/Transform.h"
-#include "../TheOneEngine/Log.h"
+
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+#include "TheOneEngine/Transform.h"
+#include "TheOneEngine/Log.h"
 
 EngineCore* engine = NULL;
 
 App::App(int argc, char* args[]) : argc(argc), args(args)
 {
 	engine = new EngineCore();
-	
-	window = new Window(this);
-	input = new Input(this);
 	hardware = new Hardware(this);
 	gui = new Gui(this);
 	scenemanager = new SceneManager(this);
-	renderer3D = new Renderer3D(this);
 
 	// Ordered for awake / Start / Update
 	// Reverse order for CleanUp
 
-	AddModule(window, true);
-	AddModule(input, true);
 	AddModule(hardware, true);
 	AddModule(scenemanager, true);
 
 	// Render last to swap buffer
-	AddModule(renderer3D, true);
 	AddModule(gui, true);
 
 	state = GameState::NONE;
@@ -79,8 +72,9 @@ bool App::Awake()
 	if (ret == true)
 	{
 		//title = configNode.child("app").child("title").child_value();
-
 		//maxFrameDuration = configNode.child("app").child("frcap").attribute("value").as_int();
+
+		engine->Awake();
 
 		for (const auto& item : modules)
 		{
@@ -102,6 +96,7 @@ bool App::Start()
 	dt = 0;
 
 	start_timer->Start();
+	engine->Start();
 
 	for (const auto& module : modules)
 	{
@@ -157,6 +152,9 @@ bool App::PreUpdate()
 	//OPTICK_CATEGORY("PreUpdate", Optick::Category::GameLogic);
 	bool ret = true;
 
+	if (engine->PreUpdate() == false)
+		return false;
+	
 	for (const auto& module : modules)
 	{
 		if (module->active == false)
@@ -172,7 +170,7 @@ bool App::PreUpdate()
 bool App::DoUpdate()
 {
 	//OPTICK_CATEGORY("DoUpdate", Optick::Category::GameLogic);
-
+	
 	for (const auto& module : modules)
 	{
 		if (module->active == false)
@@ -181,6 +179,8 @@ bool App::DoUpdate()
 		if (module->Update(dt) == false)
 			return false;
 	}
+
+	engine->Update(dt);
 
 	return true;
 }
@@ -241,6 +241,7 @@ bool App::CleanUp()
 
 	bool ret = true;
 
+	engine->CleanUp();
 	for (auto item = modules.rbegin(); item != modules.rend(); ++item)
 	{
 		Module* module = *item;
@@ -272,7 +273,7 @@ int App::GetFrameRate() const
 
 void App::SetFrameRate(int frameRate)
 {
-	this->frameRate = frameRate == 0 ? app->window->GetDisplayRefreshRate() : frameRate;
+	this->frameRate = frameRate == 0 ? engine->window->GetDisplayRefreshRate() : frameRate;
 	targetFrameDuration = (std::chrono::duration<double>)1 / this->frameRate;
 }
 

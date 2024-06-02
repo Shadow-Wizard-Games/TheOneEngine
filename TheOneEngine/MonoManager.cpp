@@ -1,5 +1,6 @@
 #include "MonoManager.h"
 #include "MonoRegisterer.h"
+#include "Renderer2D.h"
 
 #include <iostream>
 #include <fstream>
@@ -134,16 +135,21 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
 {
     // Get the MonoClass pointer from the instance
     MonoClass* instanceClass = mono_object_get_class(monoBehaviourInstance);
+    MonoClass* currentClass = instanceClass;
 
-    // Get a reference to the method in the class
-    MonoMethod* method = mono_class_get_method_from_name(instanceClass, functionToCall.c_str(), 0);
+    MonoMethod* method = nullptr;
 
-    if (method == nullptr)
+    // Traverse the class hierarchy to find the method
+    while (currentClass != nullptr && method == nullptr)
     {
-        // Get the parent class (MonoBehaviour's base class)
-        MonoClass* parentClass = mono_class_get_parent(instanceClass);
+        // Get a reference to the method in the current class
+        method = mono_class_get_method_from_name(currentClass, functionToCall.c_str(), 0);
 
-        method = mono_class_get_method_from_name(parentClass, functionToCall.c_str(), 0);
+        if (method == nullptr)
+        {
+            // Move to the parent class
+            currentClass = mono_class_get_parent(currentClass);
+        }
     }
 
     if (method == nullptr)
@@ -154,7 +160,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
             if (functionToCall == checkFunction) return nullptr;
         }
 
-        LOG(LogType::LOG_ERROR, "Could not find method %s", functionToCall.c_str());
+        LOG(LogType::LOG_ERROR, "Could not find method %s in %s", functionToCall.c_str(), mono_class_get_name(instanceClass));
         return nullptr;
     }
 
@@ -166,7 +172,7 @@ void* MonoManager::CallScriptFunction(MonoObject* monoBehaviourInstance, std::st
     //Handle the exception
     if (exception != nullptr)
     {
-        LOG(LogType::LOG_ERROR, "Exception occurred");
+        LOG(LogType::LOG_ERROR, "Exception occurred with %s from %s", functionToCall.c_str(), mono_class_get_name(instanceClass));
         return nullptr;
     }
 
@@ -228,16 +234,12 @@ void MonoManager::RenderShapesQueue()
 
     for (auto& shape : debugShapesQueue)
     {
-        glPushMatrix();
-        glTranslatef(shape.center.x, shape.center.y, shape.center.z);
-        glColor3f(shape.color.r, shape.color.g, shape.color.b);
-        glBegin(GL_LINE_LOOP);
+        glm::mat4 translate = glm::translate(glm::mat4(1), shape.center);
 
-        for (auto& point : shape.points)
-            glVertex3f(point.x, point.y, point.z);
-
-        glEnd();
-        glPopMatrix();
+        for (int i = 0; i < shape.points.size(); i++)
+            Renderer2D::DrawLine(BT::WORLD, glm::vec4(shape.points[i], 1.0f) * translate,
+                                 glm::vec4(&shape.points[i + 1] == nullptr ? shape.points[0] : shape.points[i + 1], 1.0f) * translate,
+                                 glm::vec4(shape.color, 1.0f));
     }
 
     debugShapesQueue.clear();

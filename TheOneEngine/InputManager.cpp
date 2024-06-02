@@ -1,29 +1,34 @@
 #include "InputManager.h"
+#include "Defs.h"
 #include "Log.h"
+
 #include <SDL2/SDL.h>
 #include <string.h>
 
 InputManager::InputManager()
 {
-	for (int i = 0; i < MAX_KEYS; ++i) keys[i] = InputManagerNamespace::KEY_IDLE;
+	for (int i = 0; i < MAX_KEYS; ++i) keyboard[i] = KEY_IDLE;
 
+	memset(keyboard, KEY_IDLE, sizeof(KeyState) * MAX_KEYS);
+	memset(mouse_buttons, KEY_IDLE, sizeof(KeyState) * MAX_MOUSE_BUTTONS);
 	memset(&pads[0], 0, sizeof(GamePad) * MAX_PADS);
 }
 
-InputManager::~InputManager()
-{
-
-}
+InputManager::~InputManager() {}
 
 bool InputManager::Init()
 {
-	LOG(LogType::LOG_OK, "Init SDL input event system");
 	bool ret = true;
+	LOG(LogType::LOG_INFO, "# Initializing Input Events...");
 	SDL_Init(0);
 
-	if (SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
+	if (SDL_InitSubSystem(SDL_INIT_EVENTS) == 0)
 	{
-		LOG(LogType::LOG_ERROR, "SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
+		LOG(LogType::LOG_OK, "-Init SDL Input Event subsystem");
+	}
+	else
+	{
+		LOG(LogType::LOG_ERROR, "-SDL Input Event subsystem could not be initialized! %s", SDL_GetError());
 		ret = false;
 	}
 
@@ -33,6 +38,8 @@ bool InputManager::Init()
 		ret = false;
 	}
 
+	LOG(LogType::LOG_OK, "-File System current path: %s", std::filesystem::current_path().string().c_str());
+
 	return ret;
 }
 
@@ -40,43 +47,11 @@ bool InputManager::PreUpdate()
 {
 	bool ret = true;
 
-	SDL_PumpEvents();
-
-	// Read all keyboard data and update our custom array
-	const Uint8* keyboard = SDL_GetKeyboardState(NULL);
-	for (int i = 0; i < MAX_KEYS; ++i)
-	{
-		if (keyboard[i])
-			keys[i] = (keys[i] == InputManagerNamespace::KeyState::KEY_IDLE) ? InputManagerNamespace::KeyState::KEY_DOWN : InputManagerNamespace::KeyState::KEY_REPEAT;
-		else
-			keys[i] = (keys[i] == InputManagerNamespace::KeyState::KEY_REPEAT || keys[i] == InputManagerNamespace::KeyState::KEY_DOWN) ? InputManagerNamespace::KeyState::KEY_UP : InputManagerNamespace::KeyState::KEY_IDLE;
-	}
-
-	// Read new SDL events
-	static SDL_Event event;
-	while (SDL_PollEvent(&event) != 0)
-	{
-		switch (event.type)
-		{
-		case(SDL_CONTROLLERDEVICEADDED):
-		{
-			HandleDeviceConnection(event.cdevice.which);
-			break;
-		}
-		case(SDL_CONTROLLERDEVICEREMOVED):
-		{
-			HandleDeviceRemoval(event.cdevice.which);
-			break;
-		}
-		case(SDL_QUIT):
-		{
-			ret = false;
-			break;
-		}
-		}
-	}
+	ret = ProcessSDLEvents();
 
 	UpdateGamepadsInput();
+
+	Debug();
 
 	if (shutDownEngine) ret = false;
 
@@ -93,42 +68,120 @@ bool InputManager::CleanUp()
 	return true;
 }
 
-void InputManager::HandleDeviceConnection(int index)
+bool InputManager::ProcessSDLEvents()
 {
-	if (SDL_IsGameController(index))
-	{
-		LOG(LogType::LOG_OK, "Gamepad connected");
-		for (int i = 0; i < MAX_PADS; ++i)
-		{
-			GamePad& pad = pads[i];
+	bool ret = true;
 
-			if (pad.enabled == false)
+	SDL_PumpEvents();
+
+	// Read all keyboard data and update our custom array
+	const Uint8* keys = SDL_GetKeyboardState(NULL);
+
+	for (int i = 0; i < MAX_KEYS; ++i)
+	{
+		if (keys[i])
+			keyboard[i] = (keyboard[i] == KeyState::KEY_IDLE) ?
+				KeyState::KEY_DOWN : KeyState::KEY_REPEAT;
+		else
+			keyboard[i] = (keyboard[i] == KeyState::KEY_REPEAT || keyboard[i] == KeyState::KEY_DOWN) ?
+				KeyState::KEY_UP : KeyState::KEY_IDLE;
+	}
+
+	Uint32 buttons = SDL_GetMouseState(&mouse_x, &mouse_y);
+
+	mouse_x /= SCREEN_SIZE;
+	mouse_y /= SCREEN_SIZE;
+	mouse_z = 0;
+
+	for (int i = 0; i < 5; ++i)
+	{
+		if (buttons & SDL_BUTTON(i))
+		{
+			mouse_buttons[i] = (mouse_buttons[i] == KeyState::KEY_IDLE) ?
+				KeyState::KEY_DOWN : KeyState::KEY_REPEAT;
+		}
+		else
+		{
+			mouse_buttons[i] = (mouse_buttons[i] == KeyState::KEY_REPEAT || mouse_buttons[i] == KeyState::KEY_DOWN) ?
+				KeyState::KEY_UP : KeyState::KEY_IDLE;
+		}
+	}
+
+	mouse_x_motion = mouse_y_motion = 0;
+
+	// Read new SDL events
+	static SDL_Event event;
+	events.clear();
+	windowResize = false;
+	dropFile = false;
+
+	while (SDL_PollEvent(&event) != 0)
+	{
+		events.push_back(event);
+
+		switch (event.type)
+		{
+			case SDL_WINDOWEVENT:
 			{
-				if (pad.controller = SDL_GameControllerOpen(index))
-				{
-					pad.enabled = true;
-					pad.left_dz = pad.right_dz = 0.1f;
-					pad.index = SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(pad.controller));
-				}
-			}
-			pads[i] = pad;
-		}
-	}
-}
+				if (event.window.event == SDL_WINDOWEVENT_CLOSE)
+					return false;
 
-void InputManager::HandleDeviceRemoval(int index)
-{
-	// If an existing gamepad has the given index, deactivate all SDL device functionallity
-	LOG(LogType::LOG_ERROR, "Gamepad disconnected");
-	for (int i = 0; i < MAX_PADS; ++i)
-	{
-		GamePad& pad = pads[i];
-		if (pad.enabled && pad.index == index)
-		{
-			SDL_GameControllerClose(pad.controller);
-			memset(&pad, 0, sizeof(GamePad));
+				if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+				{
+					windowResize = true;
+					windowSize.x = event.window.data1;
+					windowSize.y = event.window.data2;
+				}
+				break;
+			}
+			case SDL_MOUSEWHEEL:
+			{
+				mouse_z = event.wheel.y;
+				break;
+			}
+			case SDL_MOUSEMOTION:
+			{
+				mouse_x = event.motion.x / SCREEN_SIZE;
+				mouse_y = event.motion.y / SCREEN_SIZE;
+				mouse_x_motion = event.motion.xrel / SCREEN_SIZE;
+				mouse_y_motion = event.motion.yrel / SCREEN_SIZE;
+				break;
+			}
+			case SDL_KEYDOWN:
+			{
+				//switch (event.key.keysym.sym)
+				//{
+				///*case SDLK_ESCAPE: 
+				//	return false;*/
+				//}
+				break;
+			}
+			case(SDL_CONTROLLERDEVICEADDED):
+			{
+				HandleDeviceConnection(event.cdevice.which);
+				break;
+			}
+			case(SDL_CONTROLLERDEVICEREMOVED):
+			{
+				HandleDeviceRemoval(event.cdevice.which);
+				break;
+			}
+			case SDL_DROPFILE:
+			{
+				dropFile = true;
+				fileDir = event.drop.file;
+				SDL_free(event.drop.file);
+				break;
+			}
+			case(SDL_QUIT):
+			{
+				ret = false;
+				break;
+			}
 		}
 	}
+
+	return true;
 }
 
 void InputManager::UpdateGamepadsInput()
@@ -174,7 +227,88 @@ void InputManager::UpdateGamepadsInput()
 	}
 }
 
-InputManagerNamespace::KeyState InputManager::GetGamepadButton(int gamepadId, SDL_GameControllerButton button) const
+void InputManager::HandleDeviceConnection(int index)
+{
+	if (SDL_IsGameController(index))
+	{
+		LOG(LogType::LOG_OK, "Gamepad connected");
+		for (int i = 0; i < MAX_PADS; ++i)
+		{
+			GamePad& pad = pads[i];
+
+			if (pad.enabled == false)
+			{
+				if (pad.controller = SDL_GameControllerOpen(index))
+				{
+					pad.enabled = true;
+					pad.left_dz = pad.right_dz = 0.1f;
+					pad.index = SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(pad.controller));
+				}
+			}
+			pads[i] = pad;
+		}
+	}
+}
+
+void InputManager::HandleDeviceRemoval(int index)
+{
+	// If an existing gamepad has the given index, deactivate all SDL device functionallity
+	LOG(LogType::LOG_ERROR, "Gamepad disconnected");
+	for (int i = 0; i < MAX_PADS; ++i)
+	{
+		GamePad& pad = pads[i];
+		if (pad.enabled && pad.index == index)
+		{
+			SDL_GameControllerClose(pad.controller);
+			memset(&pad, 0, sizeof(GamePad));
+		}
+	}
+}
+
+void InputManager::Debug()
+{
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_X) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON X FUNCTIONAL");
+
+		//for (int button = 0; button < SDL_CONTROLLER_BUTTON_MAX; ++button)
+		//{
+		//	LOG(LogType::LOG_OK, "Button %d: %s", button,
+		//		SDL_GameControllerGetButton(inputManagerInstance.pads[0].controller,
+		//			static_cast<SDL_GameControllerButton>(button)) == 1 ? "pressed" : "relesed");
+		//}
+	}
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_A) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON A FUNCTIONAL");
+	}
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_B) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON B FUNCTIONAL");
+	}
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_Y) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON Y FUNCTIONAL");
+	}
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_DPAD_UP) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON DPAD_UP FUNCTIONAL");
+	}
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_DPAD_DOWN) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON DPAD_DOWN FUNCTIONAL");
+	}
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_DPAD_LEFT) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON DPAD_LEFT FUNCTIONAL");
+	}
+	if (GetGamepadButton(0, SDL_CONTROLLER_BUTTON_DPAD_RIGHT) == KEY_DOWN)
+	{
+		LOG(LogType::LOG_OK, "BUTTON DPAD_RIGHT FUNCTIONAL");
+	}
+}
+
+KeyState InputManager::GetGamepadButton(int gamepadId, SDL_GameControllerButton button) const
 {
 	if (gamepadId >= 0 && gamepadId < MAX_PADS)
 	{
@@ -182,14 +316,14 @@ InputManagerNamespace::KeyState InputManager::GetGamepadButton(int gamepadId, SD
 		{
 			if (SDL_GameControllerGetButton(pads[gamepadId].controller, button) == 1)
 			{
-				return InputManagerNamespace::KEY_DOWN;
+				return KEY_DOWN;
 			}
 			else
 			{
-				return InputManagerNamespace::KEY_UP;
+				return KEY_UP;
 			}
 		}
 	}
 
-	return InputManagerNamespace::KEY_IDLE;
+	return KEY_IDLE;
 }
