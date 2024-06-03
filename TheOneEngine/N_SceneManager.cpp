@@ -521,7 +521,7 @@ void N_SceneManager::AccessFileDataWrite(std::string filepath, DataType dataType
 
 void N_SceneManager::UpdateTransforms(std::shared_ptr<GameObject> go)
 {
-	go->GetComponent<Transform>()->Update();
+	go->GetComponent<Transform>()->Update(engine->dt);
 
 	for (auto& child : go->children)
 		UpdateTransforms(child);
