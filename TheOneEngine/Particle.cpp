@@ -12,7 +12,7 @@ void Particle::SetDuration(float duration)
 
 void Particle::ResetAttributes()
 {
-    initialColor = vec4(255, 255, 255, 255);
+    initialColor = glm::vec4(1, 1, 1, 1);
     color = initialColor;
 
     position = vec3(0, 0, 0);

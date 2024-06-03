@@ -59,7 +59,7 @@ ColorOverLifeUpdate::ColorOverLifeUpdate(Emmiter* owner)
 	type = COLOR_OVER_LIFE;
 	this->owner = owner;
 
-	finalColor = vec4(255, 255, 255, 0);
+	finalColor = glm::vec4(1, 1, 1, 0);
 
 	affectR = false;
 	affectG = false;
@@ -82,10 +82,14 @@ ColorOverLifeUpdate::ColorOverLifeUpdate(Emmiter* owner, ColorOverLifeUpdate* re
 
 void ColorOverLifeUpdate::Update(double dt, Particle* particle)
 {
-	if (affectR) particle->color.r = particle->initialColor.r * (1 - particle->lifetimeOverOne) + finalColor.r * particle->lifetimeOverOne;
-	if (affectG) particle->color.g = particle->initialColor.g * (1 - particle->lifetimeOverOne) + finalColor.g * particle->lifetimeOverOne;
-	if (affectB) particle->color.b = particle->initialColor.b * (1 - particle->lifetimeOverOne) + finalColor.b * particle->lifetimeOverOne;
-	if (affectA) particle->color.a = particle->initialColor.a * (1 - particle->lifetimeOverOne) + finalColor.a * particle->lifetimeOverOne;
+	if (affectR) 
+		particle->color.r = particle->initialColor.r * (1 - particle->lifetimeOverOne) + finalColor.r * particle->lifetimeOverOne;
+	if (affectG) 
+		particle->color.g = particle->initialColor.g * (1 - particle->lifetimeOverOne) + finalColor.g * particle->lifetimeOverOne;
+	if (affectB) 
+		particle->color.b = particle->initialColor.b * (1 - particle->lifetimeOverOne) + finalColor.b * particle->lifetimeOverOne;
+	if (affectA) 
+		particle->color.a = particle->initialColor.a * (1 - particle->lifetimeOverOne) + finalColor.a * particle->lifetimeOverOne;
 
 }
 
@@ -115,9 +119,17 @@ void ColorOverLifeUpdate::LoadModule(const json& moduleJSON)
 	if (moduleJSON.contains("FinalColor"))
 	{
 		finalColor.r = moduleJSON["FinalColor"][0];
+		if (finalColor.r > 1) 
+			finalColor.r /= 255;
 		finalColor.g = moduleJSON["FinalColor"][1];
+		if (finalColor.g > 1) 
+			finalColor.g /= 255;
 		finalColor.b = moduleJSON["FinalColor"][2];
+		if (finalColor.b > 1) 
+			finalColor.b /= 255;
 		finalColor.a = moduleJSON["FinalColor"][3];
+		if (finalColor.a > 1) 
+			finalColor.a /= 255;
 	}
 
 	if (moduleJSON.contains("AffectR"))

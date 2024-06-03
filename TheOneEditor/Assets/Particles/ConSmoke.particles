@@ -1,0 +1,84 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 100.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.1,
+            2.0,
+            0.1
+          ],
+          "MinDirection": [
+            -0.1,
+            1.0,
+            -0.1
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 10.0,
+          "MinSpeed": 2.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            3.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 424.8832702636719,
+      "MaxParticles": 300,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 100.0,
+          "SpawnRate": 2.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
+          "FinalScale": [
+            10.0,
+            10.0,
+            1.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "ConSmoke",
+  "StartON": true,
+  "Type": 9,
+  "UID": 2945321718
+}

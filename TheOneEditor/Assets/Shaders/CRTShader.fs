@@ -12,7 +12,7 @@ uniform float time;
 in vec2 fragCoord;
 layout(location = 1) out vec4 fragColor;
 
-const vec2 kWarp = vec2(1.0 / warp.x, 1.0 / warp.y);
+vec2 kWarp = vec2(1.0 / warp.x, 1.0 / warp.y);
 
 vec2 WarpUV(vec2 uv)
 {

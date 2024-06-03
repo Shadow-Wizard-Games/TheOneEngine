@@ -56,7 +56,7 @@ public:
 
 	void LoadModule(const json& moduleJSON);
 
-	SingleOrRandom<vec4> color;
+	SingleOrRandom<glm::vec4> color;
 };
 
 class SetScale : public InitializeEmmiterModule {

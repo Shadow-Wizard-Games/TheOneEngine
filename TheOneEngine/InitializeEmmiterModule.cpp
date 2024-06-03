@@ -74,8 +74,8 @@ SetColor::SetColor(Emmiter* owner)
 	this->owner = owner;
 
 	color.usingSingleValue = true;
-	color.rangeValue.lowerLimit = vec4(0, 0, 0, 255);
-	color.rangeValue.upperLimit = vec4(255, 255, 255, 0);
+	color.rangeValue.lowerLimit = glm::vec4(0, 0, 0, 1);
+	color.rangeValue.upperLimit = glm::vec4(1, 1, 1, 0);
 }
 
 SetColor::SetColor(Emmiter* owner, SetColor* ref)
@@ -92,11 +92,11 @@ void SetColor::Initialize(Particle* particle)
 		particle->initialColor = color.singleValue;
 	}
 	else {
-		vec4 randomVec = vec4{
-			randomInt(color.rangeValue.lowerLimit.r, color.rangeValue.upperLimit.r),
-			randomInt(color.rangeValue.lowerLimit.g, color.rangeValue.upperLimit.g),
-			randomInt(color.rangeValue.lowerLimit.b, color.rangeValue.upperLimit.b),
-			randomInt(color.rangeValue.lowerLimit.a, color.rangeValue.upperLimit.a),
+		glm::vec4 randomVec = glm::vec4{
+			randomFloat(color.rangeValue.lowerLimit.r, color.rangeValue.upperLimit.r),
+			randomFloat(color.rangeValue.lowerLimit.g, color.rangeValue.upperLimit.g),
+			randomFloat(color.rangeValue.lowerLimit.b, color.rangeValue.upperLimit.b),
+			randomFloat(color.rangeValue.lowerLimit.a, color.rangeValue.upperLimit.a),
 		};
 
 		particle->initialColor = randomVec;
@@ -133,17 +133,33 @@ void SetColor::LoadModule(const json& moduleJSON)
 	if (moduleJSON.contains("MinColor"))
 	{
 		color.rangeValue.lowerLimit.x = moduleJSON["MinColor"][0];
+		if (color.rangeValue.lowerLimit.x > 1)
+			color.rangeValue.lowerLimit.x /= 255;
 		color.rangeValue.lowerLimit.y = moduleJSON["MinColor"][1];
+		if (color.rangeValue.lowerLimit.y > 1)
+			color.rangeValue.lowerLimit.y /= 255;
 		color.rangeValue.lowerLimit.z = moduleJSON["MinColor"][2];
+		if (color.rangeValue.lowerLimit.z > 1)
+			color.rangeValue.lowerLimit.z /= 255;
 		color.rangeValue.lowerLimit.a = moduleJSON["MinColor"][3];
+		if (color.rangeValue.lowerLimit.a > 1) 
+			color.rangeValue.lowerLimit.a /= 255;
 	}
 
 	if (moduleJSON.contains("MaxColor"))
 	{
 		color.rangeValue.upperLimit.x = moduleJSON["MaxColor"][0];
+		if (color.rangeValue.upperLimit.x > 1)
+			color.rangeValue.upperLimit.x /= 255;
 		color.rangeValue.upperLimit.y = moduleJSON["MaxColor"][1];
+		if (color.rangeValue.upperLimit.y > 1)
+			color.rangeValue.upperLimit.y /= 255;
 		color.rangeValue.upperLimit.z = moduleJSON["MaxColor"][2];
+		if (color.rangeValue.upperLimit.z > 1) 
+			color.rangeValue.upperLimit.z /= 255;
 		color.rangeValue.upperLimit.a = moduleJSON["MaxColor"][3];
+		if (color.rangeValue.upperLimit.a > 1)
+			color.rangeValue.upperLimit.a /= 255;
 	}
 }
 

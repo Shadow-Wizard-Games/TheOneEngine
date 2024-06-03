@@ -1,6 +1,9 @@
 #include "InspectorParticleSystems.h"
 #include "TheOneEngine/FileDialog.h"
 #include "TheOneEngine/Defs.h"
+#include "App.h"
+#include "Gui.h"
+#include "PanelSettings.h"
 
 #include "imgui.h"
 
@@ -276,36 +279,58 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 	ImGui::PushItemWidth(60);
 
 	if (initModule->color.usingSingleValue) {
-		ImGui::PushID("set_color_single_PS");
-		ImGui::InputDouble("R", &initModule->color.singleValue.r, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->color.singleValue.g, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->color.singleValue.b, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("A", &initModule->color.singleValue.a, 0, 0, "%.0f");
-		ImGui::PopID();
+		ImVec4 color = ImVec4(initModule->color.singleValue.r, initModule->color.singleValue.g, initModule->color.singleValue.b, initModule->color.singleValue.a);
+		static const char* color_id = "##particleColor";
+		if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+		{
+			app->gui->openColorPicker = true;
+			EditColor editColor = { color_id, color, color };
+			app->gui->SetEditColor(editColor);
+		}
+		else if (app->gui->GetEditColor().id == color_id)
+		{
+			ImVec4 color = app->gui->GetEditColor().color;
+			initModule->color.singleValue.r = color.x;
+			initModule->color.singleValue.g = color.y;
+			initModule->color.singleValue.b = color.z;
+		}
 	}
 	else {
-		ImGui::PushID("set_color_min_PS");
-		ImGui::InputDouble("R", &initModule->color.rangeValue.lowerLimit.r, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->color.rangeValue.lowerLimit.g, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->color.rangeValue.lowerLimit.b, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("A", &initModule->color.rangeValue.lowerLimit.a, 0, 0, "%.0f");
-		ImGui::PopID();
+		ImGui::Text("1st Range Color");
+		ImVec4 initColor = ImVec4(initModule->color.rangeValue.lowerLimit.r, initModule->color.rangeValue.lowerLimit.g, initModule->color.rangeValue.lowerLimit.b, initModule->color.rangeValue.lowerLimit.a);
+		static const char* initColor_id = "##particleRange1Color";
+		if (ImGui::ColorButton(initColor_id, initColor, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+		{
+			app->gui->openColorPicker = true;
+			EditColor editColor = { initColor_id, initColor, initColor };
+			app->gui->SetEditColor(editColor);
+		}
+		else if (app->gui->GetEditColor().id == initColor_id)
+		{
+			ImVec4 initColor = app->gui->GetEditColor().color;
+			initModule->color.rangeValue.lowerLimit.r = initColor.x;
+			initModule->color.rangeValue.lowerLimit.g = initColor.y;
+			initModule->color.rangeValue.lowerLimit.b = initColor.z;
+			initModule->color.rangeValue.lowerLimit.a = initColor.w;
+		}
 
-		ImGui::PushID("set_color_max_PS");
-		ImGui::InputDouble("R", &initModule->color.rangeValue.upperLimit.r, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("G", &initModule->color.rangeValue.upperLimit.g, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("B", &initModule->color.rangeValue.upperLimit.b, 0, 0, "%.0f");
-		ImGui::SameLine();
-		ImGui::InputDouble("A", &initModule->color.rangeValue.upperLimit.a, 0, 0, "%.0f");
-		ImGui::PopID();
+		ImGui::Text("2nd Range Color");
+		ImVec4 finalColor = ImVec4(initModule->color.rangeValue.upperLimit.r, initModule->color.rangeValue.upperLimit.g, initModule->color.rangeValue.upperLimit.b, initModule->color.rangeValue.upperLimit.a);
+		static const char* finalColor_id = "##particleRange2Color";
+		if (ImGui::ColorButton(finalColor_id, finalColor, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+		{
+			app->gui->openColorPicker = true;
+			EditColor editColor = { finalColor_id, finalColor, finalColor };
+			app->gui->SetEditColor(editColor);
+		}
+		else if (app->gui->GetEditColor().id == finalColor_id)
+		{
+			ImVec4 finalColor = app->gui->GetEditColor().color;
+			initModule->color.rangeValue.upperLimit.r = finalColor.x;
+			initModule->color.rangeValue.upperLimit.g = finalColor.y;
+			initModule->color.rangeValue.upperLimit.b = finalColor.z;
+			initModule->color.rangeValue.upperLimit.a = finalColor.w;
+		}
 	}
 
 	ImGui::PopItemWidth();
@@ -484,27 +509,27 @@ void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule)
 
 	ImGui::PushItemWidth(60);
 
-	bool setNextOnSameLine = false;
+	ImVec4 color = ImVec4(updateModule->finalColor.r, updateModule->finalColor.g, updateModule->finalColor.b, updateModule->finalColor.a);
+	static const char* color_id = "##particleFinalColor";
+	if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+	{
+		app->gui->openColorPicker = true;
+		EditColor editColor = { color_id, color, color };
+		app->gui->SetEditColor(editColor);
+	}
+	else if (app->gui->GetEditColor().id == color_id)
+	{
+		ImVec4 color = app->gui->GetEditColor().color;
+		if (updateModule->affectR)
+		updateModule->finalColor.r = color.x;
+		if (updateModule->affectG)
+		updateModule->finalColor.g = color.y;
+		if (updateModule->affectB)
+		updateModule->finalColor.b = color.z;
+		if (updateModule->affectA)
+		updateModule->finalColor.a = color.w;
+	}
 
-	ImGui::PushID("set_final_color_PS");
-	if (updateModule->affectR) {
-		ImGui::InputDouble("R", &updateModule->finalColor.r, 0, 0, "%.0f");
-		setNextOnSameLine = true;
-	}
-	if (updateModule->affectG) {
-		if (setNextOnSameLine) ImGui::SameLine();
-		ImGui::InputDouble("G", &updateModule->finalColor.g, 0, 0, "%.0f");
-		setNextOnSameLine = true;
-	}
-	if (updateModule->affectB) {
-		if (setNextOnSameLine) ImGui::SameLine();
-		ImGui::InputDouble("B", &updateModule->finalColor.b, 0, 0, "%.0f");
-		setNextOnSameLine = true;
-	}
-	if (updateModule->affectA) { 
-		if (setNextOnSameLine) ImGui::SameLine();
-		ImGui::InputDouble("A", &updateModule->finalColor.a, 0, 0, "%.0f"); 
-	}
 
 	ImGui::Checkbox("Use R", &updateModule->affectR);
 	ImGui::SameLine();
@@ -513,7 +538,6 @@ void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule)
 	ImGui::Checkbox("Use B", &updateModule->affectB);
 	ImGui::SameLine();
 	ImGui::Checkbox("Use A", &updateModule->affectA);
-	ImGui::PopID();
 
 	ImGui::PopItemWidth();
 }
