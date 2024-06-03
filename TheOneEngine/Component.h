@@ -39,7 +39,7 @@ public:
 
     virtual void Enable();
     virtual void Disable();
-    virtual void Update() {};
+    virtual void Update(double dt) {};
     virtual void DrawComponent(Camera* camera) {};
 
     std::string GetName();

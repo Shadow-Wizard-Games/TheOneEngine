@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static IAudioSource;
@@ -148,10 +149,10 @@ class InternalCalls
     internal extern static void CanvasEnableToggle(IntPtr GOptr);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void MoveSelectedButton(IntPtr GOptr, int direction);
+    internal extern static void MoveSelectedButton(IntPtr GOptr, int direction, bool children = false);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void MoveSelection(IntPtr GOptr, int direction);
+    internal extern static void MoveSelection(IntPtr GOptr, int direction, bool children = false);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static int GetSelectedButton(IntPtr GOptr);
@@ -178,13 +179,16 @@ class InternalCalls
     internal extern static int GetSliderValue(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void SetTextString(IntPtr GOptr, string text, string name);
+    internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetTextString(IntPtr GOptr, string text, string name, int num = -1);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static string GetTextString(IntPtr GOptr, string name);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static int GetSliderMaxValue(IntPtr GOptr, string name);
+    internal extern static void CanvasFlicker(IntPtr GOptr, bool flicker);
     #endregion
 
     #region Helpers

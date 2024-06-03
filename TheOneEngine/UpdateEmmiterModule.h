@@ -49,7 +49,7 @@ public:
 	ColorOverLifeUpdate(Emmiter* owner);
 	ColorOverLifeUpdate(Emmiter* owner, ColorOverLifeUpdate* ref);
 
-	vec4 finalColor;
+	glm::vec4 finalColor;
 
 	bool affectR;
 	bool affectG;

@@ -108,6 +108,7 @@ public class UiManager : MonoBehaviour
         pickUpFeedbackGo.Disable();
 
         state = MenuState.Hud;
+        previousState = MenuState.Pause;
         playerScript.onPause = false;
 
         GameManagerGO = IGameObject.Find("GameManager");
@@ -394,7 +395,6 @@ public class UiManager : MonoBehaviour
                     break;
                 case MenuState.Settings:
                     settingsGo.Enable();
-                    settingsCanvas.firstFrameUpdate = false;
                     playerScript.onPause = true;
                     break;
                 case MenuState.Missions:

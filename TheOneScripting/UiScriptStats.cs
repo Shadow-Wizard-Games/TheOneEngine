@@ -16,6 +16,10 @@ public class UiScriptStats : MonoBehaviour
     float cooldown = 0;
     bool onCooldown = false;
 
+    float flickerCooldown = 0;
+    bool flickerOnCooldown = false;
+    bool firstFrame = true;
+
     int currentButton = 0;
 
     //it goes from lvl 1 to 4
@@ -46,6 +50,9 @@ public class UiScriptStats : MonoBehaviour
         ChangeStatLvl(StatType.HEALTH, false, playerHealthLvl);
         ChangeStatLvl(StatType.SPEED, false, playerSpeedLvl);
 
+        firstFrame = true;
+        flickerCooldown = 0;
+        flickerOnCooldown = false;
 
         onCooldown = true;
     }
@@ -54,6 +61,24 @@ public class UiScriptStats : MonoBehaviour
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
+
+        if (firstFrame)
+        {
+            canvas.CanvasFlicker(true);
+            flickerOnCooldown = true;
+            firstFrame = false;
+        }
+
+        if (flickerOnCooldown && flickerCooldown < 0.6f)
+        {
+            flickerCooldown += dt;
+        }
+        else
+        {
+            canvas.CanvasFlicker(false);
+            flickerCooldown = 0.0f;
+            flickerOnCooldown = false;
+        }
 
         if (onCooldown && cooldown < 0.2f)
         {
