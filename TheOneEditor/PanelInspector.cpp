@@ -633,7 +633,7 @@ bool PanelInspector::Draw()
                     if (componentTransform != nullptr) {
                         componentTransform->CalculateWorldTransform();
                     }
-                    particleSystem->Update();
+                    particleSystem->Update(engine->dt);
                 }
                 bool isDirty = false;
 

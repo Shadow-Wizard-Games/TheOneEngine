@@ -233,7 +233,6 @@ public class MainMenuManager : MonoBehaviour
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
                     IGameObject.Find("Canvas_Settings").Enable();
-                    settingsScript.firstFrameUpdate = false;
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     onCooldown = true;
                     mainMenu = false;
