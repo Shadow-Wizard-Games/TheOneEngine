@@ -8,6 +8,12 @@
 
 class RenderTarget;
 
+enum class RendererTab
+{
+	Settings,
+	FrameBuffers
+};
+
 class PanelRenderer : public Panel
 {
 public:
@@ -17,6 +23,9 @@ public:
 	void Start();
 	bool Draw();
 
+	void SettingsTab();
+	void FrameBuffersTab();
+
 private:
 	std::vector<RenderTarget>* renderTargets;
 	RenderTarget* selectedTarget;
@@ -25,4 +34,12 @@ private:
 	FrameBuffer* selectedBuffer;
 
 	std::vector<Attachment>* attachments;
+
+	RendererTab selectedTab;
+
+	// Render Settings
+	bool renderLights;
+	bool renderShadows;
+	bool renderParticles;
+	bool renderCRT;
 };

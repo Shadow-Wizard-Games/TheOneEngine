@@ -99,7 +99,8 @@ public:
 
 	static void GeometryPass(RenderTarget target);
 	static void IndexPass(RenderTarget target);
-	static void PostProcess(RenderTarget target);
+	static bool InitPostProcess(RenderTarget target);
+	static void EndPostProcess(RenderTarget target);
 	static void ShadowPass(RenderTarget target);
 	static void LightPass(RenderTarget target);
 	static void UIComposition(RenderTarget target);

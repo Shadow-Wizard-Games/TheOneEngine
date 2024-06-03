@@ -8,8 +8,45 @@
 #include <vector>
 #include <string>
 
+
 class RenderTarget;
+class UniformBuffer;
 class Ray;
+
+struct draw
+{
+	bool isEnabled = true;
+	void Enable() { isEnabled = true; }
+	void Disable() { isEnabled = false; }
+	void Toggle() { isEnabled = !isEnabled; }
+	void SetState(bool state) { isEnabled = state; }
+};
+
+struct RendererSettings
+{
+	// Render
+	draw postProcess;
+	draw lights;
+	draw shadows;
+	draw particles;
+	draw crt;
+
+	// Editor Draw
+	draw grid;
+	draw axis;
+	draw collisions;
+	draw scriptShapes;
+	draw raycasting;
+	draw AABB;
+};
+
+struct RendererData
+{
+	std::vector<RenderTarget> renderTargets;
+	std::shared_ptr<UniformBuffer> cameraUniformBuffer;
+
+	std::vector<Ray> rays;
+};
 
 class Renderer
 {
@@ -32,31 +69,8 @@ public:
 	static void AddRay(Ray ray);
 	static void ClearRays();
 
-	// Render Settings
-	static bool GetRenderLights();
-	static void SetRenderLights(bool render);
-
-	static bool GetRenderShadows();
-	static void SetRenderShadows(bool render);
-
-	// Draw Settings
-	static bool GetDrawGrid();
-	static void SetDrawGrid(bool draw);
-
-	static bool GetDrawAxis();
-	static void SetDrawAxis(bool draw);
-
-	static bool GetDrawCollisions();
-	static void SetDrawCollisions(bool draw);
-
-	static bool GetDrawScriptShapes();
-	static void SetDrawScriptShapes(bool draw);
-
-	static bool GetDrawRaycasting();
-	static void SetDrawRaycasting(bool draw);
-
-	static bool GetDrawAABB();
-	static void SetDrawAABB(bool draw);
+	// Get / Set
+	static RendererSettings* Settings();
 
 	// Draw Utils
 	static void DrawScreenQuad();

@@ -527,7 +527,7 @@ void Renderer3D::GeometryPass(RenderTarget target)
 	gBuffer->Unbind();
 }
 
-void Renderer3D::PostProcess(RenderTarget target)
+bool Renderer3D::InitPostProcess(RenderTarget target)
 {
 	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
 	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
@@ -541,12 +541,19 @@ void Renderer3D::PostProcess(RenderTarget target)
 	int width = postBuffer->GetWidth();
 	int height = postBuffer->GetHeight();
 	GLCALL(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
-
+	if (!Renderer::Settings()->lights.isEnabled)
+		GLCALL(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST));
 	postBuffer->Bind();
 
-	LightPass(target);
-	IndexPass(target);
+	if (!Renderer::Settings()->postProcess.isEnabled)
+		return false;
 
+	return true;
+}
+
+void Renderer3D::EndPostProcess(RenderTarget target)
+{
+	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
 	postBuffer->Unbind();
 }
 
@@ -678,7 +685,7 @@ void Renderer3D::IndexPass(RenderTarget target)
 			DrawSkeletal(call);
 	}
 
-	Renderer2D::UpdateIndexed(BT::WORLD, target);
+	Renderer2D::UpdateIndexed(BatchType::WORLD, target);
 }
 
 void Renderer3D::UIComposition(RenderTarget target)
@@ -700,7 +707,7 @@ void Renderer3D::UIComposition(RenderTarget target)
 	uiBuffer->Bind();
 
 	Renderer::SetUniformBufferCamera(cameraUI);
-	Renderer2D::Update(BT::UI, target);
+	Renderer2D::Update(BatchType::UI, target);
 
 	uiBuffer->Unbind();
 }

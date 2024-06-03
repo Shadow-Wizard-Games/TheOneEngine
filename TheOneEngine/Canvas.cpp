@@ -37,7 +37,7 @@ void Canvas::DrawComponent(Camera* camera)
 
 	if (debugDraw)
 	{
-		//Renderer2D::DrawRect(BT::UI, { rect.x, rect.y, 0.0f }, { rect.w, rect.h }, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		//Renderer2D::DrawRect(BatchType::UI, { rect.x, rect.y, 0.0f }, { rect.w, rect.h }, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	}
 
 	for (auto element = uiElements.rbegin(); element != uiElements.rend(); ++element)

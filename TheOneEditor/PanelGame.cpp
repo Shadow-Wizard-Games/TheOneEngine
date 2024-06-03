@@ -160,9 +160,8 @@ bool PanelGame::Draw()
 		ImGui::Dummy(offset);
 		if (offset.x) ImGui::SameLine();
 
-		ImTextureID textureID = Renderer::GetRenderLights() ?
-			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color_crt") :
-			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
+		ImTextureID textureID =
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color_crt");
 
 		ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 

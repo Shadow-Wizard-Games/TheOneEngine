@@ -851,12 +851,12 @@ static void DrawWireCube()
 
 static void ToggleCollidersDraw()
 {
-	Renderer::SetDrawCollisions(!Renderer::GetDrawCollisions());
+	Renderer::Settings()->collisions.Toggle();
 }
 
 static void ToggleGridDraw()
 {
-	Renderer::SetDrawGrid(!Renderer::GetDrawGrid());
+	Renderer::Settings()->grid.Toggle();
 }
 
 // Particle System

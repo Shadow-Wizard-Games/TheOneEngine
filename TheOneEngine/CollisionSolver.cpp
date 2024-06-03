@@ -274,14 +274,14 @@ void CollisionSolver::DrawCollisions() {
             glm::mat4 model = glm::translate(glm::mat4(1.0f), position) 
                 * rotation 
                 * glm::scale(glm::mat4(1.0f), glm::vec3(size.x, size.y, 1.0f));
-            Renderer2D::DrawRect(BT::WORLD, model, color);
+            Renderer2D::DrawRect(BatchType::EDITOR, model, color);
         }
         else if (collider->colliderType == ColliderType::Circle) {
             float radius = collider->radius;
             glm::mat4 circleTransform = glm::translate(glm::mat4(1.0f), position)
                 * glm::rotate(glm::mat4(1), glm::radians(90.0f), glm::vec3(1, 0, 0))
                 * glm::scale(glm::mat4(1.0f), glm::vec3(radius, radius, radius));
-            Renderer2D::DrawCircle(BT::WORLD, circleTransform, color, 0.1f);
+            Renderer2D::DrawCircle(BatchType::EDITOR, circleTransform, color, 0.1f);
         }
     }
 }

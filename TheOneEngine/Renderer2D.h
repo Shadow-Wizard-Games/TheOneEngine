@@ -7,10 +7,11 @@
 class Batch;
 class RenderTarget;
 
-// Batch Type
-enum BT {
+enum BatchType
+{
 	WORLD,
 	UI,
+	EDITOR,
 	MAX
 };
 
@@ -18,16 +19,16 @@ class Renderer2D
 {
 public:
 	static void Init();
-	static void Update(BT type, RenderTarget target);
-	static void UpdateIndexed(BT type, RenderTarget target);
+	static void Update(BatchType type, RenderTarget target);
+	static void UpdateIndexed(BatchType type, RenderTarget target);
 	static void Shutdown();
 	static void ResetBatches();
 
 	// Primitives
-	static void DrawQuad(BT type, const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
-	static void DrawQuad(BT type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
-	static void DrawQuad(BT type, const glm::vec2& position, const glm::vec2& size, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
-	static void DrawQuad(BT type, const glm::vec3& position, const glm::vec2& size, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
+	static void DrawQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
+	static void DrawQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
 
 	// Quad With Texture Coordinates
 	struct TexCoordsSection
@@ -37,24 +38,24 @@ public:
 		glm::vec2 rightTop;
 		glm::vec2 leftTop;
 	};
-	static void DrawQuad(BT type, const glm::vec2& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
-	static void DrawQuad(BT type, const glm::vec3& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
 
-	static void DrawQuad(BT type, const glm::mat4& transform, const glm::vec4& color);
-	static void DrawQuad(BT type, const glm::mat4& transform, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
-	static void DrawQuad(BT type, const glm::mat4& transform, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawQuad(BatchType type, const glm::mat4& transform, const glm::vec4& color);
+	static void DrawQuad(BatchType type, const glm::mat4& transform, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawQuad(BatchType type, const glm::mat4& transform, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
 
-	static void DrawRotatedQuad(BT type, const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color);
-	static void DrawRotatedQuad(BT type, const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color);
-	static void DrawRotatedQuad(BT type, const glm::vec2& position, const glm::vec2& size, float rotation, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
-	static void DrawRotatedQuad(BT type, const glm::vec3& position, const glm::vec2& size, float rotation, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawRotatedQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color);
+	static void DrawRotatedQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color);
+	static void DrawRotatedQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, float rotation, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
+	static void DrawRotatedQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, float rotation, ResourceId imageID, const glm::vec4& tintColor = glm::vec4(1.0f), float tilingFactor = 1.0f);
 
-	static void DrawCircle(BT type, const glm::mat4& transform, const glm::vec4& color, float thickness = 1.0f, float fade = 0.005f);
+	static void DrawCircle(BatchType type, const glm::mat4& transform, const glm::vec4& color, float thickness = 1.0f, float fade = 0.005f);
 
-	static void DrawLine(BT type, const glm::vec3& p0, const glm::vec3& p1, const glm::vec4& color);
+	static void DrawLine(BatchType type, const glm::vec3& p0, const glm::vec3& p1, const glm::vec4& color);
 
-	static void DrawRect(BT type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
-	static void DrawRect(BT type, const glm::mat4& transform, const glm::vec4& color);
+	static void DrawRect(BatchType type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
+	static void DrawRect(BatchType type, const glm::mat4& transform, const glm::vec4& color);
 
 	struct TextParams
 	{
@@ -62,8 +63,8 @@ public:
 		float Kerning = 0.0f;
 		float LineSpacing = 0.0f;
 	};
-	static void DrawString(BT type, const std::string& string, Font* font, const glm::vec2& position, const glm::vec2& size, const TextParams& textParams);
-	static void DrawString(BT type, const std::string& string, Font* font, const glm::mat4& transform, const TextParams& textParams);
+	static void DrawString(BatchType type, const std::string& string, Font* font, const glm::vec2& position, const glm::vec2& size, const TextParams& textParams);
+	static void DrawString(BatchType type, const std::string& string, Font* font, const glm::mat4& transform, const TextParams& textParams);
 
 	static float GetLineWidth();
 	static void SetLineWidth(float width);
