@@ -1,19 +1,21 @@
 #include "PanelGame.h"
 #include "App.h"
 #include "Gui.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
-#include "Window.h"
 #include "imgui.h"
 
-#include "../TheOneEngine/EngineCore.h"
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+#include "TheOneEngine/Renderer.h"
+#include "TheOneEngine/Renderer3D.h"
+#include "TheOneEngine/RenderTarget.h"
 
 PanelGame::PanelGame(PanelType type, std::string name) : Panel(type, name)
 {
 	currentScene = nullptr;
 	gameCamera = nullptr;
-	frameBuffer = std::make_shared<FrameBuffer>(1280, 720, true);
 	viewportSize = { 0.0f, 0.0f };
+	renderTarget = -1;
 	isHovered = false;
 	isFocused = false;
 	aspect = Aspect::A_16x9;
@@ -27,16 +29,29 @@ void PanelGame::Start()
 
 	// Set Game Camera
 	std::vector<GameObject*> gameCameras = GetGameCameras();
-	if (gameCameras.front()) gameCamera = gameCameras.front()->GetComponent<Camera>();
-	
-	// Find primary camera
-	/*for (const auto& cam : gameCameras)
-	{
-		Camera* gameCam = cam->GetComponent<Camera>();
 
-		if (gameCam && !gameCam->primaryCam) continue;
-		gameCamera = gameCam;
-	}*/
+	gameCamera = gameCameras.empty() ?
+		engine->N_sceneManager->currentScene->currentCamera : gameCameras.front()->GetComponent<Camera>();
+	
+	// Create Render Target
+	std::vector<Attachment> gBuffAttachments = {
+		{ Attachment::Type::RGBA8, "color", "gBuffer", 0 },
+		{ Attachment::Type::RGB16F, "position", "gBuffer", 0 },
+		{ Attachment::Type::RGB16F, "normal", "gBuffer", 0 },
+		{ Attachment::Type::DEPTH_STENCIL, "depth", "gBuffer", 0 }
+	};
+	std::vector<Attachment> postBuffAttachments = {
+		{ Attachment::Type::RGBA8, "color", "postBuffer", 0 },
+		{ Attachment::Type::DEPTH_STENCIL, "depth", "postBuffer", 0 }
+	};
+	std::vector<Attachment> uiBuffAttachments = {
+		{ Attachment::Type::RGBA8, "color", "uiBuffer", 0 }
+	};
+
+	std::vector<std::vector<Attachment>> gameBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };
+
+	viewportSize = { 640, 360 };
+	renderTarget = Renderer::AddRenderTarget("Panel Game", DrawMode::GAME, gameCamera, viewportSize, gameBuffers);
 }
 
 bool PanelGame::Draw()
@@ -49,10 +64,10 @@ bool PanelGame::Draw()
 
 	if (ImGui::Begin("Game", &enabled, settingsFlags))
 	{
-		if (!gameCamera)
+		if (!gameCamera && !GetGameCameras().empty())
 		{
-			std::vector<GameObject*> gameCameras = GetGameCameras();
-			if (gameCameras.front()) gameCamera = gameCameras.front()->GetComponent<Camera>();
+			gameCamera = GetGameCameras().front()->GetComponent<Camera>();
+			if (renderTarget) Renderer::GetRenderTarget(renderTarget)->SetCamera(gameCamera);
 		}
 
 		isHovered = ImGui::IsWindowHovered();
@@ -60,7 +75,7 @@ bool PanelGame::Draw()
 
 		ImVec2 availWindowSize = ImGui::GetContentRegionAvail();
 
-		// Top Bar -----------------------------------------------------------------
+		// Top Bar -------------------------------------------------------------------------
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 10, 10 });
 		if (ImGui::BeginMenuBar())
 		{
@@ -102,6 +117,10 @@ bool PanelGame::Draw()
 		ImGui::PopStyleVar();
 
 
+		// Render --------------------------------------------------------------------------
+		
+		Renderer::GetRenderTarget(renderTarget)->SetActive(true);
+		
 		// Viewport resize check
 		ImVec2 size;		
 		app->gui->ApplyAspectRatio(availWindowSize.x, availWindowSize.y, &size.x, &size.y, aspect);
@@ -109,9 +128,11 @@ bool PanelGame::Draw()
 		viewportSize = { size.x, size.y };
 
 		if (viewportSize.x > 0.0f && viewportSize.y > 0.0f && // zero sized framebuffer is invalid
-			(frameBuffer->getWidth() != viewportSize.x || frameBuffer->getHeight() != viewportSize.y))
+			(Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetWidth() != viewportSize.x ||
+				Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetHeight() != viewportSize.y))
 		{
-			frameBuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+			Renderer::GetFrameBuffer(renderTarget, "gBuffer")->Resize(viewportSize.x, viewportSize.y);
+			Renderer::GetFrameBuffer(renderTarget, "postBuffer")->Resize(viewportSize.x, viewportSize.y);
 
 			if (gameCamera)
 			{
@@ -120,34 +141,23 @@ bool PanelGame::Draw()
 			}
 		}
 
-		// ALL DRAWING MUST HAPPEN BETWEEN FB BIND/UNBIND -------------------------------------------------
-		{
-			frameBuffer->Bind();
-			frameBuffer->Clear();
-			frameBuffer->ClearBuffer(-1);
-
-			// Set Render Environment
-			engine->SetRenderEnvironment(gameCamera);
-
-			currentScene->Draw(DrawMode::GAME, gameCamera);
-
-			N_SceneManager* engineSM = engine->N_sceneManager;
-
-			frameBuffer->Unbind();
-		}
-
 		// Draw FrameBuffer Texture
 		ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, { 0, 0 });
 		ImGui::Dummy(offset);
 		if (offset.x) ImGui::SameLine();
 
-		ImGui::Image(
-			(ImTextureID)frameBuffer->getColorBufferTexture(),
-			ImVec2{ viewportSize.x, viewportSize.y },
-			ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImTextureID textureID = Renderer::GetRenderLights() ?
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color") :
+			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
+
+		ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 		ImGui::PopStyleVar();
     }
+	else
+	{
+		Renderer::GetRenderTarget(renderTarget)->SetActive(false);
+	}
 	ImGui::End();
 
 	ImGui::PopStyleVar();

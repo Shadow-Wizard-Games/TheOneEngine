@@ -2,9 +2,6 @@
 #define __ENGINE_CORE_H__
 #pragma once
 
-
-// hekbas: Include here all headers needed in Editor
-// Include in Editor when needed: #include "TheOneEngine/EngineCore.h"
 #include "Defs.h"
 #include "Camera.h"
 #include "Transform.h"
@@ -27,6 +24,7 @@
 #include <string>
 
 class N_SceneManager;
+class Window;
 
 
 // Volatile memory buffer that can be used within function scope.
@@ -60,6 +58,7 @@ class EngineCore
 public:
 
 	EngineCore();
+	~EngineCore();
 
 	void Awake();
 	void Start();
@@ -67,17 +66,7 @@ public:
 	bool PreUpdate();
 	void Update(double dt);
 
-	void SetRenderEnvironment(Camera* camera);
-	void DebugDraw(bool override = false);
-
-	void LogGL(string id);
-
 	void CleanUp();
-
-	void DrawAxis();
-	void DrawGrid(int grid_size, int grid_step);
-	void DrawFrustum(const Frustum& frustum);
-	void DrawRay(const Ray& ray);
 
 	bool GetVSync();
 	bool SetVSync(bool vsync);
@@ -87,34 +76,31 @@ public:
 	void CleanLogs();
 
 	void SetEditorCamera(Camera* cam);
-	void SetUniformBufferCamera(const glm::mat4& cam);
 
 public:
 	
 	double dt = 0;
 	bool vsync = false;
 
-	MonoManager* monoManager = nullptr;
+	Window* window = nullptr;
 	InputManager* inputManager = nullptr;
+	MonoManager* monoManager = nullptr;
 	N_SceneManager* N_sceneManager = nullptr;
 	CollisionSolver* collisionSolver = nullptr;
 	EasingManager* easingManager = nullptr;
 
-	bool drawGrid = true;
-	bool drawAxis = true;
-	bool drawCollisions = true;
-	bool drawScriptShapes = true;
 
 	ScratchBuffer scratch_buffer_;
+
+	std::string lightingProcessPath;
 
 private:
 
 	// Logs
 	LogInfo logInfo;
 	std::vector<LogInfo> logs;
-	Camera* editorCamReference;
-	std::shared_ptr<UniformBuffer> CameraUniformBuffer;
 
+	Camera* editorCamReference;
 };
 
 extern EngineCore* engine;

@@ -5,20 +5,21 @@
 #include "Defs.h"
 #include "Component.h"
 #include "BBox.hpp"
-#include "Script.h"
 #include "Log.h"
 
 #include <string>
 #include <vector>
 #include <list>
 #include <memory>
+#include <utility>
 
 class Camera;
 
 enum class DrawMode
 {
+    EDITOR,
     GAME,
-    EDITOR
+    BUILD
 };
 
 class GameObject : public std::enable_shared_from_this<GameObject>
@@ -45,13 +46,28 @@ public:
         return nullptr;
     }
 
+    std::vector<Component*> GetAllComponents();
+
     template <typename TComponent>
-    bool AddComponent()
+    std::vector<TComponent*> GetComponents() const
+    {
+        std::vector<TComponent*> matchingComponents;
+        for (const auto& component : components)
+        {
+            if (TComponent* castedComponent = dynamic_cast<TComponent*>(component.get())) {
+                matchingComponents.push_back(castedComponent);
+            }
+        }
+        return matchingComponents;
+    }
+
+    template <typename TComponent, typename... Args>
+    bool AddComponent(Args&&... args)
     {
         Component* component = this->GetComponent<TComponent>();
 
         // Check for already existing Component
-        if (component != nullptr)
+        if (component && component->GetType() != ComponentType::Script)
         {
             LOG(LogType::LOG_WARNING, "Component already applied");
             LOG(LogType::LOG_INFO, "-GameObject [Name: %s] ", name.data());
@@ -60,7 +76,7 @@ public:
             return false;
         }
 
-        std::unique_ptr<Component> newComponent = std::make_unique<TComponent>(shared_from_this());
+        std::unique_ptr<Component> newComponent = std::make_unique<TComponent>(shared_from_this(), std::forward<Args>(args)...);
         newComponent->Enable(); // hekbas: Enable the component if necessary?
         components.push_back(std::move(newComponent));
 
@@ -88,34 +104,23 @@ public:
 
         return true;
     }
-    
-    bool AddScript(std::string name)
-    {
-        Component* component = this->GetComponent<Script>();
-
-        // Check for already existing Component
-        if (component != nullptr && this->GetComponent<Script>()->scriptName == name)
-        {
-            LOG(LogType::LOG_WARNING, "Component already applied");
-            LOG(LogType::LOG_INFO, "-GameObject [Name: %s] ", name.data());
-            LOG(LogType::LOG_INFO, "-Component  [Type: Script] ");
-
-            return false;
-        }
-
-        std::unique_ptr<Component> newComponent = std::make_unique<Script>(shared_from_this(), name);
-        newComponent->Enable(); // hekbas: Enable the component if necessary?
-        components.push_back(std::move(newComponent));
-
-        return true;
-    }
 
     void RemoveComponent(ComponentType type);
 
-    std::vector<Component*> GetAllComponents(bool tunometecabrasalamambiche = true);
+    template <typename TComponent>
+    void RemoveComponent(TComponent* compToRemove)
+    {
+        auto it = std::find_if(components.begin(), components.end(),
+            [compToRemove](const std::unique_ptr<Component>& comp) {
+                return comp.get() == compToRemove;
+            });
+
+        if (it != components.end())
+            components.erase(it);
+    }
+
 
     // AABB
-    void GenerateAABBFromMesh();
     AABBox CalculateAABB();
     AABBox CalculateAABBWithChildren();
     void DrawAABB();
@@ -142,6 +147,7 @@ public:
     uint32 GetUID() { return UID; }
 
     AABBox GetAABBox() { return aabb; }
+    void SetAABBox(AABBox newAABB) { aabb = newAABB; }
 
     json SaveGameObject();
     void LoadGameObject(const json& gameObjectJSON);

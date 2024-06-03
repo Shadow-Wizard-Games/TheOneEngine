@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BuilderWindow.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
@@ -27,17 +24,11 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Timer</Filter>
     </ClCompile>
-    <ClCompile Include="BuilderRenderer3D.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="BuilderSceneManager.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BuilderWindow.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="BuilderModule.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -46,9 +37,6 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="BuilderRenderer3D.h">
-      <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="BuilderDefs.h">
       <Filter>Utils</Filter>

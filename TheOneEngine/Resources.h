@@ -5,6 +5,7 @@
 
 // Include resources implementations
 #include "ResourcesModelImpl.h"
+#include "ResourcesSkeletalModelImpl.h"
 #include "ResourcesMaterialImpl.h"
 #include "ResourcesImageImpl.h"
 #include "ResourcesShaderImpl.h"

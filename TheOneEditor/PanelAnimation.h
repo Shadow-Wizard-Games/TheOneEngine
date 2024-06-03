@@ -6,7 +6,7 @@
 #include <string>
 
 
-class Model;
+class SkeletalModel;
 class OzzAnimationSimple;
 class OzzAnimationPartialBlending;
 class GameObject;
@@ -33,7 +33,7 @@ private:
 	void DrawPartialBlendingAnimation(OzzAnimationPartialBlending* partial_animation);
 
 private:
-	Model* activeAnimator;
+	SkeletalModel* activeAnimator;
 	bool isPlaying;
 
 	std::shared_ptr<GameObject> animationCamera;

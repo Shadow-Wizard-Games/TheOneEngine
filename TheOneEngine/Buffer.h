@@ -31,9 +31,9 @@ struct BufferElement
 {
 	std::string Name;
 	ShaderDataType Type;
-	uint32_t Size;
-	size_t Offset;
-	bool Normalized;
+	uint32_t Size = 0;
+	size_t Offset = 0;
+	bool Normalized = false;
 
 	BufferElement() = default;
 
@@ -74,9 +74,13 @@ public:
 		CalculateOffsetsAndStride();
 	}
 
+	~BufferLayout() { m_Elements.clear(); }
+
 	uint32_t GetStride() const { return m_Stride; }
 	const std::vector<BufferElement>& GetElements() const { return m_Elements; }
 	uint32_t GetSize() const { return m_Elements.size() * sizeof(BufferElement) + sizeof(uint32_t); }
+	const BufferElement& GetElementAt(uint32_t index) const { return m_Elements.at(index); }
+	const BufferElement& GetElementByName(const std::string& name) const { for (const BufferElement& e : m_Elements) if (e.Name == name) return e; return BufferElement(); }
 
 	std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
 	std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
@@ -102,6 +106,7 @@ private:
 class VertexBuffer
 {
 public:
+	VertexBuffer() {}
 	VertexBuffer(uint32_t size);
 	VertexBuffer(float* vertices, uint32_t size);
 	~VertexBuffer();
@@ -111,18 +116,20 @@ public:
 
 	void Delete();
 
-	void SetData(const void* data, uint32_t size);
+	void SetData(const void* data, uint32_t size, uint32_t offset = 0) const;
+	void AllocateData(const void* data, uint32_t size) const;
 
 	const BufferLayout& GetLayout() const { return m_Layout; }
 	void SetLayout(const BufferLayout& layout) { m_Layout = layout; }
 private:
-	uint32_t m_RendererID;
+	uint32_t m_RendererID = 0;
 	BufferLayout m_Layout;
 };
 
 class IndexBuffer
 {
 public:
+	IndexBuffer() {}
 	IndexBuffer(uint32_t* indices, uint32_t count);
 	virtual ~IndexBuffer();
 
@@ -133,6 +140,6 @@ public:
 
 	virtual uint32_t GetCount() const { return m_Count; }
 private:
-	uint32_t m_RendererID;
-	uint32_t m_Count;
+	uint32_t m_RendererID = 0;
+	uint32_t m_Count = 0;
 };

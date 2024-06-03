@@ -1,5 +1,6 @@
 #include "MonoManager.h"
 #include "MonoRegisterer.h"
+#include "Renderer2D.h"
 
 #include <iostream>
 #include <fstream>
@@ -233,16 +234,12 @@ void MonoManager::RenderShapesQueue()
 
     for (auto& shape : debugShapesQueue)
     {
-        glPushMatrix();
-        glTranslatef(shape.center.x, shape.center.y, shape.center.z);
-        glColor3f(shape.color.r, shape.color.g, shape.color.b);
-        glBegin(GL_LINE_LOOP);
+        glm::mat4 translate = glm::translate(glm::mat4(1), shape.center);
 
-        for (auto& point : shape.points)
-            glVertex3f(point.x, point.y, point.z);
-
-        glEnd();
-        glPopMatrix();
+        for (int i = 0; i < shape.points.size(); i++)
+            Renderer2D::DrawLine(BT::WORLD, glm::vec4(shape.points[i], 1.0f) * translate,
+                                 glm::vec4(&shape.points[i + 1] == nullptr ? shape.points[0] : shape.points[i + 1], 1.0f) * translate,
+                                 glm::vec4(shape.color, 1.0f));
     }
 
     debugShapesQueue.clear();
