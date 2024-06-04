@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 3810410624,
+      "ParentUID": 0,
       "Static": false,
       "UID": 0
     },
@@ -3821,7 +3821,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 3810410624,
+      "ParentUID": 0,
       "Static": false,
       "UID": 1040384000
     },
@@ -3895,12 +3895,12 @@
             },
             {
               "Color": [
+                0.2012902796268463,
                 0.1599999964237213,
-                0.24258069694042206,
                 0.800000011920929
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": -7.400000095367432,
+              "Intensity": -25.600000381469727,
               "LightType": 0,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -3963,12 +3963,12 @@
             },
             {
               "Color": [
-                0.1600000411272049,
-                0.800000011920929,
-                0.17630572617053986
+                0.0,
+                1.0,
+                0.02547764778137207
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 0.699999988079071,
+              "Intensity": 3.5,
               "LightType": 0,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -4265,7 +4265,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 3810410624,
+      "ParentUID": 0,
       "Static": false,
       "UID": 1040384000
     },
@@ -5134,7 +5134,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 3810410624,
+      "ParentUID": 0,
       "Static": false,
       "UID": 1156579328
     }
