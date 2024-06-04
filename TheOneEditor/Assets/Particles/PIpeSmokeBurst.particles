@@ -2,43 +2,27 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 1.5,
       "InitializeModules": [
         {
           "MaxDirection": [
-            0.0,
+            0.4,
             2.0,
-            0.5
+            0.1
           ],
           "MinDirection": [
-            0.0,
-            -1.0,
-            0.0
+            0.4,
+            1.0,
+            -0.1
           ],
           "Type": 4,
-          "UsingSingleValueDirection": true
+          "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 2.0,
-          "MinSpeed": 0.0,
+          "MaxSpeed": 100.0,
+          "MinSpeed": 30.0,
           "Type": 0,
-          "UsingSingleValueSpeed": true
-        },
-        {
-          "MaxColor": [
-            1.0,
-            1.0,
-            1.0,
-            0.0
-          ],
-          "MinColor": [
-            0.3184713125228882,
-            1.0,
-            0.0,
-            1.0
-          ],
-          "Type": 1,
-          "UsingSingleValueColor": true
+          "UsingSingleValueSpeed": false
         },
         {
           "IsProportional": true,
@@ -48,7 +32,7 @@
             2.0
           ],
           "MinScale": [
-            2.2,
+            5.0,
             1.0,
             1.0
           ],
@@ -57,8 +41,8 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 363.5193786621094,
-      "MaxParticles": 1,
+      "Lifetime": 1733.4156494140625,
+      "MaxParticles": 200,
       "RenderModule": [
         {
           "BillboardType": 1,
@@ -68,16 +52,25 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 10.0,
-          "SpawnRate": 0.5,
-          "Type": 0
+          "Amount": 200.0,
+          "Duration": 1.5,
+          "SpawnRate": 0.1599999964237213,
+          "Type": 2
         }
       ],
       "UpdateModules": [
         {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
           "Acceleration": [
             0.0,
-            -2.0,
+            0.0,
             0.0
           ],
           "Type": 0
@@ -85,8 +78,8 @@
       ]
     }
   ],
-  "Name": "ParticleSystem",
+  "Name": "PIpeSmokeBurst",
   "StartON": true,
   "Type": 9,
-  "UID": 2694119003
+  "UID": 2340610301
 }

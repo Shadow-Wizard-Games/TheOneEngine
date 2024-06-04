@@ -8,12 +8,12 @@
           "MaxDirection": [
             2.0,
             2.0,
-            0.05
+            -0.5
           ],
           "MinDirection": [
             2.0,
             1.0,
-            0.0
+            0.5
           ],
           "Type": 4,
           "UsingSingleValueDirection": false
@@ -38,10 +38,26 @@
           ],
           "Type": 2,
           "UsingSingleValueScale": true
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 1235.926025390625,
+      "Lifetime": 2336.09033203125,
       "MaxParticles": 400,
       "RenderModule": [
         {
@@ -53,7 +69,7 @@
       "SpawnModule": [
         {
           "Duration": 4.0,
-          "SpawnRate": 30.0,
+          "SpawnRate": 100.0,
           "Type": 0
         }
       ],
@@ -73,6 +89,19 @@
             0.0
           ],
           "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": true,
+          "AffectG": true,
+          "AffectR": true,
+          "FinalColor": [
+            0.5987261533737183,
+            0.5987261533737183,
+            0.5987261533737183,
+            0.0
+          ],
+          "Type": 1
         }
       ]
     }

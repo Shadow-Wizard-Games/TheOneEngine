@@ -2,43 +2,27 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 4.0,
       "InitializeModules": [
         {
           "MaxDirection": [
-            0.0,
             2.0,
-            0.5
+            2.0,
+            -0.5
           ],
           "MinDirection": [
-            0.0,
-            -1.0,
-            0.0
+            2.0,
+            1.0,
+            0.5
           ],
           "Type": 4,
-          "UsingSingleValueDirection": true
+          "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 2.0,
-          "MinSpeed": 0.0,
+          "MaxSpeed": 300.0,
+          "MinSpeed": 30.0,
           "Type": 0,
-          "UsingSingleValueSpeed": true
-        },
-        {
-          "MaxColor": [
-            1.0,
-            1.0,
-            1.0,
-            0.0
-          ],
-          "MinColor": [
-            0.3184713125228882,
-            1.0,
-            0.0,
-            1.0
-          ],
-          "Type": 1,
-          "UsingSingleValueColor": true
+          "UsingSingleValueSpeed": false
         },
         {
           "IsProportional": true,
@@ -48,17 +32,33 @@
             2.0
           ],
           "MinScale": [
-            2.2,
+            3.0,
             1.0,
             1.0
           ],
           "Type": 2,
           "UsingSingleValueScale": true
+        },
+        {
+          "MaxColor": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MinColor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 363.5193786621094,
-      "MaxParticles": 1,
+      "Lifetime": 2216.42333984375,
+      "MaxParticles": 400,
       "RenderModule": [
         {
           "BillboardType": 1,
@@ -68,16 +68,24 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 10.0,
-          "SpawnRate": 0.5,
+          "Duration": 4.0,
+          "SpawnRate": 100.0,
           "Type": 0
         }
       ],
       "UpdateModules": [
         {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
           "Acceleration": [
             0.0,
-            -2.0,
+            -3.0,
             0.0
           ],
           "Type": 0
@@ -85,8 +93,8 @@
       ]
     }
   ],
-  "Name": "ParticleSystem",
+  "Name": "Confeti",
   "StartON": true,
   "Type": 9,
-  "UID": 2694119003
+  "UID": 1295580342
 }

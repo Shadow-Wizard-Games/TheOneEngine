@@ -6,49 +6,49 @@
       "InitializeModules": [
         {
           "MaxColor": [
-            250.0,
-            80.0,
+            0.9803921580314636,
+            0.3137255012989044,
             0.0,
-            255.0
+            1.0
           ],
           "MinColor": [
-            200.0,
+            0.7843137383460999,
             0.0,
             0.0,
-            255.0
+            1.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         },
         {
           "MaxDirection": [
-            4.0,
-            8.0,
-            -4.0
+            -10.0,
+            3.0,
+            20.0
           ],
           "MinDirection": [
-            -4.0,
-            5.0,
-            0.0
+            10.0,
+            -3.0,
+            20.0
           ],
           "Type": 4,
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 5.0,
-          "MinSpeed": 8.0,
+          "MaxSpeed": 120.0,
+          "MinSpeed": 100.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
         {
           "IsProportional": true,
           "MaxScale": [
-            1.5,
+            7.0,
             1.5,
             1.5
           ],
           "MinScale": [
-            0.5,
+            5.0,
             0.5,
             0.5
           ],
@@ -57,27 +57,27 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 5733.96484375,
-      "MaxParticles": 60,
+      "Lifetime": 123.94567108154297,
+      "MaxParticles": 200,
       "RenderModule": [
         {
           "BillboardType": 0,
+          "TexturePath": "",
           "Type": 0
         }
       ],
       "SpawnModule": [
         {
-          "Amount": 5.0,
-          "Duration": 1.25,
-          "SpawnRate": 10.0,
-          "Type": 2
+          "Duration": 0.6000000238418579,
+          "SpawnRate": 100.0,
+          "Type": 0
         }
       ],
       "UpdateModules": [
         {
           "Acceleration": [
             0.0,
-            0.5,
+            0.2,
             30.0
           ],
           "Type": 0
@@ -125,27 +125,28 @@
         },
         {
           "MaxColor": [
-            45.0,
-            45.0,
-            45.0,
-            255.0
+            0.1764705926179886,
+            0.1764705926179886,
+            0.1764705926179886,
+            1.0
           ],
           "MinColor": [
-            40.0,
-            40.0,
-            40.0,
-            255.0
+            0.1568627506494522,
+            0.1568627506494522,
+            0.1568627506494522,
+            1.0
           ],
           "Type": 1,
           "UsingSingleValueColor": true
         }
       ],
       "IsLooping": true,
-      "Lifetime": 5733.96484375,
+      "Lifetime": 123.94567108154297,
       "MaxParticles": 50,
       "RenderModule": [
         {
           "BillboardType": 0,
+          "TexturePath": "",
           "Type": 0
         }
       ],
@@ -163,9 +164,9 @@
           "AffectG": false,
           "AffectR": false,
           "FinalColor": [
-            255.0,
-            255.0,
-            255.0,
+            1.0,
+            1.0,
+            1.0,
             0.0
           ],
           "Type": 1

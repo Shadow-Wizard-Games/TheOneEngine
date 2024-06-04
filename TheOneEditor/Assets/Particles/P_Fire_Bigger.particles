@@ -41,23 +41,23 @@
         },
         {
           "MaxColor": [
-            250.0,
-            36.0,
-            36.0,
-            255.0
+            0.9803921580314636,
+            0.42982393503189087,
+            0.14117646217346191,
+            1.0
           ],
           "MinColor": [
-            225.0,
-            36.0,
-            36.0,
-            255.0
+            0.8823529481887817,
+            0.1411764770746231,
+            0.1411764770746231,
+            1.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 602.70751953125,
+      "Lifetime": 963.7885131835938,
       "MaxParticles": 500,
       "RenderModule": [
         {
@@ -68,7 +68,7 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 1.5,
+          "Duration": 2.0,
           "SpawnRate": 100.0,
           "Type": 0
         }
@@ -84,13 +84,13 @@
         },
         {
           "AffectA": true,
-          "AffectB": false,
-          "AffectG": false,
-          "AffectR": false,
+          "AffectB": true,
+          "AffectG": true,
+          "AffectR": true,
           "FinalColor": [
-            255.0,
-            255.0,
-            255.0,
+            0.21019107103347778,
+            0.21019107103347778,
+            0.21019107103347778,
             0.0
           ],
           "Type": 1
@@ -138,23 +138,23 @@
         },
         {
           "MaxColor": [
-            45.0,
-            45.0,
-            45.0,
-            255.0
+            0.1764705926179886,
+            0.1764705926179886,
+            0.1764705926179886,
+            1.0
           ],
           "MinColor": [
-            40.0,
-            40.0,
-            40.0,
-            255.0
+            0.1568627506494522,
+            0.1568627506494522,
+            0.1568627506494522,
+            1.0
           ],
           "Type": 1,
           "UsingSingleValueColor": true
         }
       ],
       "IsLooping": true,
-      "Lifetime": 602.70751953125,
+      "Lifetime": 963.7885131835938,
       "MaxParticles": 55,
       "RenderModule": [
         {
@@ -177,9 +177,9 @@
           "AffectG": false,
           "AffectR": false,
           "FinalColor": [
-            255.0,
-            255.0,
-            255.0,
+            1.0,
+            1.0,
+            1.0,
             0.0
           ],
           "Type": 1
