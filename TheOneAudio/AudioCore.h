@@ -78,9 +78,25 @@ public:
 	void SetSFX(int volume);
 	void SetMusic(int volume);
 
+	int GetMaster() const
+	{
+		return this->master_volume;
+	}
+	int GetSFX() const
+	{
+		return this->sfx_volume;
+	}
+	int GetMusic() const
+	{
+		return this->music_volume;
+	}
 	EngineState state = EngineState::STOPPED;
 
 	float globalVolume = 100.0f;
+
+	int master_volume = 10.0f;
+	int sfx_volume = 10.0f;
+	int music_volume = 10.0f;
 
 
 	//function called when an event finishes, to make AudioEvent know it ended
