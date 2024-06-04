@@ -658,7 +658,7 @@ static void MoveSelection(GameObject* containerGO, int direction, bool children 
 					else if (j >= uiElements.size())
 						j = 0;
 
-					if (uiElements[j]->GetType() != UiType::IMAGE)
+					if ((uiElements[j]->GetType() != UiType::IMAGE && uiElements[j]->GetType() != UiType::TEXT))
 					{
 						if (uiElements[j]->GetType() == UiType::BUTTONIMAGE)
 						{
@@ -803,6 +803,41 @@ static float GetAppDeltaTime()
 static void ExitApplication()
 {
 	engine->inputManager->EngineShutDown();
+}
+static void SetVsync(bool vsync)
+{
+	engine->SetVSync(vsync);
+}
+static bool GetVsync()
+{
+	return engine->GetVSync();
+}
+static void SetFullscreen(bool fs)
+{
+	//set fullscreen function
+}
+static bool GetFullscreen()
+{
+	//get fullscreen function
+	return false;
+}
+static void SetPixelFX(bool pixelfx)
+{
+	//set pixel fx
+	//Renderer::Settings();
+}
+static bool GetPixelFX()
+{
+	//get pixel fx
+	return true;
+}
+static void SetCRTShader(bool crt)
+{
+	Renderer::Settings()->crt.SetState(crt);
+}
+static bool GetCRTShader()
+{
+	return Renderer::Settings()->crt.isEnabled;
 }
 
 //Debug
@@ -950,15 +985,27 @@ static void SetMaster(int volume)
 {
 	audioManager->audio->SetMaster(volume);
 }
+static int GetMaster()
+{
+	return audioManager->audio->GetMaster();
+}
 
 static void SetSFX(int volume) 
 {
 	audioManager->audio->SetSFX(volume);
 }
+static int GetSFX() 
+{
+	return audioManager->audio->GetSFX();
+}
 
 static void SetMusic(int volume) 
 {
 	audioManager->audio->SetMusic(volume);
+}
+static int GetMusic() 
+{
+	return audioManager->audio->GetMusic();
 }
 
 // Collider2D
@@ -1213,6 +1260,14 @@ void MonoRegisterer::RegisterFunctions()
 	//Helpers
 	mono_add_internal_call("InternalCalls::GetAppDeltaTime", GetAppDeltaTime);
 	mono_add_internal_call("InternalCalls::ExitApplication", ExitApplication);
+	mono_add_internal_call("InternalCalls::SetVsync",		SetVsync);
+	mono_add_internal_call("InternalCalls::SetFullscreen",	SetFullscreen);
+	mono_add_internal_call("InternalCalls::SetPixelFX",		SetPixelFX);
+	mono_add_internal_call("InternalCalls::SetCRTShader",	SetCRTShader);
+	mono_add_internal_call("InternalCalls::GetVsync",		GetVsync);
+	mono_add_internal_call("InternalCalls::GetFullscreen",	GetFullscreen);
+	mono_add_internal_call("InternalCalls::GetPixelFX",		GetPixelFX);
+	mono_add_internal_call("InternalCalls::GetCRTShader",	GetCRTShader);
 
 	//Debug
 	mono_add_internal_call("InternalCalls::ScriptingLog", ScriptingLog);
@@ -1233,9 +1288,12 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::StopAudioSource", StopAudioSource);
 	mono_add_internal_call("InternalCalls::SetState", SetState);
 	mono_add_internal_call("InternalCalls::SetSwitch", SetSwitch);
-	mono_add_internal_call("InternalCalls::SetMasterVolume", SetMaster);
-	mono_add_internal_call("InternalCalls::SetSFXVolume", SetSFX);
-	mono_add_internal_call("InternalCalls::SetMusicVolume", SetMusic);
+	mono_add_internal_call("InternalCalls::SetMasterVolume",	SetMaster);
+	mono_add_internal_call("InternalCalls::SetSFXVolume",		SetSFX);
+	mono_add_internal_call("InternalCalls::SetMusicVolume",		SetMusic);
+	mono_add_internal_call("InternalCalls::GetMasterVolume",	GetMaster);
+	mono_add_internal_call("InternalCalls::GetSFXVolume",		GetSFX);
+	mono_add_internal_call("InternalCalls::GetMusicVolume",		GetMusic);
 
 	//Collider2D
 	mono_add_internal_call("InternalCalls::GetColliderRadius", GetColliderRadius);

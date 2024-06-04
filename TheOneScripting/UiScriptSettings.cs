@@ -67,6 +67,8 @@ public class UiScriptSettings : MonoBehaviour
         {
             settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_Vsync");
             settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_Fullscreen");
+            settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_PixelFX");
+            settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_CRTShader");
             settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Slider_MainVolume");
             settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Slider_SFX");
             settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Slider_Music");

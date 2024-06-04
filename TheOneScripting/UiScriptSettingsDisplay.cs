@@ -13,6 +13,8 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 
     bool vsync = true;
     bool fullscreen = false;
+    bool pixelfx = true;
+    bool crtshader = true;
     int globalVolume = 10;
     int sfxVolume = 10;
     int musicVolume = 10;
@@ -29,15 +31,13 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 
         onCooldown = true;
 
-        vsync = true;       //PUT HERE TO GET VSYNC
-        fullscreen = false; //PUT HERE TO GET FULLSCREEN
-        globalVolume = 10;  //PUT HERE TO GET GLOBAL VOLUME
-        sfxVolume = 10;     //PUT HERE TO GET SFX VOLUME
-        musicVolume = 10;   //PUT HERE TO GET MUSIC VOLUME
-
-        InternalCalls.SetMasterVolume(globalVolume);
-        InternalCalls.SetSFXVolume(sfxVolume);
-        InternalCalls.SetMusicVolume(musicVolume);
+        vsync = InternalCalls.GetVsync();
+        fullscreen = InternalCalls.GetFullscreen();
+        pixelfx = InternalCalls.GetPixelFX();
+        crtshader = InternalCalls.GetCRTShader();
+        globalVolume = InternalCalls.GetMasterVolume();
+        sfxVolume = InternalCalls.GetSFXVolume();
+        musicVolume = InternalCalls.GetMusicVolume();
 
         canvas.ToggleChecker(vsync, "Checker_Vsync");
         canvas.ToggleChecker(fullscreen, "Checker_Fullscreen");
@@ -76,9 +76,13 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                 {
                     if (currentButton >= 0 && currentButton <= 1)
                     {
-                        direction = 4 - currentButton;
+                        direction = 6 - currentButton;
                     }
                     else if (currentButton >= 2 && currentButton <= 4)
+                    {
+                        direction = -2;
+                    }
+                    else if (currentButton >= 5 && currentButton <= 6)
                     {
                         direction = -1;
                     }
@@ -86,15 +90,15 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                 }
                 else if (Input.GetKeyboardButton(Input.KeyboardCode.DOWN))
                 {
-                    if (currentButton >= 0 && currentButton <= 1)
+                    if (currentButton >= 0 && currentButton <= 2)
                     {
-                        direction = 2 - currentButton;
+                        direction = +2;
                     }
-                    else if (currentButton >= 2 && currentButton <= 3)
+                    else if (currentButton >= 3 && currentButton <= 5)
                     {
                         direction = +1;
                     }
-                    else if (currentButton == 4)
+                    else if (currentButton == 6)
                     {
                         direction = 0 - currentButton;
                     }
@@ -110,22 +114,30 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     {
                         direction = 0 - currentButton;
                     }
+                    else if (currentButton == 2)
+                    {
+                        direction = 3 - currentButton;
+                    }
+                    else if (currentButton == 3)
+                    {
+                        direction = 2 - currentButton;
+                    }
                     toMove = true;
 
                     //editing slider
-                    if (currentButton == 2)
+                    if (currentButton == 4)
                     {
                         globalVolume--;
                         canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
                         InternalCalls.SetMasterVolume(globalVolume);
                     }
-                    if (currentButton == 3)
+                    if (currentButton == 5)
                     {
                         sfxVolume--;
                         canvas.SetSliderValue(sfxVolume, "Slider_SFX");
                         InternalCalls.SetSFXVolume(sfxVolume);
                     }
-                    if (currentButton == 4)
+                    if (currentButton == 6)
                     {
                         musicVolume--;
                         canvas.SetSliderValue(musicVolume, "Slider_Music");
@@ -142,22 +154,30 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     {
                         direction = 0 - currentButton;
                     }
+                    else if (currentButton == 2)
+                    {
+                        direction = 3 - currentButton;
+                    }
+                    else if (currentButton == 3)
+                    {
+                        direction = 2 - currentButton;
+                    }
                     toMove = true;
 
                     //editing slider
-                    if (currentButton == 2)
+                    if (currentButton == 4)
                     {
                         globalVolume++;
                         canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
                         InternalCalls.SetMasterVolume(globalVolume);
                     }
-                    if (currentButton == 3)
+                    if (currentButton == 5)
                     {
                         sfxVolume++;
                         canvas.SetSliderValue(sfxVolume, "Slider_SFX");
                         InternalCalls.SetSFXVolume(sfxVolume);
                     }
-                    if (currentButton == 4)
+                    if (currentButton == 6)
                     {
                         musicVolume++;
                         canvas.SetSliderValue(musicVolume, "Slider_Music");
@@ -172,18 +192,15 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                 {
                     if (movementVector.y > 0.0f)
                     {
-                        if (currentButton <= 0)
+                        if (currentButton >= 0 && currentButton <= 1)
                         {
-                            if (currentButton >= 0 && currentButton <= 1)
-                            {
-                                direction = 4 - currentButton;
-                            }
-                            else if (currentButton >= 2 && currentButton <= 4)
-                            {
-                                direction = -1;
-                            }
+                            direction = 6 - currentButton;
                         }
-                        else
+                        else if (currentButton >= 2 && currentButton <= 4)
+                        {
+                            direction = -2;
+                        }
+                        else if (currentButton >= 5 && currentButton <= 6)
                         {
                             direction = -1;
                         }
@@ -191,15 +208,15 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     }
                     else if (movementVector.y < 0.0f)
                     {
-                        if (currentButton >= 0 && currentButton <= 1)
+                        if (currentButton >= 0 && currentButton <= 2)
                         {
-                            direction = 2 - currentButton;
+                            direction = +2;
                         }
-                        else if (currentButton >= 2 && currentButton <= 3)
+                        else if (currentButton >= 3 && currentButton <= 5)
                         {
                             direction = +1;
                         }
-                        else if (currentButton == 4)
+                        else if (currentButton == 6)
                         {
                             direction = 0 - currentButton;
                         }
@@ -218,22 +235,30 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                         {
                             direction = 0 - currentButton;
                         }
+                        else if (currentButton == 2)
+                        {
+                            direction = 3 - currentButton;
+                        }
+                        else if (currentButton == 3)
+                        {
+                            direction = 2 - currentButton;
+                        }
                         toMove = true;
 
                         //editing slider
-                        if (currentButton == 2)
+                        if (currentButton == 4)
                         {
                             globalVolume--;
                             canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
                             InternalCalls.SetMasterVolume(globalVolume);
                         }
-                        if (currentButton == 3)
+                        if (currentButton == 5)
                         {
                             sfxVolume--;
                             canvas.SetSliderValue(sfxVolume, "Slider_SFX");
                             InternalCalls.SetSFXVolume(sfxVolume);
                         }
-                        if (currentButton == 4)
+                        if (currentButton == 6)
                         {
                             musicVolume--;
                             canvas.SetSliderValue(musicVolume, "Slider_Music");
@@ -250,22 +275,30 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                         {
                             direction = 0 - currentButton;
                         }
+                        else if (currentButton == 2)
+                        {
+                            direction = 3 - currentButton;
+                        }
+                        else if (currentButton == 3)
+                        {
+                            direction = 2 - currentButton;
+                        }
                         toMove = true;
 
                         //editing slider
-                        if (currentButton == 2)
+                        if (currentButton == 4)
                         {
                             globalVolume++;
                             canvas.SetSliderValue(globalVolume, "Slider_MainVolume");
                             InternalCalls.SetMasterVolume(globalVolume);
                         }
-                        if (currentButton == 3)
+                        if (currentButton == 5)
                         {
                             sfxVolume++;
                             canvas.SetSliderValue(sfxVolume, "Slider_SFX");
                             InternalCalls.SetSFXVolume(sfxVolume);
                         }
-                        if (currentButton == 4)
+                        if (currentButton == 6)
                         {
                             musicVolume++;
                             canvas.SetSliderValue(musicVolume, "Slider_Music");
@@ -280,22 +313,47 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     onCooldown = true;
                     canvas.MoveSelection(direction);
                     currentButton += direction;
+                    Debug.Log(currentButton.ToString());
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     vsync = !vsync;
                     canvas.ToggleChecker(vsync, "Checker_Vsync");
                     onCooldown = true;
+                    //put here to toggle engine vsync variable
+                    InternalCalls.SetVsync(vsync);
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     fullscreen = !fullscreen;
                     canvas.ToggleChecker(fullscreen, "Checker_Fullscreen");
                     onCooldown = true;
+                    //put here to toggle engine fullscreen variable
+                    InternalCalls.SetFullscreen(fullscreen);
+                }
+
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
+                {
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                    pixelfx = !pixelfx;
+                    canvas.ToggleChecker(pixelfx, "Checker_PixelFX");
+                    onCooldown = true;
+                    //put here to toggle engine pixelfx variable
+                    InternalCalls.SetPixelFX(pixelfx);
+                }
+
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
+                {
+                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                    crtshader = !crtshader;
+                    canvas.ToggleChecker(crtshader, "Checker_CRTShader");
+                    onCooldown = true;
+                    //put here to toggle engine crtshader variable
+                    InternalCalls.SetCRTShader(crtshader);
                 }
             }
         }
