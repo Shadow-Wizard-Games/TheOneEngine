@@ -41,10 +41,10 @@
         },
         {
           "MaxColor": [
-            1.0,
-            1.0,
-            1.0,
-            0.0
+            0.0,
+            0.0,
+            0.0,
+            1.0
           ],
           "MinColor": [
             1.0,
@@ -57,7 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 2336.09033203125,
+      "Lifetime": 2216.42333984375,
       "MaxParticles": 400,
       "RenderModule": [
         {
@@ -89,25 +89,12 @@
             0.0
           ],
           "Type": 0
-        },
-        {
-          "AffectA": true,
-          "AffectB": true,
-          "AffectG": true,
-          "AffectR": true,
-          "FinalColor": [
-            0.5987261533737183,
-            0.5987261533737183,
-            0.5987261533737183,
-            0.0
-          ],
-          "Type": 1
         }
       ]
     }
   ],
-  "Name": "ConPipeSmoke",
+  "Name": "Confeti",
   "StartON": true,
   "Type": 9,
-  "UID": 2627231092
+  "UID": 1295580342
 }

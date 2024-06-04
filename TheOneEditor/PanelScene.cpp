@@ -624,22 +624,22 @@ void PanelScene::SetTargetSpeed()
         switch (reversedStack.top())
         {
             case SDL_SCANCODE_A:
-                camTargetSpeed.x =  50;
+                camTargetSpeed.x =  200;
                 zeroX = false;
                 break;
 
             case SDL_SCANCODE_D:
-                camTargetSpeed.x = -50;
+                camTargetSpeed.x = -200;
                 zeroX = false;
                 break;
 
             case SDL_SCANCODE_W:
-                camTargetSpeed.y =  50;
+                camTargetSpeed.y =  200;
                 zeroY = false;
                 break;
 
             case SDL_SCANCODE_S:
-                camTargetSpeed.y = -50;
+                camTargetSpeed.y = -200;
                 zeroY = false;
                 break;
 

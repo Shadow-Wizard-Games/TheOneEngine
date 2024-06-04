@@ -186,39 +186,7 @@ void N_SceneManager::SaveScene(std::string directories, std::string sceneName)
 
 void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 {
-	//Change to load the Scene Class
-
-	// Check if the scene file exists
-	if (!fs::exists(filename))
-	{
-		LOG(LogType::LOG_ERROR, "Scene file does not exist: %s", filename.data());
-		return;
-	}
-
-	// Read the scene JSON from the file
-	std::ifstream file(filename);
-	if (!file.is_open())
-	{
-		LOG(LogType::LOG_ERROR, "Failed to open scene file: %s", filename.data());
-		return;
-	}
-
-	json sceneJSON;
-	try
-	{
-		file >> sceneJSON;
-
-		// JULS: Audio Manager should delete this, but for now leave this commented
-		//audioManager->DeleteAudioComponents();
-	}
-	catch (const json::parse_error& e)
-	{
-		LOG(LogType::LOG_ERROR, "Failed to parse scene JSON: %s", e.what());
-		return;
-	}
-
-	// Close the file
-	file.close();
+	json sceneJSON = Resources::OpenJSON(filename);
 
 	//clear lights
 	Renderer3D::CleanLights();
@@ -256,42 +224,36 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 
 		for (const auto& gameObjectJSON : gameObjectsJSON)
 		{
-			if (gameObjectJSON.contains("Keeped"))
-			{
-				if (gameObjectJSON["Keeped"] == true && keepGO)
-					continue;
-			}
+			if (gameObjectJSON.contains("Keeped") && gameObjectJSON["Keeped"] == true && keepGO)
+				continue;
 
 			if (gameObjectJSON.contains("PrefabID") && gameObjectJSON["PrefabID"] != 0)
 			{
-				if (gameObjectJSON.contains("Components"))
+				if (!gameObjectJSON.contains("Components"))
 				{
-					mat4 transformationMatrix;
-					for (auto& componentJSON : gameObjectJSON["Components"])
+					LOG(LogType::LOG_ERROR, "Prefab does not contain Components in its file. File might be damaged.");
+					continue;
+				}
+
+				mat4 transformationMatrix;
+				for (auto& componentJSON : gameObjectJSON["Components"])
+				{
+					if (componentJSON.contains("Transformation Matrix"))
 					{
-						if (componentJSON.contains("Name") && componentJSON["Name"] == "Transform")
-						{
-							int it = 0;
-							for (int i = 0; i < 4; i++) {
-								for (int j = 0; j < 4; j++) {
-									if (componentJSON.contains("Transformation Matrix"))
-									{
-										transformationMatrix[i][j] = componentJSON["Transformation Matrix"][it];
-										it++;
-									}
-								}
+						int it = 0;
+						for (int i = 0; i < 4; i++) {
+							for (int j = 0; j < 4; j++) {
+								transformationMatrix[i][j] = componentJSON["Transformation Matrix"][it].get<double>();
+								it++;
 							}
 						}
 					}
-
-					CreatePrefabWithName(gameObjectJSON["PrefabName"], transformationMatrix);
-
-					LOG(LogType::LOG_INFO, "Loaded prefab from prefab file instead of scene file");
 				}
-				else
-				{
-					LOG(LogType::LOG_ERROR, "Prefab does not contain Components in its file. File might be damaged.");
-				}
+
+				CreatePrefabWithName(gameObjectJSON["PrefabName"].get<std::string>(), transformationMatrix);
+
+				LOG(LogType::LOG_INFO, "Loaded prefab from prefab file instead of scene file: %s", gameObjectJSON["PrefabName"].get<std::string>().c_str());
+
 			}
 			else
 			{
@@ -1153,29 +1115,9 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const mat4& tr
 	fs::path filename = ASSETS_PATH;
 	filename += "Prefabs\\" + prefabName + ".prefab";
 
-	std::ifstream file(filename);
-	if (!file.is_open())
-	{
-		LOG(LogType::LOG_ERROR, "Failed to open prefab file: {}", filename);
-		return;
-	}
-
-	json prefabJSON;
-	try
-	{
-		file >> prefabJSON;
-	}
-	catch (const json::parse_error& e)
-	{
-		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: {}", e.what());
-		return;
-	}
-
-	// Close the file
-	file.close();
+	json prefabJSON = Resources::OpenJSON(filename.string());
 
 	newGameObject->LoadGameObject(prefabJSON);
-
 
 	// Check name
 
