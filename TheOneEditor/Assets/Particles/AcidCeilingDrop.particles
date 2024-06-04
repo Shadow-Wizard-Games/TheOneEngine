@@ -2,7 +2,7 @@
   "Emmiters": [
     {
       "Delay": 0.0,
-      "Duration": 10.0,
+      "Duration": 1.0,
       "InitializeModules": [
         {
           "MaxDirection": [
@@ -20,7 +20,7 @@
         },
         {
           "MaxSpeed": 2.0,
-          "MinSpeed": 0.0,
+          "MinSpeed": 1.0,
           "Type": 0,
           "UsingSingleValueSpeed": true
         },
@@ -32,7 +32,7 @@
             0.0
           ],
           "MinColor": [
-            0.3184713125228882,
+            0.127388596534729,
             1.0,
             0.0,
             1.0
@@ -48,7 +48,7 @@
             2.0
           ],
           "MinScale": [
-            2.2,
+            1.4,
             1.0,
             1.0
           ],
@@ -57,7 +57,7 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 363.5193786621094,
+      "Lifetime": 229.03451538085938,
       "MaxParticles": 1,
       "RenderModule": [
         {
@@ -68,7 +68,7 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 10.0,
+          "Duration": 1.0,
           "SpawnRate": 0.5,
           "Type": 0
         }
@@ -77,7 +77,7 @@
         {
           "Acceleration": [
             0.0,
-            -2.0,
+            -300.0,
             0.0
           ],
           "Type": 0
@@ -85,8 +85,8 @@
       ]
     }
   ],
-  "Name": "ParticleSystem",
+  "Name": "AcidCeilingDrop",
   "StartON": true,
   "Type": 9,
-  "UID": 2694119003
+  "UID": 1878976399
 }

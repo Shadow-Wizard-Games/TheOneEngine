@@ -6,13 +6,13 @@
       "InitializeModules": [
         {
           "MaxDirection": [
-            20.0,
-            10.0,
-            150.0
+            1.0,
+            1.0,
+            100.0
           ],
           "MinDirection": [
-            -20.0,
-            -10.0,
+            -1.0,
+            -1.0,
             100.0
           ],
           "Type": 4,
@@ -20,22 +20,22 @@
         },
         {
           "MaxSpeed": 150.0,
-          "MinSpeed": 100.0,
+          "MinSpeed": 1000.0,
           "Type": 0,
-          "UsingSingleValueSpeed": false
+          "UsingSingleValueSpeed": true
         },
         {
           "MaxColor": [
             0.0,
             0.0,
-            250.0,
-            255.0
+            0.9803921580314636,
+            1.0
           ],
           "MinColor": [
             0.0,
             0.0,
-            50.0,
-            255.0
+            0.19607843458652496,
+            1.0
           ],
           "Type": 1,
           "UsingSingleValueColor": false
@@ -48,12 +48,12 @@
             2.0
           ],
           "MinScale": [
-            0.1,
+            5.0,
             0.1,
             0.1
           ],
           "Type": 2,
-          "UsingSingleValueScale": false
+          "UsingSingleValueScale": true
         },
         {
           "MaxOffset": [
@@ -76,6 +76,7 @@
       "RenderModule": [
         {
           "BillboardType": 0,
+          "TexturePath": "",
           "Type": 0
         }
       ],
