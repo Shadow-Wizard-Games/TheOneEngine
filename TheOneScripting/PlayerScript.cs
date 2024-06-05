@@ -51,7 +51,7 @@ public class PlayerScript : MonoBehaviour
     public bool isDead = false;
     public uint baseDamage;
     public float totalDamage = 0.0f;
-    public float damageIncrease = 0.0f;
+    public float damageMultiplier = 1.0f;
 
     // movement
     public float baseSpeed;
@@ -309,11 +309,10 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         #endregion
-
     }
     private void WeaponAbilityStates()
     {
-        CurrentWeapon currentEquippedWeapon = currentWeaponType;
+        CurrentWeapon weaponBeforeChange = currentWeaponType;
 
         #region SKILL SET CHANGE
         if (skillSetChangeTime > 0.0f)
@@ -354,9 +353,9 @@ public class PlayerScript : MonoBehaviour
         }
 
         #region ENABLE / DISABLE WEAPONS
-        if (currentWeaponType != currentEquippedWeapon)
+        if (currentWeaponType != weaponBeforeChange)
         {
-            switch (currentEquippedWeapon)
+            switch (weaponBeforeChange)
             {
                 case CurrentWeapon.M4:
                     M4GO.Disable();
@@ -571,9 +570,7 @@ public class PlayerScript : MonoBehaviour
 
         float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
         currentSpeed = speedIncrease;
-
-        // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
+        damageMultiplier = AdrenalineRush.damageMultiplier;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -593,9 +590,6 @@ public class PlayerScript : MonoBehaviour
 
         float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
         currentSpeed = speedIncrease;
-
-        // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -797,6 +791,8 @@ public class PlayerScript : MonoBehaviour
                 ShootGrenadeLauncher();
                 break;
         }
+
+        totalDamage = baseDamage * damageMultiplier;
     }
 
     private void ShootM4()

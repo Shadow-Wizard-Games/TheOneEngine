@@ -23,7 +23,7 @@ public class AbilityAdrenalineRush : MonoBehaviour
 
     public float healAmount = 0.3f; // in %
     public float speedAmount = 0.5f; // in %
-    public float damageAmount = 0.5f; // in %
+    public float damageMultiplier = 1.5f; // in %
 
     public float healthRegenTime = 3.0f;
     public float healthRegenTimeCounter = 3.0f;
@@ -101,7 +101,7 @@ public class AbilityAdrenalineRush : MonoBehaviour
             player.currentSpeed = player.baseSpeed;
             healthRegenTimeCounter = healthRegenTime;
 
-            player.damageIncrease = 0.0f;
+            player.damageMultiplier = 1.0f;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
