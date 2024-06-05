@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 7602275,
+      "ParentUID": 2656445216,
       "Static": false,
       "UID": 0
     },
@@ -1851,7 +1851,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 7602275,
+      "ParentUID": 2656445216,
       "Static": false,
       "UID": 7602275
     },
@@ -1930,7 +1930,7 @@
                 0.01862145960330963
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 3.200000047683716,
+              "Intensity": 3.4000000953674316,
               "LightType": 0,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -2562,12 +2562,896 @@
           "ParentUID": 1102577664,
           "Static": false,
           "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                13.488037109375,
+                12.127471923828125,
+                151.0146942138672,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 312010309
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2930181168,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 212712012,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.24313725531101227,
+                0.0,
+                1.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 21.799999237060547,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2930181168,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 60.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1508937177
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light (9)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 2930181168
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -57.237327575683594,
+                12.127349853515625,
+                79.08570861816406,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3455292706
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7602275,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 2235129071,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.24313725531101227,
+                0.0,
+                1.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 21.799999237060547,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7602275,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 60.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 4162256651
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light (10)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                351.7811279296875,
+                20.661251068115234,
+                267.9270324707031,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2554837126
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2930112208,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1565930024,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.24313725531101227,
+                0.0,
+                1.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 5.699999809265137,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2930112208,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 60.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 2166883690
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light (11)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 2930112208
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                293.2049865722656,
+                99.95764923095703,
+                241.6310577392578,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4093926745
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2930181168,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1968081800,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2930181168,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 389413675
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 2930181168
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                168.66468811035156,
+                99.92735290527344,
+                329.04180908203125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3408953205
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2930181168,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 2055188978,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2930181168,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 2133432475
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (1)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 2930181168
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                539.6642456054688,
+                99.9786376953125,
+                180.19970703125,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1941541290
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7602275,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1362125101,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7602275,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1918639180
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (2)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                182.47958374023438,
+                100.05812072753906,
+                -50.3699836730957,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1599413285
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2930181168,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 2720975170,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2930181168,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 201786007
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (3)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 2930181168
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                -390.54443359375,
+                55.002262115478516,
+                124.17149353027344,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4229106521
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2930181168,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1813607350,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2930181168,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 2308505919
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (4)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 2930181168
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                -682.1060180664063,
+                55.02486801147461,
+                58.64229202270508,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3426670244
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 1156579328,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 517429039,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 1156579328,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1256556840
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (5)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                -719.4142456054688,
+                55.16511535644531,
+                -347.1385498046875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2285140040
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7602275,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 3082144177,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7602275,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 3309286787
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (6)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                -147.49639892578125,
+                55.18440628051758,
+                -402.15045166015625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3689610562
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7602275,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 83920260,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7602275,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 3623416782
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (7)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 7602275
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                378.19952392578125,
+                54.90968704223633,
+                393.85906982421875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3731509832
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 1102577664,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1208232401,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 1102577664,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1050733532
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (8)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0003452599048614502,
+                0.9999999403953552,
+                0.0,
+                0.0,
+                -0.9999999403953552,
+                -0.0003452599048614502,
+                0.0,
+                802.4505004882813,
+                54.91033172607422,
+                391.9866638183594,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1494541129
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2930181168,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 3012525874,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.993630588054657,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 36.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2930181168,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 66.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1477934086
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Spot Light (9)",
+          "ParentUID": 1102577664,
+          "Static": false,
+          "UID": 2930181168
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 7602275,
+      "ParentUID": 2656445216,
       "Static": false,
       "UID": 1102577664
     },
@@ -3828,7 +4712,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 7602275,
+      "ParentUID": 2656445216,
       "Static": false,
       "UID": 7602275
     },
@@ -4406,7 +5290,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 7602275,
+      "ParentUID": 2656445216,
       "Static": false,
       "UID": 1006632960
     }
