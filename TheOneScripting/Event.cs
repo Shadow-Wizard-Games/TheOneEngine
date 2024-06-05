@@ -14,6 +14,7 @@ public abstract class Event : MonoBehaviour
         NEXTROOM,
         CHECKPOINT,
         OPENPOPUP,
+        QUESTCOMPLETE,
         //Add events
     }
     public EventType eventType { get; set; }

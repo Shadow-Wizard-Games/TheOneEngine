@@ -53,4 +53,9 @@ public class DataManager
     {
         InternalCalls.WriteFileDataBool(filepath, dataPath, dataName, data);
     }
+
+    public static bool IsValidEnumValue<T>(int value) where T : Enum
+    {
+        return Enum.IsDefined(typeof(T), value);
+    }
 }

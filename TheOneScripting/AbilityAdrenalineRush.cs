@@ -35,6 +35,8 @@ public class AbilityAdrenalineRush : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         abilityName = "AdrenalineRush";
 
         activeTime = 8.0f;
@@ -86,10 +88,10 @@ public class AbilityAdrenalineRush : MonoBehaviour
                 // Regeneration tick
                 if (timeSinceLastTick >= intervalTime)
                 {
-                    if ((player.HP + healingInterval) < player.maxHP)
-                        player.HP += healingInterval;
+                    if ((managers.gameManager.health + healingInterval) < managers.gameManager.GetMaxHealth())
+                        managers.gameManager.health += healingInterval;
                     else
-                        player.HP = player.maxHP;
+                        managers.gameManager.health = managers.gameManager.GetMaxHealth();
 
                     timeSinceLastTick = 0.0f;
                 }
@@ -98,7 +100,7 @@ public class AbilityAdrenalineRush : MonoBehaviour
         else
         {
             // reset stats
-            player.currentSpeed = player.baseSpeed;
+            player.currentSpeed = managers.gameManager.GetSpeed();
             healthRegenTimeCounter = healthRegenTime;
 
             player.damageIncrease = 0.0f;

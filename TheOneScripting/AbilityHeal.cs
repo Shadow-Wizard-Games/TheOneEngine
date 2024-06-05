@@ -28,6 +28,8 @@ public class AbilityHeal : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         abilityName = "Bandage";
 
         activeTime = 1.0f;
@@ -74,22 +76,22 @@ public class AbilityHeal : MonoBehaviour
 
             if (abilityName == "Bandage")
             {
-                totalHeal = player.maxHP * healAmount;
+                totalHeal = managers.gameManager.GetMaxHealth() * healAmount;
             }
             else
             {
-                totalHeal = player.maxHP * healAmount;
+                totalHeal = managers.gameManager.GetMaxHealth() * healAmount;
             }
 
-            player.HP += totalHeal;
+            managers.gameManager.health += totalHeal;
 
-            if (player.HP > player.maxHP)
-                player.HP = player.maxHP;
+            if (managers.gameManager.health > managers.gameManager.GetMaxHealth())
+                managers.gameManager.health = managers.gameManager.GetMaxHealth();
 
             numHeals--;
 
             // reset stats
-            player.currentSpeed = player.baseSpeed;
+            player.currentSpeed = managers.gameManager.GetSpeed();
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

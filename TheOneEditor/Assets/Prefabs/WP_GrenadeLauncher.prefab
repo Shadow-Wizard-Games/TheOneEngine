@@ -1,0 +1,60 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        -4.3711395392165286e-08,
+        -1.0000001192092896,
+        3.712786018112178e-16,
+        0.0,
+        0.2238825112581253,
+        -9.786220722673988e-09,
+        0.9746161699295044,
+        0.0,
+        -0.9746161699295044,
+        4.2601897121130605e-08,
+        0.2238825112581253,
+        0.0,
+        147.9437713623047,
+        0.0,
+        211.15316772460938,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 601536094
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/WP_GrenadeLauncher/M_GrenadeLauncher.toematerial",
+      "MeshPath": "Library/Meshes/WP_GrenadeLauncher/WP_GrenadeLauncher.mesh",
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 4056980534
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "EventCollectible",
+      "Type": 4,
+      "UID": 3367450104
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "WP_GrenadeLauncher",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 146559715,
+  "PrefabName": "WP_GrenadeLauncher",
+  "Static": false,
+  "UID": 3452816845
+}

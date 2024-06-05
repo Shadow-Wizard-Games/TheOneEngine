@@ -10,8 +10,6 @@ using static UiManager;
 public class EventCheckpoint : Event
 {
     IGameObject playerGO;
-
-    GameManager gameManager;
     UiManager menuManager;
 
     float playerDistance;
@@ -21,9 +19,9 @@ public class EventCheckpoint : Event
 
     public override void Start()
     {
-        playerGO = IGameObject.Find("SK_MainCharacter");
+        managers.Start();
 
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+        playerGO = IGameObject.Find("SK_MainCharacter");
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
@@ -37,7 +35,7 @@ public class EventCheckpoint : Event
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
@@ -62,7 +60,7 @@ public class EventCheckpoint : Event
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.Y))
         {
-            gameManager.UpdateSave();
+            managers.gameManager.UpdateSave();
             menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
         }
 

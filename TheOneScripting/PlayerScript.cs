@@ -33,10 +33,6 @@ public class PlayerScript : MonoBehaviour
         DEAD,
     }
 
-    // managers
-    ItemManager itemManager;
-    GameManager gameManager;
-
     // particles
     IParticleSystem stepParticles;
     IParticleSystem shotParticles;
@@ -45,18 +41,14 @@ public class PlayerScript : MonoBehaviour
 
     // background music
     public bool isFighting;
-    public bool onPause;
 
     // stats
-    public float maxHP;
-    public float HP;
     public bool isDead = false;
     public uint baseDamage;
     public float totalDamage = 0.0f;
     public float damageIncrease = 0.0f;
 
     // movement
-    public float baseSpeed;
     public float currentSpeed;
     public Vector3 movementDirection;
     public Vector3 lastMovementDirection;
@@ -110,8 +102,7 @@ public class PlayerScript : MonoBehaviour
 
     public override void Start()
     {
-        itemManager = IGameObject.Find("ItemManager")?.GetComponent<ItemManager>();
-        gameManager = IGameObject.Find("GameManager")?.GetComponent<GameManager>();
+        managers.Start();
 
         stepParticles = attachedGameObject.FindInChildren("StepsPS")?.GetComponent<IParticleSystem>();
         shotParticles = attachedGameObject.FindInChildren("ShotPlayerPS")?.GetComponent<IParticleSystem>();
@@ -148,7 +139,6 @@ public class PlayerScript : MonoBehaviour
 
         currentAudioState = 0;
         isFighting = false;
-        onPause = false;
 
         currentWeaponType = CurrentWeapon.NONE;
         currentAction = CurrentAction.IDLE;
@@ -158,11 +148,7 @@ public class PlayerScript : MonoBehaviour
 
         timeFromLastStep = 0.3f;
 
-        baseSpeed = 90.0f;
-        currentSpeed = baseSpeed;
-
-        maxHP = 100.0f;
-        HP = maxHP;
+        currentSpeed = managers.gameManager.GetSpeed();
 
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
@@ -172,10 +158,13 @@ public class PlayerScript : MonoBehaviour
     }
     public override void Update()
     {
-        if (onPause) return;
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING)
+        {
+            currentAction = CurrentAction.IDLE;
+        }
 
         // CHANGE WHEN INVENTORY OVERHAUL
-        if (itemManager.CheckItemInInventory(1) && currentWeaponType == CurrentWeapon.NONE)
+        if (managers.itemManager.CheckItemInInventory(1) && currentWeaponType == CurrentWeapon.NONE)
         {
             M4GO.Enable();
             currentSkillSet = SkillSet.M4A1SET;
@@ -584,10 +573,10 @@ public class PlayerScript : MonoBehaviour
     private void AdrenalineRushAction()
     {
         // Calculate heal amount
-        float totalHeal = HP * AdrenalineRush.healAmount;
+        float totalHeal = managers.gameManager.GetMaxHealth() * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
+        float speedIncrease = managers.gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
         currentSpeed = speedIncrease;
 
         // increase damage
@@ -606,10 +595,10 @@ public class PlayerScript : MonoBehaviour
         if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
 
         // calculate heal amount
-        float totalHeal = HP * AdrenalineRush.healAmount;
+        float totalHeal = managers.gameManager.health * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
+        float speedIncrease = managers.gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
         currentSpeed = speedIncrease;
 
         // increase damage
@@ -623,7 +612,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void HealAction()
     {
-        float speedReduce = baseSpeed * Heal.slowAmount;
+        float speedReduce = managers.gameManager.GetSpeed() * Heal.slowAmount;
         currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
@@ -636,7 +625,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Heal.state != AbilityHeal.AbilityState.READY) return;
 
-        float speedReduce = baseSpeed * Heal.slowAmount;
+        float speedReduce = managers.gameManager.GetSpeed() * Heal.slowAmount;
         currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
@@ -780,7 +769,7 @@ public class PlayerScript : MonoBehaviour
         timeFromLastStep += Time.deltaTime;
 
         float currentSpeed = this.currentSpeed;
-        if (gameManager.extraSpeed) { currentSpeed = 200.0f; }
+        if (managers.gameManager.extraSpeed) { currentSpeed = 200.0f; }
 
         attachedGameObject.transform.Translate(movementDirection * movementMagnitude * currentSpeed * Time.deltaTime);
 
@@ -965,15 +954,15 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife(uint damage)
     {
-        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
+        if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        HP -= damage;
-        Debug.Log("Player took damage! Current life is: " + HP.ToString());
+        managers.gameManager.health -= damage;
+        //Debug.Log("Player took damage! Current life is: " + gameManager.health.ToString());
 
-        if (HP <= 0)
+        if (managers.gameManager.health <= 0)
         {
-            HP = 0;
+            managers.gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -981,15 +970,15 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLifeExplosion()
     {
-        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
+        if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        HP -= 50;
-        Debug.Log("Player took explosion damage! Current life is: " + HP.ToString());
+        managers.gameManager.health -= 50;
+        //Debug.Log("Player took explosion damage! Current life is: " + gameManager.health.ToString());
 
-        if (HP <= 0)
+        if (managers.gameManager.health <= 0)
         {
-            HP = 0;
+            managers.gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -999,18 +988,18 @@ public class PlayerScript : MonoBehaviour
     {
         if (isDead) return 0;
 
-        return HP;
+        return managers.gameManager.health;
     }
 
     private void SetInitPosInScene()
     {
-        if (gameManager.lastLevel == " ") { return; }
+        if (managers.gameManager.lastLevel == " ") { return; }
 
         string patternL = $"L(\\d+)";
         string patternR = $"R(\\d+)";
 
-        Match matchL = Regex.Match(gameManager.lastLevel, patternL);
-        Match matchR = Regex.Match(gameManager.lastLevel, patternR);
+        Match matchL = Regex.Match(managers.gameManager.lastLevel, patternL);
+        Match matchR = Regex.Match(managers.gameManager.lastLevel, patternR);
         IGameObject swapGO = IGameObject.Find("SwapScene_" + matchL.Groups[0].Value + "_" + matchR.Groups[0].Value);
 
         ITransform spawnTransform = swapGO?.GetComponent<ITransform>();
