@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 2656445216,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 0
     },
@@ -1522,12 +1522,19 @@
               "ParentUID": 7602275,
               "Type": 2,
               "UID": 2578582264
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 7602275,
+              "ScriptName": "EventNextRoom",
+              "Type": 4,
+              "UID": 3054904299
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SM_CaveEntrance3",
+          "Name": "SwapScene_L2_R4",
           "ParentUID": 7602275,
           "Static": false,
           "UID": 7602275
@@ -1572,12 +1579,19 @@
               "ParentUID": 7602275,
               "Type": 2,
               "UID": 219618549
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 7602275,
+              "ScriptName": "EventNextRoom",
+              "Type": 4,
+              "UID": 1501599622
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SM_CaveEntrance2",
+          "Name": "SwapScene_L2_R2",
           "ParentUID": 7602275,
           "Static": false,
           "UID": 7602275
@@ -1851,7 +1865,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 2656445216,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 7602275
     },
@@ -3451,7 +3465,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 2656445216,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1102577664
     },
@@ -4712,7 +4726,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 2656445216,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 7602275
     },
@@ -5290,9 +5304,77 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 2656445216,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1006632960
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            825.8363037109375,
+            0.0,
+            -183.597900390625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2839132126
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L2R4",
+      "ParentUID": 7602275,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -520.441162109375,
+            -1.6421079635620117e-05,
+            444.5381164550781,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2673403763
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L2R2",
+      "ParentUID": 7602275,
+      "Static": false,
+      "UID": 7602275
     }
   ],
   "index": 0,

@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 7602275,
+      "ParentUID": 0,
       "Static": false,
       "UID": 0
     },
@@ -117,12 +117,19 @@
               "ParentUID": 7602275,
               "Type": 2,
               "UID": 3211795036
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 7602275,
+              "ScriptName": "EventNextRoom",
+              "Type": 4,
+              "UID": 895799646
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SM_CaveEntrance2",
+          "Name": "SwapScene_L2_R1",
           "ParentUID": 7602275,
           "Static": false,
           "UID": 7602275
@@ -167,12 +174,19 @@
               "ParentUID": 0,
               "Type": 2,
               "UID": 1395071428
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 0,
+              "ScriptName": "EventNextRoom",
+              "Type": 4,
+              "UID": 1977794361
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SM_CaveEntrance1",
+          "Name": "SwapScene_L2_R3",
           "ParentUID": 7602275,
           "Static": false,
           "UID": 0
@@ -4241,61 +4255,12 @@
           "ParentUID": 7602275,
           "Static": false,
           "UID": 1040384000
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                -149.96890258789063,
-                0.8410975933074951,
-                -163.14102172851563,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 862896988
-            },
-            {
-              "ColliderType": 0,
-              "CollisionType": 2,
-              "CornerPivot": true,
-              "Height": 100.0,
-              "Name": "Collider2D",
-              "ObjectOrientation": 0,
-              "OffsetX": 0.0,
-              "OffsetY": 0.0,
-              "ParentUID": 7602275,
-              "Radius": 160.0,
-              "Type": 5,
-              "UID": 2836626774,
-              "Width": 100.0
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "Empty GameObject",
-          "ParentUID": 7602275,
-          "Static": false,
-          "UID": 7602275
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 7602275,
+      "ParentUID": 0,
       "Static": false,
       "UID": 7602275
     },
@@ -5311,7 +5276,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Rocks",
-      "ParentUID": 7602275,
+      "ParentUID": 0,
       "Static": false,
       "UID": 7602275
     },
@@ -5929,12 +5894,12 @@
             },
             {
               "Color": [
-                0.19261160492897034,
+                0.1600000411272049,
                 0.800000011920929,
-                0.1600000411272049
+                0.17630572617053986
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 0.4000000059604645,
+              "Intensity": 1.2000000476837158,
               "LightType": 0,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -5959,7 +5924,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 7602275,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2562732048
     },
@@ -6627,12 +6592,61 @@
           "ParentUID": 2562732048,
           "Static": false,
           "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -149.96890258789063,
+                0.8410975933074951,
+                -163.14102172851563,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 862896988
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 7602275,
+              "Radius": 160.0,
+              "Type": 5,
+              "UID": 2836626774,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Empty GameObject",
+          "ParentUID": 2562732048,
+          "Static": false,
+          "UID": 7602275
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Collisions",
-      "ParentUID": 7602275,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2562732048
     },
@@ -7376,9 +7390,77 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 7602275,
+      "ParentUID": 0,
       "Static": false,
       "UID": 2653177744
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -360.3417663574219,
+            0.0,
+            -309.5915222167969,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 352776473
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L2R1",
+      "ParentUID": 0,
+      "Static": false,
+      "UID": 487185088
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            421.9440002441406,
+            0.0,
+            253.93814086914063,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2230023097
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L2R3",
+      "ParentUID": 0,
+      "Static": false,
+      "UID": 1102577664
     }
   ],
   "index": 0,

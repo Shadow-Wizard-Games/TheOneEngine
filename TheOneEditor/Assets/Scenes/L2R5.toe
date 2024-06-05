@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 7602275,
+      "ParentUID": 2616459232,
       "Static": false,
       "UID": 0
     },
@@ -3835,7 +3835,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 7602275,
+      "ParentUID": 2616459232,
       "Static": false,
       "UID": 7602275
     },
@@ -4118,7 +4118,7 @@
                 0.2979431450366974
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 1.600000023841858,
+              "Intensity": 8.800000190734863,
               "LightType": 0,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -4483,7 +4483,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 7602275,
+      "ParentUID": 2616459232,
       "Static": false,
       "UID": 2562732048
     },
@@ -5156,7 +5156,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Collisions",
-      "ParentUID": 7602275,
+      "ParentUID": 2616459232,
       "Static": false,
       "UID": 2562732048
     },
@@ -9912,7 +9912,41 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 7602275,
+      "ParentUID": 2616459232,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            99.78030395507813,
+            0.0,
+            -413.7480163574219,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2319450653
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L2R4",
+      "ParentUID": 2616459232,
       "Static": false,
       "UID": 7602275
     }

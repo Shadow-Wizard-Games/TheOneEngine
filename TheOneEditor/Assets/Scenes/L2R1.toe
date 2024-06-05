@@ -3657,12 +3657,19 @@
               "ParentUID": 1102577664,
               "Type": 2,
               "UID": 1460924814
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 1102577664,
+              "ScriptName": "EventNextRoom",
+              "Type": 4,
+              "UID": 1061381666
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SM_CaveEntrance2",
+          "Name": "SwapScene_L1_R5",
           "ParentUID": 1040384000,
           "Static": false,
           "UID": 1102577664
@@ -3707,12 +3714,19 @@
               "ParentUID": 1102577664,
               "Type": 2,
               "UID": 2123463765
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 1102577664,
+              "ScriptName": "EventNextRoom",
+              "Type": 4,
+              "UID": 3274626574
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SM_CaveEntrance1",
+          "Name": "SwapScene_L2_R2",
           "ParentUID": 1040384000,
           "Static": false,
           "UID": 1102577664
@@ -8064,6 +8078,74 @@
       "ParentUID": 7602275,
       "Static": false,
       "UID": 3910236880
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -416.37115478515625,
+            0.0,
+            422.766357421875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1626016932
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L1R5",
+      "ParentUID": 7602275,
+      "Static": false,
+      "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -650.9952392578125,
+            0.0,
+            -463.452880859375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3139822524
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L2R2",
+      "ParentUID": 7602275,
+      "Static": false,
+      "UID": 1033532176
     }
   ],
   "index": 0,
