@@ -32,6 +32,8 @@
 
     public override void Start()
     {
+        managers.Start();
+
         ImpacienteItem = new Item_Impaciente();
 
         abilityName = ImpacienteItem.name;
@@ -74,7 +76,7 @@
 
     public void Activated()
     {
-        float speedReduce = player.baseSpeed * slowAmount;
+        float speedReduce = managers.gameManager.GetSpeed() * slowAmount;
         player.currentSpeed -= speedReduce;
 
         player.currentWeaponDamage = damage;
@@ -100,7 +102,7 @@
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
-                player.currentSpeed = player.baseSpeed;
+                player.currentSpeed = managers.gameManager.GetSpeed();
                 player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
                 player.currentWeaponDamage = damage;
 
@@ -113,7 +115,7 @@
         else
         {
             // reset stats
-            player.currentSpeed = player.baseSpeed;
+            player.currentSpeed = managers.gameManager.GetSpeed();
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;

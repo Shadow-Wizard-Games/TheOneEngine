@@ -46,7 +46,6 @@ public class ChestbursterBehaviour : MonoBehaviour
     const float destroyCooldown = 3.0f;
 
     PlayerScript player;
-    GameManager gameManager;
 
     // Particles
     IParticleSystem tailPunchPSGO;
@@ -55,10 +54,10 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Move");
         attachedGameObject.animator.Blend = true;
@@ -287,7 +286,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     private void DebugDraw()
     {
         //Draw debug ranges
-        if (gameManager.colliderRender)
+        if (managers.gameManager.colliderRender)
         {
             if (!detected)
             {

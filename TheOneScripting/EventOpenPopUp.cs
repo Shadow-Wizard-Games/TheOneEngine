@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using static UiManager;
+using static IAudioSource;
 
 public class EventOpenPopUp : Event
 {
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
     UiManager menuManager;
 
     float playerDistance;
@@ -22,34 +23,42 @@ public class EventOpenPopUp : Event
     string goName;
 
     string filepath = "Assets/GameData/Dialogs.json";
-    string popup;
-    int popupType;
+    UiManager.HudPopUpMenu popupType;
+    string popupStr;
     float cooldown = 0.0f;
     float maxCooldown;
     bool isOneTime;
+    string audioEventString;
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         eventType = EventType.OPENPOPUP;
         goName = attachedGameObject.name;
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
-        popup = ExtractPopup();
-        string[] datapath = { popup };
-        popupType = DataManager.AccessFileDataInt(filepath, datapath, "popupType");
+        popupStr = ExtractPopup();
+        string[] datapath = { popupStr };
+        int popupInt = DataManager.AccessFileDataInt(filepath, datapath, "popupType");
+
+        popupType = HudPopUpMenu.PickUpFeedback;
+        if (DataManager.IsValidEnumValue<UiManager.HudPopUpMenu>(popupInt))
+        {
+            popupType = (UiManager.HudPopUpMenu)popupInt;
+        }
+
         isOneTime = DataManager.AccessFileDataBool(filepath, datapath, "isOneTime");
-        maxCooldown = DataManager.AccessFileDataFloat(filepath, datapath, "cooldown");
+        maxCooldown = DataManager.AccessFileDataInt(filepath, datapath, "cooldown");
     }
 
     public override void Update()
     {
-        if (cooldown > 0)
+        if (!menuManager.IsOnCooldown(popupType) && cooldown > 0)
             cooldown -= Time.realDeltaTime;
 
         if (CheckEventIsPossible())
@@ -57,7 +66,7 @@ public class EventOpenPopUp : Event
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
@@ -80,14 +89,31 @@ public class EventOpenPopUp : Event
     {
         bool ret = true;
 
-        if (!menuManager.IsOnCooldown((UiManager.HudPopUpMenu)popupType) && cooldown <= 0 && !isOneTime)
+        if (!menuManager.IsOnCooldown(popupType) && cooldown <= 0)
         {
-            string[] datapath = { popup };
+            string[] datapath = { popupStr };
             string text = DataManager.AccessFileDataString(filepath, datapath, "text");
+            string text1 = DataManager.AccessFileDataString(filepath, datapath, "titleText");
             int dialoguer = DataManager.AccessFileDataInt(filepath, datapath, "dialoguer");
-            menuManager.OpenHudPopUpMenu((UiManager.HudPopUpMenu)popupType, text, (UiManager.Dialoguer)dialoguer);
+
+            Dialoguer dialoguerEnum = Dialoguer.None;
+            if (DataManager.IsValidEnumValue<UiManager.Dialoguer>(dialoguer))
+            {
+                dialoguerEnum = (UiManager.Dialoguer)dialoguer;
+            }
+
+            float duration = DataManager.AccessFileDataInt(filepath, datapath, "duration");
+            menuManager.OpenHudPopUpMenu(popupType, text1, text, dialoguerEnum, duration);
+
+            audioEventString = DataManager.AccessFileDataString(filepath, datapath, "audioEvent");
+            if (Enum.TryParse(audioEventString, out AudioEvent audioEvent))
+            {
+                attachedGameObject.source.Play(audioEvent);
+            }
 
             cooldown = maxCooldown;
+
+            if(isOneTime) { attachedGameObject.Destroy(); }
         }
 
         return ret;
@@ -117,7 +143,7 @@ public class EventOpenPopUp : Event
         {
             Dialog += match.Groups[0].Value;
         }
-        else { Debug.LogWarning("Could not find conversation in GO name"); }
+        else { Debug.LogWarning("Could not find Popup in GO name"); }
 
         return Dialog;
     }
