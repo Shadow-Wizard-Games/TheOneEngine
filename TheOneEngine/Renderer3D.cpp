@@ -98,6 +98,12 @@ void Renderer3D::AddLight(std::shared_ptr<GameObject> container)
 
 void Renderer3D::RemoveLight(std::shared_ptr<GameObject> container)
 {
+	if (!container.get())
+		return;
+
+	if (!container.get()->GetComponent<Light>())
+		return;
+
 	auto it = std::find_if(renderer3D.lights.begin(), renderer3D.lights.end(),
 		[container](const std::shared_ptr<GameObject>& comp) {
 			return comp.get() == container.get();

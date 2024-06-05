@@ -63,6 +63,9 @@ bool PanelSettings::Draw()
 
 			if (ImGui::Button("Software", buttonSize))
 				selected = SelectedSetting::SOFTWARE;
+
+			if (ImGui::Button("Resources", buttonSize))
+				selected = SelectedSetting::RESOURCES;
 		}
 		ImGui::EndChild();
 		ImGui::PopStyleVar(2);
@@ -84,6 +87,7 @@ bool PanelSettings::Draw()
 				case SelectedSetting::COLOR_PICKER:	ColorPicker();	break;
 				case SelectedSetting::HARDWARE:		Hardware();		break;
 				case SelectedSetting::SOFTWARE:		Software();		break;
+				case SelectedSetting::RESOURCES:	Resources();	break;
 				default: Performance(); break;
 			}
 		}
@@ -356,4 +360,14 @@ void PanelSettings::Software()
 	ImGui::Text("Assimp ");
 	ImGui::SameLine();
 	ImGui::TextColored(grey, "5.2.5");
+}
+
+void PanelSettings::Resources()
+{
+	ImGui::Text("Images: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_IMAGE));
+	ImGui::Text("Models: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_MODEL));
+	ImGui::Text("SkeletalModels: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_SKELETALMODEL));
+	ImGui::Text("Shaders: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_SHADER));
+	ImGui::Text("Materials: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_MATERIAL));
+	ImGui::Text("Fonts: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_FONT));
 }

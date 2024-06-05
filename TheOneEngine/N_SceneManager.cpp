@@ -214,6 +214,8 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 	}
 	else { currentScene->GetRootSceneGO().get()->children.clear(); }
 
+	Renderer3D::CleanLights();
+
 	// Load game objects from the JSON data
 	if (sceneJSON.contains("GameObjects"))
 	{

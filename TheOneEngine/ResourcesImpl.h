@@ -72,6 +72,7 @@ private:
 
 	static void _import_image_impl(const char* origin, const char* destination);
 public:
+	inline static int GetResourcesLenght(ResourceType rType) { return m_Resources[rType].size(); }
 	// Checks if path exists and if not creates folders
 	static bool PreparePath(std::string path); 
 	static std::string AssetToLibPath(std::string path);
