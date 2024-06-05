@@ -266,7 +266,7 @@ public class PlayerScript : MonoBehaviour
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-                && managers.itemManager.CheckItemInInventory(4)
+                && Heal.numHeals > 0
                 && Heal.numHeals > 0
                 && Heal.state == AbilityHeal.AbilityState.READY
                 && currentAction != CurrentAction.DASH)
@@ -308,7 +308,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-            && managers.itemManager.CheckItemInInventory(4)
+            && Heal.numHeals > 0
             && Heal.state == AbilityHeal.AbilityState.READY
             && Dash.state != AbilityDash.AbilityState.ACTIVE
             && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
@@ -365,12 +365,14 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.TWO))
         {
-            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY 
+                && managers.itemManager.CheckItemInInventory(2))
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
         {
-            if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
+            if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY 
+                && managers.itemManager.CheckItemInInventory(8))
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
         }
 
