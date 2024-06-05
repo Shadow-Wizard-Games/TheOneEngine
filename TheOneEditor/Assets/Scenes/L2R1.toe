@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 0,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 0
     },
@@ -876,56 +876,6 @@
           "ParentUID": 1040384000,
           "Static": false,
           "UID": 3853182496
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                3.2259204387664795,
-                0.0,
-                3.296898365020752,
-                0.0,
-                0.0,
-                4.612607955932617,
-                0.0,
-                0.0,
-                -3.296898365020752,
-                0.0,
-                3.2259204387664795,
-                0.0,
-                230.8065185546875,
-                -5.336174964904785,
-                -89.68788146972656,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 3821752530
-            },
-            {
-              "Active": true,
-              "DrawAABB": true,
-              "DrawChecker": false,
-              "DrawNormalsFaces": false,
-              "DrawNormalsVerts": false,
-              "DrawOBB": false,
-              "DrawWireframe": false,
-              "MaterialPath": "Library/Materials/SM_Stone/lambert15.toematerial",
-              "MeshPath": "Library/Meshes/SM_Stone/SM_Stone.mesh",
-              "MeshType": 0,
-              "Name": "Mesh",
-              "ParentUID": 1006632960,
-              "Type": 2,
-              "UID": 417635737
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "SM_Stone9",
-          "ParentUID": 1040384000,
-          "Static": false,
-          "UID": 1006632960
         },
         {
           "Components": [
@@ -3821,7 +3771,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 0,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1040384000
     },
@@ -4240,7 +4190,7 @@
                 1.0
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 3.200000047683716,
+              "Intensity": 4.800000190734863,
               "LightType": 1,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -4265,7 +4215,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 0,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1040384000
     },
@@ -4314,9 +4264,9 @@
                 0.0,
                 1.0,
                 0.0,
-                88.80622863769531,
+                55.75521469116211,
                 0.0,
-                18.663532257080078,
+                37.34152603149414,
                 1.0
               ],
               "Type": 0,
@@ -4326,7 +4276,7 @@
               "ColliderType": 1,
               "CollisionType": 2,
               "CornerPivot": false,
-              "Height": 200.0,
+              "Height": 180.0,
               "Name": "Collider2D",
               "ObjectOrientation": 0,
               "OffsetX": 0.0,
@@ -4335,62 +4285,13 @@
               "Radius": 0.5,
               "Type": 5,
               "UID": 2320853099,
-              "Width": 300.0
+              "Width": 250.0
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "ColliderRocks",
-          "ParentUID": 1156579328,
-          "Static": false,
-          "UID": 1040384000
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                239.61660766601563,
-                0.0,
-                -59.89960861206055,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 1701866639
-            },
-            {
-              "ColliderType": 1,
-              "CollisionType": 2,
-              "CornerPivot": false,
-              "Height": 150.0,
-              "Name": "Collider2D",
-              "ObjectOrientation": 0,
-              "OffsetX": 0.0,
-              "OffsetY": 0.0,
-              "ParentUID": 1040384000,
-              "Radius": 0.5,
-              "Type": 5,
-              "UID": 4226921623,
-              "Width": 150.0
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "ColliderRocks (1)",
           "ParentUID": 1156579328,
           "Static": false,
           "UID": 1040384000
@@ -5129,14 +5030,524 @@
           "ParentUID": 1156579328,
           "Static": false,
           "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                176.77342224121094,
+                0.0,
+                44.09571838378906,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1838641985
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1040384000,
+              "Radius": 150.0,
+              "Type": 5,
+              "UID": 3684398289,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Collider (14)",
+          "ParentUID": 1156579328,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                552.1276245117188,
+                0.0,
+                -113.32476806640625,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 992697066
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 2880335280,
+              "Radius": 200.0,
+              "Type": 5,
+              "UID": 1558193353,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Collider (15)",
+          "ParentUID": 1156579328,
+          "Static": false,
+          "UID": 2880335280
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                480.1414489746094,
+                0.0,
+                -105.62356567382813,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1486198682
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 2880335280,
+              "Radius": 180.0,
+              "Type": 5,
+              "UID": 3031046927,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Collider (16)",
+          "ParentUID": 1156579328,
+          "Static": false,
+          "UID": 2880335280
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                376.3959655761719,
+                0.0,
+                -97.5309066772461,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1296308072
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1102577664,
+              "Radius": 150.0,
+              "Type": 5,
+              "UID": 2788821911,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Collider (17)",
+          "ParentUID": 1156579328,
+          "Static": false,
+          "UID": 1102577664
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                563.4903564453125,
+                0.0,
+                188.30836486816406,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1936132406
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1040384000,
+              "Radius": 160.0,
+              "Type": 5,
+              "UID": 511728874,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Collider (18)",
+          "ParentUID": 1156579328,
+          "Static": false,
+          "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                487.92816162109375,
+                0.0,
+                193.7226104736328,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1353693037
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1156579328,
+              "Radius": 180.0,
+              "Type": 5,
+              "UID": 743347402,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Collider (19)",
+          "ParentUID": 1156579328,
+          "Static": false,
+          "UID": 1156579328
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                400.6893615722656,
+                0.0,
+                197.7620391845703,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1238596827
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 2,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 1102577664,
+              "Radius": 130.0,
+              "Type": 5,
+              "UID": 3208619594,
+              "Width": 100.0
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Collider (20)",
+          "ParentUID": 1156579328,
+          "Static": false,
+          "UID": 1102577664
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 0,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2045698709
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -233.0480499267578,
+                18.845531463623047,
+                97.10313415527344,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 4234064167
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        -2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        1.0,
+                        10.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 60.0,
+                      "MinSpeed": 40.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.10191106796264648,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    },
+                    {
+                      "MaxOffset": [
+                        -20.0,
+                        -1.0,
+                        -10.0
+                      ],
+                      "MinOffset": [
+                        20.0,
+                        1.0,
+                        10.0
+                      ],
+                      "Type": 3,
+                      "UsingSingleValueOffset": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        3.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 2072.68994140625,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 3.0,
+                      "Duration": 1.5,
+                      "SpawnRate": 0.5,
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "p_bluescreen\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
+              "Type": 9,
+              "UID": 3467831
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Particle System",
+          "ParentUID": 3910236880,
+          "Static": false,
+          "UID": 1040384000
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Particles",
+      "ParentUID": 7602275,
+      "Static": false,
+      "UID": 3910236880
     }
   ],
   "index": 0,
