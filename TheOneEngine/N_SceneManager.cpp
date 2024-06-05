@@ -188,9 +188,6 @@ void N_SceneManager::LoadSceneFromJSON(const std::string& filename, bool keepGO)
 {
 	json sceneJSON = Resources::OpenJSON(filename);
 
-	//clear lights
-	Renderer3D::CleanLights();
-
 	if (sceneJSON.contains("sceneName"))
 	{
 		currentScene->SetSceneName(sceneJSON["sceneName"]);
