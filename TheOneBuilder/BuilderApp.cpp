@@ -1,28 +1,22 @@
 #include "BuilderApp.h"
 
-#include "BuilderWindow.h"
-#include "BuilderRenderer3D.h"
 #include "BuilderSceneManager.h"
 #include "Timer.h"
-#include "../TheOneEngine/Log.h"
+
+#include "TheOneEngine/EngineCore.h"
+#include "TheOneEngine/Window.h"
+#include "TheOneEngine/Log.h"
 
 EngineCore* engine = NULL;
 
 BuilderApp::BuilderApp(int argc, char* args[]) : argc(argc), args(args)
 {
 	engine = new EngineCore();
-
-	window = new BuilderWindow(this);
-	renderer3D = new BuilderRenderer3D(this);
 	sceneManager = new BuilderSceneManager(this);
 	
 	// Ordered for awake / Start / Update
 	// Reverse order for CleanUp
-	AddModule(window, true);
 	AddModule(sceneManager, true);
-	
-	// Render last to swap buffer
-	AddModule(renderer3D, true);
 	
 	state = GameState::NONE;
 	time_since_start = 0.0F;
@@ -49,47 +43,40 @@ void BuilderApp::AddModule(BuilderModule* module, bool activate)
 // Called before render is available
 bool BuilderApp::Awake()
 {
-	bool ret = false;
-
 	targetFrameDuration = (std::chrono::duration<double>)1 / frameRate;
 
-	//Load config from XML
-	//ret = LoadConfig();
-	ret = true;
+	engine->Awake();
+	engine->window->SetDisplayMode(DisplayMode::FULLSCREEN_DESKTOP);
+	engine->window->SetResolution(Resolution::R_NATIVE);
 
-	if (ret == true)
+	for (const auto& item : modules)
 	{
-		//title = configNode.child("app").child("title").child_value();
+		if (!item->active)
+			continue;
 
-		//maxFrameDuration = configNode.child("app").child("frcap").attribute("value").as_int();
-
-		for (const auto& item : modules)
-		{
-			if (item->active == false)
-				continue;
-
-			item->Awake();
-		}
+		if (!item->Awake())
+			return false;
 	}
 
 	//LOG("---------------- Time Awake: %f/n", timer.ReadMSec());
 
-	return ret;
+	return true;
 }
 
 // Called before the first frame
 bool BuilderApp::Start()
 {
 	dt = 0;
-
 	start_timer->Start();
+
+	engine->Start();
 
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->Start() == false)
+		if (!module->Start())
 			return false;
 	}
 
@@ -102,27 +89,19 @@ bool BuilderApp::Start()
 bool BuilderApp::Update()
 {
 	bool ret = true;
+
 	PrepareUpdate();
 
-	/*if (input->GetWindowEvent(WE_QUIT) == true)
-		ret = false;*/
-
-	if (ret == true)
-		ret = PreUpdate();
-
-	if (ret == true)
-		ret = DoUpdate();
-
-	if (ret == true)
-		ret = PostUpdate();
+	if (ret) ret = PreUpdate();
+	if (ret) ret = DoUpdate();
+	if (ret) ret = PostUpdate();
 
 	FinishUpdate();
 
 	time_since_start = start_timer->ReadSec();
 
-	if (state == GameState::PLAY || state == GameState::PLAY_ONCE) {
+	if (state == GameState::PLAY || state == GameState::PLAY_ONCE)
 		game_time = game_timer->ReadSec(scale_time);
-	}
 
 	return ret;
 }
@@ -136,14 +115,15 @@ void BuilderApp::PrepareUpdate()
 
 bool BuilderApp::PreUpdate()
 {
-	bool ret = true;
+	if (!engine->PreUpdate())
+		return false;
 
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->PreUpdate() == false)
+		if (!module->PreUpdate())
 			return false;
 	}
 
@@ -152,12 +132,14 @@ bool BuilderApp::PreUpdate()
 
 bool BuilderApp::DoUpdate()
 {
+	engine->Update(dt);
+
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->Update(dt) == false)
+		if (!module->Update(dt))
 			return false;
 	}
 
@@ -168,12 +150,14 @@ bool BuilderApp::PostUpdate()
 {
 	for (const auto& module : modules)
 	{
-		if (module->active == false)
+		if (!module->active)
 			continue;
 
-		if (module->PostUpdate() == false)
+		if (!module->PostUpdate())
 			return false;
 	}
+
+	SDL_GL_SwapWindow(engine->window->window);
 
 	return true;
 }
@@ -223,6 +207,8 @@ bool BuilderApp::CleanUp()
 		module->CleanUp();
 	}
 
+	engine->CleanUp();
+
 	return ret;
 }
 
@@ -248,7 +234,7 @@ int BuilderApp::GetFrameRate() const
 
 void BuilderApp::SetFrameRate(int frameRate)
 {
-	this->frameRate = frameRate == 0 ? bApp->window->GetDisplayRefreshRate() : frameRate;
+	this->frameRate = frameRate == 0 ? engine->window->GetDisplayRefreshRate() : frameRate;
 	targetFrameDuration = (std::chrono::duration<double>)1 / this->frameRate;
 }
 

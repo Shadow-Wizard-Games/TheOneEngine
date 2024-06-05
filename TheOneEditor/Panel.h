@@ -15,6 +15,7 @@ enum class PanelType
 	SCENE,
 	GAME,
 	ANIMATION,
+	RENDERER,
 	SETTINGS,
 	BUILD,
 

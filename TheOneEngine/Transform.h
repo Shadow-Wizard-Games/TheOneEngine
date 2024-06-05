@@ -49,7 +49,8 @@ public:
 
 
     // @Utils -----------------------------------
-    void DecomposeTransform();   
+    void DecomposeTransform();
+    void DecomposeGlobalTransform();
     mat4 CalculateWorldTransform();
     mat4 GetGlobalTransform();
     mat4 WorldToLocalTransform(GameObject* GO, mat4 modifiedWorldTransform);
@@ -61,6 +62,9 @@ public:
     
 
     // @Get / Set --------------------------------
+    vec3 GetGlobalForward() const;
+    vec3 GetGlobalUp() const;
+    vec3 GetGlobalRight() const;
 	vec3 GetForward() const;
 	vec3 GetUp() const;
 	vec3 GetRight() const;
@@ -69,6 +73,9 @@ public:
     void SetUp(vec3 newUp);
     void SetForward(vec3 newForward);
 
+    vec3 GetGlobalPosition() const;
+    quat GetGlobalRotation() const;
+    vec3 GetGlobalScale() const;
 	vec3 GetPosition() const;
 	quat GetRotation() const;
 	vec3 GetScale() const;
@@ -86,12 +93,14 @@ public:
 private:
 
     mat4 transformMatrix;
-
     vec3 position;
     quat rotation;
     vec3 scale;
 
     mat4 globalTransformMatrix;
+    vec3 globalPosition;
+    quat globalRotation;
+    vec3 globalScale;
 };
 
 #endif //__TRANSFORM_H__

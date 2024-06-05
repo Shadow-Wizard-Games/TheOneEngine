@@ -2,7 +2,7 @@
   "shader": "Library/Shaders/MeshTexture.toeshader",
   "uniforms": [
     {
-      "Name": "u_Tex",
+      "Name": "diffuse",
       "Value": "Library/Images/M_CampWall_Door_BC.dds"
     }
   ]

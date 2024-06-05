@@ -164,7 +164,7 @@ xcopy "$(SolutionDir)TheOneEditor\Tools" "$(OutDir)Tools" /E /Y</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AK_OPTIMIZED;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vcpkg\installed\x64-windows\include\;$(SolutionDir)Wwise\SDK\include\;$(SolutionDir)Wwise\SDK\include\Win32;$(SolutionDir)mono\include\;$(SolutionDir);$(SolutionDir)TheOneAnimation\;$(SolutionDir)TheOneAnimation\include\;$(SolutionDir)TheOneAnimation\src\;$(SolutionDir)TheOneAnimation\samples\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -196,7 +196,13 @@ xcopy "$(SolutionDir)TheOneEditor\Assets" "$(OutDir)Assets" /E /Y
 xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y
 xcopy "$(SolutionDir)TheOneEditor\Tools" "$(OutDir)Tools" /E /Y
 
-del "$(OutDir)*.pdb"</Command>
+del "$(OutDir)*.pdb"
+i
+rd /s /q "$(OutDir)Assets\Audio\Wwise Project"
+mkdir "$(OutDir)Assets\Audio\Wwise Project\GeneratedSoundBanks\
+xcopy "$(SolutionDir)TheOneEditor\Assets\Audio\Wwise Project\GeneratedSoundBanks" "$(OutDir)Assets\Audio\Wwise Project\GeneratedSoundBanks" /E /Y
+
+</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>call $(SolutionDir)vcpkg\bootstrap-vcpkg.bat
@@ -206,9 +212,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BuilderApp.cpp" />
-    <ClCompile Include="BuilderRenderer3D.cpp" />
     <ClCompile Include="BuilderSceneManager.cpp" />
-    <ClCompile Include="BuilderWindow.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
@@ -216,9 +220,7 @@ copy "..\vcpkg\installed\x64-windows\bin\*.*" "$(OutDir)"</Command>
     <ClInclude Include="BuilderApp.h" />
     <ClInclude Include="BuilderDefs.h" />
     <ClInclude Include="BuilderModule.h" />
-    <ClInclude Include="BuilderRenderer3D.h" />
     <ClInclude Include="BuilderSceneManager.h" />
-    <ClInclude Include="BuilderWindow.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

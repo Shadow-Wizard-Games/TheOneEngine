@@ -35,7 +35,7 @@ void ImageUI::Draw2D()
 	float width = (canvas->GetRect().w * imageRect.w);
 	float height = (canvas->GetRect().h * imageRect.h);
 
-	Renderer2D::DrawQuad({ posX, posY }, { width, height }, imageID, Rect2DToTexCoordsSection(textureSection));
+	Renderer2D::DrawQuad(BT::UI, { posX, posY }, { width, height }, imageID, Rect2DToTexCoordsSection(textureSection));
 }
 
 json ImageUI::SaveUIElement()

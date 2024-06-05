@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Script.h"
 #include "Collider2D.h"
 #include "Listener.h"
 #include "AudioSource.h"
@@ -11,10 +12,12 @@
 #include "UIDGen.h"
 #include "BBox.hpp"
 #include "Camera.h"
+#include "Light.h"
 #include "N_SceneManager.h"
 
 #include "Math.h"
 #include "EngineCore.h"
+#include "Renderer.h"
 
 GameObject::GameObject(std::string name) :
 	name(name),
@@ -80,7 +83,7 @@ void GameObject::Draw(Camera* camera)
 			component->DrawComponent(camera);
 	}
 
-	//if (drawAABB)
+	if (Renderer::GetDrawAABB())
 		DrawAABB();
 }
 
@@ -100,56 +103,19 @@ void GameObject::RemoveComponent(ComponentType type)
 	{
 		if ((*it)->GetType() == type)
 		{
+			if ((*it)->GetType() == ComponentType::Light)
+			{
+				//hekbas LIGHT
+				//this->GetComponent<Light>()->RemoveLight();
+			}
 			it = components.erase(it);
 			break;
 		}
 	}
 }
 
-//std::vector<std::shared_ptr<Component>>& GameObject::GetComponents()
-//{
-//	return components;
-//}
-
 
 // AABB -------------------------------------
-void GameObject::GenerateAABBFromMesh()
-{
-	//TODO: this comment is temporal, it needs to be changed to retained mode
-
-	/*Mesh* mesh = GetComponent<Mesh>();
-
-	glGenBuffers(1, &mesh->mesh.vertex_buffer_id);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->mesh.vertex_buffer_id);
-
-	switch (mesh->mesh.format)
-	{
-	case Formats::F_V3:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(V3) * mesh->mesh.numVerts, mesh->meshData.vertex_data.data(), GL_STATIC_DRAW);
-		for (const auto& v : std::span((V3*)mesh->meshData.vertex_data.data(), mesh->meshData.vertex_data.size())) {
-			aabb.min = (glm::min)(aabb.min, vec3(v.v));
-			aabb.max = (glm::max)(aabb.max, vec3(v.v));
-		}
-		break;
-
-	case Formats::F_V3C4:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(V3C4) * mesh->mesh.numVerts, mesh->meshData.vertex_data.data(), GL_STATIC_DRAW);
-		for (const auto& v : std::span((V3C4*)mesh->meshData.vertex_data.data(), mesh->meshData.vertex_data.size())) {
-			aabb.min = (glm::min)(aabb.min, vec3(v.v));
-			aabb.max = (glm::max)(aabb.max, vec3(v.v));
-		}
-		break;
-
-	case Formats::F_V3T2:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(V3T2) * mesh->mesh.numVerts, mesh->meshData.vertex_data.data(), GL_STATIC_DRAW);
-		for (const auto& v : std::span((V3T2*)mesh->meshData.vertex_data.data(), mesh->meshData.vertex_data.size())) {
-			aabb.min = (glm::min)(aabb.min, vec3(v.v));
-			aabb.max = (glm::max)(aabb.max, vec3(v.v));
-		}
-		break;
-	}*/
-}
-
 AABBox GameObject::CalculateAABB()
 {
 	AABBox aabb = this->aabb;
@@ -177,40 +143,26 @@ static inline void glVec3(const vec3& v) { glVertex3dv(&v.x); }
 
 void GameObject::DrawAABB()
 {
-	glLineWidth(1);
-	glColor4ub(255, 255, 255, 64);
+	Renderer2D::DrawLine(BT::WORLD, aabb.a(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.b(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.c(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.d(), aabb.a(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	glBegin(GL_LINE_STRIP);
-	glVec3(aabb.a());
-	glVec3(aabb.b());
-	glVec3(aabb.c());
-	glVec3(aabb.d());
-	glVec3(aabb.a());
+	Renderer2D::DrawLine(BT::WORLD, aabb.e(), aabb.f(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.f(), aabb.g(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.g(), aabb.h(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.h(), aabb.e(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	glVec3(aabb.e());
-	glVec3(aabb.f());
-	glVec3(aabb.g());
-	glVec3(aabb.h());
-	glVec3(aabb.e());
-	glEnd();
-
-	glBegin(GL_LINES);
-	glVec3(aabb.h());
-	glVec3(aabb.d());
-	glVec3(aabb.f());
-	glVec3(aabb.b());
-	glVec3(aabb.g());
-	glVec3(aabb.c());
-	glEnd();
-
-	glColor4ub(255, 255, 255, 255);
+	Renderer2D::DrawLine(BT::WORLD, aabb.h(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.f(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BT::WORLD, aabb.g(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
 }
 
 void GameObject::DrawOBB()
 {
-	glColor3f(1, 0, 1);
+	/*glColor3f(1, 0, 1);
 	glLineWidth(2);
-	vec3f* obb_points = nullptr;
+	vec3f* obb_points = nullptr;*/
 	//obb.GetCornerPoints(obb_points);
 	//
 	//glBegin(GL_LINES);
@@ -300,7 +252,7 @@ void GameObject::AddToDelete(std::vector<GameObject*>& objectsToDelete)
 	objectsToDelete.push_back(this);
 }
 
-std::vector<Component*> GameObject::GetAllComponents(bool tunometecabrasalamambiche)
+std::vector<Component*> GameObject::GetAllComponents()
 {
 	std::vector<Component*> tempComponents;
 	for (const auto& item : components)
@@ -450,8 +402,6 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 
 		for (const auto& componentJSON : componentsJSON)
 		{
-
-			// Assuming each component has a LoadComponent function
 			if (componentJSON["Type"] == (int)ComponentType::Transform)
 			{
 				this->AddComponent<Transform>();
@@ -469,7 +419,7 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Script)
 			{
-				this->AddScript(componentJSON["ScriptName"]);
+				this->AddComponent<Script>(componentJSON["ScriptName"]);
 				this->GetComponent<Script>()->LoadComponent(componentJSON);
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Listener)
@@ -512,6 +462,11 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			{
 				this->AddComponent<ParticleSystem>();
 				this->GetComponent<ParticleSystem>()->LoadComponent(componentJSON);
+			}
+			else if (componentJSON["Type"] == (int)ComponentType::Light)
+			{
+				this->AddComponent<Light>((LightType)componentJSON["LightType"]);
+				this->GetComponent<Light>()->LoadComponent(componentJSON);
 			}
 		}
 	}

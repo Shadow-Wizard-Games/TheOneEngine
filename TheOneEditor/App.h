@@ -18,12 +18,9 @@
 
 // Forward declaration
 class Module;
-class Window;
-class Input;
 class Hardware;
 class SceneManager;
 class Gui;
-class Renderer3D;
 
 enum class GameState
 {
@@ -84,15 +81,10 @@ private:
 	float scale_time;
 public:
 
-	//EngineCore* engine = nullptr;
-
 	// Modules
-	Window* window = nullptr;
-	Input* input = nullptr;
 	Hardware* hardware = nullptr;
-	Gui* gui = nullptr;
-	Renderer3D* renderer3D = nullptr;
 	SceneManager* scenemanager = nullptr;
+	Gui* gui = nullptr;
 
 private:
 

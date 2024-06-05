@@ -45,9 +45,9 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
     vec4 color = particle->color / 255.0;
 
     if(textureID != -1)
-        Renderer2D::DrawQuad(transform, textureID, glm::vec4(color));
+        Renderer2D::DrawQuad(BT::WORLD, transform, textureID, glm::vec4(color));
     else
-        Renderer2D::DrawQuad(transform, glm::vec4(color));
+        Renderer2D::DrawQuad(BT::WORLD, transform, glm::vec4(color));
 }
 
 json BillboardRender::SaveModule()

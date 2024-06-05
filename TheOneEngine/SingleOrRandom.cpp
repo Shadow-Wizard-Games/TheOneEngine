@@ -22,5 +22,5 @@ float randomFloat(float a, float b)
         return a;
 
     // take out a lot of the decimal part, get the random int and the "divide" everything to normal
-    return ((float)randomInt(a * 1000.0f, b * 1000.0f) * 0.001f);
+    return ((float)randomInt(a * 100.0f, b * 100.0f) * 0.01f);
 }

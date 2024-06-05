@@ -24,6 +24,7 @@ enum class ComponentType
     AudioSource     = 8,
     ParticleSystem  = 9,
     Animator        = 10,
+    Light           = 11,
 
 	Unknown // Last
 };
@@ -38,7 +39,8 @@ public:
 
     virtual void Enable();
     virtual void Disable();
-    virtual void Update(double dt) {};
+    virtual void Update() {};
+    virtual void DrawComponent(Camera* camera) {};
 
     std::string GetName();
     std::string* GetNameToEdit();
@@ -48,10 +50,6 @@ public:
     std::shared_ptr<GameObject> GetContainerGO() const;
 
     bool IsEnabled() const;
-
-    //virtual void CreateInspectorNode() = 0;
-    //virtual void CreateInspectorNode();
-    virtual void DrawComponent(Camera* camera) {};
 
     void CreateUID() { UID = UIDGen::GenerateUID(); }
     uint32 GetUID() { return UID; }

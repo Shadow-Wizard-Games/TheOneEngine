@@ -13,6 +13,8 @@ public:
 	CollisionSolver();
 	~CollisionSolver();
 
+	void CleanUp();
+
 	bool PreUpdate();
 	bool Update(double dt);
 

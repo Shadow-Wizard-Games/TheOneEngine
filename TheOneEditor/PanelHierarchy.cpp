@@ -1,6 +1,5 @@
 ﻿#include "PanelHierarchy.h"
 #include "App.h"
-#include "Renderer3D.h"
 #include "SceneManager.h"
 #include "Gui.h"
 #include "imgui.h"
