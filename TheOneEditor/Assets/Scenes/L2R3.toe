@@ -3553,7 +3553,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 438.2548522949219,
+                  "Lifetime": 454.5148010253906,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -3693,7 +3693,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 498.29345703125,
+                  "Lifetime": 511.155029296875,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -3734,6 +3734,137 @@
           "ParentUID": 1006632960,
           "Static": false,
           "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -30.579740524291992,
+                31.489572525024414,
+                -271.3529968261719,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1766640387
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 10.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        -2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        1.0,
+                        10.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 60.0,
+                      "MinSpeed": 40.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.10191106796264648,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    },
+                    {
+                      "MaxOffset": [
+                        -20.0,
+                        -1.0,
+                        -10.0
+                      ],
+                      "MinOffset": [
+                        20.0,
+                        1.0,
+                        10.0
+                      ],
+                      "Type": 3,
+                      "UsingSingleValueOffset": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        3.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 1652.83447265625,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 3.0,
+                      "Duration": 1.5,
+                      "SpawnRate": 0.5,
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "p_bluescreen\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
+              "Type": 9,
+              "UID": 3467831
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Particle System (2)",
+          "ParentUID": 1006632960,
+          "Static": false,
+          "UID": 7602275
         }
       ],
       "HasTransparency": false,
