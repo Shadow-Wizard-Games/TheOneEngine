@@ -21,6 +21,8 @@ public class AbilityHeal : MonoBehaviour
     IGameObject playerGO;
     PlayerScript player;
 
+    GameManager gameManager;
+
     public readonly float healAmount = 0.6f; // in %
     public readonly float slowAmount = 0.4f; // in %
 
@@ -39,6 +41,8 @@ public class AbilityHeal : MonoBehaviour
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
+
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         state = AbilityState.READY;
     }
@@ -74,22 +78,22 @@ public class AbilityHeal : MonoBehaviour
 
             if (abilityName == "Bandage")
             {
-                totalHeal = player.maxHP * healAmount;
+                totalHeal = gameManager.GetMaxHealth() * healAmount;
             }
             else
             {
-                totalHeal = player.maxHP * healAmount;
+                totalHeal = gameManager.GetMaxHealth() * healAmount;
             }
 
-            player.HP += totalHeal;
+            gameManager.health += totalHeal;
 
-            if (player.HP > player.maxHP)
-                player.HP = player.maxHP;
+            if (gameManager.health > gameManager.GetMaxHealth())
+                gameManager.health = gameManager.GetMaxHealth();
 
             numHeals--;
 
             // reset stats
-            player.currentSpeed = player.baseSpeed;
+            player.currentSpeed = gameManager.GetSpeed();
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

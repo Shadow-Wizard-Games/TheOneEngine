@@ -30,7 +30,7 @@ public:
     Transform(std::shared_ptr<GameObject> containerGO, Transform* ref);
     virtual ~Transform();
 
-    void Update() override;
+    void Update(double dt) override;
 
     // @Transform -------------------------------
     void Translate(const vec3& translation, const HandleSpace& space = HandleSpace::LOCAL);

@@ -28,6 +28,7 @@ public class Input
         SPACEBAR = 44,
         ESCAPE = 41,
         RETURN = 40,
+        LCTRL = 224,
         LSHIFT = 225,
         //Test abilities TO DELETE when changed
         ONE = 30,

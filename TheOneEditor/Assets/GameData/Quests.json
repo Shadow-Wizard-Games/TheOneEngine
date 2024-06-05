@@ -1,0 +1,42 @@
+{
+    "QuestManager":{
+        "questsNum": 3
+    },
+    "CompletionEvents":{
+        "EventQC1":{
+            "id": 1,
+            "nextId": 2
+        },
+        "EventQC2":{
+            "id": 3
+        }
+    },
+    "Quests":{
+        "Quest0":{
+            "id": 1,
+            "name": "Find the exit",
+            "details": "Find a way to exit the ship.",
+            "objectives": "IDK",
+            "type": "Go to quest",
+            "isMain": true
+        },
+        "Quest1":{
+            "id": 2,
+            "name": "Find the Key",
+            "details": "Find the KeyPass that opens the ship door in order to escape.",
+            "objectives": "IDK",
+            "reward": 2,
+            "rewardAmmount": 1,
+            "type": "Find Item",
+            "isMain": true
+        },
+        "Quest3":{
+            "id": 3,
+            "name": "Search the camp",
+            "details": "Find the survivors campament on the Alien Planet.",
+            "objectives": "IDK",
+            "type": "Go to quest",
+            "isMain": true
+        }
+    }
+}

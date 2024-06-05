@@ -8,7 +8,7 @@
         COOLDOWN,
     }
 
-    Item_Impaciente ImpacienteItem;
+    public Item_Impaciente ImpacienteItem;
 
     public string abilityName;
 
@@ -21,6 +21,8 @@
 
     IGameObject playerGO;
     PlayerScript player;
+
+    GameManager gameManager;
 
     public uint damage;
 
@@ -51,6 +53,8 @@
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
 
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
         state = AbilityState.READY;
     }
 
@@ -74,7 +78,7 @@
 
     public void Activated()
     {
-        float speedReduce = player.baseSpeed * slowAmount;
+        float speedReduce = gameManager.GetSpeed() * slowAmount;
         player.currentSpeed -= speedReduce;
 
         player.currentWeaponDamage = damage;
@@ -100,7 +104,7 @@
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
-                player.currentSpeed = player.baseSpeed;
+                player.currentSpeed = gameManager.GetSpeed();
                 player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
                 player.currentWeaponDamage = damage;
 
@@ -113,7 +117,7 @@
         else
         {
             // reset stats
-            player.currentSpeed = player.baseSpeed;
+            player.currentSpeed = gameManager.GetSpeed();
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;

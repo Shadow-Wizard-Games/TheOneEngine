@@ -42,7 +42,7 @@ void Script::Enable()
 	enabled = true;
 }
 
-void Script::Update()
+void Script::Update(double dt)
 {
 	MonoManager::CallScriptFunction(monoBehaviourInstance, "Update");
 }
