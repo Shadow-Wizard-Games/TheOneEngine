@@ -29,6 +29,7 @@ struct RendererSettings
 	draw lights;
 	draw shadows;
 	draw particles;
+	draw particlesLight;
 	draw crt;
 
 	// Editor Draw
