@@ -21,6 +21,7 @@ public class AbilityAdrenalineRush : MonoBehaviour
     IGameObject playerGO;
     PlayerScript player;
 
+    public float speedModification = 0;
     public float healAmount = 0.3f; // in %
     public float speedAmount = 0.5f; // in %
     public float damageAmount = 0.5f; // in %
@@ -100,10 +101,10 @@ public class AbilityAdrenalineRush : MonoBehaviour
         else
         {
             // reset stats
-            player.currentSpeed = managers.gameManager.GetSpeed();
+            speedModification = 0;
             healthRegenTimeCounter = healthRegenTime;
 
-            player.damageIncrease = 0.0f;
+            player.damageIncrease = 1.0f;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

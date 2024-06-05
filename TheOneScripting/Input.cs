@@ -21,6 +21,13 @@ public class Input
         F1 = 58,
         F2 = 59,
         F3 = 60,
+        //
+        F4 = 61,
+        F5 = 62,
+        F6 = 63,
+        F7 = 64, 
+        F8 = 65,
+
         RIGHT = 79,
         LEFT = 80,
         DOWN = 81,
