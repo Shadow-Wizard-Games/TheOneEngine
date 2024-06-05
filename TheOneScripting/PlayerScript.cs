@@ -992,23 +992,19 @@ public class PlayerScript : MonoBehaviour
 
     private void SetInitPosInScene()
     {
-        if (managers.gameManager.lastLevel == " ") { return; }
+        if(managers.gameManager == null || managers.gameManager.lastLevel != " ")
+            return;
 
-        string patternL = $"L(\\d+)";
-        string patternR = $"R(\\d+)";
-
-        Match matchL = Regex.Match(managers.gameManager.lastLevel, patternL);
-        Match matchR = Regex.Match(managers.gameManager.lastLevel, patternR);
-        IGameObject swapGO = IGameObject.Find("SwapScene_" + matchL.Groups[0].Value + "_" + matchR.Groups[0].Value);
+        IGameObject swapGO = IGameObject.Find("Spawn_" + managers.gameManager.lastLevel);
 
         ITransform spawnTransform = swapGO?.GetComponent<ITransform>();
         Vector3 spawnPos = spawnTransform.Position;
 
-        Debug.Log("Found door: SwapScene_" + matchL.Groups[0].Value + "_" + matchR.Groups[0].Value);
+        Debug.Log("Found spawn: " + swapGO.name);
+
         if (spawnTransform == null)
         {
-            spawnPos = Vector3.zero;
-        }
-        attachedGameObject.transform.Position = spawnPos;
+            attachedGameObject.transform.Position = spawnPos;
+        }        
     }
 }

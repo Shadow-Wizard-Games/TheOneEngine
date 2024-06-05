@@ -118,7 +118,7 @@ public class UiManager : MonoBehaviour
 
         // Check if it is paused and put it running if so
         // Disabled because do not know if it's necesary
-        // if (gameManager.GetGameState()) { gameManager.TooglePause(); }
+        if (managers.gameManager.GetGameState() == GameManager.GameStates.PAUSED) { managers.gameManager.SetGameState(GameManager.GameStates.RUNNING); }
     }
 
     public override void Update()
@@ -211,7 +211,6 @@ public class UiManager : MonoBehaviour
 
         if (!onCooldown)
         {
-            Debug.Log(managers.gameManager.GetSavedLevel());
             if (state == MenuState.Death)
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
