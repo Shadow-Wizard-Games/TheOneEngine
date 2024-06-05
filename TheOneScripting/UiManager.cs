@@ -213,7 +213,7 @@ public class UiManager : MonoBehaviour
         {
             if (state == MenuState.Death)
             {
-                if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
+                if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
                     playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
                     SceneManager.LoadScene("MainMenu");
@@ -221,7 +221,7 @@ public class UiManager : MonoBehaviour
             }
             else if ((managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (managers.gameManager.GetGameState() != GameManager.GameStates.PAUSED))
             {
-                if (Input.GetKeyboardButton(Input.KeyboardCode.I))
+                if (Input.GetControllerButton(Input.ControllerButtonCode.BACK) || Input.GetKeyboardButton(Input.KeyboardCode.I))
                 {
                     if (previousState == MenuState.Inventory)
                     {
@@ -245,8 +245,12 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
+                else if (Input.GetControllerButton(Input.ControllerButtonCode.START) && previousState == MenuState.Pause ||
+                    Input.GetControllerButton(Input.ControllerButtonCode.B) && previousState != MenuState.Pause ||
+                    Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
                 {
+                    if (previousState == MenuState.Pause) Debug.Log("Equivalent of pressing START");
+                    if (previousState != MenuState.Pause) Debug.Log("Equivalent of pressing B");
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_PAUSEGAME);
                     if (!settingsCanvas.editing)
                     {

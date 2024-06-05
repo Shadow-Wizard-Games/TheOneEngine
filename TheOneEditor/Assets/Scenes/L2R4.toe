@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 0
     },
@@ -3862,56 +3862,6 @@
             {
               "Name": "Transform",
               "Transformation Matrix": [
-                -0.4092446565628052,
-                0.0,
-                -1.567456603050232,
-                0.0,
-                0.0,
-                1.6200000047683716,
-                0.0,
-                0.0,
-                1.567456603050232,
-                0.0,
-                -0.4092446565628052,
-                0.0,
-                731.0158081054688,
-                0.0,
-                424.25714111328125,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 4204391675
-            },
-            {
-              "Active": true,
-              "DrawAABB": true,
-              "DrawChecker": false,
-              "DrawNormalsFaces": false,
-              "DrawNormalsVerts": false,
-              "DrawOBB": false,
-              "DrawWireframe": false,
-              "MaterialPath": "Library/Materials/SM_CaveEntrance/M_Cave.toematerial",
-              "MeshPath": "Library/Meshes/SM_CaveEntrance/SM_CaveEntrance.mesh",
-              "MeshType": 0,
-              "Name": "Mesh",
-              "ParentUID": 4266066720,
-              "Type": 2,
-              "UID": 3366528583
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "SM_CaveEntrance2",
-          "ParentUID": 2935709504,
-          "Static": false,
-          "UID": 4266066720
-        },
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
                 0.09601622819900513,
                 0.0,
                 1.617152452468872,
@@ -3947,12 +3897,19 @@
               "ParentUID": 7602275,
               "Type": 2,
               "UID": 1770255760
+            },
+            {
+              "Name": "Script",
+              "ParentUID": 7602275,
+              "ScriptName": "EventNextRoom",
+              "Type": 4,
+              "UID": 1799046241
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
-          "Name": "SM_CaveEntrance",
+          "Name": "SwapScene_L2_R3",
           "ParentUID": 2935709504,
           "Static": false,
           "UID": 7602275
@@ -4201,12 +4158,62 @@
           "ParentUID": 2935709504,
           "Static": false,
           "UID": 800639264
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.01352364756166935,
+                0.010938191786408424,
+                0.9998487830162048,
+                0.0,
+                0.642787516117096,
+                0.7660444974899292,
+                0.0003137531166430563,
+                0.0,
+                -0.7659252285957336,
+                0.6426945924758911,
+                -0.017390621826052666,
+                0.0,
+                744.0693969726563,
+                -9.305667877197266,
+                331.4091491699219,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1503899052
+            },
+            {
+              "Active": true,
+              "DrawAABB": true,
+              "DrawChecker": false,
+              "DrawNormalsFaces": false,
+              "DrawNormalsVerts": false,
+              "DrawOBB": false,
+              "DrawWireframe": false,
+              "MaterialPath": "Library/Materials/MK_CampWall_Door/M_CampWall_Door.toematerial",
+              "MeshPath": "Library/Meshes/MK_CampWall_Door/MK_CampWall_Door.mesh",
+              "MeshType": 0,
+              "Name": "Mesh",
+              "ParentUID": 956521816,
+              "Type": 2,
+              "UID": 2790938679
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "SwapScene_L2_R5",
+          "ParentUID": 2935709504,
+          "Static": false,
+          "UID": 956521816
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 2935709504
     },
@@ -6889,12 +6896,80 @@
           "ParentUID": 1006632960,
           "Static": false,
           "UID": 1040384000
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                0.021525658667087555,
+                0.0,
+                0.9997683763504028,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                -0.9997683763504028,
+                0.0,
+                0.021525658667087555,
+                0.0,
+                783.78857421875,
+                92.5497817993164,
+                414.0667724609375,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2057516039
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 954620496,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 3678324545,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.9426751732826233,
+                0.0,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 3.700000047683716,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 954620496,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 181.5,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1984395204
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light (30)",
+          "ParentUID": 1006632960,
+          "Static": false,
+          "UID": 954620496
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1006632960
     },
@@ -7910,7 +7985,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1148416320
     },
@@ -8348,9 +8423,43 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 557418880
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -690.6956787109375,
+            -0.0001227496104547754,
+            -289.92852783203125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 437558911
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spawn_L2R3",
+      "ParentUID": 7602275,
+      "Static": false,
+      "UID": 3019591184
     }
   ],
   "index": 0,

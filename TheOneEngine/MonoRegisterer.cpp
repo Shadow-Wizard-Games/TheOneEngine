@@ -1189,6 +1189,20 @@ static void SetLightRadius(GameObject* GOptr, float radius)
 	GOptr->GetComponent<Light>()->radius = radius;
 }
 
+// Mesh
+
+static void SetHitDamageFX(GameObject* GOptr, bool hit) {
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return;
+	mesh->hasEffect = hit;
+}
+
+static bool GetHitDamageFX(GameObject* GOptr) {
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return false;
+	return mesh->hasEffect;
+}
+
 void MonoRegisterer::RegisterFunctions()
 {
 	//GameObject
@@ -1332,6 +1346,10 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::SetLightIntensity", SetLightIntensity);
 	mono_add_internal_call("InternalCalls::GetLightRadius", GetLightRadius);
 	mono_add_internal_call("InternalCalls::SetLightRadius", SetLightRadius);
+
+	//Mesh
+	mono_add_internal_call("InternalCalls::SetHitDamageFX", SetHitDamageFX);
+	mono_add_internal_call("InternalCalls::GetHitDamageFX", GetHitDamageFX);
 }
 
 bool MonoRegisterer::CheckMonoError(MonoError& error)

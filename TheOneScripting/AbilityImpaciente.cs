@@ -98,7 +98,7 @@
             if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
 
-            if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
+            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR))
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;

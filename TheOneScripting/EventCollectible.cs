@@ -64,7 +64,7 @@ public class EventCollectible : Event
         //Add item
         if (managers.itemManager != null)
         {
-            if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
+            if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.E))
             {
                 string collectibleName = ExtractCollectible();
 
