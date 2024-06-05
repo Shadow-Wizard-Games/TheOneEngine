@@ -1996,6 +1996,19 @@
 								<Folder Name="La Impaciente" ID="{18CA5986-3CAA-4189-897A-31796E21E2D7}" ShortID="569316089">
 									<ChildrenList>
 										<Sound Name="SFX_A_li" ID="{0C72A072-5ED4-4059-B27E-36731AD58DB1}" ShortID="721250445">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -2006,6 +2019,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="SFX_A_li" ID="{D7A58310-AFAC-4B40-B49A-96EA5E9B34C7}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.13009011418613"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.44339109926859"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>SFX_A_li.wav</AudioFile>
 													<MediaIDList>
