@@ -244,7 +244,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             isDead = true;
             player.shieldKillCounter++;
             // add player biomass
-            deathPSGO.Play();
+            //deathPSGO.Play(); // this will crash if no particles are found
         }
     }
 
