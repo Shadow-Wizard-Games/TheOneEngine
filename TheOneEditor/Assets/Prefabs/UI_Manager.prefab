@@ -1619,55 +1619,7 @@
                 0.07500000298023224
               ],
               "State": 0,
-              "TextString": "20",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 2269493107,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_AmmoSlash",
-              "Print": true,
-              "Rect": [
-                0.6399999856948853,
-                0.824999988079071,
-                0.03500000014901161,
-                0.07500000298023224
-              ],
-              "State": 0,
-              "TextString": "/",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 1991825613,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_MaxAmmo",
-              "Print": true,
-              "Rect": [
-                0.6850000023841858,
-                0.824999988079071,
-                0.03500000014901161,
-                0.07500000298023224
-              ],
-              "State": 0,
-              "TextString": "20",
+              "TextString": "20 / 20",
               "Type": 4
             },
             {
@@ -1691,247 +1643,7 @@
                 0.03500000014901161
               ],
               "State": 0,
-              "TextString": "m4a1",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 2147178018,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_AbilitySheet1",
-              "Print": true,
-              "Rect": [
-                -0.9399999976158142,
-                -0.17000000178813934,
-                0.019999999552965164,
-                0.03999999910593033
-              ],
-              "State": 0,
-              "TextString": "1\n x",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 4065829671,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_AbilitySheet2",
-              "Print": true,
-              "Rect": [
-                -0.949999988079071,
-                0.019999999552965164,
-                0.019999999552965164,
-                0.03999999910593033
-              ],
-              "State": 0,
-              "TextString": "2\n l1",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 1578350538,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_AbilitySheet3",
-              "Print": true,
-              "Rect": [
-                -0.949999988079071,
-                0.2150000035762787,
-                0.019999999552965164,
-                0.03999999910593033
-              ],
-              "State": 0,
-              "TextString": "3\n l2",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 517245262,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_AbilitySheet4",
-              "Print": true,
-              "Rect": [
-                -0.949999988079071,
-                0.4000000059604645,
-                0.019999999552965164,
-                0.03999999910593033
-              ],
-              "State": 0,
-              "TextString": "4\n r2",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 3660121420,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_AbilitySheetConsumible",
-              "Print": true,
-              "Rect": [
-                -0.9150000214576721,
-                -0.5,
-                0.019999999552965164,
-                0.03999999910593033
-              ],
-              "State": 0,
-              "TextString": "Q\n  y",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 3662513925,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_WeaponCd1",
-              "Print": true,
-              "Rect": [
-                -0.8820000290870667,
-                -0.18000000715255737,
-                0.03999999910593033,
-                0.0949999988079071
-              ],
-              "State": 0,
-              "TextString": "0",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 3702058846,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_WeaponCd2",
-              "Print": true,
-              "Rect": [
-                -0.8820000290870667,
-                0.004999999888241291,
-                0.03999999910593033,
-                0.0949999988079071
-              ],
-              "State": 0,
-              "TextString": "0",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 2428870307,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_WeaponCd3",
-              "Print": true,
-              "Rect": [
-                -0.8820000290870667,
-                0.19499999284744263,
-                0.03999999910593033,
-                0.0949999988079071
-              ],
-              "State": 0,
-              "TextString": "0",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 2011812829,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_WeaponCd4",
-              "Print": true,
-              "Rect": [
-                -0.8820000290870667,
-                0.38499999046325684,
-                0.03999999910593033,
-                0.0949999988079071
-              ],
-              "State": 0,
-              "TextString": "0",
-              "Type": 4
-            },
-            {
-              "Color": [
-                1.0,
-                1.0,
-                1.0,
-                1.0
-              ],
-              "FontPath": "Assets/Fonts/AlienInvader.ttf",
-              "ID": 2759080148,
-              "Interactuable": false,
-              "Kerning": 0.0,
-              "LineSpacing": 0.0,
-              "Name": "Text_ConsumibleCd",
-              "Print": true,
-              "Rect": [
-                -0.847000002861023,
-                -0.5299999713897705,
-                0.03999999910593033,
-                0.0949999988079071
-              ],
-              "State": 0,
-              "TextString": "0",
+              "TextString": "m41a",
               "Type": 4
             },
             {
@@ -3392,14 +3104,14 @@
               "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
                 0.0,
-                0.14757481217384338,
-                0.23364485800266266,
+                0.26006191968917847,
+                0.4236760139465332,
                 0.11042311787605286
               ],
               "ImageSectionIdle": [
                 0.0,
-                0.26006191968917847,
-                0.23364485800266266,
+                0.14757481217384338,
+                0.4236752390861511,
                 0.11042311787605286
               ],
               "ImageSectionSelected": [
@@ -3409,53 +3121,19 @@
                 0.0
               ],
               "Interactuable": false,
-              "Name": "Button_ToDo",
+              "Name": "Button_ToDo_Done",
               "Print": true,
               "Rect": [
-                -0.4699999988079071,
+                -0.35499998927116394,
                 -0.5799999833106995,
-                0.1550000011920929,
-                0.07999999821186066
-              ],
-              "State": 1,
-              "Type": 1
-            },
-            {
-              "CountAsRealButton": true,
-              "ID": 1537710954,
-              "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
-              "ImageSectionHovered": [
-                0.25934579968452454,
-                0.26006191968917847,
-                0.23364485800266266,
-                0.11042311787605286
-              ],
-              "ImageSectionIdle": [
-                0.25934579968452454,
-                0.14757481217384338,
-                0.23364485800266266,
-                0.11042311787605286
-              ],
-              "ImageSectionSelected": [
-                0.0,
-                0.0,
-                0.0,
-                0.0
-              ],
-              "Interactuable": false,
-              "Name": "Button_Done",
-              "Print": true,
-              "Rect": [
-                -0.23000000417232513,
-                -0.5799999833106995,
-                0.1550000011920929,
+                0.27000001072883606,
                 0.07999999821186066
               ],
               "State": 0,
               "Type": 1
             },
             {
-              "CountAsRealButton": false,
+              "CountAsRealButton": true,
               "ID": 171599070,
               "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -3552,7 +3230,7 @@
               "Type": 0
             },
             {
-              "CountAsRealButton": false,
+              "CountAsRealButton": true,
               "ID": 932965676,
               "ImagePath": "Assets/Textures/Hud/Missions_Screen_SpriteSheet.png",
               "ImageSectionHovered": [
@@ -3901,19 +3579,7 @@
               "Name": "Transform",
               "Transformation Matrix": [
                 1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1.0,
-                0.0,
-                0.0,
-                0.0,
+                0.75,
                 0.0,
                 1.0
               ],

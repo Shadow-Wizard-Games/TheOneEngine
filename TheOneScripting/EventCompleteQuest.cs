@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Collections;
 
-public class EventNextRoom : Event
+public class EventCompleteQuest : Event
 {
     IGameObject playerGO;
 
     GameManager gameManager;
-    ItemManager itemManager;
-    UiManager uiManager;
+    QuestManager questManager;
 
     float playerDistance;
 
@@ -20,17 +20,24 @@ public class EventNextRoom : Event
     bool inRange = false;
 
     string goName;
+    int id;
+    int nextId;
+
+    string filepath = "Assets/GameData/Quests.json";
 
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
-        uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
 
-        eventType = EventType.NEXTROOM;
+        eventType = EventType.QUESTCOMPLETE;
         goName = attachedGameObject.name;
+
+        string[] datapath = { "CompletionEvents", ExtractQuestCompletion() };
+        id = DataManager.AccessFileDataInt(filepath, datapath, "id");
+        nextId = DataManager.AccessFileDataInt(filepath, datapath, "nextId");
     }
 
     public override void Update()
@@ -45,6 +52,9 @@ public class EventNextRoom : Event
 
     public override bool CheckEventIsPossible()
     {
+        if (!questManager.IsQuestActive(id))
+            return false;
+
         playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
 
         if (playerDistance < tpRange)
@@ -63,24 +73,10 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
-        {
-            string sceneName = ExtractSceneName();
+        questManager.CompleteQuest(id);
+        questManager.ActivateQuest(nextId);
 
-            if(sceneName == "L1R5")
-            {
-                if (!itemManager.CheckItemInInventory(9))
-                {
-                    uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Error:", "Missing Key");
-                    return ret;
-                }
-            }
-
-            playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
-
-            gameManager.SaveSceneState();
-            SceneManager.LoadScene(sceneName);
-        }
+        attachedGameObject.Destroy();
 
         return ret;
     }
@@ -97,28 +93,20 @@ public class EventNextRoom : Event
         }
     }
 
-    public string ExtractSceneName()
+    public string ExtractQuestCompletion()
     {
-        string sceneName = "";
+        string Dialog = "";
 
-        string patternL = $"L(\\d+)";
-        string patternR = $"R(\\d+)";
+        string pattern = $"EventQC(\\d+)";
 
-        Match matchL = Regex.Match(goName, patternL);
-        Match matchR = Regex.Match(goName, patternR);
+        Match match = Regex.Match(goName, pattern);
 
-        if (matchL.Success)
+        if (match.Success)
         {
-            sceneName += matchL.Groups[0].Value;
+            Dialog += match.Groups[0].Value;
         }
-        else { Debug.LogWarning("Could not find scene name in GO name"); }
+        else { Debug.LogWarning("Could not find EventQC in GO name"); }
 
-        if (matchR.Success)
-        {
-            sceneName += matchR.Groups[0].Value;
-        }
-        else { Debug.LogWarning("Could not find scene name in GO name"); }
-
-        return sceneName;
+        return Dialog;
     }
 }

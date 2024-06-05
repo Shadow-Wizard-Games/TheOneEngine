@@ -4,7 +4,10 @@ public class UiScriptInventory : MonoBehaviour
 {
     public ICanvas canvas;
 
+    bool hasM4 = false;
+
     UiManager menuManager;
+    ItemManager itemManager;
 
     float cooldown = 0;
     bool onCooldown = false;
@@ -23,6 +26,7 @@ public class UiScriptInventory : MonoBehaviour
     public override void Start()
     {
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
@@ -35,6 +39,12 @@ public class UiScriptInventory : MonoBehaviour
     }
     public override void Update()
     {
+        if (itemManager.CheckItemInInventory(1) && !hasM4)
+        {
+            // Activar la imagen de la M4
+            hasM4 = true;
+        }
+
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
