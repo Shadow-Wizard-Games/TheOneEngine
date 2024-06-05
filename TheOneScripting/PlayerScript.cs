@@ -184,7 +184,7 @@ public class PlayerScript : MonoBehaviour
 
         UpdatePlayerState();
 
-        #region PLAYERSTATESWITCH
+        #region PLAYER STATE SWITCH
         switch (currentAction)
         {
             case CurrentAction.IDLE:
@@ -337,7 +337,7 @@ public class PlayerScript : MonoBehaviour
         }
         #endregion
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1)))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
             if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
@@ -649,6 +649,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         #endregion
+
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.W))
         {
@@ -705,6 +706,22 @@ public class PlayerScript : MonoBehaviour
         bool hasAimed = false;
         Vector2 aimingDirection = Vector2.zero;
 
+        #region CONTROLLER
+        Vector2 rightJoystickVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
+
+        if (rightJoystickVector.x != 0.0f || rightJoystickVector.y != 0.0f)
+        {
+            // 0.7071f = 1 / sqrt(2)
+            Vector2 rotatedDirection = new Vector2(
+                rightJoystickVector.x * 0.7071f + rightJoystickVector.y * 0.7071f,
+                -rightJoystickVector.x * 0.7071f + rightJoystickVector.y * 0.7071f);
+
+            aimingDirection += rotatedDirection;
+            hasAimed = true;
+        }
+
+        #endregion
+
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
         {
@@ -727,21 +744,6 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyboardButton(Input.KeyboardCode.RIGHT))
         {
             aimingDirection += Vector2.zero + Vector2.right - Vector2.up;
-            hasAimed = true;
-        }
-
-        #endregion
-        #region CONTROLLER
-        Vector2 rightJoystickVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_RIGHT);
-
-        if (rightJoystickVector.x != 0.0f || rightJoystickVector.y != 0.0f)
-        {
-            // 0.7071f = 1 / sqrt(2)
-            Vector2 rotatedDirection = new Vector2(
-                rightJoystickVector.x * 0.7071f + rightJoystickVector.y * 0.7071f,
-                -rightJoystickVector.x * 0.7071f + rightJoystickVector.y * 0.7071f);
-
-            aimingDirection += rotatedDirection;
             hasAimed = true;
         }
 
