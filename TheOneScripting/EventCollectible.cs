@@ -24,6 +24,8 @@ public class EventCollectible : Event
     {
         managers.Start();
 
+        goName = attachedGameObject.name;
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         eventType = EventType.COLLECTIBLE;
 

@@ -211,7 +211,6 @@ public class UiManager : MonoBehaviour
 
         if (!onCooldown)
         {
-            Debug.Log("Aqui llega");
             Debug.Log(managers.gameManager.GetSavedLevel());
             if (state == MenuState.Death)
             {
@@ -223,8 +222,6 @@ public class UiManager : MonoBehaviour
             }
             else if ((managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (managers.gameManager.GetGameState() != GameManager.GameStates.PAUSED))
             {
-
-                Debug.Log("Aqui llega");
                 if (Input.GetKeyboardButton(Input.KeyboardCode.I))
                 {
                     if (previousState == MenuState.Inventory)
