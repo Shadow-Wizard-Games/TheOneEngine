@@ -1665,35 +1665,21 @@ bool PanelInspector::Draw()
 
 void PanelInspector::ChooseScriptNameWindow()
 {
-    ImGui::Begin("Script name", &chooseScriptNameWindow);
+    fs::path filePath = std::filesystem::relative(FileDialog::OpenFile("Open the Script (*.cs)\0*.cs\0", fs::current_path().parent_path().string().c_str())).string();
 
     static char nameRecipient[32];
+    std::string fileName = filePath.filename().replace_extension().string();
+    memcpy(nameRecipient, &fileName[0], fileName.size() + 1);
 
-    ImGui::InputText("File Name", nameRecipient, IM_ARRAYSIZE(nameRecipient));
+    if (!filePath.empty() && (filePath.string().ends_with(".cs")) && MonoManager::IsClassInMainAssembly(nameRecipient))
+        selectedGO->AddComponent<Script>(nameRecipient);
 
-    if (engine->inputManager->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && nameRecipient != "")
-    {
-        //std::string className = "ActualScriptTest2";
-        if (MonoManager::IsClassInMainAssembly(nameRecipient))
-        {
-            selectedGO->AddComponent<Script>(nameRecipient);
-            ImGui::CloseCurrentPopup();
-        }
-        else
-        {
-           LOG(LogType::LOG_WARNING, "Could not find class '%s'", nameRecipient);
-        }
-
-        chooseScriptNameWindow = false;
-    }
-
-    ImGui::End();
+    chooseScriptNameWindow = false;
 }
 
 void PanelInspector::ChooseParticlesToImportWindow()
 {
-
-    std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open the Particle (*.particles)\0*.particles\0")).string();
+    std::string filePath = std::filesystem::relative(FileDialog::OpenFile("Open the Particle (*.particles)\0*.particles\0", fs::absolute(std::string(ASSETS_PATH) + "Particles").string().c_str())).string();
     if (!filePath.empty() && (filePath.ends_with(".particles")))
         selectedGO->GetComponent<ParticleSystem>()->LoadComponent(Resources::OpenJSON(filePath.c_str()));
 

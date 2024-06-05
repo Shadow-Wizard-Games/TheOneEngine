@@ -25,8 +25,8 @@ public class Managers
 
     public void Start()
     {
-        gameManager = IGameObject.Find("GameManager")?.GetComponent<GameManager>();
-        itemManager = IGameObject.Find("ItemManager")?.GetComponent<ItemManager>();
-        questManager = IGameObject.Find("QuestManager")?.GetComponent<QuestManager>();
+        gameManager = IGameObject.Find("Manager")?.GetComponent<GameManager>();
+        itemManager = IGameObject.Find("Manager")?.GetComponent<ItemManager>();
+        questManager = IGameObject.Find("Manager")?.GetComponent<QuestManager>();
     }
 }

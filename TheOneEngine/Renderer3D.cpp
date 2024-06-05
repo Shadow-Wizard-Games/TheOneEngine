@@ -685,7 +685,7 @@ void Renderer3D::IndexPass(RenderTarget target)
 			DrawSkeletal(call);
 	}
 
-	Renderer2D::UpdateIndexed(BatchType::WORLD, target);
+	//Renderer2D::UpdateIndexed(BatchType::WORLD, target);
 }
 
 void Renderer3D::UIComposition(RenderTarget target)

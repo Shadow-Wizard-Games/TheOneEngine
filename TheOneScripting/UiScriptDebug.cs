@@ -10,9 +10,6 @@ public class UiScriptDebug : MonoBehaviour
     bool flickerOnCooldown = false;
     public bool firstFrame = true;
 
-    IGameObject GameManagerGO;
-    GameManager gameManager;
-
     public UiScriptDebug()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
@@ -20,8 +17,7 @@ public class UiScriptDebug : MonoBehaviour
 
     public override void Start()
     {
-        GameManagerGO = IGameObject.Find("GameManager");
-        gameManager = GameManagerGO.GetComponent<GameManager>();
+        managers.Start();
 
         onCooldown = true;
         
@@ -31,7 +27,7 @@ public class UiScriptDebug : MonoBehaviour
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
 
-        UpdateCheckers();
+        //UpdateCheckers();
     }
 
     public override void Update()
@@ -136,28 +132,28 @@ public class UiScriptDebug : MonoBehaviour
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
-                gameManager.DrawColliders();
+                managers.gameManager.DrawColliders();
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
-                gameManager.DrawGrid();
+                managers.gameManager.DrawGrid();
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
-                gameManager.godMode = !gameManager.godMode;
+                managers.gameManager.godMode = !managers.gameManager.godMode;
                 onCooldown = true;
             }
 
             if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
-                gameManager.extraSpeed = !gameManager.extraSpeed;
+                managers.gameManager.extraSpeed = !managers.gameManager.extraSpeed;
                 onCooldown = true;
             }
         }
@@ -165,9 +161,9 @@ public class UiScriptDebug : MonoBehaviour
 
     private void UpdateCheckers()
     {
-        canvas.ToggleChecker(gameManager.colliderRender, "Checker_ColliderRender");
-        canvas.ToggleChecker(gameManager.gridRender, "Checker_GridRender");
-        canvas.ToggleChecker(gameManager.godMode, "Checker_GodMode");
-        canvas.ToggleChecker(gameManager.extraSpeed, "Checker_ExtraSpeed");
+        canvas.ToggleChecker(managers.gameManager.colliderRender, "Checker_ColliderRender");
+        canvas.ToggleChecker(managers.gameManager.gridRender, "Checker_GridRender");
+        canvas.ToggleChecker(managers.gameManager.godMode, "Checker_GodMode");
+        canvas.ToggleChecker(managers.gameManager.extraSpeed, "Checker_ExtraSpeed");
     }
 }

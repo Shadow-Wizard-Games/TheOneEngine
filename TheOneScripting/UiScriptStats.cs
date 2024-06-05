@@ -20,10 +20,6 @@ public class UiScriptStats : MonoBehaviour
 
     int currentButton = 0;
 
-    int playerDamageLvl;
-    int playerHealthLvl;
-    int playerSpeedLvl;
-
     public UiScriptStats()
     {
         canvas = new ICanvas(InternalCalls.GetGameObjectPtr());
@@ -35,14 +31,6 @@ public class UiScriptStats : MonoBehaviour
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
-
-        playerDamageLvl = managers.gameManager.GetDamageLvl();
-        playerHealthLvl = managers.gameManager.GetLifeLvl();
-        playerSpeedLvl = managers.gameManager.GetSpeedLvl();
-
-        ChangeStatLvl(StatType.DAMAGE, false, playerDamageLvl);
-        ChangeStatLvl(StatType.HEALTH, false, playerHealthLvl);
-        ChangeStatLvl(StatType.SPEED, false, playerSpeedLvl);
 
         firstFrame = true;
         flickerCooldown = 0;
@@ -58,6 +46,7 @@ public class UiScriptStats : MonoBehaviour
 
         if (firstFrame)
         {
+            SetCanvases();
             canvas.CanvasFlicker(true);
             flickerOnCooldown = true;
             firstFrame = false;
@@ -172,15 +161,12 @@ public class UiScriptStats : MonoBehaviour
             {
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
-                    //this function only for canvas update, not stat !!!
-                    ChangeStatLvl(StatType.DAMAGE);
-                    
-                    if(playerDamageLvl <= 3)
+                    if(managers.gameManager.GetDamageLvl() <= 3)
                     {
                         onCooldown = true;
                         managers.gameManager.currency -= 100;
-                        playerDamageLvl++;
-                        managers.gameManager.SetDamageLvl(playerDamageLvl);
+                        managers.gameManager.SetDamageLvl(managers.gameManager.GetDamageLvl() + 1);
+                        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl());
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
@@ -188,15 +174,12 @@ public class UiScriptStats : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
-                    //this function only for canvas update, not stat !!!
-                    ChangeStatLvl(StatType.HEALTH);
-
-                    if (playerHealthLvl <= 3)
+                    if (managers.gameManager.GetDamageLvl() <= 3)
                     {
                         onCooldown = true;
                         managers.gameManager.currency -= 100;
-                        playerHealthLvl++;
-                        managers.gameManager.SetLifeLvl(playerHealthLvl);
+                        managers.gameManager.SetLifeLvl(managers.gameManager.GetLifeLvl() + 1);
+                        ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl());
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
@@ -204,15 +187,12 @@ public class UiScriptStats : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
-                    //this function only for canvas update, not stat !!!
-                    ChangeStatLvl(StatType.SPEED);
-
-                    if (playerSpeedLvl <= 3)
+                    if (managers.gameManager.GetDamageLvl() <= 3)
                     {
                         onCooldown = true;
                         managers.gameManager.currency -= 100;
-                        playerSpeedLvl++;
-                        managers.gameManager.SetSpeedLvl(playerSpeedLvl);
+                        managers.gameManager.SetSpeedLvl(managers.gameManager.GetSpeedLvl() + 1);
+                        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetSpeedLvl());
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
@@ -222,13 +202,12 @@ public class UiScriptStats : MonoBehaviour
     }
 
     //only for canvas changes, NOT stat changes
-    public void ChangeStatLvl(StatType type, bool trueifjustlvlup = true, int newLvl = -1)
+    public void ChangeStatLvl(StatType type, int newLvl = -1)
     {
 
         switch (type)
         {
             case StatType.DAMAGE:
-                if (trueifjustlvlup && this.playerDamageLvl <= 3) newLvl = this.playerDamageLvl + 1;
                 switch (newLvl)
                 {
                     case 1:
@@ -290,10 +269,8 @@ public class UiScriptStats : MonoBehaviour
                     default:
                         break;
                 }
-                this.playerDamageLvl = newLvl;
                 break;
             case StatType.HEALTH:
-                if (trueifjustlvlup && this.playerHealthLvl <= 3) newLvl = this.playerHealthLvl + 1;
                 switch (newLvl)
                 {
                     case 1:
@@ -355,10 +332,8 @@ public class UiScriptStats : MonoBehaviour
                     default:
                         break;
                 }
-                this.playerHealthLvl = newLvl;
                 break;
             case StatType.SPEED:
-                if (trueifjustlvlup && this.playerSpeedLvl <= 3) newLvl = this.playerSpeedLvl + 1;
                 switch (newLvl)
                 {
                     case 1:
@@ -420,10 +395,16 @@ public class UiScriptStats : MonoBehaviour
                     default:
                         break;
                 }
-                this.playerSpeedLvl = newLvl;
                 break;
             default:
                 break;
         }
+    }
+
+    public void SetCanvases()
+    {
+        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl());
+        ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl());
+        ChangeStatLvl(StatType.SPEED, managers.gameManager.GetDamageLvl());
     }
 }
