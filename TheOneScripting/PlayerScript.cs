@@ -155,7 +155,7 @@ public class PlayerScript : MonoBehaviour
         skillSetChangeTime = 0.0f;
 
         // THIS ALWAYS LAST IN START
-        //SetInitPosInScene();
+        SetInitPosInScene();
     }
     public override void Update()
     {
@@ -1019,18 +1019,14 @@ public class PlayerScript : MonoBehaviour
 
     private void SetInitPosInScene()
     {
-        if(managers.gameManager == null || managers.gameManager.lastLevel != " ")
+        if(managers.gameManager == null || managers.gameManager.lastLevel == " ")
             return;
 
-        IGameObject swapGO = IGameObject.Find("Spawn_" + managers.gameManager.lastLevel);
-
-        ITransform spawnTransform = swapGO?.GetComponent<ITransform>();
-        Vector3 spawnPos = spawnTransform.Position;
-
-        Debug.Log("Found spawn: " + swapGO.name);
-
+        ITransform spawnTransform = IGameObject.Find("Spawn_" + managers.gameManager.lastLevel)?.GetComponent<ITransform>();
+        
         if (spawnTransform == null)
         {
+            Vector3 spawnPos = spawnTransform.Position;
             attachedGameObject.transform.Position = spawnPos;
         }        
     }
