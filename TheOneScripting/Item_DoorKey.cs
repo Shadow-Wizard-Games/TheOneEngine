@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Item_DoorKey : Item
+public class Item_DoorKey : Item
 {
     uint damage = 6;
 

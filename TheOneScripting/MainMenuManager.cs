@@ -78,7 +78,7 @@ public class MainMenuManager : MonoBehaviour
             onCooldown = false;
         }
 
-        if (!onCooldown && Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
+        if (!onCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.B) || Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE)))
         {
             if (!settingsScript.editing)
             {
@@ -100,7 +100,7 @@ public class MainMenuManager : MonoBehaviour
                     onCooldown = true;
                     creditsView++;
                 }
-                if (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
+                if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
                     if (logo)
                     {
@@ -208,7 +208,7 @@ public class MainMenuManager : MonoBehaviour
 
                 // SELECTION EXECUTERS
                 // New Game
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
                     if (gameManager.hasSaved) { gameManager.ResetSave(); }
 
@@ -219,7 +219,7 @@ public class MainMenuManager : MonoBehaviour
                 }
 
                 // Resume Game
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     if (gameManager.hasSaved)
                     {
@@ -230,7 +230,7 @@ public class MainMenuManager : MonoBehaviour
                 }
 
                 // Settings
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
                     IGameObject.Find("Canvas_Settings").Enable();
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
@@ -239,7 +239,7 @@ public class MainMenuManager : MonoBehaviour
                 }
 
                 // Credits
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
                 {
                     credits = true;
                     canvasCredits.ToggleEnable();
@@ -249,7 +249,7 @@ public class MainMenuManager : MonoBehaviour
                 }
 
                 // Exit
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
                 {
                     InternalCalls.ExitApplication();
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);

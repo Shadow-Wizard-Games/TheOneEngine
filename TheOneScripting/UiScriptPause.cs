@@ -132,31 +132,31 @@ public class UiScriptPause : MonoBehaviour
             }
 
             // Selection Executters
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Inventory);
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Missions);
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.ResumeGame();
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 3)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Settings);
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 4)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
@@ -164,7 +164,7 @@ public class UiScriptPause : MonoBehaviour
                 SceneManager.LoadScene("MainMenu");
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 5)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 5)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 InternalCalls.ExitApplication();
