@@ -24,6 +24,7 @@
 
     public uint damage;
 
+    public float speedModification = 0;
     public float slowAmount;
     public float fireRate;
     public float knockbackPotency;
@@ -76,12 +77,8 @@
 
     public void Activated()
     {
-        float speedReduce = managers.gameManager.GetSpeed() * slowAmount;
-        player.currentSpeed -= speedReduce;
-
-        player.currentWeaponDamage = damage;
-
-        state = AbilityState.ACTIVE;
+        // being used dont eliminate
+        speedModification = managers.gameManager.GetSpeed() * -slowAmount;
 
         //attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
 
@@ -102,7 +99,7 @@
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
-                player.currentSpeed = managers.gameManager.GetSpeed();
+                speedModification = 0;
                 player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
                 player.currentWeaponDamage = damage;
 
@@ -115,7 +112,7 @@
         else
         {
             // reset stats
-            player.currentSpeed = managers.gameManager.GetSpeed();
+            speedModification = 0;
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;

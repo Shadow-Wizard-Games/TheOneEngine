@@ -3,7 +3,7 @@
 public class Item_M4A1 : Item
 {
     public readonly uint damage = 5;
-    public readonly uint maxAmmoPerLoader = 100;
+    public readonly uint maxAmmoPerLoader = 20;
     public readonly float fireRate = 0.15f;
 
     // Grenade Launcher

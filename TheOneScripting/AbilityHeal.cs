@@ -21,6 +21,7 @@ public class AbilityHeal : MonoBehaviour
     IGameObject playerGO;
     PlayerScript player;
 
+    public float speedModification = 0;
     public readonly float healAmount = 0.6f; // in %
     public readonly float slowAmount = 0.4f; // in %
 
@@ -91,7 +92,7 @@ public class AbilityHeal : MonoBehaviour
             numHeals--;
 
             // reset stats
-            player.currentSpeed = managers.gameManager.GetSpeed();
+            speedModification = 0;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;
