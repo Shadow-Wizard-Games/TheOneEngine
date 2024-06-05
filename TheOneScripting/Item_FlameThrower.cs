@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Item_FlameThrower : Item
+public class Item_FlameThrower : Item
 {
     public readonly uint damage = 9;
     public readonly float slowAmountEnemy = 0.3f;

@@ -8,7 +8,7 @@
         COOLDOWN,
     }
 
-    Item_Impaciente ImpacienteItem;
+    public Item_Impaciente ImpacienteItem;
 
     public string abilityName;
 

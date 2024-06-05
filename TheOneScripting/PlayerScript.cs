@@ -48,7 +48,7 @@ public class PlayerScript : MonoBehaviour
     public bool isDead = false;
     public float baseDamage;
     public float totalDamage = 0.0f;
-    public float damageIncrease = 0.0f;
+    public float weaponDamageMultiplier = 0.0f;
 
     // movement
     public float currentSpeed;
@@ -60,6 +60,7 @@ public class PlayerScript : MonoBehaviour
     public CurrentAction currentAction;
 
     Item_M4A1 ItemM4;
+    Item_ShoulderLaser ItemShoulderLaser;
 
     IGameObject M4GO;
     IGameObject ShoulderLaserGO;
@@ -138,6 +139,7 @@ public class PlayerScript : MonoBehaviour
         currentSkillSet = SkillSet.NONE;
 
         ItemM4 = new Item_M4A1();
+        ItemShoulderLaser = new Item_ShoulderLaser();
 
         timeFromLastStep = 0.3f;
 
@@ -217,7 +219,7 @@ public class PlayerScript : MonoBehaviour
     {
         attachedGameObject.animator.UpdateAnimation();
 
-        if (Heal.state == AbilityHeal.AbilityState.ACTIVE || Dash.state == AbilityDash.AbilityState.ACTIVE)
+        if (Heal.state != AbilityHeal.AbilityState.ACTIVE || Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             UpdateWeaponAnimation();
         }
@@ -308,12 +310,21 @@ public class PlayerScript : MonoBehaviour
         }
         #endregion
 
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
+        {
+            weaponDamageMultiplier = AdrenalineRush.weaponDamageMultiplier;
+            currentSpeed = gameManager.GetSpeed() * AdrenalineRush.speedMultiplier;
+        }
+        else
+        {
+            weaponDamageMultiplier = 1.0f;
+            currentSpeed = gameManager.GetSpeed();
+        }
+
     }
     void UpdatePlayerStatsFromManager()
     {
         baseDamage = gameManager.GetDamage();
-        currentSpeed = gameManager.GetSpeed();
-
     }
     private void WeaponAbilityStates()
     {
@@ -413,7 +424,6 @@ public class PlayerScript : MonoBehaviour
             }
         }
         #endregion
-
     }
 
     private void IdleAction()
@@ -573,12 +583,6 @@ public class PlayerScript : MonoBehaviour
         float totalHeal = gameManager.GetMaxHealth() * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
-        currentSpeed = speedIncrease;
-
-        // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
-
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
         attachedGameObject.animator.Play("Adrenaline Rush Static");
@@ -594,12 +598,6 @@ public class PlayerScript : MonoBehaviour
         // calculate heal amount
         float totalHeal = gameManager.health * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
-
-        float speedIncrease = gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
-        currentSpeed = speedIncrease;
-
-        // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -821,17 +819,17 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + ItemM4.damage;
     }
     private void ShootShoulderLaser()
     {
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
-        // CHANGE WITH REAL STATS, M4 PLACEHOLDER
-
-        if (timeSinceLastShot < 0.15f)
+        if (timeSinceLastShot < ItemShoulderLaser.fireRate)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > 0.15f / 2)
+            if (!hasShot && timeSinceLastShot > ItemShoulderLaser.fireRate / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
@@ -844,6 +842,8 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + ItemShoulderLaser.damage;
     }
     private void ShootImpaciente()
     {
@@ -867,6 +867,8 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + Impaciente.ImpacienteItem.damage;
     }
     private void ShootFlamethrower()
     {
@@ -890,6 +892,8 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + Flamethrower.FlamethrowerItem.damage;
     }
     private void ShootGrenadeLauncher()
     {
@@ -899,7 +903,6 @@ public class PlayerScript : MonoBehaviour
 
         // CHANGE TO A PREFAB OF GRENADE ?
         InternalCalls.InstantiateGrenade(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-        //
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
 
@@ -908,8 +911,6 @@ public class PlayerScript : MonoBehaviour
         currentWeaponType = CurrentWeapon.M4;
 
         GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.COOLDOWN;
-
-        Debug.Log("Ability Grenade Launcher Activated");
     }
 
     private void UpdateWeaponAnimation()
@@ -936,7 +937,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife(uint damage)
     {
-        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
+        if (isDead || gameManager.godMode || currentAction == CurrentAction.DASH)
             return;
 
         gameManager.health -= damage;
@@ -952,7 +953,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLifeExplosion()
     {
-        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
+        if (isDead || gameManager.godMode || currentAction == CurrentAction.DASH)
             return;
 
         gameManager.health -= 50;
