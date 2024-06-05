@@ -28,7 +28,7 @@
       "ParentUID": 3452816845,
       "ScriptName": "UiManager",
       "Type": 4,
-      "UID": 2371490470
+      "UID": 3271373765
     },
     {
       "AudioID": 2,
@@ -1130,7 +1130,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptInventory",
           "Type": 4,
-          "UID": 951121546
+          "UID": 3137947727
         },
         {
           "AudioID": 3,
@@ -1444,7 +1444,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptPause",
           "Type": 4,
-          "UID": 1275044213
+          "UID": 1773372063
         }
       ],
       "Enabled": false,
@@ -1485,7 +1485,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptHud",
           "Type": 4,
-          "UID": 3891581621
+          "UID": 3392940937
         },
         {
           "DebugDraw": true,
@@ -1709,13 +1709,13 @@
               "Name": "Text_AbilitySheet1",
               "Print": true,
               "Rect": [
-                -0.9399999976158142,
+                -0.9449999928474426,
                 -0.17000000178813934,
                 0.019999999552965164,
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "1\n x",
+              "TextString": "1\n l1",
               "Type": 4
             },
             {
@@ -1739,7 +1739,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "2\n l1",
+              "TextString": "2\n r1",
               "Type": 4
             },
             {
@@ -1763,7 +1763,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "3\n l2",
+              "TextString": "3\n r1",
               "Type": 4
             },
             {
@@ -1787,7 +1787,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "4\n r2",
+              "TextString": "4\n l2",
               "Type": 4
             },
             {
@@ -1811,7 +1811,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "Q\n  y",
+              "TextString": "Q\n  x",
               "Type": 4
             },
             {
@@ -3288,7 +3288,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptDebug",
           "Type": 4,
-          "UID": 607510851
+          "UID": 4192006416
         },
         {
           "AudioID": 5,
@@ -3690,7 +3690,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptMissions",
           "Type": 4,
-          "UID": 1552041312
+          "UID": 4257267395
         }
       ],
       "Enabled": false,
@@ -6688,7 +6688,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptStats",
           "Type": 4,
-          "UID": 382180504
+          "UID": 1437851151
         }
       ],
       "Enabled": false,
@@ -6835,7 +6835,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptSettings",
           "Type": 4,
-          "UID": 415371177
+          "UID": 3595735817
         }
       ],
       "Enabled": false,
@@ -6944,7 +6944,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": true,
+              "Enabled": false,
               "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
@@ -7841,7 +7841,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettingsDisplay",
               "Type": 4,
-              "UID": 1616070798
+              "UID": 5028592
             },
             {
               "AudioID": 13,
@@ -7849,7 +7849,7 @@
               "Type": 8
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_SettingsDisplay",

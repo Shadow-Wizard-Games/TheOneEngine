@@ -159,7 +159,7 @@ public class UiScriptStats : MonoBehaviour
 
             if (managers.gameManager.currency >= 100)
             {
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
                     if(managers.gameManager.GetDamageLvl() <= 3)
                     {
@@ -172,7 +172,7 @@ public class UiScriptStats : MonoBehaviour
                     }
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     if (managers.gameManager.GetDamageLvl() <= 3)
                     {
@@ -185,7 +185,7 @@ public class UiScriptStats : MonoBehaviour
                     }
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
                     if (managers.gameManager.GetDamageLvl() <= 3)
                     {

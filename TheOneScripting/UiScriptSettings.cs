@@ -63,7 +63,7 @@ public class UiScriptSettings : MonoBehaviour
             onCooldown = false;
         }
 
-        if (!onCooldown && editing && Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
+        if (!onCooldown && editing && (Input.GetControllerButton(Input.ControllerButtonCode.B) || Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE)))
         {
             settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_Vsync");
             settingsDisCanvas.SetUiItemState(ICanvas.UiState.IDLE, "Checker_Fullscreen");
@@ -159,14 +159,14 @@ public class UiScriptSettings : MonoBehaviour
                     currentButton += direction;
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     settingsControlsGO.Enable();
                     settingsDisplayGO.Disable();
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     settingsControlsGO.Disable();

@@ -57,7 +57,7 @@ public class PlayerScript : MonoBehaviour
     public CurrentWeapon currentWeaponType;
     public CurrentAction currentAction;
 
-    Item_M4A1 ItemM4;
+    public Item_M4A1 ItemM4;
 
     IGameObject M4GO;
     IGameObject ShoulderLaserGO;
@@ -276,7 +276,7 @@ public class PlayerScript : MonoBehaviour
 
             currentAction = CurrentAction.IDLE;
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R2))
                 && currentWeaponType != CurrentWeapon.NONE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
@@ -339,7 +339,7 @@ public class PlayerScript : MonoBehaviour
         }
         #endregion
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1)))
+        if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
             if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
@@ -348,7 +348,19 @@ public class PlayerScript : MonoBehaviour
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.TWO))
+        {
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+                currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+        }
+        if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
+        {
+            if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
+                currentWeaponType = CurrentWeapon.FLAMETHROWER;
+        }
+
+
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
             && currentSkillSet != SkillSet.NONE
             && Impaciente.state == AbilityImpaciente.AbilityState.READY)
         {
