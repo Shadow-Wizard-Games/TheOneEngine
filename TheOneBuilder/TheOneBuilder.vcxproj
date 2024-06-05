@@ -196,7 +196,13 @@ xcopy "$(SolutionDir)TheOneEditor\Assets" "$(OutDir)Assets" /E /Y
 xcopy "$(SolutionDir)TheOneEditor\Library" "$(OutDir)Library" /E /Y
 xcopy "$(SolutionDir)TheOneEditor\Tools" "$(OutDir)Tools" /E /Y
 
-del "$(OutDir)*.pdb"</Command>
+del "$(OutDir)*.pdb"
+i
+rd /s /q "$(OutDir)Assets\Audio\Wwise Project"
+mkdir "$(OutDir)Assets\Audio\Wwise Project\GeneratedSoundBanks\
+xcopy "$(SolutionDir)TheOneEditor\Assets\Audio\Wwise Project\GeneratedSoundBanks" "$(OutDir)Assets\Audio\Wwise Project\GeneratedSoundBanks" /E /Y
+
+</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>call $(SolutionDir)vcpkg\bootstrap-vcpkg.bat
