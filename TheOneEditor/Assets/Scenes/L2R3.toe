@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 0
     },
@@ -1851,7 +1851,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 7602275
     },
@@ -1883,74 +1883,6 @@
       ],
       "Enabled": true,
       "GameObjects": [
-        {
-          "Components": [
-            {
-              "Name": "Transform",
-              "Transformation Matrix": [
-                1.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.42924439907073975,
-                0.9031884074211121,
-                0.0,
-                0.0,
-                -0.9031884074211121,
-                0.42924439907073975,
-                0.0,
-                0.0,
-                185.9400634765625,
-                -197.59298706054688,
-                1.0
-              ],
-              "Type": 0,
-              "UID": 3913918620
-            },
-            {
-              "Aspect": 1.777,
-              "CameraType": 1,
-              "FOV": 65.0,
-              "Name": "Camera",
-              "ParentUID": 3422393888,
-              "Pitch": 0.0,
-              "PrimaryCamera": false,
-              "Size": 200.0,
-              "Type": 1,
-              "UID": 4165575525,
-              "Yaw": 0.0,
-              "zFar": 3000.0,
-              "zNear": 10.0
-            },
-            {
-              "Color": [
-                0.2012902796268463,
-                0.1599999964237213,
-                0.800000011920929
-              ],
-              "InnerCutOff": 0.9100000262260437,
-              "Intensity": -13.800000190734863,
-              "LightType": 0,
-              "Linear": 0.699999988079071,
-              "Name": "Light",
-              "OuterCutOff": 0.8199999928474426,
-              "ParentUID": 3422393888,
-              "Quadratic": 1.7999999523162842,
-              "Radius": 60.0,
-              "Specular": 0.5,
-              "Type": 11,
-              "UID": 2602177417
-            }
-          ],
-          "Enabled": true,
-          "HasTransparency": false,
-          "Keeped": false,
-          "Name": "Directional Light",
-          "ParentUID": 1102577664,
-          "Static": false,
-          "UID": 3422393888
-        },
         {
           "Components": [
             {
@@ -1998,7 +1930,7 @@
                 0.01862145960330963
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 3.200000047683716,
+              "Intensity": -2.299999952316284,
               "LightType": 0,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -2295,7 +2227,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1102577664
     },
@@ -3556,7 +3488,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 7602275
     },
@@ -4134,7 +4066,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 6553651,
+      "ParentUID": 7602275,
       "Static": false,
       "UID": 1006632960
     }
