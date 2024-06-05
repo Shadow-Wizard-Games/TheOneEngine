@@ -13,7 +13,20 @@ public class ItemManager : MonoBehaviour
     {
         //LoadData();
         itemData.Add(1, new Item_M4A1());
-        itemData.Add(2, new Item_Healing());
+        itemData.Add(2, new Item_GrenadeLauncher());
+        itemData.Add(3, new Item_ShoulderLaser());
+        itemData.Add(4, new Item_Healing());
+        itemData.Add(5, new Item_Shield());
+        itemData.Add(6, new Item_AdrenalineRush());
+        itemData.Add(7, new Item_Impaciente());
+        itemData.Add(8, new Item_FlameThrower());
+        itemData.Add(9, new Item_DoorKey());
+
+        //Debug
+        AddItem(2, 1);
+        AddItem(3, 1);
+        AddItem(7, 1);
+        AddItem(8, 1);
     }
 
     private void SaveData()

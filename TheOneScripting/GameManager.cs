@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
             savedLevels.Add(SceneManager.GetCurrentSceneName());
 
         lastLevel = SceneManager.GetCurrentSceneName();
-        InternalCalls.CreateSaveFromScene("GameData/Scenes", SceneManager.GetCurrentSceneName());
+        InternalCalls.CreateSaveFromScene("GameData/Scenes", lastLevel);
     }
 
     public void UpdateSave()
@@ -168,18 +168,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadSave()
     {
-        bool notFound = true;
-        foreach (var item in saveLevel)
-        {
-            if (notFound && item.ToString() == saveLevel)
-            {
-                notFound = false;
-                continue;
-            }
-            else
-                DataManager.RemoveFile(item.ToString());
-        }
-
         SceneManager.LoadScene("LastSave_" + saveLevel, true, "GameData/");
     }
 

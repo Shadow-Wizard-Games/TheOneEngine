@@ -16,7 +16,8 @@ enum class SelectedSetting
 	RENDERER,
 	COLOR_PICKER,
 	HARDWARE,
-	SOFTWARE
+	SOFTWARE,
+	RESOURCES
 };
 
 class PanelSettings : public Panel
@@ -39,6 +40,7 @@ private:
 	void ColorPicker();
 	void Hardware();
 	void Software();
+	void Resources();
 	
 
 private:

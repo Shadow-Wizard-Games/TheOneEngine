@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Item_GrenadeLauncher : Item
+public class Item_GrenadeLauncher : Item
 {
     public readonly uint damage = 50;
     public readonly float grenadeVelocity = 250f;

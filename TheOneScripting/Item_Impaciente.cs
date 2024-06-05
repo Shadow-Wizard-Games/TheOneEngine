@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Item_Impaciente : Item
+public class Item_Impaciente : Item
 {
     public readonly uint damage = 10;
     public readonly uint maxAmmo = 999;

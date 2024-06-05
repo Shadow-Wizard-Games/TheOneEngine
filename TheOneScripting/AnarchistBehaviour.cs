@@ -283,6 +283,8 @@ class AnarchistBehaviour : MonoBehaviour
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
+        Debug.Log("Total damage " + player.totalDamage);
+        //Debug.Log("Total life " + life);
     }
 
     public void ReduceLifeExplosion()
