@@ -148,8 +148,6 @@ public class PlayerScript : MonoBehaviour
 
         timeFromLastStep = 0.3f;
 
-        Debug.Log("Me flipa loko");
-
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
 
