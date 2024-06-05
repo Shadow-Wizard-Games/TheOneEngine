@@ -35,7 +35,7 @@ public class EventCheckpoint : Event
             DoEvent();
         }
 
-        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
+        //if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()

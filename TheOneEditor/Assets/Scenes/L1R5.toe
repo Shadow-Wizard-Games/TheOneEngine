@@ -5,6 +5,61 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 955056475
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "GameManager",
+          "Type": 4,
+          "UID": 3620113110
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 1731989752
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "QuestManager",
+          "Type": 4,
+          "UID": 2823750267
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": true,
+      "Name": "Manager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
             -0.7071067690849304,
             0.0,
             0.7071067690849304,

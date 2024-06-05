@@ -50,9 +50,6 @@ public class UiManager : MonoBehaviour
     IGameObject playerGO;
     PlayerScript playerScript;
 
-    IGameObject GameManagerGO;
-    GameManager gameManager;
-
     ICanvas savingCanvas;
     ICanvas dialogCanvas;
     ICanvas pickupCanvas;
@@ -77,6 +74,8 @@ public class UiManager : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         inventoryGo = IGameObject.Find("Canvas_Inventory");
         deathScreenGo = IGameObject.Find("Canvas_Death");
         pauseMenuGo = IGameObject.Find("Canvas_PauseMenu");
@@ -111,8 +110,6 @@ public class UiManager : MonoBehaviour
 
         state = MenuState.Hud;
 
-        GameManagerGO = IGameObject.Find("GameManager");
-        gameManager = GameManagerGO.GetComponent<GameManager>();
         savingCanvas = savingSceneGo.GetComponent<ICanvas>();
         dialogCanvas = dialogueGo.GetComponent<ICanvas>();
         pickupCanvas = pickUpFeedbackGo.GetComponent<ICanvas>();
@@ -214,6 +211,8 @@ public class UiManager : MonoBehaviour
 
         if (!onCooldown)
         {
+            Debug.Log("Aqui llega");
+            Debug.Log(managers.gameManager.GetSavedLevel());
             if (state == MenuState.Death)
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
@@ -222,8 +221,10 @@ public class UiManager : MonoBehaviour
                     SceneManager.LoadScene("MainMenu");
                 }
             }
-            else if ((gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (gameManager.GetGameState() != GameManager.GameStates.PAUSED))
+            else if ((managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (managers.gameManager.GetGameState() != GameManager.GameStates.PAUSED))
             {
+
+                Debug.Log("Aqui llega");
                 if (Input.GetKeyboardButton(Input.KeyboardCode.I))
                 {
                     if (previousState == MenuState.Inventory)
@@ -271,7 +272,7 @@ public class UiManager : MonoBehaviour
             {
                 deathScreenGo.Enable();
                 state = MenuState.Death;
-                gameManager.SetGameState(GameManager.GameStates.ONMENUS);
+                managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS);
                 onCooldown = true;
             }
         }
@@ -316,7 +317,7 @@ public class UiManager : MonoBehaviour
                 break;
         }
 
-        if(state != MenuState.Hud) { gameManager.SetGameState(GameManager.GameStates.ONMENUS); }
+        if(state != MenuState.Hud) { managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS); }
     }
 
     public void OpenMenu(MenuState state)
@@ -326,7 +327,7 @@ public class UiManager : MonoBehaviour
             switch (this.state)
             {
                 case MenuState.Hud:
-                    gameManager.SetGameState(GameManager.GameStates.ONMENUS);
+                    managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS);
                     hudGo.Disable();
                     break;
                 case MenuState.Inventory:
@@ -352,7 +353,7 @@ public class UiManager : MonoBehaviour
             switch (state)
             {
                 case MenuState.Hud:
-                    gameManager.SetGameState(GameManager.GameStates.RUNNING);
+                    managers.gameManager.SetGameState(GameManager.GameStates.RUNNING);
                     hudGo.Enable();
                     state = MenuState.Hud;
                     break;

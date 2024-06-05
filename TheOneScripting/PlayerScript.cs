@@ -148,13 +148,13 @@ public class PlayerScript : MonoBehaviour
 
         timeFromLastStep = 0.3f;
 
-        currentSpeed = managers.gameManager.GetSpeed();
+        Debug.Log("Me flipa loko");
 
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
 
         // THIS ALWAYS LAST IN START
-        SetInitPosInScene();
+        //SetInitPosInScene();
     }
     public override void Update()
     {
@@ -183,6 +183,7 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
         }
 
+        currentSpeed = managers.gameManager.GetSpeed();
         UpdatePlayerState();
 
         #region PLAYERSTATESWITCH
