@@ -46,7 +46,7 @@ public class PlayerScript : MonoBehaviour
 
     // stats
     public bool isDead = false;
-    public uint baseDamage;
+    public float baseDamage;
     public float totalDamage = 0.0f;
     public float damageIncrease = 0.0f;
 
@@ -141,8 +141,6 @@ public class PlayerScript : MonoBehaviour
 
         timeFromLastStep = 0.3f;
 
-        currentSpeed = gameManager.GetSpeed();
-
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
 
@@ -218,7 +216,13 @@ public class PlayerScript : MonoBehaviour
     private void UpdatePlayerState()
     {
         attachedGameObject.animator.UpdateAnimation();
-        UpdateWeaponAnimation();
+
+        if (Heal.state == AbilityHeal.AbilityState.ACTIVE || Dash.state == AbilityDash.AbilityState.ACTIVE)
+        {
+            UpdateWeaponAnimation();
+        }
+
+        UpdatePlayerStatsFromManager();
 
         WeaponAbilityStates();
 
@@ -303,6 +307,12 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         #endregion
+
+    }
+    void UpdatePlayerStatsFromManager()
+    {
+        baseDamage = gameManager.GetDamage();
+        currentSpeed = gameManager.GetSpeed();
 
     }
     private void WeaponAbilityStates()
