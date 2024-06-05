@@ -57,7 +57,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 0
     },
@@ -1981,7 +1981,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Fire_Particles",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 3452816845
     },
@@ -6577,7 +6577,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Sparks_Particles",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 3452816845
     },
@@ -31770,7 +31770,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R5",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 397009792
     },
@@ -39871,7 +39871,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
@@ -40352,56 +40352,56 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 1784130817
+              "UID": 1796208119
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 3620260589
+              "UID": 2168197001
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 454339966
+              "UID": 1356937747
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 503906434
+              "UID": 3845463317
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 2965522883
+              "UID": 641131222
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 3388862110
+              "UID": 2235760427
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 2824107026
+              "UID": 2866825728
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 3312058475
+              "UID": 2350046174
             }
           ],
           "Enabled": true,
@@ -40995,7 +40995,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -41312,7 +41312,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "AdultXenomorph (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 1030944986,
       "PrefabName": "AdultXenomorph",
@@ -41629,7 +41629,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "AdultXenomorph (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 1030944986,
       "PrefabName": "AdultXenomorph",
@@ -41705,7 +41705,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Queen1 (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 3137073782,
       "PrefabName": "Queen1",
@@ -41749,7 +41749,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R4",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 3452816845
     },
@@ -41790,7 +41790,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L2_R1",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 3452816845
     },
@@ -41841,7 +41841,7 @@
             0.0
           ],
           "InnerCutOff": 0.9100000262260437,
-          "Intensity": 21.799999237060547,
+          "Intensity": 12.5,
           "LightType": 2,
           "Linear": 0.699999988079071,
           "Name": "Light",
@@ -41865,8 +41865,8 @@
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Alarm_Light",
-      "ParentUID": 7536748,
+      "Name": "Alarm_Light (1)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 3039377733,
       "PrefabName": "Alarm_Light",
@@ -41896,19 +41896,19 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3489655308
+          "UID": 834818533
         },
         {
           "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "Pitch": 0.0,
           "PrimaryCamera": false,
           "Size": 200.0,
           "Type": 1,
-          "UID": 904281580,
+          "UID": 1334525507,
           "Yaw": 0.0,
           "zFar": 3000.0,
           "zNear": 10.0
@@ -41920,37 +41920,37 @@
             0.0
           ],
           "InnerCutOff": 0.9100000262260437,
-          "Intensity": 21.799999237060547,
+          "Intensity": 12.5,
           "LightType": 2,
           "Linear": 0.699999988079071,
           "Name": "Light",
           "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "Quadratic": 1.7999999523162842,
           "Radius": 212.5,
           "Specular": 0.5,
           "Type": 11,
-          "UID": 368570533
+          "UID": 1479220860
         },
         {
           "Name": "Script",
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 1488333547
+          "UID": 2362114086
         }
       ],
       "EditablePrefab": true,
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Alarm_Light (1)",
-      "ParentUID": 7536748,
+      "Name": "Alarm_Light (2)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 3039377733,
       "PrefabName": "Alarm_Light",
       "Static": false,
-      "UID": 4187492256
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -41975,19 +41975,19 @@
             1.0
           ],
           "Type": 0,
-          "UID": 4198337437
+          "UID": 834818533
         },
         {
           "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "Pitch": 0.0,
           "PrimaryCamera": false,
           "Size": 200.0,
           "Type": 1,
-          "UID": 1216846281,
+          "UID": 1334525507,
           "Yaw": 0.0,
           "zFar": 3000.0,
           "zNear": 10.0
@@ -41999,37 +41999,37 @@
             0.0
           ],
           "InnerCutOff": 0.9100000262260437,
-          "Intensity": 21.799999237060547,
+          "Intensity": 12.5,
           "LightType": 2,
           "Linear": 0.699999988079071,
           "Name": "Light",
           "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "Quadratic": 1.7999999523162842,
           "Radius": 212.5,
           "Specular": 0.5,
           "Type": 11,
-          "UID": 136643684
+          "UID": 1479220860
         },
         {
           "Name": "Script",
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 2930185321
+          "UID": 2362114086
         }
       ],
       "EditablePrefab": true,
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Alarm_Light (2)",
-      "ParentUID": 7536748,
+      "Name": "Alarm_Light (3)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 3039377733,
       "PrefabName": "Alarm_Light",
       "Static": false,
-      "UID": 7536748
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -42054,19 +42054,19 @@
             1.0
           ],
           "Type": 0,
-          "UID": 506208541
+          "UID": 834818533
         },
         {
           "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "Pitch": 0.0,
           "PrimaryCamera": false,
           "Size": 200.0,
           "Type": 1,
-          "UID": 1538858241,
+          "UID": 1334525507,
           "Yaw": 0.0,
           "zFar": 3000.0,
           "zNear": 10.0
@@ -42078,37 +42078,37 @@
             0.0
           ],
           "InnerCutOff": 0.9100000262260437,
-          "Intensity": 21.799999237060547,
+          "Intensity": 12.5,
           "LightType": 2,
           "Linear": 0.699999988079071,
           "Name": "Light",
           "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "Quadratic": 1.7999999523162842,
           "Radius": 212.5,
           "Specular": 0.5,
           "Type": 11,
-          "UID": 3654142034
+          "UID": 1479220860
         },
         {
           "Name": "Script",
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 3898615561
+          "UID": 2362114086
         }
       ],
       "EditablePrefab": true,
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Alarm_Light (3)",
-      "ParentUID": 7536748,
+      "Name": "Alarm_Light (4)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 3039377733,
       "PrefabName": "Alarm_Light",
       "Static": false,
-      "UID": 7536748
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -42174,7 +42174,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
     },
@@ -42201,19 +42201,19 @@
             1.0
           ],
           "Type": 0,
-          "UID": 3516603482
+          "UID": 834818533
         },
         {
           "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "Pitch": 0.0,
           "PrimaryCamera": false,
           "Size": 200.0,
           "Type": 1,
-          "UID": 1741252819,
+          "UID": 1334525507,
           "Yaw": 0.0,
           "zFar": 3000.0,
           "zNear": 10.0
@@ -42225,37 +42225,33 @@
             0.0
           ],
           "InnerCutOff": 0.9100000262260437,
-          "Intensity": 360.70001220703125,
+          "Intensity": 350.0,
           "LightType": 2,
           "Linear": 0.699999988079071,
           "Name": "Light",
           "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "Quadratic": 1.7999999523162842,
-          "Radius": 557.0,
+          "Radius": 550.0,
           "Specular": 0.5,
           "Type": 11,
-          "UID": 3661293387
+          "UID": 1479220860
         },
         {
           "Name": "Script",
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 4268629364
+          "UID": 2362114086
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Alarm_Light (4)",
-      "ParentUID": 7536748,
-      "PrefabDirty": false,
-      "PrefabID": 3039377733,
-      "PrefabName": "Alarm_Light",
+      "Name": "Alarm_Light (5)",
+      "ParentUID": 6553701,
       "Static": false,
-      "UID": 4187492256
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -42280,19 +42276,19 @@
             1.0
           ],
           "Type": 0,
-          "UID": 2823087623
+          "UID": 834818533
         },
         {
           "Aspect": 1.777,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "Pitch": 0.0,
           "PrimaryCamera": false,
           "Size": 200.0,
           "Type": 1,
-          "UID": 2600509473,
+          "UID": 1334525507,
           "Yaw": 0.0,
           "zFar": 3000.0,
           "zNear": 10.0
@@ -42304,37 +42300,33 @@
             0.0
           ],
           "InnerCutOff": 0.9100000262260437,
-          "Intensity": 360.70001220703125,
+          "Intensity": 350.0,
           "LightType": 2,
           "Linear": 0.699999988079071,
           "Name": "Light",
           "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "Quadratic": 1.7999999523162842,
-          "Radius": 557.0,
+          "Radius": 550.0,
           "Specular": 0.5,
           "Type": 11,
-          "UID": 1814884727
+          "UID": 1479220860
         },
         {
           "Name": "Script",
-          "ParentUID": 7536748,
+          "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 1636951114
+          "UID": 2362114086
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Alarm_Light (5)",
-      "ParentUID": 7536748,
-      "PrefabDirty": false,
-      "PrefabID": 3039377733,
-      "PrefabName": "Alarm_Light",
+      "Name": "Alarm_Light (6)",
+      "ParentUID": 6553701,
       "Static": false,
-      "UID": 7536748
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -42400,7 +42392,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
     },
@@ -42468,7 +42460,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -42536,7 +42528,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -42604,7 +42596,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (4)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
     },
@@ -42672,7 +42664,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (5)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
     },
@@ -42740,7 +42732,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (6)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 2444698928
     },
@@ -42808,7 +42800,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (7)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -42876,7 +42868,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (8)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -42944,7 +42936,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (9)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43012,7 +43004,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (10)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43080,7 +43072,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Egg_Bloom (11)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43148,7 +43140,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43216,7 +43208,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
     },
@@ -43284,7 +43276,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
     },
@@ -43352,7 +43344,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43420,7 +43412,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (4)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43488,7 +43480,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (5)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43556,7 +43548,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (6)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43624,7 +43616,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (7)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43742,7 +43734,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43860,7 +43852,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 4187492256
     },
@@ -43948,7 +43940,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1034.97216796875,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -44045,7 +44037,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1034.97216796875,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 55,
               "RenderModule": [
                 {
@@ -44166,8 +44158,8 @@
       ],
       "HasTransparency": true,
       "Keeped": false,
-      "Name": "Fire_Particle01",
-      "ParentUID": 7536748,
+      "Name": "Fire_Particle01 (1)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
@@ -44288,7 +44280,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 2457748736
     },
@@ -44406,7 +44398,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
     },
@@ -44433,7 +44425,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 4096264798
+          "UID": 1178095560
         },
         {
           "Emmiters": [
@@ -44494,7 +44486,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1113.50732421875,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -44591,7 +44583,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1113.50732421875,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 55,
               "RenderModule": [
                 {
@@ -44632,10 +44624,10 @@
               ]
             }
           ],
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Fire_Bigger\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "StartON": true,
           "Type": 9,
-          "UID": 860611660
+          "UID": 2963937243
         }
       ],
       "EditablePrefab": true,
@@ -44664,19 +44656,19 @@
                 1.0
               ],
               "Type": 0,
-              "UID": 2546694518
+              "UID": 2004813935
             },
             {
               "Aspect": 1.777,
               "CameraType": 0,
               "FOV": 65.0,
               "Name": "Camera",
-              "ParentUID": 7536748,
+              "ParentUID": 3452816845,
               "Pitch": 0.0,
               "PrimaryCamera": false,
               "Size": 200.0,
               "Type": 1,
-              "UID": 400780415,
+              "UID": 3798834060,
               "Yaw": 0.0,
               "zFar": 3000.0,
               "zNear": 10.0
@@ -44693,32 +44685,32 @@
               "Linear": 0.699999988079071,
               "Name": "Light",
               "OuterCutOff": 0.8199999928474426,
-              "ParentUID": 7536748,
+              "ParentUID": 3452816845,
               "Quadratic": 1.7999999523162842,
               "Radius": 113.0,
               "Specular": 0.5,
               "Type": 11,
-              "UID": 2886199015
+              "UID": 1615469302
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Point Light",
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "Static": false,
-          "UID": 7536748
+          "UID": 3452816845
         }
       ],
       "HasTransparency": true,
       "Keeped": false,
-      "Name": "Fire_Particle01 (1)",
-      "ParentUID": 7536748,
+      "Name": "Fire_Particle01 (2)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
       "Static": false,
-      "UID": 4187492256
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -44888,8 +44880,8 @@
       ],
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Door_Light",
-      "ParentUID": 7536748,
+      "Name": "Door_Light (1)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 4001310582,
       "PrefabName": "Door_Light",
@@ -44919,7 +44911,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 2633954784
+          "UID": 1178095560
         },
         {
           "Emmiters": [
@@ -44980,7 +44972,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1067.186767578125,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -45077,7 +45069,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1067.186767578125,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 55,
               "RenderModule": [
                 {
@@ -45118,10 +45110,10 @@
               ]
             }
           ],
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Fire_Bigger\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "StartON": true,
           "Type": 9,
-          "UID": 26257157
+          "UID": 2963937243
         }
       ],
       "EditablePrefab": true,
@@ -45150,19 +45142,19 @@
                 1.0
               ],
               "Type": 0,
-              "UID": 3978202684
+              "UID": 2004813935
             },
             {
               "Aspect": 1.777,
               "CameraType": 0,
               "FOV": 65.0,
               "Name": "Camera",
-              "ParentUID": 4187492256,
+              "ParentUID": 3452816845,
               "Pitch": 0.0,
               "PrimaryCamera": false,
               "Size": 200.0,
               "Type": 1,
-              "UID": 1532864476,
+              "UID": 3798834060,
               "Yaw": 0.0,
               "zFar": 3000.0,
               "zNear": 10.0
@@ -45179,32 +45171,32 @@
               "Linear": 0.699999988079071,
               "Name": "Light",
               "OuterCutOff": 0.8199999928474426,
-              "ParentUID": 4187492256,
+              "ParentUID": 3452816845,
               "Quadratic": 1.7999999523162842,
               "Radius": 113.0,
               "Specular": 0.5,
               "Type": 11,
-              "UID": 13418472
+              "UID": 1615469302
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Point Light",
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "Static": false,
-          "UID": 4187492256
+          "UID": 3452816845
         }
       ],
       "HasTransparency": true,
       "Keeped": false,
-      "Name": "Fire_Particle01 (2)",
-      "ParentUID": 7536748,
+      "Name": "Fire_Particle01 (3)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
       "Static": false,
-      "UID": 4187492256
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -45229,7 +45221,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 1226291735
+          "UID": 1178095560
         },
         {
           "Emmiters": [
@@ -45290,7 +45282,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1081.6546630859375,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -45387,7 +45379,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1081.6546630859375,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 55,
               "RenderModule": [
                 {
@@ -45428,10 +45420,10 @@
               ]
             }
           ],
-          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "P_Fire_Bigger\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "StartON": true,
           "Type": 9,
-          "UID": 1956871691
+          "UID": 2963937243
         }
       ],
       "EditablePrefab": true,
@@ -45460,19 +45452,19 @@
                 1.0
               ],
               "Type": 0,
-              "UID": 2969614148
+              "UID": 2004813935
             },
             {
               "Aspect": 1.777,
               "CameraType": 0,
               "FOV": 65.0,
               "Name": "Camera",
-              "ParentUID": 4187600240,
+              "ParentUID": 3452816845,
               "Pitch": 0.0,
               "PrimaryCamera": false,
               "Size": 200.0,
               "Type": 1,
-              "UID": 2594473497,
+              "UID": 3798834060,
               "Yaw": 0.0,
               "zFar": 3000.0,
               "zNear": 10.0
@@ -45489,32 +45481,32 @@
               "Linear": 0.699999988079071,
               "Name": "Light",
               "OuterCutOff": 0.8199999928474426,
-              "ParentUID": 4187600240,
+              "ParentUID": 3452816845,
               "Quadratic": 1.7999999523162842,
               "Radius": 113.0,
               "Specular": 0.5,
               "Type": 11,
-              "UID": 1379894762
+              "UID": 1615469302
             }
           ],
           "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Point Light",
-          "ParentUID": 4187492256,
+          "ParentUID": 3452816845,
           "Static": false,
-          "UID": 4187600240
+          "UID": 3452816845
         }
       ],
       "HasTransparency": true,
       "Keeped": false,
-      "Name": "Fire_Particle01 (3)",
-      "ParentUID": 7536748,
+      "Name": "Fire_Particle01 (4)",
+      "ParentUID": 6553701,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
       "Static": false,
-      "UID": 4187492256
+      "UID": 3452816845
     },
     {
       "Components": [
@@ -45539,7 +45531,7 @@
             1.0
           ],
           "Type": 0,
-          "UID": 2263557369
+          "UID": 1178095560
         },
         {
           "Emmiters": [
@@ -45600,7 +45592,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1178.79736328125,
+              "Lifetime": 974.621826171875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -45697,7 +45689,1696 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1178.79736328125,
+              "Lifetime": 974.621826171875,
+              "MaxParticles": 55,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 10.0,
+                  "SpawnRate": 10.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "P_Fire_Bigger\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 2963937243
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                14.67862606048584,
+                -0.229705810546875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2004813935
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 3452816845,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 3798834060,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.7388535141944885,
+                0.25412797927856445,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 2.0,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 3452816845,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 113.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1615469302
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": true,
+      "Keeped": false,
+      "Name": "Fire_Particle01 (5)",
+      "ParentUID": 6553701,
+      "PrefabDirty": false,
+      "PrefabID": 1619811115,
+      "PrefabName": "Fire_Particle01",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.8678154945373535,
+            0.0,
+            0.49688678979873657,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            -0.49688678979873657,
+            0.0,
+            0.8678154945373535,
+            0.0,
+            112.96630859375,
+            13.108506202697754,
+            -870.3904418945313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2140073387
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 4.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    2.0,
+                    2.0,
+                    -0.5
+                  ],
+                  "MinDirection": [
+                    2.0,
+                    1.0,
+                    0.5
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 300.0,
+                  "MinSpeed": 30.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 2366.2646484375,
+              "MaxParticles": 400,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 4.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -3.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            }
+          ],
+          "Name": "ConPipeSmoke\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 2627231092
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ConPipeSmoke",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 7536748
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.8661056160926819,
+            -0.3318589925765991,
+            0.3738056421279907,
+            0.0,
+            0.3046920597553253,
+            0.9433290362358093,
+            0.1315031349658966,
+            0.0,
+            -0.39626210927963257,
+            -2.5514705903617596e-09,
+            0.9181375503540039,
+            0.0,
+            112.96630859375,
+            13.108506202697754,
+            -870.3904418945313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3079219489
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 4.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    2.0,
+                    2.0,
+                    -0.5
+                  ],
+                  "MinDirection": [
+                    2.0,
+                    1.0,
+                    0.5
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 300.0,
+                  "MinSpeed": 30.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 2375.664794921875,
+              "MaxParticles": 400,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 4.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -3.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 1703074700
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ConPipeSmoke (1)",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 7536748
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7680239677429199,
+            0.10309213399887085,
+            0.6320690512657166,
+            0.0,
+            -0.07960128784179688,
+            0.9946720004081726,
+            -0.06551045179367065,
+            0.0,
+            -0.6354549527168274,
+            -1.3848659718984635e-10,
+            0.7721379995346069,
+            0.0,
+            112.96630859375,
+            13.108506202697754,
+            -870.3904418945313,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 978256054
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 4.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    2.0,
+                    2.0,
+                    -0.5
+                  ],
+                  "MinDirection": [
+                    2.0,
+                    1.0,
+                    0.5
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 300.0,
+                  "MinSpeed": 30.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 2390.789794921875,
+              "MaxParticles": 400,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 4.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -3.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 3472648921
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ConPipeSmoke (2)",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 7536748
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.6516594290733337,
+            0.0,
+            -0.7585119605064392,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.7585119605064392,
+            0.0,
+            0.6516594290733337,
+            0.0,
+            -118.71955871582031,
+            13.108391761779785,
+            -297.8145446777344,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2389638442
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 4.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    2.0,
+                    2.0,
+                    -0.5
+                  ],
+                  "MinDirection": [
+                    2.0,
+                    1.0,
+                    0.5
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 300.0,
+                  "MinSpeed": 30.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 2379.16015625,
+              "MaxParticles": 400,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 4.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -3.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 1039772226
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ConPipeSmoke (3)",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 2895447600
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.3314252197742462,
+            0.14559973776340485,
+            -0.9321801662445068,
+            0.0,
+            -0.04877510666847229,
+            0.9893436431884766,
+            0.13718685507774353,
+            0.0,
+            0.9422206282615662,
+            8.944683882461391e-10,
+            0.33499500155448914,
+            0.0,
+            -118.71955871582031,
+            13.108391761779785,
+            -297.8145446777344,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2099602311
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 4.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    2.0,
+                    2.0,
+                    -0.5
+                  ],
+                  "MinDirection": [
+                    2.0,
+                    1.0,
+                    0.5
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 300.0,
+                  "MinSpeed": 30.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 2406.934326171875,
+              "MaxParticles": 400,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 4.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -3.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.5987261533737183,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 380669292
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ConPipeSmoke (4)",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 2895403056
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            254.79534912109375,
+            -2.1298972569638863e-05,
+            -810.0628051757813,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1178095560
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    0.8,
+                    1.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    0.5,
+                    -1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 5.0,
+                  "MinSpeed": 10.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    5.0,
+                    1.5,
+                    1.5
+                  ],
+                  "MinScale": [
+                    2.0,
+                    0.5,
+                    0.5
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.9803921580314636,
+                    0.42982393503189087,
+                    0.14117646217346191,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.8823529481887817,
+                    0.1411764770746231,
+                    0.1411764770746231,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 983.5792236328125,
+              "MaxParticles": 500,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    10.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    9.0,
+                    1.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    7.0,
+                    -1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    3.0,
+                    1.75,
+                    1.75
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.25,
+                    1.25
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 983.5792236328125,
+              "MaxParticles": 55,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 10.0,
+                  "SpawnRate": 10.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "P_Fire_Bigger\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 2963937243
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                14.67862606048584,
+                -0.229705810546875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2004813935
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 3452816845,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 3798834060,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.7388535141944885,
+                0.25412797927856445,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 2.0,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 3452816845,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 113.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1615469302
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": true,
+      "Keeped": false,
+      "Name": "Fire_Particle01",
+      "ParentUID": 6553701,
+      "PrefabDirty": false,
+      "PrefabID": 1619811115,
+      "PrefabName": "Fire_Particle01",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7124553322792053,
+            0.0,
+            -0.7017173767089844,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.7017173767089844,
+            0.0,
+            0.7124553322792053,
+            0.0,
+            208.68446350097656,
+            13.855539321899414,
+            -827.5311279296875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1917998543
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    2.0,
+                    3.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    1.0,
+                    3.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 100.0,
+                  "MinSpeed": 50.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    5.0,
+                    1.5,
+                    1.5
+                  ],
+                  "MinScale": [
+                    2.0,
+                    0.5,
+                    0.5
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.9803921580314636,
+                    0.42982393503189087,
+                    0.14117646217346191,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.8823529481887817,
+                    0.1411764770746231,
+                    0.1411764770746231,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "MaxOffset": [
+                    -10.0,
+                    -10.0,
+                    -10.0
+                  ],
+                  "MinOffset": [
+                    10.0,
+                    10.0,
+                    10.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1383.08642578125,
+              "MaxParticles": 500,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    10.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    9.0,
+                    1.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    7.0,
+                    -1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    3.0,
+                    1.75,
+                    1.75
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.25,
+                    1.25
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1383.08642578125,
+              "MaxParticles": 55,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 10.0,
+                  "SpawnRate": 10.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "PropulsedFire\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 426771942
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                14.67862606048584,
+                -0.229705810546875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2136742299
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2887962976,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1099530377,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.7388535141944885,
+                0.25412797927856445,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 2.0,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2887962976,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 113.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 241052359
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light",
+          "ParentUID": 2912474576,
+          "Static": false,
+          "UID": 2887962976
+        }
+      ],
+      "HasTransparency": true,
+      "Keeped": false,
+      "Name": "Fire_ParticlePropuls",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 2912474576
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.7082322239875793,
+            0.0,
+            -0.7059798240661621,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.7059798240661621,
+            0.0,
+            0.7082322239875793,
+            0.0,
+            174.97735595703125,
+            13.855668067932129,
+            -821.7799072265625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1422448007
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    2.0,
+                    3.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    1.0,
+                    3.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 100.0,
+                  "MinSpeed": 50.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    5.0,
+                    1.5,
+                    1.5
+                  ],
+                  "MinScale": [
+                    2.0,
+                    0.5,
+                    0.5
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.9803921580314636,
+                    0.42982393503189087,
+                    0.14117646217346191,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.8823529481887817,
+                    0.1411764770746231,
+                    0.1411764770746231,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "MaxOffset": [
+                    -10.0,
+                    -10.0,
+                    -10.0
+                  ],
+                  "MinOffset": [
+                    10.0,
+                    10.0,
+                    10.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1391.6090087890625,
+              "MaxParticles": 500,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    10.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    9.0,
+                    1.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    7.0,
+                    -1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    3.0,
+                    1.75,
+                    1.75
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.25,
+                    1.25
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1391.6090087890625,
               "MaxParticles": 55,
               "RenderModule": [
                 {
@@ -45741,10 +47422,9 @@
           "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
           "StartON": true,
           "Type": 9,
-          "UID": 4178821955
+          "UID": 2490605155
         }
       ],
-      "EditablePrefab": true,
       "Enabled": true,
       "GameObjects": [
         {
@@ -45770,19 +47450,19 @@
                 1.0
               ],
               "Type": 0,
-              "UID": 3469904403
+              "UID": 680373882
             },
             {
               "Aspect": 1.777,
               "CameraType": 0,
               "FOV": 65.0,
               "Name": "Camera",
-              "ParentUID": 4187492256,
+              "ParentUID": 0,
               "Pitch": 0.0,
               "PrimaryCamera": false,
               "Size": 200.0,
               "Type": 1,
-              "UID": 2041919477,
+              "UID": 1670612909,
               "Yaw": 0.0,
               "zFar": 3000.0,
               "zNear": 10.0
@@ -45799,12 +47479,12 @@
               "Linear": 0.699999988079071,
               "Name": "Light",
               "OuterCutOff": 0.8199999928474426,
-              "ParentUID": 4187492256,
+              "ParentUID": 0,
               "Quadratic": 1.7999999523162842,
               "Radius": 113.0,
               "Specular": 0.5,
               "Type": 11,
-              "UID": 2844321206
+              "UID": 1089320118
             }
           ],
           "Enabled": true,
@@ -45813,18 +47493,723 @@
           "Name": "Point Light",
           "ParentUID": 7536748,
           "Static": false,
-          "UID": 4187492256
+          "UID": 0
         }
       ],
       "HasTransparency": true,
       "Keeped": false,
-      "Name": "Fire_Particle01 (4)",
-      "ParentUID": 7536748,
-      "PrefabDirty": false,
-      "PrefabID": 1619811115,
-      "PrefabName": "Fire_Particle01",
+      "Name": "Fire_ParticlePropuls (1)",
+      "ParentUID": 6553701,
       "Static": false,
       "UID": 7536748
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.5939832329750061,
+            0.0,
+            -0.8044775724411011,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.8044775724411011,
+            0.0,
+            0.5939832329750061,
+            0.0,
+            179.22035217285156,
+            43.16222381591797,
+            -833.1444702148438,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2877362129
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    2.0,
+                    3.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    1.0,
+                    3.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 100.0,
+                  "MinSpeed": 50.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    5.0,
+                    1.5,
+                    1.5
+                  ],
+                  "MinScale": [
+                    2.0,
+                    0.5,
+                    0.5
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.9803921580314636,
+                    0.42982393503189087,
+                    0.14117646217346191,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.8823529481887817,
+                    0.1411764770746231,
+                    0.1411764770746231,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "MaxOffset": [
+                    -10.0,
+                    -10.0,
+                    -10.0
+                  ],
+                  "MinOffset": [
+                    10.0,
+                    10.0,
+                    10.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1396.4305419921875,
+              "MaxParticles": 500,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    10.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    9.0,
+                    1.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    7.0,
+                    -1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    3.0,
+                    1.75,
+                    1.75
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.25,
+                    1.25
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1396.4305419921875,
+              "MaxParticles": 55,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 10.0,
+                  "SpawnRate": 10.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 2983431349
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                14.67862606048584,
+                -0.229705810546875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1566591226
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2908368224,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1676438071,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.7388535141944885,
+                0.25412797927856445,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 2.0,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2908368224,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 113.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 2789858947
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light",
+          "ParentUID": 2898211168,
+          "Static": false,
+          "UID": 2908368224
+        }
+      ],
+      "HasTransparency": true,
+      "Keeped": false,
+      "Name": "Fire_ParticlePropuls (2)",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 2898211168
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.5944896936416626,
+            0.0,
+            -0.8041032552719116,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.8041032552719116,
+            0.0,
+            0.5944896936416626,
+            0.0,
+            244.68299865722656,
+            30.230670928955078,
+            -825.8004150390625,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 25358122
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    2.0,
+                    3.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    1.0,
+                    3.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 100.0,
+                  "MinSpeed": 50.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    5.0,
+                    1.5,
+                    1.5
+                  ],
+                  "MinScale": [
+                    2.0,
+                    0.5,
+                    0.5
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.9803921580314636,
+                    0.42982393503189087,
+                    0.14117646217346191,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.8823529481887817,
+                    0.1411764770746231,
+                    0.1411764770746231,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "MaxOffset": [
+                    -10.0,
+                    -10.0,
+                    -10.0
+                  ],
+                  "MinOffset": [
+                    10.0,
+                    10.0,
+                    10.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1440.22265625,
+              "MaxParticles": 500,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    10.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "AffectA": true,
+                  "AffectB": true,
+                  "AffectG": true,
+                  "AffectR": true,
+                  "FinalColor": [
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.21019107103347778,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    9.0,
+                    1.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    7.0,
+                    -1.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 10.0,
+                  "MinSpeed": 8.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    3.0,
+                    1.75,
+                    1.75
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.25,
+                    1.25
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 1440.22265625,
+              "MaxParticles": 55,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 10.0,
+                  "SpawnRate": 10.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 504055840
+        }
+      ],
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                14.67862606048584,
+                -0.229705810546875,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3556701260
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 0,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 2068488296,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.7388535141944885,
+                0.25412797927856445,
+                0.0
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 2.0,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 0,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 113.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 444793573
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Point Light",
+          "ParentUID": 2898211168,
+          "Static": false,
+          "UID": 0
+        }
+      ],
+      "HasTransparency": true,
+      "Keeped": false,
+      "Name": "Fire_ParticlePropuls (3)",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 2898211168
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.4052204191684723,
+            0.027554713189601898,
+            -0.9138036966323853,
+            0.0,
+            0.3351869285106659,
+            0.9254633784294128,
+            0.17654290795326233,
+            0.0,
+            0.8505562543869019,
+            -0.37783411145210266,
+            0.3657808303833008,
+            0.0,
+            115.48469543457031,
+            56.94784927368164,
+            -866.5841064453125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3156169505
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 2898211168,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 385914517,
+          "Yaw": 0.0,
+          "zFar": 3000.0,
+          "zNear": 10.0
+        },
+        {
+          "Color": [
+            0.7372549176216125,
+            0.2549019753932953,
+            0.0
+          ],
+          "InnerCutOff": 0.9100000262260437,
+          "Intensity": 142.1999969482422,
+          "LightType": 2,
+          "Linear": 0.699999988079071,
+          "Name": "Light",
+          "OuterCutOff": 0.8199999928474426,
+          "ParentUID": 2898211168,
+          "Quadratic": 1.7999999523162842,
+          "Radius": 362.5,
+          "Specular": 0.5,
+          "Type": 11,
+          "UID": 2811429183
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Spot Light",
+      "ParentUID": 6553701,
+      "Static": false,
+      "UID": 2898211168
     }
   ],
   "index": 0,

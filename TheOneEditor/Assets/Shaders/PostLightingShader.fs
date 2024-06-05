@@ -161,11 +161,11 @@ void main()
     vec3 FragPos = texture(gPosition, TexCoords).rgb;
     vec3 Normal = texture(gNormal, TexCoords).rgb;
     vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
-    float Specular = 0.5;
+    float Specular = 0.1;
     float Alpha = texture(gAlbedoSpec, TexCoords).a;
     vec3 ViewDir  = normalize(u_ViewPos - FragPos);
 
-    vec3 result = Diffuse * 0.3;
+    vec3 result = Diffuse * 0.1;
 
     // phase 1: Directional lighting
     for(int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++)
