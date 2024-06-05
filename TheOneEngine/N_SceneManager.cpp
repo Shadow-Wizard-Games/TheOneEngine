@@ -1238,9 +1238,10 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 	if (mode == DrawMode::EDITOR)
 		return;
 
-	RecurseUIDraw(rootSceneGO, mode);
 	if (engine->N_sceneManager->GetSceneIsChanging())
 		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
+
+	RecurseUIDraw(rootSceneGO, mode);
 }
 
 inline void Scene::RecurseSceneDraw(std::shared_ptr<GameObject> parentGO, Camera* camera)
