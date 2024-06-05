@@ -67,6 +67,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -1173,6 +1174,7 @@
         {
           "DebugDraw": false,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -1488,6 +1490,7 @@
         {
           "DebugDraw": true,
           "Enabled": true,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -1706,13 +1709,13 @@
               "Name": "Text_AbilitySheet1",
               "Print": true,
               "Rect": [
-                -0.9399999976158142,
+                -0.9449999928474426,
                 -0.17000000178813934,
                 0.019999999552965164,
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "1\n x",
+              "TextString": "1\n L1",
               "Type": 4
             },
             {
@@ -1736,7 +1739,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "2\n l1",
+              "TextString": "2\n r1",
               "Type": 4
             },
             {
@@ -1760,7 +1763,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "3\n l2",
+              "TextString": "3\n r1",
               "Type": 4
             },
             {
@@ -1784,7 +1787,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "4\n r2",
+              "TextString": "4\n l1",
               "Type": 4
             },
             {
@@ -1808,7 +1811,7 @@
                 0.03999999910593033
               ],
               "State": 0,
-              "TextString": "Q\n  y",
+              "TextString": "Q\n  x",
               "Type": 4
             },
             {
@@ -2931,6 +2934,7 @@
         {
           "DebugDraw": false,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -3036,6 +3040,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -3327,6 +3332,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -3717,6 +3723,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -3916,6 +3923,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -4115,6 +4123,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -4314,6 +4323,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -4521,6 +4531,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -4705,6 +4716,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -6715,6 +6727,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -6855,6 +6868,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -6931,6 +6945,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -7726,6 +7741,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -7826,6 +7842,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -8018,7 +8035,7 @@
   "HasTransparency": false,
   "Keeped": false,
   "Name": "UI_Manager",
-  "ParentUID": 16712704,
+  "ParentUID": 3452816845,
   "PrefabDirty": false,
   "PrefabID": 2472160759,
   "PrefabName": "UI_Manager",
