@@ -33,338 +33,344 @@
       "audioEvent": "VO_GUARD2_VOICELINE2"
     }
   },
-  "Conversation1": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "What the hell just happened?",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_CRASH1"
-    },
-    "Dialog2": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "No-one around... Better find myself a weapon or something...",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_CRASH2"
+  //First Level mision COMPUTER
+  "Character1":{
+    "Conversation1": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Planet information.",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_PLANETINFO2"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Earth-like atmosphere\n Possibly dangerous plant-life\n Proceed with caution",
+        "cooldown": 5,
+        "audioEvent": "VO_TTS"
+      },
+      "Dialog3": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "I can breathe, that’s all I need to know",
+        "cooldown": 3,
+        "audioEvent": "VO_STUB_PLANETINFO3"
+      }
     }
   },
-  "Conversation2": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Planet information.",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_PLANETINFO2"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Earth-like atmosphere\n Possibly dangerous plant-life\n Proceed with caution",
-      "cooldown": 5,
-      "audioEvent": "VO_TTS"
-    },
-    "Dialog3": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "I can breathe, that’s all I need to know",
-      "cooldown": 3,
-      "audioEvent": "VO_STUB_PLANETINFO3"
+  //Seargant jackson
+  "Character2":{
+    "Conversation3": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Ugh, wha- where?",
+        "cooldown": 3,
+        "audioEvent": "VO_STUB_WAKEMED1"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 3,
+        "text": "Ah, you’re awake.",
+        "cooldown": 3,
+        "audioEvent": "VO_SERGEANT_WAKEMED1"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Sergeant Jackson!",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_WAKEMED2"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 3,
+        "text": "Of all the people to survive the crash, it had to be you. huh?",
+        "cooldown": 5,
+        "audioEvent": "VO_SERGEANT_WAKEMED2"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Guess I’m just unlucky like that",
+        "cooldown": 2,
+        "audioEvent": "VO_STUB_WAKEMED3"
+      },
+      "Dialog6": {
+        "isLast": false,
+        "dialoguer": 3,
+        "text": "All my men are dead, and yet you’re still here, like a cockroach",
+        "cooldown": 5,
+        "audioEvent": "VO_SERGEANT_WAKEMED3"
+      },
+      "Dialog7": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Well, I don’t seem to be the only one here, so what does that say about you?",
+        "cooldown": 5,
+        "audioEvent": "VO_STUB_WAKEMED4"
+      },
+      "Dialog8": {
+        "isLast": false,
+        "dialoguer": 3,
+        "text": "You know, I wanted to leave you out there for the aliens to take, but… I was outvoted.",
+        "cooldown": 5,
+        "audioEvent": "VO_SERGEANT_WAKEMED4"
+      },
+      "Dialog9": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "...",
+        "cooldown": 1
+      },
+      "Dialog10": {
+        "isLast": false,
+        "dialoguer": 3,
+        "text": "You better pull your weight around here, Morgan. One wrong move and I’ll make sure you don’t come back this time, understood?",
+        "cooldown": 7,
+        "audioEvent": "VO_SERGEANT_WAKEMED5"
+      },
+      "Dialog11": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Yes sir.",
+        "cooldown": 2,
+        "audioEvent": "VO_STUB_WAKEMED5"
+      },
+      "Dialog12": {
+        "isLast": true,
+        "dialoguer": 3,
+        "text": "Go talk to the android, he runs the medicing thing around here, and wouldn’t be happy if you just went around without him knowing.",
+        "cooldown": 6,
+        "audioEvent": "VO_SERGEANT_WAKEMED6"
+      }
     }
   },
-  "Conversation3": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Ugh, wha- where?",
-      "cooldown": 3,
-      "audioEvent": "VO_STUB_WAKEMED1"
+  //Isaac
+  "Character3":{
+    "Conversation4": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 1,
+        "text": "Lieutenant Morgan, glad to see you are walking around already",
+        "cooldown": 5,
+        "audioEvent": "VO_ISAAC_VOICELINE1"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Not really a lieutenant anymore. Anyway, the sergeant said I should talk to you before doing anything.",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_MEDCLEAR1"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 1,
+        "text": "Yes, I would like to make sure everything is in order before letting you off, let’s see…",
+        "cooldown": 1,
+        "audioEvent": "VO_ISAAC_VOICELINE2"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 1,
+        "text": "Everything seems good.",
+        "cooldown": 1,
+        "audioEvent": "VO_ISAAC_VOICELINE3"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Thanks, I guess. Hey, do you know if there’s any job they need me to do around here",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_MEDCLEAR2"
+      },
+      "Dialog6": {
+        "isLast": true,
+        "dialoguer": 1,
+        "text": "Palmer has been quite busy organizing this whole camp operation, and I remember hearing Grant talking about wanting to get some things outside of the camp. I’m sure they’ll be happy to get some help",
+        "cooldown": 1,
+        "audioEvent": "VO_ISAAC_VOICELINE4"
+      }
     },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 3,
-      "text": "Ah, you’re awake.",
-      "cooldown": 3,
-      "audioEvent": "VO_SERGEANT_WAKEMED1"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Sergeant Jackson!",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_WAKEMED2"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 3,
-      "text": "Of all the people to survive the crash, it had to be you. huh?",
-      "cooldown": 5,
-      "audioEvent": "VO_SERGEANT_WAKEMED2"
-    },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Guess I’m just unlucky like that",
-      "cooldown": 2,
-      "audioEvent": "VO_STUB_WAKEMED3"
-    },
-    "Dialog6": {
-      "isLast": false,
-      "dialoguer": 3,
-      "text": "All my men are dead, and yet you’re still here, like a cockroach",
-      "cooldown": 5,
-      "audioEvent": "VO_SERGEANT_WAKEMED3"
-    },
-    "Dialog7": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Well, I don’t seem to be the only one here, so what does that say about you?",
-      "cooldown": 5,
-      "audioEvent": "VO_STUB_WAKEMED4"
-    },
-    "Dialog8": {
-      "isLast": false,
-      "dialoguer": 3,
-      "text": "You know, I wanted to leave you out there for the aliens to take, but… I was outvoted.",
-      "cooldown": 5,
-      "audioEvent": "VO_SERGEANT_WAKEMED4"
-    },
-    "Dialog9": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "...",
-      "cooldown": 1
-    },
-    "Dialog10": {
-      "isLast": false,
-      "dialoguer": 3,
-      "text": "You better pull your weight around here, Morgan. One wrong move and I’ll make sure you don’t come back this time, understood?",
-      "cooldown": 7,
-      "audioEvent": "VO_SERGEANT_WAKEMED5"
-    },
-    "Dialog11": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Yes sir.",
-      "cooldown": 2,
-      "audioEvent": "VO_STUB_WAKEMED5"
-    },
-    "Dialog12": {
-      "isLast": true,
-      "dialoguer": 3,
-      "text": "Go talk to the android, he runs the medicing thing around here, and wouldn’t be happy if you just went around without him knowing.",
-      "cooldown": 6,
-      "audioEvent": "VO_SERGEANT_WAKEMED6"
-    }
   },
-  "Conversation4": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 1,
-      "text": "Lieutenant Morgan, glad to see you are walking around already",
-      "cooldown": 5,
-      "audioEvent": "VO_ISAAC_VOICELINE1"
+  // Noah
+  "Character4":{
+    "Conversation5": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Welcome to my humble money maker",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "We’re stranded on an alien planet…",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 1,
+        "text": "Which means no competition. The name is Noah Grant, you want anything, weapons, tech, if I don’t got it, I can make it… probably.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Probably?",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Limited resources, limited results, you know? Hey, you’re a military person or ex or whatever, if you’re in the market for a little adventure. I wanted to get back to the ship, see if I can find anything salvageable to get someone to rescue us over here, you in- um? didn’t catch a name",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog6": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Stub, and if you don’t plan on getting yourself killed in the process. Sure, better to get out of here quick",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog7": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "That’s what I get you for. Glad to make business with you.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      }
     },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Not really a lieutenant anymore. Anyway, the sergeant said I should talk to you before doing anything.",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_MEDCLEAR1"
+    "Conversation7": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Great, now that we’re here. Let’s get this show started! You go do your thing, it shouldn’t take long.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog2": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "I’ll clear the area.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      }
     },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 7,
-      "text": "Yes, I would like to make sure everything is in order before letting you off, let’s see…",
-      "cooldown": 1,
-      "audioEvent": "VO_ISAAC_VOICELINE2"
+    "Conversation8": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Just a few more things and…",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "You done?",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "I am happy to announce that I have everything I need to make a communications device strong enough to send a message for a rescue mission. Please don’t hold the applause.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog4": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "Then I’m getting you back to the camp now",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      }
     },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 1,
-      "text": "Everything seems good.",
-      "cooldown": 1,
-      "audioEvent": "VO_ISAAC_VOICELINE3"
+    "Conversation9": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Well, I’ll go get started on this, you go do your thing. Talk to me if you need some upgrades on your stuff, my shop is always open",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog2": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": ":D",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      }
     },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Thanks, I guess. Hey, do you know if there’s any job they need me to do around here",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_MEDCLEAR2"
-    },
-    "Dialog6": {
-      "isLast": true,
-      "dialoguer": 1,
-      "text": "Palmer has been quite busy organizing this whole camp operation, and I remember hearing Grant talking about wanting to get some things outside of the camp. I’m sure they’ll be happy to get some help",
-      "cooldown": 1,
-      "audioEvent": "VO_ISAAC_VOICELINE4"
-    }
   },
-  "Conversation5": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "Welcome to my humble money maker",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+  // Palmer
+  "Character5":{
+    "Conversation6": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "All these people, how are we supposed to survive here? We could try exploring… No, not with those things outside.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Need someone to kill the aliens on this planet? I could do it for ya.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Why do you seem so eager to go out there?",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "I have… previous experience with these things. You’re Palmer, right? the robot told me you were running this whole thing",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Yes, that’s me. I’ve been trying to learn more about this planet, get something, information or samples or whatever. Figure out what it’s made of, what happened here and could we survive if we have to stay long. Almost none of the security personnel survived and those who did…",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog6": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "I’ll go out there, anything better than staying while the sergeant gives me the stink eye.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      },
+      "Dialog7": {
+        "isLast": true,
+        "dialoguer": 2,
+        "text": "Well, if you’re offering. We need to call for someone to get us out, Grant said he could do it but needed a few pieces from the ship. You can go with him now and I’ll tell you what else to do later.",
+        "cooldown": 1,
+        "audioEvent": "DEBUG_GUNSHOT"
+      }
     },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "We’re stranded on an alien planet…",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "Which means no competition. The name is Noah Grant, you want anything, weapons, tech, if I don’t got it, I can make it… probably.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Probably?",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "Limited resources, limited results, you know? Hey, you’re a military person or ex or whatever, if you’re in the market for a little adventure. I wanted to get back to the ship, see if I can find anything salvageable to get someone to rescue us over here, you in- um? didn’t catch a name",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog6": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Stub, and if you don’t plan on getting yourself killed in the process. Sure, better to get out of here quick",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog7": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "That’s what I get you for. Glad to make business with you.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    }
-  },
-  "Conversation6": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "All these people, how are we supposed to survive here? We could try exploring… No, not with those things outside.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Need someone to kill the aliens on this planet? I could do it for ya.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Why do you seem so eager to go out there?",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "I have… previous experience with these things. You’re Palmer, right? the robot told me you were running this whole thing",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Yes, that’s me. I’ve been trying to learn more about this planet, get something, information or samples or whatever. Figure out what it’s made of, what happened here and could we survive if we have to stay long. Almost none of the security personnel survived and those who did…",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog6": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "I’ll go out there, anything better than staying while the sergeant gives me the stink eye.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog7": {
-      "isLast": true,
-      "dialoguer": 2,
-      "text": "Well, if you’re offering. We need to call for someone to get us out, Grant said he could do it but needed a few pieces from the ship. You can go with him now and I’ll tell you what else to do later.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    }
-  },
-  "Conversation7": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "Great, now that we’re here. Let’s get this show started! You go do your thing, it shouldn’t take long.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog2": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "I’ll clear the area.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    }
-  },
-  "Conversation8": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "Just a few more things and…",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "You done?",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "I am happy to announce that I have everything I need to make a communications device strong enough to send a message for a rescue mission. Please don’t hold the applause.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog4": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "Then I’m getting you back to the camp now",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    }
-  },
-  "Conversation9": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "Well, I’ll go get started on this, you go do your thing. Talk to me if you need some upgrades on your stuff, my shop is always open",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    },
-    "Dialog2": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": ":D",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
-    }
-  },
+  }
+  
+  ,
+  
+  
+  
+  
+  
   "Conversation10": {
     "Dialog1": {
       "isLast": false,

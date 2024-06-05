@@ -24,6 +24,7 @@ public class EventTriggerDialog : Event
     string goName;
 
     string filepath = "Assets/GameData/Dialogs.json";
+    //string dynamicPath = "GameData/Dialogs.json";
     string charachter;
     int dialogNum = 1;
     int conversationNum = 1;
@@ -95,8 +96,8 @@ public class EventTriggerDialog : Event
         {
             if(isFirst)
             {
+                gameManager.SetGameState(GameManager.GameStates.DIALOGING);
                 dialogueGo.Enable();
-                gameManager.TooglePause();
             }
             else if (isLast)
             {
@@ -104,7 +105,7 @@ public class EventTriggerDialog : Event
                 //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
                 //DataManager.WriteFileDataInt(filepath, characterPath, "conversationNum", conversationNum);
 
-                gameManager.TooglePause();
+                gameManager.SetGameState(GameManager.GameStates.RUNNING);
                 dialogueGo.Disable();
 
                 string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };

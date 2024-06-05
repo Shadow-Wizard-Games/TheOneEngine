@@ -45,15 +45,12 @@ public class PlayerScript : MonoBehaviour
     public bool isFighting;
 
     // stats
-    public float maxHP;
-    public float HP;
     public bool isDead = false;
     public uint baseDamage;
     public float totalDamage = 0.0f;
     public float damageIncrease = 0.0f;
 
     // movement
-    public float baseSpeed;
     public float currentSpeed;
     public Vector3 movementDirection;
     public Vector3 lastMovementDirection;
@@ -144,11 +141,7 @@ public class PlayerScript : MonoBehaviour
 
         timeFromLastStep = 0.3f;
 
-        baseSpeed = 90.0f;
-        currentSpeed = baseSpeed;
-
-        maxHP = 100.0f;
-        HP = maxHP;
+        currentSpeed = gameManager.GetSpeed();
 
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
@@ -158,7 +151,7 @@ public class PlayerScript : MonoBehaviour
     }
     public override void Update()
     {
-        if (gameManager.GetGameState())
+        if (gameManager.GetGameState() != GameManager.GameStates.RUNNING)
         {
             currentAction = CurrentAction.IDLE;
         }
@@ -567,10 +560,10 @@ public class PlayerScript : MonoBehaviour
     private void AdrenalineRushAction()
     {
         // Calculate heal amount
-        float totalHeal = HP * AdrenalineRush.healAmount;
+        float totalHeal = gameManager.GetMaxHealth() * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
+        float speedIncrease = gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
         currentSpeed = speedIncrease;
 
         // increase damage
@@ -589,10 +582,10 @@ public class PlayerScript : MonoBehaviour
         if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
 
         // calculate heal amount
-        float totalHeal = HP * AdrenalineRush.healAmount;
+        float totalHeal = gameManager.health * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
+        float speedIncrease = gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
         currentSpeed = speedIncrease;
 
         // increase damage
@@ -606,7 +599,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void HealAction()
     {
-        float speedReduce = baseSpeed * Heal.slowAmount;
+        float speedReduce = gameManager.GetSpeed() * Heal.slowAmount;
         currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
@@ -619,7 +612,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Heal.state != AbilityHeal.AbilityState.READY) return;
 
-        float speedReduce = baseSpeed * Heal.slowAmount;
+        float speedReduce = gameManager.GetSpeed() * Heal.slowAmount;
         currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
@@ -936,12 +929,12 @@ public class PlayerScript : MonoBehaviour
         if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        HP -= damage;
-        Debug.Log("Player took damage! Current life is: " + HP.ToString());
+        gameManager.health -= damage;
+        //Debug.Log("Player took damage! Current life is: " + gameManager.health.ToString());
 
-        if (HP <= 0)
+        if (gameManager.health <= 0)
         {
-            HP = 0;
+            gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -952,12 +945,12 @@ public class PlayerScript : MonoBehaviour
         if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        HP -= 50;
-        Debug.Log("Player took explosion damage! Current life is: " + HP.ToString());
+        gameManager.health -= 50;
+        //Debug.Log("Player took explosion damage! Current life is: " + gameManager.health.ToString());
 
-        if (HP <= 0)
+        if (gameManager.health <= 0)
         {
-            HP = 0;
+            gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -967,7 +960,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (isDead) return 0;
 
-        return HP;
+        return gameManager.health;
     }
 
     private void SetInitPosInScene()

@@ -119,7 +119,9 @@ public class UiManager : MonoBehaviour
 
         settingsCanvas = settingsGo.GetComponent<UiScriptSettings>();
 
-        if (gameManager.GetGameState()) { gameManager.TooglePause(); }
+        // Check if it is paused and put it running if so
+        // Disabled because do not know if it's necesary
+        // if (gameManager.GetGameState()) { gameManager.TooglePause(); }
     }
 
     public override void Update()
@@ -217,11 +219,10 @@ public class UiManager : MonoBehaviour
                 if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
                     playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
-                    gameManager.TooglePause();
                     SceneManager.LoadScene("MainMenu");
                 }
             }
-            else
+            else if ((gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (gameManager.GetGameState() != GameManager.GameStates.PAUSED))
             {
                 if (Input.GetKeyboardButton(Input.KeyboardCode.I))
                 {
@@ -270,7 +271,7 @@ public class UiManager : MonoBehaviour
             {
                 deathScreenGo.Enable();
                 state = MenuState.Death;
-                gameManager.TooglePause();
+                gameManager.SetGameState(GameManager.GameStates.ONMENUS);
                 onCooldown = true;
             }
         }
@@ -315,7 +316,7 @@ public class UiManager : MonoBehaviour
                 break;
         }
 
-        if(state != MenuState.Hud) { gameManager.TooglePause(); }
+        if(state != MenuState.Hud) { gameManager.SetGameState(GameManager.GameStates.ONMENUS); }
     }
 
     public void OpenMenu(MenuState state)
@@ -325,7 +326,7 @@ public class UiManager : MonoBehaviour
             switch (this.state)
             {
                 case MenuState.Hud:
-                    gameManager.TooglePause();
+                    gameManager.SetGameState(GameManager.GameStates.ONMENUS);
                     hudGo.Disable();
                     break;
                 case MenuState.Inventory:
@@ -351,7 +352,7 @@ public class UiManager : MonoBehaviour
             switch (state)
             {
                 case MenuState.Hud:
-                    gameManager.TooglePause();
+                    gameManager.SetGameState(GameManager.GameStates.RUNNING);
                     hudGo.Enable();
                     state = MenuState.Hud;
                     break;
