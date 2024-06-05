@@ -11,8 +11,6 @@ public class UiScriptStats : MonoBehaviour
 
     public ICanvas canvas;
 
-    GameManager gameManager;
-
     float cooldown = 0;
     bool onCooldown = false;
 
@@ -33,14 +31,14 @@ public class UiScriptStats : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
 
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-
-        playerDamageLvl = gameManager.GetDamageLvl();
-        playerHealthLvl = gameManager.GetLifeLvl();
-        playerSpeedLvl = gameManager.GetSpeedLvl();
+        playerDamageLvl = managers.gameManager.GetDamageLvl();
+        playerHealthLvl = managers.gameManager.GetLifeLvl();
+        playerSpeedLvl = managers.gameManager.GetSpeedLvl();
 
         ChangeStatLvl(StatType.DAMAGE, false, playerDamageLvl);
         ChangeStatLvl(StatType.HEALTH, false, playerHealthLvl);
@@ -86,7 +84,7 @@ public class UiScriptStats : MonoBehaviour
             onCooldown = false;
         }
 
-        canvas.SetTextString("", "Text_CurrentCurrencyAmount", gameManager.currency);
+        canvas.SetTextString("", "Text_CurrentCurrencyAmount", managers.gameManager.currency);
 
         //Input Updates
         if (!onCooldown)
@@ -170,7 +168,7 @@ public class UiScriptStats : MonoBehaviour
                 currentButton += direction;
             }
 
-            if (gameManager.currency >= 100)
+            if (managers.gameManager.currency >= 100)
             {
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
@@ -180,9 +178,9 @@ public class UiScriptStats : MonoBehaviour
                     if(playerDamageLvl <= 3)
                     {
                         onCooldown = true;
-                        gameManager.currency -= 100;
+                        managers.gameManager.currency -= 100;
                         playerDamageLvl++;
-                        gameManager.SetDamageLvl(playerDamageLvl);
+                        managers.gameManager.SetDamageLvl(playerDamageLvl);
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
@@ -196,9 +194,9 @@ public class UiScriptStats : MonoBehaviour
                     if (playerHealthLvl <= 3)
                     {
                         onCooldown = true;
-                        gameManager.currency -= 100;
+                        managers.gameManager.currency -= 100;
                         playerHealthLvl++;
-                        gameManager.SetLifeLvl(playerHealthLvl);
+                        managers.gameManager.SetLifeLvl(playerHealthLvl);
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
@@ -212,9 +210,9 @@ public class UiScriptStats : MonoBehaviour
                     if (playerSpeedLvl <= 3)
                     {
                         onCooldown = true;
-                        gameManager.currency -= 100;
+                        managers.gameManager.currency -= 100;
                         playerSpeedLvl++;
-                        gameManager.SetSpeedLvl(playerSpeedLvl);
+                        managers.gameManager.SetSpeedLvl(playerSpeedLvl);
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }

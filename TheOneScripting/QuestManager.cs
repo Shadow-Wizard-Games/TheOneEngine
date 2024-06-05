@@ -11,15 +11,13 @@ public class QuestManager : MonoBehaviour
 
     string filepath = "Assets/GameData/Quests.json";
 
-    ItemManager itemManager;
-
     public override void Start()
     {
+        managers.Start();
+
         quests = new List<Quest>();
         activeQuests = new List<Quest>();
         completedQuests = new List<Quest>();
-
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
 
         LoadQuests();
         StartGame();
@@ -74,7 +72,7 @@ public class QuestManager : MonoBehaviour
             {
                 UiManager uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
                 uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Quest Completed:", item.name);
-                item.GiveReward(itemManager);
+                item.GiveReward(managers.itemManager);
                 completedQuests.Add(item);
                 activeQuests.Remove(item);
                 break;

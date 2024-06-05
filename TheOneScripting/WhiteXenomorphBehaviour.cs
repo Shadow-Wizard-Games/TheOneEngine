@@ -54,7 +54,6 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     const float destroyCooldown = 3.0f;
 
     PlayerScript player;
-    GameManager gameManager;
 
     // Particles
     IParticleSystem acidSpitPSGO;
@@ -63,11 +62,11 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
         initialPos = attachedGameObject.transform.Position;
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
         attachedGameObject.animator.Blend = true;
@@ -324,7 +323,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     private void DebugDraw()
     {
         //Draw debug ranges
-        if (gameManager.colliderRender)
+        if (managers.gameManager.colliderRender)
         {
             if (!detected)
             {

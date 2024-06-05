@@ -58,7 +58,6 @@ public class RedXenomorphBehaviour : MonoBehaviour
     const float delayCooldown = 1.2f;
 
     PlayerScript player;
-    GameManager gameManager;
 
     // Particles
     IParticleSystem acidSpitPSGO;
@@ -67,11 +66,11 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
         initialPos = attachedGameObject.transform.Position;
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Walk");
         attachedGameObject.animator.Blend = true;
@@ -338,7 +337,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     private void DebugDraw()
     {
         //Draw debug ranges
-        if (gameManager.colliderRender)
+        if (managers.gameManager.colliderRender)
         {
             if (!detected)
             {

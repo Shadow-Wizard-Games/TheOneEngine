@@ -9,15 +9,11 @@ using System.Xml.Linq;
 public class EventCollectible : Event
 {
     IGameObject playerGO;
-    ItemManager itemManager;
     UiManager uiManager;
     float playerDistance;
 
     string goName;
     string filepath = "Assets/GameData/Collectibles.json";
-
-    GameManager gameManager;
-    QuestManager questManager;
 
     readonly float collectibleRange = 100.0f;
 
@@ -26,12 +22,12 @@ public class EventCollectible : Event
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         eventType = EventType.COLLECTIBLE;
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
         uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
     }
 
     public override void Update()
@@ -42,7 +38,7 @@ public class EventCollectible : Event
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
@@ -64,7 +60,7 @@ public class EventCollectible : Event
     public override bool DoEvent()
     {
         //Add item
-        if (itemManager != null)
+        if (managers.itemManager != null)
         {
             if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
             {
@@ -74,15 +70,15 @@ public class EventCollectible : Event
                 int id = DataManager.AccessFileDataInt(filepath, dataPath, "itemId");
                 int iammount = DataManager.AccessFileDataInt(filepath, dataPath, "itemAmmount");
 
-                itemManager.AddItem((uint)id, (uint)iammount);
+                managers.itemManager.AddItem((uint)id, (uint)iammount);
 
                 string feed = DataManager.AccessFileDataString(filepath, dataPath, "text");
                 uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Looted item:", feed);
 
                 int qTriggerId = DataManager.AccessFileDataInt(filepath, dataPath, "triggerQuestId");
                 int qcompleteId = DataManager.AccessFileDataInt(filepath, dataPath, "completeQuestId");
-                questManager.ActivateQuest(qTriggerId);
-                questManager.CompleteQuest(qcompleteId);
+                managers.questManager.ActivateQuest(qTriggerId);
+                managers.questManager.CompleteQuest(qcompleteId);
 
                 attachedGameObject.Destroy();
             }

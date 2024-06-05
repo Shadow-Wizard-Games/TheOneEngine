@@ -13,7 +13,6 @@ public class EventOpenPopUp : Event
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
     UiManager menuManager;
 
     float playerDistance;
@@ -33,10 +32,10 @@ public class EventOpenPopUp : Event
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         eventType = EventType.OPENPOPUP;
         goName = attachedGameObject.name;
@@ -67,7 +66,7 @@ public class EventOpenPopUp : Event
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()

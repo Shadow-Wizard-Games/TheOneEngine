@@ -22,8 +22,6 @@
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
-
     public uint damage;
 
     public float slowAmount;
@@ -34,6 +32,8 @@
 
     public override void Start()
     {
+        managers.Start();
+
         ImpacienteItem = new Item_Impaciente();
 
         abilityName = ImpacienteItem.name;
@@ -52,8 +52,6 @@
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         state = AbilityState.READY;
     }
@@ -78,7 +76,7 @@
 
     public void Activated()
     {
-        float speedReduce = gameManager.GetSpeed() * slowAmount;
+        float speedReduce = managers.gameManager.GetSpeed() * slowAmount;
         player.currentSpeed -= speedReduce;
 
         player.currentWeaponDamage = damage;
@@ -104,7 +102,7 @@
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
-                player.currentSpeed = gameManager.GetSpeed();
+                player.currentSpeed = managers.gameManager.GetSpeed();
                 player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
                 player.currentWeaponDamage = damage;
 
@@ -117,7 +115,7 @@
         else
         {
             // reset stats
-            player.currentSpeed = gameManager.GetSpeed();
+            player.currentSpeed = managers.gameManager.GetSpeed();
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;

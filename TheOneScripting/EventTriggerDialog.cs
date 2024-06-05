@@ -13,9 +13,6 @@ public class EventTriggerDialog : Event
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
-    QuestManager questManager;
-
     float playerDistance;
 
     float tpRange = 100.0f;
@@ -40,11 +37,10 @@ public class EventTriggerDialog : Event
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
 
         eventType = EventType.OPENPOPUP;
         goName = attachedGameObject.name;
@@ -64,12 +60,12 @@ public class EventTriggerDialog : Event
         if (cooldown > 0)
             cooldown -= Time.realDeltaTime;
 
-        if (CheckEventIsPossible() && questManager.IsQuestComplete(neededQuestId))
+        if (CheckEventIsPossible() && managers.questManager.IsQuestComplete(neededQuestId))
         {
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
@@ -96,7 +92,7 @@ public class EventTriggerDialog : Event
         {
             if(isFirst)
             {
-                gameManager.SetGameState(GameManager.GameStates.DIALOGING);
+                managers.gameManager.SetGameState(GameManager.GameStates.DIALOGING);
                 dialogueGo.Enable();
             }
             else if (isLast)
@@ -105,15 +101,15 @@ public class EventTriggerDialog : Event
                 //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
                 //DataManager.WriteFileDataInt(filepath, characterPath, "conversationNum", conversationNum);
 
-                gameManager.SetGameState(GameManager.GameStates.RUNNING);
+                managers.gameManager.SetGameState(GameManager.GameStates.RUNNING);
                 dialogueGo.Disable();
 
                 string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
                 neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
                 int completeQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "completeQuestId");
-                questManager.CompleteQuest(completeQuestId);
+                managers.questManager.CompleteQuest(completeQuestId);
                 int triggerQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "triggerQuestId");
-                questManager.ActivateQuest(triggerQuestId);
+                managers.questManager.ActivateQuest(triggerQuestId);
 
                 return ret;
             }

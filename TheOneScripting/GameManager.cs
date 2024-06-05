@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     public bool credits;
     string saveLevel;
 
-    ItemManager itemManager;
-    QuestManager questManager;
-
     public bool colliderRender;
     public bool gridRender;
     public bool godMode;
@@ -124,6 +121,8 @@ public class GameManager : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         hasSaved = false;
         credits = false;
 
@@ -137,9 +136,6 @@ public class GameManager : MonoBehaviour
 
         DrawColliders();
         DrawGrid();
-
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
-        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
 
         ResetPlayerData();
     }
@@ -194,8 +190,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetSave()
     {
-        itemManager.ResetInventory();
-        questManager.ResetQuests();
+        managers.itemManager.ResetInventory();
+        managers.questManager.ResetQuests();
         ResetPlayerData();
     }
 
