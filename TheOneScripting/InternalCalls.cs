@@ -387,4 +387,12 @@ class InternalCalls
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetLightRadius(IntPtr GOptr, ref float radius);
     #endregion
+
+    #region Mesh
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetHitDamageFX(IntPtr GOptr, ref bool hit);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetHitDamageFX(IntPtr GOptr);
+    #endregion
 }
