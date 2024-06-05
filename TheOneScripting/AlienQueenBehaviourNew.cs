@@ -6,6 +6,10 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     float countDown = 0.0f; //Do not touch
 
     IGameObject playerGO;
+    PlayerScript playerScript;
+
+    ICollider2D collider;
+    float initialColliderRadius;
 
     float maxLife = 1500;
     float currentLife;
@@ -14,7 +18,11 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     public override void Start()
     {
         playerGO = IGameObject.Find("SK_MainCharacter");
+        playerScript = playerGO.GetComponent<PlayerScript>();
         currentLife = maxLife;
+
+        collider = attachedGameObject.GetComponent<ICollider2D>();
+        initialColliderRadius = collider.radius;
 
         attachedGameObject.animator.Play("Idle");
     }
@@ -548,7 +556,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         //    InternalCalls.InstantiateBullet(attachedGameObject.transform.position +
         //                                attachedGameObject.transform.forward *
-        //                                (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f) + height,
+        //                                (collider.radius + 12.5f) + height,
         //                                attachedGameObject.transform.rotation);
         //}
 
@@ -617,7 +625,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
             InternalCalls.InstantiateXenomorph(attachedGameObject.transform.Position +
                                                attachedGameObject.transform.Forward *
-                                               (attachedGameObject.GetComponent<ICollider2D>().radius + 12.5f),
+                                               (collider.radius + 12.5f),
                                                attachedGameObject.transform.Rotation,
                                                scale);
         }
@@ -665,8 +673,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         }
         else if (stopCountDown > 0.9f) { onAir = true; }
 
-        if (onAir) { attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f; }
-        else { attachedGameObject.GetComponent<ICollider2D>().radius = 35.0f; }
+        if (onAir) { collider.radius = 0.0f; }
+        else { collider.radius = initialColliderRadius; }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
@@ -724,5 +732,10 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         Vector3 dirVector = (targetPosition - attachedGameObject.transform.Position).Normalize();
         attachedGameObject.transform.Translate(dirVector * speed * Time.deltaTime);
         return false;
+    }
+
+    public void ReduceLife() //temporary function for the hardcoding of collisions
+    {
+        currentLife -= playerScript.totalDamage;
     }
 }
