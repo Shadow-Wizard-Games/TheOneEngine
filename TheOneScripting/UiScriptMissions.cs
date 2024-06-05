@@ -250,25 +250,25 @@ public class UiScriptMissions : MonoBehaviour
 
             //for each mission, there should be a toggler of the checker ACTIVE of the hovered mission
             // Selection Executters
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 2)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 onCooldown = true;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 3)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 onCooldown = true;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 4)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 4)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 onCooldown = true;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 5)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 5)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 onCooldown = true;

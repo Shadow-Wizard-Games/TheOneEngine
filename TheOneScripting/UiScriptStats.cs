@@ -176,7 +176,7 @@ public class UiScriptStats : MonoBehaviour
 
             if (currency >= 100)
             {
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
@@ -189,7 +189,7 @@ public class UiScriptStats : MonoBehaviour
                     //here i assume player has itself something like bullet.damage = player.damage + player.damagelvl * 10
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
@@ -202,7 +202,7 @@ public class UiScriptStats : MonoBehaviour
                     //here i assume player has itself something like bullet.health = player.health + player.healthlvl * 20
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!

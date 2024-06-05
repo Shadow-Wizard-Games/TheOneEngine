@@ -179,36 +179,32 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetSliderValue((int)((canvas.GetSliderMaxValue("Slider_Ammo") * currAmmo) / maxAmmo), "Slider_Ammo");
             }
 
-            if (grenadeUnlocked && !grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.TWO)))//remember to add also keyboard button
+            if (grenadeUnlocked && !grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R1) || Input.GetKeyboardButton(Input.KeyboardCode.TWO)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.SELECTED);
-
-                //debug text of ammo
-                currAmmo -= 1;
-                UpdateString(HudStrings.AMMOSTRING);
 
                 onCooldown = true;
             }
 
-            if (painlessUnlocked && !painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.FOUR)))//remember to add also keyboard button
+            if (painlessUnlocked && !painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.FOUR)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
-            if (flameThrowerUnlocked && !flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.THREE)))//remember to add also keyboard button
+            if (flameThrowerUnlocked && !flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R1) || Input.GetKeyboardButton(Input.KeyboardCode.THREE)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
-            if (adrenalineUnlocked && !adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.ONE)))//remember to add also keyboard button
+            if (adrenalineUnlocked && !adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.ONE)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
             }
 
-            if (consumibleUnlocked && !consumibleOnCooldown && Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.Q))//remember to add also keyboard button
+            if (consumibleUnlocked && !consumibleOnCooldown && Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.Q))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.SELECTED);
                 onCooldown = true;

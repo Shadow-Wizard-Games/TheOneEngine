@@ -62,7 +62,7 @@ public class EventCollectible : Event
         //Add item
         if (itemManager != null)
         {
-            if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
+            if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.E))
             {
                 itemManager.AddItem(1, 1); //change to corresponding item ID & QUANTITY
                 attachedGameObject.Disable();

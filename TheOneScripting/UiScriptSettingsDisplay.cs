@@ -267,7 +267,7 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     currentButton += direction;
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     vsync = !vsync;
@@ -275,7 +275,7 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     onCooldown = true;
                 }
 
-                if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
+                if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
                 {
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     fullscreen = !fullscreen;
