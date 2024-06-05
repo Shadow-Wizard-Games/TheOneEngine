@@ -57,7 +57,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -5565,7 +5565,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Sparks_Particles",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -28456,7 +28456,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Level_Layout",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -31242,7 +31242,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Decals",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -39343,7 +39343,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
@@ -39824,56 +39824,56 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 3257640331
+              "UID": 3498996233
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 26876614
+              "UID": 3332999760
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 2462270646
+              "UID": 2457098679
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 3030614291
+              "UID": 737370026
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 2992253237
+              "UID": 2161585608
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 499077463
+              "UID": 2297074045
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 3457207674
+              "UID": 3158838753
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 1479037284
+              "UID": 4056712573
             }
           ],
           "Enabled": true,
@@ -40467,7 +40467,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "PrefabDirty": false,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -41325,7 +41325,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Enemies",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -41366,7 +41366,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R1",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -41407,7 +41407,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R3",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -41441,7 +41441,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -41475,7 +41475,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -41509,7 +41509,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -41543,7 +41543,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
     },
@@ -41577,145 +41577,9 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.3848552703857422,
-            0.9229769706726074,
-            0.0,
-            0.0,
-            -0.9229769706726074,
-            0.3848552703857422,
-            0.0,
-            776.8187866210938,
-            109.7765884399414,
-            88.9113998413086,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 399266182
-        },
-        {
-          "Aspect": 1.777,
-          "CameraType": 0,
-          "FOV": 65.0,
-          "Name": "Camera",
-          "ParentUID": 7536748,
-          "Pitch": 0.0,
-          "PrimaryCamera": false,
-          "Size": 200.0,
-          "Type": 1,
-          "UID": 601655169,
-          "Yaw": 0.0,
-          "zFar": 3000.0,
-          "zNear": 10.0
-        },
-        {
-          "Color": [
-            0.9402003884315491,
-            1.0,
-            0.14649683237075806
-          ],
-          "InnerCutOff": 0.9100000262260437,
-          "Intensity": 17.899999618530273,
-          "LightType": 2,
-          "Linear": 0.699999988079071,
-          "Name": "Light",
-          "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 7536748,
-          "Quadratic": 1.7999999523162842,
-          "Radius": 242.5,
-          "Specular": 0.5,
-          "Type": 11,
-          "UID": 1303421973
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Tutorial_spotlight",
-      "ParentUID": 7536748,
-      "Static": false,
-      "UID": 7536748
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            771.81201171875,
-            65.6458511352539,
-            95.76348114013672,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 968316192
-        },
-        {
-          "Aspect": 1.777,
-          "CameraType": 0,
-          "FOV": 65.0,
-          "Name": "Camera",
-          "ParentUID": 7536748,
-          "Pitch": 0.0,
-          "PrimaryCamera": false,
-          "Size": 200.0,
-          "Type": 1,
-          "UID": 1462445034,
-          "Yaw": 0.0,
-          "zFar": 3000.0,
-          "zNear": 10.0
-        },
-        {
-          "Color": [
-            0.9227555394172668,
-            1.0,
-            0.2866241931915283
-          ],
-          "InnerCutOff": 0.9100000262260437,
-          "Intensity": 1.0,
-          "LightType": 1,
-          "Linear": 0.699999988079071,
-          "Name": "Light",
-          "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 7536748,
-          "Quadratic": 1.7999999523162842,
-          "Radius": 60.0,
-          "Specular": 0.5,
-          "Type": 11,
-          "UID": 3378737667
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Tutorial_light",
-      "ParentUID": 7536748,
-      "Static": false,
-      "UID": 7536748
     },
     {
       "Components": [
@@ -41781,7 +41645,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -41849,7 +41713,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -41917,7 +41781,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -41985,7 +41849,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -42053,7 +41917,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_pointlight",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -42200,7 +42064,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 721959952
     },
@@ -42507,7 +42371,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Fire_Particle01 (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
@@ -42817,7 +42681,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Fire_Particle01 (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
@@ -43127,7 +42991,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Fire_Particle01 (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
@@ -43198,7 +43062,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_light",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 1410714192
     },
@@ -43266,7 +43130,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_light (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 1240894800
     },
@@ -43342,7 +43206,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Alarm_Light (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "PrefabDirty": false,
       "PrefabID": 3039377733,
       "PrefabName": "Alarm_Light",
@@ -43492,7 +43356,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 721959952
     },
@@ -43580,7 +43444,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1195.675048828125,
+              "Lifetime": 1199.3553466796875,
               "MaxParticles": 500,
               "RenderModule": [
                 {
@@ -43677,7 +43541,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1195.675048828125,
+              "Lifetime": 1199.3553466796875,
               "MaxParticles": 55,
               "RenderModule": [
                 {
@@ -43798,7 +43662,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 1410568080
     },
@@ -44104,7 +43968,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 721959952
     },
@@ -44424,7 +44288,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 1408745520
     },
@@ -44744,7 +44608,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -44812,7 +44676,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Fire_spotlight",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -45132,7 +44996,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (4)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 7536748
     },
@@ -45250,7 +45114,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 411013536
     },
@@ -45368,7 +45232,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 357627376
     },
@@ -45494,7 +45358,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_CelDrop",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 411236832
     },
@@ -45620,7 +45484,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_CelDrop (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 411236832
     },
@@ -45746,7 +45610,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_CelDrop (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 359453216
     },
@@ -45872,7 +45736,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 357627376
     },
@@ -45998,7 +45862,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 357627376
     },
@@ -46124,7 +45988,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 357627376
     },
@@ -46250,7 +46114,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 357627376
     },
@@ -46376,7 +46240,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (4)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 411523648
     },
@@ -46444,7 +46308,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 357627376
     },
@@ -46512,7 +46376,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 0
     },
@@ -46580,7 +46444,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 1424170512
     },
@@ -46648,7 +46512,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 411236832
     },
@@ -46716,7 +46580,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (4)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 359453216
     },
@@ -46784,7 +46648,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (5)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 1425109072
     },
@@ -46859,145 +46723,9 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Flicker_Light",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            -25.64682388305664,
-            70.48149871826172,
-            -33.4697151184082,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 3035999512
-        },
-        {
-          "Aspect": 1.777,
-          "CameraType": 0,
-          "FOV": 65.0,
-          "Name": "Camera",
-          "ParentUID": 411102432,
-          "Pitch": 0.0,
-          "PrimaryCamera": false,
-          "Size": 200.0,
-          "Type": 1,
-          "UID": 3200961645,
-          "Yaw": 0.0,
-          "zFar": 3000.0,
-          "zNear": 10.0
-        },
-        {
-          "Color": [
-            0.9227555394172668,
-            1.0,
-            0.2866241931915283
-          ],
-          "InnerCutOff": 0.9100000262260437,
-          "Intensity": 1.0,
-          "LightType": 1,
-          "Linear": 0.699999988079071,
-          "Name": "Light",
-          "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 411102432,
-          "Quadratic": 1.7999999523162842,
-          "Radius": 60.0,
-          "Specular": 0.5,
-          "Type": 11,
-          "UID": 1047375034
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Tutorial_light (1)",
-      "ParentUID": 7536748,
-      "Static": false,
-      "UID": 411102432
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.3848552703857422,
-            0.9229769706726074,
-            0.0,
-            0.0,
-            -0.9229769706726074,
-            0.3848552703857422,
-            0.0,
-            -28.995609283447266,
-            85.91397094726563,
-            -43.76569747924805,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 900128696
-        },
-        {
-          "Aspect": 1.777,
-          "CameraType": 0,
-          "FOV": 65.0,
-          "Name": "Camera",
-          "ParentUID": 357627376,
-          "Pitch": 0.0,
-          "PrimaryCamera": false,
-          "Size": 200.0,
-          "Type": 1,
-          "UID": 882516059,
-          "Yaw": 0.0,
-          "zFar": 3000.0,
-          "zNear": 10.0
-        },
-        {
-          "Color": [
-            0.9402003884315491,
-            1.0,
-            0.14649683237075806
-          ],
-          "InnerCutOff": 0.9100000262260437,
-          "Intensity": 17.899999618530273,
-          "LightType": 2,
-          "Linear": 0.699999988079071,
-          "Name": "Light",
-          "OuterCutOff": 0.8199999928474426,
-          "ParentUID": 357627376,
-          "Quadratic": 1.7999999523162842,
-          "Radius": 242.5,
-          "Specular": 0.5,
-          "Type": 11,
-          "UID": 3034616731
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Tutorial_spotlight (1)",
-      "ParentUID": 7536748,
-      "Static": false,
-      "UID": 357627376
     },
     {
       "Components": [
@@ -47070,7 +46798,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Flicker_Light (1)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 411013536
     },
@@ -47188,7 +46916,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 1423272240
     },
@@ -47335,7 +47063,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (2)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 2592012240
     },
@@ -47454,7 +47182,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (3)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 2592012240
     },
@@ -47573,7 +47301,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (4)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 2641454912
     },
@@ -47692,7 +47420,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (5)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 2641449728
     },
@@ -47839,9 +47567,361 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (6)",
-      "ParentUID": 7536748,
+      "ParentUID": 7209061,
       "Static": false,
       "UID": 2592012240
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            774.4483642578125,
+            0.0,
+            94.32194519042969,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3238829909
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4347642660140991,
+                0.900544285774231,
+                0.0,
+                0.0,
+                -0.900544285774231,
+                0.4347642660140991,
+                0.0,
+                0.0,
+                77.6722183227539,
+                -11.674118041992188,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 399266182
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7536748,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 601655169,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.9402003884315491,
+                1.0,
+                0.14649683237075806
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 17.899999618530273,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7536748,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 236.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 1303421973
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Tutorial_spotlight",
+          "ParentUID": 7536748,
+          "Static": false,
+          "UID": 7536748
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                65.6458511352539,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 968316192
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7536748,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1462445034,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.9227555394172668,
+                1.0,
+                0.2866241931915283
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 1.0,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7536748,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 133.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 3378737667
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Tutorial_light",
+          "ParentUID": 7536748,
+          "Static": false,
+          "UID": 7536748
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Door_Light",
+      "ParentUID": 7209061,
+      "PrefabDirty": false,
+      "PrefabID": 4001310582,
+      "PrefabName": "Door_Light",
+      "Static": false,
+      "UID": 7536748
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            -22.841327667236328,
+            0.0,
+            -31.45070457458496,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1501887289
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.4347642660140991,
+                0.900544285774231,
+                0.0,
+                0.0,
+                -0.900544285774231,
+                0.4347642660140991,
+                0.0,
+                0.0,
+                77.6722183227539,
+                -11.674118041992188,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 174109455
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7536748,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 989059103,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.9402003884315491,
+                1.0,
+                0.14649683237075806
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 17.899999618530273,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7536748,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 236.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 157766641
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Tutorial_spotlight",
+          "ParentUID": 2416411584,
+          "Static": false,
+          "UID": 7536748
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                65.6458511352539,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2299649643
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 7536748,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 8354612,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.9227555394172668,
+                1.0,
+                0.2866241931915283
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": 1.0,
+              "LightType": 1,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 7536748,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 133.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 2661582292
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Tutorial_light",
+          "ParentUID": 2416411584,
+          "Static": false,
+          "UID": 7536748
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Door_Light (1)",
+      "ParentUID": 7209061,
+      "PrefabDirty": false,
+      "PrefabID": 4001310582,
+      "PrefabName": "Door_Light",
+      "Static": false,
+      "UID": 2416411584
     }
   ],
   "index": 0,
