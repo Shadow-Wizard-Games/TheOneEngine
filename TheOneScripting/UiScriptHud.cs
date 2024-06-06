@@ -98,16 +98,16 @@ public class UiScriptHud : MonoBehaviour
         grenadeCooldown = playerScript.GrenadeLauncher.cooldownTime;
 
         painlessOnCooldown = false;
-        painlessCooldown = playerScript.Impaciente.cooldownTime;
+        painlessCooldown = playerScript.Impaciente.cooldownTime + playerScript.Impaciente.activeTime;
 
         flameThrowerOnCooldown = false;
-        flameThrowerCooldown = playerScript.Flamethrower.cooldownTime;
+        flameThrowerCooldown = playerScript.Flamethrower.cooldownTime + playerScript.Flamethrower.activeTime;
 
         adrenalineOnCooldown = false;
-        adrenalineCooldown = playerScript.AdrenalineRush.cooldownTime;
+        adrenalineCooldown = playerScript.AdrenalineRush.cooldownTime + playerScript.AdrenalineRush.activeTime;
 
         consumibleOnCooldown = false;
-        consumibleCooldown = playerScript.Heal.cooldownTime;
+        consumibleCooldown = playerScript.Heal.cooldownTime + playerScript.Heal.activeTime;
 
         //setting player info
         currLife = 100;
@@ -527,7 +527,7 @@ public class UiScriptHud : MonoBehaviour
         if (painlessUnlocked)
         {
             UpdateString(HudStrings.CDPAINLESS);
-            if (painlessHoveredOnCooldown && painlessTimer >= 0.5f)
+            if (painlessHoveredOnCooldown && painlessTimer >= playerScript.Impaciente.activeTime)
             {
                 UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.HOVERED);
             }
@@ -546,7 +546,7 @@ public class UiScriptHud : MonoBehaviour
         if (flameThrowerUnlocked)
         {
             UpdateString(HudStrings.CDFLAMETHROWER);
-            if (flameThrowerHoveredOnCooldown && flameThrowerTimer >= 0.5f)
+            if (flameThrowerHoveredOnCooldown && flameThrowerTimer >= playerScript.Flamethrower.activeTime)
             {
                 UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.HOVERED);
             }
@@ -565,7 +565,7 @@ public class UiScriptHud : MonoBehaviour
         if (adrenalineUnlocked)
         {
             UpdateString(HudStrings.CDADRENALINE);
-            if (adrenalineHoveredOnCooldown && adrenalineTimer >= 0.5f)
+            if (adrenalineHoveredOnCooldown && adrenalineTimer >= playerScript.AdrenalineRush.activeTime)
             {
                 UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.HOVERED);
             }
@@ -584,7 +584,7 @@ public class UiScriptHud : MonoBehaviour
         if (consumibleUnlocked)
         {
             UpdateString(HudStrings.CDCONSUMIBLE);
-            if (consumibleHoveredOnCooldown && consumibleTimer >= 0.5f)
+            if (consumibleHoveredOnCooldown && consumibleTimer >= playerScript.Heal.activeTime)
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.HOVERED);
             }
