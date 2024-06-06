@@ -138,8 +138,8 @@ public class GameManager : MonoBehaviour
         DrawColliders();
         DrawGrid();
 
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
-        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
+        itemManager = IGameObject.Find("ItemManager")?.GetComponent<ItemManager>();
+        questManager = IGameObject.Find("QuestManager")?.GetComponent<QuestManager>();
 
         ResetPlayerData();
     }
@@ -194,8 +194,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetSave()
     {
-        itemManager.ResetInventory();
-        questManager.ResetQuests();
+        itemManager?.ResetInventory();
+        questManager?.ResetQuests();
         ResetPlayerData();
     }
 
