@@ -23,8 +23,8 @@ public class ItemManager : MonoBehaviour
         itemData.Add(9, new Item_DoorKey());
 
         //Debug
-        //AddItem(2, 1);
-        //AddItem(3, 1);
+        AddItem(4, 1);
+        AddItem(6, 1);
         //AddItem(7, 1);
         //AddItem(8, 1);
     }
