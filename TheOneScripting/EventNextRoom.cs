@@ -63,7 +63,7 @@ public class EventNextRoom : Event
         {
             string sceneName = ExtractSceneName();
 
-            if(sceneName == "L1R5")
+            if(sceneName == "L2R1")
             {
                 if (!managers.itemManager.CheckItemInInventory(9))
                 {
