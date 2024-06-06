@@ -313,7 +313,6 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                     onCooldown = true;
                     canvas.MoveSelection(direction);
                     currentButton += direction;
-                    Debug.Log(currentButton.ToString());
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 0)
