@@ -59,7 +59,7 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.E))
         {
             string sceneName = ExtractSceneName();
 
