@@ -1040,7 +1040,7 @@ public class PlayerScript : MonoBehaviour
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        float damage = managers.gameManager.godMode ? 3.0f : 0.0f;
+        float damage = managers.gameManager.godMode ? 0.0f : 3.0f;
         managers.gameManager.health -= damage;
 
         if (managers.gameManager.health <= 0)
