@@ -93,6 +93,8 @@ namespace AK
         static const AkUniqueID VO_ISAAC_VOICELINE5 = 2021844422U;
         static const AkUniqueID VO_ISAAC_VOICELINE6 = 2021844421U;
         static const AkUniqueID VO_ISAAC_VOICELINE7 = 2021844420U;
+        static const AkUniqueID VO_RADIO_OFF = 650227542U;
+        static const AkUniqueID VO_RADIO_ON = 2601374232U;
         static const AkUniqueID VO_RESCUESHIP_NARRATIVEEND = 3906700528U;
         static const AkUniqueID VO_RESCUESHIP_RESPONSE = 2704646508U;
         static const AkUniqueID VO_SERGEANT_FIFHTCOMPUTER1 = 3072456904U;
