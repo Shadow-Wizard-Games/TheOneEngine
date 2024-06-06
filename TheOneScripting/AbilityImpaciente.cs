@@ -31,6 +31,8 @@
 
     public int ammo = 100;
 
+    public float waitToReset = 0.2f;
+
     public override void Start()
     {
         managers.Start();
@@ -65,12 +67,12 @@
             case AbilityState.ACTIVE:
 
                 WhileActive();
-
+                Debug.Log("Active time = " + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
 
                 OnCooldown();
-
+                Debug.Log("Cooldown time = " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
@@ -79,6 +81,7 @@
     {
         // being used dont eliminate
         speedModification = managers.gameManager.GetSpeed() * -slowAmount;
+        state = AbilityState.ACTIVE;
 
         //attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
 
@@ -94,8 +97,8 @@
 
             if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
-
-            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR))
+            
+            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) && activeTimeCounter < activeTime - waitToReset)
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
@@ -105,6 +108,8 @@
 
                 activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
+
+                player.ImpacienteGO.Disable();
 
                 Debug.Log("Ability Impaciente on Cooldown");
             }
@@ -118,6 +123,8 @@
             activeTimeCounter = activeTime;
 
             state = AbilityState.COOLDOWN;
+
+            player.ImpacienteGO.Disable();
 
             Debug.Log("Ability Impaciente on Cooldown");
         }

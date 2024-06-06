@@ -46,9 +46,10 @@ public class PlayerScript : MonoBehaviour
     public bool isDead = false;
     public uint baseDamage;
     public float totalDamage = 0.0f;
-    public float damageIncrease = 0.0f;
+    public float damageIncrease = 1.0f;
 
     // movement
+    public float totalSpeedModification = 0;
     public float currentSpeed;
     public Vector3 movementDirection;
     public Vector3 lastMovementDirection;
@@ -58,11 +59,12 @@ public class PlayerScript : MonoBehaviour
     public CurrentAction currentAction;
 
     public Item_M4A1 ItemM4;
+    public Item_ShoulderLaser ItemShoulderLaser;
 
     IGameObject M4GO;
     IGameObject ShoulderLaserGO;
-    IGameObject ImpacienteGO;
-    IGameObject FlamethrowerGO;
+    public IGameObject ImpacienteGO;
+    public IGameObject FlamethrowerGO;
     //IGameObject GrenadeLauncherGO;
     IGameObject shotParticlesGO;
     IGameObject shotExplosionGO;
@@ -99,6 +101,8 @@ public class PlayerScript : MonoBehaviour
 
     // Lights
     public ILight shotLight;
+
+    public float waitForAnimationToFinish = 0.0f;
 
     public override void Start()
     {
@@ -145,6 +149,7 @@ public class PlayerScript : MonoBehaviour
         currentSkillSet = SkillSet.NONE;
 
         ItemM4 = new Item_M4A1();
+        ItemShoulderLaser = new Item_ShoulderLaser();
 
         timeFromLastStep = 0.3f;
 
@@ -156,13 +161,21 @@ public class PlayerScript : MonoBehaviour
     }
     public override void Update()
     {
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING)
+        {
+            currentAction = CurrentAction.IDLE;
+        }
+
+        // to delete just testing
+        AddItemsToInventoryForTest();
+
         // CHANGE WHEN INVENTORY OVERHAUL
         if (managers.itemManager.CheckItemInInventory(1) && currentWeaponType == CurrentWeapon.NONE)
         {
             M4GO.Enable();
             currentSkillSet = SkillSet.M4A1SET;
             currentWeaponType = CurrentWeapon.M4;
-            baseDamage = ItemM4.damage;
+            currentWeaponDamage = ItemM4.damage;
         }
 
         // background music
@@ -175,48 +188,58 @@ public class PlayerScript : MonoBehaviour
         {
             attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
         }
+        
+        // calculus of speed
+        totalSpeedModification = AdrenalineRush.speedModification + Heal.speedModification + Impaciente.speedModification;
+        currentSpeed = managers.gameManager.GetSpeed() + totalSpeedModification;
 
-        currentSpeed = managers.gameManager.GetSpeed();
+        // calculus of damage
+        totalDamage = (currentWeaponDamage + managers.gameManager.GetDamage()) * damageIncrease;
+
         UpdatePlayerState();
 
-        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING)
-        {
-            currentAction = CurrentAction.IDLE;
-        }
-
         #region PLAYERSTATESWITCH
-        switch (currentAction)
+        
+            switch (currentAction)
+            {
+                case CurrentAction.IDLE:
+                    IdleAction();
+                    break;
+                case CurrentAction.RUN:
+                    RunAction();
+                    break;
+                case CurrentAction.SHOOT:
+                    ShootAction();
+                    break;
+                case CurrentAction.RUNSHOOT:
+                    RunShootAction();
+                    break;
+                case CurrentAction.ADRENALINERUSH:
+                    AdrenalineRushAction();
+                    break;
+                case CurrentAction.RUNADRENALINERUSH:
+                    RunAdrenalineRushAction();
+                    break;
+                case CurrentAction.HEAL:
+                    HealAction();
+                    break;
+                case CurrentAction.RUNHEAL:
+                    RunHealAction();
+                    break;
+                case CurrentAction.DASH:
+                    DashAction();
+                    break;
+                case CurrentAction.DEAD:
+                    DeadAction();
+                    break;
+            }
+        
+        if(waitForAnimationToFinish > 0)
         {
-            case CurrentAction.IDLE:
-                IdleAction();
-                break;
-            case CurrentAction.RUN:
-                RunAction();
-                break;
-            case CurrentAction.SHOOT:
-                ShootAction();
-                break;
-            case CurrentAction.RUNSHOOT:
-                RunShootAction();
-                break;
-            case CurrentAction.ADRENALINERUSH:
-                AdrenalineRushAction();
-                break;
-            case CurrentAction.RUNADRENALINERUSH:
-                RunAdrenalineRushAction();
-                break;
-            case CurrentAction.HEAL:
-                HealAction();
-                break;
-            case CurrentAction.RUNHEAL:
-                RunHealAction();
-                break;
-            case CurrentAction.DASH:
-                DashAction();
-                break;
-            case CurrentAction.DEAD:
-                DeadAction();
-                break;
+            waitForAnimationToFinish -= Time.deltaTime;
+            if(waitForAnimationToFinish < 0) { waitForAnimationToFinish = 0; }
+
+            Debug.Log("waiting for ability " + waitForAnimationToFinish);
         }
         #endregion
     }
@@ -253,7 +276,19 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
+            // grenade 
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+                && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
+                && Dash.state != AbilityDash.AbilityState.ACTIVE
+                && Heal.state != AbilityHeal.AbilityState.ACTIVE)
+            {
+                currentAction = CurrentAction.RUNSHOOT;
+                return;
+            }
+
             if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
+                && Heal.numHeals > 0
+                && Heal.numHeals > 0
                 && Heal.state == AbilityHeal.AbilityState.READY
                 && currentAction != CurrentAction.DASH)
             {
@@ -275,9 +310,19 @@ public class PlayerScript : MonoBehaviour
         {
 
             currentAction = CurrentAction.IDLE;
-
+            
             if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R2))
                 && currentWeaponType != CurrentWeapon.NONE
+                && Dash.state != AbilityDash.AbilityState.ACTIVE
+                && Heal.state != AbilityHeal.AbilityState.ACTIVE)
+            {
+                currentAction = CurrentAction.SHOOT;
+                return;
+            }
+
+            // grenade
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+                && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
@@ -294,6 +339,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
+            && Heal.numHeals > 0
             && Heal.state == AbilityHeal.AbilityState.READY
             && Dash.state != AbilityDash.AbilityState.ACTIVE
             && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
@@ -324,12 +370,12 @@ public class PlayerScript : MonoBehaviour
         }
         else if (Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT))
         {
-            if (currentSkillSet == SkillSet.M4A1SET)
+            if (currentSkillSet == SkillSet.M4A1SET && managers.itemManager.CheckItemInInventory(3))
             {
                 currentSkillSet = SkillSet.SHOULDERLASERSET;
                 currentWeaponType = CurrentWeapon.SHOULDERLASER;
             }
-            else if (currentSkillSet == SkillSet.SHOULDERLASERSET)
+            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && managers.itemManager.CheckItemInInventory(1))
             {
                 currentSkillSet = SkillSet.M4A1SET;
                 currentWeaponType = CurrentWeapon.M4;
@@ -341,34 +387,45 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
-            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2))
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
 
-            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
+            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY && managers.itemManager.CheckItemInInventory(8))
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.TWO))
         {
-            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY)
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY 
+                && managers.itemManager.CheckItemInInventory(2))
+            {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+                waitForAnimationToFinish = 0.3f;
+                Debug.LogWarning("bitch");
+            }
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
         {
-            if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY)
+            if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY 
+                && managers.itemManager.CheckItemInInventory(8))
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
         }
 
 
         if ((Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
+            && managers.itemManager.CheckItemInInventory(7)
             && currentSkillSet != SkillSet.NONE
             && Impaciente.state == AbilityImpaciente.AbilityState.READY)
         {
             currentWeaponType = CurrentWeapon.IMPACIENTE;
+            Impaciente.Activated();
         }
 
         #region ENABLE / DISABLE WEAPONS
-        if (currentWeaponType != currentEquippedWeapon)
+        if (currentWeaponType != currentEquippedWeapon 
+            || Impaciente.state == AbilityImpaciente.AbilityState.COOLDOWN
+            || Flamethrower.state == AbilityFlamethrower.AbilityState.COOLDOWN
+            )
         {
             switch (currentEquippedWeapon)
             {
@@ -380,8 +437,8 @@ public class PlayerScript : MonoBehaviour
                     break;
                 case CurrentWeapon.IMPACIENTE:
                     ImpacienteGO.Disable();
-                    Impaciente.state = AbilityImpaciente.AbilityState.COOLDOWN;
-                    Debug.Log("Impaciente on Cooldown");
+                    //Impaciente.state = AbilityImpaciente.AbilityState.COOLDOWN;
+                    Debug.Log("disabled");
                     break;
                 case CurrentWeapon.FLAMETHROWER:
                     FlamethrowerGO.Disable();
@@ -399,20 +456,20 @@ public class PlayerScript : MonoBehaviour
                 case CurrentWeapon.M4:
                     // CHANGE DEPENDING ON GRENADE LAUNCHER
                     M4GO.Enable();
-                    baseDamage = 5;
+                    currentWeaponDamage = ItemM4.damage;
                     break;
                 case CurrentWeapon.SHOULDERLASER:
                     ShoulderLaserGO.Enable();
-                    baseDamage = 5;
+                    currentWeaponDamage = ItemShoulderLaser.damage;
                     break;
                 case CurrentWeapon.IMPACIENTE:
                     ImpacienteGO.Enable();
-                    baseDamage = Impaciente.damage;
+                    currentWeaponDamage = Impaciente.damage;
                     Debug.Log("Impaciente Activated");
                     break;
                 case CurrentWeapon.FLAMETHROWER:
                     FlamethrowerGO.Enable();
-                    baseDamage = Flamethrower.damage;
+                    currentWeaponDamage = Flamethrower.damage;
                     Debug.Log("Flamethrower Activated");
                     break;
                 case CurrentWeapon.GRENADELAUNCHER:
@@ -438,8 +495,11 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Idle");
                 break;
             case CurrentWeapon.M4:
-                attachedGameObject.animator.Play("Idle M4");
-                M4GO.animator.Play("Idle");
+                if(waitForAnimationToFinish <= 0)
+                {
+                    attachedGameObject.animator.Play("Idle M4");
+                    M4GO.animator.Play("Idle");
+                }
                 break;
             case CurrentWeapon.SHOULDERLASER:
                 attachedGameObject.animator.Play("Idle");
@@ -454,7 +514,11 @@ public class PlayerScript : MonoBehaviour
                 FlamethrowerGO.animator.Play("Idle");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-                attachedGameObject.animator.Play("Idle M4");
+                if (waitForAnimationToFinish <= 0)
+                {
+                    attachedGameObject.animator.Play("Idle M4");
+                    M4GO.animator.Play("Idle");
+                }
                 break;
         }
 
@@ -474,8 +538,11 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.animator.Play("Run");
                 break;
             case CurrentWeapon.M4:
-                attachedGameObject.animator.Play("Run M4");
-                M4GO.animator.Play("Run");
+                if (waitForAnimationToFinish <= 0)
+                {
+                    attachedGameObject.animator.Play("Run M4");
+                    M4GO.animator.Play("Run");
+                }
                 break;
             case CurrentWeapon.SHOULDERLASER:
                 attachedGameObject.animator.Play("Run");
@@ -490,7 +557,11 @@ public class PlayerScript : MonoBehaviour
                 FlamethrowerGO.animator.Play("Run");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-                attachedGameObject.animator.Play("Run Grenade Launcher");
+                if (waitForAnimationToFinish <= 0)
+                {
+                    attachedGameObject.animator.Play("Run Grenade Launcher");
+                    M4GO.animator.Play("Run");
+                }
                 break;
         }
 
@@ -541,7 +612,8 @@ public class PlayerScript : MonoBehaviour
                 FlamethrowerGO.animator.Play("Shoot");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-                attachedGameObject.animator.Play("Shoot Grenade Launcher");
+                attachedGameObject.animator.Play("Shoot M4");
+                M4GO.animator.Play("Shoot");
                 break;
         }
     }
@@ -570,7 +642,9 @@ public class PlayerScript : MonoBehaviour
                 FlamethrowerGO.animator.Play("Run and Shoot");
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-                attachedGameObject.animator.Play("Run Shoot Grenade Launcher");
+                attachedGameObject.animator.Play("Run Shoot M4");
+                M4GO.animator.Play("Run and Shoot");
+                //GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.ACTIVE;
                 break;
         }
     }
@@ -587,11 +661,10 @@ public class PlayerScript : MonoBehaviour
         float totalHeal = managers.gameManager.GetMaxHealth() * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = managers.gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
-        currentSpeed = speedIncrease;
+        AdrenalineRush.speedModification = managers.gameManager.GetSpeed() * (AdrenalineRush.speedAmount);
 
         // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
+        damageIncrease = 1 + AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -609,11 +682,10 @@ public class PlayerScript : MonoBehaviour
         float totalHeal = managers.gameManager.health * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
 
-        float speedIncrease = managers.gameManager.GetSpeed() * (1 + AdrenalineRush.speedAmount);
-        currentSpeed = speedIncrease;
+        AdrenalineRush.speedModification = managers.gameManager.GetSpeed() * (AdrenalineRush.speedAmount);
 
         // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
+        damageIncrease = 1 + AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -623,8 +695,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void HealAction()
     {
-        float speedReduce = managers.gameManager.GetSpeed() * Heal.slowAmount;
-        currentSpeed -= speedReduce;
+        Heal.speedModification = managers.gameManager.GetSpeed() * -Heal.slowAmount;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
 
@@ -636,8 +707,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Heal.state != AbilityHeal.AbilityState.READY) return;
 
-        float speedReduce = managers.gameManager.GetSpeed() * Heal.slowAmount;
-        currentSpeed -= speedReduce;
+        Heal.speedModification = managers.gameManager.GetSpeed() * -Heal.slowAmount;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
 
@@ -847,10 +917,10 @@ public class PlayerScript : MonoBehaviour
 
         // CHANGE WITH REAL STATS, M4 PLACEHOLDER
 
-        if (timeSinceLastShot < 0.15f)
+        if (timeSinceLastShot < ItemShoulderLaser.fireRate)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > 0.15f / 2)
+            if (!hasShot && timeSinceLastShot > ItemShoulderLaser.fireRate / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
@@ -958,18 +1028,18 @@ public class PlayerScript : MonoBehaviour
                 FlamethrowerGO.animator.UpdateAnimation();
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
-
+                M4GO.animator.UpdateAnimation();
                 break;
         }
     }
 
-    public void ReduceLife(uint damage)
+    public void ReduceLife()
     {
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
+        float damage = managers.gameManager.godMode ? 3.0f : 0.0f;
         managers.gameManager.health -= damage;
-        //Debug.Log("Player took damage! Current life is: " + gameManager.health.ToString());
 
         if (managers.gameManager.health <= 0)
         {
@@ -1008,11 +1078,30 @@ public class PlayerScript : MonoBehaviour
             return;
 
         ITransform spawnTransform = IGameObject.Find("Spawn_" + managers.gameManager.lastLevel)?.GetComponent<ITransform>();
-        
-        if (spawnTransform == null)
+
+        if (spawnTransform != null)
         {
             Vector3 spawnPos = spawnTransform.Position;
             attachedGameObject.transform.Position = spawnPos;
         }        
+    }
+
+    private void AddItemsToInventoryForTest()
+    {
+        // m4
+        if (Input.GetKeyboardButton(Input.KeyboardCode.F4) && !managers.itemManager.CheckItemInInventory(1))
+            managers.itemManager.AddItem(1, 1);
+        // grenade launcher
+        if (Input.GetKeyboardButton(Input.KeyboardCode.F5) && !managers.itemManager.CheckItemInInventory(2))
+            managers.itemManager.AddItem(2, 1);
+        // shoulder laser
+        if (Input.GetKeyboardButton(Input.KeyboardCode.F6) && !managers.itemManager.CheckItemInInventory(3))
+            managers.itemManager.AddItem(3, 1);
+        // impaciente
+        if (Input.GetKeyboardButton(Input.KeyboardCode.F7) && !managers.itemManager.CheckItemInInventory(7))
+            managers.itemManager.AddItem(7, 1);
+        // flamethrower
+        if (Input.GetKeyboardButton(Input.KeyboardCode.F8) && !managers.itemManager.CheckItemInInventory(8))
+            managers.itemManager.AddItem(8, 1);
     }
 }

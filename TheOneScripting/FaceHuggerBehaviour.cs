@@ -253,7 +253,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         {
             if (isJumping)
             {
-                playerGO.GetComponent<PlayerScript>().ReduceLife(10);
+                playerGO.GetComponent<PlayerScript>().ReduceLife();
                 hitPlayer = true;
                 fallDead = true;
             }
