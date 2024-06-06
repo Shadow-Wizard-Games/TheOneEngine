@@ -3542,6 +3542,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_isaac_voiceline2" ID="{8D034A2C-998F-428B-B765-3D5DBBACAC9E}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="6.54072289156626"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_isaac_voiceline2.wav</AudioFile>
 													<MediaIDList>
@@ -3567,6 +3572,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_isaac_voiceline3" ID="{39B39732-307B-4FAB-B910-B00B72734BA5}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.448192771084337"/>
+														<Property Name="TrimEnd" Type="Real64" Value="2.46265060240964"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_isaac_voiceline3.wav</AudioFile>
 													<MediaIDList>
@@ -3592,6 +3602,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_isaac_voiceline4" ID="{CCFA1602-05CC-4298-8439-6AA6F1FF95A0}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.297323135755258"/>
+														<Property Name="TrimEnd" Type="Real64" Value="15.1634799235182"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_isaac_voiceline4.wav</AudioFile>
 													<MediaIDList>
@@ -3671,6 +3686,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="Grant_4" ID="{FE2B27DF-BD3A-48C9-A239-D5CAF5B0AFB2}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.379129175479716"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>Grant_4.wav</AudioFile>
 													<MediaIDList>
@@ -4249,6 +4268,9 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_grant_endmissionstub7" ID="{A96BA3AB-2E99-4CAA-A771-B5AEE0EDD1C6}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_grant_endmissionstub7.wav</AudioFile>
 													<MediaIDList>
@@ -4802,6 +4824,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_grant_fourthcomputer1" ID="{AB8DEABC-C576-4C9B-B418-563E51F71B7C}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0.301388361231525"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.301388361231525"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_grant_fourthcomputer1.wav</AudioFile>
 													<MediaIDList>
@@ -4827,6 +4854,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_grant_fourthcomputer2" ID="{1BCA7746-7ECA-4B86-AADE-FE62782DD309}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0.217957235400127"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.217957235400127"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_grant_fourthcomputer2.wav</AudioFile>
 													<MediaIDList>
@@ -4931,6 +4963,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_Stub_fifthcomputer1" ID="{F51E707F-9404-485B-9592-1081A532FB9C}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.168926555506849"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.17109758143512"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_Stub_fifthcomputer1.wav</AudioFile>
 													<MediaIDList>
@@ -4956,6 +4993,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_Sergeant_fifhtcomputer1" ID="{B2703712-D3E2-4A60-9DB0-2F1E25E742E3}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.11293556085919"/>
+														<Property Name="TrimEnd" Type="Real64" Value="3.42515513126492"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_Sergeant_fifhtcomputer1.wav</AudioFile>
 													<MediaIDList>
@@ -4965,6 +5007,68 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="VO_Sergeant_fifhtcomputer1" ID="{B2703712-D3E2-4A60-9DB0-2F1E25E742E3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="Radio SFX" ID="{7DF26F09-6614-4D24-9108-4E99C7A782C2}" ShortID="520056495">
+									<ChildrenList>
+										<Sound Name="VO_Radio_ON" ID="{85613A24-2EC3-413E-B5F6-AFC3CEBF99FA}" ShortID="474136245">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="74195-CB_radio_on_static_tune_off_glitch-BLASTWAVEFX-09135" ID="{C32BBA4A-8F15-4E59-AE1C-31A647F4DC11}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.7302560296846"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>74195-CB_radio_on_static_tune_off_glitch-BLASTWAVEFX-09135.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1046553102"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="74195-CB_radio_on_static_tune_off_glitch-BLASTWAVEFX-09135" ID="{C32BBA4A-8F15-4E59-AE1C-31A647F4DC11}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Radio_OFF" ID="{F551EC07-2B52-4B8F-9F34-1735988B11B2}" ShortID="144318829">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="74195-CB_radio_on_static_tune_off_glitch-BLASTWAVEFX-09135" ID="{2B8977CE-5D81-4ADC-98A5-A55C68861C1B}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.61276950915046"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>74195-CB_radio_on_static_tune_off_glitch-BLASTWAVEFX-09135.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="729424951"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="74195-CB_radio_on_static_tune_off_glitch-BLASTWAVEFX-09135" ID="{2B8977CE-5D81-4ADC-98A5-A55C68861C1B}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>

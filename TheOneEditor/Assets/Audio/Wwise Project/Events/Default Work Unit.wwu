@@ -1856,6 +1856,32 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="Radio" ID="{2ADA25C7-2823-4507-BC46-C58ACE683353}" ShortID="228174816">
+							<ChildrenList>
+								<Event Name="VO_Radio_ON" ID="{497FEF08-167C-4A22-BBE5-E25256DCE13B}">
+									<ChildrenList>
+										<Action Name="" ID="{CF53DA72-451A-437B-889A-63C34D41B25F}" ShortID="114940479">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Radio_ON" ID="{85613A24-2EC3-413E-B5F6-AFC3CEBF99FA}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_Radio_OFF" ID="{5BFD297C-CCF4-4EA7-9672-CD9809AF4C5A}">
+									<ChildrenList>
+										<Action Name="" ID="{F9C49A21-CC81-4F06-AB63-DCA703D138DC}" ShortID="502793261">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Radio_OFF" ID="{F551EC07-2B52-4B8F-9F34-1735988B11B2}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
