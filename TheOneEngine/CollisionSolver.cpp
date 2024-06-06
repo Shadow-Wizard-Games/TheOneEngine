@@ -282,7 +282,8 @@ void CollisionSolver::DrawCollisions() {
             Renderer2D::DrawRect(BatchType::EDITOR, model, color);
         }
         else if (collider->colliderType == ColliderType::Circle) {
-            float radius = collider->radius;
+            float radius = collider->radius * 2;
+            position.y += 1;
             glm::mat4 circleTransform = glm::translate(glm::mat4(1.0f), position)
                 * glm::rotate(glm::mat4(1), glm::radians(90.0f), glm::vec3(1, 0, 0))
                 * glm::scale(glm::mat4(1.0f), glm::vec3(radius, radius, radius));
