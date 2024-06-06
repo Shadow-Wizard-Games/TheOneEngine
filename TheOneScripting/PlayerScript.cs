@@ -62,7 +62,7 @@ public class PlayerScript : MonoBehaviour
     public Item_ShoulderLaser ItemShoulderLaser;
 
     IGameObject M4GO;
-    IGameObject ShoulderLaserGO;
+    public IGameObject ShoulderLaserGO;
     public IGameObject ImpacienteGO;
     public IGameObject FlamethrowerGO;
     //IGameObject GrenadeLauncherGO;
@@ -200,39 +200,39 @@ public class PlayerScript : MonoBehaviour
 
         #region PLAYERSTATESWITCH
         
-            switch (currentAction)
-            {
-                case CurrentAction.IDLE:
-                    IdleAction();
-                    break;
-                case CurrentAction.RUN:
-                    RunAction();
-                    break;
-                case CurrentAction.SHOOT:
-                    ShootAction();
-                    break;
-                case CurrentAction.RUNSHOOT:
-                    RunShootAction();
-                    break;
-                case CurrentAction.ADRENALINERUSH:
-                    AdrenalineRushAction();
-                    break;
-                case CurrentAction.RUNADRENALINERUSH:
-                    RunAdrenalineRushAction();
-                    break;
-                case CurrentAction.HEAL:
-                    HealAction();
-                    break;
-                case CurrentAction.RUNHEAL:
-                    RunHealAction();
-                    break;
-                case CurrentAction.DASH:
-                    DashAction();
-                    break;
-                case CurrentAction.DEAD:
-                    DeadAction();
-                    break;
-            }
+        switch (currentAction)
+        {
+            case CurrentAction.IDLE:
+                IdleAction();
+                break;
+            case CurrentAction.RUN:
+                RunAction();
+                break;
+            case CurrentAction.SHOOT:
+                ShootAction();
+                break;
+            case CurrentAction.RUNSHOOT:
+                RunShootAction();
+                break;
+            case CurrentAction.ADRENALINERUSH:
+                AdrenalineRushAction();
+                break;
+            case CurrentAction.RUNADRENALINERUSH:
+                RunAdrenalineRushAction();
+                break;
+            case CurrentAction.HEAL:
+                HealAction();
+                break;
+            case CurrentAction.RUNHEAL:
+                RunHealAction();
+                break;
+            case CurrentAction.DASH:
+                DashAction();
+                break;
+            case CurrentAction.DEAD:
+                DeadAction();
+                break;
+        }
         
         if(waitForAnimationToFinish > 0)
         {
@@ -401,14 +401,16 @@ public class PlayerScript : MonoBehaviour
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
                 waitForAnimationToFinish = 0.3f;
-                Debug.LogWarning("bitch");
             }
         }
         if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
         {
             if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY 
                 && managers.itemManager.CheckItemInInventory(8))
+            {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
+                Flamethrower.Activated();
+            }
         }
 
 
@@ -442,7 +444,7 @@ public class PlayerScript : MonoBehaviour
                     break;
                 case CurrentWeapon.FLAMETHROWER:
                     FlamethrowerGO.Disable();
-                    Flamethrower.state = AbilityFlamethrower.AbilityState.COOLDOWN;
+                    //Flamethrower.state = AbilityFlamethrower.AbilityState.COOLDOWN;
                     Debug.Log("Flamethrower on Cooldown");
                     break;
                 case CurrentWeapon.GRENADELAUNCHER:
