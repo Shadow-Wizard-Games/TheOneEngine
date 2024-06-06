@@ -30,28 +30,28 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 1076525889
+          "UID": 2943957545
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 3212563083
+          "UID": 1370508614
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 645125448
+          "UID": 4129695116
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": true,
       "Name": "Manager",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 3452816845
     },
@@ -100,14 +100,14 @@
           "ParentUID": 0,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 1523976905
+          "UID": 1329246655
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 0
     },
@@ -1590,7 +1590,7 @@
               "ParentUID": 7602275,
               "ScriptName": "EventNextRoom",
               "Type": 4,
-              "UID": 53757042
+              "UID": 480340351
             }
           ],
           "Enabled": true,
@@ -1647,7 +1647,7 @@
               "ParentUID": 7602275,
               "ScriptName": "EventNextRoom",
               "Type": 4,
-              "UID": 2658478568
+              "UID": 631950272
             }
           ],
           "Enabled": true,
@@ -1927,7 +1927,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 7602275
     },
@@ -3323,7 +3323,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 1102577664
     },
@@ -4584,7 +4584,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 7602275
     },
@@ -5162,7 +5162,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 1006632960
     },
@@ -5196,7 +5196,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L2R4",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 1156579328
     },
@@ -5230,7 +5230,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L2R2",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
       "UID": 7602275
     },
@@ -5280,10 +5280,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AdultXenomorphBehaviour",
           "Type": 4,
-          "UID": 4089298973
+          "UID": 2115594080
         },
         {
-          "AudioID": 148,
+          "AudioID": 49,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -5544,7 +5544,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "AdultXenomorph (1)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 1030944986,
       "PrefabName": "AdultXenomorph",
@@ -5597,10 +5597,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AdultXenomorphBehaviour",
           "Type": 4,
-          "UID": 759288307
+          "UID": 3394363611
         },
         {
-          "AudioID": 149,
+          "AudioID": 50,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -5861,7 +5861,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "AdultXenomorph (2)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 1030944986,
       "PrefabName": "AdultXenomorph",
@@ -5914,10 +5914,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AdultXenomorphBehaviour",
           "Type": 4,
-          "UID": 4061968354
+          "UID": 2030427577
         },
         {
-          "AudioID": 150,
+          "AudioID": 51,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -6178,7 +6178,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "AdultXenomorph (3)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 1030944986,
       "PrefabName": "AdultXenomorph",
@@ -6242,7 +6242,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 151,
+          "AudioID": 52,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -6251,7 +6251,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "RedXenomorphBehaviour",
           "Type": 4,
-          "UID": 3559214987
+          "UID": 4213349299
         }
       ],
       "EditablePrefab": true,
@@ -6495,7 +6495,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "RedXenomorph (1)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": true,
       "PrefabID": 1749398551,
       "PrefabName": "RedXenomorph",
@@ -6559,7 +6559,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 152,
+          "AudioID": 53,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -6568,7 +6568,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "RedXenomorphBehaviour",
           "Type": 4,
-          "UID": 2145520436
+          "UID": 630374317
         }
       ],
       "EditablePrefab": true,
@@ -6812,7 +6812,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "RedXenomorph (2)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": true,
       "PrefabID": 1749398551,
       "PrefabName": "RedXenomorph",
@@ -6876,7 +6876,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 153,
+          "AudioID": 54,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -6885,7 +6885,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "WhiteXenomorphBehaviour",
           "Type": 4,
-          "UID": 3599692425
+          "UID": 1470616801
         }
       ],
       "EditablePrefab": true,
@@ -7129,7 +7129,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WhiteXenomorph (1)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": true,
       "PrefabID": 3608524157,
       "PrefabName": "WhiteXenomorph",
@@ -7182,10 +7182,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AdultXenomorphBehaviour",
           "Type": 4,
-          "UID": 498640931
+          "UID": 1772322115
         },
         {
-          "AudioID": 154,
+          "AudioID": 55,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -7446,7 +7446,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "AdultXenomorph (4)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 1030944986,
       "PrefabName": "AdultXenomorph",
@@ -7499,10 +7499,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "FaceHuggerBehaviour",
           "Type": 4,
-          "UID": 2727191072
+          "UID": 1256687484
         },
         {
-          "AudioID": 155,
+          "AudioID": 56,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -7527,7 +7527,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Facehugger1 (1)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 3138940538,
       "PrefabName": "Facehugger1",
@@ -7595,10 +7595,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 3972113014
+          "UID": 717404579
         },
         {
-          "AudioID": 156,
+          "AudioID": 57,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -7800,7 +7800,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (1)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -7868,10 +7868,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 1291750357
+          "UID": 1034208717
         },
         {
-          "AudioID": 157,
+          "AudioID": 58,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -8073,7 +8073,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (2)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -8141,10 +8141,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 2531759837
+          "UID": 1859127568
         },
         {
-          "AudioID": 158,
+          "AudioID": 59,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -8346,7 +8346,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (3)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -8414,10 +8414,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 3889778808
+          "UID": 1454937945
         },
         {
-          "AudioID": 159,
+          "AudioID": 60,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -8619,7 +8619,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (4)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -8683,7 +8683,7 @@
           "Width": -1.7976931348623157e+308
         },
         {
-          "AudioID": 160,
+          "AudioID": 61,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -8692,7 +8692,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "RedXenomorphBehaviour",
           "Type": 4,
-          "UID": 1221555851
+          "UID": 540830545
         }
       ],
       "EditablePrefab": true,
@@ -8936,7 +8936,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "RedXenomorph (3)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": true,
       "PrefabID": 1749398551,
       "PrefabName": "RedXenomorph",
@@ -9004,10 +9004,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 1138713484
+          "UID": 3433607590
         },
         {
-          "AudioID": 161,
+          "AudioID": 62,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -9209,7 +9209,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (5)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -9277,10 +9277,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 543124908
+          "UID": 2397101341
         },
         {
-          "AudioID": 162,
+          "AudioID": 63,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -9482,7 +9482,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (6)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -9550,10 +9550,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 2795192873
+          "UID": 2082987307
         },
         {
-          "AudioID": 163,
+          "AudioID": 64,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -9755,7 +9755,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (7)",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -9808,10 +9808,10 @@
           "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 2460028008
+          "UID": 534304915
         },
         {
-          "AudioID": 164,
+          "AudioID": 65,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -10229,63 +10229,63 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 182196977
+              "UID": 3312362730
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 2505569851
+              "UID": 1972878818
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 3414493422
+              "UID": 539702567
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 3856103569
+              "UID": 1554218217
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 1600280351
+              "UID": 3181484346
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 1926156182
+              "UID": 3822069430
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 2578193997
+              "UID": 3348599732
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 1602463847
+              "UID": 3562452418
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 67616182
+              "UID": 1090976267
             }
           ],
           "Enabled": true,
@@ -10947,7 +10947,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -10984,10 +10984,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiManager",
           "Type": 4,
-          "UID": 3485009239
+          "UID": 3527772437
         },
         {
-          "AudioID": 165,
+          "AudioID": 66,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -12086,10 +12086,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptInventory",
               "Type": 4,
-              "UID": 3199326860
+              "UID": 2954005798
             },
             {
-              "AudioID": 166,
+              "AudioID": 67,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -12391,7 +12391,7 @@
               ]
             },
             {
-              "AudioID": 167,
+              "AudioID": 68,
               "Name": "Source",
               "Type": 8
             },
@@ -12400,7 +12400,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptPause",
               "Type": 4,
-              "UID": 3885123873
+              "UID": 3018941725
             }
           ],
           "Enabled": false,
@@ -12441,7 +12441,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptHud",
               "Type": 4,
-              "UID": 2712066506
+              "UID": 3730835685
             },
             {
               "DebugDraw": true,
@@ -14244,10 +14244,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptDebug",
               "Type": 4,
-              "UID": 2800131684
+              "UID": 881626806
             },
             {
-              "AudioID": 168,
+              "AudioID": 69,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -14637,7 +14637,7 @@
               ]
             },
             {
-              "AudioID": 169,
+              "AudioID": 70,
               "Name": "AudioSource",
               "Type": 8
             },
@@ -14646,7 +14646,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptMissions",
               "Type": 4,
-              "UID": 3516309178
+              "UID": 1479341327
             }
           ],
           "Enabled": false,
@@ -14838,7 +14838,7 @@
                   ]
                 },
                 {
-                  "AudioID": 170,
+                  "AudioID": 71,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -15038,7 +15038,7 @@
                   ]
                 },
                 {
-                  "AudioID": 171,
+                  "AudioID": 72,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -15238,7 +15238,7 @@
                   ]
                 },
                 {
-                  "AudioID": 172,
+                  "AudioID": 73,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -15438,7 +15438,7 @@
                   ]
                 },
                 {
-                  "AudioID": 173,
+                  "AudioID": 74,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -15631,7 +15631,7 @@
               ]
             },
             {
-              "AudioID": 174,
+              "AudioID": 75,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -17644,7 +17644,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptStats",
               "Type": 4,
-              "UID": 1632955623
+              "UID": 3834068800
             }
           ],
           "Enabled": false,
@@ -17791,7 +17791,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettings",
               "Type": 4,
-              "UID": 3144220050
+              "UID": 1991319091
             }
           ],
           "Enabled": false,
@@ -17860,7 +17860,7 @@
                   ]
                 },
                 {
-                  "AudioID": 175,
+                  "AudioID": 76,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -18797,10 +18797,10 @@
                   "ParentUID": 3452816845,
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
-                  "UID": 2785637663
+                  "UID": 1511825194
                 },
                 {
-                  "AudioID": 176,
+                  "AudioID": 77,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -18909,7 +18909,7 @@
               ]
             },
             {
-              "AudioID": 177,
+              "AudioID": 78,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -19034,7 +19034,7 @@
               ]
             },
             {
-              "AudioID": 178,
+              "AudioID": 79,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -19051,7 +19051,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
@@ -19063,25 +19063,25 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -0.7662663459777832,
+            1.0,
             0.0,
-            -0.642522931098938,
+            0.0,
             0.0,
             0.0,
             1.0,
             0.0,
             0.0,
-            0.642522931098938,
             0.0,
-            -0.7662663459777832,
             0.0,
-            290.27081298828125,
-            -9.195243183057755e-05,
-            -298.53875732421875,
+            1.0,
+            0.0,
+            280.2626037597656,
+            0.0,
+            -328.9598388671875,
             1.0
           ],
           "Type": 0,
-          "UID": 3548231825
+          "UID": 3687802675
         },
         {
           "Active": true,
@@ -19091,29 +19091,103 @@
           "DrawNormalsVerts": false,
           "DrawOBB": false,
           "DrawWireframe": false,
-          "MaterialPath": "",
-          "MeshPath": "Library/Meshes/WP_Flamethrower/WP_Flamethrower.mesh",
+          "MaterialPath": "Library/Materials/SM_PotsAndPans/M_PotsAndPans.toematerial",
+          "MeshPath": "Library/Meshes/SM_PotsAndPans/SM_PotsAndPans.mesh",
           "MeshType": 0,
           "Name": "Mesh",
-          "ParentUID": 3583780768,
+          "ParentUID": 130170880,
           "Type": 2,
-          "UID": 4173604182
+          "UID": 1177508660
         },
         {
           "Name": "Script",
-          "ParentUID": 3583780768,
+          "ParentUID": 130170880,
           "ScriptName": "EventCollectible",
           "Type": 4,
-          "UID": 2224333526
+          "UID": 2067226985
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                7.903711318969727,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1166005556
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2586172960,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 3529484949,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                0.0,
+                0.1931113302707672,
+                0.2229299545288086
+              ],
+              "InnerCutOff": 0.9100000262260437,
+              "Intensity": -0.07000000029802322,
+              "LightType": 1,
+              "Linear": -5.039999961853027,
+              "Name": "Light",
+              "OuterCutOff": 0.8199999928474426,
+              "ParentUID": 2586172960,
+              "Quadratic": 0.23999999463558197,
+              "Radius": 21.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 420605514
+            }
+          ],
+          "EditablePrefab": true,
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "Tutorial_light",
+          "ParentUID": 130170880,
+          "PrefabDirty": false,
+          "PrefabID": 548923455,
+          "PrefabName": "Tutorial_light",
+          "Static": false,
+          "UID": 2586172960
+        }
+      ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Collectible8",
-      "ParentUID": 7602275,
+      "ParentUID": 2,
       "Static": false,
-      "UID": 3583780768
+      "UID": 130170880
     }
   ],
   "index": 0,
