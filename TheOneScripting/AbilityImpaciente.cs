@@ -67,12 +67,10 @@
             case AbilityState.ACTIVE:
 
                 WhileActive();
-                Debug.Log("Active time = " + activeTimeCounter.ToString("F2"));
                 break;
             case AbilityState.COOLDOWN:
 
                 OnCooldown();
-                Debug.Log("Cooldown time = " + cooldownTimeCounter.ToString("F2"));
                 break;
         }
     }
@@ -103,7 +101,11 @@
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
                 speedModification = 0;
-                player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+                if(player.currentSkillSet == PlayerScript.SkillSet.M4A1SET)
+                    player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+                else if(player.currentSkillSet == PlayerScript.SkillSet.SHOULDERLASERSET)
+                    player.currentWeaponType = PlayerScript.CurrentWeapon.SHOULDERLASER;
+
                 player.currentWeaponDamage = damage;
 
                 activeTimeCounter = activeTime;
