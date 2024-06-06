@@ -1,0 +1,72 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        127.61261749267578,
+        14.11614990234375,
+        593.1995239257813,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1166005556
+    },
+    {
+      "Aspect": 1.777,
+      "CameraType": 0,
+      "FOV": 65.0,
+      "Name": "Camera",
+      "ParentUID": 2586172960,
+      "Pitch": 0.0,
+      "PrimaryCamera": false,
+      "Size": 200.0,
+      "Type": 1,
+      "UID": 3529484949,
+      "Yaw": 0.0,
+      "zFar": 3000.0,
+      "zNear": 10.0
+    },
+    {
+      "Color": [
+        0.0,
+        0.1931113302707672,
+        0.2229299545288086
+      ],
+      "InnerCutOff": 0.9100000262260437,
+      "Intensity": -0.07000000029802322,
+      "LightType": 1,
+      "Linear": -5.039999961853027,
+      "Name": "Light",
+      "OuterCutOff": 0.8199999928474426,
+      "ParentUID": 2586172960,
+      "Quadratic": 0.23999999463558197,
+      "Radius": 21.0,
+      "Specular": 0.5,
+      "Type": 11,
+      "UID": 420605514
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Tutorial_light",
+  "ParentUID": 1046265010,
+  "PrefabDirty": false,
+  "PrefabID": 548923455,
+  "PrefabName": "Tutorial_light",
+  "Static": false,
+  "UID": 2586172960
+}
