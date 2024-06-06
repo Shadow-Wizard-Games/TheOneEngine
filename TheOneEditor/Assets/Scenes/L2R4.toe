@@ -45,7 +45,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 7602275,
+      "ParentUID": 2827732208,
       "Static": false,
       "UID": 0
     },
@@ -3903,7 +3903,7 @@
               "ParentUID": 7602275,
               "ScriptName": "EventNextRoom",
               "Type": 4,
-              "UID": 4193773032
+              "UID": 3476528150
             }
           ],
           "Enabled": true,
@@ -4213,7 +4213,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 7602275,
+      "ParentUID": 2827732208,
       "Static": false,
       "UID": 2935709504
     },
@@ -4360,7 +4360,7 @@
                 0.0
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 3.200000047683716,
+              "Intensity": 5.599999904632568,
               "LightType": 0,
               "Linear": 0.699999988079071,
               "Name": "Light",
@@ -6629,7 +6629,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 7602275,
+      "ParentUID": 2827732208,
       "Static": false,
       "UID": 1006632960
     },
@@ -7645,7 +7645,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Colliders",
-      "ParentUID": 7602275,
+      "ParentUID": 2827732208,
       "Static": false,
       "UID": 1148416320
     },
@@ -8083,7 +8083,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 7602275,
+      "ParentUID": 2827732208,
       "Static": false,
       "UID": 557418880
     },
@@ -8117,9 +8117,3799 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L2R3",
-      "ParentUID": 7602275,
+      "ParentUID": 2827732208,
       "Static": false,
       "UID": 3019591184
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            48.238929748535156,
+            0.0,
+            87.5956802368164,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -87.5956802368164,
+            0.0,
+            48.238929748535156,
+            0.0,
+            -196.45208740234375,
+            0.0,
+            -371.2146301269531,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 985319415
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_RedXenomorph_Tpose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_RedXenomorph_Tpose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1334431832
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2196806084,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 0,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "RedXenomorphBehaviour",
+          "Type": 4,
+          "UID": 1649381862
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 167692577
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 393952824
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2027928227
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1443711181
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "RedXenomorph",
+      "ParentUID": 2827732208,
+      "PrefabDirty": true,
+      "PrefabID": 1749398551,
+      "PrefabName": "RedXenomorph",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -63.39606857299805,
+            0.0,
+            77.33651733398438,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -77.33651733398438,
+            0.0,
+            -63.39606857299805,
+            0.0,
+            -57.00279998779297,
+            0.0,
+            -27.89715576171875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 272006132
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Xenomorph_TPose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_Xenomorph_TPose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2057598763
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AdultXenomorphBehaviour",
+          "Type": 4,
+          "UID": 47809025
+        },
+        {
+          "AudioID": 1,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2189140278,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1712445284
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "AcidSpitPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1718159920
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3383502000
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 2644513895
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "AdultXenomorph",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 1030944986,
+      "PrefabName": "AdultXenomorph",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -99.85039520263672,
+            0.0,
+            5.467819690704346,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -5.467819690704346,
+            0.0,
+            -99.85039520263672,
+            0.0,
+            -322.1610412597656,
+            0.0,
+            5.965300559997559,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 272006132
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Xenomorph_TPose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_Xenomorph_TPose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2057598763
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AdultXenomorphBehaviour",
+          "Type": 4,
+          "UID": 2300245593
+        },
+        {
+          "AudioID": 2,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2189140278,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1712445284
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "AcidSpitPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1718159920
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3383502000
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 2644513895
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "AdultXenomorph (1)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 1030944986,
+      "PrefabName": "AdultXenomorph",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -64.06489562988281,
+            0.0,
+            -76.78338623046875,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            76.78338623046875,
+            0.0,
+            -64.06489562988281,
+            0.0,
+            -420.4262390136719,
+            0.0,
+            357.4190368652344,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 565314416
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Facehugger_T_Pose/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3161710859
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2034958470
+        },
+        {
+          "AudioID": 3,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1406986783,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger1",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 3138940538,
+      "PrefabName": "Facehugger1",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -92.0834732055664,
+            0.0,
+            -38.99528884887695,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            38.99528884887695,
+            0.0,
+            -92.0834732055664,
+            0.0,
+            -488.30859375,
+            0.0,
+            300.988037109375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 565314416
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Facehugger_T_Pose/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3161710859
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2239924886
+        },
+        {
+          "AudioID": 4,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1406986783,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger1 (1)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 3138940538,
+      "PrefabName": "Facehugger1",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -70.22655487060547,
+            0.0,
+            -71.19149780273438,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            71.19149780273438,
+            0.0,
+            -70.22655487060547,
+            0.0,
+            -460.7264709472656,
+            0.0,
+            346.2063293457031,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 1425313688
+        },
+        {
+          "AudioID": 5,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -99.96477508544922,
+            0.0,
+            -2.653639793395996,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            2.653639793395996,
+            0.0,
+            -99.96477508544922,
+            0.0,
+            -507.13604736328125,
+            2.3123247956391424e-05,
+            338.53167724609375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 3578383735
+        },
+        {
+          "AudioID": 6,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster (1)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -90.03095245361328,
+            0.0,
+            -43.52500534057617,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            43.52500534057617,
+            0.0,
+            -90.03095245361328,
+            0.0,
+            -434.8923645019531,
+            0.0,
+            400.5879211425781,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 290158328
+        },
+        {
+          "AudioID": 7,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster (2)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -60.403568267822266,
+            0.0,
+            -79.69571685791016,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            79.69571685791016,
+            0.0,
+            -60.403568267822266,
+            0.0,
+            -377.5160217285156,
+            0.0001220703125,
+            386.7589111328125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 4063481404
+        },
+        {
+          "AudioID": 8,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster (3)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            45.42711639404297,
+            0.0,
+            89.0863265991211,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -89.0863265991211,
+            0.0,
+            45.42711639404297,
+            0.0,
+            187.9164276123047,
+            0.0,
+            351.0458679199219,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4018285516
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_WhiteXenomorph_Tpose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_WhiteXenomorph_Tpose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1608953504
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 326866686,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 9,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "WhiteXenomorphBehaviour",
+          "Type": 4,
+          "UID": 2183482937
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3044431152
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1202676231
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 603699650
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1056241720
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WhiteXenomorph",
+      "ParentUID": 2827732208,
+      "PrefabDirty": true,
+      "PrefabID": 3608524157,
+      "PrefabName": "WhiteXenomorph",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            17.897560119628906,
+            0.0,
+            98.38533782958984,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -98.38533782958984,
+            0.0,
+            17.897560119628906,
+            0.0,
+            476.3111267089844,
+            0.0,
+            196.2362060546875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4018285516
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_WhiteXenomorph_Tpose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_WhiteXenomorph_Tpose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1608953504
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 326866686,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 10,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "WhiteXenomorphBehaviour",
+          "Type": 4,
+          "UID": 1873039241
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3044431152
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1202676231
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 603699650
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1056241720
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WhiteXenomorph (1)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": true,
+      "PrefabID": 3608524157,
+      "PrefabName": "WhiteXenomorph",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            94.58151245117188,
+            0.0,
+            32.47052001953125,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -32.47052001953125,
+            0.0,
+            94.58151245117188,
+            0.0,
+            283.8807067871094,
+            0.0001220703125,
+            -123.03620910644531,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4018285516
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_WhiteXenomorph_Tpose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_WhiteXenomorph_Tpose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 1608953504
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 326866686,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "AudioID": 11,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "WhiteXenomorphBehaviour",
+          "Type": 4,
+          "UID": 3706261951
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3044431152
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1202676231
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 603699650
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1056241720
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WhiteXenomorph (2)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": true,
+      "PrefabID": 3608524157,
+      "PrefabName": "WhiteXenomorph",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            84.94383239746094,
+            0.0,
+            -52.76876449584961,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            52.76876449584961,
+            0.0,
+            84.94383239746094,
+            0.0,
+            186.72479248046875,
+            0.0,
+            -385.06951904296875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 272006132
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Xenomorph_TPose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_Xenomorph_TPose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2057598763
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AdultXenomorphBehaviour",
+          "Type": 4,
+          "UID": 2980781736
+        },
+        {
+          "AudioID": 12,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2189140278,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1712445284
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "AcidSpitPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1718159920
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3383502000
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 2644513895
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "AdultXenomorph (2)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 1030944986,
+      "PrefabName": "AdultXenomorph",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -51.238975524902344,
+            0.0,
+            85.87528991699219,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            -85.87528991699219,
+            0.0,
+            -51.238975524902344,
+            0.0,
+            724.1177978515625,
+            0.0,
+            -359.1544494628906,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 272006132
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Xenomorph_TPose/M_Xenomorph.toematerial",
+          "MeshPath": "Library/Meshes/AS_Xenomorph_TPose/Xenomorph.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 2057598763
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AdultXenomorphBehaviour",
+          "Type": 4,
+          "UID": 1860601390
+        },
+        {
+          "AudioID": 13,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 2189140278,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.4798360824584961,
+                0.11435007095336915,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 1712445284
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.2000000476837158,
+                  "Duration": 2.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    },
+                    {
+                      "MaxColor": [
+                        0.0,
+                        0.3921568691730499,
+                        0.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.0,
+                        0.7843137383460999,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": false
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 50.0,
+                      "Duration": 0.20000000298023224,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "AcidSpitPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1718159920
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "AcidSpitPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3383502000
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 1.0,
+                  "Duration": 0.800000011920929,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        1.0,
+                        1.0,
+                        1.0
+                      ],
+                      "MinDirection": [
+                        -1.0,
+                        0.0,
+                        -1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 40.0,
+                      "MinSpeed": 20.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 1.0,
+                      "SpawnRate": 100.0,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 2644513895
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailAttackPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "AdultXenomorph (3)",
+      "ParentUID": 2827732208,
+      "PrefabDirty": false,
+      "PrefabID": 1030944986,
+      "PrefabName": "AdultXenomorph",
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "index": 0,
