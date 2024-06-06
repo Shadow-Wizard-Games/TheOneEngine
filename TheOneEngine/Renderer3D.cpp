@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "Resources.h"
 #include "Shader.h"
+#include "Material.h"
 #include "EngineCore.h"
 #include "N_SceneManager.h"
 #include "SkeletalUtilities.h"
@@ -669,7 +670,7 @@ void Renderer3D::LightPass(RenderTarget target)
 		{
 			case LightType::Directional:
 			{
-				string iteration = to_string(directionalLightNum);
+				std::string iteration = std::to_string(directionalLightNum);
 				mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
 				mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
 				mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
@@ -679,7 +680,7 @@ void Renderer3D::LightPass(RenderTarget target)
 			}
 			case LightType::Point:
 			{
-				string iteration = to_string(pointLightNum);
+				std::string iteration = std::to_string(pointLightNum);
 				mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
 				mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
 				mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
@@ -691,7 +692,7 @@ void Renderer3D::LightPass(RenderTarget target)
 			}
 			case LightType::Spot:
 			{
-				string iteration = to_string(spotLightNum);
+				std::string iteration = std::to_string(spotLightNum);
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
@@ -724,9 +725,6 @@ void Renderer3D::IndexPass(RenderTarget target)
 		if (call.HasEffect())
 			DrawSkeletal(call);
 	}
-
-	if (Renderer::Settings()->particles.isEnabled)
-		Renderer2D::Update(BatchType::WORLD, target);
 
 	//Renderer2D::UpdateIndexed(BatchType::WORLD, target);
 }
@@ -775,6 +773,66 @@ void Renderer3D::CRTShader(RenderTarget target)
 	uiBuffer->Unbind();
 }
 
+void Renderer3D::SetUniformsParticleShader(ResourceId materialID, RenderTarget target)
+{
+	uint directionalLightNum = 0;
+	uint pointLightNum = 0;
+	uint spotLightNum = 0;
+
+	Material* mat = Resources::GetResourceById<Material>(Renderer2D::GetParticleMaterialID());
+	Shader* shader = mat->getShader();
+	shader->Bind();
+
+	for (int i = 0; i < renderer3D.lights.size(); i++)
+	{
+		Light* light = renderer3D.lights[i]->GetComponent<Light>();
+		Transform* transform = renderer3D.lights[i]->GetComponent<Transform>();
+
+		Transform* cameraTransform = target.GetCamera()->GetContainerGO().get()->GetComponent<Transform>();
+		mat->SetUniformData("camPos", (glm::vec3)cameraTransform->GetGlobalPosition());
+
+		// Uniform data MUST be float!!!
+		switch (light->lightType)
+		{
+			case LightType::Directional:
+			{
+				std::string iteration = std::to_string(directionalLightNum);
+				mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", light->intensity);
+				directionalLightNum++;
+				break;
+			}
+			case LightType::Point:
+			{
+				std::string iteration = std::to_string(pointLightNum);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
+				mat->SetUniformData("u_PointLights[" + iteration + "].Radius", light->radius);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Linear", light->linear);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", light->quadratic);
+				pointLightNum++;
+				break;
+			}
+			case LightType::Spot:
+			{
+				std::string iteration = std::to_string(spotLightNum);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", light->intensity);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", light->radius);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", light->linear);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", light->quadratic);
+				spotLightNum++;
+				break;
+			}
+		}
+	}
+
+	mat->Bind();
+}
+
 // Init Shaders
 void Renderer3D::InitPreLightingShader()
 {
@@ -799,7 +857,6 @@ void Renderer3D::InitPreLightingShader()
 
 void Renderer3D::InitPostLightingShader()
 {
-	GLERR;
 	ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PostLightingShader");
 	Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
 	textShader->Compile("Assets/Shaders/PostLightingShader");
@@ -811,7 +868,7 @@ void Renderer3D::InitPostLightingShader()
 
 	for (uint i = 0; i < 4; i++)
 	{
-		string iteration = to_string(i);
+		std::string iteration = std::to_string(i);
 		textShader->addUniform("u_DirLight[" + iteration + "].Position", UniformType::fVec3);
 		textShader->addUniform("u_DirLight[" + iteration + "].Color", UniformType::fVec3);
 		textShader->addUniform("u_DirLight[" + iteration + "].Intensity", UniformType::Float);
@@ -821,7 +878,7 @@ void Renderer3D::InitPostLightingShader()
 
 	for (uint i = 0; i < 32; i++)
 	{
-		string iteration = to_string(i);
+		std::string iteration = std::to_string(i);
 		textShader->addUniform("u_PointLights[" + iteration + "].Position", UniformType::fVec3);
 		textShader->addUniform("u_PointLights[" + iteration + "].Color", UniformType::fVec3);
 		textShader->addUniform("u_PointLights[" + iteration + "].Intensity", UniformType::Float);
@@ -832,7 +889,7 @@ void Renderer3D::InitPostLightingShader()
 
 	for (uint i = 0; i < 16; i++)
 	{
-		string iteration = to_string(i);
+		std::string iteration = std::to_string(i);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Color", UniformType::fVec3);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Intensity", UniformType::Float);

@@ -81,10 +81,13 @@ public:
 	static void ResetStats();
 	static Statistics GetStats();
 
+	static void InitParticleShader();
+	static ResourceId GetParticleMaterialID();
+
 private:
 	static void NextQuadBatch(Batch& batch);
 
-	static void DrawQuadBatch(const Batch& batch, BatchType type);
+	static void DrawQuadBatch(const Batch& batch, BatchType type, RenderTarget target);
 	static void DrawQuadIndexedBatch(const Batch& batch);
 	static void DrawCircleBatch(const Batch& batch);
 	static void DrawLineBatch(const Batch& batch);

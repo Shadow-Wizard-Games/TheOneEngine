@@ -3,8 +3,10 @@
 #include "Defs.h"
 #include "VertexArray.h"
 #include "GameObject.h"
+#include "Resource.h"
 #include "Camera.h"
 #include "Light.h"
+#include "Shader.h"
 #include "RenderTarget.h"
 #include "FrameBuffer.h"
 
@@ -105,6 +107,8 @@ public:
 	static void LightPass(RenderTarget target);
 	static void UIComposition(RenderTarget target);
 	static void CRTShader(RenderTarget target);
+
+	static void SetUniformsParticleShader(ResourceId materialID, RenderTarget target);
 
 	static void AddLight(std::shared_ptr<GameObject> container);
 	static void RemoveLight(std::shared_ptr<GameObject> container);

@@ -62,13 +62,11 @@ public class AbilityFlamethrower : MonoBehaviour
             case AbilityState.ACTIVE:
 
                 WhileActive();
-                Debug.Log("Active time = " + activeTimeCounter.ToString("F2"));
                 break;
 
             case AbilityState.COOLDOWN:
 
                 OnCooldown();
-                Debug.Log("Cooldown time = " + cooldownTimeCounter.ToString("F2"));
                 break;
 
         }

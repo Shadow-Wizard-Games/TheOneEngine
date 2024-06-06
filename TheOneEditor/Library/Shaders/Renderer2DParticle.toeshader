@@ -1,0 +1,1258 @@
+{
+  "fragment": "#version 450 core\n\nlayout(location = 0) out vec4 o_Color;\n\nstruct VertexOutput\n{\n\tvec4 Color;\n\tvec2 TexCoord;\n\tfloat TilingFactor;\n};\n\nlayout(location = 0) in VertexOutput Input;\nlayout(location = 3) in flat float v_TexIndex;\n\nlayout(binding = 0) uniform sampler2D u_Textures[32];\n\n// Lights\nconst int MAX_DIRECTIONAL_LIGHTS = 4;\nconst int MAX_POINT_LIGHTS = 32;\nconst int MAX_SPOT_LIGHTS = 16;\n\nstruct DirLight\n{\n    vec3 Color;\n    float Intensity;\n};\n\nstruct PointLight\n{\n    vec3 Color;\n    float Intensity;\n    vec3 Position;   \n    float Radius;\n    float Linear;\n    float Quadratic;  \n}; \n\nstruct SpotLight\n{\n    vec3 Color;\n    float Intensity;\n    vec3 Position;\n    vec3 Direction;\n    float Radius;\n    float Linear;\n    float Quadratic;\n};\n\nuniform DirLight u_DirLight[MAX_DIRECTIONAL_LIGHTS];\nuniform PointLight u_PointLights[MAX_POINT_LIGHTS];\nuniform SpotLight u_SpotLights[MAX_SPOT_LIGHTS];\n\nin vec3 particlePos;\nuniform vec3 camPos;\n\n\nvec3 CalcDirLight(DirLight light)\n{\n    return light.Color * light.Intensity * 0.1;\n}\n\nvec3 CalcPointLight(PointLight light, vec3 texColor)\n{\n    float distance = length(light.Position - particlePos);\n    if(distance > light.Radius) return vec3(0.0);\n\n    float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);\n    return texColor * light.Color;// * light.Intensity * 500.0 * attenuation;\n}\n\nvec3 CalcSpotLight(SpotLight light, vec3 texColor, vec3 particleNormal)\n{\n    float distance = length(light.Position - particlePos);\n    if(distance > light.Radius) return vec3(0.0);\n\n    // diffuse\n    vec3 lightDir = normalize(light.Position - particlePos);\n    float diffuse = abs(dot(particleNormal, lightDir));\n\n    float attenuation = 1.0 / (1.0 + light.Linear * distance + light.Quadratic * distance * distance);\n\n    return texColor * diffuse * light.Color * light.Intensity * 500.0 * attenuation;\n}\n\nvoid main()\n{\n\tvec4 texColor = Input.Color;\n\n\tswitch(int(v_TexIndex))\n\t{\n\t\tcase  0: texColor *= texture(u_Textures[ 0], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  1: texColor *= texture(u_Textures[ 1], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  2: texColor *= texture(u_Textures[ 2], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  3: texColor *= texture(u_Textures[ 3], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  4: texColor *= texture(u_Textures[ 4], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  5: texColor *= texture(u_Textures[ 5], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  6: texColor *= texture(u_Textures[ 6], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  7: texColor *= texture(u_Textures[ 7], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  8: texColor *= texture(u_Textures[ 8], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase  9: texColor *= texture(u_Textures[ 9], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 10: texColor *= texture(u_Textures[10], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 11: texColor *= texture(u_Textures[11], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 12: texColor *= texture(u_Textures[12], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 13: texColor *= texture(u_Textures[13], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 14: texColor *= texture(u_Textures[14], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 15: texColor *= texture(u_Textures[15], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 16: texColor *= texture(u_Textures[16], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 17: texColor *= texture(u_Textures[17], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 18: texColor *= texture(u_Textures[18], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 19: texColor *= texture(u_Textures[19], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 20: texColor *= texture(u_Textures[20], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 21: texColor *= texture(u_Textures[21], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 22: texColor *= texture(u_Textures[22], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 23: texColor *= texture(u_Textures[23], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 24: texColor *= texture(u_Textures[24], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 25: texColor *= texture(u_Textures[25], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 26: texColor *= texture(u_Textures[26], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 27: texColor *= texture(u_Textures[27], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 28: texColor *= texture(u_Textures[28], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 29: texColor *= texture(u_Textures[29], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 30: texColor *= texture(u_Textures[30], Input.TexCoord * Input.TilingFactor); break;\n\t\tcase 31: texColor *= texture(u_Textures[31], Input.TexCoord * Input.TilingFactor); break;\n\t}\n\n\tif (texColor.a == 0.0) { discard; }\n\n    vec3 particleNormal = normalize(camPos - particlePos);\n\n    //for(int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++)\n    //texColor.xyz *= CalcDirLight(u_DirLight[i]);\n\n    for(int i = 0; i < MAX_POINT_LIGHTS; i++)\n    texColor.xyz += CalcPointLight(u_PointLights[i], texColor.xyz);\n\n    // for(int i = 0; i < MAX_SPOT_LIGHTS; i++)\n    // texColor.xyz += CalcSpotLight(u_SpotLights[i], texColor.xyz, particleNormal);\n\n\to_Color = texColor;\n}\n",
+  "uniforms": [
+    {
+      "Name": "camPos",
+      "Type": 5
+    },
+    {
+      "Name": "u_DirLight[0].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_DirLight[0].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_DirLight[1].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_DirLight[1].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_DirLight[2].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_DirLight[2].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_DirLight[3].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_DirLight[3].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[0].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[0].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[0].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[0].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[0].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[0].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[1].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[1].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[1].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[1].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[1].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[1].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[2].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[2].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[2].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[2].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[2].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[2].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[3].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[3].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[3].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[3].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[3].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[3].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[4].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[4].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[4].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[4].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[4].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[4].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[5].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[5].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[5].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[5].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[5].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[5].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[6].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[6].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[6].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[6].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[6].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[6].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[7].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[7].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[7].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[7].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[7].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[7].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[8].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[8].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[8].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[8].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[8].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[8].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[9].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[9].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[9].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[9].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[9].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[9].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[10].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[10].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[10].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[10].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[10].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[10].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[11].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[11].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[11].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[11].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[11].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[11].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[12].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[12].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[12].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[12].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[12].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[12].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[13].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[13].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[13].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[13].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[13].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[13].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[14].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[14].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[14].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[14].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[14].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[14].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[15].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[15].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[15].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[15].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[15].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[15].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[16].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[16].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[16].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[16].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[16].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[16].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[17].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[17].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[17].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[17].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[17].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[17].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[18].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[18].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[18].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[18].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[18].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[18].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[19].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[19].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[19].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[19].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[19].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[19].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[20].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[20].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[20].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[20].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[20].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[20].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[21].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[21].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[21].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[21].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[21].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[21].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[22].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[22].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[22].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[22].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[22].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[22].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[23].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[23].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[23].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[23].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[23].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[23].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[24].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[24].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[24].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[24].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[24].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[24].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[25].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[25].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[25].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[25].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[25].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[25].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[26].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[26].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[26].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[26].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[26].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[26].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[27].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[27].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[27].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[27].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[27].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[27].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[28].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[28].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[28].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[28].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[28].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[28].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[29].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[29].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[29].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[29].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[29].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[29].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[30].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[30].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[30].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[30].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[30].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[30].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[31].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[31].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[31].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_PointLights[31].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[31].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_PointLights[31].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[0].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[0].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[0].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[0].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[0].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[0].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[0].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[1].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[1].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[1].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[1].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[1].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[1].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[1].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[2].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[2].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[2].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[2].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[2].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[2].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[2].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[3].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[3].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[3].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[3].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[3].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[3].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[3].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[4].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[4].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[4].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[4].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[4].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[4].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[4].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[5].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[5].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[5].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[5].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[5].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[5].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[5].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[6].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[6].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[6].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[6].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[6].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[6].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[6].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[7].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[7].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[7].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[7].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[7].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[7].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[7].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[8].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[8].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[8].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[8].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[8].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[8].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[8].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[9].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[9].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[9].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[9].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[9].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[9].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[9].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[10].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[10].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[10].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[10].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[10].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[10].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[10].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[11].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[11].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[11].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[11].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[11].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[11].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[11].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[12].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[12].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[12].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[12].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[12].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[12].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[12].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[13].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[13].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[13].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[13].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[13].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[13].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[13].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[14].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[14].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[14].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[14].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[14].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[14].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[14].Quadratic",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[15].Color",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[15].Intensity",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[15].Position",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[15].Direction",
+      "Type": 5
+    },
+    {
+      "Name": "u_SpotLights[15].Radius",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[15].Linear",
+      "Type": 3
+    },
+    {
+      "Name": "u_SpotLights[15].Quadratic",
+      "Type": 3
+    }
+  ],
+  "vertex": "#version 450 core\n\nlayout(location = 0) in vec3 a_Position;\nlayout(location = 1) in vec4 a_Color;\nlayout(location = 2) in vec2 a_TexCoord;\nlayout(location = 3) in float a_TexIndex;\nlayout(location = 4) in float a_TilingFactor;\n\nlayout(std140, binding = 0) uniform Camera\n{\n\tmat4 u_ViewProjection;\n};\n\nout vec3 particlePos;\n\nstruct VertexOutput\n{\n\tvec4 Color;\n\tvec2 TexCoord;\n\tfloat TilingFactor;\n};\n\nlayout (location = 0) out VertexOutput Output;\nlayout (location = 3) out flat float v_TexIndex;\n\nvoid main()\n{\n\tOutput.Color = a_Color;\n\tOutput.TexCoord = a_TexCoord;\n\tOutput.TilingFactor = a_TilingFactor;\n\tv_TexIndex = a_TexIndex;\n\n\tgl_Position = u_ViewProjection * vec4(a_Position, 1.0);\n    particlePos = gl_Position.xyz;\n}"
+}
