@@ -41,5 +41,6 @@ private:
 	bool renderLights;
 	bool renderShadows;
 	bool renderParticles;
+	bool renderParticlesVL;
 	bool renderCRT;
 };

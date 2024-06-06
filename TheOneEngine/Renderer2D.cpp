@@ -5,6 +5,7 @@
 #include "UniformBuffer.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "Renderer.h"
 #include "RenderTarget.h"
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -281,7 +282,17 @@ void Renderer2D::Update(BatchType type, RenderTarget target)
 
 	switch (type)
 	{
-		case WORLD:		buffer = target.GetFrameBuffer("gBuffer");		break;
+		case WORLD:
+		{
+			if (Renderer::Settings()->particlesLight.isEnabled)
+			{
+				buffer = target.GetFrameBuffer("gBuffer");
+				break;
+			}
+			buffer = target.GetFrameBuffer("postBuffer");
+			break;
+		}
+			
 		case UI:		buffer = target.GetFrameBuffer("uiBuffer");		break;
 		case EDITOR:	buffer = target.GetFrameBuffer("postBuffer");	break;
 		default: return;

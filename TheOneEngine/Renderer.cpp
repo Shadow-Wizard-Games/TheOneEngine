@@ -36,7 +36,7 @@ void Renderer::Update()
 
         Renderer3D::GeometryPass(target);
 
-        if (settings.particles.isEnabled)
+        if (settings.particlesLight.isEnabled)
             Renderer2D::Update(BatchType::WORLD, target);
 
         if (settings.shadows.isEnabled)
