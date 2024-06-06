@@ -110,6 +110,7 @@ public:
 	static void RemoveLight(std::shared_ptr<GameObject> container);
 	static void CleanLights();
 	static void ResetUniforms(LightType lightType);
+	static void ResetAllUniforms();
 
 	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
