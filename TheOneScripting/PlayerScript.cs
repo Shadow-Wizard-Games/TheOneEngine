@@ -63,8 +63,8 @@ public class PlayerScript : MonoBehaviour
 
     IGameObject M4GO;
     IGameObject ShoulderLaserGO;
-    IGameObject ImpacienteGO;
-    IGameObject FlamethrowerGO;
+    public IGameObject ImpacienteGO;
+    public IGameObject FlamethrowerGO;
     //IGameObject GrenadeLauncherGO;
     IGameObject shotParticlesGO;
     IGameObject shotExplosionGO;
@@ -422,7 +422,10 @@ public class PlayerScript : MonoBehaviour
         }
 
         #region ENABLE / DISABLE WEAPONS
-        if (currentWeaponType != currentEquippedWeapon)
+        if (currentWeaponType != currentEquippedWeapon 
+            || Impaciente.state == AbilityImpaciente.AbilityState.COOLDOWN
+            || Flamethrower.state == AbilityFlamethrower.AbilityState.COOLDOWN
+            )
         {
             switch (currentEquippedWeapon)
             {
@@ -434,8 +437,8 @@ public class PlayerScript : MonoBehaviour
                     break;
                 case CurrentWeapon.IMPACIENTE:
                     ImpacienteGO.Disable();
-                    Impaciente.state = AbilityImpaciente.AbilityState.COOLDOWN;
-                    Debug.Log("Impaciente on Cooldown");
+                    //Impaciente.state = AbilityImpaciente.AbilityState.COOLDOWN;
+                    Debug.Log("disabled");
                     break;
                 case CurrentWeapon.FLAMETHROWER:
                     FlamethrowerGO.Disable();
