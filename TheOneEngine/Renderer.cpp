@@ -48,6 +48,9 @@ void Renderer::Update()
                 Renderer3D::LightPass(target);
 
             Renderer3D::IndexPass(target);
+
+            if (Renderer::Settings()->particles.isEnabled)
+                Renderer2D::Update(BatchType::WORLD, target);
         }
         Renderer3D::EndPostProcess(target);
         

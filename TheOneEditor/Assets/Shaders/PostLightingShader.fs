@@ -158,12 +158,12 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
 
 void main()
 {
-    vec3 FragPos = texture(gPosition, TexCoords).rgb;
-    vec3 Normal = texture(gNormal, TexCoords).rgb;
-    vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
-    float Specular = 0.1;
-    float Alpha = texture(gAlbedoSpec, TexCoords).a;
-    vec3 ViewDir  = normalize(u_ViewPos - FragPos);
+    vec3 FragPos    = texture(gPosition, TexCoords).rgb;
+    vec3 Normal     = texture(gNormal, TexCoords).rgb;
+    vec3 Diffuse    = texture(gAlbedoSpec, TexCoords).rgb;
+    float Alpha     = texture(gAlbedoSpec, TexCoords).a;
+    vec3 ViewDir    = normalize(u_ViewPos - FragPos);
+    float Specular  = 0.1;
 
     vec3 result = Diffuse * 0.1;
 

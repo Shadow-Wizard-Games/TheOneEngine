@@ -5,13 +5,17 @@
 #include "UniformBuffer.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "Transform.h"
 #include "Renderer.h"
+#include "Renderer3D.h"
 #include "RenderTarget.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #include "MSDFData.h"
+#include <string>
+#include <memory>
 
 static const uint32_t MaxQuads = 20000;
 static const uint32_t MaxVertices = MaxQuads * 4;
@@ -199,11 +203,12 @@ struct Batch
 struct Renderer2DData
 {
 	std::shared_ptr<Shader> QuadShader;
-	std::shared_ptr<Shader> ParticleShader;
 	std::shared_ptr<Shader> QuadIndexShader;
 	std::shared_ptr<Shader> CircleShader;
 	std::shared_ptr<Shader> LineShader;
 	std::shared_ptr<Shader> TextShader;
+	ResourceId ParticleShaderID;
+	ResourceId ParticleMaterialID;
 
 	std::array<Batch, BatchType::MAX> batches;
 
@@ -240,11 +245,13 @@ void Renderer2D::Init()
 {
 	// Shaders
 	renderer2D.QuadShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuad");
-	renderer2D.ParticleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DParticle");
 	renderer2D.QuadIndexShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuadIndex");
 	renderer2D.CircleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DCircle");
 	renderer2D.LineShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DLine");
 	renderer2D.TextShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DText");
+
+	// Add Uniforms
+	InitParticleShader();
 
 	// White Texture
 	WhiteTexture = std::make_shared<Texture>();
@@ -260,7 +267,6 @@ void Renderer2D::Init()
 		ResetLineBatch(batch);
 		ResetTextBatch(batch);
 	}
-
 
 	renderer2D.QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
@@ -286,11 +292,11 @@ void Renderer2D::Update(BatchType type, RenderTarget target)
 	{
 		case WORLD:
 		{
-			if (Renderer::Settings()->particlesLight.isEnabled)
+			/*if (Renderer::Settings()->particlesLight.isEnabled)
 			{
 				buffer = target.GetFrameBuffer("gBuffer");
 				break;
-			}
+			}*/
 			buffer = target.GetFrameBuffer("postBuffer");
 			break;
 		}
@@ -305,7 +311,7 @@ void Renderer2D::Update(BatchType type, RenderTarget target)
 	GLCALL(glDisable(GL_CULL_FACE));
 	GLCALL(glEnable(GL_BLEND));
 
-	DrawQuadBatch(batch, type);
+	DrawQuadBatch(batch, type, target);
 	DrawCircleBatch(batch);
 	DrawLineBatch(batch);
 	DrawTextBatch(batch);
@@ -341,7 +347,7 @@ void Renderer2D::NextQuadBatch(Batch& batch)
 	ResetQuadBatch(batch);*/
 }
 
-void Renderer2D::DrawQuadBatch(const Batch& batch, BatchType type)
+void Renderer2D::DrawQuadBatch(const Batch& batch, BatchType type, RenderTarget target)
 {
 	if (batch.QuadIndexCount)
 	{
@@ -352,9 +358,11 @@ void Renderer2D::DrawQuadBatch(const Batch& batch, BatchType type)
 		for (uint32_t i = 0; i < batch.TextureSlotIndex; i++)
 			batch.TextureSlots[i]->Bind(i);
 
-		type == BatchType::UI ?
-			renderer2D.QuadShader->Bind() :
-			renderer2D.ParticleShader->Bind();
+		if (type == BatchType::UI)
+			renderer2D.QuadShader->Bind();
+		else
+			Renderer3D::SetUniformsParticleShader(renderer2D.ParticleMaterialID, target);
+
 		DrawIndexed(batch.QuadVertexArray, batch.QuadIndexCount);
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.QuadShader->UnBind();
@@ -826,3 +834,54 @@ Renderer2D::Statistics Renderer2D::GetStats()
 	return renderer2D.Stats;
 }
 
+void Renderer2D::InitParticleShader()
+{
+	renderer2D.ParticleShaderID = Resources::Load<Shader>("Assets/Shaders/Renderer2DParticle");
+	Shader* particleShader = Resources::GetResourceById<Shader>(renderer2D.ParticleShaderID);
+	particleShader->Compile("Assets/Shaders/Renderer2DParticle");
+
+	particleShader->addUniform("camPos", UniformType::fVec3);
+
+	for (uint i = 0; i < 4; i++)
+	{
+		std::string iteration = std::to_string(i);
+		particleShader->addUniform("u_DirLight[" + iteration + "].Color", UniformType::fVec3);
+		particleShader->addUniform("u_DirLight[" + iteration + "].Intensity", UniformType::Float);
+	}
+
+	for (uint i = 0; i < 32; i++)
+	{
+		std::string iteration = std::to_string(i);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Color", UniformType::fVec3);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Intensity", UniformType::Float);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Position", UniformType::fVec3);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Linear", UniformType::Float);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Quadratic", UniformType::Float);
+	}
+
+	for (uint i = 0; i < 16; i++)
+	{
+		std::string iteration = std::to_string(i);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Color", UniformType::fVec3);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Intensity", UniformType::Float);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Direction", UniformType::fVec3);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Radius", UniformType::Float);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Linear", UniformType::Float);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Quadratic", UniformType::Float);
+	}
+
+	Resources::Import<Shader>("Renderer2DParticle", particleShader);
+
+	Material particleLightMat(particleShader);
+	particleLightMat.setShader(particleShader, particleShader->getPath());
+	std::string particleLightPath = Resources::PathToLibrary<Material>() + "Renderer2DParticle.toematerial";
+	Resources::Import<Material>(particleLightPath, &particleLightMat);
+	renderer2D.ParticleMaterialID = Resources::LoadFromLibrary<Material>(particleLightPath);
+}
+
+ResourceId Renderer2D::GetParticleMaterialID()
+{
+	return renderer2D.ParticleMaterialID;
+}
