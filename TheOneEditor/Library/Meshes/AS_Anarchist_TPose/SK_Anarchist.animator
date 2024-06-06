@@ -8,6 +8,13 @@
       "type": 0
     },
     {
+      "animation_file": "Library\\Meshes\\AS_Anarchist_TPose\\SK_Anarchist_Take 001AS_Anarchist_Shoot.anim",
+      "loop": true,
+      "name": "Shoot",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
       "animation_file": "Library\\Meshes\\AS_Anarchist_TPose\\SK_Anarchist_Take 001AS_Anarchist_Scan.anim",
       "loop": true,
       "name": "Scan",
@@ -20,19 +27,12 @@
       "name": "Death",
       "playback_speed": 1.0,
       "type": 0
-    },
-    {
-      "animation_file": "Library\\Meshes\\AS_Anarchist_TPose\\SK_Anarchist_Take 001AS_Anarchist_Shoot.anim",
-      "loop": false,
-      "name": "Shoot",
-      "playback_speed": 1.0,
-      "type": 0
     }
   ],
   "material": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
   "mesh": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist_animatedmesh.ozzmesh",
   "name": "SK_Anarchist",
   "skeleton": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist_skeleton.skeleton",
-  "transition_blend": false,
-  "transition_time": 0.0
+  "transition_blend": true,
+  "transition_time": 1.0
 }

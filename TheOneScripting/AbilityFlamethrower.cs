@@ -10,7 +10,7 @@ public class AbilityFlamethrower : MonoBehaviour
         COOLDOWN,
     }
 
-    Item_FlameThrower FlamethrowerItem;
+    public Item_FlameThrower FlamethrowerItem;
 
     public string abilityName;
     public float activeTime;

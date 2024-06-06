@@ -45,8 +45,8 @@ public class FaceHuggerBehaviour : MonoBehaviour
     PlayerScript player;
     GameManager gameManager;
 
-    IParticleSystem jumpPSGO;
-    IParticleSystem deathPSGO;
+    IParticleSystem jumpPS;
+    IParticleSystem deathPS;
 
     public override void Start()
     {
@@ -59,8 +59,8 @@ public class FaceHuggerBehaviour : MonoBehaviour
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.3f;
 
-        jumpPSGO = attachedGameObject.FindInChildren("JumpPS")?.GetComponent<IParticleSystem>();
-        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
+        jumpPS = attachedGameObject.FindInChildren("JumpPS")?.GetComponent<IParticleSystem>();
+        deathPS = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -180,6 +180,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         {
             isJumping = true;
             attachedGameObject.animator.Play("Jump");
+            if (jumpPS != null) jumpPS.Replay();
         }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
@@ -244,7 +245,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             isDead = true;
             player.shieldKillCounter++;
             // add player biomass
-            deathPSGO.Play();
+            if (deathPS != null) deathPS.Replay(); // this will crash if no particles are found
         }
     }
 

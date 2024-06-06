@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class ICanvas : IComponent
 {
@@ -40,14 +41,14 @@ public class ICanvas : IComponent
         InternalCalls.PrintItemUI(containerGOptr, value, name);
     }
 
-    public void MoveSelectionButton(int direction)
+    public void MoveSelectionButton(int direction, bool children = false)
     {
-        InternalCalls.MoveSelectedButton(containerGOptr, direction);
+        InternalCalls.MoveSelectedButton(containerGOptr, direction, children);
     }
 
-    public void MoveSelection(int direction)
+    public void MoveSelection(int direction, bool children = false)
     {
-        InternalCalls.MoveSelection(containerGOptr, direction);
+        InternalCalls.MoveSelection(containerGOptr, direction, children);
     }
 
     public void ChangeSectImg(string name, int x, int y, int w, int h)
@@ -80,8 +81,13 @@ public class ICanvas : IComponent
         return InternalCalls.GetTextString(containerGOptr, name);
     }
 
-    public void SetTextString(string text, string name)
+    public void SetTextString(string text, string name, int num = -1)
     {
-        InternalCalls.SetTextString(containerGOptr, text, name);
+        InternalCalls.SetTextString(containerGOptr, text, name, num);
+    }
+
+    public void CanvasFlicker(bool flicker)
+    {
+        InternalCalls.CanvasFlicker(containerGOptr, flicker);
     }
 }

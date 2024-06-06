@@ -21,9 +21,11 @@ public class AbilityAdrenalineRush : MonoBehaviour
     IGameObject playerGO;
     PlayerScript player;
 
+    GameManager gameManager;
+
     public float healAmount = 0.3f; // in %
-    public float speedAmount = 0.5f; // in %
-    public float damageAmount = 0.5f; // in %
+    public float speedMultiplier = 1.5f; // in %
+    public float weaponDamageMultiplier = 1.5f; // in %
 
     public float healthRegenTime = 3.0f;
     public float healthRegenTimeCounter = 3.0f;
@@ -48,6 +50,8 @@ public class AbilityAdrenalineRush : MonoBehaviour
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
+
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         state = AbilityState.READY;
     }
@@ -86,10 +90,10 @@ public class AbilityAdrenalineRush : MonoBehaviour
                 // Regeneration tick
                 if (timeSinceLastTick >= intervalTime)
                 {
-                    if ((player.HP + healingInterval) < player.maxHP)
-                        player.HP += healingInterval;
+                    if ((gameManager.health + healingInterval) < gameManager.GetMaxHealth())
+                        gameManager.health += healingInterval;
                     else
-                        player.HP = player.maxHP;
+                        gameManager.health = gameManager.GetMaxHealth();
 
                     timeSinceLastTick = 0.0f;
                 }
@@ -98,10 +102,10 @@ public class AbilityAdrenalineRush : MonoBehaviour
         else
         {
             // reset stats
-            player.currentSpeed = player.baseSpeed;
+            player.currentSpeed = gameManager.GetSpeed();
             healthRegenTimeCounter = healthRegenTime;
 
-            player.damageIncrease = 0.0f;
+            player.weaponDamageMultiplier = 0.0f;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

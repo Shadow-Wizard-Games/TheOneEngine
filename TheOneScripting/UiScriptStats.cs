@@ -11,21 +11,20 @@ public class UiScriptStats : MonoBehaviour
 
     public ICanvas canvas;
 
-    int currency = 0;
+    GameManager gameManager;
 
     float cooldown = 0;
     bool onCooldown = false;
 
+    float flickerCooldown = 0;
+    bool flickerOnCooldown = false;
+    bool firstFrame = true;
+
     int currentButton = 0;
 
-    //it goes from lvl 1 to 4
-    int playerDamageLvl = 1;
-
-    //it goes from lvl 1 to 4
-    int playerHealthLvl = 1;
-
-    //it goes from lvl 1 to 4
-    int playerSpeedLvl = 1;
+    int playerDamageLvl;
+    int playerHealthLvl;
+    int playerSpeedLvl;
 
     public UiScriptStats()
     {
@@ -37,15 +36,19 @@ public class UiScriptStats : MonoBehaviour
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
 
-        currency = 200;//PUT HERE TO GET REAL CURRENCY OF PLAYER
-        playerDamageLvl = 1;//PUT HERE TO GET REAL DAMAGE LVL OF PLAYER
-        playerHealthLvl = 1;//PUT HERE TO GET REAL HEALTH LVL OF PLAYER
-        playerSpeedLvl = 1;//PUT HERE TO GET REAL SPEED LVL OF PLAYER
+        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+
+        playerDamageLvl = gameManager.GetDamageLvl();
+        playerHealthLvl = gameManager.GetLifeLvl();
+        playerSpeedLvl = gameManager.GetSpeedLvl();
 
         ChangeStatLvl(StatType.DAMAGE, false, playerDamageLvl);
         ChangeStatLvl(StatType.HEALTH, false, playerHealthLvl);
         ChangeStatLvl(StatType.SPEED, false, playerSpeedLvl);
 
+        firstFrame = true;
+        flickerCooldown = 0;
+        flickerOnCooldown = false;
 
         onCooldown = true;
     }
@@ -54,6 +57,24 @@ public class UiScriptStats : MonoBehaviour
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
+
+        if (firstFrame)
+        {
+            canvas.CanvasFlicker(true);
+            flickerOnCooldown = true;
+            firstFrame = false;
+        }
+
+        if (flickerOnCooldown && flickerCooldown < 0.6f)
+        {
+            flickerCooldown += dt;
+        }
+        else
+        {
+            canvas.CanvasFlicker(false);
+            flickerCooldown = 0.0f;
+            flickerOnCooldown = false;
+        }
 
         if (onCooldown && cooldown < 0.2f)
         {
@@ -65,7 +86,7 @@ public class UiScriptStats : MonoBehaviour
             onCooldown = false;
         }
 
-        canvas.SetTextString(currency.ToString(), "Text_CurrentCurrencyAmount");
+        canvas.SetTextString("", "Text_CurrentCurrencyAmount", gameManager.currency);
 
         //Input Updates
         if (!onCooldown)
@@ -149,45 +170,54 @@ public class UiScriptStats : MonoBehaviour
                 currentButton += direction;
             }
 
-            if (currency >= 100)
+            if (gameManager.currency >= 100)
             {
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.DAMAGE);
-                    onCooldown = true;
-                    currency -= 100;
-                    //PUT HERE FUNCTION TO BUY DAMAGE STAT UPGRADE
-                    //PLAYER.CURRENCY = THIS.CURRENCY
-                    //PLAYER.DAMAGELVL = THIS.PLAYERDAMAGELVL
-                    //here i assume player has itself something like bullet.damage = player.damage + player.damagelvl * 10
+                    
+                    if(playerDamageLvl <= 3)
+                    {
+                        onCooldown = true;
+                        gameManager.currency -= 100;
+                        playerDamageLvl++;
+                        gameManager.SetDamageLvl(playerDamageLvl);
+
+                        attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                    }
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.HEALTH);
-                    onCooldown = true;
-                    currency -= 100;
-                    //PUT HERE FUNCTION TO BUY HEALTH STAT UPGRADE
-                    //PLAYER.CURRENCY = THIS.CURRENCY
-                    //PLAYER.HEALTHLVL = THIS.PLAYERHEALTHLVL
-                    //here i assume player has itself something like bullet.health = player.health + player.healthlvl * 20
+
+                    if (playerHealthLvl <= 3)
+                    {
+                        onCooldown = true;
+                        gameManager.currency -= 100;
+                        playerHealthLvl++;
+                        gameManager.SetLifeLvl(playerHealthLvl);
+
+                        attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                    }
                 }
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
-                    attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     //this function only for canvas update, not stat !!!
                     ChangeStatLvl(StatType.SPEED);
-                    onCooldown = true;
-                    currency -= 100;
-                    //PUT HERE FUNCTION TO BUY SPEED STAT UPGRADE
-                    //PLAYER.CURRENCY = THIS.CURRENCY
-                    //PLAYER.SPEEDLVL = THIS.PLAYERSPEEDLVL
-                    //here i assume player has itself something like bullet.speed = player.speed + player.speedlvl * 10
+
+                    if (playerSpeedLvl <= 3)
+                    {
+                        onCooldown = true;
+                        gameManager.currency -= 100;
+                        playerSpeedLvl++;
+                        gameManager.SetSpeedLvl(playerSpeedLvl);
+
+                        attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+                    }
                 }
             }
         }

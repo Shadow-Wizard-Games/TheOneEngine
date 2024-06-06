@@ -294,7 +294,7 @@ void AudioCore::PlayEvent(AkUniqueID event, AkGameObjectID goID)
         if (audioEvents[i]->playing_id == 0L)
         {
             AK::SoundEngine::PostEvent(event, goID, AkCallbackType::AK_EndOfEvent, audioEvents[i]->event_call_back, (void*)audioEvents[i]);
-            LOG(LogType::LOG_AUDIO, "Playing event from %d audiogameobject", goID);
+            //LOG(LogType::LOG_AUDIO, "Playing event from %d audiogameobject", goID);
             audioEvents[i]->playing_id = 1L;
             return;
         }

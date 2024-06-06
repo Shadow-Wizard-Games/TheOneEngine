@@ -6,6 +6,10 @@ public class UiScriptDebug : MonoBehaviour
     float cooldown = 0;
     bool onCooldown = false;
 
+    float flickerCooldown = 0;
+    bool flickerOnCooldown = false;
+    public bool firstFrame = true;
+
     IGameObject GameManagerGO;
     GameManager gameManager;
 
@@ -20,6 +24,10 @@ public class UiScriptDebug : MonoBehaviour
         gameManager = GameManagerGO.GetComponent<GameManager>();
 
         onCooldown = true;
+        
+        firstFrame = true;
+        flickerCooldown = 0;
+        flickerOnCooldown = false;
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
 
@@ -31,6 +39,24 @@ public class UiScriptDebug : MonoBehaviour
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
+
+        if (firstFrame)
+        {
+            canvas.CanvasFlicker(true);
+            flickerOnCooldown = true;
+            firstFrame = false;
+        }
+
+        if (flickerOnCooldown && flickerCooldown < 0.6f)
+        {
+            flickerCooldown += dt;
+        }
+        else
+        {
+            canvas.CanvasFlicker(false);
+            flickerCooldown = 0.0f;
+            flickerOnCooldown = false;
+        }
 
         if (onCooldown && cooldown < 0.2f)
         {
