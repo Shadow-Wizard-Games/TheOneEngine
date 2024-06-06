@@ -30,21 +30,21 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 349743783
+          "UID": 1571210900
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 555069806
+          "UID": 440607349
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 584737268
+          "UID": 2341131613
         }
       ],
       "Enabled": true,
@@ -72,9 +72,9 @@
             -0.8655784130096436,
             -0.3541002869606018,
             0.0,
-            229.1732940673828,
+            233.7728729248047,
             220.0,
-            716.4215087890625,
+            711.592529296875,
             1.0
           ],
           "Type": 0,
@@ -100,7 +100,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 3823833166
+          "UID": 3474137902
         },
         {
           "AudioID": 0,
@@ -228,7 +228,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1458.9073486328125,
+                  "Lifetime": 1452.299560546875,
                   "MaxParticles": 500,
                   "RenderModule": [
                     {
@@ -325,7 +325,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1458.9073486328125,
+                  "Lifetime": 1452.299560546875,
                   "MaxParticles": 55,
                   "RenderModule": [
                     {
@@ -538,7 +538,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1447.891357421875,
+                  "Lifetime": 1441.2835693359375,
                   "MaxParticles": 500,
                   "RenderModule": [
                     {
@@ -635,7 +635,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1447.891357421875,
+                  "Lifetime": 1441.2835693359375,
                   "MaxParticles": 55,
                   "RenderModule": [
                     {
@@ -848,7 +848,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1546.1231689453125,
+                  "Lifetime": 1539.515380859375,
                   "MaxParticles": 500,
                   "RenderModule": [
                     {
@@ -945,7 +945,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1546.1231689453125,
+                  "Lifetime": 1539.515380859375,
                   "MaxParticles": 55,
                   "RenderModule": [
                     {
@@ -1194,7 +1194,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2265.800048828125,
+                  "Lifetime": 2259.193359375,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1287,7 +1287,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2265.800048828125,
+                  "Lifetime": 2259.193359375,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -1422,7 +1422,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2287.809326171875,
+                  "Lifetime": 2281.20263671875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1515,7 +1515,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2287.809326171875,
+                  "Lifetime": 2281.20263671875,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -9248,7 +9248,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "EventCheckpoint",
               "Type": 4,
-              "UID": 3975103172
+              "UID": 2114205513
             }
           ],
           "Enabled": true,
@@ -26314,9 +26314,9 @@
             0.0,
             70.71066444722956,
             0.0,
-            129.1246795654297,
+            133.7728729248047,
             0.0,
-            636.4556884765625,
+            631.592529296875,
             1.0
           ],
           "Type": 0,
@@ -26343,7 +26343,7 @@
           "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 2528612748
+          "UID": 3409748285
         },
         {
           "AudioID": 1,
@@ -26453,7 +26453,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 0.5355108976364136,
+                  "Lifetime": 0.5996296405792236,
                   "MaxParticles": 20,
                   "RenderModule": [
                     {
@@ -26764,63 +26764,63 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 2940428135
+              "UID": 2295498986
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 2243011472
+              "UID": 2217402463
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 1902541547
+              "UID": 2371430318
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 719399237
+              "UID": 693628436
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 4259251090
+              "UID": 893887780
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 144657216
+              "UID": 1381258487
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 3371809921
+              "UID": 19053995
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 680781686
+              "UID": 2192091733
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 2536022454
+              "UID": 2045919152
             }
           ],
           "Enabled": true,
@@ -27367,7 +27367,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2126.750244140625,
+                  "Lifetime": 2120.140625,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -27519,7 +27519,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiManager",
           "Type": 4,
-          "UID": 1014004025
+          "UID": 2333039449
         },
         {
           "AudioID": 2,
@@ -28621,7 +28621,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptInventory",
               "Type": 4,
-              "UID": 1963697208
+              "UID": 276470653
             },
             {
               "AudioID": 3,
@@ -28935,7 +28935,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptPause",
               "Type": 4,
-              "UID": 3504412310
+              "UID": 3794557960
             }
           ],
           "Enabled": false,
@@ -28976,7 +28976,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptHud",
               "Type": 4,
-              "UID": 798801144
+              "UID": 1678329066
             },
             {
               "DebugDraw": true,
@@ -30779,7 +30779,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptDebug",
               "Type": 4,
-              "UID": 1875792261
+              "UID": 1456948990
             },
             {
               "AudioID": 5,
@@ -31181,7 +31181,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptMissions",
               "Type": 4,
-              "UID": 2629050373
+              "UID": 2929602389
             }
           ],
           "Enabled": false,
@@ -34179,7 +34179,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptStats",
               "Type": 4,
-              "UID": 3980585756
+              "UID": 3921921696
             }
           ],
           "Enabled": false,
@@ -34326,7 +34326,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettings",
               "Type": 4,
-              "UID": 3876858228
+              "UID": 918236636
             }
           ],
           "Enabled": false,
@@ -35332,7 +35332,7 @@
                   "ParentUID": 3452816845,
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
-                  "UID": 575794181
+                  "UID": 1929643014
                 },
                 {
                   "AudioID": 13,
@@ -35484,7 +35484,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": false,
+              "Enabled": true,
               "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
@@ -35574,7 +35574,7 @@
               "Type": 8
             }
           ],
-          "Enabled": false,
+          "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_PickUpFeedback",
@@ -35598,21 +35598,21 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.9184797086965624,
+            30.310781618127216,
             0.0,
-            -99.98158476691353,
+            95.29561571549027,
             0.0,
             0.0,
             100.0,
             0.0,
             0.0,
-            99.98158476691353,
+            -95.29561571549027,
             0.0,
-            1.9184797086965624,
+            30.310781618127216,
             0.0,
-            630.5791625976563,
+            648.7413940429688,
             0.0,
-            791.1638793945313,
+            936.779296875,
             1.0
           ],
           "Type": 0,
@@ -35639,7 +35639,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 3876814180
+          "UID": 2978132304
         },
         {
           "AudioID": 16,
@@ -35704,7 +35704,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 3607301307
+          "UID": 637889286
         }
       ],
       "Enabled": true,
@@ -35745,7 +35745,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 2980973182
+          "UID": 1671081456
         }
       ],
       "Enabled": false,
@@ -35840,7 +35840,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3286.8994140625,
+              "Lifetime": 3280.289794921875,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -35987,7 +35987,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3227.717041015625,
+              "Lifetime": 3221.107421875,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -36142,7 +36142,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 2687580163
+              "UID": 1584399272
             }
           ],
           "EditablePrefab": true,
@@ -36221,7 +36221,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 3002906731
+              "UID": 3546002895
             }
           ],
           "EditablePrefab": true,
@@ -36300,7 +36300,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 3458413113
+              "UID": 2325499363
             }
           ],
           "EditablePrefab": true,
@@ -36379,7 +36379,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 2841769186
+              "UID": 486360002
             }
           ],
           "Enabled": true,
@@ -36437,7 +36437,7 @@
                 1.0
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 50.701087951660156,
+              "Intensity": 53.400001525878906,
               "LightType": 2,
               "Linear": 4.820000171661377,
               "Name": "Light",
@@ -36454,7 +36454,7 @@
               "ParentUID": 2586459136,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 2907167302
+              "UID": 3420116000
             }
           ],
           "Enabled": true,
@@ -37572,7 +37572,7 @@
                 0.0
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 0.30000001192092896,
+              "Intensity": 0.45428740978240967,
               "LightType": 1,
               "Linear": 6.599999904632568,
               "Name": "Light",
@@ -37589,7 +37589,7 @@
               "ParentUID": 1046265010,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 1735572477
+              "UID": 3239015625
             }
           ],
           "Enabled": true,
@@ -37880,7 +37880,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1515.7340087890625,
+              "Lifetime": 1509.123291015625,
               "MaxParticles": 200,
               "RenderModule": [
                 {
@@ -37999,7 +37999,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1768.0159912109375,
+              "Lifetime": 1761.4052734375,
               "MaxParticles": 200,
               "RenderModule": [
                 {
@@ -38118,7 +38118,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 602.3125610351563,
+              "Lifetime": 595.7011108398438,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -38236,7 +38236,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 776.4498291015625,
+              "Lifetime": 769.83837890625,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -38370,7 +38370,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1910.01611328125,
+              "Lifetime": 1903.4053955078125,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -38517,7 +38517,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3284.529541015625,
+              "Lifetime": 3277.919921875,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -38664,7 +38664,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 276.2912902832031,
+              "Lifetime": 269.6805419921875,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -38790,7 +38790,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 290.0611267089844,
+              "Lifetime": 283.4502258300781,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -38916,7 +38916,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 402.32049560546875,
+              "Lifetime": 395.7095947265625,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39042,7 +39042,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 338.2799377441406,
+              "Lifetime": 331.6690368652344,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39168,7 +39168,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 386.4306945800781,
+              "Lifetime": 379.8197937011719,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39294,7 +39294,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 414.6051330566406,
+              "Lifetime": 407.9942321777344,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39420,7 +39420,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3314.443115234375,
+              "Lifetime": 3307.83349609375,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -39551,7 +39551,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 849.3253173828125,
+              "Lifetime": 842.7138671875,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -39637,6 +39637,6 @@
     }
   ],
   "index": 0,
-  "path": "GameData/LastSave_L1R1.toe",
+  "path": "GameData/Scenes\\L1R1.toe",
   "sceneName": "L1R1"
 }

@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public string lastLevel;
     public bool activeShortcutL1R1;
 
+    ItemManager itemManager;
+
     #region PLAYERDATA
 
     // Levels
@@ -138,6 +140,8 @@ public class GameManager : MonoBehaviour
         DrawGrid();
 
         ResetPlayerData();
+
+        itemManager = attachedGameObject.GetComponent<ItemManager>();
     }
 
     public override void Update()
@@ -163,11 +167,22 @@ public class GameManager : MonoBehaviour
     {
         DataManager.SaveGame();
         saveLevel = SceneManager.GetCurrentSceneName();
+        this.SaveGameManagerData();
+        itemManager.SaveInventoryData();
+
         hasSaved = true;
     }
 
     public void LoadSave()
     {
+        if (!hasSaved)
+            return;
+
+        ResetSave();
+
+        this.LoadGameManagerData();
+        itemManager.LoadInventoryData();
+
         SceneManager.LoadScene("LastSave_" + saveLevel, true, "GameData/");
     }
 
@@ -178,6 +193,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetSave()
     {
+        lastLevel = " ";
         managers.itemManager.ResetInventory();
         managers.questManager.ResetQuests();
         ResetPlayerData();
@@ -228,5 +244,36 @@ public class GameManager : MonoBehaviour
     public GameStates GetGameState()
     {
         return state;
+    }
+
+    private void SaveGameManagerData()
+    {
+        string[] datapath = { "GameManager" };
+
+        //hasSaved
+        //saveLevel
+        //savedLevels list
+        //lastLevel
+
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "currency", currency);
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "damageLvl", damageLvl);
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "lifeLvl", lifeLvl);
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "speedLvl", speedLvl);
+    }
+
+    private void LoadGameManagerData()
+    {
+        string[] datapath = { "GameManager" };
+
+        //hasSaved
+        //saveLevel
+        //savedLevels list
+        //lastLevel
+
+        currency = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "currency");
+        SetDamageLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "damageLvl"));
+        SetLifeLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "lifeLvl"));
+        SetSpeedLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "speedLvl"));
+        health = maxHealth;
     }
 }
