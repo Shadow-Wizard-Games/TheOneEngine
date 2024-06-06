@@ -219,6 +219,8 @@ public class PlayerScript : MonoBehaviour
     {
         attachedGameObject.animator.UpdateAnimation();
 
+        if (currentAction == CurrentAction.DEAD) return;
+
         if (Heal.state != AbilityHeal.AbilityState.ACTIVE || Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             UpdateWeaponAnimation();
