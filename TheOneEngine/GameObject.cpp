@@ -46,7 +46,7 @@ void GameObject::Update(double dt)
 	for (const auto& component : components)
 	{
 		if (component && component->IsEnabled())
-			component->Update();
+			component->Update(dt);
 	}
 
 	// Update childs

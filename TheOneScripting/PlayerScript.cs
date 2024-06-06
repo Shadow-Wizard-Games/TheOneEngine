@@ -43,18 +43,14 @@ public class PlayerScript : MonoBehaviour
 
     // background music
     public bool isFighting;
-    public bool onPause;
 
     // stats
-    public float maxHP;
-    public float HP;
     public bool isDead = false;
-    public uint baseDamage;
+    public float baseDamage;
     public float totalDamage = 0.0f;
-    public float damageIncrease = 0.0f;
+    public float weaponDamageMultiplier = 0.0f;
 
     // movement
-    public float baseSpeed;
     public float currentSpeed;
     public Vector3 movementDirection;
     public Vector3 lastMovementDirection;
@@ -64,6 +60,7 @@ public class PlayerScript : MonoBehaviour
     public CurrentAction currentAction;
 
     Item_M4A1 ItemM4;
+    Item_ShoulderLaser ItemShoulderLaser;
 
     IGameObject M4GO;
     IGameObject ShoulderLaserGO;
@@ -136,21 +133,15 @@ public class PlayerScript : MonoBehaviour
 
         currentAudioState = 0;
         isFighting = false;
-        onPause = false;
 
         currentWeaponType = CurrentWeapon.NONE;
         currentAction = CurrentAction.IDLE;
         currentSkillSet = SkillSet.NONE;
 
         ItemM4 = new Item_M4A1();
+        ItemShoulderLaser = new Item_ShoulderLaser();
 
         timeFromLastStep = 0.3f;
-
-        baseSpeed = 90.0f;
-        currentSpeed = baseSpeed;
-
-        maxHP = 100.0f;
-        HP = maxHP;
 
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
@@ -160,7 +151,10 @@ public class PlayerScript : MonoBehaviour
     }
     public override void Update()
     {
-        if (onPause) return;
+        if (gameManager.GetGameState() != GameManager.GameStates.RUNNING)
+        {
+            currentAction = CurrentAction.IDLE;
+        }
 
         // CHANGE WHEN INVENTORY OVERHAUL
         if (itemManager.CheckItemInInventory(1) && currentWeaponType == CurrentWeapon.NONE)
@@ -224,7 +218,13 @@ public class PlayerScript : MonoBehaviour
     private void UpdatePlayerState()
     {
         attachedGameObject.animator.UpdateAnimation();
-        UpdateWeaponAnimation();
+
+        if (Heal.state != AbilityHeal.AbilityState.ACTIVE || Dash.state != AbilityDash.AbilityState.ACTIVE)
+        {
+            UpdateWeaponAnimation();
+        }
+
+        UpdatePlayerStatsFromManager();
 
         WeaponAbilityStates();
 
@@ -310,6 +310,21 @@ public class PlayerScript : MonoBehaviour
         }
         #endregion
 
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
+        {
+            weaponDamageMultiplier = AdrenalineRush.weaponDamageMultiplier;
+            currentSpeed = gameManager.GetSpeed() * AdrenalineRush.speedMultiplier;
+        }
+        else
+        {
+            weaponDamageMultiplier = 1.0f;
+            currentSpeed = gameManager.GetSpeed();
+        }
+
+    }
+    void UpdatePlayerStatsFromManager()
+    {
+        baseDamage = gameManager.GetDamage();
     }
     private void WeaponAbilityStates()
     {
@@ -409,7 +424,6 @@ public class PlayerScript : MonoBehaviour
             }
         }
         #endregion
-
     }
 
     private void IdleAction()
@@ -566,14 +580,8 @@ public class PlayerScript : MonoBehaviour
     private void AdrenalineRushAction()
     {
         // Calculate heal amount
-        float totalHeal = HP * AdrenalineRush.healAmount;
+        float totalHeal = gameManager.GetMaxHealth() * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
-
-        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
-        currentSpeed = speedIncrease;
-
-        // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -588,14 +596,8 @@ public class PlayerScript : MonoBehaviour
         if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
 
         // calculate heal amount
-        float totalHeal = HP * AdrenalineRush.healAmount;
+        float totalHeal = gameManager.health * AdrenalineRush.healAmount;
         AdrenalineRush.healingInterval = totalHeal / AdrenalineRush.numIntervals;
-
-        float speedIncrease = baseSpeed * (1 + AdrenalineRush.speedAmount);
-        currentSpeed = speedIncrease;
-
-        // increase damage
-        damageIncrease = currentWeaponDamage * AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -605,7 +607,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void HealAction()
     {
-        float speedReduce = baseSpeed * Heal.slowAmount;
+        float speedReduce = gameManager.GetSpeed() * Heal.slowAmount;
         currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
@@ -618,7 +620,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Heal.state != AbilityHeal.AbilityState.READY) return;
 
-        float speedReduce = baseSpeed * Heal.slowAmount;
+        float speedReduce = gameManager.GetSpeed() * Heal.slowAmount;
         currentSpeed -= speedReduce;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
@@ -817,17 +819,17 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + ItemM4.damage;
     }
     private void ShootShoulderLaser()
     {
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
-        // CHANGE WITH REAL STATS, M4 PLACEHOLDER
-
-        if (timeSinceLastShot < 0.15f)
+        if (timeSinceLastShot < ItemShoulderLaser.fireRate)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > 0.15f / 2)
+            if (!hasShot && timeSinceLastShot > ItemShoulderLaser.fireRate / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
@@ -840,6 +842,8 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + ItemShoulderLaser.damage;
     }
     private void ShootImpaciente()
     {
@@ -863,6 +867,8 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + Impaciente.ImpacienteItem.damage;
     }
     private void ShootFlamethrower()
     {
@@ -886,6 +892,8 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot = 0.0f;
             hasShot = false;
         }
+
+        totalDamage = baseDamage * weaponDamageMultiplier + Flamethrower.FlamethrowerItem.damage;
     }
     private void ShootGrenadeLauncher()
     {
@@ -895,7 +903,6 @@ public class PlayerScript : MonoBehaviour
 
         // CHANGE TO A PREFAB OF GRENADE ?
         InternalCalls.InstantiateGrenade(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-        //
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
 
@@ -904,8 +911,6 @@ public class PlayerScript : MonoBehaviour
         currentWeaponType = CurrentWeapon.M4;
 
         GrenadeLauncher.state = AbilityGrenadeLauncher.AbilityState.COOLDOWN;
-
-        Debug.Log("Ability Grenade Launcher Activated");
     }
 
     private void UpdateWeaponAnimation()
@@ -932,15 +937,15 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLife(uint damage)
     {
-        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
+        if (isDead || gameManager.godMode || currentAction == CurrentAction.DASH)
             return;
 
-        HP -= damage;
-        Debug.Log("Player took damage! Current life is: " + HP.ToString());
+        gameManager.health -= damage;
+        //Debug.Log("Player took damage! Current life is: " + gameManager.health.ToString());
 
-        if (HP <= 0)
+        if (gameManager.health <= 0)
         {
-            HP = 0;
+            gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -948,15 +953,15 @@ public class PlayerScript : MonoBehaviour
 
     public void ReduceLifeExplosion()
     {
-        if (isDead || gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
+        if (isDead || gameManager.godMode || currentAction == CurrentAction.DASH)
             return;
 
-        HP -= 50;
-        Debug.Log("Player took explosion damage! Current life is: " + HP.ToString());
+        gameManager.health -= 50;
+        //Debug.Log("Player took explosion damage! Current life is: " + gameManager.health.ToString());
 
-        if (HP <= 0)
+        if (gameManager.health <= 0)
         {
-            HP = 0;
+            gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
         }
@@ -966,7 +971,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (isDead) return 0;
 
-        return HP;
+        return gameManager.health;
     }
 
     private void SetInitPosInScene()

@@ -6,6 +6,10 @@ public class UiScriptPause : MonoBehaviour
     float cooldown = 0;
     bool onCooldown = false;
 
+    float flickerCooldown = 0;
+    bool  flickerOnCooldown = false;
+    bool firstFrame = true;
+
     IGameObject playerGO;
 
     UiManager menuManager;
@@ -23,7 +27,12 @@ public class UiScriptPause : MonoBehaviour
 
         onCooldown = true;
 
+        firstFrame = true;
+        flickerCooldown = 0;
+        flickerOnCooldown = false;
+
         canvas.MoveSelectionButton(2 - canvas.GetSelectedButton());
+        
     }
 
     public override void Update()
@@ -31,6 +40,24 @@ public class UiScriptPause : MonoBehaviour
         float dt = Time.realDeltaTime;
         bool toMove = false;
         int direction = 0;
+
+        if (firstFrame)
+        {
+            canvas.CanvasFlicker(true);
+            flickerOnCooldown = true;
+            firstFrame = false;
+        }
+
+        if (flickerOnCooldown && flickerCooldown < 0.6f)
+        {
+            flickerCooldown += dt;
+        }
+        else
+        {
+            canvas.CanvasFlicker(false);
+            flickerCooldown = 0.0f;
+            flickerOnCooldown = false;
+        }
 
         if (onCooldown && cooldown < 0.2f)
         {
