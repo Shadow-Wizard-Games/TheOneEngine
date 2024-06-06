@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class UiManager : MonoBehaviour
 {
@@ -29,6 +30,24 @@ public class UiManager : MonoBehaviour
         Sargeant,
         Default,
         ShopKeeper        
+    }
+
+    class PopupItem
+    {
+        public HudPopUpMenu menu;
+        public string text;
+        public string text1;
+        public Dialoguer dialoguer;
+        public float cooldown;
+
+        public PopupItem(HudPopUpMenu m, string t, string t1, Dialoguer d, float c)
+        {
+            this.menu = m;
+            this.text = t;
+            this.text1 = t1;
+            this.dialoguer = d;
+            this.cooldown = c;
+        }
     }
 
     IGameObject inventoryGo;
@@ -71,6 +90,8 @@ public class UiManager : MonoBehaviour
 
     float dialogueCooldown = 0;
     bool dialogueOnCooldown = false;
+
+    List<PopupItem> popupsQueue = new List<PopupItem>();
 
     public override void Start()
     {
@@ -134,6 +155,20 @@ public class UiManager : MonoBehaviour
         {
             cooldown = 0.0f;
             onCooldown = false;
+        }
+
+        if(popupsQueue.Count > 0)
+        {
+            if (popupsQueue[0].menu == HudPopUpMenu.PickUpFeedback && !pickUpFeedbackOnCooldown)
+            {
+                OpenHudPopUpMenu(popupsQueue[0].menu, popupsQueue[0].text1, popupsQueue[0].text, popupsQueue[0].dialoguer, popupsQueue[0].cooldown);
+                popupsQueue.RemoveAt(0);
+            }
+            else if (popupsQueue[0].menu == HudPopUpMenu.Dialogue && !dialogueOnCooldown)
+            {
+                OpenHudPopUpMenu(popupsQueue[0].menu, popupsQueue[0].text1, popupsQueue[0].text, popupsQueue[0].dialoguer, popupsQueue[0].cooldown);
+                popupsQueue.RemoveAt(0);
+            }
         }
 
         if (saveOnCooldown && saveCooldown < 4.5f)
@@ -387,6 +422,12 @@ public class UiManager : MonoBehaviour
 
     public void OpenHudPopUpMenu(HudPopUpMenu type, string text1 = "", string text = "", Dialoguer dialoguer = Dialoguer.None, float cooldown = 4.5f)
     {
+        if(pickUpFeedbackOnCooldown || dialogueOnCooldown)
+        {
+            PopupItem item = new PopupItem(type, text1, text, dialoguer, cooldown);
+            popupsQueue.Add(item);
+            return;
+        }
         switch (type)
         {
             case HudPopUpMenu.SaveScene:
@@ -398,8 +439,6 @@ public class UiManager : MonoBehaviour
                 saveOnCooldown = true;
                 break;
             case HudPopUpMenu.PickUpFeedback:
-                if (pickUpFeedbackOnCooldown)
-                    break;
                 pickUpFeedbackGo.Enable();
                 pickupCanvas.SetTextString(text, "Text_PickedItem");
                 pickupCanvas.SetTextString(text1, "Text_TitleNewItem");
@@ -407,8 +446,6 @@ public class UiManager : MonoBehaviour
                 pickUpFeedbackCooldown = cooldown;
                 break;
             case HudPopUpMenu.Dialogue:
-                if (dialogueOnCooldown)
-                    break;
                 dialogueGo.Enable();
                 dialogCanvas.SetTextString(text, "Text_Dialogue");
                 dialogCanvas.PrintItemUI(false, "Img_ShopKeeper");

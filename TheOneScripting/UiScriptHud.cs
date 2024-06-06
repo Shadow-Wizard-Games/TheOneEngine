@@ -80,8 +80,8 @@ public class UiScriptHud : MonoBehaviour
     float consumibleCooldown = 5.0f;
     float consumibleTimer = 0.0f;
 
-    string currentMissionTitle = "escape the ship";
-    string currentMissionDescription = "find a gun";
+    string currentMainMission;
+    string currentSideMission;
 
     public override void Start()
     {
@@ -116,8 +116,8 @@ public class UiScriptHud : MonoBehaviour
         currencyAmount = 200;
         killsAmount = 0;
 
-        currentMissionTitle = "escape the ship";
-        currentMissionDescription = "find a gun";
+        currentMainMission = managers.questManager.GetMainQuest().name;
+        currentSideMission = managers.questManager.GetSideQuest().name;
 
         UpdateUnlockedAbilities(true);
     }
@@ -284,6 +284,18 @@ public class UiScriptHud : MonoBehaviour
             }
             UpdateString(HudStrings.AMMOSTRING);
             UpdateString(HudStrings.LOADOUTSTRING);
+        }
+
+        if (currentMainMission != managers.questManager.GetMainQuest().name || start)
+        {
+            currentMainMission = managers.questManager.GetMainQuest().name;
+            UpdateString(HudStrings.MAINMISSIONSTRING);
+        }
+
+        if (currentSideMission != managers.questManager.GetSideQuest().name || start)
+        {
+            currentSideMission = managers.questManager.GetSideQuest().name;
+            UpdateString(HudStrings.MISSIONDESCRIPTIONSTRING);
         }
     }
 
@@ -479,10 +491,10 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
                 break;
             case HudStrings.MAINMISSIONSTRING:
-                canvas.SetTextString(currentMissionTitle, "Text_MissionName");
+                canvas.SetTextString(managers.questManager.GetMainQuest().name, "Text_MissionName");
                 break;
             case HudStrings.MISSIONDESCRIPTIONSTRING:
-                canvas.SetTextString(currentMissionDescription, "Text_MissionDescription");
+                canvas.SetTextString(managers.questManager.GetSideQuest().name, "Text_MissionDescription");
                 break;
             case HudStrings.CDGRENADE:
                 canvas.SetTextString("", "Text_WeaponCd2", (int)(grenadeCooldown - grenadeTimer));

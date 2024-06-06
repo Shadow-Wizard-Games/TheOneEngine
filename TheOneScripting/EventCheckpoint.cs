@@ -60,6 +60,8 @@ public class EventCheckpoint : Event
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.Y))
         {
+            managers.gameManager.health = managers.gameManager.GetMaxHealth();
+
             managers.gameManager.UpdateSave();
             menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
         }

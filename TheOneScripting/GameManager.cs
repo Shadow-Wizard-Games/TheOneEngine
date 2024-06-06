@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public bool activeShortcutL1R1;
 
     ItemManager itemManager;
+    QuestManager questManager;
 
     #region PLAYERDATA
 
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour
         ResetPlayerData();
 
         itemManager = attachedGameObject.GetComponent<ItemManager>();
+        questManager = attachedGameObject.GetComponent<QuestManager>();
     }
 
     public override void Update()
@@ -169,6 +171,7 @@ public class GameManager : MonoBehaviour
         saveLevel = SceneManager.GetCurrentSceneName();
         this.SaveGameManagerData();
         itemManager.SaveInventoryData();
+        questManager.SaveQuestData();
 
         hasSaved = true;
     }
@@ -182,6 +185,8 @@ public class GameManager : MonoBehaviour
 
         this.LoadGameManagerData();
         itemManager.LoadInventoryData();
+        questManager.LoadQuestData();
+
 
         SceneManager.LoadScene("LastSave_" + saveLevel, true, "GameData/");
     }
