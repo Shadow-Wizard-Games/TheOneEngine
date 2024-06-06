@@ -1246,7 +1246,7 @@ void Scene::Draw(DrawMode mode, Camera* cam)
 		return;
 
 	if (engine->N_sceneManager->GetSceneIsChanging())
-		engine->N_sceneManager->loadingScreen->DrawUI(cam, DrawMode::GAME);
+		engine->N_sceneManager->loadingScreen->DrawUI(cam, mode);
 	else
 		RecurseUIDraw(rootSceneGO, mode);
 }

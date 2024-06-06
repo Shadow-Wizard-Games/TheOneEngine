@@ -93,7 +93,7 @@ void GameObject::DrawUI(Camera* camera, const DrawMode mode)
 	auto canvas = this->GetComponent<Canvas>();
 
 	if (canvas && canvas->IsEnabled())
-		if (mode == DrawMode::GAME || canvas->debugDraw || engine->N_sceneManager->GetSceneIsPlaying())
+		if (mode == DrawMode::GAME || mode == DrawMode::BUILD || canvas->debugDraw || engine->N_sceneManager->GetSceneIsPlaying())
 			canvas->DrawComponent(camera);
 }
 
