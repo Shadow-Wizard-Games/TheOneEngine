@@ -30,21 +30,21 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 2557712269
+          "UID": 4198832337
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 885805600
+          "UID": 384370759
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 995973624
+          "UID": 2992680249
         }
       ],
       "Enabled": true,
@@ -100,7 +100,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 3833841522
+          "UID": 2505383180
         },
         {
           "AudioID": 0,
@@ -9248,7 +9248,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "EventCheckpoint",
               "Type": 4,
-              "UID": 3746680217
+              "UID": 1575077285
             }
           ],
           "Enabled": true,
@@ -26343,7 +26343,7 @@
           "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 1445878166
+          "UID": 1469093986
         },
         {
           "AudioID": 1,
@@ -26764,63 +26764,63 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 2556382332
+              "UID": 633846478
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 3131959604
+              "UID": 276879270
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 3625128532
+              "UID": 2313994870
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 2403631848
+              "UID": 4265686039
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 1248413416
+              "UID": 1893064340
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 85186099
+              "UID": 900730820
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 770756372
+              "UID": 4108362752
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 38872327
+              "UID": 2116806840
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 862372771
+              "UID": 2186204365
             }
           ],
           "Enabled": true,
@@ -27519,7 +27519,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiManager",
           "Type": 4,
-          "UID": 1729906697
+          "UID": 4145809378
         },
         {
           "AudioID": 2,
@@ -28621,7 +28621,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptInventory",
               "Type": 4,
-              "UID": 1710971642
+              "UID": 2693504688
             },
             {
               "AudioID": 3,
@@ -28935,7 +28935,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptPause",
               "Type": 4,
-              "UID": 4244229610
+              "UID": 1214367241
             }
           ],
           "Enabled": false,
@@ -28976,7 +28976,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptHud",
               "Type": 4,
-              "UID": 713855134
+              "UID": 3395302394
             },
             {
               "DebugDraw": true,
@@ -29200,13 +29200,13 @@
                   "Name": "Text_AbilitySheet1",
                   "Print": true,
                   "Rect": [
-                    -0.9399999976158142,
+                    -0.9449999928474426,
                     -0.17000000178813934,
                     0.019999999552965164,
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "1\n x",
+                  "TextString": "1\n l1",
                   "Type": 4
                 },
                 {
@@ -29230,7 +29230,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "2\n l1",
+                  "TextString": "2\n r1",
                   "Type": 4
                 },
                 {
@@ -29254,7 +29254,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "3\n l2",
+                  "TextString": "3\n r1",
                   "Type": 4
                 },
                 {
@@ -29278,7 +29278,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "4\n r2",
+                  "TextString": "4\n l2",
                   "Type": 4
                 },
                 {
@@ -29302,7 +29302,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "Q\n  y",
+                  "TextString": "Q\n  x",
                   "Type": 4
                 },
                 {
@@ -30779,7 +30779,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptDebug",
               "Type": 4,
-              "UID": 3598822371
+              "UID": 3559713152
             },
             {
               "AudioID": 5,
@@ -31181,7 +31181,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptMissions",
               "Type": 4,
-              "UID": 3568751331
+              "UID": 1064346678
             }
           ],
           "Enabled": false,
@@ -34179,7 +34179,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptStats",
               "Type": 4,
-              "UID": 2245836147
+              "UID": 2978964805
             }
           ],
           "Enabled": false,
@@ -34326,7 +34326,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettings",
               "Type": 4,
-              "UID": 1077659085
+              "UID": 602508045
             }
           ],
           "Enabled": false,
@@ -34435,7 +34435,7 @@
                 },
                 {
                   "DebugDraw": true,
-                  "Enabled": true,
+                  "Enabled": false,
                   "Flicker": false,
                   "Name": "Canvas",
                   "ParentUID": 3452816845,
@@ -35332,7 +35332,7 @@
                   "ParentUID": 3452816845,
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
-                  "UID": 3787093771
+                  "UID": 400121521
                 },
                 {
                   "AudioID": 13,
@@ -35340,7 +35340,7 @@
                   "Type": 8
                 }
               ],
-              "Enabled": true,
+              "Enabled": false,
               "HasTransparency": false,
               "Keeped": false,
               "Name": "Canvas_SettingsDisplay",
@@ -35598,21 +35598,21 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            65.89299011230469,
+            -79.73710632324219,
             0.0,
-            75.22042083740234,
+            60.348907470703125,
             0.0,
             0.0,
             100.0,
             0.0,
             0.0,
-            -75.22042083740234,
+            -60.348907470703125,
             0.0,
-            65.89299011230469,
+            -79.73710632324219,
             0.0,
-            628.0116577148438,
+            685.6024780273438,
             0.0,
-            865.6685791015625,
+            915.4182739257813,
             1.0
           ],
           "Type": 0,
@@ -35639,7 +35639,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 4168185353
+          "UID": 3356136173
         },
         {
           "AudioID": 16,
@@ -35704,7 +35704,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 207518682
+          "UID": 199299149
         }
       ],
       "Enabled": true,
@@ -35761,7 +35761,7 @@
           "ParentUID": 6881399,
           "ScriptName": "EventCollectible",
           "Type": 4,
-          "UID": 1325244489
+          "UID": 196762707
         },
         {
           "ColliderType": 1,
@@ -35817,7 +35817,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 3344694896
+          "UID": 3300698245
         }
       ],
       "Enabled": false,
@@ -36214,7 +36214,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 374243632
+              "UID": 15121764
             }
           ],
           "EditablePrefab": true,
@@ -36293,7 +36293,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 24944690
+              "UID": 2926125072
             }
           ],
           "EditablePrefab": true,
@@ -36372,7 +36372,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 3899191000
+              "UID": 3371459717
             }
           ],
           "EditablePrefab": true,
@@ -36451,7 +36451,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 575134842
+              "UID": 377361400
             }
           ],
           "Enabled": true,
@@ -36526,7 +36526,7 @@
               "ParentUID": 2586459136,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 2413355950
+              "UID": 3116633400
             }
           ],
           "Enabled": true,
@@ -37661,7 +37661,7 @@
               "ParentUID": 1046265010,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 2365054676
+              "UID": 3376354320
             }
           ],
           "Enabled": true,
@@ -39706,6 +39706,87 @@
       "ParentUID": 7602275,
       "Static": false,
       "UID": 1046265010
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -29.576217651367188,
+            0.0,
+            -85.00155639648438,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            0.0,
+            85.00155639648438,
+            0.0,
+            -29.576217651367188,
+            0.0,
+            465.87335205078125,
+            0.0,
+            932.3814086914063,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4133741564
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 66151348
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 322786938
+        },
+        {
+          "AudioID": 17,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3318942504,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3633985190,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "index": 0,
