@@ -22,7 +22,7 @@ public class EventOpenPopUp : Event
 
     string goName;
 
-    string filepath = "Assets/GameData/Dialogs.json";
+    string filepath = "Assets/GameData/Popups.json";
     UiManager.HudPopUpMenu popupType;
     string popupStr;
     float cooldown = 0.0f;
@@ -45,7 +45,7 @@ public class EventOpenPopUp : Event
         popupStr = ExtractPopup();
         string[] datapath = { popupStr };
         int popupInt = DataManager.AccessFileDataInt(filepath, datapath, "popupType");
-
+        
         popupType = HudPopUpMenu.PickUpFeedback;
         if (DataManager.IsValidEnumValue<UiManager.HudPopUpMenu>(popupInt))
         {
@@ -101,7 +101,7 @@ public class EventOpenPopUp : Event
             {
                 dialoguerEnum = (UiManager.Dialoguer)dialoguer;
             }
-
+            
             float duration = DataManager.AccessFileDataInt(filepath, datapath, "duration");
             menuManager.OpenHudPopUpMenu(popupType, text1, text, dialoguerEnum, duration);
 

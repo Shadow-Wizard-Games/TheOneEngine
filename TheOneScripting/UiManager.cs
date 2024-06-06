@@ -23,12 +23,12 @@ public class UiManager : MonoBehaviour
 
     public enum Dialoguer
     {
-        ShopKeeper = 0,
+        None = 0,
         Medic,
         CampLeader,
         Sargeant,
         Default,
-        None
+        ShopKeeper        
     }
 
     IGameObject inventoryGo;

@@ -21,7 +21,7 @@ public class EventTriggerDialog : Event
     string goName;
 
     string filepath = "Assets/GameData/Dialogs.json";
-    //string dynamicPath = "GameData/Dialogs.json";
+    string dynamicPath = "GameData/Dialogs.json";
     string charachter;
     int dialogNum = 1;
     int conversationNum = 1;
@@ -46,8 +46,14 @@ public class EventTriggerDialog : Event
         goName = attachedGameObject.name;
 
         charachter = ExtractCharacter();
-        //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
-        //conversationNum = DataManager.AccessFileDataInt(filepath, characterPath, "conversationNum");
+        string[] characterPath = { charachter };
+        conversationNum = DataManager.AccessFileDataInt(dynamicPath, characterPath, "conversationNum");
+
+        if(conversationNum <= 0)
+        {
+            conversationNum = 1;
+        }
+
         string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
         neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
 
@@ -57,11 +63,15 @@ public class EventTriggerDialog : Event
 
     public override void Update()
     {
+        attachedGameObject.animator.UpdateAnimation();
+        UpdateAnimator();
+
         if (cooldown > 0)
             cooldown -= Time.realDeltaTime;
 
-        if (CheckEventIsPossible() && managers.questManager.IsQuestComplete(neededQuestId))
+        if (CheckEventIsPossible() && (managers.questManager.IsQuestComplete(neededQuestId) || neededQuestId == -1))
         {
+            Debug.Log("Entra");
             DoEvent();
         }
 
@@ -88,28 +98,31 @@ public class EventTriggerDialog : Event
     {
         bool ret = true;
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && cooldown <= 0)
+        if (Input.GetKeyboardButton(Input.KeyboardCode.E) && cooldown <= 0)
         {
-            if(isFirst)
+            Debug.Log(conversationNum.ToString());
+            if (isFirst)
             {
                 managers.gameManager.SetGameState(GameManager.GameStates.DIALOGING);
                 dialogueGo.Enable();
             }
             else if (isLast)
             {
-                conversationNum++;
-                //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
-                //DataManager.WriteFileDataInt(filepath, characterPath, "conversationNum", conversationNum);
+                string[] dataPath1 = { charachter, "Conversation" + conversationNum.ToString() };
+                int completeQuestId = DataManager.AccessFileDataInt(filepath, dataPath1, "completeQuestId");
+                managers.questManager.CompleteQuest(completeQuestId);
+                int triggerQuestId = DataManager.AccessFileDataInt(filepath, dataPath1, "triggerQuestId");
+                managers.questManager.ActivateQuest(triggerQuestId);
 
-                managers.gameManager.SetGameState(GameManager.GameStates.RUNNING);
-                dialogueGo.Disable();
+                conversationNum++;
+                string[] characterPath = { charachter };
+                DataManager.WriteFileDataInt(dynamicPath, characterPath, "conversationNum", conversationNum);
 
                 string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
                 neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
-                int completeQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "completeQuestId");
-                managers.questManager.CompleteQuest(completeQuestId);
-                int triggerQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "triggerQuestId");
-                managers.questManager.ActivateQuest(triggerQuestId);
+
+                managers.gameManager.SetGameState(GameManager.GameStates.RUNNING);
+                dialogueGo.Disable();
 
                 return ret;
             }
@@ -196,5 +209,15 @@ public class EventTriggerDialog : Event
         else { Debug.LogWarning("Could not find character in GO name"); }
 
         return Dialog;
+    }
+
+    private void UpdateAnimator()
+    {
+        if (managers.questManager.IsQuestComplete(neededQuestId) && managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING)
+            attachedGameObject.animator.Play("Greetings");
+        else if(managers.gameManager.GetGameState() == GameManager.GameStates.DIALOGING)
+            attachedGameObject.animator.Play("Talk");
+        else
+            attachedGameObject.animator.Play("Idle");
     }
 }

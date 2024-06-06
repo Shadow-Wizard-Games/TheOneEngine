@@ -1,0 +1,31 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_Sargent_Idle\\Sargent_mixamo.comAS_Sargent_Talk.anim",
+      "loop": true,
+      "name": "Talk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Sargent_Idle\\Sargent_mixamo.com.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Sargent_Idle\\Sargent_mixamo.comAS_Sargent_Greeting.anim",
+      "loop": true,
+      "name": "Greetings",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_Sargent_Idle/lambert2.toematerial",
+  "mesh": "Library/Meshes/AS_Sargent_Idle/Sargent_animatedmesh.ozzmesh",
+  "name": "Sargent",
+  "skeleton": "Library/Meshes/AS_Sargent_Idle/Sargent_skeleton.skeleton",
+  "transition_blend": true,
+  "transition_time": 1.0
+}
