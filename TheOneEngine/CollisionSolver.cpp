@@ -138,6 +138,7 @@ bool CollisionSolver::Update(double dt)
                         {
                             MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
                             item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                            item2->GetComponent<Mesh>()->hasEffect = true;
                         }
                         break;
                     case CollisionType::Enemy:
@@ -146,6 +147,7 @@ bool CollisionSolver::Update(double dt)
                         {
                             MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
                             item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                            item2->GetComponent<Mesh>()->hasEffect = true;
                         }
                         break;
                     default:
@@ -177,6 +179,7 @@ bool CollisionSolver::Update(double dt)
                         {
                             MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
                             item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                            item2->GetComponent<Mesh>()->hasEffect = true;
                         }
                         break;
                     default:
@@ -199,6 +202,7 @@ bool CollisionSolver::Update(double dt)
                         if (CheckCollision(item.get(), item2.get()))
                         {
                             MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
+                            item2->GetComponent<Mesh>()->hasEffect = true;
                         }
                         break;
                     case CollisionType::Enemy:
@@ -206,6 +210,7 @@ bool CollisionSolver::Update(double dt)
                         if (CheckCollision(item.get(), item2.get()))
                         {
                             MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
+                            item2->GetComponent<Mesh>()->hasEffect = true;
                         }
                         break;
                     default:

@@ -691,6 +691,9 @@ void Renderer3D::IndexPass(RenderTarget target)
 			DrawSkeletal(call);
 	}
 
+	if (Renderer::Settings()->particles.isEnabled)
+		Renderer2D::Update(BatchType::WORLD, target);
+
 	//Renderer2D::UpdateIndexed(BatchType::WORLD, target);
 }
 

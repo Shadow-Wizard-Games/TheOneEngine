@@ -71,6 +71,16 @@ void Mesh::DrawComponent(Camera* camera)
 
 	    default: break;
 	}
+
+    if (hasEffect)
+    {
+        fxTimer++;
+        if (fxTimer > 5)
+        {
+            hasEffect = false;
+            fxTimer = 0;
+        }
+    }
 }
 
 // Load/Save

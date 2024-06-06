@@ -23,7 +23,7 @@ Light::Light(std::shared_ptr<GameObject> containerGO, LightType type)
     std::vector<Attachment> shadowBuffAttachments = {
         { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
     };
-    shadowBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, shadowBuffAttachments);
+    shadowBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 256, 256, shadowBuffAttachments);
 
     containerGO->AddComponent<Camera>();
     containerGO->GetComponent<Camera>()->zNear = 10.0f;

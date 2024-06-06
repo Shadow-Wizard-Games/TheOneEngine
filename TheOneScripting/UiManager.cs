@@ -108,6 +108,7 @@ public class UiManager : MonoBehaviour
         savingSceneGo.Disable();
         pickUpFeedbackGo.Disable();
 
+        previousState = MenuState.Pause;
         state = MenuState.Hud;
 
         savingCanvas = savingSceneGo.GetComponent<ICanvas>();
@@ -245,12 +246,12 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
-                else if (Input.GetControllerButton(Input.ControllerButtonCode.START) && previousState == MenuState.Pause ||
-                    Input.GetControllerButton(Input.ControllerButtonCode.B) && previousState != MenuState.Pause ||
+                else if (Input.GetControllerButton(Input.ControllerButtonCode.START) && state == MenuState.Hud ||
+                    Input.GetControllerButton(Input.ControllerButtonCode.B) && state != MenuState.Hud ||
                     Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
                 {
-                    if (previousState == MenuState.Pause) Debug.Log("Equivalent of pressing START");
-                    if (previousState != MenuState.Pause) Debug.Log("Equivalent of pressing B");
+                    if (state == MenuState.Hud) Debug.Log("Equivalent of pressing START");
+                    if (state != MenuState.Hud) Debug.Log("Equivalent of pressing B");
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_PAUSEGAME);
                     if (!settingsCanvas.editing)
                     {
