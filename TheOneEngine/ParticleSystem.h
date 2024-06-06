@@ -15,7 +15,7 @@ public:
 	ParticleSystem(std::shared_ptr<GameObject> containerGO, ParticleSystem* ref);
 	~ParticleSystem();
 
-	void Update() override;
+	void Update(double dt) override;
 	void DrawComponent(Camera* camera) override;
 
 	// continues from where it was

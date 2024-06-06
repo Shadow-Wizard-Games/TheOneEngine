@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using static UiManager;
+using static IAudioSource;
 
 public class EventTriggerDialog : Event
 {
@@ -12,7 +14,7 @@ public class EventTriggerDialog : Event
     PlayerScript player;
 
     GameManager gameManager;
-    UiManager menuManager;
+    QuestManager questManager;
 
     float playerDistance;
 
@@ -22,11 +24,19 @@ public class EventTriggerDialog : Event
     string goName;
 
     string filepath = "Assets/GameData/Dialogs.json";
-    string conversation;
+    //string dynamicPath = "GameData/Dialogs.json";
+    string charachter;
     int dialogNum = 1;
-    int popupType;
+    int conversationNum = 1;
+    int neededQuestId = -1;
     bool isFirst = true;
+    bool isLast = false;
     float cooldown = 0.0f;
+
+    IGameObject dialogueGo;
+    ICanvas dialogCanvas;
+
+    string audioEventString;
 
     public override void Start()
     {
@@ -34,15 +44,19 @@ public class EventTriggerDialog : Event
         player = playerGO.GetComponent<PlayerScript>();
 
         gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
+        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
 
         eventType = EventType.OPENPOPUP;
         goName = attachedGameObject.name;
 
-        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+        charachter = ExtractCharacter();
+        //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
+        //conversationNum = DataManager.AccessFileDataInt(filepath, characterPath, "conversationNum");
+        string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
+        neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
 
-        conversation = ExtractConversation();
-        string[] datapath = { conversation };
-        popupType = DataManager.AccessFileDataInt(filepath, datapath, "popupType");
+        dialogueGo = IGameObject.Find("Canvas_Dialogue");
+        dialogCanvas = dialogueGo.GetComponent<ICanvas>();
     }
 
     public override void Update()
@@ -50,7 +64,7 @@ public class EventTriggerDialog : Event
         if (cooldown > 0)
             cooldown -= Time.realDeltaTime;
 
-        if (CheckEventIsPossible())
+        if (CheckEventIsPossible() && questManager.IsQuestComplete(neededQuestId))
         {
             DoEvent();
         }
@@ -78,23 +92,81 @@ public class EventTriggerDialog : Event
     {
         bool ret = true;
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && !menuManager.IsOnCooldown((UiManager.HudPopUpMenu)popupType) && cooldown <= 0)
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.E) || isFirst) && cooldown <= 0)
         {
-            string[] datapath = { conversation, "Dialog" + dialogNum.ToString() };
+            if(isFirst)
+            {
+                gameManager.SetGameState(GameManager.GameStates.DIALOGING);
+                dialogueGo.Enable();
+            }
+            else if (isLast)
+            {
+                conversationNum++;
+                //string[] characterPath = { charachter, "Conversation" + conversationNum.ToString() };
+                //DataManager.WriteFileDataInt(filepath, characterPath, "conversationNum", conversationNum);
+
+                gameManager.SetGameState(GameManager.GameStates.RUNNING);
+                dialogueGo.Disable();
+
+                string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
+                neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
+                int completeQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "completeQuestId");
+                questManager.CompleteQuest(completeQuestId);
+                int triggerQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "triggerQuestId");
+                questManager.ActivateQuest(triggerQuestId);
+
+                return ret;
+            }
+
+            if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
+            {
+                attachedGameObject.source.Stop(aEvent);
+            }
+
+            string[] datapath = { charachter, "Conversation" + conversationNum.ToString(), "Dialog" + dialogNum.ToString() };
             string text = DataManager.AccessFileDataString(filepath, datapath, "text");
-            bool isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
+            isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
             int dialoguer = DataManager.AccessFileDataInt(filepath, datapath, "dialoguer");
-            menuManager.OpenHudPopUpMenu((UiManager.HudPopUpMenu)popupType, text, (UiManager.Dialoguer)dialoguer);
+            cooldown = DataManager.AccessFileDataInt(filepath, datapath, "cooldown");
+
+            audioEventString = DataManager.AccessFileDataString(filepath, datapath, "audioEvent");
+            if (Enum.TryParse(audioEventString, out AudioEvent audioEvent))
+            {
+                attachedGameObject.source.Play(audioEvent);
+            }
+
+            dialogCanvas.SetTextString(text, "Text_Dialogue");
+            dialogCanvas.PrintItemUI(false, "Img_ShopKeeper");
+            dialogCanvas.PrintItemUI(false, "Img_Medic");
+            dialogCanvas.PrintItemUI(false, "Img_CampLeader");
+            dialogCanvas.PrintItemUI(false, "Img_Sargeant");
+            dialogCanvas.PrintItemUI(false, "Img_Default");
+
+            switch ((UiManager.Dialoguer)dialoguer)
+            {
+                case Dialoguer.ShopKeeper:
+                    dialogCanvas.PrintItemUI(true, "Img_ShopKeeper");
+                    break;
+                case Dialoguer.Medic:
+                    dialogCanvas.PrintItemUI(true, "Img_Medic");
+                    break;
+                case Dialoguer.CampLeader:
+                    dialogCanvas.PrintItemUI(true, "Img_CampLeader");
+                    break;
+                case Dialoguer.Sargeant:
+                    dialogCanvas.PrintItemUI(true, "Img_Sargeant");
+                    break;
+                case Dialoguer.Default:
+                    dialogCanvas.PrintItemUI(true, "Img_Default");
+                    break;
+                default:
+                    break;
+            }
+
             if (!isLast)
             {
                 dialogNum++;
                 isFirst = false;
-            }
-            else
-            {
-                isFirst = true;
-                dialogNum = 1;
-                cooldown = 60.0f;
             }
         }
 
@@ -113,11 +185,11 @@ public class EventTriggerDialog : Event
         }
     }
 
-    public string ExtractConversation()
+    public string ExtractCharacter()
     {
         string Dialog = "";
 
-        string pattern = $"Conversation(\\d+)";
+        string pattern = $"Character(\\d+)";
 
         Match match = Regex.Match(goName, pattern);
 
@@ -125,7 +197,7 @@ public class EventTriggerDialog : Event
         {
             Dialog += match.Groups[0].Value;
         }
-        else { Debug.LogWarning("Could not find conversation in GO name"); }
+        else { Debug.LogWarning("Could not find character in GO name"); }
 
         return Dialog;
     }

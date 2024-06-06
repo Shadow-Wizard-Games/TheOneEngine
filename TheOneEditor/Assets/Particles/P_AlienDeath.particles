@@ -1,0 +1,77 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.5,
+            2.0,
+            0.5
+          ],
+          "MinDirection": [
+            -0.5,
+            1.0,
+            -0.5
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 120.0,
+          "MinSpeed": 100.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            50.0,
+            255.0,
+            50.0,
+            255.0
+          ],
+          "MinColor": [
+            0.0,
+            200.0,
+            0.0,
+            255.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 27.43985939025879,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 100.0,
+          "Duration": 0.30000001192092896,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "P_AlienDeath",
+  "StartON": false,
+  "Type": 9,
+  "UID": 4038007503
+}

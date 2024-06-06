@@ -25,7 +25,7 @@ Transform::Transform(std::shared_ptr<GameObject> containerGO, mat4 transform) : 
 
 Transform::~Transform() {}
 
-void Transform::Update()
+void Transform::Update(double dt)
 {
     CalculateWorldTransform();
     DecomposeGlobalTransform();
