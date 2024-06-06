@@ -172,6 +172,40 @@ void Renderer3D::ResetUniforms(LightType lightType)
 	}
 }
 
+void Renderer3D::ResetAllUniforms()
+{
+	Material* mat = Resources::GetResourceById<Material>(renderer3D.lightingMatID);
+	Shader* shader = mat->getShader();
+	shader->Bind();
+	for (int i = 0; i < 32; i++)
+	{
+		string iteration = to_string(i);
+		mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)(0));
+		mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)(0));
+		mat->SetUniformData("u_DirLight[" + iteration + "].Color", 0);
+		mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", 0);
+
+		mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)(0));
+		mat->SetUniformData("u_PointLights[" + iteration + "].Color", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Linear", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Radius", 0);
+
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)(0));
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)(0));
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Color", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", glm::mat4(0));
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", 0);
+	}
+}
+
 void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
 {
 	bool exists = false;

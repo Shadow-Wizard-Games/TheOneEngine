@@ -53,6 +53,8 @@ bool N_SceneManager::PreUpdate()
 {
 	if (sceneChange && !sceneIsPlaying)
 	{
+		Renderer3D::ResetAllUniforms();
+
 		// Kiko - Here add the transition managing
 		engine->collisionSolver->ClearCollisions();
 
