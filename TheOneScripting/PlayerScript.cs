@@ -917,10 +917,10 @@ public class PlayerScript : MonoBehaviour
 
         // CHANGE WITH REAL STATS, M4 PLACEHOLDER
 
-        if (timeSinceLastShot < 0.15f)
+        if (timeSinceLastShot < ItemShoulderLaser.fireRate)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > 0.15f / 2)
+            if (!hasShot && timeSinceLastShot > ItemShoulderLaser.fireRate / 2)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
