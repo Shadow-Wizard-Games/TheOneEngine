@@ -29,16 +29,6 @@ public class ItemManager : MonoBehaviour
         AddItem(8, 1);
     }
 
-    private void SaveData()
-    {
-
-    }
-
-    private void LoadData()
-    {
-
-    }
-
     public override void Update()
     {
         
@@ -141,5 +131,35 @@ public class ItemManager : MonoBehaviour
     {
         inventory.Clear();
         equipped.Clear();
+    }
+
+    public void SaveInventoryData()
+    {
+        int i = 0;
+
+        foreach (var item in inventory)
+        {
+            string[] datapath = { "ItemManager", "item" + i.ToString() };
+            DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "id", (int)item.Key);
+            DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "ammount", (int)item.Value);
+            i++;
+        }
+        string[] datapath1 = { "ItemManager" };
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath1, "quantity", i);
+    }
+
+    public void LoadInventoryData()
+    {
+        string[] datapath1 = { "ItemManager" };
+        int i = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath1, "quantity");
+
+        for (int j = 0; j < i; j++)
+        {
+            string[] datapath = { "ItemManager", "item" + j.ToString() };
+            int temp1 = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "id");
+            int temp2 = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "ammount");
+
+            AddItem((uint)temp1, (uint)temp2);
+        }
     }
 }

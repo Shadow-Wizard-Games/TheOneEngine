@@ -30,28 +30,28 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 4137283524
+          "UID": 1571210900
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 922759223
+          "UID": 440607349
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 1671282328
+          "UID": 2341131613
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": true,
       "Name": "Manager",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -60,28 +60,28 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -0.7071065902709961,
+            -0.7071067690849304,
             0.0,
-            0.7071069478988647,
+            0.7071067690849304,
             0.0,
-            -0.6120564937591553,
+            -0.6120563745498657,
             0.5007734298706055,
-            -0.6120561957359314,
+            -0.6120563745498657,
             0.0,
-            -0.35410037636756897,
+            -0.3541002869606018,
             -0.8655784130096436,
-            -0.35410019755363464,
+            -0.3541002869606018,
             0.0,
-            106.88941192626953,
+            233.7728729248047,
             220.0,
-            612.314453125,
+            711.592529296875,
             1.0
           ],
           "Type": 0,
           "UID": 4154963281
         },
         {
-          "Aspect": 1.777673602104187,
+          "Aspect": 1.7796610593795776,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -100,10 +100,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 3161223821
+          "UID": 3474137902
         },
         {
-          "AudioID": 28,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         }
@@ -112,7 +112,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -228,7 +228,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1436.418701171875,
+                  "Lifetime": 1452.299560546875,
                   "MaxParticles": 500,
                   "RenderModule": [
                     {
@@ -325,7 +325,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1436.418701171875,
+                  "Lifetime": 1452.299560546875,
                   "MaxParticles": 55,
                   "RenderModule": [
                     {
@@ -538,7 +538,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1425.4027099609375,
+                  "Lifetime": 1441.2835693359375,
                   "MaxParticles": 500,
                   "RenderModule": [
                     {
@@ -635,7 +635,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1425.4027099609375,
+                  "Lifetime": 1441.2835693359375,
                   "MaxParticles": 55,
                   "RenderModule": [
                     {
@@ -848,7 +848,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1523.634521484375,
+                  "Lifetime": 1539.515380859375,
                   "MaxParticles": 500,
                   "RenderModule": [
                     {
@@ -945,7 +945,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 1523.634521484375,
+                  "Lifetime": 1539.515380859375,
                   "MaxParticles": 55,
                   "RenderModule": [
                     {
@@ -1078,7 +1078,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Fire_Particles",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -1194,7 +1194,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2243.313720703125,
+                  "Lifetime": 2259.193359375,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1287,7 +1287,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2243.313720703125,
+                  "Lifetime": 2259.193359375,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -1422,7 +1422,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2265.322998046875,
+                  "Lifetime": 2281.20263671875,
                   "MaxParticles": 50,
                   "RenderModule": [
                     {
@@ -1515,7 +1515,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2265.322998046875,
+                  "Lifetime": 2281.20263671875,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -1570,7 +1570,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Sparks_Particles",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -9248,7 +9248,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "EventCheckpoint",
               "Type": 4,
-              "UID": 1769275768
+              "UID": 2114205513
             }
           ],
           "Enabled": true,
@@ -26293,7 +26293,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R1",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -26302,21 +26302,21 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            99.61945343017578,
+            70.71066444722956,
             0.0,
-            8.715564727783203,
+            70.71066753809106,
             0.0,
             0.0,
             100.0,
             0.0,
             0.0,
-            -8.715564727783203,
+            -70.71066753809106,
             0.0,
-            99.61945343017578,
+            70.71066444722956,
             0.0,
-            -51.821102142333984,
+            133.7728729248047,
             0.0,
-            -46.02009582519531,
+            631.592529296875,
             1.0
           ],
           "Type": 0,
@@ -26343,10 +26343,10 @@
           "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 2943127279
+          "UID": 3409748285
         },
         {
-          "AudioID": 29,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -26453,7 +26453,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 10.157292366027832,
+                  "Lifetime": 0.5996296405792236,
                   "MaxParticles": 20,
                   "RenderModule": [
                     {
@@ -26764,63 +26764,63 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 999561240
+              "UID": 2295498986
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 3939003585
+              "UID": 2217402463
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 2818334749
+              "UID": 2371430318
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 2398450289
+              "UID": 693628436
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 1703945170
+              "UID": 893887780
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 1034226515
+              "UID": 1381258487
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 3315656277
+              "UID": 19053995
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 3932071008
+              "UID": 2192091733
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 3810090071
+              "UID": 2045919152
             }
           ],
           "Enabled": true,
@@ -26873,7 +26873,7 @@
               "UID": 3121206272
             }
           ],
-          "Enabled": false,
+          "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "WP_CarabinaM4",
@@ -26973,7 +26973,7 @@
               "UID": 3882981545
             }
           ],
-          "Enabled": true,
+          "Enabled": false,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "WP_OlPainless",
@@ -27367,7 +27367,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2104.322021484375,
+                  "Lifetime": 2120.140625,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -27482,7 +27482,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -27519,10 +27519,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiManager",
           "Type": 4,
-          "UID": 580921999
+          "UID": 2333039449
         },
         {
-          "AudioID": 30,
+          "AudioID": 2,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -28621,10 +28621,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptInventory",
               "Type": 4,
-              "UID": 294630366
+              "UID": 276470653
             },
             {
-              "AudioID": 31,
+              "AudioID": 3,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -28926,7 +28926,7 @@
               ]
             },
             {
-              "AudioID": 32,
+              "AudioID": 4,
               "Name": "Source",
               "Type": 8
             },
@@ -28935,7 +28935,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptPause",
               "Type": 4,
-              "UID": 1088499757
+              "UID": 3794557960
             }
           ],
           "Enabled": false,
@@ -28976,7 +28976,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptHud",
               "Type": 4,
-              "UID": 822752998
+              "UID": 1678329066
             },
             {
               "DebugDraw": true,
@@ -29318,7 +29318,7 @@
                   "Kerning": 0.0,
                   "LineSpacing": 0.0,
                   "Name": "Text_WeaponCd1",
-                  "Print": true,
+                  "Print": false,
                   "Rect": [
                     -0.8820000290870667,
                     -0.18000000715255737,
@@ -29342,7 +29342,7 @@
                   "Kerning": 0.0,
                   "LineSpacing": 0.0,
                   "Name": "Text_WeaponCd2",
-                  "Print": true,
+                  "Print": false,
                   "Rect": [
                     -0.8820000290870667,
                     0.004999999888241291,
@@ -29350,7 +29350,7 @@
                     0.0949999988079071
                   ],
                   "State": 0,
-                  "TextString": "0",
+                  "TextString": "8",
                   "Type": 4
                 },
                 {
@@ -29366,7 +29366,7 @@
                   "Kerning": 0.0,
                   "LineSpacing": 0.0,
                   "Name": "Text_WeaponCd3",
-                  "Print": true,
+                  "Print": false,
                   "Rect": [
                     -0.8820000290870667,
                     0.19499999284744263,
@@ -29374,7 +29374,7 @@
                     0.0949999988079071
                   ],
                   "State": 0,
-                  "TextString": "0",
+                  "TextString": "20",
                   "Type": 4
                 },
                 {
@@ -29390,7 +29390,7 @@
                   "Kerning": 0.0,
                   "LineSpacing": 0.0,
                   "Name": "Text_WeaponCd4",
-                  "Print": true,
+                  "Print": false,
                   "Rect": [
                     -0.8820000290870667,
                     0.38499999046325684,
@@ -29414,7 +29414,7 @@
                   "Kerning": 0.0,
                   "LineSpacing": 0.0,
                   "Name": "Text_ConsumibleCd",
-                  "Print": true,
+                  "Print": false,
                   "Rect": [
                     -0.847000002861023,
                     -0.5299999713897705,
@@ -29687,7 +29687,7 @@
                     0.03500000014901161,
                     0.04500000178813934
                   ],
-                  "State": 1,
+                  "State": 0,
                   "Type": 1
                 },
                 {
@@ -29755,7 +29755,7 @@
                     0.03500000014901161,
                     0.04500000178813934
                   ],
-                  "State": 1,
+                  "State": 0,
                   "Type": 1
                 },
                 {
@@ -29789,7 +29789,7 @@
                     0.07000000029802322,
                     0.10000000149011612
                   ],
-                  "State": 0,
+                  "State": 2,
                   "Type": 1
                 },
                 {
@@ -29816,7 +29816,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponIcon2",
-                  "Print": true,
+                  "Print": false,
                   "Rect": [
                     -0.8650000095367432,
                     -0.019999999552965164,
@@ -29884,7 +29884,7 @@
                   ],
                   "Interactuable": false,
                   "Name": "Button_WeaponIcon3",
-                  "Print": true,
+                  "Print": false,
                   "Rect": [
                     -0.8650000095367432,
                     0.18000000715255737,
@@ -29959,7 +29959,7 @@
                     0.04500000178813934,
                     0.04500000178813934
                   ],
-                  "State": 1,
+                  "State": 0,
                   "Type": 1
                 },
                 {
@@ -29993,7 +29993,7 @@
                     0.07000000029802322,
                     0.10000000149011612
                   ],
-                  "State": 0,
+                  "State": 2,
                   "Type": 1
                 },
                 {
@@ -30779,10 +30779,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptDebug",
               "Type": 4,
-              "UID": 997114529
+              "UID": 1456948990
             },
             {
-              "AudioID": 33,
+              "AudioID": 5,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -31172,7 +31172,7 @@
               ]
             },
             {
-              "AudioID": 34,
+              "AudioID": 6,
               "Name": "AudioSource",
               "Type": 8
             },
@@ -31181,7 +31181,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptMissions",
               "Type": 4,
-              "UID": 1257800059
+              "UID": 2929602389
             }
           ],
           "Enabled": false,
@@ -31373,7 +31373,7 @@
                   ]
                 },
                 {
-                  "AudioID": 35,
+                  "AudioID": 7,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -31573,7 +31573,7 @@
                   ]
                 },
                 {
-                  "AudioID": 36,
+                  "AudioID": 8,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -31773,7 +31773,7 @@
                   ]
                 },
                 {
-                  "AudioID": 37,
+                  "AudioID": 9,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -31973,7 +31973,7 @@
                   ]
                 },
                 {
-                  "AudioID": 38,
+                  "AudioID": 10,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -32166,7 +32166,7 @@
               ]
             },
             {
-              "AudioID": 39,
+              "AudioID": 11,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -34179,7 +34179,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptStats",
               "Type": 4,
-              "UID": 3601331100
+              "UID": 3921921696
             }
           ],
           "Enabled": false,
@@ -34326,7 +34326,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettings",
               "Type": 4,
-              "UID": 4193061179
+              "UID": 918236636
             }
           ],
           "Enabled": false,
@@ -34395,7 +34395,7 @@
                   ]
                 },
                 {
-                  "AudioID": 40,
+                  "AudioID": 12,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -34470,7 +34470,7 @@
                       "Type": 0
                     },
                     {
-                      "CheckerActive": true,
+                      "CheckerActive": false,
                       "ID": 3977511478,
                       "ImagePath": "Assets/Textures/Hud/Settings_Screen_SpriteSheet.png",
                       "ImageSectionHovered": [
@@ -35332,10 +35332,10 @@
                   "ParentUID": 3452816845,
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
-                  "UID": 2866073985
+                  "UID": 1929643014
                 },
                 {
-                  "AudioID": 41,
+                  "AudioID": 13,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -35444,7 +35444,7 @@
               ]
             },
             {
-              "AudioID": 42,
+              "AudioID": 14,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -35484,7 +35484,7 @@
             },
             {
               "DebugDraw": true,
-              "Enabled": false,
+              "Enabled": true,
               "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
@@ -35518,7 +35518,7 @@
                     0.06499999761581421
                   ],
                   "State": 0,
-                  "TextString": "New item:",
+                  "TextString": "Looted item:",
                   "Type": 4
                 },
                 {
@@ -35542,7 +35542,7 @@
                     0.05000000074505806
                   ],
                   "State": 0,
-                  "TextString": "shoulder laser",
+                  "TextString": "M4A4",
                   "Type": 4
                 },
                 {
@@ -35569,12 +35569,12 @@
               ]
             },
             {
-              "AudioID": 43,
+              "AudioID": 15,
               "Name": "AudioSource",
               "Type": 8
             }
           ],
-          "Enabled": false,
+          "Enabled": true,
           "HasTransparency": false,
           "Keeped": false,
           "Name": "Canvas_PickUpFeedback",
@@ -35586,7 +35586,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
@@ -35598,21 +35598,21 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -79.73710632324219,
+            30.310781618127216,
             0.0,
-            60.348907470703125,
+            95.29561571549027,
             0.0,
             0.0,
             100.0,
             0.0,
             0.0,
-            -60.348907470703125,
+            -95.29561571549027,
             0.0,
-            -79.73710632324219,
+            30.310781618127216,
             0.0,
-            685.6024780273438,
+            648.7413940429688,
             0.0,
-            915.4182739257813,
+            936.779296875,
             1.0
           ],
           "Type": 0,
@@ -35639,10 +35639,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 3154857073
+          "UID": 2978132304
         },
         {
-          "AudioID": 44,
+          "AudioID": 16,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -35667,7 +35667,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (1)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "PrefabDirty": false,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -35704,88 +35704,16 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 1028257428
+          "UID": 637889286
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R2",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            -4.371138828673793e-08,
-            1.0,
-            4.371138828673793e-08,
-            0.0,
-            -5.551117108359253e-17,
-            -4.371140605030632e-08,
-            1.0000003576278687,
-            0.0,
-            1.0000003576278687,
-            4.371140605030632e-08,
-            1.9984020795999922e-15,
-            0.0,
-            208.38119506835938,
-            0.7510925531387329,
-            362.43798828125,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 666978148
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/WP_CarabinaM4/M_CarabinaM4.toematerial",
-          "MeshPath": "Library/Meshes/WP_CarabinaM4/WP_CarabinaM4.mesh",
-          "MeshType": 0,
-          "Name": "Mesh",
-          "ParentUID": 6881399,
-          "Type": 2,
-          "UID": 2543850332
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 6881399,
-          "ScriptName": "EventCollectible",
-          "Type": 4,
-          "UID": 1092624536
-        },
-        {
-          "ColliderType": 1,
-          "CollisionType": 2,
-          "CornerPivot": false,
-          "Height": 10.0,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 7.400000095367432,
-          "OffsetY": 2.0,
-          "ParentUID": 6881399,
-          "Radius": 0.5,
-          "Type": 5,
-          "UID": 2494535315,
-          "Width": 37.0
-        }
-      ],
-      "Enabled": false,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "WP_CarabinaM4_Collectible1",
-      "ParentUID": 147899296,
-      "Static": false,
-      "UID": 6881399
     },
     {
       "Components": [
@@ -35817,14 +35745,14 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 2318626688
+          "UID": 1671081456
         }
       ],
       "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R4",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -35912,7 +35840,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3264.47119140625,
+              "Lifetime": 3280.289794921875,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -35971,7 +35899,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmoke",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -36059,7 +35987,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3205.288818359375,
+              "Lifetime": 3221.107421875,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -36118,7 +36046,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmoke (1)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
     },
@@ -36214,7 +36142,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 4172314460
+              "UID": 1584399272
             }
           ],
           "EditablePrefab": true,
@@ -36293,7 +36221,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 3696694590
+              "UID": 3546002895
             }
           ],
           "EditablePrefab": true,
@@ -36372,7 +36300,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 711161312
+              "UID": 2325499363
             }
           ],
           "EditablePrefab": true,
@@ -36451,7 +36379,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 43293141
+              "UID": 486360002
             }
           ],
           "Enabled": true,
@@ -36526,7 +36454,7 @@
               "ParentUID": 2586459136,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 438261806
+              "UID": 3420116000
             }
           ],
           "Enabled": true,
@@ -36677,7 +36605,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Alarm_Lights",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -37053,7 +36981,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_Lights",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -37429,7 +37357,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Tutorial_Lights",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -37644,7 +37572,7 @@
                 0.0
               ],
               "InnerCutOff": 0.9100000262260437,
-              "Intensity": 0.30000001192092896,
+              "Intensity": 0.45428740978240967,
               "LightType": 1,
               "Linear": 6.599999904632568,
               "Name": "Light",
@@ -37661,7 +37589,7 @@
               "ParentUID": 1046265010,
               "ScriptName": "LightFlicker",
               "Type": 4,
-              "UID": 1390065125
+              "UID": 3239015625
             }
           ],
           "Enabled": true,
@@ -37880,7 +37808,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "PC_Lights",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -37952,7 +37880,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1493.303466796875,
+              "Lifetime": 1509.123291015625,
               "MaxParticles": 200,
               "RenderModule": [
                 {
@@ -37999,7 +37927,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "PipeSmoke",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1094826976
     },
@@ -38071,7 +37999,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1745.58544921875,
+              "Lifetime": 1761.4052734375,
               "MaxParticles": 200,
               "RenderModule": [
                 {
@@ -38118,7 +38046,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "PipeSmoke (1)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -38190,7 +38118,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 579.8818969726563,
+              "Lifetime": 595.7011108398438,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -38236,7 +38164,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_smoke",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 7536748
     },
@@ -38308,7 +38236,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 754.0191650390625,
+              "Lifetime": 769.83837890625,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -38354,7 +38282,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_smoke (1)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -38442,7 +38370,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 1887.5855712890625,
+              "Lifetime": 1903.4053955078125,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -38501,7 +38429,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_smoke (2)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -38589,7 +38517,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3262.101318359375,
+              "Lifetime": 3277.919921875,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -38648,7 +38576,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmoke (2)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 806989520
     },
@@ -38736,7 +38664,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 253.8614044189453,
+              "Lifetime": 269.6805419921875,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -38774,7 +38702,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_drop",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1094826976
     },
@@ -38862,7 +38790,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 267.6311950683594,
+              "Lifetime": 283.4502258300781,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -38900,7 +38828,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_drop (1)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1094826976
     },
@@ -38988,7 +38916,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 379.89056396484375,
+              "Lifetime": 395.7095947265625,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39026,7 +38954,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_drop (2)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1094826976
     },
@@ -39114,7 +39042,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 315.8500061035156,
+              "Lifetime": 331.6690368652344,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39152,7 +39080,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_drop (3)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1094826976
     },
@@ -39240,7 +39168,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 364.0007629394531,
+              "Lifetime": 379.8197937011719,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39278,7 +39206,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Water_Drop",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -39366,7 +39294,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 392.1752014160156,
+              "Lifetime": 407.9942321777344,
               "MaxParticles": 1,
               "RenderModule": [
                 {
@@ -39404,7 +39332,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Water_Drop (1)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 3072446544
     },
@@ -39492,7 +39420,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 3292.014892578125,
+              "Lifetime": 3307.83349609375,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -39551,7 +39479,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmoke (3)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -39623,7 +39551,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 826.8946533203125,
+              "Lifetime": 842.7138671875,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -39669,7 +39597,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_smoke (3)",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
     },
@@ -39703,127 +39631,12 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L1R2",
-      "ParentUID": 147899296,
+      "ParentUID": 3452816845,
       "Static": false,
       "UID": 1046265010
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            -29.576217651367188,
-            0.0,
-            -85.00155639648438,
-            0.0,
-            0.0,
-            90.0,
-            0.0,
-            0.0,
-            85.00155639648438,
-            0.0,
-            -29.576217651367188,
-            0.0,
-            465.87335205078125,
-            0.0,
-            932.3814086914063,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 4133741564
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
-          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
-          "MeshType": 2,
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 66151348
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "AnarchistBehaviour",
-          "Type": 4,
-          "UID": 4076105658
-        },
-        {
-          "AudioID": 45,
-          "Name": "AudioSource",
-          "Type": 8
-        },
-        {
-          "ColliderType": 0,
-          "CollisionType": 1,
-          "CornerPivot": true,
-          "Height": -1.7976931348623157e+308,
-          "Name": "Collider2D",
-          "ObjectOrientation": 0,
-          "OffsetX": 0.0,
-          "OffsetY": 0.0,
-          "ParentUID": 3452816845,
-          "Radius": 12.0,
-          "Type": 5,
-          "UID": 3318942504,
-          "Width": -1.7976931348623157e+308
-        }
-      ],
-      "EditablePrefab": true,
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "SK_Anarchist (2)",
-      "ParentUID": 147899296,
-      "PrefabDirty": false,
-      "PrefabID": 3633985190,
-      "PrefabName": "SK_Anarchist",
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            676.5513305664063,
-            0.0,
-            148.17584228515625,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 1248438109
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Spawn_L1R4",
-      "ParentUID": 147899296,
-      "Static": false,
-      "UID": 7536748
     }
   ],
   "index": 0,
-  "path": "Assets\\Scenes\\L1R1.toe",
+  "path": "GameData/Scenes\\L1R1.toe",
   "sceneName": "L1R1"
 }
