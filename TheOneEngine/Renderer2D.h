@@ -84,7 +84,7 @@ public:
 private:
 	static void NextQuadBatch(Batch& batch);
 
-	static void DrawQuadBatch(const Batch& batch);
+	static void DrawQuadBatch(const Batch& batch, BatchType type);
 	static void DrawQuadIndexedBatch(const Batch& batch);
 	static void DrawCircleBatch(const Batch& batch);
 	static void DrawLineBatch(const Batch& batch);

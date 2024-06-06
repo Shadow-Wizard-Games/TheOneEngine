@@ -92,6 +92,9 @@ void PanelRenderer::SettingsTab()
 	if (ImGui::Checkbox("Particles", &renderParticles))
 		Renderer::Settings()->particles.SetState(renderParticles);
 
+	if (ImGui::Checkbox("Particles Volumetric Light", &renderParticlesVL))
+		Renderer::Settings()->particlesLight.SetState(renderParticlesVL);
+
 	if (ImGui::Checkbox("CRT", &renderCRT))
 		Renderer::Settings()->crt.SetState(renderCRT);
 }

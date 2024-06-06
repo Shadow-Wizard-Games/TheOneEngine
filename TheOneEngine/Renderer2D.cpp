@@ -5,6 +5,7 @@
 #include "UniformBuffer.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "Renderer.h"
 #include "RenderTarget.h"
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -198,6 +199,7 @@ struct Batch
 struct Renderer2DData
 {
 	std::shared_ptr<Shader> QuadShader;
+	std::shared_ptr<Shader> ParticleShader;
 	std::shared_ptr<Shader> QuadIndexShader;
 	std::shared_ptr<Shader> CircleShader;
 	std::shared_ptr<Shader> LineShader;
@@ -238,6 +240,7 @@ void Renderer2D::Init()
 {
 	// Shaders
 	renderer2D.QuadShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuad");
+	renderer2D.ParticleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DParticle");
 	renderer2D.QuadIndexShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DQuadIndex");
 	renderer2D.CircleShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DCircle");
 	renderer2D.LineShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DLine");
@@ -281,7 +284,17 @@ void Renderer2D::Update(BatchType type, RenderTarget target)
 
 	switch (type)
 	{
-		case WORLD:		buffer = target.GetFrameBuffer("gBuffer");		break;
+		case WORLD:
+		{
+			if (Renderer::Settings()->particlesLight.isEnabled)
+			{
+				buffer = target.GetFrameBuffer("gBuffer");
+				break;
+			}
+			buffer = target.GetFrameBuffer("postBuffer");
+			break;
+		}
+			
 		case UI:		buffer = target.GetFrameBuffer("uiBuffer");		break;
 		case EDITOR:	buffer = target.GetFrameBuffer("postBuffer");	break;
 		default: return;
@@ -292,7 +305,7 @@ void Renderer2D::Update(BatchType type, RenderTarget target)
 	GLCALL(glDisable(GL_CULL_FACE));
 	GLCALL(glEnable(GL_BLEND));
 
-	DrawQuadBatch(batch);
+	DrawQuadBatch(batch, type);
 	DrawCircleBatch(batch);
 	DrawLineBatch(batch);
 	DrawTextBatch(batch);
@@ -328,7 +341,7 @@ void Renderer2D::NextQuadBatch(Batch& batch)
 	ResetQuadBatch(batch);*/
 }
 
-void Renderer2D::DrawQuadBatch(const Batch& batch)
+void Renderer2D::DrawQuadBatch(const Batch& batch, BatchType type)
 {
 	if (batch.QuadIndexCount)
 	{
@@ -339,7 +352,9 @@ void Renderer2D::DrawQuadBatch(const Batch& batch)
 		for (uint32_t i = 0; i < batch.TextureSlotIndex; i++)
 			batch.TextureSlots[i]->Bind(i);
 
-		renderer2D.QuadShader->Bind();
+		type == BatchType::UI ?
+			renderer2D.QuadShader->Bind() :
+			renderer2D.ParticleShader->Bind();
 		DrawIndexed(batch.QuadVertexArray, batch.QuadIndexCount);
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.QuadShader->UnBind();

@@ -30,21 +30,21 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 2389929831
+          "UID": 1000427496
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 2987165762
+          "UID": 717665338
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 667963516
+          "UID": 1525695618
         }
       ],
       "Enabled": true,
@@ -100,7 +100,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 2918401003
+          "UID": 3271604119
         },
         {
           "AudioID": 0,
@@ -7787,21 +7787,6 @@
               "ParentUID": 3452816845,
               "Type": 2,
               "UID": 3897815559
-            },
-            {
-              "ColliderType": 1,
-              "CollisionType": 2,
-              "CornerPivot": false,
-              "Height": 50.0,
-              "Name": "Collider2D",
-              "ObjectOrientation": 0,
-              "OffsetX": 0.0,
-              "OffsetY": -20.0,
-              "ParentUID": 3452816845,
-              "Radius": 0.5,
-              "Type": 5,
-              "UID": 2440492068,
-              "Width": 20.0
             }
           ],
           "Enabled": true,
@@ -7852,21 +7837,6 @@
               "ParentUID": 3452816845,
               "Type": 2,
               "UID": 3017074801
-            },
-            {
-              "ColliderType": 1,
-              "CollisionType": 2,
-              "CornerPivot": false,
-              "Height": 50.0,
-              "Name": "Collider2D",
-              "ObjectOrientation": 0,
-              "OffsetX": 0.0,
-              "OffsetY": -20.0,
-              "ParentUID": 3452816845,
-              "Radius": 0.5,
-              "Type": 5,
-              "UID": 2524545556,
-              "Width": 20.0
             }
           ],
           "Enabled": true,
@@ -31331,7 +31301,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiManager",
           "Type": 4,
-          "UID": 821496482
+          "UID": 1052706002
         },
         {
           "AudioID": 1,
@@ -32433,7 +32403,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptInventory",
               "Type": 4,
-              "UID": 3451795824
+              "UID": 2660711254
             },
             {
               "AudioID": 2,
@@ -32747,7 +32717,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptPause",
               "Type": 4,
-              "UID": 2466760839
+              "UID": 3189323796
             }
           ],
           "Enabled": false,
@@ -32788,7 +32758,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptHud",
               "Type": 4,
-              "UID": 1927180300
+              "UID": 3411437422
             },
             {
               "DebugDraw": true,
@@ -33012,13 +32982,13 @@
                   "Name": "Text_AbilitySheet1",
                   "Print": true,
                   "Rect": [
-                    -0.9399999976158142,
+                    -0.9449999928474426,
                     -0.17000000178813934,
                     0.019999999552965164,
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "1\n x",
+                  "TextString": "1\n l1",
                   "Type": 4
                 },
                 {
@@ -33042,7 +33012,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "2\n l1",
+                  "TextString": "2\n r1",
                   "Type": 4
                 },
                 {
@@ -33066,7 +33036,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "3\n l2",
+                  "TextString": "3\n r1",
                   "Type": 4
                 },
                 {
@@ -33090,7 +33060,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "4\n r2",
+                  "TextString": "4\n l2",
                   "Type": 4
                 },
                 {
@@ -33114,7 +33084,7 @@
                     0.03999999910593033
                   ],
                   "State": 0,
-                  "TextString": "Q\n  y",
+                  "TextString": "Q\n  x",
                   "Type": 4
                 },
                 {
@@ -34591,7 +34561,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptDebug",
               "Type": 4,
-              "UID": 1644129967
+              "UID": 681247481
             },
             {
               "AudioID": 4,
@@ -34993,7 +34963,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptMissions",
               "Type": 4,
-              "UID": 3107256023
+              "UID": 2969146928
             }
           ],
           "Enabled": false,
@@ -37991,7 +37961,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptStats",
               "Type": 4,
-              "UID": 164181106
+              "UID": 2632180408
             }
           ],
           "Enabled": false,
@@ -38138,7 +38108,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettings",
               "Type": 4,
-              "UID": 2675625177
+              "UID": 1274268184
             }
           ],
           "Enabled": false,
@@ -38247,7 +38217,7 @@
                 },
                 {
                   "DebugDraw": true,
-                  "Enabled": true,
+                  "Enabled": false,
                   "Flicker": false,
                   "Name": "Canvas",
                   "ParentUID": 3452816845,
@@ -39144,7 +39114,7 @@
                   "ParentUID": 3452816845,
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
-                  "UID": 2399153952
+                  "UID": 1397446676
                 },
                 {
                   "AudioID": 12,
@@ -39152,7 +39122,7 @@
                   "Type": 8
                 }
               ],
-              "Enabled": true,
+              "Enabled": false,
               "HasTransparency": false,
               "Keeped": false,
               "Name": "Canvas_SettingsDisplay",
@@ -39451,7 +39421,7 @@
           "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 1335779920
+          "UID": 3887872414
         },
         {
           "AudioID": 15,
@@ -39872,63 +39842,63 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 1480085201
+              "UID": 1337571775
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 468921041
+              "UID": 1114692434
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 1153664504
+              "UID": 678029536
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 2518831431
+              "UID": 271601039
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 3695982097
+              "UID": 2544950866
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 2965485226
+              "UID": 1057731030
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 3678947437
+              "UID": 2203351590
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 1092933035
+              "UID": 397080738
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 3611451602
+              "UID": 2659899949
             }
           ],
           "Enabled": true,
@@ -40686,7 +40656,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "ChestbursterBehaviour",
               "Type": 4,
-              "UID": 1376483734
+              "UID": 2272424953
             },
             {
               "AudioID": 16,
@@ -40959,7 +40929,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "ChestbursterBehaviour",
               "Type": 4,
-              "UID": 1679886621
+              "UID": 2501183528
             },
             {
               "AudioID": 17,
@@ -41232,7 +41202,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "ChestbursterBehaviour",
               "Type": 4,
-              "UID": 2688747407
+              "UID": 4021542341
             },
             {
               "AudioID": 18,
@@ -41482,7 +41452,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 42815468
+          "UID": 930603588
         }
       ],
       "Enabled": true,
@@ -41523,7 +41493,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 1826973801
+          "UID": 3038487746
         }
       ],
       "Enabled": true,
@@ -43321,7 +43291,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 2408041654
+          "UID": 3706079045
         }
       ],
       "EditablePrefab": true,
@@ -46839,7 +46809,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 2824706204
+          "UID": 3432461080
         }
       ],
       "Enabled": true,
@@ -46914,7 +46884,7 @@
           "ParentUID": 411013536,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 3235799930
+          "UID": 2894141269
         }
       ],
       "Enabled": true,
@@ -48113,6 +48083,1119 @@
       "ParentUID": 7602275,
       "Static": false,
       "UID": 7602275
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -93.96923065185547,
+            0.0,
+            -34.20206069946289,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            34.20206069946289,
+            0.0,
+            -93.96923065185547,
+            0.0,
+            -13.424053192138672,
+            0.0,
+            504.562255859375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 565314416
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Facehugger_T_Pose/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3161710859
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 115169132
+        },
+        {
+          "AudioID": 19,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1406986783,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger1",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3138940538,
+      "PrefabName": "Facehugger1",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -29.644987106323242,
+            0.0,
+            -95.50482940673828,
+            0.0,
+            0.0,
+            99.99999237060547,
+            0.0,
+            0.0,
+            95.50482940673828,
+            0.0,
+            -29.644987106323242,
+            0.0,
+            -45.50243377685547,
+            0.0,
+            602.8585815429688,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 565314416
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Facehugger_T_Pose/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3161710859
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 1100503872
+        },
+        {
+          "AudioID": 20,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1406986783,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger1 (1)",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3138940538,
+      "PrefabName": "Facehugger1",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -45.02693557739258,
+            0.0,
+            -77.9267578125,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            0.0,
+            77.9267578125,
+            0.0,
+            -45.02693557739258,
+            0.0,
+            670.1162109375,
+            0.0,
+            758.985107421875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4133741564
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 66151348
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 399956170
+        },
+        {
+          "AudioID": 21,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3318942504,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3633985190,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -68.91581726074219,
+            0.0,
+            57.88460159301758,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            0.0,
+            -57.88460159301758,
+            0.0,
+            -68.91581726074219,
+            0.0,
+            548.6006469726563,
+            0.0,
+            786.7972412109375,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4133741564
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 66151348
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 421872314
+        },
+        {
+          "AudioID": 22,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3318942504,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist (1)",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3633985190,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            39.064002990722656,
+            0.0,
+            -92.05433654785156,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            92.05433654785156,
+            0.0,
+            39.064002990722656,
+            0.0,
+            115.96847534179688,
+            0.0,
+            684.1661987304688,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 1737199682
+        },
+        {
+          "AudioID": 23,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster (4)",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -20.05292510986328,
+            0.0,
+            -97.96875762939453,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            97.96875762939453,
+            0.0,
+            -20.05292510986328,
+            0.0,
+            83.74903869628906,
+            0.0,
+            624.274658203125,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4032944812
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
+          "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 160490637
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 3320787676,
+          "Width": -1.7976931348623157e+308
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ChestbursterBehaviour",
+          "Type": 4,
+          "UID": 2835413128
+        },
+        {
+          "AudioID": 24,
+          "Name": "AudioSource",
+          "Type": 8
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1084357020372626,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3974995229
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        2.0
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        1.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailPunchPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 3342647550
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailPunchPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 2188662575
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.5,
+                  "Duration": 1.0,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        1.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        -0.5,
+                        0.0,
+                        -0.5
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": false
+                    },
+                    {
+                      "MaxSpeed": 100.0,
+                      "MinSpeed": 80.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": false
+                    }
+                  ],
+                  "IsLooping": false,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 100,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Amount": 20.0,
+                      "Duration": 0.30000001192092896,
+                      "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    }
+                  ]
+                }
+              ],
+              "Name": "TailTripPS\u0000tem\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": false,
+              "Type": 9,
+              "UID": 1703738798
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "TailTripPS",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 3452816845
+        }
+      ],
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Chestburster (5)",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 4037396494,
+      "PrefabName": "Chestburster",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            -64.27875518798828,
+            0.0,
+            -76.60443115234375,
+            0.0,
+            0.0,
+            100.0,
+            0.0,
+            0.0,
+            76.60443115234375,
+            0.0,
+            -64.27875518798828,
+            0.0,
+            49.94798278808594,
+            0.0,
+            711.32421875,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 565314416
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Facehugger_T_Pose/M_Facehugger.toematerial",
+          "MeshPath": "Library/Meshes/AS_Facehugger_T_Pose/Facehugger1.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 3161710859
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "FaceHuggerBehaviour",
+          "Type": 4,
+          "UID": 2491238701
+        },
+        {
+          "AudioID": 25,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 10.0,
+          "Type": 5,
+          "UID": 1406986783,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Facehugger (2)",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3138940538,
+      "PrefabName": "Facehugger1",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            90.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            46.918766021728516,
+            0.00013648804451804608,
+            176.85934448242188,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4133741564
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 66151348
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 3761640691
+        },
+        {
+          "AudioID": 28,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3318942504,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist (2)",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3633985190,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            90.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            90.0,
+            0.0,
+            -95.4157943725586,
+            0.0001248693442903459,
+            121.45771026611328,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4133741564
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_Anarchist_TPose/M_Anarchist.toematerial",
+          "MeshPath": "Library/Meshes/AS_Anarchist_TPose/SK_Anarchist.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 3452816845,
+          "Type": 2,
+          "UID": 66151348
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "AnarchistBehaviour",
+          "Type": 4,
+          "UID": 782260988
+        },
+        {
+          "AudioID": 29,
+          "Name": "AudioSource",
+          "Type": 8
+        },
+        {
+          "ColliderType": 0,
+          "CollisionType": 1,
+          "CornerPivot": true,
+          "Height": -1.7976931348623157e+308,
+          "Name": "Collider2D",
+          "ObjectOrientation": 0,
+          "OffsetX": 0.0,
+          "OffsetY": 0.0,
+          "ParentUID": 3452816845,
+          "Radius": 12.0,
+          "Type": 5,
+          "UID": 3318942504,
+          "Width": -1.7976931348623157e+308
+        }
+      ],
+      "EditablePrefab": true,
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "SK_Anarchist (3)",
+      "ParentUID": 7602275,
+      "PrefabDirty": false,
+      "PrefabID": 3633985190,
+      "PrefabName": "SK_Anarchist",
+      "Static": false,
+      "UID": 3452816845
     }
   ],
   "index": 0,

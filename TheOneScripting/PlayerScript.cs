@@ -1023,8 +1023,8 @@ public class PlayerScript : MonoBehaviour
             return;
 
         ITransform spawnTransform = IGameObject.Find("Spawn_" + managers.gameManager.lastLevel)?.GetComponent<ITransform>();
-        
-        if (spawnTransform == null)
+
+        if (spawnTransform != null)
         {
             Vector3 spawnPos = spawnTransform.Position;
             attachedGameObject.transform.Position = spawnPos;
