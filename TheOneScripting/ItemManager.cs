@@ -23,10 +23,10 @@ public class ItemManager : MonoBehaviour
         itemData.Add(9, new Item_DoorKey());
 
         //Debug
-        AddItem(2, 1);
-        AddItem(3, 1);
-        AddItem(7, 1);
-        AddItem(8, 1);
+        //AddItem(2, 1);
+        //AddItem(3, 1);
+        //AddItem(7, 1);
+        //AddItem(8, 1);
     }
 
     public override void Update()

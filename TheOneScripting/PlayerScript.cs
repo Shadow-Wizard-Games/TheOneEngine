@@ -1030,13 +1030,12 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void ReduceLife(uint damage)
+    public void ReduceLife()
     {
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        managers.gameManager.health -= damage;
-        //Debug.Log("Player took damage! Current life is: " + gameManager.health.ToString());
+        managers.gameManager.health -= 3.0f;
 
         if (managers.gameManager.health <= 0)
         {
