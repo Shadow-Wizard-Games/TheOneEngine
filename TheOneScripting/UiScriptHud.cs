@@ -189,7 +189,7 @@ public class UiScriptHud : MonoBehaviour
                 onCooldown = true;
             }
 
-            if (consumibleUnlocked && !consumibleOnCooldown && Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.Q))//remember to add also keyboard button
+            if (consumibleUnlocked && !consumibleOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.Q)))//remember to add also keyboard button
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
