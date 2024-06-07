@@ -11,7 +11,10 @@
 #include "SDL2/SDL.h"
 #include "GL/gl.h"
 
-CollisionSolver::CollisionSolver() {}
+CollisionSolver::CollisionSolver()
+{
+    active = true;
+}
 
 CollisionSolver::~CollisionSolver() {}
 
@@ -67,8 +70,11 @@ bool CollisionSolver::Update(double dt)
                         //if they collide
                         if (CheckCollision(item.get(), item2.get()))
                         {
-                            //we push player out of wall
-                            SolveCollision(item.get(), item2.get());
+                            if (active)
+                            {
+                                //we push player out of wall
+                                SolveCollision(item.get(), item2.get());
+                            }
                         }
                         break;
                     default:

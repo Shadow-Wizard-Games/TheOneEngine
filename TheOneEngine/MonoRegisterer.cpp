@@ -1026,6 +1026,14 @@ static void SetColliderBoxSize(GameObject* GOptr, vec2f sizeToSet)
 	GOptr->GetComponent<Collider2D>()->w = (double)sizeToSet.x;
 	GOptr->GetComponent<Collider2D>()->h = (double)sizeToSet.y;
 }
+static void SetCollisionSolverActive(bool active)
+{
+	engine->collisionSolver->SetCollisionSolverActive(active);
+}
+static bool GetCollisionSolverActive()
+{
+	return engine->collisionSolver->GetCollisionSolverActive();
+}
 
 // Camera
 static double GetFov(GameObject* GOptr)
@@ -1314,6 +1322,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::SetColliderRadius", SetColliderRadius);
 	mono_add_internal_call("InternalCalls::GetColliderBoxSize", GetColliderBoxSize);
 	mono_add_internal_call("InternalCalls::SetColliderBoxSize", SetColliderBoxSize);
+	mono_add_internal_call("InternalCalls::SetCollisionSolverActive", SetCollisionSolverActive);
+	mono_add_internal_call("InternalCalls::GetCollisionSolverActive", GetCollisionSolverActive);
 
 	//Camera
 	mono_add_internal_call("InternalCalls::GetFov", GetFov);

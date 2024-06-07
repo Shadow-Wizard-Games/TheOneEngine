@@ -64,6 +64,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     IParticleSystem acidSpitPSGO;
     IParticleSystem tailAttackPSGO;
     IParticleSystem deathPSGO;
+    IParticleSystem hitPSGO;
 
     public override void Start()
     {
@@ -80,6 +81,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
+        hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -318,12 +320,14 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
+        else hitPSGO?.Replay();
     }
 
     public void ReduceLifeExplosion()
     {
         life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
+        else hitPSGO?.Replay();
     }
 
     private bool MoveTo(Vector3 targetPosition)

@@ -1,9 +1,38 @@
 {
-  "animation_list": null,
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_Xenomorph_TPose\\Xenomorph_Take 001AS_Xenomorph_Walk.anim",
+      "loop": true,
+      "name": "Walk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Xenomorph_TPose\\Xenomorph_Take 001AS_Xenomorph_TailAttack.anim",
+      "loop": false,
+      "name": "TailAttack",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Xenomorph_TPose\\Xenomorph_Take 001AS_Xenomorph_Spit.anim",
+      "loop": false,
+      "name": "Spit",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Xenomorph_TPose\\Xenomorph_Take 001AS_Xenomorph_Death.anim",
+      "loop": false,
+      "name": "Death",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
   "material": "Library/Materials/AS_Xenomorph_TPose/M_Xenomorph.toematerial",
   "mesh": "Library/Meshes/AS_Xenomorph_TPose/Xenomorph_animatedmesh.ozzmesh",
   "name": "Xenomorph",
   "skeleton": "Library/Meshes/AS_Xenomorph_TPose/Xenomorph_skeleton.skeleton",
   "transition_blend": true,
-  "transition_time": 1.0
+  "transition_time": 0.0
 }

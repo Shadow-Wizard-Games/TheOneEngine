@@ -1,0 +1,114 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            1.5,
+            3.0,
+            1.5
+          ],
+          "MinDirection": [
+            -1.5,
+            2.0,
+            -4.5
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 200.0,
+          "MinSpeed": 80.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            0.14222751557826996,
+            0.987261176109314,
+            0.01886487752199173,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "MaxOffset": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "MinOffset": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            5.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 70,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 70.0,
+          "Duration": 0.5,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
+          "Acceleration": [
+            0.0,
+            -500.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "Xenomorph_Death",
+  "StartON": false,
+  "Type": 9,
+  "UID": 3239145207
+}

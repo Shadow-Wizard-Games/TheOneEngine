@@ -302,6 +302,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetColliderBoxSize(IntPtr GOptr, ref Vector2 sizeToSet);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetCollisionSolverActive(bool active);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetCollisionSolverActive();
     #endregion
 
     #region Camera

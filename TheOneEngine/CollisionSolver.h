@@ -39,7 +39,19 @@ public:
 
 	std::list<std::weak_ptr<GameObject>> goWithCollision;
 
+	
+	void SetCollisionSolverActive(bool active)
+	{
+		this->active = active;
+	}
+	bool GetCollisionSolverActive()
+	{
+		return this->active;
+	}
+
 private:
+
+	bool active;
 
 };
 

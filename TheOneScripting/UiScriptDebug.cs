@@ -147,6 +147,7 @@ public class UiScriptDebug : MonoBehaviour
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 managers.gameManager.godMode = !managers.gameManager.godMode;
+                InternalCalls.SetCollisionSolverActive(!managers.gameManager.godMode);
                 onCooldown = true;
             }
 
