@@ -46,7 +46,7 @@ public class PlayerScript : MonoBehaviour
     public bool isDead = false;
     public float baseDamage;
     public float totalDamage = 0.0f;
-    public float damageIncrease = 1.0f;
+    public float damageMultiplier = 1.0f;
 
     // movement
     public float totalSpeedModification = 0;
@@ -78,6 +78,9 @@ public class PlayerScript : MonoBehaviour
     // DEPENDS ON WEAPON ITEM TYPE
     public bool hasShot = false;
     float timeSinceLastShot = 0.0f;
+    public int loaderAmmoM4 = 0;
+    public bool isReloading = false;
+    public float reloadingTimeCounter = 0.0f;
 
     // abilities
     public AbilityGrenadeLauncher GrenadeLauncher;
@@ -93,6 +96,7 @@ public class PlayerScript : MonoBehaviour
     public Vector3 grenadeInitialVelocity;
     public Vector3 explosionPos;
     public int shieldKillCounter;
+    public float waitForAnimationToFinish = 0.0f;
 
     // audio
     public IAudioSource.AudioStateID currentAudioState;
@@ -101,7 +105,6 @@ public class PlayerScript : MonoBehaviour
     // Lights
     public ILight shotLight;
 
-    public float waitForAnimationToFinish = 0.0f;
 
     public override void Start()
     {
@@ -155,6 +158,9 @@ public class PlayerScript : MonoBehaviour
         skillSetChangeBaseCD = 10.0f;
         skillSetChangeTime = 0.0f;
 
+        loaderAmmoM4 = ItemM4.maxLoaderAmmo;
+        reloadingTimeCounter = ItemM4.reloadTime;
+
         // THIS ALWAYS LAST IN START
         SetInitPosInScene();
     }
@@ -167,6 +173,8 @@ public class PlayerScript : MonoBehaviour
 
         // to delete just testing
         AddItemsToInventoryForTest();
+
+        ManageLoaderM4();
 
         // CHANGE WHEN INVENTORY OVERHAUL
         if (managers.itemManager.CheckItemInInventory(1) && currentWeaponType == CurrentWeapon.NONE)
@@ -193,7 +201,7 @@ public class PlayerScript : MonoBehaviour
         currentSpeed = managers.gameManager.GetSpeed() + totalSpeedModification;
 
         // calculus of damage
-        totalDamage = (currentWeaponDamage + managers.gameManager.GetDamage()) * damageIncrease;
+        totalDamage = (currentWeaponDamage + managers.gameManager.GetDamage()) * damageMultiplier;
 
         UpdatePlayerState();
 
@@ -603,8 +611,16 @@ public class PlayerScript : MonoBehaviour
         switch (currentWeaponType)
         {
             case CurrentWeapon.M4:
-                attachedGameObject.animator.Play("Shoot M4");
-                M4GO.animator.Play("Shoot");
+                if (!isReloading)
+                {
+                    attachedGameObject.animator.Play("Shoot M4");
+                    M4GO.animator.Play("Shoot"); 
+                }
+                else
+                {
+                    attachedGameObject.animator.Play("Idle M4");
+                    M4GO.animator.Play("Idle");
+                }
                 break;
             case CurrentWeapon.SHOULDERLASER:
                 attachedGameObject.animator.Play("Shoot Shoulder Laser");
@@ -633,8 +649,16 @@ public class PlayerScript : MonoBehaviour
         switch (currentWeaponType)
         {
             case CurrentWeapon.M4:
-                attachedGameObject.animator.Play("Run Shoot M4");
-                M4GO.animator.Play("Run and Shoot");
+                if (!isReloading)
+                {
+                    attachedGameObject.animator.Play("Run Shoot M4");
+                    M4GO.animator.Play("Run and Shoot");
+                }
+                else
+                {
+                    attachedGameObject.animator.Play("Run M4");
+                    M4GO.animator.Play("Run");
+                }
                 break;
             case CurrentWeapon.SHOULDERLASER:
                 attachedGameObject.animator.Play("Run");
@@ -671,7 +695,7 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.speedModification = managers.gameManager.GetSpeed() * (AdrenalineRush.speedAmount);
 
         // increase damage
-        damageIncrease = 1 + AdrenalineRush.damageAmount;
+        damageMultiplier = 1 + AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -692,7 +716,7 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.speedModification = managers.gameManager.GetSpeed() * (AdrenalineRush.speedAmount);
 
         // increase damage
-        damageIncrease = 1 + AdrenalineRush.damageAmount;
+        damageMultiplier = 1 + AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
@@ -899,7 +923,7 @@ public class PlayerScript : MonoBehaviour
         if (timeSinceLastShot < ItemM4.fireRate)
         {
             timeSinceLastShot += Time.deltaTime;
-            if (!hasShot && timeSinceLastShot > ItemM4.fireRate / 2)
+            if (!hasShot && timeSinceLastShot > ItemM4.fireRate / 2 && !isReloading)
             {
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
@@ -910,6 +934,8 @@ public class PlayerScript : MonoBehaviour
                 shotParticles.Replay();
                 bulletShell.Play();
                 shotLight.SwitchOn();
+                loaderAmmoM4--;
+                Debug.Log("Loader bullets " + loaderAmmoM4);
             }
         }
         else
@@ -1088,6 +1114,25 @@ public class PlayerScript : MonoBehaviour
             Vector3 spawnPos = spawnTransform.Position;
             attachedGameObject.transform.Position = spawnPos;
         }        
+    }
+
+    private void ManageLoaderM4()
+    {
+        if (loaderAmmoM4 <= 0)
+            isReloading = true;
+
+        if (isReloading)
+        {
+            reloadingTimeCounter -= Time.deltaTime;
+        }
+        
+        if(reloadingTimeCounter <= 0)
+        {
+            reloadingTimeCounter = ItemM4.reloadTime;
+            loaderAmmoM4 = ItemM4.maxLoaderAmmo;
+            isReloading = false;
+        }
+
     }
 
     private void AddItemsToInventoryForTest()

@@ -22,7 +22,7 @@
     IGameObject playerGO;
     PlayerScript player;
 
-    public uint damage;
+    public int damage;
 
     public float speedModification = 0;
     public float slowAmount;

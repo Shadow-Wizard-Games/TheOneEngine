@@ -18,7 +18,7 @@ public class AbilityFlamethrower : MonoBehaviour
     public float activeTimeCounter;
     public float cooldownTimeCounter;
 
-    public uint damage;
+    public int damage;
     public float slowAmount;
 
     public AbilityState state;

@@ -104,7 +104,7 @@ public class AbilityAdrenalineRush : MonoBehaviour
             speedModification = 0;
             healthRegenTimeCounter = healthRegenTime;
 
-            player.damageIncrease = 1.0f;
+            player.damageMultiplier = 1.0f;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

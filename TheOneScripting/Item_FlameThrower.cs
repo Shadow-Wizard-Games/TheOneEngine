@@ -2,7 +2,7 @@
 
 public class Item_FlameThrower : Item
 {
-    public readonly uint damage = 9;
+    public readonly int damage = 9;
     public readonly float slowAmountEnemy = 0.3f;
 
     public readonly float activeTime = 10f;

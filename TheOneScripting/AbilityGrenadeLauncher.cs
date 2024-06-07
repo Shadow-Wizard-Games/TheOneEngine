@@ -18,7 +18,7 @@ public class AbilityGrenadeLauncher : MonoBehaviour
 
     public AbilityState state;
 
-    public uint damage; 
+    public int damage; 
     public float range = 200.0f;
     public float explosionRadius;
     public Vector3 explosionCenterPos;

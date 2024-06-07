@@ -47,8 +47,8 @@ public class UiScriptHud : MonoBehaviour
     int killsAmount = 0;
 
     string currLoadout = "m4a1";
-    uint currAmmo = 20;
-    uint maxAmmo = 20;
+    int currAmmo = 20;
+    int maxAmmo = 20;
 
     bool grenadeUnlocked = false;
     bool grenadeOnCooldown = false;
@@ -276,8 +276,8 @@ public class UiScriptHud : MonoBehaviour
                     break;
                 case PlayerScript.SkillSet.M4A1SET:
                     currLoadout = "m4a1";
-                    currAmmo = playerScript.ItemM4.maxAmmoPerLoader;
-                    maxAmmo = playerScript.ItemM4.maxAmmoPerLoader;
+                    currAmmo = playerScript.ItemM4.maxLoaderAmmo;
+                    maxAmmo = playerScript.ItemM4.maxLoaderAmmo;
                     flameThrowerUnlocked = false;
                     canvas.PrintItemUI(true, "Img_UsingWeaponIcon");
                     canvas.ChangeSectImg("Img_UsingWeaponIcon", 1015, 454, 100, 100);

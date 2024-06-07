@@ -1,6 +1,6 @@
 ﻿public class Item_Healing : Item
 {
-    public readonly uint maxHeals = 3;
+    public readonly int maxHeals = 3;
     public readonly float bandageHealingAmount = 0.6f;
     public readonly float syringeHealingAmount = 0.8f;
     public readonly float slowAmount = 0.4f;

@@ -2,7 +2,7 @@
 
 public class Item_Shield : Item
 {
-    public readonly uint maxKills = 2;
+    public readonly int maxKills = 2;
 
     public readonly float activeTime = 6f;
 

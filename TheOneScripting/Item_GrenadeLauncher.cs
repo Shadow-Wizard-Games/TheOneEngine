@@ -2,7 +2,7 @@
 
 public class Item_GrenadeLauncher : Item
 {
-    public readonly uint damage = 50;
+    public readonly int damage = 50;
     public readonly float grenadeVelocity = 250f;
 
     public readonly float cooldownTime = 8.0f;
