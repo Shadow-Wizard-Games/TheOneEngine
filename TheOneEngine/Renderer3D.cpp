@@ -731,17 +731,26 @@ void Renderer3D::IndexPass(RenderTarget target)
 
 void Renderer3D::UIComposition(RenderTarget target)
 {
-	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
+	FrameBuffer* readBuffer;
 	FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
+
+	if (target.GetMode() == DrawMode::BUILD_DEBUG)
+	{
+		readBuffer = target.GetFrameBuffer("gBuffer");
+	}
+	else //(GAME && BUILD_RELEASE)
+	{
+		readBuffer = target.GetFrameBuffer("postBuffer");
+	}
 
 	uiBuffer->Bind();
 	uiBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
 	// Copy postBuffer Color to uiBuffer, Upscale to Nearest
-	GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, postBuffer->GetBuffer()));
+	GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, readBuffer->GetBuffer()));
 	GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, uiBuffer->GetBuffer()));
 	GLCALL(glBlitFramebuffer(
-		0, 0, postBuffer->GetWidth(), postBuffer->GetHeight(),
+		0, 0, readBuffer->GetWidth(), readBuffer->GetHeight(),
 		0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
 		GL_COLOR_BUFFER_BIT, GL_NEAREST));
 

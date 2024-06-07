@@ -83,16 +83,12 @@ bool N_SceneManager::PreUpdate()
 
 bool N_SceneManager::Update(double dt, bool isPlaying)
 {
-	// Do nothing
-
 	// Save Scene by checking if isDirty and pressing CTRL+S
 	//if (currentScene->IsDirty()) SaveScene();
 
 	//this will be called when we click play
 	if (!sceneIsPlaying && isPlaying)
-	{
 		RecursiveScriptInit(currentScene->GetRootSceneGO(), !sceneChange);
-	}
 
 	if (!sceneIsPlaying)
 		UpdateTransforms(currentScene->GetRootSceneGO());
@@ -101,7 +97,11 @@ bool N_SceneManager::Update(double dt, bool isPlaying)
 	sceneIsPlaying = isPlaying;
 
 	if (sceneIsPlaying && !sceneChange)
+	{
+		AddPendingGOs();
+		DeletePendingGOs();
 		currentScene->UpdateGOs(dt);
+	}		
 	else if (previousFrameIsPlaying && sceneIsPlaying && sceneChange)
 		sceneChange = false;
 
@@ -1213,14 +1213,8 @@ void Scene::ChangePrimaryCamera(GameObject* newPrimaryCam)
 
 void Scene::UpdateGOs(double dt)
 {
-	engine->N_sceneManager->AddPendingGOs();
-
 	for (const auto& gameObject : rootSceneGO->children)
-	{
 		gameObject->Update(dt);
-	}
-
-	engine->N_sceneManager->DeletePendingGOs();
 }
 
 void Scene::RecurseUIDraw(std::shared_ptr<GameObject> parentGO, DrawMode mode)

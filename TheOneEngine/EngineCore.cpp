@@ -89,7 +89,7 @@ bool EngineCore::GetVSync()
     return vsync;
 }
 
-//heakbs - parameter not used?
+// hekbas - parameter not used?
 bool EngineCore::SetVSync(bool vsync)
 {
     if (this->vsync)

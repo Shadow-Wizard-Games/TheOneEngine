@@ -14,7 +14,7 @@ RenderTarget::RenderTarget(unsigned int id, std::string name, DrawMode mode, Cam
 
     for (auto& fb : frameBuffers)
     {
-        if (mode == DrawMode::BUILD && fb.back().frameBufferName == "uiBuffer")
+        if (mode == DrawMode::BUILD_DEBUG || mode == DrawMode::BUILD_RELEASE && fb.back().frameBufferName == "uiBuffer")
             this->frameBuffers.emplace_back(fb[0].frameBufferName, engine->window->GetWidth(), engine->window->GetHeight(), fb);
         else
             this->frameBuffers.emplace_back(fb[0].frameBufferName, viewportSize.x, viewportSize.y, fb);

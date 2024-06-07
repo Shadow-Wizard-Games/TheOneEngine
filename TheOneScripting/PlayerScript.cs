@@ -255,8 +255,6 @@ public class PlayerScript : MonoBehaviour
             UpdateWeaponAnimation();
         }
 
-        UpdatePlayerStatsFromManager();
-
         WeaponAbilityStates();
 
         // set movement

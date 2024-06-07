@@ -19,7 +19,8 @@ enum class DrawMode
 {
     EDITOR,
     GAME,
-    BUILD
+    BUILD_DEBUG,
+    BUILD_RELEASE
 };
 
 class GameObject : public std::enable_shared_from_this<GameObject>

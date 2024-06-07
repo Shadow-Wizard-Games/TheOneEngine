@@ -29,53 +29,72 @@ void Renderer::Update()
         if (!target.GetCamera() || !target.IsActive())
             continue;
 
+        DrawMode drawMode = target.GetMode();
+
         Renderer::SetRenderEnvironment();
         SetUniformBufferCamera(target.GetCamera()->viewProjectionMatrix);
-        engine->N_sceneManager->currentScene->Draw(target.GetMode(), target.GetCamera());
+        engine->N_sceneManager->currentScene->Draw(drawMode, target.GetCamera());
 		Renderer3D::Update(target);
 
+        // gBuffer ------------------------------------------------
         Renderer3D::GeometryPass(target);
 
         if (settings.particlesLight.isEnabled)
             Renderer2D::Update(BatchType::WORLD, target);
 
-        if (settings.shadows.isEnabled)
-            Renderer3D::ShadowPass(target);
-
-        if (Renderer3D::InitPostProcess(target))
+        // shadowBuffer -------------------------------------------
+        if (drawMode != DrawMode::BUILD_DEBUG)
         {
-            if (settings.lights.isEnabled)
-                Renderer3D::LightPass(target);
-
-            Renderer3D::IndexPass(target);
-
-            if (Renderer::Settings()->particles.isEnabled)
-                Renderer2D::Update(BatchType::WORLD, target);
+            if (settings.shadows.isEnabled)
+                Renderer3D::ShadowPass(target);
         }
-        Renderer3D::EndPostProcess(target);
-        
-        if (target.GetMode() == DrawMode::EDITOR)
+
+        // postBuffer ---------------------------------------------
+        // Blit gBuffer Depth to postBuffer
+        if (drawMode != DrawMode::BUILD_DEBUG)
         {
-            Renderer::DrawDebug();
-            Renderer2D::Update(BatchType::EDITOR, target);
-        }           
+            if (Renderer3D::InitPostProcess(target))
+            {
+                if (settings.lights.isEnabled)
+                    Renderer3D::LightPass(target);
 
-        Renderer3D::UIComposition(target);
+                Renderer3D::IndexPass(target);
 
-        if (target.GetMode() != DrawMode::EDITOR && settings.crt.isEnabled)
-            Renderer3D::CRTShader(target);
+                if (Renderer::Settings()->particles.isEnabled)
+                    Renderer2D::Update(BatchType::WORLD, target);
+            }
+            Renderer3D::EndPostProcess(target);
 
-        //// Blit final composition to 0 Buffer
-        if (target.GetMode() == DrawMode::BUILD)
+            if (drawMode == DrawMode::EDITOR)
+            {
+                Renderer::DrawDebug();
+                Renderer2D::Update(BatchType::EDITOR, target);
+            }
+        }       
+
+        // uiBuffer -----------------------------------------------
+        // Blit postBuffer Color to uiBuffer, draw UI on top
+        if (drawMode != DrawMode::EDITOR)
         {
-            FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
+            Renderer3D::UIComposition(target);
 
-            GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, uiBuffer->GetBuffer()));
+            if (settings.crt.isEnabled)
+                Renderer3D::CRTShader(target);
+        }       
+
+        // BUILD --------------------------------------------------
+        // Blit final composition to 0 Buffer
+        if (drawMode == DrawMode::BUILD_DEBUG || drawMode == DrawMode::BUILD_RELEASE)
+        {
+            FrameBuffer* uibuffer = target.GetFrameBuffer("uiBuffer");
+            int glColorAttachmentID = drawMode == DrawMode::BUILD_RELEASE ? GL_COLOR_ATTACHMENT1 : GL_COLOR_ATTACHMENT0;
+
+            GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, uibuffer->GetBuffer()));
             GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0));
-            GLCALL(glReadBuffer(GL_COLOR_ATTACHMENT1));
+            GLCALL(glReadBuffer(glColorAttachmentID));
             GLCALL(glBlitFramebuffer(
-                0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
-                0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
+                0, 0, uibuffer->GetWidth(), uibuffer->GetHeight(),
+                0, 0, uibuffer->GetWidth(), uibuffer->GetHeight(),
                 GL_COLOR_BUFFER_BIT, GL_NEAREST));
         }
 	}
