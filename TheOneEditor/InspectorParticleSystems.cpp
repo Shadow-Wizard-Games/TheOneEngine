@@ -7,8 +7,11 @@
 
 #include "imgui.h"
 
-void UIEmmiterWriteNode(Emmiter* emmiter)
+static int emitterid;
+
+void UIEmmiterWriteNode(Emmiter* emmiter, int ID)
 {
+	emitterid = ID;
 	ImGui::Separator();
 	ImGui::InputInt("maxParticles", &emmiter->maxParticles);
 
@@ -283,8 +286,8 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 
 	if (initModule->color.usingSingleValue) {
 		ImVec4 color = ImVec4(initModule->color.singleValue.r, initModule->color.singleValue.g, initModule->color.singleValue.b, initModule->color.singleValue.a);
-		static const char* color_id = "##particleColor";
-		if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+		std::string color_id = "##particleColor" + std::to_string(emitterid);
+		if (ImGui::ColorButton(color_id.c_str(), color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
 		{
 			app->gui->openColorPicker = true;
 			EditColor editColor = { color_id, color, color };
@@ -301,8 +304,8 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 	else {
 		ImGui::Text("1st Range Color");
 		ImVec4 initColor = ImVec4(initModule->color.rangeValue.lowerLimit.r, initModule->color.rangeValue.lowerLimit.g, initModule->color.rangeValue.lowerLimit.b, initModule->color.rangeValue.lowerLimit.a);
-		static const char* initColor_id = "##particleRange1Color";
-		if (ImGui::ColorButton(initColor_id, initColor, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+		std::string initColor_id = "##particleRange1Color" + std::to_string(emitterid);
+		if (ImGui::ColorButton(initColor_id.c_str(), initColor, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
 		{
 			app->gui->openColorPicker = true;
 			EditColor editColor = { initColor_id, initColor, initColor };
@@ -319,8 +322,8 @@ void UIInspectorEmmiterInitializeModule(SetColor* initModule)
 
 		ImGui::Text("2nd Range Color");
 		ImVec4 finalColor = ImVec4(initModule->color.rangeValue.upperLimit.r, initModule->color.rangeValue.upperLimit.g, initModule->color.rangeValue.upperLimit.b, initModule->color.rangeValue.upperLimit.a);
-		static const char* finalColor_id = "##particleRange2Color";
-		if (ImGui::ColorButton(finalColor_id, finalColor, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+		std::string finalColor_id = "##particleRange2Color" + std::to_string(emitterid);
+		if (ImGui::ColorButton(finalColor_id.c_str(), finalColor, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
 		{
 			app->gui->openColorPicker = true;
 			EditColor editColor = { finalColor_id, finalColor, finalColor };
@@ -513,8 +516,8 @@ void UIInspectorEmmiterUpdateModule(ColorOverLifeUpdate* updateModule)
 	ImGui::PushItemWidth(60);
 
 	ImVec4 color = ImVec4(updateModule->finalColor.r, updateModule->finalColor.g, updateModule->finalColor.b, updateModule->finalColor.a);
-	static const char* color_id = "##particleFinalColor";
-	if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+	std::string color_id = "##particleFinalColor" + std::to_string(emitterid);
+	if (ImGui::ColorButton(color_id.c_str(), color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
 	{
 		app->gui->openColorPicker = true;
 		EditColor editColor = { color_id, color, color };

@@ -2,7 +2,7 @@
 
 #include "..\TheOneEngine\ParticleSystem.h"
 
-void UIEmmiterWriteNode(Emmiter* emmiter);
+void UIEmmiterWriteNode(Emmiter* emmiter, int ID);
 
 // spawn modules
 void UIInspectorEmmiterSpawnModule(ConstantSpawnRate* spawnModule);

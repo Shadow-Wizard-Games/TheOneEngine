@@ -686,7 +686,7 @@ bool PanelInspector::Draw()
                     ImGui::PushID(emmiterID);
                     ImGui::Text("Emmiter %d", emmiterID);
                     // delete emmiter
-                    UIEmmiterWriteNode((*emmiter).get());
+                    UIEmmiterWriteNode((*emmiter).get(), emmiterID);
                     emmiterID++;
                     ImGui::PopID();
                 }
