@@ -1,0 +1,85 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.5,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.4,
+            2.0,
+            0.1
+          ],
+          "MinDirection": [
+            0.4,
+            1.0,
+            -0.1
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 100.0,
+          "MinSpeed": 30.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            5.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 1733.4156494140625,
+      "MaxParticles": 200,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 200.0,
+          "Duration": 1.5,
+          "SpawnRate": 0.1599999964237213,
+          "Type": 2
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
+          "Acceleration": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "PIpeSmokeBurst",
+  "StartON": true,
+  "Type": 9,
+  "UID": 2340610301
+}

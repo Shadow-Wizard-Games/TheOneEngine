@@ -1,0 +1,66 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        88.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        88.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        88.0,
+        0.0,
+        -56.10235595703125,
+        0.0,
+        278.8741149902344,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 4135706219
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_Sargent_Idle/lambert2.toematerial",
+      "MeshPath": "Library/Meshes/AS_Sargent_Idle/Sargent.animator",
+      "MeshType": 2,
+      "Name": "Mesh",
+      "ParentUID": 3452816845,
+      "Type": 2,
+      "UID": 848743948
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "EventTriggerDialog",
+      "Type": 4,
+      "UID": 2409365074
+    },
+    {
+      "AudioID": 20,
+      "Name": "AudioSource",
+      "Type": 8
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "NPC_Sargent",
+  "ParentUID": 3452816845,
+  "PrefabDirty": false,
+  "PrefabID": 3799495087,
+  "PrefabName": "NPC_Sargent",
+  "Static": false,
+  "UID": 3452816845
+}

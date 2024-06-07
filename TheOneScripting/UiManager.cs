@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class UiManager : MonoBehaviour
 {
@@ -23,12 +24,30 @@ public class UiManager : MonoBehaviour
 
     public enum Dialoguer
     {
-        ShopKeeper = 0,
+        None = 0,
         Medic,
         CampLeader,
         Sargeant,
         Default,
-        None
+        ShopKeeper        
+    }
+
+    class PopupItem
+    {
+        public HudPopUpMenu menu;
+        public string text;
+        public string text1;
+        public Dialoguer dialoguer;
+        public float cooldown;
+
+        public PopupItem(HudPopUpMenu m, string t, string t1, Dialoguer d, float c)
+        {
+            this.menu = m;
+            this.text = t;
+            this.text1 = t1;
+            this.dialoguer = d;
+            this.cooldown = c;
+        }
     }
 
     IGameObject inventoryGo;
@@ -49,9 +68,6 @@ public class UiManager : MonoBehaviour
 
     IGameObject playerGO;
     PlayerScript playerScript;
-
-    IGameObject GameManagerGO;
-    GameManager gameManager;
 
     ICanvas savingCanvas;
     ICanvas dialogCanvas;
@@ -75,8 +91,12 @@ public class UiManager : MonoBehaviour
     float dialogueCooldown = 0;
     bool dialogueOnCooldown = false;
 
+    List<PopupItem> popupsQueue = new List<PopupItem>();
+
     public override void Start()
     {
+        managers.Start();
+
         inventoryGo = IGameObject.Find("Canvas_Inventory");
         deathScreenGo = IGameObject.Find("Canvas_Death");
         pauseMenuGo = IGameObject.Find("Canvas_PauseMenu");
@@ -109,10 +129,9 @@ public class UiManager : MonoBehaviour
         savingSceneGo.Disable();
         pickUpFeedbackGo.Disable();
 
+        previousState = MenuState.Pause;
         state = MenuState.Hud;
 
-        GameManagerGO = IGameObject.Find("GameManager");
-        gameManager = GameManagerGO.GetComponent<GameManager>();
         savingCanvas = savingSceneGo.GetComponent<ICanvas>();
         dialogCanvas = dialogueGo.GetComponent<ICanvas>();
         pickupCanvas = pickUpFeedbackGo.GetComponent<ICanvas>();
@@ -121,7 +140,7 @@ public class UiManager : MonoBehaviour
 
         // Check if it is paused and put it running if so
         // Disabled because do not know if it's necesary
-        // if (gameManager.GetGameState()) { gameManager.TooglePause(); }
+        if (managers.gameManager.GetGameState() == GameManager.GameStates.PAUSED) { managers.gameManager.SetGameState(GameManager.GameStates.RUNNING); }
     }
 
     public override void Update()
@@ -136,6 +155,20 @@ public class UiManager : MonoBehaviour
         {
             cooldown = 0.0f;
             onCooldown = false;
+        }
+
+        if(popupsQueue.Count > 0)
+        {
+            if (popupsQueue[0].menu == HudPopUpMenu.PickUpFeedback && !pickUpFeedbackOnCooldown)
+            {
+                OpenHudPopUpMenu(popupsQueue[0].menu, popupsQueue[0].text1, popupsQueue[0].text, popupsQueue[0].dialoguer, popupsQueue[0].cooldown);
+                popupsQueue.RemoveAt(0);
+            }
+            else if (popupsQueue[0].menu == HudPopUpMenu.Dialogue && !dialogueOnCooldown)
+            {
+                OpenHudPopUpMenu(popupsQueue[0].menu, popupsQueue[0].text1, popupsQueue[0].text, popupsQueue[0].dialoguer, popupsQueue[0].cooldown);
+                popupsQueue.RemoveAt(0);
+            }
         }
 
         if (saveOnCooldown && saveCooldown < 4.5f)
@@ -216,15 +249,15 @@ public class UiManager : MonoBehaviour
         {
             if (state == MenuState.Death)
             {
-                if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
+                if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
                     playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
                     SceneManager.LoadScene("MainMenu");
                 }
             }
-            else if ((gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (gameManager.GetGameState() != GameManager.GameStates.PAUSED))
+            else if ((managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (managers.gameManager.GetGameState() != GameManager.GameStates.PAUSED))
             {
-                if (Input.GetKeyboardButton(Input.KeyboardCode.I))
+                if (Input.GetControllerButton(Input.ControllerButtonCode.BACK) || Input.GetKeyboardButton(Input.KeyboardCode.I))
                 {
                     if (previousState == MenuState.Inventory)
                     {
@@ -248,8 +281,12 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
-                else if (Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
+                else if (Input.GetControllerButton(Input.ControllerButtonCode.START) && state == MenuState.Hud ||
+                    Input.GetControllerButton(Input.ControllerButtonCode.B) && state != MenuState.Hud ||
+                    Input.GetKeyboardButton(Input.KeyboardCode.ESCAPE))
                 {
+                    if (state == MenuState.Hud) Debug.Log("Equivalent of pressing START");
+                    if (state != MenuState.Hud) Debug.Log("Equivalent of pressing B");
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_PAUSEGAME);
                     if (!settingsCanvas.editing)
                     {
@@ -271,7 +308,7 @@ public class UiManager : MonoBehaviour
             {
                 deathScreenGo.Enable();
                 state = MenuState.Death;
-                gameManager.SetGameState(GameManager.GameStates.ONMENUS);
+                managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS);
                 onCooldown = true;
             }
         }
@@ -316,7 +353,7 @@ public class UiManager : MonoBehaviour
                 break;
         }
 
-        if(state != MenuState.Hud) { gameManager.SetGameState(GameManager.GameStates.ONMENUS); }
+        if(state != MenuState.Hud) { managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS); }
     }
 
     public void OpenMenu(MenuState state)
@@ -326,7 +363,7 @@ public class UiManager : MonoBehaviour
             switch (this.state)
             {
                 case MenuState.Hud:
-                    gameManager.SetGameState(GameManager.GameStates.ONMENUS);
+                    managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS);
                     hudGo.Disable();
                     break;
                 case MenuState.Inventory:
@@ -352,7 +389,7 @@ public class UiManager : MonoBehaviour
             switch (state)
             {
                 case MenuState.Hud:
-                    gameManager.SetGameState(GameManager.GameStates.RUNNING);
+                    managers.gameManager.SetGameState(GameManager.GameStates.RUNNING);
                     hudGo.Enable();
                     state = MenuState.Hud;
                     break;
@@ -385,6 +422,12 @@ public class UiManager : MonoBehaviour
 
     public void OpenHudPopUpMenu(HudPopUpMenu type, string text1 = "", string text = "", Dialoguer dialoguer = Dialoguer.None, float cooldown = 4.5f)
     {
+        if(pickUpFeedbackOnCooldown || dialogueOnCooldown)
+        {
+            PopupItem item = new PopupItem(type, text1, text, dialoguer, cooldown);
+            popupsQueue.Add(item);
+            return;
+        }
         switch (type)
         {
             case HudPopUpMenu.SaveScene:
@@ -396,8 +439,6 @@ public class UiManager : MonoBehaviour
                 saveOnCooldown = true;
                 break;
             case HudPopUpMenu.PickUpFeedback:
-                if (pickUpFeedbackOnCooldown)
-                    break;
                 pickUpFeedbackGo.Enable();
                 pickupCanvas.SetTextString(text, "Text_PickedItem");
                 pickupCanvas.SetTextString(text1, "Text_TitleNewItem");
@@ -405,8 +446,6 @@ public class UiManager : MonoBehaviour
                 pickUpFeedbackCooldown = cooldown;
                 break;
             case HudPopUpMenu.Dialogue:
-                if (dialogueOnCooldown)
-                    break;
                 dialogueGo.Enable();
                 dialogCanvas.SetTextString(text, "Text_Dialogue");
                 dialogCanvas.PrintItemUI(false, "Img_ShopKeeper");

@@ -43,17 +43,16 @@ public class FaceHuggerBehaviour : MonoBehaviour
     const float jumpAttackCooldown = 3.0f;
 
     PlayerScript player;
-    GameManager gameManager;
 
     IParticleSystem jumpPS;
     IParticleSystem deathPS;
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Idle");
         attachedGameObject.animator.Blend = true;
@@ -255,7 +254,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         {
             if (isJumping)
             {
-                playerGO.GetComponent<PlayerScript>().ReduceLife(10);
+                playerGO.GetComponent<PlayerScript>().ReduceLife();
                 hitPlayer = true;
                 fallDead = true;
             }
@@ -275,7 +274,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
     private void DebugDraw()
     {
         //Draw debug ranges
-        if (gameManager.colliderRender)
+        if (managers.gameManager.colliderRender)
         {
             if (!detected)
             {

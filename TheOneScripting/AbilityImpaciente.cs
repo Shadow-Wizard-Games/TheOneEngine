@@ -22,18 +22,21 @@
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
-
     public uint damage;
 
+    public float speedModification = 0;
     public float slowAmount;
     public float fireRate;
     public float knockbackPotency;
 
     public int ammo = 100;
 
+    public float waitToReset = 0.2f;
+
     public override void Start()
     {
+        managers.Start();
+
         ImpacienteItem = new Item_Impaciente();
 
         abilityName = ImpacienteItem.name;
@@ -53,8 +56,6 @@
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
 
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-
         state = AbilityState.READY;
     }
 
@@ -66,23 +67,18 @@
             case AbilityState.ACTIVE:
 
                 WhileActive();
-
                 break;
             case AbilityState.COOLDOWN:
 
                 OnCooldown();
-
                 break;
         }
     }
 
     public void Activated()
     {
-        float speedReduce = gameManager.GetSpeed() * slowAmount;
-        player.currentSpeed -= speedReduce;
-
-        player.currentWeaponDamage = damage;
-
+        // being used dont eliminate
+        speedModification = managers.gameManager.GetSpeed() * -slowAmount;
         state = AbilityState.ACTIVE;
 
         //attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
@@ -99,17 +95,23 @@
 
             if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
                 player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
-
-            if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
+            
+            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) && activeTimeCounter < activeTime - waitToReset)
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
-                player.currentSpeed = gameManager.GetSpeed();
-                player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+                speedModification = 0;
+                if(player.currentSkillSet == PlayerScript.SkillSet.M4A1SET)
+                    player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+                else if(player.currentSkillSet == PlayerScript.SkillSet.SHOULDERLASERSET)
+                    player.currentWeaponType = PlayerScript.CurrentWeapon.SHOULDERLASER;
+
                 player.currentWeaponDamage = damage;
 
                 activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
+
+                player.ImpacienteGO.Disable();
 
                 Debug.Log("Ability Impaciente on Cooldown");
             }
@@ -117,12 +119,14 @@
         else
         {
             // reset stats
-            player.currentSpeed = gameManager.GetSpeed();
+            speedModification = 0;
             player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;
 
             state = AbilityState.COOLDOWN;
+
+            player.ImpacienteGO.Disable();
 
             Debug.Log("Ability Impaciente on Cooldown");
         }

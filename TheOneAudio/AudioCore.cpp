@@ -409,6 +409,7 @@ void AudioCore::SetGlobalVolume(float volume)
 
 void AudioCore::SetMaster(int volume)
 {
+    this->master_volume = volume;
     AK::SoundEngine::SetRTPCValue(AK::GAME_PARAMETERS::MASTERVOLUME, (AkRtpcValue)volume);
 }
 
@@ -419,11 +420,13 @@ void AudioCore::SetDialog(int volume)
 
 void AudioCore::SetSFX(int volume)
 {
+    this->sfx_volume = volume;
     AK::SoundEngine::SetRTPCValue(AK::GAME_PARAMETERS::SFXVOLUME, (AkRtpcValue)volume);
 }
 
 void AudioCore::SetMusic(int volume)
 {
+    this->music_volume = volume;
     AK::SoundEngine::SetRTPCValue(AK::GAME_PARAMETERS::MUSICVOLUME, (AkRtpcValue)volume);
 }
 

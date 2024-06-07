@@ -1,0 +1,176 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        774.4483642578125,
+        0.0,
+        94.32194519042969,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 3238829909
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.4347642660140991,
+            0.900544285774231,
+            0.0,
+            0.0,
+            -0.900544285774231,
+            0.4347642660140991,
+            0.0,
+            0.0,
+            77.6722183227539,
+            -11.674118041992188,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 399266182
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 7536748,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 601655169,
+          "Yaw": 0.0,
+          "zFar": 3000.0,
+          "zNear": 10.0
+        },
+        {
+          "Color": [
+            0.9402003884315491,
+            1.0,
+            0.14649683237075806
+          ],
+          "InnerCutOff": 0.9100000262260437,
+          "Intensity": 17.899999618530273,
+          "LightType": 2,
+          "Linear": 0.699999988079071,
+          "Name": "Light",
+          "OuterCutOff": 0.8199999928474426,
+          "ParentUID": 7536748,
+          "Quadratic": 1.7999999523162842,
+          "Radius": 236.0,
+          "Specular": 0.5,
+          "Type": 11,
+          "UID": 1303421973
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Tutorial_spotlight",
+      "ParentUID": 7536748,
+      "Static": false,
+      "UID": 7536748
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            65.6458511352539,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 968316192
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 7536748,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 1462445034,
+          "Yaw": 0.0,
+          "zFar": 3000.0,
+          "zNear": 10.0
+        },
+        {
+          "Color": [
+            0.9227555394172668,
+            1.0,
+            0.2866241931915283
+          ],
+          "InnerCutOff": 0.9100000262260437,
+          "Intensity": 1.0,
+          "LightType": 1,
+          "Linear": 0.699999988079071,
+          "Name": "Light",
+          "OuterCutOff": 0.8199999928474426,
+          "ParentUID": 7536748,
+          "Quadratic": 1.7999999523162842,
+          "Radius": 133.0,
+          "Specular": 0.5,
+          "Type": 11,
+          "UID": 3378737667
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Tutorial_light",
+      "ParentUID": 7536748,
+      "Static": false,
+      "UID": 7536748
+    }
+  ],
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Door_Light",
+  "ParentUID": 7209061,
+  "PrefabDirty": false,
+  "PrefabID": 4001310582,
+  "PrefabName": "Door_Light",
+  "Static": false,
+  "UID": 7536748
+}

@@ -237,7 +237,7 @@ void MonoManager::RenderShapesQueue()
         glm::mat4 translate = glm::translate(glm::mat4(1), shape.center);
 
         for (int i = 0; i < shape.points.size(); i++)
-            Renderer2D::DrawLine(BT::WORLD, glm::vec4(shape.points[i], 1.0f) * translate,
+            Renderer2D::DrawLine(BatchType::EDITOR, glm::vec4(shape.points[i], 1.0f) * translate,
                                  glm::vec4(&shape.points[i + 1] == nullptr ? shape.points[0] : shape.points[i + 1], 1.0f) * translate,
                                  glm::vec4(shape.color, 1.0f));
     }

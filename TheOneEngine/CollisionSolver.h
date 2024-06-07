@@ -1,11 +1,13 @@
 #ifndef __COLLISION_SOLVER_H__
 #define __COLLISION_SOLVER_H__
 #pragma once
+
 #include "Defs.h"
 
+#include <list>
+#include <memory>
 
 class GameObject;
-enum class ColliderType;
 
 class CollisionSolver
 {
@@ -35,7 +37,7 @@ public:
 
 	void DrawCollisions();
 
-	std::vector<GameObject*> goWithCollision;
+	std::list<std::weak_ptr<GameObject>> goWithCollision;
 
 private:
 

@@ -197,6 +197,30 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void ExitApplication();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetVsync(bool vsync);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetFullscreen(bool fs);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetPixelFX(bool pixelfx);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetCRTShader(bool crt);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetVsync();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetFullscreen();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetPixelFX();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetCRTShader();
     #endregion
 
     #region Debug
@@ -255,6 +279,15 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetMusicVolume(int volume);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int GetMasterVolume();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int GetSFXVolume();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static int GetMusicVolume();
     #endregion
 
     #region Collider2D
@@ -353,5 +386,13 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetLightRadius(IntPtr GOptr, ref float radius);
+    #endregion
+
+    #region Mesh
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetHitDamageFX(IntPtr GOptr, ref bool hit);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetHitDamageFX(IntPtr GOptr);
     #endregion
 }

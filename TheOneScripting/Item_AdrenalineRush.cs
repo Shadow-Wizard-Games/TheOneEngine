@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Item_AdrenalineRush : Item
+public class Item_AdrenalineRush : Item
 {
     public readonly float damageBoost = 0.5f;
     public readonly float velocityBoost = 0.5f;

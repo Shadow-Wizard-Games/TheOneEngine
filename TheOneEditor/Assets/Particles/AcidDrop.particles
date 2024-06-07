@@ -1,0 +1,92 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 10.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.0,
+            2.0,
+            0.5
+          ],
+          "MinDirection": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": true
+        },
+        {
+          "MaxSpeed": 2.0,
+          "MinSpeed": 0.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            0.3184713125228882,
+            1.0,
+            0.0,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            2.2,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 370.1417541503906,
+      "MaxParticles": 1,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 10.0,
+          "SpawnRate": 0.5,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            -2.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "AcidDrop",
+  "StartON": true,
+  "Type": 9,
+  "UID": 2694119003
+}

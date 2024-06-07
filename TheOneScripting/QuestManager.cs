@@ -11,15 +11,13 @@ public class QuestManager : MonoBehaviour
 
     string filepath = "Assets/GameData/Quests.json";
 
-    ItemManager itemManager;
-
     public override void Start()
     {
+        managers.Start();
+
         quests = new List<Quest>();
         activeQuests = new List<Quest>();
         completedQuests = new List<Quest>();
-
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
 
         LoadQuests();
         StartGame();
@@ -42,16 +40,16 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    void StartGame()
+    public void StartGame()
     {
         ActivateQuest(1);
+        ActivateQuest(2);
     }
 
     public void ResetQuests()
     {
         activeQuests.Clear();
         completedQuests.Clear();
-        StartGame();
     }
 
     public void ActivateQuest(int id)
@@ -74,7 +72,7 @@ public class QuestManager : MonoBehaviour
             {
                 UiManager uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
                 uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Quest Completed:", item.name);
-                item.GiveReward(itemManager);
+                item.GiveReward(managers.itemManager);
                 completedQuests.Add(item);
                 activeQuests.Remove(item);
                 break;
@@ -102,5 +100,77 @@ public class QuestManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public Quest GetMainQuest()
+    {
+        foreach (var item in activeQuests)
+        {
+            if (item.isMain)
+                return item;
+        }
+        return null;
+    }
+
+    public Quest GetSideQuest()
+    {
+        foreach (var item in activeQuests)
+        {
+            if (!item.isMain)
+                return item;
+        }
+        return null;
+    }
+
+    public void LoadQuestData()
+    {
+        string[] datapath1 = { "QuestManager" };
+
+        int i = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath1, "quantity1");
+
+        for (int j = 0; j < i; j++)
+        {
+            string[] datapath = { "QuestManager", "activeQuests", "quest" + j.ToString() };
+            int temp1 = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "id");
+
+            ActivateQuest(temp1);
+        }
+
+        i = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath1, "quantity2");
+
+        for (int j = 0; j < i; j++)
+        {
+            string[] datapath = { "QuestManager", "completedQuests", "quest" + j.ToString() };
+            int temp1 = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "id");
+
+            CompleteQuest(temp1);
+        }
+    }
+
+    public void SaveQuestData()
+    {
+        string[] datapath1 = { "QuestManager" };
+
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath1, "quantity1", activeQuests.Count);
+
+        int i = 0;
+
+        foreach (var item in activeQuests)
+        {
+            string[] datapath = { "QuestManager", "activeQuests", "quest" + i.ToString() };
+            DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "id", item.id);
+            i++;
+        }
+
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath1, "quantity2", completedQuests.Count);
+
+        i = 0;
+
+        foreach (var item in completedQuests)
+        {
+            string[] datapath = { "QuestManager", "completedQuests", "quest" + i.ToString() };
+            DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "id", item.id);
+            i++;
+        }
     }
 }

@@ -48,7 +48,8 @@ bool BuilderSceneManager::Start()
 		{ Attachment::Type::DEPTH_STENCIL, "depth", "postBuffer", 0 }
 	};
 	std::vector<Attachment> uiBuffAttachments = {
-		{ Attachment::Type::RGBA8, "color", "uiBuffer", 0 }
+		{ Attachment::Type::RGBA8, "color_ui", "uiBuffer", 0 },
+		{ Attachment::Type::RGBA8, "color_crt", "uiBuffer", 0 }
 	};
 
 	std::vector<std::vector<Attachment>> buildBuffers{ gBuffAttachments, postBuffAttachments, uiBuffAttachments };

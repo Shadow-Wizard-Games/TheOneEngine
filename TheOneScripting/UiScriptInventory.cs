@@ -7,7 +7,6 @@ public class UiScriptInventory : MonoBehaviour
     bool hasM4 = false;
 
     UiManager menuManager;
-    ItemManager itemManager;
 
     float cooldown = 0;
     bool onCooldown = false;
@@ -25,8 +24,9 @@ public class UiScriptInventory : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
 
         canvas.MoveSelectionButton(0 - canvas.GetSelectedButton());
         currentButton = canvas.GetSelectedButton();
@@ -39,7 +39,7 @@ public class UiScriptInventory : MonoBehaviour
     }
     public override void Update()
     {
-        if (itemManager.CheckItemInInventory(1) && !hasM4)
+        if (managers.itemManager.CheckItemInInventory(1) && !hasM4)
         {
             // Activar la imagen de la M4
             hasM4 = true;
@@ -345,26 +345,26 @@ public class UiScriptInventory : MonoBehaviour
                     break;
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 menuManager.OpenMenu(UiManager.MenuState.Stats);
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 //FUNCTION TO USE CURRENT CONSUMIBLE ITEM
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && (canvas.GetSelectedButton() >= 3 && canvas.GetSelectedButton() <= 16))
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && (canvas.GetSelectedButton() >= 3 && canvas.GetSelectedButton() <= 16))
             {
                 int itemSlot = canvas.GetSelectedButton() - 3;
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 //FUNCTION TO USE ITEM IN THE SLOT
             }
 
-            if ((Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && (canvas.GetSelectedButton() >= 17 && canvas.GetSelectedButton() <= 20))
+            if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && (canvas.GetSelectedButton() >= 17 && canvas.GetSelectedButton() <= 20))
             {
                 int itemSlot = canvas.GetSelectedButton() - 17;
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);

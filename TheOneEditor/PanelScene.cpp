@@ -45,9 +45,8 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     easing = true;
     camSpeedMult = 4;
 
-    renderLights = true;
-    renderShadows = true;
-
+    drawGrid = true;
+    drawAxis = true;
     drawMesh = true;
     drawWireframe = false;
     drawNormalsVerts = false;
@@ -55,6 +54,7 @@ PanelScene::PanelScene(PanelType type, std::string name) : Panel(type, name)
     drawAABB = true;
     drawOBB = false;
     drawChecker = false;
+    drawRayCasting = false;
 
     snapping = false;
     snapAmount = 10;
@@ -165,12 +165,11 @@ bool PanelScene::Draw()
 
             if (ImGui::BeginMenu("Render"))
             {
-                if (ImGui::Checkbox("Lights", &renderLights))
-                    Renderer::SetRenderLights(renderLights);
+                if(ImGui::Checkbox("Grid", &drawGrid))
+                    Renderer::Settings()->grid.SetState(drawGrid);
 
-                if (ImGui::Checkbox("Shadows", &renderShadows))
-                    Renderer::SetRenderShadows(renderShadows);
-                
+                if(ImGui::Checkbox("Axis", &drawAxis))
+                    Renderer::Settings()->axis.SetState(drawAxis);
                 ImGui::Separator();
 
                 ImGui::Checkbox("Mesh", &drawMesh);
@@ -181,18 +180,17 @@ bool PanelScene::Draw()
                 ImGui::Checkbox("Face normals", &drawNormalsFaces);
                 ImGui::Separator();
 
-                ImGui::Checkbox("AABB", &drawAABB);
+                if(ImGui::Checkbox("AABB", &drawAABB))
+                    Renderer::Settings()->AABB.SetState(drawAABB);
+
                 ImGui::Checkbox("OBB", &drawOBB);
                 ImGui::Separator();
 
-                bool drawRayCasting = Renderer::GetDrawRaycasting();
-
                 if (ImGui::Checkbox("Ray Casting", &drawRayCasting))
                 {
-                    Renderer::SetDrawRaycasting(drawRayCasting);
-                    if (!Renderer::GetDrawRaycasting()) Renderer::ClearRays();
-                }
-                
+                    Renderer::Settings()->raycasting.SetState(drawRayCasting);
+                    if (!drawRayCasting) Renderer::ClearRays();
+                }              
 
                 ImGui::EndMenu();
             }
@@ -271,9 +269,8 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        ImTextureID textureID = Renderer::GetRenderLights() ?
-            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color") :
-            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "gBuffer")->GetAttachmentTexture("color");
+        ImTextureID textureID =
+            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color");
         
         ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
@@ -333,7 +330,7 @@ bool PanelScene::Draw()
 
 			Ray ray = GetScreenRay(int(clickPos.x), int(clickPos.y), sceneCamera->GetComponent<Camera>(), viewportSize.x, viewportSize.y);
 
-            if (Renderer::GetDrawRaycasting()) Renderer::AddRay(ray);
+            if (drawRayCasting) Renderer::AddRay(ray);
             
             //editor->SelectObject(ray);
         }
@@ -627,22 +624,22 @@ void PanelScene::SetTargetSpeed()
         switch (reversedStack.top())
         {
             case SDL_SCANCODE_A:
-                camTargetSpeed.x =  50;
+                camTargetSpeed.x =  200;
                 zeroX = false;
                 break;
 
             case SDL_SCANCODE_D:
-                camTargetSpeed.x = -50;
+                camTargetSpeed.x = -200;
                 zeroX = false;
                 break;
 
             case SDL_SCANCODE_W:
-                camTargetSpeed.y =  50;
+                camTargetSpeed.y =  200;
                 zeroY = false;
                 break;
 
             case SDL_SCANCODE_S:
-                camTargetSpeed.y = -50;
+                camTargetSpeed.y = -200;
                 zeroY = false;
                 break;
 

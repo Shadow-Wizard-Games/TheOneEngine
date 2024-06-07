@@ -11,9 +11,6 @@ public class EventCompleteQuest : Event
 {
     IGameObject playerGO;
 
-    GameManager gameManager;
-    QuestManager questManager;
-
     float playerDistance;
 
     readonly float tpRange = 100.0f;
@@ -27,10 +24,9 @@ public class EventCompleteQuest : Event
 
     public override void Start()
     {
-        playerGO = IGameObject.Find("SK_MainCharacter");
+        managers.Start();
 
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-        questManager = IGameObject.Find("QuestManager").GetComponent<QuestManager>();
+        playerGO = IGameObject.Find("SK_MainCharacter");
 
         eventType = EventType.QUESTCOMPLETE;
         goName = attachedGameObject.name;
@@ -47,12 +43,12 @@ public class EventCompleteQuest : Event
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
     {
-        if (!questManager.IsQuestActive(id))
+        if (!managers.questManager.IsQuestActive(id))
             return false;
 
         playerDistance = Vector3.Distance(playerGO.transform.Position, attachedGameObject.transform.Position);
@@ -73,8 +69,8 @@ public class EventCompleteQuest : Event
     {
         bool ret = true;
 
-        questManager.CompleteQuest(id);
-        questManager.ActivateQuest(nextId);
+        managers.questManager.CompleteQuest(id);
+        managers.questManager.ActivateQuest(nextId);
 
         attachedGameObject.Destroy();
 

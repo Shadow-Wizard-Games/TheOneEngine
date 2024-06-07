@@ -1,0 +1,92 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.0,
+            2.0,
+            0.5
+          ],
+          "MinDirection": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": true
+        },
+        {
+          "MaxSpeed": 2.0,
+          "MinSpeed": 1.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": true
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            0.127388596534729,
+            1.0,
+            0.0,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            1.4,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 229.03451538085938,
+      "MaxParticles": 1,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 1.0,
+          "SpawnRate": 0.5,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "Acceleration": [
+            0.0,
+            -300.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    }
+  ],
+  "Name": "AcidCeilingDrop",
+  "StartON": true,
+  "Type": 9,
+  "UID": 1878976399
+}

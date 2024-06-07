@@ -119,6 +119,7 @@ private:
 	//Kikofp02: This will check if the engine has to change scene
 	bool sceneChange = false;
 	bool sceneChangeKeepGOs = false;
+	bool firstResetUniforms = false;
 };
 
 class Scene

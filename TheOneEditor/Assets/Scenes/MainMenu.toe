@@ -18,6 +18,61 @@
             1.0,
             0.0,
             0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 955056475
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "GameManager",
+          "Type": 4,
+          "UID": 100308743
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "ItemManager",
+          "Type": 4,
+          "UID": 3081876360
+        },
+        {
+          "Name": "Script",
+          "ParentUID": 3452816845,
+          "ScriptName": "QuestManager",
+          "Type": 4,
+          "UID": 2007020515
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": true,
+      "Name": "Manager",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
             5.0,
             -12.0,
             1.0
@@ -82,6 +137,7 @@
         {
           "DebugDraw": true,
           "Enabled": true,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -333,7 +389,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "MainMenuManager",
           "Type": 4,
-          "UID": 1923971447
+          "UID": 3496235779
         },
         {
           "AudioID": 1,
@@ -377,6 +433,7 @@
         {
           "DebugDraw": true,
           "Enabled": true,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -448,6 +505,7 @@
         {
           "DebugDraw": true,
           "Enabled": true,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -514,93 +572,12 @@
             1.0
           ],
           "Type": 0,
-          "UID": 26427860
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "GameManager",
-          "Type": 4,
-          "UID": 451020097
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": true,
-      "Name": "GameManager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 2580068331
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "ItemManager",
-          "Type": 4,
-          "UID": 71955449
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": true,
-      "Name": "ItemManager",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    },
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
           "UID": 3238128576
         },
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -768,6 +745,7 @@
         {
           "DebugDraw": true,
           "Enabled": false,
+          "Flicker": false,
           "Name": "Canvas",
           "ParentUID": 3452816845,
           "Rect": [
@@ -875,7 +853,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptSettings",
           "Type": 4,
-          "UID": 1705546812
+          "UID": 315830902
         }
       ],
       "Enabled": false,
@@ -908,6 +886,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -979,6 +958,7 @@
             {
               "DebugDraw": true,
               "Enabled": false,
+              "Flicker": false,
               "Name": "Canvas",
               "ParentUID": 3452816845,
               "Rect": [
@@ -1722,7 +1702,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettingsDisplay",
               "Type": 4,
-              "UID": 3601329373
+              "UID": 3416104315
             }
           ],
           "Enabled": false,

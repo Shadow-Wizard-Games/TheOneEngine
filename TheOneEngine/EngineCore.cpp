@@ -54,11 +54,13 @@ bool EngineCore::PreUpdate()
 void EngineCore::Update(double dt)
 {
     audioManager->Update(dt);
-    collisionSolver->Update(dt);
+    if(N_sceneManager->GetSceneIsPlaying())
+        collisionSolver->Update(dt);
     //easingManager->Update(dt);
     Renderer::Update();
 
     this->dt = dt;
+    upTime += dt;
 }
 
 void EngineCore::CleanUp()

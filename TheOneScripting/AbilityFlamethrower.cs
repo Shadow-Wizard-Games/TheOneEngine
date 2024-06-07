@@ -23,6 +23,9 @@ public class AbilityFlamethrower : MonoBehaviour
 
     public AbilityState state;
 
+    IGameObject playerGO;
+    PlayerScript player;
+
     public override void Start()
     {
         FlamethrowerItem = new Item_FlameThrower();
@@ -36,6 +39,9 @@ public class AbilityFlamethrower : MonoBehaviour
 
         damage = FlamethrowerItem.damage;
 
+        playerGO = attachedGameObject.parent;
+        player = playerGO.GetComponent<PlayerScript>();
+
         state = AbilityState.READY;
     }
 
@@ -45,12 +51,12 @@ public class AbilityFlamethrower : MonoBehaviour
         {
             case AbilityState.READY:
 
-                if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
-                {
-                    Activated();
-
-                    break;
-                }
+                //if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
+                //{
+                //    Activated();
+                //
+                //    break;
+                //}
                 break;
 
             case AbilityState.ACTIVE:
@@ -69,7 +75,6 @@ public class AbilityFlamethrower : MonoBehaviour
     public void Activated()
     {
         // Set current weapon to the flamethrower
-        activeTimeCounter = activeTime;
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_FT);
 
@@ -85,7 +90,12 @@ public class AbilityFlamethrower : MonoBehaviour
         }
         else
         {
-            cooldownTimeCounter = cooldownTime;
+            player.currentWeaponType = PlayerScript.CurrentWeapon.SHOULDERLASER;
+            player.FlamethrowerGO.Disable();
+            player.ShoulderLaserGO.Enable();
+            activeTimeCounter = activeTime;
+
+            state = AbilityState.COOLDOWN;
         }
     }
 
@@ -95,12 +105,14 @@ public class AbilityFlamethrower : MonoBehaviour
         {
             // update time
             cooldownTimeCounter -= Time.deltaTime;
-
-            Debug.Log("Flamethrower on cooldown");
         }
         else
         {
+
+            cooldownTimeCounter = cooldownTime;
             state = AbilityState.READY;
+
+            Debug.Log("Flamethrower Ready");
         }
     }
 }

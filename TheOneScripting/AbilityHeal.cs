@@ -21,8 +21,7 @@ public class AbilityHeal : MonoBehaviour
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
-
+    public float speedModification = 0;
     public readonly float healAmount = 0.6f; // in %
     public readonly float slowAmount = 0.4f; // in %
 
@@ -30,6 +29,8 @@ public class AbilityHeal : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         abilityName = "Bandage";
 
         activeTime = 1.0f;
@@ -41,8 +42,6 @@ public class AbilityHeal : MonoBehaviour
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         state = AbilityState.READY;
     }
@@ -78,22 +77,22 @@ public class AbilityHeal : MonoBehaviour
 
             if (abilityName == "Bandage")
             {
-                totalHeal = gameManager.GetMaxHealth() * healAmount;
+                totalHeal = managers.gameManager.GetMaxHealth() * healAmount;
             }
             else
             {
-                totalHeal = gameManager.GetMaxHealth() * healAmount;
+                totalHeal = managers.gameManager.GetMaxHealth() * healAmount;
             }
 
-            gameManager.health += totalHeal;
+            managers.gameManager.health += totalHeal;
 
-            if (gameManager.health > gameManager.GetMaxHealth())
-                gameManager.health = gameManager.GetMaxHealth();
+            if (managers.gameManager.health > managers.gameManager.GetMaxHealth())
+                managers.gameManager.health = managers.gameManager.GetMaxHealth();
 
             numHeals--;
 
             // reset stats
-            player.currentSpeed = gameManager.GetSpeed();
+            speedModification = 0;
 
             activeTimeCounter = activeTime;
             state = AbilityState.COOLDOWN;

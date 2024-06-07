@@ -22,8 +22,8 @@ public:
 	float lifetimeOverOne;
 	float dtOverOne;
 
-	vec4 initialColor;
-	vec4 color;
+	glm::vec4 initialColor;
+	glm::vec4 color;
 
 	vec3 position;
 

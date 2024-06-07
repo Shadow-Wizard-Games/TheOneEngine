@@ -5,19 +5,20 @@
 #include "Texture.h"
 #include "Script.h"
 #include "Collider2D.h"
+#include "Light.h"
 #include "Listener.h"
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
+
 #include "UIDGen.h"
 #include "BBox.hpp"
-#include "Camera.h"
-#include "Light.h"
 #include "N_SceneManager.h"
 
 #include "Math.h"
 #include "EngineCore.h"
 #include "Renderer.h"
+#include "Renderer3D.h"
 
 GameObject::GameObject(std::string name) :
 	name(name),
@@ -83,7 +84,7 @@ void GameObject::Draw(Camera* camera)
 			component->DrawComponent(camera);
 	}
 
-	if (Renderer::GetDrawAABB())
+	if (Renderer::Settings()->AABB.isEnabled)
 		DrawAABB();
 }
 
@@ -92,7 +93,7 @@ void GameObject::DrawUI(Camera* camera, const DrawMode mode)
 	auto canvas = this->GetComponent<Canvas>();
 
 	if (canvas && canvas->IsEnabled())
-		if (mode == DrawMode::GAME || canvas->debugDraw || engine->N_sceneManager->GetSceneIsPlaying())
+		if (mode == DrawMode::GAME || mode == DrawMode::BUILD || canvas->debugDraw || engine->N_sceneManager->GetSceneIsPlaying())
 			canvas->DrawComponent(camera);
 }
 
@@ -103,11 +104,6 @@ void GameObject::RemoveComponent(ComponentType type)
 	{
 		if ((*it)->GetType() == type)
 		{
-			if ((*it)->GetType() == ComponentType::Light)
-			{
-				//hekbas LIGHT
-				//this->GetComponent<Light>()->RemoveLight();
-			}
 			it = components.erase(it);
 			break;
 		}
@@ -143,19 +139,19 @@ static inline void glVec3(const vec3& v) { glVertex3dv(&v.x); }
 
 void GameObject::DrawAABB()
 {
-	Renderer2D::DrawLine(BT::WORLD, aabb.a(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.b(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.c(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.d(), aabb.a(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.a(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.b(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.c(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.d(), aabb.a(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	Renderer2D::DrawLine(BT::WORLD, aabb.e(), aabb.f(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.f(), aabb.g(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.g(), aabb.h(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.h(), aabb.e(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.e(), aabb.f(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.f(), aabb.g(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.g(), aabb.h(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.h(), aabb.e(), { 1.0f, 1.0f, 1.0f, 0.8 });
 
-	Renderer2D::DrawLine(BT::WORLD, aabb.h(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.f(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
-	Renderer2D::DrawLine(BT::WORLD, aabb.g(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.h(), aabb.d(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.f(), aabb.b(), { 1.0f, 1.0f, 1.0f, 0.8 });
+	Renderer2D::DrawLine(BatchType::EDITOR, aabb.g(), aabb.c(), { 1.0f, 1.0f, 1.0f, 0.8 });
 }
 
 void GameObject::DrawOBB()
@@ -238,6 +234,8 @@ void GameObject::Disable()
 
 void GameObject::Delete()
 {
+	if (GetComponent<Light>()) Renderer3D::RemoveLight(shared_from_this());
+
 	auto it = std::find(parent.lock()->children.begin(), parent.lock()->children.end(), shared_from_this());
 
 	if (it != parent.lock()->children.end())
@@ -420,7 +418,7 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			else if (componentJSON["Type"] == (int)ComponentType::Script)
 			{
 				this->AddComponent<Script>(componentJSON["ScriptName"]);
-				this->GetComponent<Script>()->LoadComponent(componentJSON);
+				//this->GetComponent<Script>()->LoadComponent(componentJSON);
 			}
 			else if (componentJSON["Type"] == (int)ComponentType::Listener)
 			{

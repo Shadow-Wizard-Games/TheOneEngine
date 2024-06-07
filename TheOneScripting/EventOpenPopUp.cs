@@ -13,7 +13,6 @@ public class EventOpenPopUp : Event
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
     UiManager menuManager;
 
     float playerDistance;
@@ -23,7 +22,7 @@ public class EventOpenPopUp : Event
 
     string goName;
 
-    string filepath = "Assets/GameData/Dialogs.json";
+    string filepath = "Assets/GameData/Popups.json";
     UiManager.HudPopUpMenu popupType;
     string popupStr;
     float cooldown = 0.0f;
@@ -33,10 +32,10 @@ public class EventOpenPopUp : Event
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         eventType = EventType.OPENPOPUP;
         goName = attachedGameObject.name;
@@ -46,7 +45,7 @@ public class EventOpenPopUp : Event
         popupStr = ExtractPopup();
         string[] datapath = { popupStr };
         int popupInt = DataManager.AccessFileDataInt(filepath, datapath, "popupType");
-
+        
         popupType = HudPopUpMenu.PickUpFeedback;
         if (DataManager.IsValidEnumValue<UiManager.HudPopUpMenu>(popupInt))
         {
@@ -67,7 +66,7 @@ public class EventOpenPopUp : Event
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
@@ -102,7 +101,7 @@ public class EventOpenPopUp : Event
             {
                 dialoguerEnum = (UiManager.Dialoguer)dialoguer;
             }
-
+            
             float duration = DataManager.AccessFileDataInt(filepath, datapath, "duration");
             menuManager.OpenHudPopUpMenu(popupType, text1, text, dialoguerEnum, duration);
 

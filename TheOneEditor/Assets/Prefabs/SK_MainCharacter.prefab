@@ -3,21 +3,21 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        99.61945343017578,
+        -70.71066641426842,
         0.0,
-        8.715564727783203,
+        70.7106655710522,
         0.0,
         0.0,
         100.0,
         0.0,
         0.0,
-        -8.715564727783203,
+        -70.7106655710522,
         0.0,
-        99.61945343017578,
+        -70.71066641426842,
         0.0,
-        -51.821102142333984,
+        75.19482421875,
         0.0,
-        -46.02009582519531,
+        475.85491943359375,
         1.0
       ],
       "Type": 0,
@@ -123,23 +123,38 @@
                 },
                 {
                   "MaxColor": [
-                    250.0,
-                    250.0,
-                    250.0,
-                    255.0
+                    0.9803921580314636,
+                    0.9803921580314636,
+                    0.9803921580314636,
+                    1.0
                   ],
                   "MinColor": [
-                    240.0,
-                    240.0,
-                    240.0,
-                    255.0
+                    0.9411764740943909,
+                    0.9411764740943909,
+                    0.9411764740943909,
+                    1.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 745.2593994140625,
+              "Lifetime": 10.157292366027832,
               "MaxParticles": 20,
               "RenderModule": [
                 {
@@ -151,9 +166,8 @@
               "SpawnModule": [
                 {
                   "Amount": 10.0,
-                  "Duration": 0.800000011920929,
-                  "SpawnRate": 1.5499999523162842,
-                  "Type": 2
+                  "Duration": 0.30000001192092896,
+                  "Type": 1
                 }
               ],
               "UpdateModules": [
@@ -171,9 +185,9 @@
                   "AffectG": false,
                   "AffectR": false,
                   "FinalColor": [
-                    255.0,
-                    255.0,
-                    255.0,
+                    1.0,
+                    1.0,
+                    1.0,
                     0.0
                   ],
                   "Type": 1
@@ -208,7 +222,7 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.0,
+            0.9999999999999999,
             0.0,
             0.0,
             0.0,
@@ -218,11 +232,11 @@
             0.0,
             0.0,
             0.0,
-            1.0,
+            0.9999999999999999,
             0.0,
-            0.0,
-            0.28999999165534973,
-            0.09000000357627869,
+            -0.09000000357627869,
+            0.11299999803304672,
+            0.4000000059604645,
             1.0
           ],
           "Type": 0,
@@ -256,16 +270,16 @@
                 },
                 {
                   "MaxColor": [
-                    255.0,
-                    255.0,
+                    1.0,
+                    1.0,
                     0.0,
-                    255.0
+                    1.0
                   ],
                   "MinColor": [
-                    210.0,
-                    128.0,
+                    0.8235294222831726,
+                    0.501960813999176,
                     0.0,
-                    255.0
+                    1.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
@@ -348,16 +362,16 @@
                 },
                 {
                   "MaxColor": [
-                    255.0,
-                    255.0,
+                    1.0,
+                    1.0,
                     0.0,
-                    255.0
+                    1.0
                   ],
                   "MinColor": [
-                    210.0,
-                    128.0,
+                    0.8235294222831726,
+                    0.501960813999176,
                     0.0,
-                    255.0
+                    1.0
                   ],
                   "Type": 1,
                   "UsingSingleValueColor": false
@@ -451,63 +465,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2481116818
+          "UID": 173269933
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 3693716587
+          "UID": 2106447785
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 3174485273
+          "UID": 1410077120
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 3150286111
+          "UID": 3007942337
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1617850911
+          "UID": 146993224
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 2821408942
+          "UID": 1494585494
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 2960815957
+          "UID": 2288581932
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 43181240
+          "UID": 2957969657
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 1717719160
+          "UID": 939593208
         }
       ],
       "Enabled": true,
@@ -560,7 +574,7 @@
           "UID": 3121206272
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_CarabinaM4",
@@ -610,7 +624,7 @@
           "UID": 3830396329
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_ShoulderLaser",
@@ -710,7 +724,7 @@
           "UID": 2918350885
         }
       ],
-      "Enabled": true,
+      "Enabled": false,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "WP_Flamethrower",
@@ -723,21 +737,21 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            0.9999999999999999,
+            0.9999999215028186,
+            -6.006912869405742e-17,
+            -2.185191355641436e-08,
             0.0,
+            3.1317977863820623e-09,
+            0.9889871978759766,
+            0.14800063094277446,
             0.0,
+            1.838161746425815e-08,
+            -0.14800060272216797,
+            0.9889873258841883,
             0.0,
-            0.0,
-            1.0,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.9999999999999999,
-            0.0,
-            0.0,
-            0.1360964870452881,
-            5.551115123125783e-17,
+            -1.883401043456523e-06,
+            0.2194833755493164,
+            0.12085474130062807,
             1.0
           ],
           "Type": 0,
@@ -755,24 +769,24 @@
           "Type": 1,
           "UID": 2017630020,
           "Yaw": 0.0,
-          "zFar": 3000.0,
+          "zFar": 1942.197998046875,
           "zNear": 10.0
         },
         {
           "Color": [
             1.0,
-            1.0,
-            1.0
+            0.9976469874382019,
+            0.6305732727050781
           ],
-          "InnerCutOff": 0.9100000262260437,
-          "Intensity": 16.899999618530273,
+          "InnerCutOff": 0.9300000071525574,
+          "Intensity": 18.700000762939453,
           "LightType": 2,
-          "Linear": 0.699999988079071,
+          "Linear": 23.420000076293945,
           "Name": "Light",
-          "OuterCutOff": 0.8199999928474426,
+          "OuterCutOff": 0.7599999904632568,
           "ParentUID": 3452816845,
-          "Quadratic": 1.7999999523162842,
-          "Radius": 199.0,
+          "Quadratic": 0.5600000023841858,
+          "Radius": 248.0,
           "Specular": 0.5,
           "Type": 11,
           "UID": 2854454397
@@ -781,17 +795,396 @@
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Spot Light",
+      "Name": "Flashlight",
       "ParentUID": 113510800,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9999999999999999,
+            1.0475122991238095e-09,
+            0.0,
+            0.0,
+            1.5746360967905382e-07,
+            -0.07057900905609131,
+            0.9975062128072708,
+            0.0,
+            1.2868707428663473e-08,
+            -0.9975060272216797,
+            -0.07057896981323965,
+            0.0,
+            0.006610645137312576,
+            0.35459922790527343,
+            0.2190867077903458,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 286708544
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3452816845,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 3625171500,
+          "Yaw": 0.0,
+          "zFar": 3000.0,
+          "zNear": 10.0
+        },
+        {
+          "Color": [
+            1.0,
+            0.9741571545600891,
+            0.42038214206695557
+          ],
+          "InnerCutOff": -0.07000000029802322,
+          "Intensity": 0.0,
+          "LightType": 2,
+          "Linear": 0.5600000023841858,
+          "Name": "Light",
+          "OuterCutOff": 1.1399999856948853,
+          "ParentUID": 3452816845,
+          "Quadratic": 1.659999966621399,
+          "Radius": 194.5,
+          "Specular": 0.5,
+          "Type": 11,
+          "UID": 1806633428
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ShotLight",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0000000093880292,
+            0.0,
+            5.991041546193898e-08,
+            0.0,
+            0.0,
+            0.9999999999999999,
+            0.0,
+            0.0,
+            -5.991041546193898e-08,
+            0.0,
+            1.0000000093880292,
+            0.0,
+            -0.09000000357627869,
+            0.11299999803304672,
+            0.4000000059604645,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 4126076258
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 0.05000000074505806,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    -20.0,
+                    -20.0,
+                    -20.0
+                  ],
+                  "MinDirection": [
+                    20.0,
+                    20.0,
+                    20.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 2.0,
+                  "MinSpeed": 80.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    0.9019607901573181,
+                    0.27450981736183167,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 100,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 50.0,
+                  "Duration": 0.05000000074505806,
+                  "Type": 1
+                }
+              ]
+            }
+          ],
+          "Name": "ShotExplosion\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 1220694851
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "ShotExplosion",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.2505727333124925,
+            0.0,
+            0.9680977917515716,
+            0.0,
+            0.0,
+            0.9999999999999999,
+            -0.0,
+            0.0,
+            -0.9680977917515716,
+            0.0,
+            0.2505727333124925,
+            0.0,
+            -0.06021176969523806,
+            0.22550418853759763,
+            0.09111257744758555,
+            0.9999999999999999
+          ],
+          "Type": 0,
+          "UID": 460848752
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 1.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    0.0,
+                    2.0,
+                    0.0
+                  ],
+                  "MinDirection": [
+                    0.0,
+                    10.0,
+                    2.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": true
+                },
+                {
+                  "MaxSpeed": 100.0,
+                  "MinSpeed": 50.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    0.7019608020782471,
+                    0.0,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "IsProportional": false,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    3.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 2104.322021484375,
+              "MaxParticles": 100,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 2.0,
+                  "Duration": 1.0,
+                  "SpawnRate": 4.0,
+                  "Type": 2
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -200.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Name": "BulletShellDrop\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 222546276
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "BulletShellDrop",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            0.9999999239963625,
+            2.630760036481661e-08,
+            6.649450462470341e-09,
+            0.0,
+            0.0,
+            -4.3711388570955023e-08,
+            0.9999999999999999,
+            0.0,
+            2.630759770269973e-08,
+            -0.9999998474121093,
+            -4.371138554134098e-08,
+            0.0,
+            -1.9396715799091524e-06,
+            1.0234410858154297,
+            0.0013552332684349522,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3759812706
+        },
+        {
+          "Aspect": 1.777,
+          "CameraType": 0,
+          "FOV": 65.0,
+          "Name": "Camera",
+          "ParentUID": 3077996464,
+          "Pitch": 0.0,
+          "PrimaryCamera": false,
+          "Size": 200.0,
+          "Type": 1,
+          "UID": 302131017,
+          "Yaw": 0.0,
+          "zFar": 1942.197998046875,
+          "zNear": 10.0
+        },
+        {
+          "Color": [
+            1.0,
+            0.9976469874382019,
+            0.6305732727050781
+          ],
+          "InnerCutOff": 1.4700000286102295,
+          "Intensity": 7.800000190734863,
+          "LightType": 2,
+          "Linear": 23.739999771118164,
+          "Name": "Light",
+          "OuterCutOff": 0.8199999928474426,
+          "ParentUID": 3077996464,
+          "Quadratic": 0.2199999988079071,
+          "Radius": 101.5,
+          "Specular": 0.5,
+          "Type": 11,
+          "UID": 1058747490
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "Player_Light",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 3077996464
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
-  "ParentUID": 3452816845,
-  "PrefabDirty": true,
+  "ParentUID": 7536756,
+  "PrefabDirty": false,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,

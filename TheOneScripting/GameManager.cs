@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     public bool credits;
     string saveLevel;
 
-    ItemManager itemManager;
-    QuestManager questManager;
-
     public bool colliderRender;
     public bool gridRender;
     public bool godMode;
@@ -30,6 +27,9 @@ public class GameManager : MonoBehaviour
     //Shortcuts logic
     public string lastLevel;
     public bool activeShortcutL1R1;
+
+    ItemManager itemManager;
+    QuestManager questManager;
 
     #region PLAYERDATA
 
@@ -124,6 +124,8 @@ public class GameManager : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+
         hasSaved = false;
         credits = false;
 
@@ -138,10 +140,10 @@ public class GameManager : MonoBehaviour
         DrawColliders();
         DrawGrid();
 
-        itemManager = IGameObject.Find("ItemManager")?.GetComponent<ItemManager>();
-        questManager = IGameObject.Find("QuestManager")?.GetComponent<QuestManager>();
-
         ResetPlayerData();
+
+        itemManager = attachedGameObject.GetComponent<ItemManager>();
+        questManager = attachedGameObject.GetComponent<QuestManager>();
     }
 
     public override void Update()
@@ -160,29 +162,31 @@ public class GameManager : MonoBehaviour
             savedLevels.Add(SceneManager.GetCurrentSceneName());
 
         lastLevel = SceneManager.GetCurrentSceneName();
-        InternalCalls.CreateSaveFromScene("GameData/Scenes", SceneManager.GetCurrentSceneName());
+        InternalCalls.CreateSaveFromScene("GameData/Scenes", lastLevel);
     }
 
     public void UpdateSave()
     {
         DataManager.SaveGame();
         saveLevel = SceneManager.GetCurrentSceneName();
+        this.SaveGameManagerData();
+        itemManager.SaveInventoryData();
+        questManager.SaveQuestData();
+
         hasSaved = true;
     }
 
     public void LoadSave()
     {
-        bool notFound = true;
-        foreach (var item in saveLevel)
-        {
-            if (notFound && item.ToString() == saveLevel)
-            {
-                notFound = false;
-                continue;
-            }
-            else
-                DataManager.RemoveFile(item.ToString());
-        }
+        if (!hasSaved)
+            return;
+
+        ResetSave();
+
+        this.LoadGameManagerData();
+        itemManager.LoadInventoryData();
+        questManager.LoadQuestData();
+
 
         SceneManager.LoadScene("LastSave_" + saveLevel, true, "GameData/");
     }
@@ -194,8 +198,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetSave()
     {
-        itemManager?.ResetInventory();
-        questManager?.ResetQuests();
+        lastLevel = " ";
+        managers.itemManager.ResetInventory();
+        managers.questManager.ResetQuests();
         ResetPlayerData();
     }
 
@@ -244,5 +249,36 @@ public class GameManager : MonoBehaviour
     public GameStates GetGameState()
     {
         return state;
+    }
+
+    private void SaveGameManagerData()
+    {
+        string[] datapath = { "GameManager" };
+
+        //hasSaved
+        //saveLevel
+        //savedLevels list
+        //lastLevel
+
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "currency", currency);
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "damageLvl", damageLvl);
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "lifeLvl", lifeLvl);
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "speedLvl", speedLvl);
+    }
+
+    private void LoadGameManagerData()
+    {
+        string[] datapath = { "GameManager" };
+
+        //hasSaved
+        //saveLevel
+        //savedLevels list
+        //lastLevel
+
+        currency = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "currency");
+        SetDamageLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "damageLvl"));
+        SetLifeLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "lifeLvl"));
+        SetSpeedLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "speedLvl"));
+        health = maxHealth;
     }
 }

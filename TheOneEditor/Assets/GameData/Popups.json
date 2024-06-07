@@ -2,15 +2,15 @@
     "Popup1":{
         "popupType":2,
         "isOneTime":true,
-        "text":"What the hell just happened?",
-        "duration":1,
+        "text":"What the hell just\nhappened?",
+        "duration":4,
         "audioEvent": "VO_STUB_CRASH1"
     },
     "Popup2":{
         "popupType":2,
         "isOneTime":true,
-        "text":"No-one around... Better find myself a weapon or something...",
-        "duration":1,
+        "text":"No-one around...\nBetter find myself a\nweapon or something...",
+        "duration":5,
         "audioEvent": "VO_STUB_CRASH2"
-    },
+    }
 }

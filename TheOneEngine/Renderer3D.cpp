@@ -1,12 +1,12 @@
 #include "Renderer3D.h"
 #include "Renderer.h"
 #include "Resources.h"
+#include "Shader.h"
+#include "Material.h"
 #include "EngineCore.h"
 #include "N_SceneManager.h"
 #include "SkeletalUtilities.h"
 #include "Animation/OzzAnimation.h"
-
-#include "TheOneEngine/Renderer.h"
 
 #include "TheOneAnimation/samples/framework/internal/shader.h"
 
@@ -26,7 +26,8 @@ struct Renderer3DData
 	std::vector<SkeletalCall> skeletalCalls;
 
 	ResourceId lightingMatID = -1;
-	ResourceId indexSkeletalShaderID = -1;
+	ResourceId skeletalShaderID = -1;
+	ResourceId crtMatID = -1;
 
 	uint dynamicVAO = 0;
 	uint dynamicVBO = 0;
@@ -52,6 +53,7 @@ void Renderer3D::Init()
 	InitPreLightingShader();
 	InitPostLightingShader();
 	InitIndexShaders();
+	InitCRTShader();
 }
 
 void Renderer3D::Update(RenderTarget target)
@@ -95,9 +97,114 @@ void Renderer3D::AddLight(std::shared_ptr<GameObject> container)
 	renderer3D.lights.push_back(container);
 }
 
+void Renderer3D::RemoveLight(std::shared_ptr<GameObject> container)
+{
+	if (!container.get())
+		return;
+
+	if (!container.get()->GetComponent<Light>())
+		return;
+
+	auto it = std::find_if(renderer3D.lights.begin(), renderer3D.lights.end(),
+		[container](const std::shared_ptr<GameObject>& comp) {
+			return comp.get() == container.get();
+		});
+
+	LightType lightType = container.get()->GetComponent<Light>()->lightType;
+
+	if (it != renderer3D.lights.end())
+		renderer3D.lights.erase(it);
+
+	Renderer3D::ResetUniforms(lightType);
+}
+
 void Renderer3D::CleanLights()
 {
 	renderer3D.lights.clear();
+}
+
+void Renderer3D::ResetUniforms(LightType lightType)
+{
+	for (auto &light : renderer3D.lights)
+	{
+		if (lightType == light.get()->GetComponent<Light>()->lightType)
+			return;
+	}
+
+	Material* mat = Resources::GetResourceById<Material>(renderer3D.lightingMatID);
+	Shader* shader = mat->getShader();
+	shader->Bind();
+
+	switch (lightType)
+	{
+		case LightType::Directional:
+		{
+			mat->SetUniformData("u_DirLight[0].Position", (glm::vec3)(0));
+			mat->SetUniformData("u_DirLight[0].Direction", (glm::vec3)(0));
+			mat->SetUniformData("u_DirLight[0].Color", 0);
+			mat->SetUniformData("u_DirLight[0].Intensity", 0);
+			break;
+		}
+		case LightType::Point:
+		{
+			mat->SetUniformData("u_PointLights[0].Position", (glm::vec3)(0));
+			mat->SetUniformData("u_PointLights[0].Color", 0);
+			mat->SetUniformData("u_PointLights[0].Intensity", 0);
+			mat->SetUniformData("u_PointLights[0].Linear", 0);
+			mat->SetUniformData("u_PointLights[0].Quadratic", 0);
+			mat->SetUniformData("u_PointLights[0].Radius", 0);
+			break;
+		}
+		case LightType::Spot:
+		{
+			mat->SetUniformData("u_SpotLights[0].Position", (glm::vec3)(0));
+			mat->SetUniformData("u_SpotLights[0].Direction", (glm::vec3)(0));
+			mat->SetUniformData("u_SpotLights[0].Color", 0);
+			mat->SetUniformData("u_SpotLights[0].Intensity", 0);
+			mat->SetUniformData("u_SpotLights[0].Linear", 0);
+			mat->SetUniformData("u_SpotLights[0].Quadratic", 0);
+			mat->SetUniformData("u_SpotLights[0].Radius", 0);
+			mat->SetUniformData("u_SpotLights[0].CutOff", 0);
+			mat->SetUniformData("u_SpotLights[0].OuterCutOff", 0);
+			mat->SetUniformData("u_SpotLights[0].ViewProjectionMat", glm::mat4(0));
+			mat->SetUniformData("u_SpotLights[0].Depth", 0);
+			break;
+		}
+	}
+}
+
+void Renderer3D::ResetAllUniforms()
+{
+	Material* mat = Resources::GetResourceById<Material>(renderer3D.lightingMatID);
+	Shader* shader = mat->getShader();
+	shader->Bind();
+	for (int i = 0; i < 32; i++)
+	{
+		string iteration = to_string(i);
+		mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)(0));
+		mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)(0));
+		mat->SetUniformData("u_DirLight[" + iteration + "].Color", 0);
+		mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", 0);
+
+		mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)(0));
+		mat->SetUniformData("u_PointLights[" + iteration + "].Color", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Linear", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", 0);
+		mat->SetUniformData("u_PointLights[" + iteration + "].Radius", 0);
+
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)(0));
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)(0));
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Color", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].CutOff", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].OuterCutOff", 0);
+		mat->SetUniformData("u_SpotLights[" + iteration + "].ViewProjectionMat", glm::mat4(0));
+		mat->SetUniformData("u_SpotLights[" + iteration + "].Depth", 0);
+	}
 }
 
 void Renderer3D::AddMesh(StackVertexArray meshID, int matID)
@@ -385,7 +492,7 @@ void Renderer3D::DrawSkeletal(const SkeletalCall& call, bool overrideEffects)
 	}
 	else
 	{
-		animShader = Resources::GetResourceById<Shader>(renderer3D.indexSkeletalShaderID);
+		animShader = Resources::GetResourceById<Shader>(renderer3D.skeletalShaderID);
 		animShader->Bind();
 		animShader->SetModel(call.GetModel());
 	}
@@ -461,7 +568,7 @@ void Renderer3D::GeometryPass(RenderTarget target)
 	gBuffer->Unbind();
 }
 
-void Renderer3D::PostProcess(RenderTarget target)
+bool Renderer3D::InitPostProcess(RenderTarget target)
 {
 	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
 	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
@@ -475,12 +582,19 @@ void Renderer3D::PostProcess(RenderTarget target)
 	int width = postBuffer->GetWidth();
 	int height = postBuffer->GetHeight();
 	GLCALL(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_DEPTH_BUFFER_BIT, GL_NEAREST));
-
+	if (!Renderer::Settings()->lights.isEnabled)
+		GLCALL(glBlitFramebuffer(0, 0, width, height, 0, 0, width, height, GL_COLOR_BUFFER_BIT, GL_NEAREST));
 	postBuffer->Bind();
 
-	LightPass(target);
-	IndexPass(target);
+	if (!Renderer::Settings()->postProcess.isEnabled)
+		return false;
 
+	return true;
+}
+
+void Renderer3D::EndPostProcess(RenderTarget target)
+{
+	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
 	postBuffer->Unbind();
 }
 
@@ -516,6 +630,7 @@ void Renderer3D::LightPass(RenderTarget target)
 {
 	FrameBuffer* gBuffer = target.GetFrameBuffer("gBuffer");
 	FrameBuffer* postBuffer = target.GetFrameBuffer("postBuffer");
+	postBuffer->Bind();
 
 	uint directionalLightNum = 0;
 	uint pointLightNum = 0;
@@ -550,15 +665,12 @@ void Renderer3D::LightPass(RenderTarget target)
 		Light* light = renderer3D.lights[i]->GetComponent<Light>();
 		Transform* transform = renderer3D.lights[i]->GetComponent<Transform>();
 
-		postBuffer->Bind();
-		shader->Bind();
-
 		// Uniform data MUST be float!!!
 		switch (light->lightType)
 		{
 			case LightType::Directional:
 			{
-				string iteration = to_string(directionalLightNum);
+				std::string iteration = std::to_string(directionalLightNum);
 				mat->SetUniformData("u_DirLight[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
 				mat->SetUniformData("u_DirLight[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
 				mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
@@ -568,7 +680,7 @@ void Renderer3D::LightPass(RenderTarget target)
 			}
 			case LightType::Point:
 			{
-				string iteration = to_string(pointLightNum);
+				std::string iteration = std::to_string(pointLightNum);
 				mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
 				mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
 				mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
@@ -580,7 +692,7 @@ void Renderer3D::LightPass(RenderTarget target)
 			}
 			case LightType::Spot:
 			{
-				string iteration = to_string(spotLightNum);
+				std::string iteration = std::to_string(spotLightNum);
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
 				mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
@@ -614,7 +726,7 @@ void Renderer3D::IndexPass(RenderTarget target)
 			DrawSkeletal(call);
 	}
 
-	Renderer2D::UpdateIndexed(BT::WORLD, target);
+	//Renderer2D::UpdateIndexed(BatchType::WORLD, target);
 }
 
 void Renderer3D::UIComposition(RenderTarget target)
@@ -625,7 +737,7 @@ void Renderer3D::UIComposition(RenderTarget target)
 	uiBuffer->Bind();
 	uiBuffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
-	// Copy gBuffer Depth to postBuffer
+	// Copy postBuffer Color to uiBuffer, Upscale to Nearest
 	GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, postBuffer->GetBuffer()));
 	GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, uiBuffer->GetBuffer()));
 	GLCALL(glBlitFramebuffer(
@@ -636,9 +748,89 @@ void Renderer3D::UIComposition(RenderTarget target)
 	uiBuffer->Bind();
 
 	Renderer::SetUniformBufferCamera(cameraUI);
-	Renderer2D::Update(BT::UI, target);
+	Renderer2D::Update(BatchType::UI, target);
 
 	uiBuffer->Unbind();
+}
+
+void Renderer3D::CRTShader(RenderTarget target)
+{
+	FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
+	uiBuffer->Bind();
+
+	Material* crtMat = Resources::GetResourceById<Material>(renderer3D.crtMatID);
+	Shader* crtShader = crtMat->getShader();
+	crtShader->Bind();
+
+	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color_ui"));
+	crtMat->SetUniformData("warp", glm::vec2(12, 8));
+	crtMat->SetUniformData("time", (float)engine->upTime);
+
+	crtMat->Bind();
+	Renderer::DrawScreenQuad();
+	crtMat->UnBind();
+
+	uiBuffer->Unbind();
+}
+
+void Renderer3D::SetUniformsParticleShader(ResourceId materialID, RenderTarget target)
+{
+	uint directionalLightNum = 0;
+	uint pointLightNum = 0;
+	uint spotLightNum = 0;
+
+	Material* mat = Resources::GetResourceById<Material>(Renderer2D::GetParticleMaterialID());
+	Shader* shader = mat->getShader();
+	shader->Bind();
+
+	for (int i = 0; i < renderer3D.lights.size(); i++)
+	{
+		Light* light = renderer3D.lights[i]->GetComponent<Light>();
+		Transform* transform = renderer3D.lights[i]->GetComponent<Transform>();
+
+		Transform* cameraTransform = target.GetCamera()->GetContainerGO().get()->GetComponent<Transform>();
+		mat->SetUniformData("camPos", (glm::vec3)cameraTransform->GetGlobalPosition());
+
+		// Uniform data MUST be float!!!
+		switch (light->lightType)
+		{
+			case LightType::Directional:
+			{
+				std::string iteration = std::to_string(directionalLightNum);
+				mat->SetUniformData("u_DirLight[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_DirLight[" + iteration + "].Intensity", light->intensity);
+				directionalLightNum++;
+				break;
+			}
+			case LightType::Point:
+			{
+				std::string iteration = std::to_string(pointLightNum);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Intensity", light->intensity);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
+				mat->SetUniformData("u_PointLights[" + iteration + "].Radius", light->radius);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Linear", light->linear);
+				mat->SetUniformData("u_PointLights[" + iteration + "].Quadratic", light->quadratic);
+				pointLightNum++;
+				break;
+			}
+			case LightType::Spot:
+			{
+				std::string iteration = std::to_string(spotLightNum);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Color", light->color);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Intensity", light->intensity);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Position", (glm::vec3)transform->GetGlobalPosition());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Direction", (glm::vec3)transform->GetGlobalForward());
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Radius", light->radius);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Linear", light->linear);
+				mat->SetUniformData("u_SpotLights[" + iteration + "].Quadratic", light->quadratic);
+				spotLightNum++;
+				break;
+			}
+		}
+	}
+
+	mat->Bind();
 }
 
 // Init Shaders
@@ -665,8 +857,6 @@ void Renderer3D::InitPreLightingShader()
 
 void Renderer3D::InitPostLightingShader()
 {
-	GLERR;
-	//Init default shaders with uniforms
 	ResourceId textShaderId = Resources::Load<Shader>("Assets/Shaders/PostLightingShader");
 	Shader* textShader = Resources::GetResourceById<Shader>(textShaderId);
 	textShader->Compile("Assets/Shaders/PostLightingShader");
@@ -678,7 +868,7 @@ void Renderer3D::InitPostLightingShader()
 
 	for (uint i = 0; i < 4; i++)
 	{
-		string iteration = to_string(i);
+		std::string iteration = std::to_string(i);
 		textShader->addUniform("u_DirLight[" + iteration + "].Position", UniformType::fVec3);
 		textShader->addUniform("u_DirLight[" + iteration + "].Color", UniformType::fVec3);
 		textShader->addUniform("u_DirLight[" + iteration + "].Intensity", UniformType::Float);
@@ -688,7 +878,7 @@ void Renderer3D::InitPostLightingShader()
 
 	for (uint i = 0; i < 32; i++)
 	{
-		string iteration = to_string(i);
+		std::string iteration = std::to_string(i);
 		textShader->addUniform("u_PointLights[" + iteration + "].Position", UniformType::fVec3);
 		textShader->addUniform("u_PointLights[" + iteration + "].Color", UniformType::fVec3);
 		textShader->addUniform("u_PointLights[" + iteration + "].Intensity", UniformType::Float);
@@ -699,7 +889,7 @@ void Renderer3D::InitPostLightingShader()
 
 	for (uint i = 0; i < 16; i++)
 	{
-		string iteration = to_string(i);
+		std::string iteration = std::to_string(i);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Color", UniformType::fVec3);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Intensity", UniformType::Float);
@@ -712,6 +902,7 @@ void Renderer3D::InitPostLightingShader()
 		textShader->addUniform("u_SpotLights[" + iteration + "].ViewProjectionMat", UniformType::Mat4);
 		textShader->addUniform("u_SpotLights[" + iteration + "].Depth", UniformType::Sampler2D);
 	}
+
 	Resources::Import<Shader>("PostLightingShader", textShader);
 
 	Material lightinProcessMat(textShader);
@@ -723,9 +914,26 @@ void Renderer3D::InitPostLightingShader()
 
 void Renderer3D::InitIndexShaders()
 {
-	renderer3D.indexSkeletalShaderID = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimatedIndex");
-	Shader* skeletalTextShader = Resources::GetResourceById<Shader>(renderer3D.indexSkeletalShaderID);
+	renderer3D.skeletalShaderID = Resources::Load<Shader>("Assets/Shaders/MeshTextureAnimatedIndex");
+	Shader* skeletalTextShader = Resources::GetResourceById<Shader>(renderer3D.skeletalShaderID);
 	skeletalTextShader->Compile("Assets/Shaders/MeshTextureAnimatedIndex");
 
 	Resources::Import<Shader>("MeshTextureAnimatedIndex", skeletalTextShader);
+}
+
+void Renderer3D::InitCRTShader()
+{
+	ResourceId crtShaderId = Resources::Load<Shader>("Assets/Shaders/CRTShader");
+	Shader* crtShader = Resources::GetResourceById<Shader>(crtShaderId);
+	crtShader->Compile("Assets/Shaders/CRTShader");
+	crtShader->addUniform("albedo", UniformType::Sampler2D);
+	crtShader->addUniform("warp", UniformType::fVec2);
+	crtShader->addUniform("time", UniformType::Float);
+	Resources::Import<Shader>("CRTShader", crtShader);
+
+	Material crtMat(crtShader);
+	crtMat.setShader(crtShader, crtShader->getPath());
+	std::string CRTPath = Resources::PathToLibrary<Material>() + "CRTShader.toematerial";
+	Resources::Import<Material>(CRTPath, &crtMat);
+	renderer3D.crtMatID = Resources::LoadFromLibrary<Material>(CRTPath);
 }

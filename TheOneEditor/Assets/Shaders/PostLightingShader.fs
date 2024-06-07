@@ -73,7 +73,7 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 Normal, sampler2D DepthMap,
     // calculate bias (based on depth map resolution and slope)
     vec3 normal = normalize(Normal);
     vec3 lightDir = normalize(lightPos - FragPos);
-    float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.0001);
+    float bias = max(0.025 * (1.0 - dot(normal, lightDir)), 0.0001);
     // check whether current frag pos is in shadow
     // float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;
     // PCF
@@ -158,14 +158,14 @@ vec3 CalcSpotLight(SpotLight light, vec3 Diffuse, float Specular, vec3 Normal, v
 
 void main()
 {
-    vec3 FragPos = texture(gPosition, TexCoords).rgb;
-    vec3 Normal = texture(gNormal, TexCoords).rgb;
-    vec3 Diffuse = texture(gAlbedoSpec, TexCoords).rgb;
-    float Specular = 0.5;
-    float Alpha = texture(gAlbedoSpec, TexCoords).a;
-    vec3 ViewDir  = normalize(u_ViewPos - FragPos);
+    vec3 FragPos    = texture(gPosition, TexCoords).rgb;
+    vec3 Normal     = texture(gNormal, TexCoords).rgb;
+    vec3 Diffuse    = texture(gAlbedoSpec, TexCoords).rgb;
+    float Alpha     = texture(gAlbedoSpec, TexCoords).a;
+    vec3 ViewDir    = normalize(u_ViewPos - FragPos);
+    float Specular  = 0.1;
 
-    vec3 result = Diffuse * 0.3;
+    vec3 result = Diffuse * 0.1;
 
     // phase 1: Directional lighting
     for(int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++)

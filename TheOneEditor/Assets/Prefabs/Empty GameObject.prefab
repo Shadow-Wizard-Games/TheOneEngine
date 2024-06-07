@@ -1,0 +1,152 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1840569082
+    },
+    {
+      "Emmiters": [
+        {
+          "Delay": 0.0,
+          "Duration": 1.0,
+          "InitializeModules": [
+            {
+              "MaxDirection": [
+                0.5,
+                2.0,
+                0.5
+              ],
+              "MinDirection": [
+                -0.5,
+                1.0,
+                -0.5
+              ],
+              "Type": 4,
+              "UsingSingleValueDirection": false
+            },
+            {
+              "MaxSpeed": 10.0,
+              "MinSpeed": 1.0,
+              "Type": 0,
+              "UsingSingleValueSpeed": false
+            },
+            {
+              "IsProportional": false,
+              "MaxScale": [
+                5.0,
+                7.0,
+                3.0
+              ],
+              "MinScale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "Type": 2,
+              "UsingSingleValueScale": false
+            },
+            {
+              "MaxColor": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "MinColor": [
+                0.0,
+                0.9184145331382751,
+                0.9363057613372803,
+                1.0
+              ],
+              "Type": 1,
+              "UsingSingleValueColor": false
+            }
+          ],
+          "IsLooping": true,
+          "Lifetime": 0.0,
+          "MaxParticles": 100,
+          "RenderModule": [
+            {
+              "BillboardType": 1,
+              "TexturePath": "",
+              "Type": 0
+            }
+          ],
+          "SpawnModule": [
+            {
+              "Amount": 10.0,
+              "Duration": 10.0,
+              "SpawnRate": 0.5,
+              "Type": 2
+            }
+          ],
+          "UpdateModules": [
+            {
+              "Acceleration": [
+                0.0,
+                -5.0,
+                0.0
+              ],
+              "Type": 0
+            },
+            {
+              "AffectA": true,
+              "AffectB": true,
+              "AffectG": true,
+              "AffectR": true,
+              "FinalColor": [
+                0.0,
+                0.06369423866271973,
+                1.0,
+                0.0
+              ],
+              "Type": 1
+            },
+            {
+              "FinalScale": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Type": 2
+            }
+          ]
+        }
+      ],
+      "Name": "ParticleSystem\u0000\u0000\u0000\u0000\u0000\u0000",
+      "StartON": true,
+      "Type": 9,
+      "UID": 3042548750
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Empty GameObject",
+  "ParentUID": 7274612,
+  "PrefabDirty": false,
+  "PrefabID": 1536896746,
+  "PrefabName": "Empty GameObject",
+  "Static": false,
+  "UID": 7536748
+}

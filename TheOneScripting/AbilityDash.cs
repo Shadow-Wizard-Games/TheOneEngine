@@ -21,14 +21,14 @@ public class AbilityDash : MonoBehaviour
     IGameObject playerGO;
     PlayerScript player;
 
-    GameManager gameManager;
-
     readonly float rollPotency = 2.0f;
     readonly float dashPotency = 3.0f;
 
 
     public override void Start()
     {
+        managers.Start();
+
         abilityName = "Roll";
 
         activeTime = 0.3f;
@@ -38,8 +38,6 @@ public class AbilityDash : MonoBehaviour
 
         playerGO = attachedGameObject.parent;
         player = playerGO?.GetComponent<PlayerScript>();
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         state = AbilityState.READY;
     }
@@ -69,11 +67,11 @@ public class AbilityDash : MonoBehaviour
             activeTimeCounter -= Time.deltaTime;
             if (abilityName == "Roll")
             {
-                playerGO.transform.Translate(player.lastMovementDirection * rollPotency * gameManager.GetSpeed() * Time.deltaTime);
+                playerGO.transform.Translate(player.lastMovementDirection * rollPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
             }
             else
             {
-                playerGO.transform.Translate(player.lastMovementDirection * dashPotency * gameManager.GetSpeed() * Time.deltaTime);
+                playerGO.transform.Translate(player.lastMovementDirection * dashPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
             }
         }
         else

@@ -62,15 +62,14 @@ class AnarchistBehaviour : MonoBehaviour
     const float destroyCooldown = 3.0f;
 
     PlayerScript player;
-    GameManager gameManager;
 
     public override void Start()
     {
+        managers.Start();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
         initialPos = attachedGameObject.transform.Position;
-
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
 
         attachedGameObject.animator.Play("Scan");
         attachedGameObject.animator.Blend = true;
@@ -284,6 +283,8 @@ class AnarchistBehaviour : MonoBehaviour
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
+        Debug.Log("Total damage " + player.totalDamage);
+        //Debug.Log("Total life " + life);
     }
 
     public void ReduceLifeExplosion()
@@ -294,7 +295,7 @@ class AnarchistBehaviour : MonoBehaviour
 
     private void DebugDraw()
     {
-        if (gameManager.colliderRender)
+        if (managers.gameManager.colliderRender)
         {
             Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 3, loseRange, Vector3.right);
             Debug.DrawWireCircle(attachedGameObject.transform.Position + Vector3.up * 3, rangeToInspect, Vector3.right + Vector3.up);

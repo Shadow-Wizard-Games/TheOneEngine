@@ -79,9 +79,9 @@ private:
 	bool easing;
 	float camSpeedMult;
 
-	bool renderLights;
-	bool renderShadows;
-
+	// Draw Flags
+	bool drawGrid;
+	bool drawAxis;
 	bool drawMesh;
 	bool drawWireframe;
 	bool drawNormalsVerts;
@@ -89,7 +89,9 @@ private:
 	bool drawAABB;
 	bool drawOBB;
 	bool drawChecker;
+	bool drawRayCasting;
 
+	// Snap
 	bool snapping;
 	int snapAmount;
 };

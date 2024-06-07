@@ -3,33 +3,16 @@
 #include "Renderer3D.h"
 #include "UniformBuffer.h"
 #include "EngineCore.h"
+#include "GameObject.h"
 #include "N_SceneManager.h"
 #include "Camera.h"
 #include "RenderTarget.h"
 #include "Ray.h"
 
-struct RendererData
-{
-	std::vector<RenderTarget> renderTargets;
-	std::shared_ptr<UniformBuffer> cameraUniformBuffer;
 
-    // Render Settings
-    bool renderParticles = true;
-    bool renderLights = true;
-    bool renderShadows = true;
-
-    // Debug
-    bool drawGrid = true;
-    bool drawAxis = true;
-    bool drawCollisions = true;
-    bool drawScriptShapes = true;
-    bool drawRaycasting = false;
-    bool drawAABB = false;
-
-    std::vector<Ray> rays;
-};
-
+static RendererSettings settings;
 static RendererData renderer;
+
 
 void Renderer::Init()
 {
@@ -53,27 +36,43 @@ void Renderer::Update()
 
         Renderer3D::GeometryPass(target);
 
-        //// Debug / Editor Draw
-        Renderer::DrawDebug(target.GetMode() == DrawMode::GAME || target.GetMode() == DrawMode::BUILD ? false : true);
+        if (settings.particlesLight.isEnabled)
+            Renderer2D::Update(BatchType::WORLD, target);
 
-        if (renderer.renderParticles)
-            Renderer2D::Update(BT::WORLD, target);
-
-        if (renderer.renderShadows)
+        if (settings.shadows.isEnabled)
             Renderer3D::ShadowPass(target);
 
-        if (renderer.renderLights)
-            Renderer3D::PostProcess(target);
+        if (Renderer3D::InitPostProcess(target))
+        {
+            if (settings.lights.isEnabled)
+                Renderer3D::LightPass(target);
+
+            Renderer3D::IndexPass(target);
+
+            if (Renderer::Settings()->particles.isEnabled)
+                Renderer2D::Update(BatchType::WORLD, target);
+        }
+        Renderer3D::EndPostProcess(target);
+        
+        if (target.GetMode() == DrawMode::EDITOR)
+        {
+            Renderer::DrawDebug();
+            Renderer2D::Update(BatchType::EDITOR, target);
+        }           
 
         Renderer3D::UIComposition(target);
 
+        if (target.GetMode() != DrawMode::EDITOR && settings.crt.isEnabled)
+            Renderer3D::CRTShader(target);
+
+        //// Blit final composition to 0 Buffer
         if (target.GetMode() == DrawMode::BUILD)
         {
             FrameBuffer* uiBuffer = target.GetFrameBuffer("uiBuffer");
 
-            // Copy final composition to 0 Buffer
             GLCALL(glBindFramebuffer(GL_READ_FRAMEBUFFER, uiBuffer->GetBuffer()));
             GLCALL(glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0));
+            GLCALL(glReadBuffer(GL_COLOR_ATTACHMENT1));
             GLCALL(glBlitFramebuffer(
                 0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
                 0, 0, uiBuffer->GetWidth(), uiBuffer->GetHeight(),
@@ -152,33 +151,11 @@ void Renderer::ClearRays()
 }
 
 
-//@Get/Set -------------------------------------------------------------------
-
-//@Render
-bool Renderer::GetRenderLights() { return renderer.renderLights; }
-void Renderer::SetRenderLights(bool render) { renderer.renderLights = render; }
-
-bool Renderer::GetRenderShadows() { return renderer.renderShadows; }
-void Renderer::SetRenderShadows(bool render) { renderer.renderShadows = render; }
-
-//@Draw
-bool Renderer::GetDrawGrid() { return renderer.drawGrid; }
-void Renderer::SetDrawGrid(bool draw) { renderer.drawGrid = draw; }
-
-bool Renderer::GetDrawAxis() { return renderer.drawAxis; }
-void Renderer::SetDrawAxis(bool draw) { renderer.drawAxis = draw; }
-
-bool Renderer::GetDrawCollisions() { return renderer.drawCollisions; }
-void Renderer::SetDrawCollisions(bool draw) { renderer.drawCollisions = draw; }
-
-bool Renderer::GetDrawScriptShapes() { return renderer.drawScriptShapes; }
-void Renderer::SetDrawScriptShapes(bool draw) { renderer.drawScriptShapes = draw; }
-
-bool Renderer::GetDrawRaycasting() { return renderer.drawRaycasting; }
-void Renderer::SetDrawRaycasting(bool draw) { renderer.drawRaycasting = draw; }
-
-bool Renderer::GetDrawAABB() { return renderer.drawAABB; }
-void Renderer::SetDrawAABB(bool draw) { renderer.drawAABB = draw; }
+//@Get / Set ----------------------------------------------------------------
+RendererSettings* Renderer::Settings()
+{
+    return &settings;
+}
 
 
 //@Draw Utils ----------------------------------------------------------------
@@ -220,32 +197,27 @@ void Renderer::DrawScreenQuad()
 
 void Renderer::DrawDebug(bool override)
 {
-    // Draw Editor / Debug
-    if (renderer.drawAxis || override)
+    if (settings.axis.isEnabled || override)
         DrawAxis();
 
-    if (renderer.drawGrid || override)
+    if (settings.grid.isEnabled || override)
         DrawGrid(5000, 50);
 
-    if (renderer.drawCollisions || override)
+    if (settings.collisions.isEnabled || override)
         engine->collisionSolver->DrawCollisions();
 
-    if (renderer.drawScriptShapes || override)
+    if (settings.scriptShapes.isEnabled || override)
         engine->monoManager->RenderShapesQueue();
 
-    if (override)
+    if (auto selectedGO = engine->N_sceneManager->GetSelectedGO())
     {
-        for (const auto GO : engine->N_sceneManager->GetGameObjects())
-        {
-            Camera* gameCam = GO.get()->GetComponent<Camera>();
+        Camera* gameCam = selectedGO.get()->GetComponent<Camera>();
 
-            if (gameCam != nullptr && gameCam->drawFrustum)
-                DrawFrustum(gameCam->frustum);
-        }
+        if (gameCam != nullptr && gameCam->drawFrustum)
+            DrawFrustum(gameCam->frustum);
     }
 
-    // Draw Rays
-    if (renderer.drawRaycasting || override)
+    if (settings.raycasting.isEnabled || override)
     {
         for (auto &ray : renderer.rays)
             DrawRay(ray);
@@ -259,9 +231,9 @@ void Renderer::DrawAxis()
     glm::vec3 yaxis = { 0.0f, 0.8f, 0.0f };
     glm::vec3 zaxis = { 0.0f, 0.0f, 0.8f };
 
-    Renderer2D::DrawLine(BT::WORLD, origin, xaxis, { 1.0f, 0.0f, 0.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, origin, yaxis, { 0.0f, 1.0f, 0.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, origin, zaxis, { 0.0f, 0.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, origin, xaxis, { 1.0f, 0.0f, 0.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, origin, yaxis, { 0.0f, 1.0f, 0.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, origin, zaxis, { 0.0f, 0.0f, 1.0f, 1.0f });
 }
 
 void Renderer::DrawGrid(int grid_size, int grid_step)
@@ -286,27 +258,27 @@ void Renderer::DrawGrid(int grid_size, int grid_step)
         glm::vec3 v4 = { grid_size, 0.0f, i };
         glm::vec4 color = { 1.0f, 1.0f, 1.0f, alpha };
 
-        Renderer2D::DrawLine(BT::WORLD, v1, v2, color);
-        Renderer2D::DrawLine(BT::WORLD, v3, v4, color);
+        Renderer2D::DrawLine(BatchType::EDITOR, v1, v2, color);
+        Renderer2D::DrawLine(BatchType::EDITOR, v3, v4, color);
     }
 }
 
 void Renderer::DrawFrustum(const Frustum& frustum)
 {
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[0], frustum.vertices[1], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[1], frustum.vertices[2], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[2], frustum.vertices[3], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[3], frustum.vertices[0], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[0], frustum.vertices[1], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[1], frustum.vertices[2], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[2], frustum.vertices[3], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[3], frustum.vertices[0], { 1.0f, 1.0f, 1.0f, 1.0f });
 
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[4], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[5], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[6], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[7], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[4], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[5], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[6], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[7], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
 
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[0], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[1], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[2], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
-    Renderer2D::DrawLine(BT::WORLD, frustum.vertices[3], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[0], frustum.vertices[4], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[1], frustum.vertices[5], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[2], frustum.vertices[6], { 1.0f, 1.0f, 1.0f, 1.0f });
+    Renderer2D::DrawLine(BatchType::EDITOR, frustum.vertices[3], frustum.vertices[7], { 1.0f, 1.0f, 1.0f, 1.0f });
 }
 
 void Renderer::DrawRay(const Ray& ray)
@@ -318,7 +290,7 @@ void Renderer::DrawRay(const Ray& ray)
         ray.Origin.y + ray.Direction.y * 1000,
         ray.Origin.z + ray.Direction.z * 1000
     };
-    Renderer2D::DrawLine(BT::WORLD, { ray.Origin.x,  ray.Origin.y, ray.Origin.z },
+    Renderer2D::DrawLine(BatchType::EDITOR, { ray.Origin.x,  ray.Origin.y, ray.Origin.z },
         { ray.Origin.x + ray.Direction.x * 1000,
          ray.Origin.y + ray.Direction.y * 1000,
          ray.Origin.z + ray.Direction.z * 1000 }, { 1.0f, 1.0f, 1.0f, 1.0f });

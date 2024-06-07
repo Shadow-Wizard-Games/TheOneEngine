@@ -1,41 +1,44 @@
 {
-    "QuestManager":{
+    "QuestManager": {
         "questsNum": 3
     },
-    "CompletionEvents":{
-        "EventQC1":{
+    "CompletionEvents": {
+        "EventQC1": {
             "id": 1,
-            "nextId": 2
-        },
-        "EventQC2":{
-            "id": 3
+            "nextId": 4
         }
     },
-    "Quests":{
-        "Quest0":{
+    "Quests": {
+        "Quest0": {
             "id": 1,
-            "name": "Find the exit",
-            "details": "Find a way to exit the ship.",
+            "name": "Exit the ship",
+            "details": "Find a way out of this vessel.",
             "objectives": "IDK",
-            "type": "Go to quest",
+            "type": "GoTo quest",
             "isMain": true
         },
-        "Quest1":{
+        "Quest1": {
             "id": 2,
-            "name": "Find the Key",
-            "details": "Find the KeyPass that opens the ship door in order to escape.",
+            "name": "FInd a weapon",
+            "details": "Search for something that helps you deffend your self against any danger.",
             "objectives": "IDK",
-            "reward": 2,
-            "rewardAmmount": 1,
             "type": "Find Item",
-            "isMain": true
+            "isMain": false
         },
-        "Quest3":{
+        "Quest2": {
             "id": 3,
-            "name": "Search the camp",
-            "details": "Find the survivors campament on the Alien Planet.",
+            "name": "Look for info",
+            "details": "Try to find info about your current situation.",
             "objectives": "IDK",
-            "type": "Go to quest",
+            "type": "Interact",
+            "isMain": false
+        },
+        "Quest4": {
+            "id": 4,
+            "name": "Talk to someone",
+            "details": "Talk to someone so that you can know what happened.",
+            "objectives": "IDK",
+            "type": "Interact",
             "isMain": true
         }
     }

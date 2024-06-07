@@ -42,12 +42,10 @@ void BillboardRender::Update(Particle* particle, Camera* camera)
         * Billboard::CalculateSphericalBillboardRotationMatrix(particlePosition, cameraPosition)
         * glm::scale(mat4(1.0f), particle->scale);
 
-    vec4 color = particle->color / 255.0;
-
     if(textureID != -1)
-        Renderer2D::DrawQuad(BT::WORLD, transform, textureID, glm::vec4(color));
+        Renderer2D::DrawQuad(BatchType::WORLD, transform, textureID, glm::vec4(particle->color));
     else
-        Renderer2D::DrawQuad(BT::WORLD, transform, glm::vec4(color));
+        Renderer2D::DrawQuad(BatchType::WORLD, transform, glm::vec4(particle->color));
 }
 
 json BillboardRender::SaveModule()

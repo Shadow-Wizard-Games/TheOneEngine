@@ -1,0 +1,113 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 4.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            2.0,
+            2.0,
+            -0.5
+          ],
+          "MinDirection": [
+            2.0,
+            1.0,
+            0.5
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 300.0,
+          "MinSpeed": 30.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            3.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 2336.09033203125,
+      "MaxParticles": 400,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Duration": 4.0,
+          "SpawnRate": 100.0,
+          "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
+          "Acceleration": [
+            0.0,
+            -3.0,
+            0.0
+          ],
+          "Type": 0
+        },
+        {
+          "AffectA": true,
+          "AffectB": true,
+          "AffectG": true,
+          "AffectR": true,
+          "FinalColor": [
+            0.5987261533737183,
+            0.5987261533737183,
+            0.5987261533737183,
+            0.0
+          ],
+          "Type": 1
+        }
+      ]
+    }
+  ],
+  "Name": "ConPipeSmoke",
+  "StartON": true,
+  "Type": 9,
+  "UID": 2627231092
+}

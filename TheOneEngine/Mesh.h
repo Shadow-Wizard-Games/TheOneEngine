@@ -54,6 +54,7 @@ public:
     MeshType meshType;
 
     bool hasEffect;
+    int fxTimer;
 };
 
 #endif // !__MESH_H__

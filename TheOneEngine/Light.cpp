@@ -7,6 +7,7 @@
 #include "N_SceneManager.h"
 #include "Shader.h"
 #include "FrameBuffer.h"
+#include "Renderer.h"
 #include "Renderer3D.h"
 
 
@@ -22,7 +23,7 @@ Light::Light(std::shared_ptr<GameObject> containerGO, LightType type)
     std::vector<Attachment> shadowBuffAttachments = {
         { Attachment::Type::DEPTH, "depth", "shadowBuffer", 0 }
     };
-    shadowBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 1280, 720, shadowBuffAttachments);
+    shadowBuffer = std::make_shared<FrameBuffer>("shadowBuffer", 256, 256, shadowBuffAttachments);
 
     containerGO->AddComponent<Camera>();
     containerGO->GetComponent<Camera>()->zNear = 10.0f;
@@ -50,7 +51,10 @@ Light::Light(std::shared_ptr<GameObject> containerGO, Light* ref)
     Renderer3D::AddLight(containerGO);
 }
 
-Light::~Light() {}
+Light::~Light()
+{
+    Renderer3D::RemoveLight(containerGO.lock());
+}
 
 void Light::DrawComponent(Camera* camera) {}
 

@@ -43,5 +43,15 @@ public class ILight : IComponent
     //Constructors
     public ILight() : base() { }
     public ILight(IntPtr gameObjectRef) : base(gameObjectRef) { }
+
+    public void SwitchOff()
+    {
+        intensity = 0;
+    }
+
+    public void SwitchOn()
+    {
+        intensity = 6;
+    }
 }
 

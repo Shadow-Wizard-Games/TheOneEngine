@@ -5,12 +5,17 @@
 #include "UniformBuffer.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "Transform.h"
+#include "Renderer.h"
+#include "Renderer3D.h"
 #include "RenderTarget.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #include "MSDFData.h"
+#include <string>
+#include <memory>
 
 static const uint32_t MaxQuads = 20000;
 static const uint32_t MaxVertices = MaxQuads * 4;
@@ -202,8 +207,10 @@ struct Renderer2DData
 	std::shared_ptr<Shader> CircleShader;
 	std::shared_ptr<Shader> LineShader;
 	std::shared_ptr<Shader> TextShader;
+	ResourceId ParticleShaderID;
+	ResourceId ParticleMaterialID;
 
-	std::array<Batch, BT::MAX> batches;
+	std::array<Batch, BatchType::MAX> batches;
 
 	std::shared_ptr<Texture> FontAtlasTexture;
 
@@ -243,6 +250,9 @@ void Renderer2D::Init()
 	renderer2D.LineShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DLine");
 	renderer2D.TextShader = std::make_shared<Shader>("Assets/Shaders/Renderer2DText");
 
+	// Add Uniforms
+	InitParticleShader();
+
 	// White Texture
 	WhiteTexture = std::make_shared<Texture>();
 	uint32_t whiteTextureData = 0xffffffff;
@@ -258,7 +268,6 @@ void Renderer2D::Init()
 		ResetTextBatch(batch);
 	}
 
-
 	renderer2D.QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
 	renderer2D.QuadVertexPositions[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
@@ -273,23 +282,36 @@ void Renderer2D::Shutdown()
 		batch.Delete();
 }
 
-void Renderer2D::Update(BT type, RenderTarget target)
+void Renderer2D::Update(BatchType type, RenderTarget target)
 {
 	Batch& batch = renderer2D.batches[type];
 
 	FrameBuffer* buffer;
-	if(type == BT::WORLD)
-		buffer = target.GetFrameBuffer("gBuffer");
-	else
-		buffer = target.GetFrameBuffer("uiBuffer");
+
+	switch (type)
+	{
+		case WORLD:
+		{
+			/*if (Renderer::Settings()->particlesLight.isEnabled)
+			{
+				buffer = target.GetFrameBuffer("gBuffer");
+				break;
+			}*/
+			buffer = target.GetFrameBuffer("postBuffer");
+			break;
+		}
+			
+		case UI:		buffer = target.GetFrameBuffer("uiBuffer");		break;
+		case EDITOR:	buffer = target.GetFrameBuffer("postBuffer");	break;
+		default: return;
+	}
 
 	buffer->Bind();
-	//TODO: no se si hace falta este clear?
-	//buffer->Clear(ClearBit::All, { 0.0f, 0.0f, 0.0f, 1.0f });
 
 	GLCALL(glDisable(GL_CULL_FACE));
+	GLCALL(glEnable(GL_BLEND));
 
-	DrawQuadBatch(batch);
+	DrawQuadBatch(batch, type, target);
 	DrawCircleBatch(batch);
 	DrawLineBatch(batch);
 	DrawTextBatch(batch);
@@ -299,7 +321,7 @@ void Renderer2D::Update(BT type, RenderTarget target)
 	buffer->Unbind();
 }
 
-void Renderer2D::UpdateIndexed(BT type, RenderTarget target)
+void Renderer2D::UpdateIndexed(BatchType type, RenderTarget target)
 {
 	Batch& batch = renderer2D.batches[type];
 
@@ -325,7 +347,7 @@ void Renderer2D::NextQuadBatch(Batch& batch)
 	ResetQuadBatch(batch);*/
 }
 
-void Renderer2D::DrawQuadBatch(const Batch& batch)
+void Renderer2D::DrawQuadBatch(const Batch& batch, BatchType type, RenderTarget target)
 {
 	if (batch.QuadIndexCount)
 	{
@@ -336,7 +358,11 @@ void Renderer2D::DrawQuadBatch(const Batch& batch)
 		for (uint32_t i = 0; i < batch.TextureSlotIndex; i++)
 			batch.TextureSlots[i]->Bind(i);
 
-		renderer2D.QuadShader->Bind();
+		if (type == BatchType::UI)
+			renderer2D.QuadShader->Bind();
+		else
+			Renderer3D::SetUniformsParticleShader(renderer2D.ParticleMaterialID, target);
+
 		DrawIndexed(batch.QuadVertexArray, batch.QuadIndexCount);
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.QuadShader->UnBind();
@@ -427,12 +453,12 @@ void Renderer2D::ResetTextBatch(Batch& batch)
 	batch.TextVertexBufferPtr = batch.TextVertexBufferBase;
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
+void Renderer2D::DrawQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
 {
 	DrawQuad(type, { position.x, position.y, 0.0f }, size, color);
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
+void Renderer2D::DrawQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 {
 	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
 		* glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
@@ -440,12 +466,12 @@ void Renderer2D::DrawQuad(BT type, const glm::vec3& position, const glm::vec2& s
 	DrawQuad(type, transform, color);
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::vec2& position, const glm::vec2& size, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
 {
 	DrawQuad(type, { position.x, position.y, 0.0f }, size, spriteID, tintColor, tilingFactor);
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::vec3& position, const glm::vec2& size, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
 {
 	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
 		* glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
@@ -453,12 +479,12 @@ void Renderer2D::DrawQuad(BT type, const glm::vec3& position, const glm::vec2& s
 	DrawQuad(type, transform, spriteID, tintColor, tilingFactor);
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::vec2& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor, float tilingFactor)
 {
 	DrawQuad(type, { position.x, position.y, 0.0f }, size, imageID, texCoords, tintColor, tilingFactor);
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::vec3& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor, float tilingFactor)
 {
 	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
 		* glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
@@ -466,7 +492,7 @@ void Renderer2D::DrawQuad(BT type, const glm::vec3& position, const glm::vec2& s
 	DrawQuad(type, transform, imageID, texCoords, tintColor, tilingFactor);
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::mat4& transform, const glm::vec4& color)
+void Renderer2D::DrawQuad(BatchType type, const glm::mat4& transform, const glm::vec4& color)
 {
 	Batch& batch = renderer2D.batches[type];
 	constexpr size_t quadVertexCount = 4;
@@ -492,7 +518,7 @@ void Renderer2D::DrawQuad(BT type, const glm::mat4& transform, const glm::vec4& 
 	renderer2D.Stats.QuadCount++;
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::mat4& transform, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawQuad(BatchType type, const glm::mat4& transform, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
 {
 	Batch& batch = renderer2D.batches[type];
 	constexpr size_t quadVertexCount = 4;
@@ -538,7 +564,7 @@ void Renderer2D::DrawQuad(BT type, const glm::mat4& transform, ResourceId sprite
 	renderer2D.Stats.QuadCount++;
 }
 
-void Renderer2D::DrawQuad(BT type, const glm::mat4& transform, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawQuad(BatchType type, const glm::mat4& transform, ResourceId imageID, const TexCoordsSection& texCoords, const glm::vec4& tintColor, float tilingFactor)
 {
 	Batch& batch = renderer2D.batches[type];
 	constexpr size_t quadVertexCount = 4;
@@ -584,12 +610,12 @@ void Renderer2D::DrawQuad(BT type, const glm::mat4& transform, ResourceId imageI
 	renderer2D.Stats.QuadCount++;
 }
 
-void Renderer2D::DrawRotatedQuad(BT type, const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color)
+void Renderer2D::DrawRotatedQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 {
 	DrawRotatedQuad(type, { position.x, position.y, 0.0f }, size, rotation, color);
 }
 
-void Renderer2D::DrawRotatedQuad(BT type, const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
+void Renderer2D::DrawRotatedQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 {
 	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
 		* glm::rotate(glm::mat4(1.0f), glm::radians(rotation), { 0.0f, 0.0f, 1.0f })
@@ -598,12 +624,12 @@ void Renderer2D::DrawRotatedQuad(BT type, const glm::vec3& position, const glm::
 	DrawQuad(type, transform, color);
 }
 
-void Renderer2D::DrawRotatedQuad(BT type, const glm::vec2& position, const glm::vec2& size, float rotation, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawRotatedQuad(BatchType type, const glm::vec2& position, const glm::vec2& size, float rotation, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
 {
 	DrawRotatedQuad(type, { position.x, position.y, 0.0f }, size, rotation, spriteID, tintColor, tilingFactor);
 }
 
-void Renderer2D::DrawRotatedQuad(BT type, const glm::vec3& position, const glm::vec2& size, float rotation, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
+void Renderer2D::DrawRotatedQuad(BatchType type, const glm::vec3& position, const glm::vec2& size, float rotation, ResourceId spriteID, const glm::vec4& tintColor, float tilingFactor)
 {
 	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
 		* glm::rotate(glm::mat4(1.0f), glm::radians(rotation), { 0.0f, 0.0f, 1.0f })
@@ -612,7 +638,7 @@ void Renderer2D::DrawRotatedQuad(BT type, const glm::vec3& position, const glm::
 	DrawQuad(type, transform, spriteID, tintColor, tilingFactor);
 }
 
-void Renderer2D::DrawCircle(BT type, const glm::mat4& transform, const glm::vec4& color, float thickness /*= 1.0f*/, float fade /*= 0.005f*/)
+void Renderer2D::DrawCircle(BatchType type, const glm::mat4& transform, const glm::vec4& color, float thickness /*= 1.0f*/, float fade /*= 0.005f*/)
 {
 	Batch& batch = renderer2D.batches[type];
 	for (size_t i = 0; i < 4; i++)
@@ -630,7 +656,7 @@ void Renderer2D::DrawCircle(BT type, const glm::mat4& transform, const glm::vec4
 	renderer2D.Stats.QuadCount++;
 }
 
-void Renderer2D::DrawLine(BT type, const glm::vec3& p0, const glm::vec3& p1, const glm::vec4& color)
+void Renderer2D::DrawLine(BatchType type, const glm::vec3& p0, const glm::vec3& p1, const glm::vec4& color)
 {
 	Batch& batch = renderer2D.batches[type];
 	batch.LineVertexBufferPtr->Position = p0;
@@ -644,7 +670,7 @@ void Renderer2D::DrawLine(BT type, const glm::vec3& p0, const glm::vec3& p1, con
 	batch.LineVertexCount += 2;
 }
 
-void Renderer2D::DrawRect(BT type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
+void Renderer2D::DrawRect(BatchType type, const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 {
 	glm::vec3 p0 = glm::vec3(position.x - size.x * 0.5f, position.y - size.y * 0.5f, position.z);
 	glm::vec3 p1 = glm::vec3(position.x + size.x * 0.5f, position.y - size.y * 0.5f, position.z);
@@ -657,7 +683,7 @@ void Renderer2D::DrawRect(BT type, const glm::vec3& position, const glm::vec2& s
 	DrawLine(type, p3, p0, color);
 }
 
-void Renderer2D::DrawRect(BT type, const glm::mat4& transform, const glm::vec4& color)
+void Renderer2D::DrawRect(BatchType type, const glm::mat4& transform, const glm::vec4& color)
 {
 	glm::vec3 lineVertices[4];
 	for (size_t i = 0; i < 4; i++)
@@ -669,7 +695,7 @@ void Renderer2D::DrawRect(BT type, const glm::mat4& transform, const glm::vec4& 
 	DrawLine(type, lineVertices[3], lineVertices[0], color);
 }
 
-void Renderer2D::DrawString(BT type, const std::string& string, Font* font, const glm::vec2& position, const glm::vec2& size, const TextParams& textParams)
+void Renderer2D::DrawString(BatchType type, const std::string& string, Font* font, const glm::vec2& position, const glm::vec2& size, const TextParams& textParams)
 {
 	glm::mat4 transform = glm::translate(glm::mat4(1.0f), { position.x, position.y, 0.0f })
 		* glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
@@ -677,7 +703,7 @@ void Renderer2D::DrawString(BT type, const std::string& string, Font* font, cons
 	DrawString(type, string, font, transform, textParams);
 }
 
-void Renderer2D::DrawString(BT type, const std::string& string, Font* font, const glm::mat4& transform, const TextParams& textParams)
+void Renderer2D::DrawString(BatchType type, const std::string& string, Font* font, const glm::mat4& transform, const TextParams& textParams)
 {
 	Batch& batch = renderer2D.batches[type];
 	const auto& fontGeometry = font->GetMSDFData()->FontGeometry;
@@ -808,3 +834,54 @@ Renderer2D::Statistics Renderer2D::GetStats()
 	return renderer2D.Stats;
 }
 
+void Renderer2D::InitParticleShader()
+{
+	renderer2D.ParticleShaderID = Resources::Load<Shader>("Assets/Shaders/Renderer2DParticle");
+	Shader* particleShader = Resources::GetResourceById<Shader>(renderer2D.ParticleShaderID);
+	particleShader->Compile("Assets/Shaders/Renderer2DParticle");
+
+	particleShader->addUniform("camPos", UniformType::fVec3);
+
+	for (uint i = 0; i < 4; i++)
+	{
+		std::string iteration = std::to_string(i);
+		particleShader->addUniform("u_DirLight[" + iteration + "].Color", UniformType::fVec3);
+		particleShader->addUniform("u_DirLight[" + iteration + "].Intensity", UniformType::Float);
+	}
+
+	for (uint i = 0; i < 32; i++)
+	{
+		std::string iteration = std::to_string(i);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Color", UniformType::fVec3);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Intensity", UniformType::Float);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Position", UniformType::fVec3);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Radius", UniformType::Float);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Linear", UniformType::Float);
+		particleShader->addUniform("u_PointLights[" + iteration + "].Quadratic", UniformType::Float);
+	}
+
+	for (uint i = 0; i < 16; i++)
+	{
+		std::string iteration = std::to_string(i);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Color", UniformType::fVec3);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Intensity", UniformType::Float);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Position", UniformType::fVec3);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Direction", UniformType::fVec3);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Radius", UniformType::Float);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Linear", UniformType::Float);
+		particleShader->addUniform("u_SpotLights[" + iteration + "].Quadratic", UniformType::Float);
+	}
+
+	Resources::Import<Shader>("Renderer2DParticle", particleShader);
+
+	Material particleLightMat(particleShader);
+	particleLightMat.setShader(particleShader, particleShader->getPath());
+	std::string particleLightPath = Resources::PathToLibrary<Material>() + "Renderer2DParticle.toematerial";
+	Resources::Import<Material>(particleLightPath, &particleLightMat);
+	renderer2D.ParticleMaterialID = Resources::LoadFromLibrary<Material>(particleLightPath);
+}
+
+ResourceId Renderer2D::GetParticleMaterialID()
+{
+	return renderer2D.ParticleMaterialID;
+}

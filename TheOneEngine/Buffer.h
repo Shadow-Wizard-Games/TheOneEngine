@@ -11,17 +11,17 @@ static uint32_t ShaderDataTypeSize(ShaderDataType type)
 {
 	switch (type)
 	{
-	case ShaderDataType::Float:    return 4;
-	case ShaderDataType::Float2:   return 4 * 2;
-	case ShaderDataType::Float3:   return 4 * 3;
-	case ShaderDataType::Float4:   return 4 * 4;
-	case ShaderDataType::Mat3:     return 4 * 3 * 3;
-	case ShaderDataType::Mat4:     return 4 * 4 * 4;
-	case ShaderDataType::Int:      return 4;
-	case ShaderDataType::Int2:     return 4 * 2;
-	case ShaderDataType::Int3:     return 4 * 3;
-	case ShaderDataType::Int4:     return 4 * 4;
-	case ShaderDataType::Bool:     return 1;
+		case ShaderDataType::Float:    return sizeof(float);
+		case ShaderDataType::Float2:   return sizeof(float) * 2;
+		case ShaderDataType::Float3:   return sizeof(float) * 3;
+		case ShaderDataType::Float4:   return sizeof(float) * 4;
+		case ShaderDataType::Mat3:     return sizeof(float) * 3 * 3;
+		case ShaderDataType::Mat4:     return sizeof(float) * 4 * 4;
+		case ShaderDataType::Int:      return sizeof(int);
+		case ShaderDataType::Int2:     return sizeof(int) * 2;
+		case ShaderDataType::Int3:     return sizeof(int) * 3;
+		case ShaderDataType::Int4:     return sizeof(int) * 4;
+		case ShaderDataType::Bool:     return sizeof(bool);
 	}
 
 	return 0;
@@ -46,17 +46,17 @@ struct BufferElement
 	{
 		switch (Type)
 		{
-		case ShaderDataType::Float:   return 1;
-		case ShaderDataType::Float2:  return 2;
-		case ShaderDataType::Float3:  return 3;
-		case ShaderDataType::Float4:  return 4;
-		case ShaderDataType::Mat3:    return 3; // 3* float3
-		case ShaderDataType::Mat4:    return 4; // 4* float4
-		case ShaderDataType::Int:     return 1;
-		case ShaderDataType::Int2:    return 2;
-		case ShaderDataType::Int3:    return 3;
-		case ShaderDataType::Int4:    return 4;
-		case ShaderDataType::Bool:    return 1;
+			case ShaderDataType::Float:   return 1;
+			case ShaderDataType::Float2:  return 2;
+			case ShaderDataType::Float3:  return 3;
+			case ShaderDataType::Float4:  return 4;
+			case ShaderDataType::Mat3:    return 3; // 3* float3
+			case ShaderDataType::Mat4:    return 4; // 4* float4
+			case ShaderDataType::Int:     return 1;
+			case ShaderDataType::Int2:    return 2;
+			case ShaderDataType::Int3:    return 3;
+			case ShaderDataType::Int4:    return 4;
+			case ShaderDataType::Bool:    return 1;
 		}
 
 		return 0;

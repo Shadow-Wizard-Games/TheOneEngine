@@ -9,9 +9,6 @@ using System.Text.RegularExpressions;
 public class EventNextRoom : Event
 {
     IGameObject playerGO;
-
-    GameManager gameManager;
-    ItemManager itemManager;
     UiManager uiManager;
 
     float playerDistance;
@@ -23,10 +20,9 @@ public class EventNextRoom : Event
 
     public override void Start()
     {
-        playerGO = IGameObject.Find("SK_MainCharacter");
+        managers.Start();
 
-        gameManager = IGameObject.Find("GameManager").GetComponent<GameManager>();
-        itemManager = IGameObject.Find("ItemManager").GetComponent<ItemManager>();
+        playerGO = IGameObject.Find("SK_MainCharacter");
         uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
         eventType = EventType.NEXTROOM;
@@ -40,7 +36,7 @@ public class EventNextRoom : Event
             DoEvent();
         }
 
-        if (gameManager.colliderRender) { DrawEventDebug(); }
+        if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
 
     public override bool CheckEventIsPossible()
@@ -67,9 +63,9 @@ public class EventNextRoom : Event
         {
             string sceneName = ExtractSceneName();
 
-            if(sceneName == "L1R5")
+            if(sceneName == "L2R1")
             {
-                if (!itemManager.CheckItemInInventory(9))
+                if (!managers.itemManager.CheckItemInInventory(9))
                 {
                     uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Error:", "Missing Key");
                     return ret;
@@ -78,7 +74,7 @@ public class EventNextRoom : Event
 
             playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 
-            gameManager.SaveSceneState();
+            managers.gameManager.SaveSceneState();
             SceneManager.LoadScene(sceneName);
         }
 

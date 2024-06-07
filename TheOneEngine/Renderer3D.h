@@ -3,8 +3,10 @@
 #include "Defs.h"
 #include "VertexArray.h"
 #include "GameObject.h"
+#include "Resource.h"
 #include "Camera.h"
 #include "Light.h"
+#include "Shader.h"
 #include "RenderTarget.h"
 #include "FrameBuffer.h"
 
@@ -99,13 +101,20 @@ public:
 
 	static void GeometryPass(RenderTarget target);
 	static void IndexPass(RenderTarget target);
-	static void PostProcess(RenderTarget target);
+	static bool InitPostProcess(RenderTarget target);
+	static void EndPostProcess(RenderTarget target);
 	static void ShadowPass(RenderTarget target);
 	static void LightPass(RenderTarget target);
 	static void UIComposition(RenderTarget target);
+	static void CRTShader(RenderTarget target);
+
+	static void SetUniformsParticleShader(ResourceId materialID, RenderTarget target);
 
 	static void AddLight(std::shared_ptr<GameObject> container);
+	static void RemoveLight(std::shared_ptr<GameObject> container);
 	static void CleanLights();
+	static void ResetUniforms(LightType lightType);
+	static void ResetAllUniforms();
 
 	static void AddMesh(StackVertexArray meshID, int matID);
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
@@ -121,4 +130,5 @@ private:
 	static void InitPreLightingShader();
 	static void InitPostLightingShader();
 	static void InitIndexShaders();
+	static void InitCRTShader();
 };
