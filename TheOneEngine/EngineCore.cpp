@@ -68,7 +68,7 @@ void EngineCore::CleanUp()
     Renderer::Shutdown();
 
     audioManager->CleanUp();
-    delete audioManager;
+    //delete audioManager;
     audioManager = nullptr;
     
     monoManager->ShutDownMono();
