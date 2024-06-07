@@ -32,6 +32,8 @@ struct Renderer3DData
 	uint dynamicVAO = 0;
 	uint dynamicVBO = 0;
 	uint dynamicIBO = 0;
+
+	Renderer3D::Statistics stats;
 };
 
 static Renderer3DData renderer3D;
@@ -237,16 +239,34 @@ void Renderer3D::AddMeshToQueue(StackVertexArray meshID, int matID, const glm::m
 	}
 
 	AddInstanceCall(meshID, matID, modelMat);
+	renderer3D.stats.MeshesInQueue++;
 }
 
 void Renderer3D::AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat, bool hasEffect)
 {
 	renderer3D.skeletalCalls.emplace_back(meshID, matID, modelMat, hasEffect);
+	renderer3D.stats.SkeletalCalls++;
+}
+
+Renderer3D::Statistics Renderer3D::GetStats()
+{
+	return renderer3D.stats;
+}
+
+void Renderer3D::ResetStats()
+{
+	memset(&renderer3D.stats, 0, sizeof(Statistics));
+}
+
+int Renderer3D::GetMeshCount()
+{
+	return renderer3D.meshes.size();
 }
 
 void Renderer3D::AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat)
 {
 	renderer3D.instanceCalls.emplace_back(meshID, matID, modelMat);
+	renderer3D.stats.InstanceCalls++;
 }
 
 void Renderer3D::UpdateInstanceBuffer(const std::vector<InstanceCall>& calls)

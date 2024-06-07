@@ -24,6 +24,8 @@ void Renderer::Init()
 
 void Renderer::Update()
 {
+    Renderer2D::ResetStats();
+    Renderer3D::ResetStats();
 	for (auto& target : renderer.renderTargets)
 	{
         if (!target.GetCamera() || !target.IsActive())

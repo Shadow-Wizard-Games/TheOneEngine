@@ -120,6 +120,17 @@ public:
 	static void AddMeshToQueue(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
 	static void AddSkeletalMeshToQueue(int meshID, int matID, const glm::mat4& modelMat, bool hasEffect = false);
 
+	// Stats
+	struct Statistics
+	{
+		uint32_t InstanceCalls = 0;
+		uint32_t SkeletalCalls = 0;
+		uint32_t MeshesInQueue = 0;
+	};
+	static Statistics GetStats();
+	static void ResetStats();
+	static int GetMeshCount();
+
 private:
 	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);
 	static void UpdateInstanceBuffer(const std::vector<InstanceCall>& calls);

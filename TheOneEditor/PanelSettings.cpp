@@ -5,6 +5,8 @@
 
 #include "TheOneEngine/EngineCore.h"
 #include "TheOneEngine/Window.h"
+#include "TheOneEngine/Renderer3D.h"
+#include "TheOneEngine/Renderer2D.h"
 
 #include <imgui.h>
 #include <implot.h>
@@ -221,10 +223,6 @@ void PanelSettings::Input()
 	} // FIXME: We should convert 'c' to UTF-8 here but the functions are not public.
 }
 
-void PanelSettings::Renderer()
-{
-}
-
 void PanelSettings::ColorPicker()
 {
 	ImGui::Checkbox("Alpha Preview", &alpha_preview);
@@ -370,4 +368,47 @@ void PanelSettings::Resources()
 	ImGui::Text("Shaders: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_SHADER));
 	ImGui::Text("Materials: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_MATERIAL));
 	ImGui::Text("Fonts: %i", Resources::GetResourcesLenght(Resources::ResourceType::RES_FONT));
+}
+
+void PanelSettings::Renderer()
+{
+	ImVec4 grey = ImVec4(0.5, 0.5, 0.5, 1);
+
+	Renderer3D::Statistics stats3D = Renderer3D::GetStats();
+	ImGui::Text("INSTNACE RENDERER 3D");
+	ImGui::Text("  Mesh Count:");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", Renderer3D::GetMeshCount());
+
+	ImGui::Text("  Meshes in Queue:");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", stats3D.MeshesInQueue);
+
+	ImGui::Text("  Instanced Draw Calls: ");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", stats3D.InstanceCalls);
+
+	ImGui::Text("  Skeletal Draw Calls: ");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", stats3D.SkeletalCalls);
+
+	ImGui::Separator();
+
+	Renderer2D::Statistics stats = Renderer2D::GetStats();
+	ImGui::Text("BATCH RENDERER 2D");
+	ImGui::Text("  Draw Calls: ");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", stats.DrawCalls);
+
+	ImGui::Text("  Quad Count: ");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", stats.QuadCount);
+
+	ImGui::Text("  Total Index Count: ");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", stats.GetTotalIndexCount());
+
+	ImGui::Text("  Total Vertex Count: ");
+	ImGui::SameLine();
+	ImGui::TextColored(grey, "%i", stats.GetTotalVertexCount());
 }
