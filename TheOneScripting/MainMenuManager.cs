@@ -206,11 +206,8 @@ public class MainMenuManager : MonoBehaviour
                 // New Game
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
-                    if (managers.gameManager.hasSaved)
-                    {
-                        managers.gameManager.ResetSave();
-                        managers.questManager.StartGame();
-                    }
+                    managers.gameManager.ResetSave();
+                    managers.questManager.StartGame();
 
                     DataManager.RemoveFile("GameData");
                     SceneManager.LoadScene("IntroScene");

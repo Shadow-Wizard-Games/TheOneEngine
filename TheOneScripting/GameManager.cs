@@ -28,9 +28,6 @@ public class GameManager : MonoBehaviour
     public string lastLevel;
     public bool activeShortcutL1R1;
 
-    ItemManager itemManager;
-    QuestManager questManager;
-
     #region PLAYERDATA
 
     // Levels
@@ -63,18 +60,10 @@ public class GameManager : MonoBehaviour
 
         switch (damageLvl)
         {
-            case 0:
-                damage = 0;
-                break;
-            case 1:
-                damage = 5;
-                break;
-            case 2:
-                damage = 10;
-                break;
-            case 3:
-                damage = 15;
-                break;
+            case 0: damage = 0; break;
+            case 1: damage = 5; break;
+            case 2: damage = 10; break;
+            case 3: damage = 15; break;
         }
     }
 
@@ -84,18 +73,10 @@ public class GameManager : MonoBehaviour
 
         switch (speedLvl)
         {
-            case 0:
-                speed = 80;
-                break;
-            case 1:
-                speed = 90;
-                break;
-            case 2:
-                speed = 100;
-                break;
-            case 3:
-                speed = 110;
-                break;
+            case 0: speed = 80; break;
+            case 1: speed = 90; break;
+            case 2: speed = 100; break;
+            case 3: speed = 110; break;
         }
     }
 
@@ -105,18 +86,10 @@ public class GameManager : MonoBehaviour
 
         switch (lifeLvl)
         {
-            case 0:
-                maxHealth = 100;
-                break;
-            case 1:
-                maxHealth = 120;
-                break;
-            case 2:
-                maxHealth = 140;
-                break;
-            case 3:
-                maxHealth = 160;
-                break;
+            case 0: maxHealth = 100; break;
+            case 1: maxHealth = 120; break;
+            case 2: maxHealth = 140; break;
+            case 3: maxHealth = 160; break;
         }
     }
 
@@ -141,9 +114,6 @@ public class GameManager : MonoBehaviour
         DrawGrid();
 
         ResetPlayerData();
-
-        itemManager = attachedGameObject.GetComponent<ItemManager>();
-        questManager = attachedGameObject.GetComponent<QuestManager>();
     }
 
     public override void Update()
@@ -170,8 +140,8 @@ public class GameManager : MonoBehaviour
         DataManager.SaveGame();
         saveLevel = SceneManager.GetCurrentSceneName();
         this.SaveGameManagerData();
-        itemManager.SaveInventoryData();
-        questManager.SaveQuestData();
+        managers.itemManager.SaveInventoryData();
+        managers.questManager.SaveQuestData();
 
         hasSaved = true;
     }
@@ -184,8 +154,8 @@ public class GameManager : MonoBehaviour
         ResetSave();
 
         this.LoadGameManagerData();
-        itemManager.LoadInventoryData();
-        questManager.LoadQuestData();
+        managers.itemManager.LoadInventoryData();
+        managers.questManager.LoadQuestData();
 
 
         SceneManager.LoadScene("LastSave_" + saveLevel, true, "GameData/");

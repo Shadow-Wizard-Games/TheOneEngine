@@ -1,6 +1,6 @@
 {
     "QuestManager": {
-        "questsNum": 3
+        "questsNum": 5
     },
     "CompletionEvents": {
         "EventQC1": {
@@ -33,9 +33,17 @@
             "type": "Interact",
             "isMain": false
         },
-        "Quest4": {
+        "Quest3": {
             "id": 4,
             "name": "Talk to someone",
+            "details": "Talk to someone so that you can know what happened.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest4": {
+            "id": 5,
+            "name": "Talk to ?",
             "details": "Talk to someone so that you can know what happened.",
             "objectives": "IDK",
             "type": "Interact",

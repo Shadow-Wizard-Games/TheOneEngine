@@ -80,8 +80,8 @@ public class UiScriptHud : MonoBehaviour
     float consumibleCooldown = 5.0f;
     float consumibleTimer = 0.0f;
 
-    string currentMainMission;
-    string currentSideMission;
+    string currentMainMission = "None";
+    string currentSideMission = "None";
 
     public override void Start()
     {
@@ -116,8 +116,15 @@ public class UiScriptHud : MonoBehaviour
         currencyAmount = 200;
         killsAmount = 0;
 
-        currentMainMission = managers.questManager.GetMainQuest().name;
-        currentSideMission = managers.questManager.GetSideQuest().name;
+        var mainQuest = managers.questManager.GetMainQuest();
+        currentMainMission = mainQuest?.name ?? "None";
+
+        var sideQuest = managers.questManager.GetSideQuest();
+        currentSideMission = sideQuest?.name ?? "None";
+
+        Debug.Log("llega?");
+        Debug.Log(currentSideMission);
+        Debug.Log(currentMainMission);
 
         UpdateUnlockedAbilities(true);
     }
@@ -286,15 +293,25 @@ public class UiScriptHud : MonoBehaviour
             UpdateString(HudStrings.LOADOUTSTRING);
         }
 
-        if (currentMainMission != managers.questManager.GetMainQuest().name || start)
+        if (currentMainMission != managers.questManager.GetMainQuest()?.name || start)
         {
-            currentMainMission = managers.questManager.GetMainQuest().name;
+            currentMainMission = managers.questManager.GetMainQuest()?.name;
+            UpdateString(HudStrings.MAINMISSIONSTRING);
+        }
+        else if(managers.questManager.GetMainQuest() == null)
+        {
+            currentMainMission = "None";
             UpdateString(HudStrings.MAINMISSIONSTRING);
         }
 
         if (currentSideMission != managers.questManager.GetSideQuest().name || start)
         {
             currentSideMission = managers.questManager.GetSideQuest().name;
+            UpdateString(HudStrings.MISSIONDESCRIPTIONSTRING);
+        }
+        else if(managers.questManager.GetMainQuest() == null)
+        {
+            currentSideMission = "None";
             UpdateString(HudStrings.MISSIONDESCRIPTIONSTRING);
         }
     }

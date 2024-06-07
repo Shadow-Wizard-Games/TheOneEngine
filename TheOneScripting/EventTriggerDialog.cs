@@ -68,7 +68,9 @@ public class EventTriggerDialog : Event
 
         if (cooldown > 0)
             cooldown -= Time.realDeltaTime;
-
+        Debug.Log("needed quest: " + neededQuestId.ToString());
+        Debug.Log("conversation: " + conversationNum.ToString());
+        Debug.Log("character: " + charachter);
         if (CheckEventIsPossible() && (managers.questManager.IsQuestComplete(neededQuestId) || neededQuestId == -1))
         {
             Debug.Log("Entra");
