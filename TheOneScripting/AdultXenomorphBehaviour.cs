@@ -303,7 +303,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
             isDead = true;
             player.shieldKillCounter++;
             // add player biomass
-            deathPSGO.Play();
+            deathPSGO?.Play();
         }
     }
 
