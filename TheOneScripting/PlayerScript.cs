@@ -52,7 +52,6 @@ public class PlayerScript : MonoBehaviour
     public float totalSpeedModification = 0;
     public float currentSpeed;
     public Vector3 movementDirection;
-    public Vector3 lastMovementDirection;
     public float movementMagnitude;
 
     public CurrentWeapon currentWeaponType;
@@ -787,7 +786,7 @@ public class PlayerScript : MonoBehaviour
 
         if (movementDirection != Vector3.zero)
         {
-            lastMovementDirection = movementDirection;
+            //lastMovementDirection = movementDirection;
             aimingDirection = aimingDirection.Normalize();
             float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
             attachedGameObject.transform.Rotation = new Vector3(0.0f, characterRotation, 0.0f);
@@ -1000,7 +999,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootGrenadeLauncher()
     {
-        GrenadeLauncher.explosionCenterPos = attachedGameObject.transform.Position + lastMovementDirection * GrenadeLauncher.range;
+        GrenadeLauncher.explosionCenterPos = attachedGameObject.transform.Position + attachedGameObject.transform.Forward * GrenadeLauncher.range;
 
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
 
@@ -1009,7 +1008,7 @@ public class PlayerScript : MonoBehaviour
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
 
-        grenadeInitialVelocity = lastMovementDirection * GrenadeLauncher.grenadeVelocity;
+        grenadeInitialVelocity = attachedGameObject.transform.Forward * GrenadeLauncher.grenadeVelocity;
 
         currentWeaponType = CurrentWeapon.M4;
 

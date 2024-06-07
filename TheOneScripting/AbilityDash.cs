@@ -67,11 +67,11 @@ public class AbilityDash : MonoBehaviour
             activeTimeCounter -= Time.deltaTime;
             if (abilityName == "Roll")
             {
-                playerGO.transform.Translate(player.lastMovementDirection * rollPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
+                playerGO.transform.Translate(player.attachedGameObject.transform.Forward * rollPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
             }
             else
             {
-                playerGO.transform.Translate(player.lastMovementDirection * dashPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
+                playerGO.transform.Translate(player.attachedGameObject.transform.Forward * dashPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
             }
         }
         else

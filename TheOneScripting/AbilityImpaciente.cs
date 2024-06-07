@@ -94,7 +94,7 @@
             activeTimeCounter -= Time.deltaTime;
 
             if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
-                player.attachedGameObject.transform.Translate(player.lastMovementDirection * knockbackPotency * Time.deltaTime);
+                player.attachedGameObject.transform.Translate(player.attachedGameObject.transform.Forward * knockbackPotency * Time.deltaTime);
             
             if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) && activeTimeCounter < activeTime - waitToReset)
             {
