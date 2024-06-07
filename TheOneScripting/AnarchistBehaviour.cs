@@ -18,6 +18,7 @@ class AnarchistBehaviour : MonoBehaviour
     }
 
     IGameObject playerGO;
+    IGameObject M4GO;
     float playerDistance;
 
     // Anarchist parameters
@@ -68,10 +69,13 @@ class AnarchistBehaviour : MonoBehaviour
         managers.Start();
 
         playerGO = IGameObject.Find("SK_MainCharacter");
+        M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
+
         player = playerGO.GetComponent<PlayerScript>();
         initialPos = attachedGameObject.transform.Position;
-
+        
         attachedGameObject.animator.Play("Scan");
+        M4GO.animator.Play("AnarchistWalk");
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.3f;
     }
@@ -79,6 +83,7 @@ class AnarchistBehaviour : MonoBehaviour
     public override void Update()
     {
         attachedGameObject.animator.UpdateAnimation();
+        M4GO.animator.UpdateAnimation();
 
         if (currentState == States.Dead)
         {
@@ -140,6 +145,7 @@ class AnarchistBehaviour : MonoBehaviour
     void Patrol()
     {
         attachedGameObject.animator.Play("Walk");
+        M4GO.animator.Play("AnarchistWalk");
 
         if (currentState != lastState)
         {
@@ -191,6 +197,7 @@ class AnarchistBehaviour : MonoBehaviour
             if (timerBetweenBullets > timeBetweenBullets)
             {
                 attachedGameObject.animator.Play("Shoot");
+                M4GO.animator.Play("AnarchistShoot");
                 Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 timerBetweenBullets = 0.0f;
@@ -220,7 +227,9 @@ class AnarchistBehaviour : MonoBehaviour
         switch (currentSubstate)
         {
             case InspctStates.Going:
+                M4GO.Enable();
                 attachedGameObject.animator.Play("Walk");
+                M4GO.animator.Play("AnarchistWalk");
                 if (MoveTo(playerLastPosition))
                 {
                     currentSubstate = InspctStates.Inspecting;
@@ -228,6 +237,7 @@ class AnarchistBehaviour : MonoBehaviour
                 attachedGameObject.transform.LookAt2D(playerLastPosition);
                 break;
             case InspctStates.Inspecting:
+                M4GO.Disable();
                 attachedGameObject.animator.Play("Scan");
                 elapsedTime += Time.deltaTime;
                 if (elapsedTime > maxInspectTime)
@@ -237,7 +247,9 @@ class AnarchistBehaviour : MonoBehaviour
                 }
                 break;
             case InspctStates.ComingBack:
+                M4GO.Enable();
                 attachedGameObject.animator.Play("Walk");
+                M4GO.animator.Play("AnarchistWalk");
                 if (MoveTo(initialPos))
                 {
                     currentSubstate = InspctStates.Going;
@@ -262,6 +274,7 @@ class AnarchistBehaviour : MonoBehaviour
     {
         if (!isDead)
         {
+            M4GO.Disable();
             attachedGameObject.animator.Play("Death");
             isDead = true;
             player.shieldKillCounter++;

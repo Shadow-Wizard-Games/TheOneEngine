@@ -44,10 +44,10 @@
       "ParentUID": 3452816845,
       "ScriptName": "AnarchistBehaviour",
       "Type": 4,
-      "UID": 3318160678
+      "UID": 1693287050
     },
     {
-      "AudioID": 0,
+      "AudioID": 36,
       "Name": "AudioSource",
       "Type": 8
     },
@@ -69,11 +69,63 @@
   ],
   "EditablePrefab": true,
   "Enabled": true,
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1979127205
+        },
+        {
+          "Active": true,
+          "DrawAABB": true,
+          "DrawChecker": false,
+          "DrawNormalsFaces": false,
+          "DrawNormalsVerts": false,
+          "DrawOBB": false,
+          "DrawWireframe": false,
+          "MaterialPath": "Library/Materials/AS_M4_Idle/M_CarabinaM4.toematerial",
+          "MeshPath": "Library/Meshes/AS_M4_Idle/WP_CarabinaM4.animator",
+          "MeshType": 2,
+          "Name": "Mesh",
+          "ParentUID": 4259932,
+          "Type": 2,
+          "UID": 274631616
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "WP_CarabinaM4",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 4259932
+    }
+  ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_Anarchist",
   "ParentUID": 3452816845,
-  "PrefabDirty": false,
+  "PrefabDirty": true,
   "PrefabID": 3633985190,
   "PrefabName": "SK_Anarchist",
   "Static": false,

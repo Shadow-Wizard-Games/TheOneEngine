@@ -27,6 +27,20 @@
       "name": "Run and Shoot",
       "playback_speed": 1.0,
       "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_M4_Idle\\WP_CarabinaM4_Take 001AS_M4_AnarchistWalk.anim",
+      "loop": true,
+      "name": "AnarchistWalk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_M4_Idle\\WP_CarabinaM4_Take 001AS_M4_AnarchistShoot.anim",
+      "loop": true,
+      "name": "AnarchistShoot",
+      "playback_speed": 1.0,
+      "type": 0
     }
   ],
   "material": "Library/Materials/AS_M4_Idle/M_CarabinaM4.toematerial",
