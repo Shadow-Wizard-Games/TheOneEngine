@@ -141,8 +141,6 @@ public class UiScriptDebug : MonoBehaviour
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
 
                 managers.gameManager.currency += 10000;
-
-                managers.gameManager.DrawGrid();
                 onCooldown = true;
             }
 
@@ -166,7 +164,6 @@ public class UiScriptDebug : MonoBehaviour
     private void UpdateCheckers()
     {
         canvas.ToggleChecker(managers.gameManager.colliderRender, "Checker_ColliderRender");
-        canvas.ToggleChecker(managers.gameManager.gridRender, "Checker_GridRender");
         canvas.ToggleChecker(managers.gameManager.godMode, "Checker_GodMode");
         canvas.ToggleChecker(managers.gameManager.extraSpeed, "Checker_ExtraSpeed");
     }
