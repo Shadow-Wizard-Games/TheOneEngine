@@ -111,6 +111,8 @@
                 activeTimeCounter = activeTime;
                 state = AbilityState.COOLDOWN;
 
+                player.hudScript.SetPainlessOnCD();
+
                 player.ImpacienteGO.Disable();
 
                 Debug.Log("Ability Impaciente on Cooldown");
