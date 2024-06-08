@@ -97,7 +97,6 @@ public class PlayerScript : MonoBehaviour
     // DEFINED IN ABILITY / ITEM SCRIPT
     public bool shieldIsActive;
     public Vector3 grenadeInitialVelocity;
-    public Vector3 explosionPos;
     public int shieldKillCounter;
     public float waitForAnimationToFinish = 0.0f;
 
@@ -1073,7 +1072,7 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > 0.15f / 2)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 15f + height, attachedGameObject.transform.Rotation);
                 //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
                 laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
@@ -1097,7 +1096,7 @@ public class PlayerScript : MonoBehaviour
         laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
 
         // CHANGE TO A PREFAB OF GRENADE ?
-        InternalCalls.InstantiateGrenade(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+        InternalCalls.CreatePrefab("Grenade", attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 15f + height, attachedGameObject.transform.Rotation);
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
 
@@ -1153,8 +1152,7 @@ public class PlayerScript : MonoBehaviour
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        managers.gameManager.health -= 50;
-        //Debug.Log("Player took explosion damage! Current life is: " + gameManager.health.ToString());
+        managers.gameManager.health -= GrenadeLauncher.damage;
 
         if (managers.gameManager.health <= 0)
         {

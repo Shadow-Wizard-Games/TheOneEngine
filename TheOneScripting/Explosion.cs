@@ -2,17 +2,12 @@
 
 public class Explosion : MonoBehaviour
 {
-    readonly uint lifeTime = 1;
-    uint counter = 0;
+    readonly int lifeTime = 1;
+    int counter = 0;
 
-    public override void Update()
+    public override void Start()
     {
-        counter++;
-
-        if (counter >= lifeTime)
-        {
-            attachedGameObject.Destroy();
-        }
+        attachedGameObject.Destroy();
     }
 }
 

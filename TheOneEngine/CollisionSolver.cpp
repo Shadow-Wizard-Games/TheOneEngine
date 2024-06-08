@@ -180,7 +180,7 @@ bool CollisionSolver::Update(double dt)
                     if (CheckCollision(item.get(), item2.get()))
                     {
                         MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
-                        item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        //item->AddToDelete(engine->N_sceneManager->objectsToDelete);
                     }
                     break;
                 case CollisionType::Enemy:
@@ -188,7 +188,7 @@ bool CollisionSolver::Update(double dt)
                     if (CheckCollision(item.get(), item2.get()))
                     {
                         MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
-                        item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        //item->AddToDelete(engine->N_sceneManager->objectsToDelete);
                         item2->GetComponent<Mesh>()->hasEffect = true;
                     }
                     break;
