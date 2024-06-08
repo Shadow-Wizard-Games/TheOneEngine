@@ -186,6 +186,40 @@ static GameObject* InstantiateExplosion(vec3f* initialPosition, vec3f* direction
 	return go;
 }
 
+static GameObject* InstantiateAlienMeleeAttack(vec3f* initialPosition, float width)
+{
+	engine->N_sceneManager->CreateEmptyGO("AlienMeleeAttack");
+
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+
+	SetPosition(go, initialPosition);
+
+	go->AddComponent<Script>("AlienMeleeAttack");
+	go->AddComponent<Collider2D>();
+	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	go->GetComponent<Collider2D>()->collisionType = CollisionType::Melee;
+	go->GetComponent<Collider2D>()->radius = width;
+	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+	return go;
+}
+
+static GameObject* InstantiateDOT(vec3f* initialPosition, float width)
+{
+	engine->N_sceneManager->CreateEmptyGO("DOT");
+
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+
+	SetPosition(go, initialPosition);
+
+	go->AddComponent<Script>("DOT");
+	go->AddComponent<Collider2D>();
+	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+	go->GetComponent<Collider2D>()->collisionType = CollisionType::Dot;
+	go->GetComponent<Collider2D>()->radius = width;
+	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
+	return go;
+}
+
 static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction, vec3f* scale)
 {
 	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx");
@@ -1026,6 +1060,14 @@ static void SetColliderBoxSize(GameObject* GOptr, vec2f sizeToSet)
 	GOptr->GetComponent<Collider2D>()->w = (double)sizeToSet.x;
 	GOptr->GetComponent<Collider2D>()->h = (double)sizeToSet.y;
 }
+static bool GetCollisionActive(GameObject* GOptr)
+{
+	return GOptr->GetComponent<Collider2D>()->activeCollision;
+}
+static void SetCollisionActive(GameObject* GOptr, bool active)
+{
+	GOptr->GetComponent<Collider2D>()->activeCollision = active;
+}
 static void SetCollisionSolverActive(bool active)
 {
 	engine->collisionSolver->SetCollisionSolverActive(active);
@@ -1218,6 +1260,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
 	mono_add_internal_call("InternalCalls::InstantiateGrenade", InstantiateGrenade);
 	mono_add_internal_call("InternalCalls::InstantiateExplosion", InstantiateExplosion);
+	mono_add_internal_call("InternalCalls::InstantiateAlienMeleeAttack", InstantiateAlienMeleeAttack);
+	mono_add_internal_call("InternalCalls::InstantiateDOT", InstantiateDOT);
 	mono_add_internal_call("InternalCalls::InstantiateXenomorph", InstantiateXenomorph);
 	mono_add_internal_call("InternalCalls::GetGameObjectName", GetGameObjectName);
 	mono_add_internal_call("InternalCalls::DestroyGameObject", DestroyGameObject);
@@ -1322,6 +1366,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::SetColliderRadius", SetColliderRadius);
 	mono_add_internal_call("InternalCalls::GetColliderBoxSize", GetColliderBoxSize);
 	mono_add_internal_call("InternalCalls::SetColliderBoxSize", SetColliderBoxSize);
+	mono_add_internal_call("InternalCalls::SetCollisionActive", SetCollisionActive);
+	mono_add_internal_call("InternalCalls::GetCollisionActive", GetCollisionActive);
 	mono_add_internal_call("InternalCalls::SetCollisionSolverActive", SetCollisionSolverActive);
 	mono_add_internal_call("InternalCalls::GetCollisionSolverActive", GetCollisionSolverActive);
 

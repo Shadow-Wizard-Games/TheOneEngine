@@ -47,39 +47,42 @@ bool CollisionSolver::Update(double dt)
     for (auto& itemWeak : goWithCollision)
     {
         auto item = itemWeak.lock();
+        Collider2D* collision1 = item->GetComponent<Collider2D>();
+        if (!collision1->activeCollision)
+            continue;
 
         // Collision solving
-        switch (item->GetComponent<Collider2D>()->collisionType)
+        switch (collision1->collisionType)
         {
         case CollisionType::Player:
             for (auto& item2Weak : goWithCollision)
             {
                 auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
 
-                if (item != item2)
+                switch (collision2->collisionType)
                 {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                case CollisionType::Player:
+                    //there is no player-player collision since we only have 1 player
+                    break;
+                case CollisionType::Enemy:
+                    //implement any low life to player
+                    break;
+                case CollisionType::Wall:
+                    //if they collide
+                    if (CheckCollision(item.get(), item2.get()))
                     {
-                    case CollisionType::Player:
-                        //there is no player-player collision since we only have 1 player
-                        break;
-                    case CollisionType::Enemy:
-                        //implement any low life to player
-                        break;
-                    case CollisionType::Wall:
-                        //if they collide
-                        if (CheckCollision(item.get(), item2.get()))
+                        if (active)
                         {
-                            if (active)
-                            {
-                                //we push player out of wall
-                                SolveCollision(item.get(), item2.get());
-                            }
+                            //we push player out of wall
+                            SolveCollision(item.get(), item2.get());
                         }
-                        break;
-                    default:
-                        break;
                     }
+                    break;
+                default:
+                    break;
                 }
             }
             break;
@@ -88,40 +91,40 @@ bool CollisionSolver::Update(double dt)
             for (auto& item2Weak : goWithCollision)
             {
                 auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
 
-                if (item != item2)
+                switch (collision2->collisionType)
                 {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                case CollisionType::Player:
+                    //implement any low life to player
+                    if (CheckCollision(item.get(), item2.get()))
                     {
-                    case CollisionType::Player:
-                        //implement any low life to player
-                        if (CheckCollision(item.get(), item2.get()))
+                        if (item->GetComponent<Script>()->scriptName == "FaceHuggerBehaviour")
                         {
-                            if (item->GetComponent<Script>()->scriptName == "FaceHuggerBehaviour")
-                            {
-                                MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "CheckJump");
-                            }
+                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "CheckJump");
                         }
-                        break;
-                    case CollisionType::Enemy:
-                        //if they collide
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            //we push player out of other enemy
-                            SolveCollision(item.get(), item2.get());
-                        }
-                        break;
-                    case CollisionType::Wall:
-                        //if they collide
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            //we push enemy out of wall
-                            SolveCollision(item.get(), item2.get());
-                        }
-                        break;
-                    default:
-                        break;
                     }
+                    break;
+                case CollisionType::Enemy:
+                    //if they collide
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        //we push player out of other enemy
+                        SolveCollision(item.get(), item2.get());
+                    }
+                    break;
+                case CollisionType::Wall:
+                    //if they collide
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        //we push enemy out of wall
+                        SolveCollision(item.get(), item2.get());
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
             break;
@@ -134,31 +137,31 @@ bool CollisionSolver::Update(double dt)
             for (auto& item2Weak : goWithCollision)
             {
                 auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
 
-                if (item != item2)
+                switch (collision2->collisionType)
                 {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                case CollisionType::Player:
+                    if (CheckCollision(item.get(), item2.get()))
                     {
-                    case CollisionType::Player:
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
-                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
-                            item2->GetComponent<Mesh>()->hasEffect = true;
-                        }
-                        break;
-                    case CollisionType::Enemy:
-                        //if they collide
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
-                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
-                            item2->GetComponent<Mesh>()->hasEffect = true;
-                        }
-                        break;
-                    default:
-                        break;
+                        MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
+                        item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        item2->GetComponent<Mesh>()->hasEffect = true;
                     }
+                    break;
+                case CollisionType::Enemy:
+                    //if they collide
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
+                        item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        item2->GetComponent<Mesh>()->hasEffect = true;
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
             break;
@@ -167,30 +170,30 @@ bool CollisionSolver::Update(double dt)
             for (auto& item2Weak : goWithCollision)
             {
                 auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
 
-                if (item != item2)
+                switch (collision2->collisionType)
                 {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                case CollisionType::Wall:
+                    if (CheckCollision(item.get(), item2.get()))
                     {
-                    case CollisionType::Wall:
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
-                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
-                        }
-                        break;
-                    case CollisionType::Enemy:
-                        //if they collide
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
-                            item->AddToDelete(engine->N_sceneManager->objectsToDelete);
-                            item2->GetComponent<Mesh>()->hasEffect = true;
-                        }
-                        break;
-                    default:
-                        break;
+                        MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
+                        item->AddToDelete(engine->N_sceneManager->objectsToDelete);
                     }
+                    break;
+                case CollisionType::Enemy:
+                    //if they collide
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        MonoManager::CallScriptFunction(item->GetComponent<Script>()->monoBehaviourInstance, "Impact");
+                        item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                        item2->GetComponent<Mesh>()->hasEffect = true;
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
             break;
@@ -199,35 +202,81 @@ bool CollisionSolver::Update(double dt)
             for (auto& item2Weak : goWithCollision)
             {
                 auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
 
-                if (item != item2)
+                switch (collision2->collisionType)
                 {
-                    switch (item2->GetComponent<Collider2D>()->collisionType)
+                case CollisionType::Player:
+                    if (CheckCollision(item.get(), item2.get()))
                     {
-                    case CollisionType::Player:
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
-                            item2->GetComponent<Mesh>()->hasEffect = true;
-                        }
-                        break;
-                    case CollisionType::Enemy:
-                        //if they collide
-                        if (CheckCollision(item.get(), item2.get()))
-                        {
-                            MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
-                            item2->GetComponent<Mesh>()->hasEffect = true;
-                        }
-                        break;
-                    default:
-                        break;
+                        MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
+                        item2->GetComponent<Mesh>()->hasEffect = true;
                     }
+                    break;
+                case CollisionType::Enemy:
+                    //if they collide
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeExplosion");
+                        item2->GetComponent<Mesh>()->hasEffect = true;
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+            break;
+        case CollisionType::Melee:
+            for (auto& item2Weak : goWithCollision)
+            {
+                auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
+
+                switch (collision2->collisionType)
+                {
+                case CollisionType::Player:
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeMelee");
+                        item2->GetComponent<Mesh>()->hasEffect = true;
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+            break;
+
+        case CollisionType::Dot:
+            for (auto& item2Weak : goWithCollision)
+            {
+                auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
+
+                switch (collision2->collisionType)
+                {
+                case CollisionType::Enemy:
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLife");
+                        item2->GetComponent<Mesh>()->hasEffect = true;
+                    }
+                    break;
+                default:
+                    break;
                 }
             }
             break;
         default:
             break;
         }
+
     }
 
     return ret;
