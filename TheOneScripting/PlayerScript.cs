@@ -107,7 +107,7 @@ public class PlayerScript : MonoBehaviour
     // Lights
     public ILight shotLight;
 
-    UiScriptHud hudScript;
+    public UiScriptHud hudScript;
 
     IParticleSystem deathPSGO;
     IParticleSystem hitPSGO;
