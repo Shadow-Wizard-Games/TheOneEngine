@@ -1,0 +1,96 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.5,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "MinDirection": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 25.0,
+          "MinSpeed": 10.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            0.5,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            0.0493326298892498,
+            0.9681528806686401,
+            0.16788998246192932,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "MaxOffset": [
+            10.0,
+            7.0,
+            10.0
+          ],
+          "MinOffset": [
+            -10.0,
+            0.0,
+            -10.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 100,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 100.0,
+          "Duration": 1.5,
+          "Type": 1
+        }
+      ]
+    }
+  ],
+  "Name": "HealPS",
+  "StartON": false,
+  "Type": 9,
+  "UID": 753863259
+}

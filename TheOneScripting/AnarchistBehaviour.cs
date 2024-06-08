@@ -64,6 +64,9 @@ class AnarchistBehaviour : MonoBehaviour
 
     PlayerScript player;
 
+    IParticleSystem deathPSGO;
+    IParticleSystem hitPSGO;
+
     public override void Start()
     {
         managers.Start();
@@ -78,6 +81,9 @@ class AnarchistBehaviour : MonoBehaviour
         M4GO.animator.Play("AnarchistWalk");
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.3f;
+
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
+        hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -279,6 +285,7 @@ class AnarchistBehaviour : MonoBehaviour
             isDead = true;
             player.shieldKillCounter++;
             // add player biomass
+            deathPSGO?.Play();
         }
     }
 
@@ -296,6 +303,7 @@ class AnarchistBehaviour : MonoBehaviour
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
+        else hitPSGO?.Replay();
         Debug.Log("Total damage " + player.totalDamage);
         //Debug.Log("Total life " + life);
     }
@@ -304,6 +312,7 @@ class AnarchistBehaviour : MonoBehaviour
     {
         life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
+        else hitPSGO?.Replay();
     }
 
     private void DebugDraw()

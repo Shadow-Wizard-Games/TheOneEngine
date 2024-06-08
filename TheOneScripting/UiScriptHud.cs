@@ -148,6 +148,7 @@ public class UiScriptHud : MonoBehaviour
 
         UpdateTimers(dt);
 
+        if (currLoadout == "m4a1") currAmmo = playerScript.loaderAmmoM4;
 
         if (!onCooldown && (playerScript != null && canvas != null))
         {
@@ -170,6 +171,8 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetSliderValue((int)((canvas.GetSliderMaxValue("Slider_Ammo") * currAmmo) / 1), "Slider_Ammo");
                 else 
                 canvas.SetSliderValue((int)((canvas.GetSliderMaxValue("Slider_Ammo") * currAmmo) / maxAmmo), "Slider_Ammo");
+
+                UpdateString(HudStrings.AMMOSTRING);
             }
 
             if (grenadeUnlocked && !grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R1) || Input.GetKeyboardButton(Input.KeyboardCode.TWO)))//remember to add also keyboard button
@@ -270,6 +273,8 @@ public class UiScriptHud : MonoBehaviour
                 case PlayerScript.SkillSet.SHOULDERLASERSET:
                     currLoadout = "laser";
                     //do same as m4 but with laser
+                    currAmmo = 1;
+                    maxAmmo = 1;
                     grenadeUnlocked = false;
                     canvas.PrintItemUI(true, "Img_UsingWeaponIcon");
                     canvas.ChangeSectImg("Img_UsingWeaponIcon", 906, 454, 100, 100);

@@ -46,6 +46,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
     IParticleSystem jumpPS;
     IParticleSystem deathPS;
+    IParticleSystem hitPS;
 
     public override void Start()
     {
@@ -60,6 +61,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
         jumpPS = attachedGameObject.FindInChildren("JumpPS")?.GetComponent<IParticleSystem>();
         deathPS = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
+        hitPS = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -269,6 +271,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             life = 0;
             shotDead = true;
         }
+        else hitPS?.Replay();
     }
 
     private void DebugDraw()

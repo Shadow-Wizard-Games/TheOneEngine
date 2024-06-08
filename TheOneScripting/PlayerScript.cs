@@ -106,6 +106,11 @@ public class PlayerScript : MonoBehaviour
     public ILight shotLight;
 
 
+    IParticleSystem deathPSGO;
+    IParticleSystem hitPSGO;
+    IParticleSystem healPSGO;
+    IParticleSystem adrenalinePSGO;
+
     public override void Start()
     {
         managers.Start();
@@ -117,6 +122,11 @@ public class PlayerScript : MonoBehaviour
         shotExplosionGO = attachedGameObject.FindInChildren("ShotExplosion");
         bulletShell = attachedGameObject.FindInChildren("BulletShellDrop")?.GetComponent<IParticleSystem>();
         shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
+
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
+        hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
+        healPSGO = attachedGameObject.FindInChildren("HealPS")?.GetComponent<IParticleSystem>();
+        adrenalinePSGO = attachedGameObject.FindInChildren("AdrenalinePS")?.GetComponent<IParticleSystem>();
 
         M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
         M4GO.Disable();
@@ -700,6 +710,7 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
         attachedGameObject.animator.Play("Adrenaline Rush Static");
+        adrenalinePSGO?.Replay();
 
         Debug.Log("Activated Adrenaline Rush");
     }
@@ -721,6 +732,7 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
         attachedGameObject.animator.Play("Adrenaline Rush Moving");
+        adrenalinePSGO?.Replay();
 
         Debug.Log("Activated Adrenaline Rush");
     }
@@ -729,6 +741,7 @@ public class PlayerScript : MonoBehaviour
         Heal.speedModification = managers.gameManager.GetSpeed() * -Heal.slowAmount;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
+        healPSGO?.Replay();
 
         Debug.Log("Ability Heal Activated");
     }
@@ -741,6 +754,7 @@ public class PlayerScript : MonoBehaviour
         Heal.speedModification = managers.gameManager.GetSpeed() * -Heal.slowAmount;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
+        healPSGO?.Replay();
 
         Debug.Log("Ability Heal Activated");
     }
@@ -1076,7 +1090,9 @@ public class PlayerScript : MonoBehaviour
             managers.gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+            deathPSGO?.Play();
         }
+        else hitPSGO?.Replay();
     }
 
     public void ReduceLifeExplosion()
@@ -1092,7 +1108,9 @@ public class PlayerScript : MonoBehaviour
             managers.gameManager.health = 0;
             isDead = true;
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+            deathPSGO?.Play();
         }
+        else hitPSGO?.Replay();
     }
 
     public float CurrentLife()
