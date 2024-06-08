@@ -12,6 +12,7 @@ public class EventTriggerDialog : Event
 {
     IGameObject playerGO;
     PlayerScript player;
+    UiManager uiManager;
 
     float playerDistance;
 
@@ -37,21 +38,24 @@ public class EventTriggerDialog : Event
 
     string audioEventString;
 
+    bool brodcastMesage = true;
+
     public override void Start()
     {
         managers.Start();
 
         playerGO = IGameObject.Find("SK_MainCharacter");
         player = playerGO.GetComponent<PlayerScript>();
+        uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
         eventType = EventType.OPENPOPUP;
         goName = attachedGameObject.name;
 
+        dialogWarnig = attachedGameObject.FindInChildren("PS_DialogWarning")?.GetComponent<IParticleSystem>();
+
         charachter = ExtractCharacter();
         string[] characterPath = { charachter };
         conversationNum = DataManager.AccessFileDataInt(dynamicPath, characterPath, "conversationNum");
-
-        dialogWarnig = attachedGameObject.FindInChildren("PS_DialogWarning")?.GetComponent<IParticleSystem>();
 
         if(conversationNum <= 0)
         {
@@ -97,6 +101,7 @@ public class EventTriggerDialog : Event
         else
         {
             inRange = false;
+            brodcastMesage = true;
         }
 
         return inRange;
@@ -106,6 +111,7 @@ public class EventTriggerDialog : Event
     {
         bool ret = true;
 
+        if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Dialogue:", "Press A"); brodcastMesage = false; }
         if (Input.GetControllerButton(Input.ControllerButtonCode.A) ||  Input.GetKeyboardButton(Input.KeyboardCode.E) && cooldown <= 0)
         {
             if (isFirst)

@@ -56,6 +56,7 @@ public class EventCollectible : Event
         else
         {
             inRange = false;
+            brodcastMesage = true;
         }
         return inRange;
     }

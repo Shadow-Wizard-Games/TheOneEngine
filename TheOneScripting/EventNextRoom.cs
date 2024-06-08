@@ -19,6 +19,8 @@ public class EventNextRoom : Event
     string goName;
     float cooldown = 0;
 
+    bool brodcastMesage = true;
+
     public override void Start()
     {
         managers.Start();
@@ -54,6 +56,7 @@ public class EventNextRoom : Event
         else
         {
             inRange = false;
+            brodcastMesage = true;
         }
 
         return inRange;
@@ -63,6 +66,7 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
+        if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Next room:", "Press A"); brodcastMesage = false; }
         if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.E)) && cooldown <= 0)
         {
             cooldown = 1;

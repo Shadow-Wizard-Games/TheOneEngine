@@ -165,7 +165,7 @@ void main()
     vec3 ViewDir    = normalize(u_ViewPos - FragPos);
     float Specular  = 0.1;
 
-    vec3 result = Diffuse * 0.1;
+    vec3 result = Diffuse * 0.15;
 
     // phase 1: Directional lighting
     for(int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++)

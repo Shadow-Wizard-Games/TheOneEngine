@@ -10,7 +10,7 @@ using static UiManager;
 public class EventCheckpoint : Event
 {
     IGameObject playerGO;
-    UiManager menuManager;
+    UiManager uiManager;
 
     IParticleSystem saveParticles;
 
@@ -19,13 +19,15 @@ public class EventCheckpoint : Event
     readonly float tpRange = 100.0f;
     bool inRange = false;
 
+    bool brodcastMesage = true;
+
     public override void Start()
     {
         managers.Start();
 
         playerGO = IGameObject.Find("SK_MainCharacter");
 
-        menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+        uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
         saveParticles = attachedGameObject.FindInChildren("SaveParticles")?.GetComponent<IParticleSystem>();
 
@@ -53,6 +55,7 @@ public class EventCheckpoint : Event
         else
         {
             inRange = false;
+            brodcastMesage = true;
         }
 
         return inRange;
@@ -62,11 +65,12 @@ public class EventCheckpoint : Event
     {
         bool ret = true;
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.Y))
+        if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Checkpoint:", "Press A"); brodcastMesage = false; }
+        if (Input.GetKeyboardButton(Input.KeyboardCode.A) || Input.GetControllerButton(Input.ControllerButtonCode.Y))
         {
             managers.gameManager.health = managers.gameManager.GetMaxHealth();
-            managers.gameManager.UpdateSave();       
-            menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
+            managers.gameManager.UpdateSave();
+            uiManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
 
             saveParticles?.Replay();
         }
