@@ -161,12 +161,12 @@ public class UiScriptStats : MonoBehaviour
             {
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
-                    if(managers.gameManager.GetDamageLvl() <= 3)
+                    if(managers.gameManager.GetDamageLvl() < 3)
                     {
                         onCooldown = true;
                         managers.gameManager.currency -= 100;
                         managers.gameManager.SetDamageLvl(managers.gameManager.GetDamageLvl() + 1);
-                        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl());
+                        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl() + 1);
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
@@ -174,12 +174,12 @@ public class UiScriptStats : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
-                    if (managers.gameManager.GetDamageLvl() <= 3)
+                    if (managers.gameManager.GetLifeLvl() < 3)
                     {
                         onCooldown = true;
                         managers.gameManager.currency -= 100;
                         managers.gameManager.SetLifeLvl(managers.gameManager.GetLifeLvl() + 1);
-                        ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl());
+                        ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl() + 1);
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
@@ -187,12 +187,12 @@ public class UiScriptStats : MonoBehaviour
 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 2)
                 {
-                    if (managers.gameManager.GetDamageLvl() <= 3)
+                    if (managers.gameManager.GetSpeedLvl() < 3)
                     {
                         onCooldown = true;
                         managers.gameManager.currency -= 100;
                         managers.gameManager.SetSpeedLvl(managers.gameManager.GetSpeedLvl() + 1);
-                        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetSpeedLvl());
+                        ChangeStatLvl(StatType.SPEED, managers.gameManager.GetSpeedLvl() + 1);
 
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }

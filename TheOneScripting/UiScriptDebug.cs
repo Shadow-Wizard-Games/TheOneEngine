@@ -139,6 +139,9 @@ public class UiScriptDebug : MonoBehaviour
             if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelection() == 1)
             {
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
+
+                managers.gameManager.currency += 10000;
+
                 managers.gameManager.DrawGrid();
                 onCooldown = true;
             }

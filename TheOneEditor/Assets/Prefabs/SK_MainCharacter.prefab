@@ -44,7 +44,7 @@
       "ParentUID": 113510800,
       "ScriptName": "PlayerScript",
       "Type": 4,
-      "UID": 3962546314
+      "UID": 20412602
     },
     {
       "AudioID": 1,
@@ -465,63 +465,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2475277284
+          "UID": 1567418001
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1038535711
+          "UID": 380660701
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 2887926098
+          "UID": 3969268230
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 3449377004
+          "UID": 3817850435
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1098283909
+          "UID": 914094773
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 2790092923
+          "UID": 1212422619
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 3080861543
+          "UID": 4214530120
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 3746181788
+          "UID": 2708015862
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2142485186
+          "UID": 640465927
         }
       ],
       "Enabled": true,
@@ -1790,9 +1790,9 @@
             0.0,
             1.0,
             0.0,
-            0.0,
-            0.0,
-            0.0,
+            2.220446049250313e-16,
+            0.060107104573253314,
+            4.440892098500626e-16,
             1.0
           ],
           "Type": 0,
@@ -1870,7 +1870,7 @@
                   "UsingSingleValueOffset": false
                 }
               ],
-              "IsLooping": false,
+              "IsLooping": true,
               "Lifetime": 0.0,
               "MaxParticles": 100,
               "RenderModule": [
@@ -1882,14 +1882,14 @@
               ],
               "SpawnModule": [
                 {
-                  "Amount": 100.0,
                   "Duration": 1.5,
-                  "Type": 1
+                  "SpawnRate": 100.0,
+                  "Type": 0
                 }
               ]
             }
           ],
-          "Name": "HealPS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "Name": "AdrenalinePS\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
           "StartON": false,
           "Type": 9,
           "UID": 753863259

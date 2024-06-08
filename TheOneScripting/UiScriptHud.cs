@@ -42,7 +42,7 @@ public class UiScriptHud : MonoBehaviour
     float currLife = 100;
     float playerMaxLife = 100;
 
-    int currencyAmount = 200;
+    int currencyAmount = 0;
 
     int killsAmount = 0;
 
@@ -113,7 +113,7 @@ public class UiScriptHud : MonoBehaviour
         currLife = 100;
         playerMaxLife = 100;
 
-        currencyAmount = 200;
+        currencyAmount = managers.gameManager.currency;
         killsAmount = 0;
 
         var mainQuest = managers.questManager.GetMainQuest();
@@ -254,6 +254,12 @@ public class UiScriptHud : MonoBehaviour
             canvas.PrintItemUI(consumibleUnlocked, "Button_ConsumibleIcon");
             if (!consumibleUnlocked) UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.DISABLED);
             else UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
+        }
+
+        if (currencyAmount != managers.gameManager.currency || start)
+        {
+            UpdateString(HudStrings.CURRENCYSTRING);
+            currencyAmount = managers.gameManager.currency;
         }
 
         PlayerScript.SkillSet temp2 = PlayerScript.SkillSet.NONE;

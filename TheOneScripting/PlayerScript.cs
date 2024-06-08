@@ -274,6 +274,11 @@ public class PlayerScript : MonoBehaviour
 
         WeaponAbilityStates();
 
+        //update player adrenaline ps
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
+            adrenalinePSGO.Play();
+        else adrenalinePSGO.Stop();
+
         // set movement
         movementDirection = Vector3.zero;
         movementMagnitude = 0;
