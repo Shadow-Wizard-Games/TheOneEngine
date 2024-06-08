@@ -59,7 +59,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     float delayTimer = 0.0f;
     const float delayCooldown = 1.2f;
     float tailAttackTimer = 0.0f;
-    const float tailAttackDelay = 0.5f; // 0.0f ~ 1.0f
+    const float tailAttackDelay = 1.4f;
 
     PlayerScript player;
 

@@ -58,7 +58,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     float delayTimer = 0.0f;
     const float delayCooldown = 1.2f;
     float tailStabTimer = 0.0f;
-    const float tailStabDelay = 0.7f; // 0.0f ~ 1.0f
+    const float tailStabDelay = 1.4f;
 
     PlayerScript player;
 
