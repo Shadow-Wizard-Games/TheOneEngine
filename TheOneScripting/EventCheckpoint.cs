@@ -66,7 +66,7 @@ public class EventCheckpoint : Event
         bool ret = true;
 
         if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Checkpoint:", "Press A"); brodcastMesage = false; }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.A) || Input.GetControllerButton(Input.ControllerButtonCode.Y))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.A))
         {
             managers.gameManager.health = managers.gameManager.GetMaxHealth();
             managers.gameManager.UpdateSave();

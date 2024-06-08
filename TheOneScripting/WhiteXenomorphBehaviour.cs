@@ -54,7 +54,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
     float clawAttackTimer = 0.0f;
-    const float clawAttackDelay = 1.45f;
+    const float clawAttackDelay = 0.8f;
     float tailTripTimer = 0.0f;
     const float tailTripDelay = 1.5f;
 

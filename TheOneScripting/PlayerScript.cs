@@ -1169,6 +1169,24 @@ public class PlayerScript : MonoBehaviour
         else hitPSGO?.Replay();
     }
 
+    public void ReduceLifeMelee()
+    {
+        if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
+            return;
+
+        float damage = managers.gameManager.godMode ? 0.0f : 20.0f;
+        managers.gameManager.health -= damage;
+
+        if (managers.gameManager.health <= 0)
+        {
+            managers.gameManager.health = 0;
+            isDead = true;
+            attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+            deathPSGO?.Play();
+        }
+        else hitPSGO?.Replay();
+    }
+
     public float CurrentLife()
     {
         if (isDead) return 0;
