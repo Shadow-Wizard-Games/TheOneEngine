@@ -31,7 +31,7 @@
 
     public int ammo = 100;
 
-    public float waitToReset = 0.2f;
+    public float waitToReset = 0.5f;
 
     public override void Start()
     {

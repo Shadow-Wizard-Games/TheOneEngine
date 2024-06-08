@@ -50,11 +50,11 @@ public class AbilityShield : MonoBehaviour
                 ChargeAbility();
                 break;
             case AbilityState.READY:
-                if (Input.GetKeyboardButton(Input.KeyboardCode.TWO)) // change input
-                {
-                    Activated();
-                    break;
-                }
+                //if (Input.GetKeyboardButton(Input.KeyboardCode.TWO)) // change input
+                //{
+                //    Activated();
+                //    break;
+                //}
                 // controller input
                 break;
             case AbilityState.ACTIVE:

@@ -316,6 +316,7 @@ public class PlayerScript : MonoBehaviour
             // grenade 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
+                && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
@@ -364,6 +365,7 @@ public class PlayerScript : MonoBehaviour
             // grenade
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
+                && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
@@ -412,7 +414,7 @@ public class PlayerScript : MonoBehaviour
         {
             skillSetChangeTime -= Time.deltaTime;
         }
-        else if (Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT))
+        else if ((Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT)) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
         {
             if (currentSkillSet == SkillSet.M4A1SET && managers.itemManager.CheckItemInInventory(3))
             {
@@ -436,20 +438,23 @@ public class PlayerScript : MonoBehaviour
         }
         if (isReloading && loaderAmmoM4 > 0 && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR)))
         {
-            Debug.Log("RELOAD CANCELLED");
+            //Debug.Log("RELOAD CANCELLED");
             isReloading = false;
             reloadingTimeCounter = ItemM4.reloadTime;
         }
 
         if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
-            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2))
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2)
+                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+                waitForAnimationToFinish = 0.3f;
                 hudScript.TriggerHudGrenadeLauncher();
             }
 
-            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY && managers.itemManager.CheckItemInInventory(8))
+            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY && managers.itemManager.CheckItemInInventory(8)
+                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
                 hudScript.TriggerHudFlameThrower();
@@ -459,7 +464,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyboardButton(Input.KeyboardCode.TWO))
         {
             if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY 
-                && managers.itemManager.CheckItemInInventory(2))
+                && managers.itemManager.CheckItemInInventory(2) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
                 waitForAnimationToFinish = 0.3f;
@@ -470,7 +475,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
         {
             if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY 
-                && managers.itemManager.CheckItemInInventory(8))
+                && managers.itemManager.CheckItemInInventory(8) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
                 Flamethrower.Activated();
