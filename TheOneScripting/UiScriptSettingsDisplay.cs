@@ -190,7 +190,8 @@ public class UiScriptSettingsDisplay : MonoBehaviour
 
                 if (movementVector.y != 0.0f)
                 {
-                    if (movementVector.y > 0.0f)
+                    //up
+                    if (movementVector.y < 0.0f)
                     {
                         if (currentButton >= 0 && currentButton <= 1)
                         {
@@ -206,7 +207,8 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                         }
                         toMove = true;
                     }
-                    else if (movementVector.y < 0.0f)
+                    //down
+                    else if (movementVector.y > 0.0f)
                     {
                         if (currentButton >= 0 && currentButton <= 2)
                         {
@@ -225,7 +227,8 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                 }
                 else if (movementVector.x != 0.0f)
                 {
-                    if (movementVector.x > 0.0f)
+                    //left
+                    if (movementVector.x < 0.0f)
                     {
                         if (currentButton == 0)
                         {
@@ -265,7 +268,8 @@ public class UiScriptSettingsDisplay : MonoBehaviour
                             InternalCalls.SetMusicVolume(musicVolume);
                         }
                     }
-                    else if (movementVector.x < 0.0f)
+                    //right
+                    else if (movementVector.x > 0.0f)
                     {
                         if (currentButton == 0)
                         {

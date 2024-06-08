@@ -96,29 +96,34 @@ public class UiScriptPause : MonoBehaviour
             //Controller
             Vector2 movementVector = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
 
+            
             if (movementVector.y != 0.0f)
             {
-                if (movementVector.y > 0.0f)
-                {
-                    direction = -2;
-                    toMove = true;
-                }
-                else if (movementVector.y < 0.0f)
+                //up
+                if (movementVector.y < 0.0f)
                 {
                     direction = +2;
+                    toMove = true;
+                }
+                //down
+                else if (movementVector.y > 0.0f)
+                {
+                    direction = -2;
                     toMove = true;
                 }
             }
             else if (movementVector.x != 0.0f)
             {
-                if (movementVector.x > 0.0f)
-                {
-                    direction = +1;
-                    toMove = true;
-                }
-                else if (movementVector.x < 0.0f)
+                //left
+                if (movementVector.x < 0.0f)
                 {
                     direction = -1;
+                    toMove = true;
+                }
+                //right
+                else if (movementVector.x > 0.0f)
+                {
+                    direction = +1;
                     toMove = true;
                 }
             }
