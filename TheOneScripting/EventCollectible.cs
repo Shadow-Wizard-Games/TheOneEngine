@@ -19,6 +19,7 @@ public class EventCollectible : Event
 
     //debug
     bool inRange = false;
+    bool brodcastMesage = true;
 
     public override void Start()
     {
@@ -64,6 +65,7 @@ public class EventCollectible : Event
         //Add item
         if (managers.itemManager != null)
         {
+            if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Collectible:", "Press A"); brodcastMesage = false; }
             if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.E))
             {
                 string collectibleName = ExtractCollectible();

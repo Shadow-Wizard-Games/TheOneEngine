@@ -30,28 +30,28 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 4247825261
+          "UID": 3584209908
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 1449345808
+          "UID": 2258836187
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 3992817009
+          "UID": 3197217214
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": true,
       "Name": "Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 3452816845
     },
@@ -81,7 +81,7 @@
           "UID": 862431204
         },
         {
-          "Aspect": 1.772455096244812,
+          "Aspect": 1.7770700454711914,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -100,14 +100,14 @@
           "ParentUID": 0,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 2720596719
+          "UID": 3279742901
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 0
     },
@@ -185,7 +185,7 @@
               "ParentUID": 7602275,
               "ScriptName": "EventNextRoom",
               "Type": 4,
-              "UID": 3227536780
+              "UID": 2935194625
             }
           ],
           "Enabled": true,
@@ -242,7 +242,7 @@
               "ParentUID": 0,
               "ScriptName": "EventNextRoom",
               "Type": 4,
-              "UID": 2146612704
+              "UID": 1474985522
             }
           ],
           "Enabled": true,
@@ -4322,7 +4322,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Assets",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 7602275
     },
@@ -5338,7 +5338,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Rocks",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 7602275
     },
@@ -5986,7 +5986,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Lights",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 2562732048
     },
@@ -6708,7 +6708,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Collisions",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 2562732048
     },
@@ -7452,7 +7452,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Particles",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 2653177744
     },
@@ -7486,7 +7486,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L2R1",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 487185088
     },
@@ -7520,7 +7520,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L2R3",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 1102577664
     },
@@ -7570,7 +7570,7 @@
           "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 477293770
+          "UID": 3401631026
         },
         {
           "AudioID": 0,
@@ -7991,63 +7991,63 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 1107586188
+              "UID": 3256731406
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 254867654
+              "UID": 1410988124
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 4160937318
+              "UID": 4217468376
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 1692652539
+              "UID": 3850298174
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 3763246060
+              "UID": 1050602912
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 2341387500
+              "UID": 2091428061
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 1419129537
+              "UID": 2075083757
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 3199742772
+              "UID": 2238046974
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 1489782578
+              "UID": 3971576479
             }
           ],
           "Enabled": true,
@@ -8709,7 +8709,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "PrefabDirty": false,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -8746,7 +8746,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiManager",
           "Type": 4,
-          "UID": 1053555356
+          "UID": 669259769
         },
         {
           "AudioID": 1,
@@ -9848,7 +9848,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptInventory",
               "Type": 4,
-              "UID": 1248012850
+              "UID": 10153312
             },
             {
               "AudioID": 2,
@@ -10162,7 +10162,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptPause",
               "Type": 4,
-              "UID": 3534460416
+              "UID": 618455395
             }
           ],
           "Enabled": false,
@@ -10203,7 +10203,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptHud",
               "Type": 4,
-              "UID": 3049175576
+              "UID": 914833787
             },
             {
               "DebugDraw": true,
@@ -12006,7 +12006,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptDebug",
               "Type": 4,
-              "UID": 947071370
+              "UID": 2710468305
             },
             {
               "AudioID": 4,
@@ -12408,7 +12408,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptMissions",
               "Type": 4,
-              "UID": 2598400265
+              "UID": 2661060261
             }
           ],
           "Enabled": false,
@@ -15406,7 +15406,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptStats",
               "Type": 4,
-              "UID": 1090716770
+              "UID": 1370723557
             }
           ],
           "Enabled": false,
@@ -15553,7 +15553,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettings",
               "Type": 4,
-              "UID": 1767851171
+              "UID": 3495720659
             }
           ],
           "Enabled": false,
@@ -16559,7 +16559,7 @@
                   "ParentUID": 3452816845,
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
-                  "UID": 560401014
+                  "UID": 3518804888
                 },
                 {
                   "AudioID": 12,
@@ -16813,7 +16813,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
@@ -16825,21 +16825,21 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            -83.55976867675781,
+            -21.781665802001953,
             0.0,
-            -27.600149154663086,
+            -85.26171875,
             0.0,
             0.0,
             88.0,
             0.0,
             0.0,
-            27.600149154663086,
+            85.26171875,
             0.0,
-            -83.55976867675781,
+            -21.781665802001953,
             0.0,
-            -179.33010864257813,
-            0.0,
-            151.9803466796875,
+            -138.65345764160156,
+            -0.000244140625,
+            7.866001129150391,
             1.0
           ],
           "Type": 0,
@@ -16866,7 +16866,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventTriggerDialog",
           "Type": 4,
-          "UID": 1129002308
+          "UID": 4207452359
         },
         {
           "AudioID": 15,
@@ -16875,10 +16875,236 @@
         }
       ],
       "Enabled": true,
+      "GameObjects": [
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                1.8445032424338759,
+                0.0,
+                -8.036868781591266e-08,
+                0.0,
+                0.0,
+                0.9999999999999999,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.9999999999999999,
+                0.0,
+                0.0027149507566004427,
+                0.5322367061268198,
+                0.013615929940215654,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3176501187
+            },
+            {
+              "Emmiters": [
+                {
+                  "Delay": 0.0,
+                  "Duration": 2.0199999809265137,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.0,
+                        2.0,
+                        0.0
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 2.0,
+                      "MinSpeed": 1.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "MaxColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.33725491166114807,
+                        0.9372549057006836,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    },
+                    {
+                      "IsProportional": true,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        2.0,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": true
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 244.1106719970703,
+                  "MaxParticles": 2,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 2.0199999809265137,
+                      "SpawnRate": 0.5,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    }
+                  ]
+                },
+                {
+                  "Delay": 0.0,
+                  "Duration": 2.0199999809265137,
+                  "InitializeModules": [
+                    {
+                      "MaxDirection": [
+                        0.5,
+                        2.0,
+                        0.5
+                      ],
+                      "MinDirection": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 4,
+                      "UsingSingleValueDirection": true
+                    },
+                    {
+                      "MaxSpeed": 2.0,
+                      "MinSpeed": 1.0,
+                      "Type": 0,
+                      "UsingSingleValueSpeed": true
+                    },
+                    {
+                      "MaxOffset": [
+                        0.0,
+                        -1.0,
+                        0.0
+                      ],
+                      "MinOffset": [
+                        0.0,
+                        12.0,
+                        0.0
+                      ],
+                      "Type": 3,
+                      "UsingSingleValueOffset": true
+                    },
+                    {
+                      "IsProportional": false,
+                      "MaxScale": [
+                        2.0,
+                        2.0,
+                        2.0
+                      ],
+                      "MinScale": [
+                        2.0,
+                        8.0,
+                        1.0
+                      ],
+                      "Type": 2,
+                      "UsingSingleValueScale": true
+                    },
+                    {
+                      "MaxColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "MinColor": [
+                        0.3372548818588257,
+                        0.9366804957389832,
+                        1.0,
+                        1.0
+                      ],
+                      "Type": 1,
+                      "UsingSingleValueColor": true
+                    }
+                  ],
+                  "IsLooping": true,
+                  "Lifetime": 244.1106719970703,
+                  "MaxParticles": 2,
+                  "RenderModule": [
+                    {
+                      "BillboardType": 1,
+                      "TexturePath": "",
+                      "Type": 0
+                    }
+                  ],
+                  "SpawnModule": [
+                    {
+                      "Duration": 2.0199999809265137,
+                      "SpawnRate": 0.5,
+                      "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    }
+                  ]
+                }
+              ],
+              "Name": "QuestExclam\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+              "StartON": true,
+              "Type": 9,
+              "UID": 344185358
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "PS_DialogWarning",
+          "ParentUID": 3452816845,
+          "Static": false,
+          "UID": 1040384000
+        }
+      ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "NPC_Sargent_Character2",
-      "ParentUID": 3452816845,
+      "ParentUID": 4259932,
       "Static": false,
       "UID": 3452816845
     }

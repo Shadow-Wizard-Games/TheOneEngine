@@ -113,12 +113,15 @@ public class GameManager : MonoBehaviour
         DrawColliders();
         DrawGrid();
 
+        string[] datapath = { "GameManager" };
+        hasSaved = DataManager.AccessFileDataBool("GameData/SaveData.json", datapath, "hasSaved");
+
         ResetPlayerData();
     }
 
     public override void Update()
     {
-        ShortcutsConditions();
+        
     }
 
     public void SetGameState(GameStates state)
@@ -133,6 +136,8 @@ public class GameManager : MonoBehaviour
 
         lastLevel = SceneManager.GetCurrentSceneName();
         InternalCalls.CreateSaveFromScene("GameData/Scenes", lastLevel);
+
+        ShortcutsConditions();
     }
 
     public void UpdateSave()
@@ -152,6 +157,7 @@ public class GameManager : MonoBehaviour
             return;
 
         ResetSave();
+        hasSaved = true;
 
         this.LoadGameManagerData();
         managers.itemManager.LoadInventoryData();
@@ -172,6 +178,9 @@ public class GameManager : MonoBehaviour
         managers.itemManager.ResetInventory();
         managers.questManager.ResetQuests();
         ResetPlayerData();
+        activeShortcutL1R1 = false;
+        hasSaved = false;
+        savedLevels.Clear();
     }
 
     private void ResetPlayerData()
@@ -197,23 +206,8 @@ public class GameManager : MonoBehaviour
 
     private void ShortcutsConditions() 
     {
-        switch (SceneManager.GetCurrentSceneName())
-        {
-            case "L1R1":
-                if (savedLevels.Contains("L1R4") && !activeShortcutL1R1)
-                {
-                    IGameObject.Find("SwapScene_L1_R4").Enable();
-                    activeShortcutL1R1 = true;
-                }
-                else if (!savedLevels.Contains("L1R4") && activeShortcutL1R1)
-                {
-                    IGameObject.Find("SwapScene_L1_R4").Disable();
-                    activeShortcutL1R1 = false;
-                }
-                break;
-            default:
-                break;
-        }
+        if(!activeShortcutL1R1 && savedLevels.Contains("L1R4"))
+            activeShortcutL1R1 = true;
     }
 
     public GameStates GetGameState()
@@ -234,6 +228,9 @@ public class GameManager : MonoBehaviour
         DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "damageLvl", damageLvl);
         DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "lifeLvl", lifeLvl);
         DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "speedLvl", speedLvl);
+        DataManager.WriteFileDataBool("GameData/SaveData.json", datapath, "activeShortcutL1R1", activeShortcutL1R1);
+        DataManager.WriteFileDataBool("GameData/SaveData.json", datapath, "hasSaved", hasSaved);
+        DataManager.WriteFileDataString("GameData/SaveData.json", datapath, "saveLevel", saveLevel);
     }
 
     private void LoadGameManagerData()
@@ -250,5 +247,8 @@ public class GameManager : MonoBehaviour
         SetLifeLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "lifeLvl"));
         SetSpeedLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "speedLvl"));
         health = maxHealth;
+        activeShortcutL1R1 = DataManager.AccessFileDataBool("GameData/SaveData.json", datapath, "activeShortcutL1R1");
+        hasSaved = DataManager.AccessFileDataBool("GameData/SaveData.json", datapath, "hasSaved");
+        saveLevel = DataManager.AccessFileDataString("GameData/SaveData.json", datapath, "saveLevel");
     }
 }

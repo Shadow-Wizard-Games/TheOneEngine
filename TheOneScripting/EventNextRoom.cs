@@ -17,6 +17,7 @@ public class EventNextRoom : Event
     bool inRange = false;
 
     string goName;
+    float cooldown = 0;
 
     public override void Start()
     {
@@ -31,6 +32,9 @@ public class EventNextRoom : Event
 
     public override void Update()
     {
+        if (cooldown > 0)
+            cooldown -= Time.realDeltaTime;
+
         if (CheckEventIsPossible())
         {
             DoEvent();
@@ -59,15 +63,25 @@ public class EventNextRoom : Event
     {
         bool ret = true;
 
-        if (Input.GetControllerButton(Input.ControllerButtonCode.Y) || Input.GetKeyboardButton(Input.KeyboardCode.E))
+        if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.E)) && cooldown <= 0)
         {
+            cooldown = 1;
+
             string sceneName = ExtractSceneName();
 
-            if(sceneName == "L2R1")
+            if(sceneName == "L2R1" && SceneManager.GetCurrentSceneName() == "L1R5")
             {
                 if (!managers.itemManager.CheckItemInInventory(9))
                 {
                     uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Error:", "Missing Key");
+                    return ret;
+                }
+            }
+            else if (sceneName == "L1R4" && SceneManager.GetCurrentSceneName() == "L1R1")
+            {
+                if (!managers.gameManager.activeShortcutL1R1)
+                {
+                    uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Error:", "Door blocked");
                     return ret;
                 }
             }

@@ -3,21 +3,21 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        88.0,
+        -83.55976867675781,
         0.0,
-        0.0,
-        0.0,
-        0.0,
-        88.0,
-        0.0,
-        0.0,
+        -27.600149154663086,
         0.0,
         0.0,
         88.0,
         0.0,
         0.0,
+        27.600149154663086,
         0.0,
+        -83.55976867675781,
         0.0,
+        -179.33010864257813,
+        0.0,
+        151.9803466796875,
         1.0
       ],
       "Type": 0,
@@ -44,23 +44,249 @@
       "ParentUID": 3452816845,
       "ScriptName": "EventTriggerDialog",
       "Type": 4,
-      "UID": 1453192824
+      "UID": 4035028637
     },
     {
-      "AudioID": 20,
+      "AudioID": 15,
       "Name": "AudioSource",
       "Type": 8
     }
   ],
   "EditablePrefab": true,
   "Enabled": true,
+  "GameObjects": [
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.8445032424338759,
+            0.0,
+            -8.036868781591266e-08,
+            0.0,
+            0.0,
+            0.9999999999999999,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.9999999999999999,
+            0.0,
+            0.0027149507566004427,
+            0.5322367061268198,
+            0.013615929940215654,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 3176501187
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 2.0199999809265137,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    0.0,
+                    2.0,
+                    0.0
+                  ],
+                  "MinDirection": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": true
+                },
+                {
+                  "MaxSpeed": 2.0,
+                  "MinSpeed": 1.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    0.9957807660102844,
+                    0.337579607963562,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    2.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 113.61835479736328,
+              "MaxParticles": 2,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0199999809265137,
+                  "SpawnRate": 0.5,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 2.0199999809265137,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    0.5,
+                    2.0,
+                    0.5
+                  ],
+                  "MinDirection": [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": true
+                },
+                {
+                  "MaxSpeed": 2.0,
+                  "MinSpeed": 1.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": true
+                },
+                {
+                  "MaxOffset": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "MinOffset": [
+                    0.0,
+                    8.0,
+                    0.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": true
+                },
+                {
+                  "IsProportional": false,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    2.0,
+                    8.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    0.9960784316062927,
+                    0.33725491166114807,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 113.61835479736328,
+              "MaxParticles": 2,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 2.0199999809265137,
+                  "SpawnRate": 0.5,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Name": "QuestExclam\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 344185358
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "PS_DialogWarning",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 1040384000
+    }
+  ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "NPC_Sargent_Character2",
-  "ParentUID": 3452816845,
+  "ParentUID": 6029433,
   "PrefabDirty": false,
-  "PrefabID": 3799495087,
-  "PrefabName": "NPC_Sargent",
+  "PrefabID": 1418142811,
+  "PrefabName": "NPC_Sargent_Character2",
   "Static": false,
   "UID": 3452816845
 }

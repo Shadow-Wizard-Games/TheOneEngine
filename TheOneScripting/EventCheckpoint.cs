@@ -27,8 +27,7 @@ public class EventCheckpoint : Event
 
         menuManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
 
-        IGameObject saveParticlesGO = IGameObject.Find("SaveParticles");
-        if (saveParticlesGO != null) saveParticles = saveParticlesGO.GetComponent<IParticleSystem>();
+        saveParticles = attachedGameObject.FindInChildren("SaveParticles")?.GetComponent<IParticleSystem>();
 
         eventType = EventType.CHECKPOINT;
     }
@@ -69,7 +68,7 @@ public class EventCheckpoint : Event
             managers.gameManager.UpdateSave();       
             menuManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
 
-            if (saveParticles != null) saveParticles.Replay();
+            saveParticles?.Replay();
         }
 
         return ret;

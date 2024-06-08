@@ -122,10 +122,6 @@ public class UiScriptHud : MonoBehaviour
         var sideQuest = managers.questManager.GetSideQuest();
         currentSideMission = sideQuest?.name ?? "None";
 
-        Debug.Log("llega?");
-        Debug.Log(currentSideMission);
-        Debug.Log(currentMainMission);
-
         UpdateUnlockedAbilities(true);
     }
     public override void Update()

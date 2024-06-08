@@ -33,6 +33,8 @@ public class EventTriggerDialog : Event
     IGameObject dialogueGo;
     ICanvas dialogCanvas;
 
+    IParticleSystem dialogWarnig;
+
     string audioEventString;
 
     public override void Start()
@@ -49,12 +51,14 @@ public class EventTriggerDialog : Event
         string[] characterPath = { charachter };
         conversationNum = DataManager.AccessFileDataInt(dynamicPath, characterPath, "conversationNum");
 
+        dialogWarnig = attachedGameObject.FindInChildren("PS_DialogWarning")?.GetComponent<IParticleSystem>();
+
         if(conversationNum <= 0)
         {
             conversationNum = 1;
         }
 
-        string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
+        string[] dataPath = { charachter, "Conversation" + conversationNum };
         neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
 
         dialogueGo = IGameObject.Find("Canvas_Dialogue");
@@ -68,14 +72,16 @@ public class EventTriggerDialog : Event
 
         if (cooldown > 0)
             cooldown -= Time.realDeltaTime;
-        Debug.Log("needed quest: " + neededQuestId.ToString());
-        Debug.Log("conversation: " + conversationNum.ToString());
-        Debug.Log("character: " + charachter);
-        if (CheckEventIsPossible() && (managers.questManager.IsQuestComplete(neededQuestId) || neededQuestId == -1))
+
+        if (managers.questManager.IsQuestComplete(neededQuestId) || neededQuestId == -1)
         {
-            Debug.Log("Entra");
-            DoEvent();
+            dialogWarnig.Play();
+            if (CheckEventIsPossible())
+            {
+                DoEvent();
+            }
         }
+        else { dialogWarnig.Stop(); }
 
         if (managers.gameManager.colliderRender) { DrawEventDebug(); }
     }
@@ -100,9 +106,8 @@ public class EventTriggerDialog : Event
     {
         bool ret = true;
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.E) && cooldown <= 0)
+        if (Input.GetControllerButton(Input.ControllerButtonCode.A) ||  Input.GetKeyboardButton(Input.KeyboardCode.E) && cooldown <= 0)
         {
-            Debug.Log(conversationNum.ToString());
             if (isFirst)
             {
                 managers.gameManager.SetGameState(GameManager.GameStates.DIALOGING);

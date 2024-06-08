@@ -424,7 +424,7 @@ public class UiManager : MonoBehaviour
     {
         if(pickUpFeedbackOnCooldown || dialogueOnCooldown)
         {
-            PopupItem item = new PopupItem(type, text1, text, dialoguer, cooldown);
+            PopupItem item = new PopupItem(type, text, text1, dialoguer, cooldown);
             popupsQueue.Add(item);
             return;
         }
