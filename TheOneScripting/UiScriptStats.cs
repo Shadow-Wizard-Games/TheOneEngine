@@ -403,8 +403,8 @@ public class UiScriptStats : MonoBehaviour
 
     public void SetCanvases()
     {
-        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl());
-        ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl());
-        ChangeStatLvl(StatType.SPEED, managers.gameManager.GetDamageLvl());
+        ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl() + 1);
+        ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl() + 1);
+        ChangeStatLvl(StatType.SPEED, managers.gameManager.GetDamageLvl() + 1);
     }
 }
