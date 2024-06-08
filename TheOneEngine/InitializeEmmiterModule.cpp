@@ -291,7 +291,8 @@ void SetOffset::Initialize(Particle* particle)
 			randomFloat(offset.rangeValue.lowerLimit.y, offset.rangeValue.upperLimit.y),
 			randomFloat(offset.rangeValue.lowerLimit.z, offset.rangeValue.upperLimit.z) };
 
-		particle->position += randomVec;
+		quat qTemp = owner->owner->GetContainerGO()->GetComponent<Transform>()->GetGlobalRotation();
+		particle->position += randomVec * quat(-qTemp.x, qTemp.y, qTemp.z, qTemp.w);
 	}
 }
 

@@ -318,13 +318,13 @@ public class RedXenomorphBehaviour : MonoBehaviour
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
-        else hitPSGO.Replay();
+        else hitPSGO?.Replay();
     }
     public void ReduceLifeExplosion()
     {
         life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
-        else hitPSGO.Replay();
+        else hitPSGO?.Replay();
     }
 
     private bool MoveTo(Vector3 targetPosition)

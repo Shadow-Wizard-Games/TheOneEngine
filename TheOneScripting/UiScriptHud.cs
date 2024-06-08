@@ -42,7 +42,7 @@ public class UiScriptHud : MonoBehaviour
     float currLife = 100;
     float playerMaxLife = 100;
 
-    int currencyAmount = 200;
+    int currencyAmount = 0;
 
     int killsAmount = 0;
 
@@ -83,6 +83,12 @@ public class UiScriptHud : MonoBehaviour
     string currentMainMission = "None";
     string currentSideMission = "None";
 
+    bool triggerAdrenaline = false;
+    bool triggerGrenade = false;
+    bool triggerFlamethrower = false;
+    bool triggerPainless = false;
+    bool triggerConsumible = false;
+
     public override void Start()
     {
         managers.Start();
@@ -113,7 +119,7 @@ public class UiScriptHud : MonoBehaviour
         currLife = 100;
         playerMaxLife = 100;
 
-        currencyAmount = 200;
+        currencyAmount = managers.gameManager.currency;
         killsAmount = 0;
 
         var mainQuest = managers.questManager.GetMainQuest();
@@ -144,6 +150,7 @@ public class UiScriptHud : MonoBehaviour
 
         UpdateTimers(dt);
 
+        if (currLoadout == "m4a1") currAmmo = playerScript.loaderAmmoM4;
 
         if (!onCooldown && (playerScript != null && canvas != null))
         {
@@ -166,36 +173,43 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetSliderValue((int)((canvas.GetSliderMaxValue("Slider_Ammo") * currAmmo) / 1), "Slider_Ammo");
                 else 
                 canvas.SetSliderValue((int)((canvas.GetSliderMaxValue("Slider_Ammo") * currAmmo) / maxAmmo), "Slider_Ammo");
+
+                UpdateString(HudStrings.AMMOSTRING);
             }
 
-            if (grenadeUnlocked && !grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R1) || Input.GetKeyboardButton(Input.KeyboardCode.TWO)))//remember to add also keyboard button
+            if (grenadeUnlocked && !grenadeOnCooldown && (triggerGrenade))
             {
                 UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerGrenade = false;
             }
 
-            if (painlessUnlocked && !painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.FOUR)))//remember to add also keyboard button
+            if (painlessUnlocked && !painlessOnCooldown && (triggerPainless))
             {
                 UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerPainless = false;
             }
 
-            if (flameThrowerUnlocked && !flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R1) || Input.GetKeyboardButton(Input.KeyboardCode.THREE)))//remember to add also keyboard button
+            if (flameThrowerUnlocked && !flameThrowerOnCooldown && (triggerFlamethrower))
             {
                 UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerFlamethrower = false;
             }
 
-            if (adrenalineUnlocked && !adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.ONE)))//remember to add also keyboard button
+            if (adrenalineUnlocked && !adrenalineOnCooldown && (triggerAdrenaline))
             {
                 UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerAdrenaline = false;
             }
 
-            if (consumibleUnlocked && !consumibleOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.Q)))//remember to add also keyboard button
+            if (consumibleUnlocked && !consumibleOnCooldown && (triggerConsumible))
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerConsumible = false;
             }
         }
     }
@@ -249,6 +263,12 @@ public class UiScriptHud : MonoBehaviour
             else UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
         }
 
+        if (currencyAmount != managers.gameManager.currency || start)
+        {
+            UpdateString(HudStrings.CURRENCYSTRING);
+            currencyAmount = managers.gameManager.currency;
+        }
+
         PlayerScript.SkillSet temp2 = PlayerScript.SkillSet.NONE;
         if (currLoadout == "m4a1") temp2 = PlayerScript.SkillSet.M4A1SET;
         else if (currLoadout == "laser") temp2 = PlayerScript.SkillSet.SHOULDERLASERSET;
@@ -266,6 +286,8 @@ public class UiScriptHud : MonoBehaviour
                 case PlayerScript.SkillSet.SHOULDERLASERSET:
                     currLoadout = "laser";
                     //do same as m4 but with laser
+                    currAmmo = 1;
+                    maxAmmo = 1;
                     grenadeUnlocked = false;
                     canvas.PrintItemUI(true, "Img_UsingWeaponIcon");
                     canvas.ChangeSectImg("Img_UsingWeaponIcon", 906, 454, 100, 100);
@@ -624,5 +646,26 @@ public class UiScriptHud : MonoBehaviour
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
             }
         }
+    }
+
+    public void TriggerHudAdrenaline()
+    {
+        this.triggerAdrenaline = true;
+    }
+    public void TriggerHudGrenadeLauncher()
+    {
+        this.triggerGrenade = true;
+    }
+    public void TriggerHudFlameThrower()
+    {
+        this.triggerFlamethrower = true;
+    }
+    public void TriggerHudPainless()
+    {
+        this.triggerPainless = true;
+    }
+    public void TriggerHudConsumible()
+    {
+        this.triggerConsumible = true;
     }
 }

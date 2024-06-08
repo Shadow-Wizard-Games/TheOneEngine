@@ -17,7 +17,7 @@
         0.0,
         0.0,
         0.0,
-        300.0,
+        0.0,
         1.0
       ],
       "Type": 0,
@@ -33,6 +33,7 @@
       "DrawWireframe": false,
       "MaterialPath": "Library/Materials/AS_Chestburster_Tpose/M_Chestburster.toematerial",
       "MeshPath": "Library/Meshes/AS_Chestburster_Tpose/Chestburster.animator",
+      "MeshType": 2,
       "Name": "Mesh",
       "ParentUID": 3452816845,
       "Type": 2,
@@ -58,10 +59,10 @@
       "ParentUID": 3452816845,
       "ScriptName": "ChestbursterBehaviour",
       "Type": 4,
-      "UID": 3278573262
+      "UID": 2257091110
     },
     {
-      "AudioID": 0,
+      "AudioID": 17,
       "Name": "AudioSource",
       "Type": 8
     }
@@ -258,13 +259,393 @@
       "ParentUID": 3452816845,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.017731361389160157,
+            0.08068285543300031,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 761166705
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 1.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.0,
+                    1.0,
+                    -3.0
+                  ],
+                  "MinDirection": [
+                    -1.0,
+                    0.5,
+                    -5.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 200.0,
+                  "MinSpeed": 150.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    0.33725491166114807,
+                    0.9921568632125854,
+                    0.0313725508749485,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "MaxOffset": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "MinOffset": [
+                    -1.0,
+                    -1.0,
+                    -1.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    0.5,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 30,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 30.0,
+                  "Duration": 0.20000000298023224,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -500.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 0.20000000298023224,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    3.0,
+                    3.0,
+                    4.0
+                  ],
+                  "MinDirection": [
+                    -3.0,
+                    -3.0,
+                    3.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 80.0,
+                  "MinSpeed": 40.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    0.33725491166114807,
+                    0.9921568632125854,
+                    0.0313725508749485,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    0.5,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 6,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 6.0,
+                  "Duration": 0.20000000298023224,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                }
+              ]
+            }
+          ],
+          "Name": "Chestburster_Hit\u0000\u0000\u0000\u0000",
+          "StartON": false,
+          "Type": 9,
+          "UID": 3239145207
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "HitPS",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 1156579328
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2450177070
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 1.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.5,
+                    3.0,
+                    1.5
+                  ],
+                  "MinDirection": [
+                    -1.5,
+                    2.0,
+                    -4.5
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 200.0,
+                  "MinSpeed": 80.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    0.14222751557826996,
+                    0.987261176109314,
+                    0.01886487752199173,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "MaxOffset": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "MinOffset": [
+                    -1.0,
+                    -1.0,
+                    -1.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    2.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": false,
+              "Lifetime": 0.0,
+              "MaxParticles": 30,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Amount": 30.0,
+                  "Duration": 0.5,
+                  "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -500.0,
+                    0.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            }
+          ],
+          "Name": "Chestburster_Death\u0000\u0000",
+          "StartON": false,
+          "Type": 9,
+          "UID": 3239145207
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "DeathPS",
+      "ParentUID": 3452816845,
+      "Static": false,
+      "UID": 1040384000
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "Chestburster",
-  "ParentUID": 3452816845,
-  "PrefabDirty": false,
+  "ParentUID": 6619242,
+  "PrefabDirty": true,
   "PrefabID": 4037396494,
   "PrefabName": "Chestburster",
   "Static": false,

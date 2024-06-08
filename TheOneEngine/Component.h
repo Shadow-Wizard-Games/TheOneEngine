@@ -25,6 +25,7 @@ enum class ComponentType
     ParticleSystem  = 9,
     Animator        = 10,
     Light           = 11,
+    Primitive2D     = 12,
 
 	Unknown // Last
 };

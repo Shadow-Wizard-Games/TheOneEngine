@@ -41,12 +41,11 @@ class AnarchistBehaviour : MonoBehaviour
     Vector3 playerLastPosition;
 
     // Attack
-    bool shooting = false;
-    float timerBetweenBursts = 0.0f; //Do not modify
-    const float timeBetweenBursts = 0.5f;
-    float timerBetweenBullets = 0.0f; //Do not modify
-    const float timeBetweenBullets = 0.05f;
-    int bulletCounter = 0; //Do not modify
+    float burstTimer = 0.0f; 
+    const float burstCooldown = 1.0f;
+    float bulletsTimer = 0.0f; 
+    const float bulletsCooldown = 0.05f;
+    int bulletCounter = 0; 
     const int burstBulletCount = 3;
 
     // Patrol
@@ -57,12 +56,16 @@ class AnarchistBehaviour : MonoBehaviour
 
     // Flags
     bool isDead = false;
+    bool isShooting = false;
 
     // Timers
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
 
     PlayerScript player;
+
+    IParticleSystem deathPSGO;
+    IParticleSystem hitPSGO;
 
     public override void Start()
     {
@@ -78,6 +81,9 @@ class AnarchistBehaviour : MonoBehaviour
         M4GO.animator.Play("AnarchistWalk");
         attachedGameObject.animator.Blend = true;
         attachedGameObject.animator.TransitionTime = 0.3f;
+
+        deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
+        hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -182,25 +188,25 @@ class AnarchistBehaviour : MonoBehaviour
             currentSubstate = InspctStates.ComingBack;
         }
 
-        if (!shooting)
+        if (!isShooting)
         {
-            timerBetweenBursts += Time.deltaTime;
-            if (timerBetweenBursts > timeBetweenBursts)
+            burstTimer += Time.deltaTime;
+            if (burstTimer > burstCooldown)
             {
-                timerBetweenBursts = 0.0f;
-                shooting = true;
+                burstTimer = 0.0f;
+                isShooting = true;
             }
         }
         else
         {
-            timerBetweenBullets += Time.deltaTime;
-            if (timerBetweenBullets > timeBetweenBullets)
+            bulletsTimer += Time.deltaTime;
+            if (bulletsTimer > bulletsCooldown)
             {
                 attachedGameObject.animator.Play("Shoot");
                 M4GO.animator.Play("AnarchistShoot");
                 Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-                timerBetweenBullets = 0.0f;
+                bulletsTimer = 0.0f;
                 bulletCounter++;
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.E_A_SHOOT);
             }
@@ -208,11 +214,9 @@ class AnarchistBehaviour : MonoBehaviour
             if (bulletCounter >= burstBulletCount)
             {
                 bulletCounter = 0;
-                shooting = false;
+                isShooting = false;
             }
         }
-
-
     }
 
     void Inspect()
@@ -279,6 +283,7 @@ class AnarchistBehaviour : MonoBehaviour
             isDead = true;
             player.shieldKillCounter++;
             // add player biomass
+            deathPSGO?.Play();
         }
     }
 
@@ -296,6 +301,7 @@ class AnarchistBehaviour : MonoBehaviour
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
+        else hitPSGO?.Replay();
         Debug.Log("Total damage " + player.totalDamage);
         //Debug.Log("Total life " + life);
     }
@@ -304,6 +310,7 @@ class AnarchistBehaviour : MonoBehaviour
     {
         life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
+        else hitPSGO?.Replay();
     }
 
     private void DebugDraw()

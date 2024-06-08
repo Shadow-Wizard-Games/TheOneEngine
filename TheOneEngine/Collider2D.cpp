@@ -20,6 +20,7 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO) : Component(cont
     offset.y = 0;
     cornerPivot = true;
     objectOrientation = ObjectOrientation::Front;
+    activeCollision = true;
     //TODO: CHANGE INTO REAL CALCULATED RADIUS
     radius = 0.5;
 }
@@ -27,6 +28,7 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO) : Component(cont
 Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, Collider2D* ref) : Component(containerGO, ref,ComponentType::Collider2D)
 {
     this->colliderType = ref->colliderType;
+    this->activeCollision = ref->activeCollision;
     this->collisionType = ref->collisionType;
     this->h = ref->h;
     this->w = ref->w;
@@ -50,6 +52,21 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType col
     objectOrientation = ObjectOrientation::Front;
     offset.x = 0;
     offset.y = 0;
+    activeCollision = true;
+}
+
+Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType colliderType, CollisionType collisionType) :
+    Component(containerGO, ComponentType::Collider2D),
+    colliderType(colliderType), collisionType(collisionType)
+{
+    radius = 0.0;
+    h = 1;
+    w = 1;
+    cornerPivot = true;
+    objectOrientation = ObjectOrientation::Front;
+    offset.x = 0;
+    offset.y = 0;
+    activeCollision = true;
 }
 
 Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType colliderType, Collider2D* ref) :
@@ -65,6 +82,7 @@ Collider2D::Collider2D(std::shared_ptr<GameObject> containerGO, ColliderType col
     objectOrientation = ObjectOrientation::Front;
     offset.x = 0;
     offset.y = 0;
+    activeCollision = true;
 }
 
 Collider2D::~Collider2D() {}

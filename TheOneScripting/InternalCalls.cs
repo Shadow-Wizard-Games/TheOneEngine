@@ -68,6 +68,12 @@ class InternalCalls
     internal extern static IGameObject InstantiateExplosion(Vector3 initialPosition, Vector3 direction, float radius);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateAlienMeleeAttack(Vector3 initialPosition, float radius);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static IGameObject InstantiateDOT(Vector3 initialPosition, float radius);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static IGameObject InstantiateXenomorph(Vector3 initialPosition, Vector3 direction, Vector3 scale);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -308,6 +314,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetCollisionSolverActive();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetCollisionActive(bool active);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetCollisionActive();
     #endregion
 
     #region Camera

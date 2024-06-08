@@ -1,0 +1,40 @@
+{
+    "GameManager": {
+        "currency": 0,
+        "damageLvl": 0,
+        "lifeLvl": 0,
+        "speedLvl": 0
+    },
+    "ItemManager": {
+        "item0": {
+            "ammount": 1,
+            "id": 4
+        },
+        "item1": {
+            "ammount": 1,
+            "id": 6
+        },
+        "item2": {
+            "ammount": 1,
+            "id": 1
+        },
+        "quantity": 3
+    },
+    "QuestManager": {
+        "activeQuests": {
+            "quest0": {
+                "id": 1
+            },
+            "quest1": {
+                "id": 3
+            }
+        },
+        "completedQuests": {
+            "quest0": {
+                "id": 2
+            }
+        },
+        "quantity1": 2,
+        "quantity2": 1
+    }
+}

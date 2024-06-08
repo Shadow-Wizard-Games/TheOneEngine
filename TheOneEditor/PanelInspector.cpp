@@ -15,6 +15,7 @@
 #include "TheOneEngine\Listener.h"
 #include "TheOneEngine\AudioSource.h"
 #include "TheOneEngine\Light.h"
+#include "TheOneEngine\Primitive2D.h"
 
 #include "TheOneEngine\MonoManager.h"
 #include "TheOneEngine\ParticleSystem.h"
@@ -1532,6 +1533,80 @@ bool PanelInspector::Draw()
                 }
             }
 
+            /*Primitive2D Component*/
+            Primitive2D* primitive = selectedGO->GetComponent<Primitive2D>();
+
+            if (primitive != nullptr && ImGui::CollapsingHeader("Primitive", treeNodeFlags))
+            {
+                // Type
+                const char* label = nullptr;
+
+                switch (primitive->prType)
+                {
+                case None: label = "None"; break;
+                case Quad: label = "Quad"; break;
+                case Circle: label = "Circle"; break;
+                case Line: label = "Line"; break;
+                }
+
+                if (ImGui::BeginCombo("Type", label))
+                {
+                    if (ImGui::Selectable("None"))
+                        primitive->prType = PrimitiveType::None;
+
+                    if (ImGui::Selectable("Quad"))
+                        primitive->prType = PrimitiveType::Quad;
+
+                    if (ImGui::Selectable("Circle"))
+                        primitive->prType = PrimitiveType::Circle;
+
+                    if (ImGui::Selectable("Line"))
+                        primitive->prType = PrimitiveType::Line;
+
+                    ImGui::EndCombo();
+                }
+
+                // Color
+                ImVec4 color = ImVec4(primitive->color.r, primitive->color.g, primitive->color.b, primitive->color.a);
+
+                static const char* color_id = "##primitiveColor4b";
+                if (ImGui::ColorButton(color_id, color, app->gui->panelSettings->GetColorFlags(), ImVec2(ImGui::GetWindowWidth() * 0.65, 20)))
+                {
+                    app->gui->openColorPicker = true;
+                    EditColor editColor = { color_id, color, color };
+                    app->gui->SetEditColor(editColor);
+                }
+                else if (app->gui->GetEditColor().id == color_id)
+                {
+                    ImVec4 color = app->gui->GetEditColor().color;
+                    primitive->color.r = color.x;
+                    primitive->color.g = color.y;
+                    primitive->color.b = color.z;
+                    primitive->color.a = color.w;
+                }
+                ImGui::SameLine();
+                ImGui::SetCursorPos({ ImGui::GetCursorPosX() - 4, ImGui::GetCursorPosY() + 3 });
+                ImGui::Text("Color");
+
+                //Offset
+                if (primitive->prType == PrimitiveType::Line)
+                {
+                    ImGui::Text("Offset");
+                    ImGui::DragFloat("Forward##offsetX", &primitive->offset.x, 0.2F, 0, 0, "%.3f");
+                    ImGui::DragFloat("Up##offsetY", &primitive->offset.y, 0.2f, 0, 0, "%.3f");
+                    ImGui::DragFloat("Right##offsetZ", &primitive->offset.z, 0.2F, 0, 0, "%.3f");
+
+                    ImGui::Text("Width");
+                    ImGui::DragFloat("##LineWidth", &primitive->width, 0.1F, 0, 0, "%.3f");
+                }
+
+                // Delete
+                if (ImGui::Button("Delete"))
+                    selectedGO->RemoveComponent(ComponentType::Primitive2D);
+
+                ImGui::Dummy(ImVec2(0.0f, 10.0f));
+            }
+
             /*Add Component*/
             if (ImGui::BeginMenu("Add Component"))
             {
@@ -1541,6 +1616,11 @@ bool PanelInspector::Draw()
                 if (ImGui::MenuItem("Particle System"))
                 {
                     selectedGO->AddComponent<ParticleSystem>();
+                }
+
+                if (ImGui::MenuItem("Primitive2D"))
+                {
+                    selectedGO->AddComponent<Primitive2D>();
                 }
                 
                 if (ImGui::MenuItem("Light"))

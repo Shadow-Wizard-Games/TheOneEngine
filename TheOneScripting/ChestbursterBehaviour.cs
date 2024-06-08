@@ -22,7 +22,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     float playerDistance;
 
     // Chestburster parameters
-    float life = 80.0f;
+    float life = 15.0f;
     float biomass = 10.0f;
     float movementSpeed = 30.0f * 2;
     States currentState = States.Idle;
@@ -51,6 +51,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     IParticleSystem tailPunchPSGO;
     IParticleSystem tailTripPSGO;
     IParticleSystem deathPSGO;
+    IParticleSystem hitPSGO;
 
     public override void Start()
     {
@@ -66,6 +67,7 @@ public class ChestbursterBehaviour : MonoBehaviour
         tailPunchPSGO = attachedGameObject.FindInChildren("TailPunchPS")?.GetComponent<IParticleSystem>();
         tailTripPSGO = attachedGameObject.FindInChildren("TailTripPS")?.GetComponent<IParticleSystem>();
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
+        hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
     }
 
     public override void Update()
@@ -257,7 +259,7 @@ public class ChestbursterBehaviour : MonoBehaviour
             isDead = true;
             player.shieldKillCounter++;
             // add player biomass
-            deathPSGO.Play();
+            deathPSGO?.Play();
         }
     }
 
@@ -274,13 +276,14 @@ public class ChestbursterBehaviour : MonoBehaviour
     {
         life -= player.totalDamage;
         if (life < 0) life = 0;
-        Debug.Log("Chestburster health: " + life.ToString());
+        else hitPSGO?.Replay();
     }
 
     public void ReduceLifeExplosion()
     {
         life -= player.GrenadeLauncher.damage;
         if (life < 0) life = 0;
+        else hitPSGO?.Replay();
     }
 
     private void DebugDraw()

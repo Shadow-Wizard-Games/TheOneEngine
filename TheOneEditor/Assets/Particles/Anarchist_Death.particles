@@ -1,0 +1,198 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            1.0,
+            1.0,
+            -3.0
+          ],
+          "MinDirection": [
+            -1.0,
+            0.5,
+            -5.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 200.0,
+          "MinSpeed": 120.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            0.4901960790157318,
+            0.03921568766236305,
+            0.03921568766236305,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "MaxOffset": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "MinOffset": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            4.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 45,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 45.0,
+          "Duration": 0.4000000059604645,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
+          "Acceleration": [
+            0.0,
+            -500.0,
+            0.0
+          ],
+          "Type": 0
+        }
+      ]
+    },
+    {
+      "Delay": 0.0,
+      "Duration": 0.20000000298023224,
+      "InitializeModules": [
+        {
+          "MaxDirection": [
+            3.0,
+            3.0,
+            4.0
+          ],
+          "MinDirection": [
+            -3.0,
+            -3.0,
+            3.0
+          ],
+          "Type": 4,
+          "UsingSingleValueDirection": false
+        },
+        {
+          "MaxSpeed": 80.0,
+          "MinSpeed": 40.0,
+          "Type": 0,
+          "UsingSingleValueSpeed": false
+        },
+        {
+          "MaxColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "MinColor": [
+            0.4901960790157318,
+            0.03921568766236305,
+            0.03921568766236305,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": true
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            1.5,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": true
+        }
+      ],
+      "IsLooping": false,
+      "Lifetime": 0.0,
+      "MaxParticles": 6,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 6.0,
+          "Duration": 0.30000001192092896,
+          "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "Anarchist_Death",
+  "StartON": false,
+  "Type": 9,
+  "UID": 3239145207
+}
