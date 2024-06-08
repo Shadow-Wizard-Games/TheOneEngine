@@ -22,7 +22,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     float playerDistance;
 
     // Chestburster parameters
-    float life = 80.0f;
+    float life = 15.0f;
     float biomass = 10.0f;
     float movementSpeed = 30.0f * 2;
     States currentState = States.Idle;
@@ -277,7 +277,6 @@ public class ChestbursterBehaviour : MonoBehaviour
         life -= player.totalDamage;
         if (life < 0) life = 0;
         else hitPSGO?.Replay();
-        Debug.Log("Chestburster health: " + life.ToString());
     }
 
     public void ReduceLifeExplosion()

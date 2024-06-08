@@ -17,7 +17,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
     float playerDistance;
 
     // Facehugger parameters
-    float life = 40.0f;
+    float life = 1.0f;
     float biomass = 10.0f;
     float movementSpeed = 35.0f * 2;
     States currentState = States.Idle;
