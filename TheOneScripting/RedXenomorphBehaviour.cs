@@ -25,7 +25,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     // Red Xenomorph parameters
     float life = 250.0f;
     float biomass = 25.0f;
-    float movementSpeed = 18.0f * 3;
+    float movementSpeed = 22.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     RedXenomorphAttacks currentAttack = RedXenomorphAttacks.None;
@@ -48,6 +48,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     bool isClose = false;
     bool isDead = false;
     bool hasShot = false;
+    bool isTailStabbing = false;
 
     // Timers
     float attackTimer = 0.0f;
@@ -56,6 +57,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
     const float destroyCooldown = 3.0f;
     float delayTimer = 0.0f;
     const float delayCooldown = 1.2f;
+    float tailStabTimer = 0.0f;
+    const float tailStabDelay = 0.7f; // 0.0f ~ 1.0f
 
     PlayerScript player;
 
@@ -261,8 +264,18 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     private void TailStab()
     {
+        tailStabTimer += Time.deltaTime;
+        if (tailStabTimer >= tailStabDelay && !isTailStabbing)
+        {
+            InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 1.75f,
+                                                      20.0f);
+            isTailStabbing = true;
+        }
+
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            isTailStabbing = false;
+            tailStabTimer = 0.0f;
             ResetState();
         }
     }
@@ -320,6 +333,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
         if (life < 0) life = 0;
         else hitPSGO?.Replay();
     }
+
     public void ReduceLifeExplosion()
     {
         life -= player.GrenadeLauncher.damage;
