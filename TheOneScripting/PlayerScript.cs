@@ -67,6 +67,7 @@ public class PlayerScript : MonoBehaviour
     //IGameObject GrenadeLauncherGO;
     IGameObject shotParticlesGO;
     IGameObject shotExplosionGO;
+    IGameObject laserGO;
 
     public SkillSet currentSkillSet;
     float skillSetChangeBaseCD;
@@ -122,6 +123,7 @@ public class PlayerScript : MonoBehaviour
         shotExplosionGO = attachedGameObject.FindInChildren("ShotExplosion");
         bulletShell = attachedGameObject.FindInChildren("BulletShellDrop")?.GetComponent<IParticleSystem>();
         shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
+        laserGO = attachedGameObject.FindInChildren("Laser");
 
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
         hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
@@ -949,6 +951,7 @@ public class PlayerScript : MonoBehaviour
                 hasShot = true;
                 shotExplosionGO.transform.Position = new Vector3(0.0f, 0.3f, 0.3f);
                 shotParticlesGO.transform.Position = new Vector3(0.0f, 0.29f, 0.252f);
+                laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 bulletShell.Play();
@@ -977,6 +980,7 @@ public class PlayerScript : MonoBehaviour
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
                 hasShot = true;
+                laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
@@ -1005,6 +1009,7 @@ public class PlayerScript : MonoBehaviour
                 hasShot = true;
                 shotExplosionGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
                 shotParticlesGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
+                laserGO.transform.Position = new Vector3(-0.1f, 0.127f, 0.4f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 bulletShell.Play();
@@ -1031,6 +1036,7 @@ public class PlayerScript : MonoBehaviour
                 InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
                 //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
+                laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
@@ -1047,6 +1053,7 @@ public class PlayerScript : MonoBehaviour
         GrenadeLauncher.explosionCenterPos = attachedGameObject.transform.Position + attachedGameObject.transform.Forward * GrenadeLauncher.range;
 
         Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+        laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
 
         // CHANGE TO A PREFAB OF GRENADE ?
         InternalCalls.InstantiateGrenade(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
