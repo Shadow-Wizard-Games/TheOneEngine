@@ -3,21 +3,21 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        -70.71066641426842,
+        99.61945343017578,
         0.0,
-        70.7106655710522,
+        8.715564727783203,
         0.0,
         0.0,
         100.0,
         0.0,
         0.0,
-        -70.7106655710522,
+        -8.715564727783203,
         0.0,
-        -70.71066641426842,
+        99.61945343017578,
         0.0,
-        93.18209075927734,
         0.0,
-        510.4464416503906,
+        0.0,
+        0.0,
         1.0
       ],
       "Type": 0,
@@ -44,10 +44,10 @@
       "ParentUID": 113510800,
       "ScriptName": "PlayerScript",
       "Type": 4,
-      "UID": 37957639
+      "UID": 68460373
     },
     {
-      "AudioID": 1,
+      "AudioID": 0,
       "Name": "AudioSource",
       "Type": 8
     },
@@ -465,63 +465,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 3578444093
+          "UID": 2186910880
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 2075236804
+          "UID": 3927508063
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 1387868039
+          "UID": 283052495
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 187181791
+          "UID": 3107547355
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1941787088
+          "UID": 2191153089
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 1907628282
+          "UID": 3520021320
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 1185404818
+          "UID": 4159839414
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 88483547
+          "UID": 2273656499
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2516205094
+          "UID": 3874818130
         }
       ],
       "Enabled": true,
@@ -1908,52 +1908,110 @@
         {
           "Name": "Transform",
           "Transformation Matrix": [
-            1.000000018899577,
-            0.0,
-            -3.2092282318979556e-08,
+            1.0,
             0.0,
             0.0,
-            0.9999999999999999,
             0.0,
             0.0,
-            3.2092282318979556e-08,
+            1.0,
             0.0,
-            1.000000018899577,
             0.0,
-            -0.0008631350154332251,
-            0.3015471649169921,
-            0.24552067191107252,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.805755971417966e-07,
+            0.0,
+            0.0,
             1.0
           ],
           "Type": 0,
-          "UID": 3547225488
+          "UID": 593723676
         },
         {
-          "Color": [
-            1.0,
-            0.17298877239227295,
-            0.14012736082077026,
-            1.0
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 0.10000000149011612,
+              "InitializeModules": [
+                {
+                  "MaxColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "MinColor": [
+                    1.0,
+                    0.15286624431610107,
+                    0.15286624431610107,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                },
+                {
+                  "MaxOffset": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "MinOffset": [
+                    0.0,
+                    0.0,
+                    100.0
+                  ],
+                  "Type": 3,
+                  "UsingSingleValueOffset": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.0,
+                    2.0,
+                    2.0
+                  ],
+                  "MinScale": [
+                    0.7,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 657.6838989257813,
+              "MaxParticles": 400,
+              "RenderModule": [
+                {
+                  "BillboardType": 1,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 0.10000000149011612,
+                  "SpawnRate": 2000.0,
+                  "Type": 0
+                }
+              ]
+            }
           ],
-          "LightType": 3,
-          "Name": "Primitive2D",
-          "Offset": [
-            0.0,
-            0.0,
-            137.0
-          ],
-          "ParentUID": 7536748,
-          "Type": 12,
-          "UID": 587349629
+          "Name": "Laser\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 2939185583
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
-      "Name": "Laser",
+      "Name": "LaserPS",
       "ParentUID": 113510800,
       "Static": false,
-      "UID": 7536748
+      "UID": 1046265010
     }
   ],
   "HasTransparency": false,

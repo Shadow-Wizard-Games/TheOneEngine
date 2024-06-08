@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
     IParticleSystem shotParticles;
     IParticleSystem shotExplosion;
     IParticleSystem bulletShell;
+    IParticleSystem laser;
 
     // background music
     public bool isFighting;
@@ -123,7 +124,8 @@ public class PlayerScript : MonoBehaviour
         shotExplosionGO = attachedGameObject.FindInChildren("ShotExplosion");
         bulletShell = attachedGameObject.FindInChildren("BulletShellDrop")?.GetComponent<IParticleSystem>();
         shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
-        laserGO = attachedGameObject.FindInChildren("Laser");
+        laser = attachedGameObject.FindInChildren("LaserPS")?.GetComponent<IParticleSystem>();
+        laserGO = attachedGameObject.FindInChildren("LaserPS");
 
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
         hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
@@ -290,6 +292,7 @@ public class PlayerScript : MonoBehaviour
         SetAimDirection();
 
         shotLight.SwitchOff();
+        if(isReloading) bulletShell.End();
 
         #region IDLE / MOVING STATES
         if (SetMoveDirection()
@@ -556,6 +559,7 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles.End();
         bulletShell.End();
+        laser.Stop();
     }
     private void RunAction()
     {
@@ -598,6 +602,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         bulletShell.End();
+        laser.Stop();
     }
     private void DashAction()
     {
@@ -702,6 +707,7 @@ public class PlayerScript : MonoBehaviour
 
         stepParticles.End();
         bulletShell.End();
+        laser.Stop();
     }
     private void AdrenalineRushAction()
     {
@@ -952,6 +958,7 @@ public class PlayerScript : MonoBehaviour
                 shotExplosionGO.transform.Position = new Vector3(0.0f, 0.3f, 0.3f);
                 shotParticlesGO.transform.Position = new Vector3(0.0f, 0.29f, 0.252f);
                 laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
+                laser.Replay();
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 bulletShell.Play();
@@ -981,6 +988,7 @@ public class PlayerScript : MonoBehaviour
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
                 hasShot = true;
                 laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
+                laser.Replay();
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
@@ -1010,6 +1018,7 @@ public class PlayerScript : MonoBehaviour
                 shotExplosionGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
                 shotParticlesGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
                 laserGO.transform.Position = new Vector3(-0.1f, 0.127f, 0.4f);
+                laser.Replay();
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 bulletShell.Play();
@@ -1037,6 +1046,7 @@ public class PlayerScript : MonoBehaviour
                 //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
                 laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
+                laser.Replay();
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 shotLight.SwitchOn();
