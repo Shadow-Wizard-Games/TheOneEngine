@@ -30,6 +30,7 @@ public:
 	bool HasToEnd();
 
 	void ClearEmmiters();
+	void RemoveEmmiter(Emmiter* emmiter);
 	Emmiter* AddEmmiter();
 	Emmiter* AddEmmiter(Emmiter* ref);
 

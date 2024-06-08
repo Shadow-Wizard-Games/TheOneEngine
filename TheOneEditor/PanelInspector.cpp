@@ -685,9 +685,18 @@ bool PanelInspector::Draw()
                 for (auto emmiter = particleSystem->emmiters.begin(); emmiter != particleSystem->emmiters.end(); ++emmiter)
                 {
                     ImGui::PushID(emmiterID);
-                    ImGui::Text("Emmiter %d", emmiterID);
-                    // delete emmiter
-                    UIEmmiterWriteNode((*emmiter).get(), emmiterID);
+                    std::string tstring = "Emmiter " + std::to_string(emmiterID);
+                    if (ImGui::CollapsingHeader(tstring.c_str(), treeNodeFlags))
+                    {
+                        UIEmmiterWriteNode((*emmiter).get(), emmiterID);
+                        // delete emmiter
+                        if (ImGui::Button("Remove Emmiter")) {
+                            particleSystem->RemoveEmmiter((*emmiter).get());
+                            break;
+                            isDirty = true;
+                        }
+                        ImGui::Dummy({ 0.0f, 10.0f });
+                    }
                     emmiterID++;
                     ImGui::PopID();
                 }

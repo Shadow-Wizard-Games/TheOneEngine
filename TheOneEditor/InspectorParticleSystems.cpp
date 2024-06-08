@@ -13,14 +13,14 @@ void UIEmmiterWriteNode(Emmiter* emmiter, int ID)
 {
 	emitterid = ID;
 	ImGui::Separator();
-	ImGui::InputInt("maxParticles", &emmiter->maxParticles);
+	ImGui::DragInt("maxParticles", &emmiter->maxParticles);
 
 	if (ImGui::Button("Reset Pool")) emmiter->RestartParticlePool();
 
 	ImGui::Checkbox("Global Particles", &emmiter->isGlobal);
 
-	ImGui::InputFloat("Duration", &emmiter->duration);
-	ImGui::InputFloat("Delay", &emmiter->delay);
+	ImGui::DragFloat("Duration", &emmiter->duration, 0.2f);
+	ImGui::DragFloat("Delay", &emmiter->delay, 0.2f);
 	ImGui::Checkbox("Loop", &emmiter->isLooping);
 
 	ImGui::Separator();
@@ -230,21 +230,21 @@ void UIEmmiterWriteNode(Emmiter* emmiter, int ID)
 // spawn modules ---------------------------------------------------------------------------------------------------------------
 void UIInspectorEmmiterSpawnModule(ConstantSpawnRate* spawnModule) {
 	ImGui::Text("Constant Spawn Rate");
-	ImGui::InputFloat("Spawn Rate", &spawnModule->spawnRate);
-	ImGui::InputFloat("Particle Duration", &spawnModule->duration);
+	ImGui::DragFloat("Spawn Rate", &spawnModule->spawnRate, 1.0f);
+	ImGui::DragFloat("Particle Duration", &spawnModule->duration, 0.1f);
 }
 
 void UIInspectorEmmiterSpawnModule(SingleBurstSpawn* spawnModule) {
 	ImGui::Text("Single Burst");
-	ImGui::InputFloat("Amount", &spawnModule->amount);
-	ImGui::InputFloat("Particle Duration", &spawnModule->duration);
+	ImGui::DragFloat("Amount", &spawnModule->amount, 1.0f);
+	ImGui::DragFloat("Particle Duration", &spawnModule->duration, 0.1f);
 }
 
 void UIInspectorEmmiterSpawnModule(ConstantBurstSpawn* spawnModule) {
 	ImGui::Text("Constant Burst");
-	ImGui::InputFloat("Amount", &spawnModule->amount);
-	ImGui::InputFloat("Spawn Rate", &spawnModule->spawnRate);
-	ImGui::InputFloat("Particle Duration", &spawnModule->duration);
+	ImGui::DragFloat("Amount", &spawnModule->amount, 1.0f);
+	ImGui::DragFloat("Spawn Rate", &spawnModule->spawnRate, 1.0f);
+	ImGui::DragFloat("Particle Duration", &spawnModule->duration, 0.1f);
 }
 
 
@@ -259,16 +259,16 @@ void UIInspectorEmmiterInitializeModule(SetSpeed* initModule)
 
 	if (initModule->speed.usingSingleValue) {
 		ImGui::PushID("set_speed_single_PS");
-		ImGui::InputFloat("Speed", &initModule->speed.singleValue, 0, 0, "%.2f");
+		ImGui::DragFloat("Speed", &initModule->speed.singleValue, 0.1f, 0.0f, 0.0f, "%.2f");
 		ImGui::PopID();
 	}
 	else {
 		ImGui::PushID("set_speed_min_PS");
-		ImGui::InputFloat("Minimum Speed", &initModule->speed.rangeValue.lowerLimit, 0, 0, "%.2f");
+		ImGui::DragFloat("Minimum Speed", &initModule->speed.rangeValue.lowerLimit, 0.1f, 0.0f, 0.0f, "%.2f");
 		ImGui::PopID();
 
 		ImGui::PushID("set_speed_max_PS");
-		ImGui::InputFloat("Maximum Speed", &initModule->speed.rangeValue.upperLimit, 0, 0, "%.2f");
+		ImGui::DragFloat("Maximum Speed", &initModule->speed.rangeValue.upperLimit, 0.1f, 0.0f, 0.0f, "%.2f");
 		ImGui::PopID();
 	}
 
@@ -355,18 +355,26 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 
 		if (initModule->isProportional) {
 			ImGui::PushID("set_scale_single_PS");
-			ImGui::InputDouble("Scale", &initModule->scale.singleValue.x, 0, 0, "%.2f");
+			float temp = initModule->scale.singleValue.x;
+			ImGui::DragFloat("Scale", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.singleValue.x = temp;
 			ImGui::PopID();
 		}
 		else {
 			ImGui::PushItemWidth(60);
 
 			ImGui::PushID("set_scale_single_PS");
-			ImGui::InputDouble("X", &initModule->scale.singleValue.x, 0, 0, "%.2f");
+			float temp = initModule->scale.singleValue.x;
+			ImGui::DragFloat("X", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.singleValue.x = temp;
 			ImGui::SameLine();
-			ImGui::InputDouble("Y", &initModule->scale.singleValue.y, 0, 0, "%.2f");
+			temp = initModule->scale.singleValue.y;
+			ImGui::DragFloat("Y", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.singleValue.y = temp;
 			ImGui::SameLine();
-			ImGui::InputDouble("Z", &initModule->scale.singleValue.z, 0, 0, "%.2f");
+			temp = initModule->scale.singleValue.z;
+			ImGui::DragFloat("Z", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.singleValue.z = temp;
 			ImGui::PopID();
 
 			ImGui::PopItemWidth();
@@ -376,11 +384,15 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 	else {
 		if (initModule->isProportional) {
 			ImGui::PushID("set_scale_min_PS");
-			ImGui::InputDouble("Minimum Scale", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+			float temp = initModule->scale.rangeValue.lowerLimit.x;
+			ImGui::DragFloat("Minimum Scale", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.lowerLimit.x = temp;
 			ImGui::PopID();
 
 			ImGui::PushID("set_scale_max_PS");
-			ImGui::InputDouble("Maximum Scale", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
+			temp = initModule->scale.rangeValue.upperLimit.x;
+			ImGui::DragFloat("Maximum Scale", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.upperLimit.x = temp;
 			ImGui::PopID();
 
 		}
@@ -388,19 +400,30 @@ void UIInspectorEmmiterInitializeModule(SetScale* initModule)
 			ImGui::PushItemWidth(60);
 
 			ImGui::PushID("set_scale_min_PS");
-			ImGui::InputDouble("X", &initModule->scale.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+			float temp = initModule->scale.rangeValue.lowerLimit.x;
+			ImGui::DragFloat("X", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.lowerLimit.x = temp;
 			ImGui::SameLine();
-			ImGui::InputDouble("Y", &initModule->scale.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+			temp = initModule->scale.rangeValue.lowerLimit.y;
+			ImGui::DragFloat("Y", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.lowerLimit.y = temp;
 			ImGui::SameLine();
-			ImGui::InputDouble("Z", &initModule->scale.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+			temp = initModule->scale.rangeValue.lowerLimit.z;
+			ImGui::DragFloat("Z", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.lowerLimit.z = temp;
 			ImGui::PopID();
 
-			ImGui::PushID("set_scale_max_PS");
-			ImGui::InputDouble("X", &initModule->scale.rangeValue.upperLimit.x, 0, 0, "%.2f");
+			temp = initModule->scale.rangeValue.upperLimit.x;
+			ImGui::DragFloat("X", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.upperLimit.x = temp;
 			ImGui::SameLine();
-			ImGui::InputDouble("Y", &initModule->scale.rangeValue.upperLimit.y, 0, 0, "%.2f");
+			temp = initModule->scale.rangeValue.upperLimit.y;
+			ImGui::DragFloat("Y", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.upperLimit.y = temp;
 			ImGui::SameLine();
-			ImGui::InputDouble("Z", &initModule->scale.rangeValue.upperLimit.z, 0, 0, "%.2f");
+			temp = initModule->scale.rangeValue.upperLimit.z;
+			ImGui::DragFloat("Z", &temp, 0.2f, 0.0f, 0.0f, "%.2f");
+			initModule->scale.rangeValue.upperLimit.z = temp;
 			ImGui::PopID();
 
 			ImGui::PopItemWidth();
@@ -423,28 +446,46 @@ void UIInspectorEmmiterInitializeModule(SetOffset* initModule)
 
 	if (initModule->offset.usingSingleValue) {
 		ImGui::PushID("set_offset_single_PS");
-		ImGui::InputDouble("X", &initModule->offset.singleValue.x, 0, 0, "%.2f");
+		float temp = initModule->offset.singleValue.x;
+		ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.singleValue.x = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->offset.singleValue.y, 0, 0, "%.2f");
+		temp = initModule->offset.singleValue.y;
+		ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.singleValue.y = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->offset.singleValue.z, 0, 0, "%.2f");
+		temp = initModule->offset.singleValue.z;
+		ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.singleValue.z = temp;
 		ImGui::PopID();
 	}
 	else {
 		ImGui::PushID("set_offset_min_PS");
-		ImGui::InputDouble("X", &initModule->offset.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+		float temp = initModule->offset.rangeValue.lowerLimit.x;
+		ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.rangeValue.lowerLimit.x = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->offset.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+		temp = initModule->offset.rangeValue.lowerLimit.y;
+		ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.rangeValue.lowerLimit.y = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->offset.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+		temp = initModule->offset.rangeValue.lowerLimit.z;
+		ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.rangeValue.lowerLimit.z = temp;
 		ImGui::PopID();
 
 		ImGui::PushID("set_offset_max_PS");
-		ImGui::InputDouble("X", &initModule->offset.rangeValue.upperLimit.x, 0, 0, "%.2f");
+		temp = initModule->offset.rangeValue.upperLimit.x;
+		ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.rangeValue.upperLimit.x = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->offset.rangeValue.upperLimit.y, 0, 0, "%.2f");
+		temp = initModule->offset.rangeValue.upperLimit.y;
+		ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.rangeValue.upperLimit.y = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->offset.rangeValue.upperLimit.z, 0, 0, "%.2f");
+		temp = initModule->offset.rangeValue.upperLimit.z;
+		ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->offset.rangeValue.upperLimit.z = temp;
 		ImGui::PopID();
 	}
 
@@ -461,28 +502,46 @@ void UIInspectorEmmiterInitializeModule(SetDirection* initModule)
 
 	if (initModule->direction.usingSingleValue) {
 		ImGui::PushID("set_direction_single_PS");
-		ImGui::InputDouble("X", &initModule->direction.singleValue.x, 0, 0, "%.2f");
+		float temp = initModule->direction.singleValue.x;
+		ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.singleValue.x = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->direction.singleValue.y, 0, 0, "%.2f");
+		temp = initModule->direction.singleValue.y;
+		ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.singleValue.y = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->direction.singleValue.z, 0, 0, "%.2f");
+		temp = initModule->direction.singleValue.z;
+		ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.singleValue.z = temp;
 		ImGui::PopID();
 	}
 	else {
 		ImGui::PushID("set_direction_min_PS");
-		ImGui::InputDouble("X", &initModule->direction.rangeValue.lowerLimit.x, 0, 0, "%.2f");
+		float temp = initModule->direction.rangeValue.lowerLimit.x;
+		ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.rangeValue.lowerLimit.x = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->direction.rangeValue.lowerLimit.y, 0, 0, "%.2f");
+		temp = initModule->direction.rangeValue.lowerLimit.y;
+		ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.rangeValue.lowerLimit.y = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->direction.rangeValue.lowerLimit.z, 0, 0, "%.2f");
+		temp = initModule->direction.rangeValue.lowerLimit.z;
+		ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.rangeValue.lowerLimit.z = temp;
 		ImGui::PopID();
 
 		ImGui::PushID("set_direction_max_PS");
-		ImGui::InputDouble("X", &initModule->direction.rangeValue.upperLimit.x, 0, 0, "%.2f");
+		temp = initModule->direction.rangeValue.upperLimit.x;
+		ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.rangeValue.upperLimit.x = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Y", &initModule->direction.rangeValue.upperLimit.y, 0, 0, "%.2f");
+		temp = initModule->direction.rangeValue.upperLimit.y;
+		ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.rangeValue.upperLimit.y = temp;
 		ImGui::SameLine();
-		ImGui::InputDouble("Z", &initModule->direction.rangeValue.upperLimit.z, 0, 0, "%.2f");
+		temp = initModule->direction.rangeValue.upperLimit.z;
+		ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+		initModule->direction.rangeValue.upperLimit.z = temp;
 		ImGui::PopID();
 	}
 
@@ -498,11 +557,17 @@ void UIInspectorEmmiterUpdateModule(AccelerationUpdate* updateModule)
 	ImGui::PushItemWidth(60);
 
 	ImGui::PushID("set_acceleration_PS");
-	ImGui::InputDouble("X", &updateModule->acceleration.x, 0, 0, "%.2f");
+	float temp = updateModule->acceleration.x;
+	ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+	updateModule->acceleration.x = temp;
 	ImGui::SameLine();
-	ImGui::InputDouble("Y", &updateModule->acceleration.y, 0, 0, "%.2f");
+	temp = updateModule->acceleration.y;
+	ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+	updateModule->acceleration.y = temp;
 	ImGui::SameLine();
-	ImGui::InputDouble("Z", &updateModule->acceleration.z, 0, 0, "%.2f");
+	temp = updateModule->acceleration.z;
+	ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+	updateModule->acceleration.z = temp;
 	ImGui::PopID();
 
 	ImGui::PopItemWidth();
@@ -555,11 +620,17 @@ void UIInspectorEmmiterUpdateModule(ScaleOverLifeUpdate* updateModule)
 	ImGui::PushItemWidth(60);
 
 	ImGui::PushID("set_final_scale_PS");
-	ImGui::InputDouble("X", &updateModule->finalScale.x, 0, 0, "%.2f");
+	float temp = updateModule->finalScale.x;
+	ImGui::DragFloat("X", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+	updateModule->finalScale.x = temp;
 	ImGui::SameLine();
-	ImGui::InputDouble("Y", &updateModule->finalScale.y, 0, 0, "%.2f");
+	temp = updateModule->finalScale.y;
+	ImGui::DragFloat("Y", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+	updateModule->finalScale.y = temp;
 	ImGui::SameLine();
-	ImGui::InputDouble("Z", &updateModule->finalScale.z, 0, 0, "%.2f");
+	temp = updateModule->finalScale.z;
+	ImGui::DragFloat("Z", &temp, 0.1f, 0.0f, 0.0f, "%.2f");
+	updateModule->finalScale.z = temp;
 	ImGui::PopID();
 
 	ImGui::PopItemWidth();

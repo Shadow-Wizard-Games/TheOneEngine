@@ -118,6 +118,18 @@ void ParticleSystem::ClearEmmiters()
 	emmiters.clear();
 }
 
+void ParticleSystem::RemoveEmmiter(Emmiter* emmiter)
+{
+	auto it = std::find_if(emmiters.begin(), emmiters.end(),
+		[emmiter](const std::unique_ptr<Emmiter>& e) { return e.get() == emmiter; });
+
+
+	if (it != emmiters.end())
+	{
+		emmiters.erase(it);
+	}
+}
+
 Emmiter* ParticleSystem::AddEmmiter()
 {
 	auto e = std::make_unique<Emmiter>(this);
