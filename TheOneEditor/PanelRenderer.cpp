@@ -18,7 +18,9 @@ PanelRenderer::PanelRenderer(PanelType type, std::string name)
 	frameBuffers(nullptr),
 	selectedBuffer(nullptr),
 	attachments(nullptr),
+	selectedAttachment(nullptr),
 	selectedTab(RendererTab::Settings),
+	drawInScene(false),
 	renderLights(true),
 	renderShadows(true),
 	renderParticles(true),
@@ -37,6 +39,7 @@ void PanelRenderer::Start()
 	selectedBuffer = &frameBuffers->front();
 
 	attachments = selectedBuffer->GetAllAttachments();
+	selectedAttachment = &attachments->front();
 }
 
 bool PanelRenderer::Draw()
@@ -141,6 +144,29 @@ void PanelRenderer::FrameBuffersTab()
 		}
 		ImGui::EndCombo();
 	}
+
+	// Slect Attachment (for view in panel scene)
+	ImGui::Checkbox("Panel Draw ", &drawInScene);
+
+	if (drawInScene)
+	{
+		ImGui::SameLine();
+
+		std::string attachmentName = selectedAttachment ? selectedAttachment->name : "None";
+		ImGui::SetNextItemWidth(105);
+		if (ImGui::BeginCombo("##Attachment", attachmentName.c_str()))
+		{
+			for (auto& attachment : *attachments)
+			{
+				bool selected = false;
+				if (ImGui::Selectable(attachment.name.c_str(), &selected))
+				{
+					selectedAttachment = &attachment;
+				}
+			}
+			ImGui::EndCombo();
+		}
+	}	
 
 	if (!selectedTarget || !selectedBuffer)
 		return;

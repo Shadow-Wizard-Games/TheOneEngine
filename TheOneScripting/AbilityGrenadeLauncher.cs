@@ -10,7 +10,7 @@ public class AbilityGrenadeLauncher : MonoBehaviour
         COOLDOWN,
     }
 
-    Item_M4A1 M4Item;
+    Item_GrenadeLauncher grenadeLauncherItem;
 
     public string abilityName;
     public float cooldownTime;
@@ -23,19 +23,21 @@ public class AbilityGrenadeLauncher : MonoBehaviour
     public float explosionRadius;
     public Vector3 explosionCenterPos;
 
-    public readonly float grenadeVelocity = 250f;
+    public float grenadeVelocity = 250f;
 
     public override void Start()
     {
-        M4Item = new Item_M4A1();
+        grenadeLauncherItem = new Item_GrenadeLauncher();
 
         abilityName = "Grenade Launcher";
 
-        cooldownTime = M4Item.grenadeCooldownTime;
+        cooldownTime = grenadeLauncherItem.cooldownTime;
         cooldownTimeCounter = cooldownTime;
 
-        damage = M4Item.grenadeDamage;
-        explosionRadius = M4Item.grenadeExplosionRadius;
+        damage = grenadeLauncherItem.damage;
+        explosionRadius = grenadeLauncherItem.grenadeExplosionRadius;
+
+        grenadeVelocity = grenadeLauncherItem.grenadeVelocity;
 
         state = AbilityState.READY;
     }

@@ -24,7 +24,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     // Chestburster parameters
     float life = 15.0f;
     float biomass = 10.0f;
-    float movementSpeed = 30.0f * 2;
+    float movementSpeed = 35.0f * 3;
     States currentState = States.Idle;
     ChestbursterAttack currentAttack = ChestbursterAttack.None;
 
@@ -38,12 +38,17 @@ public class ChestbursterBehaviour : MonoBehaviour
     bool isClose = false;
     bool detected = false;
     bool isDead = false;
+    bool isAttacking = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 4.0f;
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
+    float tailPunchTimer = 0.0f;
+    const float tailPunchDelay = 0.5f; // 0.0f ~ 1.0f
+    float tailTripTimer = 0.0f;
+    const float tailTripDelay = 0.5f; // 0.0f ~ 1.0f
 
     PlayerScript player;
 
@@ -231,23 +236,37 @@ public class ChestbursterBehaviour : MonoBehaviour
     private void TailPunch()
     {
         //Debug.Log("Attempt to do TailPunch");
+        tailPunchTimer += Time.deltaTime;
+        if (tailPunchTimer >= tailPunchDelay && !isAttacking)
+        {
+            InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 1.5f,
+                                                      10.0f);
+            isAttacking = true;
+        }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
+            tailPunchTimer = 0.0f;
         }
-
     }
 
     private void TailTrip()
     {
         //Debug.Log("Attempt to do TailTrip");
+        tailTripTimer += Time.deltaTime;
+        if (tailTripTimer >= tailTripDelay && !isAttacking)
+        {
+            InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 1.5f,
+                                                      10.0f);
+            isAttacking = true;
+        }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
             ResetState();
+            tailTripTimer = 0.0f;
         }
-
     }
 
     private void Dead()
@@ -266,6 +285,7 @@ public class ChestbursterBehaviour : MonoBehaviour
     private void ResetState()
     {
         //Debug.Log("Reset State");
+        isAttacking = false;
         attackTimer = 0.0f;
         currentAttack = ChestbursterAttack.None;
         currentState = States.Chase;

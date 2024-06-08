@@ -24,7 +24,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     // White Xenomorph parameters
     float life = 350.0f;
     float biomass = 30.0f;
-    float movementSpeed = 20.0f * 3;
+    float movementSpeed = 24.0f * 3;
     States currentState = States.Idle;
     States lastState = States.Idle;
     WhiteXenomorphAttacks currentAttack = WhiteXenomorphAttacks.None;
@@ -46,12 +46,17 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     bool detected = false;
     bool isClose = false;
     bool isDead = false;
+    bool isAttacking = false;
 
     // Timers
     float attackTimer = 0.0f;
     const float attackCooldown = 2.0f;
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
+    float clawAttackTimer = 0.0f;
+    const float clawAttackDelay = 0.45f; // 0.0f ~ 1.0f
+    float tailTripTimer = 0.0f;
+    const float tailTripDelay = 0.5f; // 0.0f ~ 1.0f
 
     PlayerScript player;
 
@@ -238,16 +243,34 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
 
     private void ClawAttack()
     {
+        clawAttackTimer += Time.deltaTime;
+        if (clawAttackTimer >= clawAttackDelay && !isAttacking)
+        {
+            InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 1.75f,
+                                                      22.0f);
+            isAttacking = true;
+        }
+
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            clawAttackTimer = 0.0f;
             ResetState();
         }
     }
 
     private void TailTrip()
     {
+        tailTripTimer += Time.deltaTime;
+        if (tailTripTimer >= tailTripDelay && !isAttacking)
+        {
+            InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 1.75f,
+                                                      25.0f);
+            isAttacking = true;
+        }
+
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            tailTripTimer = 0.0f;
             ResetState();
         }
     }
@@ -297,6 +320,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
         attackTimer = 0.0f;
         currentAttack = WhiteXenomorphAttacks.None;
         currentState = States.Chase;
+        isAttacking = false;
     }
 
     public void ReduceLife() //temporary function for the hardcoding of collisions

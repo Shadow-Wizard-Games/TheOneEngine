@@ -25,7 +25,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     // Adult Xenomorph parameters
     float life = 200.0f;
     float biomass = 20.0f;
-    float movementSpeed = 18.0f * 3;
+    float movementSpeed = 22.0f * 3;
     
     States currentState = States.Idle;
     States lastState = States.Idle;
@@ -49,6 +49,7 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     bool isClose = false;
     bool isDead = false;
     bool hasShot = false;
+    bool isTailAttacking = false;
 
     // Timers
     float attackTimer = 0.0f;
@@ -57,6 +58,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
     const float destroyCooldown = 3.0f;
     float delayTimer = 0.0f;
     const float delayCooldown = 1.2f;
+    float tailAttackTimer = 0.0f;
+    const float tailAttackDelay = 0.5f; // 0.0f ~ 1.0f
 
     PlayerScript player;
 
@@ -262,8 +265,18 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     private void TailAttack()
     {
+        tailAttackTimer += Time.deltaTime;
+        if (tailAttackTimer >= tailAttackDelay && !isTailAttacking)
+        {
+            InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position,
+                                                      25.0f);
+            isTailAttacking = true;
+        }
+
         if (attachedGameObject.animator.CurrentAnimHasFinished)
         {
+            isTailAttacking = false;
+            tailAttackTimer = 0.0f;
             ResetState();
         }
     }

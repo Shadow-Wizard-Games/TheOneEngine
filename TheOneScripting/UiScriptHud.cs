@@ -668,4 +668,12 @@ public class UiScriptHud : MonoBehaviour
     {
         this.triggerConsumible = true;
     }
+
+    // when painless desactivated by click
+    public void SetPainlessOnCD()
+    {
+        painlessHoveredOnCooldown = false;
+        painlessOnCooldown = true;
+        painlessTimer = playerScript.Impaciente.activeTime;
+    }
 }

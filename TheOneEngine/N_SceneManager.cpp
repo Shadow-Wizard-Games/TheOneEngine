@@ -1121,6 +1121,10 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& p
 
 	goTransform->SetPosition(position);
 	goTransform->SetRotation(rotation);
+
+	// add to goCollision list if it has component Collider 
+	if (newGameObject->GetComponent<Collider2D>())
+		engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
 }
 
 void N_SceneManager::CreatePrefabWithName(std::string prefabName, const mat4& transform)

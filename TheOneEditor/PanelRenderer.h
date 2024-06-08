@@ -26,7 +26,12 @@ public:
 	void SettingsTab();
 	void FrameBuffersTab();
 
+	bool GetDrawInScene() { return drawInScene; }
+	Attachment* GetSelectedAttachment() { return selectedAttachment; }
+
 private:
+	RendererTab selectedTab;
+
 	std::vector<RenderTarget>* renderTargets;
 	RenderTarget* selectedTarget;
 
@@ -34,8 +39,9 @@ private:
 	FrameBuffer* selectedBuffer;
 
 	std::vector<Attachment>* attachments;
+	Attachment* selectedAttachment;
 
-	RendererTab selectedTab;
+	bool drawInScene;
 
 	// Render Settings
 	bool renderLights;

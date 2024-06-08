@@ -1,0 +1,60 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1175946475
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 7471184,
+      "ScriptName": "Explosion",
+      "Type": 4,
+      "UID": 2484786242
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 5,
+      "CornerPivot": true,
+      "Height": 100.0,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 7471184,
+      "Radius": 50.0,
+      "Type": 5,
+      "UID": 344754624,
+      "Width": 100.0
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "GrenadeExplosion",
+  "ParentUID": 7471184,
+  "PrefabDirty": false,
+  "PrefabID": 2395639512,
+  "PrefabName": "GrenadeExplosion",
+  "Static": false,
+  "UID": 7471184
+}

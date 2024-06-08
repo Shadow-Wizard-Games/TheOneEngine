@@ -40,27 +40,20 @@ void DrawScanLine(inout vec3 color, vec2 uv)
 
 void main()
 {
-    // Curve UV
     vec2 uv = fragCoord.xy;
     vec2 crtUV = WarpUV(uv);
 
-    // Color
     vec3 color = texture(albedo, crtUV).rgb;
-    //vec3 color = vec3(crtUV, 0.0).rgb;
 
-    // Set color
     if(crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0)
     {
         color = vec3(0.0, 0.0, 0.0);
     }
 
-    // Vignette
     DrawVignette(color, crtUV);
 
-    // ScanLine
     DrawScanLine(color, crtUV);
 
-    // Fragcolor OUT
     fragColor.xyz = color;
     fragColor.w = 1.0;
 }

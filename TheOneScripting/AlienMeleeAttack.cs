@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 class AlienMeleeAttack : MonoBehaviour
 {
-    float lifeTime = 0.1f;
-    float currentTime = 0.0f;
+    float lifeTimer = 0.0f;
+    const float lifeCooldown = 0.1f;
 
     public override void Update()
     {
-        currentTime += Time.deltaTime;
+        lifeTimer += Time.deltaTime;
 
-        if (currentTime > lifeTime)
+        if (lifeTimer >= lifeCooldown)
         {
-            currentTime = 0.0f;
+            lifeTimer = 0.0f;
             attachedGameObject.Destroy();
             return;
         }

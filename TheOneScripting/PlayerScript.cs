@@ -97,7 +97,6 @@ public class PlayerScript : MonoBehaviour
     // DEFINED IN ABILITY / ITEM SCRIPT
     public bool shieldIsActive;
     public Vector3 grenadeInitialVelocity;
-    public Vector3 explosionPos;
     public int shieldKillCounter;
     public float waitForAnimationToFinish = 0.0f;
 
@@ -108,7 +107,7 @@ public class PlayerScript : MonoBehaviour
     // Lights
     public ILight shotLight;
 
-    UiScriptHud hudScript;
+    public UiScriptHud hudScript;
 
     IParticleSystem deathPSGO;
     IParticleSystem hitPSGO;
@@ -317,6 +316,7 @@ public class PlayerScript : MonoBehaviour
             // grenade 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
+                && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
@@ -365,6 +365,7 @@ public class PlayerScript : MonoBehaviour
             // grenade
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
+                && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
@@ -413,7 +414,7 @@ public class PlayerScript : MonoBehaviour
         {
             skillSetChangeTime -= Time.deltaTime;
         }
-        else if (Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT))
+        else if ((Input.GetKeyboardButton(Input.KeyboardCode.SIX) || Input.GetControllerButton(Input.ControllerButtonCode.LEFT)) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
         {
             if (currentSkillSet == SkillSet.M4A1SET && managers.itemManager.CheckItemInInventory(3))
             {
@@ -437,20 +438,23 @@ public class PlayerScript : MonoBehaviour
         }
         if (isReloading && loaderAmmoM4 > 0 && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR)))
         {
-            Debug.Log("RELOAD CANCELLED");
+            //Debug.Log("RELOAD CANCELLED");
             isReloading = false;
             reloadingTimeCounter = ItemM4.reloadTime;
         }
 
         if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
-            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2))
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2)
+                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+                waitForAnimationToFinish = 0.3f;
                 hudScript.TriggerHudGrenadeLauncher();
             }
 
-            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY && managers.itemManager.CheckItemInInventory(8))
+            else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY && managers.itemManager.CheckItemInInventory(8)
+                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
                 hudScript.TriggerHudFlameThrower();
@@ -460,7 +464,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyboardButton(Input.KeyboardCode.TWO))
         {
             if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY 
-                && managers.itemManager.CheckItemInInventory(2))
+                && managers.itemManager.CheckItemInInventory(2) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
                 waitForAnimationToFinish = 0.3f;
@@ -471,7 +475,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
         {
             if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY 
-                && managers.itemManager.CheckItemInInventory(8))
+                && managers.itemManager.CheckItemInInventory(8) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
                 Flamethrower.Activated();
@@ -1073,7 +1077,7 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > 0.15f / 2)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 15f + height, attachedGameObject.transform.Rotation);
                 //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
                 laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
@@ -1097,7 +1101,7 @@ public class PlayerScript : MonoBehaviour
         laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
 
         // CHANGE TO A PREFAB OF GRENADE ?
-        InternalCalls.InstantiateGrenade(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+        InternalCalls.CreatePrefab("Grenade", attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 15f + height, attachedGameObject.transform.Rotation);
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.A_GL_SHOOT);
 
@@ -1153,8 +1157,7 @@ public class PlayerScript : MonoBehaviour
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        managers.gameManager.health -= 50;
-        //Debug.Log("Player took explosion damage! Current life is: " + gameManager.health.ToString());
+        managers.gameManager.health -= GrenadeLauncher.damage;
 
         if (managers.gameManager.health <= 0)
         {
