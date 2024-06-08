@@ -16,6 +16,7 @@
 #include "Renderer.h"
 #include "Renderer2D.h"
 #include "Renderer3D.h"
+#include "Primitive2D.h"
 
 #include "TheOneAudio/AudioCore.h"
 
@@ -590,6 +591,9 @@ std::shared_ptr<GameObject> N_SceneManager::DuplicateGO(std::shared_ptr<GameObje
 		case ComponentType::Light:
 			duplicatedGO.get()->AddCopiedComponent<Light>((Light*)item);
 			break;
+		case ComponentType::Primitive2D:
+			duplicatedGO.get()->AddCopiedComponent<Primitive2D>((Primitive2D*)item);
+			break;
 		case ComponentType::Unknown:
 			break;
 		default:
@@ -1047,6 +1051,15 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 
 				auto light = goToModify->GetComponent<Light>();
 				light->LoadComponent(componentJSON);
+				break;
+			}
+			case ComponentType::Primitive2D:
+			{
+				if (goToModify->GetComponent<Primitive2D>() == nullptr)
+					goToModify->AddComponent<Primitive2D>();
+
+				auto primitive2D = goToModify->GetComponent<Primitive2D>();
+				primitive2D->LoadComponent(componentJSON);
 				break;
 			}
 			default:

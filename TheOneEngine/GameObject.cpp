@@ -10,6 +10,7 @@
 #include "AudioSource.h"
 #include "Canvas.h"
 #include "ParticleSystem.h"
+#include "Primitive2D.h"
 
 #include "UIDGen.h"
 #include "BBox.hpp"
@@ -465,6 +466,11 @@ void GameObject::LoadGameObject(const json& gameObjectJSON)
 			{
 				this->AddComponent<Light>((LightType)componentJSON["LightType"]);
 				this->GetComponent<Light>()->LoadComponent(componentJSON);
+			}
+			else if (componentJSON["Type"] == (int)ComponentType::Primitive2D)
+			{
+				this->AddComponent<Primitive2D>();
+				this->GetComponent<Primitive2D>()->LoadComponent(componentJSON);
 			}
 		}
 	}

@@ -405,10 +405,11 @@ void Renderer2D::DrawLineBatch(const Batch& batch)
 		batch.LineVertexBuffer->SetData(batch.LineVertexBufferBase, dataSize);
 
 		renderer2D.LineShader->Bind();
-		SetLineWidth(renderer2D.LineWidth);
+		glLineWidth(renderer2D.LineWidth);
 		DrawLines(batch.LineVertexArray, batch.LineVertexCount);
 		renderer2D.Stats.DrawCalls++;
 		renderer2D.LineShader->UnBind();
+		renderer2D.LineWidth = 2.0f;
 	}
 }
 
