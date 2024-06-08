@@ -21,6 +21,15 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void GetControllerJoystick(int joystick, ref Vector2 joyResult, int gamePad);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static bool GetMouseButton(int id);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetMousePositionX();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetMousePositionY();
     #endregion
 
     #region Transform
@@ -227,6 +236,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static bool GetCRTShader();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetWindowSizeX();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetWindowSizeY();
     #endregion
 
     #region Debug
@@ -381,6 +396,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void SetTransitionTime(IntPtr GOptr, ref float time);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetPlaybackSpeed(IntPtr GOptr);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static void SetPlaybackSpeed(IntPtr GOptr, ref float time);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static void UpdateAnimation(IntPtr GOptr, ref float dt);

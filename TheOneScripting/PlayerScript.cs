@@ -114,6 +114,8 @@ public class PlayerScript : MonoBehaviour
     IParticleSystem healPSGO;
     IParticleSystem adrenalinePSGO;
 
+    Vector2 aimingDirection;
+
     public override void Start()
     {
         managers.Start();
@@ -295,7 +297,7 @@ public class PlayerScript : MonoBehaviour
         SetAimDirection();
 
         shotLight.SwitchOff();
-        if(isReloading) bulletShell.End();
+        if (isReloading) { bulletShell.End(); laser.End(); }
 
         #region IDLE / MOVING STATES
         if (SetMoveDirection()
@@ -303,7 +305,7 @@ public class PlayerScript : MonoBehaviour
         {
             currentAction = CurrentAction.RUN;
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R2))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetMouseButton(Input.MouseButtonCode.LEFT))
                 && currentWeaponType != CurrentWeapon.NONE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
@@ -352,7 +354,7 @@ public class PlayerScript : MonoBehaviour
 
             currentAction = CurrentAction.IDLE;
             
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R2))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetMouseButton(Input.MouseButtonCode.LEFT))
                 && currentWeaponType != CurrentWeapon.NONE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
@@ -432,11 +434,11 @@ public class PlayerScript : MonoBehaviour
         #endregion
 
         //manage reload cooldowns
-        if (!Input.GetControllerButton(Input.ControllerButtonCode.R2) && !Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
+        if (!Input.GetControllerButton(Input.ControllerButtonCode.R2) && !Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) && Input.GetMouseButton(Input.MouseButtonCode.LEFT))
         {
             letsReloadTimeCounter += Time.deltaTime;
         }
-        if (isReloading && loaderAmmoM4 > 0 && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR)))
+        if (isReloading && loaderAmmoM4 > 0 && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) || Input.GetMouseButton(Input.MouseButtonCode.LEFT)))
         {
             //Debug.Log("RELOAD CANCELLED");
             isReloading = false;
@@ -810,7 +812,7 @@ public class PlayerScript : MonoBehaviour
     private bool SetMoveDirection()
     {
         bool toMove = false;
-        Vector2 aimingDirection = Vector2.zero;
+        Vector2 movingDirection = Vector2.zero;
 
         #region CONTROLLER
         Vector2 leftJoystickDirection = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
@@ -837,7 +839,7 @@ public class PlayerScript : MonoBehaviour
             movementMagnitude = 1.0f;
             toMove = true;
 
-            aimingDirection += Vector2.zero - Vector2.right - Vector2.up;
+            movingDirection += Vector2.zero - Vector2.right - Vector2.up;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.A))
@@ -846,7 +848,7 @@ public class PlayerScript : MonoBehaviour
             movementMagnitude = 1.0f;
             toMove = true;
 
-            aimingDirection += Vector2.zero - Vector2.right + Vector2.up;
+            movingDirection += Vector2.zero - Vector2.right + Vector2.up;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.S))
@@ -855,7 +857,7 @@ public class PlayerScript : MonoBehaviour
             movementMagnitude = 1.0f;
             toMove = true;
 
-            aimingDirection += Vector2.zero + Vector2.right + Vector2.up;
+            movingDirection += Vector2.zero + Vector2.right + Vector2.up;
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.D))
@@ -864,7 +866,7 @@ public class PlayerScript : MonoBehaviour
             movementMagnitude = 1.0f;
             toMove = true;
 
-            aimingDirection += Vector2.zero + Vector2.right - Vector2.up;
+            movingDirection += Vector2.zero + Vector2.right - Vector2.up;
         }
         #endregion
 
@@ -872,10 +874,20 @@ public class PlayerScript : MonoBehaviour
 
         if (movementDirection != Vector3.zero)
         {
-            //lastMovementDirection = movementDirection;
-            aimingDirection = aimingDirection.Normalize();
-            float characterRotation = (float)Math.Atan2(aimingDirection.x, aimingDirection.y);
-            attachedGameObject.transform.Rotation = new Vector3(0.0f, characterRotation, 0.0f);
+            //movingDirection = movingDirection.Normalize();
+            float characterRotation = (float)Math.Atan2(movingDirection.x, movingDirection.y);
+            float dot = movingDirection.x * aimingDirection.x + movingDirection.y * aimingDirection.y;
+
+            if (dot < 0)
+            {
+                attachedGameObject.animator.PlaybackSpeed = -1.0f;
+                Debug.Log("Going Backwards");
+            }
+            else
+            {
+                attachedGameObject.animator.PlaybackSpeed = 1.0f;
+                Debug.Log("Going Forward");
+            }
         }
 
         return toMove;
@@ -884,7 +896,21 @@ public class PlayerScript : MonoBehaviour
     private bool SetAimDirection()
     {
         bool hasAimed = false;
-        Vector2 aimingDirection = Vector2.zero;
+
+        #region MOUSE
+        float mousePositionX = Input.GetMousePositionX();
+        float mousePositionY = Input.GetMousePositionY();
+        float windowSizeX = InternalCalls.GetWindowSizeX();
+        float windowSizeY = InternalCalls.GetWindowSizeY();
+        Vector2 centerScreen = new Vector2(windowSizeX / 2, windowSizeY / 2);
+        Vector2 direction = new Vector2(mousePositionX, mousePositionY) - centerScreen;
+
+        if (direction.x != 0.0f || direction.y != 0.0f)
+        {
+            aimingDirection += direction;
+            hasAimed = true;
+        }
+        #endregion
 
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))

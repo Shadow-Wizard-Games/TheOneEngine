@@ -48,6 +48,18 @@ public class IAnimator : IComponent
         }
     }
 
+    public float PlaybackSpeed
+    {
+        get
+        {
+            return InternalCalls.GetPlaybackSpeed(containerGOptr);
+        }
+        set
+        {
+            InternalCalls.SetPlaybackSpeed(containerGOptr, ref value);
+        }
+    }
+
     public void UpdateAnimation()
     {
         float dt = Time.deltaTime;

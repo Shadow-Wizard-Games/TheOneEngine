@@ -97,5 +97,19 @@ public class Input
         InternalCalls.GetControllerJoystick((int)joystick, ref joyResult, controller);
         return joyResult;
     }
+
+    public static bool GetMouseButton(MouseButtonCode key)
+    {
+        return InternalCalls.GetMouseButton((int)key);
+    }
+
+    public static float GetMousePositionX()
+    {
+        return InternalCalls.GetMousePositionX();
+    }
+    public static float GetMousePositionY()
+    {
+        return InternalCalls.GetMousePositionY();
+    }
 }
 

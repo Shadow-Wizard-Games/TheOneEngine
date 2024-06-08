@@ -66,9 +66,9 @@ public:
 
 	KeyState GetMouseButton(int id) const { return mouse_buttons[id]; }
 
-	int GetMouseX() const { return mouse_x; }
-	int GetMouseY() const { return mouse_y; }
-	int GetMouseZ() const { return mouse_z; }
+	int GetMouseX() { return mouse_x; }
+	int GetMouseY() { return mouse_y; }
+	int GetMouseZ() { return mouse_z; }
 
 	int GetMouseXMotion() const { return mouse_x_motion; }
 	int GetMouseYMotion() const { return mouse_y_motion; }

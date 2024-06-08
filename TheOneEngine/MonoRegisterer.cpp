@@ -17,6 +17,7 @@
 #include "SkeletalModel.h"
 #include "N_SceneManager.h"
 #include "Renderer.h"
+#include "Window.h"
 
 #include <glm/vec3.hpp>
 #include <sstream>
@@ -68,6 +69,35 @@ static void GetControllerJoystick(int joystick, vec2f* joyResult, int gamePad)
 		joyResult->x = engine->inputManager->pads[gamePad].left_x;
 		joyResult->y = engine->inputManager->pads[gamePad].left_y;
 	}
+}
+
+static bool GetMouseButton(int id)
+{
+	return engine->inputManager->GetMouseButton(id) == KEY_REPEAT;
+}
+
+static float GetMousePositionX()
+{
+	return (float)engine->inputManager->GetMouseX();
+}
+
+static float GetMousePositionY()
+{
+	return (float)engine->inputManager->GetMouseY();
+}
+
+static float GetWindowSizeX()
+{
+	int w, h;
+	engine->window->GetSDLWindowSize(&w, &h);
+	return (float)w;
+}
+
+static float GetWindowSizeY()
+{
+	int w, h;
+	engine->window->GetSDLWindowSize(&w, &h);
+	return (float)h;
 }
 
 //Transform
@@ -1199,6 +1229,22 @@ static void SetTransitionTime(GameObject* GOptr, float* time) {
 	m->setTransitionTime((float)*time);
 }
 
+static float GetPlaybackSpeed(GameObject* GOptr) {
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return -1.0f;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	return m->getActiveAnimation()->getPlaybackSpeed();
+}
+
+static void SetPlaybackSpeed(GameObject* GOptr, float* time) {
+	Mesh* mesh = GOptr->GetComponent<Mesh>();
+	if (mesh->meshType != MeshType::SKELETAL) return;
+
+	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
+	m->getActiveAnimation()->setPlaybackSpeed((float)*time);
+}
+
 static void UpdateAnimation(GameObject* GOptr, float* dt) {
 	Mesh* mesh = GOptr->GetComponent<Mesh>();
 	if (mesh->meshType != MeshType::SKELETAL) return;
@@ -1277,6 +1323,9 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
 	mono_add_internal_call("InternalCalls::GetControllerButton", GetControllerButton);
 	mono_add_internal_call("InternalCalls::GetControllerJoystick", GetControllerJoystick);
+	mono_add_internal_call("InternalCalls::GetMouseButton", GetMouseButton);
+	mono_add_internal_call("InternalCalls::GetMousePositionX", GetMousePositionX);
+	mono_add_internal_call("InternalCalls::GetMousePositionY", GetMousePositionY);
 
 	//Transform
 	mono_add_internal_call("InternalCalls::TransformCheck", TransformCheck);
@@ -1334,6 +1383,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetFullscreen",	GetFullscreen);
 	mono_add_internal_call("InternalCalls::GetPixelFX",		GetPixelFX);
 	mono_add_internal_call("InternalCalls::GetCRTShader",	GetCRTShader);
+	mono_add_internal_call("InternalCalls::GetWindowSizeX", GetWindowSizeX);
+	mono_add_internal_call("InternalCalls::GetWindowSizeY", GetWindowSizeY);
 
 	//Debug
 	mono_add_internal_call("InternalCalls::ScriptingLog", ScriptingLog);
@@ -1393,6 +1444,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::SetTransitionBlend", SetTransitionBlend);
 	mono_add_internal_call("InternalCalls::GetTransitionTime", GetTransitionTime);
 	mono_add_internal_call("InternalCalls::SetTransitionTime", SetTransitionTime);
+	mono_add_internal_call("InternalCalls::GetPlaybackSpeed", GetPlaybackSpeed);
+	mono_add_internal_call("InternalCalls::SetPlaybackSpeed", SetPlaybackSpeed);
 	mono_add_internal_call("InternalCalls::UpdateAnimation", UpdateAnimation);
 
 	//Light
