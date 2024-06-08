@@ -95,11 +95,13 @@ public class UiScriptDebug : MonoBehaviour
 
             if (movementVector.y != 0.0f)
             {
+                //down
                 if (movementVector.y > 0.0f)
                 {
                     direction = +2;
                     toMove = true;
                 }
+                //up
                 else if (movementVector.y < 0.0f)
                 {
                     direction = -2;
@@ -108,11 +110,13 @@ public class UiScriptDebug : MonoBehaviour
             }
             else if (movementVector.x != 0.0f)
             {
+                //right
                 if (movementVector.x > 0.0f)
                 {
                     direction = +1;
                     toMove = true;
                 }
+                //left
                 else if (movementVector.x < 0.0f)
                 {
                     direction = -1;

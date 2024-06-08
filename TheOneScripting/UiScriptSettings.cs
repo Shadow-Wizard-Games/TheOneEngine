@@ -116,7 +116,8 @@ public class UiScriptSettings : MonoBehaviour
 
                 if (movementVector.y != 0.0f)
                 {
-                    if (movementVector.y > 0.0f)
+                    //up
+                    if (movementVector.y < 0.0f)
                     {
                         if (currentButton <= 0)
                         {
@@ -128,7 +129,8 @@ public class UiScriptSettings : MonoBehaviour
                         }
                         toMove = true;
                     }
-                    else if (movementVector.y < 0.0f)
+                    //down
+                    else if (movementVector.y > 0.0f)
                     {
                         if (currentButton >= 1)
                         {
@@ -143,10 +145,12 @@ public class UiScriptSettings : MonoBehaviour
                 }
                 else if (movementVector.x != 0.0f)
                 {
-                    if (movementVector.x > 0.0f)
+                    //left
+                    if (movementVector.x < 0.0f)
                     {
                     }
-                    else if (movementVector.x < 0.0f)
+                    //right
+                    else if (movementVector.x > 0.0f)
                     {
                     }
                 }

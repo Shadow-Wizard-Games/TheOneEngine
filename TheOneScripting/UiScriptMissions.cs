@@ -172,7 +172,8 @@ public class UiScriptMissions : MonoBehaviour
 
             if (movementVector.y != 0.0f)
             {
-                if (movementVector.y > 0.0f)
+                //up
+                if (movementVector.y < 0.0f)
                 {
                     if (currentButton == 0 || currentButton == 1)
                     {
@@ -184,7 +185,8 @@ public class UiScriptMissions : MonoBehaviour
                     }
                     toMove = true;
                 }
-                else if (movementVector.y < 0.0f)
+                //down
+                else if (movementVector.y > 0.0f)
                 {
                     if (currentButton == 0 || currentButton == 1)
                     {
@@ -203,7 +205,8 @@ public class UiScriptMissions : MonoBehaviour
             }
             else if (movementVector.x != 0.0f)
             {
-                if (movementVector.x > 0.0f)
+                //left
+                if (movementVector.x < 0.0f)
                 {
                     if (currentButton == 0)
                     {
@@ -217,7 +220,8 @@ public class UiScriptMissions : MonoBehaviour
                     }
                     toMove = true;
                 }
-                else if (movementVector.x < 0.0f)
+                //right
+                else if (movementVector.x > 0.0f)
                 {
                     if (currentButton == 0)
                     {
