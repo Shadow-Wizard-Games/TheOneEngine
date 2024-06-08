@@ -1,6 +1,7 @@
 #include "PanelScene.h"
 #include "App.h"
 #include "Gui.h"
+#include "PanelRenderer.h"
 #include "PanelInspector.h"
 #include "SceneManager.h"
 #include "imgui.h"
@@ -269,8 +270,11 @@ bool PanelScene::Draw()
             sceneCamera.get()->GetComponent<Camera>()->UpdateCamera();
         }
 
-        ImTextureID textureID =
-            (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color");
+        ImTextureID textureID;
+        if (app->gui->panelRenderer->GetDrawInScene())
+            textureID = (ImTextureID)app->gui->panelRenderer->GetSelectedAttachment()->textureId;
+        else
+            textureID = (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "postBuffer")->GetAttachmentTexture("color");
         
         ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 

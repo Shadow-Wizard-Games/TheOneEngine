@@ -1,6 +1,7 @@
 #include "PanelGame.h"
 #include "App.h"
 #include "Gui.h"
+#include "PanelRenderer.h"
 #include "SceneManager.h"
 #include "imgui.h"
 
@@ -160,8 +161,12 @@ bool PanelGame::Draw()
 		ImGui::Dummy(offset);
 		if (offset.x) ImGui::SameLine();
 
-		ImTextureID textureID =
-			(ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color_crt");
+
+		ImTextureID textureID;
+		if (app->gui->panelRenderer->GetDrawInScene())
+			textureID = (ImTextureID)app->gui->panelRenderer->GetSelectedAttachment()->textureId;
+		else
+			textureID = (ImTextureID)Renderer::GetFrameBuffer(renderTarget, "uiBuffer")->GetAttachmentTexture("color_crt");
 
 		ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 

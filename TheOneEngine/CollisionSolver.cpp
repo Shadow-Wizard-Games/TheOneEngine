@@ -12,7 +12,7 @@
 #include "GL/gl.h"
 
 CollisionSolver::CollisionSolver()
-{
+{ 
     active = true;
 }
 
