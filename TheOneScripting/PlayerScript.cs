@@ -83,6 +83,7 @@ public class PlayerScript : MonoBehaviour
     public int loaderAmmoM4 = 0;
     public bool isReloading = false;
     public float reloadingTimeCounter = 0.0f;
+    public float letsReloadTimeCounter = 0.0f; 
 
     // abilities
     public AbilityGrenadeLauncher GrenadeLauncher;
@@ -107,6 +108,7 @@ public class PlayerScript : MonoBehaviour
     // Lights
     public ILight shotLight;
 
+    UiScriptHud hudScript;
 
     IParticleSystem deathPSGO;
     IParticleSystem hitPSGO;
@@ -131,6 +133,8 @@ public class PlayerScript : MonoBehaviour
         hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
         healPSGO = attachedGameObject.FindInChildren("HealPS")?.GetComponent<IParticleSystem>();
         adrenalinePSGO = attachedGameObject.FindInChildren("AdrenalinePS")?.GetComponent<IParticleSystem>();
+
+        hudScript = IGameObject.Find("Canvas_Hud")?.GetComponent<UiScriptHud>();
 
         M4GO = attachedGameObject.FindInChildren("WP_CarabinaM4");
         M4GO.Disable();
@@ -281,7 +285,7 @@ public class PlayerScript : MonoBehaviour
         //update player adrenaline ps
         if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
             adrenalinePSGO.Play();
-        else adrenalinePSGO.Stop();
+        else adrenalinePSGO.End();
 
         // set movement
         movementDirection = Vector3.zero;
@@ -306,6 +310,7 @@ public class PlayerScript : MonoBehaviour
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
                 currentAction = CurrentAction.RUNSHOOT;
+                letsReloadTimeCounter = 0;
                 return;
             }
 
@@ -316,6 +321,7 @@ public class PlayerScript : MonoBehaviour
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
                 currentAction = CurrentAction.RUNSHOOT;
+                hudScript.TriggerHudGrenadeLauncher();
                 return;
             }
 
@@ -326,6 +332,7 @@ public class PlayerScript : MonoBehaviour
                 && currentAction != CurrentAction.DASH)
             {
                 currentAction = CurrentAction.RUNHEAL;
+                hudScript.TriggerHudConsumible();
                 return;
             }
 
@@ -335,6 +342,7 @@ public class PlayerScript : MonoBehaviour
                 && currentAction != CurrentAction.DASH)
             {
                 currentAction = CurrentAction.RUNADRENALINERUSH;
+                hudScript.TriggerHudAdrenaline();
                 return;
             }
         }
@@ -350,6 +358,7 @@ public class PlayerScript : MonoBehaviour
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
                 currentAction = CurrentAction.SHOOT;
+                letsReloadTimeCounter = 0;
                 return;
             }
 
@@ -360,6 +369,7 @@ public class PlayerScript : MonoBehaviour
                 && Heal.state != AbilityHeal.AbilityState.ACTIVE)
             {
                 currentAction = CurrentAction.SHOOT;
+                hudScript.TriggerHudGrenadeLauncher();
                 return;
             }
         }
@@ -378,6 +388,7 @@ public class PlayerScript : MonoBehaviour
             && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.HEAL;
+            hudScript.TriggerHudConsumible();
             return;
         }
 
@@ -387,6 +398,7 @@ public class PlayerScript : MonoBehaviour
             && Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             currentAction = CurrentAction.ADRENALINERUSH;
+            hudScript.TriggerHudAdrenaline();
             return;
         }
         #endregion
@@ -418,13 +430,31 @@ public class PlayerScript : MonoBehaviour
         }
         #endregion
 
+        //manage reload cooldowns
+        if (!Input.GetControllerButton(Input.ControllerButtonCode.R2) && !Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR))
+        {
+            letsReloadTimeCounter += Time.deltaTime;
+        }
+        if (isReloading && loaderAmmoM4 > 0 && (Input.GetControllerButton(Input.ControllerButtonCode.R2) || Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR)))
+        {
+            Debug.Log("RELOAD CANCELLED");
+            isReloading = false;
+            reloadingTimeCounter = ItemM4.reloadTime;
+        }
+
         if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
             if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2))
+            {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
+                hudScript.TriggerHudGrenadeLauncher();
+            }
 
             else if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY && managers.itemManager.CheckItemInInventory(8))
+            {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
+                hudScript.TriggerHudFlameThrower();
+            }
         }
 
         if (Input.GetKeyboardButton(Input.KeyboardCode.TWO))
@@ -434,6 +464,7 @@ public class PlayerScript : MonoBehaviour
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
                 waitForAnimationToFinish = 0.3f;
+                hudScript.TriggerHudGrenadeLauncher();
             }
         }
 
@@ -444,6 +475,7 @@ public class PlayerScript : MonoBehaviour
             {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
                 Flamethrower.Activated();
+                hudScript.TriggerHudFlameThrower();
             }
         }
 
@@ -455,6 +487,7 @@ public class PlayerScript : MonoBehaviour
         {
             currentWeaponType = CurrentWeapon.IMPACIENTE;
             Impaciente.Activated();
+            hudScript.TriggerHudPainless();
         }
 
         #region ENABLE / DISABLE WEAPONS
@@ -723,7 +756,6 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
         attachedGameObject.animator.Play("Adrenaline Rush Static");
-        adrenalinePSGO?.Replay();
 
         Debug.Log("Activated Adrenaline Rush");
     }
@@ -745,7 +777,6 @@ public class PlayerScript : MonoBehaviour
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
         attachedGameObject.animator.Play("Adrenaline Rush Moving");
-        adrenalinePSGO?.Replay();
 
         Debug.Log("Activated Adrenaline Rush");
     }
@@ -1160,6 +1191,13 @@ public class PlayerScript : MonoBehaviour
     {
         if (loaderAmmoM4 <= 0)
             isReloading = true;
+
+        if (letsReloadTimeCounter >= 4.0f)
+        {
+            Debug.Log("STARTING AUTO RELOAD");
+            isReloading = true;
+            letsReloadTimeCounter = 0;
+        }
 
         if (isReloading)
         {

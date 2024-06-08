@@ -83,6 +83,12 @@ public class UiScriptHud : MonoBehaviour
     string currentMainMission = "None";
     string currentSideMission = "None";
 
+    bool triggerAdrenaline = false;
+    bool triggerGrenade = false;
+    bool triggerFlamethrower = false;
+    bool triggerPainless = false;
+    bool triggerConsumible = false;
+
     public override void Start()
     {
         managers.Start();
@@ -175,34 +181,39 @@ public class UiScriptHud : MonoBehaviour
                 UpdateString(HudStrings.AMMOSTRING);
             }
 
-            if (grenadeUnlocked && !grenadeOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R1) || Input.GetKeyboardButton(Input.KeyboardCode.TWO)))//remember to add also keyboard button
+            if (grenadeUnlocked && !grenadeOnCooldown && (triggerGrenade))
             {
                 UpdateAbilityCanvas(PlayerAbility.GRENADE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerGrenade = false;
             }
 
-            if (painlessUnlocked && !painlessOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L2) || Input.GetKeyboardButton(Input.KeyboardCode.FOUR)))//remember to add also keyboard button
+            if (painlessUnlocked && !painlessOnCooldown && (triggerPainless))
             {
                 UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerPainless = false;
             }
 
-            if (flameThrowerUnlocked && !flameThrowerOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.R1) || Input.GetKeyboardButton(Input.KeyboardCode.THREE)))//remember to add also keyboard button
+            if (flameThrowerUnlocked && !flameThrowerOnCooldown && (triggerFlamethrower))
             {
                 UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerFlamethrower = false;
             }
 
-            if (adrenalineUnlocked && !adrenalineOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.L1) || Input.GetKeyboardButton(Input.KeyboardCode.ONE)))//remember to add also keyboard button
+            if (adrenalineUnlocked && !adrenalineOnCooldown && (triggerAdrenaline))
             {
                 UpdateAbilityCanvas(PlayerAbility.ADRENALINE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerAdrenaline = false;
             }
 
-            if (consumibleUnlocked && !consumibleOnCooldown && (Input.GetControllerButton(Input.ControllerButtonCode.X) || Input.GetKeyboardButton(Input.KeyboardCode.Q)))//remember to add also keyboard button
+            if (consumibleUnlocked && !consumibleOnCooldown && (triggerConsumible))
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.SELECTED);
                 onCooldown = true;
+                triggerConsumible = false;
             }
         }
     }
@@ -639,5 +650,26 @@ public class UiScriptHud : MonoBehaviour
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
             }
         }
+    }
+
+    public void TriggerHudAdrenaline()
+    {
+        this.triggerAdrenaline = true;
+    }
+    public void TriggerHudGrenadeLauncher()
+    {
+        this.triggerGrenade = true;
+    }
+    public void TriggerHudFlameThrower()
+    {
+        this.triggerFlamethrower = true;
+    }
+    public void TriggerHudPainless()
+    {
+        this.triggerPainless = true;
+    }
+    public void TriggerHudConsumible()
+    {
+        this.triggerConsumible = true;
     }
 }
