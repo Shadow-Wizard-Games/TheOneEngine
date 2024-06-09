@@ -313,6 +313,10 @@ public class PlayerScript : MonoBehaviour
 
         SetAimDirection();
 
+        WeaponAbilityStates();
+
+        shotLight.SwitchOff();
+
         #region IDLE / MOVING STATES
         if (Dash.state != AbilityDash.AbilityState.ACTIVE
             && SetMoveDirection())
@@ -414,10 +418,6 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         #endregion
-
-        WeaponAbilityStates();
-
-        shotLight.SwitchOff();
     }
     private void WeaponAbilityStates()
     {
@@ -541,30 +541,33 @@ public class PlayerScript : MonoBehaviour
             switch (currentWeaponType)
             {
                 case CurrentWeapon.M4:
-                    // CHANGE DEPENDING ON GRENADE LAUNCHER
+                    currentWeapon.Disable();
                     M4GO.Enable();
                     currentWeapon = M4GO;
                     currentWeaponDamage = ItemM4.damage;
                     break;
                 case CurrentWeapon.SHOULDERLASER:
+                    currentWeapon.Disable();
                     ShoulderLaserGO.Enable();
                     currentWeapon = ShoulderLaserGO;
                     currentWeaponDamage = ItemShoulderLaser.damage;
                     break;
                 case CurrentWeapon.IMPACIENTE:
+                    currentWeapon.Disable();
                     ImpacienteGO.Enable();
                     currentWeapon = ImpacienteGO;
                     currentWeaponDamage = Impaciente.damage;
                     Debug.Log("Impaciente Activated");
                     break;
                 case CurrentWeapon.FLAMETHROWER:
+                    currentWeapon.Disable();
                     FlamethrowerGO.Enable();
                     currentWeapon = FlamethrowerGO;
                     currentWeaponDamage = Flamethrower.damage;
                     Debug.Log("Flamethrower Activated");
                     break;
                 case CurrentWeapon.GRENADELAUNCHER:
-                    // CHANGE DEPENDING ON GRENADE LAUNCHER
+                    currentWeapon.Disable();
                     M4GO.Enable();
                     currentWeapon = M4GO;
                     Debug.Log("Grenade Launcher Activated");
