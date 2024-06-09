@@ -161,14 +161,14 @@ public class UiScriptStats : MonoBehaviour
                 currentButton += direction;
             }
 
-            if (managers.gameManager.currency >= 500)
+            if (managers.gameManager.currency >= 800)
             {
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
                     if (managers.gameManager.GetDamageLvl() < 3)
                     {
                         onCooldown = true;
-                        managers.gameManager.currency -= 100;
+                        managers.gameManager.currency -= 800;
                         managers.gameManager.SetDamageLvl(managers.gameManager.GetDamageLvl() + 1);
                         ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl() + 1);
 
@@ -176,14 +176,14 @@ public class UiScriptStats : MonoBehaviour
                     }
                 }
             }
-            else if (managers.gameManager.currency >= 150)
+            if (managers.gameManager.currency >= 200)
             { 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     if (managers.gameManager.GetLifeLvl() < 3)
                     {
                         onCooldown = true;
-                        managers.gameManager.currency -= 100;
+                        managers.gameManager.currency -= 200;
                         managers.gameManager.SetLifeLvl(managers.gameManager.GetLifeLvl() + 1);
                         ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl() + 1);
 
@@ -196,7 +196,7 @@ public class UiScriptStats : MonoBehaviour
                     if (managers.gameManager.GetSpeedLvl() < 3)
                     {
                         onCooldown = true;
-                        managers.gameManager.currency -= 100;
+                        managers.gameManager.currency -= 200;
                         managers.gameManager.SetSpeedLvl(managers.gameManager.GetSpeedLvl() + 1);
                         ChangeStatLvl(StatType.SPEED, managers.gameManager.GetSpeedLvl() + 1);
 
@@ -411,6 +411,6 @@ public class UiScriptStats : MonoBehaviour
     {
         ChangeStatLvl(StatType.DAMAGE, managers.gameManager.GetDamageLvl() + 1);
         ChangeStatLvl(StatType.HEALTH, managers.gameManager.GetLifeLvl() + 1);
-        ChangeStatLvl(StatType.SPEED, managers.gameManager.GetDamageLvl() + 1);
+        ChangeStatLvl(StatType.SPEED, managers.gameManager.GetSpeedLvl() + 1);
     }
 }
