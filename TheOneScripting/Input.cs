@@ -85,10 +85,20 @@ public class Input
     {
         return InternalCalls.GetKeyboardButton((int)key);
     }
+    
+    public static bool GetKeyboardButtonUp(KeyboardCode key)
+    {
+        return InternalCalls.GetKeyboardButtonUp((int)key);
+    }
 
     public static bool GetControllerButton(ControllerButtonCode button, int controller = 0)
     {
         return InternalCalls.GetControllerButton((int)button, controller);
+    }
+    
+    public static bool GetControllerButtonUp(ControllerButtonCode button, int controller = 0)
+    {
+        return InternalCalls.GetControllerButtonUp((int)button, controller);
     }
 
     public static Vector2 GetControllerJoystick(ControllerJoystickCode joystick, int controller = 0)
@@ -101,6 +111,11 @@ public class Input
     public static bool GetMouseButton(MouseButtonCode key)
     {
         return InternalCalls.GetMouseButton((int)key);
+    }
+    
+    public static bool GetMouseButtonUp(MouseButtonCode key)
+    {
+        return InternalCalls.GetMouseButtonUp((int)key);
     }
 
     public static float GetMousePositionX()

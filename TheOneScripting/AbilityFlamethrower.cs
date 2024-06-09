@@ -18,8 +18,15 @@ public class AbilityFlamethrower : MonoBehaviour
     public float activeTimeCounter;
     public float cooldownTimeCounter;
 
+    public float receiveDmgIntervalTime;
+
+    public float waitToReset = 0.5f;
+
     public int damage;
     public float slowAmount;
+
+    public bool shooting;
+    public bool playParticle;
 
     public AbilityState state;
 
@@ -36,6 +43,11 @@ public class AbilityFlamethrower : MonoBehaviour
         activeTimeCounter = activeTime;
         cooldownTime = FlamethrowerItem.cooldownTime;
         cooldownTimeCounter = cooldownTime;
+
+        receiveDmgIntervalTime = FlamethrowerItem.intervalTime;
+
+        shooting = false;
+        playParticle = false;
 
         damage = FlamethrowerItem.damage;
 
@@ -87,21 +99,63 @@ public class AbilityFlamethrower : MonoBehaviour
         {
             // update time
             activeTimeCounter -= Time.deltaTime;
+
+            if(Input.GetKeyboardButtonUp(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButtonUp(Input.ControllerButtonCode.R2) || Input.GetMouseButtonUp(Input.MouseButtonCode.LEFT))
+            {
+                shooting = false;
+                player.flameThrowerPS.Stop();
+                if(IGameObject.Find("DOT") != null)
+                    IGameObject.Find("DOT").GetComponent<DOT>().DestroyCollider();
+                Debug.Log("farlopa lopa lopa lopa lopa lopa");
+            }
+
+
+            if(playParticle)
+            {
+                player.flameThrowerPS.Play();
+                playParticle = false;
+                Debug.Log("jesuuuuuuuuuuuuuuuuuus");
+            }
+
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.R1)) && activeTimeCounter < activeTime - waitToReset)
+            {
+                // reset stats
+
+                player.currentWeaponType = PlayerScript.CurrentWeapon.SHOULDERLASER;
+                activeTimeCounter = activeTime;
+                player.flameThrowerPS.Stop();
+                player.FlamethrowerGO.Disable();
+                player.ShoulderLaserGO.Enable();
+
+
+                player.currentWeaponDamage = damage;
+
+                state = AbilityState.COOLDOWN;
+
+                player.hudScript.SetFlameThrowerOnCD();
+
+                Debug.Log("Ability flame on Cooldown");
+            }
+
         }
         else
         {
             player.currentWeaponType = PlayerScript.CurrentWeapon.SHOULDERLASER;
+            activeTimeCounter = activeTime;
+            player.flameThrowerPS.Stop();
             player.FlamethrowerGO.Disable();
             player.ShoulderLaserGO.Enable();
-            activeTimeCounter = activeTime;
+
+            player.currentWeaponDamage = damage;
 
             state = AbilityState.COOLDOWN;
+            Debug.Log("Ability flame on Cooldown");
         }
     }
 
     public void OnCooldown()
     {
-        if (cooldownTime > 0.0f)
+        if (cooldownTimeCounter > 0.0f)
         {
             // update time
             cooldownTimeCounter -= Time.deltaTime;

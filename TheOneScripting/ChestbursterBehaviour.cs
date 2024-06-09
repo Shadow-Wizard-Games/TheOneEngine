@@ -29,9 +29,9 @@ public class ChestbursterBehaviour : MonoBehaviour
     ChestbursterAttack currentAttack = ChestbursterAttack.None;
 
     // Ranges
-    const float detectedRange = 35.0f * 1.5f;
+    const float detectedRange = 200.0f;
     const float isCloseRange = 60.0f;
-    const float maxChasingRange = 150.0f;
+    const float maxChasingRange = 200.0f;
     const float maxRangeStopChasing = 25.0f;
 
     // Flags
@@ -77,6 +77,8 @@ public class ChestbursterBehaviour : MonoBehaviour
 
     public override void Update()
     {
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) return;
+
         attachedGameObject.animator.UpdateAnimation();
 
         if (currentState == States.Dead)

@@ -28,10 +28,10 @@
       "ParentUID": 3452816845,
       "ScriptName": "UiManager",
       "Type": 4,
-      "UID": 811880306
+      "UID": 4153729840
     },
     {
-      "AudioID": 2,
+      "AudioID": 27,
       "Name": "AudioSource",
       "Type": 8
     }
@@ -1130,10 +1130,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptInventory",
           "Type": 4,
-          "UID": 1666657557
+          "UID": 4140025954
         },
         {
-          "AudioID": 3,
+          "AudioID": 28,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -1435,7 +1435,7 @@
           ]
         },
         {
-          "AudioID": 4,
+          "AudioID": 29,
           "Name": "Source",
           "Type": 8
         },
@@ -1444,7 +1444,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptPause",
           "Type": 4,
-          "UID": 1046573996
+          "UID": 3696537271
         }
       ],
       "Enabled": false,
@@ -1485,7 +1485,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptHud",
           "Type": 4,
-          "UID": 2673079948
+          "UID": 1905566652
         },
         {
           "DebugDraw": true,
@@ -3384,10 +3384,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptDebug",
           "Type": 4,
-          "UID": 781199285
+          "UID": 2233746955
         },
         {
-          "AudioID": 5,
+          "AudioID": 30,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -3777,7 +3777,7 @@
           ]
         },
         {
-          "AudioID": 6,
+          "AudioID": 31,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -3786,7 +3786,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptMissions",
           "Type": 4,
-          "UID": 724610772
+          "UID": 3709518077
         }
       ],
       "Enabled": false,
@@ -3978,7 +3978,7 @@
               ]
             },
             {
-              "AudioID": 7,
+              "AudioID": 32,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -4178,7 +4178,7 @@
               ]
             },
             {
-              "AudioID": 8,
+              "AudioID": 33,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -4378,7 +4378,7 @@
               ]
             },
             {
-              "AudioID": 9,
+              "AudioID": 34,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -4578,7 +4578,7 @@
               ]
             },
             {
-              "AudioID": 10,
+              "AudioID": 35,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -4771,7 +4771,7 @@
           ]
         },
         {
-          "AudioID": 11,
+          "AudioID": 36,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -6237,13 +6237,13 @@
               "Name": "Text_DamageCurrencyValue",
               "Print": true,
               "Rect": [
-                0.6100000143051147,
+                0.6000000238418579,
                 -0.17000000178813934,
                 0.029999999329447746,
                 0.054999999701976776
               ],
               "State": 0,
-              "TextString": "100",
+              "TextString": "500",
               "Type": 4
             },
             {
@@ -6267,7 +6267,7 @@
                 0.054999999701976776
               ],
               "State": 0,
-              "TextString": "100",
+              "TextString": "150",
               "Type": 4
             },
             {
@@ -6291,7 +6291,7 @@
                 0.054999999701976776
               ],
               "State": 0,
-              "TextString": "100",
+              "TextString": "150",
               "Type": 4
             },
             {
@@ -6784,7 +6784,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptStats",
           "Type": 4,
-          "UID": 1531110141
+          "UID": 1805396419
         }
       ],
       "Enabled": false,
@@ -6931,7 +6931,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptSettings",
           "Type": 4,
-          "UID": 3251579691
+          "UID": 1046656812
         }
       ],
       "Enabled": false,
@@ -7000,7 +7000,7 @@
               ]
             },
             {
-              "AudioID": 12,
+              "AudioID": 37,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -7937,10 +7937,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettingsDisplay",
               "Type": 4,
-              "UID": 3912962249
+              "UID": 168216713
             },
             {
-              "AudioID": 13,
+              "AudioID": 38,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -8049,7 +8049,7 @@
           ]
         },
         {
-          "AudioID": 14,
+          "AudioID": 39,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -8174,7 +8174,7 @@
           ]
         },
         {
-          "AudioID": 15,
+          "AudioID": 40,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -8191,7 +8191,7 @@
   "HasTransparency": false,
   "Keeped": false,
   "Name": "UI_Manager",
-  "ParentUID": 6619242,
+  "ParentUID": 3407971,
   "PrefabDirty": false,
   "PrefabID": 2472160759,
   "PrefabName": "UI_Manager",

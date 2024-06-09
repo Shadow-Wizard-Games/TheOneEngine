@@ -44,7 +44,7 @@
       "ParentUID": 113510800,
       "ScriptName": "PlayerScript",
       "Type": 4,
-      "UID": 68460373
+      "UID": 2654257163
     },
     {
       "AudioID": 0,
@@ -465,63 +465,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 2186910880
+          "UID": 3101811942
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 3927508063
+          "UID": 208180029
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 283052495
+          "UID": 1897587114
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 3107547355
+          "UID": 686723814
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 2191153089
+          "UID": 1929529976
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 3520021320
+          "UID": 3632884222
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 4159839414
+          "UID": 2273411857
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 2273656499
+          "UID": 2476789385
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 3874818130
+          "UID": 1020440579
         }
       ],
       "Enabled": true,
@@ -2012,13 +2012,228 @@
       "ParentUID": 113510800,
       "Static": false,
       "UID": 1046265010
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 2777171322
+        },
+        {
+          "Emmiters": [
+            {
+              "Delay": 0.0,
+              "Duration": 0.5,
+              "InitializeModules": [
+                {
+                  "MaxColor": [
+                    0.9803921580314636,
+                    0.3137255012989044,
+                    0.0,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.7843137383460999,
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": false
+                },
+                {
+                  "MaxDirection": [
+                    -10.0,
+                    3.0,
+                    20.0
+                  ],
+                  "MinDirection": [
+                    10.0,
+                    -3.0,
+                    20.0
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 120.0,
+                  "MinSpeed": 100.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    7.0,
+                    1.5,
+                    1.5
+                  ],
+                  "MinScale": [
+                    5.0,
+                    0.5,
+                    0.5
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 33.97373580932617,
+              "MaxParticles": 200,
+              "RenderModule": [
+                {
+                  "BillboardType": 0,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 0.6000000238418579,
+                  "SpawnRate": 100.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "Acceleration": [
+                    0.0,
+                    0.2,
+                    30.0
+                  ],
+                  "Type": 0
+                }
+              ]
+            },
+            {
+              "Delay": 0.0,
+              "Duration": 10.0,
+              "InitializeModules": [
+                {
+                  "MaxDirection": [
+                    1.5,
+                    9.0,
+                    0.5
+                  ],
+                  "MinDirection": [
+                    0.0,
+                    7.0,
+                    -0.5
+                  ],
+                  "Type": 4,
+                  "UsingSingleValueDirection": false
+                },
+                {
+                  "MaxSpeed": 9.0,
+                  "MinSpeed": 7.0,
+                  "Type": 0,
+                  "UsingSingleValueSpeed": false
+                },
+                {
+                  "IsProportional": true,
+                  "MaxScale": [
+                    2.5,
+                    2.5,
+                    2.5
+                  ],
+                  "MinScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "Type": 2,
+                  "UsingSingleValueScale": false
+                },
+                {
+                  "MaxColor": [
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    0.1764705926179886,
+                    1.0
+                  ],
+                  "MinColor": [
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    0.1568627506494522,
+                    1.0
+                  ],
+                  "Type": 1,
+                  "UsingSingleValueColor": true
+                }
+              ],
+              "IsLooping": true,
+              "Lifetime": 33.97373580932617,
+              "MaxParticles": 50,
+              "RenderModule": [
+                {
+                  "BillboardType": 0,
+                  "TexturePath": "",
+                  "Type": 0
+                }
+              ],
+              "SpawnModule": [
+                {
+                  "Duration": 3.0,
+                  "SpawnRate": 2.0,
+                  "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                }
+              ]
+            }
+          ],
+          "Name": "P_Flamethrower\u0000\u0000\u0000\u0000\u0000\u0000",
+          "StartON": true,
+          "Type": 9,
+          "UID": 704292522
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "FlameThrowerPS",
+      "ParentUID": 113510800,
+      "Static": false,
+      "UID": 7471184
     }
   ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
-  "ParentUID": 7536748,
-  "PrefabDirty": true,
+  "ParentUID": 7471184,
+  "PrefabDirty": false,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,
