@@ -147,4 +147,7 @@ private:
 	static void InitPostLightingShader();
 	static void InitIndexShaders();
 	static void InitCRTShader();
+
+	// CRT Shader Effects
+	static void BloodEffect(float &kBlood);
 };

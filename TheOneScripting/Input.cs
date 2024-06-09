@@ -21,12 +21,14 @@ public class Input
         F1 = 58,
         F2 = 59,
         F3 = 60,
-        //
+
+        // Debug Keys
         F4 = 61,
         F5 = 62,
         F6 = 63,
         F7 = 64, 
         F8 = 65,
+        F9 = 66,
 
         RIGHT = 79,
         LEFT = 80,

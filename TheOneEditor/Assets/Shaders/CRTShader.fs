@@ -6,7 +6,8 @@
 precision highp float;
 
 uniform sampler2D albedo;
-uniform float kEasing;
+uniform float kBlood;
+uniform float kAdrenaline;
 uniform float time;
 uniform vec2 warp;
 
@@ -39,12 +40,11 @@ void DrawScanLine(inout vec3 color, vec2 uv)
     color *= scanline * grille * 1.2;
 }
 
-void ScreenBlood(inout vec3 color, vec2 uv)
+void ScreenEffect(inout vec3 color, vec2 uv, float kEffect, vec3 effectColor)
 {
     float vignette = uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
     vignette = clamp(pow(42.0 * vignette, 0.25), 0.0, 1.0); //val, min, max
-    vec3 bloodColor = vec3(1.0, 0.0, 0.0);
-    color =  mix(color, bloodColor, (1.0 - vignette) * kEasing); //start, end, interpolation
+    color =  mix(color, effectColor, (1.0 - vignette) * kEffect); //start, end, interpolation
 }
 
 void main()
@@ -54,7 +54,16 @@ void main()
 
     vec3 color = texture(albedo, crtUV).rgb;
 
-    ScreenBlood(color, crtUV);
+    if(kAdrenaline > 0.0)
+    {
+        vec3 adrenalineColor = vec3(0.0, 0.0, 1.0);
+        ScreenEffect(color, crtUV, kAdrenaline, adrenalineColor);
+    }
+    else if(kBlood > 0.0)
+    {
+        vec3 bloodColor = vec3(1.0, 0.0, 0.0);
+        ScreenEffect(color, crtUV, kBlood, bloodColor);
+    }
 
     if(crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0)
     {
@@ -63,7 +72,7 @@ void main()
 
     DrawVignette(color, crtUV);
 
-    DrawScanLine(color, crtUV);  
+    DrawScanLine(color, crtUV);
 
     fragColor.xyz = color;
     fragColor.w = 1.0;
