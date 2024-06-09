@@ -3744,9 +3744,10 @@
 									<ChildrenList>
 										<Sound Name="SFX_W_m4_reload" ID="{E2BCC4EF-0C03-4826-81BA-370A42C6E94C}" ShortID="954215813">
 											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-12</Value>
+														<Value>7</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -3760,6 +3761,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="SFX_W_m4_reload" ID="{4EEE7AC3-226A-4879-82D5-7AFA96257A7C}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.0811799940101827"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.92487207461601"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>SFX_W_m4_reload.wav</AudioFile>
 													<MediaIDList>
@@ -3772,6 +3778,9 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="SFX_W_m4_shoot" ID="{B5498F4F-590D-4D98-B8B8-CB196AA9BC86}" ShortID="867554853">
+											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -3959,6 +3968,11 @@
 										<Sound Name="SFX_A_flamethrower" ID="{3B0952BE-5DF4-4275-BD7C-35DD2C64BAB8}" ShortID="853700605">
 											<PropertyList>
 												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>5</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
