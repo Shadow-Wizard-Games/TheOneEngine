@@ -100,7 +100,9 @@ public class AbilityFlamethrower : MonoBehaviour
             // update time
             activeTimeCounter -= Time.deltaTime;
 
-            if(Input.GetKeyboardButtonUp(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButtonUp(Input.ControllerButtonCode.R2) || Input.GetMouseButtonUp(Input.MouseButtonCode.LEFT))
+            if(Input.GetKeyboardButtonUp(Input.KeyboardCode.SPACEBAR)
+               || Input.GetControllerButtonUp(Input.ControllerButtonCode.R2) 
+               || Input.GetMouseButtonUp(Input.MouseButtonCode.LEFT))
             {
                 shooting = false;
                 player.flameThrowerPS.Stop();

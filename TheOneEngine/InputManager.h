@@ -37,6 +37,9 @@ struct GamePad
 	bool enabled;
 	int index;
 	_SDL_GameController* controller;
+
+	KeyState buttonStates[SDL_CONTROLLER_BUTTON_MAX];
+	KeyState previousButtonStates[SDL_CONTROLLER_BUTTON_MAX];
 };
 
 class InputManager
@@ -59,7 +62,7 @@ public:
 
 	void Debug();
 
-	KeyState GetGamepadButton(int gamepadId, SDL_GameControllerButton button) const;
+	KeyState GetGamepadButton(int gamepadId, int button) const;
 
 	const Uint8* GetKeyboardState(int* numkeys) { return SDL_GetKeyboardState(numkeys); }
 	KeyState GetKey(int id) const { return keyboard[id]; }
