@@ -64,7 +64,7 @@ public class AbilityDash : MonoBehaviour
         {
             // update time
             activeTimeCounter -= Time.deltaTime; 
-            playerGO.transform.Translate(player.attachedGameObject.transform.Forward * rollPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
+            playerGO.transform.Translate(player.movementDirection * rollPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
 
         }
         else

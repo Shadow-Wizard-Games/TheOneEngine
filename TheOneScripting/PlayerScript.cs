@@ -116,6 +116,7 @@ public class PlayerScript : MonoBehaviour
     IParticleSystem adrenalinePSGO;
 
     Vector2 aimingDirection;
+    private Vector2 movingDirection;
 
     public override void Start()
     {
@@ -286,36 +287,11 @@ public class PlayerScript : MonoBehaviour
 
         if (currentAction == CurrentAction.DEAD) return;
 
-        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
-        {
-            if (managers.itemManager.CheckItemInInventory(1))
-                currentWeapon.Enable();
-            UpdateWeaponAnimation();
-        }
-        else if(Dash.state == AbilityDash.AbilityState.ACTIVE)
-            currentWeapon.Disable();
-
-        WeaponAbilityStates();
-
-        //update player adrenaline ps
-        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
-            adrenalinePSGO.Play();
-        else adrenalinePSGO.End();
-
-        // set movement
-        movementDirection = Vector3.zero;
-        movementMagnitude = 0;
-
         currentAction = CurrentAction.IDLE;
 
-        SetAimDirection();
-
-        shotLight.SwitchOff();
-        if (isReloading) { bulletShell.End(); laser.End(); }
-
         #region IDLE / MOVING STATES
-        if (SetMoveDirection()
-            && Dash.state != AbilityDash.AbilityState.ACTIVE)
+        if (Dash.state != AbilityDash.AbilityState.ACTIVE
+            && SetMoveDirection())
         {
             currentAction = CurrentAction.RUN;
 
@@ -419,6 +395,27 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         #endregion
+
+        WeaponAbilityStates();
+
+
+        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
+        {
+            if (managers.itemManager.CheckItemInInventory(1))
+                currentWeapon.Enable();
+            UpdateWeaponAnimation();
+        }
+        else if (Dash.state == AbilityDash.AbilityState.ACTIVE)
+            currentWeapon.Disable();
+
+        shotLight.SwitchOff();
+        if (isReloading) { bulletShell.End(); laser.End(); }
+
+        // Update player adrenaline PS
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
+        else adrenalinePSGO.End();
+
+        SetAimDirection();
 
     }
     private void WeaponAbilityStates()
@@ -821,8 +818,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool SetMoveDirection()
     {
-        bool toMove = false;
-        Vector2 movingDirection = Vector2.zero;
+        bool toMove = false; 
 
         #region CONTROLLER
         Vector2 leftJoystickDirection = Input.GetControllerJoystick(Input.ControllerJoystickCode.JOY_LEFT);
@@ -835,7 +831,9 @@ public class PlayerScript : MonoBehaviour
                 -leftJoystickDirection.x * 0.7071f + leftJoystickDirection.y * 0.7071f);
 
             movementDirection += new Vector3(rotatedDirection.x, 0.0f, rotatedDirection.y);
+            movingDirection += new Vector2(rotatedDirection.x, rotatedDirection.y);
             movementMagnitude = leftJoystickDirection.Magnitude();
+            if (movementMagnitude > 1.0f) movementMagnitude = 1.0f;
             toMove = true;
         }
 
@@ -879,13 +877,14 @@ public class PlayerScript : MonoBehaviour
         #endregion
 
         movementDirection = movementDirection.Normalize();
+        movingDirection = movingDirection.Normalize();
 
         if (movementDirection != Vector3.zero)
         {
             float characterRotation = (float)Math.Atan2(movingDirection.x, movingDirection.y);
             float dot = movingDirection.x * aimingDirection.x + movingDirection.y * aimingDirection.y;
 
-            if (dot < 0)
+            if (dot < 0 && Dash.state != AbilityDash.AbilityState.ACTIVE)
             {
                 attachedGameObject.animator.PlaybackSpeed = -1.0f;
                 if(currentWeapon != null)
@@ -905,6 +904,13 @@ public class PlayerScript : MonoBehaviour
     private bool SetAimDirection()
     {
         bool hasAimed = false;
+
+        if (Dash.state == AbilityDash.AbilityState.ACTIVE)
+        {
+            float characterRotation = (float)Math.Atan2(movingDirection.x, movingDirection.y);
+            attachedGameObject.transform.Rotation = new Vector3(0.0f, characterRotation, 0.0f);
+            return hasAimed;
+        }
 
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
@@ -1176,8 +1182,7 @@ public class PlayerScript : MonoBehaviour
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        float damage = managers.gameManager.godMode ? 0.0f : 3.0f;
-        managers.gameManager.health -= damage;
+        managers.gameManager.health -= 3.0f;
 
         if (managers.gameManager.health <= 0)
         {
@@ -1211,8 +1216,7 @@ public class PlayerScript : MonoBehaviour
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        float damage = managers.gameManager.godMode ? 0.0f : 20.0f;
-        managers.gameManager.health -= damage;
+        managers.gameManager.health -= 20.0f;
 
         if (managers.gameManager.health <= 0)
         {
