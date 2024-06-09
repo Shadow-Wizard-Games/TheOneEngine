@@ -3384,92 +3384,13 @@
 										</Sound>
 										<SwitchContainer Name="P Steps" ID="{A2F108E9-6444-408C-9A8D-64584AECECB0}" ShortID="739807053">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>6</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
-												<Reference Name="Attenuation">
-													<Custom>
-														<Attenuation Name="Attenuation (Custom)" ID="{3C7FEA37-8E18-4A09-A812-9BC9726FCF96}" ShortID="187029446">
-															<CurveUsageInfoList>
-																<VolumeDryUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																		<Curve Name="VolumeDry" ID="{74283C6D-E2BC-4913-9DD3-730A96D779C4}">
-																			<PropertyList>
-																				<Property Name="Flags" Type="int32" Value="3"/>
-																			</PropertyList>
-																			<PointList>
-																				<Point>
-																					<XPos>0</XPos>
-																					<YPos>0</YPos>
-																					<Flags>5</Flags>
-																				</Point>
-																				<Point>
-																					<XPos>100</XPos>
-																					<YPos>-200</YPos>
-																					<Flags>37</Flags>
-																				</Point>
-																			</PointList>
-																		</Curve>
-																	</CurveUsageInfo>
-																</VolumeDryUsage>
-																<VolumeWetGameUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetGameUsage>
-																<VolumeWetUserUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetUserUsage>
-																<LowPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</LowPassFilterUsage>
-																<HighPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</HighPassFilterUsage>
-																<SpreadUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</SpreadUsage>
-																<FocusUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</FocusUsage>
-																<ObstructionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionVolumeUsage>
-																<ObstructionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionLPFUsage>
-																<ObstructionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionHPFUsage>
-																<OcclusionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionVolumeUsage>
-																<OcclusionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionLPFUsage>
-																<OcclusionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionHPFUsage>
-																<DiffractionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionVolumeUsage>
-																<DiffractionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionLPFUsage>
-																<DiffractionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionHPFUsage>
-																<TransmissionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionVolumeUsage>
-																<TransmissionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionLPFUsage>
-																<TransmissionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionHPFUsage>
-															</CurveUsageInfoList>
-														</Attenuation>
-													</Custom>
-												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
 												</Reference>
@@ -3949,7 +3870,6 @@
 									<ChildrenList>
 										<Sound Name="SFX_W_m4_reload" ID="{E2BCC4EF-0C03-4826-81BA-370A42C6E94C}" ShortID="954215813">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>-12</Value>
@@ -4061,9 +3981,6 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="SFX_W_m4_shoot" ID="{B5498F4F-590D-4D98-B8B8-CB196AA9BC86}" ShortID="867554853">
-											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
 													<Custom>
@@ -4173,9 +4090,6 @@
 								<Folder Name="Shoulder laser" ID="{5526DC85-1C7D-4FA0-9C3C-F23A2A71CF26}" ShortID="1021033840">
 									<ChildrenList>
 										<Sound Name="SFX_W_sl_shoot" ID="{1B5F5E49-B4AB-48FB-9952-35208017F044}" ShortID="623379996">
-											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
-											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
 													<Custom>
@@ -4295,7 +4209,6 @@
 														<Value>20</Value>
 													</ValueList>
 												</Property>
-												<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 												<Property Name="Lowpass" Type="int16">
 													<ValueList>
 														<Value>20</Value>
@@ -6690,6 +6603,16 @@
 										<Sound Name="VO_Stub_missionamira1" ID="{81A887CC-7D64-489C-8D1F-BE15713835B7}" ShortID="464550219">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6701,6 +6624,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_Stub_missionamira1" ID="{7594E70B-1458-4BBC-A706-EAF2C9E368F3}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.859581642455253"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_Stub_missionamira1.wav</AudioFile>
 													<MediaIDList>
@@ -6715,6 +6642,16 @@
 										<Sound Name="VO_Stub_missionamira2" ID="{6817C1C9-7D29-40C6-98FA-123BB3CE5B0B}" ShortID="82859903">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6740,6 +6677,11 @@
 										<Sound Name="VO_Stub_missionamira3" ID="{F6A266B0-4EBA-4A68-93A5-76E0EE2B74A3}" ShortID="642991970">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6765,6 +6707,11 @@
 										<Sound Name="VO_Stub_missionamira4" ID="{A6FC970D-ACF9-4B95-A6FB-2FA78D5BAB8C}" ShortID="530495068">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6791,73 +6738,14 @@
 								</Folder>
 								<Folder Name="2-Computer 1" ID="{F07A5E26-6A1A-4DD4-B5AB-7944D4307F36}" ShortID="86721449">
 									<ChildrenList>
-										<Sound Name="VO_computer_log1" ID="{009A3032-BBE5-446F-BA39-B70CC32F0A3A}" ShortID="427587027">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_computer_log1" ID="{0C90B7F5-7704-4433-8B2B-0887D447B5E3}">
-													<Language>English(US)</Language>
-													<AudioFile>VO_computer_log1.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="46608549"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{03EDF53F-1568-429D-8B5A-1D16D91A5DE9}" ShortID="681883305">
-																<ReferenceList>
-																	<Reference Name="Effect">
-																		<Custom CreatedFrom="{796627FA-460C-47CE-9CD3-046CFB71EF95}">
-																			<Effect Name="Thumb_Knob_Tuning (Custom)" ID="{71072AE2-FC30-44E6-9AFD-A2D555DCBE84}" ShortID="1025766398" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																				<PropertyList>
-																					<Property Name="DistortionAmount" Type="Real32" Value="1.6"/>
-																					<Property Name="DistortionEnable" Type="bool" Value="False"/>
-																					<Property Name="EQEnable" Type="bool" Value="False"/>
-																					<Property Name="FiltersEnable" Type="bool" Value="False"/>
-																					<Property Name="GateAttackTime" Type="Real32" Value="8.7"/>
-																					<Property Name="GateHoldTime" Type="Real32" Value="1.6"/>
-																					<Property Name="GateRange" Type="Real32" Value="-11.8"/>
-																					<Property Name="GateReleaseTime" Type="Real32" Value="94.6"/>
-																					<Property Name="GateThreshold" Type="Real32" Value="-43.1"/>
-																					<Property Name="LoFiEnable" Type="bool" Value="False"/>
-																					<Property Name="NoiseHPFFreq" Type="Real32" Value="1210"/>
-																					<Property Name="NoiseLPFFreq" Type="Real32" Value="5460"/>
-																					<Property Name="NoiseLevel" Type="Real32" Value="-35.6"/>
-																					<Property Name="NoiseThresh" Type="Real32" Value="-24.2"/>
-																					<Property Name="OutputGain" Type="Real32" Value="3"/>
-																					<Property Name="SIMType" Type="int32" Value="113"/>
-																					<Property Name="Version" Type="int32" Value="1"/>
-																				</PropertyList>
-																				<PluginData/>
-																			</Effect>
-																		</Custom>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_computer_log1" ID="{0C90B7F5-7704-4433-8B2B-0887D447B5E3}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="VO_Stub_firstcomputer1" ID="{16459DB9-5E87-4BCF-887A-4FC1848256DB}" ShortID="376624106">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6880,202 +6768,58 @@
 												<ActiveSource Name="VO_Stub_firstcomputer1" ID="{1CC555ED-BDFB-41D0-B2C0-DF01A433418C}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="log1" ID="{4D201225-5A5D-4FAC-ABC3-E203569E63A2}" ShortID="924115008">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="log1" ID="{FBF65BF7-5188-442C-998B-F1DF15DF3302}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.99017428296967"/>
+														<Property Name="TrimEnd" Type="Real64" Value="18.761740085083"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>log1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="79961661"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="log1" ID="{FBF65BF7-5188-442C-998B-F1DF15DF3302}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="3-Computer 2" ID="{BD98F328-AC18-4DF9-BF00-35DE5FE13FC8}" ShortID="309190844">
 									<ChildrenList>
-										<Sound Name="VO_computer_log2" ID="{11A74056-759B-46A3-93C3-E6064FFA2297}" ShortID="515726904">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_computer_log2" ID="{514A36B9-7E89-492F-8EE5-2C668279270C}">
-													<Language>English(US)</Language>
-													<AudioFile>VO_computer_log2.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="500454107"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{E0C47E65-794D-47C1-B1F7-65F078106CCE}" ShortID="381724985">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Phone_Home" ID="{B438E597-2B66-426D-A9F4-C51FC9B1E604}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_computer_log2" ID="{514A36B9-7E89-492F-8EE5-2C668279270C}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="VO_isaac_voiceline5" ID="{4D84EF59-6CFF-48B9-96A6-9008206A975B}" ShortID="988314451">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-												<Property Name="OverridePositioning" Type="bool" Value="True"/>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>12</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_isaac_voiceline5" ID="{50AF6BBD-3864-4493-BE53-D56409014BE5}">
-													<PropertyList>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.285579514824798"/>
-													</PropertyList>
-													<Language>English(US)</Language>
-													<AudioFile>VO_isaac_voiceline5.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="177108593"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{4F733C5E-95A6-4DB9-B229-A902E1F7C92A}" ShortID="908879110">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_isaac_voiceline5" ID="{50AF6BBD-3864-4493-BE53-D56409014BE5}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="VO_isaac_voiceline6" ID="{1C1A0861-85A6-45C8-84DE-800418101F71}" ShortID="855867010">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>10</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_isaac_voiceline6" ID="{69DFD87C-9812-4931-9474-BA002032B75B}">
-													<PropertyList>
-														<Property Name="LoopBegin" Type="Real64" Value="0"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="8.77989218328841"/>
-													</PropertyList>
-													<Language>English(US)</Language>
-													<AudioFile>VO_isaac_voiceline6.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="369256560"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{86FF8767-7793-41BD-9BC7-866FB81E0B85}" ShortID="844079294">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_isaac_voiceline6" ID="{69DFD87C-9812-4931-9474-BA002032B75B}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="VO_isaac_voiceline7" ID="{D1AD5F3E-53A5-477F-A762-E7F8CF9D9108}" ShortID="238894186">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_isaac_voiceline7" ID="{2AA01E2D-2802-494D-A538-05EF403A9061}">
-													<PropertyList>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.441711590296496"/>
-														<Property Name="TrimEnd" Type="Real64" Value="2.47358490566038"/>
-													</PropertyList>
-													<Language>English(US)</Language>
-													<AudioFile>VO_isaac_voiceline7.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="148629822"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{75FD2BBD-361A-45D5-9735-4A143239069A}" ShortID="757201026">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_isaac_voiceline7" ID="{2AA01E2D-2802-494D-A538-05EF403A9061}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="VO_Stub_secondcomputer1" ID="{326130C9-C00B-4B76-866C-EFA2E1C5CFC6}" ShortID="606535255">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7101,6 +6845,16 @@
 										<Sound Name="VO_Stub_secondcomputer2" ID="{4397400D-14F5-432E-BE25-30FD57D62566}" ShortID="298519658">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7126,6 +6880,16 @@
 										<Sound Name="VO_Stub_secondcomputer3" ID="{2D0812C3-F43E-47F3-BDD1-EF8A44FF2F5A}" ShortID="463254945">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7148,14 +6912,14 @@
 												<ActiveSource Name="VO_Stub_secondcomputer3" ID="{6F269007-AA20-4E08-BE76-C48C4DA77BC3}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-									</ChildrenList>
-								</Folder>
-								<Folder Name="4-Computer 3" ID="{A56194D4-EBE4-42CB-B201-6BD51AA0C57F}" ShortID="399179143">
-									<ChildrenList>
-										<Sound Name="VO_computer_log3" ID="{40BC6C3D-D5AE-4EB8-AD24-BC2042E56F01}" ShortID="10300211">
+										<Sound Name="log2" ID="{90308092-D2FB-4948-A406-4714EAF8E4A6}" ShortID="294053281">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>5</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7166,36 +6930,140 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="VO_computer_log3" ID="{3DD502EB-51C6-453C-8573-CEC725C70D47}">
+												<AudioFileSource Name="log2" ID="{B6915FEE-CB0F-4CFC-A52D-FBDC32418C7D}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.69970737190169"/>
+														<Property Name="TrimEnd" Type="Real64" Value="22.6704212982023"/>
+													</PropertyList>
 													<Language>English(US)</Language>
-													<AudioFile>VO_computer_log3.wav</AudioFile>
+													<AudioFile>log2.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="767460389"/>
+														<MediaID ID="471480303"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{FB518F68-DE42-471A-B574-29E4F7F71372}" ShortID="993655141">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Phone_Home" ID="{B438E597-2B66-426D-A9F4-C51FC9B1E604}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
 											<ActiveSourceList>
-												<ActiveSource Name="VO_computer_log3" ID="{3DD502EB-51C6-453C-8573-CEC725C70D47}" Platform="Linked"/>
+												<ActiveSource Name="log2" ID="{B6915FEE-CB0F-4CFC-A52D-FBDC32418C7D}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="isaac5" ID="{B8523A18-CE3D-4216-B776-6907FF62E8A4}" ShortID="888623992">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="isaac5" ID="{D6A26A1C-5A3A-413E-A47D-6E732B25F2AE}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.52033824096401"/>
+														<Property Name="TrimEnd" Type="Real64" Value="4.08992400033981"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>isaac5.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="943916361"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="isaac5" ID="{D6A26A1C-5A3A-413E-A47D-6E732B25F2AE}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="isaac6" ID="{6C513496-3E7E-4A90-8554-601660AA7B08}" ShortID="887917821">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="isaac6" ID="{599AD897-248C-400B-AF2C-325D641884D8}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.29352545629203"/>
+														<Property Name="TrimEnd" Type="Real64" Value="10.1634142994374"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>isaac6.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="225365033"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="isaac6" ID="{599AD897-248C-400B-AF2C-325D641884D8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="isaac7" ID="{1BA30719-790D-4402-B098-E3EED7BBAD12}" ShortID="93143179">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="isaac7" ID="{EEB06731-EA48-4E35-926D-327F05583943}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.32922530011044"/>
+														<Property Name="TrimEnd" Type="Real64" Value="3.33903951590242"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>isaac7.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="70802428"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="isaac7" ID="{EEB06731-EA48-4E35-926D-327F05583943}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="4-Computer 3" ID="{A56194D4-EBE4-42CB-B201-6BD51AA0C57F}" ShortID="399179143">
+									<ChildrenList>
 										<Sound Name="VO_Stub_thirdcomputer1" ID="{EAA2A30F-8F2D-4232-AF96-F7343CCF824F}" ShortID="910666757">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>30</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7218,161 +7086,53 @@
 												<ActiveSource Name="VO_Stub_thirdcomputer1" ID="{FE98D1A6-DD59-4C53-800C-CA7E9E3698A9}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="log3" ID="{0F37667F-6F13-45E4-8413-88BF07270FD7}" ShortID="968181842">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="log3" ID="{32AA76E7-3330-4BBA-8983-50E18B321247}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="3.25266730707653"/>
+														<Property Name="TrimEnd" Type="Real64" Value="30.3494844700608"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>log3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="359844138"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="log3" ID="{32AA76E7-3330-4BBA-8983-50E18B321247}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="5-Computer 4" ID="{BB9F36EC-AE9A-4AF2-B247-6171E095093B}" ShortID="553009786">
 									<ChildrenList>
-										<Sound Name="VO_computer_log4" ID="{02155626-2E92-4D01-BDFF-340DAE4E3EFD}" ShortID="277909102">
-											<PropertyList>
-												<Property Name="Highpass" Type="int16">
-													<ValueList>
-														<Value>50</Value>
-													</ValueList>
-												</Property>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="MakeUpGain" Type="Real64">
-													<ValueList>
-														<Value>10</Value>
-													</ValueList>
-												</Property>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>5</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_computer_log4" ID="{543780A9-EBF2-4AF0-8CA5-F72FAC333673}">
-													<Language>English(US)</Language>
-													<AudioFile>VO_computer_log4.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="907489913"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{D34A1CAB-3D87-4430-A960-337A766E7BB7}" ShortID="353174270">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Phone_Home" ID="{B438E597-2B66-426D-A9F4-C51FC9B1E604}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_computer_log4" ID="{543780A9-EBF2-4AF0-8CA5-F72FAC333673}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="VO_grant_fourthcomputer1" ID="{23AAF2CD-9202-40BE-8B1A-F672A9931243}" ShortID="48861278">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_grant_fourthcomputer1" ID="{AB8DEABC-C576-4C9B-B418-563E51F71B7C}">
-													<PropertyList>
-														<Property Name="LoopBegin" Type="Real64" Value="0.301388361231525"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.301388361231525"/>
-													</PropertyList>
-													<Language>English(US)</Language>
-													<AudioFile>VO_grant_fourthcomputer1.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="549561920"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{8CD8C351-79B2-46D1-BFE9-A94D3FEBC603}" ShortID="883196809">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_grant_fourthcomputer1" ID="{AB8DEABC-C576-4C9B-B418-563E51F71B7C}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="VO_grant_fourthcomputer2" ID="{22CCF4FB-A805-47B8-A7CF-35D038D0D2A3}" ShortID="684288801">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_grant_fourthcomputer2" ID="{1BCA7746-7ECA-4B86-AADE-FE62782DD309}">
-													<PropertyList>
-														<Property Name="LoopBegin" Type="Real64" Value="0.217957235400127"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.217957235400127"/>
-													</PropertyList>
-													<Language>English(US)</Language>
-													<AudioFile>VO_grant_fourthcomputer2.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="863934519"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{BC412B41-A7DF-4347-8A8B-F107C58EFFF2}" ShortID="763755075">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_grant_fourthcomputer2" ID="{1BCA7746-7ECA-4B86-AADE-FE62782DD309}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="VO_Stub_fourthcomputer1" ID="{F32091FB-B5E2-4434-8845-98A977BA5209}" ShortID="398196842">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>15</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7398,6 +7158,16 @@
 										<Sound Name="VO_Stub_fourthcomputer2" ID="{3CADFE7A-2EA3-484F-8601-B9C9DD00D5E2}" ShortID="430273754">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>15</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7420,27 +7190,42 @@
 												<ActiveSource Name="VO_Stub_fourthcomputer2" ID="{C13FA0F4-23A6-4884-B1E3-5CC9CDA6FA77}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-									</ChildrenList>
-								</Folder>
-								<Folder Name="6-Computer 5" ID="{90BA9E4B-2EE5-4824-B15B-DEA8E56BEEE0}" ShortID="316023458">
-									<ChildrenList>
-										<Sound Name="VO_computer_log5" ID="{1FA3212A-A6CD-4F18-8432-BC81BB32B361}" ShortID="828558303">
+										<Sound Name="log4" ID="{3BE401D8-E5F0-4D74-B0D5-73A5B5953830}" ShortID="591335845">
 											<PropertyList>
-												<Property Name="Highpass" Type="int16">
-													<ValueList>
-														<Value>40</Value>
-													</ValueList>
-												</Property>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="Lowpass" Type="int16">
-													<ValueList>
-														<Value>20</Value>
-													</ValueList>
-												</Property>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="log4" ID="{9E72F1C3-3292-4CA9-B5FE-764255DF6DEE}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.29934717402811"/>
+														<Property Name="TrimEnd" Type="Real64" Value="35.919730766466"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>log4.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="334104891"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="log4" ID="{9E72F1C3-3292-4CA9-B5FE-764255DF6DEE}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="grant_log4_1" ID="{717750D6-2A54-48F2-815C-987F3DCCA476}" ShortID="844526782">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>5</Value>
+														<Value>12</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7453,30 +7238,70 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="VO_computer_log5" ID="{B0529B56-9CEF-47B6-90C4-02952474E87E}">
+												<AudioFileSource Name="grant_log4_1" ID="{4CE308E1-DAF9-48F0-A1E7-DC06DF43347B}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.28813869447875"/>
+														<Property Name="TrimEnd" Type="Real64" Value="4.37465283904148"/>
+													</PropertyList>
 													<Language>English(US)</Language>
-													<AudioFile>VO_computer_log5.wav</AudioFile>
+													<AudioFile>grant_log4_1.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="196269401"/>
+														<MediaID ID="656197816"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{7F99E846-96A7-43B5-BC87-37ACC6BDE788}" ShortID="352034225"/>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
 											<ActiveSourceList>
-												<ActiveSource Name="VO_computer_log5" ID="{B0529B56-9CEF-47B6-90C4-02952474E87E}" Platform="Linked"/>
+												<ActiveSource Name="grant_log4_1" ID="{4CE308E1-DAF9-48F0-A1E7-DC06DF43347B}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="grant_log4_2" ID="{552C8278-9E84-49F2-9549-88717CC0BCDE}" ShortID="362077043">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="grant_log4_2" ID="{BC8808F3-7285-464F-A806-10BCC024821D}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.31174341782823"/>
+														<Property Name="TrimEnd" Type="Real64" Value="8.9524635521836"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>grant_log4_2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1004735979"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="grant_log4_2" ID="{BC8808F3-7285-464F-A806-10BCC024821D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
+								<Folder Name="6-Computer 5" ID="{90BA9E4B-2EE5-4824-B15B-DEA8E56BEEE0}" ShortID="316023458">
+									<ChildrenList>
 										<Sound Name="VO_Stub_fifthcomputer1" ID="{F646D9BF-A190-4BEB-A7DB-515F3F914432}" ShortID="169638919">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7504,10 +7329,9 @@
 												<ActiveSource Name="VO_Stub_fifthcomputer1" ID="{F51E707F-9404-485B-9592-1081A532FB9C}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="VO_Sergeant_fifhtcomputer1" ID="{5C1CED41-7269-4586-80E9-5E180791F8E0}" ShortID="23357459">
+										<Sound Name="log5" ID="{5130134B-A402-444E-9A70-D808CF1E7318}" ShortID="729417275">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7518,36 +7342,56 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="VO_Sergeant_fifhtcomputer1" ID="{B2703712-D3E2-4A60-9DB0-2F1E25E742E3}">
+												<AudioFileSource Name="log5" ID="{DA7EE225-DDFF-48E4-A415-44FE7032CA26}">
 													<PropertyList>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="1.11293556085919"/>
-														<Property Name="TrimEnd" Type="Real64" Value="3.42515513126492"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.3741592771087"/>
+														<Property Name="TrimEnd" Type="Real64" Value="52.8734929130153"/>
 													</PropertyList>
 													<Language>English(US)</Language>
-													<AudioFile>VO_Sergeant_fifhtcomputer1.wav</AudioFile>
+													<AudioFile>log5.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="788799734"/>
+														<MediaID ID="1066163462"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{19D4E859-0C2C-40E7-A593-BE0B7FE4F50F}" ShortID="298086615">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
 											<ActiveSourceList>
-												<ActiveSource Name="VO_Sergeant_fifhtcomputer1" ID="{B2703712-D3E2-4A60-9DB0-2F1E25E742E3}" Platform="Linked"/>
+												<ActiveSource Name="log5" ID="{DA7EE225-DDFF-48E4-A415-44FE7032CA26}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="sergeant_log5" ID="{84E67BEE-350D-4B17-AAD2-210DA909212C}" ShortID="147290003">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="sergeant_log5" ID="{1130A59C-ECE6-4700-BAA5-B19A9D74AFBC}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.66594810066197"/>
+														<Property Name="TrimEnd" Type="Real64" Value="3.67450763590739"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>sergeant_log5.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="540117045"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="sergeant_log5" ID="{1130A59C-ECE6-4700-BAA5-B19A9D74AFBC}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -7620,47 +7464,6 @@
 							<ChildrenList>
 								<Folder Name="1-Response from the rescue ship" ID="{CCBB2340-582D-447D-9506-66344DD2D60A}" ShortID="601087327">
 									<ChildrenList>
-										<Sound Name="VO_rescueship_response" ID="{B80745A0-8C20-4D68-88D0-A82D85D35209}" ShortID="227060395">
-											<PropertyList>
-												<Property Name="IsVoice" Type="bool" Value="True"/>
-												<Property Name="OverrideEffect" Type="bool" Value="True"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="VO_rescueship_response" ID="{F5790BF4-2865-48FF-AD94-453CB85C58F9}">
-													<Language>English(US)</Language>
-													<AudioFile>VO_rescueship_response.wav</AudioFile>
-													<MediaIDList>
-														<MediaID ID="13370642"/>
-													</MediaIDList>
-												</AudioFileSource>
-											</ChildrenList>
-											<ObjectLists>
-												<ObjectList Name="Effects">
-													<Reference>
-														<Local>
-															<EffectSlot Name="" ID="{6F6E734E-95AB-47FC-A029-CC117B801E15}" ShortID="1050439593">
-																<ReferenceList>
-																	<Reference Name="Effect" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
-																		<ObjectRef Name="MI6_Headquarters" ID="{316A6020-7FB6-4DF4-8038-88C295B8A474}" WorkUnitID="{C495E5B0-5DF1-4961-BC6A-4C9887E70704}"/>
-																	</Reference>
-																</ReferenceList>
-															</EffectSlot>
-														</Local>
-													</Reference>
-												</ObjectList>
-											</ObjectLists>
-											<ActiveSourceList>
-												<ActiveSource Name="VO_rescueship_response" ID="{F5790BF4-2865-48FF-AD94-453CB85C58F9}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
 										<Sound Name="VO_grant_response" ID="{ED21130E-0853-43AA-9B85-0CA9BB98066E}" ShortID="370426294">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
@@ -7689,6 +7492,11 @@
 										<Sound Name="VO_stub_response" ID="{FFB47E7E-2160-4FC2-B80F-718F044FAC94}" ShortID="981990204">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>15</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7709,6 +7517,41 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="VO_stub_response" ID="{AF1D17A6-FF5F-4147-A3DF-F75460EFCE44}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="rescueship_response" ID="{1CE96AD4-1984-4FC2-BE13-80C53894B73B}" ShortID="953594819">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="rescueship_response" ID="{5E296119-F558-4ECD-A8F5-DF5BCF574093}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.16615028720422"/>
+														<Property Name="TrimEnd" Type="Real64" Value="9.04554411966516"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>rescueship_response.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="934161447"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="rescueship_response" ID="{5E296119-F558-4ECD-A8F5-DF5BCF574093}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>

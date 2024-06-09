@@ -153,6 +153,7 @@ namespace AK
         static const AkUniqueID VO_STUB_PLANETINFO1 = 2925042445U;
         static const AkUniqueID VO_STUB_PLANETINFO2 = 2925042446U;
         static const AkUniqueID VO_STUB_PLANETINFO3 = 2925042447U;
+        static const AkUniqueID VO_STUB_RESPONSE = 3672530503U;
         static const AkUniqueID VO_STUB_SECONDCOMPUTER1 = 3696739954U;
         static const AkUniqueID VO_STUB_SECONDCOMPUTER2 = 3696739953U;
         static const AkUniqueID VO_STUB_SECONDCOMPUTER3 = 3696739952U;
