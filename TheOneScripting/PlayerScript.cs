@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
+using static GameManager;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -119,6 +120,8 @@ public class PlayerScript : MonoBehaviour
 
     Vector2 aimingDirection;
     private Vector2 movingDirection;
+
+    GameStates previousState = GameStates.PAUSED;
 
     public override void Start()
     {
@@ -302,8 +305,11 @@ public class PlayerScript : MonoBehaviour
         else adrenalinePSGO.End();
         if (isReloading) { bulletShell.End(); laser.End(); }
 
-        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING)
+        if ((managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) && (previousState != GameManager.GameStates.RUNNING))
+        {
+            previousState = managers.gameManager.GetGameState();
             return;
+        }
 
         SetAimDirection();
 
