@@ -64,30 +64,40 @@ static bool GetControllerButton(int controllerButton, int gamePad)
 	return result == KEY_DOWN;
 }
 
-static bool previousStates[MAX_PADS][MAX_KEYS]; // Adjust size accordingly
-
 static bool GetControllerButtonUp(int controllerButton, int gamePad)
 {
-	bool currentState = false;
+	static bool prevL2State = false;
+	static bool prevR2State = false;
 
-	if (controllerButton == 22) // l2
+	// Check if the controller button corresponds to L2 (22) or R2 (23)
+	if (controllerButton == 22) // L2
 	{
-		currentState = engine->inputManager->pads[gamePad].l2 == 0.0f;
+		bool currentL2State = engine->inputManager->pads[gamePad].l2 > 0.0f;
+
+		// If L2 was previously pressed (KEY_DOWN) and is now released (KEY_UP)
+		if (prevL2State && !currentL2State)
+		{
+			prevL2State = false; // Update previous state
+			return true; // Return true for key up
+		}
+
+		prevL2State = currentL2State; // Update previous state
 	}
-	else if (controllerButton == 23) // r2
+	else if (controllerButton == 23) // R2
 	{
-		currentState = engine->inputManager->pads[gamePad].r2 == 0.0f;
-	}
-	else
-	{
-		auto inputToPass = (SDL_GameControllerButton)controllerButton;
-		currentState = engine->inputManager->GetGamepadButton(gamePad, inputToPass) == KEY_UP;
+		bool currentR2State = engine->inputManager->pads[gamePad].r2 > 0.0f;
+
+		// If R2 was previously pressed (KEY_DOWN) and is now released (KEY_UP)
+		if (prevR2State && !currentR2State)
+		{
+			prevR2State = false; // Update previous state
+			return true; // Return true for key up
+		}
+
+		prevR2State = currentR2State; // Update previous state
 	}
 
-	bool wasPressed = previousStates[gamePad][controllerButton];
-	previousStates[gamePad][controllerButton] = !currentState;
-
-	return wasPressed && currentState;
+	return engine->inputManager->GetGamepadButton(gamePad, (SDL_GameControllerButton)controllerButton) == KEY_UP;
 }
 
 static void GetControllerJoystick(int joystick, vec2f* joyResult, int gamePad)

@@ -306,13 +306,12 @@ class AnarchistBehaviour : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        if(player.currentWeaponType == PlayerScript.CurrentWeapon.FLAMETHROWER)
+        if (player.currentWeaponType == PlayerScript.CurrentWeapon.FLAMETHROWER)
         {
             if (receiveFireDmgIntervalTime <= 0)
             {
                 life -= player.totalDamage;
                 Debug.Log("Total damage " + player.totalDamage);
-                hitPSGO?.Replay();
                 receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
             }
             else
@@ -326,7 +325,7 @@ class AnarchistBehaviour : MonoBehaviour
         }
 
         if (life < 0) life = 0;
-        //else hitPSGO?.Replay();
+        else hitPSGO?.Replay();
         //Debug.Log("Total life " + life);
     }
 
