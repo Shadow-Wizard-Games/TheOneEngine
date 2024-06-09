@@ -61,6 +61,7 @@ class AnarchistBehaviour : MonoBehaviour
     // Timers
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
+    float receiveFireDmgIntervalTime = 0.2f;
 
     PlayerScript player;
 
@@ -84,6 +85,8 @@ class AnarchistBehaviour : MonoBehaviour
 
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
         hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
+
+        receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
     }
 
     public override void Update()
@@ -301,10 +304,27 @@ class AnarchistBehaviour : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        life -= player.totalDamage;
+        if(player.currentWeaponType == PlayerScript.CurrentWeapon.FLAMETHROWER)
+        {
+            if (receiveFireDmgIntervalTime <= 0)
+            {
+                life -= player.totalDamage;
+                Debug.Log("Total damage " + player.totalDamage);
+                hitPSGO?.Replay();
+                receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
+            }
+            else
+            {
+                receiveFireDmgIntervalTime -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            life -= player.totalDamage;
+        }
+
         if (life < 0) life = 0;
-        else hitPSGO?.Replay();
-        Debug.Log("Total damage " + player.totalDamage);
+        //else hitPSGO?.Replay();
         //Debug.Log("Total life " + life);
     }
 

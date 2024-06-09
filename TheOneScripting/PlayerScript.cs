@@ -39,6 +39,7 @@ public class PlayerScript : MonoBehaviour
     IParticleSystem shotExplosion;
     IParticleSystem bulletShell;
     IParticleSystem laser;
+    public IParticleSystem flameThrowerPS;
 
     // background music
     public bool isFighting;
@@ -62,7 +63,7 @@ public class PlayerScript : MonoBehaviour
     public Item_ShoulderLaser ItemShoulderLaser;
 
     IGameObject currentWeapon;
-    IGameObject M4GO;
+    public IGameObject M4GO;
     public IGameObject ShoulderLaserGO;
     public IGameObject ImpacienteGO;
     public IGameObject FlamethrowerGO;
@@ -70,6 +71,7 @@ public class PlayerScript : MonoBehaviour
     IGameObject shotParticlesGO;
     IGameObject shotExplosionGO;
     IGameObject laserGO;
+    IGameObject flameThrowerPSGO;
 
     public SkillSet currentSkillSet;
     float skillSetChangeBaseCD;
@@ -131,6 +133,8 @@ public class PlayerScript : MonoBehaviour
         shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
         laser = attachedGameObject.FindInChildren("LaserPS")?.GetComponent<IParticleSystem>();
         laserGO = attachedGameObject.FindInChildren("LaserPS");
+        flameThrowerPS = attachedGameObject.FindInChildren("FlameThrowerPS")?.GetComponent<IParticleSystem>();
+        flameThrowerPSGO = attachedGameObject.FindInChildren("FlameThrowerPS");
 
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
         hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
@@ -608,6 +612,7 @@ public class PlayerScript : MonoBehaviour
         stepParticles.End();
         bulletShell.End();
         laser.Stop();
+        flameThrowerPS.Stop();
     }
     private void RunAction()
     {
@@ -651,6 +656,7 @@ public class PlayerScript : MonoBehaviour
 
         bulletShell.End();
         laser.Stop();
+        flameThrowerPS.Stop();
     }
     private void DashAction()
     {
@@ -747,6 +753,7 @@ public class PlayerScript : MonoBehaviour
         stepParticles.End();
         bulletShell.End();
         laser.Stop();
+        flameThrowerPS.Stop();
     }
     private void AdrenalineRushAction()
     {
@@ -1113,13 +1120,15 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > 0.15f / 2)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 15f + height, attachedGameObject.transform.Rotation);
                 //attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
-                laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
-                laser.Replay();
-                shotExplosion.Replay();
-                shotParticles.Replay();
+                if(!Flamethrower.shooting)
+                {
+                    Flamethrower.playParticle = true;
+                    InternalCalls.InstantiateDOT(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 50f + height, 30);
+                }
+                Flamethrower.shooting = true;
+                flameThrowerPSGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
                 shotLight.SwitchOn();
             }
         }
@@ -1265,7 +1274,6 @@ public class PlayerScript : MonoBehaviour
             loaderAmmoM4 = ItemM4.maxLoaderAmmo;
             isReloading = false;
         }
-
     }
 
     private void AddItemsToInventoryForTest()
