@@ -3798,6 +3798,9 @@
 								<Folder Name="Shoulder laser" ID="{5526DC85-1C7D-4FA0-9C3C-F23A2A71CF26}" ShortID="1021033840">
 									<ChildrenList>
 										<Sound Name="SFX_W_sl_shoot" ID="{1B5F5E49-B4AB-48FB-9952-35208017F044}" ShortID="623379996">
+											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
 													<Custom>
@@ -3954,6 +3957,9 @@
 								<Folder Name="Flamethrower" ID="{A403BD43-6931-4F29-B3F3-834DBEAF774D}" ShortID="677870099">
 									<ChildrenList>
 										<Sound Name="SFX_A_flamethrower" ID="{3B0952BE-5DF4-4275-BD7C-35DD2C64BAB8}" ShortID="853700605">
+											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
