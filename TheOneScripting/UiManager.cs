@@ -302,6 +302,11 @@ public class UiManager : MonoBehaviour
                     }
                     onCooldown = true;
                 }
+                else if (Input.GetControllerButton(Input.ControllerButtonCode.START) && state != MenuState.Hud)
+                {
+                    OpenMenu(MenuState.Hud);
+                    previousState = MenuState.Pause;
+                }
             }
 
             if (playerScript.isDead && previousState != MenuState.Death)
