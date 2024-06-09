@@ -57,11 +57,14 @@ namespace AK
         static const AkUniqueID P_ROLL = 2206507859U;
         static const AkUniqueID P_STEP = 3875642140U;
         static const AkUniqueID PLAYMUSIC = 417627684U;
+        static const AkUniqueID PR_DOOR = 3295012478U;
         static const AkUniqueID STOPMUSIC = 1917263390U;
         static const AkUniqueID UI_A_MENU = 464895987U;
+        static const AkUniqueID UI_ABILITY = 2950569156U;
         static const AkUniqueID UI_CLICK = 2249769530U;
         static const AkUniqueID UI_HOVER = 2118900976U;
         static const AkUniqueID UI_PAUSEGAME = 3783962382U;
+        static const AkUniqueID UI_POPUP = 318623688U;
         static const AkUniqueID VO_COMPUTER_LOG1 = 1406454956U;
         static const AkUniqueID VO_COMPUTER_LOG2 = 1406454959U;
         static const AkUniqueID VO_COMPUTER_LOG3 = 1406454958U;

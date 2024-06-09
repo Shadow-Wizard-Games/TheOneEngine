@@ -53,6 +53,28 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="UI_ABILITY" ID="{82266834-1E87-4075-95CB-370A74B5065F}">
+							<ChildrenList>
+								<Action Name="" ID="{5FBB9CDD-EB2E-4428-B500-85C309EC9192}" ShortID="537136442">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_UI_Ability" ID="{1DC85A58-6F58-4244-A3D2-8A77EFDE7BBB}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="UI_POPUP" ID="{B9CCACD2-1FEB-4D51-9952-FCE5E57E8116}">
+							<ChildrenList>
+								<Action Name="" ID="{B194A833-2C77-4E71-9EE4-418A16D758E1}" ShortID="484837186">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="SFX_UI_PopUp" ID="{284301F1-98FE-4644-B4B0-98D60E7ADCF9}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Debug" ID="{736C9B0C-3192-4369-A37E-8C1FC5201507}" ShortID="293566644">
@@ -497,6 +519,7 @@
 												</Action>
 											</ChildrenList>
 										</Event>
+										<Event Name="New_Event" ID="{AF8230B6-84C9-4330-8FAD-8808A218C5D8}"/>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="NPC" ID="{4C8162D6-FFAD-4AA7-963F-836B281A0D13}" ShortID="280108968"/>
@@ -512,6 +535,17 @@
 										<Folder Name="Elevator" ID="{65D2C108-389B-40DE-9E88-61F10EC9192A}" ShortID="2374598"/>
 									</ChildrenList>
 								</Folder>
+								<Event Name="PR_DOOR" ID="{999692E6-D32B-4A3F-BA5C-979FDB095FA1}">
+									<ChildrenList>
+										<Action Name="" ID="{B23E77E5-7852-4E53-951F-CAD329AD3359}" ShortID="780741725">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="SFX_Door" ID="{43193105-E7BB-44AE-834D-1F5455C392CB}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Miscellaneous" ID="{5B8CF09A-D8FB-43EB-9317-9F5CAA24025A}" ShortID="278162805"/>

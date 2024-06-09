@@ -151,6 +151,72 @@
 								<ActiveSource Name="SFX_UI_Equip" ID="{3335502F-8F0A-4E1E-8D1C-228752E80EF6}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="SFX_UI_PopUp" ID="{284301F1-98FE-4644-B4B0-98D60E7ADCF9}" ShortID="625858402">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>660</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="422846-ESM-Rounded-Menu-Select-1-Mobile-App-Game-FX-Sound-Magic-Fantasy-Touch-Accent-Stab-Hit" ID="{F0E84531-2AED-4C2B-9735-0483DE7948B2}">
+									<PropertyList>
+										<Property Name="LoopBegin" Type="Real64" Value="0"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.153177594339623"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>422846-ESM-Rounded-Menu-Select-1-Mobile-App-Game-FX-Sound-Magic-Fantasy-Touch-Accent-Stab-Hit.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="932502442"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="422846-ESM-Rounded-Menu-Select-1-Mobile-App-Game-FX-Sound-Magic-Fantasy-Touch-Accent-Stab-Hit" ID="{F0E84531-2AED-4C2B-9735-0483DE7948B2}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SFX_UI_Ability" ID="{1DC85A58-6F58-4244-A3D2-8A77EFDE7BBB}" ShortID="836841555">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="274070-Ancient-Game-Charge-Instant-Cast-2" ID="{2C3DD5AE-1D34-46D0-AAF1-CD9BF55A764E}">
+									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.107547169811321"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.70188679245283"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>274070-Ancient-Game-Charge-Instant-Cast-2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="754934966"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="274070-Ancient-Game-Charge-Instant-Cast-2" ID="{2C3DD5AE-1D34-46D0-AAF1-CD9BF55A764E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Debug" ID="{F7F9D3E3-43E8-494B-87B2-4EAE8887AF3A}" ShortID="167475158">
@@ -3636,6 +3702,40 @@
 										</Sound>
 									</ChildrenList>
 								</Folder>
+								<Folder Name="Door" ID="{E067D5D9-83A9-4ABF-B007-586253302FFD}" ShortID="26276628">
+									<ChildrenList>
+										<Sound Name="SFX_Door" ID="{43193105-E7BB-44AE-834D-1F5455C392CB}" ShortID="547423116">
+											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>560</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="103090-Laser_sword_whoosh_heavy_03-SFXBible-ss06238" ID="{653B1DC6-6AB1-4F44-BA3F-1244FB63877A}">
+													<Language>SFX</Language>
+													<AudioFile>103090-Laser_sword_whoosh_heavy_03-SFXBible-ss06238.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="657843244"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="103090-Laser_sword_whoosh_heavy_03-SFXBible-ss06238" ID="{653B1DC6-6AB1-4F44-BA3F-1244FB63877A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Weapons" ID="{FB4F85D6-4C9A-49F8-9235-0C6BFD8E7FD3}" ShortID="992397446">
@@ -3880,6 +3980,9 @@
 								<Folder Name="Grenade Launcher" ID="{88A2B956-7154-47D0-B6EA-11C26571D815}" ShortID="973447801">
 									<ChildrenList>
 										<Sound Name="SFX_A_gl_explosion" ID="{1E3AEFFE-5EAF-492F-910B-5BB552A2E13A}" ShortID="789684653">
+											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -3902,6 +4005,9 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="SFX_A_gl_shoot" ID="{1081BF34-AB76-415E-8DDF-E92A0A2C53FA}" ShortID="790228589">
+											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -3928,6 +4034,9 @@
 								<Folder Name="Adrenaline Rush" ID="{D8A4E916-FC8E-47BF-85E3-D52BCDB11BD2}" ShortID="681843856">
 									<ChildrenList>
 										<Sound Name="SFX_A_AdrenalineRush" ID="{113D7B1F-56E9-473B-BB59-121186F0FD31}" ShortID="742272888">
+											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
