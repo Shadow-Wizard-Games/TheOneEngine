@@ -13,7 +13,7 @@
     "Dialog2": {
       "isLast": false,
       "dialoguer": "Guard 2:\n",
-      "text": "I was told its because she\nwent crazy after serving\nand tried to murder some\nof her superiors.",
+      "text": "I was told its because she went crazy\nafter serving and tried to murder\nsome of her superiors.",
       "cooldown": 5,
       "audioEvent": "VO_GUARD2_VOICELINE1"
     },
@@ -26,14 +26,14 @@
     },
     "Dialog4": {
       "isLast": false,
-      "dialoguer": "...",
+      "dialoguer": "...\n",
       "cooldown": 1,
       "text": "Alarm sounds"
     },
     "Dialog5": {
       "isLast": true,
       "dialoguer": "Guard 2:\n",
-      "text": "Stay here and watch the\nprisoner, Ill go\nlook into it.",
+      "text": "Stay here and watch the prisoner,\nIll go look into it.",
       "cooldown": 3,
       "audioEvent": "VO_GUARD2_VOICELINE2"
     }
@@ -50,7 +50,7 @@
       "Dialog2": {
         "isLast": false,
         "dialoguer": 4,
-        "text": "Earth-like atmosphere\nPossibly dangerous plant-life\nProceed with caution",
+        "text": "Earth-like atmosphere\nPossibly dangerous\nplant-life\nProceed with caution",
         "cooldown": 5,
         "audioEvent": "VO_TTS"
       },
@@ -60,7 +60,9 @@
         "text": "I can breathe, that is\nall I need to know",
         "cooldown": 3,
         "audioEvent": "VO_STUB_PLANETINFO3"
-      }
+      },
+      "completeQuestId": 3,
+      "neededQuestId": 2
     }
   },
   "Character2": {
@@ -147,7 +149,10 @@
         "text": "Go talk to the android, he\nruns the medicing thing\naround here, and would not be\nhappy if you just went around\nwithout him knowing.",
         "cooldown": 6,
         "audioEvent": "VO_SERGEANT_WAKEMED6"
-      }
+      },
+      "completeQuestId": 4,
+      "neededQuestId": 1,
+      "triggerQuestId": 5
     }
   },
   "Character3": {

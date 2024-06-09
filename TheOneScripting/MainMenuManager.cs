@@ -55,6 +55,7 @@ public class MainMenuManager : MonoBehaviour
 
                 canvasLogo.ToggleEnable();
                 canvasTitle.ToggleEnable();
+                canvasEngineLogo.ToggleEnable();
             }
         }
     }
