@@ -440,7 +440,7 @@ public class PlayerScript : MonoBehaviour
         #endregion
 
         //manage reload cooldowns
-        if (!Input.GetControllerButton(Input.ControllerButtonCode.R2) && !Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) && Input.GetMouseButton(Input.MouseButtonCode.LEFT))
+        if (!Input.GetControllerButton(Input.ControllerButtonCode.R2) && !Input.GetKeyboardButton(Input.KeyboardCode.SPACEBAR) && !Input.GetMouseButton(Input.MouseButtonCode.LEFT))
         {
             letsReloadTimeCounter += Time.deltaTime;
         }
@@ -1262,7 +1262,7 @@ public class PlayerScript : MonoBehaviour
         if (loaderAmmoM4 <= 0)
             isReloading = true;
 
-        if (letsReloadTimeCounter >= 4.0f)
+        if (letsReloadTimeCounter >= 1.5f)
         {
             Debug.Log("STARTING AUTO RELOAD");
             isReloading = true;
