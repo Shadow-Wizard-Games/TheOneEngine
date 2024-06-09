@@ -337,10 +337,10 @@ class InternalCalls
     internal extern static bool GetCollisionSolverActive();
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static void SetCollisionActive(bool active);
+    internal extern static void SetCollisionActive(IntPtr GOptr, ref bool active);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    internal extern static bool GetCollisionActive();
+    internal extern static bool GetCollisionActive(IntPtr GOptr);
     #endregion
 
     #region Camera

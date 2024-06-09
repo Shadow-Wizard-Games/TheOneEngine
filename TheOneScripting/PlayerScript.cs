@@ -889,19 +889,13 @@ public class PlayerScript : MonoBehaviour
             {
                 attachedGameObject.animator.PlaybackSpeed = -1.0f;
                 if(currentWeapon != null)
-                {
                     currentWeapon.animator.PlaybackSpeed = -1.0f;
-                    Debug.Log("Going Backward weapon");
-                }
             }
             else
             {
                 attachedGameObject.animator.PlaybackSpeed = 1.0f;
                 if (currentWeapon != null)
-                {
                     currentWeapon.animator.PlaybackSpeed = 1.0f;
-                    Debug.Log("Going Backward weapon");
-                }
             }
         }
 

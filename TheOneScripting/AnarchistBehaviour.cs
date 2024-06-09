@@ -282,6 +282,7 @@ class AnarchistBehaviour : MonoBehaviour
             attachedGameObject.animator.Play("Death");
             isDead = true;
             player.shieldKillCounter++;
+            attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f;
             // add player biomass
             deathPSGO?.Play();
         }

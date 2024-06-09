@@ -24,6 +24,17 @@ public class ICollider2D : IComponent
             InternalCalls.SetColliderBoxSize(containerGOptr, ref value);
         }
     }
+    public bool activeCollider
+    {
+        get
+        {
+            return InternalCalls.GetCollisionActive(containerGOptr);
+        }
+        set
+        {
+            InternalCalls.SetCollisionActive(containerGOptr, ref value);
+        }
+    }
 
     public ICollider2D() : base() { }
     public ICollider2D(IntPtr gameObjectRef) : base(gameObjectRef) { }

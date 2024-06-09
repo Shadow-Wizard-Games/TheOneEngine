@@ -245,6 +245,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
             isDead = true;
             player.shieldKillCounter++;
+            attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f;
             // add player biomass
             if (deathPS != null) deathPS.Replay(); // this will crash if no particles are found
         }

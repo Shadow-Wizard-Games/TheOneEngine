@@ -42,7 +42,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
         DoStateBehaviour();
 
-        if (currentLife < 0) { isDead = true; attachedGameObject.animator.Play("Death"); }
+        if (currentLife < 0) Dead();
     }
 
     #region FSM
@@ -737,5 +737,12 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
         currentLife -= playerScript.totalDamage;
+    }
+
+    void Dead()
+    {
+        isDead = true; 
+        attachedGameObject.animator.Play("Death");
+        attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f;
     }
 }
