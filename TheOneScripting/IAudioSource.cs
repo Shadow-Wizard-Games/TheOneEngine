@@ -44,6 +44,7 @@ public class IAudioSource : IComponent
         P_DASH = 3919743498U,
         P_DEATH = 947529532U,
         P_HIT = 1073763149U,
+        P_EQUIP = 260986250U,
         P_PICK = 1941667005U,
         P_ROLL = 2206507859U,
         P_STEP = 3875642140U,

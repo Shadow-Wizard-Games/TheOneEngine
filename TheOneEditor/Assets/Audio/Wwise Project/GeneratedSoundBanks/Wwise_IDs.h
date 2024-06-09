@@ -51,6 +51,7 @@ namespace AK
         static const AkUniqueID E_X_ADULT_STEP = 1644504899U;
         static const AkUniqueID P_DASH = 3919743498U;
         static const AkUniqueID P_DEATH = 947529532U;
+        static const AkUniqueID P_EQUIP = 260986250U;
         static const AkUniqueID P_HIT = 1073763149U;
         static const AkUniqueID P_PICK = 1941667005U;
         static const AkUniqueID P_ROLL = 2206507859U;

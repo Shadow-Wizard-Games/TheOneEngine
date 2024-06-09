@@ -28,6 +28,7 @@
 										<Property Name="SIMType" Type="int32" Value="162"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Message_in_a_Bottle" ID="{AAA39367-4EE0-4D51-A8F5-057AABF6A464}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -45,6 +46,7 @@
 										<Property Name="SIMType" Type="int32" Value="13"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Under_Pillow_Snooze" ID="{CC4A095A-4C13-43CA-A065-3D6CDA625904}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -57,9 +59,11 @@
 										<Property Name="SIMType" Type="int32" Value="61"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
+										<Property Name="DistortionAmount" Type="Real32" Value="1.6"/>
 										<Property Name="DistortionEnable" Type="bool" Value="False"/>
 										<Property Name="EQEnable" Type="bool" Value="False"/>
 										<Property Name="FiltersEnable" Type="bool" Value="False"/>
@@ -77,6 +81,7 @@
 										<Property Name="SIMType" Type="int32" Value="113"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Bucket_Head" ID="{3E9FB24F-60A0-4C84-81F4-E1D401D48B80}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -95,6 +100,7 @@
 										<Property Name="SIMType" Type="int32" Value="19"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Duckin_The_Rain" ID="{4B06504D-E467-4D93-ADFB-3287E1FBE91A}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -122,6 +128,7 @@
 										<Property Name="SIMType" Type="int32" Value="135"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Family_Classics" ID="{A24E18DD-4301-4042-BC7E-11FA775901B7}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -143,6 +150,7 @@
 										<Property Name="SIMType" Type="int32" Value="133"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Glassy_Chamber" ID="{B782D8D0-4B6A-4772-8CF7-5F3055AA608E}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -159,6 +167,7 @@
 										<Property Name="SIMType" Type="int32" Value="14"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Home_Movies" ID="{695D1ED2-8706-42DF-9C9E-D2DE1638DBAC}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -176,6 +185,7 @@
 										<Property Name="SIMType" Type="int32" Value="145"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Mason_Jar" ID="{95ED317D-77AB-42A7-A812-BD8E8CAB6A7B}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -193,6 +203,7 @@
 										<Property Name="SIMType" Type="int32" Value="15"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Noisy_Neighbors" ID="{A121FF5C-BE20-4AA1-BB7E-FFCD52C72A1C}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -211,6 +222,7 @@
 										<Property Name="SIMType" Type="int32" Value="65"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 								<Effect Name="Turn_Off_The_Radio" ID="{425B1D71-6B9E-4C11-874A-D3017414C0A1}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
@@ -226,6 +238,7 @@
 										<Property Name="SIMType" Type="int32" Value="112"/>
 										<Property Name="Version" Type="int32" Value="1"/>
 									</PropertyList>
+									<PluginData/>
 								</Effect>
 							</ChildrenList>
 						</Folder>
@@ -253,6 +266,7 @@
 												<Property Name="SIMType" Type="int32" Value="31"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Industrial_Noize" ID="{C31DE265-C84B-4EC9-A973-F23C4989D764}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -268,6 +282,7 @@
 												<Property Name="SIMType" Type="int32" Value="24"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Crowd_Control" ID="{FF2096E1-F569-4FCB-982C-56978F5B65DF}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -283,6 +298,7 @@
 												<Property Name="SIMType" Type="int32" Value="60"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="As_Good_as_it_Gets" ID="{97114247-A928-4CAC-94D1-F00F1A2F8AAB}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -296,6 +312,7 @@
 												<Property Name="SIMType" Type="int32" Value="153"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Bassy_Phone" ID="{BABFC835-B5B6-4218-BAAE-178B3639C60D}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -311,6 +328,7 @@
 												<Property Name="SIMType" Type="int32" Value="1"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Burnt_to_a_Crisp" ID="{CBFCA28D-5988-4AA8-BE70-C98A6B1F2D0F}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -330,6 +348,7 @@
 												<Property Name="SIMEnable" Type="bool" Value="False"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Buzz_Me_In" ID="{EB05F0EF-8568-4277-ABAF-4CCD22A9C605}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -345,6 +364,7 @@
 												<Property Name="SIMType" Type="int32" Value="18"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Classic_Baseball" ID="{8DCE9323-1CC8-4766-9FB8-0B5CD4971A58}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -359,6 +379,7 @@
 												<Property Name="SIMType" Type="int32" Value="136"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Cold_Caller" ID="{D9C07D8A-F426-4EF1-AC58-16ACF3A1C7DC}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -377,6 +398,7 @@
 												<Property Name="SIMType" Type="int32" Value="95"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Dialing_Long_Distance" ID="{8436C9A4-AD03-461A-822D-F579B1443388}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -394,6 +416,7 @@
 												<Property Name="SIMType" Type="int32" Value="39"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Engine_Grime" ID="{B3628604-4F22-4548-AEC8-F1F08047F0CE}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -410,6 +433,7 @@
 												<Property Name="SIMType" Type="int32" Value="23"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Get_What_You_Pay_For" ID="{CC95435F-2730-4AD3-94FB-ACF9C4ED700F}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -425,6 +449,7 @@
 												<Property Name="SIMType" Type="int32" Value="83"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="In_Your_Imagination" ID="{BE597BC0-4921-4359-8424-F74BF5B01F99}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -437,6 +462,7 @@
 												<Property Name="SIMType" Type="int32" Value="130"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Lets_Do_Lunch" ID="{F8C5F019-CCF3-41C4-8AE3-DC16397E515F}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -452,6 +478,7 @@
 												<Property Name="SIMType" Type="int32" Value="119"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Look_Ma_No_Hands" ID="{457CE4B2-A1A2-4776-912A-C986198B3B67}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -471,6 +498,7 @@
 												<Property Name="SIMType" Type="int32" Value="158"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Ma_Bell" ID="{940883E0-9A88-4446-B018-D920A9484F0B}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -487,6 +515,7 @@
 												<Property Name="SIMType" Type="int32" Value="84"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Prank_Caller" ID="{E5811185-A22C-4097-9F5A-41680F4119A2}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -503,6 +532,7 @@
 												<Property Name="SIMType" Type="int32" Value="92"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Talk_Me_Back" ID="{E3AACB35-BDA5-4D15-90D0-1B79F4D55981}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -521,6 +551,7 @@
 												<Property Name="SIMType" Type="int32" Value="32"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Telemarkets_Standard_Issue" ID="{92DAE49B-16B2-4A64-A3F7-B103663D3697}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -537,6 +568,7 @@
 												<Property Name="SIMType" Type="int32" Value="85"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Whats_Your_Number" ID="{669BD916-94D5-45CB-B02F-C738BA079D46}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -553,6 +585,7 @@
 												<Property Name="SIMType" Type="int32" Value="86"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Your_Conscience" ID="{AE5C67A9-ADD5-4896-A8F6-D12693DF066A}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -566,6 +599,7 @@
 												<Property Name="SIMType" Type="int32" Value="129"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 									</ChildrenList>
 								</Folder>
@@ -589,6 +623,7 @@
 												<Property Name="SIMType" Type="int32" Value="144"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Good_Buddy_10_4" ID="{6E923BC0-5BA0-4363-A6E1-6BB68278D143}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -613,6 +648,7 @@
 												<Property Name="SIMType" Type="int32" Value="104"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Need_a_Land_Line" ID="{8E7775A2-4D8C-4DCF-B8F1-7199F91D65FE}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -632,10 +668,11 @@
 												<Property Name="SIMType" Type="int32" Value="118"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Annoying_Caller" ID="{CC176F1E-4E92-4DDC-95C2-7DA4A62DD8A9}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
-												<Property Name="DistortionAmount" Type="Real32" Value="41.4"/>
+												<Property Name="DistortionAmount" Type="Real32" Value="9.000002"/>
 												<Property Name="DistortionMode" Type="int32" Value="7"/>
 												<Property Name="EQEnable" Type="bool" Value="False"/>
 												<Property Name="FiltersHPFSlope" Type="int32" Value="1"/>
@@ -650,6 +687,7 @@
 												<Property Name="SIMType" Type="int32" Value="156"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Attention_All_Shoppers" ID="{60669ABB-F730-4B58-99F9-51FAFCCAE0E5}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -671,6 +709,7 @@
 												<Property Name="SIMType" Type="int32" Value="60"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Calling_the_Shoe_Phone" ID="{1BF257E4-01A5-46DB-A73C-FB30A9B6AEB3}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -697,6 +736,7 @@
 												<Property Name="SIMType" Type="int32" Value="107"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Can_You_Hear_Me_Now_1" ID="{784A2002-F43C-43CF-A2FA-1AC913DAE2A0}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -723,6 +763,7 @@
 												<Property Name="SIMType" Type="int32" Value="144"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Can_You_Hear_Me_Now_2" ID="{156B65AF-3C41-48A7-B0A2-CB9BC425A04E}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -746,6 +787,7 @@
 												<Property Name="SIMType" Type="int32" Value="117"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Cellular_Overdrive" ID="{E10FC327-52FE-46D1-A051-D5521EE6C4AF}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -765,6 +807,7 @@
 												<Property Name="SIMType" Type="int32" Value="154"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Dialing_For_Dollars" ID="{9BBEC2B4-A612-4F86-9437-277A1A261A48}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -787,6 +830,7 @@
 												<Property Name="SIMType" Type="int32" Value="80"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Double_Double" ID="{773213B2-8E2D-4DDA-BD28-F85CA40AB73D}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -806,6 +850,7 @@
 												<Property Name="SIMType" Type="int32" Value="134"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Double_the_Distortion" ID="{42D6328B-50BD-41C4-B657-8DFAC004D109}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -829,6 +874,7 @@
 												<Property Name="SIMType" Type="int32" Value="134"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Emergency" ID="{254AF8CA-8C5A-4131-AD70-0727C3F6E33D}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -854,6 +900,7 @@
 												<Property Name="SIMType" Type="int32" Value="109"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Gibberish" ID="{65B00E68-FF46-4BD6-B613-60519E2F178E}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -871,6 +918,7 @@
 												<Property Name="SIMType" Type="int32" Value="12"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Hail_to_the_Chief" ID="{6C18B9FE-8D32-4759-B5F3-F6DC4BFAFE5D}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -898,6 +946,7 @@
 												<Property Name="SIMType" Type="int32" Value="36"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Inspector_Gadget" ID="{684BC2EA-7073-4E31-B97D-E7F84950D0E5}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -927,6 +976,7 @@
 												<Property Name="SIMType" Type="int32" Value="108"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Into_Thin_Air" ID="{68CD4C89-5C10-499E-A3F3-A201AAD58ABD}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -953,6 +1003,7 @@
 												<Property Name="SIMType" Type="int32" Value="100"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Into_Thinner_Air" ID="{AE9B4492-EF48-48D8-83A9-7F18B6CC212B}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -980,6 +1031,7 @@
 												<Property Name="SIMType" Type="int32" Value="100"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Locked_In_a_Cell" ID="{571E51BD-4274-45E4-9565-3CE58E1FDEBB}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -995,6 +1047,7 @@
 												<Property Name="SIMType" Type="int32" Value="118"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Loosy_Robot" ID="{AA2C4DB5-6E8F-474F-8F94-CCC9DE363C9D}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1009,10 +1062,11 @@
 												<Property Name="SIMType" Type="int32" Value="152"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="MI6_Headquarters" ID="{316A6020-7FB6-4DF4-8038-88C295B8A474}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
-												<Property Name="DistortionAmount" Type="Real32" Value="58.2"/>
+												<Property Name="DistortionAmount" Type="Real32" Value="9.800001"/>
 												<Property Name="DistortionIntensity" Type="Real32" Value="29.2"/>
 												<Property Name="DistortionMode" Type="int32" Value="6"/>
 												<Property Name="DistortionRectify" Type="Real32" Value="6.4"/>
@@ -1032,9 +1086,11 @@
 												<Property Name="NoiseRange" Type="Real32" Value="-2.9"/>
 												<Property Name="NoiseRecovery" Type="Real32" Value="200"/>
 												<Property Name="NoiseThresh" Type="Real32" Value="-14.1"/>
+												<Property Name="SIMTuning" Type="Real32" Value="86.47541"/>
 												<Property Name="SIMType" Type="int32" Value="106"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Mind_The_Gap" ID="{F58C66FC-9D85-4986-8B6A-2D2BB8F1BACC}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1059,6 +1115,7 @@
 												<Property Name="SIMType" Type="int32" Value="24"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Mister_Evil" ID="{0F8738CE-7C54-4605-AA2A-35A38EBE3960}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1077,6 +1134,7 @@
 												<Property Name="SIMType" Type="int32" Value="65"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Progressing_Backwards" ID="{4EE4A2F0-9F40-48BD-9275-1BC231E0B99A}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1096,6 +1154,7 @@
 												<Property Name="SIMType" Type="int32" Value="1"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Sign_of_the_Times" ID="{81EB571B-14FB-4002-9AA0-B680283DC323}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1115,6 +1174,7 @@
 												<Property Name="SIMType" Type="int32" Value="118"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Something_Old_Something_New" ID="{6A0FD0AA-7286-4121-9BC5-9740A5889AA4}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1134,6 +1194,7 @@
 												<Property Name="SIMType" Type="int32" Value="79"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Stinky_Baby" ID="{E2F875B0-D930-4DCF-8A5A-9972A85B8933}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1153,6 +1214,7 @@
 												<Property Name="SIMType" Type="int32" Value="99"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Super_Duper" ID="{B67062AA-7E51-47CE-93B3-88B5B302624C}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1180,6 +1242,7 @@
 												<Property Name="SIMType" Type="int32" Value="35"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="The_Negotiator" ID="{A5C3E639-649A-4F2C-81EC-CD49F8B5FF43}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1206,6 +1269,7 @@
 												<Property Name="SIMType" Type="int32" Value="105"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="When_Phones_Attack" ID="{5AF6BD00-F33E-4AC6-B3CD-273970DFBB82}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1225,6 +1289,7 @@
 												<Property Name="SIMType" Type="int32" Value="144"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 									</ChildrenList>
 								</Folder>
@@ -1254,6 +1319,7 @@
 												<Property Name="SIMType" Type="int32" Value="125"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Teleconference_Today" ID="{8FE6C036-262A-42B2-AC9C-D3DA87F77D36}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1284,6 +1350,7 @@
 												<Property Name="SIMType" Type="int32" Value="81"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Ballpark_Far_Away" ID="{3A8A1557-950F-49C9-953C-4F4DA85AC865}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1308,6 +1375,7 @@
 												<Property Name="SIMType" Type="int32" Value="132"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Beam_Me_Uo" ID="{B226195C-E2C7-4EB0-9176-E0F19F3FCC06}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1328,6 +1396,7 @@
 												<Property Name="SIMType" Type="int32" Value="155"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Breaker_One_Niner" ID="{FF0CCEFF-44F0-4AC8-AB54-80818F49614D}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1352,6 +1421,7 @@
 												<Property Name="SIMType" Type="int32" Value="101"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Call_Before_Curfew" ID="{64369C98-6604-4B55-888A-6A2EC395DDB6}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1370,6 +1440,7 @@
 												<Property Name="SIMType" Type="int32" Value="153"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Charlie" ID="{3585A79C-2645-467B-918A-FAB18A625786}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1397,6 +1468,7 @@
 												<Property Name="SIMType" Type="int32" Value="110"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Chips_n_Dip" ID="{AA012EF9-4128-4B2D-AF39-DC9A3E8857D6}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1426,6 +1498,7 @@
 												<Property Name="SIMType" Type="int32" Value="104"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Digital_Breakup" ID="{D0A138A8-711B-4272-8F8C-14106796FC47}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1444,6 +1517,7 @@
 												<Property Name="SIMType" Type="int32" Value="97"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Dirtier_Mother" ID="{8231BF36-0257-44D0-9183-5FDA33092898}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1467,6 +1541,7 @@
 												<Property Name="SIMType" Type="int32" Value="84"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Dirty_Mother" ID="{AB817BDA-6071-4A84-939B-848D04F218E4}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1488,6 +1563,7 @@
 												<Property Name="SIMType" Type="int32" Value="84"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Dont_Cry_For_Me" ID="{699712CC-A67B-4E32-AC0F-1A2216AF886D}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1518,6 +1594,7 @@
 												<Property Name="SIMType" Type="int32" Value="102"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Emergency_Channel" ID="{18B227D3-2D49-4023-9548-ACCCCA23D107}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1531,6 +1608,7 @@
 												<Property Name="SIMType" Type="int32" Value="55"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Family_Meeting" ID="{9CE0CC7E-C2CC-4E55-BB39-325783342462}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1553,6 +1631,7 @@
 												<Property Name="SIMType" Type="int32" Value="93"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Golden_Gate_Phone" ID="{EA46BD18-BD8B-49E1-9384-1CFA51CA5B09}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1567,6 +1646,7 @@
 												<Property Name="SIMType" Type="int32" Value="33"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Hello_Mr_Bell" ID="{D583A9AE-1914-49FB-BC90-AF0ED0873FF1}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1594,6 +1674,7 @@
 												<Property Name="SIMType" Type="int32" Value="111"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Hiss_Me_With_Your_Best_Shot" ID="{23CAA4A7-93B9-4FBD-B583-FD71DFAD5FEA}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1619,6 +1700,7 @@
 												<Property Name="SIMType" Type="int32" Value="130"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Hit_the_Road_Jack" ID="{5B3B06DF-902B-4516-A669-29B003FBB3FB}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1645,6 +1727,7 @@
 												<Property Name="SIMType" Type="int32" Value="103"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Intercom_Far" ID="{AF904AF6-B92E-4BC4-AB4D-63FAEC03FE4E}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1671,6 +1754,7 @@
 												<Property Name="SIMType" Type="int32" Value="125"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Keep_yer_Quarter" ID="{5805BAD8-C683-483B-A04C-A9E976F5CAB1}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1701,6 +1785,7 @@
 												<Property Name="SIMType" Type="int32" Value="2"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Lost_In_Noise" ID="{7217A9FD-D38E-4061-AA15-860F87684A14}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1724,6 +1809,7 @@
 												<Property Name="SIMType" Type="int32" Value="95"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Noisy_Phone" ID="{61DD6AB5-F4B2-4FD5-A428-E63E8FEDE7DE}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1743,6 +1829,7 @@
 												<Property Name="SIMType" Type="int32" Value="96"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Noisy_Whisperer" ID="{7B6511EA-8F30-4F59-B6C3-D3CA6718ECDB}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1766,10 +1853,11 @@
 												<Property Name="SIMType" Type="int32" Value="75"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Phone_Home" ID="{B438E597-2B66-426D-A9F4-C51FC9B1E604}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
-												<Property Name="DistortionAmount" Type="Real32" Value="12.9"/>
+												<Property Name="DistortionAmount" Type="Real32" Value="1.7"/>
 												<Property Name="DistortionMode" Type="int32" Value="3"/>
 												<Property Name="DistortionRectify" Type="Real32" Value="22.1"/>
 												<Property Name="EQFreq" Type="Real32" Value="984.6"/>
@@ -1790,10 +1878,11 @@
 												<Property Name="NoiseLevel" Type="Real32" Value="-22.3"/>
 												<Property Name="NoiseRange" Type="Real32" Value="-15.2"/>
 												<Property Name="NoiseThresh" Type="Real32" Value="-25.5"/>
-												<Property Name="SIMTuning" Type="Real32" Value="112.4"/>
+												<Property Name="SIMTuning" Type="Real32" Value="95.18689"/>
 												<Property Name="SIMType" Type="int32" Value="93"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Ponch_and_John" ID="{2B6A0BC9-0B74-4866-BFA0-5D52935B88AB}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1821,6 +1910,7 @@
 												<Property Name="SIMType" Type="int32" Value="104"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Snake_TV" ID="{BE46B232-7775-4486-9E2D-C24336F8895E}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1835,6 +1925,7 @@
 												<Property Name="SIMType" Type="int32" Value="40"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 										<Effect Name="Sputter_Butter" ID="{611760BC-43B2-4A5A-BC71-FF1B46374AE2}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
@@ -1862,6 +1953,7 @@
 												<Property Name="SIMEnable" Type="bool" Value="False"/>
 												<Property Name="Version" Type="int32" Value="1"/>
 											</PropertyList>
+											<PluginData/>
 										</Effect>
 									</ChildrenList>
 								</Folder>
