@@ -23,9 +23,9 @@ public class FaceHuggerBehaviour : MonoBehaviour
     States currentState = States.Idle;
 
     // Ranges
-    const float detectedRange = 180.0f;
+    const float detectedRange = 200.0f;
     const float maxAttackRange = 90.0f;
-    const float maxChasingRange = 180.0f;
+    const float maxChasingRange = 200.0f;
     const float maxRangeStopChasing = 60.0f;
 
     // Flags
@@ -66,6 +66,8 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
     public override void Update()
     {
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) return;
+
         attachedGameObject.animator.UpdateAnimation();
 
         if (currentState == States.Dead) return;
