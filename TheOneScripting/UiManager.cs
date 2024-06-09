@@ -252,7 +252,19 @@ public class UiManager : MonoBehaviour
                 if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
                     playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
-                    SceneManager.LoadScene("MainMenu");
+
+                    if (managers.gameManager.hasSaved)
+                    {
+                        managers.gameManager.LoadSave();
+                        return;
+                    }
+
+                    managers.gameManager.ResetSave();
+                    managers.questManager.StartGame();
+
+                    DataManager.RemoveFile("GameData");
+                    SceneManager.LoadScene("L1R1");
+                    return;
                 }
             }
             else if ((managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (managers.gameManager.GetGameState() != GameManager.GameStates.PAUSED))
@@ -313,7 +325,7 @@ public class UiManager : MonoBehaviour
             {
                 deathScreenGo.Enable();
                 state = MenuState.Death;
-                managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS);
+                managers.gameManager.SetGameState(GameManager.GameStates.PAUSED);
                 onCooldown = true;
             }
         }
@@ -359,6 +371,7 @@ public class UiManager : MonoBehaviour
         }
 
         if(state != MenuState.Hud) { managers.gameManager.SetGameState(GameManager.GameStates.ONMENUS); }
+        else { managers.gameManager.SetGameState(GameManager.GameStates.RUNNING); }
     }
 
     public void OpenMenu(MenuState state)
@@ -427,7 +440,7 @@ public class UiManager : MonoBehaviour
 
     public void OpenHudPopUpMenu(HudPopUpMenu type, string text1 = "", string text = "", Dialoguer dialoguer = Dialoguer.None, float cooldown = 4.5f)
     {
-        if(pickUpFeedbackOnCooldown || dialogueOnCooldown)
+        if((pickUpFeedbackOnCooldown || dialogueOnCooldown) || ((type == HudPopUpMenu.PickUpFeedback || type == HudPopUpMenu.Dialogue) && managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING))
         {
             PopupItem item = new PopupItem(type, text, text1, dialoguer, cooldown);
             popupsQueue.Add(item);

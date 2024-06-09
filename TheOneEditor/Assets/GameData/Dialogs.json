@@ -7,29 +7,34 @@
       "isLast": false,
       "dialoguer": "Guard 1:\n",
       "text": "Why is she here?",
+      "cooldown": 1,
       "audioEvent": "VO_GUARD1_VOICELINE1_V2"
     },
     "Dialog2": {
       "isLast": false,
       "dialoguer": "Guard 2:\n",
       "text": "I was told its because she\nwent crazy after serving\nand tried to murder some\nof her superiors.",
+      "cooldown": 5,
       "audioEvent": "VO_GUARD2_VOICELINE1"
     },
     "Dialog3": {
       "isLast": false,
       "dialoguer": "Guard 1:\n",
       "text": "Well lets hope she behaves.",
+      "cooldown": 1,
       "audioEvent": "VO_GUARD1_VOICELINE2"
     },
     "Dialog4": {
       "isLast": false,
       "dialoguer": "...",
+      "cooldown": 1,
       "text": "Alarm sounds"
     },
     "Dialog5": {
       "isLast": true,
       "dialoguer": "Guard 2:\n",
       "text": "Stay here and watch the\nprisoner, Ill go\nlook into it.",
+      "cooldown": 3,
       "audioEvent": "VO_GUARD2_VOICELINE2"
     }
   },
