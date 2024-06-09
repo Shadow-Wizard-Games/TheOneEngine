@@ -1,5 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
 	260986250	P_EQUIP			\Default Work Unit\Game\Characters\Player\P_EQUIP	
+	318623688	UI_POPUP			\Default Work Unit\UI\UI_POPUP	
 	323248236	A_GL_SHOOT			\Default Work Unit\Game\Abilities\Grenade Launcher\A_GL_SHOOT	
 	337852012	A_GL_EXPLOSION			\Default Work Unit\Game\Abilities\Grenade Launcher\A_GL_EXPLOSION	
 	417627684	PlayMusic			\Default Work Unit\Game\Ambience\PlayMusic	
@@ -32,11 +33,13 @@ Event	ID	Name			Wwise Object Path	Notes
 	2711568226	E_FH_JUMP			\Default Work Unit\Game\Characters\Enemies\Facehugger\E_FH_JUMP	
 	2725321747	E_Q_STEP			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_STEP	
 	2923735218	E_A_SHOOT			\Default Work Unit\Game\Characters\Enemies\Anarchist\E_A_SHOOT	
+	2950569156	UI_ABILITY			\Default Work Unit\UI\UI_ABILITY	
 	2965692658	A_S_HIT			\Default Work Unit\Game\Abilities\Shield\A_S_HIT	
 	3010972734	W_SL_SHOOT			\Default Work Unit\Game\Weapons\Shoulder laser\W_SL_SHOOT	
 	3169029109	E_Q_CHANGE			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_CHANGE	
 	3271687631	E_X_ADULT_MELEE			\Default Work Unit\Game\Characters\Enemies\Xenomorph\E_X_ADULT_MELEE	
 	3286329979	E_EGG_CRACK			\Default Work Unit\Game\Characters\Enemies\Egg\E_EGG_CRACK	
+	3295012478	PR_DOOR			\Default Work Unit\Game\Props\PR_DOOR	
 	3547019691	E_Q_SPITCHARGE			\Default Work Unit\Game\Characters\Enemies\Queen\E_Q_SPITCHARGE	
 	3630142368	A_LI			\Default Work Unit\Game\Abilities\La Impaciente\A_LI	
 	3632435752	DEBUG_SPATIAL1			\Default Work Unit\Debug\DEBUG_SPATIAL1	
@@ -107,20 +110,23 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	649793213	SFX_E_FH_Crawl_Death	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_FH_Crawl_Death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Facehugger\SFX_E_FH_Crawl_Death		262852
 	651570572	SFX_E_Q_death_2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_death_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_death_2		599120
 	657823762	music1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\seagull1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\music1		668922
+	657843244	SFX_Door	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\103090-Laser_sword_whoosh_heavy_03-SFXBible-ss06238_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Props\Door\SFX_Door		110724
 	678013479	SFX_W_m4_shoot	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_m4_shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_W_m4_shoot		16780
 	692788379	SFX_Xenomorph_Death_E	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Xenomorph_Death_E_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Xenomorph\SFX_Xenomorph_Death_E		515280
 	715356811	gunshot	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\gunshot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Debug\gunshot		108384
 	730529704	SFX_E_A_Death	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_A_Death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Anarchist\SFX_E_A_Death		257604
 	732584561	SFX_CH_Roll	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Roll_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_CH_Roll		135800
+	754934966	SFX_UI_Ability	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\274070-Ancient-Game-Charge-Instant-Cast-2_0ADAFBFF.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\SFX_UI_Ability		114208
 	757988013	AM_Combat_Level_1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\AM_Combat_Level_1_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\Ambience\Music\Combat\AM_Combat_Level_1\AM_Combat_Level_1		1843648
 	758485825	SFX_UI_Pause	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_UI_Pause_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\SFX_UI_Pause		134172
-	760076921	SFX_W_m4_reload	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_m4_reload_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_W_m4_reload		271156
+	760076921	SFX_W_m4_reload	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_W_m4_reload_BD6DC9E3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Weapons\M4\SFX_W_m4_reload		148924
 	765790919	SFX_A_flamethrower	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_flamethrower_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Flamethrower\SFX_A_flamethrower		391112
 	774355553	SFX_CH_Step_Dirt_01	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_CH_Step_Dirt_D93A4C3A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\P Steps\Footsteps Dirt\SFX_CH_Step_Dirt_01		45940
 	797598712	SFX_E_Q_SpitCharge	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_SpitCharge_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_SpitCharge		120500
 	842763712	SFX_E_Q_PhaseChange	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_PhaseChange_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_PhaseChange		582988
 	882278297	SFX_E_Q_Spit	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_Spit_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_Spit		145226
 	895675887	SFX_A_s_deactivate	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_A_s_deactivate_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Abilities\Shield\SFX_A_s_deactivate		187284
+	932502442	SFX_UI_PopUp	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\422846-ESM-Rounded-Menu-Select-1-Mobile-App-Game-FX-Sound-Magic-Fantasy-Touch-Accent-Stab-Hit_34513D3D.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\SFX_UI_PopUp		29520
 	958004585	SFX_Player_Death_CH	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_Player_Death_CH_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Player\SFX_Player_Death_CH		128004
 	961676207	SFX_E_A_Shoot	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_A_Shoot_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Anarchist\SFX_E_A_Shoot		16780
 	974273116	SFX_E_Q_AcidBomb	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\SFX\SFX_E_Q_AcidBomb_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Game\Characters\Enemies\Queen\SFX_E_Q_AcidBomb		239744

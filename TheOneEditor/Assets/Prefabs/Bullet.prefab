@@ -1,0 +1,186 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1543500321
+    },
+    {
+      "Emmiters": [
+        {
+          "Delay": 0.0,
+          "Duration": 1.0,
+          "InitializeModules": [
+            {
+              "MaxColor": [
+                1.0,
+                0.7200291752815247,
+                0.34394901990890503,
+                0.2738853693008423
+              ],
+              "MinColor": [
+                1.0,
+                0.9288003444671631,
+                0.14012736082077026,
+                1.0
+              ],
+              "Type": 1,
+              "UsingSingleValueColor": false
+            },
+            {
+              "IsProportional": true,
+              "MaxScale": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "MinScale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "Type": 2,
+              "UsingSingleValueScale": false
+            }
+          ],
+          "IsLooping": true,
+          "Lifetime": 754.5891723632813,
+          "MaxParticles": 200,
+          "RenderModule": [
+            {
+              "BillboardType": 1,
+              "TexturePath": "",
+              "Type": 0
+            }
+          ],
+          "SpawnModule": [
+            {
+              "Duration": 0.05000000074505806,
+              "SpawnRate": 100.0,
+              "Type": 0
+            }
+          ]
+        },
+        {
+          "Delay": 0.0,
+          "Duration": 1.0,
+          "InitializeModules": [
+            {
+              "MaxColor": [
+                0.9044585824012756,
+                0.9044585824012756,
+                0.9044585824012756,
+                0.0
+              ],
+              "MinColor": [
+                0.8280254602432251,
+                0.8280254602432251,
+                0.8280254602432251,
+                0.649681568145752
+              ],
+              "Type": 1,
+              "UsingSingleValueColor": false
+            },
+            {
+              "IsProportional": true,
+              "MaxScale": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "MinScale": [
+                2.0,
+                1.0,
+                1.0
+              ],
+              "Type": 2,
+              "UsingSingleValueScale": false
+            }
+          ],
+          "IsLooping": true,
+          "Lifetime": 610.67822265625,
+          "MaxParticles": 200,
+          "RenderModule": [
+            {
+              "BillboardType": 1,
+              "TexturePath": "",
+              "Type": 0
+            }
+          ],
+          "SpawnModule": [
+            {
+              "Duration": 0.20000000298023224,
+              "SpawnRate": 100.0,
+              "Type": 0
+            }
+          ],
+          "UpdateModules": [
+            {
+              "FinalScale": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Type": 2
+            }
+          ]
+        }
+      ],
+      "Name": "BulletTrail\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "StartON": true,
+      "Type": 9,
+      "UID": 3825340051
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 7209065,
+      "ScriptName": "Bullet",
+      "Type": 4,
+      "UID": 2025882182
+    },
+    {
+      "ColliderType": 0,
+      "CollisionType": 3,
+      "CornerPivot": true,
+      "Height": 100.0,
+      "Name": "Collider2D",
+      "ObjectOrientation": 0,
+      "OffsetX": 0.0,
+      "OffsetY": 0.0,
+      "ParentUID": 7209065,
+      "Radius": 1.0,
+      "Type": 5,
+      "UID": 3016574432,
+      "Width": 100.0
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Bullet",
+  "ParentUID": 7209065,
+  "PrefabDirty": false,
+  "PrefabID": 4278758102,
+  "PrefabName": "Bullet",
+  "Static": false,
+  "UID": 7209065
+}

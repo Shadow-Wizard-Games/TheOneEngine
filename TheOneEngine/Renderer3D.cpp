@@ -821,7 +821,25 @@ void Renderer3D::CRTShader(RenderTarget target)
 	Shader* crtShader = crtMat->getShader();
 	crtShader->Bind();
 
+	float kBlood = 0;
+	BloodEffect(kBlood);
 
+	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color_ui"));
+	crtMat->SetUniformData("kBlood", kBlood);
+	crtMat->SetUniformData("kAdrenaline", kBlood);
+	crtMat->SetUniformData("time", (float)engine->upTime);
+	crtMat->SetUniformData("warp", glm::vec2(12, 8));
+
+	crtMat->Bind();
+	Renderer::DrawScreenQuad();
+	crtMat->UnBind();
+
+	uiBuffer->Unbind();
+}
+
+void Renderer3D::BloodEffect(float &kBlood)
+{
+	//if (renderer3D.recievedDamage)
 	if (renderer3D.recievedDamage)
 	{
 		renderer3D.screenBloodIn->Play();
@@ -837,27 +855,14 @@ void Renderer3D::CRTShader(RenderTarget target)
 		renderer3D.screenBloodOut->Reset();
 	}
 
-	float kEasing = 0;
 	if (renderer3D.screenBloodIn->GetState() == EasingState::PLAY)
 	{
-		kEasing = renderer3D.screenBloodIn->Ease(0.0, 1.0, engine->dt, EasingType::EASE_IN_EXP, false);
+		kBlood = renderer3D.screenBloodIn->Ease(0.0, 1.0, engine->dt, EasingType::EASE_IN_EXP, false);
 	}
 	if (renderer3D.screenBloodOut->GetState() == EasingState::PLAY)
 	{
-		kEasing = renderer3D.screenBloodOut->Ease(1.0, 0.0, engine->dt, EasingType::EASE_OUT_SIN, false);
+		kBlood = renderer3D.screenBloodOut->Ease(1.0, 0.0, engine->dt, EasingType::EASE_OUT_SIN, false);
 	}
-	
-
-	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color_ui"));
-	crtMat->SetUniformData("kEasing", kEasing);
-	crtMat->SetUniformData("time", (float)engine->upTime);
-	crtMat->SetUniformData("warp", glm::vec2(12, 8));
-
-	crtMat->Bind();
-	Renderer::DrawScreenQuad();
-	crtMat->UnBind();
-
-	uiBuffer->Unbind();
 }
 
 void Renderer3D::SetUniformsParticleShader(ResourceId materialID, RenderTarget target)
@@ -1014,7 +1019,8 @@ void Renderer3D::InitCRTShader()
 	Shader* crtShader = Resources::GetResourceById<Shader>(crtShaderId);
 	crtShader->Compile("Assets/Shaders/CRTShader");
 	crtShader->addUniform("albedo", UniformType::Sampler2D);
-	crtShader->addUniform("kEasing", UniformType::Float);
+	crtShader->addUniform("kBlood", UniformType::Float);
+	crtShader->addUniform("kAdrenaline", UniformType::Float);
 	crtShader->addUniform("time", UniformType::Float);
 	crtShader->addUniform("warp", UniformType::fVec2);
 	Resources::Import<Shader>("CRTShader", crtShader);

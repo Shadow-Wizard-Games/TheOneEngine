@@ -1094,28 +1094,14 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& p
 	fs::path filename = ASSETS_PATH;
 	filename += "Prefabs\\" + prefabName + ".prefab";
 
-	std::ifstream file(filename);
-	if (!file.is_open())
-	{
-		LOG(LogType::LOG_ERROR, "Failed to open prefab file: %s", filename);
-		return;
-	}
-
-	json prefabJSON;
-	try
-	{
-		file >> prefabJSON;
-	}
-	catch (const json::parse_error& e)
-	{
-		LOG(LogType::LOG_ERROR, "Failed to parse prefab JSON: %s", e.what());
-		return;
-	}
-
-	// Close the file
-	file.close();
+	json prefabJSON = Resources::OpenJSON(filename.string());
 
 	newGameObject->LoadGameObject(prefabJSON);
+
+	if (newGameObject.get()->GetName() != "SK_MainCharacter" && newGameObject.get()->GetName() != "UI_Manager")
+	{
+		newGameObject.get()->SetName(GenerateUniqueName(newGameObject.get()->GetName()));
+	}
 
 	Transform* goTransform = newGameObject->GetComponent<Transform>();
 
