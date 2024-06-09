@@ -123,12 +123,6 @@ public class UiScriptHud : MonoBehaviour
         currencyAmount = managers.gameManager.currency;
         killsAmount = 0;
 
-        var mainQuest = managers.questManager.GetMainQuest();
-        currentMainMission = mainQuest?.name ?? "None";
-
-        var sideQuest = managers.questManager.GetSideQuest();
-        currentSideMission = sideQuest?.name ?? "None";
-
         UpdateUnlockedAbilities(true);
     }
     public override void Update()
@@ -312,25 +306,21 @@ public class UiScriptHud : MonoBehaviour
             UpdateString(HudStrings.LOADOUTSTRING);
         }
 
-        if (currentMainMission != managers.questManager.GetMainQuest()?.name || start)
+        var mainQuest = managers.questManager.GetMainQuest();
+        string currentMainMission2 = mainQuest != null ? mainQuest.name : "None";
+
+        if (currentMainMission != currentMainMission2 || start)
         {
-            currentMainMission = managers.questManager.GetMainQuest()?.name;
-            UpdateString(HudStrings.MAINMISSIONSTRING);
-        }
-        else if(managers.questManager.GetMainQuest() == null)
-        {
-            currentMainMission = "None";
+            currentMainMission = currentMainMission2;
             UpdateString(HudStrings.MAINMISSIONSTRING);
         }
 
-        if (currentSideMission != managers.questManager.GetSideQuest().name || start)
+        var sideQuest = managers.questManager.GetSideQuest();
+        string currentSideMission2 = sideQuest != null ? sideQuest.name : "None";
+
+        if (currentSideMission != currentSideMission2 || start)
         {
-            currentSideMission = managers.questManager.GetSideQuest().name;
-            UpdateString(HudStrings.MISSIONDESCRIPTIONSTRING);
-        }
-        else if(managers.questManager.GetMainQuest() == null)
-        {
-            currentSideMission = "None";
+            currentSideMission = currentSideMission2;            
             UpdateString(HudStrings.MISSIONDESCRIPTIONSTRING);
         }
     }
@@ -527,10 +517,10 @@ public class UiScriptHud : MonoBehaviour
                 canvas.SetTextString(currLoadout, "Text_CurrentLoadoutName");
                 break;
             case HudStrings.MAINMISSIONSTRING:
-                canvas.SetTextString(managers.questManager.GetMainQuest().name, "Text_MissionName");
+                canvas.SetTextString(currentMainMission, "Text_MissionName");
                 break;
             case HudStrings.MISSIONDESCRIPTIONSTRING:
-                canvas.SetTextString(managers.questManager.GetSideQuest().name, "Text_MissionDescription");
+                canvas.SetTextString(currentSideMission, "Text_MissionDescription");
                 break;
             case HudStrings.CDGRENADE:
                 canvas.SetTextString("", "Text_WeaponCd2", (int)(grenadeCooldown - grenadeTimer));

@@ -55,6 +55,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="SFX_UI_M_Hover" ID="{B13F0004-7043-4E40-9D8D-994EB9A7AB00}" ShortID="391766706">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>30</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -7959,6 +7966,16 @@
 										<Sound Name="VO_grant_response" ID="{ED21130E-0853-43AA-9B85-0CA9BB98066E}" ShortID="370426294">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>7</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -7970,6 +7987,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_grant_response" ID="{206DE3AC-5F90-4433-AE2E-639966AECC5B}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.89766711590296"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_grant_response.wav</AudioFile>
 													<MediaIDList>
@@ -8049,6 +8071,11 @@
 										<Sound Name="VO_Palmer_response" ID="{563EFB33-F8D5-4D85-A9AA-F47FA6DA52D9}" ShortID="829270059">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -8060,6 +8087,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_Palmer_response" ID="{FD1E6DEE-BF53-403B-B272-40738F039193}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.17629182389937"/>
+														<Property Name="TrimEnd" Type="Real64" Value="4.14037735849056"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_Palmer_response.wav</AudioFile>
 													<MediaIDList>
