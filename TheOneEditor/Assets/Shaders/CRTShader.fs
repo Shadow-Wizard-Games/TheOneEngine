@@ -6,8 +6,9 @@
 precision highp float;
 
 uniform sampler2D albedo;
-uniform vec2 warp;
+uniform float kEasing;
 uniform float time;
+uniform vec2 warp;
 
 in vec2 fragCoord;
 layout(location = 1) out vec4 fragColor;
@@ -38,12 +39,22 @@ void DrawScanLine(inout vec3 color, vec2 uv)
     color *= scanline * grille * 1.2;
 }
 
+void ScreenBlood(inout vec3 color, vec2 uv)
+{
+    float vignette = uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
+    vignette = clamp(pow(42.0 * vignette, 0.25), 0.0, 1.0); //val, min, max
+    vec3 bloodColor = vec3(1.0, 0.0, 0.0);
+    color =  mix(color, bloodColor, (1.0 - vignette) * kEasing); //start, end, interpolation
+}
+
 void main()
 {
     vec2 uv = fragCoord.xy;
     vec2 crtUV = WarpUV(uv);
 
     vec3 color = texture(albedo, crtUV).rgb;
+
+    ScreenBlood(color, crtUV);
 
     if(crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0)
     {
@@ -52,7 +63,7 @@ void main()
 
     DrawVignette(color, crtUV);
 
-    DrawScanLine(color, crtUV);
+    DrawScanLine(color, crtUV);  
 
     fragColor.xyz = color;
     fragColor.w = 1.0;

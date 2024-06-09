@@ -9,6 +9,7 @@
 #include "Shader.h"
 #include "RenderTarget.h"
 #include "FrameBuffer.h"
+#include "Easing.h"
 
 #include <memory>
 

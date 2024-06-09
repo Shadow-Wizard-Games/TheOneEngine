@@ -118,17 +118,9 @@ bool App::Update()
 	bool ret = true;
 	PrepareUpdate();
 
-	/*if (input->GetWindowEvent(WE_QUIT) == true)
-		ret = false;*/
-
-	if (ret == true)
-		ret = PreUpdate();
-
-	if (ret == true)
-		ret = DoUpdate();
-
-	if (ret == true)
-		ret = PostUpdate();
+	if (ret) ret = PreUpdate();
+	if (ret) ret = DoUpdate();
+	if (ret) ret = PostUpdate();
 
 	FinishUpdate();
 

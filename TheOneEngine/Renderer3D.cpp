@@ -34,6 +34,9 @@ struct Renderer3DData
 	uint dynamicIBO = 0;
 
 	Renderer3D::Statistics stats;
+
+	Easing* screenBloodIn;
+	Easing* screenBloodOut;
 };
 
 static Renderer3DData renderer3D;
@@ -56,6 +59,9 @@ void Renderer3D::Init()
 	InitPostLightingShader();
 	InitIndexShaders();
 	InitCRTShader();
+
+	renderer3D.screenBloodIn = new Easing(0.15);
+	renderer3D.screenBloodOut = new Easing(0.45);
 }
 
 void Renderer3D::Update(RenderTarget target)
@@ -791,9 +797,36 @@ void Renderer3D::CRTShader(RenderTarget target)
 	Shader* crtShader = crtMat->getShader();
 	crtShader->Bind();
 
+
+	if (engine->inputManager->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+	{
+		renderer3D.screenBloodIn->Play();
+	}
+	if (renderer3D.screenBloodIn->GetState() == EasingState::END)
+	{
+		renderer3D.screenBloodIn->Reset();
+		renderer3D.screenBloodOut->Play();
+	}
+	if (renderer3D.screenBloodOut->GetState() == EasingState::END)
+	{
+		renderer3D.screenBloodOut->Reset();
+	}
+
+	float kEasing = 0;
+	if (renderer3D.screenBloodIn->GetState() == EasingState::PLAY)
+	{
+		kEasing = renderer3D.screenBloodIn->Ease(0.0, 1.0, engine->dt, EasingType::EASE_IN_EXP, false);
+	}
+	if (renderer3D.screenBloodOut->GetState() == EasingState::PLAY)
+	{
+		kEasing = renderer3D.screenBloodOut->Ease(1.0, 0.0, engine->dt, EasingType::EASE_OUT_SIN, false);
+	}
+	
+
 	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color_ui"));
-	crtMat->SetUniformData("warp", glm::vec2(12, 8));
+	crtMat->SetUniformData("kEasing", kEasing);
 	crtMat->SetUniformData("time", (float)engine->upTime);
+	crtMat->SetUniformData("warp", glm::vec2(12, 8));
 
 	crtMat->Bind();
 	Renderer::DrawScreenQuad();
@@ -956,8 +989,9 @@ void Renderer3D::InitCRTShader()
 	Shader* crtShader = Resources::GetResourceById<Shader>(crtShaderId);
 	crtShader->Compile("Assets/Shaders/CRTShader");
 	crtShader->addUniform("albedo", UniformType::Sampler2D);
-	crtShader->addUniform("warp", UniformType::fVec2);
+	crtShader->addUniform("kEasing", UniformType::Float);
 	crtShader->addUniform("time", UniformType::Float);
+	crtShader->addUniform("warp", UniformType::fVec2);
 	Resources::Import<Shader>("CRTShader", crtShader);
 
 	Material crtMat(crtShader);
