@@ -37,6 +37,8 @@ struct Renderer3DData
 
 	bool constantDamage;
 	bool recievedDamage;
+	bool recievedHealing;
+	bool recievedAdrenaline;
 	Easing* screenBloodIn;
 	Easing* screenBloodOut;
 };
