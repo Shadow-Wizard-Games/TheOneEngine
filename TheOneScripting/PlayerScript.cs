@@ -61,6 +61,7 @@ public class PlayerScript : MonoBehaviour
     public Item_M4A1 ItemM4;
     public Item_ShoulderLaser ItemShoulderLaser;
 
+    IGameObject currentWeapon;
     IGameObject M4GO;
     public IGameObject ShoulderLaserGO;
     public IGameObject ImpacienteGO;
@@ -145,6 +146,7 @@ public class PlayerScript : MonoBehaviour
         ImpacienteGO.Disable();
         FlamethrowerGO = attachedGameObject.FindInChildren("WP_Flamethrower");
         FlamethrowerGO.Disable();
+        currentWeapon = M4GO;
 
         IGameObject Abilities = attachedGameObject.FindInChildren("Abilities");
         GrenadeLauncher = Abilities?.GetComponent<AbilityGrenadeLauncher>();
@@ -531,25 +533,30 @@ public class PlayerScript : MonoBehaviour
                 case CurrentWeapon.M4:
                     // CHANGE DEPENDING ON GRENADE LAUNCHER
                     M4GO.Enable();
+                    currentWeapon = M4GO;
                     currentWeaponDamage = ItemM4.damage;
                     break;
                 case CurrentWeapon.SHOULDERLASER:
                     ShoulderLaserGO.Enable();
+                    currentWeapon = ShoulderLaserGO;
                     currentWeaponDamage = ItemShoulderLaser.damage;
                     break;
                 case CurrentWeapon.IMPACIENTE:
                     ImpacienteGO.Enable();
+                    currentWeapon = ImpacienteGO;
                     currentWeaponDamage = Impaciente.damage;
                     Debug.Log("Impaciente Activated");
                     break;
                 case CurrentWeapon.FLAMETHROWER:
                     FlamethrowerGO.Enable();
+                    currentWeapon = FlamethrowerGO;
                     currentWeaponDamage = Flamethrower.damage;
                     Debug.Log("Flamethrower Activated");
                     break;
                 case CurrentWeapon.GRENADELAUNCHER:
                     // CHANGE DEPENDING ON GRENADE LAUNCHER
                     M4GO.Enable();
+                    currentWeapon = M4GO;
                     Debug.Log("Grenade Launcher Activated");
                     break;
             }
@@ -827,8 +834,6 @@ public class PlayerScript : MonoBehaviour
             movementDirection += new Vector3(rotatedDirection.x, 0.0f, rotatedDirection.y);
             movementMagnitude = leftJoystickDirection.Magnitude();
             toMove = true;
-
-            aimingDirection += rotatedDirection;
         }
 
         #endregion
@@ -874,19 +879,26 @@ public class PlayerScript : MonoBehaviour
 
         if (movementDirection != Vector3.zero)
         {
-            //movingDirection = movingDirection.Normalize();
             float characterRotation = (float)Math.Atan2(movingDirection.x, movingDirection.y);
             float dot = movingDirection.x * aimingDirection.x + movingDirection.y * aimingDirection.y;
 
             if (dot < 0)
             {
                 attachedGameObject.animator.PlaybackSpeed = -1.0f;
-                Debug.Log("Going Backwards");
+                if(currentWeapon != null)
+                {
+                    currentWeapon.animator.PlaybackSpeed = -1.0f;
+                    Debug.Log("Going Backward weapon");
+                }
             }
             else
             {
                 attachedGameObject.animator.PlaybackSpeed = 1.0f;
-                Debug.Log("Going Forward");
+                if (currentWeapon != null)
+                {
+                    currentWeapon.animator.PlaybackSpeed = 1.0f;
+                    Debug.Log("Going Backward weapon");
+                }
             }
         }
 
@@ -896,21 +908,6 @@ public class PlayerScript : MonoBehaviour
     private bool SetAimDirection()
     {
         bool hasAimed = false;
-
-        #region MOUSE
-        float mousePositionX = Input.GetMousePositionX();
-        float mousePositionY = Input.GetMousePositionY();
-        float windowSizeX = InternalCalls.GetWindowSizeX();
-        float windowSizeY = InternalCalls.GetWindowSizeY();
-        Vector2 centerScreen = new Vector2(windowSizeX / 2, windowSizeY / 2);
-        Vector2 direction = new Vector2(mousePositionX, mousePositionY) - centerScreen;
-
-        if (direction.x != 0.0f || direction.y != 0.0f)
-        {
-            aimingDirection += direction;
-            hasAimed = true;
-        }
-        #endregion
 
         #region KEYBOARD
         if (Input.GetKeyboardButton(Input.KeyboardCode.UP))
@@ -950,6 +947,23 @@ public class PlayerScript : MonoBehaviour
 
             aimingDirection += rotatedDirection;
             hasAimed = true;
+        }
+        else if(Input.GetMouseMotionX() != 0.0f || Input.GetMouseMotionY() != 0)
+        {
+            #region MOUSE
+            float mousePositionX = Input.GetMousePositionX();
+            float mousePositionY = Input.GetMousePositionY();
+            float windowSizeX = InternalCalls.GetWindowSizeX();
+            float windowSizeY = InternalCalls.GetWindowSizeY();
+            Vector2 centerScreen = new Vector2(windowSizeX / 2, windowSizeY / 2);
+            Vector2 direction = new Vector2(mousePositionX, mousePositionY) - centerScreen;
+
+            if (direction.x != 0.0f || direction.y != 0.0f)
+            {
+                aimingDirection += direction;
+                hasAimed = true;
+            }
+            #endregion
         }
 
         #endregion

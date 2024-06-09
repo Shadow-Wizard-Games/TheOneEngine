@@ -30,6 +30,12 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetMousePositionY();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetMouseMotionX();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float GetMouseMotionY();
     #endregion
 
     #region Transform

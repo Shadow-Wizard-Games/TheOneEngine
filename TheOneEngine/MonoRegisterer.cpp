@@ -86,6 +86,16 @@ static float GetMousePositionY()
 	return (float)engine->inputManager->GetMouseY();
 }
 
+static float GetMouseMotionX()
+{
+	return (float)engine->inputManager->GetMouseXMotion();
+}
+
+static float GetMouseMotionY()
+{
+	return (float)engine->inputManager->GetMouseYMotion();
+}
+
 static float GetWindowSizeX()
 {
 	int w, h;
@@ -1234,7 +1244,11 @@ static float GetPlaybackSpeed(GameObject* GOptr) {
 	if (mesh->meshType != MeshType::SKELETAL) return -1.0f;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
-	return m->getActiveAnimation()->getPlaybackSpeed();
+	OzzAnimation* anim = m->getActiveAnimation();
+	if (anim != nullptr)
+		return m->getActiveAnimation()->getPlaybackSpeed();
+	else
+		return 0.0f;
 }
 
 static void SetPlaybackSpeed(GameObject* GOptr, float* time) {
@@ -1242,7 +1256,9 @@ static void SetPlaybackSpeed(GameObject* GOptr, float* time) {
 	if (mesh->meshType != MeshType::SKELETAL) return;
 
 	SkeletalModel* m = Resources::GetResourceById<SkeletalModel>(mesh->meshID);
-	m->getActiveAnimation()->setPlaybackSpeed((float)*time);
+	OzzAnimation* anim = m->getActiveAnimation();
+	if(anim != nullptr)
+		anim->setPlaybackSpeed((float)*time);
 }
 
 static void UpdateAnimation(GameObject* GOptr, float* dt) {
@@ -1326,6 +1342,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetMouseButton", GetMouseButton);
 	mono_add_internal_call("InternalCalls::GetMousePositionX", GetMousePositionX);
 	mono_add_internal_call("InternalCalls::GetMousePositionY", GetMousePositionY);
+	mono_add_internal_call("InternalCalls::GetMouseMotionX", GetMouseMotionX);
+	mono_add_internal_call("InternalCalls::GetMouseMotionY", GetMouseMotionY);
 
 	//Transform
 	mono_add_internal_call("InternalCalls::TransformCheck", TransformCheck);

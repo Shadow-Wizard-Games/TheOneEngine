@@ -111,5 +111,14 @@ public class Input
     {
         return InternalCalls.GetMousePositionY();
     }
+
+    public static float GetMouseMotionX()
+    {
+        return InternalCalls.GetMouseMotionX();
+    }
+    public static float GetMouseMotionY()
+    {
+        return InternalCalls.GetMouseMotionY();
+    }
 }
 
