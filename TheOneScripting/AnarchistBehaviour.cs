@@ -31,7 +31,7 @@ class AnarchistBehaviour : MonoBehaviour
 
     // Ranges
     const float rangeToInspect = 200.0f;
-    const float inspectDetectionRadius = 100.0f;
+    const float inspectDetectionRadius = 200.0f;
     const float loseRange = 150.0f;
 
     // Inspect
@@ -91,6 +91,8 @@ class AnarchistBehaviour : MonoBehaviour
 
     public override void Update()
     {
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) return;
+
         attachedGameObject.animator.UpdateAnimation();
         M4GO.animator.UpdateAnimation();
 
