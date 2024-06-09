@@ -262,6 +262,12 @@ class InternalCalls
     internal extern static float ActivateBloodShader();
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float ActivateAdrenalineShader();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float ActivateHealingShader();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float ActivateBloodShaderConstant();
     #endregion
 

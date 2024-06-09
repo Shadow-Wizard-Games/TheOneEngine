@@ -969,6 +969,16 @@ static void ActivateBloodShader()
 	Renderer3D::ActivateBloodEffect();
 }
 
+static void ActivateHealingShader()
+{
+	Renderer3D::ActivateHealingEffect();
+}
+
+static void ActivateAdrenalineShader()
+{
+	Renderer3D::ActivateAdrenalineEffect();
+}
+
 static void ActivateBloodShaderConstant()
 {
 	Renderer3D::ActivateBloodEffectConstant();
@@ -1465,6 +1475,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetPixelFX",		GetPixelFX);
 	mono_add_internal_call("InternalCalls::GetCRTShader", GetCRTShader);
 	mono_add_internal_call("InternalCalls::ActivateBloodShader", ActivateBloodShader);
+	mono_add_internal_call("InternalCalls::ActivateAdrenalineShader", ActivateAdrenalineShader);
+	mono_add_internal_call("InternalCalls::ActivateHealingShader", ActivateHealingShader);
 	mono_add_internal_call("InternalCalls::ActivateBloodShaderConstant", ActivateBloodShaderConstant);
 	mono_add_internal_call("InternalCalls::GetWindowSizeX", GetWindowSizeX);
 	mono_add_internal_call("InternalCalls::GetWindowSizeY", GetWindowSizeY);

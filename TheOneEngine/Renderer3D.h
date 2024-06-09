@@ -132,6 +132,8 @@ public:
 	static void ResetStats();
 	static int GetMeshCount();
 	static void ActivateBloodEffect();
+	static void ActivateHealingEffect();
+	static void ActivateAdrenalineEffect();
 	static void ActivateBloodEffectConstant();
 
 private:

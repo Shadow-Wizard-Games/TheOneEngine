@@ -302,7 +302,11 @@ public class PlayerScript : MonoBehaviour
             currentWeapon.Disable();
 
         // Update player adrenaline PS
-        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
+        {
+            adrenalinePSGO.Play();
+            InternalCalls.ActivateAdrenalineShader();
+        }
         else adrenalinePSGO.End();
         if (isReloading) { bulletShell.End(); laser.End(); }
 
@@ -808,6 +812,7 @@ public class PlayerScript : MonoBehaviour
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
         healPSGO?.Replay();
+        InternalCalls.ActivateHealingShader();
 
         Debug.Log("Ability Heal Activated");
     }
@@ -821,6 +826,7 @@ public class PlayerScript : MonoBehaviour
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
         healPSGO?.Replay();
+        InternalCalls.ActivateHealingShader();
 
         Debug.Log("Ability Heal Activated");
     }

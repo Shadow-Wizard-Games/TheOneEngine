@@ -278,6 +278,16 @@ void Renderer3D::ActivateBloodEffect()
 	renderer3D.recievedDamage = true;
 }
 
+void Renderer3D::ActivateHealingEffect()
+{
+	renderer3D.recievedHealing = true;
+}
+
+void Renderer3D::ActivateAdrenalineEffect()
+{
+	renderer3D.recievedAdrenaline = true;
+}
+
 void Renderer3D::ActivateBloodEffectConstant()
 {
 	renderer3D.constantDamage = true;
