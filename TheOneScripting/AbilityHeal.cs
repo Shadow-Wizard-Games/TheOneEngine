@@ -78,10 +78,12 @@ public class AbilityHeal : MonoBehaviour
             if (abilityName == "Bandage")
             {
                 totalHeal = managers.gameManager.GetMaxHealth() * healAmount;
+                playerGO.animator.Play("Healing Bandage Static");
             }
             else
             {
                 totalHeal = managers.gameManager.GetMaxHealth() * healAmount;
+                playerGO.animator.Play("Healing Syringe Static");
             }
 
             managers.gameManager.health += totalHeal;

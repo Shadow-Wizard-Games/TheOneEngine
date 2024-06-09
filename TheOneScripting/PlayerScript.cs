@@ -10,7 +10,6 @@ public class PlayerScript : MonoBehaviour
         SHOULDERLASERSET,
         M4A1SET,
     }
-
     public enum CurrentWeapon
     {
         NONE,
@@ -322,7 +321,6 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            // grenade 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
@@ -335,8 +333,6 @@ public class PlayerScript : MonoBehaviour
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-                && Heal.numHeals > 0
-                && Heal.numHeals > 0
                 && Heal.state == AbilityHeal.AbilityState.READY
                 && currentAction != CurrentAction.DASH)
             {
@@ -371,7 +367,6 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            // grenade
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
@@ -391,8 +386,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-            && Heal.numHeals > 0
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))  
             && Heal.state == AbilityHeal.AbilityState.READY
             && Dash.state != AbilityDash.AbilityState.ACTIVE
             && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
@@ -416,7 +410,6 @@ public class PlayerScript : MonoBehaviour
         WeaponAbilityStates();
 
         shotLight.SwitchOff();
-
     }
     private void WeaponAbilityStates()
     {
