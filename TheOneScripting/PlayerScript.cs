@@ -1217,7 +1217,7 @@ public class PlayerScript : MonoBehaviour
             return;
 
         managers.gameManager.health -= 70.0f;
-        Debug.Log("Player Life now is " + managers.gameManager.health.ToString());
+        //Debug.Log("Player Life now is " + managers.gameManager.health.ToString());
         if (managers.gameManager.health <= 0)
         {
             managers.gameManager.health = 0;
