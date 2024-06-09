@@ -131,6 +131,8 @@ public class ItemManager : MonoBehaviour
     {
         inventory.Clear();
         equipped.Clear();
+        AddItem(4, 1);
+        AddItem(6, 1);
     }
 
     public void SaveInventoryData()

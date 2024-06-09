@@ -200,11 +200,6 @@ public class PlayerScript : MonoBehaviour
     }
     public override void Update()
     {
-        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING)
-        {
-            currentAction = CurrentAction.IDLE;
-        }
-
         // to delete just testing
         AddItemsToInventoryForTest();
 
@@ -306,6 +301,9 @@ public class PlayerScript : MonoBehaviour
         if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
         else adrenalinePSGO.End();
         if (isReloading) { bulletShell.End(); laser.End(); }
+
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING)
+            return;
 
         SetAimDirection();
 
