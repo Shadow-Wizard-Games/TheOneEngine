@@ -1,0 +1,45 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_Medic_TPose\\Medic_Take 001AS_Medic_Idle.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Medic_TPose\\Medic_Take 001AS_Medic_Walk.anim",
+      "loop": true,
+      "name": "Walk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Medic_TPose\\Medic_Take 001AS_Medic_Run.anim",
+      "loop": true,
+      "name": "Run",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Medic_TPose\\Medic_Take 001AS_Medic_Talk.anim",
+      "loop": true,
+      "name": "Talk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_Medic_TPose\\Medic_Take 001AS_Medic_Greeting.anim",
+      "loop": true,
+      "name": "Greetings",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_Medic_TPose/M_Medic1.toematerial",
+  "mesh": "Library/Meshes/AS_Medic_TPose/Medic_animatedmesh.ozzmesh",
+  "name": "Medic",
+  "skeleton": "Library/Meshes/AS_Medic_TPose/Medic_skeleton.skeleton",
+  "transition_blend": true,
+  "transition_time": 1.0
+}

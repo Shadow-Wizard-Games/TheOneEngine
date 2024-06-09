@@ -159,6 +159,11 @@ bool CollisionSolver::Update(double dt)
                         item->AddToDelete(engine->N_sceneManager->objectsToDelete);
                         item2->GetComponent<Mesh>()->hasEffect = true;
                     }
+                case CollisionType::Wall:
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        item->AddToDelete(engine->N_sceneManager->objectsToDelete);
+                    }
                     break;
                 default:
                     break;

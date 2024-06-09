@@ -1,0 +1,54 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1603303600
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_ShopKeeper_TPose/M_ShopKeeper1.toematerial",
+      "MeshPath": "Library/Meshes/AS_ShopKeeper_TPose/SK_ShopKeeper.animator",
+      "MeshType": 2,
+      "Name": "Mesh",
+      "ParentUID": 0,
+      "Type": 2,
+      "UID": 2306641487
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "SK_ShopKeeper",
+  "ParentUID": 7798871,
+  "PrefabDirty": false,
+  "PrefabID": 2770590374,
+  "PrefabName": "SK_ShopKeeper",
+  "Static": false,
+  "UID": 0
+}
