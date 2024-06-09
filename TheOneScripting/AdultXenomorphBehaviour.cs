@@ -89,7 +89,8 @@ public class AdultXenomorphBehaviour : MonoBehaviour
 
     public override void Update()
     {
-        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) return;
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING)
+            return;
 
         attachedGameObject.animator.UpdateAnimation();
 
