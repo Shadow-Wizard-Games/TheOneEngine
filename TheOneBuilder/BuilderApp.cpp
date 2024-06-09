@@ -80,8 +80,6 @@ bool BuilderApp::Start()
 			return false;
 	}
 
-	state = GameState::PLAY;
-
 	return true;
 }
 
@@ -100,6 +98,7 @@ bool BuilderApp::Update()
 
 	time_since_start = start_timer->ReadSec();
 
+	state = GameState::PLAY;
 	if (state == GameState::PLAY || state == GameState::PLAY_ONCE)
 		game_time = game_timer->ReadSec(scale_time);
 
@@ -132,8 +131,6 @@ bool BuilderApp::PreUpdate()
 
 bool BuilderApp::DoUpdate()
 {
-	engine->Update(dt);
-
 	for (const auto& module : modules)
 	{
 		if (!module->active)
@@ -142,6 +139,8 @@ bool BuilderApp::DoUpdate()
 		if (!module->Update(dt))
 			return false;
 	}
+
+	engine->Update(dt);
 
 	return true;
 }
