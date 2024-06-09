@@ -1782,7 +1782,153 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-						<Folder Name="Palmer" ID="{9DDE5FC5-C689-4651-973E-25EB79ED95D9}" ShortID="629568653"/>
+						<Folder Name="Palmer" ID="{9DDE5FC5-C689-4651-973E-25EB79ED95D9}" ShortID="629568653">
+							<ChildrenList>
+								<Event Name="Play_VO_Palmer_response" ID="{FAC8A61F-153D-480E-B8B4-6B494F5B1791}">
+									<ChildrenList>
+										<Action Name="" ID="{F589DBB1-60BE-459F-ABCB-962F226752DE}" ShortID="31801072">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_response" ID="{563EFB33-F8D5-4D85-A9AA-F47FA6DA52D9}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_mission2" ID="{DED1442D-A82E-43A9-8203-4646B3613A17}">
+									<ChildrenList>
+										<Action Name="" ID="{184574A4-06B0-4060-827E-BFB40219E67E}" ShortID="820039652">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_mission2" ID="{C47A4F93-1422-4CB2-B812-212537170F70}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_log5_2" ID="{97661160-D9CB-465E-AE5A-86825FEBDFA9}">
+									<ChildrenList>
+										<Action Name="" ID="{7B85CAF1-9D8A-4FD3-AF1B-B4B7E7B072A8}" ShortID="1069075654">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="palmer_log5_2" ID="{8F29B0D5-BA0B-4021-B02B-190875A2C931}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_mission5" ID="{60427A49-9BD3-4D4E-9778-8CCF4E00A487}">
+									<ChildrenList>
+										<Action Name="" ID="{E9B9506B-2B0F-465F-87DC-5A9F32990B3B}" ShortID="694802633">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_mission5" ID="{7DC5C83F-5CCE-4FBC-9B07-CA410BA9D4F3}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_log5_1" ID="{5E252775-4D99-45EE-A5B6-0EAD573675BD}">
+									<ChildrenList>
+										<Action Name="" ID="{3E5893D3-4AC8-459D-9375-488B1B0B044A}" ShortID="673664197">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="palmer_log5_1" ID="{6F9BFE2E-A5DE-4AB0-8370-23C6321B5AC6}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_mission3" ID="{363FFBF6-D772-4FF3-8CA9-A70A4B61DEF5}">
+									<ChildrenList>
+										<Action Name="" ID="{E1DEB425-E09A-4666-A716-574445C709FA}" ShortID="98562308">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_mission3" ID="{7BA439DA-C4D6-455C-8152-4C4F966E1BB8}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_mission4" ID="{BF59ED35-CBD3-4F27-928F-44987508CE54}">
+									<ChildrenList>
+										<Action Name="" ID="{DDC82795-B94B-4C12-A509-9C19FDF5B28A}" ShortID="744497661">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_mission4" ID="{D8DEAF2A-602B-4CCC-959D-2067016B7AEA}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_first1" ID="{DC5F87B2-F858-482E-8D2F-4573FD497F75}">
+									<ChildrenList>
+										<Action Name="" ID="{88CEECBA-941F-4046-9E45-6B6DF7404CF7}" ShortID="16581082">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_first1" ID="{D38807BE-64BF-46CB-A33B-02D4F4469874}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_first2" ID="{B30DB8C3-76DA-478F-BCD5-395A856D4748}">
+									<ChildrenList>
+										<Action Name="" ID="{930C2A3D-6D5E-493A-84E7-0BFDAE12BF41}" ShortID="692687885">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_first2" ID="{B46D77CA-3FA2-4AEE-A349-A78E26E22306}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_first3" ID="{75DA5F00-FAA7-495E-B706-8EBF9B0C34F8}">
+									<ChildrenList>
+										<Action Name="" ID="{8BA9BF25-4C48-4159-AD37-454118AB92A3}" ShortID="302922254">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_first3" ID="{ABF8AE71-4D7F-4792-986C-31AA46659959}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_mission1" ID="{7E8FFD01-E451-405C-8B3F-AFFF4A6E5227}">
+									<ChildrenList>
+										<Action Name="" ID="{4DFAEBF3-7625-4AAD-B05D-E9D1C7887AA3}" ShortID="832804332">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_mission1" ID="{AB3BB117-D893-4ED1-82D1-C86D653F1712}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_first4" ID="{619C7F1C-ED1B-4A27-AEF6-DBD695D891CD}">
+									<ChildrenList>
+										<Action Name="" ID="{DD140120-3A50-4C81-97D7-1F82D25A714C}" ShortID="198502066">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_first4" ID="{B7B802A6-385D-4D6D-8A4D-50172C9BEFB8}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="Play_VO_Palmer_outShip" ID="{7C2970AD-7753-4275-8F7B-1B4C856F8902}">
+									<ChildrenList>
+										<Action Name="" ID="{17A22C1D-05EA-4CB1-BF1A-33F7E1ED0C5E}" ShortID="1004023006">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_Palmer_outShip" ID="{44161038-87D8-4B96-BFBD-109FC00B7759}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 						<Folder Name="Computer" ID="{85B56839-AD6C-483A-9399-5F84B19FD771}" ShortID="767177309">
 							<ChildrenList>
 								<Event Name="VO_computer_log2" ID="{0656F8A0-333D-4CBE-9DB0-D35E3AE35D1B}">

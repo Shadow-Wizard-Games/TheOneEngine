@@ -452,7 +452,7 @@
 											<ChildrenList>
 												<Sound Name="SFX_E_FH_Jump" ID="{B980FD6B-B9DF-4030-96B0-5FD4CA217B5F}" ShortID="337821903">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -560,7 +560,7 @@
 												</Sound>
 												<SwitchContainer Name="FH Crawl" ID="{FE9F0244-5119-4027-AECC-77C9BDE8DBA9}" ShortID="173013551">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -753,7 +753,7 @@
 												</SwitchContainer>
 												<Sound Name="SFX_E_FH_Crawl_Death" ID="{5BFB513C-F27B-4CE3-B604-F95B8466B711}" ShortID="1045139990">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -864,6 +864,9 @@
 										<Folder Name="Anarchist" ID="{9559B43C-E9AD-480A-8223-CD016BC0E96B}" ShortID="971767804">
 											<ChildrenList>
 												<Sound Name="SFX_E_A_Death" ID="{BEBB4ADE-41C5-4F5B-AC45-66A3C86C17CC}" ShortID="680342445">
+													<PropertyList>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -886,6 +889,9 @@
 													</ActiveSourceList>
 												</Sound>
 												<Sound Name="SFX_E_A_Shoot" ID="{1F41907F-3F6B-40DF-9651-42EA0AD2836C}" ShortID="176792729">
+													<PropertyList>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -908,6 +914,9 @@
 													</ActiveSourceList>
 												</Sound>
 												<SwitchContainer Name="A Steps" ID="{97B9BA5F-4CC4-4960-99D4-D056CBFF3236}" ShortID="496420137">
+													<PropertyList>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -972,7 +981,7 @@
 											<ChildrenList>
 												<Sound Name="SFX_Xenomorph_Death_E" ID="{8D9373ED-B743-4713-BFC2-B136CEA6E123}" ShortID="854056931">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -1080,7 +1089,7 @@
 												</Sound>
 												<Sound Name="SFX_Xenomorph_Melee_E" ID="{B15FA04B-63DD-4C59-9C91-4695B59C2391}" ShortID="892201193">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -1188,7 +1197,7 @@
 												</Sound>
 												<Sound Name="SFX_Xenomorph_Spit_E" ID="{BA5F865D-59EE-4589-B03D-C7465464F853}" ShortID="360143652">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -1296,7 +1305,7 @@
 												</Sound>
 												<Sound Name="SFX_Xenomorph_Spawn_E" ID="{98CC6EE3-33E4-40BF-ACC5-548116E2EF38}" ShortID="580128797">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 														<Property Name="Pitch" Type="int32">
 															<ValueList>
 																<Value>-660</Value>
@@ -1413,6 +1422,9 @@
 													</ActiveSourceList>
 												</Sound>
 												<SwitchContainer Name="AX Steps" ID="{1CB17810-D287-4BFE-A7A1-AE8A6796A980}" ShortID="529877629">
+													<PropertyList>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -1653,92 +1665,9 @@
 											<ChildrenList>
 												<Sound Name="SFX_E_Q_AcidBomb" ID="{64883AA8-4D62-4462-BAB2-D10897E9A74E}" ShortID="937514202">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
-														<Reference Name="Attenuation">
-															<Custom>
-																<Attenuation Name="Attenuation (Custom)" ID="{4D87D662-A0D9-4D37-80F6-6292003FE63D}" ShortID="655269662">
-																	<CurveUsageInfoList>
-																		<VolumeDryUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																				<Curve Name="VolumeDry" ID="{2037A178-3435-4FB0-A18F-A6763C2CC47C}">
-																					<PropertyList>
-																						<Property Name="Flags" Type="int32" Value="3"/>
-																					</PropertyList>
-																					<PointList>
-																						<Point>
-																							<XPos>0</XPos>
-																							<YPos>0</YPos>
-																							<Flags>5</Flags>
-																						</Point>
-																						<Point>
-																							<XPos>100</XPos>
-																							<YPos>-200</YPos>
-																							<Flags>37</Flags>
-																						</Point>
-																					</PointList>
-																				</Curve>
-																			</CurveUsageInfo>
-																		</VolumeDryUsage>
-																		<VolumeWetGameUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																		</VolumeWetGameUsage>
-																		<VolumeWetUserUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																		</VolumeWetUserUsage>
-																		<LowPassFilterUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</LowPassFilterUsage>
-																		<HighPassFilterUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</HighPassFilterUsage>
-																		<SpreadUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</SpreadUsage>
-																		<FocusUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</FocusUsage>
-																		<ObstructionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionVolumeUsage>
-																		<ObstructionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionLPFUsage>
-																		<ObstructionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionHPFUsage>
-																		<OcclusionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionVolumeUsage>
-																		<OcclusionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionLPFUsage>
-																		<OcclusionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionHPFUsage>
-																		<DiffractionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionVolumeUsage>
-																		<DiffractionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionLPFUsage>
-																		<DiffractionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionHPFUsage>
-																		<TransmissionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionVolumeUsage>
-																		<TransmissionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionLPFUsage>
-																		<TransmissionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionHPFUsage>
-																	</CurveUsageInfoList>
-																</Attenuation>
-															</Custom>
-														</Reference>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
 														</Reference>
@@ -1761,7 +1690,7 @@
 												</Sound>
 												<Sound Name="SFX_E_Q_Drop" ID="{F5EBE89A-4E22-42CE-93A3-2A1016893E61}" ShortID="829186366">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -1869,7 +1798,7 @@
 												</Sound>
 												<Sound Name="SFX_E_Q_Jump" ID="{705B0F9F-FC53-4AE9-B237-A52F139DCF5C}" ShortID="797115126">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -1977,7 +1906,7 @@
 												</Sound>
 												<Sound Name="SFX_E_Q_PhaseChange" ID="{5B498C52-675D-4B54-AC60-29B93C709D28}" ShortID="719259533">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -2084,6 +2013,9 @@
 													</ActiveSourceList>
 												</Sound>
 												<Sound Name="SFX_E_Q_Spit" ID="{BED66123-4335-4D25-8CB2-1068C71CE13E}" ShortID="285769528">
+													<PropertyList>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -2107,7 +2039,7 @@
 												</Sound>
 												<Sound Name="SFX_E_Q_SpitCharge" ID="{ED05DEC8-D708-441F-825C-A10E35987C6F}" ShortID="269753992">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -2215,7 +2147,7 @@
 												</Sound>
 												<Sound Name="SFX_E_Q_TailShot" ID="{70998AC8-A0DA-43F6-A7A4-EF9F0F49E604}" ShortID="789314979">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -2323,7 +2255,7 @@
 												</Sound>
 												<Sound Name="SFX_E_Q_TailSweep" ID="{38DA44E6-C926-40C3-9EE2-DADE0BC44774}" ShortID="869959169">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -2431,92 +2363,9 @@
 												</Sound>
 												<SwitchContainer Name="Q Steps" ID="{0672F250-ACBA-489F-B8C1-C718D1599E14}" ShortID="283584931">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
-														<Reference Name="Attenuation">
-															<Custom>
-																<Attenuation Name="Attenuation (Custom)" ID="{64A1EDF3-924C-4864-8C5D-2E2759A0C09C}" ShortID="200410743">
-																	<CurveUsageInfoList>
-																		<VolumeDryUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																				<Curve Name="VolumeDry" ID="{53DA3FE0-B4A8-4565-881F-724617B6DDDA}">
-																					<PropertyList>
-																						<Property Name="Flags" Type="int32" Value="3"/>
-																					</PropertyList>
-																					<PointList>
-																						<Point>
-																							<XPos>0</XPos>
-																							<YPos>0</YPos>
-																							<Flags>5</Flags>
-																						</Point>
-																						<Point>
-																							<XPos>100</XPos>
-																							<YPos>-200</YPos>
-																							<Flags>37</Flags>
-																						</Point>
-																					</PointList>
-																				</Curve>
-																			</CurveUsageInfo>
-																		</VolumeDryUsage>
-																		<VolumeWetGameUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																		</VolumeWetGameUsage>
-																		<VolumeWetUserUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																		</VolumeWetUserUsage>
-																		<LowPassFilterUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</LowPassFilterUsage>
-																		<HighPassFilterUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</HighPassFilterUsage>
-																		<SpreadUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</SpreadUsage>
-																		<FocusUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</FocusUsage>
-																		<ObstructionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionVolumeUsage>
-																		<ObstructionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionLPFUsage>
-																		<ObstructionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionHPFUsage>
-																		<OcclusionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionVolumeUsage>
-																		<OcclusionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionLPFUsage>
-																		<OcclusionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionHPFUsage>
-																		<DiffractionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionVolumeUsage>
-																		<DiffractionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionLPFUsage>
-																		<DiffractionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionHPFUsage>
-																		<TransmissionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionVolumeUsage>
-																		<TransmissionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionLPFUsage>
-																		<TransmissionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionHPFUsage>
-																	</CurveUsageInfoList>
-																</Attenuation>
-															</Custom>
-														</Reference>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
 														</Reference>
@@ -2570,7 +2419,7 @@
 												</SwitchContainer>
 												<Sound Name="SFX_E_Q_death_2" ID="{70E123A5-EA1F-42EB-B863-06D847337A1F}" ShortID="794912882">
 													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Attenuation">
@@ -2681,93 +2530,7 @@
 										<Folder Name="Chest burster" ID="{86492030-06DE-4D76-97FD-90AB99194EC0}" ShortID="533649441">
 											<ChildrenList>
 												<Sound Name="SFX_Chestburster_Death_E" ID="{18618D7B-BB32-4007-8F28-C489DCD72072}" ShortID="119365941">
-													<PropertyList>
-														<Property Name="3DSpatialization" Type="int16" Value="1"/>
-													</PropertyList>
 													<ReferenceList>
-														<Reference Name="Attenuation">
-															<Custom>
-																<Attenuation Name="Attenuation (Custom)" ID="{7E63EBBD-44EA-4B0D-A0DF-4DC4BD0B815D}" ShortID="668405099">
-																	<CurveUsageInfoList>
-																		<VolumeDryUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																				<Curve Name="VolumeDry" ID="{B1F490E7-9E41-4E23-BE7A-3C85CC08E7F9}">
-																					<PropertyList>
-																						<Property Name="Flags" Type="int32" Value="3"/>
-																					</PropertyList>
-																					<PointList>
-																						<Point>
-																							<XPos>0</XPos>
-																							<YPos>0</YPos>
-																							<Flags>5</Flags>
-																						</Point>
-																						<Point>
-																							<XPos>100</XPos>
-																							<YPos>-200</YPos>
-																							<Flags>37</Flags>
-																						</Point>
-																					</PointList>
-																				</Curve>
-																			</CurveUsageInfo>
-																		</VolumeDryUsage>
-																		<VolumeWetGameUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																		</VolumeWetGameUsage>
-																		<VolumeWetUserUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																		</VolumeWetUserUsage>
-																		<LowPassFilterUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</LowPassFilterUsage>
-																		<HighPassFilterUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</HighPassFilterUsage>
-																		<SpreadUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</SpreadUsage>
-																		<FocusUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																		</FocusUsage>
-																		<ObstructionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionVolumeUsage>
-																		<ObstructionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionLPFUsage>
-																		<ObstructionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</ObstructionHPFUsage>
-																		<OcclusionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionVolumeUsage>
-																		<OcclusionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionLPFUsage>
-																		<OcclusionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</OcclusionHPFUsage>
-																		<DiffractionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionVolumeUsage>
-																		<DiffractionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionLPFUsage>
-																		<DiffractionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</DiffractionHPFUsage>
-																		<TransmissionVolumeUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionVolumeUsage>
-																		<TransmissionLPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionLPFUsage>
-																		<TransmissionHPFUsage>
-																			<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																		</TransmissionHPFUsage>
-																	</CurveUsageInfoList>
-																</Attenuation>
-															</Custom>
-														</Reference>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
 														</Reference>
@@ -2793,6 +2556,9 @@
 										<Folder Name="Egg" ID="{99BCB942-696B-499F-8B27-6656DC59E163}" ShortID="377330305">
 											<ChildrenList>
 												<Sound Name="SFX_Facehugger_Eggcrack_E" ID="{0C006668-A788-4F99-BD83-45D51EDB76CA}" ShortID="784800254">
+													<PropertyList>
+														<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
@@ -2844,7 +2610,7 @@
 									<ChildrenList>
 										<Sound Name="SFX_Player_Death_CH" ID="{687373E2-87C7-4E1E-960F-AE243E1375F5}" ShortID="85409085">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -2952,7 +2718,7 @@
 										</Sound>
 										<Sound Name="SFX_Player_Hit_CH" ID="{9E625AE9-220F-49DA-95DA-7C0EC49EDAD7}" ShortID="115208414">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -3060,7 +2826,7 @@
 										</Sound>
 										<Sound Name="SFX_CH_Dash" ID="{AC1A8870-935C-4A3C-990A-F0B331CFF2E3}" ShortID="76231012">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -3168,7 +2934,7 @@
 										</Sound>
 										<Sound Name="SFX_CH_Roll" ID="{2FC5A524-E206-48F8-BA18-BD621B683B7E}" ShortID="863069565">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -3276,7 +3042,7 @@
 										</Sound>
 										<Sound Name="SFX_CH_Item_Pickup" ID="{07B03523-1736-4181-B758-739B7A0E4474}" ShortID="856567903">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -3384,6 +3150,7 @@
 										</Sound>
 										<SwitchContainer Name="P Steps" ID="{A2F108E9-6444-408C-9A8D-64584AECECB0}" ShortID="739807053">
 											<PropertyList>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>6</Value>
@@ -3724,7 +3491,7 @@
 										</SwitchContainer>
 										<Sound Name="SFX_UI_equipitem" ID="{9F7D01C4-C8BF-42D2-BDB9-8D556850725E}" ShortID="1053965297">
 											<PropertyList>
-												<Property Name="3DSpatialization" Type="int16" Value="1"/>
+												<Property Name="EnableAttenuation" Type="bool" Value="False"/>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Attenuation">
@@ -3877,89 +3644,6 @@
 												</Property>
 											</PropertyList>
 											<ReferenceList>
-												<Reference Name="Attenuation">
-													<Custom>
-														<Attenuation Name="Attenuation (Custom)" ID="{95437502-8F75-484D-B926-F3C921A2D57F}" ShortID="565627513">
-															<CurveUsageInfoList>
-																<VolumeDryUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																		<Curve Name="VolumeDry" ID="{AED62A09-22FE-40D0-8EF6-57465AC959BE}">
-																			<PropertyList>
-																				<Property Name="Flags" Type="int32" Value="3"/>
-																			</PropertyList>
-																			<PointList>
-																				<Point>
-																					<XPos>0</XPos>
-																					<YPos>0</YPos>
-																					<Flags>5</Flags>
-																				</Point>
-																				<Point>
-																					<XPos>100</XPos>
-																					<YPos>-200</YPos>
-																					<Flags>37</Flags>
-																				</Point>
-																			</PointList>
-																		</Curve>
-																	</CurveUsageInfo>
-																</VolumeDryUsage>
-																<VolumeWetGameUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetGameUsage>
-																<VolumeWetUserUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetUserUsage>
-																<LowPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</LowPassFilterUsage>
-																<HighPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</HighPassFilterUsage>
-																<SpreadUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</SpreadUsage>
-																<FocusUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</FocusUsage>
-																<ObstructionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionVolumeUsage>
-																<ObstructionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionLPFUsage>
-																<ObstructionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionHPFUsage>
-																<OcclusionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionVolumeUsage>
-																<OcclusionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionLPFUsage>
-																<OcclusionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionHPFUsage>
-																<DiffractionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionVolumeUsage>
-																<DiffractionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionLPFUsage>
-																<DiffractionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionHPFUsage>
-																<TransmissionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionVolumeUsage>
-																<TransmissionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionLPFUsage>
-																<TransmissionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionHPFUsage>
-															</CurveUsageInfoList>
-														</Attenuation>
-													</Custom>
-												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
 												</Reference>
@@ -3982,89 +3666,6 @@
 										</Sound>
 										<Sound Name="SFX_W_m4_shoot" ID="{B5498F4F-590D-4D98-B8B8-CB196AA9BC86}" ShortID="867554853">
 											<ReferenceList>
-												<Reference Name="Attenuation">
-													<Custom>
-														<Attenuation Name="Attenuation (Custom)" ID="{C4213FEC-CEC4-429D-A16E-5C6429BEA83E}" ShortID="776125889">
-															<CurveUsageInfoList>
-																<VolumeDryUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-																		<Curve Name="VolumeDry" ID="{BD822AEF-E659-43AB-8548-B35CB18FED24}">
-																			<PropertyList>
-																				<Property Name="Flags" Type="int32" Value="3"/>
-																			</PropertyList>
-																			<PointList>
-																				<Point>
-																					<XPos>0</XPos>
-																					<YPos>0</YPos>
-																					<Flags>5</Flags>
-																				</Point>
-																				<Point>
-																					<XPos>100</XPos>
-																					<YPos>-200</YPos>
-																					<Flags>37</Flags>
-																				</Point>
-																			</PointList>
-																		</Curve>
-																	</CurveUsageInfo>
-																</VolumeDryUsage>
-																<VolumeWetGameUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetGameUsage>
-																<VolumeWetUserUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseVolumeDry"/>
-																</VolumeWetUserUsage>
-																<LowPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</LowPassFilterUsage>
-																<HighPassFilterUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</HighPassFilterUsage>
-																<SpreadUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</SpreadUsage>
-																<FocusUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-																</FocusUsage>
-																<ObstructionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionVolumeUsage>
-																<ObstructionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionLPFUsage>
-																<ObstructionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</ObstructionHPFUsage>
-																<OcclusionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionVolumeUsage>
-																<OcclusionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionLPFUsage>
-																<OcclusionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</OcclusionHPFUsage>
-																<DiffractionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionVolumeUsage>
-																<DiffractionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionLPFUsage>
-																<DiffractionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</DiffractionHPFUsage>
-																<TransmissionVolumeUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionVolumeUsage>
-																<TransmissionLPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionLPFUsage>
-																<TransmissionHPFUsage>
-																	<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-																</TransmissionHPFUsage>
-															</CurveUsageInfoList>
-														</Attenuation>
-													</Custom>
-												</Reference>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
 												</Reference>
@@ -4610,6 +4211,11 @@
 										<Sound Name="VO_stub_fighting1" ID="{23D540A8-602D-4F77-BDD0-3411793D6E9A}" ShortID="987530425">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4635,6 +4241,11 @@
 										<Sound Name="VO_stub_fighting2" ID="{E55BFF00-93E1-47D7-8A7A-5D8DD78150FB}" ShortID="474788774">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4660,6 +4271,11 @@
 										<Sound Name="VO_stub_fighting3" ID="{0E1AE195-049A-4320-8C3E-769F741D2918}" ShortID="699813698">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4685,6 +4301,11 @@
 										<Sound Name="VO_stub_fighting4" ID="{938054E7-E52B-436B-B7FC-2373E14267CC}" ShortID="766151417">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4714,6 +4335,11 @@
 										<Sound Name="VO_stub_clearroom1" ID="{5BFB0286-7DF8-48C7-BCB0-F674D67F3843}" ShortID="719934842">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4739,6 +4365,11 @@
 										<Sound Name="VO_stub_clearroom2" ID="{C0B0AA4B-B687-4429-A3D9-8B0A92F68176}" ShortID="156407708">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4764,6 +4395,11 @@
 										<Sound Name="VO_stub_clearroom3" ID="{FD637C82-4EA2-4774-87D4-DCFB32584ECF}" ShortID="131595995">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4793,6 +4429,11 @@
 										<Sound Name="VO_stub_finding1" ID="{937A376B-6022-4475-BC10-55E9077FAADB}" ShortID="68816151">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4818,6 +4459,11 @@
 										<Sound Name="VO_stub_finding2" ID="{60D55DB7-3FA1-4E18-83DB-DEBC2F7227BC}" ShortID="866448965">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4843,6 +4489,11 @@
 										<Sound Name="VO_stub_finding3" ID="{6F962761-C806-403B-9CC6-2CDDB98F035C}" ShortID="403172267">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4872,6 +4523,11 @@
 										<Sound Name="VO_stub_door1" ID="{98DEF1E9-0605-41CB-B302-05DE0D1920D4}" ShortID="1051169822">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4897,6 +4553,11 @@
 										<Sound Name="VO_stub_door2" ID="{E29B83A7-C80A-466C-9C15-EC07F2C2D667}" ShortID="1050989136">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4926,6 +4587,11 @@
 										<Sound Name="VO_stub_heal1" ID="{E5CF267C-67C3-43AF-A029-AFE82AA20C8A}" ShortID="826768392">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4951,6 +4617,11 @@
 										<Sound Name="VO_stub_heal2" ID="{DDDE55E7-51D7-4909-921D-0FC05994AA99}" ShortID="459267697">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>17</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -4976,6 +4647,11 @@
 										<Sound Name="VO_stub_heal3" ID="{58EE34BA-E51C-4F7F-BA78-C259B85DFD41}" ShortID="272238072">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5005,6 +4681,11 @@
 										<Sound Name="VO_stub_hurt1" ID="{287A73CC-7E95-445C-B394-010B237E479C}" ShortID="107730874">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5038,6 +4719,11 @@
 										<Sound Name="VO_stub_crash1" ID="{C2B16C2E-C8E4-4D96-BC28-2B61232E8C60}" ShortID="322419081">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5063,6 +4749,11 @@
 										<Sound Name="VO_stub_crash2" ID="{4F40A9FD-696B-4451-AEF1-9F395C493DF8}" ShortID="107488505">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5092,6 +4783,11 @@
 										<Sound Name="VO_stub_guardWeapon" ID="{5776D816-A15A-4834-9E08-05557649E8F7}" ShortID="937533701">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5121,6 +4817,11 @@
 										<Sound Name="VO_stub_firstAlien" ID="{9C1C2BD5-E3EA-4E18-8B44-F7C23F6B5998}" ShortID="772561848">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5150,6 +4851,11 @@
 										<Sound Name="VO_stub_planetInfo1" ID="{388FBCF6-8DE5-49DF-A3EB-6D2193E48ACC}" ShortID="644765374">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5179,6 +4885,11 @@
 										<Sound Name="VO_stub_planetInfo2" ID="{82A6E018-269C-4BAD-9194-AF97A04E4808}" ShortID="834406668">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5208,6 +4919,11 @@
 										<Sound Name="VO_stub_planetInfo3" ID="{ABC33738-8330-4B00-89B6-0BE742FE2B00}" ShortID="584222908">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5233,6 +4949,11 @@
 										<Sound Name="VO_tts" ID="{A9DDDF46-DF12-4CF5-A3CE-AF83ABD6F597}" ShortID="443743087">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-50</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5262,6 +4983,11 @@
 										<Sound Name="VO_stub_xenoFight1" ID="{58A57DB0-02A8-4634-808C-59E8F121610D}" ShortID="629413554">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5287,6 +5013,11 @@
 										<Sound Name="VO_stub_xenoFight2" ID="{287CECF4-1DA7-4531-AD61-EC27C7C8B584}" ShortID="449726607">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5312,6 +5043,11 @@
 										<Sound Name="VO_stub_xenoFight3" ID="{5FD87926-0A96-44C8-9074-5E881D48D878}" ShortID="140988754">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>15</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5341,6 +5077,11 @@
 										<Sound Name="VO_stub_xenoFightEnd1" ID="{CA8B8FB8-543B-4280-894E-2613CCCBE4CE}" ShortID="401848875">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5370,6 +5111,11 @@
 										<Sound Name="VO_stub_outShip" ID="{DD67A5AC-60C9-43F4-9347-F6574156516E}" ShortID="656892580">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5392,6 +5138,46 @@
 												<ActiveSource Name="VO_stub_outShip" ID="{6D47CB87-4347-4479-A703-65055EAC5EE4}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="VO_Palmer_outShip" ID="{44161038-87D8-4B96-BFBD-109FC00B7759}" ShortID="198996944">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>30</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_outShip" ID="{E1EFAAEB-010F-44C6-B5C3-45E4CADED441}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.858835734870317"/>
+														<Property Name="TrimEnd" Type="Real64" Value="2.36025360230548"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_outShip.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="782696525"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_outShip" ID="{E1EFAAEB-010F-44C6-B5C3-45E4CADED441}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
 								</Folder>
 							</ChildrenList>
@@ -5403,6 +5189,11 @@
 										<Sound Name="VO_Stub_WakeMed1" ID="{75EC8312-D5C5-444E-92C0-11537DEC0255}" ShortID="691574337">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5428,6 +5219,11 @@
 										<Sound Name="VO_Stub_WakeMed2" ID="{A5EA3AE9-9AAE-4023-9294-45BFEE00DDD3}" ShortID="1038408009">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5453,6 +5249,11 @@
 										<Sound Name="VO_Stub_WakeMed3" ID="{8E33552D-5F24-4CBF-992B-40DC14637BA9}" ShortID="631036313">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5478,6 +5279,11 @@
 										<Sound Name="VO_Stub_WakeMed4" ID="{FB30C811-4D3F-414B-8012-1B49E94D57B9}" ShortID="1035672774">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5503,6 +5309,11 @@
 										<Sound Name="VO_Stub_WakeMed5" ID="{56FFADD7-51A0-4912-BE95-A958046EA018}" ShortID="146978777">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5528,6 +5339,21 @@
 										<Sound Name="VO_Sergeant_WakeMed1" ID="{76E4DFC5-6B45-4A00-966B-803BF9715164}" ShortID="203945936">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5558,6 +5384,21 @@
 										<Sound Name="VO_Sergeant_WakeMed2" ID="{578073A4-DF75-41DC-A191-926520D90F18}" ShortID="826622539">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5588,6 +5429,21 @@
 										<Sound Name="VO_Sergeant_WakeMed3" ID="{ABCD139D-2208-4414-9065-9C6D6C9674BA}" ShortID="990156148">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5618,6 +5474,21 @@
 										<Sound Name="VO_Sergeant_WakeMed4" ID="{E1A85B8A-B85E-41BF-8166-1B754E4383E8}" ShortID="951141032">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5648,6 +5519,21 @@
 										<Sound Name="VO_Sergeant_WakeMed5" ID="{C32F54C9-98D2-48FE-B110-3FA305BBBC25}" ShortID="96927378">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5678,6 +5564,21 @@
 										<Sound Name="VO_Sergeant_WakeMed6" ID="{BDCC1A14-B204-466E-BC92-83C989CB2A35}" ShortID="525261677">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5712,6 +5613,11 @@
 										<Sound Name="VO_isaac_voiceline1" ID="{C352ECA8-D63F-4CDF-9341-5175E89EA177}" ShortID="525946676">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5723,6 +5629,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="VO_isaac_voiceline1" ID="{A551DD57-A774-4BA7-BF44-130952DE1996}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.229245283018868"/>
+														<Property Name="TrimEnd" Type="Real64" Value="3.81311320754717"/>
+													</PropertyList>
 													<Language>English(US)</Language>
 													<AudioFile>VO_isaac_voiceline1.wav</AudioFile>
 													<MediaIDList>
@@ -5737,6 +5648,11 @@
 										<Sound Name="VO_isaac_voiceline2" ID="{0F973D97-3C25-46EC-8227-FDB5FA394AF8}" ShortID="831348131">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5767,6 +5683,11 @@
 										<Sound Name="VO_isaac_voiceline3" ID="{96983356-91AD-444A-8CBF-539C2587C5CD}" ShortID="644441658">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5797,6 +5718,11 @@
 										<Sound Name="VO_isaac_voiceline4" ID="{8FE03896-F919-4F71-B68B-479963BABD3F}" ShortID="203021578">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5827,6 +5753,16 @@
 										<Sound Name="VO_Stub_medclear1" ID="{0E390774-F8AB-4984-8FE1-3C8265CDAD5B}" ShortID="277923512">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5852,6 +5788,16 @@
 										<Sound Name="VO_Stub_medclear2" ID="{1EEEC010-5D5D-4601-9C21-DAB96429B99F}" ShortID="976321462">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5881,6 +5827,11 @@
 										<Sound Name="VO_grant_noah4" ID="{46159076-9D84-488C-831B-8BBB5A1DEF64}" ShortID="116133541">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5910,6 +5861,11 @@
 										<Sound Name="VO_grant_noah3" ID="{533E1634-4992-45E4-9AB2-0B7C1351E90A}" ShortID="567136146">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5935,6 +5891,11 @@
 										<Sound Name="VO_grant_noah2" ID="{68EF14BE-128E-4FEF-AB67-89F8DC3C5045}" ShortID="851443629">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5960,6 +5921,11 @@
 										<Sound Name="VO_grant_noah1" ID="{B58C3C91-A99D-4215-AD80-3E6F5FA90A42}" ShortID="115180931">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -5985,6 +5951,11 @@
 										<Sound Name="VO_Stub_firstnoah1" ID="{FB5A4F9D-1FB2-468B-8F76-718B950E99D0}" ShortID="128001609">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6010,6 +5981,11 @@
 										<Sound Name="VO_Stub_firstnoah2" ID="{FB4CBC17-1A05-4DA6-ADC7-E1ED28A52641}" ShortID="918834395">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6035,6 +6011,11 @@
 										<Sound Name="VO_Stub_firstnoah3" ID="{BFD566F5-F2DB-4A2A-8BA2-C61305F0FE57}" ShortID="914675161">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6064,6 +6045,16 @@
 										<Sound Name="VO_Stub_firstamira1" ID="{BBEBFB72-E4C6-4C65-A24A-4C37334634AA}" ShortID="631629048">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6089,6 +6080,16 @@
 										<Sound Name="VO_Stub_firstamira2" ID="{FBBFCA31-D36D-4361-9016-A1576FBD45C2}" ShortID="284847868">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6114,6 +6115,16 @@
 										<Sound Name="VO_Stub_firstamira3" ID="{AC445CE7-A1D1-4698-9D1D-270BEF475E10}" ShortID="398663177">
 											<PropertyList>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
 											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
@@ -6134,6 +6145,175 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="VO_Stub_firstamira3" ID="{9F73BFBD-31FA-479F-8BA5-FAC5387CBB44}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_first1" ID="{D38807BE-64BF-46CB-A33B-02D4F4469874}" ShortID="79471099">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>12</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_first1" ID="{31787B88-8DB7-45B1-9297-813C66F82BE1}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="9.10349279538905"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_first1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="128599137"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_first1" ID="{31787B88-8DB7-45B1-9297-813C66F82BE1}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_first2" ID="{B46D77CA-3FA2-4AEE-A349-A78E26E22306}" ShortID="138114020">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>25</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-15</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>7</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_first2" ID="{43B98E43-1E64-49CB-9E30-61BF22E837AB}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0.986005763688761"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.986005763688761"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_first2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="364302084"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_first2" ID="{43B98E43-1E64-49CB-9E30-61BF22E837AB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_first3" ID="{ABF8AE71-4D7F-4792-986C-31AA46659959}" ShortID="352591028">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-25</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_first3" ID="{8289D1C4-1763-454F-AEA6-E05BEE2469A3}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="17.4574755043228"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_first3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="589251786"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_first3" ID="{8289D1C4-1763-454F-AEA6-E05BEE2469A3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_first4" ID="{B7B802A6-385D-4D6D-8A4D-50172C9BEFB8}" ShortID="98573683">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-22</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>19</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_first4" ID="{E1E6135B-D3AE-4445-AB2B-1821C83C45E9}">
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_first4.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="205013246"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_first4" ID="{E1E6135B-D3AE-4445-AB2B-1821C83C45E9}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -6649,7 +6829,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>12</Value>
+														<Value>19</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -6679,7 +6859,7 @@
 												<Property Name="IsVoice" Type="bool" Value="True"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>12</Value>
+														<Value>17</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -6706,10 +6886,15 @@
 										</Sound>
 										<Sound Name="VO_Stub_missionamira4" ID="{A6FC970D-ACF9-4B95-A6FB-2FA78D5BAB8C}" ShortID="530495068">
 											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
 												<Property Name="IsVoice" Type="bool" Value="True"/>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>12</Value>
+														<Value>20</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -6732,6 +6917,243 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="VO_Stub_missionamira4" ID="{43CD5EE0-C0CC-4D83-8F45-FAA9EA073996}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_mission1" ID="{AB3BB117-D893-4ED1-82D1-C86D653F1712}" ShortID="672255721">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>19</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_mission1" ID="{FFF8E8E1-ED05-4570-BAF7-0B1F6BEFC482}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.113168107588857"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.35785590778098"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.981809798270893"/>
+														<Property Name="TrimEnd" Type="Real64" Value="3.68560999039385"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_mission1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="855204276"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_mission1" ID="{FFF8E8E1-ED05-4570-BAF7-0B1F6BEFC482}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_mission2" ID="{C47A4F93-1422-4CB2-B812-212537170F70}" ShortID="829829179">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>6</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_mission2" ID="{8A85CBA0-AC60-4A60-8440-A7BF289345B2}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.13291066282421"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="1.05821325648415"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_mission2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="448746419"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_mission2" ID="{8A85CBA0-AC60-4A60-8440-A7BF289345B2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_mission3" ID="{7BA439DA-C4D6-455C-8152-4C4F966E1BB8}" ShortID="284986177">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_mission3" ID="{ABC20108-BC4A-48A3-9614-5BF92BBD23BB}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.409452449567723"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.70971757925072"/>
+														<Property Name="TrimEnd" Type="Real64" Value="8.93971181556196"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_mission3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="656162073"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_mission3" ID="{ABC20108-BC4A-48A3-9614-5BF92BBD23BB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_mission4" ID="{D8DEAF2A-602B-4CCC-959D-2067016B7AEA}" ShortID="552494843">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>30</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_mission4" ID="{6E708801-16BB-4D4A-923B-AE582EF4AEC6}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.15802497598463"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.468318924111431"/>
+														<Property Name="LoopBegin" Type="Real64" Value="0.732280499519693"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.553467819404419"/>
+														<Property Name="TrimEnd" Type="Real64" Value="11.3248030739673"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_mission4.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="369182327"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_mission4" ID="{6E708801-16BB-4D4A-923B-AE582EF4AEC6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_mission5" ID="{7DC5C83F-5CCE-4FBC-9B07-CA410BA9D4F3}" ShortID="655560532">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>20</Value>
+													</ValueList>
+												</Property>
+												<Property Name="MakeUpGain" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>8</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_mission5" ID="{7E6572A1-C292-42B3-8C22-34F9C107B375}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.40695485110471"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.697360230547551"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.244687800192123"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_mission5.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="939721956"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_mission5" ID="{7E6572A1-C292-42B3-8C22-34F9C107B375}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -7394,6 +7816,76 @@
 												<ActiveSource Name="sergeant_log5" ID="{1130A59C-ECE6-4700-BAA5-B19A9D74AFBC}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<Sound Name="palmer_log5_1" ID="{6F9BFE2E-A5DE-4AB0-8370-23C6321B5AC6}" ShortID="58453686">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>11</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="palmer_log5_1" ID="{0F7AD9D2-09B3-41E8-85C5-08DA1E42D63D}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="6.13412056646558"/>
+														<Property Name="TrimEnd" Type="Real64" Value="9.64390433406067"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>palmer_log5_1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="920848904"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="palmer_log5_1" ID="{0F7AD9D2-09B3-41E8-85C5-08DA1E42D63D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="palmer_log5_2" ID="{8F29B0D5-BA0B-4021-B02B-190875A2C931}" ShortID="520396795">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>17</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="palmer_log5_2" ID="{6CB8688C-0EBC-4284-BD2E-4A8EB0626AA5}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.20362606426218"/>
+														<Property Name="TrimEnd" Type="Real64" Value="1.87634758054165"/>
+													</PropertyList>
+													<Language>English(US)</Language>
+													<AudioFile>palmer_log5_2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="712221292"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="palmer_log5_2" ID="{6CB8688C-0EBC-4284-BD2E-4A8EB0626AA5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="Radio SFX" ID="{7DF26F09-6614-4D24-9108-4E99C7A782C2}" ShortID="520056495">
@@ -7552,6 +8044,31 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="rescueship_response" ID="{5E296119-F558-4ECD-A8F5-DF5BCF574093}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="VO_Palmer_response" ID="{563EFB33-F8D5-4D85-A9AA-F47FA6DA52D9}" ShortID="829270059">
+											<PropertyList>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="VO_Palmer_response" ID="{FD1E6DEE-BF53-403B-B272-40738F039193}">
+													<Language>English(US)</Language>
+													<AudioFile>VO_Palmer_response.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="407521937"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="VO_Palmer_response" ID="{FD1E6DEE-BF53-403B-B272-40738F039193}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
