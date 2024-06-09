@@ -102,13 +102,13 @@ public class UiScriptPause : MonoBehaviour
                 //up
                 if (movementVector.y < 0.0f)
                 {
-                    direction = +2;
+                    direction = -2;
                     toMove = true;
                 }
                 //down
                 else if (movementVector.y > 0.0f)
                 {
-                    direction = -2;
+                    direction = +2;
                     toMove = true;
                 }
             }
