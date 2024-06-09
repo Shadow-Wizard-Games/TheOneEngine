@@ -242,6 +242,7 @@ bool CollisionSolver::Update(double dt)
                     if (CheckCollision(item.get(), item2.get()))
                     {
                         MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeMelee");
+                        item->GetComponent<Collider2D>()->radius = 0.0f;
                         item2->GetComponent<Mesh>()->hasEffect = true;
                     }
                     break;

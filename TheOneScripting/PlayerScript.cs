@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 
 public class PlayerScript : MonoBehaviour
@@ -1216,8 +1217,8 @@ public class PlayerScript : MonoBehaviour
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH)
             return;
 
-        managers.gameManager.health -= 20.0f;
-
+        managers.gameManager.health -= 70.0f;
+        Debug.Log("Player Life now is " + managers.gameManager.health.ToString());
         if (managers.gameManager.health <= 0)
         {
             managers.gameManager.health = 0;
