@@ -1,0 +1,38 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_CampLeader_TPose\\SK_CampLeader_Take 001AS_CampLeader_Idle.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_CampLeader_TPose\\SK_CampLeader_Take 001AS_CampLeader_Walk.anim",
+      "loop": true,
+      "name": "Walk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_CampLeader_TPose\\SK_CampLeader_Take 001AS_CampLeader_Talk.anim",
+      "loop": true,
+      "name": "Talk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_CampLeader_TPose\\SK_CampLeader_Take 001AS_CampLeader_Greeting.anim",
+      "loop": true,
+      "name": "Greeting",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_CampLeader_TPose/M_CampLeader1.toematerial",
+  "mesh": "Library/Meshes/AS_CampLeader_TPose/SK_CampLeader_animatedmesh.ozzmesh",
+  "name": "SK_CampLeader",
+  "skeleton": "Library/Meshes/AS_CampLeader_TPose/SK_CampLeader_skeleton.skeleton",
+  "transition_blend": true,
+  "transition_time": 1.0
+}

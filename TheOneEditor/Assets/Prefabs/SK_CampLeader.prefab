@@ -1,0 +1,54 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 1917208037
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_CampLeader_TPose/M_CampLeader1.toematerial",
+      "MeshPath": "Library/Meshes/AS_CampLeader_TPose/SK_CampLeader.animator",
+      "MeshType": 2,
+      "Name": "Mesh",
+      "ParentUID": 875,
+      "Type": 2,
+      "UID": 3227274581
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "SK_CampLeader",
+  "ParentUID": 7798871,
+  "PrefabDirty": false,
+  "PrefabID": 762049656,
+  "PrefabName": "SK_CampLeader",
+  "Static": false,
+  "UID": 875
+}

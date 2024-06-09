@@ -1,0 +1,31 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\AS_ShopKeeper_TPose\\SK_ShopKeeper_Take 001AS_ShopKeeper_Idle.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_ShopKeeper_TPose\\SK_ShopKeeper_Take 001AS_ShopKeeper_Talking.anim",
+      "loop": true,
+      "name": "Talk",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\AS_ShopKeeper_TPose\\SK_ShopKeeper_Take 001AS_ShopKeeper_Walking.anim",
+      "loop": true,
+      "name": "Walk",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/AS_ShopKeeper_TPose/M_ShopKeeper1.toematerial",
+  "mesh": "Library/Meshes/AS_ShopKeeper_TPose/SK_ShopKeeper_animatedmesh.ozzmesh",
+  "name": "SK_ShopKeeper",
+  "skeleton": "Library/Meshes/AS_ShopKeeper_TPose/SK_ShopKeeper_skeleton.skeleton",
+  "transition_blend": true,
+  "transition_time": 1.0
+}
