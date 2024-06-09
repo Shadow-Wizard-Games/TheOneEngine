@@ -1251,6 +1251,14 @@ public class PlayerScript : MonoBehaviour
 
     private void ManageLoaderM4()
     {
+        if(Dash.state == AbilityDash.AbilityState.ACTIVE)
+        {
+            reloadingTimeCounter = ItemM4.reloadTime;
+            loaderAmmoM4 = ItemM4.maxLoaderAmmo;
+            isReloading = false;
+            return;
+        }
+
         if (loaderAmmoM4 <= 0)
             isReloading = true;
 
