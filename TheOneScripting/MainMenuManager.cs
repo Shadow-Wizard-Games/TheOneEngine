@@ -3,6 +3,7 @@
 public class MainMenuManager : MonoBehaviour
 {
     public ICanvas canvas;
+    public ICanvas canvasEngineLogo;
     public ICanvas canvasLogo;
     public ICanvas canvasTitle;
     public ICanvas canvasCredits;
@@ -17,7 +18,8 @@ public class MainMenuManager : MonoBehaviour
     bool mainMenu = false;
     bool title = false;
     bool credits = false;
-    bool logo = true;
+    bool logo = false;
+    bool engineLogo = true;
 
     int creditsView = 0;
 
@@ -31,6 +33,7 @@ public class MainMenuManager : MonoBehaviour
         managers.Start();
 
         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_A_MENU);
+        canvasEngineLogo = IGameObject.Find("EngineLogo").GetComponent<ICanvas>();
         canvasLogo = IGameObject.Find("LogoCanvas").GetComponent<ICanvas>();
         canvasTitle = IGameObject.Find("TitleCanvas").GetComponent<ICanvas>();
         canvasCredits = IGameObject.Find("CreditsCanvas").GetComponent<ICanvas>();
@@ -46,6 +49,7 @@ public class MainMenuManager : MonoBehaviour
             if (managers.gameManager.credits)
             {
                 logo = false;
+                engineLogo = false;
                 title = false;
                 mainMenu = true;
 
@@ -85,7 +89,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (!settingsScript.editing)
         {
-            if ((title || logo || credits) && !onCooldown)
+            if ((title || logo || credits || engineLogo) && !onCooldown)
             {
                 if (creditsView == 0)
                 {
@@ -98,7 +102,14 @@ public class MainMenuManager : MonoBehaviour
                 }
                 if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
                 {
-                    if (logo)
+                    if (engineLogo)
+                    {
+                        logo = true;
+                        engineLogo = false;
+                        canvasEngineLogo.ToggleEnable();
+                        onCooldown = true;
+                    }
+                    else if (logo)
                     {
                         title = true;
                         logo = false;
