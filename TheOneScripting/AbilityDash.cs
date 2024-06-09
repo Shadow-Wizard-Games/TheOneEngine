@@ -22,7 +22,6 @@ public class AbilityDash : MonoBehaviour
     PlayerScript player;
 
     readonly float rollPotency = 2.0f;
-    readonly float dashPotency = 3.0f;
 
 
     public override void Start()
@@ -31,7 +30,7 @@ public class AbilityDash : MonoBehaviour
 
         abilityName = "Roll";
 
-        activeTime = 0.3f;
+        activeTime = 0.75f;
         activeTimeCounter = activeTime;
         cooldownTime = 4.0f;
         cooldownTimeCounter = cooldownTime;
@@ -64,15 +63,9 @@ public class AbilityDash : MonoBehaviour
         if (activeTimeCounter > 0)
         {
             // update time
-            activeTimeCounter -= Time.deltaTime;
-            if (abilityName == "Roll")
-            {
-                playerGO.transform.Translate(player.attachedGameObject.transform.Forward * rollPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
-            }
-            else
-            {
-                playerGO.transform.Translate(player.attachedGameObject.transform.Forward * dashPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
-            }
+            activeTimeCounter -= Time.deltaTime; 
+            playerGO.transform.Translate(player.attachedGameObject.transform.Forward * rollPotency * managers.gameManager.GetSpeed() * Time.deltaTime);
+
         }
         else
         {

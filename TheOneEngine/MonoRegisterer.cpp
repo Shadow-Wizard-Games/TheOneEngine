@@ -380,12 +380,14 @@ static void* GetScript(GameObject* GOptr, MonoString* scriptName)
 
 static void Disable(GameObject* GOtoDisable)
 {
-	GOtoDisable->Disable();
+	if (GOtoDisable != nullptr)
+		GOtoDisable->Disable();
 }
 
 static void Enable(GameObject* GOtoEnable)
 {
-	GOtoEnable->Enable();
+	if(GOtoEnable != nullptr)
+		GOtoEnable->Enable();
 }
 
 //Scene Management

@@ -158,7 +158,15 @@ public class PlayerScript : MonoBehaviour
         Dash = Abilities?.GetComponent<AbilityDash>();
 
         attachedGameObject.animator.Blend = true;
-        attachedGameObject.animator.TransitionTime = 0.1f;
+        attachedGameObject.animator.TransitionTime = 0.15f;
+        ShoulderLaserGO.animator.Blend = true;
+        ShoulderLaserGO.animator.TransitionTime = 0.15f;
+        ImpacienteGO.animator.Blend = true;
+        ImpacienteGO.animator.TransitionTime = 0.15f;
+        M4GO.animator.Blend = true;
+        M4GO.animator.TransitionTime = 0.15f;
+        FlamethrowerGO.animator.Blend = true;
+        FlamethrowerGO.animator.TransitionTime = 0.15f;
 
         attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
         attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
@@ -278,10 +286,14 @@ public class PlayerScript : MonoBehaviour
 
         if (currentAction == CurrentAction.DEAD) return;
 
-        if (Heal.state != AbilityHeal.AbilityState.ACTIVE || Dash.state != AbilityDash.AbilityState.ACTIVE)
+        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
+            if (managers.itemManager.CheckItemInInventory(1))
+                currentWeapon.Enable();
             UpdateWeaponAnimation();
         }
+        else if(Dash.state == AbilityDash.AbilityState.ACTIVE)
+            currentWeapon.Disable();
 
         WeaponAbilityStates();
 
@@ -656,18 +668,9 @@ public class PlayerScript : MonoBehaviour
 
         Dash.state = AbilityDash.AbilityState.ACTIVE;
 
-        if (Dash.abilityName == "Roll")
-        {
-            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_ROLL);
+        attachedGameObject.source.Play(IAudioSource.AudioEvent.P_ROLL);
 
-            attachedGameObject.animator.Play("Roll");
-        }
-        else if (Dash.abilityName == "Dash")
-        {
-            attachedGameObject.source.Play(IAudioSource.AudioEvent.P_DASH);
-
-            attachedGameObject.animator.Play("Dash");
-        }
+        attachedGameObject.animator.Play("Roll");
 
         // Cancel heal when dash
         if (Heal.state == AbilityHeal.AbilityState.ACTIVE) Heal.state = AbilityHeal.AbilityState.READY;
