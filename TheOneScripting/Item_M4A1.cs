@@ -2,11 +2,11 @@
 
 public class Item_M4A1 : Item
 {
-    public readonly int damage = 5;
-    public readonly int maxLoaderAmmo = 20;
+    public readonly int damage = 15;
+    public readonly int maxLoaderAmmo = 32;
     public readonly float fireRate = 0.15f;
 
-    public readonly float reloadTime = 2.0f;
+    public readonly float reloadTime = 0.8f;
 
     public Item_M4A1()
     {

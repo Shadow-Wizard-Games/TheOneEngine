@@ -161,11 +161,11 @@ public class UiScriptStats : MonoBehaviour
                 currentButton += direction;
             }
 
-            if (managers.gameManager.currency >= 100)
+            if (managers.gameManager.currency >= 500)
             {
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 0)
                 {
-                    if(managers.gameManager.GetDamageLvl() < 3)
+                    if (managers.gameManager.GetDamageLvl() < 3)
                     {
                         onCooldown = true;
                         managers.gameManager.currency -= 100;
@@ -175,7 +175,9 @@ public class UiScriptStats : MonoBehaviour
                         attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                     }
                 }
-
+            }
+            else if (managers.gameManager.currency >= 150)
+            { 
                 if ((Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN)) && canvas.GetSelectedButton() == 1)
                 {
                     if (managers.gameManager.GetLifeLvl() < 3)

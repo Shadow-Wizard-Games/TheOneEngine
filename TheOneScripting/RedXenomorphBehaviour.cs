@@ -38,9 +38,9 @@ public class RedXenomorphBehaviour : MonoBehaviour
     bool goingToRoundPos = false;
 
     // Ranges
-    const float detectedRange = 180.0f;
+    const float detectedRange = 200.0f;
     const float isCloseRange = 20.0f * 3;
-    const float maxChasingRange = 180.0f;
+    const float maxChasingRange = 200.0f;
     const float maxRangeStopChasing = 25.0f;
 
     // Flags
@@ -88,6 +88,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     public override void Update()
     {
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) return;
+
         attachedGameObject.animator.UpdateAnimation();
 
         if (currentState == States.Dead)

@@ -1,0 +1,54 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 59781501
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_Medic_TPose/M_Medic1.toematerial",
+      "MeshPath": "Library/Meshes/AS_Medic_TPose/Medic.animator",
+      "MeshType": 2,
+      "Name": "Mesh",
+      "ParentUID": 1350857768,
+      "Type": 2,
+      "UID": 1126814518
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Medic",
+  "ParentUID": 7798871,
+  "PrefabDirty": false,
+  "PrefabID": 3954664247,
+  "PrefabName": "Medic",
+  "Static": false,
+  "UID": 1350857768
+}

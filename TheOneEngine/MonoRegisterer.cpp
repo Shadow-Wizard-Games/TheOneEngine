@@ -34,6 +34,11 @@ static bool GetKeyboardButton(int id)
 	return engine->inputManager->GetKey(id) == KEY_REPEAT;
 }
 
+static bool GetKeyboardButtonUp(int id)
+{
+	return engine->inputManager->GetKey(id) == KEY_UP;
+}
+
 static bool GetControllerButton(int controllerButton, int gamePad)
 {
 	if (controllerButton == 22) //l2
@@ -57,6 +62,33 @@ static bool GetControllerButton(int controllerButton, int gamePad)
 
 	return result == KEY_DOWN;
 }
+
+static bool previousStates[MAX_PADS][MAX_KEYS]; // Adjust size accordingly
+
+static bool GetControllerButtonUp(int controllerButton, int gamePad)
+{
+	bool currentState = false;
+
+	if (controllerButton == 22) // l2
+	{
+		currentState = engine->inputManager->pads[gamePad].l2 == 0.0f;
+	}
+	else if (controllerButton == 23) // r2
+	{
+		currentState = engine->inputManager->pads[gamePad].r2 == 0.0f;
+	}
+	else
+	{
+		auto inputToPass = (SDL_GameControllerButton)controllerButton;
+		currentState = engine->inputManager->GetGamepadButton(gamePad, inputToPass) == KEY_UP;
+	}
+
+	bool wasPressed = previousStates[gamePad][controllerButton];
+	previousStates[gamePad][controllerButton] = !currentState;
+
+	return wasPressed && currentState;
+}
+
 static void GetControllerJoystick(int joystick, vec2f* joyResult, int gamePad)
 {
 	if (joystick) //value is 1, so it means right
@@ -74,6 +106,11 @@ static void GetControllerJoystick(int joystick, vec2f* joyResult, int gamePad)
 static bool GetMouseButton(int id)
 {
 	return engine->inputManager->GetMouseButton(id) == KEY_REPEAT;
+}
+
+static bool GetMouseButtonUp(int id)
+{
+	return engine->inputManager->GetMouseButton(id) == KEY_UP;
 }
 
 static float GetMousePositionX()
@@ -1339,9 +1376,12 @@ void MonoRegisterer::RegisterFunctions()
 
 	//Input
 	mono_add_internal_call("InternalCalls::GetKeyboardButton", GetKeyboardButton);
+	mono_add_internal_call("InternalCalls::GetKeyboardButtonUp", GetKeyboardButtonUp);
 	mono_add_internal_call("InternalCalls::GetControllerButton", GetControllerButton);
+	mono_add_internal_call("InternalCalls::GetControllerButtonUp", GetControllerButtonUp);
 	mono_add_internal_call("InternalCalls::GetControllerJoystick", GetControllerJoystick);
 	mono_add_internal_call("InternalCalls::GetMouseButton", GetMouseButton);
+	mono_add_internal_call("InternalCalls::GetMouseButtonUp", GetMouseButtonUp);
 	mono_add_internal_call("InternalCalls::GetMousePositionX", GetMousePositionX);
 	mono_add_internal_call("InternalCalls::GetMousePositionY", GetMousePositionY);
 	mono_add_internal_call("InternalCalls::GetMouseMotionX", GetMouseMotionX);

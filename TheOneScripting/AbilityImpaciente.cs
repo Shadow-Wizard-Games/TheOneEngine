@@ -96,7 +96,7 @@
             if (player.currentAction == PlayerScript.CurrentAction.SHOOT)
                 player.attachedGameObject.transform.Translate(player.attachedGameObject.transform.Forward * knockbackPotency * Time.deltaTime);
             
-            if (Input.GetKeyboardButton(Input.KeyboardCode.FOUR) && activeTimeCounter < activeTime - waitToReset)
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || Input.GetControllerButton(Input.ControllerButtonCode.L2)) && activeTimeCounter < activeTime - waitToReset)
             {
                 // reset stats
                 //player.shootingCooldown = player.mp4ShootingCd;
@@ -122,7 +122,12 @@
         {
             // reset stats
             speedModification = 0;
-            player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+
+            if (player.currentSkillSet == PlayerScript.SkillSet.M4A1SET)
+                player.currentWeaponType = PlayerScript.CurrentWeapon.M4;
+            else if (player.currentSkillSet == PlayerScript.SkillSet.SHOULDERLASERSET)
+                player.currentWeaponType = PlayerScript.CurrentWeapon.SHOULDERLASER;
+
             player.currentWeaponDamage = damage;
             activeTimeCounter = activeTime;
 
@@ -144,6 +149,8 @@
         else
         {
             cooldownTimeCounter = cooldownTime;
+            player.attachedGameObject.animator.Play("Idle M4");
+            player.M4GO.animator.Play("Idle");
             state = AbilityState.READY;
 
             Debug.Log("Ability Impaciente Ready");

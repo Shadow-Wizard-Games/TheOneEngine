@@ -674,7 +674,14 @@ public class UiScriptHud : MonoBehaviour
     public void SetPainlessOnCD()
     {
         painlessHoveredOnCooldown = false;
-        painlessOnCooldown = true;
         painlessTimer = playerScript.Impaciente.activeTime;
+        UpdateAbilityCanvas(PlayerAbility.PAINLESS, ICanvas.UiState.HOVERED);
+    }
+
+    public void SetFlameThrowerOnCD()
+    {
+        flameThrowerHoveredOnCooldown = false;
+        flameThrowerTimer = playerScript.Impaciente.activeTime;
+        UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.HOVERED);
     }
 }

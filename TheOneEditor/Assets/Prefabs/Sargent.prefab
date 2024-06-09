@@ -1,0 +1,54 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 68852657
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/AS_Sargent_Idle/lambert2.toematerial",
+      "MeshPath": "Library/Meshes/AS_Sargent_Idle/Sargent.animator",
+      "MeshType": 2,
+      "Name": "Mesh",
+      "ParentUID": 402352424,
+      "Type": 2,
+      "UID": 1700738869
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "Sargent",
+  "ParentUID": 6357093,
+  "PrefabDirty": false,
+  "PrefabID": 1918042937,
+  "PrefabName": "Sargent",
+  "Static": false,
+  "UID": 402352424
+}

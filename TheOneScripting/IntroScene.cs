@@ -15,7 +15,7 @@ class IntroScene : MonoBehaviour
     IGameObject gameObject;
 
     private float timerScene = 0.0f;
-    private float durationScene = 5.0f;
+    private float durationScene = 2.0f;
 
     IntroSceneStates state;
 
@@ -65,6 +65,7 @@ class IntroScene : MonoBehaviour
                         string[] datapath = { "NarrativeIntro", "Dialog" + dialogNum.ToString() };
                         string text = DataManager.AccessFileDataString(filepath, datapath, "dialoguer");
                         text += DataManager.AccessFileDataString(filepath, datapath, "text");
+                        durationScene = DataManager.AccessFileDataInt(filepath, datapath, "cooldown");
                         canvasText.SetTextString(text, "SubtitlesTxt");
 
                         isLast = DataManager.AccessFileDataBool(filepath, datapath, "isLast");
@@ -91,9 +92,9 @@ class IntroScene : MonoBehaviour
         {
             if (Enum.TryParse(audioEventString, out AudioEvent audioEvent))
             {
-                gameObject.source.Play(audioEvent);
+                gameObject.source.Stop(audioEvent);
             }
-            gameObject.source.Stop(audioEvent);
+            
             SceneManager.LoadScene("L1R1");
         }
     }

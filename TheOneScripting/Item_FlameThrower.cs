@@ -8,6 +8,8 @@ public class Item_FlameThrower : Item
     public readonly float activeTime = 10f;
     public readonly float cooldownTime = 20f;
 
+    public readonly float intervalTime = 0.12f;
+
     public Item_FlameThrower()
     {
         this.id = 8;

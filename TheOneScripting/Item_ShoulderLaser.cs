@@ -2,7 +2,7 @@
 
 public class Item_ShoulderLaser : Item
 {
-    public readonly int damage = 15;
+    public readonly int damage = 35;
     public readonly float fireRate = 0.7f;
 
     public Item_ShoulderLaser()

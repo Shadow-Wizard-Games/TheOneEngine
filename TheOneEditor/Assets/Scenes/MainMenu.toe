@@ -30,28 +30,28 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 100308743
+          "UID": 4226191562
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 3081876360
+          "UID": 391912750
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 2007020515
+          "UID": 1130280429
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": true,
       "Name": "Manager",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -81,7 +81,7 @@
           "UID": 997210521
         },
         {
-          "Aspect": 1.7773109674453735,
+          "Aspect": 1.778106451034546,
           "CameraType": 0,
           "FOV": 65.0,
           "Name": "Camera",
@@ -105,7 +105,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -389,7 +389,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "MainMenuManager",
           "Type": 4,
-          "UID": 3496235779
+          "UID": 3878306262
         },
         {
           "AudioID": 1,
@@ -401,7 +401,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "MainMenuCanvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -473,7 +473,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "TitleCanvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -545,7 +545,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "LogoCanvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -713,7 +713,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "CreditsCanvas",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -853,7 +853,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptSettings",
           "Type": 4,
-          "UID": 315830902
+          "UID": 2442068855
         }
       ],
       "Enabled": false,
@@ -1854,10 +1854,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettingsDisplay",
               "Type": 4,
-              "UID": 3912962249
+              "UID": 3171727679
             },
             {
-              "AudioID": 13,
+              "AudioID": 2,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -1874,9 +1874,81 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Canvas_Settings",
-      "ParentUID": 3452816845,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
+    },
+    {
+      "Components": [
+        {
+          "Name": "Transform",
+          "Transformation Matrix": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "Type": 0,
+          "UID": 1400427069
+        },
+        {
+          "DebugDraw": true,
+          "Enabled": true,
+          "Flicker": false,
+          "Name": "Canvas",
+          "ParentUID": 1102577664,
+          "Rect": [
+            0.0,
+            0.0,
+            2.0,
+            2.0
+          ],
+          "Type": 6,
+          "UID": 3019773514,
+          "UiElements": [
+            {
+              "ID": 3398302793,
+              "ImagePath": "Assets\\Textures\\Hud\\TheOneEngine_Logo.png",
+              "ImageSection": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "Interactuable": false,
+              "Name": "Img_BackGround",
+              "Print": true,
+              "Rect": [
+                0.0,
+                0.0,
+                1.0,
+                1.0
+              ],
+              "State": 0,
+              "Type": 0
+            }
+          ]
+        }
+      ],
+      "Enabled": true,
+      "HasTransparency": false,
+      "Keeped": false,
+      "Name": "EngineLogo",
+      "ParentUID": 6619242,
+      "Static": false,
+      "UID": 1102577664
     }
   ],
   "index": 0,
