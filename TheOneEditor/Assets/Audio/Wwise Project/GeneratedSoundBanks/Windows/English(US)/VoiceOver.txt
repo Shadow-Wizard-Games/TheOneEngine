@@ -1,20 +1,17 @@
 Event	ID	Name			Wwise Object Path	Notes
 	26695772	VO_stub_door2			\Default Work Unit\Voice Over\Stub\VO_stub_door2	
 	26695775	VO_stub_door1			\Default Work Unit\Voice Over\Stub\VO_stub_door1	
+	174616033	VO_Palmer_log5_2			\Default Work Unit\Voice Over\Palmer\VO_Palmer_log5_2	
+	174616034	VO_Palmer_log5_1			\Default Work Unit\Voice Over\Palmer\VO_Palmer_log5_1	
 	207909036	VO_Stub_firstnoah2			\Default Work Unit\Voice Over\Stub\VO_Stub_firstnoah2	
 	207909037	VO_Stub_firstnoah3			\Default Work Unit\Voice Over\Stub\VO_Stub_firstnoah3	
 	207909039	VO_Stub_firstnoah1			\Default Work Unit\Voice Over\Stub\VO_Stub_firstnoah1	
-	222619951	Play_VO_Palmer_response			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_response	
 	234843012	VO_guard1_voiceline2			\Default Work Unit\Voice Over\Guard 1\VO_guard1_voiceline2	
 	485738767	VO_Stub_fifthcomputer1			\Default Work Unit\Voice Over\Stub\VO_Stub_fifthcomputer1	
 	633519361	VO_Stub_fourthcomputer2			\Default Work Unit\Voice Over\Stub\VO_Stub_fourthcomputer2	
 	633519362	VO_Stub_fourthcomputer1			\Default Work Unit\Voice Over\Stub\VO_Stub_fourthcomputer1	
 	650227542	VO_Radio_OFF			\Default Work Unit\Voice Over\Radio\VO_Radio_OFF	
-	672777400	Play_VO_Palmer_mission4			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_mission4	
-	672777401	Play_VO_Palmer_mission5			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_mission5	
-	672777405	Play_VO_Palmer_mission1			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_mission1	
-	672777406	Play_VO_Palmer_mission2			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_mission2	
-	672777407	Play_VO_Palmer_mission3			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_mission3	
+	722279513	VO_Palmer_outShip			\Default Work Unit\Voice Over\Palmer\VO_Palmer_outShip	
 	789824879	VO_grant_response			\Default Work Unit\Voice Over\Grant\VO_grant_response	
 	827082104	VO_stub_fighting4			\Default Work Unit\Voice Over\Stub\VO_stub_fighting4	
 	827082109	VO_stub_fighting1			\Default Work Unit\Voice Over\Stub\VO_stub_fighting1	
@@ -33,8 +30,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	1225130969	VO_Stub_firstamira1			\Default Work Unit\Voice Over\Stub\VO_Stub_firstamira1	
 	1225130970	VO_Stub_firstamira2			\Default Work Unit\Voice Over\Stub\VO_Stub_firstamira2	
 	1225130971	VO_Stub_firstamira3			\Default Work Unit\Voice Over\Stub\VO_Stub_firstamira3	
-	1230898561	Play_VO_Palmer_log5_1			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_log5_1	
-	1230898562	Play_VO_Palmer_log5_2			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_log5_2	
 	1236238417	VO_grant_backcamp1			\Default Work Unit\Voice Over\Grant\VO_grant_backcamp1	
 	1255446688	VO_Stub_missionamira4			\Default Work Unit\Voice Over\Stub\VO_Stub_missionamira4	
 	1255446693	VO_Stub_missionamira1			\Default Work Unit\Voice Over\Stub\VO_Stub_missionamira1	
@@ -47,13 +42,17 @@ Event	ID	Name			Wwise Object Path	Notes
 	1406454956	VO_computer_log1			\Default Work Unit\Voice Over\Computer\VO_computer_log1	
 	1406454958	VO_computer_log3			\Default Work Unit\Voice Over\Computer\VO_computer_log3	
 	1406454959	VO_computer_log2			\Default Work Unit\Voice Over\Computer\VO_computer_log2	
+	1467454228	VO_Palmer_response			\Default Work Unit\Voice Over\Palmer\VO_Palmer_response	
+	1581752504	VO_Palmer_first3			\Default Work Unit\Voice Over\Palmer\VO_Palmer_first3	
+	1581752505	VO_Palmer_first2			\Default Work Unit\Voice Over\Palmer\VO_Palmer_first2	
+	1581752506	VO_Palmer_first1			\Default Work Unit\Voice Over\Palmer\VO_Palmer_first1	
+	1581752511	VO_Palmer_first4			\Default Work Unit\Voice Over\Palmer\VO_Palmer_first4	
 	1695989288	VO_Sergeant_WakeMed3			\Default Work Unit\Voice Over\Sergeant\VO_Sergeant_WakeMed3	
 	1695989289	VO_Sergeant_WakeMed2			\Default Work Unit\Voice Over\Sergeant\VO_Sergeant_WakeMed2	
 	1695989290	VO_Sergeant_WakeMed1			\Default Work Unit\Voice Over\Sergeant\VO_Sergeant_WakeMed1	
 	1695989293	VO_Sergeant_WakeMed6			\Default Work Unit\Voice Over\Sergeant\VO_Sergeant_WakeMed6	
 	1695989294	VO_Sergeant_WakeMed5			\Default Work Unit\Voice Over\Sergeant\VO_Sergeant_WakeMed5	
 	1695989295	VO_Sergeant_WakeMed4			\Default Work Unit\Voice Over\Sergeant\VO_Sergeant_WakeMed4	
-	1777671516	Play_VO_Palmer_outShip			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_outShip	
 	1792990868	VO_stub_outShip			\Default Work Unit\Voice Over\Stub\VO_stub_outShip	
 	1857914381	VO_stub_clearroom1			\Default Work Unit\Voice Over\Stub\VO_stub_clearroom1	
 	1857914382	VO_stub_clearroom2			\Default Work Unit\Voice Over\Stub\VO_stub_clearroom2	
@@ -70,10 +69,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	2130010906	VO_Stub_outsidenoah1			\Default Work Unit\Voice Over\Stub\VO_Stub_outsidenoah1	
 	2301289131	VO_Stub_thirdcomputer1			\Default Work Unit\Voice Over\Stub\VO_Stub_thirdcomputer1	
 	2306385480	VO_Stub_firstcomputer1			\Default Work Unit\Voice Over\Stub\VO_Stub_firstcomputer1	
-	2321501057	Play_VO_Palmer_first1			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_first1	
-	2321501058	Play_VO_Palmer_first2			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_first2	
-	2321501059	Play_VO_Palmer_first3			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_first3	
-	2321501060	Play_VO_Palmer_first4			\Default Work Unit\Voice Over\Palmer\Play_VO_Palmer_first4	
 	2343389349	VO_stub_heal1			\Default Work Unit\Voice Over\Stub\VO_stub_heal1	
 	2343389350	VO_stub_heal2			\Default Work Unit\Voice Over\Stub\VO_stub_heal2	
 	2343389351	VO_stub_heal3			\Default Work Unit\Voice Over\Stub\VO_stub_heal3	
@@ -84,6 +79,11 @@ Event	ID	Name			Wwise Object Path	Notes
 	2601374232	VO_Radio_ON			\Default Work Unit\Voice Over\Radio\VO_Radio_ON	
 	2621040692	VO_stub_crash1			\Default Work Unit\Voice Over\Stub\VO_stub_crash1	
 	2621040695	VO_stub_crash2			\Default Work Unit\Voice Over\Stub\VO_stub_crash2	
+	2697025242	VO_Palmer_mission5			\Default Work Unit\Voice Over\Palmer\VO_Palmer_mission5	
+	2697025243	VO_Palmer_mission4			\Default Work Unit\Voice Over\Palmer\VO_Palmer_mission4	
+	2697025244	VO_Palmer_mission3			\Default Work Unit\Voice Over\Palmer\VO_Palmer_mission3	
+	2697025245	VO_Palmer_mission2			\Default Work Unit\Voice Over\Palmer\VO_Palmer_mission2	
+	2697025246	VO_Palmer_mission1			\Default Work Unit\Voice Over\Palmer\VO_Palmer_mission1	
 	2704646508	VO_rescueship_response			\Default Work Unit\Voice Over\Rescue Ship\VO_rescueship_response	
 	2925042445	VO_stub_planetInfo1			\Default Work Unit\Voice Over\Stub\VO_stub_planetInfo1	
 	2925042446	VO_stub_planetInfo2			\Default Work Unit\Voice Over\Stub\VO_stub_planetInfo2	
@@ -164,14 +164,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	364302084	VO_Palmer_first2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Palmer_first2_0C54C5F6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\4-The camp\4-First talk with Amira\VO_Palmer_first2		347808
 	369182327	VO_Palmer_mission4	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Palmer_mission4_7094E9C8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\6-Level 3 - The computers\1-Mission assignment\VO_Palmer_mission4		1034146
 	403256707	VO_Stub_firstnoah1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Stub_firstnoah1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\4-The camp\3-First talk with Noah\VO_Stub_firstnoah1		503904
-	407521937	VO_Palmer_response	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Palmer_response_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\7-Narrative ending\1-Response from the rescue ship\VO_Palmer_response		432224
+	407521937	VO_Palmer_response	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Palmer_response_D1342FB0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\7-Narrative ending\1-Response from the rescue ship\VO_Palmer_response		284648
 	441280367	VO_Stub_medclear2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Stub_medclear2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\4-The camp\2-Talking to Isaac first time\VO_Stub_medclear2		940128
 	448746419	VO_Palmer_mission2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Palmer_mission2_F95AF8D6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\6-Level 3 - The computers\1-Mission assignment\VO_Palmer_mission2		1658976
 	471480303	log2	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\log2_67B83A0D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\6-Level 3 - The computers\3-Computer 2\log2		3699332
 	473486087	VO_Stub_secondcomputer3	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Stub_secondcomputer3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\6-Level 3 - The computers\3-Computer 2\VO_Stub_secondcomputer3		452704
 	478889238	VO_Stub_fourthcomputer1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Stub_fourthcomputer1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\6-Level 3 - The computers\5-Computer 4\VO_Stub_fourthcomputer1		295008
 	488980121	VO_Stub_backcamp1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_Stub_backcamp1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\5-Level 2 - Outside\3-Conversation after getting back\VO_Stub_backcamp1		170080
-	489113487	VO_grant_response	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_grant_response_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\7-Narrative ending\1-Response from the rescue ship\VO_grant_response		443084
+	489113487	VO_grant_response	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_grant_response_B168B4A1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\7-Narrative ending\1-Response from the rescue ship\VO_grant_response		334844
 	489325685	VO_stub_planetInfo1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\3-Level 1 - The ship\4- Finding info on planet mission start\VO_stub_planetInfo1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\3-Level 1 - The ship\4- Finding info on planet mission start\VO_stub_planetInfo1		375528
 	503466901	VO_stub_crash1	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\3-Level 1 - The ship\1-After the crash\VO_stub_crash1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\3-Level 1 - The ship\1-After the crash\VO_stub_crash1		628692
 	533261148	VO_stub_response	C:\Users\julia\OneDrive\Documents\GitHub\Project3\TheOneEngine\TheOneEditor\Assets\Audio\Wwise Project\.cache\Windows\Voices\English(US)\VO_stub_response_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Dialog\7-Narrative ending\1-Response from the rescue ship\VO_stub_response		299104

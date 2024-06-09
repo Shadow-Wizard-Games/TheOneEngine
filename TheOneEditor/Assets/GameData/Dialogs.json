@@ -345,8 +345,8 @@
         "isLast": false,
         "dialoguer": 2,
         "text": "All these people, how are we\nsupposed to survive here?\nWe could try exploring…\nNo, not with those things\noutside.",
-        "cooldown": 1,
-        "audioEvent": "DEBUG_GUNSHOT"
+        "cooldown": 9,
+        "audioEvent": "VO_PALMER_FIRST1"
       },
       "Dialog2": {
         "isLast": false,
@@ -359,8 +359,8 @@
         "isLast": false,
         "dialoguer": 2,
         "text": "Why do you seem so eager\nto go out there?",
-        "cooldown": 1,
-        "audioEvent": "DEBUG_GUNSHOT"
+        "cooldown": 4,
+        "audioEvent": "VO_PALMER_FIRST2"
       },
       "Dialog4": {
         "isLast": false,
@@ -373,22 +373,22 @@
         "isLast": false,
         "dialoguer": 2,
         "text": "Yes, that is me. I have been\ntrying to learn more about\nthis planet, get something,\ninformation or samples\nor whatever.",
-        "cooldown": 1,
-        "audioEvent": "DEBUG_GUNSHOT"
+        "cooldown": 18,
+        "audioEvent": "VO_PALMER_FIRST3"
       },
       "Dialog6": {
         "isLast": false,
         "dialoguer": 2,
         "text": "Figure out what it is made\nof, what happened here and\ncould we survive if we have\nto stay long.",
-        "cooldown": 1,
-        "audioEvent": "DEBUG_GUNSHOT"
+        "cooldown": 18,
+        "audioEvent": "VO_PALMER_FIRST3"
       },
       "Dialog7": {
         "isLast": false,
         "dialoguer": 2,
         "text": "Almost none of the security\npersonnel survived and\nthose who did…",
-        "cooldown": 1,
-        "audioEvent": "DEBUG_GUNSHOT"
+        "cooldown": 18,
+        "audioEvent": "VO_PALMER_FIRST3"
       },
       "Dialog8": {
         "isLast": false,
@@ -401,15 +401,15 @@
         "isLast": true,
         "dialoguer": 2,
         "text": "Well, if you are offering.\nWe need to call for someone\nto get us out, Grant said\nhe could do it but",
-        "cooldown": 6,
-        "audioEvent": "DEBUG_GUNSHOT"
+        "cooldown": 12,
+        "audioEvent": "VO_PALMER_FIRST4"
       },
       "Dialog10": {
         "isLast": true,
         "dialoguer": 2,
         "text": "needed a few pieces from\nthe ship. You can go with\nhim now and I will tell you\nwhat else to do later.",
-        "cooldown": 6,
-        "audioEvent": "DEBUG_GUNSHOT"
+        "cooldown": 12,
+        "audioEvent": "VO_PALMER_FIRST4"
       }
     }
   },
@@ -418,8 +418,8 @@
       "isLast": false,
       "dialoguer": 2,
       "text": "Morgan, come here. I need\nyou to ask you something.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 3,
+      "audioEvent": "VO_PALMER_MISSION1"
     },
     "Dialog2": {
       "isLast": false,
@@ -432,22 +432,22 @@
       "isLast": false,
       "dialoguer": 2,
       "text": "Noah is getting the\ncommunications ready, if\nwe are lucky we will be out\nof here soon,",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 17,
+      "audioEvent": "VO_PALMER_MISSION2"
     },
     "Dialog4": {
       "isLast": false,
       "dialoguer": 2,
       "text": "but we still do not know\nalmost anything about this\nplace. We are obviously not\nthe first ship",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 17,
+      "audioEvent": "VO_PALMER_MISSION2"
     },
     "Dialog5": {
       "isLast": false,
       "dialoguer": 2,
       "text": "that fell here and it seems\nthat there was more to this\nplanet even before any\nhuman contact.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 17,
+      "audioEvent": "VO_PALMER_MISSION2"
     },
     "Dialog6": {
       "isLast": false,
@@ -460,8 +460,8 @@
       "isLast": false,
       "dialoguer": 2,
       "text": "But we could know more,\nmake sure that next time we\nfind these things, they are\nno trouble, no one else dies\nto them. I know you would\nlike that.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 8,
+      "audioEvent": "VO_PALMER_MISSION3"
     },
     "Dialog8": {
       "isLast": false,
@@ -474,15 +474,15 @@
       "isLast": false,
       "dialoguer": 2,
       "text": "Sergeant Jackson likes to\ntalk, and I wanted to make\nsure you were not a risk to\nus. If you help with this,",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 11,
+      "audioEvent": "VO_PALMER_MISSION4"
     },
     "Dialog10": {
       "isLast": false,
       "dialoguer": 2,
       "text": "well, there might be a way\nto clean your name, get\nyour story on what happened\nout there.",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 11,
+      "audioEvent": "VO_PALMER_MISSION4"
     },
     "Dialog11": {
       "isLast": false,
@@ -495,29 +495,29 @@
       "isLast": false,
       "dialoguer": 2,
       "text": "I want all there is to know\nabout what happened here.",
-      "cooldown": 4,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 17,
+      "audioEvent": "VO_PALMER_MISSION5"
     },
     "Dialog13": {
       "isLast": false,
       "dialoguer": 2,
       "text": "Explore the surrounding area\nand find if there is anything\nthat will help us understand\nthis place better.",
       "cooldown": 4,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "audioEvent": "VO_PALMER_MISSION5"
     },
     "Dialog14": {
       "isLast": false,
       "dialoguer": 2,
       "text": "Find anything of interest,\nany information and bring\nit to me.",
-      "cooldown": 4,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 17,
+      "audioEvent": "VO_PALMER_MISSION5"
     },
     "Dialog15": {
       "isLast": true,
       "dialoguer": 2,
       "text": "Take this, we will call when\nwe get the SOS out.",
-      "cooldown": 4,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 17,
+      "audioEvent": "VO_PALMER_MISSION5"
     }
   },
   "Conversation11": {
@@ -793,7 +793,7 @@
       "dialoguer": 4,
       "text": "* loud noise *",
       "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "audioEvent": "E_X_ADULT_MELEE"
     },
     "Dialog7": {
       "isLast": false,
@@ -806,8 +806,8 @@
       "isLast": false,
       "dialoguer": 2,
       "text": "Stub, get back here now!\nWe are being attacked!",
-      "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "cooldown": 3,
+      "audioEvent": "VO_PALMER_LOG5_1"
     },
     "Dialog9": {
       "isLast": false,
@@ -821,7 +821,7 @@
       "dialoguer": 2,
       "text": "QUICK!",
       "cooldown": 1,
-      "audioEvent": "DEBUG_GUNSHOT"
+      "audioEvent": "VO_PALMER_LOG5_2"
     },
     "Dialog11": {
       "isLast": true,
@@ -833,11 +833,32 @@
   },
   "Conversation16": {
     "Dialog1": {
-      "isLast": true,
+      "isLast": false,
+      "dialoguer": 2,
+      "text": "We’re fine, we managed to scare it off",
+      "cooldown": 3,
+      "audioEvent": "VO_PALMER_RESPONSE"
+    },
+    "Dialog2": {
+      "isLast": false,
+      "dialoguer": 0,
+      "text": "But there's still a problem...",
+      "cooldown": 2,
+      "audioEvent": "VO_GRANT_RESPONSE"
+    },
+    "Dialog3": {
+      "isLast": false,
       "dialoguer": 4,
       "text": "We are here but you will need\nto take care of THAT huge\nproblem before we can land\nand take you inside. Good\nluck, and make our stop here\nworth it.",
       "cooldown": 9,
       "audioEvent": "VO_RESCUESHIP_RESPONSE"
+    },
+    "Dialog4": {
+      "isLast": true,
+      "dialoguer": 4,
+      "text": "So, to the ship again",
+      "cooldown": 2,
+      "audioEvent": "VO_STUB_RESPONSE"
     }
   }
 }
