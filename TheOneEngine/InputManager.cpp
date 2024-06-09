@@ -12,6 +12,15 @@ InputManager::InputManager()
 	memset(keyboard, KEY_IDLE, sizeof(KeyState) * MAX_KEYS);
 	memset(mouse_buttons, KEY_IDLE, sizeof(KeyState) * MAX_MOUSE_BUTTONS);
 	memset(&pads[0], 0, sizeof(GamePad) * MAX_PADS);
+
+	for (int i = 0; i < MAX_PADS; ++i)
+	{
+		for (int j = 0; j < SDL_CONTROLLER_BUTTON_MAX; ++j)
+		{
+			pads[i].buttonStates[j] = KEY_IDLE;
+			pads[i].previousButtonStates[j] = KEY_IDLE;
+		}
+	}
 }
 
 InputManager::~InputManager() {}
@@ -186,29 +195,27 @@ bool InputManager::ProcessSDLEvents()
 
 void InputManager::UpdateGamepadsInput()
 {
-	// Iterate through all active gamepads and update all input data
 	for (int i = 0; i < MAX_PADS; ++i)
 	{
 		GamePad& pad = pads[i];
 
-		if (pad.enabled == true)
+		if (pad.enabled)
 		{
-			pad.a = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_A) == 1;
-			pad.b = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_B) == 1;
-			pad.x = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_X) == 1;
-			pad.y = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_Y) == 1;
-			pad.l1 = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_LEFTSHOULDER) == 1;
-			pad.r1 = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) == 1;
-			pad.l3 = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_LEFTSTICK) == 1;
-			pad.r3 = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_RIGHTSTICK) == 1;
-			pad.up = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_DPAD_UP) == 1;
-			pad.down = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_DPAD_DOWN) == 1;
-			pad.left = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_DPAD_LEFT) == 1;
-			pad.right = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_DPAD_RIGHT) == 1;
+			for (int j = 0; j < SDL_CONTROLLER_BUTTON_MAX; ++j)
+			{
+				pad.previousButtonStates[j] = pad.buttonStates[j];
 
-			pad.start = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_START) == 1;
-			pad.guide = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_GUIDE) == 1;
-			pad.back = SDL_GameControllerGetButton(pad.controller, SDL_CONTROLLER_BUTTON_BACK) == 1;
+				bool isPressed = SDL_GameControllerGetButton(pad.controller, (SDL_GameControllerButton)j) == 1;
+
+				if (isPressed)
+				{
+					pad.buttonStates[j] = (pad.previousButtonStates[j] == KEY_IDLE || pad.previousButtonStates[j] == KEY_UP) ? KEY_DOWN : KEY_REPEAT;
+				}
+				else
+				{
+					pad.buttonStates[j] = (pad.previousButtonStates[j] == KEY_DOWN || pad.previousButtonStates[j] == KEY_REPEAT) ? KEY_UP : KEY_IDLE;
+				}
+			}
 
 			pad.l2 = float(SDL_GameControllerGetAxis(pad.controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT)) / 32767.0f;
 			pad.r2 = float(SDL_GameControllerGetAxis(pad.controller, SDL_CONTROLLER_AXIS_TRIGGERRIGHT)) / 32767.0f;
@@ -308,20 +315,13 @@ void InputManager::Debug()
 	}
 }
 
-KeyState InputManager::GetGamepadButton(int gamepadId, SDL_GameControllerButton button) const
+KeyState InputManager::GetGamepadButton(int gamepadId, int button) const
 {
 	if (gamepadId >= 0 && gamepadId < MAX_PADS)
 	{
 		if (pads[gamepadId].controller)
 		{
-			if (SDL_GameControllerGetButton(pads[gamepadId].controller, button) == 1)
-			{
-				return KEY_DOWN;
-			}
-			else
-			{
-				return KEY_UP;
-			}
+			return pads[gamepadId].buttonStates[button];
 		}
 	}
 

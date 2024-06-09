@@ -100,13 +100,14 @@ public class AbilityFlamethrower : MonoBehaviour
             // update time
             activeTimeCounter -= Time.deltaTime;
 
-            if(Input.GetKeyboardButtonUp(Input.KeyboardCode.SPACEBAR) || Input.GetControllerButtonUp(Input.ControllerButtonCode.R2) || Input.GetMouseButtonUp(Input.MouseButtonCode.LEFT))
+            if(Input.GetKeyboardButtonUp(Input.KeyboardCode.SPACEBAR)
+               || Input.GetControllerButtonUp(Input.ControllerButtonCode.R2) 
+               || Input.GetMouseButtonUp(Input.MouseButtonCode.LEFT))
             {
                 shooting = false;
                 player.flameThrowerPS.Stop();
                 if(IGameObject.Find("DOT") != null)
                     IGameObject.Find("DOT").GetComponent<DOT>().DestroyCollider();
-                Debug.Log("farlopa lopa lopa lopa lopa lopa");
             }
 
 
@@ -114,7 +115,6 @@ public class AbilityFlamethrower : MonoBehaviour
             {
                 player.flameThrowerPS.Play();
                 playParticle = false;
-                Debug.Log("jesuuuuuuuuuuuuuuuuuus");
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.R1)) && activeTimeCounter < activeTime - waitToReset)
@@ -127,6 +127,8 @@ public class AbilityFlamethrower : MonoBehaviour
                 player.FlamethrowerGO.Disable();
                 player.ShoulderLaserGO.Enable();
 
+                if (IGameObject.Find("DOT") != null)
+                    IGameObject.Find("DOT").GetComponent<DOT>().DestroyCollider();
 
                 player.currentWeaponDamage = damage;
 
@@ -134,7 +136,7 @@ public class AbilityFlamethrower : MonoBehaviour
 
                 player.hudScript.SetFlameThrowerOnCD();
 
-                Debug.Log("Ability flame on Cooldown");
+                Debug.Log("Flamethrower on Cooldown");
             }
 
         }
@@ -146,10 +148,14 @@ public class AbilityFlamethrower : MonoBehaviour
             player.FlamethrowerGO.Disable();
             player.ShoulderLaserGO.Enable();
 
+            if (IGameObject.Find("DOT") != null)
+                IGameObject.Find("DOT").GetComponent<DOT>().DestroyCollider();
+
             player.currentWeaponDamage = damage;
 
             state = AbilityState.COOLDOWN;
-            Debug.Log("Ability flame on Cooldown");
+
+            Debug.Log("Flamethrower on Cooldown");
         }
     }
 

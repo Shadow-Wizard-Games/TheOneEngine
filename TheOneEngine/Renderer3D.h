@@ -131,6 +131,10 @@ public:
 	static Statistics GetStats();
 	static void ResetStats();
 	static int GetMeshCount();
+	static void ActivateBloodEffect();
+	static void ActivateHealingEffect();
+	static void ActivateAdrenalineEffect();
+	static void ActivateBloodEffectConstant();
 
 private:
 	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);

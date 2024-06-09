@@ -63,9 +63,10 @@
 								</Effect>
 								<Effect Name="Thumb_Knob_Tuning" ID="{796627FA-460C-47CE-9CD3-046CFB71EF95}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 									<PropertyList>
-										<Property Name="DistortionAmount" Type="Real32" Value="1.6"/>
+										<Property Name="DistortionAmount" Type="Real32" Value="33.2"/>
 										<Property Name="DistortionEnable" Type="bool" Value="False"/>
 										<Property Name="EQEnable" Type="bool" Value="False"/>
+										<Property Name="EQFreq" Type="Real32" Value="1137.627"/>
 										<Property Name="FiltersEnable" Type="bool" Value="False"/>
 										<Property Name="GateAttackTime" Type="Real32" Value="8.7"/>
 										<Property Name="GateHoldTime" Type="Real32" Value="1.6"/>
@@ -1813,7 +1814,7 @@
 										</Effect>
 										<Effect Name="Noisy_Phone" ID="{61DD6AB5-F4B2-4FD5-A428-E63E8FEDE7DE}" PluginName="McDSP FutzBox" CompanyID="256" PluginID="110" PluginType="3">
 											<PropertyList>
-												<Property Name="DistortionAmount" Type="Real32" Value="34.4"/>
+												<Property Name="DistortionAmount" Type="Real32" Value="5.600001"/>
 												<Property Name="DistortionIntensity" Type="Real32" Value="28.5"/>
 												<Property Name="DistortionRectify" Type="Real32" Value="52.9"/>
 												<Property Name="EQFreq" Type="Real32" Value="250"/>

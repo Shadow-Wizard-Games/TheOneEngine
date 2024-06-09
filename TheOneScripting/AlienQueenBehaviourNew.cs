@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class AlienQueenBehaviourNew : MonoBehaviour
 {
     float countDown = 0.0f; //Do not touch
+    float receiveFireDmgIntervalTime = 0.2f;
 
     IGameObject playerGO;
     PlayerScript playerScript;
@@ -27,6 +28,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         initialColliderRadius = collider.radius;
 
         attachedGameObject.animator.Play("Idle");
+        receiveFireDmgIntervalTime = playerScript.Flamethrower.receiveDmgIntervalTime;
     }
 
     public override void Update()
@@ -740,7 +742,27 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        currentLife -= playerScript.totalDamage;
+        if (playerScript.currentWeaponType == PlayerScript.CurrentWeapon.FLAMETHROWER)
+        {
+            if (receiveFireDmgIntervalTime <= 0)
+            {
+                currentLife -= playerScript.totalDamage;
+                Debug.Log("Total damage " + playerScript.totalDamage);
+                receiveFireDmgIntervalTime = playerScript.Flamethrower.receiveDmgIntervalTime;
+            }
+            else
+            {
+                receiveFireDmgIntervalTime -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            currentLife -= playerScript.totalDamage;
+        }
+
+        if (currentLife < 0) currentLife = 0;
+        //else hitPSGO?.Replay();
+        //Debug.Log("Total life " + life);
     }
 
     void Dead()

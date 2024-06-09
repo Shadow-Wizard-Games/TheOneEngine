@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
+using static Input;
 using static GameManager;
 
 public class PlayerScript : MonoBehaviour
@@ -301,7 +302,11 @@ public class PlayerScript : MonoBehaviour
             currentWeapon.Disable();
 
         // Update player adrenaline PS
-        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
+        {
+            adrenalinePSGO.Play();
+            InternalCalls.ActivateAdrenalineShader();
+        }
         else adrenalinePSGO.End();
         if (isReloading) { bulletShell.End(); laser.End(); }
 
@@ -459,8 +464,8 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
-            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2)
-                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY 
+                && managers.itemManager.CheckItemInInventory(2) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
                 waitForAnimationToFinish = 0.3f;
@@ -471,6 +476,7 @@ public class PlayerScript : MonoBehaviour
                  && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
+                Flamethrower.Activated();
                 hudScript.TriggerHudFlameThrower();
             }
         }
@@ -806,6 +812,7 @@ public class PlayerScript : MonoBehaviour
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
         healPSGO?.Replay();
+        InternalCalls.ActivateHealingShader();
 
         Debug.Log("Ability Heal Activated");
     }
@@ -819,6 +826,7 @@ public class PlayerScript : MonoBehaviour
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
         healPSGO?.Replay();
+        InternalCalls.ActivateHealingShader();
 
         Debug.Log("Ability Heal Activated");
     }
@@ -1200,7 +1208,13 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
             deathPSGO?.Play();
         }
-        else hitPSGO?.Replay();
+        else
+        {
+            hitPSGO?.Replay();
+            InternalCalls.ActivateBloodShader();
+            if(managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
+                InternalCalls.ActivateBloodShaderConstant();
+        }
     }
 
     public void ReduceLifeExplosion()
@@ -1217,7 +1231,13 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
             deathPSGO?.Play();
         }
-        else hitPSGO?.Replay();
+        else
+        {
+            hitPSGO?.Replay();
+            InternalCalls.ActivateBloodShader();
+            if (managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
+                InternalCalls.ActivateBloodShaderConstant();
+        }
     }
 
     public void ReduceLifeMelee()
@@ -1234,7 +1254,13 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
             deathPSGO?.Play();
         }
-        else hitPSGO?.Replay();
+        else
+        {
+            hitPSGO?.Replay();
+            InternalCalls.ActivateBloodShader();
+            if (managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
+                InternalCalls.ActivateBloodShaderConstant();
+        }
     }
 
     public float CurrentLife()

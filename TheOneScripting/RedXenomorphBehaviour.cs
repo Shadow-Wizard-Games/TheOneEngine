@@ -59,6 +59,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
     const float delayCooldown = 1.2f;
     float tailStabTimer = 0.0f;
     const float tailStabDelay = 1.4f;
+    float receiveFireDmgIntervalTime = 0.2f;
 
     PlayerScript player;
 
@@ -83,7 +84,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
         acidSpitPSGO = attachedGameObject.FindInChildren("AcidSpitPS")?.GetComponent<IParticleSystem>();
         tailAttackPSGO = attachedGameObject.FindInChildren("TailAttackPS")?.GetComponent<IParticleSystem>();
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
-        hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
+        hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>(); 
+        receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
     }
 
     public override void Update()
@@ -333,9 +335,27 @@ public class RedXenomorphBehaviour : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        life -= player.totalDamage;
+        if (player.currentWeaponType == PlayerScript.CurrentWeapon.FLAMETHROWER)
+        {
+            if (receiveFireDmgIntervalTime <= 0)
+            {
+                life -= player.totalDamage;
+                Debug.Log("Total damage " + player.totalDamage);
+                receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
+            }
+            else
+            {
+                receiveFireDmgIntervalTime -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            life -= player.totalDamage;
+        }
+
         if (life < 0) life = 0;
         else hitPSGO?.Replay();
+        //Debug.Log("Total life " + life);
     }
 
     public void ReduceLifeExplosion()

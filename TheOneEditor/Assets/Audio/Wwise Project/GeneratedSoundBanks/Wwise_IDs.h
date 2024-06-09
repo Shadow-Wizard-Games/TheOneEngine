@@ -56,6 +56,19 @@ namespace AK
         static const AkUniqueID P_PICK = 1941667005U;
         static const AkUniqueID P_ROLL = 2206507859U;
         static const AkUniqueID P_STEP = 3875642140U;
+        static const AkUniqueID PLAY_VO_PALMER_FIRST1 = 2321501057U;
+        static const AkUniqueID PLAY_VO_PALMER_FIRST2 = 2321501058U;
+        static const AkUniqueID PLAY_VO_PALMER_FIRST3 = 2321501059U;
+        static const AkUniqueID PLAY_VO_PALMER_FIRST4 = 2321501060U;
+        static const AkUniqueID PLAY_VO_PALMER_LOG5_1 = 1230898561U;
+        static const AkUniqueID PLAY_VO_PALMER_LOG5_2 = 1230898562U;
+        static const AkUniqueID PLAY_VO_PALMER_MISSION1 = 672777405U;
+        static const AkUniqueID PLAY_VO_PALMER_MISSION2 = 672777406U;
+        static const AkUniqueID PLAY_VO_PALMER_MISSION3 = 672777407U;
+        static const AkUniqueID PLAY_VO_PALMER_MISSION4 = 672777400U;
+        static const AkUniqueID PLAY_VO_PALMER_MISSION5 = 672777401U;
+        static const AkUniqueID PLAY_VO_PALMER_OUTSHIP = 1777671516U;
+        static const AkUniqueID PLAY_VO_PALMER_RESPONSE = 222619951U;
         static const AkUniqueID PLAYMUSIC = 417627684U;
         static const AkUniqueID STOPMUSIC = 1917263390U;
         static const AkUniqueID UI_A_MENU = 464895987U;
@@ -77,6 +90,7 @@ namespace AK
         static const AkUniqueID VO_GRANT_NOAH3 = 1121060563U;
         static const AkUniqueID VO_GRANT_NOAH4 = 1121060564U;
         static const AkUniqueID VO_GRANT_OUTSIDESTUB1 = 4061054028U;
+        static const AkUniqueID VO_GRANT_RESPONSE = 789824879U;
         static const AkUniqueID VO_GUARD1_VOICELINE1_V1 = 3357592761U;
         static const AkUniqueID VO_GUARD1_VOICELINE1_V2 = 3357592762U;
         static const AkUniqueID VO_GUARD1_VOICELINE2 = 234843012U;

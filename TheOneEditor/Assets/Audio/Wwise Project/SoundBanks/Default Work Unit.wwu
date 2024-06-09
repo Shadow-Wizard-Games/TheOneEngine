@@ -64,6 +64,7 @@
 				<SoundBank Name="VoiceOver" ID="{C870A33B-5316-43BB-8E10-1571D9718A3B}">
 					<ObjectInclusionList>
 						<ObjectRef Name="VO_stub_door1" ID="{8A910182-B9D4-4012-832F-F1ED826914C5}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_mission1" ID="{7E8FFD01-E451-405C-8B3F-AFFF4A6E5227}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_fighting1" ID="{6394BF72-2F24-4066-90ED-11A7345527D8}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_guard2_voiceline2" ID="{FE47E9E5-455D-40B3-98BB-47D411594F37}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_grant_noah1" ID="{5A1028FB-E57A-40D4-9962-39FAB64CADA0}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -75,6 +76,7 @@
 						<ObjectRef Name="VO_Stub_missionamira3" ID="{9B921456-4054-41E8-9064-48D930E70DE0}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_isaac_voiceline3" ID="{C711DE71-1E60-4237-AA90-36FBE3560146}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_tts" ID="{7CA9BDAE-B93E-4237-B294-BD7F58682A38}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_outShip" ID="{7C2970AD-7753-4275-8F7B-1B4C856F8902}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_thirdcomputer1" ID="{4133C833-CD7E-427C-B6DE-96FE641993A5}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_secondcomputer3" ID="{5269D68F-929A-42C3-9460-53CC7152D169}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Sergeant_WakeMed4" ID="{DE24C067-8637-42C6-AA30-B6D51023D56C}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -86,6 +88,7 @@
 						<ObjectRef Name="VO_Stub_missionamira4" ID="{531BBC0E-25AA-4385-B5E9-4655A23E1880}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_clearroom3" ID="{483B0C4D-7130-4398-9D94-267A226407AB}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_xenoFight2" ID="{56D2C4B4-9F0D-43A8-ACEA-96CB74F859D8}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_mission2" ID="{DED1442D-A82E-43A9-8203-4646B3613A17}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_firstnoah1" ID="{B6ED24DF-EAC8-43B2-8814-0322CC63F12D}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_computer_log3" ID="{4EF53D16-7608-43D3-BEE3-F9AAC09F6002}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_guard1_voiceline1_v2" ID="{A5F4221C-C277-4417-82E5-DB4C38E4D8C7}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -96,9 +99,11 @@
 						<ObjectRef Name="VO_Stub_outsidenoah1" ID="{C854432C-4BD7-44FD-86C5-FCEA2B6501C8}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Sergeant_general2" ID="{B2342A59-2B47-453A-8F5C-A03653532428}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_computer_log4" ID="{5C42183D-FB2D-45B5-AA01-7A20C6BDE4EF}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_log5_1" ID="{5E252775-4D99-45EE-A5B6-0EAD573675BD}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_hurt1" ID="{9B8C9D63-3949-461A-A064-0E1DC1094FAA}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_fighting2" ID="{C0585462-BB8E-4624-A912-C0B68A85C542}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_firstAlien" ID="{53476433-0CE0-4643-AD73-0E80DC99C39D}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_log5_2" ID="{97661160-D9CB-465E-AE5A-86825FEBDFA9}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_firstnoah3" ID="{DA2E0B3D-8850-4662-A19D-7BE9DBABC15A}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_guard1_voiceline1_v1" ID="{F02A4407-46DA-46BC-B1A5-145C916D1A94}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_guard1_voiceline2" ID="{BBCD6424-7EEC-4707-8F3B-B8754AE53C5A}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -108,6 +113,7 @@
 						<ObjectRef Name="VO_stub_heal3" ID="{350A53DD-9B00-4764-886D-1701990CCE89}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_computer_log5" ID="{CC6A6539-E533-4766-B7A6-078EE02D4BAF}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Sergeant_WakeMed1" ID="{67BB5BC5-AEA0-4773-88CD-93CAFEBE429D}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_first2" ID="{B30DB8C3-76DA-478F-BCD5-395A856D4748}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_missionamira2" ID="{0379C678-A6AF-47AF-8D7D-4279854785C9}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_WakeMed1" ID="{E3064D6F-910F-47B1-A04B-7124A0745982}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_planetInfo3" ID="{F5BF87AA-5EE8-47B9-93B8-EB31C9B287D3}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -116,7 +122,9 @@
 						<ObjectRef Name="VO_stub_clearroom1" ID="{B954418A-6B73-47DC-B623-F3D0263B8049}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Sergeant_general1" ID="{7BDF3ACF-BDF5-47F5-A81B-966EBA7CB008}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_backcamp1" ID="{6C5353B8-9413-4801-A5EB-755D96BC9332}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_response" ID="{FAC8A61F-153D-480E-B8B4-6B494F5B1791}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_response" ID="{2A6970E4-7E20-481C-BD81-C2B0B71DD5CF}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_first1" ID="{DC5F87B2-F858-482E-8D2F-4573FD497F75}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_firstcomputer1" ID="{35A47E19-9361-482F-98FA-EF1C4E9A2CE2}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_grant_endmissionstub1" ID="{BCB8BD27-BDD8-4848-AEC3-9DBBADF29307}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_medclear2" ID="{4D2E6C17-71C6-487A-8777-1E61BB40FBAB}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -128,18 +136,21 @@
 						<ObjectRef Name="VO_stub_fighting4" ID="{6A5F9FC8-3D23-4920-B8E3-448C44F1BDC6}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_secondcomputer1" ID="{BE515510-60A7-4930-BFCD-653129B22535}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_fifthcomputer1" ID="{8F9D40C1-F547-4950-B4D1-614183CB62F5}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_first3" ID="{75DA5F00-FAA7-495E-B706-8EBF9B0C34F8}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_grant_fourthcomputer2" ID="{1A614A71-B23B-496F-8C43-ACD3ED8ED488}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_firstamira3" ID="{0B77B78C-FEA1-49D1-BDB1-FF8453F4D4A2}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_firstnoah2" ID="{6F25A7E5-EDBF-4A0B-809A-7B8A7F6CBE05}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Sergeant_WakeMed5" ID="{6072540B-D7E3-4A14-99D6-9DD3BC2A86B7}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Radio_ON" ID="{497FEF08-167C-4A22-BBE5-E25256DCE13B}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_grant_noah2" ID="{7431DD63-CA83-4A25-98A8-0D3A14CC7A32}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_first4" ID="{619C7F1C-ED1B-4A27-AEF6-DBD695D891CD}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_finding3" ID="{2C3F234D-366B-4A2F-9DA4-D93ADF27329A}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_isaac_health3" ID="{BB7B7BF4-E02E-4A5F-B6F6-66CFCC94983F}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_heal1" ID="{4FDE2258-99BD-4A92-B69E-8EA686612138}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_endmissionnoah2" ID="{455B2D3F-430D-4ABE-87C8-D4A195179513}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Stub_fourthcomputer2" ID="{0981A039-58F1-4AD5-9131-2E510261DE0E}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_xenoFightEnd1" ID="{FCC5F1A6-9401-4B5B-921F-32F7458055B9}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="VO_grant_response" ID="{3CB5EE38-718A-4B69-A501-E2BF1809FE9E}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_isaac_fullhealth" ID="{7D91504C-3C25-4BF4-B009-53B0C4893931}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_rescueship_narrativeend" ID="{0045417C-C262-4C3D-A81E-ECFF070E9506}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_fighting3" ID="{57848C58-5F02-4C5E-B49F-2FA843ACCE37}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -151,6 +162,7 @@
 						<ObjectRef Name="VO_stub_xenoFight3" ID="{A99ED4C1-F210-4D19-844A-F91DD8BD6E7D}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_isaac_health2" ID="{7D302964-AFBA-4D36-B477-83F2CE5C91FA}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_grant_endmissionstub2" ID="{79B969D0-A5C2-4D3C-8A41-81943E28D2AE}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_mission5" ID="{60427A49-9BD3-4D4E-9778-8CCF4E00A487}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_Sergeant_general4" ID="{64C05200-34F5-4D65-8B5E-F75C3E5F396A}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_finding2" ID="{7A4747C7-5E2E-4DDD-835C-1FD03AACD82A}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_computer_log1" ID="{6B64C8BC-C91E-4DF0-BC9D-294F4F2C5D7A}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
@@ -166,8 +178,10 @@
 						<ObjectRef Name="VO_Stub_secondcomputer2" ID="{E0C347E6-E4C6-4EFA-A5FD-A2095C6CEBEE}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_grant_fourthcomputer1" ID="{E80BBB20-8036-4F00-B0EF-AA261D4E3384}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_planetInfo1" ID="{BE0EA009-868F-4F0D-86BC-AEFF375DE5C7}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_mission4" ID="{BF59ED35-CBD3-4F27-928F-44987508CE54}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_isaac_voiceline5" ID="{FE22F61A-D8EA-4F3C-84D8-17B9D89612C8}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_stub_crash1" ID="{42773BA1-E8A6-4F4E-93F2-0916494C1B36}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VO_Palmer_mission3" ID="{363FFBF6-D772-4FF3-8CA9-A70A4B61DEF5}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="VO_isaac_health1" ID="{4E25F3D8-877A-4FFB-B04D-13335B28A6B8}" WorkUnitID="{5120CC72-B4E5-4D25-9EBA-29892E902FD3}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
