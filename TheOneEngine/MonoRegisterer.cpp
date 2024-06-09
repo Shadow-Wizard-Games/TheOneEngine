@@ -17,6 +17,7 @@
 #include "SkeletalModel.h"
 #include "N_SceneManager.h"
 #include "Renderer.h"
+#include "Renderer3D.h"
 #include "Window.h"
 
 #include <glm/vec3.hpp>
@@ -953,6 +954,11 @@ static bool GetCRTShader()
 	return Renderer::Settings()->crt.isEnabled;
 }
 
+static void ActivateBloodShader()
+{
+	Renderer3D::ActivateBloodEffect();
+}
+
 //Debug
 static void ScriptingLog(MonoString* monoString, LogType logType)
 {
@@ -1442,7 +1448,8 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetVsync",		GetVsync);
 	mono_add_internal_call("InternalCalls::GetFullscreen",	GetFullscreen);
 	mono_add_internal_call("InternalCalls::GetPixelFX",		GetPixelFX);
-	mono_add_internal_call("InternalCalls::GetCRTShader",	GetCRTShader);
+	mono_add_internal_call("InternalCalls::GetCRTShader", GetCRTShader);
+	mono_add_internal_call("InternalCalls::ActivateBloodShader", ActivateBloodShader);
 	mono_add_internal_call("InternalCalls::GetWindowSizeX", GetWindowSizeX);
 	mono_add_internal_call("InternalCalls::GetWindowSizeY", GetWindowSizeY);
 

@@ -257,6 +257,9 @@ class InternalCalls
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     internal extern static float GetWindowSizeY();
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    internal extern static float ActivateBloodShader();
     #endregion
 
     #region Debug

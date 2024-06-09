@@ -35,6 +35,7 @@ struct Renderer3DData
 
 	Renderer3D::Statistics stats;
 
+	bool recievedDamage;
 	Easing* screenBloodIn;
 	Easing* screenBloodOut;
 };
@@ -267,6 +268,11 @@ void Renderer3D::ResetStats()
 int Renderer3D::GetMeshCount()
 {
 	return renderer3D.meshes.size();
+}
+
+void Renderer3D::ActivateBloodEffect()
+{
+	renderer3D.recievedDamage = true;
 }
 
 void Renderer3D::AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat)
@@ -798,9 +804,10 @@ void Renderer3D::CRTShader(RenderTarget target)
 	crtShader->Bind();
 
 
-	if (engine->inputManager->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
+	if (renderer3D.recievedDamage)
 	{
 		renderer3D.screenBloodIn->Play();
+		renderer3D.recievedDamage = false;
 	}
 	if (renderer3D.screenBloodIn->GetState() == EasingState::END)
 	{

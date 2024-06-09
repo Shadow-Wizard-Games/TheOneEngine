@@ -1234,7 +1234,11 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
             deathPSGO?.Play();
         }
-        else hitPSGO?.Replay();
+        else
+        {
+            hitPSGO?.Replay();
+            InternalCalls.ActivateBloodShader();
+        }
     }
 
     public float CurrentLife()
