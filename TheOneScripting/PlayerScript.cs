@@ -289,6 +289,22 @@ public class PlayerScript : MonoBehaviour
 
         currentAction = CurrentAction.IDLE;
 
+        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
+        {
+            if (managers.itemManager.CheckItemInInventory(1))
+                currentWeapon.Enable();
+            UpdateWeaponAnimation();
+        }
+        else if (Dash.state == AbilityDash.AbilityState.ACTIVE)
+            currentWeapon.Disable();
+
+        // Update player adrenaline PS
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
+        else adrenalinePSGO.End();
+        if (isReloading) { bulletShell.End(); laser.End(); }
+
+        SetAimDirection();
+
         #region IDLE / MOVING STATES
         if (Dash.state != AbilityDash.AbilityState.ACTIVE
             && SetMoveDirection())
@@ -393,24 +409,7 @@ public class PlayerScript : MonoBehaviour
 
         WeaponAbilityStates();
 
-
-        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
-        {
-            if (managers.itemManager.CheckItemInInventory(1))
-                currentWeapon.Enable();
-            UpdateWeaponAnimation();
-        }
-        else if (Dash.state == AbilityDash.AbilityState.ACTIVE)
-            currentWeapon.Disable();
-
         shotLight.SwitchOff();
-        if (isReloading) { bulletShell.End(); laser.End(); }
-
-        // Update player adrenaline PS
-        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
-        else adrenalinePSGO.End();
-
-        SetAimDirection();
     }
     private void WeaponAbilityStates()
     {
@@ -1211,7 +1210,7 @@ public class PlayerScript : MonoBehaviour
             return;
 
         managers.gameManager.health -= 70.0f;
-        Debug.Log("Player Life now is " + managers.gameManager.health.ToString());
+        //Debug.Log("Player Life now is " + managers.gameManager.health.ToString());
         if (managers.gameManager.health <= 0)
         {
             managers.gameManager.health = 0;
