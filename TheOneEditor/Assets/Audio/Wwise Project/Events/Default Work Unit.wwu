@@ -189,67 +189,61 @@
 										</Folder>
 										<Folder Name="Xenomorph" ID="{9D037F81-B7C5-4F20-AD68-C1AF61944D07}" ShortID="959476095">
 											<ChildrenList>
-												<Folder Name="Adult" ID="{D2CA5261-D265-43D4-ACC4-D229CC5C8B7E}" ShortID="306572559">
+												<Event Name="E_X_ADULT_SPAWN" ID="{372D4673-3DFF-4BDD-9A8E-81223C4F1448}">
 													<ChildrenList>
-														<Event Name="E_X_ADULT_DEATH" ID="{4CF6E218-3F36-4766-B121-9A2E615C3E80}">
-															<ChildrenList>
-																<Action Name="" ID="{B200B836-964F-4C2C-AE85-32C0998EC69D}" ShortID="759180821">
-																	<ReferenceList>
-																		<Reference Name="Target">
-																			<ObjectRef Name="SFX_Xenomorph_Death_E" ID="{8D9373ED-B743-4713-BFC2-B136CEA6E123}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-																		</Reference>
-																	</ReferenceList>
-																</Action>
-															</ChildrenList>
-														</Event>
-														<Event Name="E_X_ADULT_STEP" ID="{6979A942-FFCC-4722-AE31-3EFA3012C8FF}">
-															<ChildrenList>
-																<Action Name="" ID="{55D7B45E-A3E1-4262-A791-AF27610C070B}" ShortID="697945540">
-																	<ReferenceList>
-																		<Reference Name="Target">
-																			<ObjectRef Name="AX Steps" ID="{1CB17810-D287-4BFE-A7A1-AE8A6796A980}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-																		</Reference>
-																	</ReferenceList>
-																</Action>
-															</ChildrenList>
-														</Event>
-														<Event Name="E_X_ADULT_MELEE" ID="{08508361-EADE-4488-991E-3F01F23B56C6}">
-															<ChildrenList>
-																<Action Name="" ID="{7EF41F12-0854-4F60-80C4-4F1471242870}" ShortID="419333616">
-																	<ReferenceList>
-																		<Reference Name="Target">
-																			<ObjectRef Name="SFX_Xenomorph_Melee_E" ID="{B15FA04B-63DD-4C59-9C91-4695B59C2391}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-																		</Reference>
-																	</ReferenceList>
-																</Action>
-															</ChildrenList>
-														</Event>
-														<Event Name="E_X_ADULT_SPIT" ID="{4E52EE71-ACDF-4C23-AB05-FDE7CA5FF939}">
-															<ChildrenList>
-																<Action Name="" ID="{EE9F8549-73D5-43BA-9F4D-2BD233A17EFB}" ShortID="574067372">
-																	<ReferenceList>
-																		<Reference Name="Target">
-																			<ObjectRef Name="SFX_Xenomorph_Spit_E" ID="{BA5F865D-59EE-4589-B03D-C7465464F853}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-																		</Reference>
-																	</ReferenceList>
-																</Action>
-															</ChildrenList>
-														</Event>
-														<Event Name="E_X_ADULT_SPAWN" ID="{372D4673-3DFF-4BDD-9A8E-81223C4F1448}">
-															<ChildrenList>
-																<Action Name="" ID="{486C4AA3-58EB-4905-AE90-2A62E65BED36}" ShortID="993304453">
-																	<ReferenceList>
-																		<Reference Name="Target">
-																			<ObjectRef Name="SFX_Xenomorph_Spawn_E" ID="{98CC6EE3-33E4-40BF-ACC5-548116E2EF38}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-																		</Reference>
-																	</ReferenceList>
-																</Action>
-															</ChildrenList>
-														</Event>
+														<Action Name="" ID="{486C4AA3-58EB-4905-AE90-2A62E65BED36}" ShortID="993304453">
+															<ReferenceList>
+																<Reference Name="Target">
+																	<ObjectRef Name="SFX_Xenomorph_Spawn_E" ID="{98CC6EE3-33E4-40BF-ACC5-548116E2EF38}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																</Reference>
+															</ReferenceList>
+														</Action>
 													</ChildrenList>
-												</Folder>
-												<Folder Name="Red" ID="{F260D7CC-C83D-42FA-99BC-99535BBC66DA}" ShortID="279407588"/>
-												<Folder Name="White" ID="{E05920F3-38FB-4A73-BDEF-5BAC55988C5B}" ShortID="256342790"/>
+												</Event>
+												<Event Name="E_X_ADULT_SPIT" ID="{4E52EE71-ACDF-4C23-AB05-FDE7CA5FF939}">
+													<ChildrenList>
+														<Action Name="" ID="{EE9F8549-73D5-43BA-9F4D-2BD233A17EFB}" ShortID="574067372">
+															<ReferenceList>
+																<Reference Name="Target">
+																	<ObjectRef Name="SFX_Xenomorph_Spit_E" ID="{BA5F865D-59EE-4589-B03D-C7465464F853}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																</Reference>
+															</ReferenceList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="E_X_ADULT_DEATH" ID="{4CF6E218-3F36-4766-B121-9A2E615C3E80}">
+													<ChildrenList>
+														<Action Name="" ID="{B200B836-964F-4C2C-AE85-32C0998EC69D}" ShortID="759180821">
+															<ReferenceList>
+																<Reference Name="Target">
+																	<ObjectRef Name="SFX_Xenomorph_Death_E" ID="{8D9373ED-B743-4713-BFC2-B136CEA6E123}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																</Reference>
+															</ReferenceList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="E_X_ADULT_STEP" ID="{6979A942-FFCC-4722-AE31-3EFA3012C8FF}">
+													<ChildrenList>
+														<Action Name="" ID="{55D7B45E-A3E1-4262-A791-AF27610C070B}" ShortID="697945540">
+															<ReferenceList>
+																<Reference Name="Target">
+																	<ObjectRef Name="AX Steps" ID="{1CB17810-D287-4BFE-A7A1-AE8A6796A980}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																</Reference>
+															</ReferenceList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="E_X_ADULT_MELEE" ID="{08508361-EADE-4488-991E-3F01F23B56C6}">
+													<ChildrenList>
+														<Action Name="" ID="{7EF41F12-0854-4F60-80C4-4F1471242870}" ShortID="419333616">
+															<ReferenceList>
+																<Reference Name="Target">
+																	<ObjectRef Name="SFX_Xenomorph_Melee_E" ID="{B15FA04B-63DD-4C59-9C91-4695B59C2391}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																</Reference>
+															</ReferenceList>
+														</Action>
+													</ChildrenList>
+												</Event>
 											</ChildrenList>
 										</Folder>
 										<Folder Name="Anarchist" ID="{D155CFF5-9EB0-418E-9F46-7F590187C692}" ShortID="308637246">
@@ -344,7 +338,7 @@
 														<Action Name="" ID="{2681A4D6-2A61-4F75-AA5C-F69D24586F1A}" ShortID="931479191">
 															<ReferenceList>
 																<Reference Name="Target">
-																	<ObjectRef Name="SFX_E_Q_Death" ID="{AA6B498F-3BB5-4AF9-8434-DB1459F8BB4D}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																	<ObjectRef Name="SFX_E_Q_death_2" ID="{70E123A5-EA1F-42EB-B863-06D847337A1F}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 																</Reference>
 															</ReferenceList>
 														</Action>
@@ -487,6 +481,17 @@
 													<ReferenceList>
 														<Reference Name="Target">
 															<ObjectRef Name="SFX_CH_Dash" ID="{AC1A8870-935C-4A3C-990A-F0B331CFF2E3}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="P_EQUIP" ID="{5749D6B5-E167-4EF4-A365-6AFA4CCDD495}">
+											<ChildrenList>
+												<Action Name="" ID="{354B2B53-548D-47E3-B6A3-A7935B958D6B}" ShortID="904684284">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SFX_UI_equipitem" ID="{9F7D01C4-C8BF-42D2-BDB9-8D556850725E}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 														</Reference>
 													</ReferenceList>
 												</Action>
@@ -1378,6 +1383,17 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="VO_stub_response" ID="{2A6970E4-7E20-481C-BD81-C2B0B71DD5CF}">
+									<ChildrenList>
+										<Action Name="" ID="{8DF12258-6F6D-4FB7-9652-36278AE11BC7}" ShortID="322147819">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_stub_response" ID="{FFB47E7E-2160-4FC2-B80F-718F044FAC94}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Grant" ID="{87881BE9-9BD3-40FF-83F1-B4179CC1BD58}" ShortID="387414389">
@@ -1487,6 +1503,17 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="VO_grant_endmissionstub2" ID="{3AA0FA2F-A4BB-4BB4-82DF-A0EDE2BD8C4B}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_grant_response" ID="{3CB5EE38-718A-4B69-A501-E2BF1809FE9E}">
+									<ChildrenList>
+										<Action Name="" ID="{BAD82EFA-4812-4759-B342-0BCAD44AD58B}" ShortID="459727526">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="VO_grant_response" ID="{ED21130E-0853-43AA-9B85-0CA9BB98066E}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
