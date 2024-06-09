@@ -44,6 +44,9 @@ public class Grenade : MonoBehaviour
 
         attachedGameObject.transform.Position = position;
 
+        Vector3 rotation = attachedGameObject.transform.Position + player.grenadeInitialVelocity * Time.deltaTime;
+        attachedGameObject.transform.Rotation = rotation;
+
         if ((attachedGameObject.transform.Position.y <= 0 || hasCollided) && !alreadyCreated)
         {
             Vector3 newPos = new Vector3(attachedGameObject.transform.Position.x, 0.0f, attachedGameObject.transform.Position.z);

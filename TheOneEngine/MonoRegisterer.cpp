@@ -219,19 +219,9 @@ static vec3f GetTransformRight(GameObject* GOptr)
 //GameObject
 static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 {
-	engine->N_sceneManager->CreateLibMeshGO("pCube1");
+	engine->N_sceneManager->CreatePrefabWithName("Bullet", *initialPosition, *direction);
 
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
-
-	SetPosition(go, initialPosition);
-	SetRotation(go, direction);
-
-	go->AddComponent<Script>("Bullet");
-	go->AddComponent<Collider2D>();
-	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-	go->GetComponent<Collider2D>()->collisionType = CollisionType::Bullet;
-	go->GetComponent<Collider2D>()->radius = 1.0f;
-	engine->collisionSolver->LoadCollisions(engine->N_sceneManager->objectsToAdd.back());
 	return go;
 }
 
