@@ -17,6 +17,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     public override void Start()
     {
+        managers.Start();
+        
         playerGO = IGameObject.Find("SK_MainCharacter");
         playerScript = playerGO.GetComponent<PlayerScript>();
         currentLife = maxLife;
@@ -29,6 +31,8 @@ public class AlienQueenBehaviourNew : MonoBehaviour
 
     public override void Update()
     {
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) return;
+
         attachedGameObject.animator.UpdateAnimation();
 
         //THIS IF IS DEBUG ONLY. DELETE ON COMPLETION
