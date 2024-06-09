@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 
 public class UiScriptHud : MonoBehaviour
 {
@@ -265,8 +266,8 @@ public class UiScriptHud : MonoBehaviour
 
         if (currencyAmount != managers.gameManager.currency || start)
         {
-            UpdateString(HudStrings.CURRENCYSTRING);
             currencyAmount = managers.gameManager.currency;
+            UpdateString(HudStrings.CURRENCYSTRING);
         }
 
         PlayerScript.SkillSet temp2 = PlayerScript.SkillSet.NONE;

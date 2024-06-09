@@ -279,6 +279,7 @@ public class ChestbursterBehaviour : MonoBehaviour
             player.shieldKillCounter++;
             attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f;
             // add player biomass
+            managers.gameManager.currency += (int)this.biomass;
             deathPSGO?.Play();
         }
     }

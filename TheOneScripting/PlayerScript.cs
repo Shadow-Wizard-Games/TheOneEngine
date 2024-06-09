@@ -10,7 +10,6 @@ public class PlayerScript : MonoBehaviour
         SHOULDERLASERSET,
         M4A1SET,
     }
-
     public enum CurrentWeapon
     {
         NONE,
@@ -290,6 +289,22 @@ public class PlayerScript : MonoBehaviour
 
         currentAction = CurrentAction.IDLE;
 
+        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
+        {
+            if (managers.itemManager.CheckItemInInventory(1))
+                currentWeapon.Enable();
+            UpdateWeaponAnimation();
+        }
+        else if (Dash.state == AbilityDash.AbilityState.ACTIVE)
+            currentWeapon.Disable();
+
+        // Update player adrenaline PS
+        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
+        else adrenalinePSGO.End();
+        if (isReloading) { bulletShell.End(); laser.End(); }
+
+        SetAimDirection();
+
         #region IDLE / MOVING STATES
         if (Dash.state != AbilityDash.AbilityState.ACTIVE
             && SetMoveDirection())
@@ -306,7 +321,6 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            // grenade 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
@@ -319,8 +333,6 @@ public class PlayerScript : MonoBehaviour
             }
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-                && Heal.numHeals > 0
-                && Heal.numHeals > 0
                 && Heal.state == AbilityHeal.AbilityState.READY
                 && currentAction != CurrentAction.DASH)
             {
@@ -355,7 +367,6 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            // grenade
             if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
@@ -375,8 +386,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
-            && Heal.numHeals > 0
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))  
             && Heal.state == AbilityHeal.AbilityState.READY
             && Dash.state != AbilityDash.AbilityState.ACTIVE
             && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
@@ -399,25 +409,7 @@ public class PlayerScript : MonoBehaviour
 
         WeaponAbilityStates();
 
-
-        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
-        {
-            if (managers.itemManager.CheckItemInInventory(1))
-                currentWeapon.Enable();
-            UpdateWeaponAnimation();
-        }
-        else if (Dash.state == AbilityDash.AbilityState.ACTIVE)
-            currentWeapon.Disable();
-
         shotLight.SwitchOff();
-        if (isReloading) { bulletShell.End(); laser.End(); }
-
-        // Update player adrenaline PS
-        if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE) adrenalinePSGO.Play();
-        else adrenalinePSGO.End();
-
-        SetAimDirection();
-
     }
     private void WeaponAbilityStates()
     {
@@ -1218,7 +1210,7 @@ public class PlayerScript : MonoBehaviour
             return;
 
         managers.gameManager.health -= 70.0f;
-        Debug.Log("Player Life now is " + managers.gameManager.health.ToString());
+        //Debug.Log("Player Life now is " + managers.gameManager.health.ToString());
         if (managers.gameManager.health <= 0)
         {
             managers.gameManager.health = 0;
