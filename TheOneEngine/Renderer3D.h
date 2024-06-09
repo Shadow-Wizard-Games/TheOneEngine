@@ -132,6 +132,7 @@ public:
 	static void ResetStats();
 	static int GetMeshCount();
 	static void ActivateBloodEffect();
+	static void ActivateBloodEffectConstant();
 
 private:
 	static void AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat);

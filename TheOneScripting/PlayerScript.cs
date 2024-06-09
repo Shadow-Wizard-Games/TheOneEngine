@@ -1200,7 +1200,13 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
             deathPSGO?.Play();
         }
-        else hitPSGO?.Replay();
+        else
+        {
+            hitPSGO?.Replay();
+            InternalCalls.ActivateBloodShader();
+            if(managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
+                InternalCalls.ActivateBloodShaderConstant();
+        }
     }
 
     public void ReduceLifeExplosion()
@@ -1217,7 +1223,13 @@ public class PlayerScript : MonoBehaviour
             attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
             deathPSGO?.Play();
         }
-        else hitPSGO?.Replay();
+        else
+        {
+            hitPSGO?.Replay();
+            InternalCalls.ActivateBloodShader();
+            if (managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
+                InternalCalls.ActivateBloodShaderConstant();
+        }
     }
 
     public void ReduceLifeMelee()
@@ -1238,6 +1250,8 @@ public class PlayerScript : MonoBehaviour
         {
             hitPSGO?.Replay();
             InternalCalls.ActivateBloodShader();
+            if (managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
+                InternalCalls.ActivateBloodShaderConstant();
         }
     }
 

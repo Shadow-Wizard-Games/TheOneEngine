@@ -959,6 +959,11 @@ static void ActivateBloodShader()
 	Renderer3D::ActivateBloodEffect();
 }
 
+static void ActivateBloodShaderConstant()
+{
+	Renderer3D::ActivateBloodEffectConstant();
+}
+
 //Debug
 static void ScriptingLog(MonoString* monoString, LogType logType)
 {
@@ -1450,6 +1455,7 @@ void MonoRegisterer::RegisterFunctions()
 	mono_add_internal_call("InternalCalls::GetPixelFX",		GetPixelFX);
 	mono_add_internal_call("InternalCalls::GetCRTShader", GetCRTShader);
 	mono_add_internal_call("InternalCalls::ActivateBloodShader", ActivateBloodShader);
+	mono_add_internal_call("InternalCalls::ActivateBloodShaderConstant", ActivateBloodShaderConstant);
 	mono_add_internal_call("InternalCalls::GetWindowSizeX", GetWindowSizeX);
 	mono_add_internal_call("InternalCalls::GetWindowSizeY", GetWindowSizeY);
 

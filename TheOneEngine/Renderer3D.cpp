@@ -35,6 +35,7 @@ struct Renderer3DData
 
 	Renderer3D::Statistics stats;
 
+	bool constantDamage;
 	bool recievedDamage;
 	Easing* screenBloodIn;
 	Easing* screenBloodOut;
@@ -273,6 +274,11 @@ int Renderer3D::GetMeshCount()
 void Renderer3D::ActivateBloodEffect()
 {
 	renderer3D.recievedDamage = true;
+}
+
+void Renderer3D::ActivateBloodEffectConstant()
+{
+	renderer3D.constantDamage = true;
 }
 
 void Renderer3D::AddInstanceCall(StackVertexArray meshID, int matID, const glm::mat4& modelMat)
