@@ -28,7 +28,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         initialColliderRadius = collider.radius;
 
         attachedGameObject.animator.Play("Idle");
-        receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
+        receiveFireDmgIntervalTime = playerScript.Flamethrower.receiveDmgIntervalTime;
     }
 
     public override void Update()
