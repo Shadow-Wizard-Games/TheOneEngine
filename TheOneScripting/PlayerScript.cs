@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
+using static Input;
 using static GameManager;
 
 public class PlayerScript : MonoBehaviour
@@ -459,8 +460,8 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetControllerButton(Input.ControllerButtonCode.R1))
         {
-            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY && managers.itemManager.CheckItemInInventory(2)
-                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
+            if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY 
+                && managers.itemManager.CheckItemInInventory(2) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.GRENADELAUNCHER;
                 waitForAnimationToFinish = 0.3f;
@@ -471,6 +472,7 @@ public class PlayerScript : MonoBehaviour
                  && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
             {
                 currentWeaponType = CurrentWeapon.FLAMETHROWER;
+                Flamethrower.Activated();
                 hudScript.TriggerHudFlameThrower();
             }
         }
