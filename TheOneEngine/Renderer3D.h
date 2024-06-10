@@ -149,5 +149,6 @@ private:
 	static void InitCRTShader();
 
 	// CRT Shader Effects
-	static void BloodEffect(float &kBlood);
+	static void BloodEffect(float& kBlood);
+	static void AdrenalineEffect(float& kAdrenaline);
 };

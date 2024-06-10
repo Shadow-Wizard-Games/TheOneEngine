@@ -51,27 +51,41 @@ void main()
 {
     vec2 uv = fragCoord.xy;
     vec2 crtUV = WarpUV(uv);
-
-    vec3 color = texture(albedo, crtUV).rgb;
+    vec3 color;
 
     if(kAdrenaline > 0.0)
     {
-        vec3 adrenalineColor = vec3(0.0, 0.0, 1.0);
+        vec2 rOffset = vec2(-0.002, 0.0);
+        vec2 gOffset = vec2( 0.0, 0.002);
+        vec2 bOffset = vec2( 0.002, 0.0);
+        vec3 rVal = texture(albedo, crtUV - rOffset * kAdrenaline).rgb;
+        vec3 gVal = texture(albedo, crtUV - gOffset * kAdrenaline).rgb;
+        vec3 bVal = texture(albedo, crtUV - bOffset * kAdrenaline).rgb;
+        color = vec3(rVal.r, gVal.g, bVal.b);
+    }
+    else
+    {
+        color = texture(albedo, crtUV).rgb;
+    }
+
+    if(kAdrenaline > 0.0)
+    {      
+        vec3 adrenalineColor = vec3(0.0, 0.0, 0.9);
         ScreenEffect(color, crtUV, kAdrenaline, adrenalineColor);
     }
     else if(kBlood > 0.0)
     {
-        vec3 bloodColor = vec3(1.0, 0.0, 0.0);
+        vec3 bloodColor = vec3(0.9, 0.0, 0.0);
         ScreenEffect(color, crtUV, kBlood, bloodColor);
     }
 
     if(crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0)
     {
         color = vec3(0.0, 0.0, 0.0);
-    }
+    }  
 
+    vec3 healColor = vec3(0.0, 0.6, 0.0);
     DrawVignette(color, crtUV);
-
     DrawScanLine(color, crtUV);
 
     fragColor.xyz = color;

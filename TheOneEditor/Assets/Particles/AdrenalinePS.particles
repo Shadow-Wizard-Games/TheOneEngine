@@ -19,7 +19,7 @@
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 25.0,
+          "MaxSpeed": 50.0,
           "MinSpeed": 10.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
@@ -27,17 +27,17 @@
         {
           "IsProportional": true,
           "MaxScale": [
-            2.0,
-            2.0,
+            1.0,
+            21.200000762939453,
             2.0
           ],
           "MinScale": [
-            0.5,
+            0.8999999761581421,
             1.0,
             1.0
           ],
           "Type": 2,
-          "UsingSingleValueScale": true
+          "UsingSingleValueScale": false
         },
         {
           "MaxColor": [
@@ -47,9 +47,9 @@
             0.0
           ],
           "MinColor": [
-            0.9693699479103088,
-            1.0,
             0.03821653127670288,
+            1.0,
+            0.944865882396698,
             1.0
           ],
           "Type": 1,
@@ -71,8 +71,8 @@
         }
       ],
       "IsLooping": true,
-      "Lifetime": 0.0,
-      "MaxParticles": 100,
+      "Lifetime": 675.1175537109375,
+      "MaxParticles": 300,
       "RenderModule": [
         {
           "BillboardType": 1,
@@ -85,6 +85,37 @@
           "Duration": 1.5,
           "SpawnRate": 100.0,
           "Type": 0
+        }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "Acceleration": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "Type": 0
+        },
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
         }
       ]
     }

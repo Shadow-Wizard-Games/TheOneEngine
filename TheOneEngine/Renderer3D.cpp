@@ -35,12 +35,17 @@ struct Renderer3DData
 
 	Renderer3D::Statistics stats;
 
-	bool constantDamage;
+	// Shader Easings
 	bool recievedDamage;
-	bool recievedHealing;
-	bool recievedAdrenaline;
 	Easing* screenBloodIn;
 	Easing* screenBloodOut;
+
+	bool recievedAdrenaline;
+	Easing* screenAdrenalineIn;
+	Easing* screenAdrenalineOut;
+
+	bool constantDamage;
+	bool recievedHealing;
 };
 
 static Renderer3DData renderer3D;
@@ -66,6 +71,8 @@ void Renderer3D::Init()
 
 	renderer3D.screenBloodIn = new Easing(0.15);
 	renderer3D.screenBloodOut = new Easing(0.45);
+	renderer3D.screenAdrenalineIn = new Easing(0.2);
+	renderer3D.screenAdrenalineOut = new Easing(0.6);
 }
 
 void Renderer3D::Update(RenderTarget target)
@@ -822,11 +829,13 @@ void Renderer3D::CRTShader(RenderTarget target)
 	crtShader->Bind();
 
 	float kBlood = 0;
+	float kAdrenaline = 0;
 	BloodEffect(kBlood);
+	AdrenalineEffect(kAdrenaline);
 
 	crtMat->SetUniformData("albedo", (Uniform::SamplerData)uiBuffer->GetAttachmentTexture("color_ui"));
 	crtMat->SetUniformData("kBlood", kBlood);
-	crtMat->SetUniformData("kAdrenaline", kBlood);
+	crtMat->SetUniformData("kAdrenaline", kAdrenaline);
 	crtMat->SetUniformData("time", (float)engine->upTime);
 	crtMat->SetUniformData("warp", glm::vec2(12, 8));
 
@@ -837,9 +846,8 @@ void Renderer3D::CRTShader(RenderTarget target)
 	uiBuffer->Unbind();
 }
 
-void Renderer3D::BloodEffect(float &kBlood)
+void Renderer3D::BloodEffect(float& kBlood)
 {
-	//if (renderer3D.recievedDamage)
 	if (renderer3D.recievedDamage)
 	{
 		renderer3D.screenBloodIn->Play();
@@ -862,6 +870,33 @@ void Renderer3D::BloodEffect(float &kBlood)
 	if (renderer3D.screenBloodOut->GetState() == EasingState::PLAY)
 	{
 		kBlood = renderer3D.screenBloodOut->Ease(1.0, 0.0, engine->dt, EasingType::EASE_OUT_SIN, false);
+	}
+}
+
+void Renderer3D::AdrenalineEffect(float& kAdrenaline)
+{
+	if (renderer3D.recievedAdrenaline)
+	{
+		renderer3D.screenAdrenalineIn->Play();
+		renderer3D.recievedAdrenaline = false;
+	}
+	if (renderer3D.screenAdrenalineIn->GetState() == EasingState::END)
+	{
+		renderer3D.screenAdrenalineIn->Reset();
+		renderer3D.screenAdrenalineOut->Play();
+	}
+	if (renderer3D.screenAdrenalineOut->GetState() == EasingState::END)
+	{
+		renderer3D.screenAdrenalineOut->Reset();
+	}
+
+	if (renderer3D.screenAdrenalineIn->GetState() == EasingState::PLAY)
+	{
+		kAdrenaline = renderer3D.screenAdrenalineIn->Ease(0.0, 1.0, engine->dt, EasingType::EASE_IN_SIN, false);
+	}
+	if (renderer3D.screenAdrenalineOut->GetState() == EasingState::PLAY)
+	{
+		kAdrenaline = renderer3D.screenAdrenalineOut->Ease(1.0, 0.0, engine->dt, EasingType::EASE_OUT_SIN, false);
 	}
 }
 
