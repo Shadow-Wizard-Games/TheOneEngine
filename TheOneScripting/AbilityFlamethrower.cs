@@ -105,6 +105,7 @@ public class AbilityFlamethrower : MonoBehaviour
                || Input.GetMouseButtonUp(Input.MouseButtonCode.LEFT))
             {
                 shooting = false;
+                player.flameThrowerLight.SwitchOff();
                 player.flameThrowerPS.Stop();
                 if(IGameObject.Find("DOT") != null)
                     IGameObject.Find("DOT").GetComponent<DOT>().DestroyCollider();
@@ -125,6 +126,7 @@ public class AbilityFlamethrower : MonoBehaviour
                 activeTimeCounter = activeTime;
                 player.flameThrowerPS.Stop();
                 player.FlamethrowerGO.Disable();
+                player.flameThrowerLight.SwitchOff();
                 player.ShoulderLaserGO.Enable();
 
                 if (IGameObject.Find("DOT") != null)
@@ -146,6 +148,7 @@ public class AbilityFlamethrower : MonoBehaviour
             activeTimeCounter = activeTime;
             player.flameThrowerPS.Stop();
             player.FlamethrowerGO.Disable();
+            player.flameThrowerLight.SwitchOff();
             player.ShoulderLaserGO.Enable();
 
             if (IGameObject.Find("DOT") != null)

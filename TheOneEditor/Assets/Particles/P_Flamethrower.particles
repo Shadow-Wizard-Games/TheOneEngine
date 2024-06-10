@@ -12,8 +12,8 @@
             1.0
           ],
           "MinColor": [
-            0.7843137383460999,
-            0.0,
+            1.0,
+            0.993630588054657,
             0.0,
             1.0
           ],
@@ -48,17 +48,17 @@
             1.5
           ],
           "MinScale": [
-            5.0,
+            2.0,
             0.5,
             0.5
           ],
           "Type": 2,
-          "UsingSingleValueScale": false
+          "UsingSingleValueScale": true
         }
       ],
       "IsLooping": true,
-      "Lifetime": 123.94567108154297,
-      "MaxParticles": 200,
+      "Lifetime": 9.241453170776367,
+      "MaxParticles": 300,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -69,7 +69,7 @@
       "SpawnModule": [
         {
           "Duration": 0.6000000238418579,
-          "SpawnRate": 100.0,
+          "SpawnRate": 300.0,
           "Type": 0
         }
       ],
@@ -77,10 +77,31 @@
         {
           "Acceleration": [
             0.0,
-            0.2,
+            0.20000000298023224,
             30.0
           ],
           "Type": 0
+        },
+        {
+          "FinalScale": [
+            9.0,
+            9.0,
+            0.0
+          ],
+          "Type": 2
+        },
+        {
+          "AffectA": true,
+          "AffectB": true,
+          "AffectG": true,
+          "AffectR": true,
+          "FinalColor": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 1
         }
       ]
     },
@@ -90,21 +111,21 @@
       "InitializeModules": [
         {
           "MaxDirection": [
-            1.5,
-            9.0,
-            0.5
+            -10.0,
+            3.0,
+            20.0
           ],
           "MinDirection": [
-            0.0,
-            7.0,
-            -0.5
+            10.0,
+            -3.0,
+            20.0
           ],
           "Type": 4,
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 9.0,
-          "MinSpeed": 7.0,
+          "MaxSpeed": 120.0,
+          "MinSpeed": 100.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
@@ -116,33 +137,33 @@
             2.5
           ],
           "MinScale": [
-            1.0,
+            0.0,
             1.0,
             1.0
           ],
           "Type": 2,
-          "UsingSingleValueScale": false
+          "UsingSingleValueScale": true
         },
         {
           "MaxColor": [
             0.1764705926179886,
             0.1764705926179886,
             0.1764705926179886,
-            1.0
+            0.2292993664741516
           ],
           "MinColor": [
-            0.1568627506494522,
-            0.1568627506494522,
-            0.1568627506494522,
-            1.0
+            0.17834395170211792,
+            0.17834395170211792,
+            0.17834395170211792,
+            0.7070063352584839
           ],
           "Type": 1,
-          "UsingSingleValueColor": true
+          "UsingSingleValueColor": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 123.94567108154297,
-      "MaxParticles": 50,
+      "Lifetime": 9.241453170776367,
+      "MaxParticles": 300,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -152,24 +173,32 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 3.0,
-          "SpawnRate": 2.0,
+          "Duration": 0.8999999761581421,
+          "SpawnRate": 150.0,
           "Type": 0
         }
       ],
       "UpdateModules": [
         {
           "AffectA": true,
-          "AffectB": false,
-          "AffectG": false,
-          "AffectR": false,
+          "AffectB": true,
+          "AffectG": true,
+          "AffectR": true,
           "FinalColor": [
-            1.0,
-            1.0,
-            1.0,
+            0.0,
+            0.0,
+            0.0,
             0.0
           ],
           "Type": 1
+        },
+        {
+          "FinalScale": [
+            10.0,
+            10.0,
+            0.0
+          ],
+          "Type": 2
         }
       ]
     }

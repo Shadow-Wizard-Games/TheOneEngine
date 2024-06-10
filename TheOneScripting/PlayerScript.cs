@@ -111,6 +111,7 @@ public class PlayerScript : MonoBehaviour
 
     // Lights
     public ILight shotLight;
+    public ILight flameThrowerLight;
 
     public UiScriptHud hudScript;
 
@@ -136,11 +137,15 @@ public class PlayerScript : MonoBehaviour
         shotExplosion = attachedGameObject.FindInChildren("ShotExplosion")?.GetComponent<IParticleSystem>();
         shotExplosionGO = attachedGameObject.FindInChildren("ShotExplosion");
         bulletShell = attachedGameObject.FindInChildren("BulletShellDrop")?.GetComponent<IParticleSystem>();
-        shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
         laser = attachedGameObject.FindInChildren("LaserPS")?.GetComponent<IParticleSystem>();
         laserGO = attachedGameObject.FindInChildren("LaserPS");
         flameThrowerPS = attachedGameObject.FindInChildren("FlameThrowerPS")?.GetComponent<IParticleSystem>();
         flameThrowerPSGO = attachedGameObject.FindInChildren("FlameThrowerPS");
+
+
+        shotLight = attachedGameObject.FindInChildren("ShotLight")?.GetComponent<ILight>();
+        flameThrowerLight = attachedGameObject.FindInChildren("FlameThrowerLight")?.GetComponent<ILight>();
+
 
         deathPSGO = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
         hitPSGO = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
@@ -157,6 +162,7 @@ public class PlayerScript : MonoBehaviour
         ImpacienteGO.Disable();
         FlamethrowerGO = attachedGameObject.FindInChildren("WP_Flamethrower");
         FlamethrowerGO.Disable();
+        flameThrowerLight.SwitchOff();
         currentWeapon = M4GO;
 
         IGameObject Abilities = attachedGameObject.FindInChildren("Abilities");
@@ -628,6 +634,7 @@ public class PlayerScript : MonoBehaviour
         bulletShell.End();
         laser.Stop();
         flameThrowerPS.Stop();
+        flameThrowerLight.SwitchOff();
     }
     private void RunAction()
     {
@@ -672,6 +679,7 @@ public class PlayerScript : MonoBehaviour
         bulletShell.End();
         laser.Stop();
         flameThrowerPS.Stop();
+        flameThrowerLight.SwitchOff();
     }
     private void DashAction()
     {
@@ -769,6 +777,7 @@ public class PlayerScript : MonoBehaviour
         bulletShell.End();
         laser.Stop();
         flameThrowerPS.Stop();
+        flameThrowerLight.SwitchOff();
     }
     private void AdrenalineRushAction()
     {
@@ -1147,8 +1156,9 @@ public class PlayerScript : MonoBehaviour
                     InternalCalls.InstantiateDOT(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 50f + height, 30);
                 }
                 Flamethrower.shooting = true;
-                flameThrowerPSGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
+                flameThrowerPSGO.transform.Position = new Vector3(0.0f, 0.3f, 0.2f);
                 shotLight.SwitchOn();
+                flameThrowerLight.intensity = 15.0f;
             }
         }
         else
