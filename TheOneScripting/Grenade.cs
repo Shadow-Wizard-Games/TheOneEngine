@@ -9,8 +9,7 @@ public class Grenade : MonoBehaviour
     IParticleSystem grenadeExplosion;
 
     Vector3 velocity;
-    readonly float lifeTime = 6.0f;
-    float currentTime = 0.0f;
+    float lifeTime = 0.4f;
     Vector3 gravity = new Vector3(0f, -200f, 0f);
 
     bool hasCollided = false;
@@ -37,8 +36,6 @@ public class Grenade : MonoBehaviour
             forceStart = false;
         }
 
-        currentTime += Time.deltaTime;
-
         Vector3 position = attachedGameObject.transform.Position + player.grenadeInitialVelocity * Time.deltaTime;
         player.grenadeInitialVelocity += gravity * Time.deltaTime;
 
@@ -54,7 +51,10 @@ public class Grenade : MonoBehaviour
             InternalCalls.CreatePrefab("GrenadeExplosion", newPos + Vector3.up * 4, attachedGameObject.transform.Rotation);
             alreadyCreated = true;
         }
-        if(currentTime > lifeTime) { attachedGameObject.Destroy(); }
+        if (alreadyCreated)
+            lifeTime -= Time.deltaTime;
+
+        if(lifeTime <= 0) { attachedGameObject.Destroy(); }
     }
 
     public void Impact()
