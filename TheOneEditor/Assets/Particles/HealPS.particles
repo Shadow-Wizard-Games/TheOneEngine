@@ -19,32 +19,32 @@
           "UsingSingleValueDirection": false
         },
         {
-          "MaxSpeed": 25.0,
-          "MinSpeed": 10.0,
+          "MaxSpeed": 80.0,
+          "MinSpeed": 30.0,
           "Type": 0,
           "UsingSingleValueSpeed": false
         },
         {
           "IsProportional": true,
           "MaxScale": [
-            2.0,
+            1.600000023841858,
             2.0,
             2.0
           ],
           "MinScale": [
-            0.5,
+            1.0,
             1.0,
             1.0
           ],
           "Type": 2,
-          "UsingSingleValueScale": true
+          "UsingSingleValueScale": false
         },
         {
           "MaxColor": [
-            1.0,
-            1.0,
-            1.0,
-            0.0
+            0.05098039284348488,
+            0.9686274528503418,
+            0.16862745583057404,
+            0.7834395170211792
           ],
           "MinColor": [
             0.0493326298892498,
@@ -53,7 +53,7 @@
             1.0
           ],
           "Type": 1,
-          "UsingSingleValueColor": true
+          "UsingSingleValueColor": false
         },
         {
           "MaxOffset": [
@@ -85,6 +85,29 @@
           "Amount": 100.0,
           "Duration": 1.5,
           "Type": 1
+        }
+      ],
+      "UpdateModules": [
+        {
+          "AffectA": true,
+          "AffectB": false,
+          "AffectG": false,
+          "AffectR": false,
+          "FinalColor": [
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "Type": 1
+        },
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
         }
       ]
     }

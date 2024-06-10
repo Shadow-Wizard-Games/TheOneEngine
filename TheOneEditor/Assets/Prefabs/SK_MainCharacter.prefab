@@ -3,21 +3,21 @@
     {
       "Name": "Transform",
       "Transformation Matrix": [
-        99.61945343017578,
+        -99.58624247124783,
         0.0,
-        8.715564727783203,
+        9.087182220522305,
         0.0,
         0.0,
         100.0,
         0.0,
         0.0,
-        -8.715564727783203,
+        -9.087182220522305,
         0.0,
-        99.61945343017578,
+        -99.58624247124783,
         0.0,
-        -51.821102142333984,
+        218.1353759765625,
         0.0,
-        -46.02009582519531,
+        516.9624633789063,
         1.0
       ],
       "Type": 0,
@@ -44,7 +44,7 @@
       "ParentUID": 113510800,
       "ScriptName": "PlayerScript",
       "Type": 4,
-      "UID": 2081611533
+      "UID": 1533509994
     },
     {
       "AudioID": 1,
@@ -154,7 +154,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 31.97623062133789,
+              "Lifetime": 113.12181854248047,
               "MaxParticles": 20,
               "RenderModule": [
                 {
@@ -465,63 +465,63 @@
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 3047556157
+          "UID": 2717577859
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 1006068035
+          "UID": 2008444490
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 2337278308
+          "UID": 1184186586
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityAdrenalineRush",
           "Type": 4,
-          "UID": 485891109
+          "UID": 1511855359
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityDash",
           "Type": 4,
-          "UID": 86971331
+          "UID": 526060362
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityFlamethrower",
           "Type": 4,
-          "UID": 1292105739
+          "UID": 362240467
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityGrenadeLauncher",
           "Type": 4,
-          "UID": 708704029
+          "UID": 1393726918
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityHeal",
           "Type": 4,
-          "UID": 4224789440
+          "UID": 1151520757
         },
         {
           "Name": "Script",
           "ParentUID": 2260469184,
           "ScriptName": "AbilityImpaciente",
           "Type": 4,
-          "UID": 935182977
+          "UID": 3418075193
         }
       ],
       "Enabled": true,
@@ -843,8 +843,8 @@
         {
           "Color": [
             1.0,
-            0.9741571545600891,
-            0.42038214206695557
+            0.9729999899864197,
+            0.41999998688697815
           ],
           "InnerCutOff": -0.07000000029802322,
           "Intensity": 0.0,
@@ -1068,7 +1068,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 2302.037841796875,
+              "Lifetime": 2450.603515625,
               "MaxParticles": 100,
               "RenderModule": [
                 {
@@ -1689,32 +1689,32 @@
                   "UsingSingleValueDirection": false
                 },
                 {
-                  "MaxSpeed": 25.0,
-                  "MinSpeed": 10.0,
+                  "MaxSpeed": 80.0,
+                  "MinSpeed": 30.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
                 },
                 {
                   "IsProportional": true,
                   "MaxScale": [
-                    2.0,
+                    1.600000023841858,
                     2.0,
                     2.0
                   ],
                   "MinScale": [
-                    0.5,
+                    1.0,
                     1.0,
                     1.0
                   ],
                   "Type": 2,
-                  "UsingSingleValueScale": true
+                  "UsingSingleValueScale": false
                 },
                 {
                   "MaxColor": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    0.0
+                    0.05098039284348488,
+                    0.9686274528503418,
+                    0.16862745583057404,
+                    0.7834395170211792
                   ],
                   "MinColor": [
                     0.0493326298892498,
@@ -1723,7 +1723,7 @@
                     1.0
                   ],
                   "Type": 1,
-                  "UsingSingleValueColor": true
+                  "UsingSingleValueColor": false
                 },
                 {
                   "MaxOffset": [
@@ -1755,6 +1755,29 @@
                   "Amount": 100.0,
                   "Duration": 1.5,
                   "Type": 1
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
                 }
               ]
             }
@@ -1819,7 +1842,7 @@
                   "UsingSingleValueDirection": false
                 },
                 {
-                  "MaxSpeed": 25.0,
+                  "MaxSpeed": 50.0,
                   "MinSpeed": 10.0,
                   "Type": 0,
                   "UsingSingleValueSpeed": false
@@ -1827,17 +1850,17 @@
                 {
                   "IsProportional": true,
                   "MaxScale": [
-                    2.0,
-                    2.0,
+                    1.0,
+                    21.200000762939453,
                     2.0
                   ],
                   "MinScale": [
-                    0.5,
+                    0.8999999761581421,
                     1.0,
                     1.0
                   ],
                   "Type": 2,
-                  "UsingSingleValueScale": true
+                  "UsingSingleValueScale": false
                 },
                 {
                   "MaxColor": [
@@ -1847,9 +1870,9 @@
                     0.0
                   ],
                   "MinColor": [
-                    0.9693699479103088,
-                    1.0,
                     0.03821653127670288,
+                    1.0,
+                    0.944865882396698,
                     1.0
                   ],
                   "Type": 1,
@@ -1871,8 +1894,8 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 0.0,
-              "MaxParticles": 100,
+              "Lifetime": 675.1175537109375,
+              "MaxParticles": 300,
               "RenderModule": [
                 {
                   "BillboardType": 1,
@@ -1885,6 +1908,37 @@
                   "Duration": 1.5,
                   "SpawnRate": 100.0,
                   "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "Type": 1
+                },
+                {
+                  "Acceleration": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "Type": 0
+                },
+                {
+                  "FinalScale": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "Type": 2
                 }
               ]
             }
@@ -1920,9 +1974,9 @@
             0.0,
             1.0,
             0.0,
-            1.805755971417966e-07,
             0.0,
-            0.0,
+            0.30000001192092896,
+            0.2460000067949295,
             1.0
           ],
           "Type": 0,
@@ -1937,9 +1991,9 @@
                 {
                   "MaxColor": [
                     1.0,
-                    1.0,
-                    1.0,
-                    0.0
+                    0.15294118225574493,
+                    0.15294118225574493,
+                    0.5031846761703491
                   ],
                   "MinColor": [
                     1.0,
@@ -1948,7 +2002,7 @@
                     1.0
                   ],
                   "Type": 1,
-                  "UsingSingleValueColor": true
+                  "UsingSingleValueColor": false
                 },
                 {
                   "MaxOffset": [
@@ -1967,21 +2021,21 @@
                 {
                   "IsProportional": true,
                   "MaxScale": [
-                    2.0,
+                    0.699999988079071,
                     2.0,
                     2.0
                   ],
                   "MinScale": [
-                    0.7,
+                    0.5,
                     1.0,
                     1.0
                   ],
                   "Type": 2,
-                  "UsingSingleValueScale": true
+                  "UsingSingleValueScale": false
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 657.6838989257813,
+              "Lifetime": 30.527990341186523,
               "MaxParticles": 400,
               "RenderModule": [
                 {
@@ -1995,6 +2049,21 @@
                   "Duration": 0.10000000149011612,
                   "SpawnRate": 2000.0,
                   "Type": 0
+                }
+              ],
+              "UpdateModules": [
+                {
+                  "AffectA": true,
+                  "AffectB": false,
+                  "AffectG": false,
+                  "AffectR": false,
+                  "FinalColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    0.37579619884490967
+                  ],
+                  "Type": 1
                 }
               ]
             }
@@ -2097,7 +2166,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 46.001983642578125,
+              "Lifetime": 0.0,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -2202,7 +2271,7 @@
                 }
               ],
               "IsLooping": true,
-              "Lifetime": 46.001983642578125,
+              "Lifetime": 0.0,
               "MaxParticles": 300,
               "RenderModule": [
                 {
@@ -2304,7 +2373,7 @@
             0.0
           ],
           "InnerCutOff": 1.090000033378601,
-          "Intensity": 42.5,
+          "Intensity": 0.0,
           "LightType": 2,
           "Linear": 0.699999988079071,
           "Name": "Light",
@@ -2329,8 +2398,8 @@
   "HasTransparency": false,
   "Keeped": false,
   "Name": "SK_MainCharacter",
-  "ParentUID": 7209065,
-  "PrefabDirty": true,
+  "ParentUID": 7471201,
+  "PrefabDirty": false,
   "PrefabID": 186710944,
   "PrefabName": "SK_MainCharacter",
   "Static": false,
