@@ -82,7 +82,11 @@ public class EventCheckpoint : Event
         if (!onCooldown && (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.A)))
         {
             managers.gameManager.health = managers.gameManager.GetMaxHealth();
-            managers.itemManager.AddItem(4, 2);
+            if (managers.itemManager.GetItemInInventoryAmount(4) < 2)
+            {
+                uint temp = 2 - (uint)managers.itemManager.GetItemInInventoryAmount(4);
+                managers.itemManager.AddItem(4, temp);
+            }
             managers.gameManager.UpdateSave();
             uiManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
 
