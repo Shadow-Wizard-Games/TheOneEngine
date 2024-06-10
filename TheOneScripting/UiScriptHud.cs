@@ -25,7 +25,8 @@ public class UiScriptHud : MonoBehaviour
         CDFLAMETHROWER,
         CDPAINLESS,
         CDADRENALINE,
-        CDCONSUMIBLE
+        CDCONSUMIBLE,
+        CONSUMIBLEAMOUNT
     }
 
     public ICanvas canvas;
@@ -46,6 +47,8 @@ public class UiScriptHud : MonoBehaviour
     int currencyAmount = 0;
 
     int killsAmount = 0;
+
+    int consumibleAmount = 0;
 
     string currLoadout = "m4a1";
     int currAmmo = 20;
@@ -122,6 +125,7 @@ public class UiScriptHud : MonoBehaviour
 
         currencyAmount = managers.gameManager.currency;
         killsAmount = 0;
+        consumibleAmount = managers.itemManager.GetItemInInventoryAmount(4);
 
         UpdateUnlockedAbilities(true);
     }
@@ -250,12 +254,18 @@ public class UiScriptHud : MonoBehaviour
         }
 
         temp = consumibleUnlocked;
-        consumibleUnlocked = managers.itemManager.CheckItemInInventory(4);
+        consumibleUnlocked = managers.itemManager.GetItemInInventoryAmount(4) > 0;
         if (temp != consumibleUnlocked || start)
         {
             canvas.PrintItemUI(consumibleUnlocked, "Button_ConsumibleIcon");
             if (!consumibleUnlocked) UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.DISABLED);
             else UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
+        }
+
+        if (consumibleAmount != managers.itemManager.GetItemInInventoryAmount(4) || start)
+        {
+            consumibleAmount = managers.itemManager.GetItemInInventoryAmount(4);
+            UpdateString(HudStrings.CONSUMIBLEAMOUNT);
         }
 
         if (currencyAmount != managers.gameManager.currency || start)
@@ -536,6 +546,9 @@ public class UiScriptHud : MonoBehaviour
                 break;
             case HudStrings.CDCONSUMIBLE:
                 canvas.SetTextString("", "Text_ConsumibleCd", (int)(consumibleCooldown - consumibleTimer));
+                break;
+            case HudStrings.CONSUMIBLEAMOUNT:
+                canvas.SetTextString("", "Text_ConsumibleAmount", consumibleAmount);
                 break;
         }
 
