@@ -225,6 +225,16 @@ static GameObject* InstantiateBullet(vec3f* initialPosition, vec3f* direction)
 	return go;
 }
 
+
+//GameObject
+static GameObject* InstantiateLaserBullet(vec3f* initialPosition, vec3f* direction)
+{
+	engine->N_sceneManager->CreatePrefabWithName("LaserBullet", *initialPosition, *direction);
+
+	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
+	return go;
+}
+
 static GameObject* InstantiateGrenade(vec3f* initialPosition, vec3f* direction)
 {
 	engine->N_sceneManager->CreateLibMeshGO("pCube1");
@@ -1380,6 +1390,7 @@ void MonoRegisterer::RegisterFunctions()
 	//GameObject
 	mono_add_internal_call("InternalCalls::GetGameObjectPtr", GetGameObjectPtr);
 	mono_add_internal_call("InternalCalls::InstantiateBullet", InstantiateBullet);
+	mono_add_internal_call("InternalCalls::InstantiateLaserBullet", InstantiateLaserBullet);
 	mono_add_internal_call("InternalCalls::InstantiateGrenade", InstantiateGrenade);
 	mono_add_internal_call("InternalCalls::InstantiateExplosion", InstantiateExplosion);
 	mono_add_internal_call("InternalCalls::InstantiateAlienMeleeAttack", InstantiateAlienMeleeAttack);

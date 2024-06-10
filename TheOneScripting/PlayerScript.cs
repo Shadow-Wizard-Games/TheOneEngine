@@ -1090,7 +1090,7 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > ItemM4.fireRate / 2 && !isReloading)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 30.0f + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_M4_SHOOT);
                 hasShot = true;
                 shotExplosionGO.transform.Position = new Vector3(0.0f, 0.3f, 0.3f);
@@ -1100,6 +1100,7 @@ public class PlayerScript : MonoBehaviour
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 bulletShell.Play();
+                shotLight.color = new Vector3(1.0f, 0.973f, 0.42f);
                 shotLight.SwitchOn();
                 loaderAmmoM4--;
                 Debug.Log("Loader bullets " + loaderAmmoM4);
@@ -1123,13 +1124,14 @@ public class PlayerScript : MonoBehaviour
             if (!hasShot && timeSinceLastShot > ItemShoulderLaser.fireRate / 2)
             {
                 Vector3 offset = new Vector3(-6.0f, 22.0f, -6.0f);
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + (attachedGameObject.transform.Forward * -2.3f + attachedGameObject.transform.Right) * offset + height, attachedGameObject.transform.Rotation);
+                InternalCalls.InstantiateLaserBullet(attachedGameObject.transform.Position + (attachedGameObject.transform.Forward * -2.3f + attachedGameObject.transform.Right) * offset + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
                 hasShot = true;
                 laserGO.transform.Position = new Vector3(-0.058f, 0.351f, 0.099f);
                 shotExplosionGO.transform.Position = new Vector3(-0.058f, 0.351f, 0.15f);
                 laser.Replay();
                 shotExplosion.Replay();
+                shotLight.color = new Vector3(0.227f, 1.0f, 0.957f);
                 shotLight.SwitchOn();
             }
         }
@@ -1152,7 +1154,7 @@ public class PlayerScript : MonoBehaviour
             {
                 Vector3 dispersion = new Vector3(Range(-0.15f, 0.15f), Range(-0.15f, 0.15f), Range(-0.15f, 0.15f));
                 Vector3 offset = new Vector3(-10.0f, 23.5f, -10.0f);
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + (attachedGameObject.transform.Forward * -2.7f + attachedGameObject.transform.Right) * offset + height, attachedGameObject.transform.Rotation + dispersion);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + (attachedGameObject.transform.Forward * -4.0f + attachedGameObject.transform.Right) * offset + height, attachedGameObject.transform.Rotation + dispersion);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.A_LI);
                 hasShot = true;
                 shotExplosionGO.transform.Position = new Vector3(-0.09f, 0.113f, 0.4f);
@@ -1162,6 +1164,7 @@ public class PlayerScript : MonoBehaviour
                 shotExplosion.Replay();
                 shotParticles.Replay();
                 bulletShell.Play();
+                shotLight.color = new Vector3(1.0f, 0.973f, 0.42f);
                 shotLight.SwitchOn();
             }
         }

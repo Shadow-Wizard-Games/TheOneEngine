@@ -59,20 +59,20 @@
           "MaxOffset": [
             0.0,
             0.0,
-            0.0
+            3.0
           ],
           "MinOffset": [
             0.0,
             0.0,
-            0.0
+            -3.0
           ],
           "Type": 3,
           "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 1192.907470703125,
-      "MaxParticles": 400,
+      "Lifetime": 5.247909069061279,
+      "MaxParticles": 500,
       "RenderModule": [
         {
           "BillboardType": 0,
@@ -173,11 +173,25 @@
           ],
           "Type": 2,
           "UsingSingleValueScale": true
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "MinOffset": [
+            0.0,
+            0.0,
+            -3.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 1192.907470703125,
-      "MaxParticles": 400,
+      "Lifetime": 5.247909069061279,
+      "MaxParticles": 500,
       "RenderModule": [
         {
           "BillboardType": 1,
@@ -278,11 +292,25 @@
           ],
           "Type": 2,
           "UsingSingleValueScale": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "MinOffset": [
+            0.0,
+            0.0,
+            -3.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 576.3057250976563,
-      "MaxParticles": 200,
+      "Lifetime": 5.247909069061279,
+      "MaxParticles": 500,
       "RenderModule": [
         {
           "BillboardType": 1,

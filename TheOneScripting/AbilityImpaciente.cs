@@ -41,8 +41,8 @@
 
         abilityName = ImpacienteItem.name;
 
-        damage = 10;
-        fireRate = 0.05f;
+        damage = 6;
+        fireRate = 0.03f;
 
         activeTime = 25.0f;
         cooldownTime = 45.0f;
