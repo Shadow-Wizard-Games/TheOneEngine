@@ -1,0 +1,157 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 987700871
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "IntroScene",
+      "Type": 4,
+      "UID": 302962224
+    },
+    {
+      "DebugDraw": true,
+      "Enabled": true,
+      "Flicker": false,
+      "Name": "Canvas",
+      "ParentUID": 3452816845,
+      "Rect": [
+        0.0,
+        0.0,
+        2.0,
+        2.0
+      ],
+      "Type": 6,
+      "UID": 686362909,
+      "UiElements": [
+        {
+          "ID": 2239027784,
+          "ImagePath": "Assets\\Textures\\Hud\\Introduction_Scene_DEMO.png",
+          "ImageSection": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "Interactuable": false,
+          "Name": "IntroImg",
+          "Print": true,
+          "Rect": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "State": 0,
+          "Type": 0
+        },
+        {
+          "ID": 2525075569,
+          "ImagePath": "Assets\\Textures\\Hud\\NarrativeIntroduction_Screen2.png",
+          "ImageSection": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "Interactuable": false,
+          "Name": "NarrativeImg",
+          "Print": true,
+          "Rect": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "State": 0,
+          "Type": 0
+        },
+        {
+          "Color": [
+            1.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "FontPath": "Assets\\Fonts\\AlienInvader.ttf",
+          "ID": 465592644,
+          "Interactuable": false,
+          "Kerning": 0.0,
+          "LineSpacing": 0.0,
+          "Name": "ContinueTxt",
+          "Print": false,
+          "Rect": [
+            0.5799999833106995,
+            0.49000000953674316,
+            0.04500000178813934,
+            0.054999999701976776
+          ],
+          "State": 0,
+          "TextString": "[A] CONTINUE",
+          "Type": 4
+        },
+        {
+          "Color": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "FontPath": "Assets/Fonts/AlienInvader.ttf",
+          "ID": 2570780767,
+          "Interactuable": false,
+          "Kerning": 0.0,
+          "LineSpacing": 0.0,
+          "Name": "SubtitlesTxt",
+          "Print": false,
+          "Rect": [
+            -0.8899999856948853,
+            0.6499999761581421,
+            0.05000000074505806,
+            0.05999999865889549
+          ],
+          "State": 0,
+          "TextString": "Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id velit ut tortor pretium viverra. Duis at tellus at urna condimentum. Aenean pharetra magna ac placerat. Dolor morbi non arcu risus quis varius quam quisque. Quam viverra orci sagittis eu volutpat odio facilisis. Ut porttitor leo a diam sollicitudin tempor id eu. Netus et malesuada fames ac turpis egestas integer. Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum. Cras tincidunt lobortis feugiat vivamus at augue eget. Et netus et malesuada fames ac turpis egestas.",
+          "Type": 4
+        }
+      ]
+    },
+    {
+      "AudioID": 1,
+      "Name": "AudioSource",
+      "Type": 8
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "IntroScene",
+  "ParentUID": 6619242,
+  "PrefabDirty": false,
+  "PrefabID": 213935102,
+  "PrefabName": "IntroScene",
+  "Static": false,
+  "UID": 3452816845
+}

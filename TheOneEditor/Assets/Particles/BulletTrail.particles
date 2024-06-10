@@ -1,0 +1,156 @@
+{
+  "Emmiters": [
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxColor": [
+            1.0,
+            0.7200291752815247,
+            0.34394901990890503,
+            0.2738853693008423
+          ],
+          "MinColor": [
+            1.0,
+            0.9288003444671631,
+            0.14012736082077026,
+            1.0
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            2.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            0.0,
+            -3.0
+          ],
+          "MinOffset": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 934.6404418945313,
+      "MaxParticles": 200,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 10.0,
+          "Duration": 0.10000000149011612,
+          "SpawnRate": 100.0,
+          "Type": 2
+        }
+      ]
+    },
+    {
+      "Delay": 0.0,
+      "Duration": 1.0,
+      "InitializeModules": [
+        {
+          "MaxColor": [
+            0.9044585824012756,
+            0.9044585824012756,
+            0.9044585824012756,
+            0.0
+          ],
+          "MinColor": [
+            0.8280254602432251,
+            0.8280254602432251,
+            0.8280254602432251,
+            0.649681568145752
+          ],
+          "Type": 1,
+          "UsingSingleValueColor": false
+        },
+        {
+          "IsProportional": true,
+          "MaxScale": [
+            3.0,
+            2.0,
+            2.0
+          ],
+          "MinScale": [
+            2.0,
+            1.0,
+            1.0
+          ],
+          "Type": 2,
+          "UsingSingleValueScale": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            0.0,
+            -3.0
+          ],
+          "MinOffset": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
+        }
+      ],
+      "IsLooping": true,
+      "Lifetime": 790.7294921875,
+      "MaxParticles": 200,
+      "RenderModule": [
+        {
+          "BillboardType": 1,
+          "TexturePath": "",
+          "Type": 0
+        }
+      ],
+      "SpawnModule": [
+        {
+          "Amount": 10.0,
+          "Duration": 0.20000000298023224,
+          "SpawnRate": 100.0,
+          "Type": 2
+        }
+      ],
+      "UpdateModules": [
+        {
+          "FinalScale": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Type": 2
+        }
+      ]
+    }
+  ],
+  "Name": "BulletTrail",
+  "StartON": true,
+  "Type": 9,
+  "UID": 3825340051
+}

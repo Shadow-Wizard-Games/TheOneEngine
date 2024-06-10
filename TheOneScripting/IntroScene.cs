@@ -21,7 +21,7 @@ class IntroScene : MonoBehaviour
 
     bool isLast = false;
     string filepath = "Assets/GameData/Dialogs.json";
-    int dialogNum = 1;
+    public int dialogNum = 1;
     string audioEventString;
 
     public override void Start()

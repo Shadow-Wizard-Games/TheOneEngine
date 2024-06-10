@@ -1,0 +1,31 @@
+{
+  "animation_list": [
+    {
+      "animation_file": "Library\\Meshes\\Anim_MainCharacter_Idle\\SK_MainCharacter_mixamo.com.anim",
+      "loop": true,
+      "name": "Idle",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\Anim_MainCharacter_PushUp\\SK_MainCharacter_mixamo.com.anim",
+      "loop": true,
+      "name": "PushUps",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\Anim_MainCharacter_PushUpToIdle\\SK_MainCharacter_mixamo.com.anim",
+      "loop": false,
+      "name": "PushUpToIdle",
+      "playback_speed": 1.0,
+      "type": 0
+    }
+  ],
+  "material": "Library/Materials/A_IntroSceneMainCharacter/M_MainCharacter.toematerial",
+  "mesh": "Library/Meshes/A_IntroSceneMainCharacter/SK_MainCharacter_animatedmesh.ozzmesh",
+  "name": "SK_MainCharacter",
+  "skeleton": "Library/Meshes/A_IntroSceneMainCharacter/SK_MainCharacter_skeleton.skeleton",
+  "transition_blend": true,
+  "transition_time": 1.0
+}

@@ -1,0 +1,54 @@
+{
+  "Components": [
+    {
+      "Name": "Transform",
+      "Transformation Matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Type": 0,
+      "UID": 815901002
+    },
+    {
+      "Active": true,
+      "DrawAABB": true,
+      "DrawChecker": false,
+      "DrawNormalsFaces": false,
+      "DrawNormalsVerts": false,
+      "DrawOBB": false,
+      "DrawWireframe": false,
+      "MaterialPath": "Library/Materials/A_IntroSceneMainCharacter/M_MainCharacter.toematerial",
+      "MeshPath": "Library/Meshes/A_IntroSceneMainCharacter/SK_MainCharacter.animator",
+      "MeshType": 2,
+      "Name": "Mesh",
+      "ParentUID": 564350552,
+      "Type": 2,
+      "UID": 2035118668
+    }
+  ],
+  "EditablePrefab": true,
+  "Enabled": true,
+  "HasTransparency": false,
+  "Keeped": false,
+  "Name": "SK_MainCharacter_AnimatedIntro",
+  "ParentUID": 6619242,
+  "PrefabDirty": false,
+  "PrefabID": 961794310,
+  "PrefabName": "SK_MainCharacter_AnimatedIntro",
+  "Static": false,
+  "UID": 564350552
+}
