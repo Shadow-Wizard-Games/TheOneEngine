@@ -21,6 +21,9 @@ public class EventCheckpoint : Event
 
     bool brodcastMesage = true;
 
+    bool onCooldown = false;
+    float cooldown = 0.0f;
+
     public override void Start()
     {
         managers.Start();
@@ -36,6 +39,16 @@ public class EventCheckpoint : Event
 
     public override void Update()
     {
+        if (onCooldown && cooldown < 1.5f)
+        {
+            cooldown += Time.deltaTime;
+        }
+        else
+        {
+            cooldown = 0.0f;
+            onCooldown = false;
+        }
+
         if (CheckEventIsPossible())
         {
             DoEvent();
@@ -66,13 +79,15 @@ public class EventCheckpoint : Event
         bool ret = true;
 
         if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Checkpoint:", "Press A"); brodcastMesage = false; }
-        if (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.A))
+        if (!onCooldown && (Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetControllerButton(Input.ControllerButtonCode.A)))
         {
             managers.gameManager.health = managers.gameManager.GetMaxHealth();
+            managers.itemManager.AddItem(4, 2);
             managers.gameManager.UpdateSave();
             uiManager.OpenHudPopUpMenu(HudPopUpMenu.SaveScene, "saving progress");
 
             saveParticles?.Replay();
+            onCooldown = true;
         }
 
         return ret;
