@@ -279,6 +279,27 @@ bool CollisionSolver::Update(double dt)
                 }
             }
             break;
+        case CollisionType::Acid:
+            for (auto& item2Weak : goWithCollision)
+            {
+                auto item2 = item2Weak.lock();
+                Collider2D* collision2 = item2->GetComponent<Collider2D>();
+                if (!collision2->activeCollision || item == item2)
+                    continue;
+
+                switch (collision2->collisionType)
+                {
+                case CollisionType::Player:
+                    if (CheckCollision(item.get(), item2.get()))
+                    {
+                        MonoManager::CallScriptFunction(item2->GetComponent<Script>()->monoBehaviourInstance, "ReduceLifeAcid");
+                        item2->GetComponent<Mesh>()->hasEffect = true;
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
         default:
             break;
         }

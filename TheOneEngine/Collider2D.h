@@ -22,7 +22,8 @@ enum class CollisionType
     Grenade,
     Explosion,
     Melee,
-    Dot
+    Dot,
+    Acid
 };
 
 enum class ObjectOrientation

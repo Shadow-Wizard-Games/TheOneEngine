@@ -47,6 +47,9 @@ public class PlayerScript : MonoBehaviour
     // background music
     public bool isFighting;
 
+    float acidDamageCooldown = 0.0f;
+    bool canRecieveAcidDamage = true;
+
     // stats
     public bool isDead = false;
     public float baseDamage;
@@ -233,6 +236,13 @@ public class PlayerScript : MonoBehaviour
             {
                 ThrowEmote(4);
             }
+        }
+
+        if (!canRecieveAcidDamage) acidDamageCooldown += Time.deltaTime;
+        if (acidDamageCooldown >= 0.8)
+        {
+            canRecieveAcidDamage = true;
+            acidDamageCooldown = 0.0f;
         }
 
         // to delete just testing
@@ -1312,6 +1322,30 @@ public class PlayerScript : MonoBehaviour
             if (managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
                 InternalCalls.ActivateBloodShaderConstant();
         }
+    }
+
+    public void ReduceLifeAcid()
+    {
+        if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH || !canRecieveAcidDamage)
+            return;
+
+        managers.gameManager.health -= 30.0f;
+        if (managers.gameManager.health <= 0)
+        {
+            managers.gameManager.health = 0;
+            isDead = true;
+            attachedGameObject.transform.Rotate(Vector3.right * 90.0f);
+            deathPSGO?.Play();
+        }
+        else
+        {
+            hitPSGO?.Replay();
+            InternalCalls.ActivateBloodShader();
+            if (managers.gameManager.health < managers.gameManager.GetMaxHealth() * 0.2)
+                InternalCalls.ActivateBloodShaderConstant();
+        }
+
+        canRecieveAcidDamage = false;
     }
 
     public float CurrentLife()

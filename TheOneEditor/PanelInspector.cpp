@@ -523,8 +523,8 @@ bool PanelInspector::Draw()
                 int collisionType = (int)collider2D->collisionType;
                 ImGui::Text("Collision Type");
                 ImGui::SameLine();
-                const char* collisionTypes[] = { "Player", "Enemy", "Wall", "Bullet", "Grenade", "Explosion"};
-                if (ImGui::Combo("##CollisionType", &collisionType, collisionTypes, 6))
+                const char* collisionTypes[] = { "Player", "Enemy", "Wall", "Bullet", "Grenade", "Explosion", "Mele", "Dot", "Acid"};
+                if (ImGui::Combo("##CollisionType", &collisionType, collisionTypes, 9))
                 {
                     collider2D->collisionType = (CollisionType)collisionType;
                 }
@@ -1752,6 +1752,57 @@ bool PanelInspector::Draw()
                             selectedGO->AddComponent<Collider2D>();
                             selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
                             selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Explosion;
+                        }
+                        ImGui::TreePop();
+                    }
+
+                    if (ImGui::TreeNode("Melee"))
+                    {
+                        if (ImGui::MenuItem("Circle"))
+                        {
+                            selectedGO->AddComponent<Collider2D>();
+                            selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+                            selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Melee;
+                        }
+                        if (ImGui::MenuItem("Rectangle"))
+                        {
+                            selectedGO->AddComponent<Collider2D>();
+                            selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
+                            selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Melee;
+                        }
+                        ImGui::TreePop();
+                    }
+
+                    if (ImGui::TreeNode("Dot"))
+                    {
+                        if (ImGui::MenuItem("Circle"))
+                        {
+                            selectedGO->AddComponent<Collider2D>();
+                            selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+                            selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Dot;
+                        }
+                        if (ImGui::MenuItem("Rectangle"))
+                        {
+                            selectedGO->AddComponent<Collider2D>();
+                            selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
+                            selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Dot;
+                        }
+                        ImGui::TreePop();
+                    }
+
+                    if (ImGui::TreeNode("Acid"))
+                    {
+                        if (ImGui::MenuItem("Circle"))
+                        {
+                            selectedGO->AddComponent<Collider2D>();
+                            selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
+                            selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Acid;
+                        }
+                        if (ImGui::MenuItem("Rectangle"))
+                        {
+                            selectedGO->AddComponent<Collider2D>();
+                            selectedGO->GetComponent<Collider2D>()->colliderType = ColliderType::Rect;
+                            selectedGO->GetComponent<Collider2D>()->collisionType = CollisionType::Acid;
                         }
                         ImGui::TreePop();
                     }
