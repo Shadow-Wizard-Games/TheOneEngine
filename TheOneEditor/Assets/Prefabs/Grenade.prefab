@@ -15,9 +15,9 @@
         0.0,
         0.19068069820429706,
         0.0,
-        151.07257080078125,
-        30.0,
-        486.07659912109375,
+        0.0,
+        0.0,
+        0.0,
         1.0
       ],
       "Type": 0,
@@ -59,7 +59,229 @@
       "ParentUID": 1081537477,
       "ScriptName": "Grenade",
       "Type": 4,
-      "UID": 3006553417
+      "UID": 1511401966
+    },
+    {
+      "Emmiters": [
+        {
+          "Delay": 0.0,
+          "Duration": 1.0,
+          "InitializeModules": [
+            {
+              "MaxColor": [
+                1.0,
+                1.0,
+                1.0,
+                0.0
+              ],
+              "MinColor": [
+                1.0,
+                0.9810134172439575,
+                0.7707006335258484,
+                0.3949044346809387
+              ],
+              "Type": 1,
+              "UsingSingleValueColor": false
+            },
+            {
+              "IsProportional": true,
+              "MaxScale": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "MinScale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "Type": 2,
+              "UsingSingleValueScale": false
+            },
+            {
+              "MaxDirection": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "MinDirection": [
+                -0.5,
+                -0.5,
+                -0.5
+              ],
+              "Type": 4,
+              "UsingSingleValueDirection": false
+            },
+            {
+              "MaxSpeed": 6.0,
+              "MinSpeed": 3.0,
+              "Type": 0,
+              "UsingSingleValueSpeed": false
+            },
+            {
+              "MaxOffset": [
+                1.5,
+                1.5,
+                1.5
+              ],
+              "MinOffset": [
+                -1.5,
+                -1.5,
+                -1.5
+              ],
+              "Type": 3,
+              "UsingSingleValueOffset": false
+            }
+          ],
+          "IsLooping": true,
+          "Lifetime": 177.96383666992188,
+          "MaxParticles": 600,
+          "RenderModule": [
+            {
+              "BillboardType": 1,
+              "TexturePath": "",
+              "Type": 0
+            }
+          ],
+          "SpawnModule": [
+            {
+              "Amount": 10.0,
+              "Duration": 0.6000000238418579,
+              "SpawnRate": 100.0,
+              "Type": 2
+            }
+          ],
+          "UpdateModules": [
+            {
+              "Acceleration": [
+                0.0,
+                -10.0,
+                0.0
+              ],
+              "Type": 0
+            },
+            {
+              "FinalScale": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Type": 2
+            }
+          ]
+        },
+        {
+          "Delay": 0.0,
+          "Duration": 1.0,
+          "InitializeModules": [
+            {
+              "MaxColor": [
+                0.9044585824012756,
+                0.9044585824012756,
+                0.9044585824012756,
+                0.0
+              ],
+              "MinColor": [
+                0.8280254602432251,
+                0.8280254602432251,
+                0.8280254602432251,
+                0.41401273012161255
+              ],
+              "Type": 1,
+              "UsingSingleValueColor": false
+            },
+            {
+              "IsProportional": true,
+              "MaxScale": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "MinScale": [
+                2.0,
+                1.0,
+                1.0
+              ],
+              "Type": 2,
+              "UsingSingleValueScale": false
+            },
+            {
+              "MaxDirection": [
+                0.5,
+                -4.0,
+                0.5
+              ],
+              "MinDirection": [
+                -0.5,
+                -2.0,
+                -0.5
+              ],
+              "Type": 4,
+              "UsingSingleValueDirection": false
+            },
+            {
+              "MaxSpeed": 12.0,
+              "MinSpeed": 8.0,
+              "Type": 0,
+              "UsingSingleValueSpeed": false
+            },
+            {
+              "MaxOffset": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "MinOffset": [
+                -0.5,
+                -0.5,
+                -0.5
+              ],
+              "Type": 3,
+              "UsingSingleValueOffset": false
+            }
+          ],
+          "IsLooping": true,
+          "Lifetime": 177.96383666992188,
+          "MaxParticles": 600,
+          "RenderModule": [
+            {
+              "BillboardType": 1,
+              "TexturePath": "",
+              "Type": 0
+            }
+          ],
+          "SpawnModule": [
+            {
+              "Amount": 10.0,
+              "Duration": 0.6000000238418579,
+              "SpawnRate": 100.0,
+              "Type": 2
+            }
+          ],
+          "UpdateModules": [
+            {
+              "FinalScale": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Type": 2
+            },
+            {
+              "Acceleration": [
+                0.0,
+                -10.0,
+                0.0
+              ],
+              "Type": 0
+            }
+          ]
+        }
+      ],
+      "Name": "GrenadeTrial\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "StartON": true,
+      "Type": 9,
+      "UID": 3825340051
     }
   ],
   "EditablePrefab": true,
@@ -379,8 +601,8 @@
   "HasTransparency": false,
   "Keeped": false,
   "Name": "Grenade",
-  "ParentUID": 7209065,
-  "PrefabDirty": false,
+  "ParentUID": 2,
+  "PrefabDirty": true,
   "PrefabID": 3872036272,
   "PrefabName": "Grenade",
   "Static": false,
