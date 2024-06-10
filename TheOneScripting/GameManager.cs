@@ -231,11 +231,6 @@ public class GameManager : MonoBehaviour
     {
         string[] datapath = { "GameManager" };
 
-        //hasSaved
-        //saveLevel
-        //savedLevels list
-        //lastLevel
-
         DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "currency", currency);
         DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "damageLvl", damageLvl);
         DataManager.WriteFileDataInt("GameData/SaveData.json", datapath, "lifeLvl", lifeLvl);
@@ -243,16 +238,13 @@ public class GameManager : MonoBehaviour
         DataManager.WriteFileDataBool("GameData/SaveData.json", datapath, "activeShortcutL1R1", activeShortcutL1R1);
         DataManager.WriteFileDataBool("GameData/SaveData.json", datapath, "hasSaved", hasSaved);
         DataManager.WriteFileDataString("GameData/SaveData.json", datapath, "saveLevel", saveLevel);
+
+        SaveConversations();
     }
 
     private void LoadGameManagerData()
     {
         string[] datapath = { "GameManager" };
-
-        //hasSaved
-        //saveLevel
-        //savedLevels list
-        //lastLevel
 
         currency = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "currency");
         SetDamageLvl(DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "damageLvl"));
@@ -262,5 +254,42 @@ public class GameManager : MonoBehaviour
         activeShortcutL1R1 = DataManager.AccessFileDataBool("GameData/SaveData.json", datapath, "activeShortcutL1R1");
         hasSaved = DataManager.AccessFileDataBool("GameData/SaveData.json", datapath, "hasSaved");
         saveLevel = DataManager.AccessFileDataString("GameData/SaveData.json", datapath, "saveLevel");
+
+        DataManager.RemoveFile("GameData/Dialogs.json");
+        LoadConversations();
+    }
+
+    private void SaveConversations()
+    {
+        string dialogsPath = "GameData/Dialogs.json";
+
+        for (int i = 1; i < 9; i++)
+        {
+            string[] datapath = { "Character" + i.ToString() };
+            int temp1 = DataManager.AccessFileDataInt(dialogsPath, datapath, "conversationNum");
+
+            if(temp1 > 0)
+            {
+                string[] datapath1 = { "Characters", "Character" + i.ToString() };
+                DataManager.WriteFileDataInt("GameData/SaveData.json", datapath1, "conversationNum", temp1);
+            }
+        }
+    }
+
+    private void LoadConversations()
+    {
+        string dialogsPath = "GameData/Dialogs.json";
+
+        for (int i = 1; i < 9; i++)
+        {
+            string[] datapath1 = { "Characters", "Character" + i.ToString() };
+            int temp1 = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath1, "conversationNum");
+
+            if (temp1 > 0)
+            {
+                string[] datapath = { "Character" + i.ToString() };
+                DataManager.WriteFileDataInt(dialogsPath, datapath, "conversationNum", temp1);
+            }
+        }
     }
 }
