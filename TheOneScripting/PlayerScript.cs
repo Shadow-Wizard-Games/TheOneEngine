@@ -133,6 +133,8 @@ public class PlayerScript : MonoBehaviour
 
     Random random = new Random();
 
+    public IAnimator currentWeaponAnimator;
+
     public override void Start()
     {
         managers.Start();
@@ -212,6 +214,8 @@ public class PlayerScript : MonoBehaviour
 
         loaderAmmoM4 = ItemM4.maxLoaderAmmo;
         reloadingTimeCounter = ItemM4.reloadTime;
+
+        currentWeaponAnimator = M4GO.animator;
 
         // THIS ALWAYS LAST IN START
         SetInitPosInScene();
@@ -324,7 +328,11 @@ public class PlayerScript : MonoBehaviour
         }
         #endregion
 
-        if (keepDance) currentWeapon.Disable();
+        if (keepDance)
+        {
+            currentWeapon.Disable();
+            currentWeaponAnimator.Stop();
+        }
     }
 
     private void UpdatePlayerState()
@@ -335,14 +343,17 @@ public class PlayerScript : MonoBehaviour
 
         currentAction = CurrentAction.IDLE;
 
-        if (Heal.state != AbilityHeal.AbilityState.ACTIVE && Dash.state != AbilityDash.AbilityState.ACTIVE)
+        if (Dash.state != AbilityDash.AbilityState.ACTIVE)
         {
             if (managers.itemManager.CheckItemInInventory(1))
                 currentWeapon.Enable();
             UpdateWeaponAnimation();
         }
         else if (Dash.state == AbilityDash.AbilityState.ACTIVE)
+        {
             currentWeapon.Disable();
+            currentWeaponAnimator.Stop();
+        }
 
         // Update player adrenaline PS
         if (AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.ACTIVE)
@@ -835,8 +846,6 @@ public class PlayerScript : MonoBehaviour
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
 
-        attachedGameObject.animator.Play("Adrenaline Rush Static");
-
         Debug.Log("Activated Adrenaline Rush");
     }
     private void RunAdrenalineRushAction()
@@ -856,8 +865,6 @@ public class PlayerScript : MonoBehaviour
         damageMultiplier = 1 + AdrenalineRush.damageAmount;
 
         AdrenalineRush.state = AbilityAdrenalineRush.AbilityState.ACTIVE;
-
-        attachedGameObject.animator.Play("Adrenaline Rush Moving");
 
         Debug.Log("Activated Adrenaline Rush");
     }
@@ -1237,24 +1244,35 @@ public class PlayerScript : MonoBehaviour
 
     private void UpdateWeaponAnimation()
     {
-        switch (currentWeaponType)
-        {
+        if ((Dash.state == AbilityDash.AbilityState.ACTIVE)
+            && (currentAction != CurrentAction.IDLE
+            || currentAction != CurrentAction.SHOOT
+            || currentAction != CurrentAction.RUNSHOOT))
+            return;
+
+            switch (currentWeaponType)
+            {
             case CurrentWeapon.M4:
                 M4GO.animator.UpdateAnimation();
+                currentWeaponAnimator = M4GO.animator;
                 break;
             case CurrentWeapon.SHOULDERLASER:
                 ShoulderLaserGO.animator.UpdateAnimation();
+                currentWeaponAnimator = ShoulderLaserGO.animator;
                 break;
             case CurrentWeapon.IMPACIENTE:
                 ImpacienteGO.animator.UpdateAnimation();
+                currentWeaponAnimator = ImpacienteGO.animator;
                 break;
             case CurrentWeapon.FLAMETHROWER:
                 FlamethrowerGO.animator.UpdateAnimation();
+                currentWeaponAnimator = FlamethrowerGO.animator;
                 break;
             case CurrentWeapon.GRENADELAUNCHER:
                 M4GO.animator.UpdateAnimation();
+                currentWeaponAnimator = M4GO.animator;
                 break;
-        }
+            }
     }
 
     public void ReduceLife()
@@ -1460,6 +1478,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         currentWeapon.Disable();
+        currentWeaponAnimator.Stop();
         keepDance = true;
     }
     public void StopEmote()

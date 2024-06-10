@@ -114,6 +114,7 @@
                 player.hudScript.SetPainlessOnCD();
 
                 player.ImpacienteGO.Disable();
+                player.currentWeaponAnimator.Stop();
 
                 Debug.Log("Ability Impaciente on Cooldown");
             }
@@ -134,6 +135,7 @@
             state = AbilityState.COOLDOWN;
 
             player.ImpacienteGO.Disable();
+            player.currentWeaponAnimator.Stop();
 
             Debug.Log("Ability Impaciente on Cooldown");
         }

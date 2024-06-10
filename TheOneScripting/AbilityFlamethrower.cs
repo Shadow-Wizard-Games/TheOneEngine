@@ -127,6 +127,7 @@ public class AbilityFlamethrower : MonoBehaviour
                 activeTimeCounter = activeTime;
                 player.flameThrowerPS.Stop();
                 player.FlamethrowerGO.Disable();
+                player.currentWeaponAnimator.Stop();
                 player.flameThrowerLight.SwitchOff();
                 player.ShoulderLaserGO.Enable();
 
