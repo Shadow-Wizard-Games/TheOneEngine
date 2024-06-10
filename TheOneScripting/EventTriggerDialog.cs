@@ -39,6 +39,7 @@ public class EventTriggerDialog : Event
     string audioEventString;
 
     bool brodcastMesage = true;
+    bool isDisabled = false;
 
     public override void Start()
     {
@@ -56,14 +57,19 @@ public class EventTriggerDialog : Event
         charachter = ExtractCharacter();
         string[] characterPath = { charachter };
         conversationNum = DataManager.AccessFileDataInt(dynamicPath, characterPath, "conversationNum");
+        isDisabled = DataManager.AccessFileDataBool(filepath, characterPath, "isDisabled");
 
-        if(conversationNum <= 0)
+        // Disable the render of the GO if is Disabled ture (NOT POSIBLE)
+
+        if (conversationNum <= 0)
         {
             conversationNum = 1;
         }
 
         string[] dataPath = { charachter, "Conversation" + conversationNum };
         neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
+        Debug.Log(neededQuestId.ToString());
+        Debug.Log(managers.questManager.IsQuestComplete(neededQuestId).ToString());
 
         dialogueGo = IGameObject.Find("Canvas_Dialogue");
         dialogCanvas = dialogueGo.GetComponent<ICanvas>();
@@ -71,6 +77,14 @@ public class EventTriggerDialog : Event
 
     public override void Update()
     {
+        if (neededQuestId == 13)
+        {
+            string[] characterPath = { charachter };
+            conversationNum = DataManager.AccessFileDataInt(dynamicPath, characterPath, "conversationNum");
+            if (conversationNum <= 0)
+                conversationNum = 1;
+        }
+
         attachedGameObject.animator.UpdateAnimation();
         UpdateAnimator();
 
@@ -112,20 +126,26 @@ public class EventTriggerDialog : Event
         bool ret = true;
 
         if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Dialogue:", "Press A"); brodcastMesage = false; }
-        if (Input.GetControllerButton(Input.ControllerButtonCode.A) ||  Input.GetKeyboardButton(Input.KeyboardCode.E) && cooldown <= 0)
+        if ((Input.GetControllerButton(Input.ControllerButtonCode.A) ||  Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetKeyboardButton(Input.KeyboardCode.G)) && cooldown <= 0)
         {
-            if (isFirst)
-            {
-                managers.gameManager.SetGameState(GameManager.GameStates.DIALOGING);
-                dialogueGo.Enable();
-            }
-            else if (isLast)
+            Debug.Log(neededQuestId.ToString());
+            if (isLast || Input.GetKeyboardButton(Input.KeyboardCode.G))
             {
                 string[] dataPath1 = { charachter, "Conversation" + conversationNum.ToString() };
                 int completeQuestId = DataManager.AccessFileDataInt(filepath, dataPath1, "completeQuestId");
-                managers.questManager.CompleteQuest(completeQuestId);
-                int triggerQuestId = DataManager.AccessFileDataInt(filepath, dataPath1, "triggerQuestId");
-                managers.questManager.ActivateQuest(triggerQuestId);
+
+                if (completeQuestId == 14)
+                {
+                    managers.questManager.alienPc++;
+                    attachedGameObject.Disable();
+                }
+
+                if (managers.questManager.alienPc >= 5 || completeQuestId != 14)
+                {
+                    managers.questManager.CompleteQuest(completeQuestId);
+                    int triggerQuestId = DataManager.AccessFileDataInt(filepath, dataPath1, "triggerQuestId");
+                    managers.questManager.ActivateQuest(triggerQuestId);
+                }
 
                 conversationNum++;
                 string[] characterPath = { charachter };
@@ -133,16 +153,27 @@ public class EventTriggerDialog : Event
 
                 string[] dataPath = { charachter, "Conversation" + conversationNum.ToString() };
                 neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
+                cooldown = 5;
 
                 managers.gameManager.SetGameState(GameManager.GameStates.RUNNING);
                 dialogueGo.Disable();
 
+                if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
+                {
+                    attachedGameObject.source.Stop(aEvent);
+                }
+
                 return ret;
             }
-
-            if (Enum.TryParse(audioEventString, out AudioEvent aEvent))
+            else if (isFirst)
             {
-                attachedGameObject.source.Stop(aEvent);
+                managers.gameManager.SetGameState(GameManager.GameStates.DIALOGING);
+                dialogueGo.Enable();
+            }
+
+            if (Enum.TryParse(audioEventString, out AudioEvent aEvent1))
+            {
+                attachedGameObject.source.Stop(aEvent1);
             }
 
             string[] datapath = { charachter, "Conversation" + conversationNum.ToString(), "Dialog" + dialogNum.ToString() };

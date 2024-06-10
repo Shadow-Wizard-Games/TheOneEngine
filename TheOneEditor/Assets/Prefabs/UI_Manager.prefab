@@ -28,7 +28,7 @@
       "ParentUID": 3452816845,
       "ScriptName": "UiManager",
       "Type": 4,
-      "UID": 1006370968
+      "UID": 1097981085
     },
     {
       "AudioID": 2,
@@ -1130,7 +1130,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptInventory",
           "Type": 4,
-          "UID": 670179276
+          "UID": 3585158363
         },
         {
           "AudioID": 3,
@@ -1468,7 +1468,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptPause",
           "Type": 4,
-          "UID": 1140916606
+          "UID": 1846129236
         }
       ],
       "Enabled": false,
@@ -1509,7 +1509,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptHud",
           "Type": 4,
-          "UID": 1823988948
+          "UID": 2002359150
         },
         {
           "DebugDraw": true,
@@ -2918,6 +2918,30 @@
               "State": 0,
               "Type": 2,
               "Value": 10
+            },
+            {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets/Fonts/AlienInvader.ttf",
+              "ID": 696880355,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_ConsumibleAmount",
+              "Print": true,
+              "Rect": [
+                -0.7620000243186951,
+                -0.4699999988079071,
+                0.02500000037252903,
+                0.054999999701976776
+              ],
+              "State": 0,
+              "TextString": "0",
+              "Type": 4
             }
           ]
         }
@@ -3408,7 +3432,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptDebug",
           "Type": 4,
-          "UID": 1843774804
+          "UID": 2806481768
         },
         {
           "AudioID": 5,
@@ -3810,7 +3834,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptMissions",
           "Type": 4,
-          "UID": 3606648651
+          "UID": 1290006479
         }
       ],
       "Enabled": false,
@@ -6808,7 +6832,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptStats",
           "Type": 4,
-          "UID": 549395167
+          "UID": 1754658138
         }
       ],
       "Enabled": false,
@@ -6955,7 +6979,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptSettings",
           "Type": 4,
-          "UID": 3867923220
+          "UID": 929414553
         }
       ],
       "Enabled": false,
@@ -7961,7 +7985,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettingsDisplay",
               "Type": 4,
-              "UID": 2394795651
+              "UID": 890535125
             },
             {
               "AudioID": 13,

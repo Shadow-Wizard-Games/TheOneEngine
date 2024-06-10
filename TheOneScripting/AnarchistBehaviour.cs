@@ -30,9 +30,9 @@ class AnarchistBehaviour : MonoBehaviour
     Vector3 initialPos;
 
     // Ranges
-    const float rangeToInspect = 200.0f;
-    const float inspectDetectionRadius = 200.0f;
-    const float loseRange = 150.0f;
+    const float rangeToInspect = 250.0f;         // reference value
+    const float inspectDetectionRadius = 150.0f; // rangeToInspect - 100.0f
+    const float loseRange = 200.0f;              // rangeToInspect - 50.0f
 
     // Inspect
     float elapsedTime = 0.0f; //Do not modify

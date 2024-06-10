@@ -394,7 +394,8 @@ public class PlayerScript : MonoBehaviour
 
             if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))
                 && Heal.state == AbilityHeal.AbilityState.READY
-                && currentAction != CurrentAction.DASH)
+                && currentAction != CurrentAction.DASH
+                && managers.itemManager.GetItemInInventoryAmount(4) > 0)
             {
                 currentAction = CurrentAction.RUNHEAL;
                 hudScript.TriggerHudConsumible();
@@ -449,7 +450,8 @@ public class PlayerScript : MonoBehaviour
         if ((Input.GetKeyboardButton(Input.KeyboardCode.Q) || Input.GetControllerButton(Input.ControllerButtonCode.X))  
             && Heal.state == AbilityHeal.AbilityState.READY
             && Dash.state != AbilityDash.AbilityState.ACTIVE
-            && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE)
+            && AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.ACTIVE
+            && managers.itemManager.GetItemInInventoryAmount(4) > 0)
         {
             currentAction = CurrentAction.HEAL;
             hudScript.TriggerHudConsumible();
@@ -1384,7 +1386,6 @@ public class PlayerScript : MonoBehaviour
 
         if (letsReloadTimeCounter >= 1.5f)
         {
-            Debug.Log("STARTING AUTO RELOAD");
             isReloading = true;
             letsReloadTimeCounter = 0;
         }

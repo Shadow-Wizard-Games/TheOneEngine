@@ -38,7 +38,7 @@ public class AbilityHeal : MonoBehaviour
         cooldownTime = 8.0f;
         cooldownTimeCounter = cooldownTime;
 
-        numHeals = 2;
+        numHeals = managers.itemManager.GetItemInInventoryAmount(4);
 
         playerGO = attachedGameObject.parent;
         player = playerGO.GetComponent<PlayerScript>();
@@ -62,6 +62,7 @@ public class AbilityHeal : MonoBehaviour
                 
                 break;
         }
+        numHeals = managers.itemManager.GetItemInInventoryAmount(4);
     }
 
     public void WhileActive()
@@ -92,6 +93,7 @@ public class AbilityHeal : MonoBehaviour
                 managers.gameManager.health = managers.gameManager.GetMaxHealth();
 
             numHeals--;
+            managers.itemManager.RemoveItem(4, 1);
 
             // reset stats
             speedModification = 0;
