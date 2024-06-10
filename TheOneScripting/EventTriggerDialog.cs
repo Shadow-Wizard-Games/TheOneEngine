@@ -168,10 +168,10 @@ public class EventTriggerDialog : Event
                 dialogueGo.Enable();
             }
 
-            if (Enum.TryParse(audioEventString, out AudioEvent aEvent1))
-            {
-                attachedGameObject.source.Stop(aEvent1);
-            }
+            //if (Enum.TryParse(audioEventString, out AudioEvent aEvent1))
+            //{
+            //    attachedGameObject.source.Stop(aEvent1);
+            //}
 
             string[] datapath = { charachter, "Conversation" + conversationNum.ToString(), "Dialog" + dialogNum.ToString() };
             string text = DataManager.AccessFileDataString(filepath, datapath, "text");

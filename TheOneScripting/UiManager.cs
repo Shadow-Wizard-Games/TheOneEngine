@@ -149,7 +149,7 @@ public class UiManager : MonoBehaviour
 
         // Check if it is paused and put it running if so
         // Disabled because do not know if it's necesary
-        if (managers.gameManager.GetGameState() == GameManager.GameStates.PAUSED) { managers.gameManager.SetGameState(GameManager.GameStates.RUNNING); }
+        if (managers.gameManager.GetGameState() != GameManager.GameStates.RUNNING) { managers.gameManager.SetGameState(GameManager.GameStates.RUNNING); }
     }
 
     public override void Update()
