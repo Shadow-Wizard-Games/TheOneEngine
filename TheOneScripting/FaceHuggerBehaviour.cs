@@ -293,6 +293,17 @@ public class FaceHuggerBehaviour : MonoBehaviour
         else hitPS?.Replay();
     }
 
+    public void ReduceLifeExplosion()
+    {
+        life -= player.GrenadeLauncher.damage;
+        if (life < 0)
+        {
+            life = 0;
+            shotDead = true;
+        }
+        //else hitPSGO?.Replay();
+    }
+
     private void DebugDraw()
     {
         //Draw debug ranges
