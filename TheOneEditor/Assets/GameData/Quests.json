@@ -1,11 +1,19 @@
 {
     "QuestManager": {
-        "questsNum": 5
+        "questsNum": 16
     },
     "CompletionEvents": {
         "EventQC1": {
             "id": 1,
             "nextId": 4
+        },"EventQC2": {
+            "id": 8,
+            "nextId": 9,
+            "prevId": 7
+        },"EventQC3": {
+            "id": 11,
+            "nextId": 12,
+            "prevId": 10
         }
     },
     "Quests": {
@@ -43,8 +51,96 @@
         },
         "Quest4": {
             "id": 5,
-            "name": "Talk to ?",
-            "details": "Talk to someone so that you can know what happened.",
+            "name": "Talk to Isaac",
+            "details": "Talk to Isaac, he maight be able to heal your wounds.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest5": {
+            "id": 6,
+            "name": "Talk to Noah",
+            "details": "Let's see what we need to get out of here.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest6": {
+            "id": 7,
+            "name": "Talk to Palmer",
+            "details": "Ask Palmer what is the situation here.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest7": {
+            "id": 8,
+            "name": "Back to Ship",
+            "details": "Find Noah at the ship.",
+            "objectives": "IDK",
+            "type": "GoTo quest",
+            "isMain": true
+        },
+        "Quest8": {
+            "id": 9,
+            "name": "Talk to Noah",
+            "details": "Let's see what we need to get out of here.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest9": {
+            "id": 10,
+            "name": "Talk to Noah",
+            "details": "Let's see what we need to get out of here.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest10": {
+            "id": 11,
+            "name": "Back to Camp",
+            "details": "Find Noah at the camp.",
+            "objectives": "IDK",
+            "type": "GoTo quest",
+            "isMain": true
+        },
+        "Quest11": {
+            "id": 12,
+            "name": "Talk to Noah",
+            "details": "Let's see what we need to get out of here.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest12": {
+            "id": 13,
+            "name": "Talk to Palmer",
+            "details": "Let's see what we need to get out of here.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest13": {
+            "id": 14,
+            "name": "Find Alien Comp",
+            "details": "Interact with Alien computers to find info.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest14": {
+            "id": 15,
+            "name": "Back to Camp",
+            "details": "See what happened in the camp.",
+            "objectives": "IDK",
+            "type": "Interact",
+            "isMain": true
+        },
+        "Quest15": {
+            "id": 16,
+            "name": "Kill the Queen",
+            "details": "Kill the Queen.",
             "objectives": "IDK",
             "type": "Interact",
             "isMain": true

@@ -19,6 +19,7 @@ public class EventCompleteQuest : Event
     string goName;
     int id;
     int nextId;
+    int prevId;
 
     string filepath = "Assets/GameData/Quests.json";
 
@@ -34,6 +35,7 @@ public class EventCompleteQuest : Event
         string[] datapath = { "CompletionEvents", ExtractQuestCompletion() };
         id = DataManager.AccessFileDataInt(filepath, datapath, "id");
         nextId = DataManager.AccessFileDataInt(filepath, datapath, "nextId");
+        prevId = DataManager.AccessFileDataInt(filepath, datapath, "prevId");
     }
 
     public override void Update()
@@ -68,11 +70,14 @@ public class EventCompleteQuest : Event
     public override bool DoEvent()
     {
         bool ret = true;
+        Debug.Log(prevId.ToString());
+        if (managers.questManager.IsQuestComplete(prevId) || prevId == 0)
+        {
+            managers.questManager.CompleteQuest(id);
+            managers.questManager.ActivateQuest(nextId);
 
-        managers.questManager.CompleteQuest(id);
-        managers.questManager.ActivateQuest(nextId);
-
-        attachedGameObject.Destroy();
+            attachedGameObject.Destroy();
+        }
 
         return ret;
     }

@@ -11,6 +11,8 @@ public class QuestManager : MonoBehaviour
 
     string filepath = "Assets/GameData/Quests.json";
 
+    public int alienPc = 0;
+
     public override void Start()
     {
         managers.Start();
@@ -64,14 +66,17 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void CompleteQuest(int id)
+    public void CompleteQuest(int id, bool notify = true)
     {
         foreach (var item in activeQuests)
         {
             if (item.id == id)
             {
-                UiManager uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
-                uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Quest Completed:", item.name);
+                if (notify)
+                {
+                    UiManager uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+                    uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Quest Completed:", item.name);
+                }
                 item.GiveReward(managers.itemManager);
                 completedQuests.Add(item);
                 activeQuests.Remove(item);
@@ -127,6 +132,7 @@ public class QuestManager : MonoBehaviour
         string[] datapath1 = { "QuestManager" };
 
         int i = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath1, "quantity1");
+        alienPc = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath1, "alienPc");
 
         for (int j = 0; j < i; j++)
         {
@@ -143,7 +149,8 @@ public class QuestManager : MonoBehaviour
             string[] datapath = { "QuestManager", "completedQuests", "quest" + j.ToString() };
             int temp1 = DataManager.AccessFileDataInt("GameData/SaveData.json", datapath, "id");
 
-            CompleteQuest(temp1);
+            ActivateQuest(temp1);
+            CompleteQuest(temp1, false);
         }
     }
 
@@ -152,6 +159,7 @@ public class QuestManager : MonoBehaviour
         string[] datapath1 = { "QuestManager" };
 
         DataManager.WriteFileDataInt("GameData/SaveData.json", datapath1, "quantity1", activeQuests.Count);
+        DataManager.WriteFileDataInt("GameData/SaveData.json", datapath1, "alienPc", alienPc);
 
         int i = 0;
 

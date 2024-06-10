@@ -89,6 +89,14 @@ public class EventNextRoom : Event
                     return ret;
                 }
             }
+            else if (sceneName == "L2R2" && managers.questManager.IsQuestComplete(14))
+            {
+                playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
+
+                managers.gameManager.SaveSceneState();
+                SceneManager.LoadScene("L2R5");
+                return ret;
+            }
 
             playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
 

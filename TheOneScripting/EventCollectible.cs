@@ -31,6 +31,14 @@ public class EventCollectible : Event
         eventType = EventType.COLLECTIBLE;
 
         uiManager = IGameObject.Find("UI_Manager").GetComponent<UiManager>();
+
+        string collectibleName = ExtractCollectible();
+
+        string[] dataPath = { collectibleName };
+        int id = DataManager.AccessFileDataInt(filepath, dataPath, "itemId");
+
+        if (managers.itemManager.CheckItemInInventory((uint)id))
+            attachedGameObject.Destroy();
     }
 
     public override void Update()
