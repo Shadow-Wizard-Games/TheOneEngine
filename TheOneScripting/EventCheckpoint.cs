@@ -49,7 +49,7 @@ public class EventCheckpoint : Event
             onCooldown = false;
         }
 
-        if (CheckEventIsPossible())
+        if (CheckEventIsPossible() && managers.gameManager.GetGameState() == GameManager.GameStates.RUNNING)
         {
             DoEvent();
         }

@@ -94,7 +94,7 @@ public class EventTriggerDialog : Event
         if (managers.questManager.IsQuestComplete(neededQuestId) || neededQuestId == -1)
         {
             dialogWarnig.Play();
-            if (CheckEventIsPossible())
+            if (CheckEventIsPossible() && managers.gameManager.GetGameState() == GameManager.GameStates.RUNNING)
             {
                 DoEvent();
             }

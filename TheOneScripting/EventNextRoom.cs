@@ -37,7 +37,7 @@ public class EventNextRoom : Event
         if (cooldown > 0)
             cooldown -= Time.realDeltaTime;
 
-        if (CheckEventIsPossible())
+        if (CheckEventIsPossible() && managers.gameManager.GetGameState() == GameManager.GameStates.RUNNING)
         {
             DoEvent();
         }

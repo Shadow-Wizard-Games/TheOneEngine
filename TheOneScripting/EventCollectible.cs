@@ -44,7 +44,7 @@ public class EventCollectible : Event
     public override void Update()
     {
 
-        if (CheckEventIsPossible())
+        if (CheckEventIsPossible() && managers.gameManager.GetGameState() == GameManager.GameStates.RUNNING)
         {
             DoEvent();
         }
