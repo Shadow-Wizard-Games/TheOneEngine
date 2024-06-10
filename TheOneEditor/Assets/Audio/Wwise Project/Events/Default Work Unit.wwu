@@ -2034,17 +2034,6 @@
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="VO_rescueship_narrativeend" ID="{0045417C-C262-4C3D-A81E-ECFF070E9506}">
-									<ChildrenList>
-										<Action Name="" ID="{D2269B8B-E14F-4AB7-AFCD-B6F2E891E93B}" ShortID="204979828">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="VO_rescueship_narrativeend" ID="{7D7A8D3E-3052-41C5-9C2C-45F3F9895144}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="TTS" ID="{C67AEDB5-5C16-4943-B9DE-03CFE5B05DBF}" ShortID="968270134">
@@ -2081,6 +2070,17 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="VO_Radio_OFF" ID="{F551EC07-2B52-4B8F-9F34-1735988B11B2}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="VO_SIREN" ID="{D69C78DF-1723-4295-90F5-2DA4CAA7F94A}">
+									<ChildrenList>
+										<Action Name="" ID="{48F5D562-8A24-4A64-851F-9E3674AA91C1}" ShortID="318277049">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="siren" ID="{04D71B4C-F2B0-46BB-972A-1B0C13CD6979}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>

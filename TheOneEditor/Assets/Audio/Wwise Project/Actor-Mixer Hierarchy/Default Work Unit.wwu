@@ -3381,6 +3381,41 @@
 										<ActiveSource Name="VO_guard2_voiceline2_01" ID="{714BD18E-840E-44AD-9D00-1B0485B0B564}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="siren" ID="{04D71B4C-F2B0-46BB-972A-1B0C13CD6979}" ShortID="795802681">
+									<PropertyList>
+										<Property Name="IsVoice" Type="bool" Value="True"/>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-19</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{70EBEA4B-CF72-4ABE-8E37-07AB298553A9}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{65254134-9C69-41F3-8613-04337400117F}" WorkUnitID="{0FFBBA0A-3581-46CE-962E-DF7F916F85E2}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="siren" ID="{0B8653BF-71BE-4677-978C-7AA806895D58}">
+											<PropertyList>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="35.4046088050315"/>
+											</PropertyList>
+											<Language>English(US)</Language>
+											<AudioFile>siren.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="686307452"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="siren" ID="{0B8653BF-71BE-4677-978C-7AA806895D58}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="2-General dialogues" ID="{1630FFFA-8BF3-4693-ACA0-A3C5BC2D01C0}" ShortID="765363206">

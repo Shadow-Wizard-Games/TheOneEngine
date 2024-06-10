@@ -113,7 +113,6 @@ namespace AK
         static const AkUniqueID VO_PALMER_RESPONSE = 1467454228U;
         static const AkUniqueID VO_RADIO_OFF = 650227542U;
         static const AkUniqueID VO_RADIO_ON = 2601374232U;
-        static const AkUniqueID VO_RESCUESHIP_NARRATIVEEND = 3906700528U;
         static const AkUniqueID VO_RESCUESHIP_RESPONSE = 2704646508U;
         static const AkUniqueID VO_SERGEANT_FIFHTCOMPUTER1 = 3072456904U;
         static const AkUniqueID VO_SERGEANT_GENERAL1 = 1212771736U;
@@ -126,6 +125,7 @@ namespace AK
         static const AkUniqueID VO_SERGEANT_WAKEMED4 = 1695989295U;
         static const AkUniqueID VO_SERGEANT_WAKEMED5 = 1695989294U;
         static const AkUniqueID VO_SERGEANT_WAKEMED6 = 1695989293U;
+        static const AkUniqueID VO_SIREN = 756148062U;
         static const AkUniqueID VO_STUB_BACKCAMP1 = 2462372217U;
         static const AkUniqueID VO_STUB_CLEARROOM1 = 1857914381U;
         static const AkUniqueID VO_STUB_CLEARROOM2 = 1857914382U;
