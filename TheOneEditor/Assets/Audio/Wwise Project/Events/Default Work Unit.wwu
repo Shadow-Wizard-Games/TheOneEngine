@@ -179,7 +179,7 @@
 														<Action Name="" ID="{5EC2AB5F-7A42-45E1-92CF-D57BD605B412}" ShortID="150345736">
 															<ReferenceList>
 																<Reference Name="Target">
-																	<ObjectRef Name="FH Crawl" ID="{FE9F0244-5119-4027-AECC-77C9BDE8DBA9}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
+																	<ObjectRef Name="SFX_E_FH_Crawl_Dirt" ID="{91C6B9A3-C32D-41D4-83A1-00290C79642D}" WorkUnitID="{A5DDD9EF-ABE8-46C9-A47B-71C56C6B2370}"/>
 																</Reference>
 															</ReferenceList>
 														</Action>
@@ -519,7 +519,6 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="New_Event" ID="{AF8230B6-84C9-4330-8FAD-8808A218C5D8}"/>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="NPC" ID="{4C8162D6-FFAD-4AA7-963F-836B281A0D13}" ShortID="280108968"/>
