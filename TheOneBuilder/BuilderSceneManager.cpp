@@ -58,6 +58,7 @@ bool BuilderSceneManager::Start()
 	renderTarget = Renderer::AddRenderTarget(
 		"Build", DrawMode::BUILD_RELEASE, engine->N_sceneManager->currentScene->currentCamera, viewportSize, buildBuffers, true);
 
+	SDL_ShowCursor(SDL_DISABLE);
 	return true;
 }
 
