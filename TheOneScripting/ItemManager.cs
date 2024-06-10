@@ -23,7 +23,11 @@ public class ItemManager : MonoBehaviour
         itemData.Add(9, new Item_DoorKey());
 
         //Debug
+        //always let 1 remaining for consumible
         AddItem(4, 1);
+
+
+        AddItem(4, 2);
         AddItem(6, 1);
         //AddItem(7, 1);
         //AddItem(8, 1);
@@ -41,6 +45,26 @@ public class ItemManager : MonoBehaviour
             if (CheckItemInInventory(id))
             {
                 inventory[id] += quantity;
+            }
+            else
+            {
+                inventory.Add(id, quantity);
+            }
+        }
+        else
+        {
+            Debug.Log("Item id: '" + id + "' has not been found in Item Data.");
+        }
+    }
+
+    public void RemoveItem(uint id, uint quantity)
+    {
+        if (CheckItemInItemData(id))
+        {
+            if (CheckItemInInventory(id))
+            {
+                if (inventory[id] - quantity >= 0) inventory[id] -= quantity;
+                else inventory[id] = 0;
             }
             else
             {
@@ -108,6 +132,13 @@ public class ItemManager : MonoBehaviour
         return inventory.ContainsKey(id) && inventory[id] > 0;
     }
 
+    public int GetItemInInventoryAmount(uint id)
+    {
+        if (inventory.ContainsKey(id) && id == 4 && inventory[id] > 0) return (int)inventory[id] - 1;
+        if (inventory.ContainsKey(id) && inventory[id] > 0) return (int)inventory[id];
+        return 0;
+    }
+
     private bool CheckItemInEquipped(uint id)
     {
         foreach (var item in equipped.Values)
@@ -132,6 +163,7 @@ public class ItemManager : MonoBehaviour
         inventory.Clear();
         equipped.Clear();
         AddItem(4, 1);
+        AddItem(4, 2);
         AddItem(6, 1);
     }
 

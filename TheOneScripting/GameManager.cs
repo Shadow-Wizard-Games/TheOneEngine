@@ -135,7 +135,6 @@ public class GameManager : MonoBehaviour
             savedLevels.Add(SceneManager.GetCurrentSceneName());
 
         lastLevel = SceneManager.GetCurrentSceneName();
-        InternalCalls.CreateSaveFromScene("GameData/Scenes", lastLevel);
 
         ShortcutsConditions();
     }

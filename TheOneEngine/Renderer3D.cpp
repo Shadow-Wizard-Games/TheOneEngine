@@ -71,7 +71,7 @@ void Renderer3D::Init()
 
 	renderer3D.screenBloodIn = new Easing(0.15);
 	renderer3D.screenBloodOut = new Easing(0.45);
-	renderer3D.screenAdrenalineIn = new Easing(0.2);
+	renderer3D.screenAdrenalineIn = new Easing(0.4);
 	renderer3D.screenAdrenalineOut = new Easing(0.6);
 }
 

@@ -84,9 +84,13 @@ void main()
         color = vec3(0.0, 0.0, 0.0);
     }  
 
-    vec3 healColor = vec3(0.0, 0.6, 0.0);
     DrawVignette(color, crtUV);
     DrawScanLine(color, crtUV);
+
+    if(kAdrenaline > 0.0)
+    {
+        color = mix(color, pow(color, vec3(1.0 / 1.25)), kAdrenaline);
+    }
 
     fragColor.xyz = color;
     fragColor.w = 1.0;

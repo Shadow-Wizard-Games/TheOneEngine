@@ -66,7 +66,7 @@
     }
   },
   "Character2": {
-    "Conversation3": {
+    "Conversation1": {
       "Dialog1": {
         "isLast": false,
         "dialoguer": 4,
@@ -156,7 +156,7 @@
     }
   },
   "Character3": {
-    "Conversation4": {
+    "Conversation1": {
       "Dialog1": {
         "isLast": false,
         "dialoguer": 1,
@@ -205,11 +205,14 @@
         "text": "about wanting to get some\nthings outside of the camp.\nI am sure they will be happy\nto get some help",
         "cooldown": 7,
         "audioEvent": "VO_ISAAC_VOICELINE4"
-      }
+      },
+      "completeQuestId": 5,
+      "neededQuestId": 4,
+      "triggerQuestId": 6
     }
   },
   "Character4": {
-    "Conversation5": {
+    "Conversation1": {
       "Dialog1": {
         "isLast": false,
         "dialoguer": 0,
@@ -272,62 +275,12 @@
         "text": "That is what I get you for.\nGlad to make business\nwith you.",
         "cooldown": 3,
         "audioEvent": "VO_GRANT_NOAH4"
-      }
+      },
+      "completeQuestId": 6,
+      "neededQuestId": 5,
+      "triggerQuestId": 7
     },
-    "Conversation7": {
-      "Dialog1": {
-        "isLast": false,
-        "dialoguer": 0,
-        "text": "Great, now that we are here.\nLet is get this show started!\nYou go do your thing,\nit should not take long.",
-        "cooldown": 6,
-        "audioEvent": "VO_GRANT_OUTSIDESTUB1"
-      },
-      "Dialog2": {
-        "isLast": true,
-        "dialoguer": 4,
-        "text": "I will clear the area.",
-        "cooldown": 1,
-        "audioEvent": "VO_STUB_OUTSIDENOAH1"
-      }
-    },
-    "Conversation8": {
-      "Dialog1": {
-        "isLast": false,
-        "dialoguer": 0,
-        "text": "Just a few more things and…",
-        "cooldown": 3,
-        "audioEvent": "VO_GRANT_ENDMISSIONSTUB1"
-      },
-      "Dialog2": {
-        "isLast": false,
-        "dialoguer": 4,
-        "text": "You done?",
-        "cooldown": 1,
-        "audioEvent": "VO_STUB_ENDMISSIONNOAH1"
-      },
-      "Dialog3": {
-        "isLast": false,
-        "dialoguer": 0,
-        "text": "I am happy to announce that\nI have everything I need to\nmake a communications device\nstrong enough to send a\nmessage for a rescue mission.",
-        "cooldown": 7,
-        "audioEvent": "VO_GRANT_ENDMISSIONSTUB2"
-      },
-      "Dialog4": {
-        "isLast": false,
-        "dialoguer": 0,
-        "text": "Please do not hold\nthe applause.",
-        "cooldown": 4,
-        "audioEvent": "VO_GRANT_ENDMISSIONSTUB2"
-      },
-      "Dialog5": {
-        "isLast": true,
-        "dialoguer": 4,
-        "text": "Then I am getting you back\nto the camp now",
-        "cooldown": 3,
-        "audioEvent": "VO_STUB_ENDMISSIONNOAH2"
-      }
-    },
-    "Conversation9": {
+    "Conversation2": {
       "Dialog1": {
         "isLast": false,
         "dialoguer": 0,
@@ -341,11 +294,14 @@
         "text": "Hm.",
         "cooldown": 7,
         "audioEvent": "VO_STUB_BACKCAMP1"
-      }
+      },
+      "completeQuestId": 12,
+      "neededQuestId": 11,
+      "triggerQuestId": 13
     }
   },
   "Character5": {
-    "Conversation6": {
+    "Conversation1": {
       "Dialog1": {
         "isLast": false,
         "dialoguer": 2,
@@ -415,455 +371,545 @@
         "text": "needed a few pieces from\nthe ship. You can go with\nhim now and I will tell you\nwhat else to do later.",
         "cooldown": 12,
         "audioEvent": "VO_PALMER_FIRST4"
-      }
+      },
+      "completeQuestId": 7,
+      "neededQuestId": 6,
+      "triggerQuestId": 8
+    },
+    "Conversation2": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Morgan, come here. I need\nyou to ask you something.",
+        "cooldown": 3,
+        "audioEvent": "VO_PALMER_MISSION1"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "What is it?",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_MISSIONAMIRA1"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Noah is getting the\ncommunications ready, if\nwe are lucky we will be out\nof here soon,",
+        "cooldown": 17,
+        "audioEvent": "VO_PALMER_MISSION2"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "but we still do not know\nalmost anything about this\nplace. We are obviously not\nthe first ship",
+        "cooldown": 17,
+        "audioEvent": "VO_PALMER_MISSION2"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "that fell here and it seems\nthat there was more to this\nplanet even before any\nhuman contact.",
+        "cooldown": 17,
+        "audioEvent": "VO_PALMER_MISSION2"
+      },
+      "Dialog6": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "So? Do we really need to\nknow more? They kill us,\nwe kill them. That is all\nthere is to it.",
+        "cooldown": 7,
+        "audioEvent": "VO_STUB_MISSIONAMIRA2"
+      },
+      "Dialog7": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "But we could know more,\nmake sure that next time we\nfind these things, they are\nno trouble, no one else dies\nto them. I know you would\nlike that.",
+        "cooldown": 8,
+        "audioEvent": "VO_PALMER_MISSION3"
+      },
+      "Dialog8": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Where did you-",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_MISSIONAMIRA3"
+      },
+      "Dialog9": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Sergeant Jackson likes to\ntalk, and I wanted to make\nsure you were not a risk to\nus. If you help with this,",
+        "cooldown": 11,
+        "audioEvent": "VO_PALMER_MISSION4"
+      },
+      "Dialog10": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "well, there might be a way\nto clean your name, get\nyour story on what happened\nout there.",
+        "cooldown": 11,
+        "audioEvent": "VO_PALMER_MISSION4"
+      },
+      "Dialog11": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "…What do you want me to do?",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_MISSIONAMIRA4"
+      },
+      "Dialog12": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "I want all there is to know\nabout what happened here.",
+        "cooldown": 17,
+        "audioEvent": "VO_PALMER_MISSION5"
+      },
+      "Dialog13": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Explore the surrounding area\nand find if there is anything\nthat will help us understand\nthis place better.",
+        "cooldown": 4,
+        "audioEvent": "VO_PALMER_MISSION5"
+      },
+      "Dialog14": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Find anything of interest,\nany information and bring\nit to me.",
+        "cooldown": 17,
+        "audioEvent": "VO_PALMER_MISSION5"
+      },
+      "Dialog15": {
+        "isLast": true,
+        "dialoguer": 2,
+        "text": "Take this, we will call when\nwe get the SOS out.",
+        "cooldown": 17,
+        "audioEvent": "VO_PALMER_MISSION5"
+      },
+      "completeQuestId": 13,
+      "neededQuestId": 12,
+      "triggerQuestId": 14
     }
   },
-  "Conversation10": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Morgan, come here. I need\nyou to ask you something.",
-      "cooldown": 3,
-      "audioEvent": "VO_PALMER_MISSION1"
+  "Character6": {
+    "isDisabled": true,
+    "Conversation1": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Great, now that we are here.\nLet is get this show started!\nYou go do your thing,\nit should not take long.",
+        "cooldown": 6,
+        "audioEvent": "VO_GRANT_OUTSIDESTUB1"
+      },
+      "Dialog2": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "I will clear the area.",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_OUTSIDENOAH1"
+      },
+      "completeQuestId": 9,
+      "neededQuestId": 8,
+      "triggerQuestId": 10
     },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "What is it?",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_MISSIONAMIRA1"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Noah is getting the\ncommunications ready, if\nwe are lucky we will be out\nof here soon,",
-      "cooldown": 17,
-      "audioEvent": "VO_PALMER_MISSION2"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "but we still do not know\nalmost anything about this\nplace. We are obviously not\nthe first ship",
-      "cooldown": 17,
-      "audioEvent": "VO_PALMER_MISSION2"
-    },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "that fell here and it seems\nthat there was more to this\nplanet even before any\nhuman contact.",
-      "cooldown": 17,
-      "audioEvent": "VO_PALMER_MISSION2"
-    },
-    "Dialog6": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "So? Do we really need to\nknow more? They kill us,\nwe kill them. That is all\nthere is to it.",
-      "cooldown": 7,
-      "audioEvent": "VO_STUB_MISSIONAMIRA2"
-    },
-    "Dialog7": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "But we could know more,\nmake sure that next time we\nfind these things, they are\nno trouble, no one else dies\nto them. I know you would\nlike that.",
-      "cooldown": 8,
-      "audioEvent": "VO_PALMER_MISSION3"
-    },
-    "Dialog8": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Where did you-",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_MISSIONAMIRA3"
-    },
-    "Dialog9": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Sergeant Jackson likes to\ntalk, and I wanted to make\nsure you were not a risk to\nus. If you help with this,",
-      "cooldown": 11,
-      "audioEvent": "VO_PALMER_MISSION4"
-    },
-    "Dialog10": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "well, there might be a way\nto clean your name, get\nyour story on what happened\nout there.",
-      "cooldown": 11,
-      "audioEvent": "VO_PALMER_MISSION4"
-    },
-    "Dialog11": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "…What do you want me to do?",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_MISSIONAMIRA4"
-    },
-    "Dialog12": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "I want all there is to know\nabout what happened here.",
-      "cooldown": 17,
-      "audioEvent": "VO_PALMER_MISSION5"
-    },
-    "Dialog13": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Explore the surrounding area\nand find if there is anything\nthat will help us understand\nthis place better.",
-      "cooldown": 4,
-      "audioEvent": "VO_PALMER_MISSION5"
-    },
-    "Dialog14": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Find anything of interest,\nany information and bring\nit to me.",
-      "cooldown": 17,
-      "audioEvent": "VO_PALMER_MISSION5"
-    },
-    "Dialog15": {
-      "isLast": true,
-      "dialoguer": 2,
-      "text": "Take this, we will call when\nwe get the SOS out.",
-      "cooldown": 17,
-      "audioEvent": "VO_PALMER_MISSION5"
+    "Conversation2": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Just a few more things and…",
+        "cooldown": 3,
+        "audioEvent": "VO_GRANT_ENDMISSIONSTUB1"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "You done?",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_ENDMISSIONNOAH1"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "I am happy to announce that\nI have everything I need to\nmake a communications device\nstrong enough to send a\nmessage for a rescue mission.",
+        "cooldown": 7,
+        "audioEvent": "VO_GRANT_ENDMISSIONSTUB2"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Please do not hold\nthe applause.",
+        "cooldown": 4,
+        "audioEvent": "VO_GRANT_ENDMISSIONSTUB2"
+      },
+      "Dialog5": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "Then I am getting you back\nto the camp now",
+        "cooldown": 3,
+        "audioEvent": "VO_STUB_ENDMISSIONNOAH2"
+      },
+      "completeQuestId": 10,
+      "neededQuestId": 9,
+      "triggerQuestId": 11
     }
   },
-  "Conversation11": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "What do you have for me?",
-      "cooldown": 3,
-      "audioEvent": "VO_STUB_FIRSTCOMPUTER1"
+  "Character7": {
+    "Conversation1": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "What do you have for me?",
+        "cooldown": 3,
+        "audioEvent": "VO_STUB_FIRSTCOMPUTER1"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "It is been 2 months since\nwe have been studying the\nplanet, so far we have found\na new species of plants and\nsome ancient civilization",
+        "cooldown": 7,
+        "audioEvent": "VO_COMPUTER_LOG1"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "but no signs of what made\nit go extinct. We sent a\nteam to explore a couple\ndays ago, they should be\nback in a week with more",
+        "cooldown": 7,
+        "audioEvent": "VO_COMPUTER_LOG1"
+      },
+      "Dialog4": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "information. Camp is safe\nand everything is running\nsmoothly.",
+        "cooldown": 5,
+        "audioEvent": "VO_COMPUTER_LOG1"
+      },
+      "completeQuestId": 14,
+      "neededQuestId": 13,
+      "triggerQuestId": 15
     },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "It is been 2 months since\nwe have been studying the\nplanet, so far we have found\na new species of plants and\nsome ancient civilization",
-      "cooldown": 7,
-      "audioEvent": "VO_COMPUTER_LOG1"
+    "Conversation2": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Still a couple days for the\nexploration team to come\nback but some members that\nstayed back in camp are\nstarting to get nervous.",
+        "cooldown": 22,
+        "audioEvent": "VO_COMPUTER_LOG2"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "A few of my fellow researchers\nare reporting strange sights\nnear camp when they go to\ngather resources and samples.",
+        "cooldown": 22,
+        "audioEvent": "VO_COMPUTER_LOG2"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "They say some strange black\nbiped creatures have been\nstalking them but I think\nthey are just nervous for\nthe return of the research",
+        "cooldown": 22,
+        "audioEvent": "VO_COMPUTER_LOG2"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "team and what news they bring.",
+        "cooldown": 22,
+        "audioEvent": "VO_COMPUTER_LOG2"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "* radio sounds *",
+        "cooldown": 1,
+        "audioEvent": "VO_RADIO_ON"
+      },
+      "Dialog6": {
+        "isLast": false,
+        "dialoguer": 1,
+        "text": "Hello Morgan,\nI have good news.",
+        "cooldown": 4,
+        "audioEvent": "VO_ISAAC_VOICELINE5"
+      },
+      "Dialog7": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Yeah?",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_SECONDCOMPUTER1"
+      },
+      "Dialog8": {
+        "isLast": false,
+        "dialoguer": 1,
+        "text": "Grant has managed to send a\nsignal. Now we are just\nwaiting for a response.\nHopefully, we will be out of\nhere soon.",
+        "cooldown": 10,
+        "audioEvent": "VO_ISAAC_VOICELINE6"
+      },
+      "Dialog9": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Great…",
+        "cooldown": 2,
+        "audioEvent": "VO_STUB_SECONDCOMPUTER2"
+      },
+      "Dialog10": {
+        "isLast": false,
+        "dialoguer": 1,
+        "text": "I will leave you to your\n work now.",
+        "cooldown": 3,
+        "audioEvent": "VO_ISAAC_VOICELINE7"
+      },
+      "Dialog11": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "* radio sounds *",
+        "cooldown": 1,
+        "audioEvent": "VO_RADIO_OFF"
+      },
+      "Dialog12": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "Fuck, I am running out of time",
+        "cooldown": 3,
+        "audioEvent": "VO_STUB_SECONDCOMPUTER3"
+      },
+      "completeQuestId": 14,
+      "neededQuestId": 13,
+      "triggerQuestId": 15
     },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "but no signs of what made\nit go extinct. We sent a\nteam to explore a couple\ndays ago, they should be\nback in a week with more",
-      "cooldown": 7,
-      "audioEvent": "VO_COMPUTER_LOG1"
+    "Conversation3": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "Five days have gone by since\nthe exploration team had to\nbe back. Everyone is getting\nmore and more nervous by the\nminute and the reports of",
+        "cooldown": 7,
+        "audioEvent": "VO_COMPUTER_LOG3"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "these strange creatures have\ngone exponentially up, even\nthe ones that were skeptic\nabout these sightings have\nstarted reporting and saying",
+        "cooldown": 7,
+        "audioEvent": "VO_COMPUTER_LOG3"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "that they get closer to the\ndoors of camp every time.\nFor now, we have decided to\nclose the doors to camp and\nif the explorers get back,",
+        "cooldown": 7,
+        "audioEvent": "VO_COMPUTER_LOG3"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "tell them to wait outside\nuntil everything looks safe.",
+        "cooldown": 6,
+        "audioEvent": "VO_COMPUTER_LOG3"
+      },
+      "Dialog5": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "Hm, I think I know how\nthis ends",
+        "cooldown": 4,
+        "audioEvent": "VO_STUB_THIRDCOMPUTER1"
+      },
+      "completeQuestId": 14,
+      "neededQuestId": 13,
+      "triggerQuestId": 15
     },
-    "Dialog4": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "information. Camp is safe\nand everything is running\nsmoothly.",
-      "cooldown": 5,
-      "audioEvent": "VO_COMPUTER_LOG1"
+    "Conversation4": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "The exploration team came\nback. They look safe but\ntired and hungry. We think\nit is just the exhaustion\nfrom being away from camp",
+        "cooldown": 36,
+        "audioEvent": "VO_COMPUTER_LOG4"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "and the military ration\nthat they have had to make\nlast longer since the\ncampaign has had to be\nextended. They have been happy",
+        "cooldown": 36,
+        "audioEvent": "VO_COMPUTER_LOG4"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "and recovering from the\nadventure. Reports of the\nstrange creatures have\nstopped and the crew says\nthat they saw them but from",
+        "cooldown": 36,
+        "audioEvent": "VO_COMPUTER_LOG4"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "a distance, according to\nthem every time the creature\nknew it was spotted, fled\nthe scene. We are starting to\nleave the doors open again",
+        "cooldown": 36,
+        "audioEvent": "VO_COMPUTER_LOG4"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "and everything looks to have\ngone back to normal.",
+        "cooldown": 36,
+        "audioEvent": "VO_COMPUTER_LOG4"
+      },
+      "Dialog6": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "* radio sounds *",
+        "cooldown": 1,
+        "audioEvent": "VO_RADIO_ON"
+      },
+      "Dialog7": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "Stub hey, guess who is genius\njust saved us all?",
+        "cooldown": 4,
+        "audioEvent": "VO_GRANT_FOURTHCOMPUTER1"
+      },
+      "Dialog8": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "To the point Grant.",
+        "cooldown": 2,
+        "audioEvent": "VO_STUB_FOURTHCOMPUTER1"
+      },
+      "Dialog9": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "You are no fun. We have a\nresponse and they are closeby,\nwe are getting out of this\nshitty planet soon. So get\nback here, it is celebration\ntime!",
+        "cooldown": 8,
+        "audioEvent": "VO_GRANT_FOURTHCOMPUTER2"
+      },
+      "Dialog10": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "I will finish here and go back.",
+        "cooldown": 1,
+        "audioEvent": "VO_STUB_FOURTHCOMPUTER2"
+      },
+      "Dialog11": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "* radio sound *",
+        "cooldown": 2,
+        "audioEvent": "VO_RADIO_OFF"
+      },
+      "completeQuestId": 14,
+      "neededQuestId": 13,
+      "triggerQuestId": 15
+    },
+    "Conversation5": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "I do not know what is\nhappening to the team. When\nwe woke up today one of the\nmembers was dead with his\nchest completely bursted",
+        "cooldown": 10,
+        "audioEvent": "VO_COMPUTER_LOG5"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "out. And the creatures have\nstarted attacking. I am\ncurrently hiding inside of a\ncloset praying that they\nwill go away. It all",
+        "cooldown": 10,
+        "audioEvent": "VO_COMPUTER_LOG5"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "started when one of the\nexploration team members\nwas found dead on his bed\nwith the chest completely\nbroken and a hole on it,",
+        "cooldown": 10,
+        "audioEvent": "VO_COMPUTER_LOG5"
+      },
+      "Dialog4": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "then the madness started.\nAll of the members started\nscreaming and tiny creatures\nbroke their chests as well.\nEverything went down from",
+        "cooldown": 10,
+        "audioEvent": "VO_COMPUTER_LOG5"
+      },
+      "Dialog5": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "there and I think I am the\nonly one left right now I willll\nremain here until everything\nlooks safe and investi-",
+        "cooldown": 10,
+        "audioEvent": "VO_COMPUTER_LOG5"
+      },
+      "Dialog6": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "* loud noise *",
+        "cooldown": 1,
+        "audioEvent": "E_X_ADULT_MELEE"
+      },
+      "Dialog7": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "AHHH",
+        "cooldown": 2,
+        "audioEvent": "VO_STUB_FIFTHCOMPUTER1"
+      },
+      "Dialog8": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "Stub, get back here now!\nWe are being attacked!",
+        "cooldown": 3,
+        "audioEvent": "VO_PALMER_LOG5_1"
+      },
+      "Dialog9": {
+        "isLast": false,
+        "dialoguer": 3,
+        "text": "I GOT IT, TAKE THAT,\nYOU SON OF A BITCH!",
+        "cooldown": 3,
+        "audioEvent": "VO_SERGEANT_FIFHTCOMPUTER1"
+      },
+      "Dialog10": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "QUICK!",
+        "cooldown": 1,
+        "audioEvent": "VO_PALMER_LOG5_2"
+      },
+      "Dialog11": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "* radio sound *",
+        "cooldown": 1,
+        "audioEvent": "VO_RADIO_ON"
+      },
+      "completeQuestId": 14,
+      "neededQuestId": 13,
+      "triggerQuestId": 15
     }
   },
-  "Conversation12": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Still a couple days for the\nexploration team to come\nback but some members that\nstayed back in camp are\nstarting to get nervous.",
-      "cooldown": 22,
-      "audioEvent": "VO_COMPUTER_LOG2"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "A few of my fellow researchers\nare reporting strange sights\nnear camp when they go to\ngather resources and samples.",
-      "cooldown": 22,
-      "audioEvent": "VO_COMPUTER_LOG2"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "They say some strange black\nbiped creatures have been\nstalking them but I think\nthey are just nervous for\nthe return of the research",
-      "cooldown": 22,
-      "audioEvent": "VO_COMPUTER_LOG2"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "team and what news they bring.",
-      "cooldown": 22,
-      "audioEvent": "VO_COMPUTER_LOG2"
-    },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "* radio sounds *",
-      "cooldown": 1,
-      "audioEvent": "VO_RADIO_ON"
-    },
-    "Dialog6": {
-      "isLast": false,
-      "dialoguer": 1,
-      "text": "Hello Morgan,\nI have good news.",
-      "cooldown": 4,
-      "audioEvent": "VO_ISAAC_VOICELINE5"
-    },
-    "Dialog7": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Yeah?",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_SECONDCOMPUTER1"
-    },
-    "Dialog8": {
-      "isLast": false,
-      "dialoguer": 1,
-      "text": "Grant has managed to send a\nsignal. Now we are just\nwaiting for a response.\nHopefully, we will be out of\nhere soon.",
-      "cooldown": 10,
-      "audioEvent": "VO_ISAAC_VOICELINE6"
-    },
-    "Dialog9": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Great…",
-      "cooldown": 2,
-      "audioEvent": "VO_STUB_SECONDCOMPUTER2"
-    },
-    "Dialog10": {
-      "isLast": false,
-      "dialoguer": 1,
-      "text": "I will leave you to your\n work now.",
-      "cooldown": 3,
-      "audioEvent": "VO_ISAAC_VOICELINE7"
-    },
-    "Dialog11": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "* radio sounds *",
-      "cooldown": 1,
-      "audioEvent": "VO_RADIO_OFF"
-    },
-    "Dialog12": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "Fuck, I am running out of time",
-      "cooldown": 3,
-      "audioEvent": "VO_STUB_SECONDCOMPUTER3"
-    }
-  },
-  "Conversation13": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "Five days have gone by since\nthe exploration team had to\nbe back. Everyone is getting\nmore and more nervous by the\nminute and the reports of",
-      "cooldown": 7,
-      "audioEvent": "VO_COMPUTER_LOG3"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "these strange creatures have\ngone exponentially up, even\nthe ones that were skeptic\nabout these sightings have\nstarted reporting and saying",
-      "cooldown": 7,
-      "audioEvent": "VO_COMPUTER_LOG3"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "that they get closer to the\ndoors of camp every time.\nFor now, we have decided to\nclose the doors to camp and\nif the explorers get back,",
-      "cooldown": 7,
-      "audioEvent": "VO_COMPUTER_LOG3"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "tell them to wait outside\nuntil everything looks safe.",
-      "cooldown": 6,
-      "audioEvent": "VO_COMPUTER_LOG3"
-    },
-    "Dialog5": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "Hm, I think I know how\nthis ends",
-      "cooldown": 4,
-      "audioEvent": "VO_STUB_THIRDCOMPUTER1"
-    }
-  },
-  "Conversation14": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "The exploration team came\nback. They look safe but\ntired and hungry. We think\nit is just the exhaustion\nfrom being away from camp",
-      "cooldown": 36,
-      "audioEvent": "VO_COMPUTER_LOG4"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "and the military ration\nthat they have had to make\nlast longer since the\ncampaign has had to be\nextended. They have been happy",
-      "cooldown": 36,
-      "audioEvent": "VO_COMPUTER_LOG4"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "and recovering from the\nadventure. Reports of the\nstrange creatures have\nstopped and the crew says\nthat they saw them but from",
-      "cooldown": 36,
-      "audioEvent": "VO_COMPUTER_LOG4"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "a distance, according to\nthem every time the creature\nknew it was spotted, fled\nthe scene. We are starting to\nleave the doors open again",
-      "cooldown": 36,
-      "audioEvent": "VO_COMPUTER_LOG4"
-    },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "and everything looks to have\ngone back to normal.",
-      "cooldown": 36,
-      "audioEvent": "VO_COMPUTER_LOG4"
-    },
-    "Dialog6": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "* radio sounds *",
-      "cooldown": 1,
-      "audioEvent": "VO_RADIO_ON"
-    },
-    "Dialog7": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "Stub hey, guess who is genius\njust saved us all?",
-      "cooldown": 4,
-      "audioEvent": "VO_GRANT_FOURTHCOMPUTER1"
-    },
-    "Dialog8": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "To the point Grant.",
-      "cooldown": 2,
-      "audioEvent": "VO_STUB_FOURTHCOMPUTER1"
-    },
-    "Dialog9": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "You are no fun. We have a\nresponse and they are closeby,\nwe are getting out of this\nshitty planet soon. So get\nback here, it is celebration\ntime!",
-      "cooldown": 8,
-      "audioEvent": "VO_GRANT_FOURTHCOMPUTER2"
-    },
-    "Dialog10": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "I will finish here and go back.",
-      "cooldown": 1,
-      "audioEvent": "VO_STUB_FOURTHCOMPUTER2"
-    },
-    "Dialog11": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "* radio sound *",
-      "cooldown": 2,
-      "audioEvent": "VO_RADIO_OFF"
-    }
-  },
-  "Conversation15": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "I do not know what is\nhappening to the team. When\nwe woke up today one of the\nmembers was dead with his\nchest completely bursted",
-      "cooldown": 10,
-      "audioEvent": "VO_COMPUTER_LOG5"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "out. And the creatures have\nstarted attacking. I am\ncurrently hiding inside of a\ncloset praying that they\nwill go away. It all",
-      "cooldown": 10,
-      "audioEvent": "VO_COMPUTER_LOG5"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "started when one of the\nexploration team members\nwas found dead on his bed\nwith the chest completely\nbroken and a hole on it,",
-      "cooldown": 10,
-      "audioEvent": "VO_COMPUTER_LOG5"
-    },
-    "Dialog4": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "then the madness started.\nAll of the members started\nscreaming and tiny creatures\nbroke their chests as well.\nEverything went down from",
-      "cooldown": 10,
-      "audioEvent": "VO_COMPUTER_LOG5"
-    },
-    "Dialog5": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "there and I think I am the\nonly one left right now I willll\nremain here until everything\nlooks safe and investi-",
-      "cooldown": 10,
-      "audioEvent": "VO_COMPUTER_LOG5"
-    },
-    "Dialog6": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "* loud noise *",
-      "cooldown": 1,
-      "audioEvent": "E_X_ADULT_MELEE"
-    },
-    "Dialog7": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "AHHH",
-      "cooldown": 2,
-      "audioEvent": "VO_STUB_FIFTHCOMPUTER1"
-    },
-    "Dialog8": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "Stub, get back here now!\nWe are being attacked!",
-      "cooldown": 3,
-      "audioEvent": "VO_PALMER_LOG5_1"
-    },
-    "Dialog9": {
-      "isLast": false,
-      "dialoguer": 3,
-      "text": "I GOT IT, TAKE THAT,\nYOU SON OF A BITCH!",
-      "cooldown": 3,
-      "audioEvent": "VO_SERGEANT_FIFHTCOMPUTER1"
-    },
-    "Dialog10": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "QUICK!",
-      "cooldown": 1,
-      "audioEvent": "VO_PALMER_LOG5_2"
-    },
-    "Dialog11": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "* radio sound *",
-      "cooldown": 1,
-      "audioEvent": "VO_RADIO_ON"
-    }
-  },
-  "Conversation16": {
-    "Dialog1": {
-      "isLast": false,
-      "dialoguer": 2,
-      "text": "We’re fine, we managed to scare it off",
-      "cooldown": 3,
-      "audioEvent": "VO_PALMER_RESPONSE"
-    },
-    "Dialog2": {
-      "isLast": false,
-      "dialoguer": 0,
-      "text": "But there's still a problem...",
-      "cooldown": 2,
-      "audioEvent": "VO_GRANT_RESPONSE"
-    },
-    "Dialog3": {
-      "isLast": false,
-      "dialoguer": 4,
-      "text": "We are here but you will need\nto take care of THAT huge\nproblem before we can land\nand take you inside. Good\nluck, and make our stop here\nworth it.",
-      "cooldown": 9,
-      "audioEvent": "VO_RESCUESHIP_RESPONSE"
-    },
-    "Dialog4": {
-      "isLast": true,
-      "dialoguer": 4,
-      "text": "So, to the ship again",
-      "cooldown": 2,
-      "audioEvent": "VO_STUB_RESPONSE"
+  "Character8": {
+    "Conversation1": {
+      "Dialog1": {
+        "isLast": false,
+        "dialoguer": 2,
+        "text": "We’re fine, we managed to scare it off",
+        "cooldown": 3,
+        "audioEvent": "VO_PALMER_RESPONSE"
+      },
+      "Dialog2": {
+        "isLast": false,
+        "dialoguer": 0,
+        "text": "But there's still a problem...",
+        "cooldown": 2,
+        "audioEvent": "VO_GRANT_RESPONSE"
+      },
+      "Dialog3": {
+        "isLast": false,
+        "dialoguer": 4,
+        "text": "We are here but you will need\nto take care of THAT huge\nproblem before we can land\nand take you inside. Good\nluck, and make our stop here\nworth it.",
+        "cooldown": 9,
+        "audioEvent": "VO_RESCUESHIP_RESPONSE"
+      },
+      "Dialog4": {
+        "isLast": true,
+        "dialoguer": 4,
+        "text": "So, to the ship again",
+        "cooldown": 2,
+        "audioEvent": "VO_STUB_RESPONSE"
+      },
+      "completeQuestId": 15,
+      "neededQuestId": 14,
+      "triggerQuestId": 16
     }
   }
 }
