@@ -28,7 +28,7 @@
       "ParentUID": 3452816845,
       "ScriptName": "UiManager",
       "Type": 4,
-      "UID": 2995698949
+      "UID": 1006370968
     },
     {
       "AudioID": 2,
@@ -1130,7 +1130,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptInventory",
           "Type": 4,
-          "UID": 731925763
+          "UID": 670179276
         },
         {
           "AudioID": 3,
@@ -1221,6 +1221,30 @@
               "Type": 1
             },
             {
+              "Color": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "FontPath": "Assets/Fonts/AlienInvader.ttf",
+              "ID": 131267864,
+              "Interactuable": false,
+              "Kerning": 0.0,
+              "LineSpacing": 0.0,
+              "Name": "Text_UpgradeMenu",
+              "Print": true,
+              "Rect": [
+                0.1899999976158142,
+                -0.14499999582767487,
+                0.05000000074505806,
+                0.05999999865889549
+              ],
+              "State": 0,
+              "TextString": "upgrade",
+              "Type": 4
+            },
+            {
               "CountAsRealButton": true,
               "ID": 1751157100,
               "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
@@ -1243,7 +1267,7 @@
                 0.0
               ],
               "Interactuable": false,
-              "Name": "Button_Missions",
+              "Name": "Button_Stats",
               "Print": true,
               "Rect": [
                 0.33000001311302185,
@@ -1444,7 +1468,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptPause",
           "Type": 4,
-          "UID": 1507750489
+          "UID": 1140916606
         }
       ],
       "Enabled": false,
@@ -1485,7 +1509,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptHud",
           "Type": 4,
-          "UID": 1144425069
+          "UID": 1823988948
         },
         {
           "DebugDraw": true,
@@ -3384,7 +3408,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptDebug",
           "Type": 4,
-          "UID": 3924507136
+          "UID": 1843774804
         },
         {
           "AudioID": 5,
@@ -3786,7 +3810,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptMissions",
           "Type": 4,
-          "UID": 2454918195
+          "UID": 3606648651
         }
       ],
       "Enabled": false,
@@ -6784,7 +6808,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptStats",
           "Type": 4,
-          "UID": 2585360026
+          "UID": 549395167
         }
       ],
       "Enabled": false,
@@ -6931,7 +6955,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiScriptSettings",
           "Type": 4,
-          "UID": 257082573
+          "UID": 3867923220
         }
       ],
       "Enabled": false,
@@ -7937,7 +7961,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettingsDisplay",
               "Type": 4,
-              "UID": 4180321061
+              "UID": 2394795651
             },
             {
               "AudioID": 13,
