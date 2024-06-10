@@ -41,7 +41,7 @@ class IntroScene : MonoBehaviour
             canvasText.PrintItemUI(true, "ContinueTxt");
 
             if (Input.GetKeyboardButton(Input.KeyboardCode.RETURN) ||
-            Input.GetControllerButton(Input.ControllerButtonCode.X))
+            Input.GetControllerButton(Input.ControllerButtonCode.A))
             {
                 if (state == IntroSceneStates.INTRO)
                 {

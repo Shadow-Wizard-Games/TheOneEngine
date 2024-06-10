@@ -259,6 +259,7 @@ public class UiScriptHud : MonoBehaviour
         {
             canvas.PrintItemUI(consumibleUnlocked, "Button_ConsumibleIcon");
             if (!consumibleUnlocked) UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.DISABLED);
+            else if (consumibleOnCooldown && consumibleTimer < consumibleCooldown) UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.HOVERED);
             else UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
         }
 
@@ -639,6 +640,7 @@ public class UiScriptHud : MonoBehaviour
             {
                 UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.HOVERED);
             }
+        }
 
             if (consumibleOnCooldown && consumibleTimer < consumibleCooldown)
             {
@@ -647,9 +649,8 @@ public class UiScriptHud : MonoBehaviour
             else
             {
                 consumibleTimer = 0.0f;
-                UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
+                if (consumibleUnlocked) UpdateAbilityCanvas(PlayerAbility.CONSUMIBLE, ICanvas.UiState.IDLE);
             }
-        }
     }
 
     public void TriggerHudAdrenaline()
