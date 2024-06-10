@@ -60,6 +60,8 @@ public class RedXenomorphBehaviour : MonoBehaviour
     float tailStabTimer = 0.0f;
     const float tailStabDelay = 1.4f;
     float receiveFireDmgIntervalTime = 0.2f;
+    float stepTimer = 0.0f;
+    const float stepCooldown = 0.3f;
 
     PlayerScript player;
 
@@ -212,10 +214,12 @@ public class RedXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Chase:
                 player.isFighting = true;
+                StepsSoundLogic();
                 attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
                 attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 break;
             case States.Patrol:
+                StepsSoundLogic();
                 Patrol();
                 break;
             case States.Dead:
@@ -255,7 +259,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
             hasShot = true;
             Vector3 height = new Vector3(0.0f, 38.0f, 0.0f);
             InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
-            // SFX Goes here
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_SPIT);
         }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
@@ -274,6 +278,7 @@ public class RedXenomorphBehaviour : MonoBehaviour
             InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 1.75f,
                                                       20.0f);
             isTailStabbing = true;
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_MELEE);
         }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
@@ -323,6 +328,16 @@ public class RedXenomorphBehaviour : MonoBehaviour
             // add player biomass
             managers.gameManager.currency += (int)this.biomass;
             deathPSGO?.Play();
+        }
+    }
+
+    private void StepsSoundLogic()
+    {
+        stepTimer += Time.deltaTime;
+        if (stepTimer >= stepCooldown)
+        {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_STEP);
+            stepTimer = 0.0f;
         }
     }
 

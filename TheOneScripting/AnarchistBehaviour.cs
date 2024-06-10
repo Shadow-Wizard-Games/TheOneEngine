@@ -62,6 +62,8 @@ class AnarchistBehaviour : MonoBehaviour
     float destroyTimer = 0.0f;
     const float destroyCooldown = 3.0f;
     float receiveFireDmgIntervalTime = 0.2f;
+    float stepTimer = 0.0f;
+    const float stepCooldown = 0.3f;
 
     PlayerScript player;
 
@@ -137,6 +139,7 @@ class AnarchistBehaviour : MonoBehaviour
         {
             case States.Patrol:
                 Patrol();
+                StepsSoundLogic();
                 break;
             case States.Inspect:
                 Inspect();
@@ -291,6 +294,17 @@ class AnarchistBehaviour : MonoBehaviour
             // add player biomass
             managers.gameManager.currency += (int)this.biomass;
             deathPSGO?.Play();
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_A_DEATH);
+        }
+    }
+
+    void StepsSoundLogic()
+    {
+        stepTimer += Time.deltaTime;
+        if (stepTimer >= stepCooldown)
+        {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_A_STEP);
+            stepTimer = 0.0f;
         }
     }
 

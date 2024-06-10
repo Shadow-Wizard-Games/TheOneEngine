@@ -58,6 +58,8 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
     float tailTripTimer = 0.0f;
     const float tailTripDelay = 1.5f;
     float receiveFireDmgIntervalTime = 0.2f;
+    float stepTimer = 0.0f;
+    const float stepCooldown = 0.3f;
 
     PlayerScript player;
 
@@ -209,10 +211,12 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 break;
             case States.Chase:
                 player.isFighting = true;
+                StepsSoundLogic();
                 attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
                 break;
             case States.Patrol:
+                StepsSoundLogic();
                 Patrol();
                 break;
             case States.Dead:
@@ -233,6 +237,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
                 attachedGameObject.animator.Play("ClawAttack");
 
                 tailAttackPSGO.Play();
+                attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_MELEE);
             }
             else
             {
@@ -253,6 +258,7 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
             InternalCalls.InstantiateAlienMeleeAttack(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 1.75f,
                                                       22.0f);
             isAttacking = true;
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_MELEE);
         }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
@@ -318,6 +324,16 @@ public class WhiteXenomorphBehaviour : MonoBehaviour
             // add player biomass
             managers.gameManager.currency += (int)this.biomass;
             deathPSGO?.Play();
+        }
+    }
+
+    private void StepsSoundLogic()
+    {
+        stepTimer += Time.deltaTime;
+        if (stepTimer >= stepCooldown)
+        {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_X_ADULT_STEP);
+            stepTimer = 0.0f;
         }
     }
 

@@ -41,6 +41,8 @@ public class FaceHuggerBehaviour : MonoBehaviour
     // Timers
     float jumpAttackTimer = 0.0f;
     const float jumpAttackCooldown = 3.0f;
+    float crawlTimer = 0.0f;
+    const float crawlCooldown = 0.3f;
 
     PlayerScript player;
 
@@ -157,6 +159,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
                 player.isFighting = true;
                 attachedGameObject.transform.LookAt2D(playerGO.transform.Position);
                 attachedGameObject.transform.Translate(attachedGameObject.transform.Forward * movementSpeed * Time.deltaTime);
+                StepsSoundLogic();
                 break;
             case States.JumpAttack:
                 player.isFighting = true;
@@ -177,12 +180,23 @@ public class FaceHuggerBehaviour : MonoBehaviour
         }
     }
 
+    private void StepsSoundLogic()
+    {
+        crawlTimer += Time.deltaTime;
+        if (crawlTimer >= crawlCooldown)
+        {
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_CRAWL);
+            crawlTimer = 0.0f;
+        }
+    }
+
     private void JumpAttack()
     {
         if (!isJumping)
         {
             isJumping = true;
             attachedGameObject.animator.Play("Jump");
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_JUMP);
             if (jumpPS != null) jumpPS.Replay();
         }
 
@@ -251,6 +265,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             // add player biomass
             managers.gameManager.currency += (int)this.biomass;
             if (deathPS != null) deathPS.Replay(); // this will crash if no particles are found
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_DEATH);
         }
     }
 

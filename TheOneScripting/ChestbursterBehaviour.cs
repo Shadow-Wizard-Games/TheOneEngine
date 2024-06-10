@@ -283,6 +283,7 @@ public class ChestbursterBehaviour : MonoBehaviour
             // add player biomass
             managers.gameManager.currency += (int)this.biomass;
             deathPSGO?.Play();
+            attachedGameObject.source.Play(IAudioSource.AudioEvent.E_CB_DEATH);
         }
     }
 
