@@ -112,6 +112,8 @@ public class PlayerScript : MonoBehaviour
     // audio
     public IAudioSource.AudioStateID currentAudioState;
     float timeFromLastStep;
+    string level;
+    string levelRoom;
 
     // Lights
     public ILight shotLight;
@@ -193,6 +195,8 @@ public class PlayerScript : MonoBehaviour
         FlamethrowerGO.animator.Blend = true;
         FlamethrowerGO.animator.TransitionTime = 0.15f;
 
+        level = ExtractLevel();
+        levelRoom = SceneManager.GetCurrentSceneName();
         SetMusicTrack();
         SetSurface();
 
@@ -1484,17 +1488,17 @@ public class PlayerScript : MonoBehaviour
     }
     public void SetSurface()
     {
-        if (SceneManager.GetCurrentSceneName() == "L2R6")
+        if (levelRoom == "L2R6")
         {
             attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
         }
-        else if (ExtractLevel() == "L1")
+        else if (level == "L1")
         {
             attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
         }
-        else if (ExtractLevel() == "L2")
+        else if (level == "L2")
         {
-            attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
+            attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.DIRT);
         }
     }
 
@@ -1503,17 +1507,17 @@ public class PlayerScript : MonoBehaviour
         // Music track
         if (!isFighting)
         {
-            if (SceneManager.GetCurrentSceneName() == "L2R6")
+            if (levelRoom == "L2R6")
             {
                 attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.RUINS);
             }
-            else if (ExtractLevel() == "L1")
+            else if (level == "L1")
             {
                 attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
             }
-            else if (ExtractLevel() == "L2")
+            else if (level == "L2")
             {
-                attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+                attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.CAMP);
             }
         }
         else if (isFighting)
