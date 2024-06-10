@@ -52,6 +52,9 @@ public class UiManager : MonoBehaviour
 
     IGameObject inventoryGo;
     IGameObject deathScreenGo;
+
+    ICanvas deathScreenCanvas;
+    
     IGameObject pauseMenuGo;
     IGameObject hudGo;
     IGameObject debugGo;
@@ -91,6 +94,8 @@ public class UiManager : MonoBehaviour
     float dialogueCooldown = 0;
     bool dialogueOnCooldown = false;
 
+    float respawnCooldown = 5.0f;
+
     List<PopupItem> popupsQueue = new List<PopupItem>();
 
     public override void Start()
@@ -111,6 +116,8 @@ public class UiManager : MonoBehaviour
         savingSceneGo = IGameObject.Find("Canvas_SavingScene");
         pickUpFeedbackGo = IGameObject.Find("Canvas_PickUpFeedback");
 
+        deathScreenCanvas = deathScreenGo.GetComponent<ICanvas>();
+
         playerGO = IGameObject.Find("SK_MainCharacter");
         playerScript = playerGO.GetComponent<PlayerScript>();
 
@@ -128,6 +135,8 @@ public class UiManager : MonoBehaviour
         statsGo.Disable();
         savingSceneGo.Disable();
         pickUpFeedbackGo.Disable();
+
+        respawnCooldown = 5.0f;
 
         previousState = MenuState.Pause;
         state = MenuState.Hud;
@@ -157,7 +166,34 @@ public class UiManager : MonoBehaviour
             onCooldown = false;
         }
 
-        if(popupsQueue.Count > 0)
+        if (state == MenuState.Death)
+        {
+            respawnCooldown -= dt;
+            deathScreenCanvas.SetTextString("", "Text_SpawningCounter", (int)respawnCooldown);
+        }
+
+        if (respawnCooldown <= 0.0f)
+        {
+            playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
+
+            if (managers.gameManager.hasSaved)
+            {
+                managers.gameManager.LoadSave();
+                return;
+            }
+
+            managers.gameManager.ResetSave();
+            managers.questManager.StartGame();
+
+            DataManager.RemoveFile("GameData");
+            SceneManager.LoadScene("L1R1");
+            respawnCooldown = 5.0f;
+
+            return;
+        }
+
+
+        if (popupsQueue.Count > 0)
         {
             if (popupsQueue[0].menu == HudPopUpMenu.PickUpFeedback && !pickUpFeedbackOnCooldown)
             {
@@ -247,27 +283,7 @@ public class UiManager : MonoBehaviour
 
         if (!onCooldown)
         {
-            if (state == MenuState.Death)
-            {
-                if (Input.GetControllerButton(Input.ControllerButtonCode.A) || Input.GetKeyboardButton(Input.KeyboardCode.RETURN))
-                {
-                    playerGO.source.Play(IAudioSource.AudioEvent.STOPMUSIC);
-
-                    if (managers.gameManager.hasSaved)
-                    {
-                        managers.gameManager.LoadSave();
-                        return;
-                    }
-
-                    managers.gameManager.ResetSave();
-                    managers.questManager.StartGame();
-
-                    DataManager.RemoveFile("GameData");
-                    SceneManager.LoadScene("L1R1");
-                    return;
-                }
-            }
-            else if ((managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (managers.gameManager.GetGameState() != GameManager.GameStates.PAUSED))
+            if ((managers.gameManager.GetGameState() != GameManager.GameStates.DIALOGING) && (managers.gameManager.GetGameState() != GameManager.GameStates.PAUSED))
             {
                 if (Input.GetControllerButton(Input.ControllerButtonCode.BACK) || Input.GetKeyboardButton(Input.KeyboardCode.I))
                 {
