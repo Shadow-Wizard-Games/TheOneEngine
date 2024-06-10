@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using static UiManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     //Shortcuts logic
     public string lastLevel;
     public bool activeShortcutL1R1;
+    public bool endGame = false;
 
     #region PLAYERDATA
 
@@ -193,8 +195,19 @@ public class GameManager : MonoBehaviour
 
     public void DrawColliders()
     {
-        colliderRender = !colliderRender;
-        InternalCalls.ToggleCollidersDraw();
+        //colliderRender = !colliderRender;
+        //InternalCalls.ToggleCollidersDraw();
+    }
+
+    public void EndGame()
+    {
+        endGame = true;
+        
+        ResetSave();
+        managers.questManager.StartGame();
+
+        DataManager.RemoveFile("GameData");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void DrawGrid()

@@ -12,7 +12,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
     ICollider2D collider;
     float initialColliderRadius;
 
-    float maxLife = 1500;
+    float maxLife = 6000;
     float currentLife;
     bool isDead = false;
 
@@ -41,14 +41,20 @@ public class AlienQueenBehaviourNew : MonoBehaviour
         if (Input.GetKeyboardButton(Input.KeyboardCode.K))
         {
             currentLife -= 10;
-            Debug.Log("Current life is: " + currentLife.ToString());
+            //Debug.Log("Current life is: " + currentLife.ToString());
         }
 
-        if (isDead) { return; }
+        if (isDead)
+        {
+            if (attachedGameObject.animator.CurrentAnimHasFinished)
+                managers.gameManager.EndGame();
+
+            return;
+        }
 
         DoStateBehaviour();
 
-        if (currentLife < 0) Dead();
+        if (currentLife <= 0) Dead();
     }
 
     #region FSM
@@ -431,14 +437,14 @@ public class AlienQueenBehaviourNew : MonoBehaviour
                     randomNum -= entry.Value;
                     if (randomNum <= 0)
                     {
-                        Debug.Log("Doing attack: " + entry.Key.ToString());
+                        //Debug.Log("Doing attack: " + entry.Key.ToString());
                         return entry.Key;
                     }
                 }
                 Debug.LogError("Queen FSM fell into unintended behaviour when choosing attack (phase 1)");
                 return Attacks.None;
             case 2:
-                Debug.Log("Branching path was: " + pathPhase2.ToString());
+                //Debug.Log("Branching path was: " + pathPhase2.ToString());
                 if (pathPhase2 == States.Circle)
                 {
                     randomNum -= chancesPhase2[Attacks.TailPhase2];
@@ -747,7 +753,7 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             if (receiveFireDmgIntervalTime <= 0)
             {
                 currentLife -= playerScript.totalDamage;
-                Debug.Log("Total damage " + playerScript.totalDamage);
+                //Debug.Log("Total damage " + playerScript.totalDamage);
                 receiveFireDmgIntervalTime = playerScript.Flamethrower.receiveDmgIntervalTime;
             }
             else

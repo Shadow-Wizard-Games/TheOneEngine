@@ -239,7 +239,7 @@ public class AlienQueenBehaviour : MonoBehaviour
             }
         }
 
-        Debug.Log("Alien current attack: " + currentAttack);
+        //Debug.Log("Alien current attack: " + currentAttack);
     }
 
     private void TailSweep()
@@ -308,7 +308,7 @@ public class AlienQueenBehaviour : MonoBehaviour
             attachedGameObject.source.Play(IAudioSource.AudioEvent.E_Q_SPIT);
             delayTimer = 0.0f;
             shotsCounter++;
-            Debug.Log("Alien Queen has shot " + shotsCounter + " times");
+            //Debug.Log("Alien Queen has shot " + shotsCounter + " times");
         }
 
         if (shotsCounter >= maxShots)

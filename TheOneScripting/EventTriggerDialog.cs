@@ -68,8 +68,6 @@ public class EventTriggerDialog : Event
 
         string[] dataPath = { charachter, "Conversation" + conversationNum };
         neededQuestId = DataManager.AccessFileDataInt(filepath, dataPath, "neededQuestId");
-        Debug.Log(neededQuestId.ToString());
-        Debug.Log(managers.questManager.IsQuestComplete(neededQuestId).ToString());
 
         dialogueGo = IGameObject.Find("Canvas_Dialogue");
         dialogCanvas = dialogueGo.GetComponent<ICanvas>();
@@ -128,7 +126,6 @@ public class EventTriggerDialog : Event
         if (brodcastMesage) { uiManager.OpenHudPopUpMenu(UiManager.HudPopUpMenu.PickUpFeedback, "Dialogue:", "Press A"); brodcastMesage = false; }
         if ((Input.GetControllerButton(Input.ControllerButtonCode.A) ||  Input.GetKeyboardButton(Input.KeyboardCode.E) || Input.GetKeyboardButton(Input.KeyboardCode.G)) && cooldown <= 0)
         {
-            Debug.Log(neededQuestId.ToString());
             if (isLast || Input.GetKeyboardButton(Input.KeyboardCode.G))
             {
                 string[] dataPath1 = { charachter, "Conversation" + conversationNum.ToString() };

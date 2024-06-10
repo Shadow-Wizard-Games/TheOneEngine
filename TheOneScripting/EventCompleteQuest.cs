@@ -70,7 +70,6 @@ public class EventCompleteQuest : Event
     public override bool DoEvent()
     {
         bool ret = true;
-        Debug.Log(prevId.ToString());
         if (managers.questManager.IsQuestComplete(prevId) || prevId == 0)
         {
             managers.questManager.CompleteQuest(id);

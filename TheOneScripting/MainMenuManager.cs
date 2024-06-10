@@ -57,6 +57,14 @@ public class MainMenuManager : MonoBehaviour
                 canvasTitle.ToggleEnable();
                 canvasEngineLogo.ToggleEnable();
             }
+            
+            if(managers.gameManager.endGame)
+            {
+                credits = true;
+                canvasCredits.ToggleEnable();
+                onCooldown = true;
+                mainMenu = false;
+            }
         }
     }
     public override void Update()

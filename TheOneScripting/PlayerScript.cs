@@ -320,7 +320,7 @@ public class PlayerScript : MonoBehaviour
             waitForAnimationToFinish -= Time.deltaTime;
             if(waitForAnimationToFinish < 0) { waitForAnimationToFinish = 0; }
 
-            Debug.Log("waiting for ability " + waitForAnimationToFinish);
+            //Debug.Log("waiting for ability " + waitForAnimationToFinish);
         }
         #endregion
 
@@ -1115,7 +1115,7 @@ public class PlayerScript : MonoBehaviour
                 shotLight.color = new Vector3(1.0f, 0.973f, 0.42f);
                 shotLight.SwitchOn();
                 loaderAmmoM4--;
-                Debug.Log("Loader bullets " + loaderAmmoM4);
+                //Debug.Log("Loader bullets " + loaderAmmoM4);
             }
         }
         else

@@ -325,7 +325,7 @@ class AnarchistBehaviour : MonoBehaviour
             if (receiveFireDmgIntervalTime <= 0)
             {
                 life -= player.totalDamage;
-                Debug.Log("Total damage " + player.totalDamage);
+                //Debug.Log("Total damage " + player.totalDamage);
                 receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
             }
             else
