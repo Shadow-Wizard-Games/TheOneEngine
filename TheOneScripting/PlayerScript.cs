@@ -193,8 +193,9 @@ public class PlayerScript : MonoBehaviour
         FlamethrowerGO.animator.Blend = true;
         FlamethrowerGO.animator.TransitionTime = 0.15f;
 
-        attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
-        attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
+        SetMusicTrack();
+        SetSurface();
+
         attachedGameObject.source.Play(IAudioSource.AudioEvent.PLAYMUSIC);
 
         currentAudioState = 0;
@@ -262,17 +263,6 @@ public class PlayerScript : MonoBehaviour
             currentWeaponType = CurrentWeapon.M4;
             currentWeaponDamage = ItemM4.damage;
         }
-
-        // background music
-        if (!isFighting && currentAudioState == IAudioSource.AudioStateID.COMBAT)
-        {
-            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
-        }
-
-        if (isFighting && currentAudioState == IAudioSource.AudioStateID.SHIP)
-        {
-            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
-        }
         
         // calculus of speed
         totalSpeedModification = AdrenalineRush.speedModification + Heal.speedModification + Impaciente.speedModification;
@@ -282,6 +272,7 @@ public class PlayerScript : MonoBehaviour
         totalDamage = (currentWeaponDamage + managers.gameManager.GetDamage()) * damageMultiplier;
 
         UpdatePlayerState();
+        SetMusicTrack();
 
         #region PLAYERSTATESWITCH
         
@@ -333,6 +324,8 @@ public class PlayerScript : MonoBehaviour
             currentWeapon.Disable();
             currentWeaponAnimator.Stop();
         }
+
+        isFighting = false;
     }
 
     private void UpdatePlayerState()
@@ -1488,5 +1481,57 @@ public class PlayerScript : MonoBehaviour
             currentWeapon.Enable();
         }
         keepDance = false;
+    }
+    public void SetSurface()
+    {
+        if (SceneManager.GetCurrentSceneName() == "L2R6")
+        {
+            attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
+        }
+        else if (ExtractLevel() == "L1")
+        {
+            attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
+        }
+        else if (ExtractLevel() == "L2")
+        {
+            attachedGameObject.source.SetSwitch(IAudioSource.AudioSwitchGroup.SURFACETYPE, IAudioSource.AudioSwitchID.SHIP);
+        }
+    }
+
+    public void SetMusicTrack()
+    {
+        // Music track
+        if (!isFighting)
+        {
+            if (SceneManager.GetCurrentSceneName() == "L2R6")
+            {
+                attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.RUINS);
+            }
+            else if (ExtractLevel() == "L1")
+            {
+                attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+            }
+            else if (ExtractLevel() == "L2")
+            {
+                attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.SHIP);
+            }
+        }
+        else if (isFighting)
+        {
+            attachedGameObject.source.SetState(IAudioSource.AudioStateGroup.GAMEPLAYMODE, IAudioSource.AudioStateID.COMBAT);
+        }
+    }
+
+    private string ExtractLevel()
+    {
+        string sceneName = SceneManager.GetCurrentSceneName();
+        string patternL = $"L(\\d+)";
+        Match matchL = Regex.Match(sceneName, patternL);
+
+        if (matchL.Success)
+        {
+            return matchL.Groups[0].Value;
+        }
+        return "";
     }
 }
