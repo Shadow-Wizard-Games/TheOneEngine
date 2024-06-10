@@ -1349,7 +1349,7 @@ public class PlayerScript : MonoBehaviour
         if (isDead || managers.gameManager.godMode /*|| shieldIsActive*/ || currentAction == CurrentAction.DASH || !canRecieveAcidDamage)
             return;
 
-        managers.gameManager.health -= 30.0f;
+        managers.gameManager.health -= 10.0f;
         if (managers.gameManager.health <= 0)
         {
             managers.gameManager.health = 0;

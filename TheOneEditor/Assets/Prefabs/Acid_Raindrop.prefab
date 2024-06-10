@@ -22,72 +22,243 @@
       ],
       "Type": 0,
       "UID": 2564928214
+    },
+    {
+      "Name": "Script",
+      "ParentUID": 3452816845,
+      "ScriptName": "Raindrop",
+      "Type": 4,
+      "UID": 2315677935
+    },
+    {
+      "Emmiters": [
+        {
+          "Delay": 0.0,
+          "Duration": 1.0,
+          "InitializeModules": [
+            {
+              "MaxColor": [
+                0.2802548408508301,
+                1.0,
+                0.0,
+                0.0
+              ],
+              "MinColor": [
+                0.43312108516693115,
+                1.0,
+                0.0,
+                0.3949044346809387
+              ],
+              "Type": 1,
+              "UsingSingleValueColor": false
+            },
+            {
+              "IsProportional": true,
+              "MaxScale": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "MinScale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "Type": 2,
+              "UsingSingleValueScale": false
+            },
+            {
+              "MaxDirection": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "MinDirection": [
+                -0.5,
+                -0.5,
+                -0.5
+              ],
+              "Type": 4,
+              "UsingSingleValueDirection": false
+            },
+            {
+              "MaxSpeed": 6.0,
+              "MinSpeed": 3.0,
+              "Type": 0,
+              "UsingSingleValueSpeed": false
+            },
+            {
+              "MaxOffset": [
+                1.5,
+                1.5,
+                1.5
+              ],
+              "MinOffset": [
+                -1.5,
+                -1.5,
+                -1.5
+              ],
+              "Type": 3,
+              "UsingSingleValueOffset": false
+            }
+          ],
+          "IsLooping": true,
+          "Lifetime": 279.6676330566406,
+          "MaxParticles": 600,
+          "RenderModule": [
+            {
+              "BillboardType": 1,
+              "TexturePath": "",
+              "Type": 0
+            }
+          ],
+          "SpawnModule": [
+            {
+              "Amount": 10.0,
+              "Duration": 0.6000000238418579,
+              "SpawnRate": 100.0,
+              "Type": 2
+            }
+          ],
+          "UpdateModules": [
+            {
+              "Acceleration": [
+                0.0,
+                -10.0,
+                0.0
+              ],
+              "Type": 0
+            },
+            {
+              "FinalScale": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Type": 2
+            }
+          ]
+        },
+        {
+          "Delay": 0.0,
+          "Duration": 1.0,
+          "InitializeModules": [
+            {
+              "MaxColor": [
+                0.43312108516693115,
+                1.0,
+                0.0,
+                0.0
+              ],
+              "MinColor": [
+                0.3813137412071228,
+                1.0,
+                0.2229299545288086,
+                0.41401273012161255
+              ],
+              "Type": 1,
+              "UsingSingleValueColor": false
+            },
+            {
+              "IsProportional": true,
+              "MaxScale": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "MinScale": [
+                2.0,
+                1.0,
+                1.0
+              ],
+              "Type": 2,
+              "UsingSingleValueScale": false
+            },
+            {
+              "MaxDirection": [
+                0.5,
+                -4.0,
+                0.5
+              ],
+              "MinDirection": [
+                -0.5,
+                -2.0,
+                -0.5
+              ],
+              "Type": 4,
+              "UsingSingleValueDirection": false
+            },
+            {
+              "MaxSpeed": 12.0,
+              "MinSpeed": 8.0,
+              "Type": 0,
+              "UsingSingleValueSpeed": false
+            },
+            {
+              "MaxOffset": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "MinOffset": [
+                -0.5,
+                -0.5,
+                -0.5
+              ],
+              "Type": 3,
+              "UsingSingleValueOffset": false
+            }
+          ],
+          "IsLooping": true,
+          "Lifetime": 279.6676330566406,
+          "MaxParticles": 600,
+          "RenderModule": [
+            {
+              "BillboardType": 1,
+              "TexturePath": "",
+              "Type": 0
+            }
+          ],
+          "SpawnModule": [
+            {
+              "Amount": 10.0,
+              "Duration": 0.6000000238418579,
+              "SpawnRate": 100.0,
+              "Type": 2
+            }
+          ],
+          "UpdateModules": [
+            {
+              "FinalScale": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "Type": 2
+            },
+            {
+              "Acceleration": [
+                0.0,
+                -10.0,
+                0.0
+              ],
+              "Type": 0
+            }
+          ]
+        }
+      ],
+      "Name": "AcidTrial\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "StartON": true,
+      "Type": 9,
+      "UID": 3825340051
     }
   ],
   "EditablePrefab": true,
   "Enabled": true,
-  "GameObjects": [
-    {
-      "Components": [
-        {
-          "Name": "Transform",
-          "Transformation Matrix": [
-            10.000003814697266,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            9.999998092651367,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            9.99999713897705,
-            0.0,
-            0.0,
-            300.0,
-            0.0,
-            1.0
-          ],
-          "Type": 0,
-          "UID": 4255556573
-        },
-        {
-          "Active": true,
-          "DrawAABB": true,
-          "DrawChecker": false,
-          "DrawNormalsFaces": false,
-          "DrawNormalsVerts": false,
-          "DrawOBB": false,
-          "DrawWireframe": false,
-          "MaterialPath": "Library/Materials/SM_Cube/lambert1.toematerial",
-          "MeshPath": "Library/Meshes/SM_Cube/pCube1.mesh",
-          "Name": "Mesh",
-          "ParentUID": 3452816845,
-          "Type": 2,
-          "UID": 4022298623
-        },
-        {
-          "Name": "Script",
-          "ParentUID": 3452816845,
-          "ScriptName": "Raindrop",
-          "Type": 4,
-          "UID": 1301680868
-        }
-      ],
-      "Enabled": true,
-      "HasTransparency": false,
-      "Keeped": false,
-      "Name": "Raindrop",
-      "ParentUID": 3452816845,
-      "Static": false,
-      "UID": 3452816845
-    }
-  ],
   "HasTransparency": false,
   "Keeped": false,
   "Name": "Acid_Raindrop",
-  "ParentUID": 2293809,
+  "ParentUID": 7209061,
   "PrefabDirty": false,
   "PrefabID": 701278701,
   "PrefabName": "Acid_Raindrop",
