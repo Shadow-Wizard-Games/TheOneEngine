@@ -43,6 +43,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
     const float jumpAttackCooldown = 3.0f;
     float crawlTimer = 0.0f;
     const float crawlCooldown = 0.3f;
+    float receiveFireDmgIntervalTime = 0.2f;
 
     PlayerScript player;
 
@@ -64,6 +65,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
         jumpPS = attachedGameObject.FindInChildren("JumpPS")?.GetComponent<IParticleSystem>();
         deathPS = attachedGameObject.FindInChildren("DeathPS")?.GetComponent<IParticleSystem>();
         hitPS = attachedGameObject.FindInChildren("HitPS")?.GetComponent<IParticleSystem>();
+        receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
     }
 
     public override void Update()
@@ -284,13 +286,32 @@ public class FaceHuggerBehaviour : MonoBehaviour
 
     public void ReduceLife() //temporary function for the hardcoding of collisions
     {
-        life -= player.totalDamage;
-        if (life < 0)
+        if (player.currentWeaponType == PlayerScript.CurrentWeapon.FLAMETHROWER)
         {
-            life = 0;
-            shotDead = true;
+            if (receiveFireDmgIntervalTime <= 0)
+            {
+                life -= player.totalDamage;
+                //Debug.Log("Total damage " + player.totalDamage);
+                receiveFireDmgIntervalTime = player.Flamethrower.receiveDmgIntervalTime;
+            }
+            else
+            {
+                receiveFireDmgIntervalTime -= Time.deltaTime;
+            }
         }
-        else hitPS?.Replay();
+        else
+        {
+            life -= player.totalDamage;
+        }
+
+        if (life < 0) life = 0;
+        //Debug.Log("Total life " + life);
+    }
+
+    public void ReduceLifeExplosion()
+    {
+        life -= player.GrenadeLauncher.damage;
+        if (life < 0) life = 0;
     }
 
     private void DebugDraw()
