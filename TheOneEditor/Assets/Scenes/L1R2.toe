@@ -30,28 +30,28 @@
           "ParentUID": 3452816845,
           "ScriptName": "GameManager",
           "Type": 4,
-          "UID": 3645005789
+          "UID": 1105127219
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "ItemManager",
           "Type": 4,
-          "UID": 1269769646
+          "UID": 3772868656
         },
         {
           "Name": "Script",
           "ParentUID": 3452816845,
           "ScriptName": "QuestManager",
           "Type": 4,
-          "UID": 2087098541
+          "UID": 3994168545
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": true,
       "Name": "Manager",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -100,10 +100,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "CameraMovement",
           "Type": 4,
-          "UID": 2059253335
+          "UID": 2012574300
         },
         {
-          "AudioID": 61,
+          "AudioID": 0,
           "Name": "Listener",
           "Type": 7
         }
@@ -112,7 +112,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "mainCamera",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -5620,7 +5620,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Sparks_Particles",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -28481,7 +28481,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Level_Layout",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -29153,6 +29153,21 @@
               "ParentUID": 3452816845,
               "Type": 2,
               "UID": 1582839396
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 8,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 5.0,
+              "Type": 5,
+              "UID": 2470827161,
+              "Width": 100.0
             }
           ],
           "Enabled": true,
@@ -29203,6 +29218,21 @@
               "ParentUID": 3452816845,
               "Type": 2,
               "UID": 1325928605
+            },
+            {
+              "ColliderType": 0,
+              "CollisionType": 8,
+              "CornerPivot": true,
+              "Height": 100.0,
+              "Name": "Collider2D",
+              "ObjectOrientation": 0,
+              "OffsetX": 0.0,
+              "OffsetY": 0.0,
+              "ParentUID": 3452816845,
+              "Radius": 10.0,
+              "Type": 5,
+              "UID": 1819032733,
+              "Width": 100.0
             }
           ],
           "Enabled": true,
@@ -31267,7 +31297,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Decals",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -31317,10 +31347,10 @@
           "ParentUID": 113510800,
           "ScriptName": "PlayerScript",
           "Type": 4,
-          "UID": 1666389644
+          "UID": 4207440590
         },
         {
-          "AudioID": 62,
+          "AudioID": 1,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -31427,7 +31457,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 31.97623062133789,
+                  "Lifetime": 113.12181854248047,
                   "MaxParticles": 20,
                   "RenderModule": [
                     {
@@ -31738,63 +31768,63 @@
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 3805337084
+              "UID": 2865176844
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 6295576
+              "UID": 3801414336
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 457382728
+              "UID": 536559964
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityAdrenalineRush",
               "Type": 4,
-              "UID": 1674379556
+              "UID": 1162225288
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityDash",
               "Type": 4,
-              "UID": 3066678909
+              "UID": 3690327988
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityFlamethrower",
               "Type": 4,
-              "UID": 1713059874
+              "UID": 1459416154
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityGrenadeLauncher",
               "Type": 4,
-              "UID": 1575669917
+              "UID": 3073091411
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityHeal",
               "Type": 4,
-              "UID": 1321431521
+              "UID": 1550941307
             },
             {
               "Name": "Script",
               "ParentUID": 2260469184,
               "ScriptName": "AbilityImpaciente",
               "Type": 4,
-              "UID": 599348450
+              "UID": 2810513667
             }
           ],
           "Enabled": true,
@@ -32116,8 +32146,8 @@
             {
               "Color": [
                 1.0,
-                0.9741571545600891,
-                0.42038214206695557
+                0.9729999899864197,
+                0.41999998688697815
               ],
               "InnerCutOff": -0.07000000029802322,
               "Intensity": 0.0,
@@ -32341,7 +32371,7 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 2302.037841796875,
+                  "Lifetime": 2450.603515625,
                   "MaxParticles": 100,
                   "RenderModule": [
                     {
@@ -32962,32 +32992,32 @@
                       "UsingSingleValueDirection": false
                     },
                     {
-                      "MaxSpeed": 25.0,
-                      "MinSpeed": 10.0,
+                      "MaxSpeed": 80.0,
+                      "MinSpeed": 30.0,
                       "Type": 0,
                       "UsingSingleValueSpeed": false
                     },
                     {
                       "IsProportional": true,
                       "MaxScale": [
-                        2.0,
+                        1.600000023841858,
                         2.0,
                         2.0
                       ],
                       "MinScale": [
-                        0.5,
+                        1.0,
                         1.0,
                         1.0
                       ],
                       "Type": 2,
-                      "UsingSingleValueScale": true
+                      "UsingSingleValueScale": false
                     },
                     {
                       "MaxColor": [
-                        1.0,
-                        1.0,
-                        1.0,
-                        0.0
+                        0.05098039284348488,
+                        0.9686274528503418,
+                        0.16862745583057404,
+                        0.7834395170211792
                       ],
                       "MinColor": [
                         0.0493326298892498,
@@ -32996,7 +33026,7 @@
                         1.0
                       ],
                       "Type": 1,
-                      "UsingSingleValueColor": true
+                      "UsingSingleValueColor": false
                     },
                     {
                       "MaxOffset": [
@@ -33028,6 +33058,29 @@
                       "Amount": 100.0,
                       "Duration": 1.5,
                       "Type": 1
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
                     }
                   ]
                 }
@@ -33092,7 +33145,7 @@
                       "UsingSingleValueDirection": false
                     },
                     {
-                      "MaxSpeed": 25.0,
+                      "MaxSpeed": 50.0,
                       "MinSpeed": 10.0,
                       "Type": 0,
                       "UsingSingleValueSpeed": false
@@ -33100,17 +33153,17 @@
                     {
                       "IsProportional": true,
                       "MaxScale": [
-                        2.0,
-                        2.0,
+                        1.0,
+                        21.200000762939453,
                         2.0
                       ],
                       "MinScale": [
-                        0.5,
+                        0.8999999761581421,
                         1.0,
                         1.0
                       ],
                       "Type": 2,
-                      "UsingSingleValueScale": true
+                      "UsingSingleValueScale": false
                     },
                     {
                       "MaxColor": [
@@ -33120,9 +33173,9 @@
                         0.0
                       ],
                       "MinColor": [
-                        0.9693699479103088,
-                        1.0,
                         0.03821653127670288,
+                        1.0,
+                        0.944865882396698,
                         1.0
                       ],
                       "Type": 1,
@@ -33144,8 +33197,8 @@
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 0.0,
-                  "MaxParticles": 100,
+                  "Lifetime": 675.1175537109375,
+                  "MaxParticles": 300,
                   "RenderModule": [
                     {
                       "BillboardType": 1,
@@ -33158,6 +33211,37 @@
                       "Duration": 1.5,
                       "SpawnRate": 100.0,
                       "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.0
+                      ],
+                      "Type": 1
+                    },
+                    {
+                      "Acceleration": [
+                        0.0,
+                        -1.0,
+                        0.0
+                      ],
+                      "Type": 0
+                    },
+                    {
+                      "FinalScale": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 2
                     }
                   ]
                 }
@@ -33193,9 +33277,9 @@
                 0.0,
                 1.0,
                 0.0,
-                1.805755971417966e-07,
                 0.0,
-                0.0,
+                0.30000001192092896,
+                0.2460000067949295,
                 1.0
               ],
               "Type": 0,
@@ -33210,9 +33294,9 @@
                     {
                       "MaxColor": [
                         1.0,
-                        1.0,
-                        1.0,
-                        0.0
+                        0.15294118225574493,
+                        0.15294118225574493,
+                        0.5031846761703491
                       ],
                       "MinColor": [
                         1.0,
@@ -33221,7 +33305,7 @@
                         1.0
                       ],
                       "Type": 1,
-                      "UsingSingleValueColor": true
+                      "UsingSingleValueColor": false
                     },
                     {
                       "MaxOffset": [
@@ -33240,21 +33324,21 @@
                     {
                       "IsProportional": true,
                       "MaxScale": [
-                        2.0,
+                        0.699999988079071,
                         2.0,
                         2.0
                       ],
                       "MinScale": [
-                        0.7,
+                        0.5,
                         1.0,
                         1.0
                       ],
                       "Type": 2,
-                      "UsingSingleValueScale": true
+                      "UsingSingleValueScale": false
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 657.6838989257813,
+                  "Lifetime": 30.527990341186523,
                   "MaxParticles": 400,
                   "RenderModule": [
                     {
@@ -33268,6 +33352,21 @@
                       "Duration": 0.10000000149011612,
                       "SpawnRate": 2000.0,
                       "Type": 0
+                    }
+                  ],
+                  "UpdateModules": [
+                    {
+                      "AffectA": true,
+                      "AffectB": false,
+                      "AffectG": false,
+                      "AffectR": false,
+                      "FinalColor": [
+                        1.0,
+                        1.0,
+                        1.0,
+                        0.37579619884490967
+                      ],
+                      "Type": 1
                     }
                   ]
                 }
@@ -33325,8 +33424,8 @@
                         1.0
                       ],
                       "MinColor": [
-                        0.7843137383460999,
-                        0.0,
+                        1.0,
+                        0.993630588054657,
                         0.0,
                         1.0
                       ],
@@ -33361,17 +33460,17 @@
                         1.5
                       ],
                       "MinScale": [
-                        5.0,
+                        2.0,
                         0.5,
                         0.5
                       ],
                       "Type": 2,
-                      "UsingSingleValueScale": false
+                      "UsingSingleValueScale": true
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 33.97373580932617,
-                  "MaxParticles": 200,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 300,
                   "RenderModule": [
                     {
                       "BillboardType": 0,
@@ -33382,7 +33481,7 @@
                   "SpawnModule": [
                     {
                       "Duration": 0.6000000238418579,
-                      "SpawnRate": 100.0,
+                      "SpawnRate": 300.0,
                       "Type": 0
                     }
                   ],
@@ -33390,10 +33489,31 @@
                     {
                       "Acceleration": [
                         0.0,
-                        0.2,
+                        0.20000000298023224,
                         30.0
                       ],
                       "Type": 0
+                    },
+                    {
+                      "FinalScale": [
+                        9.0,
+                        9.0,
+                        0.0
+                      ],
+                      "Type": 2
+                    },
+                    {
+                      "AffectA": true,
+                      "AffectB": true,
+                      "AffectG": true,
+                      "AffectR": true,
+                      "FinalColor": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "Type": 1
                     }
                   ]
                 },
@@ -33403,21 +33523,21 @@
                   "InitializeModules": [
                     {
                       "MaxDirection": [
-                        1.5,
-                        9.0,
-                        0.5
+                        -10.0,
+                        3.0,
+                        20.0
                       ],
                       "MinDirection": [
-                        0.0,
-                        7.0,
-                        -0.5
+                        10.0,
+                        -3.0,
+                        20.0
                       ],
                       "Type": 4,
                       "UsingSingleValueDirection": false
                     },
                     {
-                      "MaxSpeed": 9.0,
-                      "MinSpeed": 7.0,
+                      "MaxSpeed": 120.0,
+                      "MinSpeed": 100.0,
                       "Type": 0,
                       "UsingSingleValueSpeed": false
                     },
@@ -33429,33 +33549,33 @@
                         2.5
                       ],
                       "MinScale": [
-                        1.0,
+                        0.0,
                         1.0,
                         1.0
                       ],
                       "Type": 2,
-                      "UsingSingleValueScale": false
+                      "UsingSingleValueScale": true
                     },
                     {
                       "MaxColor": [
                         0.1764705926179886,
                         0.1764705926179886,
                         0.1764705926179886,
-                        1.0
+                        0.2292993664741516
                       ],
                       "MinColor": [
-                        0.1568627506494522,
-                        0.1568627506494522,
-                        0.1568627506494522,
-                        1.0
+                        0.17834395170211792,
+                        0.17834395170211792,
+                        0.17834395170211792,
+                        0.7070063352584839
                       ],
                       "Type": 1,
-                      "UsingSingleValueColor": true
+                      "UsingSingleValueColor": false
                     }
                   ],
                   "IsLooping": true,
-                  "Lifetime": 33.97373580932617,
-                  "MaxParticles": 50,
+                  "Lifetime": 0.0,
+                  "MaxParticles": 300,
                   "RenderModule": [
                     {
                       "BillboardType": 0,
@@ -33465,24 +33585,32 @@
                   ],
                   "SpawnModule": [
                     {
-                      "Duration": 3.0,
-                      "SpawnRate": 2.0,
+                      "Duration": 0.8999999761581421,
+                      "SpawnRate": 150.0,
                       "Type": 0
                     }
                   ],
                   "UpdateModules": [
                     {
                       "AffectA": true,
-                      "AffectB": false,
-                      "AffectG": false,
-                      "AffectR": false,
+                      "AffectB": true,
+                      "AffectG": true,
+                      "AffectR": true,
                       "FinalColor": [
-                        1.0,
-                        1.0,
-                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
                         0.0
                       ],
                       "Type": 1
+                    },
+                    {
+                      "FinalScale": [
+                        10.0,
+                        10.0,
+                        0.0
+                      ],
+                      "Type": 2
                     }
                   ]
                 }
@@ -33500,12 +33628,80 @@
           "ParentUID": 113510800,
           "Static": false,
           "UID": 7471184
+        },
+        {
+          "Components": [
+            {
+              "Name": "Transform",
+              "Transformation Matrix": [
+                -0.04697476849816867,
+                -0.033061811923980715,
+                0.9983489263898438,
+                0.0,
+                -0.9988962049329961,
+                0.001554810553789139,
+                -0.04694937525909107,
+                0.0,
+                -5.922538033348995e-09,
+                -0.9994520568847657,
+                -0.03309851946155654,
+                0.0,
+                2.761132988915449e-09,
+                1.0579926300048828,
+                0.33439621702229533,
+                1.0
+              ],
+              "Type": 0,
+              "UID": 3482191012
+            },
+            {
+              "Aspect": 1.777,
+              "CameraType": 0,
+              "FOV": 65.0,
+              "Name": "Camera",
+              "ParentUID": 2705646976,
+              "Pitch": 0.0,
+              "PrimaryCamera": false,
+              "Size": 200.0,
+              "Type": 1,
+              "UID": 1308329027,
+              "Yaw": 0.0,
+              "zFar": 3000.0,
+              "zNear": 10.0
+            },
+            {
+              "Color": [
+                1.0,
+                0.42038214206695557,
+                0.0
+              ],
+              "InnerCutOff": 1.090000033378601,
+              "Intensity": 0.0,
+              "LightType": 2,
+              "Linear": 0.699999988079071,
+              "Name": "Light",
+              "OuterCutOff": 1.559999942779541,
+              "ParentUID": 2705646976,
+              "Quadratic": 1.7999999523162842,
+              "Radius": 345.0,
+              "Specular": 0.5,
+              "Type": 11,
+              "UID": 2537695308
+            }
+          ],
+          "Enabled": true,
+          "HasTransparency": false,
+          "Keeped": false,
+          "Name": "FlameThrowerLight",
+          "ParentUID": 113510800,
+          "Static": false,
+          "UID": 2705646976
         }
       ],
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_MainCharacter",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 186710944,
       "PrefabName": "SK_MainCharacter",
@@ -33542,10 +33738,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "UiManager",
           "Type": 4,
-          "UID": 2816201249
+          "UID": 3410910831
         },
         {
-          "AudioID": 63,
+          "AudioID": 2,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -34644,10 +34840,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptInventory",
               "Type": 4,
-              "UID": 91467772
+              "UID": 3917705681
             },
             {
-              "AudioID": 64,
+              "AudioID": 3,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -34735,6 +34931,30 @@
                   "Type": 1
                 },
                 {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 131267864,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_UpgradeMenu",
+                  "Print": true,
+                  "Rect": [
+                    0.1899999976158142,
+                    -0.14499999582767487,
+                    0.05000000074505806,
+                    0.05999999865889549
+                  ],
+                  "State": 0,
+                  "TextString": "upgrade",
+                  "Type": 4
+                },
+                {
                   "CountAsRealButton": true,
                   "ID": 1751157100,
                   "ImagePath": "Assets/Textures/Hud/PauseMenu_SpriteSheetV2.png",
@@ -34757,7 +34977,7 @@
                     0.0
                   ],
                   "Interactuable": false,
-                  "Name": "Button_Missions",
+                  "Name": "Button_Stats",
                   "Print": true,
                   "Rect": [
                     0.33000001311302185,
@@ -34949,7 +35169,7 @@
               ]
             },
             {
-              "AudioID": 65,
+              "AudioID": 4,
               "Name": "Source",
               "Type": 8
             },
@@ -34958,7 +35178,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptPause",
               "Type": 4,
-              "UID": 4201955056
+              "UID": 1930663221
             }
           ],
           "Enabled": false,
@@ -34999,7 +35219,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptHud",
               "Type": 4,
-              "UID": 1242539816
+              "UID": 3438149151
             },
             {
               "DebugDraw": true,
@@ -36408,6 +36628,30 @@
                   "State": 0,
                   "Type": 2,
                   "Value": 10
+                },
+                {
+                  "Color": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "FontPath": "Assets/Fonts/AlienInvader.ttf",
+                  "ID": 696880355,
+                  "Interactuable": false,
+                  "Kerning": 0.0,
+                  "LineSpacing": 0.0,
+                  "Name": "Text_ConsumibleAmount",
+                  "Print": true,
+                  "Rect": [
+                    -0.7620000243186951,
+                    -0.4699999988079071,
+                    0.02500000037252903,
+                    0.054999999701976776
+                  ],
+                  "State": 0,
+                  "TextString": "0",
+                  "Type": 4
                 }
               ]
             }
@@ -36898,10 +37142,10 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptDebug",
               "Type": 4,
-              "UID": 3574833781
+              "UID": 887896469
             },
             {
-              "AudioID": 66,
+              "AudioID": 5,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -37291,7 +37535,7 @@
               ]
             },
             {
-              "AudioID": 67,
+              "AudioID": 6,
               "Name": "AudioSource",
               "Type": 8
             },
@@ -37300,7 +37544,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptMissions",
               "Type": 4,
-              "UID": 3809022672
+              "UID": 1639908488
             }
           ],
           "Enabled": false,
@@ -37492,7 +37736,7 @@
                   ]
                 },
                 {
-                  "AudioID": 68,
+                  "AudioID": 7,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -37692,7 +37936,7 @@
                   ]
                 },
                 {
-                  "AudioID": 69,
+                  "AudioID": 8,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -37892,7 +38136,7 @@
                   ]
                 },
                 {
-                  "AudioID": 70,
+                  "AudioID": 9,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -38092,7 +38336,7 @@
                   ]
                 },
                 {
-                  "AudioID": 71,
+                  "AudioID": 10,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -38285,7 +38529,7 @@
               ]
             },
             {
-              "AudioID": 72,
+              "AudioID": 11,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -40298,7 +40542,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptStats",
               "Type": 4,
-              "UID": 1863970034
+              "UID": 2042683192
             }
           ],
           "Enabled": false,
@@ -40445,7 +40689,7 @@
               "ParentUID": 3452816845,
               "ScriptName": "UiScriptSettings",
               "Type": 4,
-              "UID": 2842557184
+              "UID": 904280464
             }
           ],
           "Enabled": false,
@@ -40514,7 +40758,7 @@
                   ]
                 },
                 {
-                  "AudioID": 73,
+                  "AudioID": 12,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -41451,10 +41695,10 @@
                   "ParentUID": 3452816845,
                   "ScriptName": "UiScriptSettingsDisplay",
                   "Type": 4,
-                  "UID": 3052960043
+                  "UID": 3725131055
                 },
                 {
-                  "AudioID": 74,
+                  "AudioID": 13,
                   "Name": "AudioSource",
                   "Type": 8
                 }
@@ -41563,7 +41807,7 @@
               ]
             },
             {
-              "AudioID": 75,
+              "AudioID": 14,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -41688,7 +41932,7 @@
               ]
             },
             {
-              "AudioID": 76,
+              "AudioID": 15,
               "Name": "AudioSource",
               "Type": 8
             }
@@ -41705,7 +41949,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "UI_Manager",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 2472160759,
       "PrefabName": "UI_Manager",
@@ -41742,14 +41986,14 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 1361334304
+          "UID": 1794206788
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R1",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -41783,14 +42027,14 @@
           "ParentUID": 3452816845,
           "ScriptName": "EventNextRoom",
           "Type": 4,
-          "UID": 8488026
+          "UID": 4278381877
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SwapScene_L1_R3",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -41824,7 +42068,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -41858,7 +42102,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -41892,7 +42136,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -41926,7 +42170,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -41960,7 +42204,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "L1R2",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -42028,7 +42272,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -42096,7 +42340,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -42164,7 +42408,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -42232,7 +42476,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_light (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -42300,7 +42544,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Side_pointlight",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -42447,7 +42691,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 721959952
     },
@@ -42754,7 +42998,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Fire_Particle01 (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
@@ -43064,7 +43308,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Fire_Particle01 (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
@@ -43374,7 +43618,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Fire_Particle01 (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 1619811115,
       "PrefabName": "Fire_Particle01",
@@ -43445,7 +43689,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_light",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1410714192
     },
@@ -43513,7 +43757,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_light (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1240894800
     },
@@ -43581,7 +43825,7 @@
           "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 646348808
+          "UID": 1940691439
         }
       ],
       "EditablePrefab": true,
@@ -43589,7 +43833,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Alarm_Light (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 3039377733,
       "PrefabName": "Alarm_Light",
@@ -43739,7 +43983,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 721959952
     },
@@ -44045,7 +44289,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1410568080
     },
@@ -44351,7 +44595,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 721959952
     },
@@ -44671,7 +44915,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1408745520
     },
@@ -44991,7 +45235,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -45059,7 +45303,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Fire_spotlight",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -45379,7 +45623,7 @@
       "HasTransparency": true,
       "Keeped": false,
       "Name": "Propulsed_Fire (4)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7536748
     },
@@ -45497,7 +45741,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 411013536
     },
@@ -45615,7 +45859,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 357627376
     },
@@ -45741,7 +45985,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_CelDrop",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 411236832
     },
@@ -45867,7 +46111,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_CelDrop (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 411236832
     },
@@ -45993,7 +46237,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_CelDrop (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 359453216
     },
@@ -46119,7 +46363,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 357627376
     },
@@ -46245,7 +46489,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 357627376
     },
@@ -46371,7 +46615,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 357627376
     },
@@ -46497,7 +46741,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 357627376
     },
@@ -46623,7 +46867,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Drop (4)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 411523648
     },
@@ -46691,7 +46935,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 357627376
     },
@@ -46759,7 +47003,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 0
     },
@@ -46827,7 +47071,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1424170512
     },
@@ -46895,7 +47139,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 411236832
     },
@@ -46963,7 +47207,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (4)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 359453216
     },
@@ -47031,7 +47275,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Acid_Bloom (5)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1425109072
     },
@@ -47099,14 +47343,14 @@
           "ParentUID": 3452816845,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 83897963
+          "UID": 3322426413
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Flicker_Light",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 3452816845
     },
@@ -47174,14 +47418,14 @@
           "ParentUID": 411013536,
           "ScriptName": "LightFlicker",
           "Type": 4,
-          "UID": 3460323252
+          "UID": 1614097567
         }
       ],
       "Enabled": true,
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Flicker_Light (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 411013536
     },
@@ -47299,7 +47543,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Server_Smoke (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1423272240
     },
@@ -47446,7 +47690,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 2592012240
     },
@@ -47565,7 +47809,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 2592012240
     },
@@ -47684,7 +47928,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (4)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 2641454912
     },
@@ -47803,7 +48047,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (5)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 2641449728
     },
@@ -47950,7 +48194,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "ConPipeSmokePS (6)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 2592012240
     },
@@ -48123,7 +48367,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Door_Light (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 4001310582,
       "PrefabName": "Door_Light",
@@ -48299,7 +48543,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Door_Light (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": false,
       "PrefabID": 4001310582,
       "PrefabName": "Door_Light",
@@ -48336,7 +48580,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L1R3",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7602275
     },
@@ -48370,7 +48614,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Spawn_L1R1",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 7602275
     },
@@ -48420,10 +48664,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "FaceHuggerBehaviour",
           "Type": 4,
-          "UID": 3550356521
+          "UID": 4022911359
         },
         {
-          "AudioID": 77,
+          "AudioID": 16,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -49064,7 +49308,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Facehugger1 (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3138940538,
       "PrefabName": "Facehugger1",
@@ -49117,10 +49361,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "FaceHuggerBehaviour",
           "Type": 4,
-          "UID": 3340127494
+          "UID": 2379870321
         },
         {
-          "AudioID": 78,
+          "AudioID": 17,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -49761,7 +50005,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Facehugger1 (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3138940538,
       "PrefabName": "Facehugger1",
@@ -49814,10 +50058,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 1992552118
+          "UID": 1022312226
         },
         {
-          "AudioID": 79,
+          "AudioID": 18,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -50358,7 +50602,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -50411,10 +50655,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2086408350
+          "UID": 1927138609
         },
         {
-          "AudioID": 80,
+          "AudioID": 19,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -50955,7 +51199,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -51023,10 +51267,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 2525847337
+          "UID": 1534915859
         },
         {
-          "AudioID": 81,
+          "AudioID": 20,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -51608,7 +51852,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (1)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -51676,10 +51920,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 821703932
+          "UID": 3212964314
         },
         {
-          "AudioID": 82,
+          "AudioID": 21,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -52261,7 +52505,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (2)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -52314,10 +52558,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "FaceHuggerBehaviour",
           "Type": 4,
-          "UID": 377781214
+          "UID": 1462639906
         },
         {
-          "AudioID": 83,
+          "AudioID": 22,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -52958,7 +53202,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Facehugger1 (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3138940538,
       "PrefabName": "Facehugger1",
@@ -53011,10 +53255,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 848711600
+          "UID": 3456845444
         },
         {
-          "AudioID": 84,
+          "AudioID": 23,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -53555,7 +53799,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -53608,10 +53852,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 4173427717
+          "UID": 718921728
         },
         {
-          "AudioID": 85,
+          "AudioID": 24,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -54152,7 +54396,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (4)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -54205,7 +54449,7 @@
           "ParentUID": 1056964600,
           "ScriptName": "EventCollectible",
           "Type": 4,
-          "UID": 4088089220
+          "UID": 173023724
         }
       ],
       "Enabled": true,
@@ -54286,7 +54530,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Collectible2",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "Static": false,
       "UID": 1056964600
     },
@@ -54351,10 +54595,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 1273730886
+          "UID": 2190067790
         },
         {
-          "AudioID": 86,
+          "AudioID": 25,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -54936,7 +55180,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (3)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -55004,10 +55248,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 189845801
+          "UID": 1018265977
         },
         {
-          "AudioID": 87,
+          "AudioID": 26,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -55589,7 +55833,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (4)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -55657,10 +55901,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 3567902437
+          "UID": 950480041
         },
         {
-          "AudioID": 88,
+          "AudioID": 27,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -56242,7 +56486,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (5)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -56310,10 +56554,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 2752075868
+          "UID": 3065864451
         },
         {
-          "AudioID": 89,
+          "AudioID": 28,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -56895,7 +57139,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (6)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -56963,10 +57207,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "ChestbursterBehaviour",
           "Type": 4,
-          "UID": 4012293568
+          "UID": 2518524338
         },
         {
-          "AudioID": 90,
+          "AudioID": 29,
           "Name": "AudioSource",
           "Type": 8
         }
@@ -57548,7 +57792,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Chestburster (7)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 4037396494,
       "PrefabName": "Chestburster",
@@ -57601,10 +57845,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "FaceHuggerBehaviour",
           "Type": 4,
-          "UID": 1480267975
+          "UID": 3632314744
         },
         {
-          "AudioID": 91,
+          "AudioID": 30,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -58245,7 +58489,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Facehugger1 (4)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3138940538,
       "PrefabName": "Facehugger1",
@@ -58298,10 +58542,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "FaceHuggerBehaviour",
           "Type": 4,
-          "UID": 3799852327
+          "UID": 972349090
         },
         {
-          "AudioID": 92,
+          "AudioID": 31,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -58942,7 +59186,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "Facehugger1 (5)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3138940538,
       "PrefabName": "Facehugger1",
@@ -58995,10 +59239,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 2362791464
+          "UID": 2806851674
         },
         {
-          "AudioID": 93,
+          "AudioID": 32,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -59539,7 +59783,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (5)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -59592,10 +59836,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 4271536178
+          "UID": 4230644192
         },
         {
-          "AudioID": 94,
+          "AudioID": 33,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -60136,7 +60380,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (6)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -60189,10 +60433,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 1613404348
+          "UID": 4226811566
         },
         {
-          "AudioID": 95,
+          "AudioID": 34,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -60733,7 +60977,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (7)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -60786,10 +61030,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 56612185
+          "UID": 1447463811
         },
         {
-          "AudioID": 96,
+          "AudioID": 35,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -61330,7 +61574,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (8)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
@@ -61383,10 +61627,10 @@
           "ParentUID": 3452816845,
           "ScriptName": "AnarchistBehaviour",
           "Type": 4,
-          "UID": 3140273383
+          "UID": 2968896754
         },
         {
-          "AudioID": 97,
+          "AudioID": 36,
           "Name": "AudioSource",
           "Type": 8
         },
@@ -61927,7 +62171,7 @@
       "HasTransparency": false,
       "Keeped": false,
       "Name": "SK_Anarchist (9)",
-      "ParentUID": 6488165,
+      "ParentUID": 6619242,
       "PrefabDirty": true,
       "PrefabID": 3633985190,
       "PrefabName": "SK_Anarchist",
