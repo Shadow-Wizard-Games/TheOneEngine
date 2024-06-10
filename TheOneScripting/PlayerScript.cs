@@ -1070,7 +1070,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootShoulderLaser()
     {
-        Vector3 height = new Vector3(0.0f, 30.0f, 0.0f);
+        Vector3 height = new Vector3(0.0f, 35.0f, 0.0f);
 
         // CHANGE WITH REAL STATS, M4 PLACEHOLDER
 
@@ -1079,13 +1079,14 @@ public class PlayerScript : MonoBehaviour
             timeSinceLastShot += Time.deltaTime;
             if (!hasShot && timeSinceLastShot > ItemShoulderLaser.fireRate / 2)
             {
-                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + attachedGameObject.transform.Forward * 13.5f + height, attachedGameObject.transform.Rotation);
+                Vector3 offset = new Vector3(-6.0f, 22.0f, -6.0f);
+                InternalCalls.InstantiateBullet(attachedGameObject.transform.Position + (attachedGameObject.transform.Forward * -2.3f + attachedGameObject.transform.Right) * offset + height, attachedGameObject.transform.Rotation);
                 attachedGameObject.source.Play(IAudioSource.AudioEvent.W_SL_SHOOT);
                 hasShot = true;
-                laserGO.transform.Position = new Vector3(0.0f, 0.3f, 0.246f);
+                laserGO.transform.Position = new Vector3(-0.058f, 0.351f, 0.099f);
+                shotExplosionGO.transform.Position = new Vector3(-0.058f, 0.351f, 0.15f);
                 laser.Replay();
                 shotExplosion.Replay();
-                shotParticles.Replay();
                 shotLight.SwitchOn();
             }
         }

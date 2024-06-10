@@ -59,10 +59,24 @@
               ],
               "Type": 2,
               "UsingSingleValueScale": false
+            },
+            {
+              "MaxOffset": [
+                0.0,
+                0.0,
+                -3.0
+              ],
+              "MinOffset": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "Type": 3,
+              "UsingSingleValueOffset": false
             }
           ],
           "IsLooping": true,
-          "Lifetime": 754.5891723632813,
+          "Lifetime": 936.0879516601563,
           "MaxParticles": 200,
           "RenderModule": [
             {
@@ -73,9 +87,10 @@
           ],
           "SpawnModule": [
             {
-              "Duration": 0.05000000074505806,
+              "Amount": 10.0,
+              "Duration": 0.10000000149011612,
               "SpawnRate": 100.0,
-              "Type": 0
+              "Type": 2
             }
           ]
         },
@@ -113,10 +128,24 @@
               ],
               "Type": 2,
               "UsingSingleValueScale": false
+            },
+            {
+              "MaxOffset": [
+                0.0,
+                0.0,
+                -3.0
+              ],
+              "MinOffset": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "Type": 3,
+              "UsingSingleValueOffset": false
             }
           ],
           "IsLooping": true,
-          "Lifetime": 610.67822265625,
+          "Lifetime": 792.177001953125,
           "MaxParticles": 200,
           "RenderModule": [
             {
@@ -127,9 +156,10 @@
           ],
           "SpawnModule": [
             {
+              "Amount": 10.0,
               "Duration": 0.20000000298023224,
               "SpawnRate": 100.0,
-              "Type": 0
+              "Type": 2
             }
           ],
           "UpdateModules": [
@@ -154,7 +184,7 @@
       "ParentUID": 7209065,
       "ScriptName": "Bullet",
       "Type": 4,
-      "UID": 2025882182
+      "UID": 2900708371
     },
     {
       "ColliderType": 0,
@@ -177,8 +207,8 @@
   "HasTransparency": false,
   "Keeped": false,
   "Name": "Bullet",
-  "ParentUID": 7209065,
-  "PrefabDirty": false,
+  "ParentUID": 7209061,
+  "PrefabDirty": true,
   "PrefabID": 4278758102,
   "PrefabName": "Bullet",
   "Static": false,

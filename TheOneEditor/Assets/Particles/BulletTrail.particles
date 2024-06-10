@@ -34,10 +34,24 @@
           ],
           "Type": 2,
           "UsingSingleValueScale": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            0.0,
+            -3.0
+          ],
+          "MinOffset": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 753.3048706054688,
+      "Lifetime": 934.6404418945313,
       "MaxParticles": 200,
       "RenderModule": [
         {
@@ -48,9 +62,10 @@
       ],
       "SpawnModule": [
         {
-          "Duration": 0.05000000074505806,
+          "Amount": 10.0,
+          "Duration": 0.10000000149011612,
           "SpawnRate": 100.0,
-          "Type": 0
+          "Type": 2
         }
       ]
     },
@@ -88,10 +103,24 @@
           ],
           "Type": 2,
           "UsingSingleValueScale": false
+        },
+        {
+          "MaxOffset": [
+            0.0,
+            0.0,
+            -3.0
+          ],
+          "MinOffset": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "Type": 3,
+          "UsingSingleValueOffset": false
         }
       ],
       "IsLooping": true,
-      "Lifetime": 609.3939208984375,
+      "Lifetime": 790.7294921875,
       "MaxParticles": 200,
       "RenderModule": [
         {
@@ -102,9 +131,10 @@
       ],
       "SpawnModule": [
         {
+          "Amount": 10.0,
           "Duration": 0.20000000298023224,
           "SpawnRate": 100.0,
-          "Type": 0
+          "Type": 2
         }
       ],
       "UpdateModules": [
