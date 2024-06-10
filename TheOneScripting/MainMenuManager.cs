@@ -222,7 +222,7 @@ public class MainMenuManager : MonoBehaviour
                     managers.questManager.StartGame();
 
                     DataManager.RemoveFile("GameData");
-                    SceneManager.LoadScene("IntroScene");
+                    SceneManager.LoadScene("IntroSceneUpdate");
                     attachedGameObject.source.Stop(IAudioSource.AudioEvent.UI_A_MENU);
                     attachedGameObject.source.Play(IAudioSource.AudioEvent.UI_CLICK);
                 }
