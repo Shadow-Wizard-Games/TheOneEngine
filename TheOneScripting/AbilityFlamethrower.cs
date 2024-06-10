@@ -1,4 +1,5 @@
 ﻿using System.Security.AccessControl;
+using static Input;
 
 public class AbilityFlamethrower : MonoBehaviour
 {
@@ -118,7 +119,7 @@ public class AbilityFlamethrower : MonoBehaviour
                 playParticle = false;
             }
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) || Input.GetControllerButton(Input.ControllerButtonCode.R1)) && activeTimeCounter < activeTime - waitToReset)
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.THREE) && !Input.GetKeyboardButton(KeyboardCode.LCTRL) || Input.GetControllerButton(Input.ControllerButtonCode.R1)) && activeTimeCounter < activeTime - waitToReset)
             {
                 // reset stats
 

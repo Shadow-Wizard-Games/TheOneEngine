@@ -167,6 +167,34 @@
       "name": "Run Shoot Impaciente",
       "playback_speed": 1.0,
       "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\Anim_MainCharacter_Dance\\SK_MainCharacter_mixamo.com.anim",
+      "loop": true,
+      "name": "Dance",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\Anim_MainCharacter_Dance2\\SK_MainCharacter_mixamo.com.anim",
+      "loop": true,
+      "name": "Dance2",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\Anim_MainCharacter_Dance3\\SK_MainCharacter_mixamo.com.anim",
+      "loop": false,
+      "name": "Dance3",
+      "playback_speed": 1.0,
+      "type": 0
+    },
+    {
+      "animation_file": "Library\\Meshes\\Anim_MainCharacter_Dance4\\SK_MainCharacter_mixamo.com.anim",
+      "loop": true,
+      "name": "Dance4",
+      "playback_speed": 1.0,
+      "type": 0
     }
   ],
   "material": "Library/Materials/AS_MainCharacter_TPose/M_MainCharacter.toematerial",

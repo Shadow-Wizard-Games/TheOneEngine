@@ -56,7 +56,7 @@ bool BuilderSceneManager::Start()
 
 	viewportSize = { 640, 360 };
 	renderTarget = Renderer::AddRenderTarget(
-		"Build", DrawMode::BUILD_DEBUG, engine->N_sceneManager->currentScene->currentCamera, viewportSize, buildBuffers, true);
+		"Build", DrawMode::BUILD_RELEASE, engine->N_sceneManager->currentScene->currentCamera, viewportSize, buildBuffers, true);
 
 	return true;
 }

@@ -671,7 +671,7 @@ public class UiScriptHud : MonoBehaviour
     public void SetFlameThrowerOnCD()
     {
         flameThrowerHoveredOnCooldown = false;
-        flameThrowerTimer = playerScript.Impaciente.activeTime;
+        flameThrowerTimer = playerScript.Flamethrower.activeTime;
         UpdateAbilityCanvas(PlayerAbility.FLAMETHROWER, ICanvas.UiState.HOVERED);
     }
 }

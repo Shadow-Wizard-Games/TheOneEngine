@@ -3,6 +3,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using static Input;
 using static GameManager;
+using System.Diagnostics.Eventing.Reader;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -120,6 +121,8 @@ public class PlayerScript : MonoBehaviour
     IParticleSystem healPSGO;
     IParticleSystem adrenalinePSGO;
 
+    bool keepDance = false;
+
     Vector2 aimingDirection;
     private Vector2 movingDirection;
 
@@ -212,6 +215,26 @@ public class PlayerScript : MonoBehaviour
     }
     public override void Update()
     {
+        if (Input.GetKeyboardButton(KeyboardCode.LCTRL))
+        {
+            if (Input.GetKeyboardButton(KeyboardCode.ONE))
+            {
+                ThrowEmote(1);
+            }
+            if (Input.GetKeyboardButton(KeyboardCode.TWO))
+            {
+                ThrowEmote(2);
+            }
+            if (Input.GetKeyboardButton(KeyboardCode.THREE))
+            {
+                ThrowEmote(3);
+            }
+            if (Input.GetKeyboardButton(KeyboardCode.FOUR))
+            {
+                ThrowEmote(4);
+            }
+        }
+
         // to delete just testing
         AddItemsToInventoryForTest();
 
@@ -290,6 +313,8 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("waiting for ability " + waitForAnimationToFinish);
         }
         #endregion
+
+        if (keepDance) currentWeapon.Disable();
     }
 
     private void UpdatePlayerState()
@@ -346,7 +371,7 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) && !Input.GetKeyboardButton(KeyboardCode.LCTRL) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
@@ -366,7 +391,7 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) && !Input.GetKeyboardButton(KeyboardCode.LCTRL) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
                 && AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.READY
                 && currentAction != CurrentAction.HEAL
                 && currentAction != CurrentAction.DASH)
@@ -392,7 +417,7 @@ public class PlayerScript : MonoBehaviour
                 return;
             }
 
-            if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
+            if ((Input.GetKeyboardButton(Input.KeyboardCode.TWO) && !Input.GetKeyboardButton(KeyboardCode.LCTRL) || Input.GetControllerButton(Input.ControllerButtonCode.R1))
                 && currentWeaponType == CurrentWeapon.GRENADELAUNCHER
                 && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE
                 && Dash.state != AbilityDash.AbilityState.ACTIVE
@@ -421,7 +446,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.ONE) && !Input.GetKeyboardButton(KeyboardCode.LCTRL) || Input.GetControllerButton(Input.ControllerButtonCode.L1))
             && AdrenalineRush.state == AbilityAdrenalineRush.AbilityState.READY
             && Heal.state != AbilityHeal.AbilityState.ACTIVE
             && Dash.state != AbilityDash.AbilityState.ACTIVE)
@@ -489,7 +514,7 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.TWO))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.TWO) && !Input.GetKeyboardButton(KeyboardCode.LCTRL))
         {
             if (currentSkillSet == SkillSet.M4A1SET && GrenadeLauncher.state == AbilityGrenadeLauncher.AbilityState.READY 
                 && managers.itemManager.CheckItemInInventory(2) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
@@ -500,7 +525,7 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyboardButton(Input.KeyboardCode.THREE))
+        if (Input.GetKeyboardButton(Input.KeyboardCode.THREE) && !Input.GetKeyboardButton(KeyboardCode.LCTRL))
         {
             if (currentSkillSet == SkillSet.SHOULDERLASERSET && Flamethrower.state == AbilityFlamethrower.AbilityState.READY 
                 && managers.itemManager.CheckItemInInventory(8) && Impaciente.state != AbilityImpaciente.AbilityState.ACTIVE)
@@ -512,7 +537,7 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-        if ((Input.GetKeyboardButton(Input.KeyboardCode.FOUR) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
+        if ((Input.GetKeyboardButton(Input.KeyboardCode.FOUR) && !Input.GetKeyboardButton(KeyboardCode.LCTRL) || Input.GetControllerButton(Input.ControllerButtonCode.L2))
             && managers.itemManager.CheckItemInInventory(7)
             && currentSkillSet != SkillSet.NONE
             && Impaciente.state == AbilityImpaciente.AbilityState.READY)
@@ -595,7 +620,8 @@ public class PlayerScript : MonoBehaviour
     {
         // CHECK ADRENALINE RUSH ANIMATION FINISH
         if (Dash.state == AbilityDash.AbilityState.ACTIVE
-            || Heal.state == AbilityHeal.AbilityState.ACTIVE) return;
+            || Heal.state == AbilityHeal.AbilityState.ACTIVE
+            || keepDance) return;
 
         switch (currentWeaponType)
         {
@@ -638,6 +664,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void RunAction()
     {
+        StopEmote();
         Move();
 
         if (Dash.state == AbilityDash.AbilityState.ACTIVE
@@ -683,6 +710,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void DashAction()
     {
+        StopEmote();
         if (Dash.state != AbilityDash.AbilityState.READY) return;
 
         Dash.state = AbilityDash.AbilityState.ACTIVE;
@@ -696,6 +724,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void ShootAction()
     {
+        StopEmote();
         Shoot();
 
         switch (currentWeaponType)
@@ -732,6 +761,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void RunShootAction()
     {
+        StopEmote();
         Move();
 
         Shoot();
@@ -771,6 +801,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void DeadAction()
     {
+        StopEmote();
         attachedGameObject.animator.Play("Death");
 
         stepParticles.End();
@@ -798,6 +829,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void RunAdrenalineRushAction()
     {
+        StopEmote();
         Move();
 
         if (AdrenalineRush.state != AbilityAdrenalineRush.AbilityState.READY) return;
@@ -819,6 +851,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void HealAction()
     {
+        StopEmote();
         Heal.speedModification = managers.gameManager.GetSpeed() * -Heal.slowAmount;
 
         Heal.state = AbilityHeal.AbilityState.ACTIVE;
@@ -829,6 +862,7 @@ public class PlayerScript : MonoBehaviour
     }
     private void RunHealAction()
     {
+        StopEmote();
         Move();
 
         if (Heal.state != AbilityHeal.AbilityState.READY) return;
@@ -1366,5 +1400,36 @@ public class PlayerScript : MonoBehaviour
         // Genera un número aleatorio entre 0.0 y 1.0, luego escala y desplaza este número.
         float randomValue = (float)random.NextDouble() * range + r1;
         return randomValue;
+    }
+
+    public void ThrowEmote(int dance)
+    {
+        if (dance == 1)
+        {
+            attachedGameObject.animator.Play("Dance");
+        }
+        else if (dance == 2)
+        {
+            attachedGameObject.animator.Play("Dance2");
+        }
+        else if (dance == 3)
+        {
+            attachedGameObject.animator.Play("Dance3");
+        }
+        else if (dance == 4)
+        {
+            attachedGameObject.animator.Play("Dance4");
+        }
+
+        currentWeapon.Disable();
+        keepDance = true;
+    }
+    public void StopEmote()
+    {
+        if (this.currentSkillSet != SkillSet.NONE)
+        {
+            currentWeapon.Enable();
+        }
+        keepDance = false;
     }
 }
