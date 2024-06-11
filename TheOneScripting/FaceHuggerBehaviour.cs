@@ -197,7 +197,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             isJumping = true;
             attachedGameObject.animator.Play("Jump");
             attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_JUMP);
-            if (jumpPS != null) jumpPS.Replay();
+            if (jumpPS != null) jumpPS?.Replay();
         }
 
         if (attachedGameObject.animator.CurrentAnimHasFinished)
@@ -264,7 +264,7 @@ public class FaceHuggerBehaviour : MonoBehaviour
             attachedGameObject.GetComponent<ICollider2D>().radius = 0.0f;
             // add player biomass
             managers.gameManager.currency += (int)this.biomass;
-            if (deathPS != null) deathPS.Replay(); // this will crash if no particles are found
+            if (deathPS != null) deathPS?.Replay(); // this will crash if no particles are found
             attachedGameObject.source.Play(IAudioSource.AudioEvent.E_FH_DEATH);
         }
     }
