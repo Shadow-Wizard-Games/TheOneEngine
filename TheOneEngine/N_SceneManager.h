@@ -75,7 +75,7 @@ public:
 	void OverrideScenePrefabs(uint32_t prefabID);
 	void OverridePrefabsRecursive(std::shared_ptr<GameObject> parent, uint32_t prefabID);
 	void OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> goToModify);
-	void CreatePrefabWithName(std::string prefabName, const vec3f& position, vec3f& rotation);
+	void CreatePrefabWithName(std::string prefabName, const vec3f& position, const vec3f& rotation, const vec3f& scale = vec3f(1.0f));
 	void CreatePrefabWithName(std::string prefabName, const mat4& transform);
 	std::string ReturnLastGOName(std::string toCompare, std::shared_ptr<GameObject> parent);
 	void CreatePrefabFromPath(std::string prefabPath, const vec3f& position);

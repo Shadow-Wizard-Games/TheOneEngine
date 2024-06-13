@@ -232,7 +232,7 @@ void MonoManager::RenderShapesQueue()
     if (debugShapesQueue.empty())
         return;
 
-    for (auto& shape : debugShapesQueue)
+    /*for (auto& shape : debugShapesQueue)
     {
         glm::mat4 translate = glm::translate(glm::mat4(1), shape.center);
 
@@ -240,7 +240,7 @@ void MonoManager::RenderShapesQueue()
             Renderer2D::DrawLine(BatchType::EDITOR, glm::vec4(shape.points[i], 1.0f) * translate,
                                  glm::vec4(&shape.points[i + 1] == nullptr ? shape.points[0] : shape.points[i + 1], 1.0f) * translate,
                                  glm::vec4(shape.color, 1.0f));
-    }
+    }*/
 
     debugShapesQueue.clear();
 }

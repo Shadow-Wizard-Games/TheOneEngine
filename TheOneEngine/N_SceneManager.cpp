@@ -921,7 +921,7 @@ void N_SceneManager::AddPendingGOs()
 
 void N_SceneManager::DeletePendingGOs()
 {
-	for (auto object : objectsToDelete)
+	for (auto& object : objectsToDelete)
 		object->Delete();
 
 	objectsToDelete.clear();
@@ -1085,7 +1085,7 @@ void N_SceneManager::OverrideGameobjectFromPrefab(std::shared_ptr<GameObject> go
 	*/
 }
 
-void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& position, vec3f& rotation)
+void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& position, const vec3f& rotation, const vec3f& scale)
 {
 	auto newGameObject = CreateEmptyGO();
 	newGameObject.get()->SetName(currentScene->GetSceneName());
@@ -1107,6 +1107,7 @@ void N_SceneManager::CreatePrefabWithName(std::string prefabName, const vec3f& p
 
 	goTransform->SetPosition(position);
 	goTransform->SetRotation(rotation);
+	goTransform->SetScale(scale);
 
 	// add to goCollision list if it has component Collider 
 	if (newGameObject->GetComponent<Collider2D>())

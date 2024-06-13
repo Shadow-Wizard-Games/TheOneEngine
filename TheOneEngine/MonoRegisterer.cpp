@@ -310,21 +310,8 @@ static GameObject* InstantiateDOT(vec3f* initialPosition, float width)
 
 static GameObject* InstantiateXenomorph(vec3f* initialPosition, vec3f* direction, vec3f* scale)
 {
-	engine->N_sceneManager->CreateMeshGO("Assets/Meshes/SK_Facehugger.fbx");
+	engine->N_sceneManager->CreatePrefabWithName("Facehugger1", *initialPosition, *direction, *scale);
 	GameObject* go = engine->N_sceneManager->objectsToAdd.back().get();
-
-	SetPosition(go, initialPosition);
-	SetRotation(go, direction);
-	SetScale(go, scale);
-
-	go->AddComponent<Collider2D>();
-	go->GetComponent<Collider2D>()->colliderType = ColliderType::Circle;
-	go->GetComponent<Collider2D>()->collisionType = CollisionType::Enemy;
-	go->GetComponent<Collider2D>()->radius = 30.0f;
-
-	go->AddComponent<AudioSource>();
-
-	go->AddComponent<Script>("FaceHuggerBehaviour");
 
 	return go;
 }

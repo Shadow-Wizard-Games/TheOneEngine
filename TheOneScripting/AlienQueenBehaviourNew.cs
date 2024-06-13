@@ -608,10 +608,10 @@ public class AlienQueenBehaviourNew : MonoBehaviour
             float radius = rainArea * (float)Math.Sqrt(rand.NextDouble());
 
             Vector3 localPos = new Vector3(radius * (float)Math.Cos(angle),
-                                           0.0f,
+                                           300.0f,
                                            radius * (float)Math.Sin(angle));
 
-            InternalCalls.CreatePrefab("Acid_Raindrop", acidRainCenter + localPos, Vector3.zero);
+            InternalCalls.CreatePrefab("Acid_Raindrop", acidRainCenter + localPos, new Vector3(100.0f, 100.0f, 100.0f));
         }
 
         rainTimeCounter += Time.deltaTime;
